@@ -14,3 +14,5 @@ let b = new EdgeCase.BlobfishExported();
 b.thisClassIsExported;
 
 let a = new AnotherNamespace.Blobfish();
+
+let am: Ambient;

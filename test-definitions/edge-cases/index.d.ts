@@ -16,6 +16,7 @@ export class Thing {
 export class DefaultThing extends Thing {
     a: number;
     b: string;
+    iAmAThing: Thing;
     private constructor();
 }
 
