@@ -5,20 +5,22 @@ export default class Terminal {
 
 	private static currentRewriteId: string | undefined = undefined;
 
+	static lineCaret = '<b>></b>';
+
 	static log(...args: Array<any>) {
-		this.write(format('<b><gray>><//> ' + util.format.apply(this, args as any)) + '\n');
+		this.write(format(`<gray>${this.lineCaret}</gray> ` + util.format.apply(this, args as any)) + '\n');
 	}
 
 	static error(...args: Array<any>) {
-		this.write(format('<b><red>> Error:</b> ' + util.format.apply(this, args as any)) + '\n');
+		this.write(format(`<red>${this.lineCaret}<b>Error:</b> ` + util.format.apply(this, args as any)) + '\n');
 	}
 
 	static warn(...args: Array<any>) {
-		this.write(format('<b><yellow>> Warning:</b> ' + util.format.apply(this, args as any)) + '\n');
+		this.write(format(`<yellow>${this.lineCaret} <b>Warning:</b> ` + util.format.apply(this, args as any)) + '\n');
 	}
 
 	static success(...args: Array<any>) {
-		this.write(format('<light_green><b>></b> ' + util.format.apply(this, args as any)) + '\n');
+		this.write(format(`<light_green>${this.lineCaret} <b>` + util.format.apply(this, args as any)) + '</b>\n');
 	}
 
 	static rewriteLine(id: string, str: string) {
