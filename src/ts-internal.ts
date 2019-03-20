@@ -1,7 +1,8 @@
 import * as ts from 'typescript';
 
 /**
- * Expose the internal TypeScript APIs that are used by TypeDoc
+ * Adds missing types and fields declared as internal in TypeScript
+ * (written against ts 3.3.3333)
  */
 declare module 'typescript' {
     interface Symbol {
