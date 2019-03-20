@@ -1,0 +1,21 @@
+{
+  "name": "d.ts-haxe",
+  "version": "1.0.0",
+  "description": "Converts TypeScript definition files (d.ts) to haxe externs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "run": "node dist",
+    "watch-run": "tsc --watch & fswatch -o dist/ | xargs -n1 -I{} node dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "11.11.3",
+    "typescript": "3.3.3333"
+  },
+  "devDependencies": {
+    "fswatch": "0.1.4"
+  }
+}
