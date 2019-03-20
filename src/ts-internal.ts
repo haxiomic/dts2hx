@@ -27,4 +27,29 @@ declare module 'typescript' {
     interface Program {
         getSourceFileFromReference(referencingFile: SourceFile, ref: FileReference): SourceFile | undefined;
     }
+
+    // Intrinsic types (TypeFlags.Intrinsic)
+    interface IntrinsicType extends Type {
+        intrinsicName: string;        // Name of intrinsic type
+        objectFlags: ObjectFlags;
+    }
+
+    enum TypeFlags {
+        AnyOrUnknown,
+        Nullable,
+        StringOrNumberLiteralOrUnique,
+        DefinitelyFalsy,
+        Intrinsic,
+        Primitive,
+        DisjointDomains,
+        ObjectFlagsType,
+        NotPrimitiveUnion,
+        IncludesMask,
+        IncludesStructuredOrInstantiable,
+        IncludesNonWideningType,
+        IncludesWildcard,
+        IncludesEmptyObject,
+        GenericMappedType,
+    }
+
 }
