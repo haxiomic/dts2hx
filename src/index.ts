@@ -77,7 +77,6 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     // processor state
     let _processFileQueue = new Array<ts.SourceFile>();
     let _processedFiles = new Set<ts.SourceFile>();
-    let _processReferenceFilesSeen = new Set<ts.SourceFile>();
 
     for (let sourceFile of program.getSourceFiles()) {
         // only directly process explicitly specified files
@@ -165,10 +164,10 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             let specialExports: Array<ts.Symbol> = [];
             symbol.exports.forEach(s => {
                 if (s.flags & (
-                    ts.SymbolFlags.Alias | // for export default DefaultThing; 
-                    ts.SymbolFlags.ExportStar |
-                    ts.SymbolFlags.ExportValue |
-                    ts.SymbolFlags.ModuleExports
+                    ts.SymbolFlags.Alias | // `export default DefaultThing` 
+                    ts.SymbolFlags.ExportStar | // all the `export * from 'x'` directives end up in this symbol
+                    ts.SymbolFlags.ExportValue | // ?
+                    ts.SymbolFlags.ModuleExports // `module.exports = x` (for CommonJS exports which actually isn't allowed in type definition files, but it's here for the future)
                 )) {
                     specialExports.push(s);
                 }
