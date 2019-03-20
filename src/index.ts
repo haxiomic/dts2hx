@@ -2,9 +2,6 @@ import * as ts from 'typescript';
 import * as path from 'path';
 import * as fs from 'fs';
 import Terminal from './Terminal';
-import { exit } from 'shelljs';
-
-import * as glob from 'glob';
 
 // lazy log aliases
 let log = Terminal.log.bind(Terminal);
@@ -13,17 +10,19 @@ let error = Terminal.error.bind(Terminal);
 
 let outputDirectory = 'output';
 
-generateHaxeExterns('test-definitions/edge-cases', {});
-generateHaxeExterns('test-definitions/templates/module-class', {});
-generateHaxeExterns('test-definitions/templates/module', {});
-generateHaxeExterns('test-definitions/templates/global', {});
+// generateHaxeExterns('test-definitions/edge-cases', {});
+// generateHaxeExterns('test-definitions/templates/module-class', {});
+// generateHaxeExterns('test-definitions/templates/module', {});
+// generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
+// generateHaxeExterns('node_modules/typescript/lib', {});
+// generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 
-// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
-// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
+generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
+generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
-// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
+generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
 
 function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
     Terminal.log(`Processing <b>${definitionsPath}</b>`);
@@ -32,7 +31,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     fs.mkdirSync(outputDirectory, { recursive: true });
     
     // determine root definition file(s) from definitionsPath, favoring index.d.ts if one exists
-    let definitionRoots: ReadonlyArray<string>;
+    let definitionRoots: Array<string>;
 
     if (isFile(definitionsPath)) {
         definitionRoots = [definitionsPath];
@@ -43,57 +42,105 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         if (fs.existsSync(indexPath)) {
             definitionRoots = [indexPath];
         } else {
-            // process all .d.ts files within the directory and subdirectories (recursively)
-            warn(`No index.d.ts file found in "${definitionsPath}", finding all .d.ts (recurively) files instead`);
-            definitionRoots = glob.sync(definitionsPath + '/**/*.d.ts');
+            // process all .d.ts files within the directory and subdirectories 
+            warn(`No index.d.ts file found in "${definitionsPath}", finding all .d.ts files instead`);
+            definitionRoots = [];
+
+            let files = fs.readdirSync(definitionsPath);
+            for (let filename of files) {
+                if (filename.match(/\.d\.ts$/i)) {
+                    definitionRoots.push(path.join(definitionsPath, filename));
+                }
+            }
         }
     } else if (!fs.existsSync(definitionsPath)) {
         Terminal.error(`Path doesn't exist "${definitionsPath}"`);
-        exit(1);
+        process.exit(1);
         return;
     } else {
         Terminal.error(`Could not handle path "${definitionsPath}"`);
-        exit(1);
+        process.exit(1);
+        return;
+    }
+
+    if (definitionRoots.length === 0) {
+        error(`No typescript definition files (.d.ts) found at "${definitionsPath}"`);
+        process.exit(1);
         return;
     }
 
     let program = ts.createProgram(definitionRoots, options);
     let checker = program.getTypeChecker();
 
+    // processor state
+    let _processFileQueue = new Array<ts.SourceFile>();
+    let _processedFiles = new Set<ts.SourceFile>();
+    let _processReferenceFilesSeen = new Set<ts.SourceFile>();
+
     for (let sourceFile of program.getSourceFiles()) {
         // only directly process explicitly specified files
         if (program.getRootFileNames().indexOf(sourceFile.fileName) === -1) {
             continue;
         }
+
         // reject non-declaration files because otherwise assumptions are broken
         if (!sourceFile.isDeclarationFile) {
             Terminal.error(`Expected declaration file (${sourceFile})`);
             ts.sys.exit(1);
             return;
         }
-
+        
         // let isExternal = program.isSourceFileDefaultLibrary(sourceFile) || program.isSourceFileFromExternalLibrary(sourceFile);
         // if (isExternal) continue;
 
-        log(`<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
+        // add this file to the process queue
+        _processFileQueue.push(sourceFile);
+    }
+
+    // the process file queue may grow when processSourceFile is called
+    while (_processFileQueue.length > 0) {
+        let sourceFile = _processFileQueue.shift();
+        if (sourceFile != null) {
+            processSourceFile(sourceFile, 0);
+        }
+    }
+
+    if (_processedFiles.size === 0) {
+        error(`No definition files were processed – this indicates an error when determining which source files are not external`);
+    }
+    
+    function processSourceFile(sourceFile: ts.SourceFile, depth: number) {
+        // do not process the same file twice
+        if (_processedFiles.has(sourceFile)) return;
+        _processedFiles.add(sourceFile);
+
+        log(getIndent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
+        // @! lib reference directives 
+
+        queueReferencedFiles(sourceFile, depth);
 
         // source file locals (these are your non-export declares)
         if (sourceFile.locals != null) {
-            log(`>> <red>locals</red>`);
-            sourceFile.locals.forEach(s => processSymbol(s, 1));
+            log(getIndent(depth) + `>> <red>locals</red>`);
+            sourceFile.locals.forEach(s => processSymbol(s, depth + 1));
         }
 
         // for UMD style exports, we can get the sourceFile symbol
         let sourceFileSymbol = sourceFile.symbol;//checker.getSymbolAtLocation(sourceFile);
         if (sourceFileSymbol != null) {
-            log(`>> <red>sourceFileSymbol</red>`);
-            processSymbol(sourceFileSymbol, 0);
-        }     
+            log(getIndent(depth) + `>> <red>sourceFileSymbol</red>`);
+            processSymbol(sourceFileSymbol, depth);
+        }
     }
 
     function processSymbol(symbol: ts.Symbol, depth: number): void {
+        queueSymbolReferencedFiles(symbol, depth);
+
         logSymbol(symbol, depth);
 
+        // @! deterministically insert symbol into haxe externs AST, creating structures as required
+
+        // these are currently only set on sourceFile symbols I believe
         if (symbol.globalExports != null && symbol.globalExports.size > 0) {
             log(getIndent(depth) + `<green><b>${symbol.name}</> globalExports</>`);
             symbol.globalExports.forEach(s => processSymbol(s, depth + 1));
@@ -105,7 +152,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         }
 
         if (symbol.flags & ts.SymbolFlags.Module) {
-            log(getIndent(depth) + `<yellow><b>${symbol.name}</> All Exports of Module</>`);
+            log(getIndent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
             let allExports = checker.getExportsOfModule(symbol);
             allExports.forEach(s => processSymbol(s, depth + 1));
         }
@@ -131,6 +178,36 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             }
         }
    
+    }
+
+    /**
+     * Find the source file associated with this symbol
+     */
+    function queueSymbolReferencedFiles(symbol: ts.Symbol, depth: number) {
+        let sourceFile = symbol.valueDeclaration != null ? symbol.valueDeclaration.getSourceFile() : undefined;
+
+        if (sourceFile != null) {
+            queueReferencedFiles(sourceFile, depth);
+        }
+    }
+
+    function queueReferencedFiles(sourceFile: ts.SourceFile, depth: number) {
+        for (let ref of sourceFile.referencedFiles) {
+            let referencedSourceFile = program.getSourceFileFromReference(sourceFile, ref);
+            if (referencedSourceFile != null) {
+                if (_processFileQueue.indexOf(referencedSourceFile) === -1) {
+                    _processFileQueue.push(referencedSourceFile);
+                }
+            }
+        }
+
+        for (let ref of sourceFile.typeReferenceDirectives) {
+            warn(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+        }
+
+        for (let ref of sourceFile.libReferenceDirectives) {
+            warn(`<b>${sourceFile.fileName}</b> references lib "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+        }
     }
 
     function logSymbol(s: ts.Symbol, depth: number) {

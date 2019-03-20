@@ -22,7 +22,9 @@ declare module 'typescript' {
         locals?: ts.SymbolTable;
     }
 
-    interface SourceFile extends ts.Declaration {
+    interface SourceFile extends ts.Declaration { }
 
+    interface Program {
+        getSourceFileFromReference(referencingFile: SourceFile, ref: FileReference): SourceFile | undefined;
     }
 }

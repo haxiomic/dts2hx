@@ -1,5 +1,7 @@
 export * from './cat';
 
+export * from './blobfish';
+
 declare namespace SomeNamespace {
     interface Wat {
         nowThisIsGettingComplex: string;
@@ -18,6 +20,6 @@ export class DefaultThing extends Thing {
 
 export as namespace EdgeCase;
 
-export default DefaultThing;
+// export default DefaultThing;
 
 // module.exports = DefaultThing;
