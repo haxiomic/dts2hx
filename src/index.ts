@@ -38,7 +38,6 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     if (isFile(definitionsPath)) {
         definitionRoots = [definitionsPath];
     } else if (isDirectory(definitionsPath)) {
-
         // check for an index.d.ts file
         let indexPath = path.join(definitionsPath, 'index.d.ts');
         if (fs.existsSync(indexPath)) {
@@ -146,8 +145,9 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         _processedFiles.add(sourceFile);
 
         log(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
-        // @! lib reference directives 
+        
 
+        // process the /// <reference path="..."> files
         queueReferencedFiles(sourceFile, depth);
 
         // source file locals (these are your non-export declares)
@@ -162,7 +162,6 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             let globalExports = new Array<ts.Symbol>();
             // these are currently only set on sourceFile symbols I believe
             if (sourceFileSymbol.globalExports != null && sourceFileSymbol.globalExports.size > 0) {
-                log(indent(depth) + `<green><b>${sourceFileSymbol.name}</> globalExports</>`);
                 sourceFileSymbol.globalExports.forEach(s => globalExports.push(s));
             }
 
@@ -176,63 +175,59 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     function processSymbol(symbol: ts.Symbol, depth: number): void {
         queueSymbolReferencedFiles(symbol, depth);
 
-        Debug.logSymbol(symbol, depth);
+        Debug.logSymbol(checker, symbol, depth);
 
         // @! deterministically insert symbol into haxe externs AST, creating structures as required
 
-        // these are currently only set on sourceFile symbols I believe
-        if (symbol.globalExports != null && symbol.globalExports.size > 0) {
-            log(indent(depth) + `<green><b>${symbol.name}</> globalExports</>`);
-            symbol.globalExports.forEach(s => processSymbol(s, depth + 1));
-        }
+        // process sub symbols
+        {
+            // globalExports are currently only set on sourceFile symbols I believe
+            if (symbol.globalExports != null && symbol.globalExports.size > 0) {
+                log(indent(depth) + `<green><b>${symbol.name}</> globalExports</>`);
+                symbol.globalExports.forEach(s => processSymbol(s, depth + 1));
+            }
 
-        if (symbol.members != null && symbol.members.size > 0) {
-            log(indent(depth) + `<green><b>${symbol.name}</> members</>`);
-            symbol.members.forEach(s => processSymbol(s, depth + 1));
-        }
+            if (symbol.members != null && symbol.members.size > 0) {
+                log(indent(depth) + `<green><b>${symbol.name}</> members</>`);
+                symbol.members.forEach(s => processSymbol(s, depth + 1));
+            }
 
-        if (symbol.flags & ts.SymbolFlags.Module) {
-            log(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
-            let allExports = checker.getExportsOfModule(symbol);
-            allExports.forEach(s => processSymbol(s, depth + 1));
-        }
+            if (symbol.flags & ts.SymbolFlags.Module) {
+                log(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
+                let allExports = checker.getExportsOfModule(symbol);
+                allExports.forEach(s => processSymbol(s, depth + 1));
+            }
 
-        // since module exports were handled by checker.getExportsOfModule, this finds just the remaining export types such as export = T
-        // and ExportStar, (all export * declarations are collected in an __export symbol by the binder, this is the ExportStar symbol)
-        if (symbol.exports != null && symbol.exports.size > 0) {
-            let specialExports: Array<ts.Symbol> = [];
-            symbol.exports.forEach(s => {
-                if (s.flags & (
-                    ts.SymbolFlags.Alias | // `export default DefaultThing` 
-                    ts.SymbolFlags.ExportStar | // all the `export * from 'x'` directives end up in this symbol
-                    ts.SymbolFlags.ExportValue | // ?
-                    ts.SymbolFlags.ModuleExports // `module.exports = x` (for CommonJS exports which actually isn't allowed in type definition files, but it's here for the future)
-                )) {
-                    specialExports.push(s);
+            // since module exports were handled by checker.getExportsOfModule, this finds just the remaining export types such as export = T
+            // and ExportStar, (all export * declarations are collected in an __export symbol by the binder, this is the ExportStar symbol)
+            if (symbol.exports != null && symbol.exports.size > 0) {
+                let specialExports: Array<ts.Symbol> = [];
+                symbol.exports.forEach(s => {
+                    if (s.flags & (
+                        ts.SymbolFlags.Alias | // `export default DefaultThing` 
+                        ts.SymbolFlags.ExportStar | // all the `export * from 'x'` directives end up in this symbol
+                        ts.SymbolFlags.ExportValue | // ?
+                        ts.SymbolFlags.ModuleExports // `module.exports = x` (for CommonJS exports which actually isn't allowed in type definition files, but it's here for the future)
+                    )) {
+                        specialExports.push(s);
+                    }
+                });
+
+                if (specialExports.length > 0) {
+                    log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
+                    specialExports.forEach(s => processSymbol(s, depth + 1));
                 }
-            });
-
-            if (specialExports.length > 0) {
-                log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
-                specialExports.forEach(s => processSymbol(s, depth + 1));
             }
         }
+
     }
 
 }
 
 function isFile(path: string) {
-    try {
-        return fs.statSync(path).isFile();
-    } catch (e) {
-        return false;
-    }
+    try { return fs.statSync(path).isFile(); } catch (e) { return false; }
 }
 
 function isDirectory(path: string) {
-    try {
-        return fs.statSync(path).isDirectory();
-    } catch (e) {
-        return false;
-    }
+    try { return fs.statSync(path).isDirectory(); } catch (e) { return false; }
 }
