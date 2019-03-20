@@ -1,4 +1,5 @@
 import EdgeCase, { Thing, DefaultThing } from ".";
+import AnotherNamespace from ".";
 
 let x = new Thing();
 x.field;
@@ -12,3 +13,4 @@ c.age;
 let b = new EdgeCase.BlobfishExported();
 b.thisClassIsExported;
 
+let a = new AnotherNamespace.Blobfish();

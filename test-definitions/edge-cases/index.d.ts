@@ -1,5 +1,6 @@
 export * from './cat';
 
+// Blobfish is tripple-slash referenced AND exported
 export * from './blobfish';
 
 declare namespace SomeNamespace {
@@ -19,6 +20,7 @@ export class DefaultThing extends Thing {
 }
 
 export as namespace EdgeCase;
+export as namespace AnotherNamespace;
 
 // export default DefaultThing;
 
