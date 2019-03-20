@@ -1,7 +1,7 @@
 import * as util from 'util';
 import * as process from 'process';
 
-export class Terminal {
+export default class Terminal {
 
 	private static currentRewriteId: string | undefined = undefined;
 
@@ -81,8 +81,6 @@ export class Terminal {
 	*/
 
 }
-
-export default Terminal;
 
 enum FormatFlag {
 	'RESET',
