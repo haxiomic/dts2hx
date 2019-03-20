@@ -12,7 +12,7 @@ let indent = Debug.getIndent.bind(Debug);
 
 let outputDirectory = 'output';
 
-// generateHaxeExterns('test-definitions/edge-cases', {});
+generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/global', {});
@@ -21,7 +21,7 @@ let outputDirectory = 'output';
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 
-generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
+// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
@@ -109,6 +109,36 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     if (_processedFiles.size === 0) {
         error(`No definition files were processed – this indicates an error when determining which source files are not external`);
     }
+
+    /**
+     * Find the source file associated with this symbol
+     */
+    function queueSymbolReferencedFiles(symbol: ts.Symbol, depth: number) {
+        let sourceFile = symbol.valueDeclaration != null ? symbol.valueDeclaration.getSourceFile() : undefined;
+
+        if (sourceFile != null) {
+            queueReferencedFiles(sourceFile, depth);
+        }
+    }
+
+    function queueReferencedFiles(sourceFile: ts.SourceFile, depth: number) {
+        for (let ref of sourceFile.referencedFiles) {
+            let referencedSourceFile = program.getSourceFileFromReference(sourceFile, ref);
+            if (referencedSourceFile != null) {
+                if (_processFileQueue.indexOf(referencedSourceFile) === -1) {
+                    _processFileQueue.push(referencedSourceFile);
+                }
+            }
+        }
+
+        for (let ref of sourceFile.typeReferenceDirectives) {
+            warn(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+        }
+
+        for (let ref of sourceFile.libReferenceDirectives) {
+            warn(`<b>${sourceFile.fileName}</b> references lib "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+        }
+    }
     
     function processSourceFile(sourceFile: ts.SourceFile, depth: number) {
         // do not process the same file twice
@@ -129,7 +159,16 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         // for UMD style exports, we can get the sourceFile symbol
         let sourceFileSymbol = sourceFile.symbol;//checker.getSymbolAtLocation(sourceFile);
         if (sourceFileSymbol != null) {
-            log(indent(depth) + `>> <red>sourceFileSymbol</red>`);
+            let globalExports = new Array<ts.Symbol>();
+            // these are currently only set on sourceFile symbols I believe
+            if (sourceFileSymbol.globalExports != null && sourceFileSymbol.globalExports.size > 0) {
+                log(indent(depth) + `<green><b>${sourceFileSymbol.name}</> globalExports</>`);
+                sourceFileSymbol.globalExports.forEach(s => globalExports.push(s));
+            }
+
+            let globalExportsString = globalExports.map(s => s.name).join(', ');
+
+            log(indent(depth) + `>> <red>sourceFileSymbol ` + (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) + `</red>`);
             processSymbol(sourceFileSymbol, depth);
         }
     }
@@ -177,36 +216,6 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
                 specialExports.forEach(s => processSymbol(s, depth + 1));
             }
-        }
-    }
-
-    /**
-     * Find the source file associated with this symbol
-     */
-    function queueSymbolReferencedFiles(symbol: ts.Symbol, depth: number) {
-        let sourceFile = symbol.valueDeclaration != null ? symbol.valueDeclaration.getSourceFile() : undefined;
-
-        if (sourceFile != null) {
-            queueReferencedFiles(sourceFile, depth);
-        }
-    }
-
-    function queueReferencedFiles(sourceFile: ts.SourceFile, depth: number) {
-        for (let ref of sourceFile.referencedFiles) {
-            let referencedSourceFile = program.getSourceFileFromReference(sourceFile, ref);
-            if (referencedSourceFile != null) {
-                if (_processFileQueue.indexOf(referencedSourceFile) === -1) {
-                    _processFileQueue.push(referencedSourceFile);
-                }
-            }
-        }
-
-        for (let ref of sourceFile.typeReferenceDirectives) {
-            warn(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
-        }
-
-        for (let ref of sourceFile.libReferenceDirectives) {
-            warn(`<b>${sourceFile.fileName}</b> references lib "<b>${ref.fileName}</>" but this reference is currently unhandled`);
         }
     }
 
