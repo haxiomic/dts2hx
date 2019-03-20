@@ -1,0 +1,17 @@
+{
+  "name": "test-definitions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/big.js": "^4.0.5",
+    "@types/dat.gui": "^0.7.2",
+    "@types/node": "^11.11.3",
+    "@types/three": "^0.93.27"
+  }
+}
