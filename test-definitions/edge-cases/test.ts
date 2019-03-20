@@ -15,4 +15,5 @@ b.thisClassIsExported;
 
 let a = new AnotherNamespace.Blobfish();
 
+// Ambient should be available globally (it's only reference via tripple slash in kitten.d.ts)
 let am: Ambient;
