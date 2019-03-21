@@ -12,6 +12,11 @@ let indent = Debug.getIndent.bind(Debug);
 
 let outputDirectory = 'output';
 
+/**
+ * Aim is to be able to do `haxelib run dts2hx install @types/three` and have it pull three.js from definitely typed and install it into haxelib as @types-three
+ * Pulling any dependent types that are referenced
+ */
+
 generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
@@ -130,6 +135,8 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             }
         }
 
+        // to handle type and lib references, we can add them as a lib dependency to haxelib.json
+        // (and also download and convert them)
         for (let ref of sourceFile.typeReferenceDirectives) {
             warn(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
         }
