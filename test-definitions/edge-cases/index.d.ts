@@ -13,6 +13,11 @@ declare namespace SomeNamespace {
     interface Wat {
         nowThisIsGettingComplex: string;
     }
+    namespace WorldsWithinWorlds {
+
+        type Dean = MediaList;
+
+    }
 }
 
 export class Thing {
@@ -27,9 +32,19 @@ export class DefaultThing extends Thing {
     private constructor();
 }
 
+export namespace ExportedNamespace {
+    namespace A {
+        
+    }
+
+    export namespace B {
+
+    }
+}
+
 export as namespace EdgeCase;
 export as namespace AnotherNamespace;
 
-// export default DefaultThing;
+// export default SomeNamespace;
 
 // module.exports = DefaultThing;

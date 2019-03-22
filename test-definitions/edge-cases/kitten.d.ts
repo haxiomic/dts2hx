@@ -13,3 +13,15 @@ export class Kitten {
 
     method(a: number, b: string): Date;
 }
+
+export namespace KittenNamespace {
+    interface TypeWithinKittenNamespace<T> {
+
+    }
+}
+
+declare class ADeclaredKittenClass {
+
+}
+
+export as namespace KittenGlobalNamespaceExport;
