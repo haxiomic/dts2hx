@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import Terminal from './Terminal';
 import Debug from './Debug';
+import ProcessFileQueue from './ProcessFileQueue';
 
 // lazy log aliases
 let log = Terminal.log.bind(Terminal);
@@ -17,18 +18,20 @@ let outputDirectory = 'output';
  * Pulling any dependent types that are referenced
  */
 
-generateHaxeExterns('test-definitions/edge-cases', {});
+// generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
+// generateHaxeExterns('test-definitions/templates/module-plugin', {});
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
+// generateHaxeExterns('test-definitions/templates/global-plugin', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
-// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
+generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
 
 function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
@@ -79,7 +82,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     let checker = program.getTypeChecker();
 
     // processor state
-    let _processFileQueue = new Array<ts.SourceFile>();
+    let _processFileQueue = new ProcessFileQueue();
     let _processedFiles = new Set<ts.SourceFile>();
 
     for (let sourceFile of program.getSourceFiles()) {
@@ -99,14 +102,14 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         // if (isExternal) continue;
 
         // add this file to the process queue
-        _processFileQueue.push(sourceFile);
+        _processFileQueue.pushFileUnique(sourceFile, false);
     }
 
     // the process file queue may grow when processSourceFile is called
     while (_processFileQueue.length > 0) {
-        let sourceFile = _processFileQueue.shift();
-        if (sourceFile != null) {
-            processSourceFile(sourceFile, 0);
+        let entry = _processFileQueue.shift();
+        if (entry != null) {
+            processSourceFile(entry.sourceFile, entry.globalExportsOnly, 0);
         }
     }
 
@@ -117,11 +120,11 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     /**
      * Find the source file associated with this symbol
      */
-    function queueSymbolReferencedFiles(symbol: ts.Symbol, depth: number) {
+    function processSymbolSourceFile(symbol: ts.Symbol, depth: number) {
         let sourceFile = symbol.valueDeclaration != null ? symbol.valueDeclaration.getSourceFile() : undefined;
 
         if (sourceFile != null) {
-            queueReferencedFiles(sourceFile, depth);
+            _processFileQueue.pushFileUnique(sourceFile, true);
         }
     }
 
@@ -129,9 +132,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         for (let ref of sourceFile.referencedFiles) {
             let referencedSourceFile = program.getSourceFileFromReference(sourceFile, ref);
             if (referencedSourceFile != null) {
-                if (_processFileQueue.indexOf(referencedSourceFile) === -1) {
-                    _processFileQueue.push(referencedSourceFile);
-                }
+                _processFileQueue.pushFileUnique(referencedSourceFile, true);
             }
         }
 
@@ -146,41 +147,51 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         }
     }
     
-    function processSourceFile(sourceFile: ts.SourceFile, depth: number) {
+    function processSourceFile(sourceFile: ts.SourceFile, globalExportsOnly: boolean, depth: number) {
         // do not process the same file twice
         if (_processedFiles.has(sourceFile)) return;
         _processedFiles.add(sourceFile);
 
         log(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
         
-
         // process the /// <reference path="..."> files
         queueReferencedFiles(sourceFile, depth);
-
-        // source file locals (these are your non-export declares)
-        if (sourceFile.locals != null) {
-            log(indent(depth) + `>> <red>locals</red>`);
-            sourceFile.locals.forEach(s => processSymbol(s, depth + 1));
-        }
 
         // for UMD style exports, we can get the sourceFile symbol
         let sourceFileSymbol = sourceFile.symbol;//checker.getSymbolAtLocation(sourceFile);
         if (sourceFileSymbol != null) {
-            let globalExports = new Array<ts.Symbol>();
-            // these are currently only set on sourceFile symbols I believe
-            if (sourceFileSymbol.globalExports != null && sourceFileSymbol.globalExports.size > 0) {
-                sourceFileSymbol.globalExports.forEach(s => globalExports.push(s));
+            // only process module if we have global exports OR global exports only is false
+            if (!globalExportsOnly || (sourceFileSymbol.globalExports != null && sourceFileSymbol.globalExports.size > 0)) {
+
+                let globalExports = new Array<ts.Symbol>();
+                // these are currently only set on sourceFile symbols I believe
+                if (sourceFileSymbol.globalExports != null && sourceFileSymbol.globalExports.size > 0) {
+                    sourceFileSymbol.globalExports.forEach(s => globalExports.push(s));
+                }
+                let globalExportsString = globalExports.map(s => s.name).join(', ');
+
+
+                log(indent(depth) + `>> <red>sourceFileSymbol ` + (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) + `</red>`);
+                processSymbol(sourceFileSymbol, {}, depth);
             }
-
-            let globalExportsString = globalExports.map(s => s.name).join(', ');
-
-            log(indent(depth) + `>> <red>sourceFileSymbol ` + (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) + `</red>`);
-            processSymbol(sourceFileSymbol, depth);
         }
+
+        // ambient declarations (these are your non-export declares)
+        if (sourceFile.locals != null) {
+            log(indent(depth) + `>> <red>locals</red>`);
+            sourceFile.locals.forEach(s => processSymbol(s, {}, depth + 1));
+        }
+
     }
 
-    function processSymbol(symbol: ts.Symbol, depth: number): void {
-        queueSymbolReferencedFiles(symbol, depth);
+    function processSymbol(
+        symbol: ts.Symbol,
+        state: {
+            // readonly namespaceStack: Array<ts.Symbol>
+        },
+        depth: number
+    ): void {
+        processSymbolSourceFile(symbol, depth);
 
         Debug.logSymbol(checker, symbol, depth);
 
@@ -191,18 +202,18 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             // globalExports are currently only set on sourceFile symbols I believe
             if (symbol.globalExports != null && symbol.globalExports.size > 0) {
                 log(indent(depth) + `<green><b>${symbol.name}</> globalExports</>`);
-                symbol.globalExports.forEach(s => processSymbol(s, depth + 1));
+                symbol.globalExports.forEach(s => processSymbol(s, {}, depth + 1));
             }
 
             if (symbol.members != null && symbol.members.size > 0) {
                 log(indent(depth) + `<green><b>${symbol.name}</> members</>`);
-                symbol.members.forEach(s => processSymbol(s, depth + 1));
+                symbol.members.forEach(s => processSymbol(s, {}, depth + 1));
             }
 
             if (symbol.flags & ts.SymbolFlags.Module) {
                 log(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
                 let allExports = checker.getExportsOfModule(symbol);
-                allExports.forEach(s => processSymbol(s, depth + 1));
+                allExports.forEach(s => processSymbol(s, {}, depth + 1));
             }
 
             // since module exports were handled by checker.getExportsOfModule, this finds just the remaining export types such as export = T
@@ -222,7 +233,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
 
                 if (specialExports.length > 0) {
                     log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
-                    specialExports.forEach(s => processSymbol(s, depth + 1));
+                    specialExports.forEach(s => processSymbol(s, {}, depth + 1));
                 }
             }
         }
