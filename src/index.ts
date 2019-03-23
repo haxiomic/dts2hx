@@ -18,7 +18,7 @@ let outputDirectory = 'output';
  * Pulling any dependent types that are referenced
  */
 
-// generateHaxeExterns('test-definitions/edge-cases', {});
+generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});
@@ -31,14 +31,11 @@ let outputDirectory = 'output';
 
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
-generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
+// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
 
 function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
     Terminal.log(`Processing <b>${definitionsPath}</b>`);
-
-    // create output directory
-    fs.mkdirSync(outputDirectory, { recursive: true });
     
     // determine root definition file(s) from definitionsPath, favoring index.d.ts if one exists
     let definitionRoots: Array<string>;
