@@ -8,3 +8,5 @@ export class Cat {
 }
 
 export * from './kitten';
+
+export as namespace CatNamespace;

@@ -14,10 +14,14 @@ export class Kitten {
     method(a: number, b: string): Date;
 }
 
+export function kittenTeraform();
+
 export namespace KittenNamespace {
     interface TypeWithinKittenNamespace<T> {
 
     }
+
+    export function kittenInvert();
 }
 
 declare class ADeclaredKittenClass {

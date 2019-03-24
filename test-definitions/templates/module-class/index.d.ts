@@ -27,6 +27,8 @@ export as namespace myClassLib;
  */
 export = MyClass;
 
+type SomeAlias = MyClass;
+
 /*~ Write your module's methods and properties in this class */
 declare class MyClass {
     constructor(someParam?: string);
