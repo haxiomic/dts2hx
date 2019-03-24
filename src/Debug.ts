@@ -1,5 +1,6 @@
 import Terminal from "./Terminal";
 import * as ts from 'typescript';
+import { TSUtil } from "./TSUtil";
 
 export default class Debug {
 
@@ -18,13 +19,11 @@ export default class Debug {
         return `${node.getSourceFile().fileName}:${line}${character > 0 ? ':0' : ''}`;
     }
 
-    static logSymbol(checker: ts.TypeChecker, s: ts.Symbol, depth: number) {
-        
-
-        Terminal.writeFormatted(`<gray>` + Terminal.lineCaret + '<//>');
+    static logSymbol(checker: ts.TypeChecker, s: ts.Symbol, root: ts.Symbol | null, depth: number) {
+        Terminal.writeFormatted(`<gray>` + Terminal.lineCaret + '<//> ');
         Terminal.writeFormatted(
             this.getIndent(depth) +
-            '<b>' + s.name + '</b>' +
+            '<b>' + TSUtil.getNativePath(s, root) + '</b>' +
             ' <i,dim>' + this.getActiveSymbolFlags(s.getFlags(), true).join(', ') + '<//>'
         );
 
@@ -52,23 +51,6 @@ export default class Debug {
         }
 
         Terminal.write('\n')
-    }
-
-    static symbolPath(s: ts.Symbol): string {
-        let symbolIdent: string;
-        if (s.globalExports != null) {
-            let globalNames = new Array<string>();
-            s.globalExports.forEach(g => globalNames.push(g.name));
-            symbolIdent = '{' + globalNames.join(', ') + '}';
-        } else {
-            symbolIdent = s.name;
-        }
-
-        if (s.parent != null) {
-            return this.symbolPath(s.parent) + '.' + symbolIdent;
-        } else {
-            return symbolIdent;
-        }
     }
 
     /**
@@ -166,10 +148,11 @@ export default class Debug {
             if ((value & ts.SymbolFlags.AliasExcludes) !== 0) active.push('AliasExcludes');
             if ((value & ts.SymbolFlags.ExportHasLocal) !== 0) active.push('ExportHasLocal');
             if ((value & ts.SymbolFlags.BlockScoped) !== 0) active.push('BlockScoped');
-            if ((value & ts.SymbolFlags.ModuleMember) !== 0) active.push('ModuleMember');
             if ((value & ts.SymbolFlags.PropertyOrAccessor) !== 0) active.push('PropertyOrAccessor');
-            if ((value & ts.SymbolFlags.ClassMember) !== 0) active.push('ClassMember');
         }
+
+        if ((value & ts.SymbolFlags.ModuleMember) !== 0) active.push('ModuleMember');
+        if ((value & ts.SymbolFlags.ClassMember) !== 0) active.push('ClassMember');
 
         return active;
     }
