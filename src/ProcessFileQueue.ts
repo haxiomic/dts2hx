@@ -1,5 +1,4 @@
 import * as ts from 'typescript';
-import Terminal from './Terminal';
 
 export default class ProcessFileQueue {
 
