@@ -4,6 +4,8 @@ import * as fs from 'fs';
 import Terminal from './Terminal';
 import Debug from './Debug';
 import ProcessFileQueue from './ProcessFileQueue';
+import { TSUtil } from './TSUtil';
+import { ExternGenerator } from './ExternGenerator';
 
 // lazy log aliases
 let log = Terminal.log.bind(Terminal);
@@ -12,6 +14,11 @@ let error = Terminal.error.bind(Terminal);
 let indent = Debug.getIndent.bind(Debug);
 
 let outputDirectory = 'output';
+
+// sometimes a module does not have any global exports, in which case it can only be accessed via import ... '$module-name'
+// setting this to true will generated externs that use @:jsRequire()
+let generateSourceFileExports = false;
+let debugLogSymbols = false;
 
 /**
  * Aim is to be able to do `haxelib run dts2hx install @types/three` and have it pull three.js from definitely typed and install it into haxelib as @types-three
@@ -77,6 +84,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
 
     let program = ts.createProgram(definitionRoots, options);
     let checker = program.getTypeChecker();
+    let externGenerator = new ExternGenerator(checker);
 
     // processor state
     let _processFileQueue = new ProcessFileQueue();
@@ -149,9 +157,9 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         if (_processedFiles.has(sourceFile)) return;
         _processedFiles.add(sourceFile);
 
-        log(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
+        if (debugLogSymbols) log(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
         
-        // process the /// <reference path="..."> files
+        // process the `/// <reference path="...">` files
         queueReferencedFiles(sourceFile, depth);
 
         // for UMD style exports, we can get the sourceFile symbol
@@ -167,50 +175,82 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 }
                 let globalExportsString = globalExports.map(s => s.name).join(', ');
 
+                // export = X
+                let exportAlias: ts.Symbol | undefined;
+                if (sourceFileSymbol.exports != null) {
+                    sourceFileSymbol.exports.forEach(s => {
+                        if (s.flags & ts.SymbolFlags.Alias) {
+                            exportAlias = s;
+                        }
+                    });
+                }
 
-                log(indent(depth) + `>> <red>sourceFileSymbol ` + (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) + `</red>`);
-                processSymbol(sourceFileSymbol, {}, depth);
+                // the module can be imported as '$module-folder-name' or used globally if global exports are set
+                 if (debugLogSymbols) log(indent(depth) + `>> <red>sourceFileSymbol ` +
+                    (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) +
+                    (exportAlias ? ` aliasing to <b>${checker.getAliasedSymbol(exportAlias).name}</b>` : '') +
+                    `</red>`
+                );
+
+                if (exportAlias != null) {
+                    Terminal.warn(`Export alias "${exportAlias.name}${checker.getAliasedSymbol(exportAlias).name}" is not currently handled`);
+                }
+
+                processSymbol(sourceFileSymbol, sourceFileSymbol, depth);
+
+                for (let globalExportSymbol of globalExports) {
+                    processSymbol(sourceFileSymbol, globalExportSymbol, depth);
+                }
             }
         }
 
         // ambient declarations (these are your non-export declares)
         if (sourceFile.locals != null) {
-            log(indent(depth) + `>> <red>locals</red>`);
-            sourceFile.locals.forEach(s => processSymbol(s, {}, depth + 1));
+            if (debugLogSymbols) log(indent(depth) + `>> <red>locals</red>`);
+            sourceFile.locals.forEach(s => processSymbol(s, null, depth + 1));
         }
 
     }
 
     function processSymbol(
         symbol: ts.Symbol,
-        state: {
-            // readonly namespaceStack: Array<ts.Symbol>
-        },
+        exportRoot: ts.Symbol | null,
         depth: number
     ): void {
         processSymbolSourceFile(symbol, depth);
 
-        Debug.logSymbol(checker, symbol, depth);
+        // don't log file-exports
+        let isSourceFileRoot = exportRoot != null && TSUtil.isSourceFileModuleSymbol(exportRoot);
+        let generateExternsForSymbol = !isSourceFileRoot || generateSourceFileExports;
+        if (generateExternsForSymbol) {
+            externGenerator.generateExternsForSymbol(symbol, exportRoot);
+
+            if (debugLogSymbols) Debug.logSymbol(checker, symbol, exportRoot, depth);
+        }
+
+        // @! determine where this symbol belongs
 
         // @! deterministically insert symbol into haxe externs AST, creating structures as required
 
         // process sub symbols
         {
             // globalExports are currently only set on sourceFile symbols I believe
+            /*
             if (symbol.globalExports != null && symbol.globalExports.size > 0) {
                 log(indent(depth) + `<green><b>${symbol.name}</> globalExports</>`);
                 symbol.globalExports.forEach(s => processSymbol(s, {}, depth + 1));
             }
+            */
 
             if (symbol.members != null && symbol.members.size > 0) {
-                log(indent(depth) + `<green><b>${symbol.name}</> members</>`);
-                symbol.members.forEach(s => processSymbol(s, {}, depth + 1));
+                if (generateExternsForSymbol) if (debugLogSymbols) log(indent(depth) + `<green><b>${symbol.name}</> members</>`);
+                symbol.members.forEach(s => processSymbol(s, exportRoot, depth + 1));
             }
 
             if (symbol.flags & ts.SymbolFlags.Module) {
-                log(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
+                if (generateExternsForSymbol) if (debugLogSymbols) log(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
                 let allExports = checker.getExportsOfModule(symbol);
-                allExports.forEach(s => processSymbol(s, {}, depth + 1));
+                allExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
             }
 
             // since module exports were handled by checker.getExportsOfModule, this finds just the remaining export types such as export = T
@@ -219,7 +259,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 let specialExports: Array<ts.Symbol> = [];
                 symbol.exports.forEach(s => {
                     if (s.flags & (
-                        ts.SymbolFlags.Alias | // `export default DefaultThing` 
+                        ts.SymbolFlags.Alias | // `export default DefaultThing` or export = DefaultThing (although these have different behaviors)
                         ts.SymbolFlags.ExportStar | // all the `export * from 'x'` directives end up in this symbol
                         ts.SymbolFlags.ExportValue | // ?
                         ts.SymbolFlags.ModuleExports // `module.exports = x` (for CommonJS exports which actually isn't allowed in type definition files, but it's here for the future)
@@ -229,8 +269,8 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 });
 
                 if (specialExports.length > 0) {
-                    log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
-                    specialExports.forEach(s => processSymbol(s, {}, depth + 1));
+                    if (generateExternsForSymbol) if (debugLogSymbols) log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
+                    specialExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
                 }
             }
         }
