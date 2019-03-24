@@ -29,6 +29,13 @@ declare module 'typescript' {
         getSourceFileFromReference(referencingFile: SourceFile, ref: FileReference): SourceFile | undefined;
     }
 
+    interface TypeChecker {
+        getSymbolWalker(accept?: (symbol: Symbol) => boolean): {
+            walkType: (type: Type) => { visitedTypes: Array<Type>, visitedSymbols: Array<Symbol> }
+            walkSymbol: (symbol: Symbol) => { visitedTypes: Array<Type>, visitedSymbols: Array<Symbol> }
+        };
+    }
+
     // Intrinsic types (TypeFlags.Intrinsic)
     interface IntrinsicType extends Type {
         intrinsicName: string;        // Name of intrinsic type
