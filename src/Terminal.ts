@@ -12,7 +12,7 @@ export default class Terminal {
 	}
 
 	static error(...args: Array<any>) {
-		this.write(format(`<red>${this.lineCaret}<b>Error:</b> ` + util.format.apply(this, args as any)) + '\n');
+		this.write(format(`<red>${this.lineCaret} <b>Error:</b> ` + util.format.apply(this, args as any)) + '\n');
 	}
 
 	static warn(...args: Array<any>) {
