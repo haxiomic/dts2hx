@@ -19,6 +19,7 @@ export class ExternGenerator {
 
     logVerboseEnabled: boolean = false;
     logWarningsEnabled: boolean = true;
+    printErrorLocation: boolean = true;
 
     // mapping between haxe `package.Type.SubType` and haxe type descriptor
     // use `getHaxeType` instead of `haxeTypes.get` to follow typedefs
@@ -38,17 +39,16 @@ export class ExternGenerator {
         // => when adding fields, we do a lookup to get the haxe symbol at the parent path and create if doesn't exist
         //    this handles type merging
 
-        // Should we use a flat string map rather than nested objects?
-
         let symbolHandled = false;
 
-        // skipped symbols
+        // @! need to skip namespace only
+
+        // completely skipped symbols
         if (symbol.flags === ts.SymbolFlags.None || // we can't do anything with symbols with no flags
             symbol.flags & (
-                ts.SymbolFlags.Prototype   |        // no need to expose the prototype symbol
-                ts.SymbolFlags.ExportStar  |        // this is the list of `export * from 'x'` statements (the symbol walker will already include the target symbols)
-                ts.SymbolFlags.ExportValue |        // see comment in TypeScript's binder.ts declareModuleMember() method 
-                ts.SymbolFlags.Module               // modules are created when adding types and fields instead
+                  ts.SymbolFlags.Prototype          // no need to expose the prototype symbol
+                | ts.SymbolFlags.ExportStar         // this is the list of `export * from 'x'` statements (the symbol walker will already include the target symbols)
+                | ts.SymbolFlags.ExportValue        // see comment in TypeScript's binder.ts declareModuleMember() method
         )) {
             this.logVerbose(`Skipping symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`);
             return;
@@ -62,7 +62,7 @@ export class ExternGenerator {
             if (parent != null) {
                 parentHaxePath = this.getHaxeTypePath(parent, exportRoot);
             } else {
-                throw `Type parameter does not have parent symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
+                throw `Type parameter does not have parent symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
             }
 
             // get the haxe type object that corresponds to the fields owner
@@ -75,7 +75,7 @@ export class ExternGenerator {
                     parentHaxeType.contributingSymbols.add(symbol);
                 }
             } else {
-                throw `Type parameter's parent type "${parentHaxePath}" has not yet been created`;
+                throw `Type parameter's parent type "${parentHaxePath}" has not yet been created` + this.errorLocation(symbol);
             }
 
             symbolHandled = true;
@@ -104,7 +104,7 @@ export class ExternGenerator {
                 let typeSyntaxObject = this.generateType(typeName, symbol, exportRoot);
 
                 if (typeSyntaxObject == null) {
-                    throw `Unsupported type-symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
+                    throw `Unsupported type-symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
                 }
 
                 haxeSyntaxObject = typeSyntaxObject;
@@ -154,7 +154,8 @@ export class ExternGenerator {
                     if (moduleClassTypeName == null || moduleClassHaxePath.length === 0) {
                         throw (
                             `Field's enclosing module has no type name in path ${parentHaxePath}\n` +
-                            `\tFor symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`
+                            `\tFor symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` +
+                            this.errorLocation(symbol, 'prepend')
                         );
                     }
 
@@ -170,7 +171,8 @@ export class ExternGenerator {
                     this.logWarning(
                         `Field generated before type was generated (this is not expected to happen)\n` + 
                         `\tField: ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}\n` +
-                        `\tParent: ${Debug.symbolInfoFormatted(this.checker, parent, exportRoot)}`
+                        `\tParent: ${Debug.symbolInfoFormatted(this.checker, parent, exportRoot)}` +
+                        this.errorLocation(symbol, 'prepend')
                     );
 
                     this.addSymbol(parent, exportRoot);
@@ -179,7 +181,7 @@ export class ExternGenerator {
             }
 
             if (parentHaxeType == null) {
-                throw `Cannot determine where to generate field ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
+                throw `Cannot determine where to generate field ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
             }
 
             // @! add field to parentHaxeType
@@ -191,8 +193,15 @@ export class ExternGenerator {
             symbolHandled = true;
         }
 
+        // quieten symbolHandled errors for these flags
+        if (symbol.flags & (
+            ts.SymbolFlags.Module  // Modules (haxe packages and module classes) are created as types and fields are added so we don't need to do anything for them directly
+        )) {
+            symbolHandled = true;
+        }
+
         if (!symbolHandled) {
-            throw `Symbol was not handled ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
+            throw `Symbol was not handled ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
         }
     }
 
@@ -360,7 +369,16 @@ export class ExternGenerator {
                 return this.toPackageName(s.name);
             }
         });
-        return this.packageRoot.concat(packages.concat([this.toHaxeTypeName(symbol.name)]));
+
+        let haxeTypePath = packages.concat([this.toHaxeTypeName(symbol.name)]);
+
+        // prepend package root if it doesn't match the first package name
+        // this deduplicates so we don't have import three.three.Type
+        if (haxeTypePath[0] !== this.packageRoot[this.packageRoot.length - 1]) {
+            return this.packageRoot.concat(haxeTypePath);
+        } else {
+            return haxeTypePath;
+        }
     }
 
     /**
@@ -455,6 +473,18 @@ export class ExternGenerator {
     protected logWarning(...args: Array<any>) {
         if (this.logWarningsEnabled) {
             Terminal.warn.apply(Terminal, args);
+        }
+    }
+
+    protected errorLocation(symbol: ts.Symbol, newline?: 'append' | 'prepend') {
+        if (this.printErrorLocation) {
+            return (
+                (newline === 'prepend' ? '\n' : '') +
+                ' <dim,gray,u>' + Debug.getSymbolPrintableLocation(symbol) + '</>' +
+                (newline === 'append' ? '\n' : '')
+            );
+        } else {
+            return '';
         }
     }
 
