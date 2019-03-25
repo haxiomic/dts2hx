@@ -27,7 +27,7 @@ export class ExternGenerator {
     protected packageRoot: Array<string>;
 
     constructor(protected checker: ts.TypeChecker, packageRoot: Array<string> = []) {
-        this.packageRoot = packageRoot.map(p => this.toPackageName(p));
+        this.packageRoot = packageRoot.map(p => this.toSafePackageName(p));
     }
 
     /**
@@ -370,13 +370,13 @@ export class ExternGenerator {
         let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
         let packages = symbolPath.slice(0, -1).map(s => {
             if ((s.flags & ts.SymbolFlags.Type) && !(s.flags & ts.SymbolFlags.Module)) {
-                return this.toHaxeTypeName(s.name);
+                return this.toSafeHaxeTypeName(s.name);
             } else {
-                return this.toPackageName(s.name);
+                return this.toSafePackageName(s.name);
             }
         });
 
-        let haxeTypePath = packages.concat([this.toHaxeTypeName(symbol.name)]);
+        let haxeTypePath = packages.concat([this.toSafeHaxeTypeName(symbol.name)]);
 
         // prepend package root if it doesn't match the first package name
         // this deduplicates so we don't have import three.three.Type
@@ -403,7 +403,7 @@ export class ExternGenerator {
         }
     }
 
-    protected toPackageName(name: string) {
+    protected toSafePackageName(name: string) {
         // lowercase
         name = name.toLowerCase();
         // remove quotes
@@ -416,7 +416,7 @@ export class ExternGenerator {
         return name;
     }
 
-    protected toHaxeTypeName(name: string) {
+    protected toSafeHaxeTypeName(name: string) {
         // remove quotes
         name = name.replace(/["'`]/gm, '');
         // replace disallowed characters with _
