@@ -18,13 +18,17 @@ let outputDirectory = 'output';
 
 // sometimes a module does not have any global exports, in which case it can only be accessed via import ... '$module-name'
 // setting this to true will generated externs that use @:jsRequire()
+// these are symbols that are exported from a sourceFile
 let generateSourceFileExports = false;
 
 // logging options
 let logSymbolWalkEnabled = false;
-let logGenVerboseEnabled = false;
-let logGenWarningsEnabled = true;
-let logGenErrorsEnabled = true;
+
+let logGen = true;
+let logGenVerboseEnabled = logGen && false;
+let logGenWarningsEnabled = logGen && true;
+let logGenErrorsEnabled = logGen && true;
+
 let logSavedFilesEnabled = false;
 
 /**
@@ -33,13 +37,13 @@ let logSavedFilesEnabled = false;
  */
 
 // generateHaxeExterns('test-definitions/edge-cases', {});
-generateHaxeExterns('test-definitions/templates/module-class', {});
+// generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('test-definitions/templates/global-plugin', {});
-// generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
+generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 
