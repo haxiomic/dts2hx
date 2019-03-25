@@ -20,7 +20,7 @@ export default class Terminal {
 	}
 
 	static success(...args: Array<any>) {
-		this.write(format(`<light_green>${this.lineCaret} <b>` + util.format.apply(this, args as any)) + '</b>\n');
+		this.write(format(`<light_green>${this.lineCaret} ` + util.format.apply(this, args as any)) + '\n');
 	}
 
 	static rewriteLine(id: string, str: string) {
