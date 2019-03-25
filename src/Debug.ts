@@ -19,11 +19,10 @@ export default class Debug {
         return `${node.getSourceFile().fileName}:${line}${character > 0 ? ':0' : ''}`;
     }
 
-    static logSymbol(checker: ts.TypeChecker, s: ts.Symbol, root: ts.Symbol | null, depth: number) {
-        Terminal.writeFormatted(`<gray>` + Terminal.lineCaret + '<//> ');
-        Terminal.writeFormatted(
-            this.getIndent(depth) +
-            '<b>' + TSUtil.getNativePath(s, root) + '</b>' +
+    static symbolInfoFormatted(checker: ts.TypeChecker, s: ts.Symbol, exportRoot: ts.Symbol | null): string {
+        let str = '';
+        str += (
+            '<b>' + TSUtil.getNativePath(s, exportRoot) + '</b>' +
             ' <i,dim>' + this.getActiveSymbolFlags(s.getFlags(), true).join(', ') + '<//>'
         );
 
@@ -32,25 +31,29 @@ export default class Debug {
             let t = checker.getTypeAtLocation(s.valueDeclaration);
 
             if (t.flags & ts.TypeFlags.AnyOrUnknown) {
-                Terminal.writeFormatted(' : <i,blue>AnyOrUnknown<//>');
+                str += ' : <i,blue>AnyOrUnknown<//>';
 
             } else if (t.flags & ts.TypeFlags.Intrinsic) {
                 let tIntrinsic: ts.IntrinsicType = t as ts.IntrinsicType;
-                Terminal.writeFormatted(' : <i,blue>' + tIntrinsic.intrinsicName + '<//>');
+                str += ' : <i,blue>' + tIntrinsic.intrinsicName + '<//>';
 
             } else if ((t.flags & ts.TypeFlags.Object) && t.symbol != null) {
 
-                Terminal.writeFormatted(' : <i,blue,b>' + t.symbol.name + '<//>');
+                str += ' : <i,blue,b>' + t.symbol.name + '<//>';
 
             } else {
 
-                Terminal.writeFormatted(' : <i,blue>?<//>');
+                str += ' : <i,blue>?<//>';
             }
-            
-            Terminal.writeFormatted(' : <i,dim,blue>' + this.getActiveTypeFlags(t.flags).join(', ') + '<//>');
+
+            str += ' : <i,dim,blue>' + this.getActiveTypeFlags(t.flags).join(', ') + '<//>';
         }
 
-        Terminal.write('\n')
+        return str;
+    }
+
+    static logSymbol(checker: ts.TypeChecker, s: ts.Symbol, exportRoot: ts.Symbol | null, depth: number) {
+        Terminal.log(this.getIndent(depth) + this.symbolInfoFormatted(checker, s, exportRoot));
     }
 
     /**
