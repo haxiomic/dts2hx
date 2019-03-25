@@ -37,6 +37,7 @@ let logSavedFilesEnabled = false;
 
 /*
 Bugs:
+    - Enum members are not walked
     - When processing lib, we get things like
         ```
         package lib.ts.ts.server.protocol;
