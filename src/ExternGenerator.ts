@@ -43,9 +43,42 @@ export class ExternGenerator {
         let symbolHandled = false;
 
         // skipped symbols
-        if (symbol.flags & ts.SymbolFlags.Prototype) {
+        if (symbol.flags === ts.SymbolFlags.None || // we can't do anything with symbols with no flags
+            symbol.flags & (
+                ts.SymbolFlags.Prototype   |        // no need to expose the prototype symbol
+                ts.SymbolFlags.ExportStar  |        // this is the list of `export * from 'x'` statements (the symbol walker will already include the target symbols)
+                ts.SymbolFlags.ExportValue |        // see comment in TypeScript's binder.ts declareModuleMember() method 
+                ts.SymbolFlags.Module               // modules are created when adding types and fields instead
+        )) {
             this.logVerbose(`Skipping symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`);
             return;
+        }
+
+        if (symbol.flags & ts.SymbolFlags.TypeParameter) {
+            let parentHaxePath: Array<string>;
+            let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
+            let parent: ts.Symbol | undefined = symbolPath[symbolPath.length - 2];
+
+            if (parent != null) {
+                parentHaxePath = this.getHaxeTypePath(parent, exportRoot);
+            } else {
+                throw `Type parameter does not have parent symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
+            }
+
+            // get the haxe type object that corresponds to the fields owner
+            let parentHaxeType = this.getHaxeType(parentHaxePath, true);
+
+            if (parentHaxeType != null) {
+                if (!parentHaxeType.contributingSymbols.has(symbol)) {
+                    // @! need to properly add to type
+                    parentHaxeType.haxeSyntaxObject += `\nType parameter <${symbol.name}>`;
+                    parentHaxeType.contributingSymbols.add(symbol);
+                }
+            } else {
+                throw `Type parameter's parent type "${parentHaxePath}" has not yet been created`;
+            }
+
+            symbolHandled = true;
         }
 
         // handle symbol type declaration
