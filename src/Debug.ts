@@ -23,7 +23,8 @@ export default class Debug {
         let str = '';
         str += (
             '<b>' + TSUtil.getNativePath(s, exportRoot) + '</b>' +
-            ' <i,dim>' + this.getActiveSymbolFlags(s.getFlags(), true).join(', ') + '<//>'
+            (s.id != null ? ` <dim>(${s.id})</>` : '') + 
+            ' <i,dim>' + this.getActiveSymbolFlags(s.getFlags(), true).join(', ') + '</>'
         );
 
         if (s.flags & ts.SymbolFlags.Property) {
@@ -31,22 +32,22 @@ export default class Debug {
             let t = checker.getTypeAtLocation(s.valueDeclaration);
 
             if (t.flags & ts.TypeFlags.AnyOrUnknown) {
-                str += ' : <i,blue>AnyOrUnknown<//>';
+                str += ' : <i,blue>AnyOrUnknown</>';
 
             } else if (t.flags & ts.TypeFlags.Intrinsic) {
                 let tIntrinsic: ts.IntrinsicType = t as ts.IntrinsicType;
-                str += ' : <i,blue>' + tIntrinsic.intrinsicName + '<//>';
+                str += ' : <i,blue>' + tIntrinsic.intrinsicName + '</>';
 
             } else if ((t.flags & ts.TypeFlags.Object) && t.symbol != null) {
 
-                str += ' : <i,blue,b>' + t.symbol.name + '<//>';
+                str += ' : <i,blue,b>' + t.symbol.name + '</>';
 
             } else {
 
-                str += ' : <i,blue>?<//>';
+                str += ' : <i,blue>?</>';
             }
 
-            str += ' : <i,dim,blue>' + this.getActiveTypeFlags(t.flags).join(', ') + '<//>';
+            str += ' : <i,dim,blue>' + this.getActiveTypeFlags(t.flags).join(', ') + '</>';
         }
 
         return str;
