@@ -299,6 +299,7 @@ export class ExternGenerator {
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
         return (
+            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
             ((nativePath != null) ? `@:native('${nativePath}')\n` : '') + 
             `class ${typeName} {}`
         );
@@ -311,6 +312,7 @@ export class ExternGenerator {
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
         return (
+            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
             ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
             `interface ${typeName} {}`
         );
@@ -323,6 +325,7 @@ export class ExternGenerator {
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
         return (
+            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
             ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
             `enum ${typeName} {}`
         );
@@ -333,7 +336,10 @@ export class ExternGenerator {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
         this.logVerbose('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.typePath.join('.'));
         
-        return `typedef ${typeName} = ${targetType.typePath.join('.')};`;
+        return (
+            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
+            `typedef ${typeName} = ${targetType.typePath.join('.')};`
+        );
     }
 
     protected addGeneratedHaxeType(haxeType: HaxeType) {
