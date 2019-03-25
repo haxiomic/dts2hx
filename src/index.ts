@@ -132,7 +132,6 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         Terminal.success(`Saved <b>${writePath}</b>`);
     }
 
-
     /**
      * Find the source file associated with this symbol
      */
@@ -234,7 +233,11 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         let isSourceFileRoot = exportRoot != null && TSUtil.isSourceFileModuleSymbol(exportRoot);
         let generateExternsForSymbol = !isSourceFileRoot || generateSourceFileExports;
         if (generateExternsForSymbol) {
-            externGenerator.generateExternsForSymbol(symbol, exportRoot);
+            try {
+                externGenerator.addSymbol(symbol, exportRoot);
+            } catch (e) {
+                Terminal.error(e);
+            }
 
             if (debugLogSymbols) Debug.logSymbol(checker, symbol, exportRoot, depth);
         }

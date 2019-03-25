@@ -4,9 +4,11 @@ import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
 
+type HaxeSyntaxObject = string;
+
 type HaxeType = {
     path: Array<string>,
-    haxeSyntaxObject: any,
+    haxeSyntaxObject: HaxeSyntaxObject,
     contributingSymbols: Set<ts.Symbol>,
 }
 
@@ -16,68 +18,51 @@ export class ExternGenerator {
     // mapping between haxe `package.Type.SubType` and haxe type descriptor
     protected haxeTypes = new Map<string, HaxeType>();
 
-    constructor(protected checker: ts.TypeChecker) {
+    constructor(protected checker: ts.TypeChecker) {}
 
-    }
-
-    generateExternsForSymbol(symbol: ts.Symbol, exportRoot: ts.Symbol | null) {
+    /**
+     * Adds symbol to list of externs to generate
+     * @throws
+     */
+    addSymbol(symbol: ts.Symbol, exportRoot: ts.Symbol | null) {
         // => we never generate an extern for a symbol twice, so first check if we already have an extern for this symbol, if so then typedef and exit
         // => when adding fields, we do a lookup to get the haxe symbol at the parent path and create if doesn't exist
         //    this handles type merging
 
         // Should we use a flat string map rather than nested objects?
 
-        let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
-        let nativePath = TSUtil.getNativePath(symbol, exportRoot);
-
         if (symbol.flags & ts.SymbolFlags.Type) {
             let previouslyGeneratedType = this.getPreviouslyGeneratedHaxeType(symbol);
-            let haxePath = this.getHaxeTypePath(symbol, exportRoot);
-            let typeName = haxePath[haxePath.length - 1];
+            let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+            let typeName = this.typePathTypeName(haxeTypePath);
+            let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+
+            if (typeName == null) {
+                throw `No TypeName in haxe type path "${haxeTypePath}" for native symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
+            }
+
+            // generate haxe syntax object
+            let haxeSyntaxObject: HaxeSyntaxObject;
 
             if (previouslyGeneratedType != null) {
-                if (this.verbose) Terminal.log('Generating <green>typedef</>', haxePath.join('.'), `=`, previouslyGeneratedType.path.join('.'));
                 previouslyGeneratedType.contributingSymbols.add(symbol);
 
-                this.addGeneratedHaxeType({
-                    path: haxePath,
-                    haxeSyntaxObject: `typedef ${typeName} = ${previouslyGeneratedType.path.join('.')}`,
-                    contributingSymbols: new Set([symbol]),
-                });
+                haxeSyntaxObject = this.generateTypeDef(previouslyGeneratedType, typeName, nativePath, symbol, exportRoot);
             } else {
-                // generate class
-                if (symbol.flags & ts.SymbolFlags.Class) {
-                    if (this.verbose) Terminal.log('Generating <blue>class</>', haxePath.join('.'));
+                let typeSyntaxObject = this.generateType(typeName, nativePath, symbol, exportRoot);
 
-                    this.addGeneratedHaxeType({
-                        path: haxePath,
-                        haxeSyntaxObject: `package ${haxePath.slice(0, -1).join('.')};\n @:native('${nativePath}')\nclass ${typeName} {}`,
-                        contributingSymbols: new Set([symbol]),
-                    });
+                if (typeSyntaxObject == null) {
+                    throw `Failed to generate type for symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
                 }
 
-                // generate interface
-                if (symbol.flags & ts.SymbolFlags.Interface) {
-                    if (this.verbose) Terminal.log('Generating <magenta>interface</>', haxePath.join('.'));
-
-                    this.addGeneratedHaxeType({
-                        path: haxePath,
-                        haxeSyntaxObject: `package ${haxePath.slice(0, -1).join('.')};\n interface ${typeName} {}`,
-                        contributingSymbols: new Set([symbol]),
-                    });
-                }
-
-                // enum
-                if (symbol.flags & ts.SymbolFlags.Enum) {
-                    if (this.verbose) Terminal.log('Generating <red>enum</>', haxePath.join('.'));
-
-                    this.addGeneratedHaxeType({
-                        path: haxePath,
-                        haxeSyntaxObject: `package ${haxePath.slice(0, -1).join('.')};\n @:native('${nativePath}')\nenum ${typeName} {}`,
-                        contributingSymbols: new Set([symbol]),
-                    });
-                }
+                haxeSyntaxObject = typeSyntaxObject;
             }
+
+            this.addGeneratedHaxeType({
+                path: haxeTypePath,
+                haxeSyntaxObject: haxeSyntaxObject,
+                contributingSymbols: new Set([symbol]),
+            });
         }
 
         if (symbol.flags & (
@@ -111,14 +96,13 @@ export class ExternGenerator {
                     Debug.logSymbol(this.checker, symbol, exportRoot, 0);
                     Debug.logSymbol(this.checker, parent, exportRoot, 0);
 
-                    this.generateExternsForSymbol(parent, exportRoot);
+                    this.addSymbol(parent, exportRoot);
                     parentHaxeType = this.haxeTypes.get(parentPath.join('.'));
                 }
             }
 
             if (parentHaxeType == null) {
-                Terminal.error(`Cannot determine where to generate field <b>${symbolPath.join('.')}</b>`);
-                return;
+                throw `Cannot determine where to generate field ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}`;
             }
 
             // @! add field to parentHaxeType
@@ -142,7 +126,7 @@ export class ExternGenerator {
 
             let content = haxeFiles.get(filePath);
             if (content == null) {
-                content = '';
+                content = `package ${packages.join('.')};` + '\n';
             }
 
             // @! should be some haxe syntax printer call here
@@ -152,6 +136,64 @@ export class ExternGenerator {
         }
 
         return haxeFiles;
+    }
+
+    protected generateType(typeName: string, nativePath: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject | null {
+        // assumes mutual exclusivity between types
+
+        // class
+        if (symbol.flags & ts.SymbolFlags.Class) {
+            return this.generateClass(typeName, nativePath, symbol, exportRoot);
+        }
+
+        // interface
+        if (symbol.flags & ts.SymbolFlags.Interface) {
+            return this.generateInterface(typeName, nativePath, symbol, exportRoot);
+        }
+
+        // enum
+        if (symbol.flags & ts.SymbolFlags.Enum) {
+            return this.generateEnum(typeName, nativePath, symbol, exportRoot);
+        }
+
+        return null;
+    }
+
+    protected generateClass(typeName: string, nativePath: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+        if (this.verbose) {
+            let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+            Terminal.log('Generating <blue>class</>', haxeTypePath.join('.'));
+        }
+
+        return `@:native('${nativePath}')\nclass ${typeName} {}`
+    }
+
+    protected generateInterface(typeName: string, nativePath: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+        if (this.verbose) {
+            let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+            Terminal.log('Generating <magenta>interface</>', haxeTypePath.join('.'));
+        }
+
+        return `@:native('${nativePath}')\ninterface ${typeName} {}`
+    }
+
+    protected generateEnum(typeName: string, nativePath: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+        if (this.verbose) {
+            let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+            Terminal.log('Generating <red>enum</>', haxeTypePath.join('.'));
+        }
+
+        return `@:native('${nativePath}')\nenum ${typeName} {}`
+    }
+
+    protected generateTypeDef(targetType: HaxeType, typeName: string, nativePath: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+        // @! need to account for type parameters!
+        if (this.verbose) {
+            let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+            Terminal.log('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.path.join('.'));
+        }
+        
+        return `typedef ${typeName} = ${targetType.path.join('.')}`;
     }
 
     protected addGeneratedHaxeType(haxeType: HaxeType) {
@@ -241,6 +283,18 @@ export class ExternGenerator {
             }
         }
         return null;
+    }
+
+    /**
+     * Given a haxe type path, such as a.b.Module.SubType, this returns 'SubType'
+     */
+    protected typePathTypeName(haxeTypePath: Array<string>): string | null {
+        let lastEntry = haxeTypePath[haxeTypePath.length - 1];
+        if (lastEntry.charAt(0) === lastEntry.charAt(0).toUpperCase()) {
+            return lastEntry;
+        } else {
+            return null;
+        }
     }
 
 }
