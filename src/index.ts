@@ -9,8 +9,6 @@ import { TSUtil } from './TSUtil';
 import { ExternGenerator } from './ExternGenerator';
 
 // lazy log aliases
-let log = Terminal.log.bind(Terminal);
-let warn = Terminal.warn.bind(Terminal);
 let error = Terminal.error.bind(Terminal);
 let indent = Debug.getIndent.bind(Debug);
 
@@ -22,7 +20,8 @@ let outputDirectory = 'output';
 let generateSourceFileExports = false;
 
 // logging options
-let logSymbolWalkEnabled = false;
+let logVerboseSymbolWalkEnabled = false;
+let logWarnSymbolWalkEnabled = true;
 
 let logGen = true;
 let logGenVerboseEnabled = logGen && false;
@@ -46,7 +45,6 @@ let logSavedFilesEnabled = false;
 generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
-
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
@@ -69,7 +67,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             definitionRoots = [indexPath];
         } else {
             // process all .d.ts files within the directory and subdirectories 
-            warn(`No index.d.ts file found in "${definitionsPath}", finding all .d.ts files instead`);
+            Terminal.warn(`No index.d.ts file found in "${definitionsPath}", finding all .d.ts files instead`);
             definitionRoots = [];
 
             let files = fs.readdirSync(definitionsPath);
@@ -175,11 +173,11 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         // to handle type and lib references, we can add them as a lib dependency to haxelib.json
         // (and also download and convert them)
         for (let ref of sourceFile.typeReferenceDirectives) {
-            warn(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+            logWarnSymbolWalk(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
         }
 
         for (let ref of sourceFile.libReferenceDirectives) {
-            warn(`<b>${sourceFile.fileName}</b> references lib "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+            logWarnSymbolWalk(`<b>${sourceFile.fileName}</b> references lib "<b>${ref.fileName}</>" but this reference is currently unhandled`);
         }
     }
     
@@ -188,7 +186,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         if (_processedFiles.has(sourceFile)) return;
         _processedFiles.add(sourceFile);
 
-        logSymbolWalk(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -</>`);
+        logVerboseSymbolWalk(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -</>`);
         
         // process the `/// <reference path="...">` files
         queueReferencedFiles(sourceFile, depth);
@@ -217,14 +215,14 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 }
 
                 // the module can be imported as '$module-folder-name' or used globally if global exports are set
-                logSymbolWalk(indent(depth) + `>> <red>sourceFileSymbol ` +
+                logVerboseSymbolWalk(indent(depth) + `>> <red>sourceFileSymbol ` +
                     (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) +
                     (exportAlias ? ` aliasing to <b>${checker.getAliasedSymbol(exportAlias).name}</b>` : '') +
                     `</red>`
                 );
 
                 if (exportAlias != null) {
-                    Terminal.warn(`Export alias "${exportAlias.name}${checker.getAliasedSymbol(exportAlias).name}" is not currently handled`);
+                    logWarnSymbolWalk(`Export alias "${exportAlias.name}${checker.getAliasedSymbol(exportAlias).name}" is not currently handled`);
                 }
 
                 processSymbol(sourceFileSymbol, sourceFileSymbol, depth);
@@ -237,7 +235,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
 
         // ambient declarations (these are your non-export declares)
         if (sourceFile.locals != null) {
-            logSymbolWalk(indent(depth) + `>> <red>locals</red>`);
+            logVerboseSymbolWalk(indent(depth) + `>> <red>locals</red>`);
             sourceFile.locals.forEach(s => processSymbol(s, null, depth + 1));
         }
 
@@ -260,30 +258,25 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 if (logGenErrorsEnabled) Terminal.error(e);
             }
 
-            logSymbolWalk(indent(depth) + Debug.symbolInfoFormatted(checker, symbol, exportRoot));
+            logVerboseSymbolWalk(indent(depth) + Debug.symbolInfoFormatted(checker, symbol, exportRoot));
         }
 
-        // @! determine where this symbol belongs
-
-        // @! deterministically insert symbol into haxe externs AST, creating structures as required
+        // @! enum members are currently not walked
 
         // process sub symbols
         {
             // globalExports are currently only set on sourceFile symbols I believe
-            /*
-            if (symbol.globalExports != null && symbol.globalExports.size > 0) {
-                log(indent(depth) + `<green><b>${symbol.name}</> globalExports</>`);
-                symbol.globalExports.forEach(s => processSymbol(s, {}, depth + 1));
+            if (symbol.globalExports != null && symbol.globalExports.size > 0 && !TSUtil.isSourceFileModuleSymbol(symbol)) {
+                logWarnSymbolWalk(`Symbol unexpectedly has global exports ${Debug.symbolInfoFormatted(checker, symbol, exportRoot)}`)
             }
-            */
 
             if (symbol.members != null && symbol.members.size > 0) {
-                if (generateExternsForSymbol) logSymbolWalk(indent(depth) + `<green><b>${symbol.name}</> members</>`);
+                if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<green><b>${symbol.name}</> members</>`);
                 symbol.members.forEach(s => processSymbol(s, exportRoot, depth + 1));
             }
 
             if (symbol.flags & ts.SymbolFlags.Module) {
-                if (generateExternsForSymbol) logSymbolWalk(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
+                if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
                 let allExports = checker.getExportsOfModule(symbol);
                 allExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
             }
@@ -304,7 +297,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 });
 
                 if (specialExports.length > 0) {
-                    if (generateExternsForSymbol) logSymbolWalk(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
+                    if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
                     specialExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
                 }
             }
@@ -322,8 +315,14 @@ function isDirectory(path: string) {
     try { return fs.statSync(path).isDirectory(); } catch (e) { return false; }
 }
 
-function logSymbolWalk(...args: Array<any>) {
-    if (logSymbolWalkEnabled) {
+function logVerboseSymbolWalk(...args: Array<any>) {
+    if (logVerboseSymbolWalkEnabled) {
         Terminal.write(Terminal.format(`<gray>(symbol-walk)${Terminal.lineCaret}</gray> <dim>` + util.format.apply(util, args as any) + '</dim>') + '\n');
+    }
+}
+
+function logWarnSymbolWalk(...args: Array<any>) {
+    if (logWarnSymbolWalkEnabled) {
+        Terminal.write(Terminal.format(`<yellow>(symbol-walk)${Terminal.lineCaret}</gray> <b>Warning:</> ` + util.format.apply(util, args as any)) + '\n');
     }
 }
