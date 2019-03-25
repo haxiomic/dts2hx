@@ -21,6 +21,8 @@ declare namespace SomeNamespace {
         type Dean = MediaList;
 
     }
+
+    const CommandNames: any;
 }
 
 declare class SomeClass {
