@@ -122,6 +122,17 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         error(`No definition files were processed – this indicates an error when determining which source files are not external`);
     }
 
+    // save generated haxe externs
+    let haxeFiles = externGenerator.generateHaxeFiles();
+    for (let filePath of haxeFiles.keys()) {
+        let content = haxeFiles.get(filePath);
+        let writePath = path.join(outputDirectory, filePath);
+        fs.mkdirSync(path.dirname(writePath), { recursive: true });
+        fs.writeFileSync(writePath, content);
+        Terminal.success(`Saved <b>${writePath}</b>`);
+    }
+
+
     /**
      * Find the source file associated with this symbol
      */

@@ -1,4 +1,5 @@
 import * as ts from 'typescript';
+import * as path from 'path';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
@@ -40,7 +41,7 @@ export class ExternGenerator {
 
                 this.addGeneratedHaxeType({
                     path: haxePath,
-                    haxeSyntaxObject: `typedef ${typeName} = previouslyGeneratedType.path.join('.')`,
+                    haxeSyntaxObject: `typedef ${typeName} = ${previouslyGeneratedType.path.join('.')}`,
                     contributingSymbols: new Set([symbol]),
                 });
             } else {
@@ -117,16 +118,40 @@ export class ExternGenerator {
 
             if (parentHaxeType == null) {
                 Terminal.error(`Cannot determine where to generate field <b>${symbolPath.join('.')}</b>`);
+                return;
             }
 
             // @! add field to parentHaxeType
+            parentHaxeType.haxeSyntaxObject += '\n\t' + symbol.name;
 
             // if (this.verbose) Terminal.log('Generating <yellow>value</>', parentPath.join('.'), symbol.name);
         }
     }
 
-    generateFiles() {
+    generateHaxeFiles(): Map<string, string> {
         // @! iterate haxe type paths, creating files and package directories as needed
+        let haxeFiles = new Map<string, string>();
+
+        for (let haxeTypePathStr of this.haxeTypes.keys()) {
+            let haxeType = this.haxeTypes.get(haxeTypePathStr)!;
+
+            let packages = this.typePathPackages(haxeType.path);
+            let moduleName = this.typePathModule(haxeType.path);
+            let filePath = path.join.apply(path.join, packages.concat([moduleName + '.hx']));
+
+
+            let content = haxeFiles.get(filePath);
+            if (content == null) {
+                content = '';
+            }
+
+            // @! should be some haxe syntax printer call here
+            content += haxeType.haxeSyntaxObject + '\n';
+
+            haxeFiles.set(filePath, content);
+        }
+
+        return haxeFiles;
     }
 
     protected addGeneratedHaxeType(haxeType: HaxeType) {
@@ -142,8 +167,8 @@ export class ExternGenerator {
 
     protected getPreviouslyGeneratedHaxeType(symbol: ts.Symbol): HaxeType | null {
         for (let typePath of this.haxeTypes.keys()) {
-            let haxeType = this.haxeTypes.get(typePath);
-            if (haxeType != null && haxeType.contributingSymbols.has(symbol)) {
+            let haxeType = this.haxeTypes.get(typePath)!;
+            if (haxeType.contributingSymbols.has(symbol)) {
                 return haxeType;
             }
         }
@@ -187,6 +212,35 @@ export class ExternGenerator {
         name = name.charAt(0).toUpperCase() + name.substr(1);
 
         return name;
+    }
+
+    /**
+     * Given a haxe type path, such as a.b.Module.SubType, this returns [a, b]
+     */
+    protected typePathPackages(haxeTypePath: Array<string>): Array<string> {
+        let packages = new Array<string>();
+        for (let p of haxeTypePath) {
+            let c = p.charAt(0);
+            if (c === c.toLowerCase()) {
+                packages.push(p);
+            } else {
+                break;
+            }
+        }
+        return packages;
+    }
+
+    /**
+     * Given a haxe type path, such as a.b.Module.SubType, this returns 'Module'
+     */
+    protected typePathModule(haxeTypePath: Array<string>): string | null {
+        for (let p of haxeTypePath) {
+            let c = p.charAt(0);
+            if (c === c.toUpperCase()) {
+                return p;
+            }
+        }
+        return null;
     }
 
 }
