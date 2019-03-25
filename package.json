@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "run": "node dist",
+    "watch": "tsc --watch & fswatch -o dist/",
     "watch-run": "tsc --watch & fswatch -o dist/ | xargs -n1 -I{} node dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
