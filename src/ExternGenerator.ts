@@ -186,7 +186,7 @@ export class ExternGenerator {
 
             // @! add field to parentHaxeType
             if (!parentHaxeType.contributingSymbols.has(symbol)) {
-                parentHaxeType.haxeSyntaxObject += '\n\t' + symbol.name;
+                parentHaxeType.haxeSyntaxObject += '\n\t' + (symbol.flags & ts.SymbolFlags.ModuleMember ? 'static ' : '') + symbol.name;
                 parentHaxeType.contributingSymbols.add(symbol);
             }
 
