@@ -1,6 +1,7 @@
 import * as ts from 'typescript';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as util from 'util';
 import Terminal from './Terminal';
 import Debug from './Debug';
 import ProcessFileQueue from './ProcessFileQueue';
@@ -18,15 +19,21 @@ let outputDirectory = 'output';
 // sometimes a module does not have any global exports, in which case it can only be accessed via import ... '$module-name'
 // setting this to true will generated externs that use @:jsRequire()
 let generateSourceFileExports = false;
-let debugLogSymbols = false;
+
+// logging options
+let logSymbolWalkEnabled = false;
+let logGenVerboseEnabled = false;
+let logGenWarningsEnabled = true;
+let logGenErrorsEnabled = true;
+let logSavedFilesEnabled = false;
 
 /**
  * Aim is to be able to do `haxelib run dts2hx install @types/three` and have it pull three.js from definitely typed and install it into haxelib as @types-three
  * Pulling any dependent types that are referenced
  */
 
-generateHaxeExterns('test-definitions/edge-cases', {});
-// generateHaxeExterns('test-definitions/templates/module-class', {});
+// generateHaxeExterns('test-definitions/edge-cases', {});
+generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});
 // generateHaxeExterns('test-definitions/templates/global', {});
@@ -42,16 +49,18 @@ generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
 
 function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
-    Terminal.log(`Processing <b>${definitionsPath}</b>`);
-    
     // determine root definition file(s) from definitionsPath, favoring index.d.ts if one exists
     let definitionRoots: Array<string>;
+    let definitionName: string;
 
     if (isFile(definitionsPath)) {
         definitionRoots = [definitionsPath];
+        definitionName = path.basename(definitionsPath).split('.').shift()!;
     } else if (isDirectory(definitionsPath)) {
         // check for an index.d.ts file
         let indexPath = path.join(definitionsPath, 'index.d.ts');
+        definitionName = path.basename(definitionsPath);
+
         if (fs.existsSync(indexPath)) {
             definitionRoots = [indexPath];
         } else {
@@ -82,9 +91,13 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         return;
     }
 
+    Terminal.log(`Processing definitions <cyan>${definitionName}</> (<i>${definitionsPath}</>)`);
+
     let program = ts.createProgram(definitionRoots, options);
     let checker = program.getTypeChecker();
-    let externGenerator = new ExternGenerator(checker);
+    let externGenerator = new ExternGenerator(checker, [definitionName]);
+    externGenerator.logVerboseEnabled = logGenVerboseEnabled;
+    externGenerator.logWarningsEnabled = logGenWarningsEnabled;
 
     // processor state
     let _processFileQueue = new ProcessFileQueue();
@@ -123,13 +136,17 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     }
 
     // save generated haxe externs
-    let haxeFiles = externGenerator.generateHaxeFiles();
-    for (let filePath of haxeFiles.keys()) {
-        let content = haxeFiles.get(filePath);
+    let result = externGenerator.generateHaxeFiles();
+    for (let filePath of result.files.keys()) {
+        let content = result.files.get(filePath);
         let writePath = path.join(outputDirectory, filePath);
         fs.mkdirSync(path.dirname(writePath), { recursive: true });
         fs.writeFileSync(writePath, content);
-        Terminal.success(`Saved <b>${writePath}</b>`);
+        if (logSavedFilesEnabled) Terminal.success(`Saved <b>${writePath}</b>`);
+    }
+
+    for (let error of result.errors) {
+        if (logGenErrorsEnabled) Terminal.error(error);
     }
 
     /**
@@ -167,7 +184,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         if (_processedFiles.has(sourceFile)) return;
         _processedFiles.add(sourceFile);
 
-        if (debugLogSymbols) log(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -<//>`);
+        logSymbolWalk(indent(depth) + `<b,LIGHT_CYAN>- ${sourceFile.fileName} -</>`);
         
         // process the `/// <reference path="...">` files
         queueReferencedFiles(sourceFile, depth);
@@ -196,7 +213,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 }
 
                 // the module can be imported as '$module-folder-name' or used globally if global exports are set
-                 if (debugLogSymbols) log(indent(depth) + `>> <red>sourceFileSymbol ` +
+                logSymbolWalk(indent(depth) + `>> <red>sourceFileSymbol ` +
                     (globalExports.length > 0 ? `exporting as <b>${globalExportsString}</b>` : ``) +
                     (exportAlias ? ` aliasing to <b>${checker.getAliasedSymbol(exportAlias).name}</b>` : '') +
                     `</red>`
@@ -216,7 +233,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
 
         // ambient declarations (these are your non-export declares)
         if (sourceFile.locals != null) {
-            if (debugLogSymbols) log(indent(depth) + `>> <red>locals</red>`);
+            logSymbolWalk(indent(depth) + `>> <red>locals</red>`);
             sourceFile.locals.forEach(s => processSymbol(s, null, depth + 1));
         }
 
@@ -236,10 +253,10 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             try {
                 externGenerator.addSymbol(symbol, exportRoot);
             } catch (e) {
-                Terminal.error(e);
+                if (logGenErrorsEnabled) Terminal.error(e);
             }
 
-            if (debugLogSymbols) Debug.logSymbol(checker, symbol, exportRoot, depth);
+            logSymbolWalk(indent(depth) + Debug.symbolInfoFormatted(checker, symbol, exportRoot));
         }
 
         // @! determine where this symbol belongs
@@ -257,12 +274,12 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             */
 
             if (symbol.members != null && symbol.members.size > 0) {
-                if (generateExternsForSymbol) if (debugLogSymbols) log(indent(depth) + `<green><b>${symbol.name}</> members</>`);
+                if (generateExternsForSymbol) logSymbolWalk(indent(depth) + `<green><b>${symbol.name}</> members</>`);
                 symbol.members.forEach(s => processSymbol(s, exportRoot, depth + 1));
             }
 
             if (symbol.flags & ts.SymbolFlags.Module) {
-                if (generateExternsForSymbol) if (debugLogSymbols) log(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
+                if (generateExternsForSymbol) logSymbolWalk(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
                 let allExports = checker.getExportsOfModule(symbol);
                 allExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
             }
@@ -283,7 +300,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 });
 
                 if (specialExports.length > 0) {
-                    if (generateExternsForSymbol) if (debugLogSymbols) log(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
+                    if (generateExternsForSymbol) logSymbolWalk(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
                     specialExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
                 }
             }
@@ -299,4 +316,10 @@ function isFile(path: string) {
 
 function isDirectory(path: string) {
     try { return fs.statSync(path).isDirectory(); } catch (e) { return false; }
+}
+
+function logSymbolWalk(...args: Array<any>) {
+    if (logSymbolWalkEnabled) {
+        Terminal.write(Terminal.format(`<gray>(symbol-walk)${Terminal.lineCaret}</gray> <dim>` + util.format.apply(util, args as any) + '</dim>') + '\n');
+    }
 }
