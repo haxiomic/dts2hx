@@ -14,9 +14,19 @@ export default class Debug {
         return node.getSourceFile().getLineAndCharacterOfPosition(node.getStart());
     }
 
-    static getPrintableLocation(node: ts.Node) {
+    static getSymbolPrintableLocation(symbol: ts.Symbol): string {
+        if (symbol.declarations[0] != null) {
+            return this.getNodePrintableLocation(symbol.declarations[0]);
+        }
+        if (symbol.valueDeclaration != null) {
+            return this.getNodePrintableLocation(symbol.valueDeclaration);
+        } 
+        return '<unknown location>';
+    }
+
+    static getNodePrintableLocation(node: ts.Node): string {
         let { line, character } = this.getNodeLocation(node);
-        return `${node.getSourceFile().fileName}:${line}${character > 0 ? ':0' : ''}`;
+        return `${node.getSourceFile().fileName}:${line + 1}${character > 0 ? `:${character + 1}` : ''}`;
     }
 
     static symbolInfoFormatted(checker: ts.TypeChecker, s: ts.Symbol, exportRoot: ts.Symbol | null): string {
@@ -91,7 +101,7 @@ export default class Debug {
     ModuleExports           = 1 << 27,  // Symbol for CommonJS `module` of `module.exports`
     ```
      */
-    static getActiveSymbolFlags(value: ts.SymbolFlags, skipLessImportant: boolean) {
+    static getActiveSymbolFlags(value: ts.SymbolFlags, skipExcludes: boolean) {
         let active = new Array<string>();
 
         if ((value & ts.SymbolFlags.None) !== 0) active.push('None');
@@ -131,7 +141,13 @@ export default class Debug {
         if ((value & ts.SymbolFlags.Module) !== 0) active.push('Module');
         if ((value & ts.SymbolFlags.Accessor) !== 0) active.push('Accessor');
 
-        if (!skipLessImportant) {
+        if ((value & ts.SymbolFlags.ModuleMember) !== 0) active.push('ModuleMember');
+        if ((value & ts.SymbolFlags.ClassMember) !== 0) active.push('ClassMember');
+        if ((value & ts.SymbolFlags.ExportHasLocal) !== 0) active.push('ExportHasLocal');
+        if ((value & ts.SymbolFlags.BlockScoped) !== 0) active.push('BlockScoped');
+        if ((value & ts.SymbolFlags.PropertyOrAccessor) !== 0) active.push('PropertyOrAccessor');
+
+        if (!skipExcludes) {
             if ((value & ts.SymbolFlags.FunctionScopedVariableExcludes) !== 0) active.push('FunctionScopedVariableExcludes');
             if ((value & ts.SymbolFlags.BlockScopedVariableExcludes) !== 0) active.push('BlockScopedVariableExcludes');
             if ((value & ts.SymbolFlags.ParameterExcludes) !== 0) active.push('ParameterExcludes');
@@ -150,13 +166,7 @@ export default class Debug {
             if ((value & ts.SymbolFlags.TypeParameterExcludes) !== 0) active.push('TypeParameterExcludes');
             if ((value & ts.SymbolFlags.TypeAliasExcludes) !== 0) active.push('TypeAliasExcludes');
             if ((value & ts.SymbolFlags.AliasExcludes) !== 0) active.push('AliasExcludes');
-            if ((value & ts.SymbolFlags.ExportHasLocal) !== 0) active.push('ExportHasLocal');
-            if ((value & ts.SymbolFlags.BlockScoped) !== 0) active.push('BlockScoped');
-            if ((value & ts.SymbolFlags.PropertyOrAccessor) !== 0) active.push('PropertyOrAccessor');
         }
-
-        if ((value & ts.SymbolFlags.ModuleMember) !== 0) active.push('ModuleMember');
-        if ((value & ts.SymbolFlags.ClassMember) !== 0) active.push('ClassMember');
 
         return active;
     }
