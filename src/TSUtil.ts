@@ -41,12 +41,4 @@ export class TSUtil {
         return !!(moduleSymbol.flags & ts.SymbolFlags.Module) && moduleSymbol.name.charCodeAt(0) === '"'.charCodeAt(0);
     }
 
-    // static getSourceFileOfNode(node: ts.Node | undefined): ts.SourceFile | undefined;
-    static getSourceFileOfNode(node: ts.Node): ts.SourceFile {
-        while (node && node.kind !== ts.SyntaxKind.SourceFile) {
-            node = node.parent;
-        }
-        return <ts.SourceFile>node;
-    }
-
 }
