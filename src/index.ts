@@ -35,14 +35,26 @@ let logSavedFilesEnabled = false;
  * Pulling any dependent types that are referenced
  */
 
-// generateHaxeExterns('test-definitions/edge-cases', {});
+/*
+Bugs:
+    - When processing lib, we get things like
+        ```
+        package lib.ts.ts.server.protocol;
+
+        @:native('ts.ts.server.protocol.ApplicableRefactorInfo')
+        interface ApplicableRefactorInfo {}
+        ```
+    - So we might have a bug in TSUtils.getSymbolPath
+*/
+
+generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('test-definitions/templates/global-plugin', {});
-generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
+// generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
