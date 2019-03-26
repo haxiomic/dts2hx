@@ -367,6 +367,8 @@ export class ExternGenerator {
      * Given a symbol with Module or Type flags, it will return the generated haxe type path
      */
     protected getHaxeTypePath(symbol: ts.Symbol, exportRoot: ts.Symbol | null): Array<string> {
+        // @! if the exportRoot is a file export then the package path should be also determined by file path (relative to root)
+
         let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
         let packages = symbolPath.slice(0, -1).map(s => {
             if ((s.flags & ts.SymbolFlags.Type) && !(s.flags & ts.SymbolFlags.Module)) {
@@ -404,14 +406,14 @@ export class ExternGenerator {
     }
 
     protected toSafePackageName(name: string) {
-        // lowercase
-        name = name.toLowerCase();
         // remove quotes
         name = name.replace(/["'`]/gm, '');
-        // replace disallowed characters with _
-        name = name.replace(/[^0-9a-z_]/igm, '_');
-        // remove any disallowed characters from the front of the name
-        name = name.replace(/^[^a-z]+/i, '');
+        // replace disallowed characters with their character names or '_' if not known
+        name = name.replace(/[^0-9a-z_]/igm, (substring) => this.specialAsciiToName(substring) || '_');
+        // replace or remove any disallowed characters from the front of the name
+        name = name.replace(/^[^a-z_]+/i, (substring) => substring.split('').map(c => this.specialAsciiToName(c) || '').join(''));
+        // lowercase
+        name = name.toLowerCase();
 
         return name;
     }
@@ -419,14 +421,25 @@ export class ExternGenerator {
     protected toSafeHaxeTypeName(name: string) {
         // remove quotes
         name = name.replace(/["'`]/gm, '');
-        // replace disallowed characters with _
-        name = name.replace(/[^0-9a-z_]/igm, '_');
-        // remove any disallowed characters from the front of the name
-        name = name.replace(/^[^a-z]+/i, '');
+        // replace disallowed characters with their character names or '_' if not known
+        name = name.replace(/[^0-9a-z_]/igm, (substring) => this.specialAsciiToName(substring) || '_');
+        // capitalize the first letter character (might be preceded by non-letters which will later be replaced)
+        name = name.replace(/[a-z]/i, (c) => c.toUpperCase());
+        // replace or remove any disallowed characters from the front of the name
+        name = name.replace(/^[^a-z]+/i, (substring) => substring.split('').map(c => this.specialAsciiToName(c) || '').join(''));
         // capitalize first character
-        name = name.charAt(0).toUpperCase() + name.substr(1);
+        name = this.capitalize(name);
 
         return name;
+    }
+
+    protected capitalize(str: string) {
+        return str.charAt(0).toUpperCase() + str.substr(1);
+    }
+
+    protected specialAsciiToName(char: string): string | null {
+        let charName = this.safeCharacterNames.get(char);
+        return charName != null ? charName : null;
     }
 
     /**
@@ -493,5 +506,49 @@ export class ExternGenerator {
             return '';
         }
     }
+
+    protected safeCharacterNames = new Map<string, string>([
+        ['0', 'Zero'],
+        ['1', 'One'],
+        ['2', 'Two'],
+        ['3', 'Three'],
+        ['4', 'Four'],
+        ['5', 'Five'],
+        ['6', 'Six'],
+        ['7', 'Seven'],
+        ['8', 'Eight'],
+        ['9', 'Nine'],
+        ['$', 'Dollar'],
+        ['!', 'Bang'],
+        ['"', 'DoubleQuote'],
+        ['#', 'Hash'],
+        ['$', 'Dollar'],
+        ['%', 'Percent'],
+        ['&', 'Ampersand'],
+        ['\'', 'Quote'],
+        ['(', 'LeftParentheses'],
+        [')', 'RightParentheses'],
+        ['*', 'Star'],
+        ['+', 'Plus'],
+        [',', 'Comma'],
+        ['-', 'Minus'],
+        ['.', 'Dot'],
+        ['/', 'ForwardSlash'],
+        [':', 'Colon'],
+        [';', 'SemiColon'],
+        ['<', 'LessThan'],
+        ['=', 'Equals'],
+        ['>', 'GreaterThan'],
+        ['?', 'QuestionMark'],
+        ['{', 'LeftBrace'],
+        ['|', 'Bar'],
+        ['}', 'RightBrace'],
+        ['~', 'Tilde'],
+        ['[', 'LeftSquareBracket'],
+        ['\\', 'BackwardSlash'],
+        [']', 'RightSquareBracket'],
+        ['^', 'Caret'],
+        ['_', 'Underscore'],
+    ]);
 
 }
