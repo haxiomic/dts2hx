@@ -62,7 +62,7 @@ export class ExternGenerator {
             if (parent != null) {
                 parentHaxePath = this.getHaxeTypePath(parent, exportRoot);
             } else {
-                throw `Type parameter does not have parent symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
+                throw `Type parameter does not have parent symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.location(symbol);
             }
 
             // get the haxe type object that corresponds to the fields owner
@@ -75,7 +75,7 @@ export class ExternGenerator {
                     parentHaxeType.contributingSymbols.add(symbol);
                 }
             } else {
-                throw `Type parameter's parent type "${parentHaxePath}" has not yet been created` + this.errorLocation(symbol);
+                throw `Type parameter's parent type "${parentHaxePath}" has not yet been created` + this.location(symbol);
             }
 
             symbolHandled = true;
@@ -104,7 +104,7 @@ export class ExternGenerator {
                 let typeSyntaxObject = this.generateType(typeName, symbol, exportRoot);
 
                 if (typeSyntaxObject == null) {
-                    throw `Unsupported type-symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
+                    throw `Unsupported type-symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.location(symbol);
                 }
 
                 haxeSyntaxObject = typeSyntaxObject;
@@ -155,7 +155,7 @@ export class ExternGenerator {
                         throw (
                             `Field's enclosing module has no type name in path ${parentHaxePath}\n` +
                             `\tFor symbol ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` +
-                            this.errorLocation(symbol, 'prepend')
+                            this.location(symbol, 'prepend')
                         );
                     }
 
@@ -175,7 +175,7 @@ export class ExternGenerator {
                         `Field generated before type was generated (this is not expected to happen)\n` + 
                         `\tField: ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}\n` +
                         `\tParent: ${Debug.symbolInfoFormatted(this.checker, parent, exportRoot)}` +
-                        this.errorLocation(symbol, 'prepend')
+                        this.location(symbol, 'prepend')
                     );
 
                     this.addSymbol(parent, exportRoot);
@@ -184,7 +184,7 @@ export class ExternGenerator {
             }
 
             if (parentHaxeType == null) {
-                throw `Cannot determine where to generate field ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
+                throw `Cannot determine where to generate field ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.location(symbol);
             }
 
             // @! add field to parentHaxeType
@@ -211,7 +211,7 @@ export class ExternGenerator {
         }
 
         if (!symbolHandled) {
-            throw `Symbol was not handled ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.errorLocation(symbol);
+            throw `Symbol was not handled ${Debug.symbolInfoFormatted(this.checker, symbol, exportRoot)}` + this.location(symbol);
         }
     }
 
@@ -295,7 +295,7 @@ export class ExternGenerator {
      */
     protected generateModuleClass(typeName: string, moduleSymbol: ts.Symbol | undefined, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = moduleSymbol ? this.getHaxeTypePath(moduleSymbol, exportRoot) : [typeName];
-        this.logVerbose('Generating <cyan,i>module class</>', haxeTypePath.join('.'));
+        this.logVerbose('Generating <cyan,i>module class</>', haxeTypePath.join('.'), this.location(moduleSymbol));
 
         // not clear yet if we need to do anything special for module classes
 
@@ -309,7 +309,7 @@ export class ExternGenerator {
 
     protected generateClass(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <blue>class</>', haxeTypePath.join('.'));
+        this.logVerbose('Generating <blue>class</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
@@ -322,7 +322,7 @@ export class ExternGenerator {
 
     protected generateInterface(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <magenta>interface</>', haxeTypePath.join('.'));
+        this.logVerbose('Generating <magenta>interface</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
@@ -335,7 +335,7 @@ export class ExternGenerator {
 
     protected generateEnum(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <red>enum</>', haxeTypePath.join('.'));
+        this.logVerbose('Generating <red>enum</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
@@ -348,7 +348,7 @@ export class ExternGenerator {
 
     protected generateTypeAlias(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <green>type alias</>', haxeTypePath.join('.'));
+        this.logVerbose('Generating <green>type alias</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
@@ -362,7 +362,7 @@ export class ExternGenerator {
     protected generateTypedef(targetType: HaxeType, typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         // @! need to account for type parameters!
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.typePath.join('.'));
+        this.logVerbose('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.typePath.join('.'), this.location(symbol));
         
         return (
             `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
@@ -543,7 +543,7 @@ export class ExternGenerator {
         }
     }
 
-    protected errorLocation(symbol: ts.Symbol, newline?: 'append' | 'prepend') {
+    protected location(symbol: ts.Symbol | undefined, newline?: 'append' | 'prepend') {
         if (this.printErrorLocation) {
             return (
                 (newline === 'prepend' ? '\n' : '') +
