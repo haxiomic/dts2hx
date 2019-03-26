@@ -2,7 +2,6 @@
 
 export * from './cat';
 
-
 export declare abstract class BasePlayerCallback {
     array: Uint8Array;
     abstract run(n: {a: Uint16Array}, t?: number): void;
@@ -62,12 +61,19 @@ export namespace ClassAndNamespace {
 }
 
 export namespace ExportedNamespace {
+
     namespace A {
         
     }
 
-    export namespace B {
+    export namespace HorribleIdentifiersಠ_ಠ {
 
+        const ლ_ಠ益ಠ_ლ = 42;
+        const π: number;
+        const λ: number;
+
+
+        const Hͫ̆̒̐ͣ̊̄ͯ͗͏̵̗̻̰̠̬͝ͅE̴̷̬͎̱̘͇͍̾ͦ͊͒͊̓̓̐_̫̠̱̩̭̤͈̑̎̋ͮͩ̒͑̾͋͘Ç̳͕̯̭̱̲̣̠̜͋̍O̴̦̗̯̹̼ͭ̐ͨ̊̈͘͠M̶̝̠̭̭̤̻͓͑̓̊ͣͤ̎͟͠E̢̞̮̹͍̞̳̣ͣͪ͐̈T̡̯̳̭̜̠͕͌̈́̽̿ͤ̿̅̑Ḧ̱̱̺̰̳̹̘̰́̏ͪ̂̽͂̀͠: string;
     }
 }
 
