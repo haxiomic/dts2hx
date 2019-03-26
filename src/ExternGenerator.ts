@@ -134,7 +134,7 @@ export class ExternGenerator {
             let parentHaxePath: Array<string>;
             let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
             let parent: ts.Symbol | undefined = symbolPath[symbolPath.length - 2];
-            const globalClassName = 'Global'
+            const globalClassName = 'Global';
 
             if (parent != null) {
                 parentHaxePath = this.getHaxeTypePath(parent, exportRoot);
@@ -158,6 +158,9 @@ export class ExternGenerator {
                             this.errorLocation(symbol, 'prepend')
                         );
                     }
+
+                    // @! debugging pixi.js  file overwrite
+                    Terminal.warn(`Creating module class`, moduleClassTypeName, moduleClassHaxePath, Debug.getSymbolPrintableLocation(symbol));
 
                     // generate a module class 
                     parentHaxeType = this.addGeneratedHaxeType({
@@ -279,6 +282,11 @@ export class ExternGenerator {
             return this.generateEnum(typeName, symbol, exportRoot);
         }
 
+        // type alias
+        if (symbol.flags & ts.SymbolFlags.TypeAlias) {
+            return this.generateTypeAlias(typeName, symbol, exportRoot);
+        }
+
         return null;
     }
 
@@ -335,6 +343,19 @@ export class ExternGenerator {
             `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
             ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
             `enum ${typeName} {}`
+        );
+    }
+
+    protected generateTypeAlias(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+        let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+        this.logVerbose('Generating <green>type alias</>', haxeTypePath.join('.'));
+
+        let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+
+        return (
+            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
+            ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
+            `typedef ${typeName} = ...;`
         );
     }
 
@@ -413,6 +434,8 @@ export class ExternGenerator {
     }
 
     protected toSafePackageName(name: string) {
+        // remove .js suffix
+        name = name.replace(/\.js$/i, '');
         // replace disallowed characters
         name = this.toSafeIdent(name);
         // lowercase
@@ -440,8 +463,8 @@ export class ExternGenerator {
         // remove quotes
         str = str.replace(/["'`]/gm, '');
 
-        // replace hyphens with underscore
-        str = str.replace(/[-–—]/gm, '_');
+        // replace hyphens and dots with underscore
+        str = str.replace(/[-–—.]/gm, '_');
 
         // @! should capitalize next character after replace with work, so hello@world becomes helloAtWorld
 
