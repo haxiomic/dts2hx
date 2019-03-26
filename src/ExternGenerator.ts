@@ -186,7 +186,14 @@ export class ExternGenerator {
 
             // @! add field to parentHaxeType
             if (!parentHaxeType.contributingSymbols.has(symbol)) {
-                parentHaxeType.haxeSyntaxObject += '\n\t' + (symbol.flags & ts.SymbolFlags.ModuleMember ? 'static ' : '') + symbol.name;
+                let safeIdent = this.toSafeIdent(symbol.name);
+                parentHaxeType.haxeSyntaxObject += (
+                    '\n\t' + (symbol.flags & ts.SymbolFlags.ModuleMember ? 'static ' : '') + 
+
+                    safeIdent +
+
+                    (safeIdent !== symbol.name ? ` // ${symbol.name}` : '')
+                );
                 parentHaxeType.contributingSymbols.add(symbol);
             }
 
@@ -406,12 +413,8 @@ export class ExternGenerator {
     }
 
     protected toSafePackageName(name: string) {
-        // remove quotes
-        name = name.replace(/["'`]/gm, '');
-        // replace disallowed characters with their character names or '_' if not known
-        name = name.replace(/[^0-9a-z_]/igm, (substring) => this.specialAsciiToName(substring) || '_');
-        // replace or remove any disallowed characters from the front of the name
-        name = name.replace(/^[^a-z_]+/i, (substring) => substring.split('').map(c => this.specialAsciiToName(c) || '').join(''));
+        // replace disallowed characters
+        name = this.toSafeIdent(name);
         // lowercase
         name = name.toLowerCase();
 
@@ -419,14 +422,10 @@ export class ExternGenerator {
     }
 
     protected toSafeHaxeTypeName(name: string) {
-        // remove quotes
-        name = name.replace(/["'`]/gm, '');
-        // replace disallowed characters with their character names or '_' if not known
-        name = name.replace(/[^0-9a-z_]/igm, (substring) => this.specialAsciiToName(substring) || '_');
         // capitalize the first letter character (might be preceded by non-letters which will later be replaced)
         name = name.replace(/[a-z]/i, (c) => c.toUpperCase());
-        // replace or remove any disallowed characters from the front of the name
-        name = name.replace(/^[^a-z]+/i, (substring) => substring.split('').map(c => this.specialAsciiToName(c) || '').join(''));
+        // replace disallowed characters
+        name = this.toSafeIdent(name);
         // capitalize first character
         name = this.capitalize(name);
 
@@ -435,6 +434,20 @@ export class ExternGenerator {
 
     protected capitalize(str: string) {
         return str.charAt(0).toUpperCase() + str.substr(1);
+    }
+
+    protected toSafeIdent(str: string) {
+        // remove quotes
+        str = str.replace(/["'`]/gm, '');
+
+        // @! should capitalize character after replace, so hello@world becomes helloAtWorld
+
+        // replace disallowed characters with their character names or '_' if not known
+        str = str.replace(/[^0-9a-z_]/igm, (substring) => this.specialAsciiToName(substring) || '_');
+        // replace or remove any disallowed characters from the front of the name
+        str = str.replace(/^[^a-z_]+/i, (substring) => substring.split('').map(c => this.specialAsciiToName(c) || '').join(''));
+
+        return str;
     }
 
     protected specialAsciiToName(char: string): string | null {
@@ -448,8 +461,9 @@ export class ExternGenerator {
     protected typePathPackages(haxeTypePath: Array<string>): Array<string> {
         let packages = new Array<string>();
         for (let p of haxeTypePath) {
-            let c = p.charAt(0);
-            if (c === c.toLowerCase()) {
+            let firstLetterMatch = p.match(/[a-z]/i) || [];
+            let c = firstLetterMatch[0];
+            if (c != null && c === c.toLowerCase()) {
                 packages.push(p);
             } else {
                 break;
@@ -463,8 +477,9 @@ export class ExternGenerator {
      */
     protected typePathModule(haxeTypePath: Array<string>): string | null {
         for (let p of haxeTypePath) {
-            let c = p.charAt(0);
-            if (c === c.toUpperCase()) {
+            let firstLetterMatch = p.match(/[a-z]/i) || [];
+            let c = firstLetterMatch[0];
+            if (c != null && c === c.toUpperCase()) {
                 return p;
             }
         }
@@ -476,7 +491,14 @@ export class ExternGenerator {
      */
     protected typePathTypeName(haxeTypePath: Array<string>): string | null {
         let lastEntry = haxeTypePath[haxeTypePath.length - 1];
-        if (lastEntry.charAt(0) === lastEntry.charAt(0).toUpperCase()) {
+        if (lastEntry == null) {
+            return null;
+        }
+        
+        let firstLetterMatch = lastEntry.match(/[a-z]/i) || [];
+        let c = firstLetterMatch[0];
+        
+        if (c != null && c === c.toUpperCase()) {
             return lastEntry;
         } else {
             return null;
@@ -549,6 +571,7 @@ export class ExternGenerator {
         [']', 'RightSquareBracket'],
         ['^', 'Caret'],
         ['_', 'Underscore'],
+        ['@', 'At'],
     ]);
 
 }
