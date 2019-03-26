@@ -48,7 +48,8 @@ Bugs:
     - So we might have a bug in TSUtils.getSymbolPath
 */
 
-generateHaxeExterns('test-definitions/edge-cases', {});
+try {
+// generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});
@@ -58,10 +59,15 @@ generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
+generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
+} catch (e) {
+    Terminal.error(e);
+    process.exit(1);
+}
 
 function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
     // determine root definition file(s) from definitionsPath, favoring index.d.ts if one exists
@@ -91,19 +97,13 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
             }
         }
     } else if (!fs.existsSync(definitionsPath)) {
-        Terminal.error(`Path doesn't exist "${definitionsPath}"`);
-        process.exit(1);
-        return;
+        throw `Path doesn't exist "${definitionsPath}"`;
     } else {
-        Terminal.error(`Could not handle path "${definitionsPath}"`);
-        process.exit(1);
-        return;
+        throw `Could not handle path "${definitionsPath}"`;
     }
 
     if (definitionRoots.length === 0) {
-        error(`No typescript definition files (.d.ts) found at "${definitionsPath}"`);
-        process.exit(1);
-        return;
+        throw `No typescript definition files (.d.ts) found at "${definitionsPath}"`;
     }
 
     Terminal.log(`Processing definitions <cyan>${definitionName}</> (<i>${definitionsPath}</>)`);
@@ -186,7 +186,12 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         // to handle type and lib references, we can add them as a lib dependency to haxelib.json
         // (and also download and convert them)
         for (let ref of sourceFile.typeReferenceDirectives) {
-            logWarnSymbolWalk(`<b>${sourceFile.fileName}</b> references types "<b>${ref.fileName}</>" but this reference is currently unhandled`);
+            logWarnSymbolWalk(`<b>${sourceFile.fileName}</b> references type "<b>${ref.fileName}</>" but support for this is experimental`);
+            try {
+                generateHaxeExterns(path.join(path.dirname(path.dirname(definitionRoots[0])), ref.fileName), options)
+            } catch (e) {
+                Terminal.error(`Failed to generate externs for referenced type "<b>${ref.fileName}</>" in <b>${sourceFile.fileName}</b>: ${e}`);
+            }
         }
 
         for (let ref of sourceFile.libReferenceDirectives) {
