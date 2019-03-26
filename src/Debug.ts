@@ -14,13 +14,15 @@ export default class Debug {
         return node.getSourceFile().getLineAndCharacterOfPosition(node.getStart());
     }
 
-    static getSymbolPrintableLocation(symbol: ts.Symbol): string {
-        if (symbol.declarations[0] != null) {
-            return this.getNodePrintableLocation(symbol.declarations[0]);
+    static getSymbolPrintableLocation(symbol: ts.Symbol | undefined): string {
+        if (symbol != null) {
+            if (symbol.declarations[0] != null) {
+                return this.getNodePrintableLocation(symbol.declarations[0]);
+            }
+            if (symbol.valueDeclaration != null) {
+                return this.getNodePrintableLocation(symbol.valueDeclaration);
+            } 
         }
-        if (symbol.valueDeclaration != null) {
-            return this.getNodePrintableLocation(symbol.valueDeclaration);
-        } 
         return '<unknown location>';
     }
 
