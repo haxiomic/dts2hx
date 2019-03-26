@@ -440,7 +440,10 @@ export class ExternGenerator {
         // remove quotes
         str = str.replace(/["'`]/gm, '');
 
-        // @! should capitalize character after replace, so hello@world becomes helloAtWorld
+        // replace hyphens with underscore
+        str = str.replace(/[-–—]/gm, '_');
+
+        // @! should capitalize next character after replace with work, so hello@world becomes helloAtWorld
 
         // replace disallowed characters with their character names or '_' if not known
         str = str.replace(/[^0-9a-z_]/igm, (substring) => this.specialAsciiToName(substring) || '_');
