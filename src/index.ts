@@ -37,7 +37,6 @@ let logSavedFilesEnabled = false;
 
 /*
 Bugs:
-    - Enum members are not walked
     - When processing lib, we get things like
         ```
         package lib.ts.ts.server.protocol;
@@ -59,11 +58,12 @@ try {
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
-generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
+// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
+generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'pixi.js'), {});
 } catch (e) {
     Terminal.error(e);
     process.exit(1);
@@ -297,26 +297,31 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
                 if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<blue><b>${symbol.name}</> All Exports of Module</>`);
                 let allExports = checker.getExportsOfModule(symbol);
                 allExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
-            }
 
-            // since module exports were handled by checker.getExportsOfModule, this finds just the remaining export types such as export = T
-            // and ExportStar, (all export * declarations are collected in an __export symbol by the binder, this is the ExportStar symbol)
-            if (symbol.exports != null && symbol.exports.size > 0) {
-                let specialExports: Array<ts.Symbol> = [];
-                symbol.exports.forEach(s => {
-                    if (s.flags & (
-                        ts.SymbolFlags.Alias | // `export default DefaultThing` or export = DefaultThing (although these have different behaviors)
-                        ts.SymbolFlags.ExportStar | // all the `export * from 'x'` directives end up in this symbol
-                        ts.SymbolFlags.ExportValue | // ?
-                        ts.SymbolFlags.ModuleExports // `module.exports = x` (for CommonJS exports which actually isn't allowed in type definition files, but it's here for the future)
-                    )) {
-                        specialExports.push(s);
+                // since module exports were handled by checker.getExportsOfModule, this finds just the remaining export types such as export = T
+                // and ExportStar, (all export * declarations are collected in an __export symbol by the binder, this is the ExportStar symbol)
+                if (symbol.exports != null && symbol.exports.size > 0) {
+                    let specialExports: Array<ts.Symbol> = [];
+                    symbol.exports.forEach(s => {
+                        if (s.flags & (
+                            ts.SymbolFlags.Alias | // `export default DefaultThing` or export = DefaultThing (although these have different behaviors)
+                            ts.SymbolFlags.ExportStar | // all the `export * from 'x'` directives end up in this symbol
+                            ts.SymbolFlags.ExportValue | // ?
+                            ts.SymbolFlags.ModuleExports // `module.exports = x` (for CommonJS exports which actually isn't allowed in type definition files, but it's here for the future)
+                        )) {
+                            specialExports.push(s);
+                        }
+                    });
+
+                    if (specialExports.length > 0) {
+                        if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
+                        specialExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
                     }
-                });
-
-                if (specialExports.length > 0) {
-                    if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<magenta><b>${symbol.name}</> special exports</>`);
-                    specialExports.forEach(s => processSymbol(s, exportRoot, depth + 1));
+                }
+            } else {
+                if (symbol.exports != null && symbol.exports.size > 0) {
+                    if (generateExternsForSymbol) logVerboseSymbolWalk(indent(depth) + `<cyan><b>${symbol.name}</> exports</>`);
+                    symbol.exports.forEach(s => processSymbol(s, exportRoot, depth + 1));
                 }
             }
         }
