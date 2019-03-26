@@ -24,7 +24,7 @@ let logVerboseSymbolWalkEnabled = false;
 let logWarnSymbolWalkEnabled = true;
 
 let logGen = true;
-let logGenVerboseEnabled = logGen && false;
+let logGenVerboseEnabled = logGen && true;
 let logGenWarningsEnabled = logGen && true;
 let logGenErrorsEnabled = logGen && true;
 
@@ -37,6 +37,9 @@ let logSavedFilesEnabled = false;
 
 /*
 Bugs:
+    - pixi.js has two modules classes, one called PIXI and another called Pixi
+        - The problem is names are case-sensitive but macos filesystems are not
+        - To resolve, we need to detect the collision and rename
     - When processing lib, we get things like
         ```
         package lib.ts.ts.server.protocol;
@@ -156,6 +159,9 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         let content = result.files.get(filePath);
         let writePath = path.join(outputDirectory, filePath);
         fs.mkdirSync(path.dirname(writePath), { recursive: true });
+        if (fs.existsSync(writePath)) {
+            Terminal.warn(`Overwriting <b>${writePath}</b>`);
+        }
         fs.writeFileSync(writePath, content);
         if (logSavedFilesEnabled) Terminal.success(`Saved <b>${writePath}</b>`);
     }
