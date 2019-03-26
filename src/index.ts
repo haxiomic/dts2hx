@@ -29,6 +29,7 @@ let logGenWarningsEnabled = logGen && true;
 let logGenErrorsEnabled = logGen && true;
 
 let logSavedFilesEnabled = false;
+let logWarnOverwriteFilesEnabled = false;
 
 /**
  * Aim is to be able to do `haxelib run dts2hx install @types/three` and have it pull three.js from definitely typed and install it into haxelib as @types-three
@@ -159,7 +160,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         let content = result.files.get(filePath);
         let writePath = path.join(outputDirectory, filePath);
         fs.mkdirSync(path.dirname(writePath), { recursive: true });
-        if (fs.existsSync(writePath)) {
+        if (logWarnOverwriteFilesEnabled && fs.existsSync(writePath)) {
             Terminal.warn(`Overwriting <b>${writePath}</b>`);
         }
         fs.writeFileSync(writePath, content);
