@@ -6,7 +6,7 @@ I don't have the bandwidth available to progress it in the short term so I've ma
 
 It currently outputs the basic structures (not as valid haxe) using [these methods](src/ExternGenerator.ts#L296). The main part of the remaining work is to fill out these methods by exploring type information contained in the `ts.Symbol`. I think it's best to write this part in haxe so you can use the haxe syntax printer. In addition, we will need to remap type names like `WebGLRenderingContext` to haxe paths like `js.webgl.RenderingContext`. For this, I think it's best to use a haxe macro to explore all the types in `js.*` and extract their `@:native` metadata to create a lookup table.
 
-The ultimate aim is to be able to do something like `dts2hx install @types/three` and have it pull definitions from DefinitelyTyped and convert them to haxe. To enable this to be reliable there needs to be a focus on fully handling all possible ts type expressions and edge cases (see [test-definitions/edge-cases/index.ts](test-definitions/edge-cases/index.ts)).
+The ultimate aim is to be able to do something like `dts2hx install @types/three` and have it pull definitions from DefinitelyTyped and convert them to haxe. To enable this to be reliable there needs to be a focus on fully handling all possible ts type expressions and edge cases (see [test-definitions/edge-cases/index.d.ts](test-definitions/edge-cases/index.d.ts)).
 
 # Getting Started
 - Run `npm install` to download the dependencies (ts compiler)
