@@ -52,6 +52,7 @@ Bugs:
 */
 
 try {
+
 // generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
@@ -59,15 +60,19 @@ try {
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('test-definitions/templates/global-plugin', {});
-// generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
+generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
+
+// ** to use the following, run `npm install` in test-definitions/ ** //
+
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'node'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'big.js'), {});
-generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'pixi.js'), {});
+// generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'pixi.js'), {});
+
 } catch (e) {
     Terminal.error(e);
     process.exit(1);
