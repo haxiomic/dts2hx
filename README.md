@@ -1,6 +1,6 @@
 # WIP .d.ts to .hx
 
-Hi, this is a **WIP** TypeScript Definition to Haxe Extern converter. It's not yet ready to use but much of the groundwork has been laid.
+Hi, this is a work in progress TypeScript Definition to Haxe Extern converter. It's not yet ready to use but much of the groundwork has been laid.
 
 I don't have the bandwidth available to progress it in the short term so I've made the repo public to help anyone else who's also working towards a .dts -> .hx converter.
 
