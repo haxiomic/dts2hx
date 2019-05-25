@@ -1,6 +1,14 @@
 import * as util from 'util';
 import * as process from 'process';
 
+
+/**
+Terminal logging utility that makes it easy to apply formatting
+
+For example:
+
+`Terminal.log('<b,red>Bold red text</>')`
+**/
 export default class Terminal {
 
 	private static currentRewriteId: string | undefined = undefined;
