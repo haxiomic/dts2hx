@@ -55,6 +55,7 @@ export class ExternGenerator {
             return;
         }
 
+        // handle type parameter symbols
         if (symbol.flags & ts.SymbolFlags.TypeParameter) {
             let parentHaxePath: Array<string>;
             let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
@@ -82,7 +83,7 @@ export class ExternGenerator {
             symbolHandled = true;
         }
 
-        // handle symbol type declaration
+        // handle type declaration symbol
         if ((symbol.flags & ts.SymbolFlags.Type)
             // exclude type parameter types (these are handled separately)
             && !(symbol.flags & ts.SymbolFlags.TypeParameter)
@@ -342,7 +343,7 @@ export class ExternGenerator {
 
     protected generateEnum(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <orange>enum</>', haxeTypePath.join('.'), this.location(symbol));
+        this.logVerbose('Generating <yellow>enum</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
