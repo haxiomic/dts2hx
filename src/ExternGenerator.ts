@@ -5,6 +5,7 @@ import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
 
+// @! this needs to be replaced with haxe ast structure
 type HaxeSyntaxObject = string;
 
 type HaxeType = {
@@ -82,7 +83,12 @@ export class ExternGenerator {
         }
 
         // handle symbol type declaration
-        if ((symbol.flags & ts.SymbolFlags.Type) && !(symbol.flags & ts.SymbolFlags.TypeParameter)) {
+        if ((symbol.flags & ts.SymbolFlags.Type)
+            // exclude type parameter types (these are handled separately)
+            && !(symbol.flags & ts.SymbolFlags.TypeParameter)
+            // exclude enum members, in ts these are types but not in haxe
+            && !(symbol.flags & ts.SymbolFlags.EnumMember)
+        ) {
             let previouslyGeneratedType = this.getExistingHaxeType(symbol);
             let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
             let typeName = this.typePathTypeName(haxeTypePath);
@@ -124,12 +130,13 @@ export class ExternGenerator {
 
         // handle symbol field declaration (this will create namespace classes if required)
         if (symbol.flags & (
-            ts.SymbolFlags.Constructor |
-            ts.SymbolFlags.Function |
-            ts.SymbolFlags.Method |
-            ts.SymbolFlags.Property |
-            ts.SymbolFlags.BlockScopedVariable | 
-            ts.SymbolFlags.FunctionScopedVariable
+              ts.SymbolFlags.Constructor
+            | ts.SymbolFlags.Function
+            | ts.SymbolFlags.Method
+            | ts.SymbolFlags.Property
+            | ts.SymbolFlags.BlockScopedVariable 
+            | ts.SymbolFlags.FunctionScopedVariable
+            | ts.SymbolFlags.EnumMember
         )) {
             let parentHaxePath: Array<string>;
             let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
@@ -335,7 +342,7 @@ export class ExternGenerator {
 
     protected generateEnum(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <red>enum</>', haxeTypePath.join('.'), this.location(symbol));
+        this.logVerbose('Generating <orange>enum</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
 
