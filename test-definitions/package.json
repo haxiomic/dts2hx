@@ -14,6 +14,7 @@
     "@types/jquery": "^3.3.29",
     "@types/node": "^11.11.3",
     "@types/pixi.js": "^4.8.6",
-    "@types/three": "^0.93.27"
+    "@types/three": "^0.93.27",
+    "babylonjs": "^4.0.3"
   }
 }
