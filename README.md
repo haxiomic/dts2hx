@@ -24,3 +24,6 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
    The idea of generating Haxe externs from `.d.ts` files is not new, [ts2hx](https://github.com/Simn/ts2hx) for instance was started 5 years ago already. However, this turned out to not be viable because it implemented a TypeScript parser in Haxe. The maintenance effort required turned out to be too great since TypeScript is evolving quickly.
 
    This project takes the _opposite_ approach and hooks into the TypeScript compiler API, which simplifies future maintenance a lot.
+
+# Todo
+- ExternGenerator should use haxe syntax tree to build types (rather than a string)
