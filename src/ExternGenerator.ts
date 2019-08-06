@@ -405,23 +405,36 @@ export class ExternGenerator {
         // @! if the exportRoot is a file export then the package path should be also determined by file path (relative to root)
 
         let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
-        let packages = symbolPath.slice(0, -1).map(s => {
-            if ((s.flags & ts.SymbolFlags.Type) && !(s.flags & ts.SymbolFlags.Module)) {
-                return this.toSafeHaxeTypeName(s.name);
-            } else {
-                return this.toSafePackageName(s.name);
+
+        let expandedSymbolPathNames = new Array<string>();
+
+        for (let i = 0; i < symbolPath.length; i++) {
+            let s = symbolPath[i];
+            let isLastSymbol = i === symbolPath.length - 1;
+            // first, we need to extract packages encoded in the symbol name
+            // split name by path separators / and \
+            let p = s.name.split(/[/\\]+/);
+            let symbolName = p.pop()!;
+
+            // add parent path to package list
+            for (let name of p) {
+                expandedSymbolPathNames.push(this.toSafePackageName(name));
             }
-        });
 
-        let haxeTypePath = packages.concat([this.toSafeHaxeTypeName(symbol.name)]);
-
-        // prepend package root if it doesn't match the first package name
-        // this deduplicates so we don't have import three.three.Type
-        if (haxeTypePath[0] !== this.packageRoot[this.packageRoot.length - 1]) {
-            return this.packageRoot.concat(haxeTypePath);
-        } else {
-            return haxeTypePath;
+            // finally, add the symbol name
+            if (
+                // if symbol is marked as a type rather than just a module then convert to a haxe type name
+                (s.flags & ts.SymbolFlags.Type) && !(s.flags & ts.SymbolFlags.Module) ||
+                // if the symbol is the very last in the path, then force a haxe type name
+                isLastSymbol
+            ) {
+                expandedSymbolPathNames.push(this.toSafeHaxeTypeName(symbolName));
+            } else {
+                expandedSymbolPathNames.push(this.toSafePackageName(symbolName));
+            }
         }
+
+        return this.packageRoot.concat(expandedSymbolPathNames);
     }
 
     /**
