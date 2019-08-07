@@ -38,7 +38,7 @@ export class ExternGenerator {
     constructor(
         protected typeChecker: ts.TypeChecker,
         packageRoot: Array<string> = [],
-        options: ExternGeneratorOptions
+        options: Partial<ExternGeneratorOptions> = {}
     ) {
         this.packageRoot = packageRoot.map(p => this.toSafePackageName(p));
         this.options = {
