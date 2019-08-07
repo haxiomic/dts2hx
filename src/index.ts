@@ -117,7 +117,6 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
     Terminal.log(`Processing definitions <cyan>${definitionName}</> (<i>${definitionsPath}</>)`);
 
     let program = ts.createProgram(definitionRoots, options);
-    let typeChecker = program.getTypeChecker();
     let externGenerator = new ExternGenerator(
         program.getTypeChecker(),
         [definitionName],
@@ -140,6 +139,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         {
             logVerbose: logVerboseSymbolWalkEnabled,
             logWarnings: logWarnSymbolWalkEnabled,
+            generateSourceFileExports: generateSourceFileExports
         }
     );
 
