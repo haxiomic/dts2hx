@@ -26,4 +26,6 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
    This project takes the _opposite_ approach and hooks into the TypeScript compiler API, which simplifies future maintenance a lot.
 
 # Todo
-- ExternGenerator should use haxe syntax tree to build types (rather than a string)
+- Rough generation of TypeScript compiler externs
+- Translate existing project to haxe
+- Modules vs Namespace – can this help resolve the require vs global issue?
