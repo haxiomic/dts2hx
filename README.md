@@ -28,4 +28,4 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 # Todo
 - Rough generation of TypeScript compiler externs
 - Translate existing project to haxe
-- Modules vs Namespace – can this help resolve the require vs global issue?
+- ~~Modules vs Namespace – can this help resolve the require vs global issue?~~
