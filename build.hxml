@@ -1,0 +1,7 @@
+-p srchx
+-p lib/typescript-externs
+
+-main Main
+-lib hxnodejs
+-lib console.hx
+-js dist/dts2hx.js
