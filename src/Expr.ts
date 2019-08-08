@@ -4,7 +4,7 @@ export type Int = number;
 export type Bool = boolean;
 // fake haxe ADT enums
 class ADTEnum<T = any> {
-	constructor(readonly kind: T) { }
+	constructor(readonly enumId: T) { }
 }
 
 export type Expr = string; // for now just use strings for expressions
@@ -162,14 +162,14 @@ export class TDStructure extends TypeDefKind {
 }
 export class TDClass extends TypeDefKind {
 	constructor(
-		superClass?: TypePath, interfaces?: Array<TypePath>, isInterface?: Bool, isFinal?: Bool
+		readonly superClass?: TypePath, readonly interfaces?: Array<TypePath>, readonly isInterface?: Bool, readonly isFinal?: Bool
 	) { super('TDClass') }
 }
 export class TDAlias extends TypeDefKind {
-	constructor( t : ComplexType ) { super('TDAlias') }
+	constructor( readonly t : ComplexType ) { super('TDAlias') }
 }
 export class TDAbstract extends TypeDefKind {
-	constructor( tthis : Null<ComplexType>, from? : Array<ComplexType>, to?: Array<ComplexType> ) { super('TDAbstract') }
+	constructor(readonly tthis: Null<ComplexType>, readonly from?: Array<ComplexType>, readonly to?: Array<ComplexType> ) { super('TDAbstract') }
 }
 
 /**
@@ -270,19 +270,19 @@ export class FieldType extends ADTEnum<
 	Represents a variable field type.
 **/
 export class FVar extends FieldType {
-	constructor( t : Null<ComplexType>, e? : Null<Expr> ) { super('FVar'); }
+	constructor(readonly t: Null<ComplexType>, readonly e? : Null<Expr> ) { super('FVar'); }
 }
 /**
 	Represents a function field type.
 **/
 export class FFun extends FieldType {
-	constructor( f : Function ) { super('FFun'); }
+	constructor(readonly f : Function ) { super('FFun'); }
 }
 /**
 	Represents a property with getter and setter field type.
 **/
 export class FProp extends FieldType {
-	constructor( get : string, set : string, t? : Null<ComplexType>, e? : Null<Expr> ) { super('FProp'); }
+	constructor(readonly get: string, readonly set: string, readonly t?: Null<ComplexType>, readonly e? : Null<Expr> ) { super('FProp'); }
 }
 
 /**

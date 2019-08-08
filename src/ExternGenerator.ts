@@ -4,6 +4,7 @@ import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
 import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar } from './Expr';
+import { Printer } from './Printer';
 
 // @! this needs to be replaced with haxe ast structure
 type HaxeSyntaxObject = TypeDefinition;
@@ -126,7 +127,7 @@ export class ExternGenerator {
             if (previouslyGeneratedType != null) {
                 previouslyGeneratedType.contributingSymbols.add(symbol);
 
-                haxeSyntaxObject = this.generateTypedef(previouslyGeneratedType, typeName, symbol, exportRoot);
+                haxeSyntaxObject = this.generateTypeAlias(previouslyGeneratedType, typeName, symbol, exportRoot);
                 aliasTo = previouslyGeneratedType;
             } else {
                 let typeSyntaxObject = this.generateType(typeName, symbol, exportRoot);
@@ -244,6 +245,7 @@ export class ExternGenerator {
         // @! iterate haxe type paths, creating files and package directories as needed
         let haxeFiles = new Map<string, string>();
         let errors = new Array<string>();
+        let haxePrinter = new Printer();
 
         for (let haxeTypePathStr of this.haxeTypes.keys()) {
             let haxeType = this.haxeTypes.get(haxeTypePathStr)!;
@@ -275,7 +277,8 @@ export class ExternGenerator {
             }
 
             // @! should be some haxe syntax printer call here
-            content += JSON.stringify(haxeType.haxeSyntaxObject, null, '\t') + '\n';
+            let haxeSrc = haxePrinter.printTypeDefinition(haxeType.haxeSyntaxObject, false);
+            content += haxeSrc + '\n';
 
             haxeFiles.set(filePath, content);
         }
@@ -325,7 +328,7 @@ export class ExternGenerator {
 
         // type alias
         if (symbol.flags & ts.SymbolFlags.TypeAlias) {
-            return this.generateTypeAlias(typeName, symbol, exportRoot);
+            return this.generateTypedefType(typeName, symbol, exportRoot);
         }
 
         return null;
@@ -358,7 +361,7 @@ export class ExternGenerator {
                 {
                     name: ':native',
                     pos: pos,
-                    params: [nativePath]
+                    params: [`'${nativePath}'`]
                 }
             ],
             doc: `@! Module class`,
@@ -390,7 +393,7 @@ export class ExternGenerator {
                 {
                     name: ':native',
                     pos: pos,
-                    params: [nativePath]
+                    params: [`'${nativePath}'`]
                 }
             ],
             params: [],
@@ -421,7 +424,7 @@ export class ExternGenerator {
                 {
                     name: ':native',
                     pos: pos,
-                    params: [nativePath]
+                    params: [`'${nativePath}'`]
                 }
             ],
             params: [],
@@ -450,14 +453,14 @@ export class ExternGenerator {
                 {
                     name: ':enum',
                     pos: pos,
-                    params: []
+                    params: undefined
                 }
             ],
             params: [],
         }
     }
 
-    protected generateTypeAlias(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+    protected generateTypedefType(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
         this.logVerbose('Generating <green>type alias</>', haxeTypePath.join('.'), this.location(symbol));
 
@@ -474,7 +477,7 @@ export class ExternGenerator {
         }
     }
 
-    protected generateTypedef(targetType: HaxeType, typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+    protected generateTypeAlias(targetType: HaxeType, typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         // @! need to account for type parameters!
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
         this.logVerbose('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.typePath.join('.'), this.location(symbol));
