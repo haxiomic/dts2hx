@@ -1,14 +1,19 @@
 // super minimal haxe.macro.Expr, just enough to help convert the typescript compiler externs
-type Null<T> = T | null;
-type Int = number;
-type Bool = boolean;
-type Expr = string; // for now just use strings for expressions
-type ComplexType = string;
+export type Null<T> = T | null;
+export type Int = number;
+export type Bool = boolean;
+// fake haxe ADT enums
+class ADTEnum<T = any> {
+	constructor(readonly kind: T) { }
+}
+
+export type Expr = string; // for now just use strings for expressions
+export type ComplexType = string;
 
 /**
 	Represents a position in a file.
 **/
-type Pos = {
+export type Pos = {
 	/**
 		Reference to the filename.
 	**/
@@ -28,7 +33,7 @@ type Pos = {
 /**
 	Represents a type definition.
 **/
-type TypeDefinition = {
+export type TypeDefinition = {
 	/**
 		The package of the type definition.
 	**/
@@ -79,7 +84,7 @@ type TypeDefinition = {
 /**
 	Represents a field in the AST.
 **/
-type Field = {
+export type Field = {
 	/**
 		The name of the field.
 	**/
@@ -116,7 +121,7 @@ type Field = {
 /**
 	Represents a type parameter declaration in the AST.
 **/
-type TypeParamDecl = {
+export type TypeParamDecl = {
 	/**
 		The name of the type parameter.
 	**/
@@ -141,37 +146,36 @@ type TypeParamDecl = {
 /**
 	Represents a type definition kind.
 **/
-enum TypeDefKind {
-	/**
-		Represents an enum kind.
-	**/
-	TDEnum,
 
-	/**
-		Represents a structure kind.
-	**/
-	TDStructure,
-
-	/**
-		Represents a class kind.
-	**/
-	// TDClass( ?superClass : TypePath, ?interfaces : Array<TypePath>, ?isInterface : Bool, ?isFinal : Bool );
-
-	/**
-		Represents an alias/type kind.
-	**/
-	// TDAlias( t : ComplexType ); // ignore TypeDefinition.fields
-
-	/**
-		Represents an abstract kind.
-	**/
-	// TDAbstract( tthis : Null<ComplexType>, ?from : Array<ComplexType>, ?to: Array<ComplexType> );
+export class TypeDefKind extends ADTEnum<
+	'TDEnum'
+	| 'TDStructure'
+	| 'TDClass'
+	| 'TDAlias'
+	| 'TDAbstract'
+> { }
+export class TDEnum extends TypeDefKind {
+	constructor() { super('TDEnum') }
+}
+export class TDStructure extends TypeDefKind {
+	constructor() { super('TDStructure') }
+}
+export class TDClass extends TypeDefKind {
+	constructor(
+		superClass?: TypePath, interfaces?: Array<TypePath>, isInterface?: Bool, isFinal?: Bool
+	) { super('TDClass') }
+}
+export class TDAlias extends TypeDefKind {
+	constructor( t : ComplexType ) { super('TDAlias') }
+}
+export class TDAbstract extends TypeDefKind {
+	constructor( tthis : Null<ComplexType>, from? : Array<ComplexType>, to?: Array<ComplexType> ) { super('TDAbstract') }
 }
 
 /**
 	Represents a metadata entry in the AST.
 **/
-type MetadataEntry = {
+export type MetadataEntry = {
 	/**
 		The name of the metadata entry.
 	**/
@@ -191,13 +195,13 @@ type MetadataEntry = {
 /**
 	Represents metadata in the AST.
 **/
-type Metadata = Array<MetadataEntry>;
+export type Metadata = Array<MetadataEntry>;
 
 /**
 	Represents an access modifier.
 	@see https://haxe.org/manual/class-field-access-modifier.html
 **/
-enum Access {
+export enum Access {
 
 	/**
 		Public access modifier, grants access from anywhere.
@@ -257,19 +261,70 @@ enum Access {
 /**
 	Represents the field type in the AST.
 **/
-enum FieldType {
+export class FieldType extends ADTEnum<
+	 'FVar'
+	| 'FFun'
+	| 'FProp'
+> { }
+/**
+	Represents a variable field type.
+**/
+export class FVar extends FieldType {
+	constructor( t : Null<ComplexType>, e? : Null<Expr> ) { super('FVar'); }
+}
+/**
+	Represents a function field type.
+**/
+export class FFun extends FieldType {
+	constructor( f : Function ) { super('FFun'); }
+}
+/**
+	Represents a property with getter and setter field type.
+**/
+export class FProp extends FieldType {
+	constructor( get : string, set : string, t? : Null<ComplexType>, e? : Null<Expr> ) { super('FProp'); }
+}
+
+/**
+	Represents a type path in the AST.
+**/
+export type TypePath = {
 	/**
-		Represents a variable field type.
+		Represents the package of the type path.
 	**/
-	// FVar( t : Null<ComplexType>, ?e : Null<Expr> );
+	pack?: Array<string>;
 
 	/**
-		Represents a function field type.
+		The name of the type path.
 	**/
-	// FFun( f : Function );
+	name?: string;
 
 	/**
-		Represents a property with getter and setter field type.
+		Optional parameters of the type path.
 	**/
-	// FProp( get : string, set : string, ?t : Null<ComplexType>, ?e : Null<Expr> );
+	params?: Array<TypeParam>;
+
+	/**
+		Sub is set on module sub-type access:
+		`pack.Module.Type` has name = Module, sub = Type, if available.
+	**/
+	sub?: Null<string>;
+}
+
+/**
+	Represents a concrete type parameter in the AST.
+
+	Haxe allows expressions in concrete type parameters, e.g.
+	`new YourType<["hello", "world"]>`. In that case the value is `TPExpr` while
+	in the normal case it's `TPType`.
+**/
+export class TypeParam extends ADTEnum<
+      'TPType'
+	| 'TPExpr'
+> {}
+export class TPType extends TypeParam {
+	constructor(readonly t: ComplexType) { super('TPType') }
+}
+export class TPExpr extends TypeParam {
+	constructor(readonly e: Expr) { super('TPExpr') }
 }

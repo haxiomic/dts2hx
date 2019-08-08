@@ -1,12 +1,12 @@
 import * as ts from 'typescript';
 import * as path from 'path';
-import * as util from 'util';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
+import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar } from './Expr';
 
 // @! this needs to be replaced with haxe ast structure
-type HaxeSyntaxObject = string;
+type HaxeSyntaxObject = TypeDefinition;
 
 type HaxeType = {
     typePath: Array<string>,
@@ -89,7 +89,12 @@ export class ExternGenerator {
             if (parentHaxeType != null) {
                 if (!parentHaxeType.contributingSymbols.has(symbol)) {
                     // @! need to properly add to type
-                    parentHaxeType.haxeSyntaxObject += `\nType parameter <${symbol.name}>`;
+                    parentHaxeType.haxeSyntaxObject.params == parentHaxeType.haxeSyntaxObject.params || [];
+                    parentHaxeType.haxeSyntaxObject.params!.push({
+                        name: symbol.name,
+                        // @! incomplete
+                    });
+
                     parentHaxeType.contributingSymbols.add(symbol);
                 }
             } else {
@@ -214,13 +219,20 @@ export class ExternGenerator {
             // @! add field to parentHaxeType
             if (!parentHaxeType.contributingSymbols.has(symbol)) {
                 let safeIdent = this.toSafeIdent(symbol.name);
-                parentHaxeType.haxeSyntaxObject += (
-                    '\n\t' + (symbol.flags & ts.SymbolFlags.ModuleMember ? 'static ' : '') + 
 
-                    safeIdent +
+                let pos = Debug.getSymbolPosition(symbol);
+                let isStatic = !!(symbol.flags & ts.SymbolFlags.ModuleMember);
+                let nameChanged = safeIdent !== symbol.name;
+                
+                parentHaxeType.haxeSyntaxObject.fields.push({
+                    access: isStatic ? [Access.AStatic] : [],
+                    name: safeIdent,
+                    doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+                    kind: new FVar('todo', 'todo'),
+                    pos: pos,
+                    meta: nameChanged ? [{name: ':native', params: [symbol.name], pos: pos}] : []
+                });
 
-                    (safeIdent !== symbol.name ? ` // ${symbol.name}` : '')
-                );
                 parentHaxeType.contributingSymbols.add(symbol);
             }
 
@@ -277,7 +289,7 @@ export class ExternGenerator {
             }
 
             // @! should be some haxe syntax printer call here
-            content += haxeType.haxeSyntaxObject + '\n';
+            content += JSON.stringify(haxeType.haxeSyntaxObject, null, '\t') + '\n';
 
             haxeFiles.set(filePath, content);
         }
@@ -322,13 +334,31 @@ export class ExternGenerator {
         this.logVerbose('Generating <cyan,i>module class</>', haxeTypePath.join('.'), this.location(moduleSymbol));
 
         // not clear yet if we need to do anything special for module classes
-
         let nativePath = moduleSymbol ? TSUtil.getNativePath(moduleSymbol, exportRoot) : '';
+        let pos = Debug.getSymbolPosition(moduleSymbol);
 
-        return (
-            ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
-            `class ${typeName} {}`
-        );
+        return {
+            name: typeName,
+            kind: new TDClass(
+                undefined,
+                undefined,
+                false,
+                true
+            ),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            pos: pos,
+            isExtern: true,
+            meta: [
+                {
+                    name: ':native',
+                    pos: pos,
+                    params: [nativePath]
+                }
+            ],
+            doc: `@! Module class`,
+            params: [],
+        }
     }
 
     protected generateClass(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
@@ -336,12 +366,30 @@ export class ExternGenerator {
         this.logVerbose('Generating <blue>class</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+        let pos = Debug.getSymbolPosition(symbol);
 
-        return (
-            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
-            ((nativePath != null) ? `@:native('${nativePath}')\n` : '') + 
-            `class ${typeName} {}`
-        );
+        return {
+            name: typeName,
+            kind: new TDClass(
+                undefined, // @! todo extends
+                undefined, // @! interfaces
+                false, // @! isInterface
+                false
+            ),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            pos: pos,
+            isExtern: true,
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            meta: [
+                {
+                    name: ':native',
+                    pos: pos,
+                    params: [nativePath]
+                }
+            ],
+            params: [],
+        }
     }
 
     protected generateInterface(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
@@ -349,12 +397,30 @@ export class ExternGenerator {
         this.logVerbose('Generating <magenta>interface</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+        let pos = Debug.getSymbolPosition(symbol);
 
-        return (
-            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
-            ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
-            `interface ${typeName} {}`
-        );
+        return {
+            name: typeName,
+            kind: new TDClass(
+                undefined, // @! todo extends
+                undefined, // @! interfaces
+                true, // @! isInterface
+                false
+            ),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            pos: pos,
+            isExtern: true,
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            meta: [
+                {
+                    name: ':native',
+                    pos: pos,
+                    params: [nativePath]
+                }
+            ],
+            params: [],
+        }
     }
 
     protected generateEnum(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
@@ -362,12 +428,28 @@ export class ExternGenerator {
         this.logVerbose('Generating <yellow>enum</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+        let pos = Debug.getSymbolPosition(symbol);
 
-        return (
-            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
-            ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
-            `enum ${typeName} {}`
-        );
+        // @! need to find enum type
+        let enumType = 'Int';
+
+        return {
+            name: typeName,
+            kind: new TDAbstract(enumType),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            pos: pos,
+            isExtern: false,
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            meta: [
+                {
+                    name: ':enum',
+                    pos: pos,
+                    params: []
+                }
+            ],
+            params: [],
+        }
     }
 
     protected generateTypeAlias(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
@@ -375,23 +457,34 @@ export class ExternGenerator {
         this.logVerbose('Generating <green>type alias</>', haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+        let pos = Debug.getSymbolPosition(symbol);
 
-        return (
-            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
-            ((nativePath != null) ? `@:native('${nativePath}')\n` : '') +
-            `typedef ${typeName} = ...;`
-        );
+        return {
+            name: typeName,
+            kind: new TDAlias('...'),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            pos: pos,
+        }
     }
 
     protected generateTypedef(targetType: HaxeType, typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         // @! need to account for type parameters!
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
         this.logVerbose('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.typePath.join('.'), this.location(symbol));
-        
-        return (
-            `// ${Debug.getSymbolPrintableLocation(symbol)}\n` +
-            `typedef ${typeName} = ${targetType.typePath.join('.')};`
-        );
+
+        let pos = Debug.getSymbolPosition(symbol);
+
+        return {
+            name: typeName,
+            kind: new TDAlias(targetType.typePath.join('.')),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            pos: pos,
+        }
+
     }
 
     protected addGeneratedHaxeType(haxeType: HaxeType) {

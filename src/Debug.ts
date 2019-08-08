@@ -26,6 +26,35 @@ export default class Debug {
         return '<unknown location>';
     }
 
+    static getSymbolPosition(symbol: ts.Symbol | undefined): {
+        file: string,
+        min: number,
+        max: number,
+    } {
+        let node: ts.Node | undefined;
+        if (symbol != null) {
+            if (symbol.declarations[0] != null) {
+                node = symbol.declarations[0];
+            }
+            if (symbol.valueDeclaration != null) {
+                node = symbol.valueDeclaration;
+            }
+        }
+        if (node != null) {
+            return {
+                file: node.getSourceFile().fileName,
+                min: node.getStart(),
+                max: node.getEnd(),
+            }
+        } else {
+            return {
+                file: '<unknown location>',
+                min: -1,
+                max: -1,
+            }
+        }
+    }
+
     static getNodePrintableLocation(node: ts.Node): string {
         let { line, character } = this.getNodeLocation(node);
         return `${node.getSourceFile().fileName}:${line + 1}${character > 0 ? `:${character + 1}` : ''}`;
