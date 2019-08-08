@@ -218,21 +218,7 @@ export class ExternGenerator {
 
             // @! add field to parentHaxeType
             if (!parentHaxeType.contributingSymbols.has(symbol)) {
-                let safeIdent = this.toSafeIdent(symbol.name);
-
-                let pos = Debug.getSymbolPosition(symbol);
-                let isStatic = !!(symbol.flags & ts.SymbolFlags.ModuleMember);
-                let nameChanged = safeIdent !== symbol.name;
-                
-                parentHaxeType.haxeSyntaxObject.fields.push({
-                    access: isStatic ? [Access.AStatic] : [],
-                    name: safeIdent,
-                    doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
-                    kind: new FVar('todo', 'todo'),
-                    pos: pos,
-                    meta: nameChanged ? [{name: ':native', params: [symbol.name], pos: pos}] : []
-                });
-
+                this.addFieldToHaxeType(parentHaxeType, symbol);
                 parentHaxeType.contributingSymbols.add(symbol);
             }
 
@@ -298,6 +284,25 @@ export class ExternGenerator {
             files: haxeFiles,
             errors: errors,
         }
+    }
+
+    protected addFieldToHaxeType(parent: HaxeType, symbol: ts.Symbol) {
+        let safeIdent = this.toSafeIdent(symbol.name);
+
+        let pos = Debug.getSymbolPosition(symbol);
+        let isStatic = !!(symbol.flags & ts.SymbolFlags.ModuleMember);
+        let nameChanged = safeIdent !== symbol.name;
+
+        // @! incomplete
+
+        parent.haxeSyntaxObject.fields.push({
+            access: isStatic ? [Access.AStatic] : [],
+            name: safeIdent,
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            kind: new FVar('todo', 'todo'),
+            pos: pos,
+            meta: nameChanged ? [{name: ':native', params: [symbol.name], pos: pos}] : []
+        });
     }
 
     protected generateType(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject | null {
