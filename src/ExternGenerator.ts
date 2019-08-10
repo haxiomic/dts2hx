@@ -307,17 +307,16 @@ export class ExternGenerator {
             typeString = this.typeChecker.typeToString(declaredType);
         }
 
-        let exprStr: string;
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
+
         if (symbol.valueDeclaration != null) {
-            exprStr = symbol.valueDeclaration.getText();
-        } else {
-            exprStr = '';
+            docs.push(symbol.valueDeclaration.getText());
         }
 
         parent.haxeSyntaxObject.fields.push({
             access: isStatic ? [Access.AStatic] : [],
             name: safeIdent,
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n') + exprStr,
+            doc: docs.join('\n'),
             kind: new FVar(typeString, undefined),
             pos: pos,
             meta: nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : []
@@ -468,13 +467,19 @@ export class ExternGenerator {
             let enumMember = (member.valueDeclaration as ts.EnumMember);
             let constValue = this.typeChecker.getConstantValue(enumMember);
             let valueType = typeof constValue;
+
             let memberHaxeType: string;
+
+            console.log(member.escapedName, constValue, valueType);
 
             if (valueType === 'number') {
                 let isInt = Math.floor(constValue as number) === constValue;
                 memberHaxeType = isInt ? 'Int' : 'Float';
             } else if (valueType === 'string') {
                 memberHaxeType = 'String';
+            } else if (valueType === 'undefined') {
+                // enums are implicitly ints
+                memberHaxeType = 'Int';
             } else {
                 memberHaxeType = 'Any';
             }
