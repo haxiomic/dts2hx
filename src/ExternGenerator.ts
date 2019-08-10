@@ -470,8 +470,6 @@ export class ExternGenerator {
 
             let memberHaxeType: string;
 
-            console.log(member.escapedName, constValue, valueType);
-
             if (valueType === 'number') {
                 let isInt = Math.floor(constValue as number) === constValue;
                 memberHaxeType = isInt ? 'Int' : 'Float';
