@@ -202,7 +202,96 @@ export default class Debug {
         return active;
     }
 
-    static getActiveTypeFlags(value: ts.TypeFlags) {
+    /**
+     * # Type Flag Notes
+     *
+     ```
+     Any             = 1 << 0,
+     Unknown         = 1 << 1,
+     String          = 1 << 2,
+     Number          = 1 << 3,
+     Boolean         = 1 << 4,
+     Enum            = 1 << 5,
+     BigInt          = 1 << 6,
+     StringLiteral   = 1 << 7,
+     NumberLiteral   = 1 << 8,
+     BooleanLiteral  = 1 << 9,
+     EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
+     BigIntLiteral   = 1 << 11,
+     ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
+     UniqueESSymbol  = 1 << 13,  // unique symbol
+     Void            = 1 << 14,
+     Undefined       = 1 << 15,
+     Null            = 1 << 16,
+     Never           = 1 << 17,  // Never type
+     TypeParameter   = 1 << 18,  // Type parameter
+     Object          = 1 << 19,  // Object type
+     Union           = 1 << 20,  // Union (T | U)
+     Intersection    = 1 << 21,  // Intersection (T & U)
+     Index           = 1 << 22,  // keyof T
+     IndexedAccess   = 1 << 23,  // T[K]
+     Conditional     = 1 << 24,  // T extends U ? X : Y
+     Substitution    = 1 << 25,  // Type parameter substitution
+     NonPrimitive    = 1 << 26,  // intrinsic object type
+
+     @internal
+     AnyOrUnknown = Any | Unknown,
+     @internal
+     Nullable = Undefined | Null,
+     Literal = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral,
+     Unit = Literal | UniqueESSymbol | Nullable,
+     StringOrNumberLiteral = StringLiteral | NumberLiteral,
+     @internal
+     StringOrNumberLiteralOrUnique = StringLiteral | NumberLiteral | UniqueESSymbol,
+     @internal
+     DefinitelyFalsy = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral | Void | Undefined | Null,
+     PossiblyFalsy = DefinitelyFalsy | String | Number | BigInt | Boolean,
+     @internal
+     Intrinsic = Any | Unknown | String | Number | BigInt | Boolean | BooleanLiteral | ESSymbol | Void | Undefined | Null | Never | NonPrimitive,
+     @internal
+     Primitive = String | Number | BigInt | Boolean | Enum | EnumLiteral | ESSymbol | Void | Undefined | Null | Literal | UniqueESSymbol,
+     StringLike = String | StringLiteral,
+     NumberLike = Number | NumberLiteral | Enum,
+     BigIntLike = BigInt | BigIntLiteral,
+     BooleanLike = Boolean | BooleanLiteral,
+     EnumLike = Enum | EnumLiteral,
+     ESSymbolLike = ESSymbol | UniqueESSymbol,
+     VoidLike = Void | Undefined,
+     @internal
+     DisjointDomains = NonPrimitive | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbolLike | VoidLike | Null,
+     UnionOrIntersection = Union | Intersection,
+     StructuredType = Object | Union | Intersection,
+     TypeVariable = TypeParameter | IndexedAccess,
+     InstantiableNonPrimitive = TypeVariable | Conditional | Substitution,
+     InstantiablePrimitive = Index,
+     Instantiable = InstantiableNonPrimitive | InstantiablePrimitive,
+     StructuredOrInstantiable = StructuredType | Instantiable,
+     @internal
+     ObjectFlagsType = Nullable | Object | Union | Intersection,
+     // 'Narrowable' types are types where narrowing actually narrows.
+     // This *should* be every type other than null, undefined, void, and never
+     Narrowable = Any | Unknown | StructuredOrInstantiable | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbol | UniqueESSymbol | NonPrimitive,
+     NotUnionOrUnit = Any | Unknown | ESSymbol | Object | NonPrimitive,
+     @internal
+     NotPrimitiveUnion = Any | Unknown | Enum | Void | Never | StructuredOrInstantiable,
+     // The following flags are aggregated during union and intersection type construction
+     @internal
+     IncludesMask = Any | Unknown | Primitive | Never | Object | Union,
+     // The following flags are used for different purposes during union and intersection type construction
+     @internal
+     IncludesStructuredOrInstantiable = TypeParameter,
+     @internal
+     IncludesNonWideningType = Intersection,
+     @internal
+     IncludesWildcard = Index,
+     @internal
+     IncludesEmptyObject = IndexedAccess,
+     // The following flag is used for different purposes by maybeTypeOfKind
+     @internal
+     GenericMappedType = Never,
+     ```
+    */
+    static getActiveTypeFlags(value: ts.TypeFlags, skipCompound: boolean = false) {
         let active = new Array<string>();
 
         if ((value & ts.TypeFlags.Any) !== 0) active.push('Any');
@@ -232,41 +321,44 @@ export default class Debug {
         if ((value & ts.TypeFlags.Conditional) !== 0) active.push('Conditional');
         if ((value & ts.TypeFlags.Substitution) !== 0) active.push('Substitution');
         if ((value & ts.TypeFlags.NonPrimitive) !== 0) active.push('NonPrimitive');
-        if ((value & ts.TypeFlags.AnyOrUnknown) !== 0) active.push('AnyOrUnknown');
-        if ((value & ts.TypeFlags.Nullable) !== 0) active.push('Nullable');
-        if ((value & ts.TypeFlags.Literal) !== 0) active.push('Literal');
-        if ((value & ts.TypeFlags.Unit) !== 0) active.push('Unit');
-        if ((value & ts.TypeFlags.StringOrNumberLiteral) !== 0) active.push('StringOrNumberLiteral');
-        if ((value & ts.TypeFlags.StringOrNumberLiteralOrUnique) !== 0) active.push('StringOrNumberLiteralOrUnique');
-        if ((value & ts.TypeFlags.DefinitelyFalsy) !== 0) active.push('DefinitelyFalsy');
-        if ((value & ts.TypeFlags.PossiblyFalsy) !== 0) active.push('PossiblyFalsy');
-        if ((value & ts.TypeFlags.Intrinsic) !== 0) active.push('Intrinsic');
-        if ((value & ts.TypeFlags.Primitive) !== 0) active.push('Primitive');
-        if ((value & ts.TypeFlags.StringLike) !== 0) active.push('StringLike');
-        if ((value & ts.TypeFlags.NumberLike) !== 0) active.push('NumberLike');
-        if ((value & ts.TypeFlags.BigIntLike) !== 0) active.push('BigIntLike');
-        if ((value & ts.TypeFlags.BooleanLike) !== 0) active.push('BooleanLike');
-        if ((value & ts.TypeFlags.EnumLike) !== 0) active.push('EnumLike');
-        if ((value & ts.TypeFlags.ESSymbolLike) !== 0) active.push('ESSymbolLike');
-        if ((value & ts.TypeFlags.VoidLike) !== 0) active.push('VoidLike');
-        if ((value & ts.TypeFlags.DisjointDomains) !== 0) active.push('DisjointDomains');
-        if ((value & ts.TypeFlags.UnionOrIntersection) !== 0) active.push('UnionOrIntersection');
-        if ((value & ts.TypeFlags.StructuredType) !== 0) active.push('StructuredType');
-        if ((value & ts.TypeFlags.TypeVariable) !== 0) active.push('TypeVariable');
-        if ((value & ts.TypeFlags.InstantiableNonPrimitive) !== 0) active.push('InstantiableNonPrimitive');
-        if ((value & ts.TypeFlags.InstantiablePrimitive) !== 0) active.push('InstantiablePrimitive');
-        if ((value & ts.TypeFlags.Instantiable) !== 0) active.push('Instantiable');
-        if ((value & ts.TypeFlags.StructuredOrInstantiable) !== 0) active.push('StructuredOrInstantiable');
-        if ((value & ts.TypeFlags.ObjectFlagsType) !== 0) active.push('ObjectFlagsType');
-        if ((value & ts.TypeFlags.Narrowable) !== 0) active.push('Narrowable');
-        if ((value & ts.TypeFlags.NotUnionOrUnit) !== 0) active.push('NotUnionOrUnit');
-        if ((value & ts.TypeFlags.NotPrimitiveUnion) !== 0) active.push('NotPrimitiveUnion');
-        if ((value & ts.TypeFlags.IncludesMask) !== 0) active.push('IncludesMask');
-        if ((value & ts.TypeFlags.IncludesStructuredOrInstantiable) !== 0) active.push('IncludesStructuredOrInstantiable');
-        if ((value & ts.TypeFlags.IncludesNonWideningType) !== 0) active.push('IncludesNonWideningType');
-        if ((value & ts.TypeFlags.IncludesWildcard) !== 0) active.push('IncludesWildcard');
-        if ((value & ts.TypeFlags.IncludesEmptyObject) !== 0) active.push('IncludesEmptyObject');
-        if ((value & ts.TypeFlags.GenericMappedType) !== 0) active.push('GenericMappedType');
+
+        if (!skipCompound) {
+            if ((value & ts.TypeFlags.AnyOrUnknown) !== 0) active.push('AnyOrUnknown');
+            if ((value & ts.TypeFlags.Nullable) !== 0) active.push('Nullable');
+            if ((value & ts.TypeFlags.Literal) !== 0) active.push('Literal');
+            if ((value & ts.TypeFlags.Unit) !== 0) active.push('Unit');
+            if ((value & ts.TypeFlags.StringOrNumberLiteral) !== 0) active.push('StringOrNumberLiteral');
+            if ((value & ts.TypeFlags.StringOrNumberLiteralOrUnique) !== 0) active.push('StringOrNumberLiteralOrUnique');
+            if ((value & ts.TypeFlags.DefinitelyFalsy) !== 0) active.push('DefinitelyFalsy');
+            if ((value & ts.TypeFlags.PossiblyFalsy) !== 0) active.push('PossiblyFalsy');
+            if ((value & ts.TypeFlags.Intrinsic) !== 0) active.push('Intrinsic');
+            if ((value & ts.TypeFlags.Primitive) !== 0) active.push('Primitive');
+            if ((value & ts.TypeFlags.StringLike) !== 0) active.push('StringLike');
+            if ((value & ts.TypeFlags.NumberLike) !== 0) active.push('NumberLike');
+            if ((value & ts.TypeFlags.BigIntLike) !== 0) active.push('BigIntLike');
+            if ((value & ts.TypeFlags.BooleanLike) !== 0) active.push('BooleanLike');
+            if ((value & ts.TypeFlags.EnumLike) !== 0) active.push('EnumLike');
+            if ((value & ts.TypeFlags.ESSymbolLike) !== 0) active.push('ESSymbolLike');
+            if ((value & ts.TypeFlags.VoidLike) !== 0) active.push('VoidLike');
+            if ((value & ts.TypeFlags.DisjointDomains) !== 0) active.push('DisjointDomains');
+            if ((value & ts.TypeFlags.UnionOrIntersection) !== 0) active.push('UnionOrIntersection');
+            if ((value & ts.TypeFlags.StructuredType) !== 0) active.push('StructuredType');
+            if ((value & ts.TypeFlags.TypeVariable) !== 0) active.push('TypeVariable');
+            if ((value & ts.TypeFlags.InstantiableNonPrimitive) !== 0) active.push('InstantiableNonPrimitive');
+            if ((value & ts.TypeFlags.InstantiablePrimitive) !== 0) active.push('InstantiablePrimitive');
+            if ((value & ts.TypeFlags.Instantiable) !== 0) active.push('Instantiable');
+            if ((value & ts.TypeFlags.StructuredOrInstantiable) !== 0) active.push('StructuredOrInstantiable');
+            if ((value & ts.TypeFlags.ObjectFlagsType) !== 0) active.push('ObjectFlagsType');
+            if ((value & ts.TypeFlags.Narrowable) !== 0) active.push('Narrowable');
+            if ((value & ts.TypeFlags.NotUnionOrUnit) !== 0) active.push('NotUnionOrUnit');
+            if ((value & ts.TypeFlags.NotPrimitiveUnion) !== 0) active.push('NotPrimitiveUnion');
+            if ((value & ts.TypeFlags.IncludesMask) !== 0) active.push('IncludesMask');
+            if ((value & ts.TypeFlags.IncludesStructuredOrInstantiable) !== 0) active.push('IncludesStructuredOrInstantiable');
+            if ((value & ts.TypeFlags.IncludesNonWideningType) !== 0) active.push('IncludesNonWideningType');
+            if ((value & ts.TypeFlags.IncludesWildcard) !== 0) active.push('IncludesWildcard');
+            if ((value & ts.TypeFlags.IncludesEmptyObject) !== 0) active.push('IncludesEmptyObject');
+            if ((value & ts.TypeFlags.GenericMappedType) !== 0) active.push('GenericMappedType');
+        }
 
         return active;
     }
