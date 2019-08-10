@@ -29,3 +29,5 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - Rough generation of TypeScript compiler externs
 - Translate existing project to haxe
 - ~~Modules vs Namespace – can this help resolve the require vs global issue?~~
+
+Useful tool to help understand the TS AST https://ts-ast-viewer.com/
