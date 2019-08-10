@@ -297,12 +297,35 @@ export class ExternGenerator {
         let nameChanged = safeIdent !== symbol.name;
 
         // @! incomplete
+        let declaredType = this.typeChecker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+        this.logVerbose(`\tfield <b>${symbol.name}</b> <i,dim>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
+
+        let typeString: string | null;
+        let exprString: string | null;
+
+        if ((symbol.flags & ts.SymbolFlags.EnumMember) !== 0) {
+            typeString = null;
+        } else {
+            typeString = this.typeChecker.typeToString(declaredType);
+        }
+
+        switch (symbol.valueDeclaration.kind) {
+            case ts.SyntaxKind.EnumMember: {
+                let enumMember = symbol.valueDeclaration as ts.EnumMember;
+                exprString = enumMember.initializer!.getText();
+                break;
+            }
+            default: {
+                exprString = null;
+                break;
+            }
+        }
 
         parent.haxeSyntaxObject.fields.push({
             access: isStatic ? [Access.AStatic] : [],
             name: safeIdent,
             doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
-            kind: new FVar('todo', 'todo'),
+            kind: new FVar(typeString, exprString),
             pos: pos,
             meta: nameChanged ? [{name: ':native', params: [symbol.name], pos: pos}] : []
         });
@@ -439,7 +462,25 @@ export class ExternGenerator {
         let pos = Debug.getSymbolPosition(symbol);
 
         // @! need to find enum type
-        let enumType = 'Int';
+        let enumType = 'Todo';
+
+        let declaredType = this.typeChecker.getDeclaredTypeOfSymbol(symbol);
+        // console.log(this.typeChecker.getIndexInfoOfType(declaredType, ts.IndexKind.Number));
+        // console.log(this.typeChecker.getIndexInfoOfType(declaredType, ts.IndexKind.String));
+        // console.log(this.typeChecker.typeToString(declaredType));
+        // console.log(this.typeChecker.getSymbolWalker().walkType(declaredType));
+        // console.log(this.typeChecker.symbolToString(symbol));
+
+        this.logVerbose(`<i>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
+
+        // determine underlying type of enum
+        // let enumDeclaration = (symbol.valueDeclaration as ts.EnumDeclaration);
+        // enumDeclaration.
+        // symbol.exports!.forEach((member, key) => {
+        //     let enumMember = (member.valueDeclaration as ts.EnumMember);
+        //     let enumMemberType = this.typeChecker.getTypeAtLocation(enumMember);
+        //     this.logVerbose(`\t<b>${member.name}</><i>${Debug.getActiveTypeFlags(enumMemberType.flags).join(', ')}</>`);
+        // });
 
         return {
             name: typeName,
@@ -737,5 +778,13 @@ export class ExternGenerator {
         ['_', 'Underscore'],
         ['@', 'At'],
     ]);
+
+    protected primitiveTypeMap = {
+        'number': 'Float',
+        'string': 'String',
+        'String': 'String',
+        'any': 'Dynamic',
+        // @! todo
+    };
 
 }
