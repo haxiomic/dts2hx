@@ -28,12 +28,12 @@ export class Printer {
             }
             case 'TDAbstract': {
                 let tdAbstract = t.kind as TDAbstract;
-                typeHeader = `abstract ${t.name}${typeParamsDecl}(${tdAbstract.tthis}) `;
+                typeHeader = `${t.isExtern ? 'extern ' : ''}abstract ${t.name}${typeParamsDecl}(${tdAbstract.tthis}) `;
                 if (tdAbstract.from != null && tdAbstract.from.length !== 0) {
-                    typeHeader += tdAbstract.from.map(f => `from ${f}`).join(' ');
+                    typeHeader += tdAbstract.from.map(f => `from ${f}`).join(' ') + ' ';
                 }
                 if (tdAbstract.to != null && tdAbstract.to.length !== 0) {
-                    typeHeader += tdAbstract.to.map(f => `to ${f}`).join(' ');
+                    typeHeader += tdAbstract.to.map(f => `to ${f}`).join(' ') + ' ';
                 }
                 typeHeader = typeHeader.trimRight() + ' {';
                 typeFooter = '}';
