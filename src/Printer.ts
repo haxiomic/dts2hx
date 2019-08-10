@@ -148,7 +148,9 @@ ${typeFooter}
             switch (field.kind.enumId) {
                 case 'FVar': {
                     let fVar = field.kind as FVar;
-                    str += `: ${fVar.t}`;
+                    if (fVar.t != null) {
+                        str += `: ${fVar.t}`;
+                    }   
                     if (fVar.e != null) {
                         str += ` = ${fVar.e}`;
                     }
@@ -158,7 +160,9 @@ ${typeFooter}
                 case 'FProp': {
                     let fProp = field.kind as FProp;
                     str += `(${fProp.get}, ${fProp.set})`;
-                    str += `: ${fProp.t}`;
+                    if (fProp.t != null) {
+                        str += `: ${fProp.t}`;
+                    }
                     if (fProp.e != null) {
                         str += ` = ${fProp.e}`;
                     }
