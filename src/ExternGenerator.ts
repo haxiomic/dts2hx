@@ -66,7 +66,6 @@ export class ExternGenerator {
             symbol.flags & (
                   ts.SymbolFlags.Prototype          // no need to expose the prototype symbol
                 | ts.SymbolFlags.ExportStar         // this is the list of `export * from 'x'` statements (the symbol walker will already include the target symbols)
-                | ts.SymbolFlags.ExportValue        // see comment in TypeScript's binder.ts declareModuleMember() method
         )) {
             this.logVerbose(`Skipping symbol ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
             return;
@@ -301,7 +300,6 @@ export class ExternGenerator {
         this.logVerbose(`\tfield <b>${symbol.name}</b> <i,dim>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
 
         let typeString: string | null;
-        let exprString: string | null;
 
         if ((symbol.flags & ts.SymbolFlags.EnumMember) !== 0) {
             typeString = null;
@@ -309,25 +307,20 @@ export class ExternGenerator {
             typeString = this.typeChecker.typeToString(declaredType);
         }
 
-        switch (symbol.valueDeclaration.kind) {
-            case ts.SyntaxKind.EnumMember: {
-                let enumMember = symbol.valueDeclaration as ts.EnumMember;
-                exprString = enumMember.initializer!.getText();
-                break;
-            }
-            default: {
-                exprString = null;
-                break;
-            }
+        let exprStr: string;
+        if (symbol.valueDeclaration != null) {
+            exprStr = symbol.valueDeclaration.getText();
+        } else {
+            exprStr = '';
         }
 
         parent.haxeSyntaxObject.fields.push({
             access: isStatic ? [Access.AStatic] : [],
             name: safeIdent,
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
-            kind: new FVar(typeString, exprString),
+            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n') + exprStr,
+            kind: new FVar(typeString, undefined),
             pos: pos,
-            meta: nameChanged ? [{name: ':native', params: [symbol.name], pos: pos}] : []
+            meta: nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : []
         });
     }
 
@@ -404,8 +397,8 @@ export class ExternGenerator {
             kind: new TDClass(
                 undefined, // @! todo extends
                 undefined, // @! interfaces
-                false, // @! isInterface
-                false
+                false, // isInterface
+                false  // isFinal
             ),
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
@@ -435,8 +428,8 @@ export class ExternGenerator {
             kind: new TDClass(
                 undefined, // @! todo extends
                 undefined, // @! interfaces
-                true, // @! isInterface
-                false
+                true, // isInterface
+                false // isFinal
             ),
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
@@ -461,36 +454,64 @@ export class ExternGenerator {
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
 
-        // @! need to find enum type
-        let enumType = 'Todo';
-
         let declaredType = this.typeChecker.getDeclaredTypeOfSymbol(symbol);
-        // console.log(this.typeChecker.getIndexInfoOfType(declaredType, ts.IndexKind.Number));
-        // console.log(this.typeChecker.getIndexInfoOfType(declaredType, ts.IndexKind.String));
-        // console.log(this.typeChecker.typeToString(declaredType));
-        // console.log(this.typeChecker.getSymbolWalker().walkType(declaredType));
-        // console.log(this.typeChecker.symbolToString(symbol));
-
         this.logVerbose(`<i>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
 
+        // enum members must be constant expressions
+
+        // @! need to find enum type
+        let enumHaxeType: string | undefined = undefined;
+
         // determine underlying type of enum
-        // let enumDeclaration = (symbol.valueDeclaration as ts.EnumDeclaration);
-        // enumDeclaration.
-        // symbol.exports!.forEach((member, key) => {
-        //     let enumMember = (member.valueDeclaration as ts.EnumMember);
-        //     let enumMemberType = this.typeChecker.getTypeAtLocation(enumMember);
-        //     this.logVerbose(`\t<b>${member.name}</><i>${Debug.getActiveTypeFlags(enumMemberType.flags).join(', ')}</>`);
-        // });
+        // iterate enum members and check the runtime type of its constant value 
+        symbol.exports!.forEach((member, key) => {
+            let enumMember = (member.valueDeclaration as ts.EnumMember);
+            let constValue = this.typeChecker.getConstantValue(enumMember);
+            let valueType = typeof constValue;
+            let memberHaxeType: string;
+
+            if (valueType === 'number') {
+                let isInt = Math.floor(constValue as number) === constValue;
+                memberHaxeType = isInt ? 'Int' : 'Float';
+            } else if (valueType === 'string') {
+                memberHaxeType = 'String';
+            } else {
+                memberHaxeType = 'Any';
+            }
+
+            if (enumHaxeType === undefined) {
+                enumHaxeType = memberHaxeType;
+            } else if (enumHaxeType !== memberHaxeType) {
+                // Handle Int -> Float casts
+                if (enumHaxeType === 'Int' && memberHaxeType === 'Float') {
+                    enumHaxeType = 'Float';
+                } else if (enumHaxeType === 'Float' && memberHaxeType === 'Int') {
+                    enumHaxeType = 'Float';
+                } else {
+                    enumHaxeType = 'Any';
+                }
+            }
+        });
+
+        // could not determine enum haxe type
+        if (enumHaxeType == null) {
+            enumHaxeType = 'Any';
+        }
 
         return {
             name: typeName,
-            kind: new TDAbstract(enumType),
+            kind: new TDAbstract(enumHaxeType, [enumHaxeType], [enumHaxeType]),
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
             pos: pos,
-            isExtern: false,
+            isExtern: true,
             doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
             meta: [
+                {
+                    name: ':native',
+                    pos: pos,
+                    params: [`'${nativePath}'`]
+                },
                 {
                     name: ':enum',
                     pos: pos,
@@ -652,6 +673,11 @@ export class ExternGenerator {
         // replace or remove any disallowed characters from the front of the name
         str = str.replace(/^[^a-z_]+/i, (substring) => substring.split('').map(c => this.specialAsciiToName(c) || '').join(''));
 
+        // add underscore suffix to reserved keywords
+        if (this.haxeReservedWords.indexOf(str) !== -1) {
+            str += '_';
+        }
+
         return str;
     }
 
@@ -779,12 +805,23 @@ export class ExternGenerator {
         ['@', 'At'],
     ]);
 
-    protected primitiveTypeMap = {
+    protected primitiveHaxeTypeMap = {
         'number': 'Float',
         'string': 'String',
         'String': 'String',
         'any': 'Dynamic',
         // @! todo
     };
+
+    protected haxeReservedWords = [
+        // see core/ast.ml
+        "public", "private", "static", "override", "dynamic", "inline", "macro",
+        "final", "extern", "function", "class", "static", "var", "if", "else", "while",
+        "do", "for", "break", "return", "continue", "extends", "implements", "import",
+        "switch", "case", "default", "private", "public", "try", "catch", "new", "this",
+        "throw", "extern", "enum", "in", "interface", "untyped", "cast", "override",
+        "typedef", "dynamic", "package", "inline", "using", "null", "true", "false",
+        "abstract", "macro", "final", "operator", "overload", "protected",
+    ]
 
 }
