@@ -1,3 +1,18 @@
+declare enum ImplicitEnum {
+    A,
+    B
+}
+
+declare enum MixedImplicitEnum {
+    A,
+    B = 5,
+}
+
+declare enum MixedStringImplicitEnum {
+    A,
+    B = 'str',
+}
+
 declare enum IntEnum {
     A = 2 * 3,
     B = 12
