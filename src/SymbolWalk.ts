@@ -187,8 +187,6 @@ export class SymbolWalk {
                 logVerboseSymbolWalk(indent(depth) + Debug.symbolInfoFormatted(typeChecker, symbol, exportRoot));
             }
 
-            // @! enum members are currently not walked
-
             // process sub symbols
             {
                 // globalExports are currently only set on sourceFile symbols I believe
