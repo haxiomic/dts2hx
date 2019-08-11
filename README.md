@@ -27,7 +27,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 
 # Todo
 - Rough generation of TypeScript compiler externs
+    - Basic conversion of TypeReference types
 - Translate existing project to haxe
-- ~~Modules vs Namespace – can this help resolve the require vs global issue?~~
 
 Useful tool to help understand the TS AST https://ts-ast-viewer.com/
