@@ -47,19 +47,21 @@ Bugs:
 try {
 
 // generateHaxeExterns('test-definitions/edge-cases', {});
+// generateHaxeExterns('test-definitions/basic-types', {});
+// generateHaxeExterns('test-definitions/typescript', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('test-definitions/templates/global-plugin', {});
-// generateHaxeExterns('test-definitions/typescript', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
-generateHaxeExterns('node_modules/typescript/lib', {});
+// generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 
 // ** to use the following, run `npm install` in test-definitions/ ** //
 
+generateHaxeExterns('test-definitions/node_modules/three', {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
@@ -75,35 +77,60 @@ generateHaxeExterns('node_modules/typescript/lib', {});
 
 function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
     // determine root definition file(s) from definitionsPath, favoring index.d.ts if one exists
-    let definitionRoots: Array<string>;
-    let definitionName: string;
+    let definitionRoots: Array<string> | null = null;
+    let definitionName: string | null = null;
 
     if (isFile(definitionsPath)) {
         definitionRoots = [definitionsPath];
         definitionName = path.basename(definitionsPath).split('.').shift()!;
     } else if (isDirectory(definitionsPath)) {
-        // check for an index.d.ts file
-        let indexPath = path.join(definitionsPath, 'index.d.ts');
-        definitionName = path.basename(definitionsPath);
 
-        if (fs.existsSync(indexPath)) {
-            definitionRoots = [indexPath];
-        } else {
-            // process all .d.ts files within the directory and subdirectories 
-            Terminal.warn(`No index.d.ts file found in "${definitionsPath}", finding all .d.ts files instead`);
-            definitionRoots = [];
-
-            let files = fs.readdirSync(definitionsPath);
-            for (let filename of files) {
-                if (filename.match(/\.d\.ts$/i)) {
-                    definitionRoots.push(path.join(definitionsPath, filename));
-                }
+        // check for a package.json that specifies types
+        let packageJsonPath = path.join(definitionsPath, 'package.json');
+        if (fs.existsSync(packageJsonPath)) {
+            let packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
+            if (packageJson['name'] != null) {
+                definitionName = packageJson['name'];
+                Terminal.log(`Definition name determined from package.json as <b>${definitionName}</b>`);
             }
 
-            if (files.length > 0) {
-                Terminal.warn(`\tfound: ${definitionRoots.join(', ')}`);
+            if (packageJson['types'] != null) {
+                definitionRoots = definitionRoots || [path.join(definitionsPath, packageJson['types'])];
+                Terminal.log(`Type roots name determined from package.json <b>${definitionRoots}</b>`);
             }
         }
+
+        if (definitionName == null) {
+            definitionName =  path.basename(definitionsPath);
+            Terminal.log(`Definition name determined from directory patha as <b>${definitionName}</b>`);
+        }
+
+        // if we haven't found definition roots yet, then try looking for an index.d.ts
+        // if there's no index.d.ts, then grab all .d.ts files
+        if (definitionRoots == null) {
+            // check for an index.d.ts file
+            let indexPath = path.join(definitionsPath, 'index.d.ts');
+
+            if (fs.existsSync(indexPath)) {
+                definitionRoots = [indexPath];
+            } else {
+                // process all .d.ts files within the directory and subdirectories 
+                Terminal.warn(`No index.d.ts file found in "${definitionsPath}", finding all .d.ts files instead`);
+                definitionRoots = [];
+
+                let files = fs.readdirSync(definitionsPath);
+                for (let filename of files) {
+                    if (filename.match(/\.d\.ts$/i)) {
+                        definitionRoots.push(path.join(definitionsPath, filename));
+                    }
+                }
+
+                if (files.length > 0) {
+                    Terminal.warn(`\tfound: ${definitionRoots.join(', ')}`);
+                }
+            }
+        }
+
     } else if (!fs.existsSync(definitionsPath)) {
         throw `Path doesn't exist "${definitionsPath}"`;
     } else {
@@ -134,7 +161,7 @@ function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOption
         },
         // for each library reference (experimental)
         (refFilename: string, sourceFile: ts.SourceFile) => {
-            generateHaxeExterns(path.join(path.dirname(path.dirname(definitionRoots[0])), refFilename), options)
+            generateHaxeExterns(path.join(path.dirname(path.dirname(definitionRoots![0])), refFilename), options)
         },
         {
             logVerbose: logVerboseSymbolWalkEnabled,
