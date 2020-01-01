@@ -1,5 +1,7 @@
 # WIP .d.ts to .hx
 
+
+
 Hi, this is a work in progress TypeScript Definition to Haxe Extern converter. It's not yet ready to use but much of the groundwork has been laid.
 
 I don't have the bandwidth available to progress it in the short term so I've made the repo public to help anyone else who's also working towards a `.d.ts` -> `.hx` converter.
@@ -12,7 +14,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 
 # Getting Started
 - Run `npm install` to download the dependencies (ts compiler)
-- Run `npm run build` to build and `npm run run` to execute
+- Run `npm start` to build and run the experimental test example
 - The target type definitions are specified in [src/index.ts](src/index.ts#L56)
 - To rebuild and run interactively, run `npm run watch-run`
 
