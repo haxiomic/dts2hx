@@ -55,13 +55,14 @@ try {
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('test-definitions/templates/global-plugin', {});
+generateHaxeExterns('test-definitions/unit', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
 
 // ** to use the following, run `npm install` in test-definitions/ ** //
 
-generateHaxeExterns('test-definitions/node_modules/three', {});
+// generateHaxeExterns('test-definitions/node_modules/three', {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
