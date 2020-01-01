@@ -50,6 +50,9 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - [ ] **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
+- [ ] Cleaner output
+    - [ ] Remove typepath prefix if referencing type within the same module
+    - [ ] Replace full type references with imports
 - [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
 # FAQ
