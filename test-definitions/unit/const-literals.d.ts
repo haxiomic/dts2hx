@@ -55,7 +55,7 @@ declare namespace ConstLiterals {
     const tupleNumberString: [number, string];
     const fnNumberStringVoid: (number, string) => void;
     const fnNumberTVoidTypeParam: <T>(number, T) => void;
-    const constructType: new (a: string) => void;
+    const constructorType: new (a: string) => void;
 
     // Union Types
     const nullableNumber: null | number;
