@@ -27,7 +27,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Type references
         - [ ] TypeLiteral types (objects literals)
         - [ ] Unions with EitherType
-        - [ ] Functions types
+        - [ ] Function types
     - [ ] Classes
         - [ ] Constructors
         - [ ] Implements, extends etc
