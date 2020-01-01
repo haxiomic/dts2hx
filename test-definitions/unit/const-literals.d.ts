@@ -19,22 +19,44 @@
  */
 declare namespace ConstLiterals {
 
+    type StringAlias = string;
+    type ObjectAlias = typeof object;
+
     // Primitive Types
-    const int = 2; // number
-    const float = 2.2; // number
-    const bool = true; // boolean
-    const str = 'example'; // string
+    //  implicit
+    const implicitInt = 2; // number
+    const implicitFloat = 2.2; // number
+    const implicitBool = true; // boolean
+    const implicitStr = 'example'; // string
+
+    //  explicit
+    const numberPrimitive: number;
+    const booleanPrimitive: boolean;
+    const stringPrimitive: string;
     const symbolPrimitive: symbol;
     const any: any;
 
+    const typeReferenceStringAlias: StringAlias;
+    const typeReferenceObjectAlias: ObjectAlias;
+
     // Object Types
-    const object: { fieldA: number, fieldB: number, sub: {a: number, b: number} };
+    const object: {
+        fieldA: number,
+        fieldB: number,
+        fieldOptional?: number,
+        sub: {a: number, b: number}
+    };
     const arrayString: Array<string>;
     const arrayNumberStringUnion: Array<number | string>;
     const tupleNumberString: [number, string];
     const fnNumberStringVoid: (number, string) => void;
     const fnNumberTVoidTypeParam: <T>(number, T) => void;
     const constructType: new (a: string) => void;
+
+    // Union Types
+    const nullableNumber: null | number;
+    const undefineableNumber: undefined | number;
+    const undefineableNullableNumber: undefined | null | number;
 
     // Type Query
     const typeQueryStr: typeof str;
