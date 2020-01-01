@@ -6,5 +6,11 @@
 - [Language Specification](https://github.com/microsoft/TypeScript/blob/master/doc/spec.md)
 
 ## Concepts
+- **Declaration** - Declarations can assign a name to a *type*, *value* and *namespace*. A single name may have be used for all of these
 - **Symbol** - After parsing, a **'binding'** step applied to the AST collects named declarations that contribute to the same structure into Symbols. Symbols are used as the basis for conversion rather than the AST
-- **Declaration**
+- **Type Categories**
+    - primitive types
+    - object types
+    - union types
+    - intersection types
+    - type parameters
