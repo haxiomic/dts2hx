@@ -132,7 +132,7 @@ export default class Debug {
     ModuleExports           = 1 << 27,  // Symbol for CommonJS `module` of `module.exports`
     ```
      */
-    static getActiveSymbolFlags(value: ts.SymbolFlags, skipExcludes: boolean) {
+    static getActiveSymbolFlags(value: ts.SymbolFlags, skipExcludes: boolean = true) {
         let active = new Array<string>();
 
         if ((value & ts.SymbolFlags.None) !== 0) active.push('None');
@@ -291,7 +291,7 @@ export default class Debug {
      GenericMappedType = Never,
      ```
     */
-    static getActiveTypeFlags(value: ts.TypeFlags, skipCompound: boolean = false) {
+    static getActiveTypeFlags(value: ts.TypeFlags, skipCompound: boolean = true) {
         let active = new Array<string>();
 
         if ((value & ts.TypeFlags.Any) !== 0) active.push('Any');

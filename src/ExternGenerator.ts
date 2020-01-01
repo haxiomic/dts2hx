@@ -218,7 +218,7 @@ export class ExternGenerator {
 
             // @! add field to parentHaxeType
             if (!parentHaxeType.contributingSymbols.has(symbol)) {
-                this.addFieldToHaxeType(parentHaxeType, symbol);
+                this.addFieldToHaxeType(parentHaxeType, symbol, exportRoot);
                 parentHaxeType.contributingSymbols.add(symbol);
             }
 
@@ -288,7 +288,7 @@ export class ExternGenerator {
         }
     }
 
-    protected addFieldToHaxeType(parent: HaxeType, symbol: ts.Symbol) {
+    protected addFieldToHaxeType(parent: HaxeType, symbol: ts.Symbol, exportRoot: ts.Symbol | null) {
         let safeIdent = this.toSafeIdent(symbol.name);
 
         let pos = Debug.getSymbolPosition(symbol);
@@ -345,7 +345,7 @@ export class ExternGenerator {
         if (valueDeclarationType != null) {
                 // syntax-level type
                 docs.push('variableDeclaration.type.kind: ' + ts.SyntaxKind[valueDeclarationType.kind]);
-                typeString = this.convertSyntaxType(valueDeclarationType, symbol);
+                typeString = this.convertSyntaxType(valueDeclarationType, symbol, exportRoot);
         } else {
             let resolvedTypeNode: ts.TypeNode | undefined = undefined;
             if ((resolvedType.flags & ts.TypeFlags.Literal) !== 0) {
@@ -358,7 +358,7 @@ export class ExternGenerator {
                 this.logWarning(`resolvedTypeNode is null for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
                 typeString = '<ERROR: resolvedTypeNode was null>';
             } else {
-                typeString = this.convertSyntaxType(resolvedTypeNode, symbol);
+                typeString = this.convertSyntaxType(resolvedTypeNode, symbol, exportRoot);
             }
             docs.push('variableDeclaration.type: null, so we should use resolvedType');
         }
@@ -374,7 +374,7 @@ export class ExternGenerator {
         });
     }
 
-    protected convertSyntaxType(syntaxNode: ts.Node, atSymbol: ts.Symbol): string {
+    protected convertSyntaxType(syntaxNode: ts.Node, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
         switch (syntaxNode.kind) {
             case ts.SyntaxKind.NumberKeyword: {return 'Float';} break;
             case ts.SyntaxKind.AnyKeyword: {return 'Any';} break;
@@ -387,7 +387,7 @@ export class ExternGenerator {
             case ts.SyntaxKind.Identifier: {
                 let identifierNode = syntaxNode as ts.Identifier;
                 // @! need to handle references here
-                return identifierNode.escapedText as string;
+                return this.resolveIdentifierToHaxeTypePath(identifierNode, atSymbol, exportRoot);
             } break;
             // case ts.SyntaxKind.BreakKeyword: {} break;
             // case ts.SyntaxKind.CaseKeyword: {} break;
@@ -482,9 +482,9 @@ export class ExternGenerator {
             // case ts.SyntaxKind.TypePredicate: {} break;
             case ts.SyntaxKind.TypeReference: {
                 let typeReferenceNode = syntaxNode as ts.TypeReferenceNode;
-                let typeNameString = this.convertSyntaxType(typeReferenceNode.typeName, atSymbol);
+                let typeNameString = this.convertSyntaxType(typeReferenceNode.typeName, atSymbol, exportRoot);
                 let typeArguments: ReadonlyArray<ts.Node> = (typeReferenceNode.typeArguments || []);
-                let typeArgumentsStrings = typeArguments.map((arg) => this.convertSyntaxType(arg, atSymbol));
+                let typeArgumentsStrings = typeArguments.map((arg) => this.convertSyntaxType(arg, atSymbol, exportRoot));
                 return `${typeNameString}` + (typeArgumentsStrings.length > 0 ? `<${typeArgumentsStrings.join(', ')}>` : '');
             } break;
             // case ts.SyntaxKind.FunctionType: {} break;
@@ -493,7 +493,7 @@ export class ExternGenerator {
             // case ts.SyntaxKind.TypeLiteral: {} break;
             case ts.SyntaxKind.ArrayType: {
                 let arrayTypeNode = syntaxNode as ts.ArrayTypeNode;
-                return `Array<${this.convertSyntaxType(arrayTypeNode.elementType, atSymbol)}>`;
+                return `Array<${this.convertSyntaxType(arrayTypeNode.elementType, atSymbol, exportRoot)}>`;
             } break;
             // case ts.SyntaxKind.TupleType: {} break;
             // case ts.SyntaxKind.OptionalType: {} break;
@@ -668,10 +668,27 @@ export class ExternGenerator {
             // case ts.SyntaxKind.FirstJSDocTagNode: {} break;
             // case ts.SyntaxKind.LastJSDocTagNode: {} break;
             default: {
+                this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b>`);
                 return `<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>`;
             }
         }
         // translate typescript typeNode into a haxe type (probably just a string for this version); i.e.
+    }
+
+    protected resolveIdentifierToHaxeTypePath(identifierNode: ts.Identifier, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
+        // need to convert this identifier into a haxe type reference
+        // Should handle at least:
+        //  - haxe built-ins; Array etc
+        //  - converted local type references
+        let identifierString = identifierNode.escapedText as string;
+        let symbol = this.typeChecker.getSymbolAtLocation(identifierNode) || identifierNode.symbol;
+        if (symbol != null) {
+            let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+            return haxeTypePath.join('.');
+        } else {
+            debugger;
+            return identifierString;
+        }
     }
 
     protected generateType(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject | null {
@@ -934,11 +951,24 @@ export class ExternGenerator {
 
     /**
      * Given a symbol with Module or Type flags, it will return the generated haxe type path
+     * 
+     * This is deterministic and does not depend on registered haxe types
      */
     protected getHaxeTypePath(symbol: ts.Symbol, exportRoot: ts.Symbol | null): Array<string> {
         // @! if the exportRoot is a file export then the package path should be also determined by file path (relative to root)
-
         let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
+
+        // check if it's a built-in
+        if (symbol.valueDeclaration != null) {
+            let sourceFile = symbol.valueDeclaration.getSourceFile();
+            let isDefaultLib = sourceFile.hasNoDefaultLib;
+            if (isDefaultLib) {
+                switch (symbol.escapedName) {
+                    case 'Array': { return ['Array']; } break;
+                    default: this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
+                }
+            }
+        }
 
         let expandedSymbolPathNames = new Array<string>();
 
