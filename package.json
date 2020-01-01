@@ -4,6 +4,7 @@
   "description": "Converts TypeScript definition files (d.ts) to haxe externs",
   "main": "dist/index.js",
   "scripts": {
+    "start": "npm run build && npm run run",
     "build": "tsc",
     "run": "node dist",
     "watch": "tsc --watch & fswatch -o dist/",
