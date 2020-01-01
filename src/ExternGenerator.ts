@@ -296,11 +296,14 @@ export class ExternGenerator {
         let nameChanged = safeIdent !== symbol.name;
 
         // variableDeclaration represents the _syntax_ level declaration and type. It does not handle any type resolution
-        let variableDeclaration: ts.VariableDeclaration | null = null;
+        let valueDeclarationType: ts.TypeNode | undefined = undefined;
         if (symbol.valueDeclaration != null) {
             switch (symbol.valueDeclaration.kind) {
-                case ts.SyntaxKind.VariableDeclaration: {
-                    variableDeclaration =  symbol.valueDeclaration as any;
+                case ts.SyntaxKind.VariableDeclaration:
+                case ts.SyntaxKind.EnumMember:
+                case ts.SyntaxKind.PropertyDeclaration:
+                case ts.SyntaxKind.PropertySignature: {
+                    valueDeclarationType = (symbol.valueDeclaration as any).type;
                 } break;
                 default: {
                     this.logWarning(`symbol.valueDeclaration.kind was unhandled value <b>${ts.SyntaxKind[symbol.valueDeclaration.kind]}</> for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
@@ -325,7 +328,7 @@ export class ExternGenerator {
         if ((symbol.flags & ts.SymbolFlags.EnumMember) !== 0) {
             typeString = null;
         } else {
-            typeString = this.typeChecker.typeToString(resolvedType);
+            typeString = '<TODO>';
         }
 
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
@@ -339,13 +342,25 @@ export class ExternGenerator {
             docs.push('symbol.valueDeclaration: null');
         }
 
-        if (variableDeclaration != null) {
-            if (variableDeclaration.type != null) {
+        if (valueDeclarationType != null) {
                 // syntax-level type
-                docs.push('variableDeclaration.type.kind: ' + ts.SyntaxKind[variableDeclaration.type.kind]);
+                docs.push('variableDeclaration.type.kind: ' + ts.SyntaxKind[valueDeclarationType.kind]);
+                typeString = this.convertSyntaxType(valueDeclarationType, symbol);
+        } else {
+            let resolvedTypeNode: ts.TypeNode | undefined = undefined;
+            if ((resolvedType.flags & ts.TypeFlags.Literal) !== 0) {
+                resolvedTypeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
             } else {
-                docs.push('variableDeclaration.type: null, so we should use resolvedType');
+                resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
+                this.logWarning(`variableDeclaration.type was null but the resolve type is not a literal for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
             }
+            if (resolvedTypeNode == null) {
+                this.logWarning(`resolvedTypeNode is null for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
+                typeString = '<ERROR: resolvedTypeNode was null>';
+            } else {
+                typeString = this.convertSyntaxType(resolvedTypeNode, symbol);
+            }
+            docs.push('variableDeclaration.type: null, so we should use resolvedType');
         }
         docs.push('[type checker] resolvedType.flags: ' + Debug.getActiveTypeFlags(resolvedType.flags).join(', '));
 
@@ -357,6 +372,306 @@ export class ExternGenerator {
             pos: pos,
             meta: nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : []
         });
+    }
+
+    protected convertSyntaxType(syntaxNode: ts.Node, atSymbol: ts.Symbol): string {
+        switch (syntaxNode.kind) {
+            case ts.SyntaxKind.NumberKeyword: {return 'Float';} break;
+            case ts.SyntaxKind.AnyKeyword: {return 'Any';} break;
+            case ts.SyntaxKind.BooleanKeyword: {return 'Bool';} break;
+            case ts.SyntaxKind.StringKeyword: {return 'String';} break;
+            case ts.SyntaxKind.SymbolKeyword: {return 'js.lib.Symbol';} break;
+            // case ts.SyntaxKind.NumericLiteral: {} break;
+            // case ts.SyntaxKind.BigIntLiteral: {} break;
+            // case ts.SyntaxKind.StringLiteral: {} break;
+            case ts.SyntaxKind.Identifier: {
+                let identifierNode = syntaxNode as ts.Identifier;
+                // @! need to handle references here
+                return identifierNode.escapedText as string;
+            } break;
+            // case ts.SyntaxKind.BreakKeyword: {} break;
+            // case ts.SyntaxKind.CaseKeyword: {} break;
+            // case ts.SyntaxKind.CatchKeyword: {} break;
+            // case ts.SyntaxKind.ClassKeyword: {} break;
+            // case ts.SyntaxKind.ConstKeyword: {} break;
+            // case ts.SyntaxKind.ContinueKeyword: {} break;
+            // case ts.SyntaxKind.DebuggerKeyword: {} break;
+            // case ts.SyntaxKind.DefaultKeyword: {} break;
+            // case ts.SyntaxKind.DeleteKeyword: {} break;
+            // case ts.SyntaxKind.DoKeyword: {} break;
+            // case ts.SyntaxKind.ElseKeyword: {} break;
+            // case ts.SyntaxKind.EnumKeyword: {} break;
+            // case ts.SyntaxKind.ExportKeyword: {} break;
+            // case ts.SyntaxKind.ExtendsKeyword: {} break;
+            // case ts.SyntaxKind.FalseKeyword: {} break;
+            // case ts.SyntaxKind.FinallyKeyword: {} break;
+            // case ts.SyntaxKind.ForKeyword: {} break;
+            // case ts.SyntaxKind.FunctionKeyword: {} break;
+            // case ts.SyntaxKind.IfKeyword: {} break;
+            // case ts.SyntaxKind.ImportKeyword: {} break;
+            // case ts.SyntaxKind.InKeyword: {} break;
+            // case ts.SyntaxKind.InstanceOfKeyword: {} break;
+            // case ts.SyntaxKind.NewKeyword: {} break;
+            // case ts.SyntaxKind.NullKeyword: {} break;
+            // case ts.SyntaxKind.ReturnKeyword: {} break;
+            // case ts.SyntaxKind.SuperKeyword: {} break;
+            // case ts.SyntaxKind.SwitchKeyword: {} break;
+            // case ts.SyntaxKind.ThisKeyword: {} break;
+            // case ts.SyntaxKind.ThrowKeyword: {} break;
+            // case ts.SyntaxKind.TrueKeyword: {} break;
+            // case ts.SyntaxKind.TryKeyword: {} break;
+            // case ts.SyntaxKind.TypeOfKeyword: {} break;
+            // case ts.SyntaxKind.VarKeyword: {} break;
+            // case ts.SyntaxKind.VoidKeyword: {} break;
+            // case ts.SyntaxKind.WhileKeyword: {} break;
+            // case ts.SyntaxKind.WithKeyword: {} break;
+            // case ts.SyntaxKind.ImplementsKeyword: {} break;
+            // case ts.SyntaxKind.InterfaceKeyword: {} break;
+            // case ts.SyntaxKind.LetKeyword: {} break;
+            // case ts.SyntaxKind.PackageKeyword: {} break;
+            // case ts.SyntaxKind.PrivateKeyword: {} break;
+            // case ts.SyntaxKind.ProtectedKeyword: {} break;
+            // case ts.SyntaxKind.PublicKeyword: {} break;
+            // case ts.SyntaxKind.StaticKeyword: {} break;
+            // case ts.SyntaxKind.YieldKeyword: {} break;
+            // case ts.SyntaxKind.AbstractKeyword: {} break;
+            // case ts.SyntaxKind.AsKeyword: {} break;
+            // case ts.SyntaxKind.AnyKeyword: {} break;
+            // case ts.SyntaxKind.AsyncKeyword: {} break;
+            // case ts.SyntaxKind.AwaitKeyword: {} break;
+            // case ts.SyntaxKind.BooleanKeyword: {} break;
+            // case ts.SyntaxKind.ConstructorKeyword: {} break;
+            // case ts.SyntaxKind.DeclareKeyword: {} break;
+            // case ts.SyntaxKind.GetKeyword: {} break;
+            // case ts.SyntaxKind.InferKeyword: {} break;
+            // case ts.SyntaxKind.IsKeyword: {} break;
+            // case ts.SyntaxKind.KeyOfKeyword: {} break;
+            // case ts.SyntaxKind.ModuleKeyword: {} break;
+            // case ts.SyntaxKind.NamespaceKeyword: {} break;
+            // case ts.SyntaxKind.NeverKeyword: {} break;
+            // case ts.SyntaxKind.ReadonlyKeyword: {} break;
+            // case ts.SyntaxKind.RequireKeyword: {} break;
+            // case ts.SyntaxKind.NumberKeyword: {} break;
+            // case ts.SyntaxKind.ObjectKeyword: {} break;
+            // case ts.SyntaxKind.SetKeyword: {} break;
+            // case ts.SyntaxKind.StringKeyword: {} break;
+            // case ts.SyntaxKind.SymbolKeyword: {} break;
+            // case ts.SyntaxKind.TypeKeyword: {} break;
+            // case ts.SyntaxKind.UndefinedKeyword: {} break;
+            // case ts.SyntaxKind.UniqueKeyword: {} break;
+            // case ts.SyntaxKind.UnknownKeyword: {} break;
+            // case ts.SyntaxKind.FromKeyword: {} break;
+            // case ts.SyntaxKind.GlobalKeyword: {} break;
+            // case ts.SyntaxKind.BigIntKeyword: {} break;
+            // case ts.SyntaxKind.OfKeyword: {} break;
+            // case ts.SyntaxKind.QualifiedName: {} break;
+            // case ts.SyntaxKind.ComputedPropertyName: {} break;
+            // case ts.SyntaxKind.TypeParameter: {} break;
+            // case ts.SyntaxKind.Parameter: {} break;
+            // case ts.SyntaxKind.Decorator: {} break;
+            // case ts.SyntaxKind.PropertySignature: {} break;
+            // case ts.SyntaxKind.PropertyDeclaration: {} break;
+            // case ts.SyntaxKind.MethodSignature: {} break;
+            // case ts.SyntaxKind.MethodDeclaration: {} break;
+            // case ts.SyntaxKind.Constructor: {} break;
+            // case ts.SyntaxKind.GetAccessor: {} break;
+            // case ts.SyntaxKind.SetAccessor: {} break;
+            // case ts.SyntaxKind.CallSignature: {} break;
+            // case ts.SyntaxKind.ConstructSignature: {} break;
+            // case ts.SyntaxKind.IndexSignature: {} break;
+            // case ts.SyntaxKind.TypePredicate: {} break;
+            case ts.SyntaxKind.TypeReference: {
+                let typeReferenceNode = syntaxNode as ts.TypeReferenceNode;
+                let typeNameString = this.convertSyntaxType(typeReferenceNode.typeName, atSymbol);
+                let typeArguments: ReadonlyArray<ts.Node> = (typeReferenceNode.typeArguments || []);
+                let typeArgumentsStrings = typeArguments.map((arg) => this.convertSyntaxType(arg, atSymbol));
+                return `${typeNameString}` + (typeArgumentsStrings.length > 0 ? `<${typeArgumentsStrings.join(', ')}>` : '');
+            } break;
+            // case ts.SyntaxKind.FunctionType: {} break;
+            // case ts.SyntaxKind.ConstructorType: {} break;
+            // case ts.SyntaxKind.TypeQuery: {} break;
+            // case ts.SyntaxKind.TypeLiteral: {} break;
+            case ts.SyntaxKind.ArrayType: {
+                let arrayTypeNode = syntaxNode as ts.ArrayTypeNode;
+                return `Array<${this.convertSyntaxType(arrayTypeNode.elementType, atSymbol)}>`;
+            } break;
+            // case ts.SyntaxKind.TupleType: {} break;
+            // case ts.SyntaxKind.OptionalType: {} break;
+            // case ts.SyntaxKind.RestType: {} break;
+            // case ts.SyntaxKind.UnionType: {} break;
+            // case ts.SyntaxKind.IntersectionType: {} break;
+            // case ts.SyntaxKind.ConditionalType: {} break;
+            // case ts.SyntaxKind.InferType: {} break;
+            // case ts.SyntaxKind.ParenthesizedType: {} break;
+            // case ts.SyntaxKind.ThisType: {} break;
+            // case ts.SyntaxKind.TypeOperator: {} break;
+            // case ts.SyntaxKind.IndexedAccessType: {} break;
+            // case ts.SyntaxKind.MappedType: {} break;
+            // case ts.SyntaxKind.LiteralType: {} break;
+            // case ts.SyntaxKind.ImportType: {} break;
+            // case ts.SyntaxKind.ObjectBindingPattern: {} break;
+            // case ts.SyntaxKind.ArrayBindingPattern: {} break;
+            // case ts.SyntaxKind.BindingElement: {} break;
+            // case ts.SyntaxKind.ArrayLiteralExpression: {} break;
+            // case ts.SyntaxKind.ObjectLiteralExpression: {} break;
+            // case ts.SyntaxKind.PropertyAccessExpression: {} break;
+            // case ts.SyntaxKind.ElementAccessExpression: {} break;
+            // case ts.SyntaxKind.CallExpression: {} break;
+            // case ts.SyntaxKind.NewExpression: {} break;
+            // case ts.SyntaxKind.TaggedTemplateExpression: {} break;
+            // case ts.SyntaxKind.TypeAssertionExpression: {} break;
+            // case ts.SyntaxKind.ParenthesizedExpression: {} break;
+            // case ts.SyntaxKind.FunctionExpression: {} break;
+            // case ts.SyntaxKind.ArrowFunction: {} break;
+            // case ts.SyntaxKind.DeleteExpression: {} break;
+            // case ts.SyntaxKind.TypeOfExpression: {} break;
+            // case ts.SyntaxKind.VoidExpression: {} break;
+            // case ts.SyntaxKind.AwaitExpression: {} break;
+            // case ts.SyntaxKind.PrefixUnaryExpression: {} break;
+            // case ts.SyntaxKind.PostfixUnaryExpression: {} break;
+            // case ts.SyntaxKind.BinaryExpression: {} break;
+            // case ts.SyntaxKind.ConditionalExpression: {} break;
+            // case ts.SyntaxKind.TemplateExpression: {} break;
+            // case ts.SyntaxKind.YieldExpression: {} break;
+            // case ts.SyntaxKind.SpreadElement: {} break;
+            // case ts.SyntaxKind.ClassExpression: {} break;
+            // case ts.SyntaxKind.OmittedExpression: {} break;
+            // case ts.SyntaxKind.ExpressionWithTypeArguments: {} break;
+            // case ts.SyntaxKind.AsExpression: {} break;
+            // case ts.SyntaxKind.NonNullExpression: {} break;
+            // case ts.SyntaxKind.MetaProperty: {} break;
+            // case ts.SyntaxKind.SyntheticExpression: {} break;
+            // case ts.SyntaxKind.TemplateSpan: {} break;
+            // case ts.SyntaxKind.SemicolonClassElement: {} break;
+            // case ts.SyntaxKind.Block: {} break;
+            // case ts.SyntaxKind.VariableStatement: {} break;
+            // case ts.SyntaxKind.EmptyStatement: {} break;
+            // case ts.SyntaxKind.ExpressionStatement: {} break;
+            // case ts.SyntaxKind.IfStatement: {} break;
+            // case ts.SyntaxKind.DoStatement: {} break;
+            // case ts.SyntaxKind.WhileStatement: {} break;
+            // case ts.SyntaxKind.ForStatement: {} break;
+            // case ts.SyntaxKind.ForInStatement: {} break;
+            // case ts.SyntaxKind.ForOfStatement: {} break;
+            // case ts.SyntaxKind.ContinueStatement: {} break;
+            // case ts.SyntaxKind.BreakStatement: {} break;
+            // case ts.SyntaxKind.ReturnStatement: {} break;
+            // case ts.SyntaxKind.WithStatement: {} break;
+            // case ts.SyntaxKind.SwitchStatement: {} break;
+            // case ts.SyntaxKind.LabeledStatement: {} break;
+            // case ts.SyntaxKind.ThrowStatement: {} break;
+            // case ts.SyntaxKind.TryStatement: {} break;
+            // case ts.SyntaxKind.DebuggerStatement: {} break;
+            // case ts.SyntaxKind.VariableDeclaration: {} break;
+            // case ts.SyntaxKind.VariableDeclarationList: {} break;
+            // case ts.SyntaxKind.FunctionDeclaration: {} break;
+            // case ts.SyntaxKind.ClassDeclaration: {} break;
+            // case ts.SyntaxKind.InterfaceDeclaration: {} break;
+            // case ts.SyntaxKind.TypeAliasDeclaration: {} break;
+            // case ts.SyntaxKind.EnumDeclaration: {} break;
+            // case ts.SyntaxKind.ModuleDeclaration: {} break;
+            // case ts.SyntaxKind.ModuleBlock: {} break;
+            // case ts.SyntaxKind.CaseBlock: {} break;
+            // case ts.SyntaxKind.NamespaceExportDeclaration: {} break;
+            // case ts.SyntaxKind.ImportEqualsDeclaration: {} break;
+            // case ts.SyntaxKind.ImportDeclaration: {} break;
+            // case ts.SyntaxKind.ImportClause: {} break;
+            // case ts.SyntaxKind.NamespaceImport: {} break;
+            // case ts.SyntaxKind.NamedImports: {} break;
+            // case ts.SyntaxKind.ImportSpecifier: {} break;
+            // case ts.SyntaxKind.ExportAssignment: {} break;
+            // case ts.SyntaxKind.ExportDeclaration: {} break;
+            // case ts.SyntaxKind.NamedExports: {} break;
+            // case ts.SyntaxKind.ExportSpecifier: {} break;
+            // case ts.SyntaxKind.MissingDeclaration: {} break;
+            // case ts.SyntaxKind.ExternalModuleReference: {} break;
+            // case ts.SyntaxKind.JsxElement: {} break;
+            // case ts.SyntaxKind.JsxSelfClosingElement: {} break;
+            // case ts.SyntaxKind.JsxOpeningElement: {} break;
+            // case ts.SyntaxKind.JsxClosingElement: {} break;
+            // case ts.SyntaxKind.JsxFragment: {} break;
+            // case ts.SyntaxKind.JsxOpeningFragment: {} break;
+            // case ts.SyntaxKind.JsxClosingFragment: {} break;
+            // case ts.SyntaxKind.JsxAttribute: {} break;
+            // case ts.SyntaxKind.JsxAttributes: {} break;
+            // case ts.SyntaxKind.JsxSpreadAttribute: {} break;
+            // case ts.SyntaxKind.JsxExpression: {} break;
+            // case ts.SyntaxKind.CaseClause: {} break;
+            // case ts.SyntaxKind.DefaultClause: {} break;
+            // case ts.SyntaxKind.HeritageClause: {} break;
+            // case ts.SyntaxKind.CatchClause: {} break;
+            // case ts.SyntaxKind.PropertyAssignment: {} break;
+            // case ts.SyntaxKind.ShorthandPropertyAssignment: {} break;
+            // case ts.SyntaxKind.SpreadAssignment: {} break;
+            // case ts.SyntaxKind.EnumMember: {} break;
+            // case ts.SyntaxKind.SourceFile: {} break;
+            // case ts.SyntaxKind.Bundle: {} break;
+            // case ts.SyntaxKind.UnparsedSource: {} break;
+            // case ts.SyntaxKind.InputFiles: {} break;
+            // case ts.SyntaxKind.JSDocTypeExpression: {} break;
+            // case ts.SyntaxKind.JSDocAllType: {} break;
+            // case ts.SyntaxKind.JSDocUnknownType: {} break;
+            // case ts.SyntaxKind.JSDocNullableType: {} break;
+            // case ts.SyntaxKind.JSDocNonNullableType: {} break;
+            // case ts.SyntaxKind.JSDocOptionalType: {} break;
+            // case ts.SyntaxKind.JSDocFunctionType: {} break;
+            // case ts.SyntaxKind.JSDocVariadicType: {} break;
+            // case ts.SyntaxKind.JSDocComment: {} break;
+            // case ts.SyntaxKind.JSDocTypeLiteral: {} break;
+            // case ts.SyntaxKind.JSDocSignature: {} break;
+            // case ts.SyntaxKind.JSDocTag: {} break;
+            // case ts.SyntaxKind.JSDocAugmentsTag: {} break;
+            // case ts.SyntaxKind.JSDocClassTag: {} break;
+            // case ts.SyntaxKind.JSDocCallbackTag: {} break;
+            // case ts.SyntaxKind.JSDocEnumTag: {} break;
+            // case ts.SyntaxKind.JSDocParameterTag: {} break;
+            // case ts.SyntaxKind.JSDocReturnTag: {} break;
+            // case ts.SyntaxKind.JSDocThisTag: {} break;
+            // case ts.SyntaxKind.JSDocTypeTag: {} break;
+            // case ts.SyntaxKind.JSDocTemplateTag: {} break;
+            // case ts.SyntaxKind.JSDocTypedefTag: {} break;
+            // case ts.SyntaxKind.JSDocPropertyTag: {} break;
+            // case ts.SyntaxKind.SyntaxList: {} break;
+            // case ts.SyntaxKind.NotEmittedStatement: {} break;
+            // case ts.SyntaxKind.PartiallyEmittedExpression: {} break;
+            // case ts.SyntaxKind.CommaListExpression: {} break;
+            // case ts.SyntaxKind.MergeDeclarationMarker: {} break;
+            // case ts.SyntaxKind.EndOfDeclarationMarker: {} break;
+            // case ts.SyntaxKind.Count: {} break;
+            // case ts.SyntaxKind.FirstAssignment: {} break;
+            // case ts.SyntaxKind.LastAssignment: {} break;
+            // case ts.SyntaxKind.FirstCompoundAssignment: {} break;
+            // case ts.SyntaxKind.LastCompoundAssignment: {} break;
+            // case ts.SyntaxKind.FirstReservedWord: {} break;
+            // case ts.SyntaxKind.LastReservedWord: {} break;
+            // case ts.SyntaxKind.FirstKeyword: {} break;
+            // case ts.SyntaxKind.LastKeyword: {} break;
+            // case ts.SyntaxKind.FirstFutureReservedWord: {} break;
+            // case ts.SyntaxKind.LastFutureReservedWord: {} break;
+            // case ts.SyntaxKind.FirstTypeNode: {} break;
+            // case ts.SyntaxKind.LastTypeNode: {} break;
+            // case ts.SyntaxKind.FirstPunctuation: {} break;
+            // case ts.SyntaxKind.LastPunctuation: {} break;
+            // case ts.SyntaxKind.FirstToken: {} break;
+            // case ts.SyntaxKind.LastToken: {} break;
+            // case ts.SyntaxKind.FirstTriviaToken: {} break;
+            // case ts.SyntaxKind.LastTriviaToken: {} break;
+            // case ts.SyntaxKind.FirstLiteralToken: {} break;
+            // case ts.SyntaxKind.LastLiteralToken: {} break;
+            // case ts.SyntaxKind.FirstTemplateToken: {} break;
+            // case ts.SyntaxKind.LastTemplateToken: {} break;
+            // case ts.SyntaxKind.FirstBinaryOperator: {} break;
+            // case ts.SyntaxKind.LastBinaryOperator: {} break;
+            // case ts.SyntaxKind.FirstNode: {} break;
+            // case ts.SyntaxKind.FirstJSDocNode: {} break;
+            // case ts.SyntaxKind.LastJSDocNode: {} break;
+            // case ts.SyntaxKind.FirstJSDocTagNode: {} break;
+            // case ts.SyntaxKind.LastJSDocTagNode: {} break;
+            default: {
+                return `<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>`;
+            }
+        }
+        // translate typescript typeNode into a haxe type (probably just a string for this version); i.e.
     }
 
     protected generateType(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject | null {
