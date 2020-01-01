@@ -45,7 +45,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
     - [ ] Generate `abstract`s to support unnamed enums and improve type unions
     - [ ] *flesh out this roadmap*
 - [ ] Command-line interface improvements
-    - [ ] - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
+    - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
     - [ ] `dts2hx install three.js` works
 - [ ] **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
