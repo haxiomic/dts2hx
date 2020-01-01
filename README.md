@@ -17,14 +17,14 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - To rebuild and run interactively, run `npm run watch-run`
 
 # Roadmap
-- [ ] First pass conversion of TypeScript compiler externs
+- [ ] First pass conversion of TypeScript compiler externs (written in ts)
     - [x] Generate modules from symbols
     - [ ] Basic conversion of fundamental types **← currently working on this**
         - [x] Enums
         - [ ] Primitives
         - [ ] Type aliases
         - [ ] Type alias unions with EitherType
-- [ ] Rewrite to haxe
+- [ ] Rewrite in haxe using generated TypeScript compiler externs
 - [ ] Complete translation of trivially haxe compatible types (and `:Any` for others)
 - [ ] Automatically handle remapping of types to haxe std js externs
 - [ ] Command-line interface
