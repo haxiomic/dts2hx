@@ -1,6 +1,7 @@
 declare class BaseClass {
     intField: number;
     arrayField: Array<string>;
+    thisClassType: this;
 
     constructor(a: number);
     
