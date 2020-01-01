@@ -28,6 +28,7 @@ declare namespace ConstLiterals {
     const implicitFloat = 2.2; // number
     const implicitBool = true; // boolean
     const implicitStr = 'example'; // string
+    const noType;
 
     //  explicit
     const numberPrimitive: number;
@@ -47,6 +48,7 @@ declare namespace ConstLiterals {
         sub: {a: number, b: number}
     };
     const arrayString: Array<string>;
+    const arrayStringAlt: string[];
     const arrayNumberStringUnion: Array<number | string>;
     const tupleNumberString: [number, string];
     const fnNumberStringVoid: (number, string) => void;
@@ -59,7 +61,7 @@ declare namespace ConstLiterals {
     const undefineableNullableNumber: undefined | null | number;
 
     // Type Query
-    const typeQueryStr: typeof str;
+    const typeQueryImplicitStr: typeof implicitStr;
     const typeQueryObject: typeof object;
 
 }
