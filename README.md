@@ -26,7 +26,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [ ] Type alias unions with EitherType
 - [ ] Rewrite in haxe using generated TypeScript compiler externs
 - [ ] Complete translation of trivially haxe compatible types (and `:Any` for others)
-- [ ] Automatically handle remapping of types to haxe std js externs
+- [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Command-line interface
     - [ ] Convert local `.d.ts` files
 - [ ] **Prelease** Not perfect but practically useable
