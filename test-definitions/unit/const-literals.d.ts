@@ -38,6 +38,11 @@ declare namespace ConstLiterals {
     const symbolPrimitive: symbol;
     const any: any;
 
+    // literals
+    const numberLiteral: 1;
+    const booleanLiteral: false;
+    const stringLiteral: 'example';
+
     const typeReferenceStringAlias: StringAlias;
     const typeReferenceArrayAlias: ArrayAlias;
     const typeReferenceObjectAlias: ObjectAlias;
@@ -61,6 +66,9 @@ declare namespace ConstLiterals {
     const nullableNumber: null | number;
     const undefineableNumber: undefined | number;
     const undefineableNullableNumber: undefined | null | number;
+
+    // Intersection Types
+    const extendedObject: typeof object & {extendedField: number};
 
     // Type Query
     const typeQueryImplicitStr: typeof implicitStr;
