@@ -299,6 +299,9 @@ export class ExternGenerator {
         let declaredType = this.typeChecker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
         this.logVerbose(`\tfield <b>${symbol.name}</b> <i,dim>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
 
+        // let's see if we can analyze the field type
+        // declaredType.flags()
+
         let typeString: string | null;
 
         if ((symbol.flags & ts.SymbolFlags.EnumMember) !== 0) {
@@ -310,8 +313,14 @@ export class ExternGenerator {
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
 
         if (symbol.valueDeclaration != null) {
-            docs.push(symbol.valueDeclaration.getText());
+            docs.push('valueDeclaration: ' + symbol.valueDeclaration.getText());
         }
+
+        docs.push('TypeFlags: ' + Debug.getActiveTypeFlags(declaredType.flags).join(', '));
+        docs.push('SymbolFlags: ' + Debug.getActiveSymbolFlags(symbol.flags, true).join(', '));
+        docs.push('valueDeclaration.kind: ' + ts.SyntaxKind[symbol.valueDeclaration.kind]);
+        // symbol.valueDeclaration.locals
+        // docs.push('?: ' + declaredType.);
 
         parent.haxeSyntaxObject.fields.push({
             access: isStatic ? [Access.AStatic] : [],
