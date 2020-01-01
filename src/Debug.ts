@@ -362,5 +362,32 @@ export default class Debug {
 
         return active;
     }
+    
+    static getActiveObjectFlags(value: ts.ObjectFlags, skipCompound: boolean = true) {
+        let active = new Array<string>();
+
+        if ((value & ts.ObjectFlags.Class) !== 0) active.push('Class');
+        if ((value & ts.ObjectFlags.Interface) !== 0) active.push('Interface');
+        if ((value & ts.ObjectFlags.Reference) !== 0) active.push('Reference');
+        if ((value & ts.ObjectFlags.Tuple) !== 0) active.push('Tuple');
+        if ((value & ts.ObjectFlags.Anonymous) !== 0) active.push('Anonymous');
+        if ((value & ts.ObjectFlags.Mapped) !== 0) active.push('Mapped');
+        if ((value & ts.ObjectFlags.Instantiated) !== 0) active.push('Instantiated');
+        if ((value & ts.ObjectFlags.ObjectLiteral) !== 0) active.push('ObjectLiteral');
+        if ((value & ts.ObjectFlags.EvolvingArray) !== 0) active.push('EvolvingArray');
+        if ((value & ts.ObjectFlags.ObjectLiteralPatternWithComputedProperties) !== 0) active.push('ObjectLiteralPatternWithComputedProperties');
+        if ((value & ts.ObjectFlags.ContainsSpread) !== 0) active.push('ContainsSpread');
+        if ((value & ts.ObjectFlags.ReverseMapped) !== 0) active.push('ReverseMapped');
+        if ((value & ts.ObjectFlags.JsxAttributes) !== 0) active.push('JsxAttributes');
+        if ((value & ts.ObjectFlags.MarkerType) !== 0) active.push('MarkerType');
+        if ((value & ts.ObjectFlags.JSLiteral) !== 0) active.push('JSLiteral');
+        if ((value & ts.ObjectFlags.FreshLiteral) !== 0) active.push('FreshLiteral');
+
+        if (!skipCompound) {
+            if ((value & ts.ObjectFlags.ClassOrInterface) !== 0) active.push('ClassOrInterface');
+        }
+
+        return active;
+    }
 
 }
