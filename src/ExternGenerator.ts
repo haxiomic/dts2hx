@@ -20,6 +20,7 @@ type HaxeType = {
 type ExternGeneratorOptions = {
     logVerbose: boolean,
     logWarnings: boolean,
+    logError: boolean,
     printErrorLocation: boolean,
 }
 
@@ -33,6 +34,7 @@ export class ExternGenerator {
     private static defaultOptions: ExternGeneratorOptions = {
         logVerbose: false,
         logWarnings: true,
+        logError: true,
         printErrorLocation: true,
     }
 
@@ -343,22 +345,27 @@ export class ExternGenerator {
         }
 
         if (valueDeclarationType != null) {
-                // syntax-level type
-                docs.push('variableDeclaration.type.kind: ' + ts.SyntaxKind[valueDeclarationType.kind]);
-                typeString = this.convertSyntaxType(valueDeclarationType, symbol, exportRoot);
+            // syntax-level type information (i.e :Type)
+            docs.push('variableDeclaration.type.kind: ' + ts.SyntaxKind[valueDeclarationType.kind]);
+            typeString = this.convertSyntaxType(valueDeclarationType, symbol, exportRoot);
         } else {
+            // we don't have explicit type for this symbol, so instead resolve the type using th checker and use that information
             let resolvedTypeNode: ts.TypeNode | undefined = undefined;
             if ((resolvedType.flags & ts.TypeFlags.Literal) !== 0) {
+                // the symbol has a literal expression that gives the type (i.e variable = false)
                 resolvedTypeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
             } else {
                 resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
                 this.logWarning(`variableDeclaration.type was null but the resolve type is not a literal for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
             }
-            if (resolvedTypeNode == null) {
+
+            // if we successfully convert the resolved type into a syntax-level TypeNode then we can go ahead and convert this to haxe
+            if (resolvedTypeNode != null) {
+                typeString = this.convertSyntaxType(resolvedTypeNode, symbol, exportRoot);
+            } else {
+                // failed to resolve the type
                 this.logWarning(`resolvedTypeNode is null for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
                 typeString = '<ERROR: resolvedTypeNode was null>';
-            } else {
-                typeString = this.convertSyntaxType(resolvedTypeNode, symbol, exportRoot);
             }
             docs.push('variableDeclaration.type: null, so we should use resolvedType');
         }
@@ -567,7 +574,13 @@ export class ExternGenerator {
             // case ts.SyntaxKind.FunctionDeclaration: {} break;
             // case ts.SyntaxKind.ClassDeclaration: {} break;
             // case ts.SyntaxKind.InterfaceDeclaration: {} break;
-            // case ts.SyntaxKind.TypeAliasDeclaration: {} break;
+            case ts.SyntaxKind.TypeAliasDeclaration: {
+                let typeAliasDeclarationNode = syntaxNode as ts.TypeAliasDeclaration;
+                let typeNameString = this.convertSyntaxType(typeAliasDeclarationNode.type, atSymbol, exportRoot);
+                let typeArguments: ReadonlyArray<ts.Node> = (typeAliasDeclarationNode.typeParameters || []);
+                let typeArgumentsStrings = typeArguments.map((arg) => this.convertSyntaxType(arg, atSymbol, exportRoot));
+                return `${typeNameString}` + (typeArgumentsStrings.length > 0 ? `<${typeArgumentsStrings.join(', ')}>` : '');
+            } break;
             // case ts.SyntaxKind.EnumDeclaration: {} break;
             // case ts.SyntaxKind.ModuleDeclaration: {} break;
             // case ts.SyntaxKind.ModuleBlock: {} break;
@@ -900,9 +913,26 @@ export class ExternGenerator {
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
 
+        let declarations = symbol.declarations || [];
+
+        let typeAliasDeclarations = declarations.filter((declaration) => declaration.kind === ts.SyntaxKind.TypeAliasDeclaration);
+
+        // default to any to handle failure
+        let typeKind = new TDAlias('Any');
+
+        if (typeAliasDeclarations.length === 1) {
+            typeKind = new TDAlias(this.convertSyntaxType(typeAliasDeclarations[0], symbol, exportRoot));
+        } else if (typeAliasDeclarations.length === 0) {
+            this.logError(`Symbol did not have any type-alias declarations when generating <b>${haxeTypePath.join('.')}</b>`, this.location(symbol));
+            debugger;
+        } else if (typeAliasDeclarations.length > 1) {
+            this.logError(`Found more than one type-alias declaration for this symbol; this is unexpected and unhandled <b>${haxeTypePath.join('.')}</b>`, this.location(symbol));
+            debugger;
+        }
+
         return {
             name: typeName,
-            kind: new TDAlias('...'),
+            kind: typeKind,
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
             doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
@@ -1129,6 +1159,12 @@ export class ExternGenerator {
     protected logWarning(...args: Array<any>) {
         if (this.options.logWarnings) {
             Terminal.warn.apply(Terminal, args);
+        }
+    }
+
+    protected logError(...args: Array<any>) {
+        if (this.options.logError) {
+            Terminal.error.apply(Terminal, args);
         }
     }
 

@@ -1,6 +1,8 @@
 import { TypeDefinition, MetadataEntry, TDClass, TypePath, TypeParam, TPExpr, TPType, TDAbstract, TDAlias, TDEnum, TypeParamDecl, Field, Access, FieldType, FVar, FProp, FFun } from './Expr';
 
-
+/**
+ * Temporary haxe syntax printer to help bootstrap the project (this code will be thrown away when translating to haxe)
+ */
 export class Printer {
 
     constructor() {}
@@ -41,7 +43,7 @@ export class Printer {
             }
             case 'TDAlias': {
                 let tdAlias = t.kind as TDAlias;
-                typeHeader = `typedef ${t.name}${typeParamsDecl} = ${tdAlias.t}`;
+                typeHeader = `typedef ${t.name}${typeParamsDecl} = ${tdAlias.t};`;
                 typeFooter = '';
                 break;
             }
