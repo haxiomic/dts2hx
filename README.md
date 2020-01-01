@@ -25,6 +25,9 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [ ] Type aliases
         - [ ] Type alias unions with EitherType
 - [ ] Rewrite in haxe using generated TypeScript compiler externs
+- [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
+    - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
+    - babylon.js and many other project use both, do we merge or just parse as-is?
 - [ ] Complete translation of trivially haxe compatible types (and `:Any` for others)
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Command-line interface
