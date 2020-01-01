@@ -20,6 +20,7 @@
 declare namespace ConstLiterals {
 
     type StringAlias = string;
+    type ArrayAlias = Array<string>;
     type ObjectAlias = typeof object;
 
     // Primitive Types
@@ -38,6 +39,7 @@ declare namespace ConstLiterals {
     const any: any;
 
     const typeReferenceStringAlias: StringAlias;
+    const typeReferenceArrayAlias: ArrayAlias;
     const typeReferenceObjectAlias: ObjectAlias;
 
     // Object Types
