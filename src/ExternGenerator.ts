@@ -295,32 +295,59 @@ export class ExternGenerator {
         let isStatic = !!(symbol.flags & ts.SymbolFlags.ModuleMember);
         let nameChanged = safeIdent !== symbol.name;
 
-        // @! incomplete
-        let declaredType = this.typeChecker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
-        this.logVerbose(`\tfield <b>${symbol.name}</b> <i,dim>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
+        // variableDeclaration represents the _syntax_ level declaration and type. It does not handle any type resolution
+        let variableDeclaration: ts.VariableDeclaration | null = null;
+        if (symbol.valueDeclaration != null) {
+            switch (symbol.valueDeclaration.kind) {
+                case ts.SyntaxKind.VariableDeclaration: {
+                    variableDeclaration =  symbol.valueDeclaration as any;
+                } break;
+                default: {
+                    this.logWarning(`symbol.valueDeclaration.kind was unhandled value <b>${ts.SyntaxKind[symbol.valueDeclaration.kind]}</> for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
+                } break;
+            }
+        } else {
+            this.logWarning(`symbol.valueDeclaration is null for field <b>${symbol.name}</b> in ${parent.typePath.join('.')}`);
+        }
+        
+        // resolvedType is the fully resolved type, following aliases and such, might be useful later
+        let resolvedType =  this.typeChecker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+        // @! we can cast to Type subtype (like ts.ObjectType)
 
-        // let's see if we can analyze the field type
-        // declaredType.flags()
+        /**
+         * Things to do:
+         * - primitives, number, boolean, string, symbol
+         * - type references: must remap to generated name, not follow alias
+         */
 
         let typeString: string | null;
 
         if ((symbol.flags & ts.SymbolFlags.EnumMember) !== 0) {
             typeString = null;
         } else {
-            typeString = this.typeChecker.typeToString(declaredType);
+            typeString = this.typeChecker.typeToString(resolvedType);
         }
 
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
 
+        docs.push('symbol.flags: ' + Debug.getActiveSymbolFlags(symbol.flags, true).join(', '));
+
         if (symbol.valueDeclaration != null) {
-            docs.push('valueDeclaration: ' + symbol.valueDeclaration.getText());
+            docs.push('symbol.valueDeclaration.getText(): `' + symbol.valueDeclaration.getText() + '`');
+            docs.push('symbol.valueDeclaration.kind: ' + ts.SyntaxKind[symbol.valueDeclaration.kind]);
+        } else {
+            docs.push('symbol.valueDeclaration: null');
         }
 
-        docs.push('TypeFlags: ' + Debug.getActiveTypeFlags(declaredType.flags).join(', '));
-        docs.push('SymbolFlags: ' + Debug.getActiveSymbolFlags(symbol.flags, true).join(', '));
-        docs.push('valueDeclaration.kind: ' + ts.SyntaxKind[symbol.valueDeclaration.kind]);
-        // symbol.valueDeclaration.locals
-        // docs.push('?: ' + declaredType.);
+        if (variableDeclaration != null) {
+            if (variableDeclaration.type != null) {
+                // syntax-level type
+                docs.push('variableDeclaration.type.kind: ' + ts.SyntaxKind[variableDeclaration.type.kind]);
+            } else {
+                docs.push('variableDeclaration.type: null, so we should use resolvedType');
+            }
+        }
+        docs.push('[type checker] resolvedType.flags: ' + Debug.getActiveTypeFlags(resolvedType.flags).join(', '));
 
         parent.haxeSyntaxObject.fields.push({
             access: isStatic ? [Access.AStatic] : [],
@@ -463,7 +490,7 @@ export class ExternGenerator {
         let pos = Debug.getSymbolPosition(symbol);
 
         let declaredType = this.typeChecker.getDeclaredTypeOfSymbol(symbol);
-        this.logVerbose(`<i>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
+        this.logVerbose(`declaredType.flags <i>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
 
         // enum members must be constant expressions
 
@@ -471,7 +498,7 @@ export class ExternGenerator {
         let enumHaxeType: string | undefined = undefined;
 
         // determine underlying type of enum
-        // iterate enum members and check the runtime type of its constant value 
+        // iterate enum members and check the runtime type of its constant value so we can differentiate between Float and Int
         symbol.exports!.forEach((member, key) => {
             let enumMember = (member.valueDeclaration as ts.EnumMember);
             let constValue = this.typeChecker.getConstantValue(enumMember);
