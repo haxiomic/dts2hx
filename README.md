@@ -40,14 +40,14 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Command-line interface
     - [ ] Convert local `.d.ts` files
-- [ ] **Prelease** Not perfect but practically useable
+- [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] First pass of compatibility layer for incompatible types
     - [ ] Generate `abstract`s to support unnamed enums and improve type unions
     - [ ] *flesh out this roadmap*
 - [ ] Command-line interface improvements
     - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
     - [ ] `dts2hx install three.js` works
-- [ ] **1.0 Release**
+- [ ] :star2: **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
 - [ ] Cleaner output
