@@ -8,7 +8,7 @@ It currently outputs the basic structures (not as valid haxe) using [these metho
 
 The ultimate aim is to be able to do something like `dts2hx install @types/three` and have it pull definitions from DefinitelyTyped and convert them to haxe. To enable this to be reliable there needs to be a focus on fully handling all possible ts type expressions and edge cases (see [test-definitions/edge-cases/index.d.ts](test-definitions/edge-cases/index.d.ts)).
 
-<img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project
+<img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
 # Getting Started
 - Run `npm install` to download the dependencies (ts compiler)
@@ -23,9 +23,11 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Enums
         - [x] Primitives
         - [x] Type references
-        - [ ] TypeLiteral types (objects literals)
+        - [x] TypeLiteral types (objects literals)
         - [ ] Unions with EitherType
         - [ ] Function types
+        - [ ] Type parameters
+        - [ ] Index types
     - [ ] Classes
         - [ ] Constructors
         - [ ] Implements, extends etc
