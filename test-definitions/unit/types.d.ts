@@ -37,6 +37,8 @@ declare namespace Types {
     const numberPrimitive: number;
     const booleanPrimitive: boolean;
     const stringPrimitive: string;
+    const stringObjectPrimitive: String;
+    const numberObjectPrimitive: Number;
     const symbolPrimitive: symbol;
     const any: any;
 
@@ -61,6 +63,7 @@ declare namespace Types {
         sub: {a: number, b: number},
         methodSignature<T>(a: T): void,
         methodProperty: <T>(a: T) => void,
+        methodSignatureOptional?(): string;
     };
     const stringMap: {
         [key: string]: number,
@@ -94,5 +97,16 @@ declare namespace Types {
     const typeQueryImplicitStr: typeof implicitStr;
     const typeQueryObject: typeof object;
     const typeQueryNoType: typeof noType;
+
+    // Type reference enum
+    type EnumValueAlias = ExampleEnum.A;
+
+    enum ExampleEnum {
+        A = 1,
+        B = 2
+    }
+
+    // FirstTypeNode
+    function firstTypeFunction(node: {}): node is string;
 
 }
