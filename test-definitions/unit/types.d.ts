@@ -17,11 +17,12 @@
  *  - intersection types
  *  - type parameters
  */
-declare namespace ConstLiterals {
+declare namespace Types {
 
     type StringAlias = string;
     type ArrayAlias = Array<string>;
     type ObjectAlias = typeof object;
+    type AliasWithTypeParam<K, V> = Map<K, V>;
 
     // Primitive Types
     //  implicit
@@ -29,6 +30,7 @@ declare namespace ConstLiterals {
     const implicitFloat = 2.2; // number
     const implicitBool = true; // boolean
     const implicitStr = 'example'; // string
+    // const implicitBigInt = 9007199254740991n; ESNext+
     const noType;
 
     //  explicit
@@ -39,13 +41,15 @@ declare namespace ConstLiterals {
     const any: any;
 
     // literals
-    const numberLiteral: 1;
+    const intLiteral: 1;
+    const floatLiteral: 1.1;
     const booleanLiteral: false;
     const stringLiteral: 'example';
 
     const typeReferenceStringAlias: StringAlias;
     const typeReferenceArrayAlias: ArrayAlias;
     const typeReferenceObjectAlias: ObjectAlias;
+    const typeReferenceAliasWithTypeParam: AliasWithTypeParam<string, number>;
 
     // Object Types
     const object: {
@@ -56,10 +60,14 @@ declare namespace ConstLiterals {
     };
     const arrayString: Array<string>;
     const arrayStringAlt: string[];
+    const stringObj: String;
     const arrayNumberStringUnion: Array<number | string>;
     const tupleNumberString: [number, string];
     const fnNumberStringVoid: (number, string) => void;
     const fnNumberTVoidTypeParam: <T>(number, T) => void;
+    function fnNumberStringVoidAlt (number, string): void;
+    function fnNumberTVoidTypeParamAlt<T>(number, T): void;
+
     const constructorType: new (a: string) => void;
 
     // Union Types
@@ -73,5 +81,6 @@ declare namespace ConstLiterals {
     // Type Query
     const typeQueryImplicitStr: typeof implicitStr;
     const typeQueryObject: typeof object;
+    const typeQueryNoType: typeof noType;
 
 }
