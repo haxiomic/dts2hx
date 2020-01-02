@@ -304,7 +304,7 @@ export class ExternGenerator {
 
         let haxeFieldKind: FieldType | null = null;
 
-        this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+        // this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
 
         if (symbol.valueDeclaration != null) {
             // syntax-level type information (i.e :Type)
@@ -539,8 +539,42 @@ export class ExternGenerator {
                 return this.convertSyntaxType(literalTypeNode.literal, atSymbol, exportRoot);
             } break;
 
+            case ts.SyntaxKind.UnionType: {
+                let unionTypeNode = syntaxNode as ts.UnionTypeNode;
+
+                // @! undefined | Type is currently processed to Null<Type>, does haxe have a better way of representing undefined in externs?
+
+                // remove null keyword
+                let filteredTypeNodes = unionTypeNode.types.filter((t) => (t.kind !== ts.SyntaxKind.NullKeyword) && (t.kind !== ts.SyntaxKind.UndefinedKeyword));
+                let hasNullOrUndefined = filteredTypeNodes.length !== unionTypeNode.types.length;
+
+                let typeStrings = filteredTypeNodes.map((t) => this.convertSyntaxType(t, atSymbol, exportRoot));
+                let lastTypeString = typeStrings.pop();
+                let eitherType = 'haxe.io.EitherType';
+                let closingAngles = '';
+                for (let i = 0; i < typeStrings.length; i++) closingAngles += '>';
+
+                return (hasNullOrUndefined ? 'Null<' : '')
+                    + (typeStrings.length > 0 ? `${eitherType}<${typeStrings.join(', ' + eitherType + '<')}, ` : '')
+                    + `${lastTypeString}${closingAngles}`
+                    + (hasNullOrUndefined ? '>' : '')
+                ;
+            } break;
+
+            case ts.SyntaxKind.FirstNode: {
+                // seems to be for type hints, comes up in the form type X = Enum.A
+                // we can't use Enum.A so we return just the Enum type (.left) 
+                return this.convertSyntaxType((syntaxNode as any).left, atSymbol, exportRoot);
+            } break;
+
+            case ts.SyntaxKind.FirstTypeNode: {
+                // function (a): a is X
+                return this.convertSyntaxType(this.typeChecker.typeToTypeNode(this.typeChecker.getBooleanType())!, atSymbol, exportRoot);
+            } break;
+
             default: {
-                this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b> <b,white>${syntaxNode.symbol != null ? syntaxNode.symbol.name : '{no symbol}'}</>`, Debug.symbolInfoFormatted(this.typeChecker, atSymbol, exportRoot));
+                this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b> <b,white>${syntaxNode.symbol != null ? syntaxNode.symbol.name : '{no symbol}'}</>`, Debug.symbolInfoFormatted(this.typeChecker, atSymbol, exportRoot), this.location(atSymbol));
+
                 return `<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>`;
             }
         }
@@ -906,8 +940,11 @@ export class ExternGenerator {
             if (isDefaultLib) {
                 switch (symbol.escapedName) {
                     case 'Array': return ['Array'];
-                    case 'Map': return ['js.lib.Map'];
                     case 'String': return ['String'];
+                    case 'Map': return ['js.lib.Map'];
+                    case 'Promise': return ['js.lib.Promise'];
+                    case 'Date': return ['js.lib.Date'];
+                    case 'Number': return ['js.lib.Number'];
                     // @! should search js.lib to find a matching built-in
                     default: {
                         this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
