@@ -173,7 +173,7 @@ ${typeFooter}
                 }
                 case 'FFun': {
                     let fFun = field.kind as FFun;
-                    str += `(@! todo)`;
+                    str += `${this.printTypeParamsDecl(fFun.f.params)}(${fFun.f.args.join(', ')}): ${fFun.f.ret != null ? fFun.f.ret : 'Any'}`;
                     break;
                 }
             }
