@@ -538,14 +538,6 @@ export class ExternGenerator {
                 return this.convertSyntaxType(literalTypeNode.literal, atSymbol, exportRoot);
             } break;
 
-            case ts.SyntaxKind.TypeAliasDeclaration: {
-                let typeAliasDeclarationNode = syntaxNode as ts.TypeAliasDeclaration;
-                let typeNameString = this.convertSyntaxType(typeAliasDeclarationNode.type, atSymbol, exportRoot);
-                let typeArguments: ReadonlyArray<ts.Node> = (typeAliasDeclarationNode.typeParameters || []);
-                let typeArgumentsStrings = typeArguments.map((arg) => this.convertSyntaxType(arg, atSymbol, exportRoot));
-                return `${typeNameString}` + (typeArgumentsStrings.length > 0 ? `<${typeArgumentsStrings.join(', ')}>` : '');
-            } break;
-
             default: {
                 this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b> <b,white>${syntaxNode.symbol != null ? syntaxNode.symbol.name : '{no symbol}'}</>`, Debug.symbolInfoFormatted(this.typeChecker, atSymbol, exportRoot));
                 return `<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>`;
@@ -825,9 +817,15 @@ export class ExternGenerator {
 
         // default to any to handle failure
         let typeKind = new TDAlias('Any');
+        let typeParams: Array<TypeParamDecl> = [];
 
         if (typeAliasDeclarations.length === 1) {
-            typeKind = new TDAlias(this.convertSyntaxType(typeAliasDeclarations[0], symbol, exportRoot));
+            let typeAliasDeclarationNode = typeAliasDeclarations[0] as ts.TypeAliasDeclaration;
+            let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (typeAliasDeclarationNode.typeParameters || []);
+            let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, symbol, exportRoot));
+            typeParams = typeParameterStrings.map(name => { return {name: name} });
+
+            typeKind = new TDAlias(this.convertSyntaxType(typeAliasDeclarationNode.type, symbol, exportRoot));
         } else if (typeAliasDeclarations.length === 0) {
             this.logError(`Symbol did not have any type-alias declarations when generating <b>${haxeTypePath.join('.')}</b>`, this.location(symbol));
             debugger;
@@ -839,6 +837,7 @@ export class ExternGenerator {
         return {
             name: typeName,
             kind: typeKind,
+            params: typeParams,
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
             doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
