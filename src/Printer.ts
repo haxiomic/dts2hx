@@ -69,7 +69,7 @@ ${typeFooter}
     }
 
     public printMetadata = (meta?: MetadataEntry): string => {
-        return meta == null ? '' : `@${meta.name}${meta.params != null ? `(${meta.params!.join(', ')})` : ''}`;
+        return meta == null ? '' : `@${meta.name}${(meta.params != null && meta.params.length > 0) ? `(${meta.params!.join(', ')})` : ''}`;
     }
 
     public printTypePath = (typePath?: TypePath) => {
@@ -173,7 +173,7 @@ ${typeFooter}
                 }
                 case 'FFun': {
                     let fFun = field.kind as FFun;
-                    str += `${this.printTypeParamsDecl(fFun.f.params)}(${fFun.f.args.join(', ')}): ${fFun.f.ret != null ? fFun.f.ret : 'Any'}`;
+                    str += `${this.printTypeParamsDecl(fFun.f.params)}(${fFun.f.args.join(', ')}): ${fFun.f.ret != null ? fFun.f.ret : 'Any'};`;
                     break;
                 }
             }
