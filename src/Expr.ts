@@ -274,9 +274,9 @@ export class FVar extends FieldType {
 }
 /**
 	Represents a function field type.
-**/
+**/	
 export class FFun extends FieldType {
-	constructor(readonly f : Function ) { super('FFun'); }
+	constructor(readonly f : HxFunction ) { super('FFun'); }
 }
 /**
 	Represents a property with getter and setter field type.
@@ -284,6 +284,63 @@ export class FFun extends FieldType {
 export class FProp extends FieldType {
 	constructor(readonly get: string, readonly set: string, readonly t?: Null<ComplexType>, readonly e? : Null<Expr> ) { super('FProp'); }
 }
+
+/**
+	Represents a function in the AST.
+**/
+export type HxFunction = {
+	/**
+		A list of function arguments.
+	**/
+	args: Array<FunctionArg>;
+
+	/**
+		The return type-hint of the function, if available.
+	**/
+	ret: Null<ComplexType>;
+
+	/**
+		The expression of the function body, if available.
+	**/
+	expr: Null<Expr>;
+
+	/**
+		An optional list of function parameter type declarations.
+	**/
+	params?: Array<TypeParamDecl>;
+}
+
+/**
+	Represents a function argument in the AST.
+**/
+export type FunctionArg = string;
+// {
+// 	/**
+// 		The name of the function argument.
+// 	**/
+// 	name: String;
+
+// 	/**
+// 		Whether or not the function argument is optional.
+// 	**/
+// 	opt?: Bool;
+
+// 	/**
+// 		The type-hint of the function argument, if available.
+// 	**/
+// 	type: Null<ComplexType>;
+
+// 	/**
+// 		The optional value of the function argument, if available.
+// 	**/
+// 	value?: Null<Expr>;
+
+// 	/**
+// 		The metadata of the function argument.
+// 	**/
+// 	meta?: Metadata;
+// }
+
 
 /**
 	Represents a type path in the AST.
