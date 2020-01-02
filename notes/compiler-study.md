@@ -5,6 +5,7 @@
 - [Architectural-Overview](https://github.com/microsoft/TypeScript/wiki/Architectural-Overview)
 - [Using the type checker](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#using-the-type-checker)
 - [Language Specification](https://github.com/microsoft/TypeScript/blob/master/doc/spec.md)
+- [Compiler Internals Book][https://basarat.gitbooks.io/typescript/docs/compiler/overview.html]
 
 ## Concepts
 - **Declaration** - Declarations can assign a name to a *type*, *value* and *namespace*. A single name may have be used for all of these
