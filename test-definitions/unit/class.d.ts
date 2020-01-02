@@ -9,4 +9,7 @@ declare class BaseClass {
 
     methodOverloaded(a: number);
     methodOverloaded(a: string, b: Array<{}>);
+
+    get property(): boolean;
+    set property(value: boolean);
 }
