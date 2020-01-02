@@ -46,6 +46,7 @@ Bugs:
 
 try {
 
+generateHaxeExterns('test-definitions/unit', {});
 // generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/basic-types', {});
 // generateHaxeExterns('test-definitions/typescript', {});
@@ -55,7 +56,6 @@ try {
 // generateHaxeExterns('test-definitions/templates/global', {});
 // generateHaxeExterns('test-definitions/templates/global-modifying-module', {});
 // generateHaxeExterns('test-definitions/templates/global-plugin', {});
-generateHaxeExterns('test-definitions/unit', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
