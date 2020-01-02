@@ -488,7 +488,42 @@ export class ExternGenerator {
             // case ts.SyntaxKind.TypeParameter: {} break;
             // case ts.SyntaxKind.Parameter: {} break;
             // case ts.SyntaxKind.Decorator: {} break;
-            // case ts.SyntaxKind.PropertySignature: {} break;
+            case ts.SyntaxKind.PropertySignature: {
+                let propertySignatureNode = syntaxNode as ts.PropertySignature;
+                let isOptional = propertySignatureNode.questionToken != null;
+
+                let originalName = this.getTSPropertyNameString(propertySignatureNode.name, atSymbol, exportRoot);
+                let haxeSafeName = this.toSafeIdent(originalName);
+
+                let typeNode: ts.TypeNode | undefined;
+
+                if (propertySignatureNode.type != null) {
+                    typeNode = propertySignatureNode.type;
+                } else {
+                    typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getTypeAtLocation(propertySignatureNode));
+                }
+
+                let typeString: string;
+                if (typeNode != null) {
+                    typeString = this.convertSyntaxType(typeNode, atSymbol, exportRoot);
+                } else {
+                    typeString = 'Any';
+                    this.logError(`Failed to get type for property <b>${haxeSafeName}</b>`, this.location(atSymbol));
+                }
+
+                return `${originalName !== haxeSafeName ? `@:native('${originalName}') ` : ''}${isOptional ? '@:optional ' : ''}${haxeSafeName}: ${typeString}`
+            }
+                
+                
+                // if (propertySignatureNode.type != null) {
+                //     let type = this.convertSyntaxType(propertySignatureNode.type, atSymbol, exportRoot);
+                //     return `${propertySignatureNode.name.getText()}: ${type}`;
+                // } else {
+                //     debugger;
+                //     return `${propertySignatureNode.name.getText()}: Any`;
+                // }
+                // @! follow same conversion as fields
+            // } break;
             // case ts.SyntaxKind.PropertyDeclaration: {} break;
             // case ts.SyntaxKind.MethodSignature: {} break;
             // case ts.SyntaxKind.MethodDeclaration: {} break;
@@ -513,12 +548,17 @@ export class ExternGenerator {
                 let resolvedType = this.typeChecker.getTypeFromTypeNode(typeQueryNode);
                 let resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
                 if (resolvedTypeNode == null) {
-                    debugger;
+                    this.logWarning('Query type resolved to null', this.location(atSymbol));
+                    return 'Any';
                 } else {
                     return this.convertSyntaxType(resolvedTypeNode, atSymbol, exportRoot);
                 }
             } break;
-            // case ts.SyntaxKind.TypeLiteral: {} break;
+            case ts.SyntaxKind.TypeLiteral: {
+                let typeLiteralNode = syntaxNode as ts.TypeLiteralNode;
+                let convertedMembers = typeLiteralNode.members.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
+                return `{${convertedMembers.join(', ')}}`;
+            } break;
             case ts.SyntaxKind.ArrayType: {
                 let arrayTypeNode = syntaxNode as ts.ArrayTypeNode;
                 return `Array<${this.convertSyntaxType(arrayTypeNode.elementType, atSymbol, exportRoot)}>`;
@@ -706,11 +746,21 @@ export class ExternGenerator {
             // case ts.SyntaxKind.FirstJSDocTagNode: {} break;
             // case ts.SyntaxKind.LastJSDocTagNode: {} break;
             default: {
-                this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b>`);
+                this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b>`, this.location(atSymbol));
                 return `<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>`;
             }
         }
         // translate typescript typeNode into a haxe type (probably just a string for this version); i.e.
+    }
+
+    protected getTSPropertyNameString(propertyNameNode: ts.PropertyName, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
+        let symbol = propertyNameNode.symbol || this.typeChecker.getSymbolAtLocation(propertyNameNode);
+        if (symbol == null) {
+            debugger;
+            throw `Could not get symbol for property name node`;
+        } else {
+            return symbol.name;
+        }
     }
 
     protected resolveIdentifierToHaxeTypePath(identifierNode: ts.Identifier, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
@@ -724,6 +774,8 @@ export class ExternGenerator {
             let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
             return haxeTypePath.join('.');
         } else {
+            // @! need to rename to safeIdent and use @:native
+            this.logError(`Failed to get symbol for identifier node <b>${identifierString}</b>`, this.location(atSymbol));
             debugger;
             return identifierString;
         }
