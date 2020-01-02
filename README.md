@@ -24,10 +24,13 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Primitives
         - [x] Type references
         - [x] TypeLiteral types (objects literals)
-        - [ ] Unions with EitherType
+        - [x] Unions with EitherType
         - [x] Function types
         - [x] Type parameters
         - [ ] Index types
+        - [ ] Intersection types
+        - [ ] Tuple types
+        - [ ] This type
     - [ ] Classes
         - [ ] Constructors
         - [ ] Implements, extends etc
