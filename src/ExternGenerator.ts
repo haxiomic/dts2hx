@@ -312,7 +312,8 @@ export class ExternGenerator {
             docs.push('symbol.valueDeclaration.kind: ' + ts.SyntaxKind[symbol.valueDeclaration.kind]);
             switch (symbol.valueDeclaration.kind) {
                 case ts.SyntaxKind.MethodDeclaration:
-                case ts.SyntaxKind.FunctionDeclaration: {
+                case ts.SyntaxKind.FunctionDeclaration:
+                case ts.SyntaxKind.MethodSignature: {
                     let functionLikeDeclaration = symbol.valueDeclaration as ts.FunctionLikeDeclarationBase;
 
                     let parameterStrings = functionLikeDeclaration.parameters.map(p => this.convertSyntaxType(p, symbol, exportRoot));
