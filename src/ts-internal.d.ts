@@ -34,6 +34,22 @@ declare module 'typescript' {
             walkType: (type: Type) => { visitedTypes: Array<Type>, visitedSymbols: Array<Symbol> }
             walkSymbol: (symbol: Symbol) => { visitedTypes: Array<Type>, visitedSymbols: Array<Symbol> }
         };
+        /* @internal */ getAnyType(): Type;
+        /* @internal */ getStringType(): Type;
+        /* @internal */ getNumberType(): Type;
+        /* @internal */ getBooleanType(): Type;
+        /* @internal */ getFalseType(fresh?: boolean): Type;
+        /* @internal */ getTrueType(fresh?: boolean): Type;
+        /* @internal */ getVoidType(): Type;
+        /* @internal */ getUndefinedType(): Type;
+        /* @internal */ getNullType(): Type;
+        /* @internal */ getESSymbolType(): Type;
+        /* @internal */ getNeverType(): Type;
+        /* @internal */ getOptionalType(): Type;
+        /* @internal */ getUnionType(types: Type[], subtypeReduction?: UnionReduction): Type;
+        /* @internal */ createArrayType(elementType: Type): Type;
+        /* @internal */ getElementTypeOfArrayType(arrayType: Type): Type | undefined;
+        /* @internal */ createPromiseType(type: Type): Type;
     }
 
     // Intrinsic types (TypeFlags.Intrinsic)
@@ -59,5 +75,13 @@ declare module 'typescript' {
         IncludesEmptyObject,
         GenericMappedType,
     }
+
+    /* @internal */
+    export const enum UnionReduction {
+        None = 0,
+        Literal,
+        Subtype
+    }
+
 
 }
