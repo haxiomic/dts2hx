@@ -388,12 +388,18 @@ export class ExternGenerator {
             case ts.SyntaxKind.BooleanKeyword: {return 'Bool';} break;
             case ts.SyntaxKind.StringKeyword: {return 'String';} break;
             case ts.SyntaxKind.SymbolKeyword: {return 'js.lib.Symbol';} break;
-            // case ts.SyntaxKind.NumericLiteral: {} break;
+            case ts.SyntaxKind.NumericLiteral: {
+                let numericLiteralNode = syntaxNode as ts.NumericLiteral;
+                let number = parseFloat(numericLiteralNode.text);
+                let isInt = Math.floor(number) === number;
+                return isInt ? 'Int' : 'Float';
+            } break;
             // case ts.SyntaxKind.BigIntLiteral: {} break;
-            // case ts.SyntaxKind.StringLiteral: {} break;
+            case ts.SyntaxKind.StringLiteral: {
+                return 'String';
+            } break;
             case ts.SyntaxKind.Identifier: {
                 let identifierNode = syntaxNode as ts.Identifier;
-                // @! need to handle references here
                 return this.resolveIdentifierToHaxeTypePath(identifierNode, atSymbol, exportRoot);
             } break;
             // case ts.SyntaxKind.BreakKeyword: {} break;
@@ -410,7 +416,9 @@ export class ExternGenerator {
             // case ts.SyntaxKind.EnumKeyword: {} break;
             // case ts.SyntaxKind.ExportKeyword: {} break;
             // case ts.SyntaxKind.ExtendsKeyword: {} break;
-            // case ts.SyntaxKind.FalseKeyword: {} break;
+            case ts.SyntaxKind.FalseKeyword: {
+                return 'Bool';
+            } break;
             // case ts.SyntaxKind.FinallyKeyword: {} break;
             // case ts.SyntaxKind.ForKeyword: {} break;
             // case ts.SyntaxKind.FunctionKeyword: {} break;
@@ -425,11 +433,15 @@ export class ExternGenerator {
             // case ts.SyntaxKind.SwitchKeyword: {} break;
             // case ts.SyntaxKind.ThisKeyword: {} break;
             // case ts.SyntaxKind.ThrowKeyword: {} break;
-            // case ts.SyntaxKind.TrueKeyword: {} break;
+            case ts.SyntaxKind.TrueKeyword: {
+                return 'Bool';
+            } break;
             // case ts.SyntaxKind.TryKeyword: {} break;
             // case ts.SyntaxKind.TypeOfKeyword: {} break;
             // case ts.SyntaxKind.VarKeyword: {} break;
-            // case ts.SyntaxKind.VoidKeyword: {} break;
+            case ts.SyntaxKind.VoidKeyword: {
+                return 'Void';
+            } break;
             // case ts.SyntaxKind.WhileKeyword: {} break;
             // case ts.SyntaxKind.WithKeyword: {} break;
             // case ts.SyntaxKind.ImplementsKeyword: {} break;
@@ -496,7 +508,16 @@ export class ExternGenerator {
             } break;
             // case ts.SyntaxKind.FunctionType: {} break;
             // case ts.SyntaxKind.ConstructorType: {} break;
-            // case ts.SyntaxKind.TypeQuery: {} break;
+            case ts.SyntaxKind.TypeQuery: {
+                let typeQueryNode = syntaxNode as ts.TypeQueryNode;
+                let resolvedType = this.typeChecker.getTypeFromTypeNode(typeQueryNode);
+                let resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
+                if (resolvedTypeNode == null) {
+                    debugger;
+                } else {
+                    return this.convertSyntaxType(resolvedTypeNode, atSymbol, exportRoot);
+                }
+            } break;
             // case ts.SyntaxKind.TypeLiteral: {} break;
             case ts.SyntaxKind.ArrayType: {
                 let arrayTypeNode = syntaxNode as ts.ArrayTypeNode;
@@ -514,7 +535,11 @@ export class ExternGenerator {
             // case ts.SyntaxKind.TypeOperator: {} break;
             // case ts.SyntaxKind.IndexedAccessType: {} break;
             // case ts.SyntaxKind.MappedType: {} break;
-            // case ts.SyntaxKind.LiteralType: {} break;
+            case ts.SyntaxKind.LiteralType: {
+                let literalTypeNode = syntaxNode as ts.LiteralTypeNode;
+                // unpack literal expression node and convert that instead
+                return this.convertSyntaxType(literalTypeNode.literal, atSymbol, exportRoot);
+            } break;
             // case ts.SyntaxKind.ImportType: {} break;
             // case ts.SyntaxKind.ObjectBindingPattern: {} break;
             // case ts.SyntaxKind.ArrayBindingPattern: {} break;
@@ -994,8 +1019,14 @@ export class ExternGenerator {
             let isDefaultLib = sourceFile.hasNoDefaultLib;
             if (isDefaultLib) {
                 switch (symbol.escapedName) {
-                    case 'Array': { return ['Array']; } break;
-                    default: this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
+                    case 'Array': return ['Array'];
+                    case 'Map': return ['js.lib.Map'];
+                    case 'String': return ['String'];
+                    // @! should search js.lib to find a matching built-in
+                    default: {
+                        this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
+                        return ['Any'];
+                    }
                 }
             }
         }
