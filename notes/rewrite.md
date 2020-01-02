@@ -1,1 +1,2 @@
 - Answer .escapedText vs .text?
+- Consider structure instead of interfaces; interfaces do not support @:optional
