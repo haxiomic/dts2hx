@@ -55,8 +55,14 @@ declare namespace Types {
     const object: {
         fieldA: number,
         fieldB: number,
+        fieldArrayAlias: ArrayAlias,
         fieldOptional?: number,
+        ['computedFieldName']: string,
         sub: {a: number, b: number}
+    };
+    const stringMap: {
+        [key: string]: number,
+        field: number,
     };
     const arrayString: Array<string>;
     const arrayStringAlt: string[];
