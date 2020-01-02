@@ -303,6 +303,7 @@ export class ExternGenerator {
         docs.push('symbol.flags: ' + Debug.getActiveSymbolFlags(symbol.flags, true).join(', '));
 
         let haxeFieldKind: FieldType | null = null;
+        let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
 
         // this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
 
@@ -329,7 +330,7 @@ export class ExternGenerator {
                         this.logWarning(`Unhandled exclamationToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
                     }
                     if (functionLikeDeclaration.questionToken != null) {
-                        this.logWarning(`Unhandled questionToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+                        metas.push({name: ':optional', params: [], pos: pos});
                     }
 
                     haxeFieldKind = new FFun({
@@ -382,7 +383,7 @@ export class ExternGenerator {
             doc: docs.join('\n'),
             kind: haxeFieldKind,
             pos: pos,
-            meta: nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : []
+            meta: metas
         });
     }
 
@@ -512,9 +513,10 @@ export class ExternGenerator {
                 return `${typeNameString}` + (typeArgumentsStrings.length > 0 ? `<${typeArgumentsStrings.join(', ')}>` : '');
             } break;
             // case ts.SyntaxKind.ConstructorType: {} break;
+
+            case ts.SyntaxKind.IndexedAccessType:
             case ts.SyntaxKind.TypeQuery: {
-                let typeQueryNode = syntaxNode as ts.TypeQueryNode;
-                let resolvedType = this.typeChecker.getTypeFromTypeNode(typeQueryNode);
+                let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
                 let resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
                 if (resolvedTypeNode == null) {
                     this.logWarning('Query type resolved to null', this.location(atSymbol));
@@ -549,6 +551,9 @@ export class ExternGenerator {
                 let hasNullOrUndefined = filteredTypeNodes.length !== unionTypeNode.types.length;
 
                 let typeStrings = filteredTypeNodes.map((t) => this.convertSyntaxType(t, atSymbol, exportRoot));
+                // remove duplicates
+                typeStrings = [...new Set(typeStrings)];
+
                 let lastTypeString = typeStrings.pop();
                 let eitherType = 'haxe.io.EitherType';
                 let closingAngles = '';
@@ -944,7 +949,7 @@ export class ExternGenerator {
                     case 'Map': return ['js.lib.Map'];
                     case 'Promise': return ['js.lib.Promise'];
                     case 'Date': return ['js.lib.Date'];
-                    case 'Number': return ['js.lib.Number'];
+                    case 'Number': return ['js.lib.Number']; // PR open, not merged yet
                     // @! should search js.lib to find a matching built-in
                     default: {
                         this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
