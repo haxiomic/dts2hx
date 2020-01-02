@@ -58,7 +58,9 @@ declare namespace Types {
         fieldArrayAlias: ArrayAlias,
         fieldOptional?: number,
         ['computedFieldName']: string,
-        sub: {a: number, b: number}
+        sub: {a: number, b: number},
+        methodSignature<T>(a: T): void,
+        methodProperty: <T>(a: T) => void,
     };
     const stringMap: {
         [key: string]: number,
@@ -69,10 +71,14 @@ declare namespace Types {
     const stringObj: String;
     const arrayNumberStringUnion: Array<number | string>;
     const tupleNumberString: [number, string];
-    const fnNumberStringVoid: (number, string) => void;
-    const fnNumberTVoidTypeParam: <T>(number, T) => void;
-    function fnNumberStringVoidAlt (number, string): void;
-    function fnNumberTVoidTypeParamAlt<T>(number, T): void;
+    // functions
+    const arrowNumberStringVoid: (a: number, noType) => void;
+    const arrowNumberTVoidTypeParam: <T>(a: number, tparam: T) => void;
+    const arrowParamWithRest: (a: number, b: number, ...rest: Array<number>) => void;
+    const arrowParamObjectBindingPattern: ({ x: number , y: string }) => void;
+    function functionImplicit(x, y);
+    function functionNumberStringVoidAlt (a: number, b: string): void;
+    function functionNumberTVoidTypeParamAlt<T>(a: number, tparam: T): void;
 
     const constructorType: new (a: string) => void;
 
