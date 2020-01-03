@@ -521,6 +521,11 @@ export class ExternGenerator {
                     return this.convertSyntaxType(resolvedTypeNode, atSymbol, exportRoot);
                 }
             } break;
+            case ts.SyntaxKind.ThisType: {
+                let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
+                let haxeTypePath = this.getHaxeTypePath(resolvedType.symbol, exportRoot);
+                return haxeTypePath.join('.');
+            } break;
             case ts.SyntaxKind.TypeLiteral: {
                 let typeLiteralNode = syntaxNode as ts.TypeLiteralNode;
                 let convertedMembers = typeLiteralNode.members.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
