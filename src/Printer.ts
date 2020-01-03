@@ -120,7 +120,7 @@ ${typeFooter}
     public printField = (field?: Field) => {
         if (field == null) return '';
         let str = '';
-        if (field.doc != null) {
+        if (field.doc != null && field.doc.trim() != '') {
             str += this.printDoc(field.doc) + '\n';
         }
         if (field.meta != null && field.meta.length > 0) {
@@ -178,6 +178,9 @@ ${typeFooter}
                 }
             }
         }
+
+        // indent 1 tab (I don't want to do proper formatting; that will be handled in the haxe-rewrite)
+        str = '\t' + str.split('\n').join('\n\t');
 
         return str;
     }
