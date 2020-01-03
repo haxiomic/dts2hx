@@ -26,8 +26,8 @@ final extern class Types {
 	static var numberObjectPrimitive: js.lib.Number;
 	static var symbolPrimitive: js.lib.Symbol;
 	static var any: Any;
-	static var typeInParentheses: <UNHANDLED SyntaxKind: ParenthesizedType>;
-	static var unionInParentheses: <UNHANDLED SyntaxKind: ParenthesizedType>;
+	static var typeInParentheses: Float;
+	static var unionInParentheses: haxe.io.EitherType<Float, String>;
 	static var intLiteral: Int;
 	static var intLiteralAlt: Int;
 	static var floatLiteral: Float;
@@ -37,7 +37,7 @@ final extern class Types {
 	static var typeReferenceArrayAlias: unit.types.ArrayAlias;
 	static var typeReferenceObjectAlias: unit.types.ObjectAlias;
 	static var typeReferenceAliasWithTypeParam: unit.types.AliasWithTypeParam<String, Float>;
-	static var object: {fieldA: Float, fieldB: Float, fieldArrayAlias: unit.types.ArrayAlias, @:optional fieldOptional: Float, computedFieldName: String, sub: {a: Float, b: Float}, methodSignature: (a: Any) -> Void, methodProperty: (a: Any) -> Void, @:optional methodSignatureOptional: () -> String, final readonlyField: String};
+	static var object: {	var fieldA: Float; 	var fieldB: Float; 	var fieldArrayAlias: unit.types.ArrayAlias; 	@:optional var fieldOptional: Float; 	var computedFieldName: String; 	var sub: {	var a: Float; 	var b: Float;}; 	var methodSignature: (a: Any) -> Void; 	var methodProperty: (a: Any) -> Void; 	@:optional var methodSignatureOptional: () -> String; 	final readonlyField: String;};
 	static var arrayString: Array<String>;
 	static var arrayStringAlt: Array<String>;
 	static var stringObj: String;
@@ -45,22 +45,22 @@ final extern class Types {
 	static var tupleNumberString: Array<Any>;
 	static var stringNumberMap: haxe.DynamicAccess<Float>;
 	static var readonlyStringNumberMap: haxe.DynamicAccess<Float>;
-	static var stringNumberMapWithField: {field: Float};
+	static var stringNumberMapWithField: {	var field: Float;};
 	static var numberStringMap: Array<String>;
 	static var readonlyNumberStringMap: haxe.ds.ReadOnlyArray<String>;
-	static var numberStringMapWithField: {field: String};
-	static var stringAndNumberMapWithField: {length: String};
+	static var numberStringMapWithField: {	var field: String;};
+	static var stringAndNumberMapWithField: {	var length: String;};
 	static var arrowNumberStringVoid: (a: Float, noType: Any) -> Void;
 	static var arrowNumberTVoidTypeParam: (a: Float, tparam: Any) -> Void;
 	static var arrowParamWithRest: (a: Float, b: Float, rest: haxe.externs.Rest<Float>) -> Void;
-	static var arrowParamObjectBindingPattern: (<UNHANDLED ObjectBindingPattern>: {x: Any, y: Any}) -> Void;
+	static var arrowParamObjectBindingPattern: (<UNHANDLED ObjectBindingPattern>: {	var x: Any; 	var y: Any;}) -> Void;
 	static var constructorType: <UNHANDLED SyntaxKind: ConstructorType>;
 	static var nullableNumber: Null<Float>;
 	static var undefineableNumber: Null<Float>;
 	static var undefineableNullableNumber: Null<Float>;
 	static var extendedObject: <UNHANDLED SyntaxKind: IntersectionType>;
 	static var typeQueryImplicitStr: Any;
-	static var typeQueryObject: {fieldA: Float, fieldB: Float, fieldArrayAlias: Array<String>, @:optional fieldOptional: Float, computedFieldName: String, sub: {a: Float, b: Float}, methodSignature: (a: Any) -> Void, methodProperty: (a: Any) -> Void, @:optional methodSignatureOptional: () -> String, final readonlyField: String};
+	static var typeQueryObject: {	var fieldA: Float; 	var fieldB: Float; 	var fieldArrayAlias: Array<String>; 	@:optional var fieldOptional: Float; 	var computedFieldName: String; 	var sub: {	var a: Float; 	var b: Float;}; 	var methodSignature: (a: Any) -> Void; 	var methodProperty: (a: Any) -> Void; 	@:optional var methodSignatureOptional: () -> String; 	final readonlyField: String;};
 	static var typeQueryNoType: Any;
 }
 

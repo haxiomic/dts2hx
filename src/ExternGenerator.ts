@@ -3,7 +3,7 @@ import * as path from 'path';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
-import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction } from './Expr';
+import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata } from './Expr';
 import { Printer } from './Printer';
 
 // @! this needs to be replaced with haxe ast structure
@@ -412,12 +412,13 @@ export class ExternGenerator {
      * Converts a syntax node into a haxe type string
      */
     protected convertSyntaxType(syntaxNode: ts.Node, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
+
         switch (syntaxNode.kind) {
-            case ts.SyntaxKind.NumberKeyword: {return 'Float';} break;
-            case ts.SyntaxKind.AnyKeyword: {return 'Any';} break;
-            case ts.SyntaxKind.BooleanKeyword: {return 'Bool';} break;
-            case ts.SyntaxKind.StringKeyword: {return 'String';} break;
-            case ts.SyntaxKind.SymbolKeyword: {return 'js.lib.Symbol';} break;
+            case ts.SyntaxKind.NumberKeyword: return 'Float';
+            case ts.SyntaxKind.AnyKeyword: return 'Any';
+            case ts.SyntaxKind.BooleanKeyword: return 'Bool';
+            case ts.SyntaxKind.StringKeyword: return 'String';
+            case ts.SyntaxKind.SymbolKeyword: return 'js.lib.Symbol';
             case ts.SyntaxKind.NumericLiteral: {
                 let numericLiteralNode = syntaxNode as ts.NumericLiteral;
                 let number = parseFloat(numericLiteralNode.text);
@@ -433,6 +434,7 @@ export class ExternGenerator {
             case ts.SyntaxKind.FalseKeyword: return 'Bool';
             case ts.SyntaxKind.TrueKeyword: return 'Bool';
             case ts.SyntaxKind.VoidKeyword: return 'Void';
+
             case ts.SyntaxKind.TypeParameter: {
                 let typeParameterDeclaration = syntaxNode as ts.TypeParameterDeclaration;
                 if (typeParameterDeclaration.default != null) {
@@ -443,6 +445,7 @@ export class ExternGenerator {
                 }
                 return typeParameterDeclaration.name.text;
             } break;
+
             case ts.SyntaxKind.Parameter: {
                 let parameterNode = syntaxNode as ts.ParameterDeclaration;
                 // we can ignore the initializer because these are not supported in definition files
@@ -475,64 +478,68 @@ export class ExternGenerator {
                 }
                 return `${isOptional ? '?' : ''}${parameterIdent}: ${parameterTypeString}`;
             } break;
-            // case ts.SyntaxKind.Decorator: {} break;
+            
+            case ts.SyntaxKind.MethodSignature:
             case ts.SyntaxKind.PropertySignature: {
-                let propertySignatureNode = syntaxNode as ts.PropertySignature;
-                let isOptional = propertySignatureNode.questionToken != null;
+                // @! this is has overlap with addFieldToType
+                let signatureNode = syntaxNode as (ts.HasType & ts.TypeElement);
+                let isOptional = signatureNode.questionToken != null;
 
-                let originalName = this.getTSPropertyNameString(propertySignatureNode.name, atSymbol, exportRoot);
+                let originalName = this.getTSPropertyNameString(signatureNode.name!, atSymbol, exportRoot);
                 let haxeSafeName = this.toSafeIdent(originalName);
+                let nameChanged = haxeSafeName !== originalName;
 
                 let typeNode: ts.TypeNode | undefined;
 
-                if (propertySignatureNode.type != null) {
-                    typeNode = propertySignatureNode.type;
+                if (signatureNode.type != null) {
+                    typeNode = signatureNode.type;
                 } else {
-                    typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getTypeAtLocation(propertySignatureNode));
+                    typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getTypeAtLocation(signatureNode));
                 }
 
-                let typeString: string;
-                if (typeNode != null) {
-                    typeString = this.convertSyntaxType(typeNode, atSymbol, exportRoot);
+                let typeString: string = 'Any';
+                if (ts.isMethodSignature(signatureNode)) {
+                    typeString = this.convertFunctionLike(signatureNode, atSymbol, exportRoot);
+                } else if (ts.isPropertySignature(signatureNode)) {
+                    if (typeNode != null) {
+                        typeString = this.convertSyntaxType(typeNode, atSymbol, exportRoot);
+                    } else {
+                        typeString = 'Any';
+                        this.logError(`Failed to get type for property <b>${originalName}</b>`, this.location(atSymbol));
+                    }
                 } else {
-                    typeString = 'Any';
-                    this.logError(`Failed to get type for property <b>${originalName}</b>`, this.location(atSymbol));
+                    this.logError(`Signature was not method or property <b>${originalName}</b>`, this.location(atSymbol));
                 }
 
                 let accessModifiers = new Array<Access>();
 
-                if (propertySignatureNode.modifiers != null) {
-                    accessModifiers = accessModifiers.concat(this.convertModifiers(propertySignatureNode.modifiers));
+                if (signatureNode.modifiers != null) {
+                    accessModifiers = accessModifiers.concat(this.convertModifiers(signatureNode.modifiers));
+                }
+
+                let pos = Debug.getSymbolPosition(signatureNode.symbol || atSymbol);
+                let docs = signatureNode.symbol != null ? signatureNode.symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim()) : null;
+                let meta: Metadata = [];
+
+                if (nameChanged) {
+                    meta.push({name: ':native', params: [`'${originalName}'`], pos: pos});
+                }
+
+                if (isOptional) {
+                    meta.push({name: ':optional', params: [], pos: pos});
                 }
 
                 let printer = new Printer();
-
-                return `${originalName !== haxeSafeName ? `@:native('${originalName}') ` : ''}${isOptional ? '@:optional ' : ''}`
-                    + ((accessModifiers.length > 0) ? accessModifiers.map(printer.printAccess).join(' ') + ' ' : '')
-                    + `${haxeSafeName}: ${typeString}`;
+                return printer.printField({
+                    kind: new FVar(typeString),
+                    name: haxeSafeName,
+                    access: accessModifiers,
+                    doc: docs ? docs.join('\n') : null,
+                    meta: meta,
+                    pos: pos,
+                }, ' ');
             }
-            // case ts.SyntaxKind.PropertyDeclaration: {} break;
-            // case ts.SyntaxKind.MethodDeclaration: {} break;
-            // case ts.SyntaxKind.Constructor: {} break;
-            // case ts.SyntaxKind.GetAccessor: {} break;
-            // case ts.SyntaxKind.SetAccessor: {} break;
 
-            // case ts.SyntaxKind.FunctionDeclaration:
-            // case ts.SyntaxKind.MethodDeclaration:
-            case ts.SyntaxKind.MethodSignature: {
-                // almost same as PropertySignature
-                let methodSignatureNode = syntaxNode as ts.MethodSignature;
-
-                let isOptional = methodSignatureNode.questionToken != null;
-                let originalName = this.getTSPropertyNameString(methodSignatureNode.name, atSymbol, exportRoot);
-                let haxeSafeName = this.toSafeIdent(originalName);
-
-                let typeString: string = this.convertFunctionLike(methodSignatureNode, atSymbol, exportRoot);
-
-                return `${originalName !== haxeSafeName ? `@:native('${originalName}') ` : ''}${isOptional ? '@:optional ' : ''}${haxeSafeName}: ${typeString}`
-            } break;
-            // case ts.SyntaxKind.ConstructSignature:
-            // case ts.SyntaxKind.ConstructorType:
             case ts.SyntaxKind.CallSignature:
             case ts.SyntaxKind.FunctionExpression:
             case ts.SyntaxKind.ArrowFunction:
@@ -561,11 +568,13 @@ export class ExternGenerator {
                     return this.convertSyntaxType(resolvedTypeNode, atSymbol, exportRoot);
                 }
             } break;
+
             case ts.SyntaxKind.ThisType: {
                 let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
                 let haxeTypePath = this.getHaxeTypePath(resolvedType.symbol, exportRoot);
                 return haxeTypePath.join('.');
             } break;
+
             case ts.SyntaxKind.TypeLiteral: {
                 let typeLiteralNode = syntaxNode as ts.TypeLiteralNode;
                 // check for index signatures
@@ -601,8 +610,9 @@ export class ExternGenerator {
                 }
 
                 let convertedFields = fields.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
-                return `{${convertedFields.join(', ')}}`;
+                return `{${convertedFields.join(' ')}}`;
             } break;
+
             case ts.SyntaxKind.ArrayType: {
                 let arrayTypeNode = syntaxNode as ts.ArrayTypeNode;
                 return `Array<${this.convertSyntaxType(arrayTypeNode.elementType, atSymbol, exportRoot)}>`;
@@ -671,6 +681,10 @@ export class ExternGenerator {
             case ts.SyntaxKind.FirstTypeNode: {
                 // function (a): a is X -> function(a) : Bool
                 return this.convertSyntaxType(this.typeChecker.typeToTypeNode(this.typeChecker.getBooleanType())!, atSymbol, exportRoot);
+            } break;
+
+            case ts.SyntaxKind.ParenthesizedType: {
+                return this.convertSyntaxType((syntaxNode as ts.ParenthesizedTypeNode).type, atSymbol, exportRoot);
             } break;
 
             default: {

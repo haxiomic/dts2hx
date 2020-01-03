@@ -3,7 +3,7 @@ package unit.types;
 
 
 
-typedef ObjectAlias = {fieldA: Float, fieldB: Float, fieldArrayAlias: Array<String>, @:optional fieldOptional: Float, computedFieldName: String, sub: {a: Float, b: Float}, methodSignature: (a: Any) -> Void, methodProperty: (a: Any) -> Void, @:optional methodSignatureOptional: () -> String, final readonlyField: String};
+typedef ObjectAlias = {	var fieldA: Float; 	var fieldB: Float; 	var fieldArrayAlias: Array<String>; 	@:optional var fieldOptional: Float; 	var computedFieldName: String; 	var sub: {	var a: Float; 	var b: Float;}; 	var methodSignature: (a: Any) -> Void; 	var methodProperty: (a: Any) -> Void; 	@:optional var methodSignatureOptional: () -> String; 	final readonlyField: String;};
 
 
 

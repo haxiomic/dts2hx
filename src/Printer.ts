@@ -63,7 +63,7 @@ export class Printer {
 ${this.printDoc(t.doc)}
 ${t.meta != null ? t.meta.map(this.printMetadata).join('\n') : ''}
 ${typeHeader}
-${t.fields.map(this.printField).join('\n')}
+${t.fields.length > 0 ? (t.fields.map(f => this.printField(f)).join('\n')) : ''}
 ${typeFooter}
 `;
     }
@@ -117,14 +117,14 @@ ${typeFooter}
         return str;
     }
 
-    public printField = (field?: Field) => {
+    public printField = (field?: Field, sepChar = '\n') => {
         if (field == null) return '';
         let str = '';
         if (field.doc != null && field.doc.trim() != '') {
-            str += this.printDoc(field.doc) + '\n';
+            str += this.printDoc(field.doc) + sepChar;
         }
         if (field.meta != null && field.meta.length > 0) {
-            str += field.meta.map(this.printMetadata).join('\n') + '\n';
+            str += field.meta.map(this.printMetadata).join(sepChar) + sepChar;
         }
 
         let hasFinal: boolean = false;
@@ -159,7 +159,6 @@ ${typeFooter}
                     if (fVar.e != null) {
                         str += ` = ${fVar.e}`;
                     }
-                    str += ';';
                     break;
                 }
                 case 'FProp': {
@@ -171,16 +170,17 @@ ${typeFooter}
                     if (fProp.e != null) {
                         str += ` = ${fProp.e}`;
                     }
-                    str += ';';
                     break;
                 }
                 case 'FFun': {
                     let fFun = field.kind as FFun;
-                    str += `${this.printFunctionDeclaration(fFun.f)};`;
+                    str += `${this.printFunctionDeclaration(fFun.f)}`;
                     break;
                 }
             }
         }
+
+        str += ';';
 
         // indent 1 tab (I don't want to do proper formatting; that will be handled in the haxe-rewrite)
         str = '\t' + str.split('\n').join('\n\t');
