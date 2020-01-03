@@ -28,16 +28,18 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Function types
         - [x] Type parameters
         - [x] Index signatures
-        - [ ] Intersection types
+        - [x] Intersection types
         - [x] Tuple types
         - [x] This type
         - [x] Overloads
-        - [ ] Wrapped types
-    - [ ] Classes
+        - [x] Wrapped types
+    - [ ] Classes aand interfaces
         - [ ] Constructors
         - [ ] Implements, extends etc
+        - [ ] Index signatures
     - [x] Typedef
     - [ ] Print type source location in documentation
+    - [ ] Fix reference to `ReadonlyArray` in `WriteFileCallback`
 - [ ] Rewrite in haxe using generated TypeScript compiler externs
     - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
@@ -46,6 +48,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - [ ] Command-line interface
     - [ ] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*
+- [ ] Remove typepath prefix if referencing type within the same module
 - [ ] Advanced type conversions
     - [ ] Abstracts to support unnamed enums and improve type unions
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
@@ -60,9 +63,9 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - [ ] :star2: **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
+- [ ] Unit tests
 - [ ] Cleaner output
-    - [ ] Remove typepath prefix if referencing type within the same module
-    - [ ] Replace full type references with imports
+    - [ ] Replace full type references with imports for some types (like haxe.extern.EitherType)
 - [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
 # FAQ
