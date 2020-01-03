@@ -192,7 +192,7 @@ export class ExternGenerator {
                     }
 
                     // @! debugging pixi.js  file overwrite
-                    Terminal.warn(`Creating module class`, moduleClassTypeName, moduleClassHaxePath, Debug.getSymbolPrintableLocation(symbol));
+                    this.logVerbose(`Creating module class`, moduleClassTypeName, moduleClassHaxePath, Debug.getSymbolPrintableLocation(symbol));
 
                     // generate a module class 
                     parentHaxeType = this.addGeneratedHaxeType({
