@@ -3,7 +3,7 @@ import * as path from 'path';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
-import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl } from './Expr';
+import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction } from './Expr';
 import { Printer } from './Printer';
 
 // @! this needs to be replaced with haxe ast structure
@@ -304,7 +304,7 @@ export class ExternGenerator {
         let haxeFieldKind: FieldType | null = null;
         let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
 
-        // this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+        this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
 
         if (symbol.valueDeclaration != null) {
             // syntax-level type information (i.e :Type)
@@ -312,30 +312,51 @@ export class ExternGenerator {
                 case ts.SyntaxKind.MethodDeclaration:
                 case ts.SyntaxKind.FunctionDeclaration:
                 case ts.SyntaxKind.MethodSignature: {
-                    let functionLikeDeclaration = symbol.valueDeclaration as ts.FunctionLikeDeclarationBase;
 
-                    let parameterStrings = functionLikeDeclaration.parameters.map(p => this.convertSyntaxType(p, symbol, exportRoot));
-                    let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (functionLikeDeclaration.typeParameters || []);
-                    let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, symbol, exportRoot));
-                    let typeParameterHaxeDecls: Array<TypeParamDecl> = typeParameterStrings.map(name => { return {name: name} });
+                    // functions can have multiple declarations (overloads)
+                    // we assume all declarations have the same kind as the valueDeclaration
+                    let allFunctionDeclarations = symbol.declarations.filter(d => d.kind & symbol.valueDeclaration.kind) as Array<ts.FunctionLikeDeclaration>;
+                    
+                    for (let i = 0; i < allFunctionDeclarations.length; i++) {
+                        let functionLikeDeclaration = allFunctionDeclarations[i];
+                        let isBaseDeclaration = i === 0; // pick the first as the base declaration
 
-                    // warn for unhandled function parts
-                    if (functionLikeDeclaration.asteriskToken != null) {
-                        this.logWarning(`Unhandled asteriskToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
-                    }
-                    if (functionLikeDeclaration.exclamationToken != null) {
-                        this.logWarning(`Unhandled exclamationToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
-                    }
-                    if (functionLikeDeclaration.questionToken != null) {
-                        metas.push({name: ':optional', params: [], pos: pos});
-                    }
+                        let parameterStrings = functionLikeDeclaration.parameters.map(p => this.convertSyntaxType(p, symbol, exportRoot));
+                        let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (functionLikeDeclaration.typeParameters || []);
+                        let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, symbol, exportRoot));
+                        let typeParameterHaxeDecls: Array<TypeParamDecl> = typeParameterStrings.map(name => { return {name: name} });
 
-                    haxeFieldKind = new FFun({
-                        args: parameterStrings,
-                        params: typeParameterHaxeDecls,
-                        expr: null,
-                        ret: this.convertSyntaxType(functionLikeDeclaration.type || this.getAnyTypeNode(), symbol, exportRoot),
-                    });
+                        // warn for unhandled function parts
+                        if (functionLikeDeclaration.asteriskToken != null) {
+                            this.logWarning(`Unhandled asteriskToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+                        }
+                        if (functionLikeDeclaration.exclamationToken != null) {
+                            this.logWarning(`Unhandled exclamationToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+                        }
+                        if (functionLikeDeclaration.questionToken != null) {
+                            metas.push({name: ':optional', params: [], pos: pos});
+                        }
+
+                        let haxeFunctionDeclaration: HxFunction = {
+                            args: parameterStrings,
+                            params: typeParameterHaxeDecls,
+                            expr: null,
+                            ret: this.convertSyntaxType(functionLikeDeclaration.type || this.getAnyTypeNode(), symbol, exportRoot),
+                        }
+
+                        if (isBaseDeclaration) {
+                            haxeFieldKind = new FFun(haxeFunctionDeclaration);
+                        } else {
+                            let printer = new Printer();
+                            // add @:overload meta for other declarations
+                            metas.push({
+                                name: ':overload',
+                                params: [`function${printer.printFunctionDeclaration(haxeFunctionDeclaration)} { }`],
+                                pos: pos,
+                            });
+                        }
+
+                    }
                 } break;
                 case ts.SyntaxKind.VariableDeclaration: 
                 case ts.SyntaxKind.PropertySignature:
