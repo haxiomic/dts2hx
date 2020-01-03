@@ -435,6 +435,12 @@ export class ExternGenerator {
             case ts.SyntaxKind.VoidKeyword: return 'Void';
             case ts.SyntaxKind.TypeParameter: {
                 let typeParameterDeclaration = syntaxNode as ts.TypeParameterDeclaration;
+                if (typeParameterDeclaration.default != null) {
+                    this.logWarning('TypeParameter default ignored', this.location(atSymbol));
+                }
+                if (typeParameterDeclaration.constraint != null) {
+                    this.logWarning('TypeParameter constraint ignored', this.location(atSymbol));
+                }
                 return typeParameterDeclaration.name.text;
             } break;
             case ts.SyntaxKind.Parameter: {
@@ -534,7 +540,6 @@ export class ExternGenerator {
                 return this.convertFunctionLike(syntaxNode as ts.FunctionLike, atSymbol, exportRoot);
             } break;
 
-            // case ts.SyntaxKind.IndexSignature: {} break;
             // case ts.SyntaxKind.TypePredicate: {} break;
             case ts.SyntaxKind.TypeReference: {
                 let typeReferenceNode = syntaxNode as ts.TypeReferenceNode;
@@ -563,8 +568,39 @@ export class ExternGenerator {
             } break;
             case ts.SyntaxKind.TypeLiteral: {
                 let typeLiteralNode = syntaxNode as ts.TypeLiteralNode;
-                let convertedMembers = typeLiteralNode.members.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
-                return `{${convertedMembers.join(', ')}}`;
+                // check for index signatures
+                // index signature keys can be either: number, string or symbol
+                let indexSignatures = typeLiteralNode.members.filter(m => m.kind === ts.SyntaxKind.IndexSignature) as Array<ts.IndexSignatureDeclaration>;
+                let fields = typeLiteralNode.members.filter(m => m.kind !== ts.SyntaxKind.IndexSignature);
+
+                if (indexSignatures.length > 0) {
+                    // @! we need to generate an abstract to properly handle index signatures
+
+                    // however we can handle a couple of basic cases when there are no other fields defined
+                    if (typeLiteralNode.members.length - indexSignatures.length === 0) {
+                        let indexSignatureKeyKinds = [...new Set(indexSignatures.map(is => is.parameters[0].type!.kind))];
+                        let indexSignatureTypeString = this.convertSyntaxType(indexSignatures[0].type!, atSymbol, exportRoot);
+
+                        // { [key: string]: T } -> DynamicAccess<T>
+                        if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.StringKeyword)) {
+                            return `haxe.DynamicAccess<${indexSignatureTypeString}>`;
+                        }
+                        // { [key: number]: T } -> Array<T>
+                        if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.NumberKeyword)) {
+                            let isReadonly = false;
+                            if (indexSignatures[0].modifiers != null) {
+                                isReadonly = indexSignatures[0].modifiers.find(m => m.kind === ts.SyntaxKind.ReadonlyKeyword) != null;
+                            }
+                            return `${isReadonly ? 'haxe.ds.ReadOnlyArray' : 'Array'}<${indexSignatureTypeString}>`;
+                        }
+                    } else {
+                        // in this case we have an index signature AND fields, for this we need abstracts
+                        // for now we'll ignore the signature
+                    }
+                }
+
+                let convertedFields = fields.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
+                return `{${convertedFields.join(', ')}}`;
             } break;
             case ts.SyntaxKind.ArrayType: {
                 let arrayTypeNode = syntaxNode as ts.ArrayTypeNode;
@@ -618,11 +654,12 @@ export class ExternGenerator {
             case ts.SyntaxKind.FirstNode: {
                 // seems to be for type hints, comes up in the form type X = Enum.A
                 // we can't use Enum.A so we return just the Enum type (.left) 
+                // @! it would be great to convert this to an abstract as it's used for enum subsets; very useful to have
                 return this.convertSyntaxType((syntaxNode as any).left, atSymbol, exportRoot);
             } break;
 
             case ts.SyntaxKind.FirstTypeNode: {
-                // function (a): a is X
+                // function (a): a is X -> function(a) : Bool
                 return this.convertSyntaxType(this.typeChecker.typeToTypeNode(this.typeChecker.getBooleanType())!, atSymbol, exportRoot);
             } break;
 
