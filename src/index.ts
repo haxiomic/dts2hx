@@ -5,8 +5,6 @@ import Terminal from './Terminal';
 import { ExternGenerator } from './ExternGenerator';
 import { SymbolWalk } from './SymbolWalk';
 
-let outputDirectory = 'output';
-
 // sometimes a module does not have any global exports, in which case it can only be accessed via import ... '$module-name'
 // setting this to true will generated externs that use @:jsRequire()
 // these are symbols that are exported from a sourceFile
@@ -46,7 +44,7 @@ Bugs:
 
 try {
 
-generateHaxeExterns('test-definitions/unit', {});
+generateHaxeExterns('test/unit', {}, 'test/generated-externs');
 // generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/typescript', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
@@ -75,7 +73,7 @@ generateHaxeExterns('test-definitions/unit', {});
     process.exit(1);
 }
 
-function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions) {
+function generateHaxeExterns(definitionsPath: string, options: ts.CompilerOptions, outputDirectory: string = 'output') {
     // determine root definition file(s) from definitionsPath, favoring index.d.ts if one exists
     let definitionRoots: Array<string> | null = null;
     let definitionName: string | null = null;
