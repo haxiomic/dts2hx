@@ -364,7 +364,7 @@ export class ExternGenerator {
                     let typeNode = (symbol.valueDeclaration as ts.HasType).type;
                     if (typeNode == null) {
                         let resolvedType = this.typeChecker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
-                        if (resolvedType.flags & ts.TypeFlags.Literal) {
+                        if (resolvedType.flags & ts.TypeFlags.Literal) { // we don't use isLiteral because that ignores boolean
                             // the symbol has a literal expression that gives the type (i.e variable = false)
                             typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
                         } else {
@@ -594,8 +594,9 @@ export class ExternGenerator {
                             return `${isReadonly ? 'haxe.ds.ReadOnlyArray' : 'Array'}<${indexSignatureTypeString}>`;
                         }
                     } else {
-                        // in this case we have an index signature AND fields, for this we need abstracts
+                        // in this case we have an index signature AND fields, for this we need to generate an abstract (with @:op([]) and @:op(a.b) overloads)
                         // for now we'll ignore the signature
+                        this.logWarning(`Type has index signature and fields, this is unsupported at the moment; ignoring index signature`, this.location(typeLiteralNode.symbol || atSymbol));
                     }
                 }
 
@@ -609,8 +610,17 @@ export class ExternGenerator {
 
             case ts.SyntaxKind.LiteralType: {
                 let literalTypeNode = syntaxNode as ts.LiteralTypeNode;
-                // unpack literal expression node and convert that instead
-                return this.convertSyntaxType(literalTypeNode.literal, atSymbol, exportRoot);
+                let resolvedType = this.typeChecker.getTypeAtLocation(literalTypeNode);
+
+                // if it's a number literal we can distinguish between Int and Float
+                if (resolvedType.isNumberLiteral()) {
+                    let isInt = Math.floor(resolvedType.value) === resolvedType.value;
+                    return isInt ? 'Int' : 'Float';
+                }
+
+                let resolvedBaseTypeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType))!;
+
+                return this.convertSyntaxType(resolvedBaseTypeNode, atSymbol, exportRoot);
             } break;
 
             case ts.SyntaxKind.UnionType: {
