@@ -41,9 +41,12 @@ declare namespace Types {
     const numberObjectPrimitive: Number;
     const symbolPrimitive: symbol;
     const any: any;
+    const typeInParentheses: ( number );
+    const unionInParentheses: ( number | string );
 
     // literals
     const intLiteral: 1;
+    const intLiteralAlt: -1; // in the AST the type is wrapped in a PrefixUnaryExpression
     const floatLiteral: 1.1;
     const booleanLiteral: false;
     const stringLiteral: 'example';
@@ -66,15 +69,52 @@ declare namespace Types {
         methodSignatureOptional?(): string,
         readonly readonlyField: string,
     };
-    const stringMap: {
-        [key: string]: number,
-        field: number,
-    };
     const arrayString: Array<string>;
     const arrayStringAlt: string[];
     const stringObj: String;
     const arrayNumberStringUnion: Array<number | string>;
     const tupleNumberString: [number, string];
+    // Index Signatures
+    // - see https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html
+    /**
+     * @expect haxe.DynamicAccess<Float>
+     */
+    const stringNumberMap: {
+        [key: string]: number
+    };
+    const readonlyStringNumberMap: {
+        readonly [key: string]: number
+    };
+    // can be supported by generating an abstract and overloading @:op([]) and @:op(a.b)
+    const stringNumberMapWithField: {
+        [key: string]: number
+        field: number,
+    };
+    /**
+     * @expect Array<String>
+     */
+    const numberStringMap: {
+        [key: number]: string
+    };
+    /**
+     * @expect ReadonlyArray<String>
+     */
+    const readonlyNumberStringMap: {
+        readonly [key: number]: string
+    };
+    const numberStringMapWithField: {
+        [key: number]: string
+        field: string,
+    };
+    const stringAndNumberMapWithField: {
+        [key: string]: string; 
+        [index: number]: string;
+        length: string;
+    };
+    // limit allowed fields
+    type Index = 'a' | 'b' | 'c'
+    type FromIndex = { [k in Index]?: number }
+    type FromSomeIndex<K extends string> = { [key in K]: number }
 
     // Functions
     const arrowNumberStringVoid: (a: number, noType) => void;
