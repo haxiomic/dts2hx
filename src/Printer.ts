@@ -1,4 +1,4 @@
-import { TypeDefinition, MetadataEntry, TDClass, TypePath, TypeParam, TPExpr, TPType, TDAbstract, TDAlias, TDEnum, TypeParamDecl, Field, Access, FieldType, FVar, FProp, FFun } from './Expr';
+import { TypeDefinition, MetadataEntry, TDClass, TypePath, TypeParam, TPExpr, TPType, TDAbstract, TDAlias, TDEnum, TypeParamDecl, Field, Access, FieldType, FVar, FProp, FFun, HxFunction } from './Expr';
 
 /**
  * Temporary haxe syntax printer to help bootstrap the project (this code will be thrown away when translating to haxe)
@@ -173,7 +173,7 @@ ${typeFooter}
                 }
                 case 'FFun': {
                     let fFun = field.kind as FFun;
-                    str += `${this.printTypeParamsDecl(fFun.f.params)}(${fFun.f.args.join(', ')}): ${fFun.f.ret != null ? fFun.f.ret : 'Any'};`;
+                    str += `${this.printFunctionDeclaration(fFun.f)};`;
                     break;
                 }
             }
@@ -183,6 +183,10 @@ ${typeFooter}
         str = '\t' + str.split('\n').join('\n\t');
 
         return str;
+    }
+
+    public printFunctionDeclaration(f: HxFunction) {
+        return `${this.printTypeParamsDecl(f.params)}(${f.args.join(', ')}): ${f.ret != null ? f.ret : 'Any'}`;
     }
 
     public printAccess = (access?: Access) => {
