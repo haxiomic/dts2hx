@@ -4,13 +4,11 @@
  * The 3 kinds of declarations possible, all using the same name 
  */
 
-declare namespace Declaration {
-    const Declaration: string;    // Value named X
+declare const Declaration: string;    // Value named X
 
-    type Declaration = number;  // Type named X
+declare type Declaration = number;  // Type named X
 
-    namespace Declaration {     // Namespace named X  
-        type Y = string;  
-    }
+declare namespace Declaration {     // Namespace named X  
+    type Y = string;  
 }
 
