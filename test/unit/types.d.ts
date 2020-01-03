@@ -65,10 +65,12 @@ declare namespace Types {
         ['computedFieldName']: string,
         sub: {a: number, b: number},
         methodSignature<T>(a: T): void,
+        methodSignature(a: number): void, // overload
         methodProperty: <T>(a: T) => void,
         methodSignatureOptional?(): string,
         readonly readonlyField: string,
     };
+    const objectSingleField: { a };
     const arrayString: Array<string>;
     const arrayStringAlt: string[];
     const stringObj: String;
@@ -137,7 +139,13 @@ declare namespace Types {
     const undefineableNullableNumber: undefined | null | number;
 
     // Intersection Types
+    const intersectionWithSubIntersection: { x: {a: number} } & { x: {b: string} };
+    const intersectionXY: { x: number } & { y: number };
+    const intersectionRedefinitionSame: { x: number } & { x: number };
+    const intersectionInvalidRedefinition: { x: number } & { x: string };
     const extendedObject: typeof object & {extendedField: number};
+    const intersectionWithAny: { x: number } & any;
+    const intersectionWithArray: { x: number } & Array<number>;
 
     // Type Query
     const typeQueryImplicitStr: typeof implicitStr;

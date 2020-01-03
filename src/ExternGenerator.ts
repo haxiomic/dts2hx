@@ -3,7 +3,7 @@ import * as path from 'path';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
-import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata } from './Expr';
+import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata, Field } from './Expr';
 import { Printer } from './Printer';
 
 // @! this needs to be replaced with haxe ast structure
@@ -191,7 +191,6 @@ export class ExternGenerator {
                         );
                     }
 
-                    // @! debugging pixi.js  file overwrite
                     this.logVerbose(`Creating module class`, moduleClassTypeName, moduleClassHaxePath, Debug.getSymbolPrintableLocation(symbol));
 
                     // generate a module class 
@@ -292,120 +291,7 @@ export class ExternGenerator {
     }
 
     protected addFieldToHaxeType(parent: HaxeType, symbol: ts.Symbol, exportRoot: ts.Symbol | null) {
-        let safeIdent = this.toSafeIdent(symbol.name);
-
-        let pos = Debug.getSymbolPosition(symbol);
-        let isStatic = !!(symbol.flags & ts.SymbolFlags.ModuleMember);
-        let nameChanged = safeIdent !== symbol.name;
-
-        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
-
-        let haxeFieldKind: FieldType | null = null;
-        let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
-        let accessModifiers: Array<Access> = isStatic ? [Access.AStatic] : [];
-
-        this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
-
-        if (symbol.valueDeclaration != null) {
-            // syntax-level type information (i.e :Type)
-            switch (symbol.valueDeclaration.kind) {
-                case ts.SyntaxKind.MethodDeclaration:
-                case ts.SyntaxKind.FunctionDeclaration:
-                case ts.SyntaxKind.MethodSignature: {
-
-                    // functions can have multiple declarations (overloads)
-                    // we assume all declarations have the same kind as the valueDeclaration
-                    let allFunctionDeclarations = symbol.declarations.filter(d => d.kind & symbol.valueDeclaration.kind) as Array<ts.FunctionLikeDeclaration>;
-                    
-                    for (let i = 0; i < allFunctionDeclarations.length; i++) {
-                        let functionLikeDeclaration = allFunctionDeclarations[i];
-                        let isBaseDeclaration = i === 0; // pick the first as the base declaration
-
-                        let parameterStrings = functionLikeDeclaration.parameters.map(p => this.convertSyntaxType(p, symbol, exportRoot));
-                        let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (functionLikeDeclaration.typeParameters || []);
-                        let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, symbol, exportRoot));
-                        let typeParameterHaxeDecls: Array<TypeParamDecl> = typeParameterStrings.map(name => { return {name: name} });
-
-                        // warn for unhandled function parts
-                        if (functionLikeDeclaration.asteriskToken != null) {
-                            this.logWarning(`Unhandled asteriskToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
-                        }
-                        if (functionLikeDeclaration.exclamationToken != null) {
-                            this.logWarning(`Unhandled exclamationToken on function ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
-                        }
-                        if (functionLikeDeclaration.questionToken != null) {
-                            metas.push({name: ':optional', params: [], pos: pos});
-                        }
-
-                        let haxeFunctionDeclaration: HxFunction = {
-                            args: parameterStrings,
-                            params: typeParameterHaxeDecls,
-                            expr: null,
-                            ret: this.convertSyntaxType(functionLikeDeclaration.type || this.getAnyTypeNode(), symbol, exportRoot),
-                        }
-
-                        if (isBaseDeclaration) {
-                            haxeFieldKind = new FFun(haxeFunctionDeclaration);
-                        } else {
-                            let printer = new Printer();
-                            // add @:overload meta for other declarations
-                            metas.push({
-                                name: ':overload',
-                                params: [`function${printer.printFunctionDeclaration(haxeFunctionDeclaration)} { }`],
-                                pos: pos,
-                            });
-                        }
-
-                    }
-                } break;
-                case ts.SyntaxKind.VariableDeclaration: 
-                case ts.SyntaxKind.PropertySignature:
-                case ts.SyntaxKind.PropertyDeclaration: {
-                    let typeNode = (symbol.valueDeclaration as ts.HasType).type;
-                    if (typeNode == null) {
-                        let resolvedType = this.typeChecker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
-                        if (resolvedType.flags & ts.TypeFlags.Literal) { // we don't use isLiteral because that ignores boolean
-                            // the symbol has a literal expression that gives the type (i.e variable = false)
-                            typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
-                        } else {
-                            typeNode = this.typeChecker.typeToTypeNode(resolvedType);
-                        }
-                        if (typeNode == null) {
-                            this.logError(`Failed to get a type for <b>${symbol.name}</b>`, this.location(symbol));
-                            typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getAnyType())!;
-                        }
-                    }
-                    let convertedTypeString = this.convertSyntaxType(typeNode, symbol, exportRoot);
-                    haxeFieldKind = new FVar(convertedTypeString);
-                } break;
-                case ts.SyntaxKind.EnumMember: {
-                    // leave type empty for enums
-                    haxeFieldKind = new FVar(null);
-                } break;
-                default: {
-                    this.logError(`Unhandled valueDeclaration kind <b>${ts.SyntaxKind[symbol.valueDeclaration.kind]}</b>`, this.location(symbol));
-                } break;
-            }
-
-            if (symbol.valueDeclaration.modifiers != null) {
-                accessModifiers = accessModifiers.concat(this.convertModifiers(symbol.valueDeclaration.modifiers));
-            }
-        } else {
-            this.logError(`symbol.valueDeclaration is null for <b>${symbol.name}</b> – <i>${Debug.getActiveSymbolFlags(symbol.flags)}</>`, this.location(symbol));
-        }
-
-        if (haxeFieldKind == null) {
-            throw `Failed to assign haxeFieldKind for ${symbol.name} - ${this.location(symbol)}`;
-        }
-
-        parent.haxeSyntaxObject.fields.push({
-            access: accessModifiers,
-            name: safeIdent,
-            doc: docs.join('\n'),
-            kind: haxeFieldKind,
-            pos: pos,
-            meta: metas
-        });
+        parent.haxeSyntaxObject.fields.push(this.convertField(symbol, exportRoot));
     }
 
     /**
@@ -459,7 +345,6 @@ export class ExternGenerator {
                         parameterIdent = this.toSafeIdent(parameterNode.name.text);
                     } break;
                     default: {
-                        debugger;
                         this.logError(`Unhandled parameter name kind ${ts.SyntaxKind[parameterNode.name.kind]}`, this.location(atSymbol));
                         parameterIdent = `<UNHANDLED ${ts.SyntaxKind[parameterNode.name.kind]}>`;
                     } break;
@@ -481,63 +366,11 @@ export class ExternGenerator {
             
             case ts.SyntaxKind.MethodSignature:
             case ts.SyntaxKind.PropertySignature: {
-                // @! this is has overlap with addFieldToType
                 let signatureNode = syntaxNode as (ts.HasType & ts.TypeElement);
-                let isOptional = signatureNode.questionToken != null;
-
-                let originalName = this.getTSPropertyNameString(signatureNode.name!, atSymbol, exportRoot);
-                let haxeSafeName = this.toSafeIdent(originalName);
-                let nameChanged = haxeSafeName !== originalName;
-
-                let typeNode: ts.TypeNode | undefined;
-
-                if (signatureNode.type != null) {
-                    typeNode = signatureNode.type;
-                } else {
-                    typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getTypeAtLocation(signatureNode));
-                }
-
-                let typeString: string = 'Any';
-                if (ts.isMethodSignature(signatureNode)) {
-                    typeString = this.convertFunctionLike(signatureNode, atSymbol, exportRoot);
-                } else if (ts.isPropertySignature(signatureNode)) {
-                    if (typeNode != null) {
-                        typeString = this.convertSyntaxType(typeNode, atSymbol, exportRoot);
-                    } else {
-                        typeString = 'Any';
-                        this.logError(`Failed to get type for property <b>${originalName}</b>`, this.location(atSymbol));
-                    }
-                } else {
-                    this.logError(`Signature was not method or property <b>${originalName}</b>`, this.location(atSymbol));
-                }
-
-                let accessModifiers = new Array<Access>();
-
-                if (signatureNode.modifiers != null) {
-                    accessModifiers = accessModifiers.concat(this.convertModifiers(signatureNode.modifiers));
-                }
-
-                let pos = Debug.getSymbolPosition(signatureNode.symbol || atSymbol);
-                let docs = signatureNode.symbol != null ? signatureNode.symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim()) : null;
-                let meta: Metadata = [];
-
-                if (nameChanged) {
-                    meta.push({name: ':native', params: [`'${originalName}'`], pos: pos});
-                }
-
-                if (isOptional) {
-                    meta.push({name: ':optional', params: [], pos: pos});
-                }
-
+                let symbol = signatureNode.symbol || this.typeChecker.getSymbolAtLocation(signatureNode);
+                let field = this.convertDeclaration(signatureNode, symbol || atSymbol, exportRoot);
                 let printer = new Printer();
-                return printer.printField({
-                    kind: new FVar(typeString),
-                    name: haxeSafeName,
-                    access: accessModifiers,
-                    doc: docs ? docs.join('\n') : null,
-                    meta: meta,
-                    pos: pos,
-                }, ' ');
+                return printer.printField(field, ' ');
             }
 
             case ts.SyntaxKind.CallSignature:
@@ -577,40 +410,7 @@ export class ExternGenerator {
 
             case ts.SyntaxKind.TypeLiteral: {
                 let typeLiteralNode = syntaxNode as ts.TypeLiteralNode;
-                // check for index signatures
-                // index signature keys can be either: number, string or symbol
-                let indexSignatures = typeLiteralNode.members.filter(m => m.kind === ts.SyntaxKind.IndexSignature) as Array<ts.IndexSignatureDeclaration>;
-                let fields = typeLiteralNode.members.filter(m => m.kind !== ts.SyntaxKind.IndexSignature);
-
-                if (indexSignatures.length > 0) {
-                    // @! we need to generate an abstract to properly handle index signatures
-
-                    // however we can handle a couple of basic cases when there are no other fields defined
-                    if (typeLiteralNode.members.length - indexSignatures.length === 0) {
-                        let indexSignatureKeyKinds = [...new Set(indexSignatures.map(is => is.parameters[0].type!.kind))];
-                        let indexSignatureTypeString = this.convertSyntaxType(indexSignatures[0].type!, atSymbol, exportRoot);
-
-                        // { [key: string]: T } -> DynamicAccess<T>
-                        if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.StringKeyword)) {
-                            return `haxe.DynamicAccess<${indexSignatureTypeString}>`;
-                        }
-                        // { [key: number]: T } -> Array<T>
-                        if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.NumberKeyword)) {
-                            let isReadonly = false;
-                            if (indexSignatures[0].modifiers != null) {
-                                isReadonly = indexSignatures[0].modifiers.find(m => m.kind === ts.SyntaxKind.ReadonlyKeyword) != null;
-                            }
-                            return `${isReadonly ? 'haxe.ds.ReadOnlyArray' : 'Array'}<${indexSignatureTypeString}>`;
-                        }
-                    } else {
-                        // in this case we have an index signature AND fields, for this we need to generate an abstract (with @:op([]) and @:op(a.b) overloads)
-                        // for now we'll ignore the signature
-                        this.logWarning(`Type has index signature and fields, this is unsupported at the moment; ignoring index signature`, this.location(typeLiteralNode.symbol || atSymbol));
-                    }
-                }
-
-                let convertedFields = fields.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
-                return `{${convertedFields.join(' ')}}`;
+                return this.convertTypeLiteralMembers(typeLiteralNode.members, typeLiteralNode.symbol || atSymbol, exportRoot);
             } break;
 
             case ts.SyntaxKind.ArrayType: {
@@ -656,6 +456,23 @@ export class ExternGenerator {
                     + `${lastTypeString}${closingAngles}`
                     + (hasNullOrUndefined ? '>' : '')
                 ;
+            } break;
+
+            case ts.SyntaxKind.IntersectionType: {
+                // haxe only allows intersections between structures whereas typescript allows intersection between anything
+                // furthermore, haxe intersection does not allow field redefinition
+                // converting this fully requires analyzing fields and creating unions
+                let intersectionTypeNode = syntaxNode as ts.IntersectionTypeNode;
+                let intersectionType = this.typeChecker.getTypeAtLocation(intersectionTypeNode);
+                let propertySymbols = this.typeChecker.getPropertiesOfType(intersectionType);
+
+                let typeElements = new Array<ts.TypeElement>();
+                for (let s of propertySymbols) {
+                    let a = s.declarations.filter(d => ts.isTypeElement(d));
+                    typeElements.push(...a as any);
+                }
+
+                return this.convertTypeLiteralMembers(typeElements, intersectionTypeNode.symbol || atSymbol, exportRoot);
             } break;
 
             case ts.SyntaxKind.TupleType: {
@@ -734,6 +551,202 @@ export class ExternGenerator {
             }
         }
         return accessModifiers;
+    }
+
+    protected convertTypeLiteralMembers(members: ReadonlyArray<ts.TypeElement>, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null) {
+        // check for index signatures
+        // index signature keys can be either: number, string or symbol
+        let indexSignatures = members.filter(m => m.kind === ts.SyntaxKind.IndexSignature) as Array<ts.IndexSignatureDeclaration>;
+        let fields = members.filter(m => m.kind !== ts.SyntaxKind.IndexSignature);
+
+        if (indexSignatures.length > 0) {
+            // @! we need to generate an abstract to properly handle index signatures
+
+            // however we can handle a couple of basic cases when there are no other fields defined
+            if (fields.length === 0) {
+                let indexSignatureKeyKinds = [...new Set(indexSignatures.map(is => is.parameters[0].type!.kind))];
+                let indexSignatureTypeString = this.convertSyntaxType(indexSignatures[0].type!, atSymbol, exportRoot);
+
+                // { [key: string]: T } -> DynamicAccess<T>
+                if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.StringKeyword)) {
+                    return `haxe.DynamicAccess<${indexSignatureTypeString}>`;
+                }
+                // { [key: number]: T } -> Array<T>
+                if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.NumberKeyword)) {
+                    let isReadonly = false;
+                    if (indexSignatures[0].modifiers != null) {
+                        isReadonly = indexSignatures[0].modifiers.find(m => m.kind === ts.SyntaxKind.ReadonlyKeyword) != null;
+                    }
+                    return `${isReadonly ? 'haxe.ds.ReadOnlyArray' : 'Array'}<${indexSignatureTypeString}>`;
+                }
+            } else {
+                // in this case we have an index signature AND fields, for this we need to generate an abstract (with @:op([]) and @:op(a.b) overloads)
+                // for now we'll ignore the signature
+                this.logWarning(`Type has index signature <i>and</> fields, this is unsupported at the moment; ignoring index signature`, this.location(atSymbol));
+            }
+        }
+
+        let convertedFields = fields.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
+        return `{${convertedFields.join(' ')}}`;
+    }
+
+    protected convertField(symbol: ts.Symbol, exportRoot: ts.Symbol | null): Field {
+        let safeIdent = this.toSafeIdent(symbol.name);
+
+        let pos = Debug.getSymbolPosition(symbol);
+        let isStatic = !!(symbol.flags & ts.SymbolFlags.ModuleMember);
+        let nameChanged = safeIdent !== symbol.name;
+
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
+
+        let haxeFieldKind: FieldType | null = null;
+        let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
+        let accessModifiers: Array<Access> = isStatic ? [Access.AStatic] : [];
+
+        this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+
+        if (symbol.valueDeclaration != null) {
+            return this.convertDeclaration(symbol.valueDeclaration, symbol, exportRoot);
+        } else {
+            this.logError(`symbol.valueDeclaration is null for <b>${symbol.name}</b> – <i>${Debug.getActiveSymbolFlags(symbol.flags)}</>`, this.location(symbol));
+        }
+
+        if (haxeFieldKind == null) {
+            throw `Failed to assign haxeFieldKind for ${symbol.name} - ${this.location(symbol)}`;
+        }
+
+        return {
+            access: accessModifiers,
+            name: safeIdent,
+            doc: docs.join('\n'),
+            kind: haxeFieldKind,
+            pos: pos,
+            meta: metas
+        };
+    }
+
+    protected convertDeclaration(declaration: ts.NamedDeclaration, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null) {
+        let originalName = this.getTSPropertyNameString(declaration.name as ts.PropertyName, atSymbol, exportRoot);
+        let haxeSafeName = this.toSafeIdent(originalName);
+        let nameChanged = haxeSafeName !== originalName;
+
+        let pos = Debug.getSymbolPosition(declaration.symbol || atSymbol);
+        let isStatic = false;
+        if (declaration.symbol != null && declaration.symbol.flags & ts.SymbolFlags.ModuleMember) {
+            isStatic = true;
+        }
+
+        let docs: Array<string> = [];
+        if (declaration.symbol != null) {
+            docs = declaration.symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
+        }
+
+        let haxeFieldKind: FieldType | null = null;
+        let metas = nameChanged ? [{name: ':native', params: [`'${originalName}'`], pos: pos}] : [];
+        let accessModifiers: Array<Access> = isStatic ? [Access.AStatic] : [];
+
+        // syntax-level type information (i.e :Type)
+        switch (declaration.kind) {
+            case ts.SyntaxKind.MethodDeclaration:
+            case ts.SyntaxKind.FunctionDeclaration:
+            case ts.SyntaxKind.MethodSignature: {
+                // functions can have multiple declarations (overloads)
+                // we assume all declarations have the same kind as the valueDeclaration
+                let allFunctionDeclarations: Array<ts.FunctionLikeDeclaration> =
+                    (declaration.symbol != null ?
+                        declaration.symbol.declarations.filter(d => d.kind & declaration.kind) as Array<ts.FunctionLikeDeclaration>
+                        : [declaration]) as any;
+
+                for (let i = 0; i < allFunctionDeclarations.length; i++) {
+                    let functionLikeDeclaration = allFunctionDeclarations[i];
+                    let isBaseDeclaration = i === 0; // pick the first as the base declaration
+
+                    let parameterStrings = functionLikeDeclaration.parameters.map(p => this.convertSyntaxType(p, declaration.symbol || atSymbol, exportRoot));
+                    let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (functionLikeDeclaration.typeParameters || []);
+                    let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, declaration.symbol || atSymbol, exportRoot));
+                    let typeParameterHaxeDecls: Array<TypeParamDecl> = typeParameterStrings.map(name => { return {name: name} });
+
+                    // warn for unhandled function parts
+                    if (functionLikeDeclaration.asteriskToken != null) {
+                        this.logWarning(`Unhandled asteriskToken on function ${Debug.symbolInfoFormatted(this.typeChecker, declaration.symbol || atSymbol, exportRoot)}`);
+                    }
+                    if (functionLikeDeclaration.exclamationToken != null) {
+                        this.logWarning(`Unhandled exclamationToken on function ${Debug.symbolInfoFormatted(this.typeChecker, declaration.symbol || atSymbol, exportRoot)}`);
+                    }
+                    if (functionLikeDeclaration.questionToken != null) {
+                        metas.push({name: ':optional', params: [], pos: pos});
+                    }
+
+                    let haxeFunctionDeclaration: HxFunction = {
+                        args: parameterStrings,
+                        params: typeParameterHaxeDecls,
+                        expr: null,
+                        ret: this.convertSyntaxType(functionLikeDeclaration.type || this.getAnyTypeNode(), declaration.symbol || atSymbol, exportRoot),
+                    }
+
+                    if (isBaseDeclaration) {
+                        haxeFieldKind = new FFun(haxeFunctionDeclaration);
+                    } else {
+                        let printer = new Printer();
+                        // add @:overload meta for other declarations
+                        metas.push({
+                            name: ':overload',
+                            params: [`function${printer.printFunctionDeclaration(haxeFunctionDeclaration)} { }`],
+                            pos: pos,
+                        });
+                    }
+
+                }
+            } break;
+            case ts.SyntaxKind.VariableDeclaration: 
+            case ts.SyntaxKind.PropertySignature:
+            case ts.SyntaxKind.PropertyDeclaration: {
+                // @! sometimes we have multiple property declarations, these should be merged (see unit/types.intersectionWithSubIntersection)
+                let typeNode = (declaration as ts.HasType).type;
+                if (typeNode == null) {
+                    let resolvedType = this.typeChecker.getTypeOfSymbolAtLocation(declaration.symbol || atSymbol, declaration);
+                    if (resolvedType.flags & ts.TypeFlags.Literal) { // we don't use isLiteral because that ignores boolean
+                        // the symbol has a literal expression that gives the type (i.e variable = false)
+                        typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
+                    } else {
+                        typeNode = this.typeChecker.typeToTypeNode(resolvedType);
+                    }
+                    if (typeNode == null) {
+                        this.logError(`Failed to get a type for <b>${(declaration.symbol || atSymbol).name}</b>`, this.location(declaration.symbol || atSymbol));
+                        typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getAnyType())!;
+                    }
+                }
+                if ((declaration as any).questionToken != null) {
+                    metas.push({name: ':optional', params: [], pos: pos});
+                }
+                let convertedTypeString = this.convertSyntaxType(typeNode, declaration.symbol || atSymbol, exportRoot);
+                haxeFieldKind = new FVar(convertedTypeString);
+            } break;
+            case ts.SyntaxKind.EnumMember: {
+                // leave type empty for enums
+                haxeFieldKind = new FVar(null);
+            } break;
+            default: {
+                this.logError(`Unhandled valueDeclaration kind <b>${ts.SyntaxKind[declaration.kind]}</b>`, this.location(declaration.symbol || atSymbol));
+            } break;
+        }
+
+        if (declaration.modifiers != null) {
+            accessModifiers = accessModifiers.concat(this.convertModifiers(declaration.modifiers));
+        }
+
+        if (haxeFieldKind == null) {
+            throw `Failed to assign haxeFieldKind for ${(declaration.symbol || atSymbol).name} - ${this.location(declaration.symbol || atSymbol)}`;
+        }
+
+        return {
+            access: accessModifiers,
+            name: haxeSafeName,
+            doc: docs.join('\n'),
+            kind: haxeFieldKind,
+            pos: pos,
+            meta: metas
+        };
     }
 
     protected getTSPropertyNameString(propertyNameNode: ts.PropertyName, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
@@ -1076,6 +1089,9 @@ export class ExternGenerator {
                     case 'Promise': return ['js.lib.Promise'];
                     case 'Date': return ['js.lib.Date'];
                     case 'Number': return ['js.lib.Number']; // PR open, not merged yet
+                    case 'RegExp': return ['js.lib.RegExp'];
+                    case 'Intl': return ['js.lib.Intl'];
+                    case 'Object': return ['js.lib.Object'];
                     // @! should search js.lib to find a matching built-in
                     default: {
                         this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
