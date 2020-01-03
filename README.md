@@ -33,7 +33,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] This type
         - [x] Overloads
         - [x] Wrapped types
-    - [ ] Classes aand interfaces **← currently working on this**
+    - [ ] Classes and interfaces **← currently working on this**
         - [ ] Constructors
         - [ ] Implements, extends etc
         - [ ] Index signatures
