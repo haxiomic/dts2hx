@@ -29,12 +29,13 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Type parameters
         - [ ] Index types
         - [ ] Intersection types
-        - [ ] Tuple types
-        - [ ] This type
+        - [x] Tuple types
+        - [x] This type
     - [ ] Classes
         - [ ] Constructors
         - [ ] Implements, extends etc
     - [x] Typedef
+    - [ ] Print type source location in documentation
 - [ ] Rewrite in haxe using generated TypeScript compiler externs
 - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
     - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
@@ -45,7 +46,8 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
     - [ ] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] First pass of compatibility layer for incompatible types
-    - [ ] Generate `abstract`s to support unnamed enums and improve type unions
+    - [ ] Generate abstracts to support unnamed enums and improve type unions
+    - [ ] Abstracts to implement Tuples
     - [ ] *flesh out this roadmap*
 - [ ] Command-line interface improvements
     - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
