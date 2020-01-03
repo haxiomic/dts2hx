@@ -300,7 +300,6 @@ export class ExternGenerator {
 
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
 
-        docs.push('symbol.flags: ' + Debug.getActiveSymbolFlags(symbol.flags, true).join(', '));
 
         let haxeFieldKind: FieldType | null = null;
         let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
@@ -309,8 +308,6 @@ export class ExternGenerator {
 
         if (symbol.valueDeclaration != null) {
             // syntax-level type information (i.e :Type)
-            docs.push('symbol.valueDeclaration.getText(): `' + symbol.valueDeclaration.getText() + '`');
-            docs.push('symbol.valueDeclaration.kind: ' + ts.SyntaxKind[symbol.valueDeclaration.kind]);
             switch (symbol.valueDeclaration.kind) {
                 case ts.SyntaxKind.MethodDeclaration:
                 case ts.SyntaxKind.FunctionDeclaration:
@@ -369,7 +366,6 @@ export class ExternGenerator {
                 } break;
             }
         } else {
-            docs.push('symbol.valueDeclaration: null');
             this.logError(`symbol.valueDeclaration is null for <b>${symbol.name}</b> – <i>${Debug.getActiveSymbolFlags(symbol.flags)}</>`, this.location(symbol));
         }
 
