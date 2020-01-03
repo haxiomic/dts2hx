@@ -1095,7 +1095,7 @@ export class ExternGenerator {
                     // @! should search js.lib to find a matching built-in
                     default: {
                         this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
-                        return ['Any'];
+                        return ['js.lib.' + symbol.escapedName]; // best guess for now
                     }
                 }
             }
