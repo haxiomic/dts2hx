@@ -27,28 +27,33 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Unions with EitherType
         - [x] Function types
         - [x] Type parameters
-        - [ ] Index types
+        - [x] Index signatures
         - [ ] Intersection types
         - [x] Tuple types
         - [x] This type
+        - [x] Overloads
+        - [ ] Wrapped types
     - [ ] Classes
         - [ ] Constructors
         - [ ] Implements, extends etc
     - [x] Typedef
     - [ ] Print type source location in documentation
 - [ ] Rewrite in haxe using generated TypeScript compiler externs
-- [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
-    - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
-    - babylon.js and many other project use both, do we merge or just parse as-is?
-- [ ] Complete translation of trivially haxe compatible types (and `:Any` for others)
+    - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
+        - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
+        - babylon.js and many other project use both, do we merge or just parse as-is?
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Command-line interface
     - [ ] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*
-- [ ] First pass of compatibility layer for incompatible types
-    - [ ] Generate abstracts to support unnamed enums and improve type unions
-    - [ ] Abstracts to implement Tuples
-    - [ ] *flesh out this roadmap*
+- [ ] Advanced type conversions
+    - [ ] Abstracts to support unnamed enums and improve type unions
+    - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
+    - [ ] Maybe function argument unions could be improved by overloads?
+    - [ ] Abstracts to implement Tuples (named fields for array indexes)
+    - [ ] Generate externs built-in types that aren't in the haxe standard library yet
+    - [ ] Support type-references
+    - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
 - [ ] Command-line interface improvements
     - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
     - [ ] `dts2hx install three.js` works
