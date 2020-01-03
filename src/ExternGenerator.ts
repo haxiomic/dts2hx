@@ -567,6 +567,19 @@ export class ExternGenerator {
                 ;
             } break;
 
+            case ts.SyntaxKind.TupleType: {
+                //@! we could use abstracts to preserve type information, but for now will just use Array<Any> for tuples
+                let tupleTypeNode = syntaxNode as ts.TupleTypeNode;
+                let elementTypeStrings = tupleTypeNode.elementTypes.map(t => this.convertSyntaxType(t, atSymbol, exportRoot));
+                // remove duplicates
+                elementTypeStrings = [...new Set(elementTypeStrings)];
+                if (elementTypeStrings.length > 1) {
+                    return `Array<Any>`;
+                } else {
+                    return `Array<${elementTypeStrings[0]}>`;
+                }
+            } break;
+
             case ts.SyntaxKind.FirstNode: {
                 // seems to be for type hints, comes up in the form type X = Enum.A
                 // we can't use Enum.A so we return just the Enum type (.left) 
