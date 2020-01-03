@@ -19,7 +19,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 # Roadmap
 - [ ] First pass conversion of TypeScript compiler externs (written in ts)
     - [x] Generate modules from symbols
-    - [ ] Basic conversion of fundamental types **← currently working on this**
+    - [x] Basic conversion of fundamental types
         - [x] Enums
         - [x] Primitives
         - [x] Type references
@@ -33,7 +33,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] This type
         - [x] Overloads
         - [x] Wrapped types
-    - [ ] Classes aand interfaces
+    - [ ] Classes aand interfaces **← currently working on this**
         - [ ] Constructors
         - [ ] Implements, extends etc
         - [ ] Index signatures
