@@ -17,7 +17,7 @@ let logVerboseSymbolWalkEnabled = false;
 let logWarnSymbolWalkEnabled = true;
 
 let logGen = true;
-let logGenVerboseEnabled = logGen && true;
+let logGenVerboseEnabled = logGen && false;
 let logGenWarningsEnabled = logGen && true;
 let logGenErrorsEnabled = logGen && true;
 
@@ -48,7 +48,6 @@ try {
 
 generateHaxeExterns('test-definitions/unit', {});
 // generateHaxeExterns('test-definitions/edge-cases', {});
-// generateHaxeExterns('test-definitions/basic-types', {});
 // generateHaxeExterns('test-definitions/typescript', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
@@ -59,10 +58,10 @@ generateHaxeExterns('test-definitions/unit', {});
 // generateHaxeExterns('node_modules/typescript/lib/typescript.d.ts', {});
 // generateHaxeExterns('node_modules/typescript/lib', {});
 // generateHaxeExterns('node_modules/typescript/lib/lib.d.ts', {});
+// generateHaxeExterns('test-definitions/node_modules/three', {});
 
 // ** to use the following, run `npm install` in test-definitions/ ** //
 
-// generateHaxeExterns('test-definitions/node_modules/three', {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'jquery'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'dat.gui'), {});
 // generateHaxeExterns(path.join('test-definitions/node_modules/@types', 'three'), {});
