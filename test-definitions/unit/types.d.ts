@@ -63,7 +63,8 @@ declare namespace Types {
         sub: {a: number, b: number},
         methodSignature<T>(a: T): void,
         methodProperty: <T>(a: T) => void,
-        methodSignatureOptional?(): string;
+        methodSignatureOptional?(): string,
+        readonly readonlyField: string,
     };
     const stringMap: {
         [key: string]: number,
@@ -74,7 +75,8 @@ declare namespace Types {
     const stringObj: String;
     const arrayNumberStringUnion: Array<number | string>;
     const tupleNumberString: [number, string];
-    // functions
+
+    // Functions
     const arrowNumberStringVoid: (a: number, noType) => void;
     const arrowNumberTVoidTypeParam: <T>(a: number, tparam: T) => void;
     const arrowParamWithRest: (a: number, b: number, ...rest: Array<number>) => void;
@@ -82,6 +84,10 @@ declare namespace Types {
     function functionImplicit(x, y);
     function functionNumberStringVoidAlt (a: number, b: string): void;
     function functionNumberTVoidTypeParamAlt<T>(a: number, tparam: T): void;
+    function overloadedFunction(a: number);
+    function overloadedFunction(a: string);
+    function overloadedFunction(a: Array<symbol>);
+    function overloadedFunction<T, U>(a: Array<symbol>, u: U): T;
 
     const constructorType: new (a: string) => void;
 
