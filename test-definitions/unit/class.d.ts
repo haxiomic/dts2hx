@@ -3,6 +3,8 @@ declare class BaseClass {
     arrayField: Array<string>;
     thisClassType: this;
 
+    readonly readonlyField: number;
+
     constructor(a: number);
     
     method(a: number, b: string);
@@ -12,4 +14,5 @@ declare class BaseClass {
 
     get property(): boolean;
     set property(value: boolean);
+
 }
