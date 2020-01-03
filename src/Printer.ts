@@ -126,8 +126,11 @@ ${typeFooter}
         if (field.meta != null && field.meta.length > 0) {
             str += field.meta.map(this.printMetadata).join('\n') + '\n';
         }
+
+        let hasFinal: boolean = false;
         if (field.access != null && field.access.length > 0) {
-            str += field.access.map(this.printAccess).join(' ') + ' '
+            hasFinal = field.access.includes(Access.AFinal);
+            str += field.access.map(this.printAccess).join(' ') + ' ';
         }
 
         let fieldKindKeyword = '';
@@ -144,7 +147,7 @@ ${typeFooter}
                 }
             }
         }
-        str += `${fieldKindKeyword} ${field.name}`;
+        str += `${hasFinal ? '' : (fieldKindKeyword + ' ')}${field.name}`;
 
         if (field.kind != null) {
             switch (field.kind.enumId) {

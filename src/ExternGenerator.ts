@@ -300,9 +300,9 @@ export class ExternGenerator {
 
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text.trim());
 
-
         let haxeFieldKind: FieldType | null = null;
         let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
+        let accessModifiers: Array<Access> = isStatic ? [Access.AStatic] : [];
 
         this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
 
@@ -386,6 +386,10 @@ export class ExternGenerator {
                     this.logError(`Unhandled valueDeclaration kind <b>${ts.SyntaxKind[symbol.valueDeclaration.kind]}</b>`, this.location(symbol));
                 } break;
             }
+
+            if (symbol.valueDeclaration.modifiers != null) {
+                accessModifiers = accessModifiers.concat(this.convertModifiers(symbol.valueDeclaration.modifiers));
+            }
         } else {
             this.logError(`symbol.valueDeclaration is null for <b>${symbol.name}</b> – <i>${Debug.getActiveSymbolFlags(symbol.flags)}</>`, this.location(symbol));
         }
@@ -395,7 +399,7 @@ export class ExternGenerator {
         }
 
         parent.haxeSyntaxObject.fields.push({
-            access: isStatic ? [Access.AStatic] : [],
+            access: accessModifiers,
             name: safeIdent,
             doc: docs.join('\n'),
             kind: haxeFieldKind,
@@ -486,10 +490,20 @@ export class ExternGenerator {
                     typeString = this.convertSyntaxType(typeNode, atSymbol, exportRoot);
                 } else {
                     typeString = 'Any';
-                    this.logError(`Failed to get type for property <b>${haxeSafeName}</b>`, this.location(atSymbol));
+                    this.logError(`Failed to get type for property <b>${originalName}</b>`, this.location(atSymbol));
                 }
 
-                return `${originalName !== haxeSafeName ? `@:native('${originalName}') ` : ''}${isOptional ? '@:optional ' : ''}${haxeSafeName}: ${typeString}`
+                let accessModifiers = new Array<Access>();
+
+                if (propertySignatureNode.modifiers != null) {
+                    accessModifiers = accessModifiers.concat(this.convertModifiers(propertySignatureNode.modifiers));
+                }
+
+                let printer = new Printer();
+
+                return `${originalName !== haxeSafeName ? `@:native('${originalName}') ` : ''}${isOptional ? '@:optional ' : ''}`
+                    + ((accessModifiers.length > 0) ? accessModifiers.map(printer.printAccess).join(' ') + ' ' : '')
+                    + `${haxeSafeName}: ${typeString}`;
             }
             // case ts.SyntaxKind.PropertyDeclaration: {} break;
             // case ts.SyntaxKind.MethodDeclaration: {} break;
@@ -643,6 +657,22 @@ export class ExternGenerator {
         let parameterStrings = functionTypeNode.parameters.map(p => this.convertSyntaxType(p, atSymbol, exportRoot));
 
         return `(${parameterStrings.join(', ')}) -> ${returnTypeString}`;
+    }
+
+    protected convertModifiers(modifiers: ts.ModifiersArray): Array<Access> {
+        let accessModifiers = new Array<Access>();
+        for (let modifier of modifiers) {
+            let modifierKinds: ts.Modifier['kind'] = modifier.kind;
+            switch (modifier.kind) {
+                case ts.SyntaxKind.ReadonlyKeyword: {
+                    accessModifiers.push(Access.AFinal);
+                } break;
+                default: {
+                    this.logWarning(`Unhandled field modifier kind <b>${ts.SyntaxKind[modifierKinds]}</b>`, this.location(modifier.symbol));
+                } break;
+            }
+        }
+        return accessModifiers;
     }
 
     protected getTSPropertyNameString(propertyNameNode: ts.PropertyName, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
