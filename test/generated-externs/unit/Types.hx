@@ -31,6 +31,7 @@ final extern class Types {
 	@:overload(function(a: Array<js.lib.Symbol>): Any { })
 	@:overload(function<T, U>(a: Array<js.lib.Symbol>, u: U): T { })
 	static function overloadedFunction(a: Float): Any;
+	static function typeParameterWithConstraint<T: Array<Float>>(x: T): Any;
 	static function firstTypeFunction(node: {}): Bool;
 	static var implicitInt: Float;
 	static var implicitFloat: Float;
@@ -141,11 +142,11 @@ final extern class Types {
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
-		**/ @:overload(function(callbackfn: (value: T, index: Float, array: Array<T>) -> Any, ?thisArg: Any): Array<T> { }) function filter<S>(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Array<S>; 	/**
+		**/ @:overload(function(callbackfn: (value: T, index: Float, array: Array<T>) -> Any, ?thisArg: Any): Array<T> { }) function filter<S: T>(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Array<S>; 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
-		**/ @:overload(function(callbackfn: (value: T, index: Float, array: Array<T>) -> Any, ?thisArg: Any): Array<T> { }) function filter<S>(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Array<S>; 	/**
+		**/ @:overload(function(callbackfn: (value: T, index: Float, array: Array<T>) -> Any, ?thisArg: Any): Array<T> { }) function filter<S: T>(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Array<S>; 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
@@ -172,10 +173,10 @@ final extern class Types {
 		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
-		**/ @:overload(function(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<T> { }) function find<S>(predicate: (this_: Void, value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<S>; 	/**
+		**/ @:overload(function(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<T> { }) function find<S: T>(predicate: (this_: Void, value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<S>; 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
-		**/ @:overload(function(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<T> { }) function find<S>(predicate: (this_: Void, value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<S>; 	/**
+		**/ @:overload(function(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<T> { }) function find<S: T>(predicate: (this_: Void, value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<S>; 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 		**/ function findIndex(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Float; 	/**

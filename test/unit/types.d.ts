@@ -130,6 +130,7 @@ declare namespace Types {
     function overloadedFunction(a: string);
     function overloadedFunction(a: Array<symbol>);
     function overloadedFunction<T, U>(a: Array<symbol>, u: U): T;
+    function typeParameterWithConstraint<T extends Array<number>>(x: T);
 
     const constructorType: new (a: string) => void;
 

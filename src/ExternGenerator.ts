@@ -326,10 +326,11 @@ export class ExternGenerator {
                 if (typeParameterDeclaration.default != null) {
                     this.logWarning('TypeParameter default ignored', this.location(atSymbol));
                 }
+                let constraintTypeString: string | null = null;
                 if (typeParameterDeclaration.constraint != null) {
-                    this.logWarning('TypeParameter constraint ignored', this.location(atSymbol));
+                    constraintTypeString = this.convertSyntaxType(typeParameterDeclaration.constraint, atSymbol, exportRoot);
                 }
-                return typeParameterDeclaration.name.text;
+                return typeParameterDeclaration.name.text + (constraintTypeString != null ? `: ${constraintTypeString}` : '');
             } break;
 
             case ts.SyntaxKind.Parameter: {
