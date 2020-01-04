@@ -813,8 +813,10 @@ export class ExternGenerator {
             if ((superClassType as ts.TypeReference).objectFlags & ts.ObjectFlags.Reference) {
                 let typeArguments = (superClassType as ts.TypeReference).typeArguments || [];
                 for (let tArg of typeArguments) { 
-                    if ((tArg.flags & ts.TypeFlags.TypeParameter)) continue;
-                    let typeParamString = this.convertSyntaxType(this.typeChecker.typeToTypeNode(tArg)!, tArg.symbol, exportRoot);
+                    let tArgNode = this.typeChecker.typeToTypeNode(tArg);
+                    if (!tArgNode) continue;
+                    if (tArgNode.kind == ts.SyntaxKind.ThisKeyword) continue; // no idea why this appears
+                    let typeParamString = this.convertSyntaxType(tArgNode, tArg.symbol, exportRoot);
                     params.push(new TPType(typeParamString));
                 }
             }
@@ -1238,6 +1240,7 @@ export class ExternGenerator {
                 case 'Date': return ['js.lib.Date'];
                 case 'Number': return ['js.lib.Number']; // PR open, not merged yet
                 case 'RegExp': return ['js.lib.RegExp'];
+                case 'RegExpMatchArray': return ['js.lib.RegExp.RegExpMatch'];
                 case 'Intl': return ['js.lib.Intl'];
                 case 'Object': return ['js.lib.Object'];
 
