@@ -417,8 +417,9 @@ export class ExternGenerator {
 
             case ts.SyntaxKind.ThisType: {
                 let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
-                let haxeTypePath = this.getHaxeTypePath(resolvedType.symbol, exportRoot);
-                return haxeTypePath.join('.');
+                let haxeTypePath = this.typeToTypePath(resolvedType, exportRoot);
+                let printer = new Printer();
+                return printer.printTypePath(haxeTypePath);
             } break;
 
             case ts.SyntaxKind.TypeLiteral: {
@@ -472,6 +473,8 @@ export class ExternGenerator {
             } break;
 
             case ts.SyntaxKind.IntersectionType: {
+
+                return 'Any';
                 // haxe only allows intersections between structures whereas typescript allows intersection between anything
                 // furthermore, haxe intersection does not allow field redefinition
                 // converting this fully requires analyzing fields and creating unions
@@ -816,28 +819,30 @@ export class ExternGenerator {
         let heritageClause = ts.getClassExtendsHeritageElement(declaration);
         if (heritageClause != null) {
             let superClassType = this.typeChecker.getTypeAtLocation(heritageClause);
-            let params = new Array<TypeParam>();
-
-            // extract and convert type parameters
-            if ((superClassType as ts.TypeReference).objectFlags & ts.ObjectFlags.Reference) {
-                let typeArguments = (superClassType as ts.TypeReference).typeArguments || [];
-                for (let tArg of typeArguments) { 
-                    let tArgNode = this.typeChecker.typeToTypeNode(tArg);
-                    if (!tArgNode) continue;
-                    if (tArgNode.kind == ts.SyntaxKind.ThisKeyword) continue; // no idea why this appears
-                    let typeParamString = this.convertSyntaxType(tArgNode, tArg.symbol, exportRoot);
-                    params.push(new TPType(typeParamString));
-                }
-            }
-
-            let superClassPath = this.getHaxeTypePath(superClassType.symbol, exportRoot);
-            return {
-                name: this.typePathTypeName(superClassPath)!,
-                pack: this.typePathPackages(superClassPath)!,
-                params: params
-            }
+            return this.typeToTypePath(superClassType, exportRoot);
         }
         return undefined;
+    }
+
+    protected typeToTypePath(type: ts.Type, exportRoot: ts.Symbol | null) {
+        let params = new Array<TypeParam>();
+
+        // extract and convert type parameters
+        let typeArguments = this.typeChecker.getLocalTypeParametersOfClassOrInterfaceOrTypeAlias(type.symbol) || [];
+        for (let tArg of typeArguments) { 
+            let tArgNode = this.typeChecker.typeToTypeNode(tArg);
+            if (!tArgNode) continue;
+            if (tArgNode.kind == ts.SyntaxKind.ThisKeyword) continue; // no idea why this appears
+            let typeParamString = this.convertSyntaxType(tArgNode, tArg.symbol, exportRoot);
+            params.push(new TPType(typeParamString));
+        }
+
+        let pathStr = this.getHaxeTypePath(type.symbol, exportRoot);
+        return {
+            name: this.typePathTypeName(pathStr)!,
+            pack: this.typePathPackages(pathStr)!,
+            params: params
+        }
     }
 
     protected getAnyTypeNode() {

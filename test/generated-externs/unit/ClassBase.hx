@@ -8,7 +8,7 @@ Generated from: test/unit/class.d.ts:1
 extern class ClassBase<T> {
 	var intField: Float;
 	var arrayField: Array<String>;
-	var thisClassType: unit.ClassBase;
+	var thisClassType: unit.ClassBase<T>;
 	var typeParamField: T;
 	final readonlyField: Float;
 	function new(a: Float);
