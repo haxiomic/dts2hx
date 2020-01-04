@@ -24,7 +24,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] Function types
         - [x] Type parameters
         - [x] Index signatures
-        - [x] Intersection types *need better handling of redefined properties, aka sub intersections*
+        - [x] Intersection types `need better handling of redefined properties, aka sub intersections`
         - [x] Tuple types
         - [x] This type
         - [x] Overloads
@@ -35,7 +35,9 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [ ] Index signatures
     - [x] Typedef
     - [ ] Print type source location in documentation
-    - [ ] Fix reference to `ReadonlyArray` in `WriteFileCallback`
+    - [x] Fix reference to `ReadonlyArray` in `WriteFileCallback`
+    - [ ] Fix differences in type from type query
+        - [ ] Overloads lost, type referenced are followed (see `unit/Types.object` vs `unit/Types.typeQueryObject`)
 - [ ] Rewrite in haxe using generated TypeScript compiler externs
     - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
