@@ -16,3 +16,6 @@
     - union types
     - intersection types
     - type parameters
+
+## Notes
+See [src/compiler/utilities.ts](https://github.com/microsoft/TypeScript/blob/d6c05a135840dc3045ec8f3bbec1da5ffabb6593/src/compiler/utilities.ts) for compiler API use examples
