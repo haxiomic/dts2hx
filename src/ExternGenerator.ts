@@ -3,7 +3,7 @@ import * as path from 'path';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
-import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata, Field } from './Expr';
+import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata, Field, TypePath, TPType } from './Expr';
 import { Printer } from './Printer';
 
 // @! this needs to be replaced with haxe ast structure
@@ -320,6 +320,9 @@ export class ExternGenerator {
             case ts.SyntaxKind.FalseKeyword: return 'Bool';
             case ts.SyntaxKind.TrueKeyword: return 'Bool';
             case ts.SyntaxKind.VoidKeyword: return 'Void';
+            case ts.SyntaxKind.NeverKeyword: return 'Any'; // we don't have a concept of never in haxe, maybe there's a better choice than Any?
+            case ts.SyntaxKind.UnknownKeyword: return 'Any';
+            case ts.SyntaxKind.UndefinedKeyword: return 'Any';
 
             case ts.SyntaxKind.TypeParameter: {
                 let typeParameterDeclaration = syntaxNode as ts.TypeParameterDeclaration;
@@ -467,6 +470,8 @@ export class ExternGenerator {
                 let intersectionType = this.typeChecker.getTypeAtLocation(intersectionTypeNode);
                 let propertySymbols = this.typeChecker.getPropertiesOfType(intersectionType);
 
+                //@! if the types are all structures in haxe then we can use haxe's intersection operator
+
                 // @! this needs a rethink
                 let typeElements = new Array<ts.TypeElement>();
                 for (let s of propertySymbols) {
@@ -565,21 +570,10 @@ export class ExternGenerator {
             // @! we need to generate an abstract to properly handle index signatures
 
             // however we can handle a couple of basic cases when there are no other fields defined
-            if (fields.length === 0) {
-                let indexSignatureKeyKinds = [...new Set(indexSignatures.map(is => is.parameters[0].type!.kind))];
-                let indexSignatureTypeString = this.convertSyntaxType(indexSignatures[0].type!, atSymbol, exportRoot);
-
-                // { [key: string]: T } -> DynamicAccess<T>
-                if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.StringKeyword)) {
-                    return `haxe.DynamicAccess<${indexSignatureTypeString}>`;
-                }
-                // { [key: number]: T } -> Array<T>
-                if (indexSignatureKeyKinds.length === 1 && (indexSignatureKeyKinds[0] === ts.SyntaxKind.NumberKeyword)) {
-                    let isReadonly = false;
-                    if (indexSignatures[0].modifiers != null) {
-                        isReadonly = indexSignatures[0].modifiers.find(m => m.kind === ts.SyntaxKind.ReadonlyKeyword) != null;
-                    }
-                    return `${isReadonly ? 'haxe.ds.ReadOnlyArray' : 'Array'}<${indexSignatureTypeString}>`;
+            if (fields.length === 0 && indexSignatures.length === 1) {
+                let indexSignatureHaxeType = this.mapIndexSignatureToHaxeType(indexSignatures[0], atSymbol, exportRoot);
+                if (indexSignatureHaxeType != null) {
+                    return indexSignatureHaxeType;
                 }
             } else {
                 // in this case we have an index signature AND fields, for this we need to generate an abstract (with @:op([]) and @:op(a.b) overloads)
@@ -590,6 +584,20 @@ export class ExternGenerator {
 
         let convertedFields = fields.map((memberSyntaxNode) => this.convertSyntaxType(memberSyntaxNode, atSymbol, exportRoot));
         return `{${convertedFields.join(' ')}}`;
+    }
+
+    protected mapIndexSignatureToHaxeType(indexSignatureDeclaration: ts.IndexSignatureDeclaration, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string | null {
+        // @! don't forget when generating abstracts for this, take note of the readonly modifier
+        let typeKind = indexSignatureDeclaration.parameters[0].type!.kind;
+        if (typeKind === ts.SyntaxKind.StringKeyword) {
+            let indexSignatureTypeString = this.convertSyntaxType(indexSignatureDeclaration.type!, atSymbol, exportRoot);
+            return `haxe.DynamicAccess<${indexSignatureTypeString}>`;
+        }
+        if (typeKind === ts.SyntaxKind.NumberKeyword) {
+            let indexSignatureTypeString = this.convertSyntaxType(indexSignatureDeclaration.type!, atSymbol, exportRoot);
+            return `ArrayAccess<${indexSignatureTypeString}>`;
+        }
+        return null;
     }
 
     protected convertField(symbol: ts.Symbol, exportRoot: ts.Symbol | null): Field {
@@ -906,11 +914,44 @@ export class ExternGenerator {
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
         docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
+        let implementing = new Array<TypePath>();
+
+        if (symbol.members != null) {
+            let indexSignature = symbol.members.get(ts.InternalSymbolName.Index);
+            let fieldCount = 0;
+            symbol.members.forEach((s) => {
+                if (s.flags & ts.SymbolFlags.Property) fieldCount++;
+            });
+
+            // handle special case of a single index signature with no fields
+            if (indexSignature != null && indexSignature.declarations.length === 1 && fieldCount === 0) {
+                let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
+                let indexSignatureHaxeType = this.mapIndexSignatureToHaxeType(indexSignatureDeclaration, symbol, exportRoot);
+                if (indexSignatureHaxeType != null) {
+                    // generate a typedef instead
+                    return {
+                        name: typeName,
+                        kind: new TDAlias(indexSignatureHaxeType),
+                        params: [],
+                        pack: this.typePathPackages(haxeTypePath),
+                        fields: [],
+                        doc: docs.join('\n\n'),
+                        pos: pos,
+                    }
+                }
+            } else if (indexSignature != null && indexSignature.declarations.length > 0) {
+                let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
+                // add implements Dynamic<T>
+                let typeString = this.convertSyntaxType(indexSignatureDeclaration.type!, symbol, exportRoot);
+                implementing.push({name:'Dynamic', pack: [], params: [new TPType(typeString)]});
+            }
+        }
+
         return {
             name: typeName,
             kind: new TDClass(
                 undefined, // @! todo extends
-                undefined, // @! interfaces
+                implementing,
                 true, // isInterface
                 false // isFinal
             ),

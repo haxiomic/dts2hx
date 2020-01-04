@@ -66,10 +66,11 @@ final extern class Types {
 	static var stringNumberMap: haxe.DynamicAccess<Float>;
 	static var readonlyStringNumberMap: haxe.DynamicAccess<Float>;
 	static var stringNumberMapWithField: {	var field: Float;};
-	static var numberStringMap: Array<String>;
-	static var readonlyNumberStringMap: haxe.ds.ReadOnlyArray<String>;
+	static var numberStringMap: ArrayAccess<String>;
+	static var readonlyNumberStringMap: ArrayAccess<String>;
 	static var numberStringMapWithField: {	var field: String;};
 	static var stringAndNumberMapWithField: {	var length: String;};
+	static var mappedStringIndex: <UNHANDLED SyntaxKind: MappedType>;
 	static var arrowNumberStringVoid: (a: Float, noType: Any) -> Void;
 	static var arrowNumberTVoidTypeParam: (a: Float, tparam: Any) -> Void;
 	static var arrowParamWithRest: (a: Float, b: Float, rest: haxe.externs.Rest<Float>) -> Void;

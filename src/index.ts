@@ -47,6 +47,7 @@ try {
 generateHaxeExterns('test/unit', {}, 'test/generated-externs');
 // generateHaxeExterns('test-definitions/edge-cases', {});
 // generateHaxeExterns('test-definitions/typescript', {});
+// generateHaxeExterns('src/ts-internal.d.ts', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
 // generateHaxeExterns('test-definitions/templates/module', {});
 // generateHaxeExterns('test-definitions/templates/module-plugin', {});

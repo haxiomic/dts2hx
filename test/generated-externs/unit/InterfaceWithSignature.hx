@@ -2,7 +2,7 @@ package unit;
 
 
 /**
-Generated from: test/unit/interface.d.ts:6
+Generated from: test/unit/interface.d.ts:20
 **/
 @:native('InterfaceWithSignature')
 extern interface InterfaceWithSignature {

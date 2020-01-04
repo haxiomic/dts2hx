@@ -93,7 +93,7 @@ declare namespace Types {
         field: number,
     };
     /**
-     * @expect Array<String>
+     * @expect ArrayAccess<String>
      */
     const numberStringMap: {
         [key: number]: string
@@ -112,6 +112,9 @@ declare namespace Types {
         [key: string]: string; 
         [index: number]: string;
         length: string;
+    };
+    const mappedStringIndex: {
+        [K in "hello" | "world"]: string;
     };
     // limit allowed fields
     type Index = 'a' | 'b' | 'c'
@@ -155,10 +158,12 @@ declare namespace Types {
 
     // Type reference enum
     type EnumValueAlias = ExampleEnum.A;
+    type EnumSubset = ExampleEnum.A | ExampleEnum.B;
 
     enum ExampleEnum {
         A = 1,
-        B = 2
+        B = 2,
+        C = 3
     }
 
     // FirstTypeNode

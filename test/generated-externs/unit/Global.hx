@@ -10,5 +10,6 @@ final extern class Global {
 	The 3 kinds of declarations possible, all using the same name
 	**/
 	static var Declaration: String;
+	static var InterfaceArrayLikeMultiDeclarations: {	var a: Float;};
 }
 

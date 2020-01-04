@@ -209,12 +209,12 @@ ${typeFooter}
 
     private printImplementingInterfaces = (interfaces?: Array<TypePath>) => {
         if (interfaces == null || interfaces.length === 0) return '';
-        return interfaces.map(tp => 'implements ' + this.printTypePath(tp)).join(' ');
+        return ' ' + interfaces.map(tp => 'implements ' + this.printTypePath(tp)).join(' ');
     }
 
     private printExtendingSuperClasses = (superClasses?: Array<TypePath>) => {
         if (superClasses == null || superClasses.length === 0) return '';
-        return superClasses.map(tp => 'extends ' + this.printTypePath(tp)).join(' ');
+        return ' ' + superClasses.map(tp => 'extends ' + this.printTypePath(tp)).join(' ');
     }
 
     private printTypeParameters = (params?: Array<TypeParam>) => {
