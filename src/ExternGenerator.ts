@@ -460,7 +460,7 @@ export class ExternGenerator {
                 typeStrings = [...new Set(typeStrings)];
 
                 let lastTypeString = typeStrings.pop();
-                let eitherType = 'haxe.io.EitherType';
+                let eitherType = 'haxe.extern.EitherType';
                 let closingAngles = '';
                 for (let i = 0; i < typeStrings.length; i++) closingAngles += '>';
 
