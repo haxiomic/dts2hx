@@ -1,9 +1,7 @@
 package unit;
 
 
-/**
-@! Module class
-**/
+
 @:native('')
 final extern class Global {
 	/**

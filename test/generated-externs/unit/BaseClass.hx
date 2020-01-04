@@ -1,7 +1,9 @@
 package unit;
 
 
-
+/**
+Generated from: test/unit/class.d.ts:1
+**/
 @:native('BaseClass')
 extern class BaseClass {
 	var intField: Float;

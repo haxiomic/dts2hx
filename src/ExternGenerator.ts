@@ -818,6 +818,11 @@ export class ExternGenerator {
         let nativePath = moduleSymbol ? TSUtil.getNativePath(moduleSymbol, exportRoot) : '';
         let pos = Debug.getSymbolPosition(moduleSymbol);
 
+        let docs = moduleSymbol ? moduleSymbol.getDocumentationComment(this.typeChecker).map(p => p.text) : [];
+        if (moduleSymbol) {
+            docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(moduleSymbol));
+        }
+
         return {
             name: typeName,
             kind: new TDClass(
@@ -837,7 +842,7 @@ export class ExternGenerator {
                     params: [`'${nativePath}'`]
                 }
             ],
-            doc: `@! Module class`,
+            doc: docs.join('\n\n'),
             params: [],
         }
     }
@@ -848,6 +853,8 @@ export class ExternGenerator {
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
+        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
         return {
             name: typeName,
@@ -861,7 +868,7 @@ export class ExternGenerator {
             fields: [],
             pos: pos,
             isExtern: true,
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            doc: docs.join('\n\n'),
             meta: [
                 {
                     name: ':native',
@@ -879,6 +886,8 @@ export class ExternGenerator {
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
+        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
         return {
             name: typeName,
@@ -892,7 +901,7 @@ export class ExternGenerator {
             fields: [],
             pos: pos,
             isExtern: true,
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            doc: docs.join('\n\n'),
             meta: [
                 {
                     name: ':native',
@@ -910,6 +919,8 @@ export class ExternGenerator {
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
+        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
         let declaredType = this.typeChecker.getDeclaredTypeOfSymbol(symbol);
         this.logVerbose(`declaredType.flags <i>${Debug.getActiveTypeFlags(declaredType.flags).join(', ')}</>`);
@@ -966,7 +977,7 @@ export class ExternGenerator {
             fields: [],
             pos: pos,
             isExtern: true,
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            doc: docs.join('\n\n'),
             meta: [
                 {
                     name: ':native',
@@ -989,6 +1000,8 @@ export class ExternGenerator {
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
+        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
         let declarations = symbol.declarations || [];
 
@@ -1019,7 +1032,7 @@ export class ExternGenerator {
             params: typeParams,
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            doc: docs.join('\n\n'),
             pos: pos,
         }
     }
@@ -1030,13 +1043,15 @@ export class ExternGenerator {
         this.logVerbose('Generating <green>typedef</>', haxeTypePath.join('.'), `=`, targetType.typePath.join('.'), this.location(symbol));
 
         let pos = Debug.getSymbolPosition(symbol);
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
+        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
         return {
             name: typeName,
             kind: new TDAlias(targetType.typePath.join('.')),
             pack: this.typePathPackages(haxeTypePath),
             fields: [],
-            doc: symbol.getDocumentationComment(this.typeChecker).map(p => p.text).join('\n\n'),
+            doc: docs.join('\n\n'),
             pos: pos,
         }
 
@@ -1099,6 +1114,7 @@ export class ExternGenerator {
                 case 'IteratorResult': return ['js.lib.IteratorStep'];
 
                 // @! should search js.lib to find a matching built-in (however this won't work for interfaces without @:native
+                // if not found we should generate externs fot this symbol instead
                 default: {
                     this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
                     return ['Any'];

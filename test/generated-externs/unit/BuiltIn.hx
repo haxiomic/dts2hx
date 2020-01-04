@@ -2,7 +2,7 @@ package unit;
 
 
 /**
-@! Module class
+Generated from: test/unit/built-in.d.ts:1
 **/
 @:native('BuiltIn')
 final extern class BuiltIn {
