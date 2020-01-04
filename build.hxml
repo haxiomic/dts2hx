@@ -1,7 +1,8 @@
--p srchx
--p lib/typescript-externs
+-p src-hx
+-p output
 
 -main Main
 -lib hxnodejs
 -lib console.hx
+
 -js dist/dts2hx.js
