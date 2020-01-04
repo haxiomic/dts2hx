@@ -1,5 +1,5 @@
 - Answer .escapedText vs .text?
-- Consider structure instead of interfaces; interfaces do not support @:optional
+- Interfaces should be structures, however be aware that some might extend other standard lib interfaces
 - Use recursive decent rather than global symbol walk
 - Review use of .valueDeclaration instead of enumerating all declarations for a symbol
     - See function overloads
