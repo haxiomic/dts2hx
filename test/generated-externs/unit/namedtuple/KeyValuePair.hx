@@ -5,7 +5,7 @@ package unit.namedtuple;
 Generated from: test/unit/named-tuple.d.ts:5:5
 **/
 @:native('NamedTuple.KeyValuePair')
-extern interface KeyValuePair<K, V> {
+extern interface KeyValuePair<K, V> extends Array<haxe.io.EitherType<K, V>> {
 	@:native('0')
 	var Zero: K;
 	@:native('1')

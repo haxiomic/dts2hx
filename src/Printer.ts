@@ -74,20 +74,14 @@ ${typeFooter}
 
     public printTypePath = (typePath?: TypePath) => {
         if (typePath == null) return '';
-        let str = '';
-        if (typePath.pack != null) {
-            str += typePath.pack.join('.');
-        }
+        let parts = [...(typePath.pack || [])];
         if (typePath.name != null) {
-            str += typePath.name;
+            parts.push(typePath.name);
+            if (typePath.sub != null) {
+                parts.push(typePath.sub);
+            }
         }
-        if (typePath.sub != null) {
-            str += typePath.sub;
-        }
-        if (typePath.params != null) {
-            str += this.printTypeParameters(typePath.params);
-        }
-        return str;
+        return parts.join('.') + this.printTypeParameters(typePath.params);
     }
 
     public printTypeParam = (typeParam?: TypeParam) => {

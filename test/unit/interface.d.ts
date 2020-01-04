@@ -32,3 +32,7 @@ declare interface InterfaceNested {
   color?: string;
   [selector: string]: string | InterfaceNested | undefined;
 }
+
+declare interface InterfaceExtends<T> extends InterfaceMapLike<T> {
+    additionalField: T,
+}

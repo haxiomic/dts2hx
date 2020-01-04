@@ -5,6 +5,8 @@ import * as ts from 'typescript';
  * (written against ts 3.3.3333)
  */
 declare module 'typescript' {
+    function getClassExtendsHeritageElement(node: ClassLikeDeclaration | InterfaceDeclaration): ts.ExpressionWithTypeArguments | undefined;
+
     interface Symbol {
         // https://github.com/Microsoft/TypeScript/blob/v2.1.4/src/compiler/types.ts#L2658
         id?: number;

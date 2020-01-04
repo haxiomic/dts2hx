@@ -1,7 +1,8 @@
-declare class BaseClass {
+declare class ClassBase<T> {
     intField: number;
     arrayField: Array<string>;
     thisClassType: this;
+    typeParamField: T;
 
     readonly readonlyField: number;
 
@@ -14,5 +15,12 @@ declare class BaseClass {
 
     get property(): boolean;
     set property(value: boolean);
+}
 
+declare class ClassExtending<K> extends ClassBase<Array<K>> {
+    additionalField: number;
+}
+
+declare class ClassWithIndexSignature {
+    [key: string]: number,
 }

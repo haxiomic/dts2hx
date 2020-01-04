@@ -3,7 +3,7 @@ import * as path from 'path';
 import { TSUtil } from './TSUtil';
 import Debug from './Debug';
 import Terminal from './Terminal';
-import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata, Field, TypePath, TPType } from './Expr';
+import { TypeDefinition, TDClass, TDAbstract, TDAlias, Access, FVar, FieldType, FFun, TypeParamDecl, HxFunction, Metadata, Field, TypePath, TPType, TypeParam } from './Expr';
 import { Printer } from './Printer';
 
 // @! this needs to be replaced with haxe ast structure
@@ -774,6 +774,7 @@ export class ExternGenerator {
         };
     }
 
+    // @! there's probably a better ready made api for this
     protected getTSPropertyNameString(propertyNameNode: ts.PropertyName, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null): string {
         let symbol = propertyNameNode.symbol || this.typeChecker.getSymbolAtLocation(propertyNameNode);
         if (symbol == null) {
@@ -800,6 +801,32 @@ export class ExternGenerator {
             debugger;
             return identifierString;
         }
+    }
+    
+    protected getSuperClass(declaration: ts.ClassDeclaration | ts.InterfaceDeclaration, exportRoot: ts.Symbol | null) {
+        let heritageClause = ts.getClassExtendsHeritageElement(declaration);
+        if (heritageClause != null) {
+            let superClassType = this.typeChecker.getTypeAtLocation(heritageClause);
+            let params = new Array<TypeParam>();
+
+            // extract and convert type parameters
+            if ((superClassType as ts.TypeReference).objectFlags & ts.ObjectFlags.Reference) {
+                let typeArguments = (superClassType as ts.TypeReference).typeArguments || [];
+                for (let tArg of typeArguments) { 
+                    if ((tArg.flags & ts.TypeFlags.TypeParameter)) continue;
+                    let typeParamString = this.convertSyntaxType(this.typeChecker.typeToTypeNode(tArg)!, tArg.symbol, exportRoot);
+                    params.push(new TPType(typeParamString));
+                }
+            }
+
+            let superClassPath = this.getHaxeTypePath(superClassType.symbol, exportRoot);
+            return {
+                name: this.typePathTypeName(superClassPath)!,
+                pack: this.typePathPackages(superClassPath)!,
+                params: params
+            }
+        }
+        return undefined;
     }
 
     protected getAnyTypeNode() {
@@ -881,39 +908,7 @@ export class ExternGenerator {
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
         docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
-        return {
-            name: typeName,
-            kind: new TDClass(
-                undefined, // @! todo extends
-                undefined, // @! interfaces
-                false, // isInterface
-                false  // isFinal
-            ),
-            pack: this.typePathPackages(haxeTypePath),
-            fields: [],
-            pos: pos,
-            isExtern: true,
-            doc: docs.join('\n\n'),
-            meta: [
-                {
-                    name: ':native',
-                    pos: pos,
-                    params: [`'${nativePath}'`]
-                }
-            ],
-            params: [],
-        }
-    }
-
-    protected generateInterface(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
-        let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <magenta>interface</>', haxeTypePath.join('.'), this.location(symbol));
-
-        let nativePath = TSUtil.getNativePath(symbol, exportRoot);
-        let pos = Debug.getSymbolPosition(symbol);
-        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
-        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
-
+        let superClass: TypePath | undefined;
         let implementing = new Array<TypePath>();
 
         if (symbol.members != null) {
@@ -947,10 +942,91 @@ export class ExternGenerator {
             }
         }
 
+        // get `extend *` node
+        let classDeclaration = symbol.declarations.find(ts.isClassDeclaration);
+        if (classDeclaration != null) {
+            superClass = this.getSuperClass(classDeclaration, exportRoot);
+        }
+
         return {
             name: typeName,
             kind: new TDClass(
-                undefined, // @! todo extends
+                superClass, // @! todo extends
+                implementing, // @! interfaces
+                false, // isInterface
+                false  // isFinal
+            ),
+            pack: this.typePathPackages(haxeTypePath),
+            fields: [],
+            pos: pos,
+            isExtern: true,
+            doc: docs.join('\n\n'),
+            meta: [
+                {
+                    name: ':native',
+                    pos: pos,
+                    params: [`'${nativePath}'`]
+                }
+            ],
+            params: [],
+        }
+    }
+
+    protected generateInterface(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+        // @! this is basically the same as generate class
+
+        let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
+        this.logVerbose('Generating <magenta>interface</>', haxeTypePath.join('.'), this.location(symbol));
+
+        let nativePath = TSUtil.getNativePath(symbol, exportRoot);
+        let pos = Debug.getSymbolPosition(symbol);
+        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
+        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
+
+        let implementing = new Array<TypePath>();
+        let superClass: TypePath | undefined;
+
+        if (symbol.members != null) {
+            let indexSignature = symbol.members.get(ts.InternalSymbolName.Index);
+            let fieldCount = 0;
+            symbol.members.forEach((s) => {
+                if (s.flags & ts.SymbolFlags.Property) fieldCount++;
+            });
+
+            // handle special case of a single index signature with no fields
+            if (indexSignature != null && indexSignature.declarations.length === 1 && fieldCount === 0) {
+                let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
+                let indexSignatureHaxeType = this.mapIndexSignatureToHaxeType(indexSignatureDeclaration, symbol, exportRoot);
+                if (indexSignatureHaxeType != null) {
+                    // generate a typedef instead
+                    return {
+                        name: typeName,
+                        kind: new TDAlias(indexSignatureHaxeType),
+                        params: [],
+                        pack: this.typePathPackages(haxeTypePath),
+                        fields: [],
+                        doc: docs.join('\n\n'),
+                        pos: pos,
+                    }
+                }
+            } else if (indexSignature != null && indexSignature.declarations.length > 0) {
+                let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
+                // add implements Dynamic<T>
+                let typeString = this.convertSyntaxType(indexSignatureDeclaration.type!, symbol, exportRoot);
+                implementing.push({name:'Dynamic', pack: [], params: [new TPType(typeString)]});
+            }
+        }
+
+        // get `extend *` node
+        let interfaceDeclaration = symbol.declarations.find(ts.isInterfaceDeclaration);
+        if (interfaceDeclaration != null) {
+            superClass = this.getSuperClass(interfaceDeclaration, exportRoot);
+        }
+
+        return {
+            name: typeName,
+            kind: new TDClass(
+                superClass, // @! todo extends
                 implementing,
                 true, // isInterface
                 false // isFinal
