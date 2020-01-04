@@ -1078,25 +1078,24 @@ export class ExternGenerator {
         let symbolPath = TSUtil.getSymbolPath(symbol, exportRoot);
 
         // check if it's a built-in
-        if (symbol.valueDeclaration != null) {
-            let sourceFile = symbol.valueDeclaration.getSourceFile();
-            let isDefaultLib = sourceFile.hasNoDefaultLib;
-            if (isDefaultLib) {
-                switch (symbol.escapedName) {
-                    case 'Array': return ['Array'];
-                    case 'String': return ['String'];
-                    case 'Map': return ['js.lib.Map'];
-                    case 'Promise': return ['js.lib.Promise'];
-                    case 'Date': return ['js.lib.Date'];
-                    case 'Number': return ['js.lib.Number']; // PR open, not merged yet
-                    case 'RegExp': return ['js.lib.RegExp'];
-                    case 'Intl': return ['js.lib.Intl'];
-                    case 'Object': return ['js.lib.Object'];
-                    // @! should search js.lib to find a matching built-in
-                    default: {
-                        this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
-                        return ['js.lib.' + symbol.escapedName]; // best guess for now
-                    }
+        // @! here we just check if there's any declaration in the default lib but maybe we need something more careful if the type is extended by a library
+        let defaultLibDeclarations = symbol.declarations.filter(d => d.getSourceFile().hasNoDefaultLib);
+        if (defaultLibDeclarations.length > 0) {
+            switch (symbol.escapedName) {
+                case 'Array': return ['Array'];
+                case 'String': return ['String'];
+                case 'Map': return ['js.lib.Map'];
+                case 'Promise': return ['js.lib.Promise'];
+                case 'Date': return ['js.lib.Date'];
+                case 'Number': return ['js.lib.Number']; // PR open, not merged yet
+                case 'RegExp': return ['js.lib.RegExp'];
+                case 'Intl': return ['js.lib.Intl'];
+                case 'Object': return ['js.lib.Object'];
+                case 'ReadonlyArray': return ['haxe.ds.ReadonlyArray'];
+                // @! should search js.lib to find a matching built-in
+                default: {
+                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
+                    return ['js.lib.' + symbol.escapedName]; // best guess for now
                 }
             }
         }

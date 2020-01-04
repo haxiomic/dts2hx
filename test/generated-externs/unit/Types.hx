@@ -77,108 +77,108 @@ final extern class Types {
 		Returns a string representation of an array. The elements are converted to string using their toLocalString methods.
 		**/ function toLocaleString(): String; 	/**
 		Removes the last element from an array and returns it.
-		**/ function pop(): Null<T>; 	/**
+		**/ function pop(): Null<js.lib.T>; 	/**
 		Appends new elements to an array, and returns the new length of the array.
-		**/ function push(items: haxe.externs.Rest<T>): Float; 	/**
+		**/ function push(items: haxe.externs.Rest<js.lib.T>): Float; 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
-		**/ @:overload(function(items: haxe.externs.Rest<haxe.io.EitherType<T, unit.ConcatArray<T>>>): Array<T> { }) function concat(items: haxe.externs.Rest<unit.ConcatArray<T>>): Array<T>; 	/**
+		**/ @:overload(function(items: haxe.externs.Rest<haxe.io.EitherType<js.lib.T, js.lib.ConcatArray<js.lib.T>>>): Array<js.lib.T> { }) function concat(items: haxe.externs.Rest<js.lib.ConcatArray<js.lib.T>>): Array<js.lib.T>; 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
-		**/ @:overload(function(items: haxe.externs.Rest<haxe.io.EitherType<T, unit.ConcatArray<T>>>): Array<T> { }) function concat(items: haxe.externs.Rest<unit.ConcatArray<T>>): Array<T>; 	/**
+		**/ @:overload(function(items: haxe.externs.Rest<haxe.io.EitherType<js.lib.T, js.lib.ConcatArray<js.lib.T>>>): Array<js.lib.T> { }) function concat(items: haxe.externs.Rest<js.lib.ConcatArray<js.lib.T>>): Array<js.lib.T>; 	/**
 		Adds all the elements of an array separated by the specified separator string.
 		**/ function join(?separator: String): String; 	/**
 		Reverses the elements in an Array.
-		**/ function reverse(): Array<T>; 	/**
+		**/ function reverse(): Array<js.lib.T>; 	/**
 		Removes the first element from an array and returns it.
-		**/ function shift(): Null<T>; 	/**
+		**/ function shift(): Null<js.lib.T>; 	/**
 		Returns a section of an array.
-		**/ function slice(?start: Float, ?end: Float): Array<T>; 	/**
+		**/ function slice(?start: Float, ?end: Float): Array<js.lib.T>; 	/**
 		Sorts an array.
-		**/ function sort(?compareFn: (a: T, b: T) -> Float): Array; 	/**
+		**/ function sort(?compareFn: (a: js.lib.T, b: js.lib.T) -> Float): Array; 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		**/ @:overload(function(start: Float, deleteCount: Float, items: haxe.externs.Rest<T>): Array<T> { }) function splice(start: Float, ?deleteCount: Float): Array<T>; 	/**
+		**/ @:overload(function(start: Float, deleteCount: Float, items: haxe.externs.Rest<js.lib.T>): Array<js.lib.T> { }) function splice(start: Float, ?deleteCount: Float): Array<js.lib.T>; 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		**/ @:overload(function(start: Float, deleteCount: Float, items: haxe.externs.Rest<T>): Array<T> { }) function splice(start: Float, ?deleteCount: Float): Array<T>; 	/**
+		**/ @:overload(function(start: Float, deleteCount: Float, items: haxe.externs.Rest<js.lib.T>): Array<js.lib.T> { }) function splice(start: Float, ?deleteCount: Float): Array<js.lib.T>; 	/**
 		Inserts new elements at the start of an array.
-		**/ function unshift(items: haxe.externs.Rest<T>): Float; 	/**
+		**/ function unshift(items: haxe.externs.Rest<js.lib.T>): Float; 	/**
 		Returns the index of the first occurrence of a value in an array.
-		**/ function indexOf(searchElement: T, ?fromIndex: Float): Float; 	/**
+		**/ function indexOf(searchElement: js.lib.T, ?fromIndex: Float): Float; 	/**
 		Returns the index of the last occurrence of a specified value in an array.
-		**/ function lastIndexOf(searchElement: T, ?fromIndex: Float): Float; 	/**
+		**/ function lastIndexOf(searchElement: js.lib.T, ?fromIndex: Float): Float; 	/**
 		Determines whether all the members of an array satisfy the specified test.
-		**/ function every(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Bool; 	/**
+		**/ function every(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Bool, ?thisArg: Any): Bool; 	/**
 		Determines whether the specified callback function returns true for any element of an array.
-		**/ function some(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Bool; 	/**
+		**/ function some(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Bool, ?thisArg: Any): Bool; 	/**
 		Performs the specified action for each element in an array.
-		**/ function forEach(callbackfn: (value: T, index: Float, array: Array<T>) -> Void, ?thisArg: Any): Void; 	/**
+		**/ function forEach(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Void, ?thisArg: Any): Void; 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
-		**/ function map<U>(callbackfn: (value: T, index: Float, array: Array<T>) -> U, ?thisArg: Any): Array<U>; 	/**
+		**/ function map<U>(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> js.lib.U, ?thisArg: Any): Array<js.lib.U>; 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
-		**/ @:overload(function(callbackfn: (value: T, index: Float, array: Array<T>) -> Any, ?thisArg: Any): Array<T> { }) function filter<S>(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Array<S>; 	/**
+		**/ @:overload(function(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Any, ?thisArg: Any): Array<js.lib.T> { }) function filter<S>(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Bool, ?thisArg: Any): Array<js.lib.S>; 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
-		**/ @:overload(function(callbackfn: (value: T, index: Float, array: Array<T>) -> Any, ?thisArg: Any): Array<T> { }) function filter<S>(callbackfn: (value: T, index: Float, array: Array<T>) -> Bool, ?thisArg: Any): Array<S>; 	/**
+		**/ @:overload(function(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Any, ?thisArg: Any): Array<js.lib.T> { }) function filter<S>(callbackfn: (value: js.lib.T, index: Float, array: Array<js.lib.T>) -> Bool, ?thisArg: Any): Array<js.lib.S>; 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
+		**/ @:overload(function(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T, initialValue: js.lib.T): js.lib.T { }) @:overload(function<U>(callbackfn: (previousValue: js.lib.U, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.U, initialValue: js.lib.U): js.lib.U { }) function reduce(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T): js.lib.T; 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
+		**/ @:overload(function(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T, initialValue: js.lib.T): js.lib.T { }) @:overload(function<U>(callbackfn: (previousValue: js.lib.U, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.U, initialValue: js.lib.U): js.lib.U { }) function reduce(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T): js.lib.T; 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
+		**/ @:overload(function(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T, initialValue: js.lib.T): js.lib.T { }) @:overload(function<U>(callbackfn: (previousValue: js.lib.U, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.U, initialValue: js.lib.U): js.lib.U { }) function reduce(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T): js.lib.T; 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
+		**/ @:overload(function(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T, initialValue: js.lib.T): js.lib.T { }) @:overload(function<U>(callbackfn: (previousValue: js.lib.U, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.U, initialValue: js.lib.U): js.lib.U { }) function reduceRight(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T): js.lib.T; 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
+		**/ @:overload(function(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T, initialValue: js.lib.T): js.lib.T { }) @:overload(function<U>(callbackfn: (previousValue: js.lib.U, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.U, initialValue: js.lib.U): js.lib.U { }) function reduceRight(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T): js.lib.T; 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		**/ @:overload(function(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T, initialValue: T): T { }) @:overload(function<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: Float, array: Array<T>) -> U, initialValue: U): U { }) function reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: Float, array: Array<T>) -> T): T; 	/**
+		**/ @:overload(function(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T, initialValue: js.lib.T): js.lib.T { }) @:overload(function<U>(callbackfn: (previousValue: js.lib.U, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.U, initialValue: js.lib.U): js.lib.U { }) function reduceRight(callbackfn: (previousValue: js.lib.T, currentValue: js.lib.T, currentIndex: Float, array: Array<js.lib.T>) -> js.lib.T): js.lib.T; 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
-		**/ @:overload(function(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<T> { }) function find<S>(predicate: (this_: Void, value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<S>; 	/**
+		**/ @:overload(function(predicate: (value: js.lib.T, index: Float, obj: Array<js.lib.T>) -> Bool, ?thisArg: Any): Null<js.lib.T> { }) function find<S>(predicate: (this_: Void, value: js.lib.T, index: Float, obj: Array<js.lib.T>) -> Bool, ?thisArg: Any): Null<js.lib.S>; 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
-		**/ @:overload(function(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<T> { }) function find<S>(predicate: (this_: Void, value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Null<S>; 	/**
+		**/ @:overload(function(predicate: (value: js.lib.T, index: Float, obj: Array<js.lib.T>) -> Bool, ?thisArg: Any): Null<js.lib.T> { }) function find<S>(predicate: (this_: Void, value: js.lib.T, index: Float, obj: Array<js.lib.T>) -> Bool, ?thisArg: Any): Null<js.lib.S>; 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
-		**/ function findIndex(predicate: (value: T, index: Float, obj: Array<T>) -> Bool, ?thisArg: Any): Float; 	/**
+		**/ function findIndex(predicate: (value: js.lib.T, index: Float, obj: Array<js.lib.T>) -> Bool, ?thisArg: Any): Float; 	/**
 		Returns the this object after filling the section identified by start and end with value
-		**/ function fill(value: T, ?start: Float, ?end: Float): Array; 	/**
+		**/ function fill(value: js.lib.T, ?start: Float, ?end: Float): Array; 	/**
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 		**/ function copyWithin(target: Float, start: Float, ?end: Float): Array; 	/**
 		Iterator
-		**/ @:native('__@iterator') function __Atiterator(): unit.IterableIterator<T>; 	/**
+		**/ @:native('__@iterator') function __Atiterator(): js.lib.IterableIterator<js.lib.T>; 	/**
 		Returns an iterable of key, value pairs for every entry in the array
-		**/ function entries(): unit.IterableIterator<Array<Any>>; 	/**
+		**/ function entries(): js.lib.IterableIterator<Array<Any>>; 	/**
 		Returns an iterable of keys in the array
-		**/ function keys(): unit.IterableIterator<Float>; 	/**
+		**/ function keys(): js.lib.IterableIterator<Float>; 	/**
 		Returns an iterable of values in the array
-		**/ function values(): unit.IterableIterator<T>; 	/**
+		**/ function values(): js.lib.IterableIterator<js.lib.T>; 	/**
 		Returns an object whose properties have the value 'true'
 		when they will be absent when used in a 'with' statement.
 		**/ @:native('__@unscopables') function __Atunscopables(): {	var copyWithin: Bool; 	var entries: Bool; 	var fill: Bool; 	var find: Bool; 	var findIndex: Bool; 	var keys: Bool; 	var values: Bool;}; 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
-		**/ function includes(searchElement: T, ?fromIndex: Float): Bool;};
+		**/ function includes(searchElement: js.lib.T, ?fromIndex: Float): Bool;};
 	static var typeQueryImplicitStr: Any;
 	static var typeQueryObject: {	var fieldA: Float; 	var fieldB: Float; 	var fieldArrayAlias: Array<String>; 	@:optional var fieldOptional: Float; 	var computedFieldName: String; 	var sub: {	var a: Float; 	var b: Float;}; 	function methodSignature<T>(a: T): Void; 	function methodSignature(a: Float): Void; 	var methodProperty: (a: Any) -> Void; 	@:optional function methodSignatureOptional(): String; 	final readonlyField: String;};
 	static var typeQueryNoType: Any;
