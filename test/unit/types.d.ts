@@ -155,6 +155,8 @@ declare namespace Types {
     const typeQueryImplicitStr: typeof implicitStr;
     const typeQueryObject: typeof object;
     const typeQueryNoType: typeof noType;
+    const typeQueryFunction: typeof functionImplicit;
+    const typeQueryFunctionWithOverloads: typeof overloadedFunction;
 
     // Type reference enum
     type EnumValueAlias = ExampleEnum.A;

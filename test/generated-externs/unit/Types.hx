@@ -202,5 +202,7 @@ final extern class Types {
 	static var typeQueryImplicitStr: Any;
 	static var typeQueryObject: {	var fieldA: Float; 	var fieldB: Float; 	var fieldArrayAlias: Array<String>; 	@:optional var fieldOptional: Float; 	var computedFieldName: String; 	var sub: {	var a: Float; 	var b: Float;}; 	function methodSignature<T>(a: T): Void; 	function methodSignature(a: Float): Void; 	var methodProperty: (a: Any) -> Void; 	@:optional function methodSignatureOptional(): String; 	final readonlyField: String;};
 	static var typeQueryNoType: Any;
+	static var typeQueryFunction: (x: Any, y: Any) -> Any;
+	static var typeQueryFunctionWithOverloads: Any;
 }
 

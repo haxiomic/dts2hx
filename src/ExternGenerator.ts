@@ -397,7 +397,16 @@ export class ExternGenerator {
             case ts.SyntaxKind.IndexedAccessType:
             case ts.SyntaxKind.TypeQuery: {
                 let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
+
+                if (resolvedType.symbol && resolvedType.symbol.declarations.length > 1) {
+                    debugger;
+                    this.logError(`Could not handle typeof query that reference type with multiple declarations`, this.location(atSymbol));
+                    // @! typeof functionWithOverloads returns a TypeLiteral with overloads as members. This isn't translated well
+                    return 'Any';
+                }
+
                 let resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
+                if (atSymbol.name === 'typeQueryFunctionWithOverloads') debugger;
                 if (resolvedTypeNode == null) {
                     this.logWarning('Query type resolved to null', this.location(atSymbol));
                     return 'Any';
