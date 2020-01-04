@@ -189,7 +189,7 @@ ${typeFooter}
     }
 
     public printFunctionDeclaration(f: HxFunction) {
-        return `${this.printTypeParamsDecl(f.params)}(${f.args.join(', ')}): ${f.ret != null ? f.ret : 'Any'}`;
+        return `${this.printTypeParamsDecl(f.params)}(${f.args.join(', ')})${f.ret != null ? (': ' + f.ret) : ''}`;
     }
 
     public printAccess = (access?: Access) => {

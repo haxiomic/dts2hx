@@ -466,6 +466,7 @@ export class ExternGenerator {
                 let intersectionType = this.typeChecker.getTypeAtLocation(intersectionTypeNode);
                 let propertySymbols = this.typeChecker.getPropertiesOfType(intersectionType);
 
+                // @! this needs a rethink
                 let typeElements = new Array<ts.TypeElement>();
                 for (let s of propertySymbols) {
                     let a = s.declarations.filter(d => ts.isTypeElement(d));
@@ -603,10 +604,10 @@ export class ExternGenerator {
         let metas = nameChanged ? [{name: ':native', params: [`'${symbol.name}'`], pos: pos}] : [];
         let accessModifiers: Array<Access> = isStatic ? [Access.AStatic] : [];
 
-        this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`);
+        this.logVerbose(`\tAdding field ${Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot)}`); 
 
-        if (symbol.valueDeclaration != null) {
-            return this.convertDeclaration(symbol.valueDeclaration, symbol, exportRoot);
+        if (symbol.declarations.length > 0) {
+            return this.convertDeclaration(symbol.valueDeclaration || symbol.declarations[0], symbol, exportRoot);
         } else {
             this.logError(`symbol.valueDeclaration is null for <b>${symbol.name}</b> – <i>${Debug.getActiveSymbolFlags(symbol.flags)}</>`, this.location(symbol));
         }
@@ -626,9 +627,21 @@ export class ExternGenerator {
     }
 
     protected convertDeclaration(declaration: ts.NamedDeclaration, atSymbol: ts.Symbol, exportRoot: ts.Symbol | null) {
-        let originalName = this.getTSPropertyNameString(declaration.name as ts.PropertyName, atSymbol, exportRoot);
-        let haxeSafeName = this.toSafeIdent(originalName);
-        let nameChanged = haxeSafeName !== originalName;
+        let originalName: string;
+        let haxeSafeName: string;
+        let nameChanged = false;
+        if (ts.isConstructorDeclaration(declaration)) {
+            originalName = 'constructor';
+            haxeSafeName = 'new';
+        } else if (declaration.name != null) {
+            originalName = this.getTSPropertyNameString(declaration.name as ts.PropertyName, atSymbol, exportRoot);
+            haxeSafeName = this.toSafeIdent(originalName);
+            nameChanged = haxeSafeName !== originalName;
+        } else {
+            this.logError(`Declaration has no name ${Debug.symbolInfoFormatted(this.typeChecker, declaration.symbol || atSymbol, exportRoot)}`);
+            originalName = '';
+            haxeSafeName = '';
+        }
 
         let pos = Debug.getSymbolPosition(declaration.symbol || atSymbol);
         let isStatic = false;
@@ -649,6 +662,7 @@ export class ExternGenerator {
         switch (declaration.kind) {
             case ts.SyntaxKind.MethodDeclaration:
             case ts.SyntaxKind.FunctionDeclaration:
+            case ts.SyntaxKind.Constructor:
             case ts.SyntaxKind.MethodSignature: {
                 // functions can have multiple declarations (overloads)
                 // we assume all declarations have the same kind as the valueDeclaration
@@ -677,11 +691,13 @@ export class ExternGenerator {
                         metas.push({name: ':optional', params: [], pos: pos});
                     }
 
+                    let returnType = ts.isConstructorDeclaration(functionLikeDeclaration) ? null : this.convertSyntaxType(functionLikeDeclaration.type || this.getAnyTypeNode(), declaration.symbol || atSymbol, exportRoot);
+
                     let haxeFunctionDeclaration: HxFunction = {
                         args: parameterStrings,
                         params: typeParameterHaxeDecls,
                         expr: null,
-                        ret: this.convertSyntaxType(functionLikeDeclaration.type || this.getAnyTypeNode(), declaration.symbol || atSymbol, exportRoot),
+                        ret: returnType
                     }
 
                     if (isBaseDeclaration) {
@@ -727,7 +743,7 @@ export class ExternGenerator {
                 haxeFieldKind = new FVar(null);
             } break;
             default: {
-                this.logError(`Unhandled valueDeclaration kind <b>${ts.SyntaxKind[declaration.kind]}</b>`, this.location(declaration.symbol || atSymbol));
+                this.logError(`Unhandled declaration kind <b>${ts.SyntaxKind[declaration.kind]}</b>`, this.location(declaration.symbol || atSymbol));
             } break;
         }
 
@@ -1096,7 +1112,6 @@ export class ExternGenerator {
         // @! here we just check if there's any declaration in the default lib but maybe we need something more careful if the type is extended by a library
         let defaultLibDeclarations = symbol.declarations.filter(d => d.getSourceFile().hasNoDefaultLib);
         if (defaultLibDeclarations.length > 0 && !(symbol.flags & ts.SymbolFlags.TypeParameter)) {
-            debugger;
             switch (symbol.escapedName) {
                 case 'Array': return ['Array'];
                 case 'String': return ['String'];
