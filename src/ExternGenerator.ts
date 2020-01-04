@@ -1245,7 +1245,7 @@ export class ExternGenerator {
                 case 'Object': return ['js.lib.Object'];
 
                 // special case
-                case 'ReadonlyArray': return ['haxe.ds.ReadonlyArray'];
+                case 'ReadonlyArray': return ['haxe.ds.ReadOnlyArray'];
                 case 'Iterator': return ['js.lib.Iterator'];
                 case 'IteratorResult': return ['js.lib.IteratorStep'];
 
