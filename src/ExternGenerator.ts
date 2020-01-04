@@ -1080,7 +1080,8 @@ export class ExternGenerator {
         // check if it's a built-in
         // @! here we just check if there's any declaration in the default lib but maybe we need something more careful if the type is extended by a library
         let defaultLibDeclarations = symbol.declarations.filter(d => d.getSourceFile().hasNoDefaultLib);
-        if (defaultLibDeclarations.length > 0) {
+        if (defaultLibDeclarations.length > 0 && !(symbol.flags & ts.SymbolFlags.TypeParameter)) {
+            debugger;
             switch (symbol.escapedName) {
                 case 'Array': return ['Array'];
                 case 'String': return ['String'];
@@ -1091,11 +1092,16 @@ export class ExternGenerator {
                 case 'RegExp': return ['js.lib.RegExp'];
                 case 'Intl': return ['js.lib.Intl'];
                 case 'Object': return ['js.lib.Object'];
+
+                // special case
                 case 'ReadonlyArray': return ['haxe.ds.ReadonlyArray'];
-                // @! should search js.lib to find a matching built-in
+                case 'Iterator': return ['js.lib.Iterator'];
+                case 'IteratorResult': return ['js.lib.IteratorStep'];
+
+                // @! should search js.lib to find a matching built-in (however this won't work for interfaces without @:native
                 default: {
-                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`);
-                    return ['js.lib.' + symbol.escapedName]; // best guess for now
+                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    return ['Any'];
                 }
             }
         }
