@@ -29,16 +29,16 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [x] This type
         - [x] Overloads
         - [x] Wrapped types
-    - [ ] Classes and interfaces **← currently working on this**
-        - [ ] Constructors
-        - [ ] Implements, extends etc
-        - [ ] Index signatures
+    - [x] Classes and interfaces
+        - [x] Constructors
+        - [x] Index signatures (both class and interfaces)
+        - [x] Extends
     - [x] Typedef
-    - [ ] Print type source location in documentation
+    - [x] Print type source location in documentation
     - [x] Fix reference to `ReadonlyArray` in `WriteFileCallback`
     - [ ] Fix differences in type from type query
-        - [ ] Overloads lost, type referenced are followed (see `unit/Types.object` vs `unit/Types.typeQueryObject`)
-- [ ] Rewrite in haxe using generated TypeScript compiler externs
+        - [ ] @:overload lost, type referenced are followed (see `unit/Types.object` vs `unit/Types.typeQueryObject`)
+- [ ] Rewrite in haxe using generated TypeScript compiler externs **← currently working on this**
     - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
         - babylon.js and many other project use both, do we merge or just parse as-is?
@@ -52,9 +52,9 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Maybe function argument unions could be improved by overloads?
     - [ ] Abstracts to implement Tuples (named fields for array indexes)
-    - [ ] Generate externs built-in types that aren't in the haxe standard library yet
-    - [ ] Support type-references
+    - [ ] Generate externs for built-in types that aren't in the haxe standard library yet
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
+    - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
 - [ ] Command-line interface improvements
     - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
     - [ ] `dts2hx install three.js` works
