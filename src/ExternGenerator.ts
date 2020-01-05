@@ -291,6 +291,20 @@ export class ExternGenerator {
     }
 
     protected addFieldToHaxeType(parent: HaxeType, symbol: ts.Symbol, exportRoot: ts.Symbol | null) {
+        // skip if already exists in parent's super
+        if (symbol.parent != null) {
+            let classOrInterfaceDeclaration = symbol.parent.declarations.find((d) => ts.isClassDeclaration(d) || ts.isInterfaceDeclaration(d));
+            if (classOrInterfaceDeclaration != null) {
+                let superClassType = this.getSuperClassType(classOrInterfaceDeclaration as any, exportRoot);
+                if (superClassType != null) {
+                    let properties = this.typeChecker.getPropertiesOfType(superClassType);
+                    let propertyNames = properties.map(p => p.name);
+                    if (propertyNames.indexOf(symbol.name) !== -1) return;
+                }
+            }
+        }
+
+        // @! we should only do this if it doesn't replace a field in the super class
         parent.haxeSyntaxObject.fields.push(this.convertField(symbol, exportRoot));
     }
 
@@ -1259,7 +1273,7 @@ export class ExternGenerator {
                 // if not found we should generate externs fot this symbol instead
                 case 'ReadonlyArray': break; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
                 default: {
-                    // this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
                     // // generate this symbol
                     // (symbol as any)._haxeGenerateBuiltIn = true;
 

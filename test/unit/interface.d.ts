@@ -1,4 +1,5 @@
 declare interface Interface {
+    field: Array<any>;
     exampleMethod(a: number): void;
     exampleOptionalMethod?(a: number): void;
 }
@@ -35,4 +36,8 @@ declare interface InterfaceNested {
 
 declare interface InterfaceExtends<T> extends InterfaceMapLike<T> {
     additionalField: T,
+}
+
+declare interface InterfaceExtendsWithRedefinition extends Interface {
+    field: Array<number>;
 }
