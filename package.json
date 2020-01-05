@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "11.11.3",
-    "typescript": "3.3.3333"
+    "typescript": "3.7.4"
   },
   "devDependencies": {
     "fswatch": "0.1.4"
