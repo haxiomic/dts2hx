@@ -90,17 +90,7 @@ ${typeFooter}
     }
 
     public printTypeParamDecl = (typeParamDecl?: TypeParamDecl) => {
-        if (typeParamDecl == null) return '';
-        let str = '';
-        if (typeParamDecl.meta != null) {
-            str += typeParamDecl.meta.map(this.printMetadata).join(' ');
-        }
-        str += typeParamDecl.name;
-        str += this.printTypeParamsDecl(typeParamDecl.params);
-        if (typeParamDecl.constraints != null && typeParamDecl.constraints.length > 0) {
-            str += ': ' + typeParamDecl.constraints.join(' & ');
-        }
-        return str;
+        return typeParamDecl || '';
     }
 
     public printField = (field?: Field, sepChar = '\n') => {

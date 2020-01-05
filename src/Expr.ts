@@ -121,27 +121,28 @@ export type Field = {
 /**
 	Represents a type parameter declaration in the AST.
 **/
-export type TypeParamDecl = {
-	/**
-		The name of the type parameter.
-	**/
-    name?: string;
+export type TypeParamDecl = string;
+// export type TypeParamDecl = {
+// 	/**
+// 		The name of the type parameter.
+// 	**/
+//     name?: string;
 
-	/**
-		The optional constraints of the type parameter.
-	**/
-    constraints?: Array<ComplexType>;
+// 	/**
+// 		The optional constraints of the type parameter.
+// 	**/
+//     constraints?: Array<ComplexType>;
 
-	/**
-		The optional parameters of the type parameter.
-	**/
-    params?: Array<TypeParamDecl>;
+// 	/**
+// 		The optional parameters of the type parameter.
+// 	**/
+//     params?: Array<TypeParamDecl>;
 
-	/**
-		The metadata of the type parameter.
-	**/
-    meta?: Metadata;
-}
+// 	/**
+// 		The metadata of the type parameter.
+// 	**/
+//     meta?: Metadata;
+// }
 
 /**
 	Represents a type definition kind.

@@ -92,10 +92,9 @@ export class ExternGenerator {
                 if (!parentHaxeType.contributingSymbols.has(symbol)) {
                     // @! need to properly add to type
                     parentHaxeType.haxeSyntaxObject.params == parentHaxeType.haxeSyntaxObject.params || [];
-                    parentHaxeType.haxeSyntaxObject.params!.push({
-                        name: symbol.name,
-                        // @! incomplete
-                    });
+                    let typeParameterDeclaration = symbol.declarations.find(ts.isTypeParameterDeclaration);
+                    let typeParameterString = this.convertSyntaxType(typeParameterDeclaration!, symbol, exportRoot);
+                    parentHaxeType.haxeSyntaxObject.params!.push(typeParameterString);
 
                     parentHaxeType.contributingSymbols.add(symbol);
                 }
@@ -711,7 +710,7 @@ export class ExternGenerator {
                     let parameterStrings = functionLikeDeclaration.parameters.map(p => this.convertSyntaxType(p, declaration.symbol || atSymbol, exportRoot));
                     let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (functionLikeDeclaration.typeParameters || []);
                     let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, declaration.symbol || atSymbol, exportRoot));
-                    let typeParameterHaxeDecls: Array<TypeParamDecl> = typeParameterStrings.map(name => { return {name: name} });
+                    let typeParameterHaxeDecls: Array<TypeParamDecl> = typeParameterStrings;
 
                     // warn for unhandled function parts
                     if (functionLikeDeclaration.asteriskToken != null) {
@@ -1172,7 +1171,7 @@ export class ExternGenerator {
             let typeAliasDeclarationNode = typeAliasDeclarations[0] as ts.TypeAliasDeclaration;
             let typeParamDecls: ReadonlyArray<ts.TypeParameterDeclaration> = (typeAliasDeclarationNode.typeParameters || []);
             let typeParameterStrings = typeParamDecls.map(tp => this.convertSyntaxType(tp, symbol, exportRoot));
-            typeParams = typeParameterStrings.map(name => { return {name: name} });
+            typeParams = typeParameterStrings;
 
             typeKind = new TDAlias(this.convertSyntaxType(typeAliasDeclarationNode.type, symbol, exportRoot));
         } else if (typeAliasDeclarations.length === 0) {
