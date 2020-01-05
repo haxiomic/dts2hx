@@ -368,7 +368,7 @@ export class ExternGenerator {
                     } break;
                 }
 
-                let parameterTypeNode = parameterNode.type || this.typeChecker.typeToTypeNode(this.typeChecker.getTypeAtLocation(parameterNode));
+                let parameterTypeNode = parameterNode.type || this.typeToTypeNode(this.typeChecker.getTypeAtLocation(parameterNode));
                 let parameterTypeString: string;
                 if (parameterTypeNode != null) {
                     parameterTypeString = this.convertSyntaxType(parameterTypeNode, atSymbol, exportRoot);
@@ -418,8 +418,8 @@ export class ExternGenerator {
                     return 'Any';
                 }
 
-                let resolvedTypeNode = this.typeChecker.typeToTypeNode(resolvedType);
-                if (atSymbol.name === 'typeQueryFunctionWithOverloads') debugger;
+                let resolvedTypeNode = this.typeToTypeNode(resolvedType);
+
                 if (resolvedTypeNode == null) {
                     this.logWarning('Query type resolved to null', this.location(atSymbol));
                     return 'Any';
@@ -454,7 +454,7 @@ export class ExternGenerator {
                     return isInt ? 'Int' : 'Float';
                 }
 
-                let resolvedBaseTypeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType))!;
+                let resolvedBaseTypeNode = this.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType))!;
 
                 return this.convertSyntaxType(resolvedBaseTypeNode, atSymbol, exportRoot);
             } break;
@@ -533,7 +533,7 @@ export class ExternGenerator {
 
             case ts.SyntaxKind.FirstTypeNode: {
                 // function (a): a is X -> function(a) : Bool
-                return this.convertSyntaxType(this.typeChecker.typeToTypeNode(this.typeChecker.getBooleanType())!, atSymbol, exportRoot);
+                return this.convertSyntaxType(this.typeToTypeNode(this.typeChecker.getBooleanType())!, atSymbol, exportRoot);
             } break;
 
             case ts.SyntaxKind.ParenthesizedType: {
@@ -761,13 +761,13 @@ export class ExternGenerator {
                     let resolvedType = this.typeChecker.getTypeOfSymbolAtLocation(declaration.symbol || atSymbol, declaration);
                     if (resolvedType.flags & ts.TypeFlags.Literal) { // we don't use isLiteral because that ignores boolean
                         // the symbol has a literal expression that gives the type (i.e variable = false)
-                        typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
+                        typeNode = this.typeToTypeNode(this.typeChecker.getBaseTypeOfLiteralType(resolvedType));
                     } else {
-                        typeNode = this.typeChecker.typeToTypeNode(resolvedType);
+                        typeNode = this.typeToTypeNode(resolvedType);
                     }
                     if (typeNode == null) {
                         this.logError(`Failed to get a type for <b>${(declaration.symbol || atSymbol).name}</b>`, this.location(declaration.symbol || atSymbol));
-                        typeNode = this.typeChecker.typeToTypeNode(this.typeChecker.getAnyType())!;
+                        typeNode = this.typeToTypeNode(this.typeChecker.getAnyType())!;
                     }
                 }
                 if ((declaration as any).questionToken != null) {
@@ -801,6 +801,11 @@ export class ExternGenerator {
             pos: pos,
             meta: metas
         };
+    }
+
+    // call typeToTypeNode with NoTruncation set
+    protected typeToTypeNode(type: ts.Type) {
+        return this.typeChecker.typeToTypeNode(type, undefined, ts.NodeBuilderFlags.NoTruncation);
     }
 
     // @! there's probably a better ready made api for this
@@ -847,13 +852,13 @@ export class ExternGenerator {
         // should probably use it more
         let apparentType = this.typeChecker.getApparentType(type);
 
-        let typeNode = this.typeChecker.typeToTypeNode(apparentType);
+        let typeNode = this.typeToTypeNode(apparentType);
         return this.convertSyntaxType(typeNode!, type.symbol, exportRoot);
 
     }
 
     protected getAnyTypeNode() {
-        return this.typeChecker.typeToTypeNode(this.typeChecker.getAnyType())!;
+        return this.typeToTypeNode(this.typeChecker.getAnyType())!;
     }
 
     protected generateType(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject | null {
