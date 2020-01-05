@@ -344,6 +344,7 @@ export class ExternGenerator {
                 }
                 let constraintTypeString: string | null = null;
                 if (typeParameterDeclaration.constraint != null) {
+                    // @! constrains disabled for now
                     // constraintTypeString = this.convertSyntaxType(typeParameterDeclaration.constraint, atSymbol, exportRoot);
                 }
                 return typeParameterDeclaration.name.text + (constraintTypeString != null ? `: ${constraintTypeString}` : '');
@@ -516,6 +517,11 @@ export class ExternGenerator {
                 } else {
                     return `Array<${elementTypeStrings[0]}>`;
                 }
+            } break;
+
+            case ts.SyntaxKind.TypeOperator: {
+                let typeOperatorNode = syntaxNode as ts.TypeOperatorNode;
+                return this.convertSyntaxType(typeOperatorNode.type, atSymbol, exportRoot);
             } break;
 
             case ts.SyntaxKind.FirstNode: {
