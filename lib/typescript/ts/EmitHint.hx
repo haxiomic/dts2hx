@@ -1,0 +1,17 @@
+package typescript.ts;
+
+
+/**
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2909:5
+**/
+@:native('ts.EmitHint')
+@:enum
+extern abstract EmitHint(Int) from Int to Int {
+	var SourceFile;
+	var Expression;
+	var IdentifierName;
+	var MappedTypeParameter;
+	var Unspecified;
+	var EmbeddedStatement;
+}
+
