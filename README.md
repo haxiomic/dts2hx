@@ -13,7 +13,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 - To rebuild and run interactively, run `npm run watch-run`
 
 # Roadmap
-- [ ] First pass conversion of TypeScript compiler externs (written in ts)
+- [x] First pass conversion of TypeScript compiler externs (written in ts)
     - [x] Generate modules from symbols
     - [x] Basic conversion of fundamental types
         - [x] Enums
@@ -40,7 +40,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - [ ] @:overload lost, type referenced are followed (see `unit/Types.object` vs `unit/Types.typeQueryObject`)
     - [x] Unify type parameter handling; constraints are ignored for class type parameters
     - [x] Wrong type parameter is found in class extends
-    - [ ] Remove redefinitions of extending class fields
+    - [x] Remove redefinitions of extending class fields
 - [ ] Rewrite in haxe using generated TypeScript compiler externs **← currently working on this**
     - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
