@@ -44,7 +44,7 @@ Bugs:
 
 try {
 
-// generateHaxeExterns('test/unit', {}, 'test/generated-externs');
+generateHaxeExterns('test/unit', {}, 'test/generated-externs');
 // generateHaxeExterns('test-definitions/edge-cases', {});
 generateHaxeExterns('test-definitions/typescript', {});
 // generateHaxeExterns('test-definitions/templates/module-class', {});
