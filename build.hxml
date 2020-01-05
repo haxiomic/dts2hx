@@ -1,9 +1,7 @@
 -p lib
--p output
 -p src-hx
 
 -main Main
 -lib hxnodejs
--lib console.hx
 
 -js dist/dts2hx.js
