@@ -1,4 +1,5 @@
 - Answer .escapedText vs .text?
+- Review NodeBuilderFlags, seems like some of these will be very useful
 - Interfaces should be structures, however be aware that some might extend other standard lib interfaces
 - Use recursive decent rather than global symbol walk
 - Review use of .valueDeclaration instead of enumerating all declarations for a symbol
