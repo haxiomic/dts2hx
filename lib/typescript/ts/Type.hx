@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2336:5
 **/
-@:native('ts.Type')
-extern interface Type {
+
+typedef Type = {
 	var flags: typescript.ts.TypeFlags;
 	var symbol: typescript.ts.Symbol;
 	@:optional

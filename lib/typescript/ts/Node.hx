@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:496:5
 **/
-@:native('ts.Node')
-extern interface Node extends typescript.ts.TextRange {
+
+typedef Node = typescript.ts.TextRange & {
 	var kind: typescript.ts.SyntaxKind;
 	var flags: typescript.ts.NodeFlags;
 	@:optional

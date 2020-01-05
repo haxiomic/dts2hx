@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2917:5
 **/
-@:native('ts.TransformationContext')
-extern interface TransformationContext {
+
+typedef TransformationContext = {
 	/**
 	Gets the compiler options supplied to the transformer.
 	**/

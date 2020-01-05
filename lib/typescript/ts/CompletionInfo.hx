@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5522:5
 **/
-@:native('ts.CompletionInfo')
-extern interface CompletionInfo {
+
+typedef CompletionInfo = {
 	/**
 	Not true for all global completions. This will be true if the enclosing scope matches a few syntax kinds. See `isSnippetScope`.
 	**/

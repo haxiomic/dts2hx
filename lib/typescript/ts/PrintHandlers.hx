@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3034:5
 **/
-@:native('ts.PrintHandlers')
-extern interface PrintHandlers {
+
+typedef PrintHandlers = {
 	/**
 	A hook used by the Printer when generating unique names to avoid collisions with
 	globally defined names that exist outside of the current source file.

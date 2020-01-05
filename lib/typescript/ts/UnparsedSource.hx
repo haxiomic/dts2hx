@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1796:5
 **/
-@:native('ts.UnparsedSource')
-extern interface UnparsedSource extends typescript.ts.Node {
+
+typedef UnparsedSource = typescript.ts.Node & {
 	var fileName: String;
 	var text: String;
 	var prologues: Array<typescript.ts.UnparsedPrologue>;

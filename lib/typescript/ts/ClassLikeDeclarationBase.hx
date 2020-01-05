@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1381:5
 **/
-@:native('ts.ClassLikeDeclarationBase')
-extern interface ClassLikeDeclarationBase extends typescript.ts.NamedDeclaration {
+
+typedef ClassLikeDeclarationBase = typescript.ts.NamedDeclaration & {
 	@:optional
 	var typeParameters: typescript.ts.NodeArray<typescript.ts.TypeParameterDeclaration>;
 	@:optional

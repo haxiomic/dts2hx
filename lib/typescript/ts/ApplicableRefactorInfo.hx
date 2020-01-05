@@ -6,8 +6,8 @@ A set of one or more available refactoring actions, grouped under a parent refac
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5235:5
 **/
-@:native('ts.ApplicableRefactorInfo')
-extern interface ApplicableRefactorInfo {
+
+typedef ApplicableRefactorInfo = {
 	/**
 	The programmatic name of the refactoring
 	**/

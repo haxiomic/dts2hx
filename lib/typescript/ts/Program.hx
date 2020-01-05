@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1884:5
 **/
-@:native('ts.Program')
-extern interface Program extends typescript.ts.ScriptReferenceHost {
+
+typedef Program = typescript.ts.ScriptReferenceHost & {
 	/**
 	Get a list of root file names that were passed to a 'createProgram'
 	**/

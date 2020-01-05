@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5457:5
 **/
-@:native('ts.QuickInfo')
-extern interface QuickInfo {
+
+typedef QuickInfo = {
 	var kind: typescript.ts.ScriptElementKind;
 	var kindModifiers: String;
 	var textSpan: typescript.ts.TextSpan;

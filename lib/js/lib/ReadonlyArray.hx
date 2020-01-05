@@ -1,5 +1,5 @@
 package js.lib;
 
-extern interface ReadonlyArray<T> implements ArrayAccess<T> {
+extern typedef ReadonlyArray<T> = {
     
 }

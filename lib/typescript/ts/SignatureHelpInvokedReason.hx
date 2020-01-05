@@ -7,8 +7,8 @@ The language service will unconditionally attempt to provide a result.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5112:5
 **/
-@:native('ts.SignatureHelpInvokedReason')
-extern interface SignatureHelpInvokedReason {
+
+typedef SignatureHelpInvokedReason = {
 	var kind: String;
 	@:optional
 	var triggerCharacter: Any;

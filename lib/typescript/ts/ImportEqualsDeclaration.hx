@@ -8,8 +8,8 @@ One of:
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1465:5
 **/
-@:native('ts.ImportEqualsDeclaration')
-extern interface ImportEqualsDeclaration extends typescript.ts.DeclarationStatement {
+
+typedef ImportEqualsDeclaration = typescript.ts.DeclarationStatement & {
 	var moduleReference: typescript.ts.ModuleReference;
 }
 

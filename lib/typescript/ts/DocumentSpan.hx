@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5286:5
 **/
-@:native('ts.DocumentSpan')
-extern interface DocumentSpan {
+
+typedef DocumentSpan = {
 	var textSpan: typescript.ts.TextSpan;
 	var fileName: String;
 	/**

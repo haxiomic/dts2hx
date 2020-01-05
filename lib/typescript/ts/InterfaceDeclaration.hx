@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1406:5
 **/
-@:native('ts.InterfaceDeclaration')
-extern interface InterfaceDeclaration extends typescript.ts.DeclarationStatement {
+
+typedef InterfaceDeclaration = typescript.ts.DeclarationStatement & {
 	@:optional
 	var typeParameters: typescript.ts.NodeArray<typescript.ts.TypeParameterDeclaration>;
 	@:optional

@@ -6,8 +6,8 @@ Builder to manage the program state changes
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4461:5
 **/
-@:native('ts.BuilderProgram')
-extern interface BuilderProgram {
+
+typedef BuilderProgram = {
 	/**
 	Returns current program
 	**/

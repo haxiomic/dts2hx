@@ -9,8 +9,8 @@ ObjectLiteralElement (e.g. PropertyAssignment, ShorthandPropertyAssignment etc.)
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1080:5
 **/
-@:native('ts.ObjectLiteralExpressionBase')
-extern interface ObjectLiteralExpressionBase<T> extends typescript.ts.PrimaryExpression {
+
+typedef ObjectLiteralExpressionBase<T> = typescript.ts.PrimaryExpression & {
 	var properties: typescript.ts.NodeArray<T>;
 }
 

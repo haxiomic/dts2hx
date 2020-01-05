@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5369:5
 **/
-@:native('ts.FormatCodeOptions')
-extern interface FormatCodeOptions extends typescript.ts.EditorOptions {
+
+typedef FormatCodeOptions = typescript.ts.EditorOptions & {
 	var InsertSpaceAfterCommaDelimiter: Bool;
 	var InsertSpaceAfterSemicolonInForStatements: Bool;
 	var InsertSpaceBeforeAndAfterBinaryOperators: Bool;

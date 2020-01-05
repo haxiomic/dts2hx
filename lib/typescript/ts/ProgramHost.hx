@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4600:5
 **/
-@:native('ts.ProgramHost')
-extern interface ProgramHost<T> {
+
+typedef ProgramHost<T> = {
 	/**
 	Used to create the program when need for program creation or recreation detected
 	**/

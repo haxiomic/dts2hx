@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4763:5
 **/
-@:native('ts.BuildInvalidedProject')
-extern interface BuildInvalidedProject<T> extends typescript.ts.InvalidatedProjectBase {
+
+typedef BuildInvalidedProject<T> = typescript.ts.InvalidatedProjectBase & {
 	function getBuilderProgram(): Null<T>;
 	function getProgram(): Null<typescript.ts.Program>;
 	function getSourceFile(fileName: String): Null<typescript.ts.SourceFile>;

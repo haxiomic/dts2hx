@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5204:5
 **/
-@:native('ts.CodeAction')
-extern interface CodeAction {
+
+typedef CodeAction = {
 	/**
 	Description of the code action to display in the UI of the editor
 	**/

@@ -1010,106 +1010,45 @@ export class ExternGenerator {
             }
         }
 
-        return {
-            name: typeName,
-            kind: new TDClass(
-                superClassPath, // @! todo extends
-                implementingPaths, // @! interfaces
-                isInterface, // isInterface
-                false  // isFinal
-            ),
-            pack: this.typePathPackages(haxeTypePath),
-            fields: [],
-            pos: pos,
-            isExtern: true,
-            doc: docs.join('\n\n'),
-            meta: [
-                {
-                    name: ':native',
-                    pos: pos,
-                    params: [`'${nativePath}'`]
-                }
-            ],
-            params: [],
-        }
-    }
-
-    /*
-    protected generateInterface(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
-        // @! this is basically the same as generate class
-
-        let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <magenta>interface</>', haxeTypePath.join('.'), this.location(symbol));
-
-        let nativePath = TSUtil.getNativePath(symbol, exportRoot);
-        let pos = Debug.getSymbolPosition(symbol);
-        let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
-        docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
-
-        let implementing = new Array<TypePath>();
-        let superClass: TypePath | undefined;
-
-        if (symbol.members != null) {
-            let indexSignature = symbol.members.get(ts.InternalSymbolName.Index);
-            let fieldCount = 0;
-            symbol.members.forEach((s) => {
-                if (s.flags & ts.SymbolFlags.Property) fieldCount++;
-            });
-
-            // handle special case of a single index signature with no fields
-            if (indexSignature != null && indexSignature.declarations.length === 1 && fieldCount === 0) {
-                let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
-                let indexSignatureHaxeType = this.mapIndexSignatureToHaxeType(indexSignatureDeclaration, symbol, exportRoot);
-                if (indexSignatureHaxeType != null) {
-                    // generate a typedef instead
-                    return {
-                        name: typeName,
-                        kind: new TDAlias(indexSignatureHaxeType),
-                        params: [],
-                        pack: this.typePathPackages(haxeTypePath),
-                        fields: [],
-                        doc: docs.join('\n\n'),
+        // generate structure typedef instead because it's more compatible with typescripts interfaces
+        if (isInterface) {
+            return {
+                name: typeName,
+                kind: new TDAlias(undefined, superClassPath),
+                pack: this.typePathPackages(haxeTypePath),
+                fields: [],
+                pos: pos,
+                isExtern: true,
+                doc: docs.join('\n\n'),
+                meta: [],
+                params: [],
+            }
+        } else {
+            return {
+                name: typeName,
+                kind: new TDClass(
+                    superClassPath, // @! todo extends
+                    implementingPaths, // @! interfaces
+                    isInterface, // isInterface
+                    false  // isFinal
+                ),
+                pack: this.typePathPackages(haxeTypePath),
+                fields: [],
+                pos: pos,
+                isExtern: true,
+                doc: docs.join('\n\n'),
+                meta: [
+                    {
+                        name: ':native',
                         pos: pos,
+                        params: [`'${nativePath}'`]
                     }
-                }
-            } else if (indexSignature != null && indexSignature.declarations.length > 0) {
-                let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
-                // add implements Dynamic<T>
-                let typeString = this.convertSyntaxType(indexSignatureDeclaration.type!, symbol, exportRoot);
-                implementing.push(`Dynamic<${typeString}>`);
+                ],
+                params: [],
             }
         }
 
-        // get `extend *` node
-        let interfaceDeclaration = symbol.declarations.find(ts.isInterfaceDeclaration);
-        if (interfaceDeclaration != null) {
-            superClass = this.getSuperClass(interfaceDeclaration, exportRoot);
-        }
-
-        return {
-            name: typeName,
-            kind: new TDClass(
-                superClass, // @! todo extends
-                implementing,
-                true, // isInterface
-                false // isFinal
-            ),
-            pack: this.typePathPackages(haxeTypePath),
-            fields: [],
-            pos: pos,
-            isExtern: true,
-            doc: docs.join('\n\n'),
-            meta: [
-                {
-                    name: ':native',
-                    pos: pos,
-                    params: [`'${nativePath}'`]
-                }
-            ],
-            params: [],
-        }
     }
-    */
 
     protected generateEnum(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);

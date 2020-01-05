@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4709:5
 **/
-@:native('ts.SolutionBuilderHostBase')
-extern interface SolutionBuilderHostBase<T> extends typescript.ts.ProgramHost<T> {
+
+typedef SolutionBuilderHostBase<T> = typescript.ts.ProgramHost<T> & {
 	@:optional
 	function createDirectory(path: String): Void;
 	/**

@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:673:5
 **/
-@:native('ts.ObjectBindingPattern')
-extern interface ObjectBindingPattern extends typescript.ts.Node {
+
+typedef ObjectBindingPattern = typescript.ts.Node & {
 	var elements: typescript.ts.NodeArray<typescript.ts.BindingElement>;
 }
 

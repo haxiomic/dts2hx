@@ -7,8 +7,8 @@ location where renaming should be invoked from
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5275:5
 **/
-@:native('ts.RefactorEditInfo')
-extern interface RefactorEditInfo {
+
+typedef RefactorEditInfo = {
 	var edits: Array<typescript.ts.FileTextChanges>;
 	@:optional
 	var renameFilename: String;

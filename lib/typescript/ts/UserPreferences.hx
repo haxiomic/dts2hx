@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3170:5
 **/
-@:native('ts.UserPreferences')
-extern interface UserPreferences {
+
+typedef UserPreferences = {
 	@:optional
 	final disableSuggestions: Bool;
 	@:optional

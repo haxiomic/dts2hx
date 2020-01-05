@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1939:5
 **/
-@:native('ts.CustomTransformers')
-extern interface CustomTransformers {
+
+typedef CustomTransformers = {
 	/**
 	Custom transformers to evaluate before built-in .js transformations.
 	**/

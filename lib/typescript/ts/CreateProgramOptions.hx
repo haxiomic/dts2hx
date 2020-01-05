@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2749:5
 **/
-@:native('ts.CreateProgramOptions')
-extern interface CreateProgramOptions {
+
+typedef CreateProgramOptions = {
 	var rootNames: Array<String>;
 	var options: typescript.ts.CompilerOptions;
 	@:optional

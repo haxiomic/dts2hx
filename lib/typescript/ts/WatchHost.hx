@@ -6,8 +6,8 @@ Host that has watch functionality used in --watch mode
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4588:5
 **/
-@:native('ts.WatchHost')
-extern interface WatchHost {
+
+typedef WatchHost = {
 	/**
 	If provided, called with Diagnostic message that informs about change in watch status
 	**/

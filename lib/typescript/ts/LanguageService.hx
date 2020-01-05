@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5008:5
 **/
-@:native('ts.LanguageService')
-extern interface LanguageService {
+
+typedef LanguageService = {
 	function cleanupSemanticCache(): Void;
 	function getSyntacticDiagnostics(fileName: String): Array<typescript.ts.DiagnosticWithLocation>;
 	/**

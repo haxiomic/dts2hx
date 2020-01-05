@@ -7,8 +7,8 @@ Depending on the character and the syntactic context, the request may or may not
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5120:5
 **/
-@:native('ts.SignatureHelpCharacterTypedReason')
-extern interface SignatureHelpCharacterTypedReason {
+
+typedef SignatureHelpCharacterTypedReason = {
 	var kind: String;
 	/**
 	Character that was responsible for triggering signature help.

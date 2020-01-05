@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4972:5
 **/
-@:native('ts.LanguageServiceHost')
-extern interface LanguageServiceHost extends typescript.ts.ModuleSpecifierResolutionHost {
+
+typedef LanguageServiceHost = typescript.ts.ModuleSpecifierResolutionHost & {
 	function getCompilationSettings(): typescript.ts.CompilerOptions;
 	@:optional
 	function getNewLine(): String;

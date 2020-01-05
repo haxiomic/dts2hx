@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5619:5
 **/
-@:native('ts.Classifier')
-extern interface Classifier {
+
+typedef Classifier = {
 	/**
 	Gives lexical classifications of tokens on a line without any syntactic context.
 	For instance, a token consisting of the text 'string' can be either an identifier

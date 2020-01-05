@@ -167,7 +167,7 @@ export class TDClass extends TypeDefKind {
 	) { super('TDClass') }
 }
 export class TDAlias extends TypeDefKind {
-	constructor( readonly t : ComplexType ) { super('TDAlias') }
+	constructor( readonly t? : ComplexType, readonly superType?: ComplexType ) { super('TDAlias') }
 }
 export class TDAbstract extends TypeDefKind {
 	constructor(readonly tthis: Null<ComplexType>, readonly from?: Array<ComplexType>, readonly to?: Array<ComplexType> ) { super('TDAbstract') }

@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4443:5
 **/
-@:native('ts.BuilderProgramHost')
-extern interface BuilderProgramHost {
+
+typedef BuilderProgramHost = {
 	/**
 	return true if file names are treated with case sensitivity
 	**/

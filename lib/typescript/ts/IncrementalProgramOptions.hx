@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4575:5
 **/
-@:native('ts.IncrementalProgramOptions')
-extern interface IncrementalProgramOptions<T> {
+
+typedef IncrementalProgramOptions<T> = {
 	var rootNames: Array<String>;
 	var options: typescript.ts.CompilerOptions;
 	@:optional

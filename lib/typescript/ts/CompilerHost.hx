@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2838:5
 **/
-@:native('ts.CompilerHost')
-extern interface CompilerHost extends typescript.ts.ModuleResolutionHost {
+
+typedef CompilerHost = typescript.ts.ModuleResolutionHost & {
 	function getSourceFile(fileName: String, languageVersion: typescript.ts.ScriptTarget, ?onError: (message: String) -> Void, ?shouldCreateNewSourceFile: Bool): Null<typescript.ts.SourceFile>;
 	@:optional
 	function getSourceFileByPath(fileName: String, path: typescript.ts.Path, languageVersion: typescript.ts.ScriptTarget, ?onError: (message: String) -> Void, ?shouldCreateNewSourceFile: Bool): Null<typescript.ts.SourceFile>;

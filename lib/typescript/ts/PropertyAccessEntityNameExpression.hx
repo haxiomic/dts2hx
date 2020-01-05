@@ -6,8 +6,8 @@ Brand for a PropertyAccessExpression which, like a QualifiedName, consists of a 
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1101:5
 **/
-@:native('ts.PropertyAccessEntityNameExpression')
-extern interface PropertyAccessEntityNameExpression extends typescript.ts.PropertyAccessExpression {
+
+typedef PropertyAccessEntityNameExpression = typescript.ts.PropertyAccessExpression & {
 	@:optional
 	var _propertyAccessExpressionLikeQualifiedNameBrand: Any;
 }

@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4729:5
 **/
-@:native('ts.SolutionBuilder')
-extern interface SolutionBuilder<T> {
+
+typedef SolutionBuilder<T> = {
 	function build(?project: String, ?cancellationToken: typescript.ts.CancellationToken): typescript.ts.ExitStatus;
 	function clean(?project: String): typescript.ts.ExitStatus;
 	function buildReferences(project: String, ?cancellationToken: typescript.ts.CancellationToken): typescript.ts.ExitStatus;

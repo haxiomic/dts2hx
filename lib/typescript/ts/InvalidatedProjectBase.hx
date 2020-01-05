@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4749:5
 **/
-@:native('ts.InvalidatedProjectBase')
-extern interface InvalidatedProjectBase {
+
+typedef InvalidatedProjectBase = {
 	final kind: typescript.ts.InvalidatedProjectKind;
 	final project: typescript.ts.ResolvedConfigFileName;
 	/**

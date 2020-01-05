@@ -8,8 +8,8 @@ the same values.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4938:5
 **/
-@:native('ts.IScriptSnapshot')
-extern interface IScriptSnapshot {
+
+typedef IScriptSnapshot = {
 	/**
 	Gets a portion of the script snapshot specified by [start, end).
 	**/

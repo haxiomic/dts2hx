@@ -9,8 +9,8 @@ Child items always have an empty array for their `childItems`.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5157:5
 **/
-@:native('ts.NavigationBarItem')
-extern interface NavigationBarItem {
+
+typedef NavigationBarItem = {
 	var text: String;
 	var kind: typescript.ts.ScriptElementKind;
 	var kindModifiers: String;

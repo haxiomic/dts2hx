@@ -9,8 +9,8 @@ The language service will unconditionally attempt to provide a result.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5133:5
 **/
-@:native('ts.SignatureHelpRetriggeredReason')
-extern interface SignatureHelpRetriggeredReason {
+
+typedef SignatureHelpRetriggeredReason = {
 	var kind: String;
 	/**
 	Character that was responsible for triggering signature help.

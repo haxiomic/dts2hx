@@ -10,8 +10,8 @@ questions like 'what parameter is the user currently contained within?'.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5503:5
 **/
-@:native('ts.SignatureHelpItem')
-extern interface SignatureHelpItem {
+
+typedef SignatureHelpItem = {
 	var isVariadic: Bool;
 	var prefixDisplayParts: Array<typescript.ts.SymbolDisplayPart>;
 	var suffixDisplayParts: Array<typescript.ts.SymbolDisplayPart>;

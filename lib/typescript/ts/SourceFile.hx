@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1756:5
 **/
-@:native('ts.SourceFile')
-extern interface SourceFile extends typescript.ts.Declaration {
+
+typedef SourceFile = typescript.ts.Declaration & {
 	var statements: typescript.ts.NodeArray<typescript.ts.Statement>;
 	var endOfFileToken: typescript.ts.Token<typescript.ts.SyntaxKind>;
 	var fileName: String;

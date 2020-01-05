@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1666:5
 **/
-@:native('ts.JSDocPropertyLikeTag')
-extern interface JSDocPropertyLikeTag extends typescript.ts.JSDocTag {
+
+typedef JSDocPropertyLikeTag = typescript.ts.JSDocTag & {
 	var name: typescript.ts.EntityName;
 	@:optional
 	var typeExpression: typescript.ts.JSDocTypeExpression;

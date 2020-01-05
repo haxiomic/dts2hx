@@ -4,8 +4,8 @@ package unit;
 /**
 Generated from: test/unit/interface.d.ts:1
 **/
-@:native('Interface')
-extern interface Interface {
+
+typedef Interface = {
 	var field: Array<Any>;
 	function exampleMethod(a: Float): Void;
 	@:optional

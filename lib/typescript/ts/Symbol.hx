@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2227:5
 **/
-@:native('ts.Symbol')
-extern interface Symbol {
+
+typedef Symbol = {
 	var flags: typescript.ts.SymbolFlags;
 	var escapedName: typescript.ts.__String;
 	var declarations: Array<typescript.ts.Declaration>;

@@ -7,8 +7,8 @@ The top node is always a script or module node.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5171:5
 **/
-@:native('ts.NavigationTree')
-extern interface NavigationTree {
+
+typedef NavigationTree = {
 	/**
 	Name of the declaration, or a short description, e.g. "<class>".
 	**/

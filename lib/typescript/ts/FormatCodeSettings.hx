@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5387:5
 **/
-@:native('ts.FormatCodeSettings')
-extern interface FormatCodeSettings extends typescript.ts.EditorSettings {
+
+typedef FormatCodeSettings = typescript.ts.EditorSettings & {
 	@:optional
 	final insertSpaceAfterCommaDelimiter: Bool;
 	@:optional

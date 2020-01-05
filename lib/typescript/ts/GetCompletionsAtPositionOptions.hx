@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5091:5
 **/
-@:native('ts.GetCompletionsAtPositionOptions')
-extern interface GetCompletionsAtPositionOptions extends typescript.ts.UserPreferences {
+
+typedef GetCompletionsAtPositionOptions = typescript.ts.UserPreferences & {
 	/**
 	If the editor is asking for completions because a certain character was typed
 	(as opposed to when the user explicitly requested them) this should be set.

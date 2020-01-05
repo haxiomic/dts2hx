@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1977:5
 **/
-@:native('ts.TypeChecker')
-extern interface TypeChecker {
+
+typedef TypeChecker = {
 	function getTypeOfSymbolAtLocation(symbol: typescript.ts.Symbol, node: typescript.ts.Node): typescript.ts.Type;
 	function getDeclaredTypeOfSymbol(symbol: typescript.ts.Symbol): typescript.ts.Type;
 	function getPropertiesOfType(type: typescript.ts.Type): Array<typescript.ts.Symbol>;

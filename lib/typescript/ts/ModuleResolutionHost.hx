@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2757:5
 **/
-@:native('ts.ModuleResolutionHost')
-extern interface ModuleResolutionHost {
+
+typedef ModuleResolutionHost = {
 	function fileExists(fileName: String): Bool;
 	function readFile(fileName: String): Null<String>;
 	@:optional

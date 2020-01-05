@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2455:5
 **/
-@:native('ts.ConditionalRoot')
-extern interface ConditionalRoot {
+
+typedef ConditionalRoot = {
 	var node: typescript.ts.ConditionalTypeNode;
 	var checkType: typescript.ts.Type;
 	var extendsType: typescript.ts.Type;

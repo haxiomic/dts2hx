@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2419:5
 **/
-@:native('ts.TupleType')
-extern interface TupleType extends typescript.ts.GenericType {
+
+typedef TupleType = typescript.ts.GenericType & {
 	var minLength: Float;
 	var hasRestElement: Bool;
 	var readonly: Bool;

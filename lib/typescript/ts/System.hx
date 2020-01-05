@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3199:5
 **/
-@:native('ts.System')
-extern interface System {
+
+typedef System = {
 	var args: Array<String>;
 	var newLine: String;
 	var useCaseSensitiveFileNames: Bool;

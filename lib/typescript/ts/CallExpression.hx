@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1118:5
 **/
-@:native('ts.CallExpression')
-extern interface CallExpression extends typescript.ts.LeftHandSideExpression {
+
+typedef CallExpression = typescript.ts.LeftHandSideExpression & {
 	var expression: typescript.ts.LeftHandSideExpression;
 	@:optional
 	var questionDotToken: typescript.ts.QuestionDotToken;

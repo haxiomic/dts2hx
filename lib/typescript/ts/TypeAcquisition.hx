@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2664:5
 **/
-@:native('ts.TypeAcquisition')
-extern interface TypeAcquisition implements Dynamic<Null<haxe.extern.EitherType<Array<String>, Bool>>> {
+
+typedef TypeAcquisition = {
 	@:optional
 	var enableAutoDiscovery: Bool;
 	@:optional

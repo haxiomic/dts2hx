@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2579:5
 **/
-@:native('ts.CompilerOptions')
-extern interface CompilerOptions implements Dynamic<Null<haxe.extern.EitherType<typescript.ts.CompilerOptionsValue, typescript.ts.TsConfigSourceFile>>> {
+
+typedef CompilerOptions = {
 	@:optional
 	var allowJs: Bool;
 	@:optional

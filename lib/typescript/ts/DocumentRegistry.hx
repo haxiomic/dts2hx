@@ -18,8 +18,8 @@ to all subsequent createLanguageService calls.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5803:5
 **/
-@:native('ts.DocumentRegistry')
-extern interface DocumentRegistry {
+
+typedef DocumentRegistry = {
 	/**
 	Request a stored SourceFile with a given fileName and compilationSettings.
 	The first call to acquire will call createLanguageServiceSourceFile to generate

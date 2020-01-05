@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3006:5
 **/
-@:native('ts.Printer')
-extern interface Printer {
+
+typedef Printer = {
 	/**
 	Print a node and its subtree as-is, without any emit transformations.
 	**/

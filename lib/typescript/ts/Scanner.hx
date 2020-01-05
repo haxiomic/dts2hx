@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3249:5
 **/
-@:native('ts.Scanner')
-extern interface Scanner {
+
+typedef Scanner = {
 	function getStartPos(): Float;
 	function getToken(): typescript.ts.SyntaxKind;
 	function getTextPos(): Float;

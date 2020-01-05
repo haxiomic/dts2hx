@@ -6,8 +6,8 @@ ES6 Map interface, only read methods included.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:37:5
 **/
-@:native('ts.ReadonlyMap')
-extern interface ReadonlyMap<T> {
+
+typedef ReadonlyMap<T> = {
 	function get(key: String): Null<T>;
 	function has(key: String): Bool;
 	function forEach(action: (value: T, key: String) -> Void): Void;

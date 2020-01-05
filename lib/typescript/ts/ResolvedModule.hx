@@ -10,8 +10,8 @@ Prefer to return a `ResolvedModuleFull` so that the file type does not have to b
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2777:5
 **/
-@:native('ts.ResolvedModule')
-extern interface ResolvedModule {
+
+typedef ResolvedModule = {
 	/**
 	Path of the file the module was resolved to.
 	**/

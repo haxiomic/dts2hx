@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1680:5
 **/
-@:native('ts.JSDocTypeLiteral')
-extern interface JSDocTypeLiteral extends typescript.ts.JSDocType {
+
+typedef JSDocTypeLiteral = typescript.ts.JSDocType & {
 	@:optional
 	var jsDocPropertyTags: Array<typescript.ts.JSDocPropertyLikeTag>;
 	/**

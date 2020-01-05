@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1947:5
 **/
-@:native('ts.SourceMapSpan')
-extern interface SourceMapSpan {
+
+typedef SourceMapSpan = {
 	/**
 	Line number in the .js file.
 	**/

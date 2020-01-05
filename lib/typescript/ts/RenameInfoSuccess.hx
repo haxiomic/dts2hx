@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5466:5
 **/
-@:native('ts.RenameInfoSuccess')
-extern interface RenameInfoSuccess {
+
+typedef RenameInfoSuccess = {
 	var canRename: Bool;
 	/**
 	File or directory to rename.

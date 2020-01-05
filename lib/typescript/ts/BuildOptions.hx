@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4700:5
 **/
-@:native('ts.BuildOptions')
-extern interface BuildOptions implements Dynamic<Null<typescript.ts.CompilerOptionsValue>> {
+
+typedef BuildOptions = {
 	@:optional
 	var dry: Bool;
 	@:optional

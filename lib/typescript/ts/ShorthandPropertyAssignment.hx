@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:655:5
 **/
-@:native('ts.ShorthandPropertyAssignment')
-extern interface ShorthandPropertyAssignment extends typescript.ts.ObjectLiteralElement {
+
+typedef ShorthandPropertyAssignment = typescript.ts.ObjectLiteralElement & {
 	@:optional
 	var questionToken: typescript.ts.QuestionToken;
 	@:optional

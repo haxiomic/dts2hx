@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2967:5
 **/
-@:native('ts.TransformationResult')
-extern interface TransformationResult<T> {
+
+typedef TransformationResult<T> = {
 	/**
 	Gets the transformed source files.
 	**/

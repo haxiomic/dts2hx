@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5532:5
 **/
-@:native('ts.CompletionEntry')
-extern interface CompletionEntry {
+
+typedef CompletionEntry = {
 	var name: String;
 	var kind: typescript.ts.ScriptElementKind;
 	@:optional

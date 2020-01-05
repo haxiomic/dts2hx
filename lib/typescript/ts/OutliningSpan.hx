@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5558:5
 **/
-@:native('ts.OutliningSpan')
-extern interface OutliningSpan {
+
+typedef OutliningSpan = {
 	/**
 	The span of the document to actually collapse.
 	**/

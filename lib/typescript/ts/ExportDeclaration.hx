@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1499:5
 **/
-@:native('ts.ExportDeclaration')
-extern interface ExportDeclaration extends typescript.ts.DeclarationStatement {
+
+typedef ExportDeclaration = typescript.ts.DeclarationStatement & {
 	/**
 	Will not be assigned in the case of `export * from "foo";`
 	**/

@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1298:5
 **/
-@:native('ts.ForStatement')
-extern interface ForStatement extends typescript.ts.IterationStatement {
+
+typedef ForStatement = typescript.ts.IterationStatement & {
 	@:optional
 	var initializer: typescript.ts.ForInitializer;
 	@:optional

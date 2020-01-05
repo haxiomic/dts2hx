@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5332:5
 **/
-@:native('ts.NavigateToItem')
-extern interface NavigateToItem {
+
+typedef NavigateToItem = {
 	var name: String;
 	var kind: typescript.ts.ScriptElementKind;
 	var kindModifiers: String;

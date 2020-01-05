@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3789:5
 **/
-@:native('ts.ParsedTsconfig')
-extern interface ParsedTsconfig {
+
+typedef ParsedTsconfig = {
 	var raw: Any;
 	@:optional
 	var options: typescript.ts.CompilerOptions;

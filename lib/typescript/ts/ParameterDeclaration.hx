@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:609:5
 **/
-@:native('ts.ParameterDeclaration')
-extern interface ParameterDeclaration extends typescript.ts.NamedDeclaration {
+
+typedef ParameterDeclaration = typescript.ts.NamedDeclaration & {
 	@:optional
 	var dotDotDotToken: typescript.ts.DotDotDotToken;
 	@:optional

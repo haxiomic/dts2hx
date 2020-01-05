@@ -6,8 +6,8 @@ Host to create watch with config file
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:4656:5
 **/
-@:native('ts.WatchCompilerHostOfConfigFile')
-extern interface WatchCompilerHostOfConfigFile<T> extends typescript.ts.WatchCompilerHost<T> {
+
+typedef WatchCompilerHostOfConfigFile<T> = typescript.ts.WatchCompilerHost<T> & {
 	/**
 	Name of the config file to compile
 	**/

@@ -7,8 +7,8 @@ offer several actions, each corresponding to a surround class or closure to extr
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5259:5
 **/
-@:native('ts.RefactorActionInfo')
-extern interface RefactorActionInfo {
+
+typedef RefactorActionInfo = {
 	/**
 	The programmatic name of the refactoring action
 	**/

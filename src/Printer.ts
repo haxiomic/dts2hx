@@ -43,8 +43,14 @@ export class Printer {
             }
             case 'TDAlias': {
                 let tdAlias = t.kind as TDAlias;
-                typeHeader = `typedef ${t.name}${typeParamsDecl} = ${tdAlias.t};`;
-                typeFooter = '';
+                typeHeader = `typedef ${t.name}${typeParamsDecl} = `;
+                if (tdAlias.t != null) {
+                    typeHeader += tdAlias.t + ';';
+                    typeFooter = '';
+                } else {
+                    typeHeader += `${tdAlias.superType != null ? `${tdAlias.superType} & ` : ``}{`;
+                    typeFooter = '}';
+                }
                 break;
             }
             case 'TDEnum': {

@@ -7,8 +7,8 @@ We support only non-relative module names because resolution of relative module 
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3840:5
 **/
-@:native('ts.NonRelativeModuleNameResolutionCache')
-extern interface NonRelativeModuleNameResolutionCache {
+
+typedef NonRelativeModuleNameResolutionCache = {
 	function getOrCreateCacheForModuleName(nonRelativeModuleName: String, ?redirectedReference: typescript.ts.ResolvedProjectReference): typescript.ts.PerModuleNameCache;
 }
 

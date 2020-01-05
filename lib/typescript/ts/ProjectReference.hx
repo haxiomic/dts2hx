@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2568:5
 **/
-@:native('ts.ProjectReference')
-extern interface ProjectReference {
+
+typedef ProjectReference = {
 	/**
 	A normalized path on disk
 	**/

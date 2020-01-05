@@ -11,8 +11,8 @@ Examples:
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:693:5
 **/
-@:native('ts.FunctionLikeDeclarationBase')
-extern interface FunctionLikeDeclarationBase extends typescript.ts.SignatureDeclarationBase {
+
+typedef FunctionLikeDeclarationBase = typescript.ts.SignatureDeclarationBase & {
 	var _functionLikeDeclarationBrand: Any;
 	@:optional
 	var asteriskToken: typescript.ts.AsteriskToken;

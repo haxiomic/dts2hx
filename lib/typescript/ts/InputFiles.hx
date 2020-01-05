@@ -4,8 +4,8 @@ package typescript.ts;
 /**
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1785:5
 **/
-@:native('ts.InputFiles')
-extern interface InputFiles extends typescript.ts.Node {
+
+typedef InputFiles = typescript.ts.Node & {
 	@:optional
 	var javascriptPath: String;
 	var javascriptText: String;

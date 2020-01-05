@@ -7,8 +7,8 @@ If changing this, remember to change `packageIdIsEqual`.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2800:5
 **/
-@:native('ts.PackageId')
-extern interface PackageId {
+
+typedef PackageId = {
 	/**
 	Name of the package.
 	Should not include `@types`.

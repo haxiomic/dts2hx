@@ -13,8 +13,8 @@ explicit "this" argument.
 
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2411:5
 **/
-@:native('ts.TypeReference')
-extern interface TypeReference extends typescript.ts.ObjectType {
+
+typedef TypeReference = typescript.ts.ObjectType & {
 	var target: typescript.ts.GenericType;
 	@:optional
 	var node: haxe.extern.EitherType<typescript.ts.TypeReferenceNode, haxe.extern.EitherType<typescript.ts.ArrayTypeNode, typescript.ts.TupleTypeNode>>;
