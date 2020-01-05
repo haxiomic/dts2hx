@@ -362,7 +362,7 @@ export class ExternGenerator {
                     parameterTypeString = 'Any';
                 }
                 if (isRest) {
-                    // @! quick hack to replace Array<T> with haxe.externs.Rest<T>
+                    // @! hack to replace Array<T> with haxe.externs.Rest<T>
                     parameterTypeString = parameterTypeString.replace(/^Array</, 'haxe.extern.Rest<');
                 }
                 return `${isOptional ? '?' : ''}${parameterIdent}: ${parameterTypeString}`;
@@ -1235,7 +1235,7 @@ export class ExternGenerator {
         // check if it's a built-in
         // @! here we just check if there's any declaration in the default lib but maybe we need something more careful if the type is extended by a library
         let defaultLibDeclarations = symbol.declarations.filter(d => d.getSourceFile().hasNoDefaultLib);
-        if (defaultLibDeclarations.length > 0 && !(symbol.flags & ts.SymbolFlags.TypeParameter)) {
+        if (defaultLibDeclarations.length > 0 && !(symbol.flags & ts.SymbolFlags.TypeParameter) && !(symbol as any)._haxeGenerateBuiltIn) {
             switch (symbol.escapedName) {
                 case 'Array': return ['Array'];
                 case 'String': return ['String'];
@@ -1249,14 +1249,21 @@ export class ExternGenerator {
                 case 'Object': return ['js.lib.Object'];
 
                 // special case
-                case 'ReadonlyArray': return ['haxe.ds.ReadOnlyArray'];
+                // case 'ReadonlyArray': return ['haxe.ds.ReadOnlyArray']; we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
+
                 case 'Iterator': return ['js.lib.Iterator'];
                 case 'IteratorResult': return ['js.lib.IteratorStep'];
 
                 // @! should search js.lib to find a matching built-in (however this won't work for interfaces without @:native
                 // if not found we should generate externs fot this symbol instead
                 default: {
-                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b></>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    // generate this symbol
+                    (symbol as any)._haxeGenerateBuiltIn = true;
+
+                    // temp lazy symbol walk
+                    this.addSymbol(symbol, exportRoot);
+                    if (symbol.members != null) symbol.members.forEach((s) => this.addSymbol(s, exportRoot));
                     return ['Any'];
                 }
             }
