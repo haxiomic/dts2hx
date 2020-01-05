@@ -345,28 +345,29 @@ export type FunctionArg = string;
 /**
 	Represents a type path in the AST.
 **/
-export type TypePath = {
-	/**
-		Represents the package of the type path.
-	**/
-	pack?: Array<string>;
+export type TypePath = string;
+// export type TypePath = {
+// 	/**
+// 		Represents the package of the type path.
+// 	**/
+// 	pack?: Array<string>;
 
-	/**
-		The name of the type path.
-	**/
-	name?: string;
+// 	/**
+// 		The name of the type path.
+// 	**/
+// 	name?: string;
 
-	/**
-		Optional parameters of the type path.
-	**/
-	params?: Array<TypeParam>;
+// 	/**
+// 		Optional parameters of the type path.
+// 	**/
+// 	params?: Array<TypeParam>;
 
-	/**
-		Sub is set on module sub-type access:
-		`pack.Module.Type` has name = Module, sub = Type, if available.
-	**/
-	sub?: Null<string>;
-}
+// 	/**
+// 		Sub is set on module sub-type access:
+// 		`pack.Module.Type` has name = Module, sub = Type, if available.
+// 	**/
+// 	sub?: Null<string>;
+// }
 
 /**
 	Represents a concrete type parameter in the AST.

@@ -418,8 +418,7 @@ export class ExternGenerator {
             case ts.SyntaxKind.ThisType: {
                 let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
                 let haxeTypePath = this.typeToTypePath(resolvedType, exportRoot);
-                let printer = new Printer();
-                return printer.printTypePath(haxeTypePath);
+                return haxeTypePath;
             } break;
 
             case ts.SyntaxKind.TypeLiteral: {
@@ -827,22 +826,13 @@ export class ExternGenerator {
     protected typeToTypePath(type: ts.Type, exportRoot: ts.Symbol | null) {
         let params = new Array<TypeParam>();
 
-        // extract and convert type parameters
-        let typeArguments = this.typeChecker.getLocalTypeParametersOfClassOrInterfaceOrTypeAlias(type.symbol) || [];
-        for (let tArg of typeArguments) { 
-            let tArgNode = this.typeChecker.typeToTypeNode(tArg);
-            if (!tArgNode) continue;
-            if (tArgNode.kind == ts.SyntaxKind.ThisKeyword) continue; // no idea why this appears
-            let typeParamString = this.convertSyntaxType(tArgNode, tArg.symbol, exportRoot);
-            params.push(new TPType(typeParamString));
-        }
+        // this is necessary to convert from 'thisType' -> ClassBase<T>
+        // should probably use it more
+        let apparentType = this.typeChecker.getApparentType(type);
 
-        let pathStr = this.getHaxeTypePath(type.symbol, exportRoot);
-        return {
-            name: this.typePathTypeName(pathStr)!,
-            pack: this.typePathPackages(pathStr)!,
-            params: params
-        }
+        let typeNode = this.typeChecker.typeToTypeNode(apparentType);
+        return this.convertSyntaxType(typeNode!, type.symbol, exportRoot);
+
     }
 
     protected getAnyTypeNode() {
@@ -954,7 +944,7 @@ export class ExternGenerator {
                 let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
                 // add implements Dynamic<T>
                 let typeString = this.convertSyntaxType(indexSignatureDeclaration.type!, symbol, exportRoot);
-                implementing.push({name:'Dynamic', pack: [], params: [new TPType(typeString)]});
+                implementing.push(`Dynamic<${typeString}>`);
             }
         }
 
@@ -1029,7 +1019,7 @@ export class ExternGenerator {
                 let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
                 // add implements Dynamic<T>
                 let typeString = this.convertSyntaxType(indexSignatureDeclaration.type!, symbol, exportRoot);
-                implementing.push({name:'Dynamic', pack: [], params: [new TPType(typeString)]});
+                implementing.push(`Dynamic<${typeString}>`);
             }
         }
 

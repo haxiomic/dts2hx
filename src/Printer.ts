@@ -73,6 +73,7 @@ ${typeFooter}
     }
 
     public printTypePath = (typePath?: TypePath) => {
+        return typePath;
         if (typePath == null) return '';
         let parts = [...(typePath.pack || [])];
         if (typePath.name != null) {
