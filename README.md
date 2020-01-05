@@ -38,15 +38,18 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
     - [x] Fix reference to `ReadonlyArray` in `WriteFileCallback`
     - [ ] Fix differences in type from type query
         - [ ] @:overload lost, type referenced are followed (see `unit/Types.object` vs `unit/Types.typeQueryObject`)
+    - [x] Unify type parameter handling; constraints are ignored for class type parameters
+    - [x] Wrong type parameter is found in class extends
+    - [ ] Remove redefinitions of extending class fields
 - [ ] Rewrite in haxe using generated TypeScript compiler externs **← currently working on this**
     - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
         - babylon.js and many other project use both, do we merge or just parse as-is?
+    - [ ] Remove type-path prefix if referencing type within the same module
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Command-line interface
     - [ ] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*
-- [ ] Remove typepath prefix if referencing type within the same module
 - [ ] Advanced type conversions
     - [ ] Abstracts to support unnamed enums and improve type unions
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
