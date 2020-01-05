@@ -70,12 +70,12 @@ final extern class Types {
 	static var readonlyNumberStringMap: ArrayAccess<String>;
 	static var numberStringMapWithField: {	var field: String;};
 	static var stringAndNumberMapWithField: {	var length: String;};
-	static var mappedStringIndex: <UNHANDLED SyntaxKind: MappedType>;
+	static var mappedStringIndex: /*<UNHANDLED SyntaxKind: MappedType>*/Any;
 	static var arrowNumberStringVoid: (a: Float, noType: Any) -> Void;
 	static var arrowNumberTVoidTypeParam: (a: Float, tparam: Any) -> Void;
 	static var arrowParamWithRest: (a: Float, b: Float, rest: haxe.extern.Rest<Float>) -> Void;
-	static var arrowParamObjectBindingPattern: (<UNHANDLED ObjectBindingPattern>: {	var x: Any; 	var y: Any;}) -> Void;
-	static var constructorType: <UNHANDLED SyntaxKind: ConstructorType>;
+	static var arrowParamObjectBindingPattern: (/* <UNHANDLED ObjectBindingPattern>*/ bindingIdent: {	var x: Any; 	var y: Any;}) -> Void;
+	static var constructorType: /*<UNHANDLED SyntaxKind: ConstructorType>*/Any;
 	static var nullableNumber: Null<Float>;
 	static var undefineableNumber: Null<Float>;
 	static var undefineableNullableNumber: Null<Float>;

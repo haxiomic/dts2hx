@@ -364,7 +364,7 @@ export class ExternGenerator {
                     } break;
                     default: {
                         this.logError(`Unhandled parameter name kind ${ts.SyntaxKind[parameterNode.name.kind]}`, this.location(atSymbol));
-                        parameterIdent = `<UNHANDLED ${ts.SyntaxKind[parameterNode.name.kind]}>`;
+                        parameterIdent = `/* <UNHANDLED ${ts.SyntaxKind[parameterNode.name.kind]}>*/ bindingIdent`;
                     } break;
                 }
 
@@ -542,8 +542,7 @@ export class ExternGenerator {
 
             default: {
                 this.logWarning(`Unhandled SyntaxKind <b>${ts.SyntaxKind[syntaxNode.kind]}</b> <b,white>${syntaxNode.symbol != null ? syntaxNode.symbol.name : '{no symbol}'}</>`, Debug.symbolInfoFormatted(this.typeChecker, atSymbol, exportRoot), this.location(atSymbol));
-
-                return `<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>`;
+                return `/*<UNHANDLED SyntaxKind: ${ts.SyntaxKind[syntaxNode.kind]}>*/Any`;
             }
         }
         // translate typescript typeNode into a haxe type (probably just a string for this version); i.e.
@@ -856,14 +855,18 @@ export class ExternGenerator {
         //  - haxe built-ins; Array etc
         //  - converted local type references
         let identifierString = identifierNode.escapedText as string;
-        let symbol = this.typeChecker.getSymbolAtLocation(identifierNode) || identifierNode.symbol;
+        let symbol =
+            this.typeChecker.getSymbolAtLocation(identifierNode) ||
+            identifierNode.symbol ||
+            this.typeChecker.resolveName(identifierString, atSymbol.declarations[0], ts.SymbolFlags.Type, false);
+
         if (symbol != null) {
             let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
             return haxeTypePath.join('.');
         } else {
-            // @! need to rename to safeIdent and use @:native
             this.logError(`Failed to get symbol for identifier node <b>${identifierString}</b>`, this.location(atSymbol));
             debugger;
+            // this.typeChecker.getSymbolAtLocation()
             return identifierString;
         }
     }
@@ -1297,7 +1300,6 @@ export class ExternGenerator {
                 case 'Map': return ['js.lib.Map'];
                 case 'Promise': return ['js.lib.Promise'];
                 case 'Date': return ['js.lib.Date'];
-                case 'Number': return ['js.lib.Number']; // PR open, not merged yet
                 case 'RegExp': return ['js.lib.RegExp'];
                 case 'RegExpMatchArray': return ['js.lib.RegExp.RegExpMatch'];
                 case 'Intl': return ['js.lib.Intl'];
@@ -1309,13 +1311,14 @@ export class ExternGenerator {
 
                 // @! should search js.lib to find a matching built-in (however this won't work for interfaces without @:native
                 // if not found we should generate externs fot this symbol instead
-                // case 'ReadonlyArray': break; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
+                case 'ReadonlyArray': return ['js.lib.ReadonlyArray']; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
+                case 'Number': return ['js.lib.Number']; // PR open, not merged yet
                 default: {
-                    // this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
-                    // // generate this symbol
+                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    // generate this symbol
                     // (symbol as any)._haxeGenerateBuiltIn = true;
 
-                    // // temp lazy symbol walk
+                    // temp lazy symbol walk
                     // this.addSymbol(symbol, exportRoot);
                     // if (symbol.members != null) symbol.members.forEach((s) => this.addSymbol(s, exportRoot));
 
