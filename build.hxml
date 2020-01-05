@@ -1,5 +1,6 @@
--p src-hx
+-p lib
 -p output
+-p src-hx
 
 -main Main
 -lib hxnodejs
