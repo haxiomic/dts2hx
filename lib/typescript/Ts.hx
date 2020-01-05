@@ -5,6 +5,7 @@ package typescript;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:16
 **/
 @:native('ts')
+@:jsRequire('typescript')
 final extern class Ts {
 	static var versionMajorMinor: String;
 	/**
