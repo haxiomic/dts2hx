@@ -344,7 +344,7 @@ export class ExternGenerator {
                 }
                 let constraintTypeString: string | null = null;
                 if (typeParameterDeclaration.constraint != null) {
-                    constraintTypeString = this.convertSyntaxType(typeParameterDeclaration.constraint, atSymbol, exportRoot);
+                    // constraintTypeString = this.convertSyntaxType(typeParameterDeclaration.constraint, atSymbol, exportRoot);
                 }
                 return typeParameterDeclaration.name.text + (constraintTypeString != null ? `: ${constraintTypeString}` : '');
             } break;

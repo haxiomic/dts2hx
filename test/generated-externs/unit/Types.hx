@@ -31,7 +31,7 @@ final extern class Types {
 	@:overload(function(a: Array<js.lib.Symbol>): Any { })
 	@:overload(function<T, U>(a: Array<js.lib.Symbol>, u: U): T { })
 	static function overloadedFunction(a: Float): Any;
-	static function typeParameterWithConstraint<T: Array<Float>>(x: T): Any;
+	static function typeParameterWithConstraint<T>(x: T): Any;
 	static function firstTypeFunction(node: {}): Bool;
 	static var implicitInt: Float;
 	static var implicitFloat: Float;
