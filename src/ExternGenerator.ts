@@ -399,7 +399,6 @@ export class ExternGenerator {
                 let resolvedType = this.typeChecker.getTypeFromTypeNode(syntaxNode as ts.TypeNode);
 
                 if (resolvedType.symbol && resolvedType.symbol.declarations.length > 1) {
-                    debugger;
                     this.logError(`Could not handle typeof query that reference type with multiple declarations`, this.location(atSymbol));
                     // @! typeof functionWithOverloads returns a TypeLiteral with overloads as members. This isn't translated well
                     return 'Any';
@@ -814,11 +813,10 @@ export class ExternGenerator {
         }
     }
     
-    protected getSuperClass(declaration: ts.ClassDeclaration | ts.InterfaceDeclaration, exportRoot: ts.Symbol | null) {
+    protected getSuperClassType(declaration: ts.ClassDeclaration | ts.InterfaceDeclaration, exportRoot: ts.Symbol | null) {
         let heritageClause = ts.getClassExtendsHeritageElement(declaration);
         if (heritageClause != null) {
-            let superClassType = this.typeChecker.getTypeAtLocation(heritageClause);
-            return this.typeToTypePath(superClassType, exportRoot);
+            return this.typeChecker.getTypeAtLocation(heritageClause);
         }
         return undefined;
     }
@@ -844,12 +842,12 @@ export class ExternGenerator {
 
         // class
         if (symbol.flags & ts.SymbolFlags.Class) {
-            return this.generateClass(typeName, symbol, exportRoot);
+            return this.generateClassOrInterface(typeName, false, symbol, exportRoot);
         }
 
         // interface
         if (symbol.flags & ts.SymbolFlags.Interface) {
-            return this.generateInterface(typeName, symbol, exportRoot);
+            return this.generateClassOrInterface(typeName, true, symbol, exportRoot);
         }
 
         // enum
@@ -905,17 +903,17 @@ export class ExternGenerator {
         }
     }
 
-    protected generateClass(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
+    protected generateClassOrInterface(typeName: string, isInterface: boolean, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
-        this.logVerbose('Generating <blue>class</>', haxeTypePath.join('.'), this.location(symbol));
+        this.logVerbose(`Generating ${isInterface ? '<magenta>interface</>' : '<blue>class</>'}`, haxeTypePath.join('.'), this.location(symbol));
 
         let nativePath = TSUtil.getNativePath(symbol, exportRoot);
         let pos = Debug.getSymbolPosition(symbol);
         let docs = symbol.getDocumentationComment(this.typeChecker).map(p => p.text);
         docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(symbol));
 
-        let superClass: TypePath | undefined;
-        let implementing = new Array<TypePath>();
+        let superClassPath: TypePath | undefined;
+        let implementingPaths = new Array<TypePath>();
 
         if (symbol.members != null) {
             let indexSignature = symbol.members.get(ts.InternalSymbolName.Index);
@@ -944,22 +942,25 @@ export class ExternGenerator {
                 let indexSignatureDeclaration = indexSignature.declarations[0] as ts.IndexSignatureDeclaration;
                 // add implements Dynamic<T>
                 let typeString = this.convertSyntaxType(indexSignatureDeclaration.type!, symbol, exportRoot);
-                implementing.push(`Dynamic<${typeString}>`);
+                implementingPaths.push(`Dynamic<${typeString}>`);
             }
         }
 
         // get `extend *` node
-        let classDeclaration = symbol.declarations.find(ts.isClassDeclaration);
-        if (classDeclaration != null) {
-            superClass = this.getSuperClass(classDeclaration, exportRoot);
+        let classOrInterfaceDeclaration = symbol.declarations.find((d) => ts.isClassDeclaration(d) || ts.isInterfaceDeclaration(d));
+        if (classOrInterfaceDeclaration != null) {
+            let superClassType = this.getSuperClassType(classOrInterfaceDeclaration as any, exportRoot);
+            if (superClassType != null) {
+                superClassPath = this.typeToTypePath(superClassType, exportRoot);
+            }
         }
 
         return {
             name: typeName,
             kind: new TDClass(
-                superClass, // @! todo extends
-                implementing, // @! interfaces
-                false, // isInterface
+                superClassPath, // @! todo extends
+                implementingPaths, // @! interfaces
+                isInterface, // isInterface
                 false  // isFinal
             ),
             pack: this.typePathPackages(haxeTypePath),
@@ -978,6 +979,7 @@ export class ExternGenerator {
         }
     }
 
+    /*
     protected generateInterface(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         // @! this is basically the same as generate class
 
@@ -1052,6 +1054,7 @@ export class ExternGenerator {
             params: [],
         }
     }
+    */
 
     protected generateEnum(typeName: string, symbol: ts.Symbol, exportRoot: ts.Symbol | null): HaxeSyntaxObject {
         let haxeTypePath = this.getHaxeTypePath(symbol, exportRoot);
@@ -1249,23 +1252,24 @@ export class ExternGenerator {
                 case 'Object': return ['js.lib.Object'];
 
                 // special case
-                // case 'ReadonlyArray': return ['haxe.ds.ReadOnlyArray']; we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
-
                 case 'Iterator': return ['js.lib.Iterator'];
                 case 'IteratorResult': return ['js.lib.IteratorStep'];
 
                 // @! should search js.lib to find a matching built-in (however this won't work for interfaces without @:native
                 // if not found we should generate externs fot this symbol instead
+                case 'ReadonlyArray': break; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
                 default: {
-                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
-                    // generate this symbol
-                    (symbol as any)._haxeGenerateBuiltIn = true;
+                    // this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    // // generate this symbol
+                    // (symbol as any)._haxeGenerateBuiltIn = true;
 
-                    // temp lazy symbol walk
-                    this.addSymbol(symbol, exportRoot);
-                    if (symbol.members != null) symbol.members.forEach((s) => this.addSymbol(s, exportRoot));
-                    return ['Any'];
-                }
+                    // // temp lazy symbol walk
+                    // this.addSymbol(symbol, exportRoot);
+                    // if (symbol.members != null) symbol.members.forEach((s) => this.addSymbol(s, exportRoot));
+
+                    // debugger;
+                    // return ['Any'];
+                } break;
             }
         }
 

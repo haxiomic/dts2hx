@@ -73,7 +73,7 @@ final extern class Types {
 	static var mappedStringIndex: <UNHANDLED SyntaxKind: MappedType>;
 	static var arrowNumberStringVoid: (a: Float, noType: Any) -> Void;
 	static var arrowNumberTVoidTypeParam: (a: Float, tparam: Any) -> Void;
-	static var arrowParamWithRest: (a: Float, b: Float, rest: haxe.externs.Rest<Float>) -> Void;
+	static var arrowParamWithRest: (a: Float, b: Float, rest: haxe.extern.Rest<Float>) -> Void;
 	static var arrowParamObjectBindingPattern: (<UNHANDLED ObjectBindingPattern>: {	var x: Any; 	var y: Any;}) -> Void;
 	static var constructorType: <UNHANDLED SyntaxKind: ConstructorType>;
 	static var nullableNumber: Null<Float>;
