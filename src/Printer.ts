@@ -74,15 +74,6 @@ ${typeFooter}
 
     public printTypePath = (typePath?: TypePath) => {
         return typePath;
-        if (typePath == null) return '';
-        let parts = [...(typePath.pack || [])];
-        if (typePath.name != null) {
-            parts.push(typePath.name);
-            if (typePath.sub != null) {
-                parts.push(typePath.sub);
-            }
-        }
-        return parts.join('.') + this.printTypeParameters(typePath.params);
     }
 
     public printTypeParam = (typeParam?: TypeParam) => {
