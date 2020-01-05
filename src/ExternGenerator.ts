@@ -362,8 +362,8 @@ export class ExternGenerator {
                     parameterTypeString = 'Any';
                 }
                 if (isRest) {
-                    // @! hack to replace Array<T> with haxe.externs.Rest<T>
-                    parameterTypeString = parameterTypeString.replace(/^Array</, 'haxe.externs.Rest<');
+                    // @! quick hack to replace Array<T> with haxe.externs.Rest<T>
+                    parameterTypeString = parameterTypeString.replace(/^Array</, 'haxe.extern.Rest<');
                 }
                 return `${isOptional ? '?' : ''}${parameterIdent}: ${parameterTypeString}`;
             } break;
