@@ -805,7 +805,38 @@ export class ExternGenerator {
 
     // call typeToTypeNode with NoTruncation set
     protected typeToTypeNode(type: ts.Type) {
-        return this.typeChecker.typeToTypeNode(type, undefined, ts.NodeBuilderFlags.NoTruncation);
+        return this.typeChecker.typeToTypeNode(type, undefined,
+            ts.NodeBuilderFlags.NoTruncation |
+            ts.NodeBuilderFlags.InInitialEntityName |
+            ts.NodeBuilderFlags.WriteArrayAsGenericType |
+            // ts.NodeBuilderFlags.GenerateNamesForShadowedTypeParams |
+            // ts.NodeBuilderFlags.UseStructuralFallback |
+            // ts.NodeBuilderFlags.ForbidIndexedAccessSymbolReferences |
+            // ts.NodeBuilderFlags.WriteTypeArgumentsOfSignature |
+            // ts.NodeBuilderFlags.UseFullyQualifiedType |
+            // ts.NodeBuilderFlags.UseOnlyExternalAliasing |
+            // ts.NodeBuilderFlags.SuppressAnyReturnType |
+            // ts.NodeBuilderFlags.WriteTypeParametersInQualifiedName |
+            // ts.NodeBuilderFlags.MultilineObjectLiterals |
+            // ts.NodeBuilderFlags.WriteClassExpressionAsTypeLiteral |
+            // ts.NodeBuilderFlags.UseTypeOfFunction |
+            // ts.NodeBuilderFlags.OmitParameterModifiers |
+            // ts.NodeBuilderFlags.UseAliasDefinedOutsideCurrentScope |
+            // ts.NodeBuilderFlags.AllowThisInObjectLiteral |
+            // ts.NodeBuilderFlags.AllowQualifedNameInPlaceOfIdentifier |
+            // ts.NodeBuilderFlags.AllowAnonymousIdentifier |
+            // ts.NodeBuilderFlags.AllowEmptyUnionOrIntersection |
+            // ts.NodeBuilderFlags.AllowEmptyTuple |
+            // ts.NodeBuilderFlags.AllowUniqueESSymbolType |
+            // ts.NodeBuilderFlags.AllowEmptyIndexInfoType |
+            // ts.NodeBuilderFlags.AllowNodeModulesRelativePaths |
+            // ts.NodeBuilderFlags.IgnoreErrors |
+            // ts.NodeBuilderFlags.InObjectTypeLiteral |
+            // ts.NodeBuilderFlags.InTypeAlias |
+            // ts.NodeBuilderFlags.InInitialEntityName |
+            // ts.NodeBuilderFlags.InReverseMappedType |
+            0
+        );
     }
 
     // @! there's probably a better ready made api for this
@@ -846,15 +877,12 @@ export class ExternGenerator {
     }
 
     protected typeToTypePath(type: ts.Type, exportRoot: ts.Symbol | null) {
-        let params = new Array<TypeParam>();
-
         // this is necessary to convert from 'thisType' -> ClassBase<T>
         // should probably use it more
         let apparentType = this.typeChecker.getApparentType(type);
 
         let typeNode = this.typeToTypeNode(apparentType);
         return this.convertSyntaxType(typeNode!, type.symbol, exportRoot);
-
     }
 
     protected getAnyTypeNode() {
@@ -1281,9 +1309,9 @@ export class ExternGenerator {
 
                 // @! should search js.lib to find a matching built-in (however this won't work for interfaces without @:native
                 // if not found we should generate externs fot this symbol instead
-                case 'ReadonlyArray': break; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
+                // case 'ReadonlyArray': break; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
                 default: {
-                    this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+                    // this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
                     // // generate this symbol
                     // (symbol as any)._haxeGenerateBuiltIn = true;
 
