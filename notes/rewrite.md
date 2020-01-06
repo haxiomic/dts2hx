@@ -9,3 +9,10 @@
     - See function overloads
 - Maybe we can use a transformer to simplify tricky parts of the AST: https://43081j.com/2018/08/creating-a-typescript-transform
 - Use node.js api rather than haxe std so we don't have a dependence on -lib hxnodejs
+
+- Compiler change proposals
+    - Support @:arrayAccess fields on extern structs and interfaces (to enable index signatures)
+    - More flexible extern interfaces:
+        - Support @:optional
+        - Unify with structs
+        - @:arrayAccess fields
