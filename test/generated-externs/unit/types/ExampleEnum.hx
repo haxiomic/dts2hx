@@ -2,7 +2,7 @@ package unit.types;
 
 
 /**
-Generated from: test/unit/types.d.ts:165:5
+Generated from: test/unit/types.d.ts:169:5
 **/
 @:native('Types.ExampleEnum')
 @:enum

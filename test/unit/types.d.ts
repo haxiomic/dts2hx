@@ -113,9 +113,13 @@ declare namespace Types {
         [index: number]: string;
         length: string;
     };
+
+    // Mapped Types
     const mappedStringIndex: {
         [K in "hello" | "world"]: string;
     };
+    const partial: Partial<{a: number, b: string}>; // macro Partial or evaluate
+    function partialTypeParam<T>(x: Partial<T>): void; // not sure there's any way to support this
     // limit allowed fields
     type Index = 'a' | 'b' | 'c'
     type FromIndex = { [k in Index]?: number }

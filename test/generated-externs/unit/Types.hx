@@ -24,6 +24,7 @@ Generated from: test/unit/types.d.ts:20
 **/
 @:native('Types')
 final extern class Types {
+	static function partialTypeParam<T>(x: unit.Partial<T>): Void;
 	static function functionImplicit(x: Any, y: Any): Any;
 	static function functionNumberStringVoidAlt(a: Float, b: String): Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a: Float, tparam: T): Void;
@@ -71,6 +72,7 @@ final extern class Types {
 	static var numberStringMapWithField: {	var field: String;};
 	static var stringAndNumberMapWithField: {	var length: String;};
 	static var mappedStringIndex: /*<UNHANDLED SyntaxKind: MappedType>*/Any;
+	static var partial: unit.Partial<{	var a: Float; 	var b: String;}>;
 	static var arrowNumberStringVoid: (a: Float, noType: Any) -> Void;
 	static var arrowNumberTVoidTypeParam: (a: Float, tparam: Any) -> Void;
 	static var arrowParamWithRest: (a: Float, b: Float, rest: haxe.extern.Rest<Float>) -> Void;
