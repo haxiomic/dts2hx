@@ -7,6 +7,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
 # Getting Started
+- *be aware, it's currently just for exploration and not ready to use as a tool*
 - Run `npm install` to download the dependencies (ts compiler)
 - Run `npm start` to build and run the experimental test example
 - The target type definitions are specified in [src/index.ts](src/index.ts#L56)

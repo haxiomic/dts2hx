@@ -13,8 +13,10 @@
 - Generic build macro to handle either types:
     `A | B` -> `AnyOf<A, B>`
 
-- How are Partial<T> and friends handled?
-    - We could evaluate it, or maybe use the Partial macro
+- How are Partial<T> and other mapped types friends?
+    - We could evaluate them and use the result type
+    - We could translate type map into macro code
+
 
 - Compiler change proposals
     - Support @:arrayAccess fields on extern structs and interfaces (to enable index signatures)
