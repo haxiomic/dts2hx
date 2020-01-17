@@ -17,7 +17,7 @@ class Main {
         
         var argHandler: ArgHandler;
         argHandler = hxargs.Args.generate([
-            @doc('Set output directory for generated externs')
+            @doc('Set output directory for generated externs (default "$outputPath")')
             ['--output', '-o'] => (path: String) -> {
                 outputPath = path;
             },
