@@ -1,3 +1,4 @@
+import typescript.ts.System;
 import hxargs.Args.ArgHandler;
 import js.Node;
 import typescript.Ts;
@@ -12,8 +13,8 @@ class Main {
 
         // options
         var outputPath: String = 'dts2hx-output';
-        var tsConfigPath: Null<String> = null;
-        var typescriptSourcePath: Null<String> = null;
+        var tsConfigFilePath: Null<String> = null;
+        var tsSourcePath: Null<String> = null;
         
         var argHandler: ArgHandler;
         argHandler = hxargs.Args.generate([
@@ -24,7 +25,7 @@ class Main {
             
             @doc('Set path to tsconfig file to use when processing the .d.ts files')
             '--tsconfig' => (path: String) -> {
-                tsConfigPath = path;
+                tsConfigFilePath = path;
             },
 
             @doc('Disable terminal colors')
@@ -43,7 +44,7 @@ class Main {
             },
 
             _ => (arg: String) -> {
-                typescriptSourcePath = arg;
+                tsSourcePath = arg;
             }
         ]);
 
@@ -59,9 +60,34 @@ class Main {
                 Node.process.exit(1);
             }
         }
+
+        // setup typescript compiler
+        var compilerOptions: typescript.ts.CompilerOptions = try
+            if (tsConfigFilePath != null) {
+                var readResult = Ts.readConfigFile(tsConfigFilePath, (path) -> Ts.sys.readFile(path, 'utf8'));
+                if (readResult.error != null) {
+                    throw readResult.error.messageText;
+                } else {
+                    if (readResult.config != null) {
+                        readResult.config;
+                    } else {
+                        throw 'Could not read "$tsConfigFilePath"';
+                    }
+                }
+            } else {
+                {};
+            }
+        catch(e: String) {
+            Console.error(e);
+            Node.process.exit(1);
+            return;
+        }
+
+        determineInputSourceFiles(tsSourcePath);
     }
 
     static function determineInputSourceFiles(path: String) {
+        
         // @! todo
         // Ts.findConfigFile('');
         // Ts.createInputFiles()
