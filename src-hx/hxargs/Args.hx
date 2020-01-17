@@ -148,27 +148,20 @@ class Args {
 			pos: p
 		};
 
-		for (c in cases) {
-			if (c.doc != null) {
-			}
-		}
-
 		return macro {
-			options: $v{
-				cases.filter(c -> !c.builtIn).map(c -> {
-					flags: c.values.map(v -> switch v.expr {
-						case EConst(CString(s)), EConst(CIdent(s)): s;
-						default: throw 'Unhandled expression';
-					}),
-					args: c.args.map(a -> {
-						type: a.type != null ? a.type.toString() : null,
-						name: a.name,
-						value: a.value != null ? Std.string(a.value.getValue()) : null,
-						opt: a.opt == null ? false : a.opt,
-					}),
-					doc: c.doc,
-				})
-			},
+			options: $a{cases.filter(c -> !c.builtIn).map(c -> macro {
+				flags: $v{c.values.map(v -> switch v.expr {
+					case EConst(CString(s)), EConst(CIdent(s)): s;
+					default: throw 'Unhandled expression';
+				})},
+				args: $v{c.args.map(a -> {
+					type: a.type != null ? a.type.toString() : null,
+					name: a.name,
+					value: a.value != null ? Std.string(a.value.getValue()) : null,
+					opt: a.opt == null ? false : a.opt,
+				})},
+				doc: ${c.doc != null ? MacroStringTools.formatString(c.doc, p) : macro $v{c.doc}}
+			})},
 			parse: function(__args:Array<Dynamic>) {
 				var __index = 0;
 				while (__index < __args.length) {
