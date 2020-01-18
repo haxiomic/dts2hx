@@ -4,4 +4,11 @@
 -main Main
 -lib hxnodejs
 
+-dce full
+
 -js dist/dts2hx.js
+
+-cmd node dist/dts2hx.js test/unit
+# -cmd node dist/dts2hx.js test-definitions/node_modules/three/
+
+-debug

@@ -1,20 +1,27 @@
-import typescript.ts.System;
+import typescript.ts.ModifierFlags;
+import haxe.Json;
+import haxe.io.Path;
 import hxargs.Args.ArgHandler;
 import js.Node;
+import js.node.Fs;
 import typescript.Ts;
+import typescript.ts.CompilerOptions;
+
+using StringTools;
+using Lambda;
 
 @:nullSafety
 class Main {
 
-    static var version = Macro.getLocalPackageJsonVersion();
+    final log = new Log(Warning);
 
-    static function main() {
+    function new() {
         var userArgs = Node.process.argv.slice(2);
 
         // options
         var outputPath: String = 'dts2hx-output';
         var tsConfigFilePath: Null<String> = null;
-        var tsSourcePath: Null<String> = null;
+        var tsSourcePaths = new Array<String>();
         
         var argHandler: ArgHandler;
         argHandler = hxargs.Args.generate([
@@ -39,12 +46,23 @@ class Main {
                 Node.process.exit(0);
             },
 
+            @doc('Disable cli output')
+            '--quiet' => () -> {
+                Console.printIntercept = (s, o) -> false;
+                haxe.Log.trace = (v, ?info) -> {};
+            },
+
+            @doc('Print all logs')
+            '--verbose' => () -> {
+                log.setPrintLogLevel(All);
+            },
+
             'install' => (library: String) -> {
                 throw 'Install library feature is not yet implemented';
             },
 
             _ => (arg: String) -> {
-                tsSourcePath = arg;
+                tsSourcePaths.push(arg);
             }
         ]);
 
@@ -61,8 +79,7 @@ class Main {
             }
         }
 
-        // setup typescript compiler
-        var compilerOptions: typescript.ts.CompilerOptions = try
+        var compilerOptionsOverride: Null<CompilerOptions> = try
             if (tsConfigFilePath != null) {
                 var readResult = Ts.readConfigFile(tsConfigFilePath, (path) -> Ts.sys.readFile(path, 'utf8'));
                 if (readResult.error != null) {
@@ -75,36 +92,144 @@ class Main {
                     }
                 }
             } else {
-                {};
+                null;
             }
         catch(e: String) {
-            Console.error(e);
+            log.error(e);
             Node.process.exit(1);
-            return;
+            null;
         }
-
-        determineInputSourceFiles(tsSourcePath);
-    }
-
-    static function determineInputSourceFiles(path: String) {
         
-        // @! todo
-        // Ts.findConfigFile('');
-        // Ts.createInputFiles()
-        // Ts.resolveProjectReferencePath()
-        // getEffectiveTypeRoots
-        // resolveTypeReferenceDirective
-        // Ts.createCompilerHost()
-        return [];
+        try {
+            // absolute definition files
+            var definitionFiles = [
+                for (path in tsSourcePaths)
+                    findDefinitionFiles(path)
+            ].flatten();
+
+            if (definitionFiles.length == 0) {
+                log.warn('No .d.ts files found');
+                return;
+            }
+
+            log.log('Root .d.ts files:\n\t<b>${definitionFiles.join('\n\t')}</b>');
+
+            var compilerOptions: CompilerOptions = compilerOptionsOverride != null ? compilerOptionsOverride : {
+                types: [], // disable automatic node_modules/@types inclusion
+            };
+
+            var host = Ts.createCompilerHost(compilerOptions);
+
+            var program = Ts.createProgram(definitionFiles, compilerOptions, host);
+            var tc = program.getTypeChecker();
+
+            for (sourceFile in program.getSourceFiles()) {
+                // skip default library files and non .d.ts files
+                if (program.isSourceFileDefaultLibrary(sourceFile)) {
+                    continue;
+                }
+
+                var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+                var sourceFileName = sourceFileSymbol != null ? sourceFileSymbol.name : null;
+
+                // @! maybe we want to use the internal symbolWalker
+                // or at least access node.symbol
+                // see https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#using-the-type-checker
+                // for an example 
+
+                Console.examine(sourceFile.fileName, sourceFileName);
+            }
+        } catch(e: String) {
+            log.error(e);
+        }
     }
 
-    static function printDoc(argHandler: ArgHandler) {
+    /**
+        Given a path, return associated definition files
+        - If the path is a file, return just that file
+        - If the path is a directory
+            - If the directory contains a package.json file and it has a "types" or "typings" field, return the corresponding definition file
+            - If the directory contains an index.d.ts, return that
+            - Otherwise, search the directory recursively for all .d.ts files (following these same rules)
+    **/
+    function findDefinitionFiles(path: String): Array<String> {
+        var tag = '<b>findDefinitionFiles():</b>';
+        // direct definition reference
+        if (Ts.sys.fileExists(path)) {
+            if (!path.toLowerCase().endsWith('.d.ts')) {
+                log.warn('$tag File path "$path" did not end with .d.ts');
+            }
+            return [path];
+        } else if (Ts.sys.directoryExists(path)) {
+
+            // check for a package.json and return "types"/"typings" field if exists
+            var packageJsonPath = Path.join([path, 'package.json']);
+            if (Ts.sys.fileExists(packageJsonPath)) {
+                log.log('$tag <b>package.json</> found - "<b>$packageJsonPath</>"');
+
+                var error: Null<Any> = null;
+
+                var packageJson = 
+                    try Json.parse(Fs.readFileSync(packageJsonPath, {encoding: 'utf8'}))
+                    catch (e: Any) {
+                        error = e;
+                        null;
+                    }
+
+                if (packageJson != null) {
+                    var types = packageJson.types != null ? packageJson.types : packageJson.typings;
+
+                    if (types != null) {
+                        var typesFilePath = Path.join([path, types]);
+
+                        if (!typesFilePath.toLowerCase().endsWith('.d.ts')) {
+                            typesFilePath += '.d.ts';
+                        }
+                        
+                        if (Ts.sys.fileExists(typesFilePath)) {
+                            log.log('$tag Using package.json specified types - "<b>$typesFilePath</>"');
+                            if (!typesFilePath.toLowerCase().endsWith('.d.ts')) {
+                                log.warn('$tag File path "$typesFilePath" in did not end with .d.ts (<i,dim>$packageJsonPath</i>)');
+                            }
+                            return [typesFilePath];
+                        }
+                    }
+                }
+
+                log.log('$tag No types field found in package.json ${error != null ? '<i,red>($error)</>' : ''}');
+            }
+
+            // check for an index.d.ts, if found return that
+            var indexPath = Path.join([path, 'index.d.ts']);
+            if (Ts.sys.fileExists(indexPath)) {
+                log.log('$tag <b>index.d.ts</> found');
+                return [indexPath];
+            }
+
+            // find all .d.ts files recursively
+            log.log('$tag Finding .d.ts files within $path');
+            var localDtsFiles = Ts.sys.readDirectory(path, [typescript.ts.Extension.Dts], js.Lib.undefined, js.Lib.undefined, 1);
+
+            var subDirs = Fs.readdirSync(path).map(p -> Path.join([path, p])).filter(p -> Ts.sys.directoryExists(p));
+
+            return localDtsFiles.concat([for (dir in subDirs) findDefinitionFiles(dir)].flatten());
+        } else {
+            throw 'No such file or directory "<b>$path</>"';
+        }
+    }
+
+    function printDoc(argHandler: ArgHandler) {
         Console.printlnFormatted('<b>dts2hx</b> v$version');
         Console.println('TypeScript definition (.d.ts) to haxe extern converter');
         Console.println('');
         Console.printlnFormatted('<b>Usage:</b>');
         Console.printlnFormatted('\tdts2hx <i,dim>{path}</> <i,dim>{options}</>');
-        Console.printlnFormatted('\tdts2hx install <i,dim>{npm-library-name}</> <i,dim>{options}</>');
+        // Console.printlnFormatted('\tdts2hx install <i,dim>{npm-library-name}</> <i,dim>{options}</>');
+        Console.println('');
+
+        Console.printlnFormatted('<b>Examples:</b>');
+        Console.printlnFormatted('\tdts2hx example.d.ts');
+        Console.printlnFormatted('\tdts2hx node_modules/@types -o .haxelib');
         Console.println('');
 
         Console.printFormatted('<bright_white,b>Options:</>\n');
@@ -141,25 +266,12 @@ class Main {
         Console.printFormatted(lines.join('\n') + '\n');
     }
 
-    static function parseArgs(userArgs: Array<String>) {
-        var namedArguments = new Map<String, String>();
-        var freeArguments = new Array<String>();
+    static final version = Macro.getLocalPackageJsonVersion();
 
-        var i = 0;
-        while (i < userArgs.length) {
-            var arg = userArgs[i];
-            if (arg.charAt(0) == '-') {
-                namedArguments.set(arg, userArgs[i + 1]);
-                i += 2;
-            } else {
-                freeArguments.push(arg);
-                i += 1;
-            }
-        }
-        return {
-            namedArguments: namedArguments,
-            freeArguments: freeArguments,
-        }
+    static function main() {
+        Console.warnPrefix = '<b,yellow>> Warning:</b> ';
+        Console.errorPrefix = '<b,red>> Error:</b> ';
+        new Main();
     }
 
 }
