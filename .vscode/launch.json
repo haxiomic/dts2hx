@@ -7,11 +7,16 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/dist/index.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "name": "dts2hx.js test/unit",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["test/unit"],
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "dts2hx.js",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": [],
         }
     ]
 }
