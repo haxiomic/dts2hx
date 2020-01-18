@@ -10,7 +10,6 @@
     "watch": "tsc --watch & fswatch -o dist/",
     "watch-run": "tsc --watch & fswatch -o dist/ | xargs -n1 -I{} node dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "haxe-build": "haxe build.hxml",
     "haxe-run": "node dist/dts2hx.js"
   },
