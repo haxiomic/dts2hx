@@ -4,6 +4,7 @@
     - Must resolve how to handle array access given all interfaces are structures and we can no longer do implements ArrayAccess
     - Maybe requires compiler support for this
     - Alternatively haxe extern interfaces are made more flexible to allow unifying with regular structures and supporting @:optional
+    - Maybe we can use macros to solve this in the near-term? `implements UnifiesWith<Struct>`
 - Use recursive decent rather than global symbol walk
 - Review use of .valueDeclaration instead of enumerating all declarations for a symbol
     - See function overloads
@@ -24,3 +25,5 @@
         - Support @:optional
         - Unify with structs
         - @:arrayAccess fields
+
+- Make it possible to look-up enum names, like `SyntaxKind[index]`

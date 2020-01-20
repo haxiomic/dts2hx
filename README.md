@@ -46,6 +46,8 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
     - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
         - babylon.js and many other project use both, do we merge or just parse as-is?
+            -> Babylon.js duplicates class definitions between ambient and export, so we could do a string comparison for equality but it's generally a design issue of their definitions
+            -> However, this would generate two sets of externs, one ambient and the other module-based, which is a good result
     - [ ] Support referencing module name like `dts2hx --module three`
     - [ ] The most common use case will be converting _all_ dependencies. So support `dts2hx --all` or similar
     - [ ] Remove type-path prefix if referencing type within the same module
