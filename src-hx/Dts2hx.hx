@@ -1,3 +1,4 @@
+import typescript.ts.Statement;
 import Log.LogLevel;
 import haxe.Json;
 import haxe.io.Path;
@@ -5,14 +6,18 @@ import js.Node;
 import js.node.Fs;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
+import typescript.ts.Symbol;
+import js.Lib.debug;
 
 using Lambda;
 using StringTools;
 
+/**
+    A group roughly maps to a module (since some collections of definitions don't necessarily conform to modules)
+**/
 typedef DefinitionGroup = {
     name: String,
     files: Array<String>,
-    subgroups: Array<DefinitionGroup>
 }
 
 @:expose
@@ -54,87 +59,101 @@ class Dts2hx {
             null;
         }
 
-        try {
-            // absolute definition files
-            var definitionGroups = [
-                for (path in tsSourcePaths)
-                    findDefinitionFiles(path)
-            ];
-
-            Console.examine(definitionGroups);
-
-            // now we need to extract the definition files from the groups
-            function extractFiles(groups: Array<DefinitionGroup>) {
-                var files = new Array<String>();
-                for (group in groups) {
-                    files = group.files.concat(files).concat(extractFiles(group.subgroups));
+        var compilerOptions: CompilerOptions = compilerOptionsOverride != null ? compilerOptionsOverride : {
+            types: [], // disable automatic node_modules/@types inclusion
+        };
+        
+        var definitionGroups = [
+            for (path in tsSourcePaths)
+                try findDefinitionGroups(path) catch(e: Any) {
+                    log.error('Error finding definition files: ${e}');
+                    [{
+                        name: '',
+                        files: [],
+                    }];
                 }
-                return files;
+        ].flatten();
+
+        Console.examine(definitionGroups);
+
+        for (group in definitionGroups) {
+            try convertDefinitions(group, compilerOptions)
+            catch(e: String) log.error(e);
+        }
+    }
+
+    function convertDefinitions(definitionGroup: DefinitionGroup, compilerOptions: CompilerOptions) {
+        log.log('Converting group <b>${definitionGroup.name}</>');
+
+        // converter state
+        var topLevelSymbolQueue = new OnceOnlySymbolQueue();
+
+        if (definitionGroup.files.length == 0) {
+            log.warn('No .d.ts files found');
+            return;
+        }
+
+        log.log('Root .d.ts files:\n\t<b>${definitionGroup.files.join('\n\t')}</b>');
+
+        var host = Ts.createCompilerHost(compilerOptions);
+
+        var program = Ts.createProgram(definitionGroup.files, compilerOptions, host);
+        var tc = program.getTypeChecker();
+
+        // find top-level symbols to convert
+        for (sourceFile in program.getSourceFiles()) {
+            // skip default library files and non .d.ts files
+            if (program.isSourceFileDefaultLibrary(sourceFile)) {
+                continue;
             }
 
-            var definitionFiles = extractFiles(definitionGroups);
+            var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+            var sourceFileName = sourceFileSymbol != null ? sourceFileSymbol.name : null;
 
-            if (definitionFiles.length == 0) {
-                log.warn('No .d.ts files found');
-                return;
-            }
 
-            log.log('Root .d.ts files:\n\t<b>${definitionFiles.join('\n\t')}</b>');
+            // Ts.visitLexicalEnvironment(sourceFile.statements, )
 
-            var compilerOptions: CompilerOptions = compilerOptionsOverride != null ? compilerOptionsOverride : {
-                types: [], // disable automatic node_modules/@types inclusion
-            };
+            // js.Lib.debug();
+            // externalModuleIndicator `export = ts`
 
-            var host = Ts.createCompilerHost(compilerOptions);
-
-            var program = Ts.createProgram(definitionFiles, compilerOptions, host);
-            var tc = program.getTypeChecker();
-
-            for (sourceFile in program.getSourceFiles()) {
-                // skip default library files and non .d.ts files
-                if (program.isSourceFileDefaultLibrary(sourceFile)) {
-                    continue;
+            // iterate statements (assumed to be all declarations for .d.ts) and add symbols to top-level symbol
+            for (statement in (cast sourceFile.statements: Array<Statement>)) {
+                var name = Ts.getNameOfDeclaration(cast statement);
+                if (name != null) {
+                    var symbol = tc.getSymbolAtLocation(name);
+                    var exportSymbol = tc.getExportSymbolOfSymbol(symbol);
+                    topLevelSymbolQueue.queue(exportSymbol);
                 }
-
-                var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-                var sourceFileName = sourceFileSymbol != null ? sourceFileSymbol.name : null;
-
-                // @! maybe we want to use the internal symbolWalker
-                // or at least access node.symbol
-                // see https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#using-the-type-checker
-                // for an example 
-
-                // Console.examine(sourceFile.fileName, sourceFileName);
             }
+        }
 
-            // @! todo: generate readme with version, commit and input commands for reproducibility
-        } catch(e: String) {
-            log.error(e);
+        while(!topLevelSymbolQueue.isEmpty()) {
+            var symbol = topLevelSymbolQueue.dequeue();
+            Console.examine(symbol.escapedName);
         }
     }
 
     /**
-        Given a path, return associated definition files
-        - If the path is a file, return just that file and use its name as the group name
-        - If the path is a directory
-            - If the directory contains a package.json file and it has a "types" or "typings" field, return the corresponding definition file
-            - If the directory contains an index.d.ts, return that
-            - Otherwise, search the directory recursively for all .d.ts files (following these same rules)
+        @throws String
     **/
-    function findDefinitionFiles(path: String): DefinitionGroup {
-        var tag = '<dim>findDefinitionFiles()</>';
-        // direct definition reference
+    function findDefinitionGroups(path: String): Array<DefinitionGroup> {
+        var tag = '<dim>findDefinitionGroups()</>';
         if (Ts.sys.fileExists(path)) {
-            if (!path.toLowerCase().endsWith('.d.ts')) {
+            var filename = Path.withoutDirectory(path);
+            var groupName: String = if (!path.toLowerCase().endsWith('.d.ts')) {
                 log.warn('$tag File path "$path" did not end with .d.ts');
+                Path.withoutExtension(filename);
+            } else {
+                filename.substr(0, filename.length - '.d.ts'.length);
             }
-            var filename = Path.withoutDirectory(Path.withoutExtension(path));
-            log.log('Using filename "<b>$filename</>" as d.ts group name');
-            return {
-                name: filename,
+            
+            // @! if filename is index.d.ts maybe we should check for a package.json that references this file to get a better guess for name
+
+            log.log('Using filename "<b>$groupName</>" as d.ts group name');
+            return [{
+                name: groupName,
                 files: [path],
-                subgroups: [],
-            };
+            }];
         } else if (Ts.sys.directoryExists(path)) {
             var pathDirname = Path.withoutDirectory(js.node.Path.resolve(path));
 
@@ -176,11 +195,10 @@ class Dts2hx {
                                 log.warn('$tag File path "$typesFilePath" in did not end with .d.ts (<i,dim>$packageJsonPath</i>)');
                             }
 
-                            return {
+                            return [{
                                 name: name,
                                 files: [typesFilePath],
-                                subgroups: [],
-                            }
+                            }];
                         }
                     }
                 }
@@ -191,28 +209,67 @@ class Dts2hx {
             // check for an index.d.ts, if found return that
             var indexPath = Path.join([path, 'index.d.ts']);
             if (Ts.sys.fileExists(indexPath)) {
-                log.log('$tag <b>index.d.ts</> found, using directory name "<b>$pathDirname</>" as d.ts group name');
-                return {
+                log.warn('$tag <b>index.d.ts</> found but no package.json with <i>types</> field; using directory name "<b>$pathDirname</>" as d.ts group name');
+                return [{
                     name: pathDirname,
                     files: [indexPath],
-                    subgroups: []
-                }
+                }];
             }
 
-            // find all .d.ts files recursively
             log.log('$tag Finding .d.ts files within $path');
             var localDtsFiles = Ts.sys.readDirectory(path, [typescript.ts.Extension.Dts], js.Lib.undefined, js.Lib.undefined, 1);
-
             var subDirs = Fs.readdirSync(path).map(p -> Path.join([path, p])).filter(p -> Ts.sys.directoryExists(p));
 
-            return {
+            var localDefinitionGroup = {
                 name: pathDirname,
                 files: localDtsFiles,
-                subgroups: [for (dir in subDirs) findDefinitionFiles(dir)]
             }
+
+            var subgroups = [for (dir in subDirs) {
+                findDefinitionGroups(dir);
+            }].flatten();
+
+            return if (localDtsFiles.length > 0) {
+                subgroups.concat([localDefinitionGroup]);
+            } else subgroups;
         } else {
             throw 'No such file or directory "<b>$path</>"';
         }
+    }
+
+}
+
+class OnceOnlySymbolQueue {
+
+    public var length(get, null): Int;
+    public final allSymbols = new Map<Int, Symbol>(); 
+    final array = new Array<Symbol>();
+
+
+    public function new() {}
+    
+    public function queue(symbol: Symbol){
+        var id: Int = Std.int(Ts.getSymbolId(symbol));
+        if (allSymbols.exists(id)) {
+            // already queued this symbol before
+            return false;
+        }
+
+        allSymbols[id] = symbol;
+        array.push(symbol);
+        return true;
+    }
+
+    public function dequeue(): Null<Symbol> {
+        return array.shift();
+    }
+
+    public function isEmpty() {
+        return array.length == 0;
+    }
+
+    function get_length() {
+        return array.length;
     }
 
 }
