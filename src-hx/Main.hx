@@ -20,6 +20,10 @@ class Main {
             logLevel: Warning,
         }
 
+        var help: Bool = false;
+        var noColor: Bool = false;
+        var silent: Bool = false;
+
         var argHandler: ArgHandler;
         argHandler = hxargs.Args.generate([
             @doc('Set output directory for generated externs (default "${options.outputPath}")')
@@ -48,21 +52,13 @@ class Main {
             },
 
             @doc('Disable terminal colors')
-            '--no-color' => () -> {
-                Console.formatMode = Disabled;
-            },
+            '--no-color' => () -> noColor = true,
 
             @doc('Show this help')
-            '--help' => () -> {
-                printDoc(argHandler);
-                Node.process.exit(0);
-            },
+            '--help' => () -> help = true,
 
             @doc('Disable cli output')
-            '--silent' => () -> {
-                Console.printIntercept = (s, o) -> false;
-                haxe.Log.trace = (v, ?info) -> {};
-            },
+            '--silent' => () -> silent = true,
 
             @doc('Print all logs')
             '--verbose' => () -> {
@@ -85,6 +81,22 @@ class Main {
                 printDoc(argHandler);
                 Node.process.exit(1);
             }
+        }
+
+        if (silent) {
+            Console.printIntercept = (s, o) -> false;
+            haxe.Log.trace = (v, ?info) -> {};
+        }
+
+        if (noColor) {
+            Console.formatMode = Disabled;
+        }
+
+        // apply bool flags
+        if (help) {
+            printDoc(argHandler);
+            Node.process.exit(0);
+            return;
         }
 
         var dts2hx = new Dts2hx(options);
