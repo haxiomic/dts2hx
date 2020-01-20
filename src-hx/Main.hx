@@ -103,7 +103,7 @@ class Main {
     }
 
     static function printDoc(argHandler: ArgHandler) {
-        Console.printlnFormatted('<b>dts2hx</b> v$version');
+        Console.printlnFormatted('<b>dts2hx</b> <b>$version</> using <b>TypeScript ${typescript.Ts.version}</>');
         Console.println('TypeScript definition to haxe extern converter');
         Console.println('');
         Console.printlnFormatted('<b>Usage:</b>');
