@@ -28,6 +28,21 @@ class Main {
                 options.outputPath = path;
             },
 
+            @doc('Convert all dependencies referenced in package.json (that have type definitions)')
+            ['--all', '-a'] => () -> {
+                throw 'todo';
+            },
+
+            @doc('Convert definitions of a specific module in node_modules')
+            ['--module', '-m'] => (moduleName: String) -> {
+                throw 'todo';
+            },
+
+            @doc('Convert definitions at a given path')
+            ['--path', '-p'] => (path: String) -> {
+                options.tsSourcePaths.push(path);
+            },
+
             @doc('Set path to tsconfig file to use when processing the .d.ts files')
             '--tsconfig' => (path: String) -> {
                 options.tsConfigFilePath = path;
@@ -55,12 +70,8 @@ class Main {
                 options.logLevel = All;
             },
 
-            'install' => (library: String) -> {
-                throw 'Install library feature is not yet implemented';
-            },
-
             _ => (arg: String) -> {
-                options.tsSourcePaths.push(arg);
+                throw 'conversion from module name not yet supported';
             }
         ]);
 
@@ -82,16 +93,15 @@ class Main {
 
     static function printDoc(argHandler: ArgHandler) {
         Console.printlnFormatted('<b>dts2hx</b> v$version');
-        Console.println('TypeScript definition (.d.ts) to haxe extern converter');
+        Console.println('TypeScript definition to haxe extern converter');
         Console.println('');
         Console.printlnFormatted('<b>Usage:</b>');
-        Console.printlnFormatted('\tdts2hx <i,dim>{path}</> <i,dim>{options}</>');
-        // Console.printlnFormatted('\tdts2hx install <i,dim>{npm-library-name}</> <i,dim>{options}</>');
+        Console.printlnFormatted('\tdts2hx <i,cyan>{path}</> <i,cyan>{options}</>');
         Console.println('');
 
         Console.printlnFormatted('<b>Examples:</b>');
-        Console.printlnFormatted('\tdts2hx example.d.ts');
-        Console.printlnFormatted('\tdts2hx node_modules/@types -o .haxelib');
+        Console.printlnFormatted('\tdts2hx --path example.d.ts');
+        Console.printlnFormatted('\tdts2hx --path node_modules/@types -o .haxelib');
         Console.println('');
 
         Console.printFormatted('<bright_white,b>Options:</>\n');
@@ -103,10 +113,10 @@ class Main {
         for (item in argHandler.options) {
             if (item.doc == null) continue;
 
-            var usageString = '${item.flags.join(', ')}';
+            var usageString = '<light_white>${item.flags.join(', ')}</>';
 
             if (item.args.length > 0) {
-                usageString += ' <i,dim>' + item.args.map(a -> '{${a.opt?'?':''}${a.name}}').join(', ') + '</>';
+                usageString += ' <i,cyan>' + item.args.map(a -> '{${a.opt?'?':''}${a.name}}').join(', ') + '</>';
             }
             
             var unformattedLength = Console.stripFormatting(usageString).length;
