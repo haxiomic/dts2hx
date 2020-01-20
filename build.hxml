@@ -15,7 +15,9 @@
 
 # Tricky ambient vs export cases
 -cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/big.js --verbose
--cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/pixi.js --verbose
+# -cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/pixi.js --verbose
 
+# External references
+-cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/jquery --verbose
 
 -debug
