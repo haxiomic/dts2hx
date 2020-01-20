@@ -19,8 +19,6 @@ See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#3-types
   - union types
   - intersection types
   - type parameters
-
-Generated from: test/unit/types.d.ts:20
 **/
 @:native('Types')
 final extern class Types {
