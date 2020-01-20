@@ -2,7 +2,6 @@ import Log.LogLevel;
 import hxargs.Args.ArgHandler;
 import js.Node;
 
-
 @:nullSafety
 class Main {
 

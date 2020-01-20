@@ -1,3 +1,6 @@
+import typescript.ts.Diagnostic;
+import typescript.ts.Program;
+import typescript.ts.DeclarationName;
 import typescript.ts.Statement;
 import Log.LogLevel;
 import haxe.Json;
@@ -21,9 +24,10 @@ typedef DefinitionGroup = {
 }
 
 @:expose
+@:nullSafety
 class Dts2hx {
 
-    final log: Log;
+    public final log: Log;
 
     public function new(options: {
         outputPath: String,
@@ -100,6 +104,9 @@ class Dts2hx {
         var program = Ts.createProgram(definitionGroup.files, compilerOptions, host);
         var tc = program.getTypeChecker();
 
+        var diagnostics = getAllDiagnostics(program);
+        logDiagnostics(diagnostics);
+
         // find top-level symbols to convert
         for (sourceFile in program.getSourceFiles()) {
             // skip default library files and non .d.ts files
@@ -107,29 +114,49 @@ class Dts2hx {
                 continue;
             }
 
-            var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-            var sourceFileName = sourceFileSymbol != null ? sourceFileSymbol.name : null;
-
-
-            // Ts.visitLexicalEnvironment(sourceFile.statements, )
-
-            // js.Lib.debug();
-            // externalModuleIndicator `export = ts`
-
             // iterate statements (assumed to be all declarations for .d.ts) and add symbols to top-level symbol
             for (statement in (cast sourceFile.statements: Array<Statement>)) {
-                var name = Ts.getNameOfDeclaration(cast statement);
-                if (name != null) {
-                    var symbol = tc.getSymbolAtLocation(name);
-                    var exportSymbol = tc.getExportSymbolOfSymbol(symbol);
-                    topLevelSymbolQueue.queue(exportSymbol);
+                switch statement.kind {
+                    // explicitly ignored statements
+                    case ImportDeclaration, ExportDeclaration, FirstStatement:
+                        continue;
+
+                    default:
+                        var name = Ts.getNameOfDeclaration(cast statement);
+                        if (name != null) {
+                            var symbol = tc.getSymbolAtLocation(name);
+                            var exportSymbol = symbol != null ? tc.getExportSymbolOfSymbol(symbol) : null;
+                            if (exportSymbol == null) {
+                                log.error('Export symbol was null', statement);
+                                continue;
+                            }
+                            topLevelSymbolQueue.queue(exportSymbol);
+                        } else {
+                            log.warn('Statement (assumed to be declaration) has no name', statement);
+                        }
                 }
             }
         }
 
+        // generate externs from top-level symbols
+        // top-level symbol queue grow during this loop
         while(!topLevelSymbolQueue.isEmpty()) {
             var symbol = topLevelSymbolQueue.dequeue();
+            if (symbol == null) continue;
+
+            // @! checkout _Event, test-definitions/node_modules/@types/jquery/misc.d.ts:6538
+            // is this exposed or internal?
+
             Console.examine(symbol.escapedName);
+            for (declaration in symbol.declarations) {
+                var declarationName: Null<typescript.ts.Node> = Ts.getNameOfDeclaration(declaration);
+                // Ts.tokenToString(name);
+                if (declarationName != null) {
+                    log.log('\t', declaration);
+                } else {
+                    log.warn('\t declaration with no name');
+                }
+            }
         }
     }
 
@@ -137,7 +164,7 @@ class Dts2hx {
         @throws String
     **/
     function findDefinitionGroups(path: String): Array<DefinitionGroup> {
-        var tag = '<dim>findDefinitionGroups()</>';
+        var tag = '<b>[findDefinitionGroups()]</>';
         if (Ts.sys.fileExists(path)) {
             var filename = Path.withoutDirectory(path);
             var groupName: String = if (!path.toLowerCase().endsWith('.d.ts')) {
@@ -234,6 +261,33 @@ class Dts2hx {
             } else subgroups;
         } else {
             throw 'No such file or directory "<b>$path</>"';
+        }
+    }
+
+    function getAllDiagnostics(program: Program) {
+        return program.getGlobalDiagnostics()
+            .concat(program.getOptionsDiagnostics())
+            .concat(program.getSemanticDiagnostics())
+            .concat(program.getSyntacticDiagnostics())
+            .concat(program.getDeclarationDiagnostics())
+            .concat(program.getConfigFileParsingDiagnostics());
+    }
+
+    function logDiagnostics(diagnostics: Array<Diagnostic>) {
+        for (diagnostic in diagnostics) {
+            var message = '<b>[TypeScript ${Ts.versionMajorMinor}]</> ${diagnostic.messageText}';
+            if (diagnostic.file != null) {
+                message += ' <dim>(${log.formatLocation({
+                    sourceFile: diagnostic.file,
+                    start: diagnostic.start
+                })})</>';
+            }
+            switch diagnostic.category {
+                case Error: log.error(message);
+                case Warning: log.warn(message);
+                case Message: log.log(message);
+                case Suggestion: log.log(message);
+            }
         }
     }
 
