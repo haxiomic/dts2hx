@@ -3,7 +3,9 @@ package typescript;
 
 
 @:native('ts')
+@:jsRequire('typescript')
 final extern class Ts {
+	static function getSymbolId(symbol: typescript.ts.Symbol): Float;
 	static var versionMajorMinor: String;
 	/**
 	The version of the TypeScript compiler release

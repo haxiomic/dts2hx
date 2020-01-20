@@ -1,3 +1,13 @@
+/* Manual additions of internal methods */
+declare namespace ts {
+
+    function getSymbolId(symbol: Symbol): number;
+
+}
+/* ------------------------------------ */
+
+
+
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved. 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
