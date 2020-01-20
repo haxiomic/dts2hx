@@ -2,7 +2,7 @@ package typescript.ts.server;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4798:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4808:5
 **/
 
 typedef DiscoverTypings = typescript.ts.server.TypingInstallerRequestWithProjectName & {

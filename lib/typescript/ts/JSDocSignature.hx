@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1660:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1670:5
 **/
 
 typedef JSDocSignature = typescript.ts.JSDocType & {

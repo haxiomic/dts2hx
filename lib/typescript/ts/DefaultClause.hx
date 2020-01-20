@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1351:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1361:5
 **/
 
 typedef DefaultClause = typescript.ts.Node & {

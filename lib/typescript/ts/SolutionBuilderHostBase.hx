@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4709:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4719:5
 **/
 
 typedef SolutionBuilderHostBase<T> = typescript.ts.ProgramHost<T> & {

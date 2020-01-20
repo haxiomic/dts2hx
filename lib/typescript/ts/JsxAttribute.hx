@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1216:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1226:5
 **/
 
 typedef JsxAttribute = typescript.ts.ObjectLiteralElement & {

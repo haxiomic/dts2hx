@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1196:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1206:5
 **/
 
 typedef JsxSelfClosingElement = typescript.ts.PrimaryExpression & {

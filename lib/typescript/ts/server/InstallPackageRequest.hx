@@ -2,7 +2,7 @@ package typescript.ts.server;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4813:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4823:5
 **/
 
 typedef InstallPackageRequest = typescript.ts.server.TypingInstallerRequestWithProjectName & {

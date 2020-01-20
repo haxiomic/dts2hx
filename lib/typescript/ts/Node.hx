@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:496:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:506:5
 **/
 
 typedef Node = typescript.ts.TextRange & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:840:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:850:5
 **/
 
 typedef IndexedAccessTypeNode = typescript.ts.TypeNode & {

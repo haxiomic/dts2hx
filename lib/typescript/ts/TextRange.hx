@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:71:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:81:5
 **/
 
 typedef TextRange = {

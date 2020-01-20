@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1425:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1435:5
 **/
 
 typedef EnumMember = typescript.ts.NamedDeclaration & {

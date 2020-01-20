@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:879:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:889:5
 **/
 
 typedef PrefixUnaryExpression = typescript.ts.UpdateExpression & {

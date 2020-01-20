@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2137:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2147:5
 **/
 
 typedef TypePredicateBase = {

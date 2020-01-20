@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:596:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:606:5
 **/
 
 typedef VariableDeclaration = typescript.ts.NamedDeclaration & {

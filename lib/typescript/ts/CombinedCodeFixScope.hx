@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5085:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5095:5
 **/
 
 typedef CombinedCodeFixScope = {

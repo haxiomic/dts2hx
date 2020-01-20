@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3103:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3113:5
 **/
 @:native('ts.ListFormat')
 @:enum

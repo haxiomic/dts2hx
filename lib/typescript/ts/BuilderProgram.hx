@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Builder to manage the program state changes
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4461:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4471:5
 **/
 
 typedef BuilderProgram = {

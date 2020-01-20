@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4729:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4739:5
 **/
 
 typedef SolutionBuilder<T> = {

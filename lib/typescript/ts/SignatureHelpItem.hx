@@ -8,7 +8,7 @@ signature help item in the context of any documents that have been updated.  i.e
 an edit has happened, while signature help is still active, the host can ask important
 questions like 'what parameter is the user currently contained within?'.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5503:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5513:5
 **/
 
 typedef SignatureHelpItem = {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2394:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2404:5
 **/
 
 typedef InterfaceTypeWithDeclaredMembers = typescript.ts.InterfaceType & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:509:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:519:5
 **/
 
 typedef NodeArray<T> = js.lib.ReadonlyArray<T> & {

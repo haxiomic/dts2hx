@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2834:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2844:5
 **/
 
 typedef ResolvedTypeReferenceDirectiveWithFailedLookupLocations = {

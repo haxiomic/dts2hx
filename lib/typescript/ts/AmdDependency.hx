@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1752:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1762:5
 **/
 
 typedef AmdDependency = {

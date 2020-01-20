@@ -5,7 +5,7 @@ package typescript.ts;
 The builder that can handle the changes in program and iterate through changed file to emit the files
 The semantic diagnostics are cached per file and managed by clearing for the changed/affected files
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4542:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4552:5
 **/
 
 typedef EmitAndSemanticDiagnosticsBuilderProgram = typescript.ts.SemanticDiagnosticsBuilderProgram & {

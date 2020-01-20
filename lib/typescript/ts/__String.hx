@@ -9,7 +9,7 @@ with an intersection of void and an object. This makes it wholly incompatible
 with a normal string (which is good, it cannot be misused on assignment or on usage),
 while still being comparable with a normal string via === (also good) and castable from a string.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2263:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2273:5
 **/
 
 typedef __String = haxe.extern.EitherType<Any, typescript.ts.InternalSymbolName>;

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3092:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3102:5
 **/
 
 typedef TextSpan = {

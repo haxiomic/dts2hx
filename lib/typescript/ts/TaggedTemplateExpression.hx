@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1146:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1156:5
 **/
 
 typedef TaggedTemplateExpression = typescript.ts.MemberExpression & {

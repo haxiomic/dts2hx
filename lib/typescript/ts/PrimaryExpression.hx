@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:896:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:906:5
 **/
 
 typedef PrimaryExpression = typescript.ts.MemberExpression & {

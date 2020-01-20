@@ -11,7 +11,7 @@ the type reference itself is substituted for "this". The typeArguments property 
 if the class or interface has no type parameters and the reference isn't specifying an
 explicit "this" argument.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2411:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2421:5
 **/
 
 typedef TypeReference = typescript.ts.ObjectType & {

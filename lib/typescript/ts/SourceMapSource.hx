@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2862:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2872:5
 **/
 
 typedef SourceMapSource = {

@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Return code used by getEmitOutput function to indicate status of the function
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1962:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1972:5
 **/
 @:native('ts.ExitStatus')
 @:enum

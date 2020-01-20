@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2579:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2589:5
 **/
 
 typedef CompilerOptions = {

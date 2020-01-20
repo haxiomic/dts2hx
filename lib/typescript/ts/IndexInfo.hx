@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2492:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2502:5
 **/
 
 typedef IndexInfo = {

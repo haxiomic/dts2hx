@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5548:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5558:5
 **/
 
 typedef CompletionEntryDetails = {

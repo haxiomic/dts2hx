@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1431:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1441:5
 **/
 
 typedef EnumDeclaration = typescript.ts.DeclarationStatement & {

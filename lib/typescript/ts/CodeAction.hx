@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5204:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5214:5
 **/
 
 typedef CodeAction = {

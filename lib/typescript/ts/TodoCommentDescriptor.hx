@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5186:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5196:5
 **/
 
 typedef TodoCommentDescriptor = {

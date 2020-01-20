@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3077:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3087:5
 **/
 
 typedef PrinterOptions = {

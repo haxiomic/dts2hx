@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1232:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1242:5
 **/
 
 typedef JsxExpression = typescript.ts.Expression & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1939:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1949:5
 **/
 
 typedef CustomTransformers = {

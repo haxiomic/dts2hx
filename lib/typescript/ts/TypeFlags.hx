@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2286:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2296:5
 **/
 @:native('ts.TypeFlags')
 @:enum

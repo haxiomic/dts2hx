@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2568:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2578:5
 **/
 
 typedef ProjectReference = {

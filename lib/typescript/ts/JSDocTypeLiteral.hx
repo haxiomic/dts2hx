@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1680:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1690:5
 **/
 
 typedef JSDocTypeLiteral = typescript.ts.JSDocType & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:581:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:591:5
 **/
 
 typedef SignatureDeclarationBase = typescript.ts.NamedDeclaration & {

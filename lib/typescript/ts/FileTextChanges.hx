@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5199:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5209:5
 **/
 
 typedef FileTextChanges = {

@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Represents a bigint literal value without requiring bigint support
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3183:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3193:5
 **/
 
 typedef PseudoBigInt = {

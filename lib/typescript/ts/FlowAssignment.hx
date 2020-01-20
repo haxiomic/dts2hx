@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1725:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1735:5
 **/
 
 typedef FlowAssignment = typescript.ts.FlowNodeBase & {

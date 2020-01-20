@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1050:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1060:5
 **/
 
 typedef TemplateExpression = typescript.ts.PrimaryExpression & {

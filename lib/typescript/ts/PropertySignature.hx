@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:626:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:636:5
 **/
 
 typedef PropertySignature = typescript.ts.TypeElement & {

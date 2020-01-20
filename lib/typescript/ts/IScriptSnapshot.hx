@@ -6,7 +6,7 @@ Represents an immutable snapshot of a script at a specified time.Once acquired, 
 snapshot is observably immutable. i.e. the same calls with the same parameters will return
 the same values.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4938:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4948:5
 **/
 
 typedef IScriptSnapshot = {

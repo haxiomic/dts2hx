@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:780:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:790:5
 **/
 
 typedef TypePredicateNode = typescript.ts.TypeNode & {

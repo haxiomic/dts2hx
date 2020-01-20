@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1851:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1861:5
 **/
 
 typedef ScriptReferenceHost = {

@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Creates the watch that generates program using the root files and compiler options
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4681:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4691:5
 **/
 
 typedef WatchOfFilesAndCompilerOptions<T> = typescript.ts.Watch<T> & {

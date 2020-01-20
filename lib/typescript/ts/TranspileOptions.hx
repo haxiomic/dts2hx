@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5857:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5867:5
 **/
 
 typedef TranspileOptions = {

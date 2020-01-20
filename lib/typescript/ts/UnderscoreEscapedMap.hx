@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Map where keys are `__String`s.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2279:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2289:5
 **/
 
 typedef UnderscoreEscapedMap<T> = typescript.ts.ReadonlyUnderscoreEscapedMap<T> & {

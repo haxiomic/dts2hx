@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:648:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:658:5
 **/
 
 typedef PropertyAssignment = typescript.ts.ObjectLiteralElement & {

@@ -7,7 +7,7 @@ This does not form a proper tree.
 The navbar is returned as a list of top-level items, each of which has a list of child items.
 Child items always have an empty array for their `childItems`.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5157:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5167:5
 **/
 
 typedef NavigationBarItem = {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2419:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2429:5
 **/
 
 typedef TupleType = typescript.ts.GenericType & {

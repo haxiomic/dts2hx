@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2497:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2507:5
 **/
 @:native('ts.InferencePriority')
 @:enum

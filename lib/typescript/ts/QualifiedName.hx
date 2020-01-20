@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:545:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:555:5
 **/
 
 typedef QualifiedName = typescript.ts.Node & {

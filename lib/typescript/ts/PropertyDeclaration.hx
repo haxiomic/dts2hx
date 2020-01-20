@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:633:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:643:5
 **/
 
 typedef PropertyDeclaration = typescript.ts.ClassElement & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:762:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:772:5
 **/
 
 typedef FunctionOrConstructorTypeNodeBase = typescript.ts.TypeNode & {

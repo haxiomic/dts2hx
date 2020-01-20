@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2827:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2837:5
 **/
 
 typedef ResolvedTypeReferenceDirective = {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:816:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:826:5
 **/
 
 typedef IntersectionTypeNode = typescript.ts.TypeNode & {

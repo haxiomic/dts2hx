@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5479:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5489:5
 **/
 
 typedef RenameInfoFailure = {

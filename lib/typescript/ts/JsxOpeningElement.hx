@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1189:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1199:5
 **/
 
 typedef JsxOpeningElement = typescript.ts.Expression & {

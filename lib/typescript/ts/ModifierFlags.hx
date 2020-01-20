@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:467:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:477:5
 **/
 @:native('ts.ModifierFlags')
 @:enum

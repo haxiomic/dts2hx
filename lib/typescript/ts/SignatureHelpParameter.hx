@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5486:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5496:5
 **/
 
 typedef SignatureHelpParameter = {

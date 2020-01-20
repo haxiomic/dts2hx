@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5421:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5431:5
 **/
 
 typedef ReferencedSymbol = {

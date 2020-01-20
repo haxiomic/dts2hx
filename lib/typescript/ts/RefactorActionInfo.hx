@@ -5,7 +5,7 @@ package typescript.ts;
 Represents a single refactoring action - for example, the "Extract Method..." refactor might
 offer several actions, each corresponding to a surround class or closure to extract into.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5259:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5269:5
 **/
 
 typedef RefactorActionInfo = {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4428:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4438:5
 **/
 
 typedef EmitOutput = {

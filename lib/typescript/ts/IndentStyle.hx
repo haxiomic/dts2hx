@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5343:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5353:5
 **/
 @:native('ts.IndentStyle')
 @:enum

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1055:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1065:5
 **/
 
 typedef TemplateSpan = typescript.ts.Node & {

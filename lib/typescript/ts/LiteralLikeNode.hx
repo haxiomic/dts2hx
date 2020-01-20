@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1006:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1016:5
 **/
 
 typedef LiteralLikeNode = typescript.ts.Node & {

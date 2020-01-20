@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2664:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2674:5
 **/
 
 typedef TypeAcquisition = {

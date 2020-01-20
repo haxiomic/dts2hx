@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2561:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2571:5
 **/
 @:native('ts.ModuleResolutionKind')
 @:enum

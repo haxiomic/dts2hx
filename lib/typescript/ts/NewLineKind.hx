@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2690:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2700:5
 **/
 @:native('ts.NewLineKind')
 @:enum

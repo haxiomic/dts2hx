@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:960:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:970:5
 **/
 
 typedef BinaryExpression = typescript.ts.Expression & {

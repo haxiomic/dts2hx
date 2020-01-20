@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:678:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:688:5
 **/
 
 typedef ArrayBindingPattern = typescript.ts.Node & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1000:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1010:5
 **/
 
 typedef ArrowFunction = typescript.ts.Expression & {

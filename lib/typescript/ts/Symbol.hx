@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2227:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2237:5
 **/
 
 typedef Symbol = {

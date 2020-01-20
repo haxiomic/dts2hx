@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 ES6 Map interface, only read methods included.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:37:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:47:5
 **/
 
 typedef ReadonlyMap<T> = {

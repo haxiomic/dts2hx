@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 A set of one or more available refactoring actions, grouped under a parent refactoring.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5235:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5245:5
 **/
 
 typedef ApplicableRefactorInfo = {

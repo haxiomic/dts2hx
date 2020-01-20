@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2343:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2353:5
 **/
 
 typedef LiteralType = typescript.ts.Type & {

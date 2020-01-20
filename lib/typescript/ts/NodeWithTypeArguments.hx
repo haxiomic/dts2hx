@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:772:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:782:5
 **/
 
 typedef NodeWithTypeArguments = typescript.ts.TypeNode & {

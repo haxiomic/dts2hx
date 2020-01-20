@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:930:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:940:5
 **/
 
 typedef YieldExpression = typescript.ts.Expression & {

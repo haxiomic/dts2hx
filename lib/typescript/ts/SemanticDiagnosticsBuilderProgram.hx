@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 The builder that caches the semantic diagnostics for the program and handles the changed files and affected files
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4531:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4541:5
 **/
 
 typedef SemanticDiagnosticsBuilderProgram = typescript.ts.BuilderProgram & {

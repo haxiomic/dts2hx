@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3843:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3853:5
 **/
 
 typedef PerModuleNameCache = {

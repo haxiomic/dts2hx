@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1476:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1486:5
 **/
 
 typedef ImportDeclaration = typescript.ts.Statement & {

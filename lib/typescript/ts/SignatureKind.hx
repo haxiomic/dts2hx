@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2479:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2489:5
 **/
 @:native('ts.SignatureKind')
 @:enum

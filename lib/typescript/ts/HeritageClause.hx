@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1413:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1423:5
 **/
 
 typedef HeritageClause = typescript.ts.Node & {

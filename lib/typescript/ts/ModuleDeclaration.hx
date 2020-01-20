@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1438:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1448:5
 **/
 
 typedef ModuleDeclaration = typescript.ts.DeclarationStatement & {

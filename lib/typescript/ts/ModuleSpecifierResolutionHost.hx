@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3087:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3097:5
 **/
 
 typedef ModuleSpecifierResolutionHost = typescript.ts.GetEffectiveTypeRootsHost & {

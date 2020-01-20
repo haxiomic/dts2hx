@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5091:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5101:5
 **/
 
 typedef GetCompletionsAtPositionOptions = typescript.ts.UserPreferences & {

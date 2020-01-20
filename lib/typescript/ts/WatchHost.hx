@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Host that has watch functionality used in --watch mode
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4588:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4598:5
 **/
 
 typedef WatchHost = {

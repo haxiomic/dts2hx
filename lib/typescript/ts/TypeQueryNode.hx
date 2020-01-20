@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:787:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:797:5
 **/
 
 typedef TypeQueryNode = typescript.ts.TypeNode & {

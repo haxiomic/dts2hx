@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1780:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1790:5
 **/
 
 typedef Bundle = typescript.ts.Node & {

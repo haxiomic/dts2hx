@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5281:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5291:5
 **/
 
 typedef TextInsertion = {

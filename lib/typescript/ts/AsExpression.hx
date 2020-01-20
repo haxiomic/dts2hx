@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1153:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1163:5
 **/
 
 typedef AsExpression = typescript.ts.Expression & {

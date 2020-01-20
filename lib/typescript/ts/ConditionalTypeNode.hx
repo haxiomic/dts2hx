@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:820:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:830:5
 **/
 
 typedef ConditionalTypeNode = typescript.ts.TypeNode & {

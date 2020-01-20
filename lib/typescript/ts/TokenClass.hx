@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5599:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5609:5
 **/
 @:native('ts.TokenClass')
 @:enum

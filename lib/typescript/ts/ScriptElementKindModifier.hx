@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5712:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5722:5
 **/
 @:native('ts.ScriptElementKindModifier')
 @:enum

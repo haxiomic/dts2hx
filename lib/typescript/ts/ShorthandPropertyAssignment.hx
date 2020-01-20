@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:655:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:665:5
 **/
 
 typedef ShorthandPropertyAssignment = typescript.ts.ObjectLiteralElement & {

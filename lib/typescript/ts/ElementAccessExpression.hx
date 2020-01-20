@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1105:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1115:5
 **/
 
 typedef ElementAccessExpression = typescript.ts.MemberExpression & {

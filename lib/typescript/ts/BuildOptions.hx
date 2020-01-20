@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4700:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4710:5
 **/
 
 typedef BuildOptions = {

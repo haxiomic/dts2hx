@@ -5,7 +5,7 @@ package typescript.ts;
 Unique identifier with a package name and version.
 If changing this, remember to change `packageIdIsEqual`.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2800:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2810:5
 **/
 
 typedef PackageId = {

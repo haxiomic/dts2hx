@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5311:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5321:5
 **/
 
 typedef ImplementationLocation = typescript.ts.DocumentSpan & {

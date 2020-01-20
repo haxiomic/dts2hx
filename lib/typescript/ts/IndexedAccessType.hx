@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2444:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2454:5
 **/
 
 typedef IndexedAccessType = typescript.ts.InstantiableType & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:799:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:809:5
 **/
 
 typedef TupleTypeNode = typescript.ts.TypeNode & {

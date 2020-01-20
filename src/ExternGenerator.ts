@@ -931,7 +931,7 @@ export class ExternGenerator {
 
         let docs = moduleSymbol ? moduleSymbol.getDocumentationComment(this.typeChecker).map(p => p.text) : [];
         if (moduleSymbol) {
-            docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(moduleSymbol));
+            // docs.push('Generated from: ' + Debug.getSymbolPrintableLocation(moduleSymbol));
         }
 
         return {

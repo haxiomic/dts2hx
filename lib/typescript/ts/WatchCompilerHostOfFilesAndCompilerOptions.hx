@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Host to create watch with root files and options
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4645:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4655:5
 **/
 
 typedef WatchCompilerHostOfFilesAndCompilerOptions<T> = typescript.ts.WatchCompilerHost<T> & {

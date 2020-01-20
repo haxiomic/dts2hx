@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2468:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2478:5
 **/
 
 typedef ConditionalType = typescript.ts.InstantiableType & {

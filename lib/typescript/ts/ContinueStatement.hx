@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1320:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1330:5
 **/
 
 typedef ContinueStatement = typescript.ts.Statement & {

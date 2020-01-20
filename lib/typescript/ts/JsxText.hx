@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1238:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1248:5
 **/
 
 typedef JsxText = typescript.ts.LiteralLikeNode & {

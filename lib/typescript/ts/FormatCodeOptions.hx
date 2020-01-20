@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5369:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5379:5
 **/
 
 typedef FormatCodeOptions = typescript.ts.EditorOptions & {

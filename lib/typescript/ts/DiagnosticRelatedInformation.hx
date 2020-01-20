@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2542:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2552:5
 **/
 
 typedef DiagnosticRelatedInformation = {

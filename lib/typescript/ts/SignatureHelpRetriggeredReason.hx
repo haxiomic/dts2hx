@@ -7,7 +7,7 @@ This should only occur if a signature help session was already active and the ed
 The language service will unconditionally attempt to provide a result.
 `triggerCharacter` can be `undefined` for a retrigger caused by a cursor move.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5133:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5143:5
 **/
 
 typedef SignatureHelpRetriggeredReason = {

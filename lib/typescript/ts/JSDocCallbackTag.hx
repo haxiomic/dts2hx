@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1653:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1663:5
 **/
 
 typedef JSDocCallbackTag = typescript.ts.JSDocTag & {

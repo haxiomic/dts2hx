@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5590:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5600:5
 **/
 @:native('ts.EndOfLineState')
 @:enum

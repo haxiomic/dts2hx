@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2452:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2462:5
 **/
 
 typedef IndexType = typescript.ts.InstantiableType & {

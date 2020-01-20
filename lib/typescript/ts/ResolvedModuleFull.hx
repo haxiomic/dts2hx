@@ -6,7 +6,7 @@ ResolvedModule with an explicitly provided `extension` property.
 Prefer this over `ResolvedModule`.
 If changing this, remember to change `moduleResolutionIsEqualTo`.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2788:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2798:5
 **/
 
 typedef ResolvedModuleFull = typescript.ts.ResolvedModule & {

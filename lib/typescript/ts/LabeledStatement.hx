@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1357:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1367:5
 **/
 
 typedef LabeledStatement = typescript.ts.Statement & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:831:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:841:5
 **/
 
 typedef ParenthesizedTypeNode = typescript.ts.TypeNode & {

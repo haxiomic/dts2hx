@@ -5,7 +5,7 @@ package typescript.ts;
 Node in a tree of nested declarations in a file.
 The top node is always a script or module node.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5171:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5181:5
 **/
 
 typedef NavigationTree = {

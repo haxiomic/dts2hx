@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1366:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1376:5
 **/
 
 typedef TryStatement = typescript.ts.Statement & {

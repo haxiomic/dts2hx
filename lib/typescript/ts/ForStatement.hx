@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1298:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1308:5
 **/
 
 typedef ForStatement = typescript.ts.IterationStatement & {

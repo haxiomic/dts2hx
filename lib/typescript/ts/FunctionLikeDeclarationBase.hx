@@ -9,7 +9,7 @@ Examples:
 - MethodDeclaration
 - AccessorDeclaration
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:693:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:703:5
 **/
 
 typedef FunctionLikeDeclarationBase = typescript.ts.SignatureDeclarationBase & {

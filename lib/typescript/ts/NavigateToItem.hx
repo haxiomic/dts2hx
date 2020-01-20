@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5332:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5342:5
 **/
 
 typedef NavigateToItem = {

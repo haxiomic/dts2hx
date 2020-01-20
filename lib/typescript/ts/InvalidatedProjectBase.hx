@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4749:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4759:5
 **/
 
 typedef InvalidatedProjectBase = {

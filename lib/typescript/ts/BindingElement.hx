@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:618:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:628:5
 **/
 
 typedef BindingElement = typescript.ts.NamedDeclaration & {

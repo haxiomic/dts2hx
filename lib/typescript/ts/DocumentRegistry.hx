@@ -16,7 +16,7 @@ and re-hydrate them when needed.
 To create a default DocumentRegistry, use createDocumentRegistry to create one, and pass it
 to all subsequent createLanguageService calls.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5803:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5813:5
 **/
 
 typedef DocumentRegistry = {

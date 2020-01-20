@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5361:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5371:5
 **/
 
 typedef EditorSettings = {

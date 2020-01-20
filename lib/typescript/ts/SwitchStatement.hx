@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1334:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1344:5
 **/
 
 typedef SwitchStatement = typescript.ts.Statement & {

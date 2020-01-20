@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5104:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5114:5
 **/
 
 typedef SignatureHelpItemsOptions = {

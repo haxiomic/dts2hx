@@ -2,7 +2,7 @@ package typescript.ts.server;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4847:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4857:5
 **/
 
 typedef SetTypings = typescript.ts.server.ProjectResponse & {

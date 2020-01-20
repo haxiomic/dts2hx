@@ -7,7 +7,7 @@ It is built from the bottom up, leaving the head to be the "main" diagnostic.
 While it seems that DiagnosticMessageChain is structurally similar to DiagnosticMessage,
 the difference is that messages are all preformatted in DMC.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2530:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2540:5
 **/
 
 typedef DiagnosticMessageChain = {

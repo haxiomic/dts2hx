@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2838:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2848:5
 **/
 
 typedef CompilerHost = typescript.ts.ModuleResolutionHost & {

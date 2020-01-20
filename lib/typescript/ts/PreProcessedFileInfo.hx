@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:4957:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:4967:5
 **/
 
 typedef PreProcessedFileInfo = {

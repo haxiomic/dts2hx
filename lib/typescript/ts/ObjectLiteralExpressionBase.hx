@@ -7,7 +7,7 @@ ObjectLiteralExpression in that it contains array of properties; however, JSXAtt
 JSXAttribute or JSXSpreadAttribute. ObjectLiteralExpression, on the other hand, can only have properties of type
 ObjectLiteralElement (e.g. PropertyAssignment, ShorthandPropertyAssignment etc.)
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1080:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1090:5
 **/
 
 typedef ObjectLiteralExpressionBase<T> = typescript.ts.PrimaryExpression & {

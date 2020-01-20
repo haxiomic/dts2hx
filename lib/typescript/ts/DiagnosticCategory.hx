@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2555:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2565:5
 **/
 @:native('ts.DiagnosticCategory')
 @:enum

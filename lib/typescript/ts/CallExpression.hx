@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1118:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1128:5
 **/
 
 typedef CallExpression = typescript.ts.LeftHandSideExpression & {

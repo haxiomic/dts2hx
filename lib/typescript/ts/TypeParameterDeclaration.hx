@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:572:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:582:5
 **/
 
 typedef TypeParameterDeclaration = typescript.ts.NamedDeclaration & {

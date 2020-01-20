@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1733:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1743:5
 **/
 
 typedef FlowCondition = typescript.ts.FlowNodeBase & {

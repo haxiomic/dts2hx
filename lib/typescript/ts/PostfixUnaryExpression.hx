@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:885:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:895:5
 **/
 
 typedef PostfixUnaryExpression = typescript.ts.UpdateExpression & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1666:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1676:5
 **/
 
 typedef JSDocPropertyLikeTag = typescript.ts.JSDocTag & {

@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2488:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2498:5
 **/
 @:native('ts.IndexKind')
 @:enum

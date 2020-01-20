@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1484:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1494:5
 **/
 
 typedef ImportClause = typescript.ts.NamedDeclaration & {

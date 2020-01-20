@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1796:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1806:5
 **/
 
 typedef UnparsedSource = typescript.ts.Node & {

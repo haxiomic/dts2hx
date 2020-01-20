@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1646:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1656:5
 **/
 
 typedef JSDocTypedefTag = typescript.ts.JSDocTag & {

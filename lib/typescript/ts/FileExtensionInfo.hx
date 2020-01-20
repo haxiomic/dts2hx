@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2512:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2522:5
 **/
 
 typedef FileExtensionInfo = {

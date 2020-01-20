@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:3083:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:3093:5
 **/
 
 typedef GetEffectiveTypeRootsHost = {

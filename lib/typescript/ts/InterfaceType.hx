@@ -4,7 +4,7 @@ package typescript.ts;
 /**
 Class and interface types (ObjectFlags.Class and ObjectFlags.Interface).
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2387:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2397:5
 **/
 
 typedef InterfaceType = typescript.ts.ObjectType & {

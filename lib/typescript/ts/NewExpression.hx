@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:1140:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:1150:5
 **/
 
 typedef NewExpression = typescript.ts.PrimaryExpression & {

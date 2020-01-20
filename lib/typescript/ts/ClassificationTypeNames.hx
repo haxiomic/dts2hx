@@ -2,7 +2,7 @@ package typescript.ts;
 
 
 /**
-Generated from: test-definitions/typescript/typescript-extended.d.ts:5729:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:5739:5
 **/
 @:native('ts.ClassificationTypeNames')
 @:enum

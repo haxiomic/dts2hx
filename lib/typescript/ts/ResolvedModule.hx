@@ -8,7 +8,7 @@ The Program will then filter results based on these flags.
 
 Prefer to return a `ResolvedModuleFull` so that the file type does not have to be inferred.
 
-Generated from: test-definitions/typescript/typescript-extended.d.ts:2777:5
+Generated from: test-definitions/typescript/typescript-extended.d.ts:2787:5
 **/
 
 typedef ResolvedModule = {
