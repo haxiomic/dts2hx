@@ -16,5 +16,8 @@
     "@types/pixi.js": "^4.8.6",
     "babylonjs": "^4.0.3",
     "three": "^0.107.0"
+  },
+  "devDependencies": {
+    "@types/mxgraph": "github:lgleim/mxgraph-typings"
   }
 }
