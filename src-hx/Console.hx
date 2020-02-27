@@ -108,7 +108,7 @@ class Console {
 	}
 	#end
 
-	static var formatTagPattern = ~/<(\/)?([^><{}\s]*|{[^}<>]*})>/g;
+	static var formatTagPattern = ~/(\\)?<(\/)?([^><{}\s]*|{[^}<>]*})>/g;
 	static function format(s: String, formatMode: ConsoleFormatMode) {
 		s = s + '<//>';// Add a reset all to the end to prevent overflowing formatting to subsequent lines
 
@@ -137,8 +137,13 @@ class Console {
 		}
 
 		var result = formatTagPattern.map(s, function(e) {
-			var open = e.matched(1) == null;
-			var tags = e.matched(2).split(',');
+			var escaped = e.matched(1) != null;
+			if (escaped) {
+				return e.matched(0);
+			}
+
+			var open = e.matched(2) == null;
+			var tags = e.matched(3).split(',');
 
 			// handle </> and <//>
 			if (!open && tags.length == 1) {
