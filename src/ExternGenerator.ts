@@ -1252,8 +1252,26 @@ export class ExternGenerator {
                 // if not found we should generate externs fot this symbol instead
                 case 'ReadonlyArray': return ['js.lib.ReadonlyArray']; // we cannot use haxe.ds.ReadOnlyArray because it is an abstract, not an interface
                 case 'Number': return ['js.lib.Number']; // PR open, not merged yet
+                case 'Element': return ['js.html.DOMElement'];
+                case 'HTMLElement': return ['js.html.Element'];
+                case 'SVGElement': return ['js.svg.Element'];
+                case 'SVGGElement': return ['js.svg.GElement'];
+                case 'SVGDefsElement': return ['js.svg.DefsElement'];
+                case 'HTMLDivElement': return ['js.html.DivElement'];
+                case 'HTMLInputElement': return ['js.html.InputElement'];
+                case 'HTMLImageElement': return ['js.html.ImageElement'];
+                case 'HTMLButtonElement': return ['js.html.ButtonElement'];
+                case 'HTMLSelectElement': return ['js.html.SelectElement'];
+                case 'HTMLOptionElement': return ['js.html.OptionElement'];
+                case 'HTMLTableRowElement': return ['js.html.TableRowElement'];
+                case 'HTMLCanvasElement': return ['js.html.CanvasElement'];
+                case 'HTMLScriptElement': return ['js.html.ScriptElement'];
+                case 'MouseEvent': return ['js.html.MouseEvent'];
+                case 'Event': return ['js.html.Event'];
                 default: {
                     this.logWarning(`<red>Unhandled built-in symbol <b>${symbol.escapedName}</b>, generating types for this symbol</>`, Debug.symbolInfoFormatted(this.typeChecker, symbol, exportRoot), this.location(symbol));
+
+                    
                     // generate this symbol
                     // (symbol as any)._haxeGenerateBuiltIn = true;
 
@@ -1321,6 +1339,9 @@ export class ExternGenerator {
     }
 
     protected toSafePackageName(name: string) {
+        // remove @types/
+        name = name.replace(/^@types\//i, '');
+
         // remove .js suffix
         name = name.replace(/\.js$/i, '');
         // replace disallowed characters
