@@ -139,13 +139,14 @@ class Dts2hx {
         }
 
         // generate externs from top-level symbols
-        // top-level symbol queue grow during this loop
+        // top-level symbol queue may grow during this loop
         while(!topLevelSymbolQueue.isEmpty()) {
             var symbol = topLevelSymbolQueue.dequeue();
             if (symbol == null) continue;
 
             // @! checkout _Event, test-definitions/node_modules/@types/jquery/misc.d.ts:6538
             // is this exposed or internal?
+            // export as namespace someModule; ?
 
             Console.examine(symbol.escapedName);
             for (declaration in symbol.declarations) {
