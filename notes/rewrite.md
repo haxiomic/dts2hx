@@ -18,7 +18,6 @@
     - We could evaluate them and use the result type
     - We could translate type map into macro code
 
-
 - Compiler change proposals
     - Support @:arrayAccess fields on extern structs and interfaces (to enable index signatures)
     - More flexible extern interfaces:
