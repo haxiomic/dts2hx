@@ -1,3 +1,4 @@
+import tool.HaxeTools;
 import Log.LogLevel;
 import hxargs.Args.ArgHandler;
 import js.Node;

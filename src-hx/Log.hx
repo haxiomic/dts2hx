@@ -30,24 +30,24 @@ class Log {
         printErrors = (level: Int) >= (Error: Int);
     }
 
-    public function log(?arg: Any, ?node: typescript.ts.Node) {
-        var str = createMessage(arg, node);
+    public function log(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol) {
+        var str = createMessage(arg, node, symbol);
         if (printLogs) {
             Console.log(str);
         }
         logs.push(str);
     }
 
-    public function warn(?arg: Any, ?node: typescript.ts.Node) {
-        var str = createMessage(arg, node);
+    public function warn(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol) {
+        var str = createMessage(arg, node, symbol);
         if (printWarnings) {
             Console.warn(str);
         }
         warnings.push(str);
     }
 
-    public function error(?arg: Any, ?node: typescript.ts.Node) {
-        var str = createMessage(arg, node);
+    public function error(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol) {
+        var str = createMessage(arg, node, symbol);
         if (printErrors) {
             Console.error(str);
         }
@@ -72,10 +72,13 @@ class Log {
         return js.Syntax.code('require("typescript").SyntaxKind[{0}]', kind);
     }
 
-    function createMessage(?arg: Any, ?node: typescript.ts.Node): String {
+    function createMessage(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol): String {
         var str = Std.string(arg);
         if (node != null) {
-            str += ' <dim>(<magenta>${getSyntaxKindName(node.kind)}</> ${formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() })})</>';
+            str += ' <dim>(${nodeInfo(node)})</>';
+        }
+        if (symbol != null) {
+            str += ' <dim>(${symbolInfo(symbol)})</>';
         }
         return str;
     }
@@ -84,4 +87,17 @@ class Log {
         return args.filter(arg -> arg != null).join(', ');
     }
 
+    function symbolInfo(symbol: typescript.ts.Symbol): String {
+        var str = '<b,cyan>${symbol.name}</>';
+        if (symbol.valueDeclaration != null) {
+            str += ' ' + nodeInfo(symbol.valueDeclaration);
+        } else if (symbol.declarations != null && symbol.declarations[0] != null) {
+            str += ' ' + nodeInfo(symbol.declarations[0]);
+        }
+        return str;
+    }
+    
+    function nodeInfo(node: typescript.ts.Node): String {
+        return '<magenta>${getSyntaxKindName(node.kind)}</> ${formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() })}';
+    }
 }
