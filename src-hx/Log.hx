@@ -1,6 +1,12 @@
+import typescript.Ts;
+import typescript.ts.Symbol;
+import typescript.ts.Diagnostic;
 import typescript.ts.SourceFile;
 import typescript.ts.Node;
 import typescript.ts.SyntaxKind;
+
+// avoid node.js `Node`
+typedef TsNode = typescript.ts.Node;
 
 enum abstract LogLevel(Int) to Int {
     var None = 0;
@@ -30,28 +36,40 @@ class Log {
         printErrors = (level: Int) >= (Error: Int);
     }
 
-    public function log(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol) {
-        var str = createMessage(arg, node, symbol);
+    public function log(?message: String, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic) {
+        var str = createMessage(message, node, symbol, diagnostic);
         if (printLogs) {
             Console.log(str);
         }
         logs.push(str);
     }
 
-    public function warn(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol) {
-        var str = createMessage(arg, node, symbol);
+    public function warn(?message: String, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic) {
+        var str = createMessage(message, node, symbol, diagnostic);
         if (printWarnings) {
             Console.warn(str);
         }
         warnings.push(str);
     }
 
-    public function error(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol) {
-        var str = createMessage(arg, node, symbol);
+    public function error(?message: String, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic) {
+        var str = createMessage(message, node, symbol, diagnostic);
         if (printErrors) {
             Console.error(str);
         }
         errors.push(str);
+    }
+
+    public function diagnostics(?message: String, ?array: Array<Diagnostic>) {
+        if (array == null) array = [];
+        for (diagnostic in array) {
+            switch diagnostic.category {
+                case Error: error(message, diagnostic);
+                case Warning: warn(message, diagnostic);
+                case Message: log(message, diagnostic);
+                case Suggestion: log(message, diagnostic);
+            }
+        }
     }
 
     public function formatLocation(location: {
@@ -72,22 +90,35 @@ class Log {
         return js.Syntax.code('require("typescript").SyntaxKind[{0}]', kind);
     }
 
-    function createMessage(?arg: Any, ?node: typescript.ts.Node, ?symbol: typescript.ts.Symbol): String {
-        var str = Std.string(arg);
+    function createMessage(?arg: Any, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic): String {
+        var parts = new Array<String>();
+        if (arg != null) {
+            parts.push(Std.string(arg));
+        }
         if (node != null) {
-            str += ' <dim>(${nodeInfo(node)})</>';
+            parts.push('<dim>(${nodeInfo(node)})</>');
         }
         if (symbol != null) {
-            str += ' <dim>(${symbolInfo(symbol)})</>';
+            parts.push('<dim>(${symbolInfo(symbol)})</>');
         }
-        return str;
+        if (diagnostic != null) {
+            var message = '<b>[TypeScript ${Ts.versionMajorMinor}]</> ${diagnostic.messageText}';
+			if (diagnostic.file != null) {
+				message += ' <dim>(${formatLocation({
+					sourceFile: diagnostic.file,
+					start: diagnostic.start
+				})})</>';
+			}
+            parts.push(message);
+        }
+        return parts.join(' ');
     }
 
     function joinArgs(args: Array<Any>) {
         return args.filter(arg -> arg != null).join(', ');
     }
 
-    function symbolInfo(symbol: typescript.ts.Symbol): String {
+    function symbolInfo(symbol: Symbol): String {
         var str = '<b,cyan>${symbol.name}</>';
         if (symbol.valueDeclaration != null) {
             str += ' ' + nodeInfo(symbol.valueDeclaration);
@@ -97,7 +128,7 @@ class Log {
         return str;
     }
     
-    function nodeInfo(node: typescript.ts.Node): String {
+    function nodeInfo(node: TsNode): String {
         return '<magenta>${getSyntaxKindName(node.kind)}</> ${formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() })}';
     }
 }
