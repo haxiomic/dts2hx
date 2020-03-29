@@ -1,12 +1,11 @@
-import haxe.DynamicAccess;
-import typescript.Ts;
-import typescript.ts.CompilerOptions;
-import tool.HaxeTools;
 import Log.LogLevel;
+import haxe.DynamicAccess;
 import hxargs.Args.ArgHandler;
 import js.Node;
+import typescript.Ts;
+import typescript.ts.CompilerOptions;
+import typescript.ts.ModuleResolutionKind;
 
-import js.Lib.debug;
 
 @:nullSafety
 class Main {
@@ -23,6 +22,7 @@ class Main {
             cwd: null,
             outputPath: 'dts2hx-output',
             tsConfigFilePath: null,
+            tsCompilerOptions: [],
             moduleNames: new Array<String>(),
             moduleSearchPath: '.',
             allDependencies: false,
@@ -57,6 +57,18 @@ class Main {
             @doc('Set path to tsconfig file to use when processing the .d.ts files')
             '--tsconfig' => (path: String) -> {
                 cliOptions.tsConfigFilePath = path;
+            },
+
+            @doc('Set ts compiler option `--target` (takes precedent over options provided by --tsconfig)')
+            '--target' => (scriptTarget: String) -> {
+                cliOptions.tsCompilerOptions.push('--target');
+                cliOptions.tsCompilerOptions.push(scriptTarget);
+            },
+
+            @doc('Set ts compiler option `--moduleResolution` (takes precedent over options provided by --tsconfig)')
+            '--moduleResolution' => (kind: String) -> {
+                cliOptions.tsCompilerOptions.push('--moduleResolution');
+                cliOptions.tsCompilerOptions.push(kind);
             },
 
             @doc('Disable terminal colors')
@@ -110,34 +122,36 @@ class Main {
 
         var log = new Log(cliOptions.logLevel != null ? cliOptions.logLevel : Warning);
 
-        var compilerOptionsOverride: Null<CompilerOptions> = try
-            if (cliOptions.tsConfigFilePath != null) {
-                var readResult = Ts.readConfigFile(cliOptions.tsConfigFilePath, (path) -> Ts.sys.readFile(path, 'utf8'));
-                if (readResult.error != null) {
-                    throw readResult.error.messageText;
-                } else {
-                    if (readResult.config != null) {
-                        readResult.config;
-                    } else {
-                        throw 'Could not read "${cliOptions}.tsConfigFilePath"';
-                    }
-                }
+        var defaultCompilerOptions = Ts.getDefaultCompilerOptions();
+        defaultCompilerOptions.types = []; // disable automatic node_modules/@types inclusion
+        defaultCompilerOptions.moduleResolution = ModuleResolutionKind.NodeJs;
+
+        var compilerOptions = defaultCompilerOptions;
+
+        // add options from --tsconfig
+        if (cliOptions.tsConfigFilePath != null) {
+            var readResult = Ts.readConfigFile(cliOptions.tsConfigFilePath, (path) -> Ts.sys.readFile(path, 'utf8'));
+            if (readResult.config != null) {
+                var compilerOptionsObj = Reflect.field(readResult.config, 'compilerOptions');
+                var result = Ts.convertCompilerOptionsFromJson(compilerOptionsObj, Node.process.cwd(), cliOptions.tsConfigFilePath);
+                log.diagnostics(result.errors);
+
+                compilerOptions = extend(compilerOptions, result.options);
             } else {
-                null;
+                if (readResult.error != null) {
+                    log.diagnostics([readResult.error]);
+                }
             }
-        catch(e: String) {
-            log.error(e);
-            Node.process.exit(1);
-            null;
         }
 
-        var compilerOptions: CompilerOptions = compilerOptionsOverride != null ? compilerOptionsOverride : {
-            types: [], // disable automatic node_modules/@types inclusion
-        };
+        // add user-supplied typescript compiler options
+        if (cliOptions.tsCompilerOptions.length > 0) {
+            var result = Ts.parseCommandLine(cliOptions.tsCompilerOptions);
+            log.diagnostics(result.errors);
+            compilerOptions = extend(compilerOptions, result.options);
+        }
 
         var host = Ts.createCompilerHost(compilerOptions);
-
-        log.log(host.getCurrentDirectory());
 
         // add package.json dependencies to list of modules
         if (cliOptions.allDependencies) {
@@ -171,7 +185,6 @@ class Main {
         for (moduleName in cliOptions.moduleNames) {
             var result = Ts.resolveModuleName(moduleName, cliOptions.moduleSearchPath + '/.', compilerOptions, host);
             if (result.resolvedModule != null) {
-                Console.log('<green>${result.resolvedModule.resolvedFileName}</>', result.resolvedModule);
                 var rootPackage = if (result.resolvedModule.packageId != null) {
                     [result.resolvedModule.packageId.name];
                 } else {
@@ -180,7 +193,8 @@ class Main {
                     pathParts.pop();
                     pathParts;
                 }
-                var program = Ts.createProgram([result.resolvedModule.resolvedFileName], compilerOptions, host);
+
+                convertTsModule(log, result.resolvedModule.resolvedFileName, rootPackage, compilerOptions);
             } else {
                 var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
                 log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
@@ -188,7 +202,21 @@ class Main {
             }
         }
 
-        // var dts2hx = new Dts2hx(options);
+    }
+
+    static function convertTsModule(log: Log, entryPointFilePath: String, rootPackage: Array<String>, compilerOptions: CompilerOptions) {
+        var dts2hx = new Dts2hx(log, entryPointFilePath, rootPackage, compilerOptions);
+    }
+
+    static function extend<T>(base: T, extendWidth: T): T {
+        var extended = {};
+        for (field in Reflect.fields(base)) {
+            Reflect.setField(extended, field, Reflect.field(base, field));
+        }
+        for (field in Reflect.fields(extendWidth)) {
+            Reflect.setField(extended, field, Reflect.field(extendWidth, field));
+        }
+        return cast extended;
     }
 
     static function printDoc(argHandler: ArgHandler) {
@@ -200,7 +228,8 @@ class Main {
         Console.println('');
 
         Console.printlnFormatted('<b>Examples:</b>');
-        Console.printlnFormatted('\tdts2hx three');
+        Console.printlnFormatted('\tdts2hx pixi.js');
+        Console.printlnFormatted('\tdts2hx three --target es6 --moduleResolution Node');
         Console.printlnFormatted('\tdts2hx --all --output .haxelib');
         Console.printlnFormatted('\tdts2hx ./src/index --verbose');
         Console.println('');
