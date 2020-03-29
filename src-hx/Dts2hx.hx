@@ -1,111 +1,116 @@
-import typescript.ts.NodeFlags;
-import typescript.ts.SymbolFlags;
-import typescript.ts.TypeChecker;
-import tool.TsPackageTools;
-import tool.TsSymbolTools;
+import typescript.ts.SourceFile;
+import typescript.ts.SyntaxKind;
+import js.Lib.debug;
+import tool.HaxeTools;
 import tool.TsProgramTools;
-import typescript.ts.Diagnostic;
-import Log.LogLevel;
-import js.Node;
+import tool.TsSymbolTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
 import typescript.ts.Program;
 import typescript.ts.Statement;
 import typescript.ts.Symbol;
-import tool.HaxeTools;
-import haxe.macro.Expr;
+import typescript.ts.SymbolFlags;
+import typescript.ts.TypeChecker;
 
-import js.Lib.debug;
-
-using Lambda;
 
 @:expose
 @:nullSafety
 class Dts2hx {
 
 	public final log: Log;
+	final tc: TypeChecker;
 
-	public function new(options: {
-		outputPath: String,
-		tsSourcePaths: Array<String>,
-		?tsConfigFilePath: String,
-		?logLevel: LogLevel,
-	}) {
-		this.log = new Log(options.logLevel != null ? options.logLevel : Warning);
+	public function new(moduleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
+		this.log = log_ != null ? log_ : new Log();
 
-		// options
-		var outputPath: String = options.outputPath;
-		var tsConfigFilePath: Null<String> = options.tsConfigFilePath;
-		var tsSourcePaths = options.tsSourcePaths;
-
-		var compilerOptionsOverride: Null<CompilerOptions> = try
-			if (tsConfigFilePath != null) {
-				var readResult = Ts.readConfigFile(tsConfigFilePath, (path) -> Ts.sys.readFile(path, 'utf8'));
-				if (readResult.error != null) {
-					throw readResult.error.messageText;
-				} else {
-					if (readResult.config != null) {
-						readResult.config;
-					} else {
-						throw 'Could not read "$tsConfigFilePath"';
-					}
-				}
-			} else {
-				null;
-			}
-		catch(e: String) {
-			log.error(e);
-			Node.process.exit(1);
-			null;
-		}
-
-		var compilerOptions: CompilerOptions = compilerOptionsOverride != null ? compilerOptionsOverride : {
-			types: [], // disable automatic node_modules/@types inclusion
-		};
-		
-		// @! maybe we could use Ts.resolveModuleName for this
-		var definitionGroups = [
-			for (path in tsSourcePaths)
-				try TsPackageTools.findDefinitionGroups(log, path) catch(e: Any) {
-					log.error('Error finding definition files: ${e}');
-					[{
-						name: '',
-						files: [],
-					}];
-				}
-		].flatten();
-
-		Console.examine(definitionGroups);
-
-		for (group in definitionGroups) {
-			try convertTsDefinitions(group, compilerOptions)
-			catch(e: String) log.error(e);
-		}
-	}
-
-	function convertTsDefinitions(definitionGroup: DefinitionGroup, compilerOptions: CompilerOptions) {
-		log.log('Converting group <b>${definitionGroup.name}</>');
-
-		if (definitionGroup.files.length == 0) {
-			log.warn('No .d.ts files found');
-			return;
-		}
-
-		log.log('Root .d.ts files:\n\t<b>${definitionGroup.files.join('\n\t')}</b>');
+		// moduleId may be a file reference like path/to/file.d.ts
+		var rootPackage = moduleId
+			.split('/')
+			.filter(part -> ['@types'].indexOf(part) == -1) // remove @types/
+			.map(part -> HaxeTools.toSafeIdent(part).toLowerCase());
+		log.log('<green>Root Package: <b>${rootPackage.join('.')}</b></>');
 
 		var host = Ts.createCompilerHost(compilerOptions);
+		var program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
+		this.tc = program.getTypeChecker();
 
-		var program = Ts.createProgram(definitionGroup.files, compilerOptions, host);
+		log.diagnostics(TsProgramTools.getAllDiagnostics(program));
 
-		logDiagnostics(TsProgramTools.getAllDiagnostics(program));
+		var entryPointSourceFile = program.getSourceFile(entryPointFilePath);
 
-		var converterContext = new ConverterContext(log, program);
-
-		for (symbol in getTopLevelSymbols(program)) {
-			converterContext.convertSymbol(symbol);
+		if (entryPointSourceFile == null) {
+			throw 'TypeScript compiler API error – failed to get entry-point source file';
 		}
 
-		Console.examine(converterContext.getHaxeModules());
+		// null if nothing is exported (i.e ambient namespaces and modules)
+		// "In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope"
+		var entryPointExportSymbol = tc.getSymbolAtLocation(entryPointSourceFile);
+
+		if (entryPointExportSymbol != null) {
+			/*
+			Console.log('-- getExportsOfModule --');
+			for (exportedSymbol in tc.getExportsOfModule(entryPointExportSymbol)) {
+				log.log(exportedSymbol);
+			}
+			*/
+
+			Console.log('-- globalExports --');
+			if (entryPointExportSymbol.globalExports != null) {
+				entryPointExportSymbol.globalExports.forEach((symbol, key) -> {
+					log.log(key, symbol);
+					if (symbol.flags & SymbolFlags.Alias != 0) {
+						log.log('\t', tc.getAliasedSymbol(symbol));
+					}
+				});
+			}
+
+			Console.log('-- exports --');
+			if (entryPointExportSymbol.exports != null) {
+				entryPointExportSymbol.exports.forEach((symbol, key) -> {
+					log.log(key, symbol);
+					if (symbol.flags & SymbolFlags.Alias != 0) {
+						log.log('\t', tc.getAliasedSymbol(symbol));
+					}
+				});
+			}
+
+			debug();
+		} else {
+			Console.log('-- Ambient Symbols --');
+			for (symbol in getSourceFileSymbols(entryPointSourceFile)) {
+				log.log(symbol);
+			}
+		}
+
+		return;
+	}
+
+	function getSourceFileSymbols(sourceFile: SourceFile) {
+		var symbols = new Array<Symbol>();
+		// iterate statements (assumed to be all declarations for .d.ts) and add symbols to top-level symbol
+		for (statement in (cast sourceFile.statements: Array<Statement>)) {
+			switch statement.kind {
+				// explicitly ignored statements
+				// case ImportDeclaration, ExportDeclaration, FirstStatement:
+				// 	continue;
+
+				default:
+					var name = Ts.getNameOfDeclaration(cast statement);
+					if (name != null) {
+						var symbol = tc.getSymbolAtLocation(name);
+						var exportSymbol = symbol != null ? tc.getExportSymbolOfSymbol(symbol) : null;
+						if (exportSymbol == null) {
+							log.error('Export symbol was null', statement);
+							continue;
+						}
+
+						log.log(symbol);
+					} else {
+						log.warn('Statement (assumed to be declaration) has no name', statement);
+					}
+			}
+		}
+		return symbols;
 	}
 
 	/**
@@ -152,28 +157,6 @@ class Dts2hx {
 		}
 
 		return [for (_ => symbol in topLevelSymbols.allSymbols) symbol];
-	}
-
-	function logDiagnostics(diagnostics: Array<Diagnostic>) {
-		for (diagnostic in diagnostics) {
-			var message = '<b>[TypeScript ${Ts.versionMajorMinor}]</> ${diagnostic.messageText}';
-			if (diagnostic.file != null) {
-				message += ' <dim>(${log.formatLocation({
-					sourceFile: diagnostic.file,
-					start: diagnostic.start
-				})})</>';
-			}
-			switch diagnostic.category {
-				case Error: log.error(message);
-				case Warning: log.warn(message);
-				case Message: log.log(message);
-				case Suggestion: log.log(message);
-			}
-		}
-	}
-
-	static function capitalize(str: String) {
-		return str.charAt(0).toUpperCase() + str.substr(1);	
 	}
 
 }
@@ -282,8 +265,9 @@ class ConverterContext {
 		// @! save to haxeModules, checking if a module already exists at this path
 	}
 
-	function getModule(typePath: String) {
-
+	function getModule(typePath: String): Null<HaxeModule> {
+		// @! get's a previously saved haxe module
+		return null;
 	}
 
 	function isSourceFileSymbol(symbol: Symbol) {
@@ -295,7 +279,7 @@ class ConverterContext {
 		for (symbol in getSymbolParents(symbol)) {
 			if (symbol.flags & SymbolFlags.Module != 0) {
 				if (isSourceFileSymbol(symbol)) {
-					// need special handling of source file paths to remove prefix
+					// @! need special handling of source file paths to remove prefix
 				} else {
 					var nameParts = symbol.name.split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
 					pack = pack.concat(nameParts);
