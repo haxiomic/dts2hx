@@ -11,6 +11,7 @@ import typescript.ts.ModuleResolutionKind;
 class Main {
 
     static final version = Macro.getLocalPackageJsonVersion();
+    static final log = new Log();
 
     static function main() {
         Console.warnPrefix = '<b,yellow>> Warning:</b> ';
@@ -40,7 +41,8 @@ class Main {
                 cliOptions.outputPath = path;
             },
 
-            ['--moduleSearchPath', '-s'] => (moduleSearchPath: String) -> {
+            @doc('Path to use when searching for modules')
+            ['--moduleSearchPath', '-p'] => (moduleSearchPath: String) -> {
                 cliOptions.moduleSearchPath = moduleSearchPath;
             },
 
@@ -120,7 +122,7 @@ class Main {
             return;
         }
 
-        var log = new Log(cliOptions.logLevel != null ? cliOptions.logLevel : Warning);
+        log.setPrintLogLevel(cliOptions.logLevel);
 
         var defaultCompilerOptions = Ts.getDefaultCompilerOptions();
         defaultCompilerOptions.types = []; // disable automatic node_modules/@types inclusion
@@ -183,29 +185,33 @@ class Main {
         }
 
         for (moduleName in cliOptions.moduleNames) {
-            var result = Ts.resolveModuleName(moduleName, cliOptions.moduleSearchPath + '/.', compilerOptions, host);
-            if (result.resolvedModule != null) {
-                var rootPackage = if (result.resolvedModule.packageId != null) {
-                    [result.resolvedModule.packageId.name];
-                } else {
-                    var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-                    var pathParts = relPath.split('/');
-                    pathParts.pop();
-                    pathParts;
-                }
-
-                convertTsModule(log, result.resolvedModule.resolvedFileName, rootPackage, compilerOptions);
-            } else {
-                var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
-                log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
-                Node.process.exit(1);
-            }
+            convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath);
         }
-
     }
 
-    static function convertTsModule(log: Log, entryPointFilePath: String, rootPackage: Array<String>, compilerOptions: CompilerOptions) {
-        var dts2hx = new Dts2hx(log, entryPointFilePath, rootPackage, compilerOptions);
+    static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String) {
+        var host = Ts.createCompilerHost(compilerOptions);
+
+        var result = Ts.resolveModuleName(moduleName, moduleSearchPath + '/.', compilerOptions, host);
+        if (result.resolvedModule != null) {
+            // moduleId is what you'd need to pass into require() to get the module
+            var moduleId = if (result.resolvedModule.packageId != null) {
+                result.resolvedModule.packageId.name;
+            } else {
+                var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
+                relPath;
+            }
+
+            convertTsDefinitions(moduleId, result.resolvedModule.resolvedFileName, compilerOptions, outputPath);
+        } else {
+            var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
+            log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
+            Node.process.exit(1);
+        }
+    }
+
+    static function convertTsDefinitions(moduleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, outputDirectory: String) {
+        var dts2hx = new Dts2hx(moduleId, entryPointFilePath, compilerOptions, log);
     }
 
     static function extend<T>(base: T, extendWidth: T): T {
