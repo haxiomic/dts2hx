@@ -2,7 +2,7 @@
 
 Hi, this is a work in progress TypeScript Definition to Haxe Extern converter that uses the typescript compiler. It's not yet ready to use but much of the groundwork has been laid
 
-The ultimate aim is to be able to do something like `dts2hx install @types/three` and have it pull definitions from DefinitelyTyped and convert them to haxe. To enable this to be reliable there needs to be a focus on fully handling all possible ts type expressions and edge cases (see [test-definitions/edge-cases/index.d.ts](test-definitions/edge-cases/index.d.ts))
+The ultimate aim is to be able to do something like `dts2hx three --install` and have it pull definitions from DefinitelyTyped and convert them to haxe. To enable this to be reliable there needs to be a focus on fully handling all possible ts type expressions and edge cases (see [test-definitions/edge-cases/index.d.ts](test-definitions/edge-cases/index.d.ts))
 
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
@@ -48,8 +48,8 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
         - babylon.js and many other project use both, do we merge or just parse as-is?
             -> Babylon.js duplicates class definitions between ambient and export, so we could do a string comparison for equality but it's generally a design issue of their definitions
             -> However, this would generate two sets of externs, one ambient and the other module-based, which is a good result
-    - [ ] Support referencing module name like `dts2hx --module three`
-    - [ ] The most common use case will be converting _all_ dependencies. So support `dts2hx --all` or similar
+    - [x] Support referencing module name like `dts2hx three`
+    - [x] The most common use case will be converting _all_ dependencies. So support `dts2hx --all` or similar
     - [ ] Remove type-path prefix if referencing type within the same module
     - [ ] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
@@ -66,7 +66,7 @@ The ultimate aim is to be able to do something like `dts2hx install @types/three
     - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
 - [ ] Command-line interface improvements
     - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
-    - [ ] `dts2hx install three.js` works
+    - [ ] `dts2hx three --install` works
 - [ ] :star2: **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
