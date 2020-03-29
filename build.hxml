@@ -11,17 +11,14 @@
 # run with no args
 # -cmd node dist/dts2hx.js
 
-# -cmd node dist/dts2hx.js --path test/unit --verbose
--cmd node dist/dts2hx.js --path test-definitions/node_modules/three/ --verbose
-# -cmd node dist/dts2hx.js --path test-definitions/node_modules/babylonjs/ --verbose
-# -cmd node dist/dts2hx.js --path test-definitions/typescript/typescript-extended.d.ts --verbose
+# -cmd node dist/dts2hx.js --all --verbose
 
-# Tricky ambient vs export cases
-# -cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/big.js --verbose
-# -cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/pixi.js --verbose
-# -cmd node dist/dts2hx.js --path test-definitions/node_modules/playcanvas --verbose
+-cmd node dist/dts2hx.js three -p test-definitions --target es6 --verbose
+# -cmd node dist/dts2hx.js big.js -p test-definitions --verbose
+# -cmd node dist/dts2hx.js pixi.js -p test-definitions --verbose
+
 
 # External references
-# -cmd node dist/dts2hx.js --path test-definitions/node_modules/@types/jquery --verbose
+# -cmd node dist/dts2hx.js jquery -p test-definitions --verbose
 
 -debug
