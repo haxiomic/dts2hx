@@ -1,3 +1,9 @@
+- Determine @:native() and @:js.Require **not** from parents by from exploring out from the index typing file
+	- What about multiple files? (not allowed in package.json, but theoretically how should this work?)
+	- Maybe start with the root file and then handle non-touched files differently?
+	- Or _require_ a single file
+	- Do any modules not have a single root in practice?
+
 - Implement get-generate for type-symbols
 	- Type path from parent does not work! See three.js Quaternion
 		- technically we probably can do import "three/src/math/Quaternion", we lose connection to the parent THREE module because it's in another file
