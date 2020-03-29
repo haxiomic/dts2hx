@@ -1,3 +1,4 @@
+import tool.TsSymbolTools;
 import typescript.Ts;
 import typescript.ts.Symbol;
 import typescript.ts.Diagnostic;
@@ -119,7 +120,7 @@ class Log {
     }
 
     function symbolInfo(symbol: Symbol): String {
-        var str = '<b,cyan>${symbol.name}</>';
+        var str = '<b,cyan>${symbol.name} ${TsSymbolTools.symbolFlagsInfo(symbol.flags)}</>';
         if (symbol.valueDeclaration != null) {
             str += ' ' + nodeInfo(symbol.valueDeclaration);
         } else if (symbol.declarations != null && symbol.declarations[0] != null) {
