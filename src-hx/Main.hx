@@ -37,10 +37,11 @@ class Main {
 		var help: Bool = false;
 		var noColor: Bool = false;
 		var silent: Bool = false;
+		var defaultValueFormatting = 'yellow';
 
 		var argHandler: ArgHandler;
 		argHandler = hxargs.Args.generate([
-			@doc('Set output directory for generated externs (default "${cliOptions.outputPath}")')
+			@doc('Set output directory for generated externs (default <$defaultValueFormatting>"${cliOptions.outputPath}"</>)')
 			['--output', '-o'] => (path: String) -> {
 				cliOptions.outputPath = path;
 			},
@@ -60,13 +61,13 @@ class Main {
 				cliOptions.tsConfigFilePath = path;
 			},
 
-			@doc('Set ts compiler option `--target` (takes precedent over options provided by --tsconfig)')
+			@doc('Set ts compiler option `--target`, takes precedent over options provided by --tsconfig (default <$defaultValueFormatting>"ES6"</>)')
 			'--target' => (scriptTarget: String) -> {
 				cliOptions.tsCompilerOptions.push('--target');
 				cliOptions.tsCompilerOptions.push(scriptTarget);
 			},
 
-			@doc('Set ts compiler option `--moduleResolution` (takes precedent over options provided by --tsconfig)')
+			@doc('Set ts compiler option `--moduleResolution`, takes precedent over options provided by --tsconfig (default <$defaultValueFormatting>"Node"</>)')
 			'--moduleResolution' => (kind: String) -> {
 				cliOptions.tsCompilerOptions.push('--moduleResolution');
 				cliOptions.tsCompilerOptions.push(kind);
@@ -141,6 +142,7 @@ class Main {
 		log.setPrintLogLevel(cliOptions.logLevel);
 
 		var defaultCompilerOptions = Ts.getDefaultCompilerOptions();
+		defaultCompilerOptions.target = ES2015; // default to ES6 for lib types
 		defaultCompilerOptions.types = []; // disable automatic node_modules/@types inclusion
 		defaultCompilerOptions.moduleResolution = ModuleResolutionKind.NodeJs;
 
@@ -200,9 +202,14 @@ class Main {
 			}
 		}
 
-		for (moduleName in cliOptions.moduleNames) {
-			convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.outputFlags);
-		}
+			for (moduleName in cliOptions.moduleNames) {
+				try {
+					convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.outputFlags);
+				} catch (e: Any) {
+					log.error(e);
+					Node.process.exit(1);
+				}
+			}
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String, outputFlags: EnumFlags<OutputType>) {
@@ -223,8 +230,7 @@ class Main {
 			convertTsDefinitions(moduleName, result.resolvedModule.resolvedFileName, compilerOptions, outputPath, outputFlags);
 		} else {
 			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
-			log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
-			Node.process.exit(1);
+			throw 'Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>';
 		}
 	}
 
@@ -252,8 +258,8 @@ class Main {
 		Console.println('');
 
 		Console.printlnFormatted('<b>Examples:</b>');
-		Console.printlnFormatted('\tdts2hx pixi.js');
-		Console.printlnFormatted('\tdts2hx three --target es6 --moduleResolution Node');
+		Console.printlnFormatted('\tdts2hx three');
+		Console.printlnFormatted('\tdts2hx pixi.js --globalOnly');
 		Console.printlnFormatted('\tdts2hx --all --output .haxelib');
 		Console.printlnFormatted('\tdts2hx ./src/index --verbose');
 		Console.println('');
