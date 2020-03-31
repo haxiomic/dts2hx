@@ -245,15 +245,18 @@ class ConverterContext {
 		pack.push(HaxeTools.toSafeIdent(entryPointModuleId).toLowerCase());
 
 		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
-			if (parentSymbol.flags & SymbolFlags.Module != 0) {
-				if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
-					// @! need special handling of source file paths to remove prefix
+			// handle special names
+			if (!~/^__\w/.match(parentSymbol.name)) { // skip special names (like '__global')
+				if (parentSymbol.flags & SymbolFlags.Module != 0) {
+					if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
+						// @! need special handling of source file paths to remove prefix
+					} else {
+						pack = pack.concat(pathToHaxePackage(parentSymbol.name));
+					}
 				} else {
-					pack = pack.concat(pathToHaxePackage(parentSymbol.name));
+					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
+					debug();
 				}
-			} else {
-				log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
-				debug();
 			}
 		}
 
