@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.SourceFile;
 import typescript.Ts;
 import typescript.ts.SyntaxKind;
 import typescript.ts.SymbolFlags;
@@ -87,8 +88,16 @@ class TsSymbolTools {
 		}
 	}
 
-	public static function symbolHasDeclarations(symbol: Symbol) {
-		return symbol.declarations != null && symbol.declarations.length > 0;
+	public static function getDeclarationSymbolsInSourceFile(tc: typescript.ts.TypeChecker, sourceFile: SourceFile) {
+		// get all globally visible symbols and filter for those that have a declaration in the sourceFile
+		return tc.getSymbolsInScope(sourceFile, 0xFFFFFF).filter(
+			symbol -> {
+				if (symbol.declarations != null) for (declaration in symbol.declarations)
+					if (declaration.getSourceFile() == sourceFile)
+						return true;
+				return false;
+			}
+		).map(tc.getExportSymbolOfSymbol);
 	}
 
 	static function isPowerOfTwo(x: Int) {

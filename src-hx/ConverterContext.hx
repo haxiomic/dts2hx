@@ -70,14 +70,9 @@ class ConverterContext {
 		var accessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
 
 		log.log('-- Global Symbols --');
-		for (symbol in getGlobalSymbolsInSourceFile(entryPointSourceFile)) {
-			if (TsSymbolTools.symbolHasDeclarations(symbol)) {
-				convertSymbolDeclarations(symbol, accessPath);
-			} else {
-				log.warn('Symbol has no declarations, this currently unhandled', symbol);
-			}
+		for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, entryPointSourceFile)) {
+			convertSymbolDeclarations(symbol, accessPath);
 		}
-
 	}
 
 	public function getGeneratedModules() {
@@ -221,18 +216,6 @@ class ConverterContext {
 		}
 
 		moduleMap.set(path, module);
-	}
-
-	function getGlobalSymbolsInSourceFile(sourceFile: SourceFile) {
-		// get all globally visible symbols and filter for those that have a declaration in the sourceFile
-		return tc.getSymbolsInScope(sourceFile, 0xFFFFFF).filter(
-			symbol -> {
-				if (symbol.declarations != null) for (declaration in symbol.declarations)
-					if (declaration.getSourceFile() == sourceFile)
-						return true;
-				return false;
-			}
-		).map(tc.getExportSymbolOfSymbol);
 	}
 
 	function generateHaxeTypeName(symbol: Symbol): String {
