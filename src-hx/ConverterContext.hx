@@ -555,7 +555,7 @@ class HaxePrimitives {
 	}
 
 	**Alias Symbols**
-	An alias symbol is created by one of the following declarations:
+	An 'alias symbol' is different from a TypeAlias and is created by one of the following declarations:
 	```typescript
 	import <symbol> = ...
 	import <symbol> from ...
