@@ -1,6 +1,5 @@
 import js.node.Fs;
 import haxe.io.Path;
-import ConverterContext.OutputType;
 import haxe.EnumFlags;
 import js.lib.Object;
 import Log.LogLevel;
@@ -10,7 +9,6 @@ import js.Node;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
 import typescript.ts.ModuleResolutionKind;
-
 
 @:nullSafety
 class Main {
@@ -32,7 +30,7 @@ class Main {
 			moduleNames: new Array<String>(),
 			moduleSearchPath: '.',
 			allDependencies: false,
-			outputFlags: new EnumFlags<ConverterContext.OutputType>(0xFFFFFF),
+			outputFlags: new EnumFlags<OutputType>(0xFFFFFF),
 			logLevel: Warning,
 		}
 
@@ -237,20 +235,36 @@ class Main {
 	}
 
 	static function convertTsDefinitions(moduleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, outputDirectory: String, outputFlags: EnumFlags<OutputType>) {
-		var converter = new ConverterContext(moduleId, entryPointFilePath, compilerOptions, outputFlags, log);
+		var converter = new ConverterContext(moduleId, entryPointFilePath, compilerOptions, log);
 
 		// save modules to files
 		var printer = new haxe.macro.Printer();
-		for (module in converter.getGeneratedModules()) {
-			var filePath = Path.join([outputDirectory].concat(module.pack).concat(['${module.name}.hx']));
-			var moduleHaxeStr = printer.printTypeDefinition(module);
+		var generatedModules = converter.getGeneratedModules();
 
-			for (subType in module.subTypes) {
-				moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
+		function writeModules(modules: Map<String, HaxeModule>, outputType: OutputType) {
+			for (_ => module in modules) {
+				var suffix = switch outputType {
+					case Global: 'global';
+					case Modular: 'modular';
+				}
+				var filePath = Path.join([outputDirectory, '$moduleId-$suffix'].concat(module.pack).concat(['${module.name}.hx']));
+				var moduleHaxeStr = printer.printTypeDefinition(module);
+
+				for (subType in module.subTypes) {
+					moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
+				}
+
+				touchDirectoryPath(Path.directory(filePath));
+				Fs.writeFileSync(filePath, moduleHaxeStr);
 			}
+		}
+		
+		if (outputFlags.has(Global)) {
+			writeModules(generatedModules.global, Global);
+		}
 
-			touchDirectoryPath(Path.directory(filePath));
-			Fs.writeFileSync(filePath, moduleHaxeStr);
+		if (outputFlags.has(Modular)) {
+			writeModules(generatedModules.modular, Modular);
 		}
 	}
 
@@ -335,4 +349,9 @@ class Main {
 		}
 	}
 
+}
+
+enum OutputType {
+	Global;
+	Modular;
 }

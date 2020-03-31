@@ -1,3 +1,6 @@
+import typescript.ts.TypeNode;
+import typescript.ts.TypeAliasDeclaration;
+import typescript.ts.SyntaxKind;
 import haxe.macro.Expr;
 import haxe.ds.ReadOnlyArray;
 import typescript.ts.InternalSymbolName;
@@ -8,7 +11,6 @@ import tool.TsProgramTools;
 import tool.TsSymbolTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
-import typescript.ts.Program;
 import typescript.ts.SourceFile;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
@@ -16,25 +18,21 @@ import typescript.ts.TypeChecker;
 using StringTools;
 
 
-enum OutputType {
-	Global;
-	Modular;
-}
-
 @:expose
 @:nullSafety
 class ConverterContext {
 
 	public final log: Log;
 	final tc: TypeChecker;
-	final outputFlags: EnumFlags<OutputType>;
 	final entryPointModuleId: String;
 
-	final generatedHaxeModules = new Map<String, HaxeModule>();
+	final generated = {
+		modular: new Map<String, HaxeModule>(),
+		global: new Map<String, HaxeModule>()
+	}
 
-	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, outputFlags: EnumFlags<OutputType>, ?log_: Log) {
+	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		this.entryPointModuleId = entryPointModuleId;
-		this.outputFlags = outputFlags;
 		this.log = log_ != null ? log_ : new Log();
 
 		// entryPointModuleId may be a file reference like ./path/to/file.d.ts
@@ -83,7 +81,7 @@ class ConverterContext {
 	}
 
 	public function getGeneratedModules() {
-		return [for (key => module in generatedHaxeModules) module];
+		return generated;
 	}
 
 	function symbolHasDeclarations(symbol: Symbol) {
@@ -112,8 +110,8 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Type != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-			convertTypeSymbol(symbol, accessPath);
 			handled = true;
+			convertTypeSymbol(symbol, accessPath);
 		}
 
 		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
@@ -142,10 +140,10 @@ class ConverterContext {
 		var handled = false;
 		// log.log('Generating type <yellow>${accessPath}</>', symbol);
 
+		var pos = TsSymbolTools.getSymbolPosition(symbol);
+
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
 			handled = true;
-
-			var pos = TsSymbolTools.getSymbolPosition(symbol);
 
 			var superClass = null; // @! todo
 			var interfaces = []; // @! todo
@@ -153,8 +151,8 @@ class ConverterContext {
 			var isInterface = symbol.flags & SymbolFlags.Interface != 0;
 
 			var hxClass: HaxeModule = {
-				pack: generateHaxePackagePath(symbol, accessPath),
-				name: HaxeTools.toSafeClassName(symbol.escapedName),
+				pack: generateHaxePackagePath(symbol),
+				name: generateHaxeTypeName(symbol),
 				fields: [],
 				kind: TDClass(superClass, interfaces, isInterface, false),
 				isExtern: true,
@@ -165,7 +163,7 @@ class ConverterContext {
 				subTypes: [],
 			}
 
-			saveHaxeModule(hxClass);
+			saveHaxeModule(hxClass, accessPath);
 		}
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
@@ -173,14 +171,26 @@ class ConverterContext {
 			// @! todo
 		}
 
-		if (symbol.flags & SymbolFlags.TypeLiteral != 0) {
-			handled = true;
-			// @! todo
-		}
-
 		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
 			handled = true;
-			// @! todo
+			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.declarations.filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
+			if (typeAliasDeclaration != null) {
+				// @! typeParameters?
+				var hxAliasType: ComplexType = typeNodeToHxComplexType(typeAliasDeclaration.type); 
+				
+				var hxTypeDef: HaxeModule = {
+					pack: generateHaxePackagePath(symbol),
+					name: generateHaxeTypeName(symbol),
+					fields: [],
+					kind: TDAlias(hxAliasType),
+					doc: getDoc(symbol),
+					pos: pos,
+					subTypes: [],
+				}
+				saveHaxeModule(hxTypeDef, accessPath);
+			} else {
+				log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
+			}
 		}
 
 		if (!handled) {
@@ -188,12 +198,19 @@ class ConverterContext {
 		}
 	}
 
-	function saveHaxeModule(module: HaxeModule) {
+	function saveHaxeModule(module: HaxeModule, accessPath: SymbolAccessPath) {
 		var path = module.pack.concat([module.name]).join('.');
-		if (generatedHaxeModules.exists(path)) {
+		var moduleMap = switch accessPath.root {
+			case AmbientModule(_): generated.modular;
+			case ExportModule(_, _): generated.modular;
+			case Global: generated.global;
+		}
+
+		if (moduleMap.exists(path)) {
 			log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
 		}
-		generatedHaxeModules.set(path, module);
+
+		moduleMap.set(path, module);
 	}
 
 	function getGlobalSymbolsInSourceFile(sourceFile: SourceFile) {
@@ -208,13 +225,31 @@ class ConverterContext {
 		).map(tc.getExportSymbolOfSymbol);
 	}
 
-	function generateHaxePackagePath(symbol: Symbol, accessPath: SymbolAccessPath): Array<String> {
+	function generateHaxeTypeName(symbol: Symbol): String {
+		return HaxeTools.toSafeTypeName(symbol.escapedName);
+	}
+
+	function generateHaxePackagePath(symbol: Symbol): Array<String> {
 		var pack = new Array<String>();
 
 		pack.push(HaxeTools.toSafeIdent(entryPointModuleId).toLowerCase());
 
+		for (symbol in TsSymbolTools.getSymbolParents(symbol)) {
+			if (symbol.flags & SymbolFlags.Module != 0) {
+				if (TsSymbolTools.isSourceFileSymbol(symbol)) {
+					// @! need special handling of source file paths to remove prefix
+				} else {
+					pack = pack.concat(pathToHaxePackage(symbol.name));
+				}
+			} else {
+				log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', symbol);
+			}
+		}
+
+
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
+		/*
 		switch accessPath.root {
 			case AmbientModule(path):
 				var pathPack = pathToHaxePackage(path);
@@ -226,23 +261,9 @@ class ConverterContext {
 			default:
 		}
 
-		final useParentChain = false;
+		pack = pack.concat(accessPath.getIdentifierChain().map(s -> HaxeTools.toSafeIdent(s).toLowerCase()));
 
-		if (useParentChain) {
-			for (symbol in TsSymbolTools.getSymbolParents(symbol)) {
-				if (symbol.flags & SymbolFlags.Module != 0) {
-					if (TsSymbolTools.isSourceFileSymbol(symbol)) {
-						// @! need special handling of source file paths to remove prefix
-					} else {
-						pack = pack.concat(pathToHaxePackage(symbol.name));
-					}
-				} else {
-					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', symbol);
-				}
-			}
-		} else {
-			pack = pack.concat(accessPath.getIdentifierChain().map(s -> HaxeTools.toSafeIdent(s).toLowerCase()));
-		}
+		*/
 
 		return pack;
 	}
@@ -278,6 +299,25 @@ class ConverterContext {
 				}],
 				pos: pos,
 			}
+		}
+	}
+
+	function typeNodeToHxComplexType(node: TypeNode): ComplexType {
+		// @! todo: very WIP
+		var type = tc.getTypeFromTypeNode(node);
+		
+		if (type.symbol != null && type.flags & SymbolFlags.Type != 0) {
+			var packagePath = generateHaxePackagePath(type.symbol);
+			return TPath({
+				pack: packagePath,
+				name: generateHaxeTypeName(type.symbol)
+			});
+		} else {
+			log.error('Could not convert ts TypeNode to haxe ComplexType', node);
+			return TPath({
+				pack: [],
+				name: 'Any',
+			});
 		}
 	}
 
@@ -486,38 +526,3 @@ enum SymbolAccessRoot {
 	{name: <EntityNameExpression>}
 	````
 **/
-
-class OnceOnlySymbolQueue {
-
-	public var length(get, null): Int;
-	public final allSymbols = new Map<Int, Symbol>(); 
-	final array = new Array<Symbol>();
-
-
-	public function new() {}
-	
-	public function queue(symbol: Symbol){
-		var id: Int = Std.int(Ts.getSymbolId(symbol));
-		if (allSymbols.exists(id)) {
-			// already queued this symbol before
-			return false;
-		}
-
-		allSymbols[id] = symbol;
-		array.push(symbol);
-		return true;
-	}
-
-	public function dequeue(): Null<Symbol> {
-		return array.shift();
-	}
-
-	public function isEmpty() {
-		return array.length == 0;
-	}
-
-	function get_length() {
-		return array.length;
-	}
-
-}
