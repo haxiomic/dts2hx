@@ -22,6 +22,32 @@ class TsSymbolTools {
 				Ts.isSourceFile(symbol.valueDeclaration);
 	}
 
+	public static function getSymbolRootParent(symbol: Symbol): Null<Symbol> {
+		var rootParent: Null<Symbol> = null;
+		var parentSymbol = getSymbolParent(symbol);
+		while(parentSymbol != null) {
+			rootParent = parentSymbol;
+			parentSymbol = getSymbolParent(parentSymbol);
+		}
+		return rootParent;
+	}
+
+	public static function getSymbolParents(symbol: Symbol): Array<Symbol> {
+		var parentChain = new Array<Symbol>();
+		var currentSymbol: Null<Symbol> = symbol;
+		while (currentSymbol != null) {
+			currentSymbol = getSymbolParent(currentSymbol);
+			if (currentSymbol != null) {
+				parentChain.unshift(currentSymbol);
+			}
+		}
+		return parentChain;
+	}
+
+	public static function getSymbolParent(symbol: Symbol): Null<Symbol> {
+		return Reflect.field(symbol, 'parent');
+	}
+
 	/**
 		An array of matched SymbolFlags
 		If `compositeFlags` is true, SymbolFlags that are unions of other flags are included, for example:

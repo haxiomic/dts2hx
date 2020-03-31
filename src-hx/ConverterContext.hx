@@ -1,3 +1,5 @@
+import haxe.ds.ReadOnlyArray;
+import typescript.ts.InternalSymbolName;
 import haxe.EnumFlags;
 import js.Lib.debug;
 import tool.HaxeTools;
@@ -44,7 +46,7 @@ class ConverterContext {
 		var entryPointSourceFile = program.getSourceFile(entryPointFilePath);
 
 		if (entryPointSourceFile == null) {
-			throw 'TypeScript compiler API error – failed to get entry-point source file';
+			throw 'Failed to get entry-point source file';
 		}
 
 		// Console.examine(entryPointSourceFile.referencedFiles);
@@ -59,7 +61,7 @@ class ConverterContext {
 		if (entryPointModuleSymbol != null) {
 			log.log('entryPointModuleSymbol', entryPointModuleSymbol);
 			
-			/*
+			/**
 			Console.log('-- getExportsOfModule --');
 			for (symbol in tc.getExportsOfModule(entryPointModuleSymbol)) {
 				log.log(symbol);
@@ -67,9 +69,7 @@ class ConverterContext {
 					log.log('\t', tc.getAliasedSymbol(symbol));
 				}
 			}
-			*/
 
-			/*
 			Console.log('-- globalExports --');
 			if (entryPointModuleSymbol.globalExports != null) {
 				entryPointModuleSymbol.globalExports.forEach((symbol, key) -> {
@@ -79,9 +79,7 @@ class ConverterContext {
 					}
 				});
 			}
-			*/
-			
-			/*
+
 			Console.log('-- exports --');
 			if (entryPointModuleSymbol.exports != null) {
 				entryPointModuleSymbol.exports.forEach((symbol, key) -> {
@@ -91,12 +89,12 @@ class ConverterContext {
 					}
 				});
 			}
-			*/
+			/**/
 		} else {
 			// note: if we use try to use global symbols for an export module, the returned symbols seem to be malformed (sometimes symbol.flags = 0 for example)
 		}
 
-		var accessPath = new SymbolAccessPath(log, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
+		var accessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
 
 		Console.log('-- Global Symbols --');
 		for (symbol in getGlobalSymbolsInSourceFile(entryPointSourceFile)) {
@@ -120,21 +118,47 @@ class ConverterContext {
 
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath) {
 		log.log('convertSymbolDeclarations <yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
-		// copy accessPath so we don't edit an existing reference
+
+		// explicitly ignored symbols
+		var ignoredSymbolFlags = SymbolFlags.Prototype;
+
+		var handled = symbol.flags & ignoredSymbolFlags != 0;
 
 		if (symbol.flags & SymbolFlags.Alias != 0) {
-			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
-			convertSymbolDeclarations(aliasedSymbol, newAccessPath);
+			handled = true;
+			switch symbol.name {
+				case InternalSymbolName.Default:
+					// ignore export default because it's handled
+				default:
+					var aliasedSymbol = tc.getAliasedSymbol(symbol);
+					var newAccessPath = accessPath.copyAndAddSymbol(symbol);
+					convertSymbolDeclarations(aliasedSymbol, newAccessPath);
+			}
+		}
+
+		if (symbol.flags & SymbolFlags.Type != 0) {
+			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+			handled = true;
+		}
+
+		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
+			// FunctionScopedVariable | BlockScopedVariable
+			// add to module class
+			handled = true;
 		}
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
+			handled = true;
 			// FunctionScopedVariable | BlockScopedVariable
 			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
 			var exports = tc.getExportsOfModule(symbol);
 			for (moduleExport in exports) {
 				convertSymbolDeclarations(moduleExport, newAccessPath);
 			}
+		}
+
+		if (!handled) {
+			log.warn('Symbol was not handled in convertSymbolDeclarations()', symbol);
 		}
 	}
 
@@ -152,12 +176,12 @@ class ConverterContext {
 
 	function generateHaxePackagePath(symbol: Symbol): Array<String> {
 		var pack = new Array<String>();
-		for (symbol in getSymbolParents(symbol)) {
+		for (symbol in TsSymbolTools.getSymbolParents(symbol)) {
 			if (symbol.flags & SymbolFlags.Module != 0) {
 				if (TsSymbolTools.isSourceFileSymbol(symbol)) {
 					// @! need special handling of source file paths to remove prefix
 				} else {
-					var nameParts = symbol.name.split('/').map(s -> s);//HaxeTools.toSafeIdent(s).toLowerCase());
+					var nameParts = symbol.name.split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
 					pack = pack.concat(nameParts);
 				}
 			} else {
@@ -167,51 +191,43 @@ class ConverterContext {
 		return pack;
 	}
 
-	function getSymbolRootParent(symbol: Symbol): Null<Symbol> {
-		var rootParent: Null<Symbol> = null;
-		var parentSymbol = getSymbolParent(symbol);
-		while(parentSymbol != null) {
-			rootParent = parentSymbol;
-			parentSymbol = getSymbolParent(parentSymbol);
-		}
-		return rootParent;
-	}
-
-	function getSymbolParents(symbol: Symbol): Array<Symbol> {
-		var parentChain = new Array<Symbol>();
-		var currentSymbol: Null<Symbol> = symbol;
-		while (currentSymbol != null) {
-			currentSymbol = getSymbolParent(currentSymbol);
-			if (currentSymbol != null) {
-				parentChain.unshift(currentSymbol);
-			}
-		}
-		return parentChain;
-	}
-
-	function getSymbolParent(symbol: Symbol): Null<Symbol> {
-		return Reflect.field(symbol, 'parent');
-	}
-
 }
 
 class SymbolAccessPath {
 
+	public final root: SymbolAccessRoot;
+	public final symbolChain: ReadOnlyArray<Symbol>;
 	final log: Log;
-	final root: SymbolAccessRoot;
-	final tsIdentifierPath: Array<Symbol>;
+	final tc: TypeChecker;
 
-	public function new(log: Log, root: SymbolAccessRoot, ?tsIdentifierPath: Array<Symbol>) {
+	public function new(log: Log, tc: TypeChecker, root: SymbolAccessRoot, ?symbolChain: ReadOnlyArray<Symbol>) {
 		this.log = log;
+		this.tc = tc;
 		this.root = root;
-		this.tsIdentifierPath = tsIdentifierPath != null ? tsIdentifierPath.copy() : [];
+		this.symbolChain = symbolChain != null ? symbolChain.copy() : [];
+	}
+
+	public function getIdentifierChain() {
+		return symbolChain.filter(s -> switch s.name {
+			case InternalSymbolName.ExportEquals: false;
+			default: true;
+		}).map(s -> s.name);
 	}
 
 	public function copy() {
-		return new SymbolAccessPath(log, root, tsIdentifierPath);
+		return new SymbolAccessPath(log, tc, root, symbolChain);
 	}
 
 	public function copyAndAddSymbol(symbol: Symbol) {
+		// check if an existing symbol aliases to this symbol
+		for (i in 0...symbolChain.length) {
+			var existingSymbol = symbolChain[i];
+			// matched with a symbol already in the path
+			if (existingSymbol.flags & SymbolFlags.Alias != 0 && tc.getAliasedSymbol(existingSymbol) == symbol) {
+				return new SymbolAccessPath(log, tc, root, symbolChain.slice(0, i + 1));
+			}
+		}
+
 		if (TsSymbolTools.isSourceFileSymbol(symbol)) {
 			return switch root {
 				case ExportModule(rootModuleName, rootSourceFileSymbol):
@@ -219,7 +235,7 @@ class SymbolAccessPath {
 						log.error('Cannot change symbol access module from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to ExportModule', symbol);
 					}
 					// clear identifier path because the root has been replaced
-					new SymbolAccessPath(log, root, []);
+					new SymbolAccessPath(log, tc, root, []);
 				case AmbientModule(path):
 					log.error('Cannot change symbol access from <b>AmbientModule($path)</> to ExportModule', symbol);
 					copy();
@@ -231,7 +247,7 @@ class SymbolAccessPath {
 			return switch root {
 				case Global:
 					// replace global with ambient module
-					new SymbolAccessPath(log, AmbientModule(symbol.name), []);
+					new SymbolAccessPath(log, tc, AmbientModule(symbol.name), []);
 				case ExportModule(rootModuleName, rootSourceFileSymbol):
 					log.error('Cannot change symbol access from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to <b>AmbientModule("${symbol.name}")</>', symbol);
 					copy();
@@ -240,19 +256,38 @@ class SymbolAccessPath {
 					copy();
 			}
 		} else {
-			// add identifier
-			return new SymbolAccessPath(log, root, tsIdentifierPath.concat([symbol]));
+			// handle special symbols
+			if (symbol.flags & SymbolFlags.Alias != 0) {
+				var aliasedSymbol = tc.getAliasedSymbol(symbol);
+				
+				// check if this symbol aliases to a sourceFileSymbol
+				if (TsSymbolTools.isSourceFileSymbol(aliasedSymbol)) {
+					return copyAndAddSymbol(aliasedSymbol);
+				}
+			}
+
+			// check if this symbol is globally available, in which case, set root to Global
+			// otherwise add an identifier to the chain
+			var symbolParent =  TsSymbolTools.getSymbolParent(symbol);
+			return if (symbolParent != null && symbolParent.name == InternalSymbolName.Global) {
+				new SymbolAccessPath(log, tc, Global, []);
+			} else {
+				new SymbolAccessPath(log, tc, root, symbolChain.concat([symbol]));
+			}
 		}
 	}
 
+	/**
+		String representation, useful for debugging (not valid syntax)
+	**/
 	function toString() {
 		var parts = new Array<String>();
 		switch root {
 			case AmbientModule(path): parts.push('require($path)');
 			case ExportModule(moduleName, sourceFile): parts.push('require("$moduleName")');
-			case Global:
+			case Global: parts.push('::');
 		}
-		return parts.concat(tsIdentifierPath.map(s -> s.name)).join('.');
+		return parts.concat(getIdentifierChain()).join('.');
 	}
 
 }
@@ -350,165 +385,6 @@ enum SymbolAccessRoot {
 	{name: <EntityNameExpression>}
 	````
 **/
-
-// @! kept for reference, will remove
-class ConverterContext_ {
-
-	final program: Program;
-	final tc: TypeChecker;
-	final log: Log;
-	final haxeModules = new Map<String, HaxeModule>();
-
-	public function new(log: Log, program: Program) {
-		this.log = log;
-		this.program = program;
-		this.tc = program.getTypeChecker();
-	}
-
-	public function getHaxeModules() {
-		return haxeModules;
-	}
-	
-	/**
-	**/
-	public function convertSymbol(symbol: Symbol) {
-		/**
-			Export types to consider
-			`export as namespace Sizzle;`
-			`export * from './math/Quaternion';` -> expand to typedefs in the module class
-			`export = Sizzle;`
-			`export default Big;`
-			`export type BigSource_ = BigSource;`
-		**/
-
-		// https://github.com/microsoft/TypeScript/blob/b58a29b8087445d0b0f647a28c1ad7fb452329e5/src/compiler/binder.ts#L568
-		// Exported module members are given 2 symbols: A local symbol that is classified with an ExportValue flag,
-		// and an associated export symbol with all the correct flags set on it. There are 2 main reasons:
-		//
-		//   1. We treat locals and exports of the same name as mutually exclusive within a container.
-		//      That means the binder will issue a Duplicate Identifier error if you mix locals and exports
-		//      with the same name in the same container.
-		//      TODO: Make this a more specific error and decouple it from the exclusion logic.
-		//   2. When we checkIdentifier in the checker, we set its resolved symbol to the local symbol,
-		//      but return the export symbol (by calling getExportSymbolOfValueSymbolIfExported). That way
-		//      when the emitter comes back to it, it knows not to qualify the name if it was found in a containing scope.
-
-		// NOTE: Nested ambient modules always should go to to 'locals' table to prevent their automatic merge
-		//       during global merging in the checker. Why? The only case when ambient module is permitted inside another module is module augmentation
-		//       and this case is specially handled. Module augmentations should only be merged with original module definition
-		//       and should never be merged directly with other augmentation, and the latter case would be possible if automatic merge is allowed.
-		if (symbol.flags & (SymbolFlags.ExportValue) != 0) {
-			var exportSymbol = tc.getExportSymbolOfSymbol(symbol);
-			if (exportSymbol == null) {
-				log.error('Export symbol was null, this is unexpected – symbol will be ignored', symbol);
-				return;
-			}
-			convertSymbol(exportSymbol);
-			return;
-		}
-
-		if (symbol.flags & (SymbolFlags.Module | SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function) == 0) {
-			Console.examine(symbol.name, symbol.flags);
-			Console.log('\t' + TsSymbolTools.symbolFlagsInfo(symbol.flags).join(', '));
-			log.error('Symbol does not have the correct flags for <b>convertSymbol()</>', symbol);
-			debug();
-			return;
-		}
-
-		if (symbol.flags & SymbolFlags.Type != 0) {
-			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-			convertTypeSymbol(symbol);
-		}
-
-		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-			// FunctionScopedVariable | BlockScopedVariable
-			// add to module class
-		}
-
-		if (symbol.flags & SymbolFlags.Module != 0) {
-			// ValueModule | NamespaceModule
-			// @! I don't think this properly explores the module
-			Console.examine(symbol.name, symbol.globalExports, symbol.exports.size);
-			for (moduleExport in tc.getExportsOfModule(symbol)) {
-				convertSymbol(moduleExport);
-			}
-		}
-	}
-
-	/**
-		Symbol with SymbolFlag.Type
-		Returns haxe type artifact
-	**/
-	function convertTypeSymbol(symbol: Symbol): Null<HaxeModule> {
-		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-
-		// notes: exports have a parent that is a symbol that represents the source file
-		// see `export const enum Comparison { }` parent
-		var rootSymbol = getSymbolRootParent(symbol);
-		var isSourceFileExport = rootSymbol != null && isSourceFileSymbol(rootSymbol);
-		var pack = generateHaxePackagePath(symbol);
-		Console.log('<b>convertTypeSymbol</b> ${pack.join('.')} ${symbol.name} ${isSourceFileExport ? '<green>Export ${rootSymbol.name}</>' : ''}');
-		debug();
-		return null;
-	}
-
-	function saveModule(haxeModule: HaxeModule) {
-		// @! save to haxeModules, checking if a module already exists at this path
-	}
-
-	function getModule(typePath: String): Null<HaxeModule> {
-		// @! get's a previously saved haxe module
-		return null;
-	}
-
-	function isSourceFileSymbol(symbol: Symbol) {
-		return symbol.valueDeclaration != null && Ts.isSourceFile(symbol.valueDeclaration);
-	}
-
-	function generateHaxePackagePath(symbol: Symbol): Array<String> {
-		var pack = new Array<String>();
-		for (symbol in getSymbolParents(symbol)) {
-			if (symbol.flags & SymbolFlags.Module != 0) {
-				if (isSourceFileSymbol(symbol)) {
-					// @! need special handling of source file paths to remove prefix
-				} else {
-					var nameParts = symbol.name.split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
-					pack = pack.concat(nameParts);
-				}
-			} else {
-				log.error('Symbol parent was not a module in <b>generateHaxePackagePath</>', symbol);
-			}
-		}
-		return pack;
-	}
-
-	function getSymbolRootParent(symbol: Symbol): Null<Symbol> {
-		var rootParent: Null<Symbol> = null;
-		var parentSymbol = getSymbolParent(symbol);
-		while(parentSymbol != null) {
-			rootParent = parentSymbol;
-			parentSymbol = getSymbolParent(parentSymbol);
-		}
-		return rootParent;
-	}
-
-	function getSymbolParents(symbol: Symbol): Array<Symbol> {
-		var parentChain = new Array<Symbol>();
-		var currentSymbol = symbol;
-		while (currentSymbol != null) {
-			currentSymbol = getSymbolParent(currentSymbol);
-			if (currentSymbol != null) {
-				parentChain.unshift(currentSymbol);
-			}
-		}
-		return parentChain;
-	}
-
-	function getSymbolParent(symbol: Symbol): Null<Symbol> {
-		return Reflect.field(symbol, 'parent');
-	}
-
-}
 
 class OnceOnlySymbolQueue {
 
