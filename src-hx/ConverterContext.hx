@@ -25,8 +25,10 @@ class ConverterContext {
 	public final log: Log;
 	final tc: TypeChecker;
 	final outputFlags: EnumFlags<OutputType>;
+	final entryPointModuleId: String;
 
 	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, outputFlags: EnumFlags<OutputType>, ?log_: Log) {
+		this.entryPointModuleId = entryPointModuleId;
 		this.outputFlags = outputFlags;
 		this.log = log_ != null ? log_ : new Log();
 
@@ -106,7 +108,7 @@ class ConverterContext {
 			if (symbolHasDeclarations(symbol)) {
 				convertSymbolDeclarations(symbol, accessPath);
 			} else {
-				log.warn('Symbol has no declarations – currently unhandled', symbol);
+				log.warn('Symbol has no declarations, this currently unhandled', symbol);
 			}
 		}
 
@@ -116,8 +118,8 @@ class ConverterContext {
 		return symbol.declarations != null && symbol.declarations.length > 0;
 	}
 
-	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath) {
-		log.log('convertSymbolDeclarations <yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
+		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(accessPath, symbol)}</>', symbol);
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
@@ -132,7 +134,7 @@ class ConverterContext {
 				default:
 					var aliasedSymbol = tc.getAliasedSymbol(symbol);
 					var newAccessPath = accessPath.copyAndAddSymbol(symbol);
-					convertSymbolDeclarations(aliasedSymbol, newAccessPath);
+					convertSymbolDeclarations(aliasedSymbol, newAccessPath, depth + 1);
 			}
 		}
 
@@ -149,11 +151,11 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
 			handled = true;
-			// FunctionScopedVariable | BlockScopedVariable
+			// ValueModule | NamespaceModule
 			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
 			var exports = tc.getExportsOfModule(symbol);
 			for (moduleExport in exports) {
-				convertSymbolDeclarations(moduleExport, newAccessPath);
+				convertSymbolDeclarations(moduleExport, newAccessPath, depth + 1);
 			}
 		}
 
@@ -174,21 +176,47 @@ class ConverterContext {
 		).map(tc.getExportSymbolOfSymbol);
 	}
 
-	function generateHaxePackagePath(symbol: Symbol): Array<String> {
+	function generateHaxePackagePath(accessPath: SymbolAccessPath, symbol: Symbol): Array<String> {
 		var pack = new Array<String>();
-		for (symbol in TsSymbolTools.getSymbolParents(symbol)) {
-			if (symbol.flags & SymbolFlags.Module != 0) {
-				if (TsSymbolTools.isSourceFileSymbol(symbol)) {
-					// @! need special handling of source file paths to remove prefix
-				} else {
-					var nameParts = symbol.name.split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
-					pack = pack.concat(nameParts);
+
+		pack.push(HaxeTools.toSafeIdent(entryPointModuleId));
+
+		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
+		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
+		switch accessPath.root {
+			case AmbientModule(path):
+				var pathPack = pathToHaxePackage(path);
+				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
+				if (pathPack[0] == entryPointModuleId) {
+					pathPack.shift();
 				}
-			} else {
-				log.error('Symbol parent was not a module in <b>generateHaxePackagePath</>', symbol);
-			}
+				pack = pack.concat(pathPack);
+			default:
 		}
+
+		final useParentChain = false;
+
+		if (useParentChain) {
+			for (symbol in TsSymbolTools.getSymbolParents(symbol)) {
+				if (symbol.flags & SymbolFlags.Module != 0) {
+					if (TsSymbolTools.isSourceFileSymbol(symbol)) {
+						// @! need special handling of source file paths to remove prefix
+					} else {
+						pack = pack.concat(pathToHaxePackage(symbol.name));
+					}
+				} else {
+					log.error('Symbol parent was not a module in <b>generateHaxePackagePath</>', symbol);
+				}
+			}
+		} else {
+			pack = pack.concat(accessPath.getIdentifierChain().map(s -> HaxeTools.toSafeIdent(s).toLowerCase()));
+		}
+
 		return pack;
+	}
+
+	function pathToHaxePackage(path: String) {
+		return haxe.io.Path.normalize(path).split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
 	}
 
 }
