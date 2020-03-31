@@ -87,6 +87,10 @@ class TsSymbolTools {
 		}
 	}
 
+	public static function symbolHasDeclarations(symbol: Symbol) {
+		return symbol.declarations != null && symbol.declarations.length > 0;
+	}
+
 	static function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}

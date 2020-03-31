@@ -240,14 +240,19 @@ class Main {
 		// save modules to files
 		var printer = new haxe.macro.Printer();
 		var generatedModules = converter.getGeneratedModules();
+		var hasModularAndGlobal =
+			outputFlags.has(Global) && outputFlags.has(Modular) &&
+			generatedModules.global.keys().hasNext() && generatedModules.modular.keys().hasNext();
 
 		function writeModules(modules: Map<String, HaxeModule>, outputType: OutputType) {
 			for (_ => module in modules) {
-				var suffix = switch outputType {
-					case Global: 'global';
-					case Modular: 'modular';
+				var suffix = if (hasModularAndGlobal) switch outputType {
+					case Global: '-global';
+					case Modular: '-modular';
+				} else {
+					'';
 				}
-				var filePath = Path.join([outputDirectory, '$moduleId-$suffix'].concat(module.pack).concat(['${module.name}.hx']));
+				var filePath = Path.join([outputDirectory, '$moduleId$suffix'].concat(module.pack).concat(['${module.name}.hx']));
 				var moduleHaxeStr = printer.printTypeDefinition(module);
 
 				for (subType in module.subTypes) {

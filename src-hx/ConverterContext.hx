@@ -22,7 +22,7 @@ using StringTools;
 @:nullSafety
 class ConverterContext {
 
-	public final log: Log;
+	final log: Log;
 	final tc: TypeChecker;
 	final entryPointModuleId: String;
 
@@ -71,7 +71,7 @@ class ConverterContext {
 
 		Console.log('-- Global Symbols --');
 		for (symbol in getGlobalSymbolsInSourceFile(entryPointSourceFile)) {
-			if (symbolHasDeclarations(symbol)) {
+			if (TsSymbolTools.symbolHasDeclarations(symbol)) {
 				convertSymbolDeclarations(symbol, accessPath);
 			} else {
 				log.warn('Symbol has no declarations, this currently unhandled', symbol);
@@ -84,12 +84,8 @@ class ConverterContext {
 		return generated;
 	}
 
-	function symbolHasDeclarations(symbol: Symbol) {
-		return symbol.declarations != null && symbol.declarations.length > 0;
-	}
-
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
-		// log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol, accessPath)}</>', symbol);
+		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
@@ -158,8 +154,8 @@ class ConverterContext {
 				isExtern: true,
 				params: typeParams,
 				doc: getDoc(symbol),
-				pos: pos,
 				meta: [getRuntimeAccessMetadata(symbol, accessPath)],
+				pos: pos,
 				subTypes: [],
 			}
 
@@ -168,7 +164,20 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
 			handled = true;
-			// @! todo
+			var hxEnumType = getComplexTypeOfEnum(symbol);
+
+			var hxEnumDef: HaxeModule = {
+				pack: generateHaxePackagePath(symbol),
+				name: generateHaxeTypeName(symbol),
+				kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+				fields: [],
+				doc: getDoc(symbol),
+				meta: [getRuntimeAccessMetadata(symbol, accessPath)],
+				pos: pos,
+				subTypes: [],
+			}
+			
+			saveHaxeModule(hxEnumDef, accessPath);
 		}
 
 		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
@@ -176,7 +185,7 @@ class ConverterContext {
 			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.declarations.filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
 			if (typeAliasDeclaration != null) {
 				// @! typeParameters?
-				var hxAliasType: ComplexType = typeNodeToHxComplexType(typeAliasDeclaration.type); 
+				var hxAliasType: ComplexType = typeNodeToComplexType(typeAliasDeclaration.type); 
 				
 				var hxTypeDef: HaxeModule = {
 					pack: generateHaxePackagePath(symbol),
@@ -208,6 +217,7 @@ class ConverterContext {
 
 		if (moduleMap.exists(path)) {
 			log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+			debug();
 		}
 
 		moduleMap.set(path, module);
@@ -234,15 +244,16 @@ class ConverterContext {
 
 		pack.push(HaxeTools.toSafeIdent(entryPointModuleId).toLowerCase());
 
-		for (symbol in TsSymbolTools.getSymbolParents(symbol)) {
-			if (symbol.flags & SymbolFlags.Module != 0) {
-				if (TsSymbolTools.isSourceFileSymbol(symbol)) {
+		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
+			if (parentSymbol.flags & SymbolFlags.Module != 0) {
+				if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
 					// @! need special handling of source file paths to remove prefix
 				} else {
-					pack = pack.concat(pathToHaxePackage(symbol.name));
+					pack = pack.concat(pathToHaxePackage(parentSymbol.name));
 				}
 			} else {
-				log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', symbol);
+				log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
+				debug();
 			}
 		}
 
@@ -302,9 +313,51 @@ class ConverterContext {
 		}
 	}
 
-	function typeNodeToHxComplexType(node: TypeNode): ComplexType {
+	function getComplexTypeOfEnum(symbol: Symbol): ComplexType {
+		var hxEnumTypeName: Null<String> = null;
+		// determine underlying type of enum by iterating its members
+		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
+		for (member in enumMembers) {
+			var enumMemberNode = member.valueDeclaration;
+			var runtimeValue = tc.getConstantValue(cast enumMemberNode);
+			var hxMemberTypeName = if (runtimeValue != null) {
+				var runtimeType = js.Syntax.typeof(runtimeValue);
+				switch runtimeType {
+					case 'number': 
+						var isInt = Math.floor(cast runtimeValue) == runtimeValue;
+						isInt ? 'Int' : 'Float';
+					case 'string': 'String';
+					// enums are implicitly ints by default
+					case 'undefined': 'Int';
+					default: 'Any';
+				}
+			} else {
+				'Any';
+			}
+
+			// compare this member type with the currently set hxEnumType
+			// and handle Int -> Float cast
+			if (hxEnumTypeName != hxMemberTypeName) {
+				hxEnumTypeName = switch [hxEnumTypeName, hxMemberTypeName] {
+					case [null, _]: hxMemberTypeName;
+					case ['Int', 'Float']: 'Float';
+					case ['Float', 'Int']: 'Float';
+					default: 'Any';
+				}
+			}
+		}
+		
+		return if (hxEnumTypeName != null) {
+			TPath({pack: [], name: cast hxEnumTypeName});
+		} else {
+			TPath({pack: [], name: 'Any'});
+		}
+	}
+
+	function typeNodeToComplexType(node: TypeNode): ComplexType {
 		// @! todo: very WIP
 		var type = tc.getTypeFromTypeNode(node);
+		return HaxePrimitives.any;
 		
 		if (type.symbol != null && type.flags & SymbolFlags.Type != 0) {
 			var packagePath = generateHaxePackagePath(type.symbol);
@@ -314,10 +367,7 @@ class ConverterContext {
 			});
 		} else {
 			log.error('Could not convert ts TypeNode to haxe ComplexType', node);
-			return TPath({
-				pack: [],
-				name: 'Any',
-			});
+			return HaxePrimitives.any;
 		}
 	}
 
@@ -437,6 +487,14 @@ enum SymbolAccessRoot {
 	AmbientModule(path: String);
 	ExportModule(moduleName: String, sourceFileSymbol: Symbol);
 	Global;
+}
+
+class HaxePrimitives {
+	static public final string: ComplexType = TPath({pack: [], name: 'String'});
+	static public final float: ComplexType = TPath({pack: [], name: 'Float'});
+	static public final int: ComplexType = TPath({pack: [], name: 'Int'});
+	static public final any: ComplexType = TPath({pack: [], name: 'Any'});
+	static public final void: ComplexType = TPath({pack: [], name: 'Void'});
 }
 
 /**
