@@ -1,3 +1,4 @@
+import haxe.macro.Expr;
 import haxe.ds.ReadOnlyArray;
 import typescript.ts.InternalSymbolName;
 import haxe.EnumFlags;
@@ -12,6 +13,8 @@ import typescript.ts.SourceFile;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
 import typescript.ts.TypeChecker;
+using StringTools;
+
 
 enum OutputType {
 	Global;
@@ -26,6 +29,8 @@ class ConverterContext {
 	final tc: TypeChecker;
 	final outputFlags: EnumFlags<OutputType>;
 	final entryPointModuleId: String;
+
+	final generatedHaxeModules = new Map<String, HaxeModule>();
 
 	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, outputFlags: EnumFlags<OutputType>, ?log_: Log) {
 		this.entryPointModuleId = entryPointModuleId;
@@ -62,49 +67,12 @@ class ConverterContext {
 
 		if (entryPointModuleSymbol != null) {
 			log.log('entryPointModuleSymbol', entryPointModuleSymbol);
-			
-			/**
-			Console.log('-- getExportsOfModule --');
-			for (symbol in tc.getExportsOfModule(entryPointModuleSymbol)) {
-				log.log(symbol);
-				if (symbol.flags & SymbolFlags.Alias != 0) {
-					log.log('\t', tc.getAliasedSymbol(symbol));
-				}
-			}
-
-			Console.log('-- globalExports --');
-			if (entryPointModuleSymbol.globalExports != null) {
-				entryPointModuleSymbol.globalExports.forEach((symbol, key) -> {
-					log.log(key, symbol);
-					if (symbol.flags & SymbolFlags.Alias != 0) {
-						log.log('\t', tc.getAliasedSymbol(symbol));
-					}
-				});
-			}
-
-			Console.log('-- exports --');
-			if (entryPointModuleSymbol.exports != null) {
-				entryPointModuleSymbol.exports.forEach((symbol, key) -> {
-					log.log(symbol);
-					if (symbol.flags & SymbolFlags.Alias != 0) {
-						log.log('\t', tc.getAliasedSymbol(symbol));
-					}
-				});
-			}
-			/**/
-		} else {
-			// note: if we use try to use global symbols for an export module, the returned symbols seem to be malformed (sometimes symbol.flags = 0 for example)
 		}
 
 		var accessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
 
 		Console.log('-- Global Symbols --');
 		for (symbol in getGlobalSymbolsInSourceFile(entryPointSourceFile)) {
-			// log.log(symbol);
-			// if (symbol.flags & SymbolFlags.Alias != 0) {
-			// 	log.log('\t', tc.getAliasedSymbol(symbol));
-			// }
-
 			if (symbolHasDeclarations(symbol)) {
 				convertSymbolDeclarations(symbol, accessPath);
 			} else {
@@ -114,12 +82,16 @@ class ConverterContext {
 
 	}
 
+	public function getGeneratedModules() {
+		return [for (key => module in generatedHaxeModules) module];
+	}
+
 	function symbolHasDeclarations(symbol: Symbol) {
 		return symbol.declarations != null && symbol.declarations.length > 0;
 	}
 
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
-		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(accessPath, symbol)}</>', symbol);
+		// log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol, accessPath)}</>', symbol);
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
@@ -140,6 +112,7 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Type != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+			convertTypeSymbol(symbol, accessPath);
 			handled = true;
 		}
 
@@ -160,8 +133,67 @@ class ConverterContext {
 		}
 
 		if (!handled) {
-			log.warn('Symbol was not handled in convertSymbolDeclarations()', symbol);
+			log.warn('Symbol was not handled in <b>convertSymbolDeclarations()</>', symbol);
 		}
+	}
+
+	function convertTypeSymbol(symbol: Symbol, accessPath: SymbolAccessPath) {
+		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+		var handled = false;
+		// log.log('Generating type <yellow>${accessPath}</>', symbol);
+
+		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
+			handled = true;
+
+			var pos = TsSymbolTools.getSymbolPosition(symbol);
+
+			var superClass = null; // @! todo
+			var interfaces = []; // @! todo
+			var typeParams = []; // @! todo
+			var isInterface = symbol.flags & SymbolFlags.Interface != 0;
+
+			var hxClass: HaxeModule = {
+				pack: generateHaxePackagePath(symbol, accessPath),
+				name: HaxeTools.toSafeClassName(symbol.escapedName),
+				fields: [],
+				kind: TDClass(superClass, interfaces, isInterface, false),
+				isExtern: true,
+				params: typeParams,
+				doc: getDoc(symbol),
+				pos: pos,
+				meta: [getRuntimeAccessMetadata(symbol, accessPath)],
+				subTypes: [],
+			}
+
+			saveHaxeModule(hxClass);
+		}
+
+		if (symbol.flags & SymbolFlags.Enum != 0) {
+			handled = true;
+			// @! todo
+		}
+
+		if (symbol.flags & SymbolFlags.TypeLiteral != 0) {
+			handled = true;
+			// @! todo
+		}
+
+		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
+			handled = true;
+			// @! todo
+		}
+
+		if (!handled) {
+			log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
+		}
+	}
+
+	function saveHaxeModule(module: HaxeModule) {
+		var path = module.pack.concat([module.name]).join('.');
+		if (generatedHaxeModules.exists(path)) {
+			log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+		}
+		generatedHaxeModules.set(path, module);
 	}
 
 	function getGlobalSymbolsInSourceFile(sourceFile: SourceFile) {
@@ -176,10 +208,10 @@ class ConverterContext {
 		).map(tc.getExportSymbolOfSymbol);
 	}
 
-	function generateHaxePackagePath(accessPath: SymbolAccessPath, symbol: Symbol): Array<String> {
+	function generateHaxePackagePath(symbol: Symbol, accessPath: SymbolAccessPath): Array<String> {
 		var pack = new Array<String>();
 
-		pack.push(HaxeTools.toSafeIdent(entryPointModuleId));
+		pack.push(HaxeTools.toSafeIdent(entryPointModuleId).toLowerCase());
 
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
@@ -187,7 +219,7 @@ class ConverterContext {
 			case AmbientModule(path):
 				var pathPack = pathToHaxePackage(path);
 				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
-				if (pathPack[0] == entryPointModuleId) {
+				if (pathPack[0] == pack[0]) {
 					pathPack.shift();
 				}
 				pack = pack.concat(pathPack);
@@ -205,7 +237,7 @@ class ConverterContext {
 						pack = pack.concat(pathToHaxePackage(symbol.name));
 					}
 				} else {
-					log.error('Symbol parent was not a module in <b>generateHaxePackagePath</>', symbol);
+					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', symbol);
 				}
 			}
 		} else {
@@ -219,8 +251,49 @@ class ConverterContext {
 		return haxe.io.Path.normalize(path).split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
 	}
 
+	function getDoc(symbol: Symbol) {
+		return symbol.getDocumentationComment(tc).map(s -> s.text.trim()).join('\n\n');
+	}
+
+	function getRuntimeAccessMetadata(symbol: Symbol, accessPath: SymbolAccessPath): MetadataEntry {
+		var pos = TsSymbolTools.getSymbolPosition(symbol);
+		var identifierPath = accessPath.getIdentifierChain().concat([symbol.escapedName]).join('.');
+		return switch accessPath.root {
+			case AmbientModule(path) | ExportModule(path, _): {
+				name: ':jsRequire',
+				params: [{
+					expr: EConst(CString(removeQuotes(path))),
+					pos: pos,
+				}, {
+					expr: EConst(CString(identifierPath)),
+					pos: pos,
+				}],
+				pos: pos,
+			}
+			case Global: {
+				name: ':native',
+				params: [{
+					expr: EConst(CString(identifierPath)),
+					pos: pos,
+				}],
+				pos: pos,
+			}
+		}
+	}
+
+	function removeQuotes(str: String) {
+		return switch str.charAt(0) {
+			case q = '"', q = '\'', q = '`' if (str.charAt(str.length - 1) == q):
+				str.substr(1, str.length - 2);
+			default: str;
+		}
+	}
+
 }
 
+/**
+	As we traverse the symbol tree we keep track of the symbol path so we can generate runtime-access metadata like @:native and @:jsRequire
+**/
 class SymbolAccessPath {
 
 	public final root: SymbolAccessRoot;

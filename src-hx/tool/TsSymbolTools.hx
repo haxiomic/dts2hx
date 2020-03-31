@@ -67,6 +67,26 @@ class TsSymbolTools {
 		return activeFlags;
 	}
 
+	public static function getSymbolPosition(symbol: Symbol): haxe.macro.Expr.Position {
+		var node = if (symbol.valueDeclaration != null) {
+			symbol.valueDeclaration;
+		} else if (symbol.declarations != null) {
+			symbol.declarations[0];
+		} else {
+			null;
+		}
+
+		return if (node != null) {
+			file: node.getSourceFile().fileName,
+			min: Std.int(node.getStart()),
+			max: Std.int(node.getEnd()),
+		} else {
+			file: '<unknown location>',
+			min: -1,
+			max: -1,
+		}
+	}
+
 	static function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}

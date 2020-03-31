@@ -1,3 +1,5 @@
+import js.node.Fs;
+import haxe.io.Path;
 import ConverterContext.OutputType;
 import haxe.EnumFlags;
 import js.lib.Object;
@@ -236,6 +238,20 @@ class Main {
 
 	static function convertTsDefinitions(moduleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, outputDirectory: String, outputFlags: EnumFlags<OutputType>) {
 		var converter = new ConverterContext(moduleId, entryPointFilePath, compilerOptions, outputFlags, log);
+
+		// save modules to files
+		var printer = new haxe.macro.Printer();
+		for (module in converter.getGeneratedModules()) {
+			var filePath = Path.join([outputDirectory].concat(module.pack).concat(['${module.name}.hx']));
+			var moduleHaxeStr = printer.printTypeDefinition(module);
+
+			for (subType in module.subTypes) {
+				moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
+			}
+
+			touchDirectoryPath(Path.directory(filePath));
+			Fs.writeFileSync(filePath, moduleHaxeStr);
+		}
 	}
 
 	static function extend<T>(base: T, extendWidth: T): T {
@@ -296,6 +312,27 @@ class Main {
 		});
 
 		Console.printFormatted(lines.join('\n') + '\n');
+	}
+
+	/**
+		Ensures directory structure exists for a given path
+		(Same behavior as mkdir -p)
+		@throws Any
+	**/
+	static public function touchDirectoryPath(path: String) {
+		var directories = Path.normalize(path).split('/');
+		var currentDirectories = [];
+		for (directory in directories) {
+			currentDirectories.push(directory);
+			var currentPath = currentDirectories.join('/');
+			if (currentPath == '/') continue;
+			if (Fs.existsSync(currentPath) && Fs.statSync(currentPath).isDirectory()) continue;
+			if (!Fs.existsSync(currentPath)) {
+				Fs.mkdirSync(currentPath);
+			} else {
+				throw 'Could not create directory $currentPath because a file already exists at this path';
+			}
+		}
 	}
 
 }

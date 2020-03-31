@@ -37,6 +37,12 @@ class HaxeTools {
 		return str;
 	}
 
+    static public function toSafeClassName(str: String) {
+        str = toSafeIdent(str);
+        // capitalize
+        return str.charAt(0).toUpperCase() + str.substr(1);
+    }
+
 	static final haxeReservedWords = [
 		// see core/ast.ml
 		"public", "private", "static", "override", "dynamic", "inline", "macro",
