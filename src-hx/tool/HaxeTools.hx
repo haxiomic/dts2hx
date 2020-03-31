@@ -1,5 +1,6 @@
 package tool;
 
+import haxe.ds.ReadOnlyArray;
 using StringTools;
 
 class HaxeTools {
@@ -43,7 +44,7 @@ class HaxeTools {
         return str.charAt(0).toUpperCase() + str.substr(1);
     }
 
-	static final haxeReservedWords = [
+	static public final haxeReservedWords: ReadOnlyArray<String> = [
 		// see core/ast.ml
 		"public", "private", "static", "override", "dynamic", "inline", "macro",
 		"final", "extern", "function", "class", "static", "var", "if", "else", "while",

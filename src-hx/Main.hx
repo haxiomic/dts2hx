@@ -1,7 +1,6 @@
 import js.node.Fs;
 import haxe.io.Path;
 import haxe.EnumFlags;
-import js.lib.Object;
 import Log.LogLevel;
 import haxe.DynamicAccess;
 import hxargs.Args.ArgHandler;

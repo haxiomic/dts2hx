@@ -69,7 +69,7 @@ class ConverterContext {
 
 		var accessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
 
-		Console.log('-- Global Symbols --');
+		log.log('-- Global Symbols --');
 		for (symbol in getGlobalSymbolsInSourceFile(entryPointSourceFile)) {
 			if (TsSymbolTools.symbolHasDeclarations(symbol)) {
 				convertSymbolDeclarations(symbol, accessPath);
@@ -164,7 +164,7 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
 			handled = true;
-			var hxEnumType = getComplexTypeOfEnum(symbol);
+			var hxEnumType = getComplexTypeOfEnumSymbol(symbol);
 
 			var hxEnumDef: HaxeModule = {
 				pack: generateHaxePackagePath(symbol),
@@ -316,7 +316,7 @@ class ConverterContext {
 		}
 	}
 
-	function getComplexTypeOfEnum(symbol: Symbol): ComplexType {
+	function getComplexTypeOfEnumSymbol(symbol: Symbol): ComplexType {
 		var hxEnumTypeName: Null<String> = null;
 		// determine underlying type of enum by iterating its members
 		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
