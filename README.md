@@ -43,18 +43,24 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Wrong type parameter is found in class extends
     - [x] Remove redefinitions of extending class fields
 - [ ] Rewrite in haxe using generated TypeScript compiler externs **← currently working on this**
-    - [ ] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
+    - [x] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
         - babylon.js and many other project use both, do we merge or just parse as-is?
             -> Babylon.js duplicates class definitions between ambient and export, so we could do a string comparison for equality but it's generally a design issue of their definitions
             -> However, this would generate two sets of externs, one ambient and the other module-based, which is a good result
     - [x] Support referencing module name like `dts2hx three`
     - [x] The most common use case will be converting _all_ dependencies. So support `dts2hx --all` or similar
+    - [ ] Basic module structure
+        - [ ] Class & Interface
+        - [ ] Typedef
+        - [ ] Enum
+    - [ ] Fields
     - [ ] Remove type-path prefix if referencing type within the same module
     - [ ] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
-- [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
-- [ ] Command-line interface
-    - [ ] Convert local `.d.ts` files
+    - [ ] Generate a haxelib.json file
+    - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
+- [x] Command-line interface
+    - [x] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] Advanced type conversions
     - [ ] Abstracts to support unnamed enums and improve type unions
@@ -73,6 +79,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [ ] Unit tests
 - [ ] Cleaner output
     - [ ] Replace full type references with imports for some types (like haxe.extern.EitherType)
+    - [ ] If a package only has one type with the same name as package, replace with a module. For example:
+        `babylonjs.cameras.inputs.freecameragamepadinput.FreeCameraGamepadInput` -> `babylonjs.cameras.inputs.FreeCameraGamepadInput`
 - [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
 # FAQ

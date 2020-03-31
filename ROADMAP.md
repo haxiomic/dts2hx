@@ -1,8 +1,29 @@
-- Determine @:native() and @:js.Require **not** from parents by from exploring out from the index typing file
-	- What about multiple files? (not allowed in package.json, but theoretically how should this work?)
-	- Maybe start with the root file and then handle non-touched files differently?
-	- Or _require_ a single file
-	- Do any modules not have a single root in practice?
+- babylon d.ts is borked to heck. It defines the same classes into multiple modules, only a few of which actually exist. Each module generates a type that currently has the same package as the others, so they overwrite each other (and it's not clear the correct one is left)
+	-> Could prefix the package path with the root module and remove duplicates
+
+- jsRequire **or** @:native, not both
+- pixi.js defines both an ambient module require("pixi.js") _and_ a global module "PIXI"
+	-> This probably requires generating two independent set of definitions, one with jsRequire and the other with @:native`
+	-> Maybe prefix with global/
+		```
+		pixi.js/
+			global/
+				PIXI.hx
+			PIXI.hx
+		```
+	-> Or generate two libraries
+		pixi.js-modular/
+			PIXI.hx
+		pixi.js-global/
+			PIXI.hx
+
+- _Maybe_ we should determine moduleId from entryPointFilePath rather than providing both
+- require('moduleId', name-of-export-from-entry)
+- If entry point is exported as a named module, we create a module class and add typedefs, so THREE.Quaternion works
+
+- How do /// referenced types and libs work?
+	- How do we get the require() correct
+	
 
 - Implement get-generate for type-symbols
 	- Type path from parent does not work! See three.js Quaternion
@@ -34,7 +55,3 @@
 - Produce module structure
 	- Create directories
 	- Empty hx file for module classes
-
-- declare namespace vs declare module
-
-- explore the top-level, determine what to do with each symbol
