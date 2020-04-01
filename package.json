@@ -8,7 +8,7 @@
     "url": "https://github.com/haxiomic/dts2hx"
   },
   "scripts": {
-    "preinstall": "haxe build.hxml"
+    "build": "haxe build.hxml"
   },
   "author": "haxiomic",
   "license": "ISC",
@@ -17,5 +17,5 @@
     "typescript": "3.7.4"
   },
   "devDependencies": {},
-  "bin": "./dist/dts2hx.js"
+  "bin": "./cli.js"
 }
