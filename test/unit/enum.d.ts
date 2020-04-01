@@ -41,4 +41,11 @@ declare namespace Enums {
         AorB = A | B,
     }
 
+    const enum ConstEnum {
+        A = 1,
+        B = 2,
+        C = 'ceee',
+        D = 3.14,
+    }
+
 }
