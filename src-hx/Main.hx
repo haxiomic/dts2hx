@@ -194,14 +194,17 @@ class Main {
 				for (moduleName in allDependencies) {
 					var result = Ts.resolveModuleName(moduleName, cliOptions.moduleSearchPath + '/.', compilerOptions, host);
 					if (result.resolvedModule != null) {
-						cliOptions.moduleNames.push(moduleName);
-					} else {
-						log.warn('Dependency <b>"${moduleName}"</b> does not have typescript definitions');
+						switch result.resolvedModule.extension {
+							case Dts, Ts, Tsx: // maybe we should limit to just Dts
+								cliOptions.moduleNames.push(moduleName);
+							case Js, Json, Jsx, TsBuildInfo:
+						}
+						continue;
 					}
+					log.warn('No type definitions found for <b>"${moduleName}"</b>');
 				}
 			} catch (e: String) {
 				log.error(e);
-				Node.process.exit(1);
 			}
 		}
 
