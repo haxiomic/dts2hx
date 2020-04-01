@@ -226,11 +226,11 @@ class Main {
 			// moduleId is what you'd need to pass into require() to get the module
 
 			// commented out: previously I used package name, which I expect may not always match the moduleId used in require()
-			// var moduleId = if (result.resolvedModule.packageId != null) {
-			//     result.resolvedModule.packageId.name;
+			// var moduleId = if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
+			// 	result.resolvedModule.packageId.name;
 			// } else {
-			//     var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-			//     relPath;
+			// 	var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
+			// 	relPath;
 			// }
 
 			convertTsDefinitions(moduleName, result.resolvedModule, compilerOptions, outputPath, outputFlags);
@@ -240,8 +240,8 @@ class Main {
 		}
 	}
 
-	static function convertTsDefinitions(moduleId: String, resolveModule: ResolvedModuleFull, compilerOptions: CompilerOptions, outputDirectory: String, outputFlags: EnumFlags<OutputType>) {
-		var converter = new ConverterContext(moduleId, resolveModule.resolvedFileName, compilerOptions, log);
+	static function convertTsDefinitions(moduleName: String, resolveModule: ResolvedModuleFull, compilerOptions: CompilerOptions, outputDirectory: String, outputFlags: EnumFlags<OutputType>) {
+		var converter = new ConverterContext(moduleName, resolveModule.resolvedFileName, compilerOptions, log);
 
 		// save modules to files
 		var printer = new haxe.macro.Printer();
@@ -256,7 +256,7 @@ class Main {
 			} else {
 				'';
 			}
-			var moduleDirname = haxe.io.Path.withoutDirectory(moduleId) + suffix;
+			var moduleDirname = haxe.io.Path.withoutDirectory(converter.entryPointModuleId) + suffix;
 			var modulePath = Path.join([outputDirectory, moduleDirname]);
 
 			for (_ => module in modules) {

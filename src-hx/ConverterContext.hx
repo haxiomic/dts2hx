@@ -33,9 +33,10 @@ class ConverterContext {
 	final tc: TypeChecker;
 	final markedSymbols = new Map<Int, Symbol>();
 
-	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
-		this.entryPointModuleId = entryPointModuleId;
+	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
+		// this will be used as the argument to require()
 		this.log = log_ != null ? log_ : new Log();
+		this.entryPointModuleId = inline normalizeModuleName(moduleName);
 		
 		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
@@ -68,6 +69,35 @@ class ConverterContext {
 		for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, entryPointSourceFile)) {
 			convertSymbolDeclarations(symbol, accessPath);
 		}
+
+		/**
+			@! idea:
+
+			# Create symbol access map
+			for each module {
+				walk declaration symbols, create a map for each symbol's access path
+			}
+
+			# Generate haxe modules
+			for each module {
+				convert declarations
+					at each **type-reference** check the symbol access map
+					if no symbol is found, the symbol is considered _Inaccessible_ 
+			}
+
+			# While generating haxe modules
+			track referenced symbols in typeNodeToComplexType
+				something like `startReferenceTracking()` and `completeReferenceTracking() -> References`
+
+			# With tracked references associated with each module, we can create a list of dependencies for each module
+
+			generated -> generated {
+				moduleId {
+					modular,
+					global,
+				}
+			}
+		**/
 	}
 
 	function markSymbol(symbol: Symbol) {
@@ -119,7 +149,7 @@ class ConverterContext {
 						// how do we know what module this symbol belongs to?
 						// @! what if we convert all type-reference modules first and create a symbol lookup?
 						// ... in theory we could use this for access paths too, but it's not clear this is a good idea
-						var typeSourceFiles = typeSymbol.declarations.map(n -> n.getSourceFile());
+						// var typeSourceFiles = typeSymbol.declarations.map(n -> n.getSourceFile());
 						// convertSymbolDeclarations(typeSymbol, new SymbolAccessPath(log, tc, Global));
 						debug();
 					}
@@ -134,7 +164,7 @@ class ConverterContext {
 			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
 			var exports = tc.getExportsOfModule(symbol);
 			for (moduleExport in exports) {
-				// convertSymbolDeclarations(moduleExport, newAccessPath, depth + 1);
+				convertSymbolDeclarations(moduleExport, newAccessPath, depth + 1);
 			}
 		}
 
@@ -232,19 +262,22 @@ class ConverterContext {
 
 	function saveHaxeModule(module: HaxeModule, accessPath: SymbolAccessPath) {
 		var path = module.pack.concat([module.name]).join('.');
-		var moduleMap = switch accessPath.root {
-			case AmbientModule(_): generated.modular;
-			case ExportModule(_, _): generated.modular;
-			case Global: generated.global;
+		var moduleMaps = switch accessPath.root {
+			case AmbientModule(_): [generated.modular];
+			case ExportModule(_, _): [generated.modular];
+			case Global: [generated.global];
+			case Inaccessible: [generated.global, generated.modular];
 		}
 
-		if (moduleMap.exists(path)) {
-			log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-			log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
-			debug();
-		}
+		for (moduleMap in moduleMaps) {
+			if (moduleMap.exists(path)) {
+				log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+				log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
+				debug();
+			}
 
-		moduleMap.set(path, module);
+			moduleMap.set(path, module);
+		}
 	}
 
 	function generateHaxeTypeName(symbol: Symbol): String {
@@ -326,6 +359,10 @@ class ConverterContext {
 				}],
 				pos: pos,
 			}
+			case Inaccessible: {
+				name: 'inaccessible',
+				pos: pos,
+			}
 		}
 	}
 
@@ -344,6 +381,17 @@ class ConverterContext {
 			log.error('Could not convert ts TypeNode to haxe ComplexType', node);
 			return HaxePrimitives.any;
 		}
+	}
+
+	function normalizeModuleName(moduleName: String) {
+		// replace backslashes with forward slashes to normalize for windows paths
+		moduleName.replace('\\', '/');
+		var moduleNameParts = moduleName.split('/');
+		// remove @types prefix
+		if (moduleNameParts[0] == '@types' && moduleNameParts.length > 1) {
+			moduleNameParts.shift();
+		}
+		return moduleNameParts.join('/');
 	}
 
 }
@@ -400,10 +448,12 @@ class SymbolAccessPath {
 				case Global:
 					log.error('Cannot change symbol access from global to module', symbol);
 					copy();
+				case Inaccessible:
+					new SymbolAccessPath(log, tc, ExportModule(symbol.name, symbol), []);
 			}
 		} else if (TsSymbolTools.isExternalModuleSymbol(symbol)) {
 			return switch root {
-				case Global:
+				case Global, Inaccessible:
 					// replace global with ambient module
 					new SymbolAccessPath(log, tc, AmbientModule(symbol.name), []);
 				case ExportModule(rootModuleName, rootSourceFileSymbol):
@@ -444,6 +494,7 @@ class SymbolAccessPath {
 			case AmbientModule(path): parts.push('require($path)');
 			case ExportModule(moduleName, sourceFile): parts.push('require("$moduleName")');
 			case Global: parts.push('::');
+			case Inaccessible: parts.push('*Inaccessible*');
 		}
 		return parts.concat(getIdentifierChain()).join('.');
 	}
@@ -454,6 +505,7 @@ enum SymbolAccessRoot {
 	AmbientModule(path: String);
 	ExportModule(moduleName: String, sourceFileSymbol: Symbol);
 	Global;
+	Inaccessible;
 }
 
 class HaxePrimitives {
