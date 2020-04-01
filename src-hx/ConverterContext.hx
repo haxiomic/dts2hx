@@ -1,21 +1,20 @@
-import typescript.ts.VariableDeclaration;
-import typescript.ts.TypeNode;
-import typescript.ts.TypeAliasDeclaration;
-import typescript.ts.SyntaxKind;
-import haxe.macro.Expr;
 import haxe.ds.ReadOnlyArray;
-import typescript.ts.InternalSymbolName;
-import haxe.EnumFlags;
+import haxe.macro.Expr;
 import js.Lib.debug;
 import tool.HaxeTools;
 import tool.TsProgramTools;
 import tool.TsSymbolTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
-import typescript.ts.SourceFile;
+import typescript.ts.InternalSymbolName;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
+import typescript.ts.SyntaxKind;
+import typescript.ts.TypeAliasDeclaration;
 import typescript.ts.TypeChecker;
+import typescript.ts.TypeNode;
+import typescript.ts.VariableDeclaration;
+
 using StringTools;
 using tool.StringTools;
 
