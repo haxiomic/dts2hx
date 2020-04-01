@@ -1,5 +1,5 @@
 {
-  "name": "d.ts-haxe",
+  "name": "dts2hx",
   "version": "0.0.1",
   "description": "Converts TypeScript definition files (d.ts) to haxe externs",
   "main": "dist/index.js",
@@ -8,22 +8,14 @@
     "url": "https://github.com/haxiomic/dts2hx"
   },
   "scripts": {
-    "start": "npm run build && npm run run",
-    "build": "tsc",
-    "run": "node dist",
-    "watch": "tsc --watch & fswatch -o dist/",
-    "watch-run": "tsc --watch & fswatch -o dist/ | xargs -n1 -I{} node dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "haxe-build": "haxe build.hxml",
-    "haxe-run": "node dist/dts2hx.js"
+    "build": "haxe build.hxml"
   },
-  "author": "",
+  "author": "haxiomic",
   "license": "ISC",
   "dependencies": {
     "@types/node": "11.11.3",
     "typescript": "3.7.4"
   },
-  "devDependencies": {
-    "fswatch": "0.1.4"
-  }
+  "devDependencies": {},
+  "bin": "./dist/dts2hx.js"
 }
