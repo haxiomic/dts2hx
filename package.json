@@ -2,13 +2,13 @@
   "name": "dts2hx",
   "version": "0.0.1",
   "description": "Converts TypeScript definition files (d.ts) to haxe externs",
-  "main": "dist/index.js",
+  "main": "dist/dts2hx.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/haxiomic/dts2hx"
   },
   "scripts": {
-    "build": "haxe build.hxml"
+    "preinstall": "haxe build.hxml"
   },
   "author": "haxiomic",
   "license": "ISC",
