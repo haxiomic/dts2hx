@@ -208,14 +208,14 @@ class Main {
 			}
 		}
 
-			for (moduleName in cliOptions.moduleNames) {
-				try {
-					convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.outputFlags);
-				} catch (e: Any) {
-					log.error(e);
-					Node.process.exit(1);
-				}
+		for (moduleName in cliOptions.moduleNames) {
+			try {
+				convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.outputFlags);
+			} catch (e: Any) {
+				log.error(e);
+				Node.process.exit(1);
 			}
+		}
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String, outputFlags: EnumFlags<OutputType>) {
