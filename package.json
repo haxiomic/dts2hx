@@ -8,7 +8,7 @@
     "url": "https://github.com/haxiomic/dts2hx"
   },
   "scripts": {
-    "build": "haxe build.hxml"
+    "install": "haxe build.hxml"
   },
   "author": "haxiomic",
   "license": "ISC",
