@@ -6,8 +6,15 @@ using StringTools;
 
 class HaxeTools {
 
+	static final nullPosition = {
+		file: '',
+		min: -1,
+		max: -1,
+	}
+
 	/**
 		Convert a string to something safe to use as an identifier in haxe (a-z)
+		`hello@world.js` becomes `helloAtWorld_js`
 	**/
 	static public function toSafeIdent(str: String, escapeReservedWords: Bool = true) {
 		// remove quotes
@@ -48,6 +55,13 @@ class HaxeTools {
 	static public function toSafePackageName(str: String) {
 		return toSafeIdent(str, true).toLowerCase();
 	}
+
+	static public function stringExpr(str: String, ?pos: Position): Expr {
+		return {
+			expr: EConst(CString(str, DoubleQuotes)),
+			pos: pos != null ? pos : nullPosition,
+		}
+	}
 	
 	/**
 		value must be a number, string or boolean
@@ -55,11 +69,6 @@ class HaxeTools {
 	static public function primitiveValueToExpr(?value: Dynamic): Null<Expr> {
 		if (value == null) {
 			return null;
-		}
-		var nullPosition = {
-			file: '',
-			min: -1,
-			max: -1,
 		}
 		return switch js.Syntax.typeof(value) {
 			case 'number': {

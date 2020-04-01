@@ -212,11 +212,14 @@ class ConverterContext {
 			
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
 			var hxEnumFields: Array<Field> = enumMembers.map(s -> {
+				var safeName = HaxeTools.toSafeIdent(s.escapedName);
+				var nameChanged = s.escapedName != safeName;
 				return ({
-					name: s.escapedName,
+					name: safeName,
 					pos: TsSymbolTools.getSymbolPosition(s),
 					kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
 					doc: getDoc(s),
+					meta: nameChanged ? [{name: ':native', params: [HaxeTools.stringExpr(s.escapedName)], pos: pos}] : [],
 				}: Field);
 			});
 
