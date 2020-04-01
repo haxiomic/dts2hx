@@ -10,6 +10,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - **be aware, it's currently just for exploration and not ready to use as a tool**
 - requires haxe > 4.0.5
 - install dts2hx in your local project as a development dependency:
+
     `npm install https://github.com/haxiomic/dts2hx --save-dev`
 - install a node module with types, e.g. `npm install three` 
 - run dts2hx on the node module `npx dts2hx three`
@@ -100,7 +101,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [ ] Unit tests
 - [ ] Cleaner output
     - [ ] Replace full type references with imports for some types (like haxe.extern.EitherType)
-    - [ ] If a package only has one type with the same name as package, replace with a module. For example:
+    - [ ] *maybe*: If a package only has one type with the same name as package, replace with a module. For example:
         `babylonjs.cameras.inputs.freecameragamepadinput.FreeCameraGamepadInput` -> `babylonjs.cameras.inputs.FreeCameraGamepadInput`
 - [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
