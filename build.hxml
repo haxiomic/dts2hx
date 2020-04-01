@@ -27,5 +27,8 @@
 
 # External references
 # -cmd node dist/dts2hx.js jquery -p test-definitions --verbose
+# -cmd node dist/dts2hx.js ./test/unit/tripple-slash-references --verbose
+
+# -cmd node dist/dts2hx.js typescript --verbose
 
 -debug
