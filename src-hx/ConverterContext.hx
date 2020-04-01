@@ -1,3 +1,4 @@
+import typescript.ts.VariableDeclaration;
 import typescript.ts.TypeNode;
 import typescript.ts.TypeAliasDeclaration;
 import typescript.ts.SyntaxKind;
@@ -24,13 +25,13 @@ using tool.StringTools;
 class ConverterContext {
 
 	public final entryPointModuleId: String;
-	final log: Log;
-	final tc: TypeChecker;
-
 	public final generated = {
 		modular: new Map<String, HaxeModule>(),
 		global: new Map<String, HaxeModule>()
 	}
+	final log: Log;
+	final tc: TypeChecker;
+	final markedSymbols = new Map<Int, Symbol>();
 
 	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		this.entryPointModuleId = entryPointModuleId;
@@ -71,8 +72,16 @@ class ConverterContext {
 		}
 	}
 
+	function markSymbol(symbol: Symbol) {
+		var id: Int = Std.int(Ts.getSymbolId(symbol));
+		var alreadyMarked = markedSymbols.exists(id);
+		markedSymbols.set(id, symbol);
+		return alreadyMarked;
+	}
+
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
 		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+		markSymbol(symbol);
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
@@ -101,6 +110,18 @@ class ConverterContext {
 			// FunctionScopedVariable | BlockScopedVariable
 			// add to module class
 			handled = true;
+			// i.e. `const name: Type` or `function name(): Type`
+			switch symbol.valueDeclaration.kind {
+				case FunctionDeclaration: 
+				case VariableDeclaration:
+					var typeNode = (cast symbol.valueDeclaration: VariableDeclaration).type;
+					if (typeNode != null) {
+						var type = tc.getTypeFromTypeNode(typeNode);
+						debug();
+					}
+				default:
+					log.warn('Unexpected declaration kind, expected <i>FunctionDeclaration</> or <i>VariableDeclaration</>', symbol.valueDeclaration);
+			}
 		}
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
@@ -109,7 +130,7 @@ class ConverterContext {
 			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
 			var exports = tc.getExportsOfModule(symbol);
 			for (moduleExport in exports) {
-				convertSymbolDeclarations(moduleExport, newAccessPath, depth + 1);
+				// convertSymbolDeclarations(moduleExport, newAccessPath, depth + 1);
 			}
 		}
 
@@ -118,16 +139,13 @@ class ConverterContext {
 		}
 	}
 
-	function convertTypeSymbol(symbol: Symbol, accessPath: SymbolAccessPath) {
+	function convertTypeSymbol(symbol: Symbol, accessPath: SymbolAccessPath): Null<HaxeModule> {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-		var handled = false;
-		// log.log('Generating type <yellow>${accessPath}</>', symbol);
+		// type symbols are mutually exclusive so we can return after converting the first match
 
 		var pos = TsSymbolTools.getSymbolPosition(symbol);
 
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
-			handled = true;
-
 			var superClass = null; // @! todo
 			var interfaces = []; // @! todo
 			var typeParams = []; // @! todo
@@ -147,10 +165,11 @@ class ConverterContext {
 			}
 
 			saveHaxeModule(hxClass, accessPath);
+
+			return hxClass;
 		}
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
-			handled = true;
 			var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(tc, symbol);
 			
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
@@ -174,10 +193,11 @@ class ConverterContext {
 			}
 			
 			saveHaxeModule(hxEnumDef, accessPath);
+
+			return hxEnumDef;
 		}
 
 		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
-			handled = true;
 			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.declarations.filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
 			if (typeAliasDeclaration != null) {
 				// @! typeParameters?
@@ -194,14 +214,16 @@ class ConverterContext {
 				}
 
 				saveHaxeModule(hxTypeDef, accessPath);
+
+				return hxTypeDef;
 			} else {
 				log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 			}
 		}
 
-		if (!handled) {
-			log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
-		}
+		log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
+
+		return null;
 	}
 
 	function saveHaxeModule(module: HaxeModule, accessPath: SymbolAccessPath) {
@@ -214,6 +236,7 @@ class ConverterContext {
 
 		if (moduleMap.exists(path)) {
 			log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+			log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
 			debug();
 		}
 

@@ -11,7 +11,7 @@ import typescript.ts.Symbol;
 class TsSymbolTools {
 	
 	/**
-		Shockingly, the way to detect for an external module is to check for double quote at the start of the name
+		Apparently the way to detect for an external module is to check for double quote at the start of the name
 		https://github.com/microsoft/TypeScript/blob/5e9c43607f8732bc94374c95fddd8b1fd9881122/src/services/utilities.ts#L1657
 	**/
 	public static function isExternalModuleSymbol(symbol: Symbol): Bool {

@@ -20,7 +20,6 @@ class Main {
 	static final log = new Log();
 
 	static function main() {
-		Console.examine(Macro.getLocalPackageJson());
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';
 		Console.errorPrefix = '<b,red>> Error:</b> ';
 
