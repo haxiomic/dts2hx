@@ -11,8 +11,9 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - requires haxe > 4.0.5
 - install dts2hx in your local project as a development dependency:
     `npm install https://github.com/haxiomic/dts2hx --save-dev`
-- install a node module with types, e.g. `npm install three`
+- install a node module with types, e.g. `npm install three` 
 - run dts2hx on the node module `npx dts2hx three`
+- alternatively, generate externs for all local node dependencies with `npx dts2hx --all`
 - (generated externs are not ready to use yet)
 
 # Roadmap
