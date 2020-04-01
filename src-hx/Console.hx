@@ -26,7 +26,7 @@ class Console {
 	static public var printIntercept: Null<String -> ConsoleOutputStream -> Bool> = null;
 
 	static var argSeparator = ' ';
-	static var unicodeCompatibilityMode:UnicodeCompatibilityMode = #if (sys || nodejs) Sys.systemName() == 'Windows' ? Windows : #end None;
+	static var unicodeCompatibilityMode:UnicodeCompatibilityMode = #if ((sys || nodejs) && !macro) Sys.systemName() == 'Windows' ? Windows : #end None;
 	static var unicodeCompatibilityEnabled = false;
 
 	macro static public function log(rest:Array<Expr>){

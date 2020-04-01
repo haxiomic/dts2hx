@@ -251,7 +251,8 @@ class Main {
 				} else {
 					'';
 				}
-				var filePath = Path.join([outputDirectory, '$moduleId$suffix'].concat(module.pack).concat(['${module.name}.hx']));
+				var moduleDirname = haxe.io.Path.withoutDirectory(moduleId) + suffix;
+				var filePath = Path.join([outputDirectory, moduleDirname].concat(module.pack).concat(['${module.name}.hx']));
 				var moduleHaxeStr = printer.printTypeDefinition(module);
 
 				for (subType in module.subTypes) {

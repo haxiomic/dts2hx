@@ -34,13 +34,8 @@ class ConverterContext {
 	public function new(entryPointModuleId: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		this.entryPointModuleId = entryPointModuleId;
 		this.log = log_ != null ? log_ : new Log();
-
-		// entryPointModuleId may be a file reference like ./path/to/file.d.ts
-		var rootPackage = entryPointModuleId
-			.split('/')
-			.filter(part -> ['@types', '.'].indexOf(part) == -1) // remove @types/ and '.'
-			.map(part -> HaxeTools.toSafeIdent(part).toLowerCase());
-		log.log('<green>Root Package: <b>${rootPackage.join('.')}</b> ($entryPointModuleId)</>');
+		
+		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
 		var host = Ts.createCompilerHost(compilerOptions);
 		var program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
@@ -149,7 +144,7 @@ class ConverterContext {
 				isExtern: true,
 				params: typeParams,
 				doc: getDoc(symbol),
-				meta: [getRuntimeAccessMetadata(symbol, accessPath)],
+				meta: isInterface ? [] : [getRuntimeAccessMetadata(symbol, accessPath)],
 				pos: pos,
 				subTypes: [],
 			}
@@ -159,15 +154,24 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
 			handled = true;
-			var hxEnumType = getComplexTypeOfEnumSymbol(symbol);
+			var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(tc, symbol);
+			
+			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
+			var hxEnumFields: Array<Field> = enumMembers.map(s -> ({
+				name: s.escapedName,
+				pos: TsSymbolTools.getSymbolPosition(s),
+				kind: FVar(null, null),
+				doc: getDoc(s),
+			}: Field));
 
 			var hxEnumDef: HaxeModule = {
 				pack: generateHaxePackagePath(symbol),
 				name: generateHaxeTypeName(symbol),
 				kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
-				fields: [],
+				isExtern: true,
+				fields: hxEnumFields,
 				doc: getDoc(symbol),
-				meta: [getRuntimeAccessMetadata(symbol, accessPath)],
+				meta: [getRuntimeAccessMetadata(symbol, accessPath), {name: ':enum', pos: pos}],
 				pos: pos,
 				subTypes: [],
 			}
@@ -191,6 +195,7 @@ class ConverterContext {
 					pos: pos,
 					subTypes: [],
 				}
+
 				saveHaxeModule(hxTypeDef, accessPath);
 			} else {
 				log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
@@ -225,7 +230,8 @@ class ConverterContext {
 	function generateHaxePackagePath(symbol: Symbol): Array<String> {
 		var pack = new Array<String>();
 
-		pack.push(HaxeTools.toSafeIdent(entryPointModuleId).toLowerCase());
+		// prefix the module name (if it's a path, use just the last part)
+		pack.push(HaxeTools.toSafePackageName(haxe.io.Path.withoutDirectory(entryPointModuleId)));
 
 		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
 			// handle special names
@@ -266,7 +272,7 @@ class ConverterContext {
 	}
 
 	function pathToHaxePackage(path: String) {
-		return haxe.io.Path.normalize(path).split('/').map(s -> HaxeTools.toSafeIdent(s).toLowerCase());
+		return haxe.io.Path.normalize(path).split('/').filter(s -> s != '').map(s -> HaxeTools.toSafePackageName(s));
 	}
 
 	function getDoc(symbol: Symbol) {
@@ -296,47 +302,6 @@ class ConverterContext {
 				}],
 				pos: pos,
 			}
-		}
-	}
-
-	function getComplexTypeOfEnumSymbol(symbol: Symbol): ComplexType {
-		var hxEnumTypeName: Null<String> = null;
-		// determine underlying type of enum by iterating its members
-		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-		for (member in enumMembers) {
-			var enumMemberNode = member.valueDeclaration;
-			var runtimeValue = tc.getConstantValue(cast enumMemberNode);
-			var hxMemberTypeName = if (runtimeValue != null) {
-				var runtimeType = js.Syntax.typeof(runtimeValue);
-				switch runtimeType {
-					case 'number': 
-						var isInt = Math.floor(cast runtimeValue) == runtimeValue;
-						isInt ? 'Int' : 'Float';
-					case 'string': 'String';
-					// enums are implicitly ints by default
-					case 'undefined': 'Int';
-					default: 'Any';
-				}
-			} else {
-				'Any';
-			}
-
-			// compare this member type with the currently set hxEnumType
-			// and handle Int -> Float cast
-			if (hxEnumTypeName != hxMemberTypeName) {
-				hxEnumTypeName = switch [hxEnumTypeName, hxMemberTypeName] {
-					case [null, _]: hxMemberTypeName;
-					case ['Int', 'Float']: 'Float';
-					case ['Float', 'Int']: 'Float';
-					default: 'Any';
-				}
-			}
-		}
-		
-		return if (hxEnumTypeName != null) {
-			TPath({pack: [], name: cast hxEnumTypeName});
-		} else {
-			TPath({pack: [], name: 'Any'});
 		}
 	}
 

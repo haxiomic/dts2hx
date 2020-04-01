@@ -8,7 +8,7 @@ class HaxeTools {
 	/**
 		Convert a string to something safe to use as an identifier in haxe (a-z)
 	**/
-	static public function toSafeIdent(str: String) {
+	static public function toSafeIdent(str: String, escapeReservedWords: Bool = true) {
 		// remove quotes
 		str = ~/["'`]/gm.replace(str, '');
 
@@ -31,7 +31,7 @@ class HaxeTools {
 		});
 
 		// add underscore suffix to reserved keywords
-		if (haxeReservedWords.indexOf(str) != -1) {
+		if (escapeReservedWords && haxeReservedWords.indexOf(str) != -1) {
 			str += '_';
 		}
 
@@ -39,9 +39,13 @@ class HaxeTools {
 	}
 
     static public function toSafeTypeName(str: String) {
-        str = toSafeIdent(str);
+        str = toSafeIdent(str, false);
         // capitalize
         return str.charAt(0).toUpperCase() + str.substr(1);
+    }
+
+    static public function toSafePackageName(str: String) {
+        return toSafeIdent(str, true).toLowerCase();
     }
 
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
