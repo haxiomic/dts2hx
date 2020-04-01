@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Converts TypeScript definition files (d.ts) to haxe externs",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haxiomic/dts2hx"
+  },
   "scripts": {
     "start": "npm run build && npm run run",
     "build": "tsc",

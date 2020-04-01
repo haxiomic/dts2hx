@@ -50,15 +50,32 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
             -> However, this would generate two sets of externs, one ambient and the other module-based, which is a good result
     - [x] Support referencing module name like `dts2hx three`
     - [x] The most common use case will be converting _all_ dependencies. So support `dts2hx --all` or similar
-    - [ ] Basic module structure
-        - [ ] Class & Interface
-        - [ ] Typedef
-        - [ ] Enum
-    - [ ] Fields
-    - [ ] Remove type-path prefix if referencing type within the same module
-    - [ ] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
-    - [ ] Generate a haxelib.json file
+    - [x] Basic module structure
+        - [x] Class & Interface
+        - [x] Typedef
+        - [x] Enum
+    - [ ] Basic conversion of fundamental types
+        - [x] Enums
+        - [ ] Primitives
+        - [ ] Type references
+        - [ ] TypeLiteral types (objects literals)
+        - [ ] Unions with EitherType
+        - [ ] Function types
+        - [ ] Type parameters
+        - [ ] Index signatures
+        - [ ] Intersection types `need better handling of redefined properties, aka sub intersections`
+        - [ ] Tuple types
+        - [ ] This type
+        - [ ] Overloads
+        - [ ] Wrapped types
+    - [ ] Classes and interfaces
+        - [ ] Constructors
+        - [ ] Index signatures (both class and interfaces)
+        - [ ] Extends & implements
     - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
+    - [ ] Remove type-path prefix if referencing type within the same module
+    - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
+    - [ ] Generate a haxelib.json file
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*

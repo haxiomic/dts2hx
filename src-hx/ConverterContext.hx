@@ -16,17 +16,18 @@ import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
 import typescript.ts.TypeChecker;
 using StringTools;
+using tool.StringTools;
 
 
 @:expose
 @:nullSafety
 class ConverterContext {
 
+	public final entryPointModuleId: String;
 	final log: Log;
 	final tc: TypeChecker;
-	final entryPointModuleId: String;
 
-	final generated = {
+	public final generated = {
 		modular: new Map<String, HaxeModule>(),
 		global: new Map<String, HaxeModule>()
 	}
@@ -68,10 +69,6 @@ class ConverterContext {
 		for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, entryPointSourceFile)) {
 			convertSymbolDeclarations(symbol, accessPath);
 		}
-	}
-
-	public function getGeneratedModules() {
-		return generated;
 	}
 
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
@@ -286,7 +283,7 @@ class ConverterContext {
 			case AmbientModule(path) | ExportModule(path, _): {
 				name: ':jsRequire',
 				params: [{
-					expr: EConst(CString(removeQuotes(path))),
+					expr: EConst(CString(path.removeQuotes())),
 					pos: pos,
 				}, {
 					expr: EConst(CString(identifierPath)),
@@ -319,14 +316,6 @@ class ConverterContext {
 		} else {
 			log.error('Could not convert ts TypeNode to haxe ComplexType', node);
 			return HaxePrimitives.any;
-		}
-	}
-
-	function removeQuotes(str: String) {
-		return switch str.charAt(0) {
-			case q = '"', q = '\'', q = '`' if (str.charAt(str.length - 1) == q):
-				str.substr(1, str.length - 2);
-			default: str;
 		}
 	}
 
