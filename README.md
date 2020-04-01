@@ -7,11 +7,13 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
 # Getting Started
-- *be aware, it's currently just for exploration and not ready to use as a tool*
-- Run `npm install` to download the dependencies (ts compiler)
-- Run `npm start` to build and run the experimental test example
-- The target type definitions are specified in [src/index.ts](src/index.ts#L56)
-- To rebuild and run interactively, run `npm run watch-run`
+- **be aware, it's currently just for exploration and not ready to use as a tool**
+- requires haxe > 4.0.5
+- install dts2hx in your local project as a development dependency:
+    `npm install https://github.com/haxiomic/dts2hx --save-dev`
+- install a node module with types, e.g. `npm install three`
+- run dts2hx on the node module `npx dts2hx three`
+- (generated externs are not ready to use yet)
 
 # Roadmap
 - [x] First pass conversion of TypeScript compiler externs (written in ts)
@@ -75,7 +77,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
     - [ ] Remove type-path prefix if referencing type within the same module
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
-    - [ ] Generate a haxelib.json file
+    - [x] Generate a haxelib.json file
+    - [ ] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
 - [ ] :star: **Prelease** *Not perfect but practically useable*
