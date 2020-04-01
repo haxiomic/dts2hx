@@ -104,9 +104,6 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
 # FAQ
-- Why is it written in TypeScript instead of haxe?
-
-    It interfaces heavily with the TypeScript compiler so it's helpful to have access to the TS compiler definitions. If we can convert the TS compiler definitions to haxe then it would make sense to write it fully in haxe :)
 
 - What makes this different from previous approaches?
 
