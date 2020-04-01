@@ -56,13 +56,13 @@ class TsSymbolTools {
 		If `compositeFlags` is true, SymbolFlags that are unions of other flags are included, for example:
 			SymbolFlags Module = ValueModule | NamespaceModule
 	**/
-	public static function symbolFlagsInfo(symbolFlags: Int, compositeFlags: Bool = false): Array<String> {
+	public static function getFlagsInfo(symbol: Symbol, compositeFlags: Bool = false): Array<String> {
 		var activeFlags = new Array<String>();
 
 		var symbolFlagsEnum = getSymbolFlagsMap();
 		for (key => value in symbolFlagsEnum) {
 			if (!compositeFlags && !isPowerOfTwo(value)) continue;
-			if (symbolFlags & value != 0) {
+			if (symbol.flags & value != 0) {
 				activeFlags.push(key);
 			}
 		}
@@ -70,7 +70,7 @@ class TsSymbolTools {
 		return activeFlags;
 	}
 
-	public static function getComplexTypeOfEnumSymbol(tc: TypeChecker, symbol: Symbol): ComplexType {
+	public static function getComplexTypeOfEnumSymbol(symbol: Symbol, tc: TypeChecker): ComplexType {
 		var hxEnumTypeName: Null<String> = null;
 		// determine underlying type of enum by iterating its members
 		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);

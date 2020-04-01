@@ -51,10 +51,8 @@ class ConverterContext {
 			throw 'Failed to get entry-point source file';
 		}
 
-		// Console.examine(entryPointSourceFile.referencedFiles);
-		// Console.examine(entryPointSourceFile.libReferenceDirectives);
-		// Console.examine(entryPointSourceFile.typeReferenceDirectives);
-		// Console.examine(entryPointSourceFile.moduleName);
+		// get all `/// <reference type="$type">` module references
+		var referencedModules = TsProgramTools.resolveAllTypeReferenceDirectives(program, host);
 
 		// null if nothing is exported (i.e ambient namespaces and modules)
 		// "In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope"
@@ -80,7 +78,7 @@ class ConverterContext {
 	}
 
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
-		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+		// log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 		markSymbol(symbol);
 
 		// explicitly ignored symbols
@@ -117,6 +115,12 @@ class ConverterContext {
 					var typeNode = (cast symbol.valueDeclaration: VariableDeclaration).type;
 					if (typeNode != null) {
 						var type = tc.getTypeFromTypeNode(typeNode);
+						var typeSymbol = type.symbol;
+						// how do we know what module this symbol belongs to?
+						// @! what if we convert all type-reference modules first and create a symbol lookup?
+						// ... in theory we could use this for access paths too, but it's not clear this is a good idea
+						var typeSourceFiles = typeSymbol.declarations.map(n -> n.getSourceFile());
+						// convertSymbolDeclarations(typeSymbol, new SymbolAccessPath(log, tc, Global));
 						debug();
 					}
 				default:
@@ -170,7 +174,7 @@ class ConverterContext {
 		}
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
-			var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(tc, symbol);
+			var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(symbol, tc);
 			
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
 			var hxEnumFields: Array<Field> = enumMembers.map(s -> ({
