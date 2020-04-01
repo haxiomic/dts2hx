@@ -31,7 +31,7 @@ class ConverterContext {
 	}
 	final log: Log;
 	final tc: TypeChecker;
-	final markedSymbols = new Map<Int, Symbol>();
+	// final markedSymbols = new Map<Int, Symbol>();
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
@@ -100,16 +100,18 @@ class ConverterContext {
 		**/
 	}
 
+	/*
 	function markSymbol(symbol: Symbol) {
 		var id: Int = Std.int(Ts.getSymbolId(symbol));
 		var alreadyMarked = markedSymbols.exists(id);
 		markedSymbols.set(id, symbol);
 		return alreadyMarked;
 	}
+	*/
 
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
 		// log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
-		markSymbol(symbol);
+		// markSymbol(symbol);
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
@@ -204,15 +206,20 @@ class ConverterContext {
 		}
 
 		if (symbol.flags & SymbolFlags.Enum != 0) {
+			// a ConstEnum does not exist at runtime
+			var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
+			
 			var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(symbol, tc);
 			
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-			var hxEnumFields: Array<Field> = enumMembers.map(s -> ({
-				name: s.escapedName,
-				pos: TsSymbolTools.getSymbolPosition(s),
-				kind: FVar(null, null),
-				doc: getDoc(s),
-			}: Field));
+			var hxEnumFields: Array<Field> = enumMembers.map(s -> {
+				return ({
+					name: s.escapedName,
+					pos: TsSymbolTools.getSymbolPosition(s),
+					kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
+					doc: getDoc(s),
+				}: Field);
+			});
 
 			var hxEnumDef: HaxeModule = {
 				pack: generateHaxePackagePath(symbol),
@@ -221,7 +228,7 @@ class ConverterContext {
 				isExtern: true,
 				fields: hxEnumFields,
 				doc: getDoc(symbol),
-				meta: [getRuntimeAccessMetadata(symbol, accessPath), {name: ':enum', pos: pos}],
+				meta: (isCompileTimeEnum ? [] : [getRuntimeAccessMetadata(symbol, accessPath)]).concat([{name: ':enum', pos: pos}]),
 				pos: pos,
 				subTypes: [],
 			}
@@ -343,7 +350,7 @@ class ConverterContext {
 			case AmbientModule(path) | ExportModule(path, _): {
 				name: ':jsRequire',
 				params: [{
-					expr: EConst(CString(path.removeQuotes())),
+					expr: EConst(CString(path.unwrapQuotes())),
 					pos: pos,
 				}, {
 					expr: EConst(CString(identifierPath)),

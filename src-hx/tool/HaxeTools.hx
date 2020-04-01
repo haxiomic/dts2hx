@@ -1,5 +1,6 @@
 package tool;
 
+import haxe.macro.Expr;
 import haxe.ds.ReadOnlyArray;
 using StringTools;
 
@@ -38,15 +39,44 @@ class HaxeTools {
 		return str;
 	}
 
-    static public function toSafeTypeName(str: String) {
-        str = toSafeIdent(str, false);
-        // capitalize
-        return str.charAt(0).toUpperCase() + str.substr(1);
-    }
+	static public function toSafeTypeName(str: String) {
+		str = toSafeIdent(str, false);
+		// capitalize
+		return str.charAt(0).toUpperCase() + str.substr(1);
+	}
 
-    static public function toSafePackageName(str: String) {
-        return toSafeIdent(str, true).toLowerCase();
-    }
+	static public function toSafePackageName(str: String) {
+		return toSafeIdent(str, true).toLowerCase();
+	}
+	
+	/**
+		value must be a number, string or boolean
+	**/
+	static public function primitiveValueToExpr(?value: Dynamic): Null<Expr> {
+		if (value == null) {
+			return null;
+		}
+		var nullPosition = {
+			file: '',
+			min: -1,
+			max: -1,
+		}
+		return switch js.Syntax.typeof(value) {
+			case 'number': {
+				expr: EConst(Math.floor(cast value) == value ? CInt(Std.string(value)) : CFloat(Std.string(value))),
+				pos: nullPosition,
+			}
+			case 'string': {
+				expr: EConst(CString(value, DoubleQuotes)),
+				pos: nullPosition,
+			}
+			case 'boolean': {
+				expr: EConst(CIdent(value == true ? 'true' : 'false')),
+				pos: nullPosition,
+			}
+			default: null;
+		}
+	}
 
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
 		// see core/ast.ml
@@ -60,48 +90,48 @@ class HaxeTools {
 	];
 
 	static final specialCharacterNames = [
-        '0' => 'Zero',
-        '1' => 'One',
-        '2' => 'Two',
-        '3' => 'Three',
-        '4' => 'Four',
-        '5' => 'Five',
-        '6' => 'Six',
-        '7' => 'Seven',
-        '8' => 'Eight',
-        '9' => 'Nine',
-        '!' => 'Bang',
-        '"' => 'DoubleQuote',
-        '#' => 'Hash',
-        '$' => 'Dollar',
-        '£' => 'Pound',
-        '%' => 'Percent',
-        '&' => 'Ampersand',
-        '\'' => 'Quote',
-        '(' => 'LeftParentheses',
-        ')' => 'RightParentheses',
-        '*' => 'Star',
-        '+' => 'Plus',
-        ',' => 'Comma',
-        '-' => 'Minus',
-        '.' => 'Dot',
-        '/' => 'ForwardSlash',
-        ':' => 'Colon',
-        ';' => 'SemiColon',
-        '<' => 'LessThan',
-        '=' => 'Equals',
-        '>' => 'GreaterThan',
-        '?' => 'QuestionMark',
-        '{' => 'LeftBrace',
-        '|' => 'Bar',
-        '}' => 'RightBrace',
-        '~' => 'Tilde',
-        '[' => 'LeftSquareBracket',
-        '\\' => 'BackwardSlash',
-        ']' => 'RightSquareBracket',
-        '^' => 'Caret',
-        '_' => 'Underscore',
-        '@' => 'At',
-    ];
+		'0' => 'Zero',
+		'1' => 'One',
+		'2' => 'Two',
+		'3' => 'Three',
+		'4' => 'Four',
+		'5' => 'Five',
+		'6' => 'Six',
+		'7' => 'Seven',
+		'8' => 'Eight',
+		'9' => 'Nine',
+		'!' => 'Bang',
+		'"' => 'DoubleQuote',
+		'#' => 'Hash',
+		'$' => 'Dollar',
+		'£' => 'Pound',
+		'%' => 'Percent',
+		'&' => 'Ampersand',
+		'\'' => 'Quote',
+		'(' => 'LeftParentheses',
+		')' => 'RightParentheses',
+		'*' => 'Star',
+		'+' => 'Plus',
+		',' => 'Comma',
+		'-' => 'Minus',
+		'.' => 'Dot',
+		'/' => 'ForwardSlash',
+		':' => 'Colon',
+		';' => 'SemiColon',
+		'<' => 'LessThan',
+		'=' => 'Equals',
+		'>' => 'GreaterThan',
+		'?' => 'QuestionMark',
+		'{' => 'LeftBrace',
+		'|' => 'Bar',
+		'}' => 'RightBrace',
+		'~' => 'Tilde',
+		'[' => 'LeftSquareBracket',
+		'\\' => 'BackwardSlash',
+		']' => 'RightSquareBracket',
+		'^' => 'Caret',
+		'_' => 'Underscore',
+		'@' => 'At',
+	];
 
 }

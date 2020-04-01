@@ -2,7 +2,12 @@ package tool;
 
 class StringTools {
 
-	static public function removeQuotes(str: String) {
+	/**
+		Removes matching quotes either side of a string
+		i.e. "hello" -> hello
+		and "hello' -> "hello' (no change because quotes are unmatched)
+	**/
+	static public function unwrapQuotes(str: String) {
 		return switch str.charAt(0) {
 			case q = '"', q = '\'', q = '`' if (str.charAt(str.length - 1) == q):
 				str.substr(1, str.length - 2);
