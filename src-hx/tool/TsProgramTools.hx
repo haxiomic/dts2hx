@@ -34,4 +34,38 @@ class TsProgramTools {
 		return internalMethod(sourceFile, fileReference);
 	}
 
+	public static function getDeclarationSymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
+		var tc = program.getTypeChecker();
+		// get all globally visible symbols and filter for those that have a declaration in the sourceFile
+		return tc.getSymbolsInScope(sourceFile, 0xFFFFFF)
+			.filter(
+				symbol -> {
+					if (symbol.declarations != null) for (declaration in symbol.declarations)
+						if (declaration.getSourceFile() == sourceFile)
+							return true;
+					return false;
+				}
+			)
+			.map(tc.getExportSymbolOfSymbol);
+	}
+
+	public static function getExportsOfSourceFile(program: Program, sourceFile: SourceFile) {
+		var tc = program.getTypeChecker();
+		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+		if (sourceFileSymbol != null) {
+			// return tc.getExportsOfModule(sourceFileSymbol); // seems to miss symbols like export =
+			var exports = [];
+			if (sourceFileSymbol.exports != null) sourceFileSymbol.exports.forEach((symbol, key) -> {
+				exports.push(symbol);
+			});
+			if (sourceFileSymbol.globalExports != null) sourceFileSymbol.globalExports.forEach((symbol, key) -> {
+				exports.push(symbol);
+			});
+			return exports.map(tc.getExportSymbolOfSymbol);
+		} else {
+			// sourcefile symbols are visible in the global scope
+			return getDeclarationSymbolsInSourceFile(program, sourceFile);
+		}
+	}
+
 }

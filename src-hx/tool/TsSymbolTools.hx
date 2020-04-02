@@ -9,6 +9,10 @@ import typescript.ts.SymbolFlags;
 import typescript.ts.Symbol;
 
 class TsSymbolTools {
+
+	public static function getId(symbol: Symbol) {
+		return Std.int(Ts.getSymbolId(symbol));
+	} 
 	
 	/**
 		Apparently the way to detect for an external module is to check for double quote at the start of the name
@@ -125,16 +129,10 @@ class TsSymbolTools {
 		}
 	}
 
-	public static function getDeclarationSymbolsInSourceFile(tc: typescript.ts.TypeChecker, sourceFile: SourceFile) {
-		// get all globally visible symbols and filter for those that have a declaration in the sourceFile
-		return tc.getSymbolsInScope(sourceFile, 0xFFFFFF).filter(
-			symbol -> {
-				if (symbol.declarations != null) for (declaration in symbol.declarations)
-					if (declaration.getSourceFile() == sourceFile)
-						return true;
-				return false;
-			}
-		).map(tc.getExportSymbolOfSymbol);
+	public static function getExports(symbol: Symbol): Array<Symbol> {
+		var exports = [];
+		if (symbol.exports != null) symbol.exports.forEach((s, _) -> exports.push(s));
+		return exports;
 	}
 
 	static function isPowerOfTwo(x: Int) {

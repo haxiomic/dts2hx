@@ -1,10 +1,10 @@
+import typescript.ts.CompilerHost;
 import typescript.ts.Program;
 import typescript.ts.SourceFile;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import js.Lib.debug;
 import tool.HaxeTools;
-import tool.TsSymbolTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
 import typescript.ts.InternalSymbolName;
@@ -17,6 +17,7 @@ import typescript.ts.TypeNode;
 import typescript.ts.VariableDeclaration;
 
 using tool.TsProgramTools;
+using tool.TsSymbolTools;
 using tool.StringTools;
 using ConverterContext.SymbolAccessTools;
 using StringTools;
@@ -33,11 +34,12 @@ class ConverterContext {
 	}
 	final log: Log;
 	final tc: TypeChecker;
-	// final markedSymbols = new Map<Int, Symbol>();
+	final host: CompilerHost;
+	final program: Program;
 
 	// symbol access map is filled during an initial pass over the program
 	// the access path for key-symbols such as types are stored so we can retrieve them later when we have a type-reference
-	final symbolAccessMap = new Map<String, SymbolAccess>();
+	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
@@ -46,8 +48,8 @@ class ConverterContext {
 		
 		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
-		var host = Ts.createCompilerHost(compilerOptions);
-		var program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
+		this.host = Ts.createCompilerHost(compilerOptions);
+		this.program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
 		this.tc = program.getTypeChecker();
 
 		log.diagnostics(program.getAllDiagnostics());
@@ -58,22 +60,64 @@ class ConverterContext {
 			throw 'Failed to get entry-point source file';
 		}
 
-		// null if nothing is exported (i.e ambient namespaces and modules)
-		// "In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope"
-		var entryPointModuleSymbol = tc.getSymbolAtLocation(entryPointSourceFile);
+		var moduleRootSourceFiles: Array<SourceFile> = [entryPointSourceFile];
 
-		if (entryPointModuleSymbol != null) {
-			log.log('entryPointModuleSymbol', entryPointModuleSymbol);
+		// set `moduleName` on source files with a known module
+		// `sourceFile.moduleName` is not populated after binding, so let's populate it to help aliasing
+		entryPointSourceFile.moduleName = this.entryPointModuleId;
+		var moduleReferences = program.resolveAllTypeReferenceDirectives(host);
+		for (moduleReference in moduleReferences) {
+			if (moduleReference.resolvedTypeReferenceDirective != null) {
+				var resolvedFileName = moduleReference.resolvedTypeReferenceDirective.resolvedFileName;
+				var packageInfo = moduleReference.resolvedTypeReferenceDirective.packageId;
+				var moduleName = packageInfo != null ? packageInfo.name : null;
+				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
+				if (sourceFile != null) {
+					sourceFile.moduleName = moduleName != null ? normalizeModuleName(moduleName) : null;
+					moduleRootSourceFiles.push(sourceFile);
+				} else {
+					log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
+				}
+			} else {
+				log.error('Failed to find referenced module <b>${moduleReference.failedLookupLocations[0]}</b>');
+			}
 		}
 
-		convertSourceFile(program, entryPointSourceFile, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol, []) : Global([]));
+		// populate symbol access map
+		for (moduleSourceFile in moduleRootSourceFiles) {
+			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
+				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+				log.log(sourceFile, sourceFileSymbol);
+			
+				var sourceFileAccess = if (sourceFileSymbol != null) {
+					ExportModule(getSourceFileModulePath(sourceFile), sourceFileSymbol, []);
+				} else {
+					Global([]);
+				}
 
-		// get all `/// <reference type="$type">` module references
-		var referencedModules = program.resolveAllTypeReferenceDirectives(host);
-		for (module in referencedModules) {
-			// module.resolvedTypeReferenceDirective.resolvedFileName
-			// convertSourceFile(program, )
+				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
+					walkDeclarationSymbols(symbol, sourceFileAccess, (symbol, access) -> {
+						var accessArray = symbolAccessMap.get(symbol.getId());
+						if (accessArray == null) {
+							accessArray = [];
+							symbolAccessMap.set(symbol.getId(), accessArray);
+						}
+						accessArray.push(access);
+					});
+				}
+			});
 		}
+
+		// convert symbols
+		for (moduleSourceFile in moduleRootSourceFiles) {
+			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
+				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
+					convertSymbolDeclarations(symbol);
+				}
+			});
+		}
+
+		// **these are accessible from the normal source file rules**
 
 		/**
 			@! idea:
@@ -88,6 +132,7 @@ class ConverterContext {
 				convert declarations
 					at each **type-reference** check the symbol access map
 					if no symbol is found, the symbol is considered _Inaccessible_ 
+					add symbol to conversion queue
 			}
 
 			# While generating haxe modules
@@ -116,30 +161,19 @@ class ConverterContext {
 		**/
 	}
 
-	function convertSourceFile(program: Program, sourceFile: SourceFile, access: SymbolAccess) {
-		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-		log.log('<magenta><b>convertSourceFile()</> ${sourceFile.fileName} <yellow>${access.toString()}</>');
+	function getAccess(symbol: Symbol): Array<SymbolAccess> {
+		var accessArray = symbolAccessMap.get(symbol.getId());
+		return accessArray != null ? accessArray : [Inaccessible];
+	}
 
-		if (sourceFileSymbol != null) {
-			log.log('-- Exports of ', sourceFileSymbol);
-			for (symbol in tc.getExportsOfModule(sourceFileSymbol)) {
-				convertSymbolDeclarations(symbol, access);
-			};
-		} else {
-			// global-scope symbols
-			log.log('-- Global Symbols --');
-			for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, sourceFile)) {
-				convertSymbolDeclarations(symbol, access);
-			}
-		}
+	function walkReferencedSourceFiles(sourceFile: SourceFile, onSourceFile: (SourceFile) -> Void) {
+		onSourceFile(sourceFile);
 
-		// convert tripple-slash referenced sourceFile /// <reference path>
+		// include tripple-slash referenced sourceFiles
 		for (fileRef in sourceFile.referencedFiles) {
 			var referenceSourceFile = program.getSourceFileFromReference(sourceFile, fileRef);
 			if (referenceSourceFile != null) {
-				convertSourceFile(program, referenceSourceFile, access);
-			} else {
-				log.error('Could not find referenced file <b>"${fileRef.fileName}"</>', sourceFile);
+				walkReferencedSourceFiles(referenceSourceFile, onSourceFile);
 			}
 		}
 	}
@@ -158,20 +192,8 @@ class ConverterContext {
 
 		The input symbol will be walked
 	**/
-	/*
-	function walkKeySymbols(
-		symbol: Symbol,
-		accessPath: SymbolAccessPath,
-		callbacks: {
-			onType: (Symbol, SymbolAccessPath) -> Void,
-			onAlias: (Symbol, SymbolAccessPath) -> Void,
-			onVariable: (Symbol, SymbolAccessPath) -> Void,
-			onFunction: (Symbol, SymbolAccessPath) -> Void,
-			onModule: (Symbol, SymbolAccessPath) -> Void,
-		},
-		depth: Int = 0
-	) {
-		log.log('${[for (i in 0...depth) '\t'].join('')}walk <yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+	function walkDeclarationSymbols(symbol: Symbol, access: SymbolAccess, onSymbol: (Symbol, SymbolAccess) -> Void, depth: Int = 0) {
+		// log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${access.toString()}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
 
@@ -179,37 +201,26 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Alias != 0) {
 			handled = true;
-			callbacks.onAlias(symbol, accessPath);
+			onSymbol(symbol, access);
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
-			walkKeySymbols(aliasedSymbol, newAccessPath, callbacks, depth + 1);
+			walkDeclarationSymbols(aliasedSymbol, symbolAccessAppendSymbol(access, symbol), onSymbol, depth + 1);
 		}
 
-		if (symbol.flags & SymbolFlags.Type != 0) {
+		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 			handled = true;
-			callbacks.onType(symbol, accessPath);
-		}
-
-		if (symbol.flags & (SymbolFlags.Variable) != 0) {
-			handled = true;
-			callbacks.onVariable(symbol, accessPath);
-		}
-
-		if (symbol.flags & (SymbolFlags.Function) != 0) {
-			handled = true;
-			callbacks.onFunction(symbol, accessPath);
+			onSymbol(symbol, access);
 		}
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
 			// ValueModule | NamespaceModule
 			handled = true;
-			callbacks.onModule(symbol, accessPath);
+			onSymbol(symbol, access);
 
-			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
+			var newAccess = symbolAccessAppendSymbol(access, symbol);
 			var exports = tc.getExportsOfModule(symbol);
 			for (moduleExport in exports) {
-				walkKeySymbols(moduleExport, newAccessPath, callbacks, depth + 1);
+				walkDeclarationSymbols(moduleExport, newAccess, onSymbol, depth + 1);
 			}
 		}
 
@@ -217,20 +228,9 @@ class ConverterContext {
 			log.warn('Symbol was not handled in <b>convertSymbolDeclarations()</>', symbol);
 		}
 	}
-	*/
 
-	/*
-	function markSymbol(symbol: Symbol) {
-		var id: Int = Std.int(Ts.getSymbolId(symbol));
-		var alreadyMarked = markedSymbols.exists(id);
-		markedSymbols.set(id, symbol);
-		return alreadyMarked;
-	}
-	*/
-
-	function convertSymbolDeclarations(symbol: Symbol, access: SymbolAccess, depth: Int = 0) {
-		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${access.toString()}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
-		// markSymbol(symbol);
+	function convertSymbolDeclarations(symbol: Symbol, depth: Int = 0) {
+		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${getAccess(symbol).map(a -> a.toString())}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.Prototype;
@@ -240,14 +240,13 @@ class ConverterContext {
 		if (symbol.flags & SymbolFlags.Alias != 0) {
 			handled = true;
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			var newAccess = symbolAccessAppendSymbol(access, symbol);
-			convertSymbolDeclarations(aliasedSymbol, newAccess, depth + 1);
+			convertSymbolDeclarations(aliasedSymbol, depth + 1);
 		}
 
 		if (symbol.flags & SymbolFlags.Type != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 			handled = true;
-			convertTypeSymbol(symbol, access);
+			generateTypeSymbol(symbol);
 		}
 
 		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
@@ -256,12 +255,10 @@ class ConverterContext {
 		}
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
-			handled = true;
 			// ValueModule | NamespaceModule
-			var newAccess = symbolAccessAppendSymbol(access, symbol);
-			var exports = tc.getExportsOfModule(symbol);
-			for (moduleExport in exports) {
-				convertSymbolDeclarations(moduleExport, newAccess, depth + 1);
+			handled = true;
+			for (moduleExport in tc.getExportsOfModule(symbol)) {
+				convertSymbolDeclarations(moduleExport, depth + 1);
 			}
 		}
 
@@ -270,99 +267,100 @@ class ConverterContext {
 		}
 	}
 
-	function convertTypeSymbol(symbol: Symbol, access: SymbolAccess): Null<HaxeModule> {
+	function generateTypeSymbol(symbol: Symbol) {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
 
 		var pos = TsSymbolTools.getSymbolPosition(symbol);
 
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
-			var superClass = null; // @! todo
-			var interfaces = []; // @! todo
-			var typeParams = []; // @! todo
-			var isInterface = symbol.flags & SymbolFlags.Interface != 0;
+			for (access in getAccess(symbol)) {
+				var superClass = null; // @! todo
+				var interfaces = []; // @! todo
+				var typeParams = []; // @! todo
+				var isInterface = symbol.flags & SymbolFlags.Interface != 0;
 
-			var hxClass: HaxeModule = {
-				pack: generateHaxePackagePath(symbol),
-				name: generateHaxeTypeName(symbol),
-				fields: [],
-				kind: TDClass(superClass, interfaces, isInterface, false),
-				isExtern: true,
-				params: typeParams,
-				doc: getDoc(symbol),
-				meta: isInterface ? [] : [access.toAccessMetadata(symbol)],
-				pos: pos,
-				subTypes: [],
-			}
-
-			saveHaxeModule(hxClass, access);
-
-			return hxClass;
-		}
-
-		if (symbol.flags & SymbolFlags.Enum != 0) {
-			// a ConstEnum does not exist at runtime
-			var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
-			
-			var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(symbol, tc);
-			
-			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-			var hxEnumFields: Array<Field> = enumMembers.map(s -> {
-				var safeName = HaxeTools.toSafeIdent(s.escapedName);
-				var nameChanged = s.escapedName != safeName;
-				return ({
-					name: safeName,
-					pos: TsSymbolTools.getSymbolPosition(s),
-					kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
-					doc: getDoc(s),
-					meta: nameChanged ? [{name: ':native', params: [HaxeTools.stringExpr(s.escapedName)], pos: pos}] : [],
-				}: Field);
-			});
-
-			var hxEnumDef: HaxeModule = {
-				pack: generateHaxePackagePath(symbol),
-				name: generateHaxeTypeName(symbol),
-				kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
-				isExtern: true,
-				fields: hxEnumFields,
-				doc: getDoc(symbol),
-				meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata(symbol)]).concat([{name: ':enum', pos: pos}]),
-				pos: pos,
-				subTypes: [],
-			}
-			
-			saveHaxeModule(hxEnumDef, access);
-
-			return hxEnumDef;
-		}
-
-		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
-			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.declarations.filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
-			if (typeAliasDeclaration != null) {
-				// @! typeParameters?
-				var hxAliasType: ComplexType = typeNodeToComplexType(typeAliasDeclaration.type); 
-				
-				var hxTypeDef: HaxeModule = {
+				var hxClass: HaxeModule = {
 					pack: generateHaxePackagePath(symbol),
 					name: generateHaxeTypeName(symbol),
 					fields: [],
-					kind: TDAlias(hxAliasType),
+					kind: TDClass(superClass, interfaces, isInterface, false),
+					isExtern: true,
+					params: typeParams,
 					doc: getDoc(symbol),
+					meta: isInterface ? [] : [access.toAccessMetadata(symbol)],
 					pos: pos,
 					subTypes: [],
 				}
 
-				saveHaxeModule(hxTypeDef, access);
-
-				return hxTypeDef;
-			} else {
-				log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
+				saveHaxeModule(hxClass, access);
 			}
+			return;
+		}
+
+		if (symbol.flags & SymbolFlags.Enum != 0) {
+			for (access in getAccess(symbol)) {
+				// a ConstEnum does not exist at runtime
+				var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
+				
+				var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(symbol, tc);
+				
+				var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
+				var hxEnumFields: Array<Field> = enumMembers.map(s -> {
+					var safeName = HaxeTools.toSafeIdent(s.escapedName);
+					var nameChanged = s.escapedName != safeName;
+					return ({
+						name: safeName,
+						pos: TsSymbolTools.getSymbolPosition(s),
+						kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
+						doc: getDoc(s),
+						meta: nameChanged ? [{name: ':native', params: [HaxeTools.stringExpr(s.escapedName)], pos: pos}] : [],
+					}: Field);
+				});
+
+				var hxEnumDef: HaxeModule = {
+					pack: generateHaxePackagePath(symbol),
+					name: generateHaxeTypeName(symbol),
+					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+					isExtern: true,
+					fields: hxEnumFields,
+					doc: getDoc(symbol),
+					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata(symbol)]).concat([{name: ':enum', pos: pos}]),
+					pos: pos,
+					subTypes: [],
+				}
+				
+				saveHaxeModule(hxEnumDef, access);
+			}
+			return;
+		}
+
+		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
+			for (access in getAccess(symbol)) {
+				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.declarations.filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
+				if (typeAliasDeclaration != null) {
+					// @! typeParameters?
+					var hxAliasType: ComplexType = typeNodeToComplexType(typeAliasDeclaration.type); 
+					
+					var hxTypeDef: HaxeModule = {
+						pack: generateHaxePackagePath(symbol),
+						name: generateHaxeTypeName(symbol),
+						fields: [],
+						kind: TDAlias(hxAliasType),
+						doc: getDoc(symbol),
+						pos: pos,
+						subTypes: [],
+					}
+
+					saveHaxeModule(hxTypeDef, access);
+				} else {
+					log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
+				}
+			}
+			return;
 		}
 
 		log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
-
-		return null;
 	}
 
 	function saveHaxeModule(module: HaxeModule, access: SymbolAccess) {
@@ -376,8 +374,8 @@ class ConverterContext {
 
 		for (moduleMap in moduleMaps) {
 			if (moduleMap.exists(path)) {
-				log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-				log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
+				// log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+				// log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
 				debug();
 			}
 
@@ -546,6 +544,17 @@ class ConverterContext {
 		}
 	}
 
+	function getSourceFileModulePath(sourceFile: SourceFile): String {
+		return if (sourceFile.moduleName != null) {
+			sourceFile.moduleName;
+		} else {
+			// @! todo: determine minimal module import from fileName
+			// i.e. node_modules/three/src/example.d.ts -> three/src/example
+			// maybe helpful // untyped Ts.convertToRelativePath(sourceFile.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
+			sourceFile.fileName;
+		}
+	}
+
 }
 
 /**
@@ -610,6 +619,14 @@ class SymbolAccessTools {
 		String representation, useful for debugging (not valid syntax)
 	**/
 	static public function toString(access: SymbolAccess) {
+		var identifierChain = getIdentifierChain(access);
+		return switch access {
+			case AmbientModule(path, _): ['require($path)'].concat(identifierChain).join('.');
+			case ExportModule(moduleName, _): ['require("$moduleName")'].concat(identifierChain).join('.');
+			case Global(_): '::${identifierChain.join('.')}';
+			case Inaccessible: '*Inaccessible*';
+		}
+		
 		var parts = new Array<String>();
 		switch access {
 			case AmbientModule(path, _): parts.push('require($path)');
@@ -637,6 +654,24 @@ typedef HaxeModule = TypeDefinition & {
 /**
 	Notes
 	-----
+
+	**SymbolAccess**
+	The reason we track symbol access rather than always using the sourceFile that the symbol is defined in is because doing so can lead to runtime errors in some cases
+	For example, the following typescript program fails at both runtime and compiletime:
+
+	```typescript
+	// import via module root
+	import * as THREE from 'three';
+	console.log(new THREE.Quaternion(1,2,3,4));
+	// import via source file that the symbol is defined in
+	import { Quaternion } from './node_modules/three/src/math/Quaternion'; // import { _Math } from './Math.js'; SyntaxError: Unexpected token {
+	console.log(new Quaternion(1,2,3,4));
+	```
+
+	The failure is because THREE.Quaternion is accessed from the bundled es5 javascript, whereas the source file Quaternion.js. Moreover, if we have require('three') alongside require('three/src/math/quaternion') then we have two implementations of Quaternion
+
+	On the other hand, it's possible that importing from the individual source files (rather than module) could lead to smaller bundled code because unused code isn't imported.
+	I may add an option for this in the future.
 
 	**SymbolFlags**
 	https://github.com/microsoft/TypeScript/blob/0ae938b718bae3367bff26369adac1ecef56f212/src/compiler/types.ts#L4007
@@ -719,5 +754,8 @@ typedef HaxeModule = TypeDefinition & {
 	module.exports = <EntityNameExpression>
 	{<Identifier>}
 	{name: <EntityNameExpression>}
-	````
+	```
+	
+	For a discussion on the different types of exports and imports
+	https://github.com/microsoft/TypeScript/issues/7185#issuecomment-421632656
 **/
