@@ -96,13 +96,12 @@ class ConverterContext {
 				}
 
 				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
-					walkDeclarationSymbols(symbol, sourceFileAccess, (symbol, access) -> {
-						var accessArray = symbolAccessMap.get(symbol.getId());
-						if (accessArray == null) {
-							accessArray = [];
-							symbolAccessMap.set(symbol.getId(), accessArray);
+					walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
+						var currentAccess = sourceFileAccess;
+						for (s in accessChain) {
+							currentAccess = symbolAccessAppendSymbol(currentAccess, s);
 						}
-						accessArray.push(access);
+						setAccess(symbol, currentAccess);
 					});
 				}
 			});
@@ -112,7 +111,16 @@ class ConverterContext {
 		for (moduleSourceFile in moduleRootSourceFiles) {
 			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
 				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
-					convertSymbolDeclarations(symbol);
+					walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
+						if (symbol.flags & SymbolFlags.Type != 0) {
+							// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+							generateTypeSymbol(symbol);
+						}
+
+						if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
+							// FunctionScopedVariable | BlockScopedVariable
+						}
+					});
 				}
 			});
 		}
@@ -161,6 +169,15 @@ class ConverterContext {
 		**/
 	}
 
+	function setAccess(symbol: Symbol, access: SymbolAccess) {
+		var accessArray = symbolAccessMap.get(symbol.getId());
+		if (accessArray == null) {
+			accessArray = [];
+			symbolAccessMap.set(symbol.getId(), accessArray);
+		}
+		accessArray.push(access);
+	}
+
 	function getAccess(symbol: Symbol): Array<SymbolAccess> {
 		var accessArray = symbolAccessMap.get(symbol.getId());
 		return accessArray != null ? accessArray : [Inaccessible];
@@ -192,78 +209,55 @@ class ConverterContext {
 
 		The input symbol will be walked
 	**/
-	function walkDeclarationSymbols(symbol: Symbol, access: SymbolAccess, onSymbol: (Symbol, SymbolAccess) -> Void, depth: Int = 0) {
-		// log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${access.toString()}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+	function walkDeclarationSymbols(symbol: Symbol, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
+		accessChain = accessChain != null ? accessChain : [];
+
 		// explicitly ignored symbols
-		var ignoredSymbolFlags = SymbolFlags.Prototype;
+		var ignoredSymbolFlags = SymbolFlags.ExportStar;
+
+		// handle module replacement: `export =`, for example, the module symbol
+		// `declare module "module" { export = Class; }`
+		// will be replaced with `Class`
+		if (symbol.flags & SymbolFlags.Module != 0) {
+			// internal method used to resolve `export =` modules
+			var resolvedSymbol = untyped tc.resolveExternalModuleSymbol(symbol);
+			if (resolvedSymbol != symbol) {
+				accessChain = accessChain.concat([symbol]);
+				symbol = resolvedSymbol;
+			}
+		}
+
+		log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 
 		var handled = symbol.flags & ignoredSymbolFlags != 0;
 
 		if (symbol.flags & SymbolFlags.Alias != 0) {
 			handled = true;
-			onSymbol(symbol, access);
+			onSymbol(symbol, accessChain);
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			walkDeclarationSymbols(aliasedSymbol, symbolAccessAppendSymbol(access, symbol), onSymbol, depth + 1);
+			walkDeclarationSymbols(aliasedSymbol, onSymbol, accessChain.concat([symbol]), depth + 1);
 		}
 
 		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 			handled = true;
-			onSymbol(symbol, access);
+			onSymbol(symbol, accessChain);
 		}
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
 			// ValueModule | NamespaceModule
 			handled = true;
-			onSymbol(symbol, access);
+			onSymbol(symbol, accessChain);
 
-			var newAccess = symbolAccessAppendSymbol(access, symbol);
-			var exports = tc.getExportsOfModule(symbol);
-			for (moduleExport in exports) {
-				walkDeclarationSymbols(moduleExport, newAccess, onSymbol, depth + 1);
+			var exportAccessChain = accessChain.concat([symbol]);
+			var moduleMembers: Array<Symbol> = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.ModuleMember != 0);
+			for (moduleExport in moduleMembers) {
+				walkDeclarationSymbols(moduleExport, onSymbol, exportAccessChain, depth + 1);
 			}
 		}
 
 		if (!handled) {
-			log.warn('Symbol was not handled in <b>convertSymbolDeclarations()</>', symbol);
-		}
-	}
-
-	function convertSymbolDeclarations(symbol: Symbol, depth: Int = 0) {
-		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${getAccess(symbol).map(a -> a.toString())}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
-
-		// explicitly ignored symbols
-		var ignoredSymbolFlags = SymbolFlags.Prototype;
-
-		var handled = symbol.flags & ignoredSymbolFlags != 0;
-
-		if (symbol.flags & SymbolFlags.Alias != 0) {
-			handled = true;
-			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			convertSymbolDeclarations(aliasedSymbol, depth + 1);
-		}
-
-		if (symbol.flags & SymbolFlags.Type != 0) {
-			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-			handled = true;
-			generateTypeSymbol(symbol);
-		}
-
-		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-			// FunctionScopedVariable | BlockScopedVariable
-			handled = true;
-		}
-
-		if (symbol.flags & SymbolFlags.Module != 0) {
-			// ValueModule | NamespaceModule
-			handled = true;
-			for (moduleExport in tc.getExportsOfModule(symbol)) {
-				convertSymbolDeclarations(moduleExport, depth + 1);
-			}
-		}
-
-		if (!handled) {
-			log.warn('Symbol was not handled in <b>convertSymbolDeclarations()</>', symbol);
+			log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
 		}
 	}
 
@@ -376,7 +370,7 @@ class ConverterContext {
 			if (moduleMap.exists(path)) {
 				// log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
 				// log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
-				debug();
+				// debug();
 			}
 
 			moduleMap.set(path, module);
@@ -508,8 +502,8 @@ class ConverterContext {
 					log.error('Cannot change symbol access from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to <b>AmbientModule("${symbol.name}")</>', symbol);
 					access;
 				case AmbientModule(path, _):
-					log.error('Cannot change symbol access from <b>AmbientModule($path)</> to <b>AmbientModule(${symbol.name})</> because this implies nested modules', symbol);
-					access;
+					// replace ambient module with a new one (we assume nested ambient modules is not possbile)
+					AmbientModule(symbol.name, []);
 				case Global(_):
 					AmbientModule(symbol.name, []);
 				case Inaccessible:
