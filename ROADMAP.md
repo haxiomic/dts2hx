@@ -1,3 +1,19 @@
+- Handle this pattern
+```typescript
+declare module "module" {
+    export = NodeJS.Module;
+}
+```
+-> Here, this module is replace by the type NodeJS.Module
+
+- Consider moving global types to a package called `global` rather than a separate module
+	- See node.js -> would be nice for these to be a single lib
+	- This requires checking the access path in generateHaxeTypePath
+	- We can do this now. Inaccessible symbols should have the same package as module symbols
+
+- Validate `export default` handling
+	- This works ok now but it's possible to have two access paths to the same symbol (but this doesn't create an issue)
+
 - Need to check we're not converting the same symbols twice
 - How do we handle external lib references like jquery and sizzle
 	- Ideally the output would be

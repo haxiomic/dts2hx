@@ -46,7 +46,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Unify type parameter handling; constraints are ignored for class type parameters
     - [x] Wrong type parameter is found in class extends
     - [x] Remove redefinitions of extending class fields
-- [ ] Rewrite in haxe using generated TypeScript compiler externs **← currently working on this**
+- [ ] Rewrite in haxe using generated TypeScript compiler externs
     - [x] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
         - babylon.js and many other project use both, do we merge or just parse as-is?
@@ -58,7 +58,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Class & Interface
         - [x] Typedef
         - [x] Enum
-    - [ ] Basic conversion of fundamental types
+    - [ ] Basic conversion of fundamental types **← currently working on this**
         - [x] Enums
         - [ ] Primitives
         - [ ] Type references
@@ -83,6 +83,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
+    - [ ] Add `--install` option
 - [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] Advanced type conversions
     - [ ] Abstracts to support unnamed enums and improve type unions
@@ -92,9 +93,6 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Generate externs for built-in types that aren't in the haxe standard library yet
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
     - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
-- [ ] Command-line interface improvements
-    - [ ] Automatically pull `.d.ts` files from DefinitelyTyped and npm @types
-    - [ ] `dts2hx three --install` works
 - [ ] :star2: **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
