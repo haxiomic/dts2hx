@@ -1,3 +1,4 @@
+import ConverterContext.HaxeModule;
 import Log.LogLevel;
 import haxe.DynamicAccess;
 import haxe.EnumFlags;

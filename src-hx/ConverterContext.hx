@@ -1,8 +1,9 @@
+import typescript.ts.Program;
+import typescript.ts.SourceFile;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import js.Lib.debug;
 import tool.HaxeTools;
-import tool.TsProgramTools;
 import tool.TsSymbolTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
@@ -15,6 +16,7 @@ import typescript.ts.TypeChecker;
 import typescript.ts.TypeNode;
 import typescript.ts.VariableDeclaration;
 
+using tool.TsProgramTools;
 using StringTools;
 using tool.StringTools;
 
@@ -32,6 +34,10 @@ class ConverterContext {
 	final tc: TypeChecker;
 	// final markedSymbols = new Map<Int, Symbol>();
 
+	// symbol access map is filled during an initial pass over the program
+	// the access path for key-symbols such as types are stored so we can retrieve them later when we have a type-reference
+	final symbolAccessMap = new Map<String, SymbolAccessPath>();
+
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
 		this.log = log_ != null ? log_ : new Log();
@@ -43,16 +49,13 @@ class ConverterContext {
 		var program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
 		this.tc = program.getTypeChecker();
 
-		log.diagnostics(TsProgramTools.getAllDiagnostics(program));
+		log.diagnostics(program.getAllDiagnostics());
 
 		var entryPointSourceFile = program.getSourceFile(entryPointFilePath);
 
 		if (entryPointSourceFile == null) {
 			throw 'Failed to get entry-point source file';
 		}
-
-		// get all `/// <reference type="$type">` module references
-		var referencedModules = TsProgramTools.resolveAllTypeReferenceDirectives(program, host);
 
 		// null if nothing is exported (i.e ambient namespaces and modules)
 		// "In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope"
@@ -62,11 +65,14 @@ class ConverterContext {
 			log.log('entryPointModuleSymbol', entryPointModuleSymbol);
 		}
 
-		var accessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
+		var entryPointAccessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
+		convertSourceFile(program, entryPointSourceFile, entryPointAccessPath);
 
-		log.log('-- Global Symbols --');
-		for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, entryPointSourceFile)) {
-			convertSymbolDeclarations(symbol, accessPath);
+		// get all `/// <reference type="$type">` module references
+		var referencedModules = program.resolveAllTypeReferenceDirectives(host);
+		for (module in referencedModules) {
+			// module.resolvedTypeReferenceDirective.resolvedFileName
+			// convertSourceFile(program, )
 		}
 
 		/**
@@ -96,8 +102,122 @@ class ConverterContext {
 					global,
 				}
 			}
+
+			----
+
+			- Why don't we just create modules for all symbols up-front, that way we don't need the access-path later
+				- When we have a type-reference we assume the module exists at the generated type path
+				- **What happens when an inaccessible type is referenced? How do we know we need to create it?**
+					- _Are there any actually inaccessible types?_ What's an example?
+						-> Yes mxgraph types
+			- This way type-reference never creates a type that has an access-path
+				- It either gets the type if it already 
+
 		**/
 	}
+
+	function convertSourceFile(program: Program, sourceFile: SourceFile, accessPath: SymbolAccessPath) {
+		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+		log.log('<magenta><b>convertSourceFile()</> ${sourceFile.fileName} <yellow>${accessPath}</>');
+
+		if (sourceFileSymbol != null) {
+			log.log('-- Exports of ', sourceFileSymbol);
+			for (symbol in tc.getExportsOfModule(sourceFileSymbol)) {
+				convertSymbolDeclarations(symbol, accessPath);
+			};
+		} else {
+			// global-scope symbols
+			log.log('-- Global Symbols --');
+			for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, sourceFile)) {
+				convertSymbolDeclarations(symbol, accessPath);
+			}
+		}
+
+		// convert tripple-slash referenced sourceFile /// <reference path>
+		for (fileRef in sourceFile.referencedFiles) {
+			var referenceSourceFile = program.getSourceFileFromReference(sourceFile, fileRef);
+			if (referenceSourceFile != null) {
+				convertSourceFile(program, referenceSourceFile, accessPath);
+			} else {
+				log.error('Could not find referenced file <b>"${fileRef.fileName}"</>', sourceFile);
+			}
+		}
+	}
+	
+	/**
+		Walks key symbols that have the following flags:
+			- Type
+			- Alias
+			- Variable
+			- Function
+			- Module
+
+		It **does not** walk into types, or explore type information. For example, it will not walk class fields or the type in this declaration `const X: Type;`
+
+		If a symbol as multiple matching flags, multiple callbacks will fire with the same symbol
+
+		The input symbol will be walked
+	**/
+	/*
+	function walkKeySymbols(
+		symbol: Symbol,
+		accessPath: SymbolAccessPath,
+		callbacks: {
+			onType: (Symbol, SymbolAccessPath) -> Void,
+			onAlias: (Symbol, SymbolAccessPath) -> Void,
+			onVariable: (Symbol, SymbolAccessPath) -> Void,
+			onFunction: (Symbol, SymbolAccessPath) -> Void,
+			onModule: (Symbol, SymbolAccessPath) -> Void,
+		},
+		depth: Int = 0
+	) {
+		log.log('${[for (i in 0...depth) '\t'].join('')}walk <yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+		// explicitly ignored symbols
+		var ignoredSymbolFlags = SymbolFlags.Prototype;
+
+		var handled = symbol.flags & ignoredSymbolFlags != 0;
+
+		if (symbol.flags & SymbolFlags.Alias != 0) {
+			handled = true;
+			callbacks.onAlias(symbol, accessPath);
+			var aliasedSymbol = tc.getAliasedSymbol(symbol);
+			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
+			walkKeySymbols(aliasedSymbol, newAccessPath, callbacks, depth + 1);
+		}
+
+		if (symbol.flags & SymbolFlags.Type != 0) {
+			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+			handled = true;
+			callbacks.onType(symbol, accessPath);
+		}
+
+		if (symbol.flags & (SymbolFlags.Variable) != 0) {
+			handled = true;
+			callbacks.onVariable(symbol, accessPath);
+		}
+
+		if (symbol.flags & (SymbolFlags.Function) != 0) {
+			handled = true;
+			callbacks.onFunction(symbol, accessPath);
+		}
+
+		if (symbol.flags & SymbolFlags.Module != 0) {
+			// ValueModule | NamespaceModule
+			handled = true;
+			callbacks.onModule(symbol, accessPath);
+
+			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
+			var exports = tc.getExportsOfModule(symbol);
+			for (moduleExport in exports) {
+				walkKeySymbols(moduleExport, newAccessPath, callbacks, depth + 1);
+			}
+		}
+
+		if (!handled) {
+			log.warn('Symbol was not handled in <b>convertSymbolDeclarations()</>', symbol);
+		}
+	}
+	*/
 
 	/*
 	function markSymbol(symbol: Symbol) {
@@ -109,7 +229,7 @@ class ConverterContext {
 	*/
 
 	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
-		// log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 		// markSymbol(symbol);
 
 		// explicitly ignored symbols
@@ -119,14 +239,9 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Alias != 0) {
 			handled = true;
-			switch symbol.name {
-				case InternalSymbolName.Default:
-					// ignore export default because it's handled
-				default:
-					var aliasedSymbol = tc.getAliasedSymbol(symbol);
-					var newAccessPath = accessPath.copyAndAddSymbol(symbol);
-					convertSymbolDeclarations(aliasedSymbol, newAccessPath, depth + 1);
-			}
+			var aliasedSymbol = tc.getAliasedSymbol(symbol);
+			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
+			convertSymbolDeclarations(aliasedSymbol, newAccessPath, depth + 1);
 		}
 
 		if (symbol.flags & SymbolFlags.Type != 0) {
@@ -137,26 +252,7 @@ class ConverterContext {
 
 		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 			// FunctionScopedVariable | BlockScopedVariable
-			// add to module class
 			handled = true;
-			// i.e. `const name: Type` or `function name(): Type`
-			switch symbol.valueDeclaration.kind {
-				case FunctionDeclaration: 
-				case VariableDeclaration:
-					var typeNode = (cast symbol.valueDeclaration: VariableDeclaration).type;
-					if (typeNode != null) {
-						var type = tc.getTypeFromTypeNode(typeNode);
-						var typeSymbol = type.symbol;
-						// how do we know what module this symbol belongs to?
-						// @! what if we convert all type-reference modules first and create a symbol lookup?
-						// ... in theory we could use this for access paths too, but it's not clear this is a good idea
-						// var typeSourceFiles = typeSymbol.declarations.map(n -> n.getSourceFile());
-						// convertSymbolDeclarations(typeSymbol, new SymbolAccessPath(log, tc, Global));
-						debug();
-					}
-				default:
-					log.warn('Unexpected declaration kind, expected <i>FunctionDeclaration</> or <i>VariableDeclaration</>', symbol.valueDeclaration);
-			}
 		}
 
 		if (symbol.flags & SymbolFlags.Module != 0) {
@@ -369,7 +465,8 @@ class ConverterContext {
 				pos: pos,
 			}
 			case Inaccessible: {
-				name: 'inaccessible',
+				// this type cannot be reached directly in javascript
+				name: 'jsInaccessible',
 				pos: pos,
 			}
 		}
@@ -523,6 +620,10 @@ class HaxePrimitives {
 	static public final int: ComplexType = TPath({pack: [], name: 'Int'});
 	static public final any: ComplexType = TPath({pack: [], name: 'Any'});
 	static public final void: ComplexType = TPath({pack: [], name: 'Void'});
+}
+
+typedef HaxeModule = TypeDefinition & {
+	subTypes: Array<TypeDefinition>,
 }
 
 /**
