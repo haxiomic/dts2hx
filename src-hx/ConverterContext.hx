@@ -17,8 +17,9 @@ import typescript.ts.TypeNode;
 import typescript.ts.VariableDeclaration;
 
 using tool.TsProgramTools;
-using StringTools;
 using tool.StringTools;
+using ConverterContext.SymbolAccessTools;
+using StringTools;
 
 
 @:expose
@@ -36,7 +37,7 @@ class ConverterContext {
 
 	// symbol access map is filled during an initial pass over the program
 	// the access path for key-symbols such as types are stored so we can retrieve them later when we have a type-reference
-	final symbolAccessMap = new Map<String, SymbolAccessPath>();
+	final symbolAccessMap = new Map<String, SymbolAccess>();
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
@@ -65,8 +66,7 @@ class ConverterContext {
 			log.log('entryPointModuleSymbol', entryPointModuleSymbol);
 		}
 
-		var entryPointAccessPath = new SymbolAccessPath(log, tc, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol) : Global);
-		convertSourceFile(program, entryPointSourceFile, entryPointAccessPath);
+		convertSourceFile(program, entryPointSourceFile, entryPointModuleSymbol != null ? ExportModule(entryPointModuleId, entryPointModuleSymbol, []) : Global([]));
 
 		// get all `/// <reference type="$type">` module references
 		var referencedModules = program.resolveAllTypeReferenceDirectives(host);
@@ -116,20 +116,20 @@ class ConverterContext {
 		**/
 	}
 
-	function convertSourceFile(program: Program, sourceFile: SourceFile, accessPath: SymbolAccessPath) {
+	function convertSourceFile(program: Program, sourceFile: SourceFile, access: SymbolAccess) {
 		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-		log.log('<magenta><b>convertSourceFile()</> ${sourceFile.fileName} <yellow>${accessPath}</>');
+		log.log('<magenta><b>convertSourceFile()</> ${sourceFile.fileName} <yellow>${access.toString()}</>');
 
 		if (sourceFileSymbol != null) {
 			log.log('-- Exports of ', sourceFileSymbol);
 			for (symbol in tc.getExportsOfModule(sourceFileSymbol)) {
-				convertSymbolDeclarations(symbol, accessPath);
+				convertSymbolDeclarations(symbol, access);
 			};
 		} else {
 			// global-scope symbols
 			log.log('-- Global Symbols --');
 			for (symbol in TsSymbolTools.getDeclarationSymbolsInSourceFile(tc, sourceFile)) {
-				convertSymbolDeclarations(symbol, accessPath);
+				convertSymbolDeclarations(symbol, access);
 			}
 		}
 
@@ -137,7 +137,7 @@ class ConverterContext {
 		for (fileRef in sourceFile.referencedFiles) {
 			var referenceSourceFile = program.getSourceFileFromReference(sourceFile, fileRef);
 			if (referenceSourceFile != null) {
-				convertSourceFile(program, referenceSourceFile, accessPath);
+				convertSourceFile(program, referenceSourceFile, access);
 			} else {
 				log.error('Could not find referenced file <b>"${fileRef.fileName}"</>', sourceFile);
 			}
@@ -228,8 +228,8 @@ class ConverterContext {
 	}
 	*/
 
-	function convertSymbolDeclarations(symbol: Symbol, accessPath: SymbolAccessPath, depth: Int = 0) {
-		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${accessPath}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+	function convertSymbolDeclarations(symbol: Symbol, access: SymbolAccess, depth: Int = 0) {
+		log.log('${[for (i in 0...depth) '\t'].join('')}<yellow>${access.toString()}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 		// markSymbol(symbol);
 
 		// explicitly ignored symbols
@@ -240,14 +240,14 @@ class ConverterContext {
 		if (symbol.flags & SymbolFlags.Alias != 0) {
 			handled = true;
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
-			convertSymbolDeclarations(aliasedSymbol, newAccessPath, depth + 1);
+			var newAccess = symbolAccessAppendSymbol(access, symbol);
+			convertSymbolDeclarations(aliasedSymbol, newAccess, depth + 1);
 		}
 
 		if (symbol.flags & SymbolFlags.Type != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 			handled = true;
-			convertTypeSymbol(symbol, accessPath);
+			convertTypeSymbol(symbol, access);
 		}
 
 		if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
@@ -258,10 +258,10 @@ class ConverterContext {
 		if (symbol.flags & SymbolFlags.Module != 0) {
 			handled = true;
 			// ValueModule | NamespaceModule
-			var newAccessPath = accessPath.copyAndAddSymbol(symbol);
+			var newAccess = symbolAccessAppendSymbol(access, symbol);
 			var exports = tc.getExportsOfModule(symbol);
 			for (moduleExport in exports) {
-				convertSymbolDeclarations(moduleExport, newAccessPath, depth + 1);
+				convertSymbolDeclarations(moduleExport, newAccess, depth + 1);
 			}
 		}
 
@@ -270,7 +270,7 @@ class ConverterContext {
 		}
 	}
 
-	function convertTypeSymbol(symbol: Symbol, accessPath: SymbolAccessPath): Null<HaxeModule> {
+	function convertTypeSymbol(symbol: Symbol, access: SymbolAccess): Null<HaxeModule> {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
 
@@ -290,12 +290,12 @@ class ConverterContext {
 				isExtern: true,
 				params: typeParams,
 				doc: getDoc(symbol),
-				meta: isInterface ? [] : [getRuntimeAccessMetadata(symbol, accessPath)],
+				meta: isInterface ? [] : [access.toAccessMetadata(symbol)],
 				pos: pos,
 				subTypes: [],
 			}
 
-			saveHaxeModule(hxClass, accessPath);
+			saveHaxeModule(hxClass, access);
 
 			return hxClass;
 		}
@@ -326,12 +326,12 @@ class ConverterContext {
 				isExtern: true,
 				fields: hxEnumFields,
 				doc: getDoc(symbol),
-				meta: (isCompileTimeEnum ? [] : [getRuntimeAccessMetadata(symbol, accessPath)]).concat([{name: ':enum', pos: pos}]),
+				meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata(symbol)]).concat([{name: ':enum', pos: pos}]),
 				pos: pos,
 				subTypes: [],
 			}
 			
-			saveHaxeModule(hxEnumDef, accessPath);
+			saveHaxeModule(hxEnumDef, access);
 
 			return hxEnumDef;
 		}
@@ -352,7 +352,7 @@ class ConverterContext {
 					subTypes: [],
 				}
 
-				saveHaxeModule(hxTypeDef, accessPath);
+				saveHaxeModule(hxTypeDef, access);
 
 				return hxTypeDef;
 			} else {
@@ -365,12 +365,12 @@ class ConverterContext {
 		return null;
 	}
 
-	function saveHaxeModule(module: HaxeModule, accessPath: SymbolAccessPath) {
+	function saveHaxeModule(module: HaxeModule, access: SymbolAccess) {
 		var path = module.pack.concat([module.name]).join('.');
-		var moduleMaps = switch accessPath.root {
+		var moduleMaps = switch access {
 			case AmbientModule(_): [generated.modular];
-			case ExportModule(_, _): [generated.modular];
-			case Global: [generated.global];
+			case ExportModule(_): [generated.modular];
+			case Global(_): [generated.global];
 			case Inaccessible: [generated.global, generated.modular];
 		}
 
@@ -441,37 +441,6 @@ class ConverterContext {
 		return symbol.getDocumentationComment(tc).map(s -> s.text.trim()).join('\n\n');
 	}
 
-	function getRuntimeAccessMetadata(symbol: Symbol, accessPath: SymbolAccessPath): MetadataEntry {
-		var pos = TsSymbolTools.getSymbolPosition(symbol);
-		var identifierPath = accessPath.getIdentifierChain().concat([symbol.escapedName]).join('.');
-		return switch accessPath.root {
-			case AmbientModule(path) | ExportModule(path, _): {
-				name: ':jsRequire',
-				params: [{
-					expr: EConst(CString(path.unwrapQuotes())),
-					pos: pos,
-				}, {
-					expr: EConst(CString(identifierPath)),
-					pos: pos,
-				}],
-				pos: pos,
-			}
-			case Global: {
-				name: ':native',
-				params: [{
-					expr: EConst(CString(identifierPath)),
-					pos: pos,
-				}],
-				pos: pos,
-			}
-			case Inaccessible: {
-				// this type cannot be reached directly in javascript
-				name: 'jsInaccessible',
-				pos: pos,
-			}
-		}
-	}
-
 	function typeNodeToComplexType(node: TypeNode): ComplexType {
 		// @! todo: very WIP
 		var type = tc.getTypeFromTypeNode(node);
@@ -500,83 +469,63 @@ class ConverterContext {
 		return moduleNameParts.join('/');
 	}
 
-}
-
-/**
-	As we traverse the symbol tree we keep track of the symbol path so we can generate runtime-access metadata like @:native and @:jsRequire
-**/
-class SymbolAccessPath {
-
-	public final root: SymbolAccessRoot;
-	public final symbolChain: ReadOnlyArray<Symbol>;
-	final log: Log;
-	final tc: TypeChecker;
-
-	public function new(log: Log, tc: TypeChecker, root: SymbolAccessRoot, ?symbolChain: ReadOnlyArray<Symbol>) {
-		this.log = log;
-		this.tc = tc;
-		this.root = root;
-		this.symbolChain = symbolChain != null ? symbolChain.copy() : [];
-	}
-
-	public function getIdentifierChain() {
-		return symbolChain.filter(s -> switch s.name {
-			case InternalSymbolName.ExportEquals: false;
-			default: true;
-		}).map(s -> s.name);
-	}
-
-	public function copy() {
-		return new SymbolAccessPath(log, tc, root, symbolChain);
-	}
-
-	public function copyAndAddSymbol(symbol: Symbol) {
+	function symbolAccessAppendSymbol(access: SymbolAccess, symbol: Symbol): SymbolAccess {
+		var symbolChain = access.getSymbolChain();
 		// check if an existing symbol aliases to this symbol
 		for (i in 0...symbolChain.length) {
 			var existingSymbol = symbolChain[i];
 			// matched with a symbol already in the path
 			if (existingSymbol.flags & SymbolFlags.Alias != 0 && tc.getAliasedSymbol(existingSymbol) == symbol) {
-				return new SymbolAccessPath(log, tc, root, symbolChain.slice(0, i + 1));
+				// return with trimmed symbol chain
+				return switch access {
+					case AmbientModule(m, s): AmbientModule(m, s.slice(0, i + 1));
+					case ExportModule(m, f, s): ExportModule(m, f, s.slice(0, i + 1));
+					case Global(s): Global(s.slice(0, i + 1));
+					case Inaccessible: Inaccessible;
+				}
 			}
 		}
 
 		if (TsSymbolTools.isSourceFileSymbol(symbol)) {
-			return switch root {
-				case ExportModule(rootModuleName, rootSourceFileSymbol):
-					if (symbol != rootSourceFileSymbol) {
-						log.error('Cannot change symbol access module from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to ExportModule', symbol);
+			return switch access {
+				case ExportModule(moduleName, sourceFileSymbol, _):
+					if (symbol != sourceFileSymbol) {
+						log.error('Cannot change symbol access module from <b>ExportModule($moduleName, ${sourceFileSymbol.name})</> to ExportModule', symbol);
 					}
 					// clear identifier path because the root has been replaced
-					new SymbolAccessPath(log, tc, root, []);
-				case AmbientModule(path):
+					ExportModule(moduleName, sourceFileSymbol, []);
+				case AmbientModule(path, _):
 					log.error('Cannot change symbol access from <b>AmbientModule($path)</> to ExportModule', symbol);
-					copy();
-				case Global:
+					access;
+				case Global(_):
 					log.error('Cannot change symbol access from global to module', symbol);
-					copy();
+					access;
 				case Inaccessible:
-					new SymbolAccessPath(log, tc, ExportModule(symbol.name, symbol), []);
+					// making accessible via the sourceFile
+					ExportModule(symbol.name, symbol, []);
 			}
 		} else if (TsSymbolTools.isExternalModuleSymbol(symbol)) {
-			return switch root {
-				case Global, Inaccessible:
-					// replace global with ambient module
-					new SymbolAccessPath(log, tc, AmbientModule(symbol.name), []);
-				case ExportModule(rootModuleName, rootSourceFileSymbol):
+			return switch access {
+				case ExportModule(rootModuleName, rootSourceFileSymbol, _):
 					log.error('Cannot change symbol access from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to <b>AmbientModule("${symbol.name}")</>', symbol);
-					copy();
-				case AmbientModule(path):
+					access;
+				case AmbientModule(path, _):
 					log.error('Cannot change symbol access from <b>AmbientModule($path)</> to <b>AmbientModule(${symbol.name})</> because this implies nested modules', symbol);
-					copy();
+					access;
+				case Global(_):
+					AmbientModule(symbol.name, []);
+				case Inaccessible:
+					// make accessible via the ambient module
+					AmbientModule(symbol.name, []);
 			}
 		} else {
 			// handle special symbols
 			if (symbol.flags & SymbolFlags.Alias != 0) {
 				var aliasedSymbol = tc.getAliasedSymbol(symbol);
-				
+
 				// check if this symbol aliases to a sourceFileSymbol
 				if (TsSymbolTools.isSourceFileSymbol(aliasedSymbol)) {
-					return copyAndAddSymbol(aliasedSymbol);
+					return symbolAccessAppendSymbol(access, aliasedSymbol);
 				}
 			}
 
@@ -584,9 +533,75 @@ class SymbolAccessPath {
 			// otherwise add an identifier to the chain
 			var symbolParent =  TsSymbolTools.getSymbolParent(symbol);
 			return if (symbolParent != null && symbolParent.name == InternalSymbolName.Global) {
-				new SymbolAccessPath(log, tc, Global, []);
+				Global([]);
 			} else {
-				new SymbolAccessPath(log, tc, root, symbolChain.concat([symbol]));
+				// append to symbol chain
+				return switch access {
+					case AmbientModule(m, s): AmbientModule(m, s.concat([symbol]));
+					case ExportModule(m, f, s): ExportModule(m, f, s.concat([symbol]));
+					case Global(s): Global(s.concat([symbol]));
+					case Inaccessible: Inaccessible;
+				}
+			}
+		}
+	}
+
+}
+
+/**
+	As we traverse the symbol tree we keep track of the symbol path so we can generate runtime-access metadata like @:native and @:jsRequire
+**/
+enum SymbolAccess {
+	AmbientModule(modulePath: String, symbolChain: ReadOnlyArray<Symbol>);
+	ExportModule(moduleName: String, sourceFileSymbol: Symbol, symbolChain: ReadOnlyArray<Symbol>);
+	Global(symbolChain: ReadOnlyArray<Symbol>);
+	Inaccessible;
+}
+
+class SymbolAccessTools {
+	
+	static public function getSymbolChain(access: SymbolAccess) {
+		return switch access {
+			case AmbientModule(_, symbolChain), ExportModule(_, _, symbolChain), Global(symbolChain): symbolChain;
+			case Inaccessible: [];
+		}
+	}
+
+	static public function getIdentifierChain(access: SymbolAccess): Array<String> {
+		return getSymbolChain(access).filter(s -> switch s.name {
+			case InternalSymbolName.ExportEquals: false;
+			default: true;
+		}).map(s -> s.name);
+	}
+
+	static public function toAccessMetadata(access: SymbolAccess, symbol: Symbol): MetadataEntry {
+		var pos = TsSymbolTools.getSymbolPosition(symbol);
+		var identifierPath = access.getIdentifierChain().concat([symbol.escapedName]).join('.');
+		return switch access {
+			case AmbientModule(path, _) | ExportModule(path, _): {
+				name: ':jsRequire',
+				params: [{
+					expr: EConst(CString(path.unwrapQuotes())),
+					pos: pos,
+				}, {
+					expr: EConst(CString(identifierPath)),
+					pos: pos,
+				}],
+				pos: pos,
+			}
+			case Global(_): {
+				name: ':native',
+				params: [{
+					expr: EConst(CString(identifierPath)),
+					pos: pos,
+				}],
+				pos: pos,
+			}
+			case Inaccessible: {
+				// this type cannot be reached directly in javascript
+				// there's no core metadata for this
+				name: 'jsInaccessible',
+				pos: pos,
 			}
 		}
 	}
@@ -594,24 +609,17 @@ class SymbolAccessPath {
 	/**
 		String representation, useful for debugging (not valid syntax)
 	**/
-	function toString() {
+	static public function toString(access: SymbolAccess) {
 		var parts = new Array<String>();
-		switch root {
-			case AmbientModule(path): parts.push('require($path)');
-			case ExportModule(moduleName, sourceFile): parts.push('require("$moduleName")');
-			case Global: parts.push('::');
+		switch access {
+			case AmbientModule(path, _): parts.push('require($path)');
+			case ExportModule(moduleName, _): parts.push('require("$moduleName")');
+			case Global(_): parts.push('::');
 			case Inaccessible: parts.push('*Inaccessible*');
 		}
-		return parts.concat(getIdentifierChain()).join('.');
+		return parts.concat(getIdentifierChain(access)).join('.');
 	}
 
-}
-
-enum SymbolAccessRoot {
-	AmbientModule(path: String);
-	ExportModule(moduleName: String, sourceFileSymbol: Symbol);
-	Global;
-	Inaccessible;
 }
 
 class HaxePrimitives {
