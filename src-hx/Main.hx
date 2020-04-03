@@ -217,32 +217,36 @@ class Main {
 				Node.process.exit(1);
 			}
 		}
+
+		// return error code 1 if we have any errors
+		if (log.errors.length > 0) {
+			Node.process.exit(1);
+		}
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String, outputFlags: EnumFlags<OutputType>) {
 		var host = Ts.createCompilerHost(compilerOptions);
-
+		
+		var resolvedModule: ResolvedModuleFull;
 		var result = Ts.resolveModuleName(moduleName, moduleSearchPath + '/.', compilerOptions, host);
-		if (result.resolvedModule != null) {
-			// moduleId is what you'd need to pass into require() to get the module
-
-			// commented out: previously I used package name, which I expect may not always match the moduleId used in require()
-			// var moduleId = if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
-			// 	result.resolvedModule.packageId.name;
-			// } else {
-			// 	var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-			// 	relPath;
-			// }
-
-			convertTsDefinitions(moduleName, result.resolvedModule, compilerOptions, outputPath, outputFlags);
+		resolvedModule = if (result.resolvedModule != null) {
+			result.resolvedModule;
 		} else {
 			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
 			throw 'Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>';
 		}
-	}
 
-	static function convertTsDefinitions(moduleName: String, resolveModule: ResolvedModuleFull, compilerOptions: CompilerOptions, outputDirectory: String, outputFlags: EnumFlags<OutputType>) {
-		var converter = new ConverterContext(moduleName, resolveModule.resolvedFileName, compilerOptions, log);
+		// moduleId is what you'd need to pass into require() to get the module
+
+		// commented out: previously I used package name, which I expect may not always match the moduleId used in require()
+		// var moduleId = if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
+		// 	result.resolvedModule.packageId.name;
+		// } else {
+		// 	var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
+		// 	relPath;
+		// }
+
+		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, log);
 
 		// save modules to files
 		var printer = new haxe.macro.Printer();
@@ -258,7 +262,7 @@ class Main {
 				'';
 			}
 			var moduleDirname = haxe.io.Path.withoutDirectory(converter.entryPointModuleId) + suffix;
-			var modulePath = Path.join([outputDirectory, moduleDirname]);
+			var modulePath = Path.join([outputPath, moduleDirname]);
 
 			for (_ => module in modules) {
 				var filePath = Path.join([modulePath].concat(module.pack).concat(['${module.name}.hx']));
@@ -275,14 +279,14 @@ class Main {
 			touchDirectoryPath(modulePath);
 
 			// write a readme
-			var readmeStr = generateReadme(converter, resolveModule, outputType);
+			var readmeStr = generateReadme(converter, resolvedModule, outputType);
 			Fs.writeFileSync(Path.join([modulePath, 'README.md']), readmeStr);
 
 			// write haxelib.json
-			var haxelibJsonStr = generateHaxelibJson(converter, resolveModule, outputType);
+			var haxelibJsonStr = generateHaxelibJson(converter, resolvedModule, outputType);
 			Fs.writeFileSync(Path.join([modulePath, 'haxelib.json']), haxelibJsonStr);
 		}
-		
+
 		if (outputFlags.has(Global)) {
 			writeModules(converter.generated.global, Global);
 		}
