@@ -19,6 +19,7 @@ import typescript.ts.VariableDeclaration;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
 using tool.StringTools;
+using tool.HaxeTools;
 using ConverterContext.SymbolAccessTools;
 using StringTools;
 
@@ -112,7 +113,7 @@ class ConverterContext {
 			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
 				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
 					walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
-						if (symbol.flags & SymbolFlags.Type != 0) {
+						if (symbol.flags & (SymbolFlags.Type) != 0) {
 							// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 							generateTypeSymbol(symbol);
 						}
@@ -208,12 +209,32 @@ class ConverterContext {
 		If a symbol as multiple matching flags, multiple callbacks will fire with the same symbol
 
 		The input symbol will be walked
+
+		`accessChain` represents that path to traverse to reach the symbol and it includes the symbol itself.
+
+		For example, consder the symbol `EventEmitter` in node.js
+
+		```typescript
+		declare module "events" {
+			class internal extends NodeJS.EventEmitter { }
+
+			namespace internal {
+				class EventEmitter extends internal { }
+			}
+
+			export = internal;
+		}
+		```
+
+		While the symbol's parent path is [Module("events"), internal, EventEmitter], the accessChain is [Module("events"), EventEmitter]
 	**/
 	function walkDeclarationSymbols(symbol: Symbol, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
-		accessChain = accessChain != null ? accessChain : [];
+		accessChain = accessChain != null ? accessChain : [symbol];
 
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.ExportStar;
+
+		log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 
 		// handle module replacement: `export =`, for example, the module symbol
 		// `declare module "module" { export = Class; }`
@@ -223,17 +244,12 @@ class ConverterContext {
 			var resolvedSymbol = untyped tc.resolveExternalModuleSymbol(symbol);
 
 			if (resolvedSymbol != symbol) {
-				accessChain = accessChain.concat([symbol]);
-				Console.log('<b,magenta>Symbol resolved</>');
-				log.log('\t', symbol);
-				log.log('\t', resolvedSymbol);
-				
-				walkDeclarationSymbols(resolvedSymbol, onSymbol, accessChain, depth + 1);
+				// accessChain remains the same, we access the `export = symbol through the module symbol
+				log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlagsInfo()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlagsInfo()}</b></>', symbol);
+				walkDeclarationSymbols(resolvedSymbol, onSymbol, accessChain, depth);
 				return;
 			}
 		}
-
-		log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
 
 		var handled = symbol.flags & ignoredSymbolFlags != 0;
 
@@ -241,7 +257,7 @@ class ConverterContext {
 			handled = true;
 			onSymbol(symbol, accessChain);
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			walkDeclarationSymbols(aliasedSymbol, onSymbol, accessChain.concat([symbol]), depth + 1);
+			walkDeclarationSymbols(aliasedSymbol, onSymbol, accessChain.concat([aliasedSymbol]), depth + 1);
 		}
 
 		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function) != 0) {
@@ -255,10 +271,9 @@ class ConverterContext {
 			handled = true;
 			onSymbol(symbol, accessChain);
 
-			var exportAccessChain = accessChain.concat([symbol]);
 			var moduleMembers: Array<Symbol> = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.ModuleMember != 0);
 			for (moduleExport in moduleMembers) {
-				walkDeclarationSymbols(moduleExport, onSymbol, exportAccessChain, depth + 1);
+				walkDeclarationSymbols(moduleExport, onSymbol, accessChain.concat([moduleExport]), depth + 1);
 			}
 		}
 
@@ -288,7 +303,7 @@ class ConverterContext {
 					isExtern: true,
 					params: typeParams,
 					doc: getDoc(symbol),
-					meta: isInterface ? [] : [access.toAccessMetadata(symbol)],
+					meta: isInterface ? [] : [access.toAccessMetadata()],
 					pos: pos,
 					subTypes: [],
 				}
@@ -314,7 +329,7 @@ class ConverterContext {
 						pos: TsSymbolTools.getSymbolPosition(s),
 						kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
 						doc: getDoc(s),
-						meta: nameChanged ? [{name: ':native', params: [HaxeTools.stringExpr(s.escapedName)], pos: pos}] : [],
+						meta: nameChanged ? [{name: ':native', params: [s.escapedName.toStringExpr(pos)], pos: pos}] : [],
 					}: Field);
 				});
 
@@ -325,7 +340,7 @@ class ConverterContext {
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
-					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata(symbol)]).concat([{name: ':enum', pos: pos}]),
+					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
 					pos: pos,
 					subTypes: [],
 				}
@@ -509,8 +524,10 @@ class ConverterContext {
 					access;
 				case AmbientModule(_):
 					// replace ambient module with a new one (we assume nested ambient modules is not possible)
+					log.warn('Nested ambient modules should be impossible. This might indicate an internal error', symbol);
 					AmbientModule(symbol.name, []);
 				case Global(_):
+					// change from global access to ambient module access
 					AmbientModule(symbol.name, []);
 				case Inaccessible:
 					// make accessible via the ambient module
@@ -559,6 +576,7 @@ class ConverterContext {
 
 /**
 	As we traverse the symbol tree we keep track of the symbol path so we can generate runtime-access metadata like @:native and @:jsRequire
+	SymbolAccess represents the complete path to a symbol (including the symbol itself and if module import is required)
 **/
 enum SymbolAccess {
 	AmbientModule(modulePath: String, symbolChain: ReadOnlyArray<Symbol>);
@@ -583,27 +601,20 @@ class SymbolAccessTools {
 		}).map(s -> s.name);
 	}
 
-	static public function toAccessMetadata(access: SymbolAccess, symbol: Symbol): MetadataEntry {
-		var pos = TsSymbolTools.getSymbolPosition(symbol);
-		var identifierPath = access.getIdentifierChain().concat([symbol.escapedName]).join('.');
+	static public function toAccessMetadata(access: SymbolAccess): MetadataEntry {
+		var pos = getPosition(access);
+		var identifierChain = access.getIdentifierChain();
 		return switch access {
 			case AmbientModule(path, _) | ExportModule(path, _): {
 				name: ':jsRequire',
-				params: [{
-					expr: EConst(CString(path.unwrapQuotes())),
-					pos: pos,
-				}, {
-					expr: EConst(CString(identifierPath)),
-					pos: pos,
-				}],
+				params: [path.unwrapQuotes().toStringExpr(pos)].concat(
+					identifierChain.length > 0 ? [identifierChain.join('.').toStringExpr(pos)] : []
+				),
 				pos: pos,
 			}
 			case Global(_): {
 				name: ':native',
-				params: [{
-					expr: EConst(CString(identifierPath)),
-					pos: pos,
-				}],
+				params: [identifierChain.join('.').toStringExpr(pos)],
 				pos: pos,
 			}
 			case Inaccessible: {
@@ -613,6 +624,10 @@ class SymbolAccessTools {
 				pos: pos,
 			}
 		}
+	}
+
+	static function getPosition(access: SymbolAccess): Position {
+		return null;
 	}
 
 	/**

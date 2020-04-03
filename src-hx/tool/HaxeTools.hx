@@ -56,9 +56,30 @@ class HaxeTools {
 		return toSafeIdent(str, true).toLowerCase();
 	}
 
-	static public function stringExpr(str: String, ?pos: Position): Expr {
+	static public function toStringExpr(str: String, ?pos: Position): Expr {
 		return {
 			expr: EConst(CString(str, DoubleQuotes)),
+			pos: pos != null ? pos : nullPosition,
+		}
+	}
+
+	static public function toIntExpr(int: Int, ?pos: Position): Expr {
+		return {
+			expr: EConst(CInt(Std.string(int))),
+			pos: pos != null ? pos : nullPosition,
+		}
+	}
+
+	static public function toFloatExpr(float: Float, ?pos: Position): Expr {
+		return {
+			expr: EConst(CFloat(Std.string(float))),
+			pos: pos != null ? pos : nullPosition,
+		}
+	}
+	
+	static public function toBoolExpr(bool: Bool, ?pos: Position): Expr {
+		return {
+			expr: EConst(CIdent(bool ? 'true' : 'false')),
 			pos: pos != null ? pos : nullPosition,
 		}
 	}
