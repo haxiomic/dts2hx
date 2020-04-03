@@ -22,6 +22,7 @@ using tool.StringTools;
 using tool.HaxeTools;
 using ConverterContext.SymbolAccessTools;
 using StringTools;
+using TsInternal;
 
 
 @:expose
@@ -241,7 +242,7 @@ class ConverterContext {
 		// will be replaced with `Class`
 		if (symbol.flags & SymbolFlags.Module != 0) {
 			// internal method used to resolve `export =` modules
-			var resolvedSymbol = untyped tc.resolveExternalModuleSymbol(symbol);
+			var resolvedSymbol = tc.resolveExternalModuleSymbol(symbol);
 
 			if (resolvedSymbol != symbol) {
 				// accessChain remains the same, we access the `export = symbol through the module symbol

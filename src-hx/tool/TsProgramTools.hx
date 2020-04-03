@@ -5,6 +5,7 @@ import typescript.ts.SourceFile;
 import typescript.Ts;
 import typescript.ts.CompilerHost;
 import typescript.ts.Program;
+using TsInternal;
 
 class TsProgramTools {
 
@@ -27,11 +28,6 @@ class TsProgramTools {
 			}
 		}
 		return typeReferences;
-	}
-
-	static public function getSourceFileFromReference(program: Program, sourceFile: SourceFile, fileReference: FileReference): Null<SourceFile> {
-		var internalMethod: (SourceFile, FileReference) -> Null<SourceFile> = js.Syntax.field(program, 'getSourceFileFromReference');
-		return internalMethod(sourceFile, fileReference);
 	}
 
 	public static function getDeclarationSymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
