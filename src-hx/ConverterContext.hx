@@ -221,9 +221,15 @@ class ConverterContext {
 		if (symbol.flags & SymbolFlags.Module != 0) {
 			// internal method used to resolve `export =` modules
 			var resolvedSymbol = untyped tc.resolveExternalModuleSymbol(symbol);
+
 			if (resolvedSymbol != symbol) {
 				accessChain = accessChain.concat([symbol]);
-				symbol = resolvedSymbol;
+				Console.log('<b,magenta>Symbol resolved</>');
+				log.log('\t', symbol);
+				log.log('\t', resolvedSymbol);
+				
+				walkDeclarationSymbols(resolvedSymbol, onSymbol, accessChain, depth + 1);
+				return;
 			}
 		}
 
@@ -501,8 +507,8 @@ class ConverterContext {
 				case ExportModule(rootModuleName, rootSourceFileSymbol, _):
 					log.error('Cannot change symbol access from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to <b>AmbientModule("${symbol.name}")</>', symbol);
 					access;
-				case AmbientModule(path, _):
-					// replace ambient module with a new one (we assume nested ambient modules is not possbile)
+				case AmbientModule(_):
+					// replace ambient module with a new one (we assume nested ambient modules is not possible)
 					AmbientModule(symbol.name, []);
 				case Global(_):
 					AmbientModule(symbol.name, []);
