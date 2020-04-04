@@ -24,3 +24,9 @@ declare class ClassExtending<K> extends ClassBase<Array<K>> {
 declare class ClassWithIndexSignature {
     [key: string]: number,
 }
+
+declare class CallbleClass {
+    field: number;
+}
+
+declare function CallbleClass(arg: number);
