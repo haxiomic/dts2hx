@@ -249,7 +249,7 @@ class ConverterContext {
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.ExportStar;
 
-		// log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</> <green>${generateHaxePackagePath(symbol)}</>', symbol);
+		// log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</>', symbol);
 
 		// handle module replacement: `export =`, for example, the module symbol
 		// `declare module "module" { export = Class; }`
