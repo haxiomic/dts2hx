@@ -61,7 +61,7 @@ class Console {
 				// print expression as a string as well as the expression value (in bold)
 				default:
 					var exprString = printer.printExpr(e);
-					return macro '<b>' + $v{exprString} + ':</> <i,magenta>' + $e + '</>';
+					return macro '<b>' + $v{exprString} + ':</> <i,magenta>' + Std.string(cast $e) + '</>';
 			}
 		});
 		return macro Console.log(${joinArgExprs(namedArgs)});
@@ -588,7 +588,7 @@ class Console {
 		var msg:Expr = macro '';
 		for(i in 0...rest.length){
 			var e = rest[i];
-			msg = macro $msg + $e;
+			msg = macro $msg + Std.string(cast $e);
 			if (i != rest.length - 1){
 				msg = macro $msg + '$argSeparator';
 			}
