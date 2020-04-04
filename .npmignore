@@ -1,0 +1,8 @@
+output
+dts2hx-output/
+/notes
+/test/
+/test-definitions/
+build.hxml
+ROADMAP.md
+tsconfig.json
