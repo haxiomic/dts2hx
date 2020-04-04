@@ -11,7 +11,6 @@ import typescript.Ts;
 class TsSyntaxTools {
 
 	static public function getSyntaxKindName(kind: SyntaxKind): String {
-		// Ts.tokenToString(kind);
 		return js.Syntax.code('require("typescript").SyntaxKind[{0}]', kind);
 	}
 
