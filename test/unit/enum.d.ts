@@ -46,6 +46,8 @@ declare namespace Enums {
         B = 2,
         C = 'ceee',
         D = 3.14,
+        // reserved keyword in haxe
+        operator = 6,
     }
 
 }
