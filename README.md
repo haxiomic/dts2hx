@@ -80,7 +80,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Remove type-path prefix if referencing type within the same module
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
-    - [ ] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
+    - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
     - [ ] Add `--install` option
@@ -104,6 +104,10 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
 # FAQ
+
+- Should I publish generated types to haxelib
+
+    Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider open an issue here noting the fixup required instead – it would be better if dts2hx converted more modules correctly instead of polluting the haxelib namespace with js externs
 
 - What makes this different from previous approaches?
 
