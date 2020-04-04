@@ -1,7 +1,5 @@
-import ConverterContext.HaxeModule;
 import Log.LogLevel;
 import haxe.DynamicAccess;
-import haxe.EnumFlags;
 import haxe.io.Path;
 import hxargs.Args.ArgHandler;
 import js.Node;
@@ -34,7 +32,6 @@ class Main {
 			moduleNames: new Array<String>(),
 			moduleSearchPath: '.',
 			allDependencies: false,
-			outputFlags: new EnumFlags<OutputType>(0xFFFFFF),
 			logLevel: Warning,
 		}
 
@@ -75,18 +72,6 @@ class Main {
 			'--moduleResolution' => (kind: String) -> {
 				cliOptions.tsCompilerOptions.push('--moduleResolution');
 				cliOptions.tsCompilerOptions.push(kind);
-			},
-			
-			@doc('Only generate externs that use javascript modules (i.e. using require() or import)')
-			'--modularOnly' => () -> {
-				cliOptions.outputFlags.set(Modular);
-				cliOptions.outputFlags.unset(Global);
-			},
-
-			@doc('Only generate externs with global visibility (i.e. not using require() or import)')
-			'--globalOnly' => () -> {
-				cliOptions.outputFlags.unset(Modular);
-				cliOptions.outputFlags.set(Global);
 			},
 
 			@doc('Disable terminal colors')
@@ -209,22 +194,30 @@ class Main {
 			}
 		}
 
+		var moduleQueue = new ds.OnceOnlyQueue<String>();
 		for (moduleName in cliOptions.moduleNames) {
+			moduleQueue.tryEnqueue(moduleName);
+		}
+
+		while (true) {
+			var moduleName = moduleQueue.dequeue();
+			if (moduleName == null) break; // finished queue
 			try {
-				convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.outputFlags);
+				var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath).moduleDependencies;
+				if (moduleDependencies.length > 0) {
+					log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
+				}
+				for (moduleDependency in moduleDependencies) {
+					moduleQueue.tryEnqueue(moduleDependency);
+				}
 			} catch (e: Any) {
 				log.error(e);
 				Node.process.exit(1);
 			}
 		}
-
-		// return error code 1 if we have any errors
-		if (log.errors.length > 0) {
-			Node.process.exit(1);
-		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String, outputFlags: EnumFlags<OutputType>) {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String) {
 		var host = Ts.createCompilerHost(compilerOptions);
 		
 		var resolvedModule: ResolvedModuleFull;
@@ -235,6 +228,9 @@ class Main {
 			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
 			throw 'Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>';
 		}
+
+		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
+		var generateLibraryWrapper = !(isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
 
 		// moduleId is what you'd need to pass into require() to get the module
 
@@ -250,63 +246,47 @@ class Main {
 
 		// save modules to files
 		var printer = new haxe.macro.Printer();
-		var hasModularAndGlobal =
-			outputFlags.has(Global) && outputFlags.has(Modular) &&
-			converter.generated.global.keys().hasNext() && converter.generated.modular.keys().hasNext();
 
-		function writeModules(modules: Map<String, HaxeModule>, outputType: OutputType) {
-			var suffix = if (hasModularAndGlobal) switch outputType {
-				case Global: '-global';
-				case Modular: '-modular';
-			} else {
-				'';
-			}
-			var moduleDirname = haxe.io.Path.withoutDirectory(converter.entryPointModuleId) + suffix;
-			var modulePath = Path.join([outputPath, moduleDirname]);
+		var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, generateLibraryName(converter.entryPointModuleId)]) : outputPath;
 
-			for (_ => module in modules) {
-				var filePath = Path.join([modulePath].concat(module.pack).concat(['${module.name}.hx']));
-				var moduleHaxeStr = printer.printTypeDefinition(module);
+		for (_ => haxeModule in converter.generatedModules) {
+			var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
+			var moduleHaxeStr = printer.printTypeDefinition(haxeModule);
 
-				for (subType in module.subTypes) {
-					moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
-				}
-
-				touchDirectoryPath(Path.directory(filePath));
-				Fs.writeFileSync(filePath, moduleHaxeStr);
+			for (subType in haxeModule.subTypes) {
+				moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
 			}
 
-			touchDirectoryPath(modulePath);
+			touchDirectoryPath(Path.directory(filePath));
+			Fs.writeFileSync(filePath, moduleHaxeStr);
+		}
 
+		touchDirectoryPath(outputLibraryPath);
+
+		if (generateLibraryWrapper) {
 			// write a readme
-			var readmeStr = generateReadme(converter, resolvedModule, outputType);
-			Fs.writeFileSync(Path.join([modulePath, 'README.md']), readmeStr);
+			var readmeStr = generateReadme(converter, resolvedModule);
+			Fs.writeFileSync(Path.join([outputLibraryPath, 'README.md']), readmeStr);
 
 			// write haxelib.json
-			var haxelibJsonStr = generateHaxelibJson(converter, resolvedModule, outputType);
-			Fs.writeFileSync(Path.join([modulePath, 'haxelib.json']), haxelibJsonStr);
+			var haxelibJsonStr = generateHaxelibJson(converter, resolvedModule);
+			Fs.writeFileSync(Path.join([outputLibraryPath, 'haxelib.json']), haxelibJsonStr);
 		}
 
-		if (outputFlags.has(Global)) {
-			writeModules(converter.generated.global, Global);
-		}
-
-		if (outputFlags.has(Modular)) {
-			writeModules(converter.generated.modular, Modular);
-		}
+		return converter;
 	}
 
-	static function generateReadme(converter: ConverterContext, resolveModule: ResolvedModuleFull, outputType: OutputType): String {
+	static function generateReadme(converter: ConverterContext, resolveModule: ResolvedModuleFull): String {
 		var repoUrl = packageJson.repository.url;
 		var dts2hxRef = repoUrl != null ? '[dts2hx]($repoUrl)' : 'dts2hx';
 		var moduleVersion: Null<String> = resolveModule.packageId != null ? resolveModule.packageId.version : null;
 		return '
 			# Haxe Externs for ${converter.entryPointModuleId}${moduleVersion != null ? ' v$moduleVersion' : ''}
 
-			${switch outputType {
+			${/*switch outputType {
 				case Global: 'These definitions assume global visibility of the library ${converter.entryPointModuleId}. When targeting the web you should add the library with a `<script>` tag.';
 				case Modular: 'These definitions use `require("${converter.entryPointModuleId.unwrapQuotes()}")` to load the library at runtime. When targeting the web, you may want to use a JavaScript bundler to combine modules into a single file.';
-			}}
+			}*/}
 
 			Generated by **$dts2hxRef ${packageJson.version}** using **TypeScript ${typescript.Ts.version}** with arguments:
 			```bash
@@ -315,18 +295,37 @@ class Main {
 		'.removeIndentation().trim();
 	}
 
-	static function generateHaxelibJson(converter: ConverterContext, resolveModule: ResolvedModuleFull, outputType: OutputType): String {
+	static function generateHaxelibJson(converter: ConverterContext, resolveModule: ResolvedModuleFull): String {
 		var moduleVersion: Null<String> = resolveModule.packageId != null ? resolveModule.packageId.version : null;
 		var haxelib: Dynamic = {
-			name: converter.entryPointModuleId,
+			name: generateLibraryName(converter.entryPointModuleId),
 			tags: [converter.entryPointModuleId, "externs", "typescript", "javascript", "dts2hx"],
 			description: 'Externs for ${converter.entryPointModuleId}${moduleVersion != null ? ' v$moduleVersion' : ''} automatically generated by dts2hx',
 			contributors: ["haxiomic"],
+			dependencies: { }
 		}
 		if (moduleVersion != null) {
 			haxelib.version = moduleVersion;
 		}
+		// add dependencies
+		for (moduleDependency in converter.moduleDependencies) {
+			Reflect.setField(haxelib.dependencies, generateLibraryName(moduleDependency), "");
+		}
 		return haxe.Json.stringify(haxelib, null, '\t');
+	}
+
+	static function generateLibraryName(moduleName: String) {
+		// could add '-externs' maybe
+		return moduleName;
+	}
+	
+	/**
+		Modules might be referenced by a direct path rather than a module name
+		For example: ./project/module
+	**/
+	static function isDirectPathReferenceModule(moduleName: String) {
+		var c0 = moduleName.charAt(0);
+		return c0 == '.' || c0 == '/';
 	}
 
 	static function extend<T>(base: T, extendWidth: T): T {
@@ -410,9 +409,4 @@ class Main {
 		}
 	}
 
-}
-
-enum OutputType {
-	Global;
-	Modular;
 }
