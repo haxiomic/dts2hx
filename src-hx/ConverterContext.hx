@@ -1,29 +1,27 @@
-import haxe.io.Path;
-import typescript.ts.CompilerHost;
-import typescript.ts.Program;
-import typescript.ts.SourceFile;
 import haxe.ds.ReadOnlyArray;
+import haxe.io.Path;
 import haxe.macro.Expr;
-import js.Lib.debug;
-import tool.HaxeTools;
 import typescript.Ts;
+import typescript.ts.CompilerHost;
 import typescript.ts.CompilerOptions;
 import typescript.ts.InternalSymbolName;
+import typescript.ts.Program;
+import typescript.ts.SourceFile;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
 import typescript.ts.SyntaxKind;
 import typescript.ts.TypeAliasDeclaration;
 import typescript.ts.TypeChecker;
 import typescript.ts.TypeNode;
-import typescript.ts.VariableDeclaration;
 
-using tool.TsProgramTools;
-using tool.TsSymbolTools;
-using tool.StringTools;
-using tool.HaxeTools;
 using ConverterContext.SymbolAccessTools;
 using StringTools;
 using TsInternal;
+using tool.HaxeTools;
+using tool.StringTools;
+using tool.TsProgramTools;
+using tool.TsSymbolTools;
+
 
 
 @:expose
@@ -178,7 +176,22 @@ class ConverterContext {
 			accessArray = [];
 			symbolAccessMap.set(symbol.getId(), accessArray);
 		}
-		accessArray.push(access);
+
+		var shouldAdd = switch access {
+			case AmbientModule(_), ExportModule(_):
+				// only worth adding an ambient module if there isn't already an module path
+				accessArray.filter(a -> a.match(AmbientModule(_, _) | ExportModule(_, _, _))).length == 0;
+			case Global(_):
+				// we can have a global and modular access, but we don't want more than global access
+				accessArray.filter(a -> a.match(Global(_))).length == 0;
+			case Inaccessible:
+				// no need to add Inaccessible, symbols with no values in symbolAccessMap are considered Inaccessible
+				false;
+		}
+
+		if (shouldAdd) {
+			accessArray.push(access);
+		}
 	}
 
 	function getAccess(symbol: Symbol): Array<SymbolAccess> {
@@ -299,7 +312,7 @@ class ConverterContext {
 
 				var hxClass: HaxeModule = {
 					pack: generateHaxePackagePath(symbol, access),
-					name: generateHaxeTypeName(symbol),
+					name: generateHaxeTypeName(symbol, access),
 					fields: [],
 					kind: TDClass(superClass, interfaces, isInterface, false),
 					isExtern: true,
@@ -337,7 +350,7 @@ class ConverterContext {
 
 				var hxEnumDef: HaxeModule = {
 					pack: generateHaxePackagePath(symbol, access),
-					name: generateHaxeTypeName(symbol),
+					name: generateHaxeTypeName(symbol, access),
 					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
 					isExtern: true,
 					fields: hxEnumFields,
@@ -361,7 +374,7 @@ class ConverterContext {
 					
 					var hxTypeDef: HaxeModule = {
 						pack: generateHaxePackagePath(symbol, access),
-						name: generateHaxeTypeName(symbol),
+						name: generateHaxeTypeName(symbol, access),
 						fields: [],
 						kind: TDAlias(hxAliasType),
 						doc: getDoc(symbol),
@@ -392,17 +405,37 @@ class ConverterContext {
 		generatedModules.set(path, module);
 	}
 
-	function generateHaxeTypeName(symbol: Symbol): String {
-		return HaxeTools.toSafeTypeName(symbol.escapedName);
-	}
-
 	function generateHaxePackagePath(symbol: Symbol, access: SymbolAccess): Array<String> {
 		var pack = new Array<String>();
 
 		// prefix the module name (if it's a path, add a pack for each directory)
-		pack = pack.concat(Path.normalize(entryPointModuleId).split('/').filter(s -> s != '').map(s -> s.toSafePackageName()));
+		pack = convertFilePathToHaxePackage(entryPointModuleId);
+
+		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
+		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
+		var identifierChain = access.getIdentifierChain();
+		var parentIdentifierPackages = identifierChain.slice(0, identifierChain.length - 1).map(s -> s.toSafePackageName());
+		switch access {
+			case AmbientModule(path, _), ExportModule(path, _):
+				var pathPack = convertFilePathToHaxePackage(path);
+				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
+				if (pathPack[0] == pack[0]) {
+					pathPack.shift();
+				}
+				pack = pack.concat(pathPack).concat(parentIdentifierPackages);
+			case Global(_):
+				pack = pack.concat(['global']).concat(parentIdentifierPackages);
+			case Inaccessible:
+				pack = pack.concat(
+					symbol.getSymbolParents()
+					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
+					.filter(s -> !s.isSourceFileSymbol())
+					.map(s -> s.name.toSafePackageName())
+				);
+		}
 
 		// global symbols are prefixed with 'global' package
+		/*
 		var isGlobal = access.match(Global(_));
 		if (isGlobal) {
 			pack.push('global');
@@ -415,7 +448,7 @@ class ConverterContext {
 					if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
 						// @! need special handling of source file paths to remove prefix
 					} else {
-						pack = pack.concat(pathToHaxePackage(parentSymbol.name));
+						pack = pack.concat(convertFilePathToHaxePackage(parentSymbol.name));
 					}
 				} else {
 					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
@@ -423,31 +456,24 @@ class ConverterContext {
 				}
 			}
 		}
-
-
-		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
-		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
-		/*
-		switch accessPath.root {
-			case AmbientModule(path):
-				var pathPack = pathToHaxePackage(path);
-				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
-				if (pathPack[0] == pack[0]) {
-					pathPack.shift();
-				}
-				pack = pack.concat(pathPack);
-			default:
-		}
-
-		pack = pack.concat(accessPath.getIdentifierChain().map(s -> HaxeTools.toSafeIdent(s).toLowerCase()));
-
 		*/
 
 		return pack;
 	}
 
-	function pathToHaxePackage(path: String) {
-		return haxe.io.Path.normalize(path).split('/').filter(s -> s != '').map(s -> HaxeTools.toSafePackageName(s));
+	function generateHaxeTypeName(symbol: Symbol, access: SymbolAccess): String {
+		return symbol.escapedName.toSafeTypeName();
+	} 
+
+	/**
+		Given a path, return an array of haxe packages
+		`./path/to/file.js` -> `path.to.file_js`
+	**/
+	function convertFilePathToHaxePackage(path: String) {
+		return Path.normalize(path)
+			.split('/')
+			.filter(s -> s != '')
+			.map(s -> s.toSafePackageName());
 	}
 
 	function getDoc(symbol: Symbol) {
