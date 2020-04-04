@@ -1,4 +1,10 @@
+- Still getting duplicates in saveModule
+
 - ValueModule classes
+
+- Enums:
+	- Generate method to get keys
+	- Support array access
 
 - typeNodeToComplexType should also return support types required
 	- Support types should always be emitted in the same module as the type reference
@@ -6,9 +12,9 @@
 		`A | B` and `B | A` -> `EitherAOrB`
 	- Maybe we can add an extra field `_supportType` to the TypeDefinition
 
-- Enums:
-	- Generate method to get keys
-	- Support array access
+- TypeConversion: Type references
+	- Convert inaccessible types (grow `inaccessibleTypeQueue`)
+
 
 - How do we handle external lib references like jquery and sizzle
 	- Ideally the output would be
