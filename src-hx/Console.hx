@@ -10,6 +10,7 @@ import haxe.macro.Expr;
 	#include <windows.h>
 	#endif
 ')
+@:nullSafety
 class Console {
 
 	static public var formatMode = determineConsoleFormatMode();
@@ -89,11 +90,11 @@ class Console {
 		return macro Console.printlnFormatted(Console.debugPrefix + '<magenta,b>$posString:</> ' + ${joinArgExprs(rest)}, Debug);
 	}
 
-	static public inline function printlnFormatted(s:String, outputStream:ConsoleOutputStream = Log){
+	static public inline function printlnFormatted(?s:String = '', outputStream:ConsoleOutputStream = Log){
 		return printFormatted(s + '\n', outputStream);
 	}
 
-	static public inline function println(s:String, outputStream:ConsoleOutputStream = Log){
+	static public inline function println(s:String = '', outputStream:ConsoleOutputStream = Log){
 		return print(s + '\n', outputStream);
 	}
 
@@ -240,7 +241,7 @@ class Console {
 	#if (sys || nodejs)
 	public
 	#end
-	static function printFormatted(s:String, outputStream:ConsoleOutputStream = Log){
+	static function printFormatted(s:String = '', outputStream:ConsoleOutputStream = Log){
 		var result = format(s, formatMode);
 
 		// for browser consoles we need to call console.log with formatting arguments
@@ -275,7 +276,7 @@ class Console {
 	#if (sys || nodejs)
 	public
 	#end
-	static function print(s:String, outputStream:ConsoleOutputStream = Log){
+	static function print(s:String = '', outputStream:ConsoleOutputStream = Log){
 		// if printIntercept is set then call it first
 		// if it returns false then don't print to console
 		if (printIntercept != null) {
@@ -328,14 +329,14 @@ class Console {
 		if ((flag:String).charAt(0) == '#') {
 			var hex = (flag:String).substr(1);
 			var r = Std.parseInt('0x'+hex.substr(0, 2)), g = Std.parseInt('0x'+hex.substr(2, 2)), b = Std.parseInt('0x'+hex.substr(4, 2));
-			return '\033[38;5;' + rgbToAscii256(r, g, b) + 'm';
+			return '\033[38;5;' + rgbToAscii256(cast r, cast g, cast b) + 'm';
 		}
 
 		// custom hex background
 		if ((flag:String).substr(0, 3) == 'bg#') {
 			var hex = (flag:String).substr(3);
 			var r = Std.parseInt('0x'+hex.substr(0, 2)), g = Std.parseInt('0x'+hex.substr(2, 2)), b = Std.parseInt('0x'+hex.substr(4, 2));
-			return '\033[48;5;' + rgbToAscii256(r, g, b) + 'm';
+			return '\033[48;5;' + rgbToAscii256(cast r, cast g, cast b) + 'm';
 		}
 
 		return switch (flag) {
@@ -530,8 +531,11 @@ class Console {
 		// native unix tput test
 		#if (sys || nodejs)
 		var tputColors = exec('tput colors');
-		if (tputColors.exit == 0 && Std.parseInt(tputColors.stdout) > 2) {
-			return AsciiTerminal;
+		if (tputColors.exit == 0) {
+			var tputResult = Std.parseInt(tputColors.stdout);
+			if (tputResult != null && tputResult > 2) {
+				return AsciiTerminal;
+			}
 		}
 
 		// try checking if we can enable colors in windows
@@ -597,7 +601,7 @@ class Console {
 	static function exec(cmd: String, ?args:Array<String>) {
 		#if (nodejs && !macro)
 		//hxnodejs doesn't support sys.io.Process yet
-		var p = js.node.ChildProcess.spawnSync(cmd, args, {});
+		var p = js.node.ChildProcess.spawnSync(cmd, args != null ? args : [], {});
 		var stdout = (p.stdout:js.node.Buffer) == null ? '' : (p.stdout:js.node.Buffer).toString();
 		if (stdout == null) stdout = '';
 		return {
