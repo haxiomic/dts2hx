@@ -29,6 +29,10 @@
 # -cmd node dist/dts2hx.js jquery -p test-definitions --verbose
 # -cmd node dist/dts2hx.js ./test/unit/tripple-slash-references --verbose
 
+# Unit tests
+# -cmd node dist/dts2hx.js ./test/unit/enum --verbose
+
 # -cmd node dist/dts2hx.js typescript --verbose
+# -cmd node dist/dts2hx.js node --verbose
 
 -debug
