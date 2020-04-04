@@ -1,12 +1,17 @@
-
-- Consider moving global types to a package called `global` rather than a separate module
-	- See node.js -> would be nice for these to be a single lib
-	- This requires checking the access path in generateHaxeTypePath
-	- We can do this now. Inaccessible symbols should have the same package as module symbols
+- Deduplicate accessPaths in symbolAccessMap
+	- We probably only need one path for Global and Modular (maybe the shortest is the best choice? Or the newest?)
 
 - ValueModule classes
 
-- Review: Too many access paths for symbols, need to review (see node)
+- typeNodeToComplexType should also return support types required
+	- Support types should always be emitted in the same module as the type reference
+	- Have a deterministic, order-free name so we can deduplicate
+		`A | B` and `B | A` -> `EitherAOrB`
+	- Maybe we can add an extra field `_supportType` to the TypeDefinition
+
+- Enums:
+	- Generate method to get keys
+	- Support array access
 
 - How do we handle external lib references like jquery and sizzle
 	- Ideally the output would be
