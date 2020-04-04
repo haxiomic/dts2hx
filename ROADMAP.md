@@ -1,6 +1,3 @@
-- Deduplicate accessPaths in symbolAccessMap
-	- We probably only need one path for Global and Modular (maybe the shortest is the best choice? Or the newest?)
-
 - ValueModule classes
 
 - typeNodeToComplexType should also return support types required
