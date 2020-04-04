@@ -15,6 +15,9 @@ class StringTools {
 		}
 	}
 
+	/**
+		Remove common indentation from lines in a string
+	**/
 	static public function removeIndentation(str: String) {
 		// find common indentation across all lines
 		var lines = str.split('\n');

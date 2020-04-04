@@ -28,6 +28,6 @@ class OnceOnlyQueue<T> {
 
 	public function dequeue(): Null<T> {
 		return currentQueue.shift();
-	} 
+	}
 
 }

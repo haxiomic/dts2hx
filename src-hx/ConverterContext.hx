@@ -1,3 +1,4 @@
+import ds.OnceOnlyQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.io.Path;
 import haxe.macro.Expr;
@@ -22,8 +23,6 @@ using tool.StringTools;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
 
-
-
 @:expose
 @:nullSafety
 class ConverterContext {
@@ -39,6 +38,11 @@ class ConverterContext {
 	// symbol access map is filled during an initial pass over the program
 	// the access path for key-symbols such as types are stored so we can retrieve them later when we have a type-reference
 	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
+
+	/**
+		When a type is referenced during conversion, if it is inaccessible (and therefore not converted in the first pass), add it to this queue to be converted
+	**/
+	final inaccessibleTypeQueue = new OnceOnlyQueue<Symbol>();
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
@@ -86,7 +90,7 @@ class ConverterContext {
 
 		// populate symbol access map
 		// **we run this for every referenced module because haxe type paths depend on symbol accessibility**
-		// so if we reference a type in an external module, for this to be correct we must know that external symbol's access path
+		// so if we reference a type in an external module, to generate the correct haxe path we must know that external symbol's access path
 		for (moduleSourceFile in [cast entryPointSourceFile].concat(moduleReferenceRootSourceFiles)) {
 			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
 				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
@@ -113,7 +117,7 @@ class ConverterContext {
 		// convert symbols for just this module
 		walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExportsOfSourceFile(sourceFile)) {
-				walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
+				walkDeclarationSymbols(symbol, (symbol, _) -> {
 					if (symbol.flags & (SymbolFlags.Type) != 0) {
 						// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 						generateTypeSymbol(symbol);
@@ -126,48 +130,12 @@ class ConverterContext {
 			}
 		});
 
-		// **these are accessible from the normal source file rules**
-
-		/**
-			@! idea:
-
-			# Create symbol access map
-			for each module {
-				walk declaration symbols, create a map for each symbol's access path
-			}
-
-			# Generate haxe modules
-			for each module {
-				convert declarations
-					at each **type-reference** check the symbol access map
-					if no symbol is found, the symbol is considered _Inaccessible_ 
-					add symbol to conversion queue
-			}
-
-			# While generating haxe modules
-			track referenced symbols in typeNodeToComplexType
-				something like `startReferenceTracking()` and `completeReferenceTracking() -> References`
-
-			# With tracked references associated with each module, we can create a list of dependencies for each module
-
-			generated -> generated {
-				moduleId {
-					modular,
-					global,
-				}
-			}
-
-			----
-
-			- Why don't we just create modules for all symbols up-front, that way we don't need the access-path later
-				- When we have a type-reference we assume the module exists at the generated type path
-				- **What happens when an inaccessible type is referenced? How do we know we need to create it?**
-					- _Are there any actually inaccessible types?_ What's an example?
-						-> Yes mxgraph types
-			- This way type-reference never creates a type that has an access-path
-				- It either gets the type if it already 
-
-		**/
+		// convert inaccessible types discovered through type-references
+		while (true) {
+			var typeSymbol = inaccessibleTypeQueue.dequeue();
+			if (typeSymbol == null) break;
+			generateTypeSymbol(typeSymbol);
+		} 
 	}
 
 	function setAccess(symbol: Symbol, access: SymbolAccess) {
@@ -397,8 +365,8 @@ class ConverterContext {
 		var path = module.pack.concat([module.name]).join('.');
 
 		if (generatedModules.exists(path)) {
-			// log.error('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-			// log.error('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
+			// log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+			// log.warn('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
 			// debug();
 		}
 
