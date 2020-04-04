@@ -32,6 +32,7 @@ class Main {
 			moduleNames: new Array<String>(),
 			moduleSearchPath: '.',
 			allDependencies: false,
+			noOutput: false,
 			logLevel: Warning,
 		}
 
@@ -72,6 +73,11 @@ class Main {
 			'--moduleResolution' => (kind: String) -> {
 				cliOptions.tsCompilerOptions.push('--moduleResolution');
 				cliOptions.tsCompilerOptions.push(kind);
+			},
+
+			@doc('Runs conversion but doesn\'t generate files')
+			'--no-output' => () -> {
+				cliOptions.noOutput = true;
 			},
 
 			@doc('Disable terminal colors')
@@ -194,8 +200,14 @@ class Main {
 			}
 		}
 
+		// add modules from cli options
 		var moduleQueue = new ds.OnceOnlyQueue<String>();
 		for (moduleName in cliOptions.moduleNames) {
+			moduleQueue.tryEnqueue(moduleName);
+		}
+		
+		// add modules from compilerOptions
+		for (moduleName in Ts.getAutomaticTypeDirectiveNames(compilerOptions, host)) {
 			moduleQueue.tryEnqueue(moduleName);
 		}
 
@@ -203,7 +215,7 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 			try {
-				var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath).moduleDependencies;
+				var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.noOutput).moduleDependencies;
 				if (moduleDependencies.length > 0) {
 					log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 				}
@@ -217,7 +229,7 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String) {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String, noOutput: Bool) {
 		var host = Ts.createCompilerHost(compilerOptions);
 		
 		var resolvedModule: ResolvedModuleFull;
@@ -244,33 +256,35 @@ class Main {
 
 		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, log);
 
-		// save modules to files
-		var printer = new haxe.macro.Printer();
+		if (!noOutput) {
+			// save modules to files
+			var printer = new haxe.macro.Printer();
 
-		var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, generateLibraryName(converter.entryPointModuleId)]) : outputPath;
+			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, generateLibraryName(converter.entryPointModuleId)]) : outputPath;
 
-		for (_ => haxeModule in converter.generatedModules) {
-			var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
-			var moduleHaxeStr = printer.printTypeDefinition(haxeModule);
+			for (_ => haxeModule in converter.generatedModules) {
+				var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
+				var moduleHaxeStr = printer.printTypeDefinition(haxeModule);
 
-			for (subType in haxeModule.subTypes) {
-				moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
+				for (subType in haxeModule.subTypes) {
+					moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
+				}
+
+				touchDirectoryPath(Path.directory(filePath));
+				Fs.writeFileSync(filePath, moduleHaxeStr);
 			}
 
-			touchDirectoryPath(Path.directory(filePath));
-			Fs.writeFileSync(filePath, moduleHaxeStr);
-		}
+			touchDirectoryPath(outputLibraryPath);
 
-		touchDirectoryPath(outputLibraryPath);
+			if (generateLibraryWrapper) {
+				// write a readme
+				var readmeStr = generateReadme(converter, resolvedModule);
+				Fs.writeFileSync(Path.join([outputLibraryPath, 'README.md']), readmeStr);
 
-		if (generateLibraryWrapper) {
-			// write a readme
-			var readmeStr = generateReadme(converter, resolvedModule);
-			Fs.writeFileSync(Path.join([outputLibraryPath, 'README.md']), readmeStr);
-
-			// write haxelib.json
-			var haxelibJsonStr = generateHaxelibJson(converter, resolvedModule);
-			Fs.writeFileSync(Path.join([outputLibraryPath, 'haxelib.json']), haxelibJsonStr);
+				// write haxelib.json
+				var haxelibJsonStr = generateHaxelibJson(converter, resolvedModule);
+				Fs.writeFileSync(Path.join([outputLibraryPath, 'haxelib.json']), haxelibJsonStr);
+			}
 		}
 
 		return converter;
