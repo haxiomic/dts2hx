@@ -17,7 +17,10 @@
     "@types/node": "^11.11.3",
     "@types/pixi.js": "^4.8.6",
     "babylonjs": "^4.0.3",
+    "big.js": "^5.2.2",
     "d3": "^5.15.0",
+    "jquery": "^3.4.1",
+    "mxgraph": "^4.1.1",
     "playcanvas": "^1.26.0",
     "three": "^0.107.0",
     "typescript": "^3.8.3"
