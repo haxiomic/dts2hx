@@ -14,6 +14,7 @@ import typescript.ts.SyntaxKind;
 import typescript.ts.TypeAliasDeclaration;
 import typescript.ts.TypeChecker;
 import typescript.ts.TypeNode;
+import js.Lib.debug;
 
 using ConverterContext.SymbolAccessTools;
 using StringTools;
@@ -40,9 +41,10 @@ class ConverterContext {
 	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
 
 	/**
+		Unique list of symbols to convert
 		When a type is referenced during conversion, if it is inaccessible (and therefore not converted in the first pass), add it to this queue to be converted
 	**/
-	final inaccessibleTypeQueue = new OnceOnlyQueue<Symbol>();
+	final declarationSymbolQueue = new OnceOnlyQueue<Symbol>();
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
@@ -94,13 +96,14 @@ class ConverterContext {
 		for (moduleSourceFile in [cast entryPointSourceFile].concat(moduleReferenceRootSourceFiles)) {
 			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
 				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-				log.log(sourceFile, sourceFileSymbol);
 			
 				var sourceFileAccess = if (sourceFileSymbol != null) {
 					ExportModule(getSourceFileModuleName(sourceFile), sourceFileSymbol, []);
 				} else {
 					Global([]);
 				}
+
+				log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
 
 				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
 					walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
@@ -117,24 +120,39 @@ class ConverterContext {
 		// convert symbols for just this module
 		walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExportsOfSourceFile(sourceFile)) {
-				walkDeclarationSymbols(symbol, (symbol, _) -> {
-					if (symbol.flags & (SymbolFlags.Type) != 0) {
-						// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-						generateTypeSymbol(symbol);
-					}
-
-					if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-						// FunctionScopedVariable | BlockScopedVariable
-					}
-				});
+				walkDeclarationSymbols(symbol, (symbol, _) -> declarationSymbolQueue.tryEnqueue(symbol));
 			}
 		});
 
-		// convert inaccessible types discovered through type-references
+		// convert declaration symbols (types and module variables)
+		// declarationSymbolQueue grows as types are referenced during conversion
 		while (true) {
-			var typeSymbol = inaccessibleTypeQueue.dequeue();
-			if (typeSymbol == null) break;
-			generateTypeSymbol(typeSymbol);
+			var symbol = declarationSymbolQueue.dequeue();
+			if (symbol == null) break;
+
+			// `Alias` here does not mean type-alias, instead it means export-alias (like `export {Type}`)
+			// aliases are accounted for with SymbolAccess and don't need to handled here
+			var handled = symbol.flags & SymbolFlags.Alias != 0;
+
+			if (symbol.flags & (SymbolFlags.Type) != 0) {
+				// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+				handled = true;
+				generateTypeSymbol(symbol);
+			}
+
+			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
+				// FunctionScopedVariable | BlockScopedVariable
+				handled = true;
+			}
+
+			if (symbol.flags & (SymbolFlags.Module) != 0) {
+				// ValueModule | NamespaceModule
+				handled = true;
+			}
+
+			if (!handled) {
+				log.error('Unhandled symbol in declarationSymbol queue', symbol);
+			}
 		} 
 	}
 
@@ -289,9 +307,11 @@ class ConverterContext {
 					meta: isInterface ? [] : [access.toAccessMetadata()],
 					pos: pos,
 					subTypes: [],
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
 				}
 
-				saveHaxeModule(hxClass, access);
+				saveHaxeModule(hxClass, symbol, access);
 			}
 			return;
 		}
@@ -326,9 +346,11 @@ class ConverterContext {
 					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
 					pos: pos,
 					subTypes: [],
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
 				}
 				
-				saveHaxeModule(hxEnumDef, access);
+				saveHaxeModule(hxEnumDef, symbol, access);
 			}
 			return;
 		}
@@ -348,9 +370,11 @@ class ConverterContext {
 						doc: getDoc(symbol),
 						pos: pos,
 						subTypes: [],
+						tsSymbol: symbol,
+						tsSymbolAccess: access,
 					}
 
-					saveHaxeModule(hxTypeDef, access);
+					saveHaxeModule(hxTypeDef, symbol, access);
 				} else {
 					log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 				}
@@ -361,13 +385,19 @@ class ConverterContext {
 		log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
 	}
 
-	function saveHaxeModule(module: HaxeModule, access: SymbolAccess) {
+	function saveHaxeModule(module: HaxeModule, symbol: Symbol, access: SymbolAccess) {
 		var path = module.pack.concat([module.name]).join('.');
 
+		var existingModule = generatedModules.get(path);
+		if (existingModule != null) {
+			log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+			log.warn('\t Existing module <yellow,b>${existingModule.tsSymbolAccess.toString()}</>', existingModule.tsSymbol);
+			log.warn('\t Overwriting module <yellow,b>${access.toString()}</>', symbol);
+			log.warn('\t All access ' + getAccess(symbol).map(s -> s.toString()));
+		}
+
 		if (generatedModules.exists(path)) {
-			// log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-			// log.warn('\t' + haxe.Json.stringify(cast moduleMap.get(path)));
-			// debug();
+			debug();
 		}
 
 		generatedModules.set(path, module);
@@ -662,8 +692,13 @@ class HaxePrimitives {
 	static public final void: ComplexType = TPath({pack: [], name: 'Void'});
 }
 
-typedef HaxeModule = TypeDefinition & {
-	subTypes: Array<TypeDefinition>,
+typedef ConvertedTypeDefinition = TypeDefinition & {
+	tsSymbol: Symbol,
+	tsSymbolAccess: SymbolAccess,
+}
+
+typedef HaxeModule = ConvertedTypeDefinition & {
+	subTypes: Array<ConvertedTypeDefinition>,
 }
 
 /**
