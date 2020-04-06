@@ -296,20 +296,40 @@ class Main {
 		var dts2hxRef = dts2hxRepoUrl != null ? '[dts2hx]($dts2hxRepoUrl)' : 'dts2hx';
 		var typesModuleVersion: Null<String> = resolvedModule.packageId != null ? resolvedModule.packageId.version : null;
 		var typesModuleName = resolvedModule.packageId != null ? resolvedModule.packageId.name : inputModuleName;
-		// get typings module's package.json
+		var typesModuleUrl = if (modulePackageJson != null) {
+			if (modulePackageJson.homepage != null) modulePackageJson.homepage;
+			else if (modulePackageJson.bugs != null && modulePackageJson.bugs.url != null) modulePackageJson.bugs.url;
+			else null;
+		} else null;
+
+		var typesModuleIdMarkdown = '${typesModuleName}${typesModuleVersion != null ? ' v$typesModuleVersion' : ''}';
+		if (typesModuleUrl != null) {
+			typesModuleIdMarkdown = '[$typesModuleIdMarkdown]($typesModuleUrl)';
+		}
 
 		var sections = new Array<String>();
 		sections.push('# Haxe Externs for ${converter.entryPointModuleId}');
 
 		sections.push('
-			Generated from **${typesModuleName}${typesModuleVersion != null ? ' v$typesModuleVersion' : ''}** by **$dts2hxRef ${dts2hxPackageJson.version}** using **TypeScript ${typescript.Ts.version}** with arguments:
+			Generated from **$typesModuleIdMarkdown** by **$dts2hxRef ${dts2hxPackageJson.version}** using **TypeScript ${typescript.Ts.version}** with arguments:
 
 				dts2hx ${Node.process.argv.slice(2).join(' ')}
 		');
 
+		if (converter.moduleDependencies.length > 0) {
+			sections.push(
+				[
+					'## Dependencies'
+				].concat(
+					converter.moduleDependencies.map(s -> '- ${s}')
+				).join('\n')
+			);
+		}
+
 		if (modulePackageJson != null) {
 			try if (modulePackageJson.contributors != null && modulePackageJson.contributors.length > 0) {
-				sections .push([
+				sections .push(
+					[
 						'## Contributors to ${typesModuleName}'
 					].concat(
 						(modulePackageJson.contributors: Array<Dynamic<String>>).map(c -> c.url != null ? '- [${c.name}](${c.url})' : c.name)
