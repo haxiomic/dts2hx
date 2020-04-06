@@ -126,9 +126,8 @@ class ConverterContext {
 
 		// convert declaration symbols (types and module variables)
 		// declarationSymbolQueue grows as types are referenced during conversion
-		while (true) {
-			var symbol = declarationSymbolQueue.dequeue();
-			if (symbol == null) break;
+		while (!declarationSymbolQueue.empty()) {
+			var symbol: Symbol = cast declarationSymbolQueue.dequeue();
 
 			// `Alias` here does not mean type-alias, instead it means export-alias (like `export {Type}`)
 			// aliases are accounted for with SymbolAccess and don't need to handled here
@@ -137,12 +136,54 @@ class ConverterContext {
 			if (symbol.flags & (SymbolFlags.Type) != 0) {
 				// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 				handled = true;
-				generateTypeSymbol(symbol);
+				convertTypeSymbol(symbol);
 			}
 
 			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 				// FunctionScopedVariable | BlockScopedVariable
 				handled = true;
+			}
+
+			if (symbol.flags & (SymbolFlags.ValueModule) != 0) {
+				var pos = TsSymbolTools.getSymbolPosition(symbol);
+
+				for (access in getAccess(symbol)) {
+					var pack = generateHaxePackagePath(symbol, access);
+					var name = generateHaxeTypeName(symbol, access);
+					var path = getHaxeModuleKey(pack, name);
+
+					// log.log('Generating module Class <cyan,b>$path</>', symbol);
+					// if the symbol also has SymbolFlags.Class, a class will have already been generated
+					var hxModuleClass = generatedModules.get(path);
+					// @! we don't actually know this is a class
+					// Maybe there's two cases to account for
+					// a path collision with an unrelated symbol, and a Class + ValueModule, where we might want to add static fields
+					/*
+					if (hxModuleClass == null) {
+						hxModuleClass = {
+							pack: pack,
+							name: name,
+							fields: [],
+							kind: TDClass(null, [], false, false),
+							isExtern: true,
+							params: [],
+							doc: getDoc(symbol),
+							meta: [access.toAccessMetadata()],
+							pos: pos,
+							subTypes: [],
+							tsSymbol: symbol,
+							tsSymbolAccess: access,
+						}
+						saveHaxeModule(hxModuleClass, symbol, access);
+					}
+
+					// add module fields and metadata
+					if (hxModuleClass.meta == null) {
+						hxModuleClass.meta = [];
+					}
+					hxModuleClass.meta.push({ name: 'tsModuleClass', pos: pos });
+					*/
+				}
 			}
 
 			if (symbol.flags & (SymbolFlags.Module) != 0) {
@@ -283,7 +324,7 @@ class ConverterContext {
 		}
 	}
 
-	function generateTypeSymbol(symbol: Symbol) {
+	function convertTypeSymbol(symbol: Symbol) {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
 
@@ -386,7 +427,7 @@ class ConverterContext {
 	}
 
 	function saveHaxeModule(module: HaxeModule, symbol: Symbol, access: SymbolAccess) {
-		var path = module.pack.concat([module.name]).join('.');
+		var path = getHaxeModuleKey(module.pack, module.name);
 
 		var existingModule = generatedModules.get(path);
 		if (existingModule != null) {
@@ -401,6 +442,14 @@ class ConverterContext {
 		}
 
 		generatedModules.set(path, module);
+	}
+
+	/**
+		All lower case to represent module file case-insensitive collisions
+		a.b.C -> a/b/c
+	**/
+	function getHaxeModuleKey(pack: Array<String>, name: String) {
+		return pack.concat([name]).map(s -> s.toLowerCase()).join('/');
 	}
 
 	function generateHaxePackagePath(symbol: Symbol, access: SymbolAccess): Array<String> {
@@ -650,7 +699,7 @@ class SymbolAccessTools {
 			case Inaccessible: {
 				// this type cannot be reached directly in javascript
 				// there's no core metadata for this
-				name: 'jsInaccessible',
+				name: 'tsInaccessible',
 				pos: pos,
 			}
 		}

@@ -23,6 +23,9 @@ class HaxeTools {
 		// replace hyphens and dots with underscore
 		str = ~/[-–—.]/gm.replace(str, '_');
 
+		// replace slashes with underscore
+		str = ~/[\/\\]/gm.replace(str, '_');
+
 		// replace non-ascii characters with their name (and capitalize the following)
 		// replace non-a-z_ characters at the start
 		// hello@world becomes helloAtWorld

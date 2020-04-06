@@ -30,4 +30,8 @@ class OnceOnlyQueue<T> {
 		return currentQueue.shift();
 	}
 
+	public function empty(): Bool {
+		return currentQueue.length == 0;
+	}
+
 }
