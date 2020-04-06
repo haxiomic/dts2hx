@@ -58,7 +58,11 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Class & Interface
         - [x] Typedef
         - [x] Enum
-    - [ ] Basic conversion of fundamental types **← currently working on this**
+    - [ ] Type references **← currently working on this**
+        - [ ] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
+        - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
+        - [ ] Generate externs for built-in types that aren't in the haxe standard library yet
+    - [ ] Basic conversion of fundamental types
         - [x] Enums
         - [ ] Primitives
         - [ ] Type references
@@ -76,11 +80,10 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [ ] Constructors
         - [ ] Index signatures (both class and interfaces)
         - [ ] Extends & implements
-    - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
-    - [ ] Remove type-path prefix if referencing type within the same module
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
     - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
+    - [ ] Remove type-path prefix if referencing type within the same module
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
     - [ ] Add `--install` option
@@ -90,7 +93,6 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Maybe function argument unions could be improved by overloads?
     - [ ] Abstracts to implement Tuples (named fields for array indexes)
-    - [ ] Generate externs for built-in types that aren't in the haxe standard library yet
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
     - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
 - [ ] :star2: **1.0 Release**
