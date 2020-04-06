@@ -13,9 +13,10 @@
   "author": "haxiomic",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "11.11.3",
     "typescript": "3.7.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "11.11.3"
+  },
   "bin": "./cli.js"
 }
