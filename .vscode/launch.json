@@ -17,7 +17,7 @@
             "name": "dts2hx.js three.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["three", "--verbose"],
-            "cwd": "${workspaceFolder}/test-definitions",
+            "cwd": "${workspaceFolder}/test/lib",
         },
         {
             "type": "node",
@@ -32,7 +32,7 @@
             "name": "dts2hx.js playcanvas.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["playcanvas", "--verbose"],
-            "cwd": "${workspaceFolder}/test-definitions",
+            "cwd": "${workspaceFolder}/test/lib",
         },
         {
             "type": "node",
@@ -40,7 +40,7 @@
             "name": "dts2hx.js pixi.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["pixi.js", "--verbose"],
-            "cwd": "${workspaceFolder}/test-definitions",
+            "cwd": "${workspaceFolder}/test/lib",
         },
         {
             "type": "node",
@@ -48,21 +48,21 @@
             "name": "dts2hx.js jquery",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["jquery", "--verbose"],
-            "cwd": "${workspaceFolder}/test-definitions",
+            "cwd": "${workspaceFolder}/test/lib",
         },
         {
             "type": "node",
             "request": "launch",
             "name": "dts2hx.js abspath",
             "program": "${workspaceFolder}/dist/dts2hx.js",
-            "args": ["/Users/geo/Projects/dts2hx/test/unit/enum", "--verbose"],
+            "args": ["/Users/geo/Projects/dts2hx/test/unit/core/enum", "--verbose"],
         },
         {
             "type": "node",
             "request": "launch",
             "name": "dts2hx.js unit/tripple-slash-references",
             "program": "${workspaceFolder}/dist/dts2hx.js",
-            "args": ["./test/unit/tripple-slash-references", "--verbose"],
+            "args": ["./test/unit/core/tripple-slash-references", "--verbose"],
         },
         {
             "type": "node",
