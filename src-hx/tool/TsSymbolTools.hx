@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.Declaration;
 import typescript.ts.TypeChecker;
 import haxe.macro.Expr.ComplexType;
 import typescript.ts.SourceFile;
@@ -112,10 +113,8 @@ class TsSymbolTools {
 	public static function getSymbolPosition(symbol: Symbol): haxe.macro.Expr.Position {
 		var node = if (symbol.valueDeclaration != null) {
 			symbol.valueDeclaration;
-		} else if (symbol.declarations != null) {
-			symbol.declarations[0];
 		} else {
-			null;
+			getDeclarationsArray(symbol)[0];
 		}
 
 		return if (node != null) {
@@ -135,6 +134,41 @@ class TsSymbolTools {
 		return exports;
 	}
 
+	public static function getDeclarationsForInterpretation(symbol: Symbol, interpretation: SymbolInterpretation) {
+		var declarations = getDeclarationsArray(symbol);
+		return switch interpretation {
+			case TypeDeclaration:
+				declarations.filter(
+					s -> [
+						SyntaxKind.InterfaceDeclaration,
+						SyntaxKind.ClassDeclaration,
+						SyntaxKind.EnumDeclaration,
+						SyntaxKind.TypeAliasDeclaration,
+					].indexOf(s.kind) != -1
+				);
+			case ValueDeclaration:
+				declarations.filter(
+					s -> [
+						SyntaxKind.FunctionDeclaration,
+						SyntaxKind.VariableDeclaration,
+					].indexOf(s.kind) != -1
+				);
+			case ModuleDeclaration:
+				declarations.filter(
+					s -> [
+						SyntaxKind.ModuleDeclaration,
+					].indexOf(s.kind) != -1
+				);
+		}
+	}
+
+	/**
+		symbol.declarations may be null, this method always returns an array
+	**/
+	public static function getDeclarationsArray(symbol: Symbol): Array<Declaration> {
+		return symbol.declarations != null ? symbol.declarations : [];
+	}
+
 	static function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}
@@ -152,4 +186,16 @@ class TsSymbolTools {
 		return _symbolFlagsMap;
 	}
 
+}
+
+/**
+	Symbols can have 3 kinds of declarations within:
+	- types e.g. `class X`
+	- values e.g. `const X`
+	- package e.g. `declare namespace X`
+**/
+enum SymbolInterpretation {
+	TypeDeclaration;
+	ValueDeclaration;
+	ModuleDeclaration;
 }

@@ -44,7 +44,7 @@ class ConverterContext {
 		Unique list of symbols to convert
 		When a type is referenced during conversion, if it is inaccessible (and therefore not converted in the first pass), add it to this queue to be converted
 	**/
-	final declarationSymbolQueue = new OnceOnlyQueue<Symbol>();
+	final declarationSymbolQueue = new OnceOnlySymbolQueue();
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
 		// this will be used as the argument to require()
@@ -65,7 +65,8 @@ class ConverterContext {
 			throw 'Failed to get entry-point source file';
 		}
 
-		var moduleReferenceRootSourceFiles: Array<SourceFile> = [];
+		// list of the module entry points source files, for the currently module and its referenced modules
+		var moduleRootSourceFiles: Array<SourceFile> = [entryPointSourceFile];
 
 		// set `moduleName` on source files with a known module
 		// `sourceFile.moduleName` is not populated after binding, so let's populate it to help aliasing
@@ -79,7 +80,7 @@ class ConverterContext {
 				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
 				if (sourceFile != null) {
 					sourceFile.moduleName = moduleName != null ? inline normalizeModuleName(moduleName) : null;
-					moduleReferenceRootSourceFiles.push(sourceFile);
+					moduleRootSourceFiles.push(sourceFile);
 				} else {
 					log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
 				}
@@ -88,34 +89,15 @@ class ConverterContext {
 			}
 		}
 
-		moduleDependencies = [for (moduleSourceFile in moduleReferenceRootSourceFiles) getSourceFileModuleName(moduleSourceFile)];
+		moduleDependencies = moduleRootSourceFiles.filter(s -> s != entryPointSourceFile).map(getSourceFileModuleName);
+
+		var defaultLibSourceFiles = program.getSourceFiles().filter(s -> s.hasNoDefaultLib);
 
 		// populate symbol access map
-		// **we run this for every referenced module because haxe type paths depend on symbol accessibility**
-		// so if we reference a type in an external module, to generate the correct haxe path we must know that external symbol's access path
-		for (moduleSourceFile in [cast entryPointSourceFile].concat(moduleReferenceRootSourceFiles)) {
-			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
-				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-			
-				var sourceFileAccess = if (sourceFileSymbol != null) {
-					ExportModule(getSourceFileModuleName(sourceFile), sourceFileSymbol, []);
-				} else {
-					Global([]);
-				}
+		buildSymbolAccessMap(defaultLibSourceFiles.concat(moduleRootSourceFiles));
 
-				log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
-
-				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
-					walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
-						var currentAccess = sourceFileAccess;
-						for (s in accessChain) {
-							currentAccess = symbolAccessAppendSymbol(currentAccess, s);
-						}
-						setAccess(symbol, currentAccess);
-					});
-				}
-			});
-		}
+		// generate a haxe type-path for all type or module-class symbols in the program
+		buildHaxeModuleMap();
 
 		// convert symbols for just this module
 		walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
@@ -140,50 +122,12 @@ class ConverterContext {
 			}
 
 			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-				// FunctionScopedVariable | BlockScopedVariable
+				// FunctionScopedVariable | BlockScopedVariable | Function
 				handled = true;
 			}
 
 			if (symbol.flags & (SymbolFlags.ValueModule) != 0) {
-				var pos = TsSymbolTools.getSymbolPosition(symbol);
-
-				for (access in getAccess(symbol)) {
-					var pack = generateHaxePackagePath(symbol, access);
-					var name = generateHaxeTypeName(symbol, access);
-					var path = getHaxeModuleKey(pack, name);
-
-					// log.log('Generating module Class <cyan,b>$path</>', symbol);
-					// if the symbol also has SymbolFlags.Class, a class will have already been generated
-					var hxModuleClass = generatedModules.get(path);
-					// @! we don't actually know this is a class
-					// Maybe there's two cases to account for
-					// a path collision with an unrelated symbol, and a Class + ValueModule, where we might want to add static fields
-					/*
-					if (hxModuleClass == null) {
-						hxModuleClass = {
-							pack: pack,
-							name: name,
-							fields: [],
-							kind: TDClass(null, [], false, false),
-							isExtern: true,
-							params: [],
-							doc: getDoc(symbol),
-							meta: [access.toAccessMetadata()],
-							pos: pos,
-							subTypes: [],
-							tsSymbol: symbol,
-							tsSymbolAccess: access,
-						}
-						saveHaxeModule(hxModuleClass, symbol, access);
-					}
-
-					// add module fields and metadata
-					if (hxModuleClass.meta == null) {
-						hxModuleClass.meta = [];
-					}
-					hxModuleClass.meta.push({ name: 'tsModuleClass', pos: pos });
-					*/
-				}
+				// @! generate a module class
 			}
 
 			if (symbol.flags & (SymbolFlags.Module) != 0) {
@@ -196,30 +140,185 @@ class ConverterContext {
 			}
 		} 
 	}
+	
+	/**
+		We run this for every referenced module because haxe type paths depend on symbol accessibility
+		so if we reference a type in an external module, to generate the correct haxe path we must know that external symbol's access path
+	**/
+	function buildSymbolAccessMap(moduleRootSourceFiles: Array<SourceFile>) {
+		function setAccess(symbol: Symbol, access: SymbolAccess) {
+			var accessArray = symbolAccessMap.get(symbol.getId());
+			if (accessArray == null) {
+				accessArray = [];
+				symbolAccessMap.set(symbol.getId(), accessArray);
+			}
 
-	function setAccess(symbol: Symbol, access: SymbolAccess) {
-		var accessArray = symbolAccessMap.get(symbol.getId());
-		if (accessArray == null) {
-			accessArray = [];
-			symbolAccessMap.set(symbol.getId(), accessArray);
+			var shouldAdd = switch access {
+				case AmbientModule(_), ExportModule(_):
+					// only worth adding an ambient module if there isn't already an module path
+					accessArray.filter(a -> a.match(AmbientModule(_, _) | ExportModule(_, _, _))).length == 0;
+				case Global(_):
+					// we can have a global and modular access, but we don't want more than global access
+					accessArray.filter(a -> a.match(Global(_))).length == 0;
+				case Inaccessible:
+					// no need to add Inaccessible, symbols with no values in symbolAccessMap are considered Inaccessible
+					false;
+			}
+
+			if (shouldAdd) {
+				accessArray.push(access);
+			}
 		}
 
-		var shouldAdd = switch access {
-			case AmbientModule(_), ExportModule(_):
-				// only worth adding an ambient module if there isn't already an module path
-				accessArray.filter(a -> a.match(AmbientModule(_, _) | ExportModule(_, _, _))).length == 0;
-			case Global(_):
-				// we can have a global and modular access, but we don't want more than global access
-				accessArray.filter(a -> a.match(Global(_))).length == 0;
-			case Inaccessible:
-				// no need to add Inaccessible, symbols with no values in symbolAccessMap are considered Inaccessible
-				false;
-		}
+		for (moduleSourceFile in moduleRootSourceFiles) {
+			walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
+				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
 
-		if (shouldAdd) {
-			accessArray.push(access);
+				var sourceFileAccess = if (sourceFileSymbol != null) {
+					ExportModule(getSourceFileModuleName(sourceFile), sourceFileSymbol, []);
+				} else {
+					Global([]);
+				}
+
+				// log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
+
+				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
+					walkDeclarationSymbols(symbol, (symbol, accessChain) -> {
+						var currentAccess = sourceFileAccess;
+						for (s in accessChain) {
+							currentAccess = symbolAccessAppendSymbol(currentAccess, s);
+						}
+						setAccess(symbol, currentAccess);
+					});
+				}
+			});
 		}
 	}
+
+	function buildHaxeModuleMap() {
+		var symbolsRequiringTypePath = new Map<Int, Symbol>();
+		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
+			walkDeclarationSymbols(topLevelSymbol, (symbol, _) -> {
+				if (symbol.flags & (SymbolFlags.ValueModule | SymbolFlags.Type) != 0 ) {
+					symbolsRequiringTypePath.set(symbol.getId(), symbol);
+				}
+			});
+		}
+
+		var moduleMap = new Map<String, Array<Symbol>>();
+
+		for (id => symbol in symbolsRequiringTypePath) {
+			// now we need to consider Types and ValueModules separately I think
+			// consider a symbol that has definitions in lib.dom.ts and the local module, we need two type-paths depending on symbol-interpretation
+			// log.log(symbol);
+			for (access in getAccess(symbol)) {
+				var pack = generateHaxePackagePath(symbol, access);
+				var name = generateHaxeTypeName(symbol, access);
+				var moduleKey = getHaxeModuleKey(pack, name); 
+				var symbolsWithKey = moduleMap.get(moduleKey);
+				if (symbolsWithKey == null) {
+					symbolsWithKey = [];
+					moduleMap.set(moduleKey, symbolsWithKey);
+				}
+				symbolsWithKey.push(symbol);
+				// log.log('\t' + getHaxeModuleKey(pack, name) + ' <dim,yellow>${access.toString()}</>');
+			}
+		}
+
+		for (key => symbols in moduleMap) {
+			if (symbols.length > 1) {
+				log.log('<yellow>Multiple symbols with key <b>$key</></>');
+				for (symbol in symbols) {
+					log.log('\t', symbol);
+				}
+			}
+		}
+	}
+
+	/**
+		A key that uniquely identifies a haxe module in a haxe project
+		Lower case string to represent module file case-insensitive collisions
+		`a.b.C` -> `a/b/c`
+	**/
+	function getHaxeModuleKey(pack: Array<String>, name: String) {
+		return pack.concat([name]).map(s -> s.toLowerCase()).join('/');
+	}
+
+	function generateHaxePackagePath(symbol: Symbol, access: SymbolAccess): Array<String> {
+		var pack = new Array<String>();
+
+		var defaultLibName: Null<String> = null;
+		for (declaration in symbol.getDeclarationsArray()) {
+			var sourceFile = declaration.getSourceFile();
+			if (sourceFile.hasNoDefaultLib) {
+				defaultLibName = Path.withoutDirectory(sourceFile.fileName);
+				break;
+			}
+		}
+
+		if (defaultLibName != null) {
+			return switch defaultLibName.toLowerCase() {
+				case 'lib.dom.d.ts': ['js', 'html'];
+				default: ['js', 'lib'];
+			}
+		}
+
+		// prefix the module name (if it's a path, add a pack for each directory)
+		pack = convertFilePathToHaxePackage(entryPointModuleId);
+
+		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
+		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
+		var identifierChain = access.getIdentifierChain();
+		var parentIdentifierPackages = identifierChain.slice(0, identifierChain.length - 1).map(s -> s.toSafePackageName());
+		switch access {
+			case AmbientModule(path, _), ExportModule(path, _):
+				var pathPack = convertFilePathToHaxePackage(path);
+				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
+				if (pathPack[0] == pack[0]) {
+					pathPack.shift();
+				}
+				pack = pack.concat(pathPack).concat(parentIdentifierPackages);
+			case Global(_):
+				pack = pack.concat(['global']).concat(parentIdentifierPackages);
+			case Inaccessible:
+				pack = pack.concat(
+					symbol.getSymbolParents()
+					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
+					.filter(s -> !s.isSourceFileSymbol())
+					.map(s -> s.name.toSafePackageName())
+				);
+		}
+
+		// global symbols are prefixed with 'global' package
+		/*
+		var isGlobal = access.match(Global(_));
+		if (isGlobal) {
+			pack.push('global');
+		}
+
+		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
+			// handle special names
+			if (!~/^__\w/.match(parentSymbol.name)) { // skip special names (like '__global')
+				if (parentSymbol.flags & SymbolFlags.Module != 0) {
+					if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
+						// @! need special handling of source file paths to remove prefix
+					} else {
+						pack = pack.concat(convertFilePathToHaxePackage(parentSymbol.name));
+					}
+				} else {
+					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
+					debug();
+				}
+			}
+		}
+		*/
+
+		return pack;
+	}
+
+	function generateHaxeTypeName(symbol: Symbol, access: SymbolAccess): String {
+		return symbol.escapedName.toSafeTypeName();
+	} 
 
 	function getAccess(symbol: Symbol): Array<SymbolAccess> {
 		var accessArray = symbolAccessMap.get(symbol.getId());
@@ -273,6 +372,13 @@ class ConverterContext {
 	function walkDeclarationSymbols(symbol: Symbol, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
 		accessChain = accessChain != null ? accessChain : [symbol];
 
+		// prevent cycles by terminating if the current symbol appears in the parent access chain
+		for (i in 0...accessChain.length - 1) {
+			if (accessChain[i] == symbol) {
+				return;
+			}
+		}
+
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.ExportStar;
 
@@ -287,7 +393,7 @@ class ConverterContext {
 
 			if (resolvedSymbol != symbol) {
 				// accessChain remains the same, we access the `export = symbol through the module symbol
-				log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlagsInfo()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlagsInfo()}</b></>', symbol);
+				// log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlagsInfo()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlagsInfo()}</b></>', symbol);
 				walkDeclarationSymbols(resolvedSymbol, onSymbol, accessChain, depth);
 				return;
 			}
@@ -302,8 +408,9 @@ class ConverterContext {
 			walkDeclarationSymbols(aliasedSymbol, onSymbol, accessChain.concat([aliasedSymbol]), depth + 1);
 		}
 
-		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
+		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.Property) != 0) {
+			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias |
+			// FunctionScopedVariable | BlockScopedVariable | Function | Property
 			handled = true;
 			onSymbol(symbol, accessChain);
 		}
@@ -398,7 +505,7 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
 			for (access in getAccess(symbol)) {
-				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.declarations.filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
+				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
 				if (typeAliasDeclaration != null) {
 					// @! typeParameters?
 					var hxAliasType: ComplexType = typeNodeToComplexType(typeAliasDeclaration.type, access); 
@@ -443,74 +550,6 @@ class ConverterContext {
 
 		generatedModules.set(path, module);
 	}
-
-	/**
-		All lower case to represent module file case-insensitive collisions
-		a.b.C -> a/b/c
-	**/
-	function getHaxeModuleKey(pack: Array<String>, name: String) {
-		return pack.concat([name]).map(s -> s.toLowerCase()).join('/');
-	}
-
-	function generateHaxePackagePath(symbol: Symbol, access: SymbolAccess): Array<String> {
-		var pack = new Array<String>();
-
-		// prefix the module name (if it's a path, add a pack for each directory)
-		pack = convertFilePathToHaxePackage(entryPointModuleId);
-
-		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
-		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
-		var identifierChain = access.getIdentifierChain();
-		var parentIdentifierPackages = identifierChain.slice(0, identifierChain.length - 1).map(s -> s.toSafePackageName());
-		switch access {
-			case AmbientModule(path, _), ExportModule(path, _):
-				var pathPack = convertFilePathToHaxePackage(path);
-				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
-				if (pathPack[0] == pack[0]) {
-					pathPack.shift();
-				}
-				pack = pack.concat(pathPack).concat(parentIdentifierPackages);
-			case Global(_):
-				pack = pack.concat(['global']).concat(parentIdentifierPackages);
-			case Inaccessible:
-				pack = pack.concat(
-					symbol.getSymbolParents()
-					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
-					.filter(s -> !s.isSourceFileSymbol())
-					.map(s -> s.name.toSafePackageName())
-				);
-		}
-
-		// global symbols are prefixed with 'global' package
-		/*
-		var isGlobal = access.match(Global(_));
-		if (isGlobal) {
-			pack.push('global');
-		}
-
-		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
-			// handle special names
-			if (!~/^__\w/.match(parentSymbol.name)) { // skip special names (like '__global')
-				if (parentSymbol.flags & SymbolFlags.Module != 0) {
-					if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
-						// @! need special handling of source file paths to remove prefix
-					} else {
-						pack = pack.concat(convertFilePathToHaxePackage(parentSymbol.name));
-					}
-				} else {
-					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
-					debug();
-				}
-			}
-		}
-		*/
-
-		return pack;
-	}
-
-	function generateHaxeTypeName(symbol: Symbol, access: SymbolAccess): String {
-		return symbol.escapedName.toSafeTypeName();
-	} 
 
 	/**
 		Given a path, return an array of haxe packages
@@ -750,12 +789,56 @@ typedef HaxeModule = ConvertedTypeDefinition & {
 	subTypes: Array<ConvertedTypeDefinition>,
 }
 
+class OnceOnlySymbolQueue {
+
+	final allItemsSeen = new Map<Int, Bool>();
+	final currentQueue = new Array<Symbol>();
+
+	public function new() {}
+
+	/**
+		Returns `true` if the item has not been seen before (and therefore added to the queue), and `false` if it has been seen before (and therefore ignored)
+	**/
+	public function tryEnqueue(item: Symbol): Bool {
+		var id = item.getId();
+		if (!allItemsSeen.exists(id)) {
+			allItemsSeen.set(id, true);
+			currentQueue.push(item);
+			return true;
+		}
+		return false;
+	}
+
+	public function dequeue(): Null<Symbol> {
+		return currentQueue.shift();
+	}
+
+	public function empty(): Bool {
+		return currentQueue.length == 0;
+	}
+
+}
+
 /**
 	Notes
 	-----
 
+	**Symbols**
+	In the typescript compiler, declarations are grouped into Symbols. A Symbol can have 3 kinds of declaration, as a Type, a Variable/Function and a Module.
+	For example, the following declarations are grouped into one symbol with the name 'Example'
+	```typescript
+	declare const Example: string;    // Value named X
+
+	declare type Example = number;  // Type named X
+
+	declare namespace Example {     // Namespace named X  
+				type Y = string;  
+	}
+	```
+	See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#23-declarations
+
 	**SymbolAccess**
-	The reason we track symbol access rather than always using the sourceFile that the symbol is defined in is because doing so can lead to runtime errors in some cases
+	The reason we track symbol access rather than always using the sourceFile of the symbol's declaration in is because doing so can lead to runtime errors in some cases
 	For example, the following typescript program fails at both runtime and compiletime:
 
 	```typescript
@@ -763,7 +846,8 @@ typedef HaxeModule = ConvertedTypeDefinition & {
 	import * as THREE from 'three';
 	console.log(new THREE.Quaternion(1,2,3,4));
 	// import via source file that the symbol is defined in
-	import { Quaternion } from './node_modules/three/src/math/Quaternion'; // import { _Math } from './Math.js'; SyntaxError: Unexpected token {
+	import { Quaternion } from './node_modules/three/src/math/Quaternion';
+	// ^ import { _Math } from './Math.js'; SyntaxError: Unexpected token {
 	console.log(new Quaternion(1,2,3,4));
 	```
 
