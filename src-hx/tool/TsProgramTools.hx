@@ -32,7 +32,7 @@ class TsProgramTools {
 		return typeReferences;
 	}
 
-	public static function getDeclarationsArrayymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
+	public static function getDeclarationSymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
 		var tc = program.getTypeChecker();
 		// get all globally visible symbols and filter for those that have a declaration in the sourceFile
 		return tc.getSymbolsInScope(sourceFile, 0xFFFFFF)
@@ -62,7 +62,7 @@ class TsProgramTools {
 			return exports.map(tc.getExportSymbolOfSymbol);
 		} else {
 			// sourcefile symbols are visible in the global scope
-			return getDeclarationsArrayymbolsInSourceFile(program, sourceFile);
+			return getDeclarationSymbolsInSourceFile(program, sourceFile);
 		}
 	}
 
