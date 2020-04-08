@@ -403,8 +403,7 @@ class Main {
 
 		Console.printlnFormatted('<b>Examples:</b>');
 		Console.printlnFormatted('\tdts2hx three');
-		Console.printlnFormatted('\tdts2hx pixi.js --globalOnly');
-		Console.printlnFormatted('\tdts2hx --all --output .haxelib');
+		Console.printlnFormatted('\tdts2hx --all -o .haxelib');
 		Console.printlnFormatted('\tdts2hx ./src/index --verbose');
 		Console.println('');
 
