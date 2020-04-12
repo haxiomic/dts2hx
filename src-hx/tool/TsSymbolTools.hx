@@ -1,5 +1,6 @@
 package tool;
 
+import haxe.ds.ReadOnlyArray;
 import typescript.ts.Declaration;
 import typescript.ts.TypeChecker;
 import haxe.macro.Expr.ComplexType;
@@ -8,6 +9,8 @@ import typescript.Ts;
 import typescript.ts.SyntaxKind;
 import typescript.ts.SymbolFlags;
 import typescript.ts.Symbol;
+
+using TsInternal;
 
 class TsSymbolTools {
 
@@ -169,6 +172,100 @@ class TsSymbolTools {
 		return symbol.declarations != null ? symbol.declarations : [];
 	}
 
+	public static /**
+		Walks key symbols that have the following flags:
+			- Type
+			- Alias
+			- Variable
+			- Function
+			- Module
+
+		It **does not** walk into types, or explore type information. For example, it will not walk class fields or the type in this declaration `const X: Type;`
+
+		If a symbol as multiple matching flags, multiple callbacks will fire with the same symbol
+
+		The input symbol will be walked
+
+		`accessChain` represents that path to traverse to reach the symbol and it includes the symbol itself.
+
+		For example, consder the symbol `EventEmitter` in node.js
+
+		```typescript
+		declare module "events" {
+			class internal extends NodeJS.EventEmitter { }
+
+			namespace internal {
+				class EventEmitter extends internal { }
+			}
+
+			export = internal;
+		}
+		```
+
+		While the symbol's parent path is [Module("events"), internal, EventEmitter], the accessChain is [Module("events"), EventEmitter]
+	**/
+	function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, ?log: Log, depth: Int = 0) {
+		accessChain = accessChain != null ? accessChain : [symbol];
+
+		// prevent cycles by terminating if the current symbol appears in the parent access chain
+		for (i in 0...accessChain.length - 1) {
+			if (accessChain[i] == symbol) {
+				return;
+			}
+		}
+
+		// explicitly ignored symbols
+		var ignoredSymbolFlags = SymbolFlags.ExportStar;
+
+		// log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</>', symbol);
+
+		// handle module replacement: `export =`, for example, the module symbol
+		// `declare module "module" { export = Class; }`
+		// will be replaced with `Class`
+		if (symbol.flags & SymbolFlags.Module != 0) {
+			// internal method used to resolve `export =` modules
+			var resolvedSymbol = tc.resolveExternalModuleSymbol(symbol);
+
+			if (resolvedSymbol != symbol) {
+				// accessChain remains the same, we access the `export = symbol through the module symbol
+				// log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlagsInfo()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlagsInfo()}</b></>', symbol);
+				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, accessChain, log, depth);
+				return;
+			}
+		}
+
+		var handled = symbol.flags & ignoredSymbolFlags != 0;
+
+		if (symbol.flags & SymbolFlags.Alias != 0) {
+			handled = true;
+			onSymbol(symbol, accessChain);
+			var aliasedSymbol = tc.getAliasedSymbol(symbol);
+			walkDeclarationSymbols(aliasedSymbol, tc, onSymbol, accessChain.concat([aliasedSymbol]), log, depth + 1);
+		}
+
+		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.Property) != 0) {
+			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias |
+			// FunctionScopedVariable | BlockScopedVariable | Function | Property
+			handled = true;
+			onSymbol(symbol, accessChain);
+		}
+
+		if (symbol.flags & SymbolFlags.Module != 0) {
+			// ValueModule | NamespaceModule
+			handled = true;
+			onSymbol(symbol, accessChain);
+
+			var moduleMembers: Array<Symbol> = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.ModuleMember != 0);
+			for (moduleExport in moduleMembers) {
+				walkDeclarationSymbols(moduleExport, tc, onSymbol, accessChain.concat([moduleExport]), log, depth + 1);
+			}
+		}
+
+		if (!handled) {
+			log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
+		}
+	}
+
 	static function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}
@@ -186,16 +283,4 @@ class TsSymbolTools {
 		return _symbolFlagsMap;
 	}
 
-}
-
-/**
-	Symbols can have 3 kinds of declarations within:
-	- types e.g. `class X`
-	- values e.g. `const X`
-	- package e.g. `declare namespace X`
-**/
-enum SymbolInterpretation {
-	TypeDeclaration;
-	ValueDeclaration;
-	ModuleDeclaration;
 }

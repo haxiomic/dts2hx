@@ -1,0 +1,313 @@
+import haxe.io.Path;
+import typescript.ts.Program;
+import typescript.ts.Symbol;
+import typescript.ts.SymbolFlags;
+import typescript.ts.TypeChecker;
+
+using Lambda;
+using tool.HaxeTools;
+using tool.SymbolAccessTools;
+using tool.TsProgramTools;
+using tool.TsSymbolTools;
+
+
+class HaxeTypePathMap {
+
+	final entryPointModuleId: String;
+	final program: Program;
+	final symbolAccessMap: SymbolAccessMap;
+	final tc: TypeChecker;
+	final log: Log;
+	// the same symbol may have multiple type paths if it has multiple SymbolAccess
+	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
+
+	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap, log: Log) {
+		this.entryPointModuleId = entryPointModuleId;
+		this.program = program;
+		this.symbolAccessMap = symbolAccessMap;
+		this.tc = program.getTypeChecker();
+		this.log = log;
+		symbolTypePathMap = buildHaxeTypePathMap();
+	}
+
+	public function getTypePath(symbol: Symbol, access: SymbolAccess): haxe.macro.Expr.TypePath {
+		var modules = symbolTypePathMap.get(symbol.getId());
+
+		if (modules != null) {
+			// find one with a matching access
+			var matchingModule = modules.find(m -> m.access == access);
+			if (matchingModule != null) {
+				return {
+					pack: matchingModule.pack,
+					name: matchingModule.name,
+				}
+			}
+		}
+
+		// failed to find a matching pre-generated module
+		// generate a type-path on demand, but we won't have duplicate name resolution
+		// this indicates we didn't find all symbols when building the map
+		log.warn('Internal error: No type paths were generated for this symbol; generating paths on-demand', symbol);
+
+		return {
+			pack: generateHaxePackagePath(symbol, access),
+			name: generateHaxeTypeName(symbol, access),
+		}
+	}
+
+	/**
+		The idea here is to generate a haxe type-path for all symbols (including external modules and build-in lib symbols).
+		Because TypeScript type names are case-sensitive and haxe module _files_ need to be case-insensitive we can end up with multiple symbols mapping to a single module name.
+		To Resolve this, we find name overlaps and rename modules by appending `_`
+	**/
+	function buildHaxeTypePathMap() {
+		var packageMap = new Map<String, Array<InternalModule>>();
+
+		function getModules(pack: Array<String>): Array<InternalModule> {
+			var packageKey = pack.join('/');
+			var modules = packageMap.get(packageKey);
+			if (modules == null) {
+				modules = [];
+				packageMap.set(packageKey, modules);
+			}
+			return modules;
+		}
+
+		// find all declaration symbols in the program (including inaccessible ones) and add to package map as InternalModules
+		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
+			TsSymbolTools.walkDeclarationSymbols(topLevelSymbol, tc, (symbol, _) -> {
+				if (symbol.flags & (SymbolFlags.ValueModule | SymbolFlags.Type) != 0 ) {
+					for (access in symbolAccessMap.getAccess(symbol)) {
+						var pack = generateHaxePackagePath(symbol, access);
+						var name = generateHaxeTypeName(symbol, access);
+						var modules = getModules(pack);
+
+						if (modules.find(m -> m.symbol == symbol) == null) {
+							modules.push({
+								name: name,
+								pack: pack,
+								symbol: symbol,
+								access: access,
+								renameable: true,
+							});
+						}
+					}
+				}
+				// for globally declared _values_, we use a module called Global
+				if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
+					for (access in symbolAccessMap.getAccess(symbol)) {
+						switch access {
+							case Global([_]):
+								var pack = generateHaxePackagePath(symbol, access);
+								var modules = getModules(pack);
+
+								if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
+									modules.push({
+										name: 'Global',
+										pack: pack,
+										symbol: null,
+										access: Global([]),
+										renameable: false,
+									});
+								}
+							default:
+						}
+					}
+				}
+			});
+		}
+		
+		// resolve module name overlaps, for example "url", Url and URL all map to haxe module url.hx
+		// resolve iteratively in case an initial rename causes a further collision 
+		for (_ => modules in packageMap) {
+			while(true) {
+				// map of names to modules, if one name maps to multiple modules, we have a name collision
+				var degenerateNameMap = new Map<String, Array<InternalModule>>();
+
+				for (module in modules) {
+					var lowercaseName = module.name.toLowerCase();
+					var matches = degenerateNameMap.get(lowercaseName);
+					if (matches == null) {
+						matches = [];
+						degenerateNameMap.set(lowercaseName, matches);
+					}
+					matches.push(module);
+				}
+
+				var hasNameOverlap = false;
+				for (degenerateName => matches in degenerateNameMap) {
+					if (matches.length > 1) {
+						hasNameOverlap = true;
+
+						// sort the matches to find the best one to rename (using ds.ArraySort for stability)
+						haxe.ds.ArraySort.sort(matches, (a, b) -> {
+							var renameabilityA = renameability(a);
+							var renameabilityB = renameability(b);
+							if (renameabilityA > renameabilityB) {
+								return -1;
+							} else if (renameabilityA < renameabilityB) {
+								return 1;
+							} else {
+								// if everything else is equal, use ascii sort for some stable difference
+								return a.symbol.name > b.symbol.name ? -1 : 1;
+							}
+						});
+
+						var moduleToRename = matches[0];
+						moduleToRename.name = moduleToRename.name + '_';
+
+						log.log('Resolved name overlap for <b>${matches[0].pack.concat([degenerateName]).join('/')}.hx</>: ${matches.map(m -> m.name).join(', ')}');
+					}
+				}
+
+				if (!hasNameOverlap) break;
+			}
+		}
+
+		var typePathMap = new Map<Int, Array<InternalModule>>();
+
+		// with duplicate names resolved, create a symbol -> [internal module] map
+		for (_ => modules in packageMap) {
+			for (module in modules) {
+				if (module.symbol == null) continue; // i.e. special `Global.hx` module
+				var array = typePathMap.get(module.symbol.getId());
+				if (array == null) {
+					array = [];
+					typePathMap.set(module.symbol.getId(), array);
+				}
+				array.push(module);
+			} 
+		}
+
+		return typePathMap;
+	}
+
+	function generateHaxePackagePath(symbol: Symbol, access: SymbolAccess): Array<String> {
+		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
+		var defaultLibName: Null<String> = null;
+		for (declaration in symbol.getDeclarationsArray()) {
+			var sourceFile = declaration.getSourceFile();
+			if (sourceFile.hasNoDefaultLib) {
+				defaultLibName = Path.withoutDirectory(sourceFile.fileName);
+				break;
+			}
+		}
+
+		// if the symbol derives from a built-in, prefix js.lib or js.html
+		// otherwise prefix the module name (if it's a path, add a pack for each directory)
+		var pack = if (defaultLibName != null) {
+			switch defaultLibName.toLowerCase() {
+				case 'lib.dom.d.ts': ['js', 'html'];
+				default: ['js', 'lib'];
+			}
+		} else {
+			splitModulePath(entryPointModuleId);
+		}
+
+		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
+		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
+		var identifierChain = access.getIdentifierChain();
+		switch access {
+			case AmbientModule(path, _), ExportModule(path, _):
+				var pathPack = splitModulePath(path);
+				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
+				if (pathPack[0].toSafePackageName() == pack[0].toSafePackageName()) {
+					pathPack.shift();
+				}
+				pack = pack.concat(pathPack).concat(identifierChain);
+				pack.pop(); // remove symbol ident; only want parents
+			case Global(_):
+				// only prefix global package if it's not a built-in
+				pack = pack.concat((defaultLibName != null) ? [] : ['global']).concat(identifierChain);
+				pack.pop(); // remove symbol ident; only want parents
+			case Inaccessible:
+				pack = pack.concat(
+					symbol.getSymbolParents()
+					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
+					.filter(s -> !s.isSourceFileSymbol())
+					.map(s -> s.name)
+				);
+		}
+
+		// make pack a safe package path
+		pack = pack.map(s -> s.toSafePackageName());
+
+		// global symbols are prefixed with 'global' package
+		/*
+		var isGlobal = access.match(Global(_));
+		if (isGlobal) {
+			pack.push('global');
+		}
+
+		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
+			// handle special names
+			if (!~/^__\w/.match(parentSymbol.name)) { // skip special names (like '__global')
+				if (parentSymbol.flags & SymbolFlags.Module != 0) {
+					if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
+						// @! need special handling of source file paths to remove prefix
+					} else {
+						pack = pack.concat(convertFilePathToHaxePackage(parentSymbol.name));
+					}
+				} else {
+					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
+					debug();
+				}
+			}
+		}
+		*/
+
+		return pack;
+	}
+
+	function generateHaxeTypeName(symbol: Symbol, access: SymbolAccess): String {
+		var identifierChain = access.getIdentifierChain();
+		var typeIdentifier: String = switch access {
+			case AmbientModule(path, _), ExportModule(path, _):
+				var lastIdentifier = splitModulePath(path).concat(identifierChain).pop();
+				(lastIdentifier != null ? lastIdentifier : symbol.escapedName);
+			case Global(_):
+				var lastIdentifier = identifierChain.pop();
+				(lastIdentifier != null ? lastIdentifier : symbol.escapedName);
+			case Inaccessible:
+				symbol.escapedName;
+
+		}
+		return typeIdentifier.toSafeTypeName();
+	}
+
+	/**
+		Given a path, return an array of haxe packages
+		`./path/to/file.js` -> `[path,to,file_js]`
+	**/
+	function splitModulePath(path: String) {
+		return Path.normalize(path)
+			.split('/')
+			.filter(s -> s != '');
+	}
+
+	/**
+		Generate a renameability-score for a given module; for example, we'd prefer to rename inaccessible symbols
+	**/
+	inline function renameability(m: InternalModule) {
+		return 
+			m.renameable ? 1 : 0                                     << 5 | // prefer renameable, with highest priority
+			(m.access.match(Inaccessible) ? 1 : 0)                   << 4 | // prefer inaccessible
+			(m.symbol.flags & SymbolFlags.ValueModule == 0 ? 1 : 0)  << 3 | // prefer **not** ValueModule
+			(m.symbol.flags & SymbolFlags.Class == 0 ? 1 : 0)        << 2 | // prefer **not** class
+			(m.symbol.flags & SymbolFlags.Enum == 0 ? 1 : 0)         << 1 | // prefer **not** enum
+			(m.symbol.flags & SymbolFlags.TypeAlias == 0 ? 1 : 0)    << 0   // prefer **not** TypeAlias with lowest priority
+		;
+	}
+
+}
+
+/**
+	Used when building the type-path map
+**/
+typedef InternalModule = {
+	name: String,
+	pack: Array<String>,
+	symbol: Symbol,
+	access: SymbolAccess,
+	renameable: Bool
+}

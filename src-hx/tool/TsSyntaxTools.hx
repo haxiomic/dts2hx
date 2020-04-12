@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.SourceFile;
 import typescript.ts.Identifier;
 import typescript.ts.Node;
 import typescript.ts.EntityName;
@@ -21,6 +22,20 @@ class TsSyntaxTools {
 			case Identifier: (cast entityName: Identifier).escapedText;
 			case QualifiedName: entityNameString((cast entityName: QualifiedName).left) + '_' + entityNameString((cast entityName: QualifiedName).right);
 			default: throw 'EntityName has unexpected kind <b>${getSyntaxKindName(node.kind)}</>';
+		}
+	}
+
+	/**
+		Using this requires `sourceFile.moduleName` has been set (see ConverterContext for details)
+	**/
+	static public function getSourceFileModuleName(sourceFile: SourceFile): String {
+		return if (sourceFile.moduleName != null) {
+			sourceFile.moduleName;
+		} else {
+			// @! todo: determine minimal module import from fileName
+			// i.e. node_modules/three/src/example.d.ts -> three/src/example
+			// maybe helpful // untyped Ts.convertToRelativePath(sourceFile.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
+			sourceFile.fileName;
 		}
 	}
 

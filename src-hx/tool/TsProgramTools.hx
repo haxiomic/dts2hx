@@ -82,4 +82,16 @@ class TsProgramTools {
 		return result;
 	}
 
+	public static function walkReferencedSourceFiles(program: Program, sourceFile: SourceFile, onSourceFile: (SourceFile) -> Void) {
+		onSourceFile(sourceFile);
+
+		// include tripple-slash referenced sourceFiles
+		for (fileRef in sourceFile.referencedFiles) {
+			var referenceSourceFile = program.getSourceFileFromReference(sourceFile, fileRef);
+			if (referenceSourceFile != null) {
+				walkReferencedSourceFiles(program, referenceSourceFile, onSourceFile);
+			}
+		}
+	}
+
 }
