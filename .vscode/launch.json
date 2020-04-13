@@ -53,6 +53,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js typescript",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["typescript", "--verbose"],
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "dts2hx.js abspath",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["/Users/geo/Projects/dts2hx/test/unit/core/enum", "--verbose"],
@@ -67,10 +75,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "dts2hx.js typescript",
+            "name": "dts2hx.js unit/types",
             "program": "${workspaceFolder}/dist/dts2hx.js",
-            "args": ["typescript", "--verbose"],
-            "cwd": "${workspaceFolder}",
+            "args": ["./test/unit/core/types", "--verbose"],
         },
         {
             "type": "node",
