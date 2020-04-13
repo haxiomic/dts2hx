@@ -37,15 +37,22 @@ class HaxeTypePathMap {
 		symbolTypePathMap = buildHaxeTypePathMap();
 	}
 
-	public function getTypePath(symbol: Symbol, access: SymbolAccess): haxe.macro.Expr.TypePath {
+	/**
+		If a symbol has multiple type paths, `accessContext` is used to preference the access of the reference
+		For example, if a symbol has both a global and modular access and we reference it from a module, we want to prefer the module version
+	**/
+	public function getTypePath(symbol: Symbol, accessContext: SymbolAccess): haxe.macro.Expr.TypePath {
 		var modules = symbolTypePathMap.get(symbol.getId());
 
 		if (modules != null) {
-			// find one with a matching access
-			// this is a little dodgy because the access equality check is checking the reference matches, not the _value_
-			// however, the only access we expect here is one returned from `symbolTypePathMap.getAccess()`, so this shouldn't cause problems
-			// if this causes problems in the future we can implement an access value equality check. In practice, access.toString() will do
-			var matchingModule = modules.find(m -> m.access == access);
+			// find one with a matching access context if possible
+			var matchingModule = modules.find(m -> m.access.getIndex() == accessContext.getIndex());
+			if (matchingModule == null) {
+				matchingModule = modules.find(m -> !m.access.match(Inaccessible));
+			}
+			if (matchingModule == null) {
+				matchingModule = modules[0];
+			}
 			if (matchingModule != null) {
 				return {
 					pack: matchingModule.pack,
@@ -53,7 +60,7 @@ class HaxeTypePathMap {
 				}
 			} else {
 				// the access supplied to this method is not one the same accesses used to generate the type-path map
-				log.warn('Internal error: Could not find a type path for symbol with the supplied access <b>${access.toString()}</>', symbol);
+				log.warn('Internal error: Could not find a type path for symbol with the supplied access context <b>${accessContext.toString()}</>', symbol);
 			}
 		} else {
 			// failed to find a matching pre-generated module
@@ -68,8 +75,8 @@ class HaxeTypePathMap {
 
 		// we can generate a type-path on demand, but we won't have name deduplication
 		return {
-			pack: generateHaxePackagePath(symbol, access),
-			name: generateHaxeTypeName(symbol, access),
+			pack: generateHaxePackagePath(symbol, accessContext),
+			name: generateHaxeTypeName(symbol, accessContext),
 		}
 	}
 

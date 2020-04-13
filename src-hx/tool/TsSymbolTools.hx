@@ -266,7 +266,7 @@ class TsSymbolTools {
 		}
 	}
 
-	static function isPowerOfTwo(x: Int) {
+	static inline function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}
 

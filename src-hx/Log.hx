@@ -7,8 +7,11 @@ import typescript.ts.SourceFile;
 import typescript.ts.Node;
 import typescript.ts.SyntaxKind;
 
+using tool.TsTypeTools;
+
 // avoid node.js `Node`
-typedef TsNode = typescript.ts.Node;
+private typedef TsNode = typescript.ts.Node;
+private typedef TsType = typescript.ts.Type;
 
 enum abstract LogLevel(Int) to Int {
 	var None = 0;
@@ -38,24 +41,24 @@ class Log {
 		printErrors = (level: Int) >= (Error: Int);
 	}
 
-	public function log(?message: String, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic) {
-		var str = createMessage(message, node, symbol, diagnostic);
+	public function log(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
+		var str = createMessage(message, node, symbol, type, diagnostic);
 		if (printLogs) {
 			Console.log(str);
 		}
 		logs.push(str);
 	}
 
-	public function warn(?message: String, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic) {
-		var str = createMessage(message, node, symbol, diagnostic);
+	public function warn(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
+		var str = createMessage(message, node, symbol, type, diagnostic);
 		if (printWarnings) {
 			Console.warn(str);
 		}
 		warnings.push(str);
 	}
 
-	public function error(?message: String, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic) {
-		var str = createMessage(message, node, symbol, diagnostic);
+	public function error(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
+		var str = createMessage(message, node, symbol, type, diagnostic);
 		if (printErrors) {
 			Console.error(str);
 		}
@@ -88,7 +91,7 @@ class Log {
 		}
 	}
 
-	function createMessage(?arg: Any, ?node: TsNode, ?symbol: Symbol, ?diagnostic: Diagnostic): String {
+	function createMessage(?arg: Any, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic): String {
 		var parts = new Array<String>();
 		if (arg != null) {
 			parts.push(Std.string(arg));
@@ -98,6 +101,9 @@ class Log {
 		}
 		if (symbol != null) {
 			parts.push('<dim>(${symbolInfo(symbol)})</>');
+		}
+		if (type != null) {
+			parts.push('<dim>(${typeInfo(type)})</>');
 		}
 		if (diagnostic != null) {
 			var message = '<b>[TypeScript ${Ts.versionMajorMinor}]</> ${diagnostic.messageText}';
@@ -127,6 +133,12 @@ class Log {
 	}
 	
 	function nodeInfo(node: TsNode): String {
-		return '<magenta>${TsSyntaxTools.getSyntaxKindName(node.kind)}</> ${formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() })}';
+		return '<magenta>${TsSyntaxTools.getSyntaxKindName(node.kind)}</>${
+			try ' ' + formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() }) catch (e: Any) ''
+		}';
+	}
+
+	function typeInfo(type: TsType) {
+		return '<blue>${type.getFlagsInfo()}</>${type.symbol != null ? ' ' + symbolInfo(type.symbol) : ''}';
 	}
 }

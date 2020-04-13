@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.TypeParameterDeclaration;
 import typescript.ts.SourceFile;
 import typescript.ts.Identifier;
 import typescript.ts.Node;
@@ -8,6 +9,8 @@ import typescript.ts.QualifiedName;
 import typescript.ts.DeclarationName;
 import typescript.ts.SyntaxKind;
 import typescript.Ts;
+
+using tool.HaxeTools;
 
 class TsSyntaxTools {
 
@@ -23,6 +26,11 @@ class TsSyntaxTools {
 			case QualifiedName: entityNameString((cast entityName: QualifiedName).left) + '_' + entityNameString((cast entityName: QualifiedName).right);
 			default: throw 'EntityName has unexpected kind <b>${getSyntaxKindName(node.kind)}</>';
 		}
+	}
+
+	static public function typeParameterDeclarationName(typeParameterDeclaration: TypeParameterDeclaration): String {
+		var name: Identifier = (untyped typeParameterDeclaration.name: Identifier);
+		return name.escapedText.toSafeTypeName();
 	}
 
 }

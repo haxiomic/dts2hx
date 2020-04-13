@@ -1,3 +1,11 @@
+import typescript.ts.TupleTypeReference;
+import typescript.ts.Node;
+import typescript.ts.TypeParameter;
+import typescript.ts.TypeReference;
+import typescript.ts.InterfaceType;
+import typescript.ts.ObjectFlags;
+import typescript.ts.ObjectType;
+import typescript.ts.TypeFlags;
 import typescript.ts.Identifier;
 import typescript.ts.TypeParameterDeclaration;
 import typescript.ts.NodeBuilderFlags;
@@ -22,7 +30,10 @@ using tool.HaxeTools;
 using tool.SymbolAccessTools;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
+using tool.TsTypeTools;
 using TsInternal;
+
+typedef TsType = typescript.ts.Type;
 
 @:expose
 @:nullSafety
@@ -331,25 +342,118 @@ class ConverterContext {
 		For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`)
 		If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
 	**/
-	function typeNodeToComplexType(node: TypeNode, accessContext: SymbolAccess): ComplexType {
+	function typeNodeToComplexType(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		// @! todo: very WIP
 		var type = tc.getTypeFromTypeNode(node);
+		log.log('${type.getFlagsInfo()}', node);
+		return typeToComplexType(type, accessContext, enclosingDeclaration);
+	}
+	
+	function typeToComplexType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 
-		// type.aliasSymbol
-		debug();
-		
+		// handle fundamental type flags
+		if (type.flags & (TypeFlags.Any | TypeFlags.Unknown) != 0) {
+			return HaxePrimitives.any;
+		}
+		if (type.flags & (TypeFlags.String) != 0) {
+			return HaxePrimitives.string;
+		}
+		if (type.flags & (TypeFlags.Number) != 0) {
+			return HaxePrimitives.float;
+		}
+		if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
+			return HaxePrimitives.void;
+		}
+
+		// @! unions and literals could generate enum abstracts
+
+		// @! todo:
+		// Enum            = 1 << 5,
+		// BigInt          = 1 << 6,
+		// StringLiteral   = 1 << 7,
+		// NumberLiteral   = 1 << 8,
+		// BooleanLiteral  = 1 << 9,
+		// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
+		// BigIntLiteral   = 1 << 11,
+		// ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
+		// UniqueESSymbol  = 1 << 13,  // unique symbol
+		// Null            = 1 << 16,
+		// Union           = 1 << 20,  // Union (T | U)
+		// Intersection    = 1 << 21,  // Intersection (T & U)
+		// Index           = 1 << 22,  // keyof T
+		// IndexedAccess   = 1 << 23,  // T[K]
+		// Conditional     = 1 << 24,  // T extends U ? X : Y
+		// Substitution    = 1 << 25,  // Type parameter substitution
+		// NonPrimitive    = 1 << 26,  // intrinsic object type
+
+		if (type.flags & (TypeFlags.TypeParameter) != 0) {
+			var typeParameterType: TypeParameter = cast type;
+			var typeParameterDeclaration = tc.typeParameterToDeclaration(typeParameterType, enclosingDeclaration, defaultNodeBuilderFlags);
+			if (typeParameterDeclaration != null) {
+				return TPath({
+					name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
+					pack: [],
+				});
+			}
+		}
+
+		if (type.flags & (TypeFlags.Object) != 0) {
+			var objectType: ObjectType = cast type;
+			log.log('\t${objectType.getObjectFlagsInfo()}');
+			
+			// @! todo:
+			// Class            = 1 << 0,  // Class
+			// Interface        = 1 << 1,  // Interface
+			// Tuple            = 1 << 3,  // Synthesized generic tuple type
+			// Anonymous        = 1 << 4,  // Anonymous
+			// Mapped           = 1 << 5,  // Mapped
+			// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
+			// ObjectLiteral    = 1 << 7,  // Originates in an object literal
+			// EvolvingArray    = 1 << 8,  // Evolving array type
+			// ObjectLiteralPatternWithComputedProperties = 1 << 9,  // Object literal pattern with computed properties
+			// ContainsSpread   = 1 << 10, // Object literal contains spread operation
+			// ReverseMapped    = 1 << 11, // Object contains a property from a reverse-mapped type
+			// JsxAttributes    = 1 << 12, // Jsx attributes type
+			// MarkerType       = 1 << 13, // Marker type used for variance probing
+			// JSLiteral        = 1 << 14, // Object type declared in JS - disables errors on read/write of nonexisting members
+			// FreshLiteral     = 1 << 15, // Fresh object literal
+			// ArrayLiteral     = 1 << 16, // Originates in an array literal
+			// ObjectRestType   = 1 << 17, // Originates in object rest declaration
+
+			if (objectType.objectFlags & (ObjectFlags.ClassOrInterface) != 0) {
+				var classOrInterfaceType: InterfaceType = cast type;
+				if (classOrInterfaceType.symbol != null) {
+					var hxTypePath = haxeTypePathMap.getTypePath(classOrInterfaceType.symbol, accessContext);
+					return TPath(hxTypePath);
+				} else {
+					debug();
+				}
+			} else if (objectType.objectFlags & (ObjectFlags.Reference) != 0) {
+				// Generic type reference
+				var typeReference: TypeReference = cast type;
+
+				// @! type references need properly reviewing
+				// the following works for references to classes and interfaces but not for references like 
+				// `type CompleterResult = [string[], string];`
+				
+				if (typeReference.target.symbol != null) {
+					var hxTypePath = haxeTypePathMap.getTypePath(typeReference.target.symbol, accessContext);
+					if (typeReference.typeArguments != null) {
+						hxTypePath.params = typeReference.typeArguments.map(typeParam -> TPType(typeToComplexType(typeParam, accessContext)));
+					}
+					return TPath(hxTypePath);
+				} else {
+					debug();
+				}
+			}
+
+			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', type);
+			return HaxePrimitives.any;
+		}
+
+		log.error('Could not convert type', type);
+
 		return HaxePrimitives.any;
-		
-		// if (type.symbol != null && type.flags & SymbolFlags.Type != 0) {
-		// 	var packagePath = generateHaxePackagePath(type.symbol);
-		// 	return TPath({
-		// 		pack: packagePath,
-		// 		name: generateHaxeTypeName(type.symbol)
-		// 	});
-		// } else {
-		// 	log.error('Could not convert ts TypeNode to haxe ComplexType', node);
-		// 	return HaxePrimitives.any;
-		// }
 	}
 
 	/**
@@ -360,13 +464,12 @@ class ConverterContext {
 		if (tsTypeParamDeclarations == null) {
 			return [];
 		}
-		return tsTypeParamDeclarations.map(typeParameterDeclaration -> {
-			var name: Identifier = (untyped typeParameterDeclaration.name: Identifier);
-			return ({
-				name: name.escapedText.toSafeTypeName(),
-				constraints: typeParameterDeclaration.constraint != null ? [typeNodeToComplexType(typeParameterDeclaration.constraint, accessContext)] : [],
-			}: TypeParamDecl);
-		});
+		// haxe currently does not support defaults in type parameters
+		// typeParameterDeclaration.default_
+		return tsTypeParamDeclarations.map(typeParameterDeclaration -> ({
+			name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
+			constraints: typeParameterDeclaration.constraint != null ? [typeNodeToComplexType(typeParameterDeclaration.constraint, accessContext)] : null,
+		}: TypeParamDecl));
 	}
 
 	/**
@@ -410,6 +513,7 @@ class HaxePrimitives {
 	static public final string: ComplexType = TPath({pack: [], name: 'String'});
 	static public final float: ComplexType = TPath({pack: [], name: 'Float'});
 	static public final int: ComplexType = TPath({pack: [], name: 'Int'});
+	static public final bool: ComplexType = TPath({pack: [], name: 'Bool'});
 	static public final any: ComplexType = TPath({pack: [], name: 'Any'});
 	static public final void: ComplexType = TPath({pack: [], name: 'Void'});
 }
@@ -492,7 +596,7 @@ class OnceOnlySymbolQueue {
 
 	**SymbolFlags**
 	https://github.com/microsoft/TypeScript/blob/0ae938b718bae3367bff26369adac1ecef56f212/src/compiler/types.ts#L4007
-
+	```typescript
 	enum SymbolFlags {
 		None                    = 0,
 		FunctionScopedVariable  = 1 << 0,   // Variable (var) or parameter
@@ -556,6 +660,7 @@ class OnceOnlySymbolQueue {
 		// @internal
 		LateBindingContainer = Class | Interface | TypeLiteral | ObjectLiteral | Function,
 	}
+	```
 
 	**Alias Symbols**
 	An 'alias symbol' is different from a TypeAlias and is created by one of the following declarations:
@@ -575,4 +680,94 @@ class OnceOnlySymbolQueue {
 	
 	For a discussion on the different types of exports and imports
 	https://github.com/microsoft/TypeScript/issues/7185#issuecomment-421632656
+
+	**Type Flags**
+	```typescript
+	export const enum TypeFlags {
+        Any             = 1 << 0,
+        Unknown         = 1 << 1,
+        String          = 1 << 2,
+        Number          = 1 << 3,
+        Boolean         = 1 << 4,
+        Enum            = 1 << 5,
+        BigInt          = 1 << 6,
+        StringLiteral   = 1 << 7,
+        NumberLiteral   = 1 << 8,
+        BooleanLiteral  = 1 << 9,
+        EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
+        BigIntLiteral   = 1 << 11,
+        ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
+        UniqueESSymbol  = 1 << 13,  // unique symbol
+        Void            = 1 << 14,
+        Undefined       = 1 << 15,
+        Null            = 1 << 16,
+        Never           = 1 << 17,  // Never type
+        TypeParameter   = 1 << 18,  // Type parameter
+        Object          = 1 << 19,  // Object type
+        Union           = 1 << 20,  // Union (T | U)
+        Intersection    = 1 << 21,  // Intersection (T & U)
+        Index           = 1 << 22,  // keyof T
+        IndexedAccess   = 1 << 23,  // T[K]
+        Conditional     = 1 << 24,  // T extends U ? X : Y
+        Substitution    = 1 << 25,  // Type parameter substitution
+        NonPrimitive    = 1 << 26,  // intrinsic object type
+
+        // @internal
+        AnyOrUnknown = Any | Unknown,
+        // @internal
+        Nullable = Undefined | Null,
+        Literal = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral,
+        Unit = Literal | UniqueESSymbol | Nullable,
+        StringOrNumberLiteral = StringLiteral | NumberLiteral,
+        // @internal
+        StringOrNumberLiteralOrUnique = StringLiteral | NumberLiteral | UniqueESSymbol,
+        // @internal
+        DefinitelyFalsy = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral | Void | Undefined | Null,
+        PossiblyFalsy = DefinitelyFalsy | String | Number | BigInt | Boolean,
+        // @internal
+        Intrinsic = Any | Unknown | String | Number | BigInt | Boolean | BooleanLiteral | ESSymbol | Void | Undefined | Null | Never | NonPrimitive,
+        // @internal
+        Primitive = String | Number | BigInt | Boolean | Enum | EnumLiteral | ESSymbol | Void | Undefined | Null | Literal | UniqueESSymbol,
+        StringLike = String | StringLiteral,
+        NumberLike = Number | NumberLiteral | Enum,
+        BigIntLike = BigInt | BigIntLiteral,
+        BooleanLike = Boolean | BooleanLiteral,
+        EnumLike = Enum | EnumLiteral,
+        ESSymbolLike = ESSymbol | UniqueESSymbol,
+        VoidLike = Void | Undefined,
+        // @internal
+        DisjointDomains = NonPrimitive | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbolLike | VoidLike | Null,
+        UnionOrIntersection = Union | Intersection,
+        StructuredType = Object | Union | Intersection,
+        TypeVariable = TypeParameter | IndexedAccess,
+        InstantiableNonPrimitive = TypeVariable | Conditional | Substitution,
+        InstantiablePrimitive = Index,
+        Instantiable = InstantiableNonPrimitive | InstantiablePrimitive,
+        StructuredOrInstantiable = StructuredType | Instantiable,
+        // @internal
+        ObjectFlagsType = Any | Nullable | Never | Object | Union | Intersection,
+        // @internal
+        Simplifiable = IndexedAccess | Conditional,
+        // @internal
+        Substructure = Object | Union | Intersection | Index | IndexedAccess | Conditional | Substitution,
+        // 'Narrowable' types are types where narrowing actually narrows.
+        // This *should* be every type other than null, undefined, void, and never
+        Narrowable = Any | Unknown | StructuredOrInstantiable | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbol | UniqueESSymbol | NonPrimitive,
+        NotUnionOrUnit = Any | Unknown | ESSymbol | Object | NonPrimitive,
+        // @internal
+        NotPrimitiveUnion = Any | Unknown | Enum | Void | Never | StructuredOrInstantiable,
+        // The following flags are aggregated during union and intersection type construction
+        // @internal
+        IncludesMask = Any | Unknown | Primitive | Never | Object | Union | Intersection | NonPrimitive,
+        // The following flags are used for different purposes during union and intersection type construction
+        // @internal
+        IncludesStructuredOrInstantiable = TypeParameter,
+        // @internal
+        IncludesNonWideningType = Index,
+        // @internal
+        IncludesWildcard = IndexedAccess,
+        // @internal
+        IncludesEmptyObject = Conditional,
+    }
+	```
 **/
