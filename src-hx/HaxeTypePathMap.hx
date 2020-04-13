@@ -10,7 +10,11 @@ using tool.SymbolAccessTools;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
 
-
+/**
+	The idea here is to generate a haxe type-path for all symbols upfront (including external modules and build-in lib symbols).
+	Because TypeScript type names are case-sensitive and haxe module _files_ need to be case-insensitive we can end up with multiple symbols mapping to a single module name.
+	To Resolve this, we find name overlaps and rename modules by appending `_`
+**/
 class HaxeTypePathMap {
 
 	final entryPointModuleId: String;
@@ -20,6 +24,9 @@ class HaxeTypePathMap {
 	final log: Log;
 	// the same symbol may have multiple type paths if it has multiple SymbolAccess
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
+
+	// if a symbol has these flags, it requires a type-path in haxe
+	static final SymbolRequiresTypePath = SymbolFlags.Type | SymbolFlags.ValueModule;
 
 	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap, log: Log) {
 		this.entryPointModuleId = entryPointModuleId;
@@ -35,31 +42,37 @@ class HaxeTypePathMap {
 
 		if (modules != null) {
 			// find one with a matching access
+			// this is a little dodgy because the access equality check is checking the reference matches, not the _value_
+			// however, the only access we expect here is one returned from `symbolTypePathMap.getAccess()`, so this shouldn't cause problems
+			// if this causes problems in the future we can implement an access value equality check. In practice, access.toString() will do
 			var matchingModule = modules.find(m -> m.access == access);
 			if (matchingModule != null) {
 				return {
 					pack: matchingModule.pack,
 					name: matchingModule.name,
 				}
+			} else {
+				// the access supplied to this method is not one the same accesses used to generate the type-path map
+				log.warn('Internal error: Could not find a type path for symbol with the supplied access <b>${access.toString()}</>', symbol);
 			}
+		} else {
+			// failed to find a matching pre-generated module
+			// this indicates we didn't find all symbols when building the map
+			log.warn('Internal error: No type paths were generated for this symbol', symbol);
 		}
 
-		// failed to find a matching pre-generated module
-		// generate a type-path on demand, but we won't have duplicate name resolution
-		// this indicates we didn't find all symbols when building the map
-		log.warn('Internal error: No type paths were generated for this symbol; generating paths on-demand', symbol);
+		// reaching this point is considered an error because type-paths should have been pre-generated for _all_ appropriate symbols
+		if (symbol.flags & SymbolRequiresTypePath == 0) {
+			log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
+		}
 
+		// we can generate a type-path on demand, but we won't have name deduplication
 		return {
 			pack: generateHaxePackagePath(symbol, access),
 			name: generateHaxeTypeName(symbol, access),
 		}
 	}
 
-	/**
-		The idea here is to generate a haxe type-path for all symbols (including external modules and build-in lib symbols).
-		Because TypeScript type names are case-sensitive and haxe module _files_ need to be case-insensitive we can end up with multiple symbols mapping to a single module name.
-		To Resolve this, we find name overlaps and rename modules by appending `_`
-	**/
 	function buildHaxeTypePathMap() {
 		var packageMap = new Map<String, Array<InternalModule>>();
 
@@ -76,7 +89,7 @@ class HaxeTypePathMap {
 		// find all declaration symbols in the program (including inaccessible ones) and add to package map as InternalModules
 		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
 			TsSymbolTools.walkDeclarationSymbols(topLevelSymbol, tc, (symbol, _) -> {
-				if (symbol.flags & (SymbolFlags.ValueModule | SymbolFlags.Type) != 0 ) {
+				if (symbol.flags & SymbolRequiresTypePath != 0 ) {
 					for (access in symbolAccessMap.getAccess(symbol)) {
 						var pack = generateHaxePackagePath(symbol, access);
 						var name = generateHaxeTypeName(symbol, access);
@@ -140,6 +153,7 @@ class HaxeTypePathMap {
 						hasNameOverlap = true;
 
 						// sort the matches to find the best one to rename (using ds.ArraySort for stability)
+						// the symbol we'd prefer to rename should be at 0
 						haxe.ds.ArraySort.sort(matches, (a, b) -> {
 							var renameabilityA = renameability(a);
 							var renameabilityB = renameability(b);
@@ -164,9 +178,9 @@ class HaxeTypePathMap {
 			}
 		}
 
-		var typePathMap = new Map<Int, Array<InternalModule>>();
+		// with duplicate names resolved, create a symbol -> [internal module] map for faster lookup
 
-		// with duplicate names resolved, create a symbol -> [internal module] map
+		var typePathMap = new Map<Int, Array<InternalModule>>();
 		for (_ => modules in packageMap) {
 			for (module in modules) {
 				if (module.symbol == null) continue; // i.e. special `Global.hx` module
@@ -259,6 +273,23 @@ class HaxeTypePathMap {
 		return pack;
 	}
 
+	/**
+		When generating a haxe module name for a symbol, rather than using the symbol's name, we use the name used to _access_ the symbol
+		This may be different from the symbol name itself. For example, say we have a module which uses `export =`
+		```typescript
+		declare module "lib/fs" {
+
+			class internal {
+				// ...	
+			}
+
+			export = internal;
+
+		}
+		```
+
+		References to the class `internal` should be exposed as references to `"lib/fs"`, and `internal` should not appear in the generated haxe
+	**/
 	function generateHaxeTypeName(symbol: Symbol, access: SymbolAccess): String {
 		var identifierChain = access.getIdentifierChain();
 		var typeIdentifier: String = switch access {

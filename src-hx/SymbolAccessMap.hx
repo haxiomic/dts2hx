@@ -12,7 +12,7 @@ using tool.TsSymbolTools;
 
 
 /**
-	Determines access path for all accessible symbols given entry point source files
+	Determines access path for all accessible symbols given entry-point source files
 
 	We run this for every referenced module because haxe type paths depend on symbol accessibility
 	so if we reference a type in an external module, to generate the correct haxe path we must know that external symbol's access path
@@ -20,12 +20,11 @@ using tool.TsSymbolTools;
 @:access(ConverterContext)
 class SymbolAccessMap {
 
-	// final program: Program;
 	final tc: TypeChecker;
 	final log: Log;
 	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
 
-	public function new(program: Program, moduleRootSourceFiles: Array<SourceFile>, log: Log) {
+	public function new(entryPointModuleId: String, program: Program, moduleRootSourceFiles: Array<SourceFile>, log: Log) {
 		// this.program = ctx.program;
 		this.tc = program.getTypeChecker();
 		this.log = log;
@@ -35,7 +34,7 @@ class SymbolAccessMap {
 				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
 
 				var sourceFileAccess: SymbolAccess = if (sourceFileSymbol != null) {
-					ExportModule(tool.TsSyntaxTools.getSourceFileModuleName(sourceFile), sourceFileSymbol, []);
+					ExportModule(ConverterContext.getSourceFileModuleName(sourceFile), sourceFileSymbol, []);
 				} else {
 					Global([]);
 				}

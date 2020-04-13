@@ -25,18 +25,4 @@ class TsSyntaxTools {
 		}
 	}
 
-	/**
-		Using this requires `sourceFile.moduleName` has been set (see ConverterContext for details)
-	**/
-	static public function getSourceFileModuleName(sourceFile: SourceFile): String {
-		return if (sourceFile.moduleName != null) {
-			sourceFile.moduleName;
-		} else {
-			// @! todo: determine minimal module import from fileName
-			// i.e. node_modules/three/src/example.d.ts -> three/src/example
-			// maybe helpful // untyped Ts.convertToRelativePath(sourceFile.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-			sourceFile.fileName;
-		}
-	}
-
 }

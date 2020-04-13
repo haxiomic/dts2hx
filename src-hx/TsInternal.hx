@@ -1,13 +1,12 @@
-/**
-	TypeScript compiler methods not included in the compiler externs
-**/
-
 import typescript.ts.TypeChecker;
 import typescript.ts.Symbol;
 import typescript.ts.FileReference;
 import typescript.ts.SourceFile;
 import typescript.ts.Program;
 
+/**
+	TypeScript compiler methods not included in the compiler externs
+**/
 class TsInternal {
 
 	static public function getSourceFileFromReference(program: Program, sourceFile: SourceFile, fileReference: FileReference): Null<SourceFile> {

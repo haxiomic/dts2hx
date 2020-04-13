@@ -62,6 +62,8 @@ class ConverterContext {
 			throw 'Failed to get entry-point source file';
 		}
 
+		var defaultLibSourceFiles = program.getSourceFiles().filter(s -> s.hasNoDefaultLib);
+
 		// list of the module entry points source files, for the currently module and its referenced modules
 		var moduleRootSourceFiles: Array<SourceFile> = [entryPointSourceFile];
 
@@ -86,14 +88,12 @@ class ConverterContext {
 			}
 		}
 
-		moduleDependencies = moduleRootSourceFiles.filter(s -> s != entryPointSourceFile).map(s -> inline TsSyntaxTools.getSourceFileModuleName(s));
-
-		var defaultLibSourceFiles = program.getSourceFiles().filter(s -> s.hasNoDefaultLib);
+		moduleDependencies = moduleRootSourceFiles.filter(s -> s != entryPointSourceFile).map(s -> inline getSourceFileModuleName(s));
 
 		// populate symbol access map
-		symbolAccessMap = new SymbolAccessMap(program, defaultLibSourceFiles.concat(moduleRootSourceFiles), log);
+		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, defaultLibSourceFiles.concat(moduleRootSourceFiles), log);
 
-		// generate a haxe type-path for all type or module-class symbols in the program
+		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
 		haxeTypePathMap = new HaxeTypePathMap(entryPointModuleId, program, symbolAccessMap, log);
 
 		// convert symbols for just this module
@@ -314,6 +314,20 @@ class ConverterContext {
 			moduleNameParts.shift();
 		}
 		return moduleNameParts.join('/');
+	}
+
+	/**
+		Using this requires `sourceFile.moduleName` has been set (see ConverterContext for details)
+	**/
+	static public function getSourceFileModuleName(sourceFile: SourceFile): String {
+		return if (sourceFile.moduleName != null) {
+			sourceFile.moduleName;
+		} else {
+			// @! todo: determine minimal module import from fileName
+			// i.e. node_modules/three/src/example.d.ts -> three/src/example
+			// maybe helpful // untyped Ts.convertToRelativePath(sourceFile.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
+			sourceFile.fileName;
+		}
 	}
 
 }
