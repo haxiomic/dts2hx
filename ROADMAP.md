@@ -1,18 +1,32 @@
-- Move getSourceFileModuleName and moduleDependencies to SymbolAccessMap
+- Tuple type references and review the following
+```typescript
+/**
+* Type references (ObjectFlags.Reference). When a class or interface has type parameters or
+* a "this" type, references to the class or interface are made using type references. The
+* typeArguments property specifies the types to substitute for the type parameters of the
+* class or interface and optionally includes an extra element that specifies the type to
+* substitute for "this" in the resulting instantiation. When no extra argument is present,
+* the type reference itself is substituted for "this". The typeArguments property is undefined
+* if the class or interface has no type parameters and the reference isn't specifying an
+* explicit "this" argument.
+*/
+```
 
-- ValueModules and (classes, interfaces, enum) should be merged; symbols should be an array
-	- Typedef can be replaced with an abstract, but this adds some complexity
-	```@:forward @:forwardStatics extern abstract T(X) to X from X```
-	- Do we ever need to split into multiple modules then?
-	-> No
+- typeNodeToComplexType should also return support types required
+	- Support types should always be emitted in the same module as the type reference
+	- Have a deterministic, order-free name so we can deduplicate
+		`A | B` and `B | A` -> `EitherAOrB`
+	- Maybe we can add an extra field `_supportType` to the TypeDefinition
 
-- ValueModule classes
-	- Pixi and PIXI module class, creates file overwrite
-		- Need to check case insensitive
-		- Maybe add Module to module name?
-		- Merge fields
+- Handle nullable types
 
-- Should we have Global.hx per-package or just one?
+- TypeConversion: Type references
+	- Convert inaccessible types (grow `declarationSymbolQueue`)
+
+- Global.hx
+	- Should we have Global.hx per-package or just one?
+
+- Review class-expression syntax `let x = class ...`
 
 - Callable classes with @:selfCall
 	https://haxe.org/manual/target-javascript-external-libraries.html
@@ -21,24 +35,6 @@
 	- Generate method to get keys
 	- Support array access
 
-- typeNodeToComplexType should also return support types required
-	- Support types should always be emitted in the same module as the type reference
-	- Have a deterministic, order-free name so we can deduplicate
-		`A | B` and `B | A` -> `EitherAOrB`
-	- Maybe we can add an extra field `_supportType` to the TypeDefinition
-
-- TypeConversion: Type references
-	- Convert inaccessible types (grow `inaccessibleTypeQueue`)
-
-
-- How do we handle external lib references like jquery and sizzle
-	- Ideally the output would be
-		jquery/
-			Jquery.hx
-		sizzle/
-			Sizzle.hx
-- Module classes (empty)
-- Start on typeToComplex type
 
 - **Command Line Interface**
 	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
