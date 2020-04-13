@@ -59,9 +59,10 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Typedef
         - [x] Enum
     - [ ] Type references **← currently working on this**
-        - [ ] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
-        - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
-        - [ ] Generate externs for built-in types that aren't in the haxe standard library yet
+        - [x] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
+        - [x] Generate externs for built-in types that aren't in the haxe standard library yet
+        - [ ] Type-node references
+    - [ ] ValueModules
     - [ ] Basic conversion of fundamental types
         - [x] Enums
         - [ ] Primitives
@@ -80,6 +81,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [ ] Constructors
         - [ ] Index signatures (both class and interfaces)
         - [ ] Extends & implements
+    - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
     - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
@@ -107,7 +109,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 
 # FAQ
 
-- Should I publish generated types to haxelib
+- Should I publish generated types to haxelib?
 
     Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider open an issue here noting the fixup required instead – it would be better if dts2hx converted more modules correctly instead of polluting the haxelib namespace with js externs
 
