@@ -1,3 +1,7 @@
+import typescript.ts.Identifier;
+import typescript.ts.TypeParameterDeclaration;
+import typescript.ts.NodeBuilderFlags;
+import haxe.macro.Printer;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import tool.TsSyntaxTools;
@@ -18,6 +22,7 @@ using tool.HaxeTools;
 using tool.SymbolAccessTools;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
+using TsInternal;
 
 @:expose
 @:nullSafety
@@ -47,7 +52,6 @@ class ConverterContext {
 		// this will be used as the argument to require()
 		this.log = log_ != null ? log_ : new Log();
 		this.entryPointModuleId = inline normalizeModuleName(moduleName);
-		
 		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
 		this.host = Ts.createCompilerHost(compilerOptions);
@@ -99,7 +103,9 @@ class ConverterContext {
 		// convert symbols for just this module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExportsOfSourceFile(sourceFile)) {
-				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, _) -> declarationSymbolQueue.tryEnqueue(symbol));
+				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, _) -> {
+					declarationSymbolQueue.tryEnqueue(symbol);
+				});
 			}
 		});
 
@@ -112,23 +118,21 @@ class ConverterContext {
 			// aliases are accounted for with SymbolAccess and don't need to handled here
 			var handled = symbol.flags & SymbolFlags.Alias != 0;
 
-			if (symbol.flags & (SymbolFlags.Type) != 0) {
+			if (symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0) {
 				// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-				handled = true;
 				convertTypeSymbol(symbol);
+				handled = true;
 			}
 
 			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 				// FunctionScopedVariable | BlockScopedVariable | Function
+				//@! if top-level global declarations then these need to go into Global.hx, otherwise we can ignore
+				//@! we could also get the containing haxe module and add here, this create an order-dependence but that might be ok 
 				handled = true;
 			}
 
-			if (symbol.flags & (SymbolFlags.ValueModule) != 0) {
-				// @! generate a module class
-			}
-
-			if (symbol.flags & (SymbolFlags.Module) != 0) {
-				// ValueModule | NamespaceModule
+			if (symbol.flags & (SymbolFlags.NamespaceModule) != 0) {
+				// NamespaceModule
 				handled = true;
 			}
 
@@ -144,18 +148,11 @@ class ConverterContext {
 
 		var pos = TsSymbolTools.getSymbolPosition(symbol);
 
-		//@! need to handle
-		// ValueModule + TypeAlias via abstract
-		// ValueModule + Class via statics
-		// ValueModule + Interface via statics
-		// ValueModule + Enum via statics
-
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
 			for (access in symbolAccessMap.getAccess(symbol)) {
 				var typePath = haxeTypePathMap.getTypePath(symbol, access);
 				var superClass = null; // @! todo
 				var interfaces = []; // @! todo
-				var typeParams = []; // @! todo
 				var isInterface = symbol.flags & SymbolFlags.Interface != 0;
 
 				var hxClass: HaxeModule = {
@@ -163,8 +160,8 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDClass(superClass, interfaces, isInterface, false),
+					params: symbolToHaxeTypeParameterDeclarations(symbol, access),
 					isExtern: true,
-					params: typeParams,
 					doc: getDoc(symbol),
 					meta: isInterface ? [] : [access.toAccessMetadata()],
 					pos: pos,
@@ -204,6 +201,7 @@ class ConverterContext {
 					pack: typePath.pack,
 					name: typePath.name,
 					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+					params: symbolToHaxeTypeParameterDeclarations(symbol, access), // is there a case where an enum can have a TypeParameter?
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
@@ -227,12 +225,28 @@ class ConverterContext {
 					var hxAliasType: ComplexType = typeNodeToComplexType(typeAliasDeclaration.type, access); 
 
 					var typePath = haxeTypePathMap.getTypePath(symbol, access);
-					
-					var hxTypeDef: HaxeModule = {
+
+					// if this symbol is also a ValueModule then it needs to have fields
+					// to enable this, we create a pseudo typedef with an abstract
+					var hxTypeDef: HaxeModule = if (symbol.flags & SymbolFlags.ValueModule != 0) {
+						pack: typePath.pack,
+						name: typePath.name,
+						fields: [],
+						kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
+						params: symbolToHaxeTypeParameterDeclarations(symbol, access), // is there a case where an enum can have a TypeParameter?
+						doc: getDoc(symbol),
+						isExtern: true,
+						meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+						pos: pos,
+						subTypes: [],
+						tsSymbol: symbol,
+						tsSymbolAccess: access,
+					} else {
 						pack: typePath.pack,
 						name: typePath.name,
 						fields: [],
 						kind: TDAlias(hxAliasType),
+						params: symbolToHaxeTypeParameterDeclarations(symbol, access),
 						doc: getDoc(symbol),
 						pos: pos,
 						subTypes: [],
@@ -240,10 +254,39 @@ class ConverterContext {
 						tsSymbolAccess: access,
 					}
 
+					if (symbol.flags & SymbolFlags.ValueModule != 0) {
+						log.log('${typePath.pack.join('.')} ${typePath.name}', symbol);
+					}
+
 					saveHaxeModule(hxTypeDef, symbol, access);
 				} else {
 					log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 				}
+			}
+			return;
+		}
+
+		// here we have a ValueModule that is not paired with a type
+		if (symbol.flags & SymbolFlags.ValueModule != 0) {
+			for (access in symbolAccessMap.getAccess(symbol)) {
+				var typePath = haxeTypePathMap.getTypePath(symbol, access);
+
+				var hxModuleClass: HaxeModule = {
+					pack: typePath.pack,
+					name: typePath.name,
+					fields: [],
+					kind: TDClass(null, [], false, false),
+					params: symbolToHaxeTypeParameterDeclarations(symbol, access), // there shouldn't actually be any type parameters for ValueModule-only symbol
+					isExtern: true,
+					doc: getDoc(symbol),
+					meta: [access.toAccessMetadata()],
+					pos: pos,
+					subTypes: [],
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
+				}
+
+				saveHaxeModule(hxModuleClass, symbol, access);
 			}
 			return;
 		}
@@ -291,6 +334,10 @@ class ConverterContext {
 	function typeNodeToComplexType(node: TypeNode, accessContext: SymbolAccess): ComplexType {
 		// @! todo: very WIP
 		var type = tc.getTypeFromTypeNode(node);
+
+		// type.aliasSymbol
+		debug();
+		
 		return HaxePrimitives.any;
 		
 		// if (type.symbol != null && type.flags & SymbolFlags.Type != 0) {
@@ -305,6 +352,27 @@ class ConverterContext {
 		// }
 	}
 
+	/**
+		Given a symbol with type-parameter declarations, e.g. `class X<T extends number>`, return the haxe type-parameter declaration equivalent
+	**/
+	function symbolToHaxeTypeParameterDeclarations(symbol: Symbol, accessContext: SymbolAccess): Array<TypeParamDecl> {
+		var tsTypeParamDeclarations: Null<Array<TypeParameterDeclaration>> = cast tc.symbolToTypeParameterDeclarations(symbol, js.Lib.undefined, defaultNodeBuilderFlags);
+		if (tsTypeParamDeclarations == null) {
+			return [];
+		}
+		return tsTypeParamDeclarations.map(typeParameterDeclaration -> {
+			var name: Identifier = (untyped typeParameterDeclaration.name: Identifier);
+			return ({
+				name: name.escapedText.toSafeTypeName(),
+				constraints: typeParameterDeclaration.constraint != null ? [typeNodeToComplexType(typeParameterDeclaration.constraint, accessContext)] : [],
+			}: TypeParamDecl);
+		});
+	}
+
+	/**
+		Remove @types prefix and convert backslashes to forward slashes
+		Given a module name like `@types\lib`, return `lib`
+	**/
 	function normalizeModuleName(moduleName: String) {
 		// replace backslashes with forward slashes to normalize for windows paths
 		moduleName.replace('\\', '/');
@@ -315,6 +383,12 @@ class ConverterContext {
 		}
 		return moduleNameParts.join('/');
 	}
+
+	static final defaultNodeBuilderFlags =
+		NodeBuilderFlags.NoTruncation |
+		NodeBuilderFlags.WriteArrayAsGenericType | // Write Array<T> instead T[]
+		NodeBuilderFlags.GenerateNamesForShadowedTypeParams // When a type parameter T is shadowing another T, generate a name for it so it can still be referenced
+	;
 
 	/**
 		Using this requires `sourceFile.moduleName` has been set (see ConverterContext for details)
