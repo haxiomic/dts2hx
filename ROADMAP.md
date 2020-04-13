@@ -1,27 +1,21 @@
-- If a type is renamed, i.e. `Url` -> `Url_` how do we ensure all type references are correct later?
-	- Maybe we need a _second_ pass like access map to generate a haxe name / path map
-		- This is more difficult because many symbols are only discovered after type references
-	-> Use a custom printer that checks for specially marked type-paths, maybe {
-		pack,
-		name,
-		_symbol,
-	} and resolves them by checking a symbol map of haxe generated types
+- Move getSourceFileModuleName and moduleDependencies to SymbolAccessMap
 
-	! We need a deterministic way to solve name collisions, so that when we reference an external module it will solve the same way
-		-> Determine a name for _all_ symbols upfront
-
-- Why is `class URL` exposed from url.d.ts and not `interface Url`?
-	- Either way the type will need to be generated because it's probably referenced as a type
+- ValueModules and (classes, interfaces, enum) should be merged; symbols should be an array
+	- Typedef can be replaced with an abstract, but this adds some complexity
+	```@:forward @:forwardStatics extern abstract T(X) to X from X```
+	- Do we ever need to split into multiple modules then?
+	-> No
 
 - ValueModule classes
-	- Path names need fixing
-		- Overwriting
-		- Other weirdness
 	- Pixi and PIXI module class, creates file overwrite
 		- Need to check case insensitive
 		- Maybe add Module to module name?
 		- Merge fields
 
+- Should we have Global.hx per-package or just one?
+
+- Callable classes with @:selfCall
+	https://haxe.org/manual/target-javascript-external-libraries.html
 
 - Enums:
 	- Generate method to get keys
@@ -45,6 +39,10 @@
 			Sizzle.hx
 - Module classes (empty)
 - Start on typeToComplex type
+
+- **Command Line Interface**
+	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
+	- maybe check for .d.ts at end and remove when doing module search
 
 - babylon d.ts is borked to heck. It defines the same classes into multiple modules, only a few of which actually exist. Each module generates a type that currently has the same package as the others, so they overwrite each other (and it's not clear the correct one is left)
 	-> Could prefix the package path with the root module and remove duplicates
