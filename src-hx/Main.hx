@@ -1,3 +1,4 @@
+import tool.TsProgramTools;
 import Log.LogLevel;
 import haxe.DynamicAccess;
 import haxe.io.Path;
@@ -33,6 +34,7 @@ class Main {
 			moduleSearchPath: '.',
 			allDependencies: false,
 			noOutput: false,
+			locationComments: true,
 			logLevel: Warning,
 		}
 
@@ -215,7 +217,7 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 			try {
-				var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.outputPath, cliOptions.noOutput).moduleDependencies;
+				var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput).moduleDependencies;
 				if (moduleDependencies.length > 0) {
 					log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 				}
@@ -229,7 +231,7 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, outputPath: String, noOutput: Bool) {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, locationComments: Bool, outputPath: String, noOutput: Bool) {
 		var host = Ts.createCompilerHost(compilerOptions);
 		
 		var resolvedModule: ResolvedModuleFull;
@@ -242,7 +244,7 @@ class Main {
 		}
 
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
-		var generateLibraryWrapper = !(isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
+		var generateLibraryWrapper = !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
 
 		// moduleId is what you'd need to pass into require() to get the module
 
@@ -254,7 +256,7 @@ class Main {
 		// 	relPath;
 		// }
 
-		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, log);
+		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, locationComments, log);
 
 		if (!noOutput) {
 			// save modules to files
@@ -371,15 +373,6 @@ class Main {
 			var packageJsonPath = js.Syntax.code('require.resolve({0}, {paths: [{1}]})', '$typesModuleName/package.json', moduleSearchPath);
 			haxe.Json.parse(Fs.readFileSync(packageJsonPath, { encoding: "utf8" }));
 		} catch (e: Any) null;
-	}
-	
-	/**
-		Modules might be referenced by a direct path rather than a module name
-		For example: ./project/module
-	**/
-	static function isDirectPathReferenceModule(moduleName: String) {
-		var c0 = moduleName.charAt(0);
-		return c0 == '.' || c0 == '/';
 	}
 
 	static function extend<T>(base: T, extendWidth: T): T {

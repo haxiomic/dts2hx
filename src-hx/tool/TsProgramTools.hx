@@ -94,4 +94,13 @@ class TsProgramTools {
 		}
 	}
 
+	/**
+		Modules might be referenced by a direct path rather than a module name
+		For example: ./project/module
+	**/
+	static public function isDirectPathReferenceModule(moduleName: String) {
+		var c0 = moduleName.charAt(0);
+		return c0 == '.' || c0 == '/';
+	}
+
 }

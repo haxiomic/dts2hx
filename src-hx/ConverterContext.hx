@@ -64,8 +64,11 @@ class ConverterContext {
 	**/
 	final declarationSymbolQueue = new OnceOnlySymbolQueue();
 
-	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, ?log_: Log) {
+	final locationComments: Bool;
+
+	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool, ?log_: Log) {
 		// this will be used as the argument to require()
+		this.locationComments = locationComments;
 		this.log = log_ != null ? log_ : new Log();
 		this.entryPointModuleId = inline normalizeModuleName(moduleName);
 		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
@@ -96,6 +99,7 @@ class ConverterContext {
 				var resolvedFileName = moduleReference.resolvedTypeReferenceDirective.resolvedFileName;
 				var packageInfo = moduleReference.resolvedTypeReferenceDirective.packageId;
 				var moduleName = packageInfo != null ? packageInfo.name : null;
+				// log.error('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
 				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
 				if (sourceFile != null) {
 					sourceFile.moduleName = moduleName != null ? inline normalizeModuleName(moduleName) : null;
@@ -108,7 +112,7 @@ class ConverterContext {
 			}
 		}
 
-		moduleDependencies = moduleRootSourceFiles.filter(s -> s != entryPointSourceFile).map(s -> inline getSourceFileModuleName(s));
+		moduleDependencies = moduleRootSourceFiles.filter(s -> s != entryPointSourceFile).map(s -> cast s.moduleName);
 
 		// populate symbol access map
 		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, defaultLibSourceFiles.concat(moduleRootSourceFiles), log);
@@ -354,7 +358,32 @@ class ConverterContext {
 	}
 
 	function getDoc(symbol: Symbol) {
-		return symbol.getDocumentationComment(tc).map(s -> s.text.trim()).join('\n\n');
+		var posInfo = [];
+
+		if (locationComments) {
+			var node = if (symbol.valueDeclaration != null) {
+				symbol.valueDeclaration;
+			} else {
+				symbol.getDeclarationsArray()[0];
+			}
+
+			if (node != null) {
+				var sourceFile = node.getSourceFile();
+				if (sourceFile != null) {
+					var start = node.getStart();
+					var lineAndCharacter = sourceFile.getLineAndCharacterOfPosition(start);
+					var line = lineAndCharacter.line;
+					var character = lineAndCharacter.line;
+					posInfo.push('${cwdRelativeFilePath(sourceFile.fileName)}:${line + 1}${character > 0 ? ':${character + 1}' : ''}');
+				}
+			}
+		}
+
+
+		return symbol.getDocumentationComment(tc)
+			.map(s -> s.text.trim())
+			.concat(posInfo)
+			.join('\n\n');
 	}
 
 	/**
@@ -469,11 +498,10 @@ class ConverterContext {
 					log.error('Could not convert anonymous object property', p);
 				}
 			}
-			debug();
 			TAnonymous(fields);
 		} else {
 			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
-			debug();
+			// debug();
 			HaxeTypes.any;
 		}
 	}
@@ -566,10 +594,19 @@ class ConverterContext {
 		Given a symbol with type-parameter declarations, e.g. `class X<T extends number>`, return the haxe type-parameter declaration equivalent
 	**/
 	function typeParamDeclFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
-		var tsTypeParameterDeclarations: Array<TypeParameterDeclaration> = [];
+		var tsTypeParameterDeclarations = new Array<TypeParameterDeclaration>();
+
 		for (declaration in symbol.declarations) {
-			tsTypeParameterDeclarations = tsTypeParameterDeclarations.concat(Ts.getEffectiveTypeParameterDeclarations(cast declaration));
+			// find the first declaration with more than 0 type parameters
+			// here we make the assumption that all declarations have the same type parameters
+			// @! should validate this assumption
+			var declarationTypeParameters = Ts.getEffectiveTypeParameterDeclarations(cast declaration);
+			if (declarationTypeParameters.length > 0) {
+				tsTypeParameterDeclarations = declarationTypeParameters;
+				break;
+			}
 		}
+
 		return [for (t in tsTypeParameterDeclarations) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
 			constraints: t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : []
@@ -591,6 +628,10 @@ class ConverterContext {
 		return moduleNameParts.join('/');
 	}
 
+	function cwdRelativeFilePath(path: String): String {
+		return TsInternal.convertToRelativePath(path, host.getCurrentDirectory(), host.getCanonicalFileName);
+	}
+
 	static final defaultNodeBuilderFlags =
 		NodeBuilderFlags.NoTruncation | // truncation prevents expanding deeply nested nodes, we always want to expand completely
 		NodeBuilderFlags.WriteArrayAsGenericType // Write Array<T> instead T[]
@@ -599,16 +640,18 @@ class ConverterContext {
 	/**
 		Using this requires `sourceFile.moduleName` has been set (see ConverterContext for details)
 	**/
-	static public function getSourceFileModuleName(sourceFile: SourceFile): String {
+	/*
+	public function getSourceFileModuleName(sourceFile: SourceFile): String {
 		return if (sourceFile.moduleName != null) {
 			sourceFile.moduleName;
 		} else {
 			// @! todo: determine minimal module import from fileName
 			// i.e. node_modules/three/src/example.d.ts -> three/src/example
 			// maybe helpful // untyped Ts.convertToRelativePath(sourceFile.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-			sourceFile.fileName;
+			cwdRelativeFilePath(sourceFile.fileName);
 		}
 	}
+	*/
 
 }
 
@@ -675,14 +718,25 @@ class OnceOnlySymbolQueue {
 	In the typescript compiler, declarations are grouped into Symbols. A Symbol can have 3 kinds of declaration, as a Type, a Variable/Function and a Module.
 	For example, the following declarations are grouped into one symbol with the name 'Example'
 	```typescript
+	// Symbol Example with 3 declarations
 	declare const Example: string;    // Value named X
-
 	declare type Example = number;  // Type named X
-
 	declare namespace Example {     // Namespace named X  
 				type Y = string;  
 	}
+
+	// Symbol X, with 4 declarations
+	declare interface X { field1: number; } // interfaces merge
+	declare interface X { field2: number; }
+	declare class X { constructor() {} }
+	declare namespace X { const field3: number; }
+	// use X as a class, interface and value-module
+	class Y extends X implements X {
+		field1: number = 1;
+		field2: number = X.field3;
+	}
 	```
+
 	See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#23-declarations
 
 	**SymbolAccess**

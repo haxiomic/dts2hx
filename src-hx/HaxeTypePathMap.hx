@@ -219,7 +219,8 @@ class HaxeTypePathMap {
 				default: ['js', 'lib'];
 			}
 		} else {
-			splitModulePath(entryPointModuleId);
+			[];
+			//TsProgramTools.isDirectPathReferenceModule(entryPointModuleId) ? [] : splitModulePath(entryPointModuleId);
 		}
 
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
@@ -229,9 +230,9 @@ class HaxeTypePathMap {
 			case AmbientModule(path, _), ExportModule(path, _):
 				var pathPack = splitModulePath(path);
 				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
-				if (pathPack[0].toSafePackageName() == pack[0].toSafePackageName()) {
-					pathPack.shift();
-				}
+				// if (pathPack[0].toSafePackageName() == pack[0].toSafePackageName()) {
+				// 	pathPack.shift();
+				// }
 				pack = pack.concat(pathPack).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Global(_):

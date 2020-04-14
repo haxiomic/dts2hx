@@ -34,7 +34,11 @@ class SymbolAccessMap {
 				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
 
 				var sourceFileAccess: SymbolAccess = if (sourceFileSymbol != null) {
-					ExportModule(ConverterContext.getSourceFileModuleName(sourceFile), sourceFileSymbol, []);
+					var moduleName = sourceFile.moduleName;
+					if (moduleName == null) {
+						log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
+					}
+					ExportModule(moduleName, sourceFileSymbol, []);
 				} else {
 					Global([]);
 				}
