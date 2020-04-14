@@ -1,16 +1,11 @@
-- Tuple type references and review the following
-```typescript
-/**
-* Type references (ObjectFlags.Reference). When a class or interface has type parameters or
-* a "this" type, references to the class or interface are made using type references. The
-* typeArguments property specifies the types to substitute for the type parameters of the
-* class or interface and optionally includes an extra element that specifies the type to
-* substitute for "this" in the resulting instantiation. When no extra argument is present,
-* the type reference itself is substituted for "this". The typeArguments property is undefined
-* if the class or interface has no type parameters and the reference isn't specifying an
-* explicit "this" argument.
-*/
-```
+- getTypePath should not return a TypePathDecl, it should return a new type of object
+	- Should add extra field, inHaxeStdLib: Bool, so we know not to queue this symbol
+- Should generate name and pack together
+
+- What if we used macros for Union, Tuple etc?
+-> Generic build macro, adds to complexity but we could do it
+-> `Union<['a', 'b']>`, doesn't work because TP must be a constant
+-> `Tuple<[T1, T2]>`, doesn't work ^
 
 - typeNodeToComplexType should also return support types required
 	- Support types should always be emitted in the same module as the type reference
@@ -19,9 +14,7 @@
 	- Maybe we can add an extra field `_supportType` to the TypeDefinition
 
 - Handle nullable types
-
-- TypeConversion: Type references
-	- Convert inaccessible types (grow `declarationSymbolQueue`)
+	? Check for union with null?
 
 - Global.hx
 	- Should we have Global.hx per-package or just one?
