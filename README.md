@@ -59,18 +59,18 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Typedef
         - [x] Enum
     - [x] ValueModules
-    - [ ] Type references
+    - [x] Type references
         - [x] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
         - [x] Generate externs for built-in types that aren't in the haxe standard library yet
-        - [ ] Type-node references **← currently working on this**
-    - [ ] Basic conversion of fundamental types
+        - [x] Type-node references
+    - [ ] Basic conversion of fundamental types **← currently working on this**
         - [x] Enums
-        - [ ] Primitives
-        - [ ] Type references
+        - [x] Primitives
+        - [x] Type references
         - [ ] TypeLiteral types (objects literals)
         - [ ] Unions with EitherType
         - [ ] Function types
-        - [ ] Type parameters
+        - [x] Type parameters
         - [ ] Index signatures
         - [ ] Intersection types `need better handling of redefined properties, aka sub intersections`
         - [ ] Tuple types
