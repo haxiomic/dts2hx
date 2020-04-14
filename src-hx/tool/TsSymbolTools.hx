@@ -113,7 +113,7 @@ class TsSymbolTools {
 		}
 	}
 
-	public static function getSymbolPosition(symbol: Symbol): haxe.macro.Expr.Position {
+	public static function getPosition(symbol: Symbol): haxe.macro.Expr.Position {
 		var node = if (symbol.valueDeclaration != null) {
 			symbol.valueDeclaration;
 		} else {

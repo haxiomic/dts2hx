@@ -1,3 +1,5 @@
+import typescript.ts.GenericType;
+import typescript.ts.TupleType;
 import typescript.ts.TupleTypeReference;
 import typescript.ts.Node;
 import typescript.ts.TypeParameter;
@@ -157,7 +159,7 @@ class ConverterContext {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
 
-		var pos = TsSymbolTools.getSymbolPosition(symbol);
+		var pos = TsSymbolTools.getPosition(symbol);
 
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
 			for (access in symbolAccessMap.getAccess(symbol)) {
@@ -199,7 +201,7 @@ class ConverterContext {
 					var nameChanged = s.escapedName != safeName;
 					return ({
 						name: safeName,
-						pos: TsSymbolTools.getSymbolPosition(s),
+						pos: TsSymbolTools.getPosition(s),
 						kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
 						doc: getDoc(s),
 						meta: nameChanged ? [{name: ':native', params: [s.escapedName.toStringExpr(pos)], pos: pos}] : [],
@@ -233,7 +235,7 @@ class ConverterContext {
 				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
 				if (typeAliasDeclaration != null) {
 					// @! typeParameters?
-					var hxAliasType: ComplexType = typeNodeToComplexType(typeAliasDeclaration.type, access); 
+					var hxAliasType: ComplexType = complexTypeFromTypeNode(typeAliasDeclaration.type, access); 
 
 					var typePath = haxeTypePathMap.getTypePath(symbol, access);
 
@@ -342,27 +344,24 @@ class ConverterContext {
 		For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`)
 		If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
 	**/
-	function typeNodeToComplexType(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromTypeNode(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		// @! todo: very WIP
 		var type = tc.getTypeFromTypeNode(node);
-		log.log('${type.getFlagsInfo()}', node);
-		return typeToComplexType(type, accessContext, enclosingDeclaration);
+		// log.log('${type.getFlagsInfo()}', node);
+		return complexTypeFromType(type, accessContext, enclosingDeclaration);
 	}
 	
-	function typeToComplexType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 
 		// handle fundamental type flags
-		if (type.flags & (TypeFlags.Any | TypeFlags.Unknown) != 0) {
-			return HaxePrimitives.any;
-		}
-		if (type.flags & (TypeFlags.String) != 0) {
-			return HaxePrimitives.string;
-		}
-		if (type.flags & (TypeFlags.Number) != 0) {
-			return HaxePrimitives.float;
-		}
-		if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
-			return HaxePrimitives.void;
+		return if (type.flags & (TypeFlags.Any | TypeFlags.Unknown) != 0) {
+			HaxeTypes.any;
+		} else if (type.flags & (TypeFlags.String) != 0) {
+			HaxeTypes.string;
+		} else if (type.flags & (TypeFlags.Number) != 0) {
+			HaxeTypes.float;
+		} else if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
+			HaxeTypes.void;
 		}
 
 		// @! unions and literals could generate enum abstracts
@@ -386,74 +385,169 @@ class ConverterContext {
 		// Substitution    = 1 << 25,  // Type parameter substitution
 		// NonPrimitive    = 1 << 26,  // intrinsic object type
 
-		if (type.flags & (TypeFlags.TypeParameter) != 0) {
-			var typeParameterType: TypeParameter = cast type;
-			var typeParameterDeclaration = tc.typeParameterToDeclaration(typeParameterType, enclosingDeclaration, defaultNodeBuilderFlags);
-			if (typeParameterDeclaration != null) {
-				return TPath({
-					name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
-					pack: [],
-				});
-			}
+		else if (type.flags & (TypeFlags.TypeParameter) != 0) {
+			complexTypeFromTypeParameter(cast type, accessContext, enclosingDeclaration);
+		} else if (type.flags & (TypeFlags.Object) != 0) {
+			complexTypeFromObjectType(cast type, accessContext, enclosingDeclaration);
+		} else {
+			log.error('Could not convert type', type);
+			HaxeTypes.any;
 		}
+	}
 
-		if (type.flags & (TypeFlags.Object) != 0) {
-			var objectType: ObjectType = cast type;
-			log.log('\t${objectType.getObjectFlagsInfo()}');
-			
-			// @! todo:
-			// Class            = 1 << 0,  // Class
-			// Interface        = 1 << 1,  // Interface
-			// Tuple            = 1 << 3,  // Synthesized generic tuple type
-			// Anonymous        = 1 << 4,  // Anonymous
-			// Mapped           = 1 << 5,  // Mapped
-			// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
-			// ObjectLiteral    = 1 << 7,  // Originates in an object literal
-			// EvolvingArray    = 1 << 8,  // Evolving array type
-			// ObjectLiteralPatternWithComputedProperties = 1 << 9,  // Object literal pattern with computed properties
-			// ContainsSpread   = 1 << 10, // Object literal contains spread operation
-			// ReverseMapped    = 1 << 11, // Object contains a property from a reverse-mapped type
-			// JsxAttributes    = 1 << 12, // Jsx attributes type
-			// MarkerType       = 1 << 13, // Marker type used for variance probing
-			// JSLiteral        = 1 << 14, // Object type declared in JS - disables errors on read/write of nonexisting members
-			// FreshLiteral     = 1 << 15, // Fresh object literal
-			// ArrayLiteral     = 1 << 16, // Originates in an array literal
-			// ObjectRestType   = 1 << 17, // Originates in object rest declaration
+	function complexTypeFromTypeParameter(typeParameterType: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		var typeParameterDeclaration = tc.typeParameterToDeclaration(typeParameterType, enclosingDeclaration, defaultNodeBuilderFlags);
+		return if (typeParameterDeclaration != null) {
+			TPath({
+				name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
+				pack: [],
+			});
+		} else {
+			log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameterType);
+			TPath({
+				name: 'T',
+				pack: [],
+			});
+		}
+	}
 
-			if (objectType.objectFlags & (ObjectFlags.ClassOrInterface) != 0) {
-				var classOrInterfaceType: InterfaceType = cast type;
-				if (classOrInterfaceType.symbol != null) {
-					var hxTypePath = haxeTypePathMap.getTypePath(classOrInterfaceType.symbol, accessContext);
-					return TPath(hxTypePath);
+	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// @! todo:
+		// Tuple            = 1 << 3,  // Synthesized generic tuple type
+		// Anonymous        = 1 << 4,  // Anonymous
+		// Mapped           = 1 << 5,  // Mapped
+		// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
+		// ObjectLiteral    = 1 << 7,  // Originates in an object literal
+		// EvolvingArray    = 1 << 8,  // Evolving array type
+		// ObjectLiteralPatternWithComputedProperties = 1 << 9,  // Object literal pattern with computed properties
+		// ContainsSpread   = 1 << 10, // Object literal contains spread operation
+		// ReverseMapped    = 1 << 11, // Object contains a property from a reverse-mapped type
+		// JsxAttributes    = 1 << 12, // Jsx attributes type
+		// MarkerType       = 1 << 13, // Marker type used for variance probing
+		// JSLiteral        = 1 << 14, // Object type declared in JS - disables errors on read/write of nonexisting members
+		// FreshLiteral     = 1 << 15, // Fresh object literal
+		// ArrayLiteral     = 1 << 16, // Originates in an array literal
+		// ObjectRestType   = 1 << 17, // Originates in object rest declaration
+		return if ((objectType.objectFlags & ObjectFlags.Reference) != 0) {
+			complexTypeFromTypeReference(cast objectType, accessContext, enclosingDeclaration);
+		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
+			complexTypeFromInterfaceType(cast objectType, accessContext, enclosingDeclaration);
+		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
+			var fields = new Array<Field>();
+			var properties = tc.getPropertiesOfType(objectType);
+			for (p in properties) {
+				var field = fieldFromSymbol(p, accessContext, enclosingDeclaration);
+				if (field != null) {
+					fields.push(field);
 				} else {
-					debug();
-				}
-			} else if (objectType.objectFlags & (ObjectFlags.Reference) != 0) {
-				// Generic type reference
-				var typeReference: TypeReference = cast type;
-
-				// @! type references need properly reviewing
-				// the following works for references to classes and interfaces but not for references like 
-				// `type CompleterResult = [string[], string];`
-				
-				if (typeReference.target.symbol != null) {
-					var hxTypePath = haxeTypePathMap.getTypePath(typeReference.target.symbol, accessContext);
-					if (typeReference.typeArguments != null) {
-						hxTypePath.params = typeReference.typeArguments.map(typeParam -> TPType(typeToComplexType(typeParam, accessContext)));
-					}
-					return TPath(hxTypePath);
-				} else {
-					debug();
+					log.error('Could not convert anonymous object property', p);
 				}
 			}
+			debug();
+			TAnonymous(fields);
+		} else {
+			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
+			debug();
+			HaxeTypes.any;
+		}
+	}
 
-			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', type);
-			return HaxePrimitives.any;
+	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		return complexTypeFromTupleType(cast tupleTypeReference.target, accessContext, enclosingDeclaration);
+	}
+
+	function complexTypeFromTupleType(tupleType: TupleType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+		log.warn('Todo: TupleType', tupleType);
+		debug();
+		return HaxeTypes.any;
+	}
+
+	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// determine reference sub-type
+		return if ((typeReference.objectFlags & ObjectFlags.ClassOrInterface) != 0) {
+			complexTypeFromGenericType(cast typeReference, accessContext, enclosingDeclaration);
+		} else if ((typeReference.objectFlags & ObjectFlags.Tuple) != 0) {
+			complexTypeFromTupleTypeReference(cast typeReference, accessContext, enclosingDeclaration);
+		} else {
+			if (typeReference.target == cast typeReference) { // avoid direct cycles
+				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
+				log.error('Internal error: recursive type reference');
+				return HaxeTypes.any;
+			}
+			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromType(arg, accessContext, enclosingDeclaration)));
+			var hxTarget = complexTypeFromType(typeReference.target, accessContext, enclosingDeclaration);
+			switch hxTarget {
+				case TPath({name: 'Any', pack: []}): // don't add type parameters to Any
+				case TPath(p): p.params = hxTypeArguments;
+				default: log.error('Internal error: Expected TPath from TypeReference', typeReference);
+			}
+			hxTarget;
+		}
+	}
+
+	function complexTypeFromGenericType(genericType: GenericType & TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// sub-type of GenericType
+		return if (genericType.objectFlags & ObjectFlags.Tuple != 0) {
+			complexTypeFromTupleType(cast genericType, accessContext, enclosingDeclaration);
+		} else {
+			complexTypeFromInterfaceType(genericType, accessContext, enclosingDeclaration);
+		}
+	}
+
+	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		return if (classOrInterfaceType.symbol != null) {
+			var hxTypePath = getHaxeTypePath(classOrInterfaceType.symbol, accessContext);
+			TPath(hxTypePath);
+		} else {
+			log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
+			debug();
+			HaxeTypes.any;
+		}
+	}
+
+	function fieldFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Null<Field> {
+		var pos = symbol.getPosition();
+		var meta = new Array<MetadataEntry>();
+		var safeName = symbol.escapedName.toSafeIdent();
+		var nameChanged = safeName != symbol.escapedName;
+
+		if (nameChanged) {
+			meta.push({name: ':native', pos: pos, params: [HaxeTools.toStringExpr(symbol.escapedName, pos)]});
 		}
 
-		log.error('Could not convert type', type);
+		if (symbol.flags & SymbolFlags.Optional != 0) {
+			meta.push({name: ':optional', pos: pos});
+		}
 
-		return HaxePrimitives.any;
+		if (symbol.flags & SymbolFlags.Property != 0) {
+			var type = tc.getDeclaredTypeOfSymbol(symbol);
+			return {
+				name: safeName,
+				meta: meta,
+				pos: pos,
+				kind: FVar(complexTypeFromType(type, accessContext, enclosingDeclaration), null),
+				doc: getDoc(symbol),
+			}
+		} else if (symbol.flags & SymbolFlags.Method != 0) {
+			debug();
+			return null;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+		Returns a TypePath for a given symbol
+		The symbol must have flags Type or ValueModule
+		This also queues this symbol's type to be converted if it isn't already
+	**/
+	function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
+		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext);
+		declarationSymbolQueue.tryEnqueue(symbol);
+		return {
+			name: hxTypePath.name,
+			pack: hxTypePath.pack,
+		}
 	}
 
 	/**
@@ -468,7 +562,7 @@ class ConverterContext {
 		// typeParameterDeclaration.default_
 		return tsTypeParamDeclarations.map(typeParameterDeclaration -> ({
 			name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
-			constraints: typeParameterDeclaration.constraint != null ? [typeNodeToComplexType(typeParameterDeclaration.constraint, accessContext)] : null,
+			constraints: typeParameterDeclaration.constraint != null ? [complexTypeFromTypeNode(typeParameterDeclaration.constraint, accessContext)] : null,
 		}: TypeParamDecl));
 	}
 
@@ -509,13 +603,20 @@ class ConverterContext {
 
 }
 
-class HaxePrimitives {
+class HaxeTypes {
 	static public final string: ComplexType = TPath({pack: [], name: 'String'});
 	static public final float: ComplexType = TPath({pack: [], name: 'Float'});
 	static public final int: ComplexType = TPath({pack: [], name: 'Int'});
 	static public final bool: ComplexType = TPath({pack: [], name: 'Bool'});
 	static public final any: ComplexType = TPath({pack: [], name: 'Any'});
 	static public final void: ComplexType = TPath({pack: [], name: 'Void'});
+	static public function array(t: ComplexType) {
+		return TPath({
+			pack: [],
+			name: 'Array',
+			params: [TPType(t)]
+		});
+	}
 }
 
 typedef ConvertedTypeDefinition = TypeDefinition & {
