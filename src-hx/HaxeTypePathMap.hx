@@ -40,8 +40,10 @@ class HaxeTypePathMap {
 	/**
 		If a symbol has multiple type paths, `accessContext` is used to preference the access of the reference
 		For example, if a symbol has both a global and modular access and we reference it from a module, we want to prefer the module version
+
+		The `isExistingStdLibType` flag means this is a reference to an already existing type in the haxe standard library and therefore it doesn't need converting
 	**/
-	public function getTypePath(symbol: Symbol, accessContext: SymbolAccess): haxe.macro.Expr.TypePath {
+	public function getTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
 		var modules = symbolTypePathMap.get(symbol.getId());
 
 		if (modules != null) {
@@ -54,10 +56,7 @@ class HaxeTypePathMap {
 				matchingModule = modules[0];
 			}
 			if (matchingModule != null) {
-				return {
-					pack: matchingModule.pack,
-					name: matchingModule.name,
-				}
+				return matchingModule;
 			} else {
 				// the access supplied to this method is not one the same accesses used to generate the type-path map
 				log.warn('Internal error: Could not find a type path for symbol with the supplied access context <b>${accessContext.toString()}</>', symbol);
@@ -74,10 +73,7 @@ class HaxeTypePathMap {
 		}
 
 		// we can generate a type-path on demand, but we won't have name deduplication
-		return {
-			pack: generateHaxePackagePath(symbol, accessContext),
-			name: generateHaxeTypeName(symbol, accessContext),
-		}
+		return generateTypePath(symbol, accessContext);
 	}
 
 	function buildHaxeTypePathMap() {
@@ -98,14 +94,14 @@ class HaxeTypePathMap {
 			TsSymbolTools.walkDeclarationSymbols(topLevelSymbol, tc, (symbol, _) -> {
 				if (symbol.flags & SymbolRequiresTypePath != 0 ) {
 					for (access in symbolAccessMap.getAccess(symbol)) {
-						var pack = generateHaxePackagePath(symbol, access);
-						var name = generateHaxeTypeName(symbol, access);
-						var modules = getModules(pack);
+						var typePath = generateTypePath(symbol, access);
+						var modules = getModules(typePath.pack);
 
 						if (modules.find(m -> m.symbol == symbol) == null) {
 							modules.push({
-								name: name,
-								pack: pack,
+								name: typePath.name,
+								pack: typePath.pack,
+								isExistingStdLibType: typePath.isExistingStdLibType,
 								symbol: symbol,
 								access: access,
 								renameable: true,
@@ -118,13 +114,14 @@ class HaxeTypePathMap {
 					for (access in symbolAccessMap.getAccess(symbol)) {
 						switch access {
 							case Global([_]):
-								var pack = generateHaxePackagePath(symbol, access);
-								var modules = getModules(pack);
+								var typePath = generateTypePath(symbol, access);
+								var modules = getModules(typePath.pack);
 
 								if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
 									modules.push({
 										name: 'Global',
-										pack: pack,
+										pack: typePath.pack,
+										isExistingStdLibType: false,
 										symbol: null,
 										access: Global([]),
 										renameable: false,
@@ -203,7 +200,7 @@ class HaxeTypePathMap {
 		return typePathMap;
 	}
 
-	function generateHaxePackagePath(symbol: Symbol, access: SymbolAccess): Array<String> {
+	function generateTypePath(symbol: Symbol, access: SymbolAccess) {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
 		var defaultLibName: Null<String> = null;
 		for (declaration in symbol.getDeclarationsArray()) {
@@ -253,51 +250,23 @@ class HaxeTypePathMap {
 		// make pack a safe package path
 		pack = pack.map(s -> s.toSafePackageName());
 
-		// global symbols are prefixed with 'global' package
-		/*
-		var isGlobal = access.match(Global(_));
-		if (isGlobal) {
-			pack.push('global');
-		}
+		/**
+			When generating a haxe module name for a symbol, rather than using the symbol's name, we use the name used to _access_ the symbol
+			This may be different from the symbol name itself. For example, say we have a module which uses `export =`
+			```typescript
+			declare module "lib/fs" {
 
-		for (parentSymbol in TsSymbolTools.getSymbolParents(symbol)) {
-			// handle special names
-			if (!~/^__\w/.match(parentSymbol.name)) { // skip special names (like '__global')
-				if (parentSymbol.flags & SymbolFlags.Module != 0) {
-					if (TsSymbolTools.isSourceFileSymbol(parentSymbol)) {
-						// @! need special handling of source file paths to remove prefix
-					} else {
-						pack = pack.concat(convertFilePathToHaxePackage(parentSymbol.name));
-					}
-				} else {
-					log.error('Symbol parent was not a module in <b>generateHaxePackagePath()</>', parentSymbol);
-					debug();
+				class internal {
+					// ...	
 				}
+
+				export = internal;
+
 			}
-		}
-		*/
+			```
 
-		return pack;
-	}
-
-	/**
-		When generating a haxe module name for a symbol, rather than using the symbol's name, we use the name used to _access_ the symbol
-		This may be different from the symbol name itself. For example, say we have a module which uses `export =`
-		```typescript
-		declare module "lib/fs" {
-
-			class internal {
-				// ...	
-			}
-
-			export = internal;
-
-		}
-		```
-
-		References to the class `internal` should be exposed as references to `"lib/fs"`, and `internal` should not appear in the generated haxe
-	**/
-	function generateHaxeTypeName(symbol: Symbol, access: SymbolAccess): String {
+			References to the class `internal` should be exposed as references to `"lib/fs"`, and `internal` should not appear in the generated haxe
+		**/
 		var identifierChain = access.getIdentifierChain();
 		var typeIdentifier: String = switch access {
 			case AmbientModule(path, _), ExportModule(path, _):
@@ -310,8 +279,25 @@ class HaxeTypePathMap {
 				symbol.escapedName;
 
 		}
-		return typeIdentifier.toSafeTypeName();
+		var name = typeIdentifier.toSafeTypeName();
+
+		// handle short aliases
+		return switch [pack, name] {
+			case [['js', 'lib'], 'Array']: {
+				name: 'Array',
+				pack: [],
+				isExistingStdLibType: true,
+			}
+			default: {
+				name: name,
+				pack: pack,
+				isExistingStdLibType: false,
+			}
+		}
 	}
+
+
+
 
 	/**
 		Given a path, return an array of haxe packages
@@ -339,13 +325,17 @@ class HaxeTypePathMap {
 
 }
 
+typedef TypePath = {
+	name: String,
+	pack: Array<String>,
+	isExistingStdLibType: Bool,
+}
+
 /**
 	Used when building the type-path map
 **/
-typedef InternalModule = {
-	name: String,
-	pack: Array<String>,
+typedef InternalModule = TypePath & {
 	symbol: Symbol,
 	access: SymbolAccess,
-	renameable: Bool
+	renameable: Bool,
 }

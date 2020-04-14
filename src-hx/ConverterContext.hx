@@ -543,7 +543,9 @@ class ConverterContext {
 	**/
 	function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
 		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext);
-		declarationSymbolQueue.tryEnqueue(symbol);
+		if (!hxTypePath.isExistingStdLibType) {
+			declarationSymbolQueue.tryEnqueue(symbol);
+		}
 		return {
 			name: hxTypePath.name,
 			pack: hxTypePath.pack,
