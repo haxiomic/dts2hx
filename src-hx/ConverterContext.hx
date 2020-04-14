@@ -1,3 +1,5 @@
+
+import typescript.ts.TypeReferenceNode;
 import typescript.ts.GenericType;
 import typescript.ts.TupleType;
 import typescript.ts.TupleTypeReference;
@@ -34,6 +36,7 @@ using tool.TsProgramTools;
 using tool.TsSymbolTools;
 using tool.TsTypeTools;
 using TsInternal;
+using Lambda;
 
 typedef TsType = typescript.ts.Type;
 
@@ -155,6 +158,22 @@ class ConverterContext {
 		} 
 	}
 
+	/**
+		Returns a TypePath for a given symbol
+		The symbol must have flags Type or ValueModule
+		This also queues this symbol's type to be converted if it isn't already
+	**/
+	function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
+		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext);
+		if (!hxTypePath.isExistingStdLibType) {
+			declarationSymbolQueue.tryEnqueue(symbol);
+		}
+		return {
+			name: hxTypePath.name,
+			pack: hxTypePath.pack,
+		}
+	}
+
 	function convertTypeSymbol(symbol: Symbol) {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
@@ -173,7 +192,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDClass(superClass, interfaces, isInterface, false),
-					params: symbolToHaxeTypeParameterDeclarations(symbol, access),
+					params: typeParamDeclFromSymbol(symbol, access),
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: isInterface ? [] : [access.toAccessMetadata()],
@@ -214,7 +233,7 @@ class ConverterContext {
 					pack: typePath.pack,
 					name: typePath.name,
 					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
-					params: symbolToHaxeTypeParameterDeclarations(symbol, access), // is there a case where an enum can have a TypeParameter?
+					params: typeParamDeclFromSymbol(symbol, access), // is there a case where an enum can have a TypeParameter?
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
@@ -246,7 +265,7 @@ class ConverterContext {
 						name: typePath.name,
 						fields: [],
 						kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
-						params: symbolToHaxeTypeParameterDeclarations(symbol, access), // is there a case where an enum can have a TypeParameter?
+						params: typeParamDeclFromSymbol(symbol, access), // is there a case where an enum can have a TypeParameter?
 						doc: getDoc(symbol),
 						isExtern: true,
 						meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
@@ -259,7 +278,7 @@ class ConverterContext {
 						name: typePath.name,
 						fields: [],
 						kind: TDAlias(hxAliasType),
-						params: symbolToHaxeTypeParameterDeclarations(symbol, access),
+						params: typeParamDeclFromSymbol(symbol, access),
 						doc: getDoc(symbol),
 						pos: pos,
 						subTypes: [],
@@ -289,7 +308,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDClass(null, [], false, false),
-					params: symbolToHaxeTypeParameterDeclarations(symbol, access), // there shouldn't actually be any type parameters for ValueModule-only symbol
+					params: typeParamDeclFromSymbol(symbol, access), // there shouldn't actually be any type parameters for ValueModule-only symbol
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: [access.toAccessMetadata()],
@@ -345,16 +364,23 @@ class ConverterContext {
 		If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
 	**/
 	function complexTypeFromTypeNode(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// @! todo: very WIP
 		var type = tc.getTypeFromTypeNode(node);
-		// log.log('${type.getFlagsInfo()}', node);
+		if (untyped type.intrinsicName == 'error') {
+			debug();
+			log.error('Internal error: Error getting type from type node', node);
+		}
 		return complexTypeFromType(type, accessContext, enclosingDeclaration);
 	}
 	
 	function complexTypeFromType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 
 		// handle fundamental type flags
-		return if (type.flags & (TypeFlags.Any | TypeFlags.Unknown) != 0) {
+		return if (type.flags & (TypeFlags.Any) != 0) {
+			HaxeTypes.any;
+		} else if (type.flags & TypeFlags.Unknown != 0) {
+			// @! review that there isn't an error preventing a type node from being checked
+			log.warn('complexTypeFromType(): Unexpected unknown', type);
+			debug();
 			HaxeTypes.any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
 			HaxeTypes.string;
@@ -529,7 +555,7 @@ class ConverterContext {
 				doc: getDoc(symbol),
 			}
 		} else if (symbol.flags & SymbolFlags.Method != 0) {
-			debug();
+			// debug();
 			return null;
 		} else {
 			return null;
@@ -537,35 +563,17 @@ class ConverterContext {
 	}
 
 	/**
-		Returns a TypePath for a given symbol
-		The symbol must have flags Type or ValueModule
-		This also queues this symbol's type to be converted if it isn't already
-	**/
-	function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
-		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext);
-		if (!hxTypePath.isExistingStdLibType) {
-			declarationSymbolQueue.tryEnqueue(symbol);
-		}
-		return {
-			name: hxTypePath.name,
-			pack: hxTypePath.pack,
-		}
-	}
-
-	/**
 		Given a symbol with type-parameter declarations, e.g. `class X<T extends number>`, return the haxe type-parameter declaration equivalent
 	**/
-	function symbolToHaxeTypeParameterDeclarations(symbol: Symbol, accessContext: SymbolAccess): Array<TypeParamDecl> {
-		var tsTypeParamDeclarations: Null<Array<TypeParameterDeclaration>> = cast tc.symbolToTypeParameterDeclarations(symbol, js.Lib.undefined, defaultNodeBuilderFlags);
-		if (tsTypeParamDeclarations == null) {
-			return [];
+	function typeParamDeclFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
+		var tsTypeParameterDeclarations: Array<TypeParameterDeclaration> = [];
+		for (declaration in symbol.declarations) {
+			tsTypeParameterDeclarations = tsTypeParameterDeclarations.concat(Ts.getEffectiveTypeParameterDeclarations(cast declaration));
 		}
-		// haxe currently does not support defaults in type parameters
-		// typeParameterDeclaration.default_
-		return tsTypeParamDeclarations.map(typeParameterDeclaration -> ({
-			name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
-			constraints: typeParameterDeclaration.constraint != null ? [complexTypeFromTypeNode(typeParameterDeclaration.constraint, accessContext)] : null,
-		}: TypeParamDecl));
+		return [for (t in tsTypeParameterDeclarations) {
+			name: TsSyntaxTools.typeParameterDeclarationName(t),
+			constraints: t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : []
+		}];
 	}
 
 	/**
@@ -584,9 +592,8 @@ class ConverterContext {
 	}
 
 	static final defaultNodeBuilderFlags =
-		NodeBuilderFlags.NoTruncation |
-		NodeBuilderFlags.WriteArrayAsGenericType | // Write Array<T> instead T[]
-		NodeBuilderFlags.GenerateNamesForShadowedTypeParams // When a type parameter T is shadowing another T, generate a name for it so it can still be referenced
+		NodeBuilderFlags.NoTruncation | // truncation prevents expanding deeply nested nodes, we always want to expand completely
+		NodeBuilderFlags.WriteArrayAsGenericType // Write Array<T> instead T[]
 	;
 
 	/**
@@ -873,4 +880,31 @@ class OnceOnlySymbolQueue {
         IncludesEmptyObject = Conditional,
     }
 	```
+
+	TypeNode kinds
+	- `AnyKeyword` | `UnknownKeyword` | `NumberKeyword` | `BigIntKeyword` | `ObjectKeyword` | `BooleanKeyword` | `StringKeyword` | `SymbolKeyword` | `ThisKeyword` | `VoidKeyword` | `UndefinedKeyword` | `NullKeyword` | `NeverKeyword`
+	- `TypeReference`
+	- `FunctionType`
+	- `ConstructorType`
+	- `ImportType`
+	- `ThisType`
+	- `TypePredicate`
+	- `TypeQuery`
+	- `TypeLiteral`
+	- `ArrayType`
+	- `TupleType`
+	- `OptionalType`
+	- `RestType`
+	- `UnionType`
+	- `IntersectionType`
+	- `ConditionalType`
+	- `InferType`
+	- `ParenthesizedType`
+	- `TypeOperator`
+	- `IndexedAccessType`
+	- `MappedType`
+	- `LiteralType`
+	- `StringLiteral`
+	- `TrueKeyword`
+	- `FalseKeyword`
 **/

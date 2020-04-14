@@ -1,8 +1,8 @@
-import typescript.ts.TypeChecker;
-import typescript.ts.Symbol;
 import typescript.ts.FileReference;
-import typescript.ts.SourceFile;
 import typescript.ts.Program;
+import typescript.ts.SourceFile;
+import typescript.ts.Symbol;
+import typescript.ts.TypeChecker;
 
 /**
 	TypeScript compiler methods not included in the compiler externs
