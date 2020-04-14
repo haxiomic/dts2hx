@@ -17,7 +17,7 @@
             "name": "dts2hx.js three.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["three", "--verbose"],
-            "cwd": "${workspaceFolder}/test/lib",
+            "cwd": "${workspaceFolder}/test/libs",
         },
         {
             "type": "node",
@@ -32,7 +32,7 @@
             "name": "dts2hx.js playcanvas.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["playcanvas", "--verbose"],
-            "cwd": "${workspaceFolder}/test/lib",
+            "cwd": "${workspaceFolder}/test/libs",
         },
         {
             "type": "node",
@@ -40,7 +40,7 @@
             "name": "dts2hx.js pixi.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["pixi.js", "--verbose"],
-            "cwd": "${workspaceFolder}/test/lib",
+            "cwd": "${workspaceFolder}/test/libs",
         },
         {
             "type": "node",
@@ -48,7 +48,7 @@
             "name": "dts2hx.js jquery",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["jquery", "--verbose"],
-            "cwd": "${workspaceFolder}/test/lib",
+            "cwd": "${workspaceFolder}/test/libs",
         },
         {
             "type": "node",
@@ -71,6 +71,13 @@
             "name": "dts2hx.js unit/tripple-slash-references",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["./test/unit/core/tripple-slash-references", "--verbose"],
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "dts2hx.js unit/type-parameters",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["./test/unit/core/type-parameters", "--verbose"],
         },
         {
             "type": "node",
