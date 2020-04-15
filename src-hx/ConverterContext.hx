@@ -1,4 +1,5 @@
 
+import typescript.ts.NumberLiteralType;
 import haxe.rtti.CType.TypeParams;
 import typescript.ts.UnionType;
 import typescript.ts.UnionOrIntersectionType;
@@ -427,7 +428,7 @@ class ConverterContext {
 	}
 	
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		log.log('complexTypeFromTsType ${}', type);
+		log.log('complexTypeFromTsType', type);
 		// handle fundamental type flags
 		return if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
@@ -447,21 +448,25 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.Union) != 0) {
 			complexTypeFromUnionType(cast type, accessContext, enclosingDeclaration);
 		}
-
-		// @! unions and literals could generate enum abstracts
+		// @! it would be nice to use an enum-generating support type so we can preserve values of literals, but for now we can use the literal's type
+		else if (type.flags & (TypeFlags.StringLiteral) != 0) {
+			macro :String;
+		} else if (type.flags & (TypeFlags.NumberLiteral) != 0) {
+			var numberLiteral: NumberLiteralType = cast type;
+			var value: Float = cast numberLiteral.value;
+			var isInt = Std.int(value) == value;
+			isInt ? macro :Int : macro :Float;
+		} else if (type.flags & (TypeFlags.BooleanLiteral) != 0) {
+			macro :Bool;
+		}
 
 		// @! todo:
 		// Enum            = 1 << 5,
 		// BigInt          = 1 << 6,
-		// StringLiteral   = 1 << 7,
-		// NumberLiteral   = 1 << 8,
-		// BooleanLiteral  = 1 << 9,
 		// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
 		// BigIntLiteral   = 1 << 11,
 		// ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
 		// UniqueESSymbol  = 1 << 13,  // unique symbol
-		// Null            = 1 << 16,
-		// Union           = 1 << 20,  // Union (T | U)
 		// Intersection    = 1 << 21,  // Intersection (T & U)
 		// Index           = 1 << 22,  // keyof T
 		// IndexedAccess   = 1 << 23,  // T[K]
