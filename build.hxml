@@ -29,10 +29,16 @@
 
 # External references
 # -cmd node dist/dts2hx.js jquery -p test/libs --verbose
-# -cmd node dist/dts2hx.js ./test/unit/core/tripple-slash-references --verbose
+# -cmd node dist/dts2hx.js ./test/unit/tripple-slash-references --verbose
 
 # Unit tests
-# -cmd node dist/dts2hx.js ./test/unit/core/enum --verbose
+# -cmd node dist/dts2hx.js ./test/unit/enum --verbose
+# -cmd node dist/dts2hx.js ./test/unit/type-parameters --verbose
+# -cmd node dist/dts2hx.js ./test/unit/types --verbose
+# -cmd node dist/dts2hx.js ./test/unit/symbols --verbose
+
+# Abs path
+# -cmd node dist/dts2hx.js /Users/geo/Projects/dts2hx/test/unit/enum --verbose
 
 # -cmd node dist/dts2hx.js typescript --verbose
 # -cmd node dist/dts2hx.js node --verbose
