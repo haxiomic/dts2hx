@@ -224,7 +224,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDClass(superClass, interfaces, isInterface, false),
-					params: typeParamDeclFromSymbol(symbol, access),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access),
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: meta,
@@ -303,7 +303,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
-					params: typeParamDeclFromSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,
 					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
@@ -316,7 +316,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDAlias(hxAliasType),
-					params: typeParamDeclFromSymbol(symbol, access, typeAliasDeclaration),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
 					doc: getDoc(symbol),
 					pos: pos,
 					subTypes: [],
@@ -653,9 +653,14 @@ class ConverterContext {
 
 	/**
 		Given a symbol with type-parameter declarations, e.g. `class X<T extends number>`, return the haxe type-parameter declaration equivalent
+		Symbol must declare a `Class`, `Interface` or `TypeAlias`
 	**/
-	function typeParamDeclFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
+	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		var tsTypeParameterDeclarations = new Array<TypeParameterDeclaration>();
+		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface | SymbolFlags.TypeAlias) == 0) {
+			log.error('Internal error: typeParamDeclFromTypeDeclarationSymbol() unexpected symbol flags; expected Class, Interface or TypeAlias', symbol);
+		}
+ 
 
 		for (declaration in symbol.declarations) {
 			// find the first declaration with more than 0 type parameters
