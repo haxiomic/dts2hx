@@ -1,4 +1,4 @@
-declare namespace Enums {
+export namespace Enums {
     
     enum ImplicitEnum {
         A,

@@ -1,4 +1,4 @@
-declare namespace BuiltIn {
+export namespace BuiltIn {
     
     const readonlyArray: ReadonlyArray<number>;
 

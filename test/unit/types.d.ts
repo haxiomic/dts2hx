@@ -17,7 +17,7 @@
  *  - intersection types
  *  - type parameters
  */
-declare namespace Types {
+export namespace Types {
 
     interface I {}
 

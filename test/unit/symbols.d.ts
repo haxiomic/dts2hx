@@ -4,40 +4,40 @@
  * The 3 kinds of declarations possible, all using the same name 
  */
 
-declare const ValueTypedefNamespace: string;
-declare type ValueTypedefNamespace = number;
-declare namespace ValueTypedefNamespace {
+export const ValueTypedefNamespace: string;
+export type ValueTypedefNamespace = number;
+export namespace ValueTypedefNamespace {
     type Y = string;
 }
 
 
-declare type TypedefValueModule = number;
-declare namespace TypedefValueModule {
+export type TypedefValueModule = number;
+export namespace TypedefValueModule {
     const X: number;
     type Y = string;
 }
 
 
-declare enum EnumValueModule { A, B }
-declare namespace EnumValueModule {
+export enum EnumValueModule { A, B }
+export namespace EnumValueModule {
     const X: number;
     type Y = string;
 }
 
 
-declare class ClassValueModule { constructor(i: number); field: string; }
-declare namespace ClassValueModule {
+export class ClassValueModule { constructor(i: number); field: string; }
+export namespace ClassValueModule {
     const X: number;
     type Y = string;
 }
 
 
-declare interface InterfaceValueModule { field: string }
-declare namespace InterfaceValueModule {
+export interface InterfaceValueModule { field: string }
+export namespace InterfaceValueModule {
     const X: number;
     type Y = string;
 }
 
-declare interface MergedInterfaceClass { interfaceField1: number; }
-declare interface MergedInterfaceClass { interfaceField2: number; }
-declare class MergedInterfaceClass { classField: string; constructor() }
+export interface MergedInterfaceClass { interfaceField1: number; }
+export interface MergedInterfaceClass { interfaceField2: number; }
+export class MergedInterfaceClass { classField: string; constructor() }

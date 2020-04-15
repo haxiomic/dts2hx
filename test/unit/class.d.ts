@@ -1,4 +1,4 @@
-declare class ClassBase<T> {
+export class ClassBase<T> {
     intField: number;
     arrayField: Array<string>;
     thisClassType: this;
@@ -17,16 +17,16 @@ declare class ClassBase<T> {
     set property(value: boolean);
 }
 
-declare class ClassExtending<K> extends ClassBase<Array<K>> {
+export class ClassExtending<K> extends ClassBase<Array<K>> {
     additionalField: number;
 }
 
-declare class ClassWithIndexSignature {
+export class ClassWithIndexSignature {
     [key: string]: number,
 }
 
-declare class CallbleClass {
+export class CallbleClass {
     field: number;
 }
 
-declare function CallbleClass(arg: number);
+export function CallbleClass(arg: number);

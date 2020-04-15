@@ -1,43 +1,43 @@
-declare interface Interface {
+export interface Interface {
     field: Array<any>;
     exampleMethod(a: number): void;
     exampleOptionalMethod?(a: number): void;
 }
 
-declare interface InterfaceMapLike<T> {
+export interface InterfaceMapLike<T> {
     [key:string]: T,
 }
 
-declare interface InterfaceArrayLike<T> {
+export interface InterfaceArrayLike<T> {
     [key:number]: T,
 }
 
-declare interface InterfaceArrayLikeMultiDeclarations {
+export interface InterfaceArrayLikeMultiDeclarations {
     [key:number]: string,
 }
 
-declare const InterfaceArrayLikeMultiDeclarations: {a: number};
+export const InterfaceArrayLikeMultiDeclarations: {a: number};
 
-declare interface InterfaceWithSignatureAndField {
+export interface InterfaceWithSignatureAndField {
     [key:string]: number,
     field: number,
 }
 
-declare interface InterfaceWithMultiSignature<T> {
+export interface InterfaceWithMultiSignature<T> {
     [key:string]: T,
     [key:number]: T,
 }
 
 // https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html#design-pattern-nested-index-signature
-declare interface InterfaceNested {
+export interface InterfaceNested {
   color?: string;
   [selector: string]: string | InterfaceNested | undefined;
 }
 
-declare interface InterfaceExtends<T> extends InterfaceMapLike<T> {
+export interface InterfaceExtends<T> extends InterfaceMapLike<T> {
     additionalField: T,
 }
 
-declare interface InterfaceExtendsWithRedefinition extends Interface {
+export interface InterfaceExtendsWithRedefinition extends Interface {
     field: Array<number>;
 }
