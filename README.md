@@ -111,7 +111,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 
 - Should I publish generated types to haxelib?
 
-    Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider open an issue here noting the fixup required instead – it would be better if dts2hx converted more modules correctly instead of polluting the haxelib namespace with js externs
+    Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider opening an issue here noting the fixup required instead – it would be better if dts2hx converted more modules perfectly
 
 - What makes this different from previous approaches?
 
