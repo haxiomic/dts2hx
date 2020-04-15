@@ -1,4 +1,5 @@
 
+import typescript.ts.TupleTypeNode;
 import typescript.ts.TypeReferenceNode;
 import typescript.ts.GenericType;
 import typescript.ts.TupleType;
@@ -189,7 +190,23 @@ class ConverterContext {
 				var typePath = haxeTypePathMap.getTypePath(symbol, access);
 				var superClass = null; // @! todo
 				var interfaces = []; // @! todo
-				var isInterface = symbol.flags & SymbolFlags.Interface != 0;
+				var isClassAndInterface = (symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0);
+
+				// if it's a class and interface symbol, we use class
+				var isInterface = symbol.flags & SymbolFlags.Interface != 0 && !isClassAndInterface;
+
+				var meta = new Array<MetadataEntry>();
+
+				if (!isInterface) {
+					meta.push(access.toAccessMetadata());
+				}
+
+				if (isClassAndInterface) {
+					// in typescript this symbol can be used as a class or an interface
+					// we have no way of representing this in haxe yet
+					// we add metadata to mark the class which we might be able to use in the future
+					meta.push({name: ':interface', pos: pos});
+				}
 
 				var hxClass: HaxeModule = {
 					pack: typePath.pack,
@@ -199,7 +216,7 @@ class ConverterContext {
 					params: typeParamDeclFromSymbol(symbol, access),
 					isExtern: true,
 					doc: getDoc(symbol),
-					meta: isInterface ? [] : [access.toAccessMetadata()],
+					meta: meta,
 					pos: pos,
 					subTypes: [],
 					tsSymbol: symbol,
@@ -256,48 +273,47 @@ class ConverterContext {
 		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
 			for (access in symbolAccessMap.getAccess(symbol)) {
 				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
-				if (typeAliasDeclaration != null) {
-					// @! typeParameters?
-					var hxAliasType: ComplexType = complexTypeFromTypeNode(typeAliasDeclaration.type, access); 
 
-					var typePath = haxeTypePathMap.getTypePath(symbol, access);
-
-					// if this symbol is also a ValueModule then it needs to have fields
-					// to enable this, we create a pseudo typedef with an abstract
-					var hxTypeDef: HaxeModule = if (symbol.flags & SymbolFlags.ValueModule != 0) {
-						pack: typePath.pack,
-						name: typePath.name,
-						fields: [],
-						kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
-						params: typeParamDeclFromSymbol(symbol, access), // is there a case where an enum can have a TypeParameter?
-						doc: getDoc(symbol),
-						isExtern: true,
-						meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
-						pos: pos,
-						subTypes: [],
-						tsSymbol: symbol,
-						tsSymbolAccess: access,
-					} else {
-						pack: typePath.pack,
-						name: typePath.name,
-						fields: [],
-						kind: TDAlias(hxAliasType),
-						params: typeParamDeclFromSymbol(symbol, access),
-						doc: getDoc(symbol),
-						pos: pos,
-						subTypes: [],
-						tsSymbol: symbol,
-						tsSymbolAccess: access,
-					}
-
-					if (symbol.flags & SymbolFlags.ValueModule != 0) {
-						log.log('${typePath.pack.join('.')} ${typePath.name}', symbol);
-					}
-
-					saveHaxeModule(hxTypeDef, symbol, access);
-				} else {
+				if (typeAliasDeclaration == null) {
 					log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 				}
+
+				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
+				var hxAliasType = complexTypeFromType(tsType, access, typeAliasDeclaration);
+				// alternatively, we can get the type from the declaration node
+				// var hxAliasType: ComplexType = complexTypeFromTypeNode(typeAliasDeclaration.type, access, typeAliasDeclaration); 
+
+				var typePath = haxeTypePathMap.getTypePath(symbol, access);
+
+				// if this symbol is also a ValueModule then it needs to have fields
+				// to enable this, we create a pseudo typedef with an abstract
+				var hxTypeDef: HaxeModule = if (symbol.flags & SymbolFlags.ValueModule != 0) {
+					pack: typePath.pack,
+					name: typePath.name,
+					fields: [],
+					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
+					params: typeParamDeclFromSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
+					doc: getDoc(symbol),
+					isExtern: true,
+					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+					pos: pos,
+					subTypes: [],
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
+				} else {
+					pack: typePath.pack,
+					name: typePath.name,
+					fields: [],
+					kind: TDAlias(hxAliasType),
+					params: typeParamDeclFromSymbol(symbol, access, typeAliasDeclaration),
+					doc: getDoc(symbol),
+					pos: pos,
+					subTypes: [],
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
+				}
+
+				saveHaxeModule(hxTypeDef, symbol, access);
 			}
 			return;
 		}
@@ -451,6 +467,8 @@ class ConverterContext {
 	}
 
 	function complexTypeFromTypeParameter(typeParameterType: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// not a fan of using node building `typeParameterToDeclaration` here, could also use typeParameterType.symbol.escapedName
+		// not all TypeParameters have symbols however
 		var typeParameterDeclaration = tc.typeParameterToDeclaration(typeParameterType, enclosingDeclaration, defaultNodeBuilderFlags);
 		return if (typeParameterDeclaration != null) {
 			TPath({
@@ -506,21 +524,12 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		return complexTypeFromTupleType(cast tupleTypeReference.target, accessContext, enclosingDeclaration);
-	}
-
-	function complexTypeFromTupleType(tupleType: TupleType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
-		log.warn('Todo: TupleType', tupleType);
-		debug();
-		return HaxeTypes.any;
-	}
-
 	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		// determine reference sub-type
 		return if ((typeReference.objectFlags & ObjectFlags.ClassOrInterface) != 0) {
 			complexTypeFromGenericType(cast typeReference, accessContext, enclosingDeclaration);
-		} else if ((typeReference.objectFlags & ObjectFlags.Tuple) != 0) {
+		} else if ((typeReference.target.objectFlags & ObjectFlags.Tuple != 0)) {
+			// it's a TupleTypeReference if its target is a Tuple
 			complexTypeFromTupleTypeReference(cast typeReference, accessContext, enclosingDeclaration);
 		} else {
 			if (typeReference.target == cast typeReference) { // avoid direct cycles
@@ -528,14 +537,35 @@ class ConverterContext {
 				log.error('Internal error: recursive type reference');
 				return HaxeTypes.any;
 			}
-			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromType(arg, accessContext, enclosingDeclaration)));
 			var hxTarget = complexTypeFromType(typeReference.target, accessContext, enclosingDeclaration);
+			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromType(arg, accessContext, enclosingDeclaration)));
+			// replace type parameters with type arguments
 			switch hxTarget {
-				case TPath({name: 'Any', pack: []}): // don't add type parameters to Any
-				case TPath(p): p.params = hxTypeArguments;
+				case TPath(p):
+					var argumentCount = hxTypeArguments.length;
+					var paramCount = p.params != null ? p.params.length : 0;
+					if (paramCount != argumentCount) {
+						log.warn('TypeReference has <b>$argumentCount</> arguments but target has <b>$paramCount</> parameters', typeReference);
+					}
+					p.params = hxTypeArguments;
 				default: log.error('Internal error: Expected TPath from TypeReference', typeReference);
 			}
 			hxTarget;
+		}
+	}
+
+	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		var tupleTypeNode: Null<TupleTypeNode> = tupleTypeReference.node;
+		if (tupleTypeNode != null) {
+			var elementTypes: Array<TypeNode> = cast tupleTypeNode.elementTypes;
+			var hxElementTypes = elementTypes.map(t -> complexTypeFromTypeNode(t, accessContext, enclosingDeclaration));
+			return TPath({
+				pack: ['js', 'lib'],
+				name: 'Tuple${hxElementTypes.length}',
+				params: hxElementTypes.map(t -> TPType(t))
+			});
+		} else {
+			return HaxeTypes.array(HaxeTypes.any);
 		}
 	}
 
@@ -548,9 +578,22 @@ class ConverterContext {
 		}
 	}
 
+	function complexTypeFromTupleType(tupleType: TupleType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+		log.warn('Todo: TupleType', tupleType);
+		// presumably tuples can be determined from typeArguments
+		debug();
+		// for (t in tupleType.typeParameters.map(t -> complexTypeFromType(t, accessContext, enclosingDeclaration))) {
+		// 	log.warn('\t' + t);
+		// }
+		return HaxeTypes.any;
+	}
+
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
 			var hxTypePath = getHaxeTypePath(classOrInterfaceType.symbol, accessContext);
+			hxTypePath.params = if (classOrInterfaceType.typeParameters != null) {
+				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, accessContext, enclosingDeclaration)));
+			} else null;
 			TPath(hxTypePath);
 		} else {
 			log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
@@ -574,7 +617,7 @@ class ConverterContext {
 		}
 
 		if (symbol.flags & SymbolFlags.Property != 0) {
-			var type = tc.getDeclaredTypeOfSymbol(symbol);
+			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
 			return {
 				name: safeName,
 				meta: meta,
@@ -599,11 +642,18 @@ class ConverterContext {
 		for (declaration in symbol.declarations) {
 			// find the first declaration with more than 0 type parameters
 			// here we make the assumption that all declarations have the same type parameters
-			// @! should validate this assumption
+			
 			var declarationTypeParameters = Ts.getEffectiveTypeParameterDeclarations(cast declaration);
+
+			// validate the assumption that all declarations have the same type-parameters
+			if (tsTypeParameterDeclarations.length > 0 && declarationTypeParameters.length > 0) {
+				if (tsTypeParameterDeclarations.length != declarationTypeParameters.length) {
+					log.warn('Symbol declarations have varying number of type-parameters; this is not expected', symbol);
+				}
+			}
+
 			if (declarationTypeParameters.length > 0) {
 				tsTypeParameterDeclarations = declarationTypeParameters;
-				break;
 			}
 		}
 
