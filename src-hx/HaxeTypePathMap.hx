@@ -227,13 +227,14 @@ class HaxeTypePathMap {
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
 		var identifierChain = access.getIdentifierChain();
 		switch access {
-			case AmbientModule(path, _), ExportModule(path, _):
-				var pathPack = splitModulePath(path);
-				// if the first part of the path is the same as the module id, don't add to avoid duplicates (like babylonjs.babylonjs.cameras)
-				// if (pathPack[0].toSafePackageName() == pack[0].toSafePackageName()) {
-				// 	pathPack.shift();
-				// }
-				pack = pack.concat(pathPack).concat(identifierChain);
+			case AmbientModule(modulePath, _):
+				// prefix entry-point module for ambients
+				var entryPointPack = splitModulePath(entryPointModuleId);
+				var modulePack = splitModulePath(modulePath);
+				pack = pack.concat(entryPointPack).concat(modulePack).concat(identifierChain);
+				pack.pop(); // remove symbol ident; only want parents
+			case ExportModule(moduleName, _):
+				pack = pack.concat(splitModulePath(moduleName)).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Global(_):
 				// only prefix global package if it's not a built-in
