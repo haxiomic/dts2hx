@@ -57,8 +57,8 @@ class SymbolAccessTools {
 	static public function toString(access: SymbolAccess) {
 		var identifierChain = getIdentifierChain(access);
 		return switch access {
-			case AmbientModule(path, _): ['require($path)'].concat(identifierChain).join('.');
-			case ExportModule(moduleName, _): ['require("$moduleName")'].concat(identifierChain).join('.');
+			case AmbientModule(path, _): ['ambientRequire($path)'].concat(identifierChain).join('.');
+			case ExportModule(moduleName, _): ['exportRequire("$moduleName")'].concat(identifierChain).join('.');
 			case Global(_): '::${identifierChain.join('.')}';
 			case Inaccessible: '*Inaccessible*';
 		}
