@@ -132,6 +132,16 @@ class HaxeTools {
 		return allTypesMatch ? types[0] : macro :Any;
 	}
 
+	static public function deduplicateTypes(types: Array<ComplexType>): Array<ComplexType> {
+		var typeStringMap = new Map<String, ComplexType>();
+		var printer = new haxe.macro.Printer();
+		for (type in types) {
+			var typeString = printer.printComplexType(type);
+			typeStringMap.set(typeString, type);
+		}
+		return [for (_ => type in typeStringMap) type];
+	}
+
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
 		// see core/ast.ml
 		"public", "private", "static", "override", "dynamic", "inline", "macro",

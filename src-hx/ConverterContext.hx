@@ -1,4 +1,7 @@
 
+import haxe.rtti.CType.TypeParams;
+import typescript.ts.UnionType;
+import typescript.ts.UnionOrIntersectionType;
 import typescript.ts.TupleTypeNode;
 import typescript.ts.TypeReferenceNode;
 import typescript.ts.GenericType;
@@ -188,6 +191,7 @@ class ConverterContext {
 	function convertTypeSymbol(symbol: Symbol) {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
+		log.log('convertTypeSymbol', symbol);
 
 		var pos = TsSymbolTools.getPosition(symbol);
 
@@ -380,7 +384,7 @@ class ConverterContext {
 	}
 
 	function getDoc(symbol: Symbol) {
-		var posInfo = [];
+		var sourceLocationInfo = [];
 
 		if (locationComments) {
 			var node = if (symbol.valueDeclaration != null) {
@@ -396,15 +400,14 @@ class ConverterContext {
 					var lineAndCharacter = sourceFile.getLineAndCharacterOfPosition(start);
 					var line = lineAndCharacter.line;
 					var character = lineAndCharacter.line;
-					posInfo.push('${cwdRelativeFilePath(sourceFile.fileName)}:${line + 1}${character > 0 ? ':${character + 1}' : ''}');
+					sourceLocationInfo.push('${cwdRelativeFilePath(sourceFile.fileName)}:${line + 1}${character > 0 ? ':${character + 1}' : ''}');
 				}
 			}
 		}
 
-
 		return symbol.getDocumentationComment(tc)
 			.map(s -> s.text.trim())
-			.concat(posInfo)
+			.concat(sourceLocationInfo)
 			.join('\n\n');
 	}
 
@@ -424,7 +427,7 @@ class ConverterContext {
 	}
 	
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-
+		log.log('complexTypeFromTsType ${}', type);
 		// handle fundamental type flags
 		return if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
@@ -437,8 +440,12 @@ class ConverterContext {
 			macro :String;
 		} else if (type.flags & (TypeFlags.Number) != 0) {
 			macro :Float;
+		} else if (type.flags & (TypeFlags.Boolean) != 0) {
+			macro :Bool;
 		} else if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
 			macro :Void;
+		} else if (type.flags & (TypeFlags.Union) != 0) {
+			complexTypeFromUnionType(cast type, accessContext, enclosingDeclaration);
 		}
 
 		// @! unions and literals could generate enum abstracts
@@ -470,6 +477,17 @@ class ConverterContext {
 			log.error('Could not convert type', type);
 			macro :Any;
 		}
+	}
+
+	function complexTypeFromUnionType(unionType: UnionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// if union has null, undefined filter out and consider type as nullable
+		var typesWithoutNullable = unionType.types.filter(t -> t.flags & (TypeFlags.Null | TypeFlags.Undefined) == 0);
+		var nullable = typesWithoutNullable.length != unionType.types.length;
+		// convert union's TsTypes to haxe ComplexTypes
+		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+		// if union is of length 1, no need for support type
+		var unionType = hxTypes.length == 1 ? hxTypes[0] : getSupportUnionType(hxTypes);
+		return nullable ? macro :Null<$unionType> : macro :$unionType;
 	}
 
 	function complexTypeFromTypeParameter(typeParameterType: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -561,7 +579,7 @@ class ConverterContext {
 
 	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		var hxElementTypes = tupleTypeReference.typeArguments.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration));
-		return getTupleType(hxElementTypes);
+		return getSupportTupleType(hxElementTypes);
 	}
 
 	/**
@@ -661,7 +679,7 @@ class ConverterContext {
 	/**
 		Haxe doesn't support tuple-types so we generate a support type as required
 	**/
-	function getTupleType(elementTypes: Array<ComplexType>): ComplexType {
+	function getSupportTupleType(elementTypes: Array<ComplexType>): ComplexType {
 		var baseType = HaxeTools.commonType(elementTypes);
 		var typePath = {
 			pack: ['js', 'lib'],
@@ -712,10 +730,27 @@ class ConverterContext {
 			}
 
 			saveHaxeModule(tupleTypeDefinition);
-			
 		}
 
 		return TPath(typePath);
+	}
+
+	function getSupportUnionType(types: Array<ComplexType>): ComplexType {
+		// here we could generate an advanced union type like we do for tuple but let's save that for another day
+		// instead, generate an either lists
+		function getEitherUnion(types: Array<ComplexType>): ComplexType {
+			return if (types.length == 1) {
+				types[0];
+			} else {
+				TPath({
+					name: 'EitherType',
+					pack: ['haxe', 'extern'],
+					params: [TPType(types[0]), TPType(getEitherUnion(types.slice(1)))],
+				});
+			}
+		}
+
+		return getEitherUnion(types);
 	}
 
 	/**

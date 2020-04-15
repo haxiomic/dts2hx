@@ -147,6 +147,9 @@ class Main {
 		defaultCompilerOptions.target = ES2015; // default to ES6 for lib types
 		defaultCompilerOptions.types = []; // disable automatic node_modules/@types inclusion
 		defaultCompilerOptions.moduleResolution = ModuleResolutionKind.NodeJs;
+		// we set `strictNullChecks` to true by default so that
+		// `number | null` is typed as `Union<number, null>` and not just `number`
+		defaultCompilerOptions.strictNullChecks = true;
 
 		var compilerOptions = defaultCompilerOptions;
 

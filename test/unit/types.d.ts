@@ -27,9 +27,17 @@ export namespace Types {
     type ObjectAlias = typeof object;
     type AliasWithTypeParam<K, V> = Map<K, V>;
     type TupleReference = [string[], string];
-    type HomogenousTupleReference = [number, number, number];
-    type NestedTupleReference = [number, string, [boolean, boolean[]]];
+    type TupleReferenceHomogenous = [number, number, number];
+    type TupleReferenceNested = [number, string, [boolean, boolean[]]];
     type AliasAlias<X> = AliasWithTypeParam<string, X>;
+
+    type TypeUnion = string | number;
+    type LongUnion = string | number | boolean | symbol;
+    type ConstUnion = 'a' | 3;
+    type ConstUnionHomogenous = 'a' | 'b';
+    type NullNumberUnion = number | null; // translates to Null<Float>
+    type UndefinedNumberUnion = number | undefined; // translates to Null<Float>
+    type Intersection = number & string;
 
     // Primitive Types
     //  implicit
