@@ -9,7 +9,6 @@
 // the following is equivalent to compiling with `--lib es2017.string`
 /// <reference lib="es2017.string" />
 
-export const con: NodeModule;
 export const es2017PadStart: typeof String.prototype.padStart;
 export const localType: AmbientNamespace.Num;
 
