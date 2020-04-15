@@ -279,7 +279,7 @@ class ConverterContext {
 				}
 
 				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
-				var hxAliasType = complexTypeFromType(tsType, access, typeAliasDeclaration);
+				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration);
 				// alternatively, we can get the type from the declaration node
 				// var hxAliasType: ComplexType = complexTypeFromTypeNode(typeAliasDeclaration.type, access, typeAliasDeclaration); 
 
@@ -414,17 +414,17 @@ class ConverterContext {
 			debug();
 			log.error('Internal error: Error getting type from type node', node);
 		}
-		return complexTypeFromType(type, accessContext, enclosingDeclaration);
+		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 	}
 	
-	function complexTypeFromType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 
 		// handle fundamental type flags
 		return if (type.flags & (TypeFlags.Any) != 0) {
 			HaxeTypes.any;
 		} else if (type.flags & TypeFlags.Unknown != 0) {
 			// @! review that there isn't an error preventing a type node from being checked
-			log.warn('complexTypeFromType(): Unexpected unknown', type);
+			log.warn('complexTypeFromTsType(): Unexpected unknown', type);
 			debug();
 			HaxeTypes.any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
@@ -537,8 +537,10 @@ class ConverterContext {
 				log.error('Internal error: recursive type reference');
 				return HaxeTypes.any;
 			}
-			var hxTarget = complexTypeFromType(typeReference.target, accessContext, enclosingDeclaration);
-			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromType(arg, accessContext, enclosingDeclaration)));
+			
+			var hxTarget = complexTypeFromGenericType(cast typeReference.target, accessContext, enclosingDeclaration);
+
+			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromTsType(arg, accessContext, enclosingDeclaration)));
 			// replace type parameters with type arguments
 			switch hxTarget {
 				case TPath(p):
@@ -569,6 +571,9 @@ class ConverterContext {
 		}
 	}
 
+	/**
+		While a GenericType could include the full type definition because the return is ComplexType we just return a TPath()
+	**/
 	function complexTypeFromGenericType(genericType: GenericType & TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		// sub-type of GenericType
 		return if (genericType.objectFlags & ObjectFlags.Tuple != 0) {
@@ -580,12 +585,9 @@ class ConverterContext {
 
 	function complexTypeFromTupleType(tupleType: TupleType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
 		log.warn('Todo: TupleType', tupleType);
-		// presumably tuples can be determined from typeArguments
+		// need an example where this path is hit
 		debug();
-		// for (t in tupleType.typeParameters.map(t -> complexTypeFromType(t, accessContext, enclosingDeclaration))) {
-		// 	log.warn('\t' + t);
-		// }
-		return HaxeTypes.any;
+		return HaxeTypes.array(HaxeTypes.any);
 	}
 
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -622,7 +624,7 @@ class ConverterContext {
 				name: safeName,
 				meta: meta,
 				pos: pos,
-				kind: FVar(complexTypeFromType(type, accessContext, enclosingDeclaration), null),
+				kind: FVar(complexTypeFromTsType(type, accessContext, enclosingDeclaration), null),
 				doc: getDoc(symbol),
 			}
 		} else if (symbol.flags & SymbolFlags.Method != 0) {
