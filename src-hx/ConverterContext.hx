@@ -71,12 +71,13 @@ class ConverterContext {
 		// this will be used as the argument to require()
 		this.locationComments = locationComments;
 		this.log = log_ != null ? log_ : new Log();
-		this.entryPointModuleId = inline normalizeModuleName(moduleName);
-		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
 		this.tc = program.getTypeChecker();
+
+		this.entryPointModuleId = inline normalizeModuleName(moduleName);
+		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
 		log.diagnostics(program.getAllDiagnostics());
 
@@ -670,6 +671,11 @@ class ConverterContext {
 		Given a module name like `@types\lib`, return `lib`
 	**/
 	function normalizeModuleName(moduleName: String) {
+		// make absolute paths into paths relative to the cwd
+		if (TsProgramTools.isDirectPathReferenceModule(moduleName)) {
+			moduleName = cwdRelativeFilePath(moduleName);
+		}
+
 		// replace backslashes with forward slashes to normalize for windows paths
 		moduleName.replace('\\', '/');
 		var moduleNameParts = moduleName.split('/');
@@ -680,7 +686,7 @@ class ConverterContext {
 		return moduleNameParts.join('/');
 	}
 
-	function cwdRelativeFilePath(path: String): String {
+	inline function cwdRelativeFilePath(path: String): String {
 		return TsInternal.convertToRelativePath(path, host.getCurrentDirectory(), host.getCanonicalFileName);
 	}
 
