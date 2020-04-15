@@ -265,7 +265,7 @@ class ConverterContext {
 					pack: typePath.pack,
 					name: typePath.name,
 					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
-					params: typeParamDeclFromSymbol(symbol, access), // is there a case where an enum can have a TypeParameter?
+					params: [],
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
@@ -339,7 +339,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDClass(null, [], false, false),
-					params: typeParamDeclFromSymbol(symbol, access), // there shouldn't actually be any type parameters for ValueModule-only symbol
+					params: [],
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: [access.toAccessMetadata()],
