@@ -541,7 +541,7 @@ class ConverterContext {
 				return macro :Any;
 			}
 			
-			var hxTarget = complexTypeFromGenericType(cast typeReference.target, accessContext, enclosingDeclaration);
+			var hxTarget = complexTypeFromTsType(cast typeReference.target, accessContext, enclosingDeclaration);
 
 			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromTsType(arg, accessContext, enclosingDeclaration)));
 			// replace type parameters with type arguments
@@ -560,14 +560,8 @@ class ConverterContext {
 	}
 
 	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var tupleTypeNode: Null<TupleTypeNode> = tupleTypeReference.node;
-		return if (tupleTypeNode != null) {
-			var elementTypes: Array<TypeNode> = cast tupleTypeNode.elementTypes;
-			var hxElementTypes = elementTypes.map(t -> complexTypeFromTypeNode(t, accessContext, enclosingDeclaration));
-			getTupleType(hxElementTypes);
-		} else {
-			macro :Array<Any>;
-		}
+		var hxElementTypes = tupleTypeReference.typeArguments.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration));
+		return getTupleType(hxElementTypes);
 	}
 
 	/**
