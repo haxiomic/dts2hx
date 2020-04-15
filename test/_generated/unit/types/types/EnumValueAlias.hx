@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef EnumValueAlias = Any;
+typedef EnumValueAlias = Int;

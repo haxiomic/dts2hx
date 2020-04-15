@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef ConstUnion = Any;
+typedef ConstUnion = haxe.extern.EitherType<Int, String>;

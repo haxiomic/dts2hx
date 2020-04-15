@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef Index = Any;
+typedef Index = String;

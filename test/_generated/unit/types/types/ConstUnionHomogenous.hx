@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef ConstUnionHomogenous = Any;
+typedef ConstUnionHomogenous = String;
