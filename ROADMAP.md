@@ -1,21 +1,3 @@
-- getTypePath should not return a TypePathDecl, it should return a new type of object
-	- Should add extra field, inHaxeStdLib: Bool, so we know not to queue this symbol
-- Should generate name and pack together
-
-- What if we used macros for Union, Tuple etc?
--> Generic build macro, adds to complexity but we could do it
--> `Union<['a', 'b']>`, doesn't work because TP must be a constant
--> `Tuple<[T1, T2]>`, doesn't work ^
-
-- typeNodeToComplexType should also return support types required
-	- Support types should always be emitted in the same module as the type reference
-	- Have a deterministic, order-free name so we can deduplicate
-		`A | B` and `B | A` -> `EitherAOrB`
-	- Maybe we can add an extra field `_supportType` to the TypeDefinition
-
-- Handle nullable types
-	? Check for union with null?
-
 - Global.hx
 	- Should we have Global.hx per-package or just one?
 
@@ -27,7 +9,6 @@
 - Enums:
 	- Generate method to get keys
 	- Support array access
-
 
 - **Command Line Interface**
 	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
