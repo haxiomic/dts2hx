@@ -7,7 +7,7 @@ typedef ObjectAlias = {
 	var fieldOptional : Float;
 	@:native("macro")
 	var macro_ : String;
-	var nestedTuple : Array<Any>;
+	var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Any, Array<Any>>>;
 	var computedFieldName : String;
 	var sub : { var a : Float; var b : Float; };
 	var methodProperty : { };
