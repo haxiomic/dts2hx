@@ -46,7 +46,12 @@ typedef TsType = typescript.ts.Type;
 class ConverterContext {
 
 	public final entryPointModuleId: String;
+	
+	/**
+		Map of package-paths to HaxeModules
+	**/
 	public final generatedModules = new Map<String, HaxeModule>();
+
 	public final moduleDependencies: ReadOnlyArray<String>;
 
 	public final log: Log;
@@ -224,7 +229,7 @@ class ConverterContext {
 					tsSymbolAccess: access,
 				}
 
-				saveHaxeModule(hxClass, symbol, access);
+				saveHaxeModule(hxClass);
 			}
 			return;
 		}
@@ -266,7 +271,7 @@ class ConverterContext {
 					tsSymbolAccess: access,
 				}
 				
-				saveHaxeModule(hxEnumDef, symbol, access);
+				saveHaxeModule(hxEnumDef);
 			}
 			return;
 		}
@@ -314,7 +319,7 @@ class ConverterContext {
 					tsSymbolAccess: access,
 				}
 
-				saveHaxeModule(hxTypeDef, symbol, access);
+				saveHaxeModule(hxTypeDef);
 			}
 			return;
 		}
@@ -339,7 +344,7 @@ class ConverterContext {
 					tsSymbolAccess: access,
 				}
 
-				saveHaxeModule(hxModuleClass, symbol, access);
+				saveHaxeModule(hxModuleClass);
 			}
 			return;
 		}
@@ -347,24 +352,24 @@ class ConverterContext {
 		log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
 	}
 
-	function saveHaxeModule(module: HaxeModule, symbol: Symbol, access: SymbolAccess) {
-		/**
-			A key that uniquely identifies a haxe module in a haxe project
-			Lower case string to represent module file case-insensitive collisions
-			`a.b.C` -> `a/b/c`
-		**/
-		function getHaxeModuleKey(pack: Array<String>, name: String) {
-			return pack.concat([name]).map(s -> s.toLowerCase()).join('/');
-		}
-		
+	/**
+		A key that uniquely identifies a haxe module in a haxe project
+		Lower case string to represent module file case-insensitive collisions
+		`a.b.C` -> `a/b/c`
+	**/
+	function getHaxeModuleKey(pack: Array<String>, name: String) {
+		return pack.concat([name]).map(s -> s.toLowerCase()).join('/');
+	}
+
+	function saveHaxeModule(module: HaxeModule) {
 		var path = getHaxeModuleKey(module.pack, module.name);
 
 		var existingModule = generatedModules.get(path);
 		if (existingModule != null) {
 			log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-			log.warn('\t Existing module <yellow,b>${existingModule.tsSymbolAccess.toString()}</>', existingModule.tsSymbol);
-			log.warn('\t Overwriting module <yellow,b>${access.toString()}</>', symbol);
-			log.warn('\t All access ' + symbolAccessMap.getAccess(symbol).map(s -> s.toString()));
+			// log.warn('\t Existing module <yellow,b>${existingModule.tsSymbolAccess.toString()}</>', existingModule.tsSymbol);
+			// log.warn('\t Overwriting module <yellow,b>${access.toString()}</>', symbol);
+			// log.warn('\t All access ' + symbolAccessMap.getAccess(symbol).map(s -> s.toString()));
 		}
 
 		if (generatedModules.exists(path)) {
@@ -422,18 +427,18 @@ class ConverterContext {
 
 		// handle fundamental type flags
 		return if (type.flags & (TypeFlags.Any) != 0) {
-			HaxeTypes.any;
+			macro :Any;
 		} else if (type.flags & TypeFlags.Unknown != 0) {
 			// @! review that there isn't an error preventing a type node from being checked
 			log.warn('complexTypeFromTsType(): Unexpected unknown', type);
 			debug();
-			HaxeTypes.any;
+			macro :Any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
-			HaxeTypes.string;
+			macro :String;
 		} else if (type.flags & (TypeFlags.Number) != 0) {
-			HaxeTypes.float;
+			macro :Float;
 		} else if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
-			HaxeTypes.void;
+			macro :Void;
 		}
 
 		// @! unions and literals could generate enum abstracts
@@ -463,7 +468,7 @@ class ConverterContext {
 			complexTypeFromObjectType(cast type, accessContext, enclosingDeclaration);
 		} else {
 			log.error('Could not convert type', type);
-			HaxeTypes.any;
+			macro :Any;
 		}
 	}
 
@@ -478,10 +483,7 @@ class ConverterContext {
 			});
 		} else {
 			log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameterType);
-			TPath({
-				name: 'T',
-				pack: [],
-			});
+			macro :T;
 		}
 	}
 
@@ -521,7 +523,7 @@ class ConverterContext {
 		} else {
 			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
-			HaxeTypes.any;
+			macro :Any;
 		}
 	}
 
@@ -536,7 +538,7 @@ class ConverterContext {
 			if (typeReference.target == cast typeReference) { // avoid direct cycles
 				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
 				log.error('Internal error: recursive type reference');
-				return HaxeTypes.any;
+				return macro :Any;
 			}
 			
 			var hxTarget = complexTypeFromGenericType(cast typeReference.target, accessContext, enclosingDeclaration);
@@ -559,16 +561,12 @@ class ConverterContext {
 
 	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		var tupleTypeNode: Null<TupleTypeNode> = tupleTypeReference.node;
-		if (tupleTypeNode != null) {
+		return if (tupleTypeNode != null) {
 			var elementTypes: Array<TypeNode> = cast tupleTypeNode.elementTypes;
 			var hxElementTypes = elementTypes.map(t -> complexTypeFromTypeNode(t, accessContext, enclosingDeclaration));
-			return TPath({
-				pack: ['js', 'lib'],
-				name: 'Tuple${hxElementTypes.length}',
-				params: hxElementTypes.map(t -> TPType(t))
-			});
+			getTupleType(hxElementTypes);
 		} else {
-			return HaxeTypes.array(HaxeTypes.any);
+			macro :Array<Any>;
 		}
 	}
 
@@ -588,7 +586,7 @@ class ConverterContext {
 		log.warn('Todo: TupleType', tupleType);
 		// need an example where this path is hit
 		debug();
-		return HaxeTypes.array(HaxeTypes.any);
+		return macro :Array<Any>;
 	}
 
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -601,7 +599,7 @@ class ConverterContext {
 		} else {
 			log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
 			debug();
-			HaxeTypes.any;
+			macro :Any;
 		}
 	}
 
@@ -667,6 +665,65 @@ class ConverterContext {
 	}
 
 	/**
+		Haxe doesn't support tuple-types so we generate a support type as required
+	**/
+	function getTupleType(elementTypes: Array<ComplexType>): ComplexType {
+		var baseType = HaxeTools.commonType(elementTypes);
+		var typePath = {
+			pack: ['js', 'lib'],
+			name: 'Tuple${elementTypes.length}',
+			params: [TPType(baseType)].concat(elementTypes.map(t -> TPType(t)))
+		};
+
+		var existingModule = generatedModules.get(getHaxeModuleKey(typePath.pack, typePath.name));
+
+		if (existingModule == null) {
+			// generate fields
+			var fields = new Array<Field>();
+
+			for (i in 0...elementTypes.length) {
+				var name = 'element$i';
+				var type = TPath({
+					name: 'T$i',
+					pack: [],
+				});
+				var get = 'get_$name';
+				var set = 'set_$name';
+				var indexExpr = HaxeTools.toIntExpr(i);
+				fields = fields.concat((macro class {
+					public var $name(get, set): $type;
+					inline function $get(): $type return cast this[$indexExpr];
+					inline function $set(v: $type): $type return cast this[$indexExpr] = cast v;
+				}).fields);
+			}
+			
+			var abstractType = macro :Array<Base>;
+
+			var tupleTypeDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				kind: TDAbstract(abstractType, [abstractType], [abstractType]),
+				params: [{name: 'Base'}].concat([for (i in 0...elementTypes.length) { name: 'T$i', }]),
+				fields: fields,
+				isExtern: true,
+				doc: tool.StringTools.removeIndentation('
+					Automatically generated tuple type implementation. Generated by dts2hx v${Main.dts2hxPackageJson.version}
+				').trim(),
+				meta: [{name: ':forward', pos: null}, {name: ':forwardStatics', pos: null}],
+				pos: null,
+				subTypes: [],
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			saveHaxeModule(tupleTypeDefinition);
+			
+		}
+
+		return TPath(typePath);
+	}
+
+	/**
 		Remove @types prefix and convert backslashes to forward slashes
 		Given a module name like `@types\lib`, return `lib`
 	**/
@@ -713,25 +770,9 @@ class ConverterContext {
 
 }
 
-class HaxeTypes {
-	static public final string: ComplexType = TPath({pack: [], name: 'String'});
-	static public final float: ComplexType = TPath({pack: [], name: 'Float'});
-	static public final int: ComplexType = TPath({pack: [], name: 'Int'});
-	static public final bool: ComplexType = TPath({pack: [], name: 'Bool'});
-	static public final any: ComplexType = TPath({pack: [], name: 'Any'});
-	static public final void: ComplexType = TPath({pack: [], name: 'Void'});
-	static public function array(t: ComplexType) {
-		return TPath({
-			pack: [],
-			name: 'Array',
-			params: [TPType(t)]
-		});
-	}
-}
-
 typedef ConvertedTypeDefinition = TypeDefinition & {
-	tsSymbol: Symbol,
-	tsSymbolAccess: SymbolAccess,
+	tsSymbol: Null<Symbol>,
+	tsSymbolAccess: Null<SymbolAccess>,
 }
 
 typedef HaxeModule = ConvertedTypeDefinition & {

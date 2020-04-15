@@ -16,8 +16,8 @@ using tool.StringTools;
 @:nullSafety
 class Main {
 
-	static final dts2hxPackageJson = Macro.getLocalPackageJson();
-	static final log = new Log();
+	static public final dts2hxPackageJson = Macro.getLocalPackageJson();
+	static public final log = new Log();
 
 	static function main() {
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';

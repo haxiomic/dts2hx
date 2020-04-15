@@ -111,6 +111,27 @@ class HaxeTools {
 		}
 	}
 
+	/**
+		If all types are trivially equivalent (not following aliases or handling type-unions), return that type
+		Otherwise, return :Any
+	**/
+	static public function commonType(types: Array<ComplexType>): ComplexType {
+		// check if all elementTypes are the same
+		var printer = new haxe.macro.Printer();
+		var commonTypeString: Null<String> = null;
+		var allTypesMatch = true;
+		for (type in types) {
+			var typeString = printer.printComplexType(type);
+			if (commonTypeString != null && commonTypeString != typeString) {
+				allTypesMatch = false;
+				break;
+			}
+			commonTypeString = typeString;
+		}
+
+		return allTypesMatch ? types[0] : macro :Any;
+	}
+
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
 		// see core/ast.ml
 		"public", "private", "static", "override", "dynamic", "inline", "macro",
