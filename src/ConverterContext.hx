@@ -159,6 +159,13 @@ class ConverterContext {
 				// FunctionScopedVariable | BlockScopedVariable | Function
 				//@! if top-level global declarations then these need to go into Global.hx, otherwise we can ignore
 				//@! we could also get the containing haxe module and add here, this create an order-dependence but that might be ok 
+				for (access in symbolAccessMap.getAccess(symbol)) {
+					switch access {
+						case Global([_]):
+
+						default:
+					}
+				}
 				handled = true;
 			}
 
@@ -192,7 +199,7 @@ class ConverterContext {
 	function convertTypeSymbol(symbol: Symbol) {
 		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 		// type symbols are mutually exclusive so we can return after converting the first match
-		log.log('convertTypeSymbol', symbol);
+		// log.log('convertTypeSymbol', symbol);
 
 		var pos = TsSymbolTools.getPosition(symbol);
 
@@ -428,7 +435,7 @@ class ConverterContext {
 	}
 	
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		log.log('complexTypeFromTsType', type);
+		// log.log('complexTypeFromTsType', type);
 		// handle fundamental type flags
 		return if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
@@ -660,7 +667,6 @@ class ConverterContext {
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface | SymbolFlags.TypeAlias) == 0) {
 			log.error('Internal error: typeParamDeclFromTypeDeclarationSymbol() unexpected symbol flags; expected Class, Interface or TypeAlias', symbol);
 		}
- 
 
 		for (declaration in symbol.declarations) {
 			// find the first declaration with more than 0 type parameters
@@ -761,6 +767,9 @@ class ConverterContext {
 		}
 
 		return getEitherUnion(types);
+	}
+
+	function getGlobalHaxeModule() {
 	}
 
 	/**

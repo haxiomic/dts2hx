@@ -117,6 +117,8 @@ class HaxeTypePathMap {
 								var typePath = generateTypePath(symbol, access);
 								var modules = getModules(typePath.pack);
 
+								log.log('Global field ${typePath.pack} ${typePath.name}', symbol);
+
 								if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
 									modules.push({
 										name: 'Global',
@@ -200,7 +202,7 @@ class HaxeTypePathMap {
 		return typePathMap;
 	}
 
-	function generateTypePath(symbol: Symbol, access: SymbolAccess) {
+	public function generateTypePath(symbol: Symbol, access: SymbolAccess) {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
 		var defaultLibName: Null<String> = null;
 		for (declaration in symbol.getDeclarationsArray()) {
@@ -231,6 +233,7 @@ class HaxeTypePathMap {
 				// prefix entry-point module for ambients
 				var entryPointPack = splitModulePath(entryPointModuleId);
 				var modulePack = splitModulePath(modulePath);
+				// maybe we only want to prefix entryPointPack if modulePack doesn't start with the same
 				pack = pack.concat(entryPointPack).concat(modulePack).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case ExportModule(moduleName, _):

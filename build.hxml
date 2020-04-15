@@ -1,5 +1,5 @@
 -p lib
--p src-hx
+-p src
 
 -main Main
 -lib hxnodejs
@@ -16,7 +16,7 @@
 # -cmd node dist/dts2hx.js --all --verbose
 
 # Ambient 
-# -cmd node dist/dts2hx.js babylonjs -p test/libs --verbose
+-cmd node dist/dts2hx.js babylonjs -p test/libs --verbose
 # -cmd node dist/dts2hx.js pixi.js -p test/libs --verbose
 
 # Export
