@@ -68,12 +68,12 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Primitives
         - [x] Type references
         - [ ] TypeLiteral types (objects literals)
-        - [ ] Unions with EitherType
+        - [x] Unions with EitherType
         - [ ] Function types
         - [x] Type parameters
         - [ ] Index signatures
         - [ ] Intersection types `need better handling of redefined properties, aka sub intersections`
-        - [ ] Tuple types
+        - [x] Tuple types
         - [ ] This type
         - [ ] Overloads
         - [ ] Wrapped types
