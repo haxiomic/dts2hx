@@ -19,10 +19,15 @@
  */
 declare namespace Types {
 
+    interface I {}
+
     type StringAlias = string;
     type ArrayAlias = Array<string>;
+    type InterfaceAlias = I;
     type ObjectAlias = typeof object;
     type AliasWithTypeParam<K, V> = Map<K, V>;
+    type TupleReference = [string[], string];
+    type AliasAlias<X> = AliasWithTypeParam<string, X>;
 
     // Primitive Types
     //  implicit
@@ -62,6 +67,8 @@ declare namespace Types {
         fieldB: number,
         fieldArrayAlias: ArrayAlias,
         fieldOptional?: number,
+        macro: string,
+        nestedTuple: [number, string, [boolean, boolean[]]],
         ['computedFieldName']: string,
         sub: {a: number, b: number},
         methodSignature<T>(a: T): void,
