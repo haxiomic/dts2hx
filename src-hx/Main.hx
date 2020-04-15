@@ -34,7 +34,7 @@ class Main {
 			moduleSearchPath: '.',
 			allDependencies: false,
 			noOutput: false,
-			locationComments: true,
+			locationComments: false,
 			logLevel: Warning,
 		}
 
@@ -75,6 +75,11 @@ class Main {
 			'--moduleResolution' => (kind: String) -> {
 				cliOptions.tsCompilerOptions.push('--moduleResolution');
 				cliOptions.tsCompilerOptions.push(kind);
+			},
+
+			@doc('Enables printing the corresponding source file and line number for each declaration')
+			'--sourceLocation' => () -> {
+				cliOptions.locationComments = true;
 			},
 
 			@doc('Runs conversion but doesn\'t generate files')
