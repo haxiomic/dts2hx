@@ -27,6 +27,8 @@ export namespace Types {
     type ObjectAlias = typeof object;
     type AliasWithTypeParam<K, V> = Map<K, V>;
     type TupleReference = [string[], string];
+    type HomogenousTupleReference = [number, number, number];
+    type NestedTupleReference = [number, string, [boolean, boolean[]]];
     type AliasAlias<X> = AliasWithTypeParam<string, X>;
 
     // Primitive Types
