@@ -1,6 +1,6 @@
 // reference module
 // this is disabled for now to keep test output smaller
-//// <reference types="node" />
+/// <reference types="big.js" />
 
 // reference local path
 /// <reference path="ambient-modules.d.ts" />
