@@ -39,6 +39,14 @@ export namespace Types {
     type UndefinedNumberUnion = number | undefined; // translates to Null<Float>
     type Intersection = number & string;
 
+    
+    /**
+     * haxe doesn't support function-types with type parameters
+     * this should translate to: 
+     * typedef FunctionTypeWithTypeParam<T> = (a: T, b: Any) -> Any;
+     */
+    type FunctionTypeWithTypeParam<T> = <K>(a: T, b: K) => K;
+
     // Primitive Types
     //  implicit
     const implicitInt = 2; // number
@@ -81,8 +89,10 @@ export namespace Types {
         nestedTuple: [number, string, [boolean, boolean[]]],
         ['computedFieldName']: string,
         sub: {a: number, b: number},
-        methodSignature<T>(a: T): void,
-        methodSignature(a: number): void, // overload
+        methodSignatureComplex<T extends string>(a: number, opt?: string): T;
+
+        methodSignatureWithOverload<T>(a: T): void,
+        methodSignatureWithOverload(a: number): void, // overload
         methodProperty: <T>(a: T) => void,
         methodSignatureOptional?(): string,
         readonly readonlyField: string,
