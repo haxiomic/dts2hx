@@ -99,7 +99,9 @@ class ConverterContext {
 		var defaultLibSourceFiles = program.getSourceFiles().filter(s -> s.hasNoDefaultLib);
 
 		// list of the module entry points source files, for the currently module and its referenced modules
-		var moduleRootSourceFiles: Array<SourceFile> = [entryPointSourceFile];
+		var dependencyRootSourceFiles: Array<SourceFile> = [];
+		var dependencyModuleNames = new Array<String>();
+		moduleDependencies = dependencyModuleNames;
 
 		// set `moduleName` on source files with a known module
 		// `sourceFile.moduleName` is not populated after binding, so let's populate it to help aliasing
@@ -110,11 +112,16 @@ class ConverterContext {
 				var resolvedFileName = moduleReference.resolvedTypeReferenceDirective.resolvedFileName;
 				var packageInfo = moduleReference.resolvedTypeReferenceDirective.packageId;
 				var moduleName = packageInfo != null ? packageInfo.name : null;
-				// log.error('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
+				if (moduleName == null) {
+					log.warn('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
+				}
 				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
 				if (sourceFile != null) {
 					sourceFile.moduleName = moduleName != null ? inline normalizeModuleName(moduleName) : null;
-					moduleRootSourceFiles.push(sourceFile);
+					dependencyRootSourceFiles.push(sourceFile);
+					if (moduleName != null) {
+						dependencyModuleNames.push(moduleName);
+					}
 				} else {
 					log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
 				}
@@ -123,10 +130,9 @@ class ConverterContext {
 			}
 		}
 
-		moduleDependencies = moduleRootSourceFiles.filter(s -> s != entryPointSourceFile).map(s -> cast s.moduleName);
-
 		// populate symbol access map
-		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, defaultLibSourceFiles.concat(moduleRootSourceFiles), log);
+		var accessRoots = [cast entryPointSourceFile].concat(defaultLibSourceFiles).concat(dependencyRootSourceFiles);
+		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, accessRoots, log);
 
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
 		haxeTypePathMap = new HaxeTypePathMap(entryPointModuleId, program, symbolAccessMap, log);
