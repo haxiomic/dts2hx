@@ -39,9 +39,9 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Enums
         - [x] Primitives
         - [x] Type references
-        - [ ] TypeLiteral types (objects literals)
+        - [x] TypeLiteral types (objects literals)
         - [x] Unions with EitherType
-        - [ ] Function types
+        - [x] Function types
         - [x] Type parameters
         - [ ] Index signatures
         - [ ] Intersection types `need better handling of redefined properties, aka sub intersections`
