@@ -211,6 +211,22 @@ class HaxeTypePathMap {
 			}
 		}
 
+		// handle built-ins and types available in the haxe standard library
+		// (currently if a built-in type is extended by a module, we ignore the extension, maybe this should change)
+		if (defaultLibName != null) {
+			switch access {
+				// match special-case built-ins
+				case Global([{escapedName: 'Array'}]):
+					return {
+						name: 'Array',
+						pack: [],
+						isExistingStdLibType: true,
+					}
+				default:
+					// @! do a lookup in the haxe standard library
+			}
+		}
+
 		// if the symbol derives from a built-in, prefix js.lib or js.html
 		// otherwise prefix the module name (if it's a path, add a pack for each directory)
 		var pack = if (defaultLibName != null) {
@@ -231,7 +247,14 @@ class HaxeTypePathMap {
 				// prefix entry-point module for ambients
 				var entryPointPack = splitModulePath(entryPointModuleId);
 				var modulePack = splitModulePath(modulePath);
-				// maybe we only want to prefix entryPointPack if modulePack doesn't start with the same
+				// a common convention is to prefix the modulePath with the module name, for example
+				// declare module "babylonjs/assets" {}
+				// if the module name is also babylonjs, then the full path will be babylonjs.babylonjs.assets
+				// we can resolve the duplication by checking that the last part of the entryPointPack is the same as the first part of the module pack
+				if (entryPointPack[entryPointPack.length - 1].toSafePackageName() == modulePack[0].toSafePackageName()) {
+					// remove the first element from modulePack
+					modulePack.shift();
+				}
 				pack = pack.concat(entryPointPack).concat(modulePack).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case ExportModule(moduleName, _):
@@ -239,10 +262,12 @@ class HaxeTypePathMap {
 				pack.pop(); // remove symbol ident; only want parents
 			case Global(_):
 				// only prefix global package if it's not a built-in
+				// global types are _not_ prefixed with the module name, this might change in the future
 				pack = pack.concat((defaultLibName != null) ? [] : ['global']).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
-				pack = pack.concat(
+				var entryPointPack = splitModulePath(entryPointModuleId);
+				pack = pack.concat(entryPointPack).concat(
 					symbol.getSymbolParents()
 					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
 					.filter(s -> !s.isSourceFileSymbol())
@@ -285,17 +310,10 @@ class HaxeTypePathMap {
 		var name = typeIdentifier.toSafeTypeName();
 
 		// handle short aliases
-		return switch [pack, name] {
-			case [['js', 'lib'], 'Array']: {
-				name: 'Array',
-				pack: [],
-				isExistingStdLibType: true,
-			}
-			default: {
-				name: name,
-				pack: pack,
-				isExistingStdLibType: false,
-			}
+		return {
+			name: name,
+			pack: pack,
+			isExistingStdLibType: false,
 		}
 	}
 
