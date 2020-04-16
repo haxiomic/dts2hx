@@ -117,8 +117,6 @@ class HaxeTypePathMap {
 								var typePath = generateTypePath(symbol, access);
 								var modules = getModules(typePath.pack);
 
-								log.log('Global field ${typePath.pack} ${typePath.name}', symbol);
-
 								if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
 									modules.push({
 										name: 'Global',
