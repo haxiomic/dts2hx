@@ -255,10 +255,24 @@ class ConverterContext {
 					meta.push({name: ':interface', pos: pos});
 				}
 
+				var fields = new Array<Field>();
+				if (symbol.members != null) {
+					symbol.members.forEach((memberSymbol, key) -> {
+						if (memberSymbol.flags & SymbolFlags.ClassMember != 0) {
+							var field = fieldFromSymbol(memberSymbol, access, classOrInterfaceDeclaration);
+							if (field != null) {
+								fields.push(field);
+							} else {
+								log.error('Failed to convert field of <b>${typePath.pack.concat([typePath.name]).join('.')}</b>', memberSymbol);
+							}
+						}
+					});
+				}
+
 				var hxClass: HaxeModule = {
 					pack: typePath.pack,
 					name: typePath.name,
-					fields: [],
+					fields: fields,
 					kind: TDClass(superClass, interfaces, isInterface, false),
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, classOrInterfaceDeclaration),
 					isExtern: true,
@@ -471,7 +485,7 @@ class ConverterContext {
 		} else if (type.flags & TypeFlags.Unknown != 0) {
 			// @! review that there isn't an error preventing a type node from being checked
 			log.warn('complexTypeFromTsType(): Unexpected unknown', type);
-			debug();
+			// debug();
 			macro :Any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
 			macro :String;
@@ -728,29 +742,20 @@ class ConverterContext {
 		}
 
 		var kind = if (symbol.flags & (SymbolFlags.Property) != 0) {
-			// assumption check
-			if (symbol.valueDeclaration.kind != PropertySignature) {
-				onError('Expected valueDeclaration to be a <i>PropertySignature</>, but got <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
-			}
 			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
 			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 			FVar(hxType, null);
 		} else if (symbol.flags & SymbolFlags.Method != 0) {
-			// assumption check
-			if (symbol.valueDeclaration.kind != MethodSignature) {
-				onError('Expected valueDeclaration to be a <i>PropertySignature</>, but got <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
-			}
-
-			var baseDeclaration: MethodSignature = cast symbol.valueDeclaration;
-			var overloadDeclarations: Array<MethodSignature> = cast symbol.declarations.filter(d -> d != baseDeclaration && switch d.kind {
-				case MethodSignature: true;
+			var baseDeclaration = symbol.valueDeclaration;
+			var overloadDeclarations = symbol.declarations.filter(d -> d != baseDeclaration && switch d.kind {
+				case MethodSignature, MethodDeclaration: true;
 				default:
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(d.kind)}</>');
 					false;
 			});
 
 			for (overloadDeclaration in overloadDeclarations) {
-				var signature = tc.getSignatureFromDeclaration(overloadDeclaration);
+				var signature = tc.getSignatureFromDeclaration(cast overloadDeclaration);
 				if (signature == null) {
 					onError('Signature was null');
 					continue;
@@ -768,7 +773,7 @@ class ConverterContext {
 				});
 			}
 
-			var signature = tc.getSignatureFromDeclaration(baseDeclaration);
+			var signature = tc.getSignatureFromDeclaration(cast baseDeclaration);
 			if (signature != null) {
 				// haxe use overload metadata to handle multiple declarations
 				FFun(functionFromSignature(signature, accessContext, enclosingDeclaration));
@@ -873,6 +878,9 @@ class ConverterContext {
 		Haxe doesn't support tuple-types so we generate a support type as required
 	**/
 	function getSupportTupleType(elementTypes: Array<ComplexType>): ComplexType {
+		if (elementTypes.length == 0) {
+			return macro :Array<Any>;
+		}
 		var baseType = HaxeTools.commonType(elementTypes);
 		var typePath = {
 			pack: ['js', 'lib'],
