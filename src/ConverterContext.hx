@@ -1,3 +1,7 @@
+import typescript.ts.ParameterDeclaration;
+import typescript.ts.MethodSignature;
+import typescript.ts.Signature;
+import typescript.ts.PropertySignature;
 import ds.OnlyOnceSymbolQueue.OnceOnlySymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
@@ -543,9 +547,21 @@ class ConverterContext {
 	}
 
 	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		if (objectType.getCallSignatures().length > 0) {
+			// assumption check
+			// I don't know why typescript represents function types with the object flag Anonymous
+			// I want to catch if it's flagged as anything else because currently if a type has call signatures we ignore all other flags
+			if (objectType.flags & ObjectFlags.Anonymous != 0) {
+				log.warn('Assumption disproven: Expected ObjectFlags.Anonymous here', objectType);
+			}
+			if (objectType.getCallSignatures().length > 1) {
+				log.error('Unhandled: Type has multiple signatures', objectType);
+			} else {
+				return complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);				
+			}
+		}
+
 		// @! todo:
-		// Tuple            = 1 << 3,  // Synthesized generic tuple type
-		// Anonymous        = 1 << 4,  // Anonymous
 		// Mapped           = 1 << 5,  // Mapped
 		// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
 		// ObjectLiteral    = 1 << 7,  // Originates in an object literal
@@ -559,11 +575,13 @@ class ConverterContext {
 		// FreshLiteral     = 1 << 15, // Fresh object literal
 		// ArrayLiteral     = 1 << 16, // Originates in an array literal
 		// ObjectRestType   = 1 << 17, // Originates in object rest declaration
+
 		return if ((objectType.objectFlags & ObjectFlags.Reference) != 0) {
 			complexTypeFromTypeReference(cast objectType, accessContext, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
 			complexTypeFromInterfaceType(cast objectType, accessContext, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
+
 			var fields = new Array<Field>();
 			var properties = tc.getPropertiesOfType(objectType);
 			for (p in properties) {
@@ -580,6 +598,40 @@ class ConverterContext {
 			// debug();
 			macro :Any;
 		}
+	}
+
+	function complexTypeFromCallSignature(callSignature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// haxe doesn't support type-parameters on function types, e.g.
+		// `let fun: <T>(a: T) -> void`
+		// so we must replace instances of T with Any, but only when it's a local type parameter
+		var params = callSignature.getTypeParameters();
+		var tsTypeParams: Array<TypeParameter> = params != null ? params : [];
+		inline function isLocalTypeParam(type: TsType) {
+			return tsTypeParams.indexOf(type) != -1;
+		}
+
+		var hxParameters: Array<ComplexType> = callSignature.parameters.map(s -> {
+			var tsType = tc.getTypeAtLocation(s.valueDeclaration);
+
+			var hxType = if (isLocalTypeParam(tsType)) {
+				macro : Any;
+			} else {
+				complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
+			}
+
+			return TNamed(s.escapedName.toSafeIdent(), hxType);
+		});
+
+		var tsRet = tc.getReturnTypeOfSignature(callSignature);
+
+		var hxRet = if (isLocalTypeParam(tsRet)) {
+			macro : Any;
+		} else {
+			complexTypeFromTsType(tc.getReturnTypeOfSignature(callSignature), accessContext, enclosingDeclaration);
+		}
+
+		// callSignature.typeParameters
+		return TFunction(hxParameters, hxRet);
 	}
 
 	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -666,20 +718,112 @@ class ConverterContext {
 			meta.push({name: ':optional', pos: pos});
 		}
 
-		if (symbol.flags & SymbolFlags.Property != 0) {
-			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
-			return {
-				name: safeName,
-				meta: meta,
-				pos: pos,
-				kind: FVar(complexTypeFromTsType(type, accessContext, enclosingDeclaration), null),
-				doc: getDoc(symbol),
+		var userDoc = getDoc(symbol);
+		var docParts = userDoc != '' ? [userDoc] : [];
+
+		// add errors to field docs
+		function onError(message) {
+			log.error('fieldFromSymbol(): ' + message, symbol);
+			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
+		}
+
+		var kind = if (symbol.flags & (SymbolFlags.Property) != 0) {
+			// assumption check
+			if (symbol.valueDeclaration.kind != PropertySignature) {
+				onError('Expected valueDeclaration to be a <i>PropertySignature</>, but got <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
 			}
+			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
+			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
+			FVar(hxType, null);
 		} else if (symbol.flags & SymbolFlags.Method != 0) {
-			// debug();
-			return null;
+			// assumption check
+			if (symbol.valueDeclaration.kind != MethodSignature) {
+				onError('Expected valueDeclaration to be a <i>PropertySignature</>, but got <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
+			}
+
+			var baseDeclaration: MethodSignature = cast symbol.valueDeclaration;
+			var overloadDeclarations: Array<MethodSignature> = cast symbol.declarations.filter(d -> d != baseDeclaration && switch d.kind {
+				case MethodSignature: true;
+				default:
+					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(d.kind)}</>');
+					false;
+			});
+
+			for (overloadDeclaration in overloadDeclarations) {
+				var signature = tc.getSignatureFromDeclaration(overloadDeclaration);
+				if (signature == null) {
+					onError('Signature was null');
+					continue;
+				}
+				var fun = functionFromSignature(signature, accessContext, enclosingDeclaration);
+				// overloads require an empty expression
+				fun.expr = macro {};
+				meta.push({
+					name: ':overload',
+					pos: pos,
+					params: [{
+						expr: EFunction(FAnonymous, fun),
+						pos: pos,
+					}]
+				});
+			}
+
+			var signature = tc.getSignatureFromDeclaration(baseDeclaration);
+			if (signature != null) {
+				// haxe use overload metadata to handle multiple declarations
+				FFun(functionFromSignature(signature, accessContext, enclosingDeclaration));
+			} else {
+				onError('Signature was null');
+				FFun({
+					args: [],
+					ret: macro :Any,
+					params: [],
+					expr: null,
+				});
+			}
 		} else {
-			return null;
+			onError('Unhandled symbol flags');
+			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+			FVar(macro :Any, null);
+		}
+
+		return {
+			name: safeName,
+			meta: meta,
+			pos: pos,
+			kind: kind,
+			doc: docParts.join('\n\n'),
+		};
+	}
+
+	function functionFromSignature(signature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Function {
+		var hxTypeParams = if (signature.typeParameters != null) signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, accessContext, enclosingDeclaration)) else [];
+
+		var hxParameters = if (signature.parameters != null ) signature.parameters.map(s -> {
+			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
+			var tsType = tc.getTypeAtLocation(parameterDeclaration);
+			var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
+			var isOptional = tc.isOptionalParameter(parameterDeclaration);
+			if (isOptional) {
+				hxType = HaxeTools.unwrapNull(hxType);
+			}
+			// I don't think d.ts files allow default values for parameters but we'll keep this here anyway
+			var value = HaxeTools.primitiveValueToExpr(tc.getConstantValue(parameterDeclaration));
+			return ({
+				name: s.escapedName.toSafeIdent(),
+				type: hxType,
+				opt: isOptional,
+				value: value
+			}: FunctionArg);
+		}) else [];
+
+		var hxRet = complexTypeFromTsType(tc.getReturnTypeOfSignature(signature), accessContext, enclosingDeclaration);
+
+		return {
+			args: hxParameters,
+			ret: hxRet,
+			params: hxTypeParams,
+			expr: null,
 		}
 	}
 
@@ -715,6 +859,14 @@ class ConverterContext {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
 			constraints: t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : []
 		}];
+	}
+
+	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
+		var constraint = typeParameter.getConstraint();
+		return {
+			name: typeParameter.symbol.escapedName.toSafeTypeName(),
+			constraints: constraint != null ? [complexTypeFromTsType(constraint, accessContext, enclosingDeclaration)] : null,
+		}
 	}
 
 	/**

@@ -132,6 +132,9 @@ class HaxeTools {
 		return allTypesMatch ? types[0] : macro :Any;
 	}
 
+	/**
+		Deduplicate trivially identical types (print to same string) from an array
+	**/
 	static public function deduplicateTypes(types: Array<ComplexType>): Array<ComplexType> {
 		var typeStringMap = new Map<String, ComplexType>();
 		var printer = new haxe.macro.Printer();
@@ -140,6 +143,21 @@ class HaxeTools {
 			typeStringMap.set(typeString, type);
 		}
 		return [for (_ => type in typeStringMap) type];
+	}
+
+	/**
+		- `Null<T>` -> `T`
+		- `T` -> `T`
+	**/
+	static public function unwrapNull(type: ComplexType): ComplexType {
+		return switch type {
+			case TPath({
+				name: 'Null',
+				pack: [] | ['std'],
+				params: [TPType(innerType)]
+			}): innerType;
+			default: type;
+		}
 	}
 
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
