@@ -225,7 +225,10 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput).moduleDependencies;
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput);
+			if (converterContext == null) continue;
+			
+			var moduleDependencies = converterContext.moduleDependencies;
 			if (moduleDependencies.length > 0) {
 				log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 			}
@@ -235,17 +238,17 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, locationComments: Bool, outputPath: String, noOutput: Bool) {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
 		var host = Ts.createCompilerHost(compilerOptions);
 		
 		var resolvedModule: ResolvedModuleFull;
 		var result = Ts.resolveModuleName(moduleName, moduleSearchPath + '/.', compilerOptions, host);
-		resolvedModule = if (result.resolvedModule != null) {
-			result.resolvedModule;
-		} else {
+		if (result.resolvedModule == null) {
 			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
-			throw 'Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>';
+			log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
+			return null;
 		}
+		resolvedModule = result.resolvedModule;
 
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
 		var generateLibraryWrapper = !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
