@@ -89,7 +89,7 @@ export namespace Types {
         nestedTuple: [number, string, [boolean, boolean[]]],
         ['computedFieldName']: string,
         sub: {a: number, b: number},
-        methodSignatureComplex<T extends string>(a: number, opt?: string): T;
+        methodSignatureComplex<T extends string | number>(a: number, opt?: string): T;
 
         methodSignatureWithOverload<T>(a: T): void,
         methodSignatureWithOverload(a: number): void, // overload

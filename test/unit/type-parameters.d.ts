@@ -19,3 +19,16 @@ type ShadowT = number;
 export class ShadowedTp<ShadowT> {
 	field: ShadowT;
 }
+
+export class Object3D {
+
+}
+
+export class TypeParameterBug {
+
+	/**
+	 * Object3D was reported as having a type parameter
+	 */
+	parse<X extends string>(a: X): X;
+
+}
