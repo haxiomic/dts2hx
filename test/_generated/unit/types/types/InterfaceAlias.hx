@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef InterfaceAlias = unit.types.types.I;
+typedef InterfaceAlias = I;
