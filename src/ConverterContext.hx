@@ -1,4 +1,5 @@
 import typescript.ts.ParameterDeclaration;
+import typescript.ts.NodeBuilderFlags;
 import typescript.ts.MethodSignature;
 import typescript.ts.Signature;
 import typescript.ts.PropertySignature;
@@ -483,9 +484,7 @@ class ConverterContext {
 		return if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
 		} else if (type.flags & TypeFlags.Unknown != 0) {
-			// @! review that there isn't an error preventing a type node from being checked
-			log.warn('complexTypeFromTsType(): Unexpected unknown', type);
-			// debug();
+			// we can't really represent `unknown` in haxe at the moment
 			macro :Any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
 			macro :String;
@@ -545,17 +544,14 @@ class ConverterContext {
 		return nullable ? macro :Null<$unionType> : macro :$unionType;
 	}
 
-	function complexTypeFromTypeParameter(typeParameterType: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// not a fan of using node building `typeParameterToDeclaration` here, could also use typeParameterType.symbol.escapedName
-		// not all TypeParameters have symbols however
-		var typeParameterDeclaration = tc.typeParameterToDeclaration(typeParameterType, enclosingDeclaration, defaultNodeBuilderFlags);
-		return if (typeParameterDeclaration != null) {
+	function complexTypeFromTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		return if (typeParameter.symbol != null) {
 			TPath({
-				name: TsSyntaxTools.typeParameterDeclarationName(typeParameterDeclaration),
+				name: typeParameter.symbol.escapedName.toSafeTypeName(),
 				pack: [],
 			});
 		} else {
-			log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameterType);
+			log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameter);
 			macro :T;
 		}
 	}
