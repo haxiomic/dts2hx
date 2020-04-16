@@ -12,6 +12,7 @@ import typescript.ts.Symbol;
 
 using TsInternal;
 
+@:nullSafety
 class TsSymbolTools {
 
 	public static function getId(symbol: Symbol) {
@@ -76,41 +77,6 @@ class TsSymbolTools {
 		}
 
 		return activeFlags;
-	}
-
-	public static function getComplexTypeOfEnumSymbol(symbol: Symbol, tc: TypeChecker): ComplexType {
-		var hxEnumTypeName: Null<String> = null;
-		// determine underlying type of enum by iterating its members
-		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-		for (member in enumMembers) {
-			var enumMemberNode = member.valueDeclaration;
-			var runtimeValue = tc.getConstantValue(cast enumMemberNode);
-			var hxMemberTypeName = switch js.Syntax.typeof(runtimeValue) {
-				// enums are implicitly ints by default
-				case 'undefined': 'Int';
-				case 'number': 
-					Math.floor(cast runtimeValue) == runtimeValue ? 'Int' : 'Float';
-				case 'string': 'String';
-				default: 'Any';
-			}
-
-			// compare this member type with the currently set hxEnumType
-			// and handle Int -> Float cast
-			if (hxEnumTypeName != hxMemberTypeName) {
-				hxEnumTypeName = switch [hxEnumTypeName, hxMemberTypeName] {
-					case [null, _]: hxMemberTypeName;
-					case ['Int', 'Float']: 'Float';
-					case ['Float', 'Int']: 'Float';
-					default: 'Any';
-				}
-			}
-		}
-		
-		return if (hxEnumTypeName != null) {
-			TPath({pack: [], name: cast hxEnumTypeName});
-		} else {
-			TPath({pack: [], name: 'Any'});
-		}
 	}
 
 	public static function getPosition(symbol: Symbol): haxe.macro.Expr.Position {
@@ -262,7 +228,7 @@ class TsSymbolTools {
 		}
 
 		if (!handled) {
-			log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
+			if (log != null) log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
 		}
 	}
 
@@ -271,7 +237,7 @@ class TsSymbolTools {
 	}
 
 	static var _symbolFlagsMap: Null<Map<String, Int>> = null;
-	static function getSymbolFlagsMap() {
+	static function getSymbolFlagsMap(): Map<String, Int> {
 		if (_symbolFlagsMap == null) {
 			_symbolFlagsMap = new Map<String, Int>();
 			var symbolFlagsStringKeys = js.lib.Object.keys(js.Syntax.code('require("typescript").SymbolFlags')).filter(key -> ~/[a-z_]/i.match(key));

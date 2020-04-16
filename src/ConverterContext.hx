@@ -295,7 +295,7 @@ class ConverterContext {
 				// a ConstEnum does not exist at runtime
 				var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
 				
-				var hxEnumType = TsSymbolTools.getComplexTypeOfEnumSymbol(symbol, tc);
+				var hxEnumType = complexTypeFromEnumSymbol(symbol);
 				
 				var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
 				var hxEnumFields: Array<Field> = enumMembers.map(s -> {
@@ -714,6 +714,41 @@ class ConverterContext {
 			log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
 			debug();
 			macro :Any;
+		}
+	}
+
+	function complexTypeFromEnumSymbol(symbol: Symbol): ComplexType {
+		var hxEnumTypeName: Null<String> = null;
+		// determine underlying type of enum by iterating its members
+		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
+		for (member in enumMembers) {
+			var enumMemberNode = member.valueDeclaration;
+			var runtimeValue = tc.getConstantValue(cast enumMemberNode);
+			var hxMemberTypeName = switch js.Syntax.typeof(cast runtimeValue) {
+				// enums are implicitly ints by default
+				case 'undefined': 'Int';
+				case 'number': 
+					Math.floor(cast runtimeValue) == runtimeValue ? 'Int' : 'Float';
+				case 'string': 'String';
+				default: 'Any';
+			}
+
+			// compare this member type with the currently set hxEnumType
+			// and handle Int -> Float cast
+			if (hxEnumTypeName != hxMemberTypeName) {
+				hxEnumTypeName = switch [hxEnumTypeName, hxMemberTypeName] {
+					case [null, _]: hxMemberTypeName;
+					case ['Int', 'Float']: 'Float';
+					case ['Float', 'Int']: 'Float';
+					default: 'Any';
+				}
+			}
+		}
+
+		return if (hxEnumTypeName != null) {
+			TPath({pack: [], name: cast hxEnumTypeName});
+		} else {
+			TPath({pack: [], name: 'Any'});
 		}
 	}
 
