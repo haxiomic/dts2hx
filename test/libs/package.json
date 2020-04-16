@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@actions/core": "^1.2.3",
     "@types/big.js": "4.0.5",
     "@types/d3": "5.7.2",
     "@types/dat.gui": "0.7.2",
