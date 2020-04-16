@@ -224,17 +224,13 @@ class Main {
 		while (true) {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
-			try {
-				var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput).moduleDependencies;
-				if (moduleDependencies.length > 0) {
-					log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
-				}
-				for (moduleDependency in moduleDependencies) {
-					moduleQueue.tryEnqueue(moduleDependency);
-				}
-			} catch (e: Any) {
-				log.error(e);
-				Node.process.exit(1);
+
+			var moduleDependencies = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput).moduleDependencies;
+			if (moduleDependencies.length > 0) {
+				log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
+			}
+			for (moduleDependency in moduleDependencies) {
+				moduleQueue.tryEnqueue(moduleDependency);
 			}
 		}
 	}
