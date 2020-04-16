@@ -172,7 +172,7 @@ class TsSymbolTools {
 		return symbol.declarations != null ? symbol.declarations : [];
 	}
 
-	public static /**
+	/**
 		Walks key symbols that have the following flags:
 			- Type
 			- Alias
@@ -204,7 +204,7 @@ class TsSymbolTools {
 
 		While the symbol's parent path is [Module("events"), internal, EventEmitter], the accessChain is [Module("events"), EventEmitter]
 	**/
-	function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, ?log: Log, depth: Int = 0) {
+	public static function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, ?log: Log, depth: Int = 0) {
 		accessChain = accessChain != null ? accessChain : [symbol];
 
 		// prevent cycles by terminating if the current symbol appears in the parent access chain
