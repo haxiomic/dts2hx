@@ -41,7 +41,12 @@ typedef TsType = typescript.ts.Type;
 @:expose
 @:nullSafety
 class ConverterContext {
-
+	
+	/**
+		Normalized entry-point module id (without prefix @types/).
+		This is the value to use in `require()` to load the module at runtime.
+		It may be a path, for example `./modules/example`
+	**/
 	public final entryPointModuleId: String;
 	
 	/**
@@ -49,6 +54,10 @@ class ConverterContext {
 	**/
 	public final generatedModules = new Map<String, HaxeModule>();
 
+	/**
+		An array of normalized module ids (paths or names) that this module depends on.
+		These dependencies will also need to be converted
+	**/
 	public final moduleDependencies: ReadOnlyArray<String>;
 
 	public final log: Log;
@@ -57,8 +66,10 @@ class ConverterContext {
 	public final program: Program;
 
 	// symbol access map is filled during an initial pass over the program
-	// the access path for key-symbols such as types are stored so we can retrieve them later when we have a type-reference
+	// the access path for key-symbols such as types, are stored so we can retrieve them later when we have a type-reference
 	public final symbolAccessMap: SymbolAccessMap;
+	// using the symbol access map, a type-path is generated for every symbol in the program (including symbols in other modules and in the lib files)
+	// this is done upfront to ensure deterministic handling of module name deduplication
 	public final haxeTypePathMap: HaxeTypePathMap;
 
 	/**
