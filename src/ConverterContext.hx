@@ -221,6 +221,13 @@ class ConverterContext {
 		var pos = TsSymbolTools.getPosition(symbol);
 
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
+			// symbol can have multiple interface declarations so this should not be treated as the main source of information
+			// but it might be helpful if node-building is required to provide hints
+			var classOrInterfaceDeclaration: Null<Node> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.InterfaceDeclaration || node.kind == SyntaxKind.ClassDeclaration)[0];
+			if (classOrInterfaceDeclaration == null) {
+				log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
+			}
+
 			for (access in symbolAccessMap.getAccess(symbol)) {
 				var typePath = haxeTypePathMap.getTypePath(symbol, access);
 				var superClass = null; // @! todo
@@ -240,6 +247,7 @@ class ConverterContext {
 					// in typescript this symbol can be used as a class or an interface
 					// we have no way of representing this in haxe yet
 					// we add metadata to mark the class which we might be able to use in the future
+					// @! maybe we can use an abstract for this
 					meta.push({name: ':interface', pos: pos});
 				}
 
@@ -248,7 +256,7 @@ class ConverterContext {
 					name: typePath.name,
 					fields: [],
 					kind: TDClass(superClass, interfaces, isInterface, false),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, classOrInterfaceDeclaration),
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: meta,
@@ -306,12 +314,12 @@ class ConverterContext {
 		}
 
 		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
-			for (access in symbolAccessMap.getAccess(symbol)) {
-				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
+			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
+			if (typeAliasDeclaration == null) {
+				log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
+			}
 
-				if (typeAliasDeclaration == null) {
-					log.error('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
-				}
+			for (access in symbolAccessMap.getAccess(symbol)) {
 
 				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
 				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration);
@@ -770,7 +778,7 @@ class ConverterContext {
 
 	function getSupportUnionType(types: Array<ComplexType>): ComplexType {
 		// here we could generate an advanced union type like we do for tuple but let's save that for another day
-		// instead, generate an either lists
+		// instead, generate an EitherType stack
 		function getEitherUnion(types: Array<ComplexType>): ComplexType {
 			return if (types.length == 1) {
 				types[0];
@@ -790,8 +798,11 @@ class ConverterContext {
 	}
 
 	/**
-		Remove @types prefix and convert backslashes to forward slashes
-		Given a module name like `@types\lib`, return `lib`
+		Remove @types prefix, convert backslashes to forward slashes and make path relative to cwd.
+		Examples:
+		- `@types/lib` -> `lib` 
+		- `.\modules\example` -> `./modules/example`
+		- `/Users/X/modules/example/` -> `./modules/example`
 	**/
 	function normalizeModuleName(moduleName: String) {
 		// make absolute paths into paths relative to the cwd
