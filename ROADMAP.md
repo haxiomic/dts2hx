@@ -1,6 +1,16 @@
 - Global.hx
 	- Should we have Global.hx per-package or just one?
 
+- Function type
+
+- Fields
+	- Class fields
+	- Typedef static fields
+	- Enum static fields
+	- ValueModule fields
+
+- getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
+
 - Review class-expression syntax `let x = class ...`
 
 - Callable classes with @:selfCall
