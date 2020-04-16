@@ -1,3 +1,4 @@
+import typescript.ts.TypeParameter;
 import typescript.ts.Node;
 import typescript.ts.FileReference;
 import typescript.ts.Program;
@@ -8,6 +9,8 @@ import typescript.Ts;
 
 /**
 	TypeScript compiler methods not included in the compiler externs
+
+	As of TypeScript v3.7.5
 **/
 class TsInternal {
 
@@ -30,6 +33,14 @@ class TsInternal {
 	**/
 	static public function getSymbol(node: Node): Null<Symbol> {
 		return untyped node.symbol;
+	}
+
+	/**
+		Use this instead of `typeParameter.getConstraint()` because that is buggy
+		https://github.com/microsoft/TypeScript/blob/9ba45fcaace07510ef259d4cda2bc5ec523cf6d1/src/compiler/types.ts#L4587
+	**/
+	static public function getTypeParameterConstraint(typeParameter: TypeParameter) {
+		return untyped typeParameter.constraint;
 	}
 
 }

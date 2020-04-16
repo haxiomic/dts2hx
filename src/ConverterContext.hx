@@ -559,7 +559,7 @@ class ConverterContext {
 	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		if (objectType.getCallSignatures().length > 0) {
 			// assumption check
-			// I don't know why typescript represents function types with the object flag Anonymous
+			// I don't know why typescript represents function types with the object-flag `Anonymous`
 			// I want to catch if it's flagged as anything else because currently if a type has call signatures we ignore all other flags
 			if (objectType.flags & ObjectFlags.Anonymous != 0) {
 				log.warn('Assumption disproven: Expected ObjectFlags.Anonymous here', objectType);
@@ -660,7 +660,10 @@ class ConverterContext {
 			
 			var hxTarget = complexTypeFromTsType(cast typeReference.target, accessContext, enclosingDeclaration);
 
-			var hxTypeArguments = tc.getTypeArguments(typeReference).map(arg -> TPType(complexTypeFromTsType(arg, accessContext, enclosingDeclaration)));
+			var hxTypeArguments = if (typeReference.typeArguments != null) {
+				typeReference.typeArguments.map(arg -> TPType(complexTypeFromTsType(arg, accessContext, enclosingDeclaration)));
+			} else [];
+
 			// replace type parameters with type arguments
 			switch hxTarget {
 				case TPath(p):
@@ -863,7 +866,7 @@ class ConverterContext {
 	}
 
 	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
-		var constraint = typeParameter.getConstraint();
+		var constraint = TsInternal.getTypeParameterConstraint(typeParameter);
 		return {
 			name: typeParameter.symbol.escapedName.toSafeTypeName(),
 			constraints: constraint != null ? [complexTypeFromTsType(constraint, accessContext, enclosingDeclaration)] : null,
