@@ -57,7 +57,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
     - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
-    - [ ] Remove type-path prefix if referencing type within the same module
+    - [x] Remove type-path prefix if referencing type within the same module
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
     - [ ] Add `--install` option
