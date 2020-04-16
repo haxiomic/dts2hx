@@ -866,10 +866,15 @@ class ConverterContext {
 	}
 
 	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
-		var constraint = TsInternal.getTypeParameterConstraint(typeParameter);
+		// for some reason typeParameter.getConstraint() has issues
+		// in the following class field `parse<X extends Example>(a: T): void;`, the constraint `Example` is reported as having typeArguments when it doesn't
+		var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
+		var hxConstraint = if (typeParamNode != null && typeParamNode.constraint != null ) {
+			complexTypeFromTypeNode(typeParamNode.constraint, accessContext, enclosingDeclaration);
+		} else null;
 		return {
 			name: typeParameter.symbol.escapedName.toSafeTypeName(),
-			constraints: constraint != null ? [complexTypeFromTsType(constraint, accessContext, enclosingDeclaration)] : null,
+			constraints: hxConstraint != null ? [hxConstraint] : null,
 		}
 	}
 
