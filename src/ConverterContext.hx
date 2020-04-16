@@ -183,14 +183,21 @@ class ConverterContext {
 		The symbol must have flags Type or ValueModule
 		This also queues this symbol's type to be converted if it isn't already
 	**/
-	function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
+	public function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
 		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext);
 		if (!hxTypePath.isExistingStdLibType) {
 			declarationSymbolQueue.tryEnqueue(symbol);
 		}
+		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
+		var accessSymbolChain = accessContext.getSymbolChain();
+		var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
+		var samePackageContext = if (lastAccessSymbol != null) {
+			var contextTypePath = haxeTypePathMap.getTypePath(lastAccessSymbol, accessContext);
+			contextTypePath.pack.join('.') == hxTypePath.pack.join('.');
+		} else false;
 		return {
 			name: hxTypePath.name,
-			pack: hxTypePath.pack,
+			pack: samePackageContext ? [] : hxTypePath.pack,
 		}
 	}
 
