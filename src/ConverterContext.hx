@@ -801,22 +801,6 @@ class ConverterContext {
 		NodeBuilderFlags.WriteArrayAsGenericType // Write Array<T> instead T[]
 	;
 
-	/**
-		Using this requires `sourceFile.moduleName` has been set (see ConverterContext for details)
-	**/
-	/*
-	public function getSourceFileModuleName(sourceFile: SourceFile): String {
-		return if (sourceFile.moduleName != null) {
-			sourceFile.moduleName;
-		} else {
-			// @! todo: determine minimal module import from fileName
-			// i.e. node_modules/three/src/example.d.ts -> three/src/example
-			// maybe helpful // untyped Ts.convertToRelativePath(sourceFile.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-			cwdRelativeFilePath(sourceFile.fileName);
-		}
-	}
-	*/
-
 }
 
 typedef ConvertedTypeDefinition = TypeDefinition & {
@@ -861,6 +845,25 @@ class OnceOnlySymbolQueue {
 /**
 	Notes
 	-----
+
+	**Documentation Links**
+	- [TypeScript AST Viewer](https://ts-ast-viewer.com/)
+	- [Architectural-Overview](https://github.com/microsoft/TypeScript/wiki/Architectural-Overview)
+	- [Using the type checker](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#using-the-type-checker)
+	- [Language Specification](https://github.com/microsoft/TypeScript/blob/master/doc/spec.md)
+	- [Compiler Internals Book](https://basarat.gitbooks.io/typescript/docs/compiler/overview.html)
+	- See [src/compiler/utilities.ts](https://github.com/microsoft/TypeScript/blob/d6c05a135840dc3045ec8f3bbec1da5ffabb6593/src/compiler/utilities.ts) for compiler API use examples
+	- See [src/compiler/vistorPublic.ts](https://github.com/microsoft/TypeScript/blob/master/src/compiler/visitorPublic.ts) for an example of fully enumerating the AST
+
+	**Declaration**
+	Declarations can assign a name to a *type*, *value* and *namespace*. A single name may have be used for all of these
+
+	**Modules** vs **Namespaces** and **"External Modules"**
+	- The form `declare module Name` is deprecated and equivalent to `declare namespace Name`. This creates an ambient namespace
+	- The correct use of `declare module` is with quotes: `declare module "name"`. This declares an **external** (ES6 module)
+	- "In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well)." https://www.typescriptlang.org/docs/handbook/modules.html
+	- https://stackoverflow.com/questions/41932585/what-is-the-difference-between-declare-namespace-and-declare-module
+	- See https://stackoverflow.com/questions/32531405/why-does-importing-a-node-module-break-my-internal-typescript-namespaces-in-atom
 
 	**Symbols**
 	In the typescript compiler, declarations are grouped into Symbols. A Symbol can have 3 kinds of declaration, as a Type, a Variable/Function and a Module.
@@ -1083,7 +1086,7 @@ class OnceOnlySymbolQueue {
     }
 	```
 
-	TypeNode kinds
+	**TypeNode Kinds**
 	- `AnyKeyword` | `UnknownKeyword` | `NumberKeyword` | `BigIntKeyword` | `ObjectKeyword` | `BooleanKeyword` | `StringKeyword` | `SymbolKeyword` | `ThisKeyword` | `VoidKeyword` | `UndefinedKeyword` | `NullKeyword` | `NeverKeyword`
 	- `TypeReference`
 	- `FunctionType`
