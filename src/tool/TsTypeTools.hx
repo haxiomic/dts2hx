@@ -1,13 +1,34 @@
 package tool;
 
+import typescript.ts.TypeChecker;
+
+using tool.HaxeTools;
+
+private typedef TsType = typescript.ts.Type;
+
 class TsTypeTools {
+
+	/**
+		Adds underscore suffix repeatedly to find a name that doesn't clash with existing property names
+	**/
+	public static function getFreePropertyName(tc: TypeChecker, type: TsType, suggestedName: String): String {
+		var currentName = suggestedName;
+		var takenNames = [
+			for (property in tc.getPropertiesOfType(type))
+				property.escapedName.toSafeIdent() => true
+		];
+		while (takenNames.exists(currentName)) {
+			currentName = currentName + '_';
+		}
+		return currentName;
+	}
 
 	/**
 		An array of matched TypeFlags
 		If `compositeFlags` is true, TypeFlags that are unions of other flags are included, for example:
 			TypeFlags Module = ValueModule | NamespaceModule
 	**/
-	public static function getFlagsInfo(type: typescript.ts.Type, compositeFlags: Bool = false): Array<String> {
+	public static function getFlagsInfo(type: TsType, compositeFlags: Bool = false): Array<String> {
 		var activeFlags = new Array<String>();
 
 		for (key => value in getTypeFlagsMap()) {

@@ -11,6 +11,7 @@ import typescript.ts.SymbolFlags;
 import typescript.ts.Symbol;
 
 using TsInternal;
+using tool.HaxeTools;
 
 @:nullSafety
 class TsSymbolTools {
@@ -97,10 +98,31 @@ class TsSymbolTools {
 		}
 	}
 
+	/**
+		Adds underscore suffix repeatedly to find a name that doesn't clash with existing property names
+	**/
+	public static function getFreeMemberName(symbol: Symbol, suggestedName: String): String {
+		var currentName = suggestedName;
+		var takenNames = [
+			for (member in getExports(symbol).concat(getMembers(symbol)))
+				member.escapedName.toSafeIdent() => true
+		];
+		while (takenNames.exists(currentName)) {
+			currentName = currentName + '_';
+		}
+		return currentName;
+	}
+
 	public static function getExports(symbol: Symbol): Array<Symbol> {
 		var exports = [];
 		if (symbol.exports != null) symbol.exports.forEach((s, _) -> exports.push(s));
 		return exports;
+	}
+
+	public static function getMembers(symbol: Symbol): Array<Symbol> {
+		var members = [];
+		if (symbol.members != null) symbol.members.forEach((s, _) -> members.push(s));
+		return members;
 	}
 
 	public static function getDeclarationsForInterpretation(symbol: Symbol, interpretation: SymbolInterpretation) {

@@ -1,3 +1,4 @@
+import typescript.ts.SignatureKind;
 import typescript.ts.ParameterDeclaration;
 import typescript.ts.NodeBuilderFlags;
 import typescript.ts.MethodSignature;
@@ -70,12 +71,18 @@ class ConverterContext {
 	public final host: CompilerHost;
 	public final program: Program;
 
-	// symbol access map is filled during an initial pass over the program
-	// the access path for key-symbols such as types, are stored so we can retrieve them later when we have a type-reference
+	/**
+		Symbol access map is filled during an initial pass over the program.
+		The access path for key-symbols such as types, are stored so we can retrieve them later when we have a type-reference
+	**/
 	public final symbolAccessMap: SymbolAccessMap;
-	// using the symbol access map, a type-path is generated for every symbol in the program (including symbols in other modules and in the lib files)
-	// this is done upfront to ensure deterministic handling of module name deduplication
-	public final haxeTypePathMap: HaxeTypePathMap;
+
+	/**
+		Using the symbol access map, a type-path is generated for every symbol in the program (including symbols in other modules and in the lib files).
+		This is done upfront to ensure deterministic handling of module name deduplication
+		If getting a reference to a symbol, use `getReferencedHaxeTypePath` instead
+	**/
+	final haxeTypePathMap: HaxeTypePathMap;
 
 	/**
 		Unique list of symbols to convert
@@ -95,7 +102,7 @@ class ConverterContext {
 		this.tc = program.getTypeChecker();
 
 		this.entryPointModuleId = inline normalizeModuleName(moduleName);
-		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
+		// log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
 		log.diagnostics(program.getAllDiagnostics());
 
@@ -162,30 +169,25 @@ class ConverterContext {
 
 			// `Alias` here does not mean type-alias, instead it means export-alias (like `export {Type}`)
 			// aliases are accounted for with SymbolAccess and don't need to handled here
-			var handled = symbol.flags & SymbolFlags.Alias != 0;
+			// NamespaceModules are just package and are handled in HaxeTypePathMap
+			var handled = symbol.flags & (SymbolFlags.Alias | SymbolFlags.NamespaceModule) != 0;
 
+			// symbol has type-declaration
 			if (symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0) {
-				// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-				convertTypeSymbol(symbol);
-				handled = true;
-			}
-
-			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-				// FunctionScopedVariable | BlockScopedVariable | Function
-				//@! if top-level global declarations then these need to go into Global.hx, otherwise we can ignore
-				//@! we could also get the containing haxe module and add here, this create an order-dependence but that might be ok 
+				// log.log('Type', symbol);
 				for (access in symbolAccessMap.getAccess(symbol)) {
-					switch access {
-						case Global([_]):
-
-						default:
-					}
+					getHaxeModuleFromTypeSymbol(symbol, access);
 				}
 				handled = true;
 			}
-
-			if (symbol.flags & (SymbolFlags.NamespaceModule) != 0) {
-				// NamespaceModule
+			
+			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
+				for (access in symbolAccessMap.getAccess(symbol)) {
+					var symbolChain = access.getSymbolChain();
+					var parent = symbolChain[symbolChain.length - 2];
+					// log.log('<yellow>${access.toString()}</>', symbol);
+					// @! todo: detect global
+				}
 				handled = true;
 			}
 
@@ -196,11 +198,11 @@ class ConverterContext {
 	}
 
 	/**
-		Returns a TypePath for a given symbol
-		The symbol must have flags Type or ValueModule
+		Returns a TypePath for a given symbol.
+		The symbol must have flags Type or ValueModule.
 		This also queues this symbol's type to be converted if it isn't already
 	**/
-	public function getHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
+	public function getReferencedHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
 		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext);
 		if (!hxTypePath.isExistingStdLibType) {
 			declarationSymbolQueue.tryEnqueue(symbol);
@@ -218,14 +220,23 @@ class ConverterContext {
 		}
 	}
 
-	function convertTypeSymbol(symbol: Symbol) {
-		// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
-		// type symbols are mutually exclusive so we can return after converting the first match
-		// log.log('convertTypeSymbol', symbol);
-
+	/**
+		Symbol must have flags Type | ValueModule
+	**/
+	function getHaxeModuleFromTypeSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
+		var typePath = haxeTypePathMap.getTypePath(symbol, access);
+		var moduleKey = getHaxeModuleKey(typePath.pack, typePath.name);
 		var pos = TsSymbolTools.getPosition(symbol);
 
-		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
+		// type symbols are mutually exclusive so we can return after converting the first match
+		var existingModule = generatedModules.get(moduleKey);
+
+		if (existingModule != null) {
+			return existingModule;
+		}
+
+		var hxModule: HaxeModule = if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
+			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 			// symbol can have multiple interface declarations so this should not be treated as the main source of information
 			// but it might be helpful if node-building is required to provide hints
 			var classOrInterfaceDeclaration: Null<Node> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.InterfaceDeclaration || node.kind == SyntaxKind.ClassDeclaration)[0];
@@ -233,179 +244,309 @@ class ConverterContext {
 				log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
 			}
 
-			for (access in symbolAccessMap.getAccess(symbol)) {
-				var typePath = haxeTypePathMap.getTypePath(symbol, access);
-				var superClass = null; // @! todo
-				var interfaces = []; // @! todo
-				var isClassAndInterface = (symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0);
+			var superClass = null; // @! todo
+			var interfaces = []; // @! todo
+			var isClassAndInterface = (symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0);
 
-				// if it's a class and interface symbol, we use class
-				var isInterface = symbol.flags & SymbolFlags.Interface != 0 && !isClassAndInterface;
+			// if it's a class and interface symbol, we use class
+			var isInterface = symbol.flags & SymbolFlags.Interface != 0 && !isClassAndInterface;
 
-				var meta = new Array<MetadataEntry>();
+			var meta = new Array<MetadataEntry>();
 
-				if (!isInterface) {
-					meta.push(access.toAccessMetadata());
-				}
+			if (!isInterface) {
+				meta.push(access.toAccessMetadata());
+			}
 
-				if (isClassAndInterface) {
-					// in typescript this symbol can be used as a class or an interface
-					// we have no way of representing this in haxe yet
-					// we add metadata to mark the class which we might be able to use in the future
-					// @! maybe we can use an abstract for this
-					meta.push({name: ':interface', pos: pos});
-				}
+			if (isClassAndInterface) {
+				// in typescript this symbol can be used as a class or an interface
+				// we have no way of representing this in haxe yet
+				// we add metadata to mark the class which we might be able to use in the future
+				// @! maybe we can use an abstract for this
+				meta.push({name: ':interface', pos: pos});
+			}
 
-				var fields = new Array<Field>();
-				if (symbol.members != null) {
-					symbol.members.forEach((memberSymbol, key) -> {
-						if (memberSymbol.flags & SymbolFlags.ClassMember != 0) {
-							var field = fieldFromSymbol(memberSymbol, access, classOrInterfaceDeclaration);
-							if (field != null) {
-								fields.push(field);
-							} else {
-								log.error('Failed to convert field of <b>${typePath.pack.concat([typePath.name]).join('.')}</b>', memberSymbol);
-							}
+			var fields = new Array<Field>();
+
+			// class members
+			var declaredType: InterfaceType = cast tc.getDeclaredTypeOfSymbol(symbol);
+			// validate cast
+			if (!declaredType.isClassOrInterface()) {
+				log.error('Internal error: Expected type to be a class or interface type', symbol, declaredType);
+			}
+
+			var callSignatures = tc.getSignaturesOfType(declaredType, Call);
+			var constructSignatures = tc.getSignaturesOfType(declaredType, Construct);
+			var properties = tc.getPropertiesOfType(declaredType);
+			var augmentedProperties = tc.getAugmentedPropertiesOfType(declaredType);
+			var numberIndexInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.Number);
+			var stringIndexInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.String);
+			var isCallable = (symbol.flags & SymbolFlags.Function != 0) || callSignatures.length > 0;
+
+			var constructorSymbol = symbol.getMembers().find(s -> s.name == typescript.ts.InternalSymbolName.Constructor);
+			if (constructorSymbol != null) {
+				var constructorSignatures = new Array<Signature>();
+				for (declaration in constructorSymbol.getDeclarationsArray()) {
+					if (Ts.isConstructorDeclaration(declaration)) {
+						var signature = tc.getSignatureFromDeclaration(cast declaration);
+						if (signature != null) {
+							constructorSignatures.push(signature);
+						} else {
+							log.error('Constructor signature was null', declaration, constructorSymbol);
 						}
-					});
+					}
 				}
-
-				var hxClass: HaxeModule = {
-					pack: typePath.pack,
-					name: typePath.name,
-					fields: fields,
-					kind: TDClass(superClass, interfaces, isInterface, false),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, classOrInterfaceDeclaration),
-					isExtern: true,
-					doc: getDoc(symbol),
-					meta: meta,
-					pos: pos,
-					subTypes: [],
-					tsSymbol: symbol,
-					tsSymbolAccess: access,
-				}
-
-				saveHaxeModule(hxClass);
+				fields.push(newFieldFromSignatures(constructorSignatures, access, classOrInterfaceDeclaration));
 			}
-			return;
-		}
 
-		if (symbol.flags & SymbolFlags.Enum != 0) {
-			for (access in symbolAccessMap.getAccess(symbol)) {
-				// a ConstEnum does not exist at runtime
-				var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
-				
-				var hxEnumType = complexTypeFromEnumSymbol(symbol);
-				
-				var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-				var hxEnumFields: Array<Field> = enumMembers.map(s -> {
-					var safeName = HaxeTools.toSafeIdent(s.escapedName);
-					var nameChanged = s.escapedName != safeName;
-					return ({
-						name: safeName,
-						pos: TsSymbolTools.getPosition(s),
-						kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
-						doc: getDoc(s),
-						meta: nameChanged ? [{name: ':native', params: [s.escapedName.toStringExpr(pos)], pos: pos}] : [],
-					}: Field);
-				});
-
-				var typePath = haxeTypePathMap.getTypePath(symbol, access);
-
-				var hxEnumDef: HaxeModule = {
-					pack: typePath.pack,
-					name: typePath.name,
-					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
-					params: [],
-					isExtern: true,
-					fields: hxEnumFields,
-					doc: getDoc(symbol),
-					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
-					pos: pos,
-					subTypes: [],
-					tsSymbol: symbol,
-					tsSymbolAccess: access,
-				}
-				
-				saveHaxeModule(hxEnumDef);
+			var callFieldName = symbol.getFreeMemberName(selfCallFunctionName);
+			if (callSignatures.length > 0) {
+				// log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
+				fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, access, classOrInterfaceDeclaration));
 			}
-			return;
-		}
 
-		if (symbol.flags & SymbolFlags.TypeAlias != 0) {
+			if (symbol.flags & SymbolFlags.Function != 0) {
+				log.warn('todo: handle callable class type 2', symbol);
+			}
+
+			if (constructSignatures.length > 0) {
+				// this is different from a _constructor_ declaration
+				log.error('Construct signatures are not yet supported', symbol);
+			}
+
+			// class-fields
+			// log.log(symbol);
+			for (property in properties) {
+				// log.log('\t<green>property</>', property);
+				fields.push(fieldFromSymbol(property, access, classOrInterfaceDeclaration));
+			}
+			
+			{
+				pack: typePath.pack,
+				name: typePath.name,
+				fields: fields,
+				kind: TDClass(superClass, interfaces, isInterface, false),
+				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, classOrInterfaceDeclaration),
+				isExtern: true,
+				doc: getDoc(symbol),
+				meta: meta,
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			}
+		} else if (symbol.flags & SymbolFlags.Enum != 0) {
+			// a ConstEnum does not exist at runtime
+			var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
+
+			var hxEnumType = complexTypeFromEnumSymbol(symbol);
+
+			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
+			var hxEnumFields: Array<Field> = enumMembers.map(s -> {
+				var safeName = HaxeTools.toSafeIdent(s.escapedName);
+				var nameChanged = s.escapedName != safeName;
+				return ({
+					name: safeName,
+					pos: TsSymbolTools.getPosition(s),
+					kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
+					doc: getDoc(s),
+					meta: nameChanged ? [{name: ':native', params: [s.escapedName.toStringExpr(pos)], pos: pos}] : [],
+				}: Field);
+			});
+
+			{
+				pack: typePath.pack,
+				name: typePath.name,
+				kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+				params: [],
+				isExtern: true,
+				fields: hxEnumFields,
+				doc: getDoc(symbol),
+				meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			}
+		} else if (symbol.flags & SymbolFlags.TypeAlias != 0) {
 			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
 			if (typeAliasDeclaration == null) {
 				log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 			}
 
-			for (access in symbolAccessMap.getAccess(symbol)) {
+			var tsType = tc.getDeclaredTypeOfSymbol(symbol);
+			var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration);
 
-				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
-				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration);
-				// alternatively, we can get the type from the declaration node
-				// var hxAliasType: ComplexType = complexTypeFromTypeNode(typeAliasDeclaration.type, access, typeAliasDeclaration); 
+			// if this symbol is also a ValueModule then it needs to have fields
+			// to enable this, we create a pseudo typedef with an abstract
+			var hxTypeDef: HaxeModule = if (symbol.flags & SymbolFlags.ValueModule != 0) {
+				pack: typePath.pack,
+				name: typePath.name,
+				fields: [],
+				kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
+				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
+				doc: getDoc(symbol),
+				isExtern: true,
+				meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			} else {
+				pack: typePath.pack,
+				name: typePath.name,
+				fields: [],
+				kind: TDAlias(hxAliasType),
+				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
+				doc: getDoc(symbol),
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			}
+			hxTypeDef;
+		} else if (symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0) {
+			// ValueModule-only symbol
+			{
+				pack: typePath.pack,
+				name: typePath.name,
+				fields: [],
+				kind: TDClass(null, [], false, false),
+				params: [],
+				isExtern: true,
+				doc: getDoc(symbol),
+				meta: [access.toAccessMetadata()],
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			}
+		} else {
+			log.error('getHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
+			{
+				pack: typePath.pack,
+				name: typePath.name,
+				fields: [],
+				kind: TDAlias(macro :Dynamic),
+				doc: getDoc(symbol),
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			}
+		}
 
-				var typePath = haxeTypePathMap.getTypePath(symbol, access);
-
-				// if this symbol is also a ValueModule then it needs to have fields
-				// to enable this, we create a pseudo typedef with an abstract
-				var hxTypeDef: HaxeModule = if (symbol.flags & SymbolFlags.ValueModule != 0) {
-					pack: typePath.pack,
-					name: typePath.name,
-					fields: [],
-					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
-					doc: getDoc(symbol),
-					isExtern: true,
-					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
-					pos: pos,
-					subTypes: [],
-					tsSymbol: symbol,
-					tsSymbolAccess: access,
+		// add static fields, including module-member fields
+		for (export in symbol.getExports()) {
+			var skippedFlags = SymbolFlags.Prototype;
+			if (export.flags & skippedFlags != 0) continue;
+			
+			if (export.flags & (
+				// class statics
+				SymbolFlags.Property | SymbolFlags.Method |
+				// value module variables
+				SymbolFlags.Function | SymbolFlags.Variable
+			) != 0) {
+				// log.log('\t<magenta,b>Export</>', export);
+				var field = fieldFromSymbol(export, access, null);
+				var access = if (field.access != null) {
+					field.access;
 				} else {
-					pack: typePath.pack,
-					name: typePath.name,
-					fields: [],
-					kind: TDAlias(hxAliasType),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
-					doc: getDoc(symbol),
-					pos: pos,
-					subTypes: [],
-					tsSymbol: symbol,
-					tsSymbolAccess: access,
+					field.access = [];
 				}
-
-				saveHaxeModule(hxTypeDef);
+				access.push(AStatic);
+				hxModule.fields.push(field);
+			} else if (export.flags & (SymbolFlags.Type) == 0) {
+				log.log('\t<red,b>Unhandled export', export);
 			}
-			return;
 		}
 
-		// here we have a ValueModule that is not paired with a type
-		if (symbol.flags & SymbolFlags.ValueModule != 0) {
-			for (access in symbolAccessMap.getAccess(symbol)) {
-				var typePath = haxeTypePathMap.getTypePath(symbol, access);
+		saveHaxeModule(hxModule);
 
-				var hxModuleClass: HaxeModule = {
-					pack: typePath.pack,
-					name: typePath.name,
-					fields: [],
-					kind: TDClass(null, [], false, false),
-					params: [],
-					isExtern: true,
-					doc: getDoc(symbol),
-					meta: [access.toAccessMetadata()],
-					pos: pos,
-					subTypes: [],
-					tsSymbol: symbol,
-					tsSymbolAccess: access,
-				}
+		return hxModule;
+	}
+	
+	/**
+		Haxe doesn't support tuple-types so we generate a support type as required
+	**/
+	function getSupportTupleType(elementTypes: Array<ComplexType>): ComplexType {
+		if (elementTypes.length == 0) {
+			return macro :Array<Any>;
+		}
+		var baseType = HaxeTools.commonType(elementTypes);
+		var typePath = {
+			pack: ['js', 'lib'],
+			name: 'Tuple${elementTypes.length}',
+			params: [TPType(baseType)].concat(elementTypes.map(t -> TPType(t)))
+		};
 
-				saveHaxeModule(hxModuleClass);
+		var existingModule = generatedModules.get(getHaxeModuleKey(typePath.pack, typePath.name));
+
+		if (existingModule == null) {
+			// generate fields
+			var fields = new Array<Field>();
+
+			for (i in 0...elementTypes.length) {
+				var name = 'element$i';
+				var type = TPath({
+					name: 'T$i',
+					pack: [],
+				});
+				var get = 'get_$name';
+				var set = 'set_$name';
+				var indexExpr = HaxeTools.toIntExpr(i);
+				fields = fields.concat((macro class {
+					public var $name(get, set): $type;
+					inline function $get(): $type return cast this[$indexExpr];
+					inline function $set(v: $type): $type return cast this[$indexExpr] = cast v;
+				}).fields);
 			}
-			return;
+
+			var abstractType = macro :Array<Base>;
+
+			var tupleTypeDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				kind: TDAbstract(abstractType, [abstractType], [abstractType]),
+				params: [{name: 'Base'}].concat([for (i in 0...elementTypes.length) { name: 'T$i', }]),
+				fields: fields,
+				isExtern: true,
+				doc: tool.StringTools.removeIndentation('
+					Automatically generated tuple type implementation
+					Generated by dts2hx v${Main.dts2hxPackageJson.version}
+				').trim(),
+				meta: [{name: ':forward', pos: null}, {name: ':forwardStatics', pos: null}],
+				pos: null,
+				subTypes: [],
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			saveHaxeModule(tupleTypeDefinition);
 		}
 
-		log.error('Symbol not a handled <b>convertTypeSymbol()</>', symbol);
+		return TPath(typePath);
+	}
+
+	function getSupportUnionType(types: Array<ComplexType>): ComplexType {
+		// here we could generate an advanced union type like we do for tuple but let's save that for another day
+		// instead, generate an EitherType stack
+		function getEitherUnion(types: Array<ComplexType>): ComplexType {
+			return if (types.length == 1) {
+				types[0];
+			} else {
+				TPath({
+					name: 'EitherType',
+					pack: ['haxe', 'extern'],
+					params: [TPType(types[0]), TPType(getEitherUnion(types.slice(1)))],
+				});
+			}
+		}
+
+		return getEitherUnion(types);
+	}
+
+	function getGlobalHaxeModule(access: SymbolAccess): HaxeModule {
+		throw 'todo';
 	}
 
 	/**
@@ -557,20 +698,6 @@ class ConverterContext {
 	}
 
 	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		if (objectType.getCallSignatures().length > 0) {
-			// assumption check
-			// I don't know why typescript represents function types with the object-flag `Anonymous`
-			// I want to catch if it's flagged as anything else because currently if a type has call signatures we ignore all other flags
-			if (objectType.flags & ObjectFlags.Anonymous != 0) {
-				log.warn('Assumption disproven: Expected ObjectFlags.Anonymous here', objectType);
-			}
-			if (objectType.getCallSignatures().length > 1) {
-				log.error('Unhandled: Type has multiple signatures', objectType);
-			} else {
-				return complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);				
-			}
-		}
-
 		// @! todo:
 		// Mapped           = 1 << 5,  // Mapped
 		// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
@@ -591,23 +718,98 @@ class ConverterContext {
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
 			complexTypeFromInterfaceType(cast objectType, accessContext, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
+			/** 
+				In typescript, function types have the object flag 'Anonymous' because they're actually represented as the call signatures of anons
+				```typescript
+				let f: (a: number): string
+				// is actually represented as
+				let f: { (a: number): string }
+				```
+			**/
 
-			var fields = new Array<Field>();
 			var properties = tc.getPropertiesOfType(objectType);
-			for (p in properties) {
-				var field = fieldFromSymbol(p, accessContext, enclosingDeclaration);
-				if (field != null) {
-					fields.push(field);
-				} else {
-					log.error('Could not convert anonymous object property', p);
-				}
+			var callSignatures = objectType.getCallSignatures();
+			var constructSignatures = objectType.getConstructSignatures();
+
+			if (objectType.getConstructSignatures().length > 0) {
+				log.warn('Type has construct signature but this is currently unhandled', objectType);
 			}
-			TAnonymous(fields);
+
+			// for the special case of a single call signature and no props we can return a function type
+			if (callSignatures.length == 1 && constructSignatures.length == 0 && properties.length == 0) {
+				complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);
+			} else {
+				var fields = new Array<Field>();
+
+				/**
+					When a type has multiple signatures we can use a trick: wrap them in an object and adding @:selfCall
+					For example:
+					var x: {
+						@:selfCall
+						@:overload(function (a: Int): Void {})
+						function call(): Void;
+					}
+					Then to use overloads, you can do, `x.call(3)` and this compiles to `x(3)`
+				**/
+				if (callSignatures.length > 0) {
+					var callFieldName = TsTypeTools.getFreePropertyName(tc, objectType, selfCallFunctionName);
+					fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, accessContext, enclosingDeclaration));
+				}
+
+				// add properties
+				fields = fields.concat(properties.map(p -> fieldFromSymbol(p, accessContext, enclosingDeclaration)));
+
+				TAnonymous(fields);
+			}
 		} else {
 			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
 			macro :Any;
 		}
+	}
+
+	function functionFieldFromCallSignatures(fieldName: String, callSignatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
+		var field = functionFieldFromSignatures(fieldName, callSignatures, accessContext, enclosingDeclaration);
+		var metas = if (field.meta != null) field.meta else {
+			field.meta = [];
+		}
+		metas.push({ name: ':selfCall', pos: null });
+		return field;
+	}
+
+	function functionFieldFromSignatures(fieldName: String, signatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
+		var baseSignature = signatures[0];
+		var overloadSignatures = signatures.slice(1);
+		var overloadMetas = overloadSignatures.map(signature -> {
+			var fun = functionFromSignature(signature, accessContext, enclosingDeclaration);
+			fun.expr = macro {};
+			return ({
+				name: ':overload',
+				params: [{
+					expr: EFunction(FAnonymous, fun),
+					pos: null,
+				}],
+				pos: null,
+			}: MetadataEntry);
+		});
+		return {
+			name: fieldName,
+			meta: overloadMetas,
+			kind: FFun(functionFromSignature(baseSignature, accessContext, enclosingDeclaration)),
+			pos: null,
+		};
+	}
+
+	function newFieldFromSignatures(signatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
+		var field = functionFieldFromSignatures('new', signatures, accessContext, enclosingDeclaration);
+		// remove return type and type parameters?
+		switch field.kind {
+			case FFun(fun):
+				fun.ret = null;
+				fun.params = null;
+			default:
+		}
+		return field;
 	}
 
 	function complexTypeFromCallSignature(callSignature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -705,7 +907,7 @@ class ConverterContext {
 
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
-			var hxTypePath = getHaxeTypePath(classOrInterfaceType.symbol, accessContext);
+			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, accessContext);
 			hxTypePath.params = if (classOrInterfaceType.typeParameters != null) {
 				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, accessContext, enclosingDeclaration)));
 			} else null;
@@ -752,7 +954,12 @@ class ConverterContext {
 		}
 	}
 
-	function fieldFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Null<Field> {
+	/**
+		Valid symbol flags
+		- `Property`
+		- `Method`
+	**/
+	function fieldFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
 		var safeName = symbol.escapedName.toSafeIdent();
@@ -775,14 +982,17 @@ class ConverterContext {
 			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
 		}
 
-		var kind = if (symbol.flags & (SymbolFlags.Property) != 0) {
+		var kind = if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
+			// variable field
 			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
 			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 			FVar(hxType, null);
-		} else if (symbol.flags & SymbolFlags.Method != 0) {
+
+		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
+			// function field
 			var baseDeclaration = symbol.valueDeclaration;
 			var overloadDeclarations = symbol.declarations.filter(d -> d != baseDeclaration && switch d.kind {
-				case MethodSignature, MethodDeclaration: true;
+				case MethodSignature, MethodDeclaration, FunctionDeclaration: true;
 				default:
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(d.kind)}</>');
 					false;
@@ -820,10 +1030,13 @@ class ConverterContext {
 					expr: null,
 				});
 			}
+
 		} else {
+
 			onError('Unhandled symbol flags');
 			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
 			FVar(macro :Any, null);
+
 		}
 
 		return {
@@ -914,89 +1127,6 @@ class ConverterContext {
 	}
 
 	/**
-		Haxe doesn't support tuple-types so we generate a support type as required
-	**/
-	function getSupportTupleType(elementTypes: Array<ComplexType>): ComplexType {
-		if (elementTypes.length == 0) {
-			return macro :Array<Any>;
-		}
-		var baseType = HaxeTools.commonType(elementTypes);
-		var typePath = {
-			pack: ['js', 'lib'],
-			name: 'Tuple${elementTypes.length}',
-			params: [TPType(baseType)].concat(elementTypes.map(t -> TPType(t)))
-		};
-
-		var existingModule = generatedModules.get(getHaxeModuleKey(typePath.pack, typePath.name));
-
-		if (existingModule == null) {
-			// generate fields
-			var fields = new Array<Field>();
-
-			for (i in 0...elementTypes.length) {
-				var name = 'element$i';
-				var type = TPath({
-					name: 'T$i',
-					pack: [],
-				});
-				var get = 'get_$name';
-				var set = 'set_$name';
-				var indexExpr = HaxeTools.toIntExpr(i);
-				fields = fields.concat((macro class {
-					public var $name(get, set): $type;
-					inline function $get(): $type return cast this[$indexExpr];
-					inline function $set(v: $type): $type return cast this[$indexExpr] = cast v;
-				}).fields);
-			}
-			
-			var abstractType = macro :Array<Base>;
-
-			var tupleTypeDefinition: HaxeModule = {
-				pack: typePath.pack,
-				name: typePath.name,
-				kind: TDAbstract(abstractType, [abstractType], [abstractType]),
-				params: [{name: 'Base'}].concat([for (i in 0...elementTypes.length) { name: 'T$i', }]),
-				fields: fields,
-				isExtern: true,
-				doc: tool.StringTools.removeIndentation('
-					Automatically generated tuple type implementation
-					Generated by dts2hx v${Main.dts2hxPackageJson.version}
-				').trim(),
-				meta: [{name: ':forward', pos: null}, {name: ':forwardStatics', pos: null}],
-				pos: null,
-				subTypes: [],
-				tsSymbol: null,
-				tsSymbolAccess: null,
-			}
-
-			saveHaxeModule(tupleTypeDefinition);
-		}
-
-		return TPath(typePath);
-	}
-
-	function getSupportUnionType(types: Array<ComplexType>): ComplexType {
-		// here we could generate an advanced union type like we do for tuple but let's save that for another day
-		// instead, generate an EitherType stack
-		function getEitherUnion(types: Array<ComplexType>): ComplexType {
-			return if (types.length == 1) {
-				types[0];
-			} else {
-				TPath({
-					name: 'EitherType',
-					pack: ['haxe', 'extern'],
-					params: [TPType(types[0]), TPType(getEitherUnion(types.slice(1)))],
-				});
-			}
-		}
-
-		return getEitherUnion(types);
-	}
-
-	function getGlobalHaxeModule() {
-	}
-
-	/**
 		Remove @types prefix, convert backslashes to forward slashes and make path relative to cwd.
 		Examples:
 		- `@types/lib` -> `lib` 
@@ -1023,10 +1153,15 @@ class ConverterContext {
 		return TsInternal.convertToRelativePath(path, host.getCurrentDirectory(), host.getCanonicalFileName);
 	}
 
+	/**
+		NodeBuilding generally causes problems so be very careful if you need to use this
+	**/
 	static final defaultNodeBuilderFlags =
 		NodeBuilderFlags.NoTruncation | // truncation prevents expanding deeply nested nodes, we always want to expand completely
 		NodeBuilderFlags.WriteArrayAsGenericType // Write Array<T> instead T[]
 	;
+
+	static final selfCallFunctionName = 'call';
 
 }
 

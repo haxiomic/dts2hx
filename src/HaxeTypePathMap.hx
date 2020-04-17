@@ -72,6 +72,8 @@ class HaxeTypePathMap {
 			log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
 		}
 
+		debug();
+
 		// we can generate a type-path on demand, but we won't have name deduplication
 		return generateTypePath(symbol, accessContext);
 	}
@@ -316,9 +318,6 @@ class HaxeTypePathMap {
 			isExistingStdLibType: false,
 		}
 	}
-
-
-
 
 	/**
 		Given a path, return an array of haxe packages
