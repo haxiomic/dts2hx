@@ -102,7 +102,7 @@ class ConverterContext {
 		this.tc = program.getTypeChecker();
 
 		this.entryPointModuleId = inline normalizeModuleName(moduleName);
-		// log.log('<green>Converting module: <b>$entryPointModuleId</b>');
+		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
 		log.diagnostics(program.getAllDiagnostics());
 
