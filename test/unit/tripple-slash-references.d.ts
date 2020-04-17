@@ -3,7 +3,7 @@
 /// <reference types="big.js" />
 
 // reference local path
-/// <reference path="ambient-modules.d.ts" />
+/// <reference path="ambient.d.ts" />
 
 // reference typescript built-in lib
 // the following is equivalent to compiling with `--lib es2017.string`

@@ -1,3 +1,6 @@
+declare function globalFunction(): number;
+declare const globalConst: number;
+
 /**
  * Ambient (globally available) namespace
  */
@@ -17,8 +20,10 @@ declare module AmbientNamespaceDeprecated {
 	type Num = number;
 }
 
-declare module "example/module" {
+declare module "ambient/module" {
 	type Num = number;
+
+    const ambientModuleMember: number;
 
 	module "submodule" {
 

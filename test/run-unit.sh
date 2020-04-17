@@ -1,6 +1,6 @@
 rm -rf _generated
 
-../cli.js ./unit/ambient-modules --verbose --output _generated
+../cli.js ./unit/ambient --verbose --output _generated
 ../cli.js ./unit/built-in --verbose --output _generated
 ../cli.js ./unit/class --verbose --output _generated
 ../cli.js ./unit/enum --verbose --output _generated

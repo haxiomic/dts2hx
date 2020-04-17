@@ -1,9 +1,9 @@
-package unit.named_tuple.namedtuple;
-extern interface KeyValuePair<K, V> {
-	@:native("0")
-	var Zero : K;
-	@:native("1")
-	var One : V;
+package js.lib;
+extern interface RegExpMatchArray {
+	@:optional
+	var index : Null<Float>;
+	@:optional
+	var input : Null<String>;
 	/**
 		Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/
@@ -31,8 +31,8 @@ extern interface KeyValuePair<K, V> {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:Array<haxe.extern.EitherType<T, js.lib.ConcatArray<T>>>):Array<T> { })
-	function concat(items:Array<js.lib.ConcatArray<T>>):Array<T>;
+	@:overload(function(items:Array<haxe.extern.EitherType<T, ConcatArray<T>>>):Array<T> { })
+	function concat(items:Array<ConcatArray<T>>):Array<T>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -143,19 +143,19 @@ extern interface KeyValuePair<K, V> {
 		Iterator
 	**/
 	@:native("__@iterator")
-	function __AtIterator():js.lib.IterableIterator<T>;
+	function __AtIterator():IterableIterator<T>;
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<js.lib.Tuple2<Any, Float, T>>;
+	function entries():IterableIterator<js.lib.Tuple2<Any, Float, T>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():IterableIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():js.lib.IterableIterator<T>;
+	function values():IterableIterator<T>;
 	/**
 		Returns an object whose properties have the value 'true'
 		when they will be absent when used in a 'with' statement.

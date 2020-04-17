@@ -1,5 +1,7 @@
 package unit.class_;
 @:jsRequire("./unit/class", "ClassBase") extern class ClassBase<T> {
+	@:overload(function<T>(a:Float):ClassBase<T> { })
+	function new(overloadParam:T);
 	var intField : Float;
 	var arrayField : Array<String>;
 	var thisClassType : ClassBase;
@@ -12,4 +14,6 @@ package unit.class_;
 		@DTS2HX-ERROR: Unhandled symbol flags
 	**/
 	var property : Any;
+	static function staticMethod<T>(a:Float):T;
+	static var staticField : Float;
 }

@@ -6,6 +6,7 @@ export class ClassBase<T> {
 
     readonly readonlyField: number;
 
+    constructor(overloadParam: T)
     constructor(a: number);
     
     method(a: number, b: string);
@@ -15,6 +16,9 @@ export class ClassBase<T> {
 
     get property(): boolean;
     set property(value: boolean);
+
+    static staticMethod<T>(a: number): T;
+    static staticField: number;
 }
 
 export class ClassExtending<K> extends ClassBase<Array<K>> {
@@ -28,5 +32,4 @@ export class ClassWithIndexSignature {
 export class CallbleClass {
     field: number;
 }
-
 export function CallbleClass(arg: number);
