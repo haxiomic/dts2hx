@@ -49,8 +49,9 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [ ] This type
         - [ ] Overloads
         - [ ] Wrapped types
+        - [ ] Symbol fields
     - [ ] Classes and interfaces
-        - [ ] Constructors
+        - [x] Constructors
         - [ ] Index signatures (both class and interfaces)
         - [ ] Extends & implements
     - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
@@ -63,12 +64,17 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Add `--install` option
 - [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] Advanced type conversions
+    - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
     - [ ] Abstracts to support unnamed enums and improve type unions
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Maybe function argument unions could be improved by overloads?
-    - [ ] Abstracts to implement Tuples (named fields for array indexes)
+    - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
     - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
+    - [ ] Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
+        - Either:
+            - bake into the externs
+            - include a macro that bundles at compile-time
 - [ ] :star2: **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
@@ -77,7 +83,6 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Replace full type references with imports for some types (like haxe.extern.EitherType)
     - [ ] *maybe*: If a package only has one type with the same name as package, replace with a module. For example:
         `babylonjs.cameras.inputs.freecameragamepadinput.FreeCameraGamepadInput` -> `babylonjs.cameras.inputs.FreeCameraGamepadInput`
-- [ ] *maybe*: If tweaking flags are necessary to get the best output for certain libraries then use a github registry of config files to store these tweaks
 
 # FAQ
 
