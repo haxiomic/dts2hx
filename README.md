@@ -1,13 +1,13 @@
-# WIP .d.ts to .hx
+# Work-in-Progress .d.ts to .hx
 
 Hi, this is a work in progress TypeScript Definition to Haxe Extern converter that uses the typescript compiler. It's not yet ready to use but much of the groundwork has been laid
 
-The ultimate aim is to be able to do something like `dts2hx three --install` and have it pull definitions from DefinitelyTyped and convert them to haxe. To enable this to be reliable there needs to be a focus on fully handling all possible ts type expressions and edge cases (see [test-definitions/edge-cases/index.d.ts](test-definitions/edge-cases/index.d.ts))
+The ultimate aim is to be able to do something like `dts2hx three --install` and have it pull definitions and convert them to haxe
 
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
 # Getting Started
-- **be aware, it's currently just for exploration and not ready to use as a tool**
+- **be aware, this tool is currently unfinished and your externs probably won't work yet!**
 - requires haxe > 4.0.5
 - install dts2hx in your local project as a development dependency:
 
