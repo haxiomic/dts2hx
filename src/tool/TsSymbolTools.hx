@@ -125,34 +125,6 @@ class TsSymbolTools {
 		return members;
 	}
 
-	public static function getDeclarationsForInterpretation(symbol: Symbol, interpretation: SymbolInterpretation) {
-		var declarations = getDeclarationsArray(symbol);
-		return switch interpretation {
-			case TypeDeclaration:
-				declarations.filter(
-					s -> [
-						SyntaxKind.InterfaceDeclaration,
-						SyntaxKind.ClassDeclaration,
-						SyntaxKind.EnumDeclaration,
-						SyntaxKind.TypeAliasDeclaration,
-					].indexOf(s.kind) != -1
-				);
-			case ValueDeclaration:
-				declarations.filter(
-					s -> [
-						SyntaxKind.FunctionDeclaration,
-						SyntaxKind.VariableDeclaration,
-					].indexOf(s.kind) != -1
-				);
-			case ModuleDeclaration:
-				declarations.filter(
-					s -> [
-						SyntaxKind.ModuleDeclaration,
-					].indexOf(s.kind) != -1
-				);
-		}
-	}
-
 	/**
 		symbol.declarations may be null, this method always returns an array
 	**/
