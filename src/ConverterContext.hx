@@ -90,6 +90,8 @@ class ConverterContext {
 
 	final locationComments: Bool;
 
+	final shortenTypePaths = true;
+
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool, ?log_: Log) {
 		// this will be used as the argument to require()
 		this.locationComments = locationComments;
@@ -206,15 +208,17 @@ class ConverterContext {
 			declarationSymbolQueue.tryEnqueue(symbol);
 		}
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
-		var accessSymbolChain = accessContext.getSymbolChain();
-		var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
-		var samePackageContext = if (lastAccessSymbol != null) {
-			var contextTypePath = haxeTypePathMap.getTypePath(lastAccessSymbol, accessContext);
-			contextTypePath.pack.join('.') == hxTypePath.pack.join('.');
+		var noPack = if (shortenTypePaths) {
+			var accessSymbolChain = accessContext.getSymbolChain();
+			var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
+			if (lastAccessSymbol != null) {
+				var contextTypePath = haxeTypePathMap.getTypePath(lastAccessSymbol, accessContext);
+				contextTypePath.pack.join('.') == hxTypePath.pack.join('.'); // same package context
+			} else false;
 		} else false;
 		return {
 			name: hxTypePath.name,
-			pack: samePackageContext ? [] : hxTypePath.pack,
+			pack: noPack ? [] : hxTypePath.pack,
 		}
 	}
 
