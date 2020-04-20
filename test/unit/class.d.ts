@@ -18,8 +18,8 @@ export class ClassBase<T> {
     methodOverloaded(a: number);
     methodOverloaded(a: string, b: Array<{}>);
 
-    get property(): boolean;
-    set property(value: boolean);
+    get accessor(): boolean;
+    set accessor(value: boolean);
 
     static staticMethod<T>(a: number): T;
     static staticField: number;

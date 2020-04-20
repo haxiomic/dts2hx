@@ -44,9 +44,12 @@ export namespace InterfaceValueModule {
     type Y = string;
 }
 
+interface BaseInterface { baseInterfaceField: number; }
+export class BaseClass { baseClassField: number; }
+
 export interface MergedInterfaceClass { interfaceField1: number; }
-export interface MergedInterfaceClass { interfaceField2: number; }
-export class MergedInterfaceClass { classField: string; constructor() }
+export interface MergedInterfaceClass extends BaseInterface { interfaceField2: number; }
+export class MergedInterfaceClass extends BaseClass { classField: string; constructor() }
 
 
 export interface CallableInterface {

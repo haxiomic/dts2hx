@@ -5,7 +5,7 @@ extern interface Map<K, V> {
 	function forEach(callbackfn:(value:V, key:K, map:Map<K, V>) -> Void, ?thisArg:Any):Void;
 	function get(key:K):Null<V>;
 	function has(key:K):Bool;
-	function set(key:K, value:V):Map;
+	function set(key:K, value:V):Map<K, V>;
 	var size : Float;
 	/**
 		Returns an iterable of entries in the map.
