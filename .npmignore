@@ -3,6 +3,8 @@ dts2hx-output/
 /notes
 /test/
 /test-definitions/
+/lib
+/src.old
 build.hxml
 ROADMAP.md
 tsconfig.json
