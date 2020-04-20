@@ -27,7 +27,7 @@ class Main {
 
 		var cliOptions = {
 			cwd: null,
-			outputPath: 'dts2hx-output',
+			outputPath: 'externs',
 			tsConfigFilePath: null,
 			tsCompilerOptions: [],
 			moduleNames: new Array<String>(),
@@ -35,6 +35,7 @@ class Main {
 			allDependencies: false,
 			noOutput: false,
 			locationComments: false,
+			libWrapper: true,
 			logLevel: Warning,
 		}
 
@@ -82,7 +83,12 @@ class Main {
 				cliOptions.locationComments = true;
 			},
 
-			@doc('Runs conversion but doesn\'t generate files')
+			@doc('Disables wrapping the generated externs in a haxelib-style library. Use this option if you intend to use the externs via a class-path rather than as a library')
+			'--noLibWrap' => () -> {
+				cliOptions.libWrapper = false;
+			},
+
+			@doc('Runs conversion but doesn\'t save files')
 			'--noOutput' => () -> {
 				cliOptions.noOutput = true;
 			},
@@ -225,7 +231,7 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput);
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.libWrapper, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput);
 			if (converterContext == null) continue;
 			
 			var moduleDependencies = converterContext.moduleDependencies;
@@ -238,7 +244,7 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
 		var host = Ts.createCompilerHost(compilerOptions);
 		
 		var resolvedModule: ResolvedModuleFull;
@@ -251,17 +257,7 @@ class Main {
 		resolvedModule = result.resolvedModule;
 
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
-		var generateLibraryWrapper = !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
-
-		// moduleId is what you'd need to pass into require() to get the module
-
-		// commented out: previously I used package name, which I expect may not always match the moduleId used in require()
-		// var moduleId = if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
-		// 	result.resolvedModule.packageId.name;
-		// } else {
-		// 	var relPath: String = untyped Ts.convertToRelativePath(result.resolvedModule.resolvedFileName, host.getCurrentDirectory(), fileName -> host.getCanonicalFileName(fileName));
-		// 	relPath;
-		// }
+		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
 
 		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, locationComments, log);
 
