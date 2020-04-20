@@ -1,3 +1,7 @@
+import typescript.ts.ExpressionWithTypeArguments;
+import typescript.ts.ClassDeclaration;
+import typescript.ts.HeritageClause;
+import typescript.ts.InterfaceDeclaration;
 import typescript.ts.InternalSymbolName;
 import typescript.ts.SignatureKind;
 import typescript.ts.ParameterDeclaration;
@@ -240,13 +244,12 @@ class ConverterContext {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
 			// symbol can have multiple interface declarations so this should not be treated as the main source of information
 			// but it might be helpful if node-building is required to provide hints
-			var classOrInterfaceDeclaration: Null<Node> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.InterfaceDeclaration || node.kind == SyntaxKind.ClassDeclaration)[0];
+			
+			var classOrInterfaceDeclaration: Null<Node> = cast symbol.getDeclarationsArray().filter(node -> Ts.isInterfaceDeclaration(node) || Ts.isClassDeclaration(node))[0];
 			if (classOrInterfaceDeclaration == null) {
 				log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
 			}
 
-			var superClass = null; // @! todo
-			var interfaces = []; // @! todo
 			var isClassAndInterface = (symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0);
 
 			// if it's a class and interface symbol, we use class
@@ -274,7 +277,6 @@ class ConverterContext {
 			if (!declaredType.isClassOrInterface()) {
 				log.error('Internal error: Expected type to be a class or interface type', symbol, declaredType);
 			}
-
 
 			var constructorSignatures = symbol.getConstructorSignatures(tc);
 			var callSignatures = symbol.getCallSignatures(tc);
@@ -310,12 +312,49 @@ class ConverterContext {
 				// log.log('\t<green>classMember</>', classMember);
 				fields.push(fieldFromSymbol(classMember, access, classOrInterfaceDeclaration));
 			}
+
+			// extends {types}
+			// @! needs refactor
+			var heritageClauses = new Array<HeritageClause>();
+			for (node in symbol.getDeclarationsArray()) {
+				if (Ts.isInterfaceDeclaration(node)) {
+					var interfaceDeclaration: InterfaceDeclaration = cast node;
+					if (interfaceDeclaration.heritageClauses != null) {
+						heritageClauses = heritageClauses.concat((cast interfaceDeclaration.heritageClauses: Array<HeritageClause>));
+					}
+				} else if (Ts.isClassDeclaration(node)) {
+					var classDeclaration: ClassDeclaration = cast node;
+					if (classDeclaration.heritageClauses != null) {
+						heritageClauses = heritageClauses.concat((cast classDeclaration.heritageClauses: Array<HeritageClause>));
+					}
+				}
+			}
+
+			var extendsTypes = new Array<TypePath>();
+			var implementsTypes = new Array<TypePath>();
+			for (heritageClause in heritageClauses) {
+				var hxTypes = (cast heritageClause.types: Array<ExpressionWithTypeArguments>).map(e -> complexTypeFromTypeNode(e, access, heritageClause.parent));
+				var typePaths = hxTypes.map(t -> switch t {
+					case TPath(p): p;
+					default: {name: 'Any', pack: []};
+				});
+				switch heritageClause.token {
+					case SyntaxKind.ExtendsKeyword:
+						extendsTypes = typePaths;
+					case SyntaxKind.ImplementsKeyword:
+						implementsTypes = typePaths;
+					default:
+				}
+			}
 			
 			{
 				pack: typePath.pack,
 				name: typePath.name,
 				fields: fields,
-				kind: TDClass(superClass, interfaces, isInterface, false),
+				kind:
+					isInterface ? 
+						TDClass(null, extendsTypes, isInterface, false) :
+						TDClass(extendsTypes[0], implementsTypes, false, false),
 				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, classOrInterfaceDeclaration),
 				isExtern: true,
 				doc: getDoc(symbol),
