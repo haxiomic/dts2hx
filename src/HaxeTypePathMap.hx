@@ -205,22 +205,27 @@ class HaxeTypePathMap {
 	public function generateTypePath(symbol: Symbol, access: SymbolAccess) {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
 		var defaultLibName: Null<String> = null;
+		var defaultLibOnlyDeclarations = true;
 		for (declaration in symbol.getDeclarationsArray()) {
 			var sourceFile = declaration.getSourceFile();
 			if (sourceFile.hasNoDefaultLib) {
 				defaultLibName = Path.withoutDirectory(sourceFile.fileName);
-				break;
+			} else {
+				defaultLibOnlyDeclarations = false;
 			}
 		}
 
 		// handle built-ins and types available in the haxe standard library
-		// (currently if a built-in type is extended by a module, we ignore the extension, maybe this should change)
-		if (defaultLibName != null) {
+		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
+		if (defaultLibOnlyDeclarations) {
+			final topLevelTypeMap = [
+				'Array' => 'Array',
+			];
 			switch access {
 				// match special-case built-ins
-				case Global([{name: 'Array'}]):
+				case Global([{name: name}]) if (topLevelTypeMap.exists(name)):
 					return {
-						name: 'Array',
+						name: topLevelTypeMap.get(name),
 						pack: [],
 						isExistingStdLibType: true,
 					}
