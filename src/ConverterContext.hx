@@ -40,7 +40,7 @@ using tool.TsProgramTools;
 using tool.TsSymbolTools;
 using tool.TsTypeTools;
 
-typedef TsType = typescript.ts.Type;
+private typedef TsType = typescript.ts.Type;
 
 @:expose
 @:nullSafety
@@ -667,10 +667,21 @@ class ConverterContext {
 		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 	}
 	
+	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// log.log('complexTypeFromTsType', type);
+		if (_currentTypeStack.indexOf(type) != -1) {
+			log.warn('Breaking recursive type conversion with :Any', type);
+			return macro :Any;
+		}
+
+		_currentTypeStack.push(type);
+		// log.log('complexTypeFromTsType <b>${_currentTypeStack.length}</>');
+		// for (t in _currentTypeStack) {
+		// 	log.log('\t<dim,i>${untyped t.id}</>', t);
+		// }
+
 		// handle fundamental type flags
-		return if (type.flags & (TypeFlags.Any) != 0) {
+		var complexType = if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
 		} else if (type.flags & TypeFlags.Unknown != 0) {
 			// we can't really represent `unknown` in haxe at the moment
@@ -718,6 +729,10 @@ class ConverterContext {
 			log.error('Could not convert type', type);
 			macro :Any;
 		}
+
+		_currentTypeStack.pop();
+
+		return complexType;
 	}
 
 	function complexTypeFromUnionType(unionType: UnionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
