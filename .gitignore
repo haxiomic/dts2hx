@@ -1,4 +1,4 @@
 node_modules
 output
 dist
-dts2hx-output/
+externs/
