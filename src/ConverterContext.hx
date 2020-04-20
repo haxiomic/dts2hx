@@ -356,7 +356,7 @@ class ConverterContext {
 					tc.getSignaturesOfType(declaredType, Call),
 					tc.getSignaturesOfType(declaredType, Construct),
 					indexDeclarations.map(d -> cast tc.getSignatureFromDeclaration(d)),
-					tc.getPropertiesOfType(declaredType).filter(s -> s.flags & SymbolFlags.Prototype == 0)
+					tc.getPropertiesOfType(declaredType).filter(s -> s.isField())
 				);
 			} else {
 				generateFields(
@@ -484,28 +484,16 @@ class ConverterContext {
 		}
 
 		// add static fields, including module-member fields
-		for (export in symbol.getExports()) {
-			var skippedFlags = SymbolFlags.Prototype;
-			if (export.flags & skippedFlags != 0) continue;
-			
-			if (export.flags & (
-				// class statics
-				SymbolFlags.Property | SymbolFlags.Method |
-				// value module variables
-				SymbolFlags.Function | SymbolFlags.Variable
-			) != 0) {
-				// log.log('\t<magenta,b>Export</>', export);
-				var field = fieldFromSymbol(export, access, null);
-				var access = if (field.access != null) {
-					field.access;
-				} else {
-					field.access = [];
-				}
-				access.push(AStatic);
-				hxModule.fields.push(field);
-			} else if (export.flags & (SymbolFlags.Type | SymbolFlags.Module | SymbolFlags.Alias) == 0) {
-				log.log('<red,b>Unhandled export of declaration symbol</>', export);
+		for (export in symbol.getExports().filter(s -> s.isField())) {
+			// log.log('\t<magenta,b>Export</>', export);
+			var field = fieldFromSymbol(export, access, null);
+			var access = if (field.access != null) {
+				field.access;
+			} else {
+				field.access = [];
 			}
+			access.push(AStatic);
+			hxModule.fields.push(field);
 		}
 
 		saveHaxeModule(hxModule);
@@ -805,7 +793,7 @@ class ConverterContext {
 				```
 			**/
 
-			var properties = tc.getPropertiesOfType(objectType).filter(s -> s.flags & SymbolFlags.Prototype == 0);
+			var typeFields = tc.getPropertiesOfType(objectType).filter(s -> s.isField());
 			var callSignatures = objectType.getCallSignatures();
 			var constructSignatures = objectType.getConstructSignatures();
 
@@ -814,7 +802,7 @@ class ConverterContext {
 			}
 
 			// for the special case of a single call signature and no props we can return a function type
-			if (callSignatures.length == 1 && constructSignatures.length == 0 && properties.length == 0) {
+			if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
 				complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);
 			} else {
 				var fields = new Array<Field>();
@@ -835,7 +823,7 @@ class ConverterContext {
 				}
 
 				// add properties
-				fields = fields.concat(properties.map(p -> fieldFromSymbol(p, accessContext, enclosingDeclaration)));
+				fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p, accessContext, enclosingDeclaration)));
 
 				TAnonymous(fields);
 			}
@@ -1063,6 +1051,7 @@ class ConverterContext {
 		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
 			// Prototype symbol should be filtered out of properties before converting to hx fields
 			log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
+			debug();
 			FVar(macro :Any, null);
 
 		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
@@ -1130,6 +1119,7 @@ class ConverterContext {
 
 			onError('Unhandled symbol flags');
 			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+			debug();
 			FVar(macro :Any, null);
 
 		}

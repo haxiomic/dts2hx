@@ -22,7 +22,17 @@ class TsSymbolTools {
 
 	public static function getId(symbol: Symbol) {
 		return Std.int(Ts.getSymbolId(symbol));
-	} 
+	}
+
+	/**
+		Return `true` if symbol is a normal field: functions and variables, but excluding `Prototype`
+	**/
+	public static function isField(symbol: Symbol) {
+		final FieldSymbolFlags =
+			SymbolFlags.Property | SymbolFlags.Variable | 
+			SymbolFlags.Method | SymbolFlags.Function;
+		return symbol.flags & FieldSymbolFlags != 0 && symbol.flags & SymbolFlags.Prototype == 0;
+	}
 	
 	/**
 		Apparently the way to detect for an external module is to check for double quote at the start of the name
