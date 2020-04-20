@@ -1,3 +1,4 @@
+import typescript.ts.InternalSymbolName;
 import typescript.ts.SignatureKind;
 import typescript.ts.ParameterDeclaration;
 import typescript.ts.NodeBuilderFlags;
@@ -274,27 +275,13 @@ class ConverterContext {
 				log.error('Internal error: Expected type to be a class or interface type', symbol, declaredType);
 			}
 
-			var callSignatures = tc.getSignaturesOfType(declaredType, Call);
-			var constructSignatures = tc.getSignaturesOfType(declaredType, Construct);
-			var properties = tc.getPropertiesOfType(declaredType);
-			var augmentedProperties = tc.getAugmentedPropertiesOfType(declaredType);
-			var numberIndexInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.Number);
-			var stringIndexInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.String);
-			var isCallable = (symbol.flags & SymbolFlags.Function != 0) || callSignatures.length > 0;
 
-			var constructorSymbol = symbol.getMembers().find(s -> s.name == typescript.ts.InternalSymbolName.Constructor);
-			if (constructorSymbol != null) {
-				var constructorSignatures = new Array<Signature>();
-				for (declaration in constructorSymbol.getDeclarationsArray()) {
-					if (Ts.isConstructorDeclaration(declaration)) {
-						var signature = tc.getSignatureFromDeclaration(cast declaration);
-						if (signature != null) {
-							constructorSignatures.push(signature);
-						} else {
-							log.error('Constructor signature was null', declaration, constructorSymbol);
-						}
-					}
-				}
+			var constructorSignatures = symbol.getConstructorSignatures(tc);
+			var callSignatures = symbol.getCallSignatures(tc);
+			var constructSignatures = symbol.getConstructSignatures(tc);
+			var indexSignatures = symbol.getIndexSignatures(tc);
+
+			if (constructorSignatures.length > 0) {
 				fields.push(newFieldFromSignatures(constructorSignatures, access, classOrInterfaceDeclaration));
 			}
 
@@ -313,11 +300,15 @@ class ConverterContext {
 				log.error('Construct signatures are not yet supported', symbol);
 			}
 
+			if (indexSignatures.length > 0) {
+				// this is different from a _constructor_ declaration
+				log.error('Index signatures are not yet supported', symbol);
+			}
+
 			// class-fields
-			// log.log(symbol);
-			for (property in properties) {
-				// log.log('\t<green>property</>', property);
-				fields.push(fieldFromSymbol(property, access, classOrInterfaceDeclaration));
+			for (classMember in symbol.getClassMembers()) {
+				// log.log('\t<green>classMember</>', classMember);
+				fields.push(fieldFromSymbol(classMember, access, classOrInterfaceDeclaration));
 			}
 			
 			{
