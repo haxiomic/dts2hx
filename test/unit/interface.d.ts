@@ -72,3 +72,22 @@ interface ErrorConstructor {
     (message?: string): Error;
     readonly prototype: Error;
 }
+
+/**
+ * Extends clause
+ */
+interface Base1 {
+    field1: number;
+}
+interface Base2 {
+    field2: number;
+}
+interface Base3 {
+    field3: number;
+}
+interface Extends3 extends Base1, Base2 {
+    x: number;
+}
+interface Extends3 extends Base3 {
+    y: number;
+}
