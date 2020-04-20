@@ -20,6 +20,9 @@ class HaxeTools {
 		// remove quotes
 		str = ~/["'`]/gm.replace(str, '');
 
+		// remove @ at the start of an ident (this is a common pattern on npm, e.g. https://www.npmjs.com/package/@jonabc/actions-mocks)
+		str = ~/^@/.replace(str, '');
+
 		// replace hyphens and dots with underscore
 		str = ~/[-–—.]/gm.replace(str, '_');
 
