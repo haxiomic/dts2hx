@@ -155,7 +155,7 @@ class ConverterContext {
 
 		// convert symbols for just this module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
-			for (symbol in program.getExportsOfSourceFile(sourceFile)) {
+			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, _) -> {
 					declarationSymbolQueue.tryEnqueue(symbol);
 				});
@@ -174,7 +174,6 @@ class ConverterContext {
 
 			// symbol has type-declaration
 			if (symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0) {
-				// log.log('Type', symbol);
 				for (access in symbolAccessMap.getAccess(symbol)) {
 					getHaxeModuleFromTypeSymbol(symbol, access);
 				}
@@ -1058,14 +1057,15 @@ class ConverterContext {
 			if (symbol.valueDeclaration == null) {
 				log.error('Missing valueDeclaration for Property | Variable symbol', symbol);
 				debug();
+			} else {
+				// variable field
+				switch symbol.valueDeclaration.kind {
+					case VariableDeclaration, PropertySignature, PropertyDeclaration:
+					default: 
+						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
+				}
 			}
 
-			// variable field
-			switch symbol.valueDeclaration.kind {
-				case VariableDeclaration, PropertySignature, PropertyDeclaration:
-				default: 
-					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
-			}
 
 			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
 			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);

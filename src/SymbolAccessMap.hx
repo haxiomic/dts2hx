@@ -44,8 +44,7 @@ class SymbolAccessMap {
 				}
 
 				// log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
-
-				for (symbol in program.getExportsOfSourceFile(sourceFile)) {
+				for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 					TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, accessChain) -> {
 						var currentAccess = sourceFileAccess;
 						for (s in accessChain) {

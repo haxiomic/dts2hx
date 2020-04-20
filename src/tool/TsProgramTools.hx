@@ -46,20 +46,24 @@ class TsProgramTools {
 			)
 			.map(tc.getExportSymbolOfSymbol);
 	}
-
-	public static function getExportsOfSourceFile(program: Program, sourceFile: SourceFile) {
+	
+	/**
+		All exposed symbols of a source file
+	**/
+	public static function getExposedSymbolsOfSourceFile(program: Program, sourceFile: SourceFile): Array<Symbol> {
 		var tc = program.getTypeChecker();
 		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
 		if (sourceFileSymbol != null) {
 			// return tc.getExportsOfModule(sourceFileSymbol); // seems to miss symbols like export =
-			var exports = [];
-			if (sourceFileSymbol.exports != null) sourceFileSymbol.exports.forEach((symbol, key) -> {
-				exports.push(symbol);
-			});
-			if (sourceFileSymbol.globalExports != null) sourceFileSymbol.globalExports.forEach((symbol, key) -> {
-				exports.push(symbol);
-			});
-			return exports.map(tc.getExportSymbolOfSymbol);
+			// var exports = [];
+			// if (sourceFileSymbol.exports != null) sourceFileSymbol.exports.forEach((symbol, key) -> {
+			// 	exports.push(symbol);
+			// });
+			// if (sourceFileSymbol.globalExports != null) sourceFileSymbol.globalExports.forEach((symbol, key) -> {
+			// 	exports.push(symbol);
+			// });
+			// return exports.map(tc.getExportSymbolOfSymbol);
+			return [sourceFileSymbol];
 		} else {
 			// sourcefile symbols are visible in the global scope
 			return getDeclarationSymbolsInSourceFile(program, sourceFile);
@@ -70,13 +74,18 @@ class TsProgramTools {
 		var tc = program.getTypeChecker();
 		var seenSymbols = new Map<Int, Symbol>();
 		var result = new Array<Symbol>();
+		inline function addSymbol(symbol: Symbol) {
+			symbol = tc.getExportSymbolOfSymbol(symbol);
+			if (!seenSymbols.exists(symbol.getId())) {
+				seenSymbols.set(symbol.getId(), symbol);
+				result.push(symbol);
+			}
+		}
 		for (sourceFile in program.getSourceFiles()) {
+			var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+			if (sourceFileSymbol != null) addSymbol(sourceFileSymbol);
 			for (symbol in tc.getSymbolsInScope(sourceFile, 0xFFFFFF)) {
-				symbol = tc.getExportSymbolOfSymbol(symbol);
-				if (!seenSymbols.exists(symbol.getId())) {
-					seenSymbols.set(symbol.getId(), symbol);
-					result.push(symbol);
-				}
+				addSymbol(symbol);
 			}
 		}
 		return result;
