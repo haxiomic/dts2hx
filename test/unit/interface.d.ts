@@ -4,9 +4,10 @@ export interface Interface {
     exampleOptionalMethod?(a: number): void;
 
     /**
-     * Example construct signature
+     * Example construct signatures
      */
     new ( a: string ): Interface;
+    new ( b: number, x: boolean ): Interface;
 
     /**
      * this method is named to clash with the special generated `call()` method used for call signatures

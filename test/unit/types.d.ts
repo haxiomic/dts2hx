@@ -38,6 +38,7 @@ export namespace Types {
     type NullNumberUnion = number | null; // translates to Null<Float>
     type UndefinedNumberUnion = number | undefined; // translates to Null<Float>
     type Intersection = number & string;
+    type NullOrUndefined = null | undefined;
 
     
     /**
