@@ -41,7 +41,7 @@ class SymbolAccessTools {
 			case Inaccessible: {
 				// this type cannot be reached directly in javascript
 				// there's no core metadata for this
-				name: 'tsInaccessible',
+				name: ':jsInaccessible',
 				pos: pos,
 			}
 		}
