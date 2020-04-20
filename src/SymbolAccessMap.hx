@@ -151,7 +151,7 @@ class SymbolAccessMap {
 			// check if this symbol is globally available, in which case, set root to Global
 			// otherwise add an identifier to the chain
 			var symbolParent =  TsSymbolTools.getSymbolParent(symbol);
-			return if (symbolParent != null && symbolParent.name == InternalSymbolName.Global) {
+			return if (symbolParent != null && symbolParent.escapedName == InternalSymbolName.Global) {
 				Global([]);
 			} else {
 				// append to symbol chain

@@ -241,7 +241,7 @@ class TsSymbolTools {
 	}
 
 	static public function getCallSignatures(symbol: Symbol, tc: TypeChecker): Array<Signature> {
-		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Signature != 0 && s.name == InternalSymbolName.Call);
+		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Signature != 0 && s.escapedName == InternalSymbolName.Call);
 		var declarations = symbols.map(s -> getDeclarationsArray(s).filter(d -> Ts.isCallSignatureDeclaration(d))).flatten();
 		var signatures = declarations.map(d -> tc.getSignatureFromDeclaration(cast d));
 		return cast signatures.filter(s -> s != null);
@@ -251,21 +251,21 @@ class TsSymbolTools {
 		**Construct** signatures: `new(): T`, not _constructor_ signatures
 	**/
 	static public function getConstructSignatures(symbol: Symbol, tc: TypeChecker): Array<Signature> {
-		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Signature != 0 && s.name == InternalSymbolName.New);
+		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Signature != 0 && s.escapedName == InternalSymbolName.New);
 		var declarations = symbols.map(s -> getDeclarationsArray(s).filter(d -> Ts.isConstructSignatureDeclaration(d))).flatten();
 		var signatures = declarations.map(d -> tc.getSignatureFromDeclaration(cast d));
 		return cast signatures.filter(s -> s != null);
 	}
 
 	static public function getIndexSignatures(symbol: Symbol, tc: TypeChecker): Array<Signature> {
-		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Signature != 0 && s.name == InternalSymbolName.Index);
+		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Signature != 0 && s.escapedName == InternalSymbolName.Index);
 		var declarations = symbols.map(s -> getDeclarationsArray(s).filter(d -> Ts.isIndexSignatureDeclaration(d))).flatten();
 		var signatures = declarations.map(d -> tc.getSignatureFromDeclaration(cast d));
 		return cast signatures.filter(s -> s != null);
 	}
 
 	static public function getConstructorSignatures(symbol: Symbol, tc: TypeChecker): Array<Signature> {
-		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Constructor != 0 && s.name == InternalSymbolName.Constructor);
+		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Constructor != 0 && s.escapedName == InternalSymbolName.Constructor);
 		var declarations = symbols.map(s -> getDeclarationsArray(s).filter(d -> Ts.isConstructorDeclaration(d))).flatten();
 		var signatures = declarations.map(d -> tc.getSignatureFromDeclaration(cast d));
 		return cast signatures.filter(s -> s != null);
@@ -299,7 +299,7 @@ class TsSymbolTools {
 	
 	static public function isInternalSymbolName(name: String) {
 		var internalSymbolName: DynamicAccess<String> = js.Syntax.code('require("typescript").InternalSymbolName');
-		for (type => internalName in (cast internalSymbolName)) {
+		for (_ => internalName in (cast internalSymbolName)) {
 			if (name == internalName) return true;
 		}
 		return false;

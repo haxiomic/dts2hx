@@ -16,7 +16,7 @@ class SymbolAccessTools {
 	}
 
 	static public function getIdentifierChain(access: SymbolAccess): Array<String> {
-		return getSymbolChain(access).filter(s -> switch s.name {
+		return getSymbolChain(access).filter(s -> switch s.escapedName {
 			case InternalSymbolName.ExportEquals: false;
 			default: true;
 		}).map(s -> s.name);
