@@ -46,10 +46,10 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [ ] Index signatures
         - [ ] Intersection types `need better handling of redefined properties, aka sub intersections`
         - [x] Tuple types
-        - [ ] This type
+        - [x] This type
         - [x] Overloads
         - [ ] Wrapped types
-        - [ ] Symbol fields
+        - [ ] ESSymbol fields
     - [ ] Classes and interfaces
         - [x] Constructors
         - [ ] Index signatures (both class and interfaces)
