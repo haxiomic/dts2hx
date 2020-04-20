@@ -1,21 +1,21 @@
 package tool;
 
-import typescript.ts.Signature;
-import typescript.ts.InternalSymbolName;
 import haxe.DynamicAccess;
 import haxe.ds.ReadOnlyArray;
-import typescript.ts.Declaration;
-import typescript.ts.TypeChecker;
-import haxe.macro.Expr.ComplexType;
-import typescript.ts.SourceFile;
 import typescript.Ts;
-import typescript.ts.SyntaxKind;
-import typescript.ts.SymbolFlags;
+import typescript.ts.ClassDeclaration;
+import typescript.ts.Declaration;
+import typescript.ts.HeritageClause;
+import typescript.ts.InterfaceDeclaration;
+import typescript.ts.InternalSymbolName;
+import typescript.ts.Signature;
 import typescript.ts.Symbol;
+import typescript.ts.SymbolFlags;
+import typescript.ts.TypeChecker;
 
+using Lambda;
 using TsInternal;
 using tool.HaxeTools;
-using Lambda;
 
 @:nullSafety
 class TsSymbolTools {
@@ -264,6 +264,24 @@ class TsSymbolTools {
 	static public function getClassMembers(symbol: Symbol): Array<Symbol> {
 		return getMembers(symbol).filter(s -> s.flags & SymbolFlags.ClassMember != 0);
 	}
+
+	static public function getHeritageClauses(symbol: Symbol): Array<HeritageClause> {
+		var heritageClauses = new Array<HeritageClause>();
+		for (node in getDeclarationsArray(symbol)) {
+			if (Ts.isInterfaceDeclaration(node)) {
+				var interfaceDeclaration: InterfaceDeclaration = cast node;
+				if (interfaceDeclaration.heritageClauses != null) {
+					heritageClauses = heritageClauses.concat((cast interfaceDeclaration.heritageClauses: Array<HeritageClause>));
+				}
+			} else if (Ts.isClassDeclaration(node)) {
+				var classDeclaration: ClassDeclaration = cast node;
+				if (classDeclaration.heritageClauses != null) {
+					heritageClauses = heritageClauses.concat((cast classDeclaration.heritageClauses: Array<HeritageClause>));
+				}
+			}
+		}
+		return heritageClauses;
+	} 
 
 	static public function isInternalSymbol(symbol: Symbol) {
 		return isInternalSymbolName(symbol.name);

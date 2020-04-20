@@ -1,14 +1,3 @@
-import typescript.ts.ExpressionWithTypeArguments;
-import typescript.ts.ClassDeclaration;
-import typescript.ts.HeritageClause;
-import typescript.ts.InterfaceDeclaration;
-import typescript.ts.InternalSymbolName;
-import typescript.ts.SignatureKind;
-import typescript.ts.ParameterDeclaration;
-import typescript.ts.NodeBuilderFlags;
-import typescript.ts.MethodSignature;
-import typescript.ts.Signature;
-import typescript.ts.PropertySignature;
 import ds.OnlyOnceSymbolQueue.OnceOnlySymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
@@ -16,13 +5,17 @@ import tool.TsSyntaxTools;
 import typescript.Ts;
 import typescript.ts.CompilerHost;
 import typescript.ts.CompilerOptions;
+import typescript.ts.ExpressionWithTypeArguments;
 import typescript.ts.GenericType;
 import typescript.ts.InterfaceType;
 import typescript.ts.Node;
+import typescript.ts.NodeBuilderFlags;
 import typescript.ts.NumberLiteralType;
 import typescript.ts.ObjectFlags;
 import typescript.ts.ObjectType;
+import typescript.ts.ParameterDeclaration;
 import typescript.ts.Program;
+import typescript.ts.Signature;
 import typescript.ts.SourceFile;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
@@ -315,34 +308,20 @@ class ConverterContext {
 
 			// extends {types}
 			// @! needs refactor
-			var heritageClauses = new Array<HeritageClause>();
-			for (node in symbol.getDeclarationsArray()) {
-				if (Ts.isInterfaceDeclaration(node)) {
-					var interfaceDeclaration: InterfaceDeclaration = cast node;
-					if (interfaceDeclaration.heritageClauses != null) {
-						heritageClauses = heritageClauses.concat((cast interfaceDeclaration.heritageClauses: Array<HeritageClause>));
-					}
-				} else if (Ts.isClassDeclaration(node)) {
-					var classDeclaration: ClassDeclaration = cast node;
-					if (classDeclaration.heritageClauses != null) {
-						heritageClauses = heritageClauses.concat((cast classDeclaration.heritageClauses: Array<HeritageClause>));
-					}
-				}
-			}
-
+			var heritageClauses = symbol.getHeritageClauses();
 			var extendsTypes = new Array<TypePath>();
 			var implementsTypes = new Array<TypePath>();
 			for (heritageClause in heritageClauses) {
-				var hxTypes = (cast heritageClause.types: Array<ExpressionWithTypeArguments>).map(e -> complexTypeFromTypeNode(e, access, heritageClause.parent));
+				var hxTypes = (cast heritageClause.types: Array<ExpressionWithTypeArguments>).map(e -> complexTypeFromTypeNode(e, access, heritageClause.parent)).deduplicateTypes();
 				var typePaths = hxTypes.map(t -> switch t {
 					case TPath(p): p;
 					default: {name: 'Any', pack: []};
 				});
 				switch heritageClause.token {
 					case SyntaxKind.ExtendsKeyword:
-						extendsTypes = typePaths;
+						extendsTypes = extendsTypes.concat(typePaths);
 					case SyntaxKind.ImplementsKeyword:
-						implementsTypes = typePaths;
+						implementsTypes = implementsTypes.concat(typePaths);
 					default:
 				}
 			}
