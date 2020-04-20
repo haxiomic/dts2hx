@@ -5,9 +5,13 @@ export class ClassBase<T> {
     typeParamField: T;
 
     readonly readonlyField: number;
+    
+    // this field has a special name in typescript; we want to make sure it's not mistaken for the constructor
+    __constructor(example: string): void;
 
     constructor(overloadParam: T)
     constructor(a: number);
+
     
     method(a: number, b: string);
 
@@ -33,3 +37,10 @@ export class CallbleClass {
     field: number;
 }
 export function CallbleClass(arg: number);
+
+export class ClassWithValueModule {
+    field: number;
+}
+export namespace ClassWithValueModule {
+    const valueModuleField: string;
+}

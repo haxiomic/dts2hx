@@ -7,6 +7,7 @@ package unit.class_;
 	var thisClassType : ClassBase;
 	var typeParamField : T;
 	var readonlyField : Float;
+	function ___constructor(example:String):Void;
 	function method(a:Float, b:String):Any;
 	@:overload(function(a:String, b:Array<{ }>):Any { })
 	function methodOverloaded(a:Float):Any;
