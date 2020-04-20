@@ -50,10 +50,13 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Overloads
         - [ ] Wrapped types
         - [ ] ESSymbol fields
+    - [ ] Handle `export default` better
+    - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
     - [ ] Classes and interfaces
         - [x] Constructors
         - [ ] Index signatures (both class and interfaces)
         - [ ] Extends & implements
+    - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
     - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
@@ -64,7 +67,6 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Add `--install` option
 - [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] Advanced type conversions
-    - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
     - [ ] Abstracts to support unnamed enums and improve type unions
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Maybe function argument unions could be improved by overloads?
