@@ -264,9 +264,9 @@ class ConverterContext {
 				// we add metadata to mark the class which we might be able to use in the future
 				// @! maybe we can use an abstract for this
 				meta.push({name: ':interface', pos: pos});
+				log.warn('Symbol is both class and an interface, this combination is not fully supported', symbol);
 			}
 
-			var fields = new Array<Field>();
 
 			// class members
 			var declaredType: InterfaceType = cast tc.getDeclaredTypeOfSymbol(symbol);
@@ -275,43 +275,47 @@ class ConverterContext {
 				log.error('Internal error: Expected type to be a class or interface type', symbol, declaredType);
 			}
 
-			var constructorSignatures = symbol.getConstructorSignatures(tc);
-			var callSignatures = symbol.getCallSignatures(tc);
-			var constructSignatures = symbol.getConstructSignatures(tc);
-			var indexSignatures = symbol.getIndexSignatures(tc);
+			function generateFields(
+				constructorSignatures: Array<Signature>,
+				callSignatures: Array<Signature>,
+				constructSignatures: Array<Signature>,
+				indexSignatures: Array<Signature>,
+				classMembers: Array<Symbol>
+			) {
+				var fields = new Array<Field>();
+				if (constructorSignatures.length > 0) {
+					fields.push(newFieldFromSignatures(constructorSignatures, access, classOrInterfaceDeclaration));
+				}
 
-			if (constructorSignatures.length > 0) {
-				fields.push(newFieldFromSignatures(constructorSignatures, access, classOrInterfaceDeclaration));
-			}
+				var callFieldName = symbol.getFreeMemberName(selfCallFunctionName);
+				if (callSignatures.length > 0) {
+					// log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
+					fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, access, classOrInterfaceDeclaration));
+				}
 
-			var callFieldName = symbol.getFreeMemberName(selfCallFunctionName);
-			if (callSignatures.length > 0) {
-				// log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
-				fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, access, classOrInterfaceDeclaration));
-			}
+				if (symbol.flags & SymbolFlags.Function != 0) {
+					log.warn('todo: handle callable class type 2', symbol);
+				}
 
-			if (symbol.flags & SymbolFlags.Function != 0) {
-				log.warn('todo: handle callable class type 2', symbol);
-			}
+				if (constructSignatures.length > 0) {
+					// this is different from a _constructor_ declaration
+					log.error('Construct signatures are not yet supported', symbol);
+				}
 
-			if (constructSignatures.length > 0) {
-				// this is different from a _constructor_ declaration
-				log.error('Construct signatures are not yet supported', symbol);
-			}
+				if (indexSignatures.length > 0) {
+					// this is different from a _constructor_ declaration
+					log.error('Index signatures are not yet supported', symbol);
+				}
 
-			if (indexSignatures.length > 0) {
-				// this is different from a _constructor_ declaration
-				log.error('Index signatures are not yet supported', symbol);
-			}
-
-			// class-fields
-			for (classMember in symbol.getClassMembers()) {
-				// log.log('\t<green>classMember</>', classMember);
-				fields.push(fieldFromSymbol(classMember, access, classOrInterfaceDeclaration));
+				// class-fields
+				for (classMember in classMembers) {
+					// log.log('\t<green>classMember</>', classMember);
+					fields.push(fieldFromSymbol(classMember, access, classOrInterfaceDeclaration));
+				}
+				return fields;
 			}
 
 			// extends {types}
-			// @! needs refactor
 			var heritageClauses = symbol.getHeritageClauses();
 			var extendsTypes = new Array<TypePath>();
 			var implementsTypes = new Array<TypePath>();
@@ -329,15 +333,46 @@ class ConverterContext {
 					default:
 				}
 			}
+
+			var kind: TypeDefKind = if (isClassAndInterface) {
+				// class + interface is a special case that we cannot trivially handle in haxe
+				TDClass(null, implementsTypes, false, false);
+			} else if (isInterface) {
+				TDClass(null, extendsTypes, isInterface, false);
+			} else {
+				TDClass(extendsTypes[0], implementsTypes, false, false);
+			}
+
+			var fields = if (isClassAndInterface) {
+				// class + interface is a special case that we cannot trivially handle in haxe
+				// we don't support extends in this case so instead we use all fields of the type
+				var indexDeclarations = new Array<typescript.ts.IndexSignatureDeclaration>();
+				var numberInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.Number);
+				var stringInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.String);
+				if (numberInfo != null && numberInfo.declaration != null) indexDeclarations.push(numberInfo.declaration);
+				if (stringInfo != null && stringInfo.declaration != null) indexDeclarations.push(stringInfo.declaration);
+				generateFields(
+					symbol.getConstructorSignatures(tc),
+					tc.getSignaturesOfType(declaredType, Call),
+					tc.getSignaturesOfType(declaredType, Construct),
+					indexDeclarations.map(d -> cast tc.getSignatureFromDeclaration(d)),
+					tc.getPropertiesOfType(declaredType)
+				);
+			} else {
+				generateFields(
+					symbol.getConstructorSignatures(tc),
+					symbol.getCallSignatures(tc),
+					symbol.getConstructSignatures(tc),
+					symbol.getIndexSignatures(tc),
+					symbol.getClassMembers()
+				);
+			}
 			
 			{
 				pack: typePath.pack,
 				name: typePath.name,
 				fields: fields,
-				kind:
-					isInterface ? 
-						TDClass(null, extendsTypes, isInterface, false) :
-						TDClass(extendsTypes[0], implementsTypes, false, false),
+				kind: kind,
 				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, classOrInterfaceDeclaration),
 				isExtern: true,
 				doc: getDoc(symbol),
@@ -355,14 +390,14 @@ class ConverterContext {
 
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
 			var hxEnumFields: Array<Field> = enumMembers.map(s -> {
-				var safeName = HaxeTools.toSafeIdent(s.escapedName);
-				var nameChanged = s.escapedName != safeName;
+				var safeName = HaxeTools.toSafeIdent(s.name);
+				var nameChanged = s.name != safeName;
 				return ({
 					name: safeName,
 					pos: TsSymbolTools.getPosition(s),
 					kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
 					doc: getDoc(s),
-					meta: nameChanged ? [{name: ':native', params: [s.escapedName.toStringExpr(pos)], pos: pos}] : [],
+					meta: nameChanged ? [{name: ':native', params: [s.name.toStringExpr(pos)], pos: pos}] : [],
 				}: Field);
 			});
 
@@ -661,27 +696,25 @@ class ConverterContext {
 			isInt ? macro :Int : macro :Float;
 		} else if (type.flags & (TypeFlags.BooleanLiteral) != 0) {
 			macro :Bool;
-		}
-
-		// @! todo:
-		// Enum            = 1 << 5,
-		// BigInt          = 1 << 6,
-		// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
-		// BigIntLiteral   = 1 << 11,
-		// ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
-		// UniqueESSymbol  = 1 << 13,  // unique symbol
-		// Intersection    = 1 << 21,  // Intersection (T & U)
-		// Index           = 1 << 22,  // keyof T
-		// IndexedAccess   = 1 << 23,  // T[K]
-		// Conditional     = 1 << 24,  // T extends U ? X : Y
-		// Substitution    = 1 << 25,  // Type parameter substitution
-		// NonPrimitive    = 1 << 26,  // intrinsic object type
-
-		else if (type.flags & (TypeFlags.TypeParameter) != 0) {
+		} else if (type.flags & (TypeFlags.TypeParameter) != 0) {
 			complexTypeFromTypeParameter(cast type, accessContext, enclosingDeclaration);
 		} else if (type.flags & (TypeFlags.Object) != 0) {
 			complexTypeFromObjectType(cast type, accessContext, enclosingDeclaration);
 		} else {
+			// @! todo:
+			// Enum            = 1 << 5,
+			// BigInt          = 1 << 6,
+			// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
+			// BigIntLiteral   = 1 << 11,
+			// ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
+			// UniqueESSymbol  = 1 << 13,  // unique symbol
+			// Intersection    = 1 << 21,  // Intersection (T & U)
+			// Index           = 1 << 22,  // keyof T
+			// IndexedAccess   = 1 << 23,  // T[K]
+			// Conditional     = 1 << 24,  // T extends U ? X : Y
+			// Substitution    = 1 << 25,  // Type parameter substitution
+			// NonPrimitive    = 1 << 26,  // intrinsic object type
+
 			log.error('Could not convert type', type);
 			macro :Any;
 		}
@@ -700,10 +733,18 @@ class ConverterContext {
 
 	function complexTypeFromTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		return if (typeParameter.symbol != null) {
-			TPath({
-				name: typeParameter.symbol.escapedName.toSafeTypeName(),
-				pack: [],
-			});
+			// there's also a variation `IndexedAccessType` that's not currently handled
+			// `: this` seems to need special handling
+			var isThisType: Bool = untyped typeParameter.isThisType;
+			var constraint: Null<TsType> = untyped typeParameter.constraint;
+			if (isThisType && constraint != null) {
+				complexTypeFromTsType(constraint, accessContext, enclosingDeclaration);
+			} else {
+				TPath({
+					name: typeParameter.symbol.name.toSafeTypeName(),
+					pack: [],
+				});
+			}
 		} else {
 			log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameter);
 			macro :T;
@@ -844,7 +885,7 @@ class ConverterContext {
 				complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
 			}
 
-			return TNamed(s.escapedName.toSafeIdent(), hxType);
+			return TNamed(s.name.toSafeIdent(), hxType);
 		});
 
 		var tsRet = tc.getReturnTypeOfSignature(callSignature);
@@ -975,11 +1016,11 @@ class ConverterContext {
 	function fieldFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
-		var safeName = symbol.escapedName.toSafeIdent();
-		var nameChanged = safeName != symbol.escapedName;
+		var safeName = symbol.name.toSafeIdent();
+		var nameChanged = safeName != symbol.name;
 
 		if (nameChanged) {
-			meta.push({name: ':native', pos: pos, params: [HaxeTools.toStringExpr(symbol.escapedName, pos)]});
+			meta.push({name: ':native', pos: pos, params: [HaxeTools.toStringExpr(symbol.name, pos)]});
 		}
 
 		if (symbol.flags & SymbolFlags.Optional != 0) {
@@ -1075,7 +1116,7 @@ class ConverterContext {
 			// I don't think d.ts files allow default values for parameters but we'll keep this here anyway
 			var value = HaxeTools.primitiveValueToExpr(tc.getConstantValue(parameterDeclaration));
 			return ({
-				name: s.escapedName.toSafeIdent(),
+				name: s.name.toSafeIdent(),
 				type: hxType,
 				opt: isOptional,
 				value: value
@@ -1134,7 +1175,7 @@ class ConverterContext {
 			complexTypeFromTypeNode(typeParamNode.constraint, accessContext, enclosingDeclaration);
 		} else null;
 		return {
-			name: typeParameter.symbol.escapedName.toSafeTypeName(),
+			name: typeParameter.symbol.name.toSafeTypeName(),
 			constraints: hxConstraint != null ? [hxConstraint] : null,
 		}
 	}

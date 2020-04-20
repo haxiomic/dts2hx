@@ -218,7 +218,7 @@ class HaxeTypePathMap {
 		if (defaultLibName != null) {
 			switch access {
 				// match special-case built-ins
-				case Global([{escapedName: 'Array'}]):
+				case Global([{name: 'Array'}]):
 					return {
 						name: 'Array',
 						pack: [],
@@ -301,12 +301,12 @@ class HaxeTypePathMap {
 		var typeIdentifier: String = switch access {
 			case AmbientModule(path, _), ExportModule(path, _):
 				var lastIdentifier = splitModulePath(path).concat(identifierChain).pop();
-				(lastIdentifier != null ? lastIdentifier : symbol.escapedName);
+				(lastIdentifier != null ? lastIdentifier : symbol.name);
 			case Global(_):
 				var lastIdentifier = identifierChain.pop();
-				(lastIdentifier != null ? lastIdentifier : symbol.escapedName);
+				(lastIdentifier != null ? lastIdentifier : symbol.name);
 			case Inaccessible:
-				symbol.escapedName;
+				symbol.name;
 
 		}
 		var name = typeIdentifier.toSafeTypeName();

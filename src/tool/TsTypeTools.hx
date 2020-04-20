@@ -15,7 +15,7 @@ class TsTypeTools {
 		var currentName = suggestedName;
 		var takenNames = [
 			for (property in tc.getPropertiesOfType(type))
-				property.escapedName.toSafeIdent() => true
+				property.name.toSafeIdent() => true
 		];
 		while (takenNames.exists(currentName)) {
 			currentName = currentName + '_';

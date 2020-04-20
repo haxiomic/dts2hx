@@ -109,7 +109,7 @@ class TsSymbolTools {
 		var currentName = suggestedName;
 		var takenNames = [
 			for (member in getExports(symbol).concat(getMembers(symbol)))
-				member.escapedName.toSafeIdent() => true
+				member.name.toSafeIdent() => true
 		];
 		while (takenNames.exists(currentName)) {
 			currentName = currentName + '_';
