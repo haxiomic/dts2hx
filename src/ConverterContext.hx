@@ -175,7 +175,7 @@ class ConverterContext {
 			// symbol has type-declaration
 			if (symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0) {
 				for (access in symbolAccessMap.getAccess(symbol)) {
-					getHaxeModuleFromTypeSymbol(symbol, access);
+					generateHaxeModuleFromDeclarationSymbol(symbol, access);
 				}
 				handled = true;
 			}
@@ -224,7 +224,7 @@ class ConverterContext {
 	/**
 		Symbol must have flags Type | ValueModule
 	**/
-	function getHaxeModuleFromTypeSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
+	function generateHaxeModuleFromDeclarationSymbol(symbol: Symbol, access: SymbolAccess) {
 		var typePath = haxeTypePathMap.getTypePath(symbol, access);
 		var moduleKey = getHaxeModuleKey(typePath.pack, typePath.name);
 		var pos = TsSymbolTools.getPosition(symbol);
@@ -468,7 +468,7 @@ class ConverterContext {
 				tsSymbolAccess: access,
 			}
 		} else {
-			log.error('getHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
+			log.error('generateHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
 			{
 				pack: typePath.pack,
 				name: typePath.name,
@@ -495,7 +495,13 @@ class ConverterContext {
 			hxModule.fields.push(field);
 		}
 
-		saveHaxeModule(hxModule);
+		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0;
+		var isEmptyValueModuleClass = isValueModuleOnlySymbol && hxModule.fields.length == 0;
+
+		// don't save ValueModule classes with no fields
+		if (!isEmptyValueModuleClass) {
+			saveHaxeModule(hxModule);
+		}
 
 		return hxModule;
 	}
