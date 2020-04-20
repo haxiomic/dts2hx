@@ -356,7 +356,7 @@ class ConverterContext {
 					tc.getSignaturesOfType(declaredType, Call),
 					tc.getSignaturesOfType(declaredType, Construct),
 					indexDeclarations.map(d -> cast tc.getSignatureFromDeclaration(d)),
-					tc.getPropertiesOfType(declaredType)
+					tc.getPropertiesOfType(declaredType).filter(s -> s.flags & SymbolFlags.Prototype == 0)
 				);
 			} else {
 				generateFields(
@@ -503,8 +503,8 @@ class ConverterContext {
 				}
 				access.push(AStatic);
 				hxModule.fields.push(field);
-			} else if (export.flags & (SymbolFlags.Type) == 0) {
-				log.log('\t<red,b>Unhandled export', export);
+			} else if (export.flags & (SymbolFlags.Type | SymbolFlags.Module | SymbolFlags.Alias) == 0) {
+				log.log('<red,b>Unhandled export of declaration symbol</>', export);
 			}
 		}
 
@@ -576,6 +576,11 @@ class ConverterContext {
 	}
 
 	function getSupportUnionType(types: Array<ComplexType>): ComplexType {
+		if (types.length == 0) {
+			log.error('getSupportUnionType(): no types provided');
+			debug();
+			return macro :Any;
+		}
 		// here we could generate an advanced union type like we do for tuple but let's save that for another day
 		// instead, generate an EitherType stack
 		function getEitherUnion(types: Array<ComplexType>): ComplexType {
@@ -742,7 +747,11 @@ class ConverterContext {
 		// convert union's TsTypes to haxe ComplexTypes
 		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 		// if union is of length 1, no need for support type
-		var unionType = hxTypes.length == 1 ? hxTypes[0] : getSupportUnionType(hxTypes);
+		var unionType = switch hxTypes.length {
+			case 0: macro :Any;
+			case 1: hxTypes[0];
+			default: getSupportUnionType(hxTypes);
+		}
 		return nullable ? macro :Null<$unionType> : macro :$unionType;
 	}
 
@@ -796,7 +805,7 @@ class ConverterContext {
 				```
 			**/
 
-			var properties = tc.getPropertiesOfType(objectType);
+			var properties = tc.getPropertiesOfType(objectType).filter(s -> s.flags & SymbolFlags.Prototype == 0);
 			var callSignatures = objectType.getCallSignatures();
 			var constructSignatures = objectType.getConstructSignatures();
 
@@ -1050,9 +1059,25 @@ class ConverterContext {
 			log.error('fieldFromSymbol(): ' + message, symbol);
 			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
 		}
+		
+		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
+			// Prototype symbol should be filtered out of properties before converting to hx fields
+			log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
+			FVar(macro :Any, null);
 
-		var kind = if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
+		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
+			if (symbol.valueDeclaration == null) {
+				log.error('Missing valueDeclaration for Property | Variable symbol', symbol);
+				debug();
+			}
+
 			// variable field
+			switch symbol.valueDeclaration.kind {
+				case VariableDeclaration, PropertySignature, PropertyDeclaration:
+				default: 
+					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
+			}
+
 			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
 			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 			FVar(hxType, null);
@@ -1062,6 +1087,7 @@ class ConverterContext {
 			var baseDeclaration = symbol.valueDeclaration;
 			var overloadDeclarations = symbol.declarations.filter(d -> d != baseDeclaration && switch d.kind {
 				case MethodSignature, MethodDeclaration, FunctionDeclaration: true;
+				case ModuleDeclaration: false;
 				default:
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(d.kind)}</>');
 					false;
