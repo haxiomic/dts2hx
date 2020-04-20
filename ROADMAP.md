@@ -1,16 +1,12 @@
+- Missing constructors from typedarray classes?
+	- Why are all html and lib types interfaces?
+
 - Handle callable classes
 	symbol.flags & SymbolFlags.Function != 0
-- Handle `extends` (seems like we already get redeclaration of fields)
-- Handle implements
 
 - Global modules
 - Understand `tc.getAugmentedPropertiesOfType(declaredType)`
 - Why is `export=` in the access path?
-
-- BUG: Recursion in Either union, node.js I think
-- BUG: InterfaceExtendsWithRedefinition's `call()` field does not get renamed
-	=> This is because getFreePropertyName for type and symbol do not account for `extends`
-
 
 ? `tc.getBaseTypeOfLiteralType()` for literals?
 ? `tc.getBaseConstraintOfType(type)`
@@ -22,13 +18,14 @@
 
 - Fields
 	- Class fields
-		- constructor
 		- accessors
 		- readonly
 	- Class static fields
 	- Typedef static fields
 	- Enum static fields
 	- ValueModule fields
+
+? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
 
 - Missing type parameters in Map.hx
 - Review what's going on with @:native('__@iterator') is this correct?
@@ -40,6 +37,8 @@
 
 - Review `export declare` in @actions/core
 - node_modules/@actions -> atactions
+
+- Three.hx could have type aliases, or not be generated since it's empty
 
 - getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
 
