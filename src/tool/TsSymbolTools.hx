@@ -26,10 +26,12 @@ class TsSymbolTools {
 
 	/**
 		Return `true` if symbol is a normal field: functions and variables, but excluding `Prototype`
+		It also skips ES5Symbol fields like `[Symbol.iterator]`
 	**/
-	public static function isField(symbol: Symbol) {
+	public static function isAccessibleField(symbol: Symbol) {
+		var isKnownSymbol = std.StringTools.startsWith(symbol.escapedName, '__@'); // see typescript's utilities.ts
 		final FieldSymbolFlags = SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.ClassMember;
-		return symbol.flags & FieldSymbolFlags != 0 && symbol.flags & SymbolFlags.Prototype == 0;
+		return !isKnownSymbol && symbol.flags & FieldSymbolFlags != 0 && symbol.flags & SymbolFlags.Prototype == 0;
 	}
 	
 	/**

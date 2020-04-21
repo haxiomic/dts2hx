@@ -358,7 +358,7 @@ class ConverterContext {
 					tc.getSignaturesOfType(declaredType, Call),
 					tc.getSignaturesOfType(declaredType, Construct),
 					indexDeclarations.map(d -> cast tc.getSignatureFromDeclaration(d)),
-					tc.getPropertiesOfType(declaredType).filter(s -> s.isField())
+					tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
 				);
 			} else {
 				generateFields(
@@ -488,12 +488,12 @@ class ConverterContext {
 		// for (export in symbol.getExports()) Log.log('\t<magenta,b>Export</>', export);
 
 		// add static fields, including module-member fields
-		for (export in symbol.getExports().filter(s -> s.isField() || s.flags & SymbolFlags.Alias != 0)) {
+		for (export in symbol.getExports().filter(s -> s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)) {
 			var nativeFieldName = export.name;
 
 			if (export.flags & SymbolFlags.Alias != 0) {
 				export = tc.getAliasedSymbol(export);
-				if (!export.isField()) continue;
+				if (!export.isAccessibleField()) continue;
 			}
 
 			// Log.log('\t<magenta,b>Export</>', export);
@@ -810,7 +810,7 @@ class ConverterContext {
 				```
 			**/
 
-			var typeFields = tc.getPropertiesOfType(objectType).filter(s -> s.isField());
+			var typeFields = tc.getPropertiesOfType(objectType).filter(s -> s.isAccessibleField());
 			var callSignatures = objectType.getCallSignatures();
 			var constructSignatures = objectType.getConstructSignatures();
 
