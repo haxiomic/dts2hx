@@ -272,7 +272,7 @@ class TsSymbolTools {
 	}
 
 	static public function getClassMembers(symbol: Symbol): Array<Symbol> {
-		return getMembers(symbol).filter(s -> s.flags & SymbolFlags.ClassMember != 0);
+		return getMembers(symbol).filter(s -> isAccessibleField(s) && s.flags & SymbolFlags.ClassMember != 0);
 	}
 
 	static public function getHeritageClauses(symbol: Symbol): Array<HeritageClause> {

@@ -488,6 +488,7 @@ class ConverterContext {
 		// for (export in symbol.getExports()) Log.log('\t<magenta,b>Export</>', export);
 
 		// add static fields, including module-member fields
+		// symbol aliases are followed (like default) and the alias name is used as the field name
 		for (export in symbol.getExports().filter(s -> s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)) {
 			var nativeFieldName = export.name;
 
