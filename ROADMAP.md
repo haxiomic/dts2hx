@@ -1,7 +1,49 @@
+- Maybe we change how class + interface symbols get merged, this way, when a class is generated from the special field, it merges nicely with subsequent / prior HaxeModules
+	- We don't have to worry about class-class merges because `var X; class X` is still an error
+
 - Missing constructors from typedarray classes?
 	- Why are all html and lib types interfaces?
+	- Maybe recognize the pattern, happens in a few places in lib.es5
 	-> Because they're weird interfaces with *construct* signatures
 		-> maaaybe recognise and make a class? Or an abstract?
+	=> This isn't a massive issue because we will replace these types with stdlib types soon anyway
+
+	```typescript
+	interface Example {
+		readonly byteLength: number;
+		slice(begin: number, end?: number): Example;
+	}
+	declare var Example: {
+		new(byteLength: number): Example;
+		field: number;
+	};
+	```
+	-> If we have a field who's type has construct signatures, we could elevate this to a class
+	Now we have
+	```typescript
+	interface Example {
+		readonly byteLength: Float;
+		slice(begin: Float, end?: Float): Example;
+	}
+	declare class Example {
+		constructor(byteLength: Float);
+		static field: Float;
+	}
+	```
+	-> Then we have a merged interface-class and things work as normal
+	-> We need to prevent the global field generation however
+	... How to do this? As a transformer?
+
+
+- Handle Interface `prototype` fields
+
+- Playcanvas, why 
+	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
+	When the type is a class?
+
+- Call signatures on anons
+	- Use a generic build macro that wraps the type until haxe has @:newCall
+	- Open feature request https://github.com/HaxeFoundation/haxe/issues/9335
 
 - Handle callable classes
 	symbol.flags & SymbolFlags.Function != 0
@@ -44,9 +86,6 @@
 - getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
 
 - Review class-expression syntax `let x = class ...`
-
-- Callable classes with @:selfCall
-	https://haxe.org/manual/target-javascript-external-libraries.html
 
 - Enums:
 	- Generate method to get keys

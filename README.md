@@ -35,7 +35,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
         - [x] Generate externs for built-in types that aren't in the haxe standard library yet
         - [x] Type-node references
-    - [ ] Basic conversion of fundamental types **← currently working on this**
+    - [ ] Basic conversion of fundamental types
         - [x] Enums
         - [x] Primitives
         - [x] Type references
@@ -50,13 +50,13 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Overloads
         - [x] ESSymbol fields
     - [x] Handle `export default` better
-    - [ ] Global fields
+    - [x] Global fields
+    - [ ] Detect constructable fields, promote to classes and merge with existing interfaces **← currently working on this**
     - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
     - [ ] Classes and interfaces
         - [x] Constructors
         - [ ] Index signatures (both class and interfaces)
         - [ ] Extends & implements
-    - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
     - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
@@ -69,6 +69,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [ ] Advanced type conversions
     - [ ] Abstracts to support unnamed enums and improve type unions
     - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
+    - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
+        - We can use generic build macro to generate an abstract until haxe has [`@:newCall`](https://github.com/HaxeFoundation/haxe/issues/9335) feature
     - [ ] Maybe function argument unions could be improved by overloads?
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
