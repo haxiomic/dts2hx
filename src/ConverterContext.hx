@@ -180,22 +180,11 @@ class ConverterContext {
 			
 			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 				for (access in symbolAccessMap.getAccess(symbol)) {
-					/*
-					var fullSymbolChain = access.getFullSymbolChain();
-					var parent = fullSymbolChain[fullSymbolChain.length - 2];
-					if (parent != null) {
-						var hxModule = getHaxeModuleFromDeclarationSymbol(parent, access);
-						var moduleField = fieldFromSymbol(symbol, access, null);
-						if (moduleField.access != null) {
-							moduleField.access.push(AStatic);
-						} else {
-							moduleField.access = [AStatic];
-						}
-						hxModule.fields.push(moduleField);
-					} else {
-						Log.warn('Module field without a parent', symbol);
+					switch access {
+						case Global([_]):
+							Log.warn('Unhandled global field', symbol);
+						default:
 					}
-					*/
 				}
 				handled = true;
 			}
