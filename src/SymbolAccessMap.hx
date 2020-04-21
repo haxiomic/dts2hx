@@ -72,7 +72,7 @@ class SymbolAccessMap {
 		var shouldAdd = switch access {
 			case AmbientModule(_), ExportModule(_):
 				// only worth adding an ambient module if there isn't already an module path
-				accessArray.filter(a -> a.match(AmbientModule(_, _) | ExportModule(_, _, _))).length == 0;
+				accessArray.filter(a -> a.match(AmbientModule(_) | ExportModule(_))).length == 0;
 			case Global(_):
 				// we can have a global and modular access, but we don't want more than global access
 				accessArray.filter(a -> a.match(Global(_))).length == 0;
@@ -87,7 +87,7 @@ class SymbolAccessMap {
 	}
 
 	function symbolAccessAppendSymbol(access: SymbolAccess, symbol: Symbol): SymbolAccess {
-		var symbolChain = access.getSymbolChain();
+		var symbolChain = access.extractSymbolChain();
 		// check if an existing symbol aliases to this symbol
 		for (i in 0...symbolChain.length) {
 			var existingSymbol = symbolChain[i];
@@ -95,8 +95,8 @@ class SymbolAccessMap {
 			if (existingSymbol.flags & SymbolFlags.Alias != 0 && tc.getAliasedSymbol(existingSymbol) == symbol) {
 				// return with trimmed symbol chain
 				return switch access {
-					case AmbientModule(m, s): AmbientModule(m, s.slice(0, i + 1));
-					case ExportModule(m, f, s): ExportModule(m, f, s.slice(0, i + 1));
+					case AmbientModule(m, r, s): AmbientModule(m, r, s.slice(0, i + 1));
+					case ExportModule(m, r, s): ExportModule(m, r, s.slice(0, i + 1));
 					case Global(s): Global(s.slice(0, i + 1));
 					case Inaccessible: Inaccessible;
 				}
@@ -129,13 +129,13 @@ class SymbolAccessMap {
 				case AmbientModule(_):
 					// replace ambient module with a new one (we assume nested ambient modules is not possible)
 					log.warn('Nested ambient modules should be impossible. This might indicate an internal error', symbol);
-					AmbientModule(symbol.name, []);
+					AmbientModule(symbol.name, symbol, []);
 				case Global(_):
 					// change from global access to ambient module access
-					AmbientModule(symbol.name, []);
+					AmbientModule(symbol.name, symbol, []);
 				case Inaccessible:
 					// make accessible via the ambient module
-					AmbientModule(symbol.name, []);
+					AmbientModule(symbol.name, symbol, []);
 			}
 		} else {
 			// handle special symbols
@@ -156,8 +156,8 @@ class SymbolAccessMap {
 			} else {
 				// append to symbol chain
 				return switch access {
-					case AmbientModule(m, s): AmbientModule(m, s.concat([symbol]));
-					case ExportModule(m, f, s): ExportModule(m, f, s.concat([symbol]));
+					case AmbientModule(m, r, s): AmbientModule(m, r, s.concat([symbol]));
+					case ExportModule(m, r, s): ExportModule(m, r, s.concat([symbol]));
 					case Global(s): Global(s.concat([symbol]));
 					case Inaccessible: Inaccessible;
 				}

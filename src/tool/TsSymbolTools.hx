@@ -28,9 +28,7 @@ class TsSymbolTools {
 		Return `true` if symbol is a normal field: functions and variables, but excluding `Prototype`
 	**/
 	public static function isField(symbol: Symbol) {
-		final FieldSymbolFlags =
-			SymbolFlags.Property | SymbolFlags.Variable | 
-			SymbolFlags.Method | SymbolFlags.Function;
+		final FieldSymbolFlags = SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.ClassMember;
 		return symbol.flags & FieldSymbolFlags != 0 && symbol.flags & SymbolFlags.Prototype == 0;
 	}
 	
@@ -156,13 +154,13 @@ class TsSymbolTools {
 
 		It **does not** walk into types, or explore type information. For example, it will not walk class fields or the type in this declaration `const X: Type;`
 
-		If a symbol as multiple matching flags, multiple callbacks will fire with the same symbol
+		If a symbol has multiple matching flags, multiple callbacks will fire with the same symbol
 
 		The input symbol will be walked
 
-		`accessChain` represents that path to traverse to reach the symbol and it includes the symbol itself.
+		`accessChain` represents that path to traversed to reach the symbol and it includes the symbol itself as well as aliases (without resolving)
 
-		For example, consder the symbol `EventEmitter` in node.js
+		For example, consider the symbol `EventEmitter` in node.js
 
 		```typescript
 		declare module "events" {
@@ -178,7 +176,7 @@ class TsSymbolTools {
 
 		While the symbol's parent path is [Module("events"), internal, EventEmitter], the accessChain is [Module("events"), EventEmitter]
 	**/
-	public static function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, ?log: Log, depth: Int = 0) {
+	public static function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, log: Log, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
 		accessChain = accessChain != null ? accessChain : [symbol];
 
 		// prevent cycles by terminating if the current symbol appears in the parent access chain
@@ -202,8 +200,8 @@ class TsSymbolTools {
 
 			if (resolvedSymbol != symbol) {
 				// accessChain remains the same, we access the `export = symbol through the module symbol
-				// log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlagsInfo()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlagsInfo()}</b></>', symbol);
-				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, accessChain, log, depth);
+				log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlags()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlags()}</b></>', symbol);
+				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, log, accessChain, depth);
 				return;
 			}
 		}
@@ -214,7 +212,7 @@ class TsSymbolTools {
 			handled = true;
 			onSymbol(symbol, accessChain);
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			walkDeclarationSymbols(aliasedSymbol, tc, onSymbol, accessChain.concat([aliasedSymbol]), log, depth + 1);
+			walkDeclarationSymbols(aliasedSymbol, tc, onSymbol, log, accessChain.concat([aliasedSymbol]), depth + 1);
 		}
 
 		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.Property) != 0) {
@@ -231,12 +229,12 @@ class TsSymbolTools {
 
 			var moduleMembers: Array<Symbol> = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.ModuleMember != 0);
 			for (moduleExport in moduleMembers) {
-				walkDeclarationSymbols(moduleExport, tc, onSymbol, accessChain.concat([moduleExport]), log, depth + 1);
+				walkDeclarationSymbols(moduleExport, tc, onSymbol, log, accessChain.concat([moduleExport]), depth + 1);
 			}
 		}
 
 		if (!handled) {
-			if (log != null) log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
+			log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
 		}
 	}
 

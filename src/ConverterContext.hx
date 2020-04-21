@@ -1,4 +1,4 @@
-import ds.OnlyOnceSymbolQueue.OnceOnlySymbolQueue;
+import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import tool.TsSyntaxTools;
@@ -158,7 +158,7 @@ class ConverterContext {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, _) -> {
 					declarationSymbolQueue.tryEnqueue(symbol);
-				});
+				}, log);
 			}
 		});
 
@@ -175,17 +175,29 @@ class ConverterContext {
 			// symbol has type-declaration
 			if (symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0) {
 				for (access in symbolAccessMap.getAccess(symbol)) {
-					generateHaxeModuleFromDeclarationSymbol(symbol, access);
+					getHaxeModuleFromDeclarationSymbol(symbol, access);
 				}
 				handled = true;
 			}
 			
 			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
 				for (access in symbolAccessMap.getAccess(symbol)) {
-					var symbolChain = access.getSymbolChain();
-					var parent = symbolChain[symbolChain.length - 2];
-					// log.log('<yellow>${access.toString()}</>', symbol);
-					// @! todo: detect global
+					/*
+					var fullSymbolChain = access.getFullSymbolChain();
+					var parent = fullSymbolChain[fullSymbolChain.length - 2];
+					if (parent != null) {
+						var hxModule = getHaxeModuleFromDeclarationSymbol(parent, access);
+						var moduleField = fieldFromSymbol(symbol, access, null);
+						if (moduleField.access != null) {
+							moduleField.access.push(AStatic);
+						} else {
+							moduleField.access = [AStatic];
+						}
+						hxModule.fields.push(moduleField);
+					} else {
+						log.warn('Module field without a parent', symbol);
+					}
+					*/
 				}
 				handled = true;
 			}
@@ -208,7 +220,7 @@ class ConverterContext {
 		}
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
 		var noPack = if (shortenTypePaths) {
-			var accessSymbolChain = accessContext.getSymbolChain();
+		var accessSymbolChain = accessContext.extractSymbolChain();
 			var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
 			if (lastAccessSymbol != null) {
 				var contextTypePath = haxeTypePathMap.getTypePath(lastAccessSymbol, accessContext);
@@ -224,7 +236,8 @@ class ConverterContext {
 	/**
 		Symbol must have flags Type | ValueModule
 	**/
-	function generateHaxeModuleFromDeclarationSymbol(symbol: Symbol, access: SymbolAccess) {
+	function getHaxeModuleFromDeclarationSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
+		// log.log('getHaxeModuleFromDeclarationSymbol() <yellow>${access.toString()}</>', symbol);
 		var typePath = haxeTypePathMap.getTypePath(symbol, access);
 		var moduleKey = getHaxeModuleKey(typePath.pack, typePath.name);
 		var pos = TsSymbolTools.getPosition(symbol);
@@ -265,7 +278,6 @@ class ConverterContext {
 				meta.push({name: ':interface', pos: pos});
 				log.warn('Symbol is both class and an interface, this combination is not fully supported', symbol);
 			}
-
 
 			// class members
 			var declaredType: InterfaceType = cast tc.getDeclaredTypeOfSymbol(symbol);
@@ -468,7 +480,7 @@ class ConverterContext {
 				tsSymbolAccess: access,
 			}
 		} else {
-			log.error('generateHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
+			log.error('getHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
 			{
 				pack: typePath.pack,
 				name: typePath.name,
@@ -668,7 +680,7 @@ class ConverterContext {
 	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		if (_currentTypeStack.indexOf(type) != -1) {
-			log.warn('Breaking recursive type conversion with :Any', type);
+			log.log('Breaking recursive type conversion with :Any', type);
 			return macro :Any;
 		}
 

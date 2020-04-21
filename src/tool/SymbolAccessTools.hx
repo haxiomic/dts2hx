@@ -1,22 +1,39 @@
 package tool;
 
+import typescript.ts.Symbol;
 import typescript.ts.InternalSymbolName;
 import haxe.macro.Expr.Position;
 import haxe.macro.Expr.MetadataEntry;
+import haxe.ds.ReadOnlyArray;
+
 using tool.StringTools;
 using tool.HaxeTools;
 
 class SymbolAccessTools {
 	
-	static public function getSymbolChain(access: SymbolAccess) {
+	/**
+		Returns the symbol-chain to access this symbol _including_ the root module symbol (if there is one)
+	**/
+	static public function getFullSymbolChain(access: SymbolAccess): ReadOnlyArray<Symbol> {
 		return switch access {
-			case AmbientModule(_, symbolChain), ExportModule(_, _, symbolChain), Global(symbolChain): symbolChain;
+			case AmbientModule(_, root, symbolChain), ExportModule(_, root, symbolChain): [root].concat(cast symbolChain);
+			case Global(symbolChain): symbolChain;
+			case Inaccessible: [];
+		}
+	}
+	
+	/**
+		Extract symbolChain value from enum (does not include module symbol)
+	**/
+	static public function extractSymbolChain(access: SymbolAccess) {
+		return switch access {
+			case AmbientModule(_, _, symbolChain), ExportModule(_, _, symbolChain), Global(symbolChain): symbolChain;
 			case Inaccessible: [];
 		}
 	}
 
 	static public function getIdentifierChain(access: SymbolAccess): Array<String> {
-		return getSymbolChain(access).filter(s -> switch s.escapedName {
+		return extractSymbolChain(access).filter(s -> switch s.escapedName {
 			case InternalSymbolName.ExportEquals: false;
 			default: true;
 		}).map(s -> s.name);

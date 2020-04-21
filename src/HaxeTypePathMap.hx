@@ -133,7 +133,7 @@ class HaxeTypePathMap {
 						}
 					}
 				}
-			});
+			}, log);
 		}
 		
 		// resolve module name overlaps, for example "url", Url and URL all map to haxe module url.hx
