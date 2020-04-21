@@ -716,6 +716,8 @@ class ConverterContext {
 			complexTypeFromTypeParameter(cast type, accessContext, enclosingDeclaration);
 		} else if (type.flags & (TypeFlags.Object) != 0) {
 			complexTypeFromObjectType(cast type, accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
+			macro :js.lib.Symbol;
 		} else {
 			// @! todo:
 			// Enum            = 1 << 5,
