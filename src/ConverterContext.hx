@@ -1042,7 +1042,7 @@ class ConverterContext {
 	function fieldFromSymbol(nativeFieldName: String, symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
-		var safeName = symbol.name.toSafeIdent();
+		var safeName = nativeFieldName.toSafeIdent();
 		var nameChanged = safeName != nativeFieldName;
 
 		if (nameChanged) {
