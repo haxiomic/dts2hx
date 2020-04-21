@@ -300,17 +300,31 @@ class HaxeTypePathMap {
 
 			References to the class `internal` should be exposed as references to `"lib/fs"`, and `internal` should not appear in the generated haxe
 		**/
-		var identifierChain = access.getIdentifierChain();
 		var typeIdentifier: String = switch access {
-			case AmbientModule(path, _), ExportModule(path, _):
-				var lastIdentifier = splitModulePath(path).concat(identifierChain).pop();
-				(lastIdentifier != null ? lastIdentifier : symbol.name);
-			case Global(_):
-				var lastIdentifier = identifierChain.pop();
-				(lastIdentifier != null ? lastIdentifier : symbol.name);
+			case AmbientModule(path, _, symbolChain), ExportModule(path, _, symbolChain):
+				var lastSymbol = symbolChain[symbolChain.length - 1];
+				if (lastSymbol != null) {
+					if (lastSymbol.escapedName.isInternalSymbolName()) {
+						symbol.name;
+					} else {
+						lastSymbol.name;
+					}
+				} else {
+					splitModulePath(path).pop();
+				}
+			case Global(symbolChain):
+				var lastSymbol = symbolChain[symbolChain.length - 1];
+				if (lastSymbol != null) {
+					if (lastSymbol.escapedName.isInternalSymbolName()) {
+						symbol.name;
+					} else {
+						lastSymbol.name;
+					}
+				} else {
+					symbol.name;
+				}
 			case Inaccessible:
 				symbol.name;
-
 		}
 		var name = typeIdentifier.toSafeTypeName();
 

@@ -296,11 +296,9 @@ class TsSymbolTools {
 	}
 	
 	static public function isInternalSymbolName(name: String) {
-		var internalSymbolName: DynamicAccess<String> = js.Syntax.code('require("typescript").InternalSymbolName');
-		for (_ => internalName in (cast internalSymbolName)) {
-			if (name == internalName) return true;
-		}
-		return false;
+		var internalSymbolName = js.Syntax.code('require("typescript").InternalSymbolName');
+		var internalSymbolNames = js.lib.Object.values(internalSymbolName);
+		return internalSymbolNames.indexOf(name) != -1;
 	}
 
 	static inline function isPowerOfTwo(x: Int) {
