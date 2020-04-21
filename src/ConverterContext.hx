@@ -1,3 +1,6 @@
+import typescript.ts.Declaration;
+import typescript.ts.Modifier;
+import typescript.ts.ModifiersArray;
 import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
@@ -495,12 +498,7 @@ class ConverterContext {
 
 			// Log.log('\t<magenta,b>Export</>', export);
 			var field = fieldFromSymbol(nativeFieldName, export, access, null);
-			var access = if (field.access != null) {
-				field.access;
-			} else {
-				field.access = [];
-			}
-			access.push(AStatic);
+			field.addAccess(AStatic);
 			hxModule.fields.push(field);
 		}
 
@@ -1064,6 +1062,14 @@ class ConverterContext {
 			Log.error('fieldFromSymbol(): ' + message, symbol);
 			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
 		}
+
+		var baseDeclaration: Null<Declaration> = if (symbol.valueDeclaration != null) {
+			symbol.valueDeclaration;
+		} else {
+			Log.error('Missing valueDeclaration for field symbol', symbol);
+			debug();
+			null;
+		}
 		
 		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
 			// Prototype symbol should be filtered out of properties before converting to hx fields
@@ -1072,31 +1078,28 @@ class ConverterContext {
 			FVar(macro :Any, null);
 
 		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
-			if (symbol.valueDeclaration == null) {
-				Log.error('Missing valueDeclaration for Property | Variable symbol', symbol);
-				debug();
-			} else {
-				// variable field
-				switch symbol.valueDeclaration.kind {
-					case VariableDeclaration, PropertySignature, PropertyDeclaration:
-					default: 
-						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
-				}
+			// variable field
+			if (baseDeclaration != null) switch baseDeclaration.kind {
+				case VariableDeclaration, PropertySignature, PropertyDeclaration:
+				default: 
+					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
-			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
+			var type = baseDeclaration == null ? tc.getDeclaredTypeOfSymbol(symbol) : tc.getTypeAtLocation(baseDeclaration);
 			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 			FVar(hxType, null);
 
 		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
-			switch symbol.valueDeclaration.kind {
+			if (baseDeclaration != null) switch baseDeclaration.kind {
 				case MethodSignature, MethodDeclaration, FunctionDeclaration:
 				default: 
-					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
+					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
+
 			// function field
-			var baseDeclaration = symbol.valueDeclaration;
-			var overloadDeclarations = symbol.declarations.filter(d -> d != baseDeclaration && d.kind == baseDeclaration.kind);
+			var overloadDeclarations = if (baseDeclaration != null) {
+				symbol.declarations.filter(d -> d != baseDeclaration && d.kind == baseDeclaration.kind);
+			} else [];
 
 			for (overloadDeclaration in overloadDeclarations) {
 				var signature = tc.getSignatureFromDeclaration(cast overloadDeclaration);
@@ -1146,6 +1149,7 @@ class ConverterContext {
 			pos: pos,
 			kind: kind,
 			doc: docParts.join('\n\n'),
+			access: (baseDeclaration != null && baseDeclaration.modifiers != null) ? accessFromModifiers(baseDeclaration.modifiers, symbol) : [],
 		};
 	}
 
@@ -1225,6 +1229,36 @@ class ConverterContext {
 			name: typeParameter.symbol.name.toSafeTypeName(),
 			constraints: hxConstraint != null ? [hxConstraint] : null,
 		}
+	}
+
+	function accessFromModifiers(modifiers: ModifiersArray, ?logSymbol: Symbol): Array<Access> {
+		var access = new Array<Access>();
+		for (modifier in (cast modifiers: Array<Modifier>)) {
+			switch modifier.kind {
+				case SyntaxKind.AbstractKeyword:
+					Log.warn('`abstract` modifier not handled', logSymbol);
+				case SyntaxKind.AsyncKeyword:
+					Log.warn('`async` modifier not handled', logSymbol);
+				case SyntaxKind.ConstKeyword:
+					access.push(AFinal);
+				case SyntaxKind.DeclareKeyword:
+				case SyntaxKind.DefaultKeyword:
+				case SyntaxKind.ExportKeyword:
+				case SyntaxKind.PublicKeyword:
+					access.push(APublic);
+				case SyntaxKind.PrivateKeyword:
+					access.push(APrivate);
+				case SyntaxKind.ProtectedKeyword:
+					access.push(APrivate);
+				case SyntaxKind.ReadonlyKeyword:
+					access.push(AFinal);
+				case SyntaxKind.StaticKeyword:
+					access.push(AStatic);
+				default:
+					Log.warn('Unhandled modifier kind <b>${TsSyntaxTools.getSyntaxKindName(modifier.kind)}</b>');
+			}
+		}
+		return access;
 	}
 
 	/**

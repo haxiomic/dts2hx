@@ -200,7 +200,7 @@ class TsSymbolTools {
 
 			if (resolvedSymbol != symbol) {
 				// accessChain remains the same, we access the `export = symbol through the module symbol
-				Log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlags()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlags()}</b></>', symbol);
+				// Log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlags()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlags()}</b></>', symbol);
 				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, accessChain, depth);
 				return;
 			}

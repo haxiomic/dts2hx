@@ -13,6 +13,20 @@ class HaxeTools {
 	}
 
 	/**
+		Adds an Access modifier to a field, avoiding duplicates
+	**/
+	static public function addAccess(field: Field, access: Access) {
+		var accessArray = if (field.access != null) {
+			field.access;
+		} else {
+			field.access = [];
+		}
+		if (accessArray.indexOf(access) == -1) {
+			accessArray.push(access);
+		}
+	}
+
+	/**
 		Convert a string to something safe to use as an identifier in haxe (a-z)
 		`hello@world.js` becomes `helloAtWorld_js`
 	**/
