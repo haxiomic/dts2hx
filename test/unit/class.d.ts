@@ -21,6 +21,8 @@ export class ClassBase<T> {
     get accessor(): boolean;
     set accessor(value: boolean);
 
+    [Symbol.iterator](): IterableIterator<[string, number]>;
+
     static staticMethod<T>(a: number): T;
     static staticField: number;
 }

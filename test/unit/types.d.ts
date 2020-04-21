@@ -39,7 +39,6 @@ export namespace Types {
     type UndefinedNumberUnion = number | undefined; // translates to Null<Float>
     type Intersection = number & string;
     type NullOrUndefined = null | undefined;
-
     
     /**
      * haxe doesn't support function-types with type parameters

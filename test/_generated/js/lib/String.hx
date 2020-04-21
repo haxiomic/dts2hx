@@ -43,8 +43,7 @@ extern interface String {
 		
 		Matches a string an object that supports being matched against, and returns an array containing the results of that search.
 	**/
-	@:overload(function(matcher:{ @:native("__@match")
-	function __AtMatch(string:String):Null<RegExpMatchArray>; }):Null<RegExpMatchArray> { })
+	@:overload(function(matcher:{ }):Null<RegExpMatchArray> { })
 	function match(regexp:haxe.extern.EitherType<String, RegExp>):Null<RegExpMatchArray>;
 	/**
 		Replaces text in a string, using a regular expression or search string.
@@ -62,10 +61,8 @@ extern interface String {
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
 	@:overload(function(searchValue:haxe.extern.EitherType<String, RegExp>, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
-	@:overload(function(searchValue:{ @:native("__@replace")
-	function __AtReplace(string:String, replaceValue:String):String; }, replaceValue:String):String { })
-	@:overload(function(searchValue:{ @:native("__@replace")
-	function __AtReplace(string:String, replacer:(substring:String, args:std.Array<Any>) -> String):String; }, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
+	@:overload(function(searchValue:{ }, replaceValue:String):String { })
+	@:overload(function(searchValue:{ }, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
 	function replace(searchValue:haxe.extern.EitherType<String, RegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
@@ -74,8 +71,7 @@ extern interface String {
 		
 		Finds the first substring match in a regular expression search.
 	**/
-	@:overload(function(searcher:{ @:native("__@search")
-	function __AtSearch(string:String):Float; }):Float { })
+	@:overload(function(searcher:{ }):Float { })
 	function search(regexp:haxe.extern.EitherType<String, RegExp>):Float;
 	/**
 		Returns a section of a string.
@@ -88,8 +84,7 @@ extern interface String {
 		
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
-	@:overload(function(splitter:{ @:native("__@split")
-	function __AtSplit(string:String, ?limit:Float):std.Array<String>; }, ?limit:Float):std.Array<String> { })
+	@:overload(function(splitter:{ }, ?limit:Float):std.Array<String> { })
 	function split(separator:haxe.extern.EitherType<String, RegExp>, ?limit:Float):std.Array<String>;
 	/**
 		Returns the substring at the specified location within a String object.
@@ -226,9 +221,4 @@ extern interface String {
 		Returns a <sup> HTML element
 	**/
 	function sup():String;
-	/**
-		Iterator
-	**/
-	@:native("__@iterator")
-	function __AtIterator():IterableIterator<String>;
 }

@@ -49,36 +49,4 @@ extern interface RegExp {
 		expression. Default is false. Read-only.
 	**/
 	final unicode : Bool;
-	/**
-		Matches a string with this regular expression, and returns an array containing the results of
-		that search.
-	**/
-	@:native("__@match")
-	function __AtMatch(string:String):Null<RegExpMatchArray>;
-	/**
-		Replaces text in a string, using this regular expression.
-		
-		
-		
-		Replaces text in a string, using this regular expression.
-	**/
-	@:native("__@replace")
-	@:overload(function(string:String, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
-	function __AtReplace(string:String, replaceValue:String):String;
-	/**
-		Finds the position beginning first substring match in a regular expression search
-		using this regular expression.
-	**/
-	@:native("__@search")
-	function __AtSearch(string:String):Float;
-	/**
-		Returns an array of substrings that were delimited by strings in the original input that
-		match against this regular expression.
-		
-		If the regular expression contains capturing parentheses, then each time this
-		regular expression matches, the results (including any undefined results) of the
-		capturing parentheses are spliced.
-	**/
-	@:native("__@split")
-	function __AtSplit(string:String, ?limit:Float):std.Array<String>;
 }

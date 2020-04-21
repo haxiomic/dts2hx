@@ -8,11 +8,6 @@ extern interface Map<K, V> {
 	function set(key:K, value:V):Map<K, V>;
 	final size : Float;
 	/**
-		Returns an iterable of entries in the map.
-	**/
-	@:native("__@iterator")
-	function __AtIterator():IterableIterator<js.lib.Tuple2<Any, K, V>>;
-	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
 	function entries():IterableIterator<js.lib.Tuple2<Any, K, V>>;
@@ -24,6 +19,4 @@ extern interface Map<K, V> {
 		Returns an iterable of values in the map
 	**/
 	function values():IterableIterator<V>;
-	@:native("__@toStringTag")
-	final __AtToStringTag : String;
 }

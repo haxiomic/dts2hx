@@ -94,11 +94,6 @@ extern interface ReadonlyArray<T> {
 	**/
 	function findIndex(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Any, ?thisArg:Any):Float;
 	/**
-		Iterator of values in the array.
-	**/
-	@:native("__@iterator")
-	function __AtIterator():IterableIterator<T>;
-	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
 	function entries():IterableIterator<js.lib.Tuple2<Any, Float, T>>;
