@@ -63,7 +63,7 @@ extern interface RegExp {
 		Replaces text in a string, using this regular expression.
 	**/
 	@:native("__@replace")
-	@:overload(function(string:String, replacer:(substring:String, args:Array<Any>) -> String):String { })
+	@:overload(function(string:String, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
 	function __AtReplace(string:String, replaceValue:String):String;
 	/**
 		Finds the position beginning first substring match in a regular expression search
@@ -80,5 +80,5 @@ extern interface RegExp {
 		capturing parentheses are spliced.
 	**/
 	@:native("__@split")
-	function __AtSplit(string:String, ?limit:Float):Array<String>;
+	function __AtSplit(string:String, ?limit:Float):std.Array<String>;
 }

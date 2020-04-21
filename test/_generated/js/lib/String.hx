@@ -18,7 +18,7 @@ extern interface String {
 	/**
 		Returns a string that contains the concatenation of two or more strings.
 	**/
-	function concat(strings:Array<String>):String;
+	function concat(strings:std.Array<String>):String;
 	/**
 		Returns the position of the first occurrence of a substring.
 	**/
@@ -34,7 +34,7 @@ extern interface String {
 		
 		Determines whether two strings are equivalent in the current or specified locale.
 	**/
-	@:overload(function(that:String, ?locales:haxe.extern.EitherType<String, Array<String>>, ?options:js.lib.intl.CollatorOptions):Float { })
+	@:overload(function(that:String, ?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.CollatorOptions):Float { })
 	function localeCompare(that:String):Float;
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.
@@ -61,11 +61,11 @@ extern interface String {
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:haxe.extern.EitherType<String, RegExp>, replacer:(substring:String, args:Array<Any>) -> String):String { })
+	@:overload(function(searchValue:haxe.extern.EitherType<String, RegExp>, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
 	@:overload(function(searchValue:{ @:native("__@replace")
 	function __AtReplace(string:String, replaceValue:String):String; }, replaceValue:String):String { })
 	@:overload(function(searchValue:{ @:native("__@replace")
-	function __AtReplace(string:String, replacer:(substring:String, args:Array<Any>) -> String):String; }, replacer:(substring:String, args:Array<Any>) -> String):String { })
+	function __AtReplace(string:String, replacer:(substring:String, args:std.Array<Any>) -> String):String; }, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
 	function replace(searchValue:haxe.extern.EitherType<String, RegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
@@ -89,8 +89,8 @@ extern interface String {
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
 	@:overload(function(splitter:{ @:native("__@split")
-	function __AtSplit(string:String, ?limit:Float):Array<String>; }, ?limit:Float):Array<String> { })
-	function split(separator:haxe.extern.EitherType<String, RegExp>, ?limit:Float):Array<String>;
+	function __AtSplit(string:String, ?limit:Float):std.Array<String>; }, ?limit:Float):std.Array<String> { })
+	function split(separator:haxe.extern.EitherType<String, RegExp>, ?limit:Float):std.Array<String>;
 	/**
 		Returns the substring at the specified location within a String object.
 	**/
@@ -102,7 +102,7 @@ extern interface String {
 	/**
 		Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.
 	**/
-	function toLocaleLowerCase(?locales:haxe.extern.EitherType<String, Array<String>>):String;
+	function toLocaleLowerCase(?locales:haxe.extern.EitherType<String, std.Array<String>>):String;
 	/**
 		Converts all the alphabetic characters in a string to uppercase.
 	**/
@@ -110,7 +110,7 @@ extern interface String {
 	/**
 		Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.
 	**/
-	function toLocaleUpperCase(?locales:haxe.extern.EitherType<String, Array<String>>):String;
+	function toLocaleUpperCase(?locales:haxe.extern.EitherType<String, std.Array<String>>):String;
 	/**
 		Removes the leading and trailing white space and line terminator characters from a string.
 	**/

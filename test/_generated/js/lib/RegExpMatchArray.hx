@@ -1,5 +1,5 @@
 package js.lib;
-extern interface RegExpMatchArray extends Array<String> {
+extern interface RegExpMatchArray extends std.Array<String> {
 	@:optional
 	var index : Null<Float>;
 	@:optional

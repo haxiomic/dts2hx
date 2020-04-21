@@ -3,13 +3,13 @@ package unit.class_;
 	@:overload(function<T>(a:Float):ClassBase<T> { })
 	function new(overloadParam:T);
 	var intField : Float;
-	var arrayField : Array<String>;
+	var arrayField : std.Array<String>;
 	var thisClassType : ClassBase<T>;
 	var typeParamField : T;
 	final readonlyField : Float;
 	function __constructor(example:String):Void;
 	function method(a:Float, b:String):Any;
-	@:overload(function(a:String, b:Array<{ }>):Any { })
+	@:overload(function(a:String, b:std.Array<{ }>):Any { })
 	function methodOverloaded(a:Float):Any;
 	/**
 		@DTS2HX-ERROR: Unhandled symbol flags

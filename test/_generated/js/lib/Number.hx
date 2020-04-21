@@ -26,5 +26,5 @@ extern interface Number {
 	/**
 		Converts a number to a string by using the current or specified locale.
 	**/
-	function toLocaleString(?locales:haxe.extern.EitherType<String, Array<String>>, ?options:js.lib.intl.NumberFormatOptions):String;
+	function toLocaleString(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.NumberFormatOptions):String;
 }

@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef ArrayAlias = Array<String>;
+typedef ArrayAlias = std.Array<String>;

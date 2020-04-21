@@ -19,8 +19,8 @@ extern interface ReadonlyArray<T> {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:Array<haxe.extern.EitherType<T, ConcatArray<T>>>):Array<T> { })
-	function concat(items:Array<ConcatArray<T>>):Array<T>;
+	@:overload(function(items:std.Array<haxe.extern.EitherType<T, ConcatArray<T>>>):std.Array<T> { })
+	function concat(items:std.Array<ConcatArray<T>>):std.Array<T>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -28,7 +28,7 @@ extern interface ReadonlyArray<T> {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):Array<T>;
+	function slice(?start:Float, ?end:Float):std.Array<T>;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -52,7 +52,7 @@ extern interface ReadonlyArray<T> {
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> U, ?thisArg:Any):Array<U>;
+	function map<U>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> U, ?thisArg:Any):std.Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
@@ -60,8 +60,8 @@ extern interface ReadonlyArray<T> {
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Any):Array<T> { })
-	function filter<S:(T)>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Any):Array<S>;
+	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Any):std.Array<T> { })
+	function filter<S:(T)>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Any):std.Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		

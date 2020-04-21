@@ -24,10 +24,10 @@ package unit.types;
 	static function functionNumberStringVoidAlt(a:Float, b:String):Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a:Float, tparam:T):Void;
 	@:overload(function(a:String):Any { })
-	@:overload(function(a:Array<js.lib.Symbol>):Any { })
-	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
+	@:overload(function(a:std.Array<js.lib.Symbol>):Any { })
+	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Any;
-	static function typeParameterWithConstraint<T:(Array<Float>)>(x:T):Any;
+	static function typeParameterWithConstraint<T:(std.Array<Float>)>(x:T):Any;
 	static function firstTypeFunction(node:{ }):Bool;
 	static var implicitInt : Int;
 	static var implicitFloat : Float;
@@ -51,23 +51,23 @@ package unit.types;
 	static var booleanLiteral : Bool;
 	static var stringLiteral : String;
 	static var typeReferenceStringAlias : String;
-	static var typeReferenceArrayAlias : Array<String>;
-	static var typeReferenceObjectAlias : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : Array<String>; @:optional
+	static var typeReferenceArrayAlias : std.Array<String>;
+	static var typeReferenceObjectAlias : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
 	var fieldOptional : Null<Float>; @:native("macro")
-	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
+	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
 	function methodSignatureOptional():String; final readonlyField : String; };
 	static var typeReferenceAliasWithTypeParam : js.lib.Map<String, Float>;
-	static var object : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : Array<String>; @:optional
+	static var object : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
 	var fieldOptional : Null<Float>; @:native("macro")
-	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
+	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
 	function methodSignatureOptional():String; final readonlyField : String; };
 	static var objectSingleField : { var a : Any; };
-	static var arrayString : Array<String>;
-	static var arrayStringAlt : Array<String>;
+	static var arrayString : std.Array<String>;
+	static var arrayStringAlt : std.Array<String>;
 	static var stringObj : js.lib.String;
-	static var arrayNumberStringUnion : Array<haxe.extern.EitherType<String, Float>>;
+	static var arrayNumberStringUnion : std.Array<haxe.extern.EitherType<String, Float>>;
 	static var tupleNumberString : js.lib.Tuple2<Any, Float, String>;
 	static var stringNumberMap : { };
 	static var readonlyStringNumberMap : { };
@@ -80,7 +80,7 @@ package unit.types;
 	static var partial : Any;
 	static var arrowNumberStringVoid : (a:Float, noType:Any) -> Void;
 	static var arrowNumberTVoidTypeParam : (a:Float, tparam:Any) -> Void;
-	static var arrowParamWithRest : (a:Float, b:Float, rest:Array<Float>) -> Void;
+	static var arrowParamWithRest : (a:Float, b:Float, rest:std.Array<Float>) -> Void;
 	static var arrowParamObjectBindingPattern : (__0:{ var x : Any; var y : Any; }) -> Void;
 	static var constructorType : { };
 	static var nullableNumber : Null<Float>;
@@ -94,16 +94,16 @@ package unit.types;
 	static var intersectionWithAny : Any;
 	static var intersectionWithArray : Any;
 	static var typeQueryImplicitStr : String;
-	static var typeQueryObject : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : Array<String>; @:optional
+	static var typeQueryObject : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
 	var fieldOptional : Null<Float>; @:native("macro")
-	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
+	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
 	function methodSignatureOptional():String; final readonlyField : String; };
 	static var typeQueryNoType : Any;
 	static var typeQueryFunction : (x:Any, y:Any) -> Any;
 	static var typeQueryFunctionWithOverloads : { @:overload(function(a:String):Any { })
-	@:overload(function(a:Array<js.lib.Symbol>):Any { })
-	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
+	@:overload(function(a:std.Array<js.lib.Symbol>):Any { })
+	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
 	@:selfCall
 	function call(a:Float):Any; };
 }

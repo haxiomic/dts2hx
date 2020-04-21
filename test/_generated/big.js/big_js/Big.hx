@@ -147,7 +147,7 @@ extern interface Big {
 	/**
 		Returns an array of single digits
 	**/
-	var c : Array<Float>;
+	var c : std.Array<Float>;
 	/**
 		Returns the exponent, Integer, -1e+6 to 1e+6 inclusive
 	**/

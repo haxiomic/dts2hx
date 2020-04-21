@@ -2,8 +2,8 @@ package unit.interface_;
 extern interface Interface {
 	@:overload(function<T>(a:T, b:String):Interface { })
 	@:selfCall
-	function call_(array:Array<Interface>):Any;
-	var field : Array<Any>;
+	function call_(array:std.Array<Interface>):Any;
+	var field : std.Array<Any>;
 	function exampleMethod(a:Float):Void;
 	@:optional
 	function exampleOptionalMethod(a:Float):Void;
