@@ -566,7 +566,7 @@ class ConverterContext {
 					var start = node.getStart();
 					var lineAndCharacter = sourceFile.getLineAndCharacterOfPosition(start);
 					var line = lineAndCharacter.line;
-					var character = lineAndCharacter.line;
+					var character = lineAndCharacter.character;
 					sourceLocationInfo.push('${cwdRelativeFilePath(sourceFile.fileName)}:${line + 1}${character > 0 ? ':${character + 1}' : ''}');
 				}
 			}
