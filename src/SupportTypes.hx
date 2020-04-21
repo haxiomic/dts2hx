@@ -1,7 +1,9 @@
+import typescript.ts.Symbol;
 import haxe.macro.Expr;
 
 using StringTools;
 using tool.HaxeTools;
+using tool.SymbolAccessTools;
 
 @:access(ConverterContext)
 class SupportTypes {
@@ -10,10 +12,10 @@ class SupportTypes {
 		Haxe doesn't support tuple-types so we generate a support type as required
 	**/
 	static public function getTupleType(ctx: ConverterContext, elementTypes: Array<ComplexType>): ComplexType {
-
 		if (elementTypes.length == 0) {
 			return macro :std.Array<Any>;
 		}
+
 		var baseType = HaxeTools.commonType(elementTypes);
 		var typePath = {
 			pack: ['js', 'lib'],
@@ -21,7 +23,7 @@ class SupportTypes {
 			params: [TPType(baseType)].concat(elementTypes.map(t -> TPType(t)))
 		};
 
-		var existingModule = ctx.generatedModules.get(ctx.getHaxeModuleKey(typePath.pack, typePath.name));
+		var existingModule = ctx.getGeneratedModule(typePath);
 
 		if (existingModule == null) {
 			// generate fields
@@ -92,8 +94,28 @@ class SupportTypes {
 		return getEitherUnion(types);
 	}
 
-	static public function getGlobalModule(ctx: ConverterContext, access: SymbolAccess): HaxeModule {
-		throw 'todo';
+	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol, access: SymbolAccess): HaxeModule {
+		var typePath = ctx.haxeTypePathMap.getGlobalModuleTypePath(symbol, access);
+		var existingModule = ctx.getGeneratedModule({name: typePath.name, pack: typePath.pack});
+		if (existingModule != null) {
+			return existingModule;
+		}
+		var hxModule = {
+			pack: typePath.pack,
+			name: typePath.name,
+			fields: [],
+			kind: TDClass(null, [], false, false),
+			params: [],
+			isExtern: true,
+			doc: '',
+			meta: [SymbolAccess.Global([]).toAccessMetadata()],
+			pos: null,
+			subTypes: [],
+			tsSymbol: symbol,
+			tsSymbolAccess: access,
+		}
+		ctx.saveHaxeModule(hxModule);
+		return hxModule;
 	}
 
 }

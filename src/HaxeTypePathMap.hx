@@ -76,6 +76,14 @@ class HaxeTypePathMap {
 		return generateTypePath(symbol, accessContext);
 	}
 
+	public function getGlobalModuleTypePath(symbol: Symbol, access: SymbolAccess) {
+		var typePath = generateTypePath(symbol, access);
+		return {
+			name: 'Global',
+			pack: typePath.pack,
+		}
+	}
+
 	function buildHaxeTypePathMap() {
 		var packageMap = new Map<String, Array<InternalModule>>();
 
@@ -200,7 +208,7 @@ class HaxeTypePathMap {
 		return typePathMap;
 	}
 
-	public function generateTypePath(symbol: Symbol, access: SymbolAccess) {
+	function generateTypePath(symbol: Symbol, access: SymbolAccess) {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
 		var defaultLibName: Null<String> = null;
 		var defaultLibOnlyDeclarations = true;

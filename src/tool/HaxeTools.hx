@@ -15,7 +15,7 @@ class HaxeTools {
 	/**
 		Adds an Access modifier to a field, avoiding duplicates
 	**/
-	static public function addAccess(field: Field, access: Access) {
+	static public function enableAccess(field: Field, access: Access) {
 		var accessArray = if (field.access != null) {
 			field.access;
 		} else {

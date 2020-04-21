@@ -183,10 +183,14 @@ class ConverterContext {
 			}
 			
 			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
+				// find top-level global fields and add them to special Global.hx modules
 				for (access in symbolAccessMap.getAccess(symbol)) {
 					switch access {
 						case Global([_]):
-							Log.warn('Todo: Unhandled global field', symbol);
+							var globalModule = this.getGlobalModuleForFieldSymbol(symbol, access);
+							var field = fieldFromSymbol(symbol.name, symbol, access, null);
+							field.enableAccess(AStatic);
+							globalModule.fields.push(field);
 						default:
 					}
 				}
@@ -224,17 +228,21 @@ class ConverterContext {
 		}
 	}
 
+	public function getGeneratedModule(typePath: TypePath) {
+		return generatedModules.get(getHaxeModuleKey(typePath.pack, typePath.name));
+	}
+
 	/**
 		Symbol must have flags Type | ValueModule
 	**/
 	function getHaxeModuleFromDeclarationSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
 		// Log.log('getHaxeModuleFromDeclarationSymbol() <yellow>${access.toString()}</>', symbol);
-		var typePath = haxeTypePathMap.getTypePath(symbol, access);
-		var moduleKey = getHaxeModuleKey(typePath.pack, typePath.name);
 		var pos = TsSymbolTools.getPosition(symbol);
 
+		var typePath = haxeTypePathMap.getTypePath(symbol, access);
+
 		// type symbols are mutually exclusive so we can return after converting the first match
-		var existingModule = generatedModules.get(moduleKey);
+		var existingModule = getGeneratedModule({name: typePath.name, pack: typePath.pack});
 
 		if (existingModule != null) {
 			return existingModule;
@@ -500,7 +508,7 @@ class ConverterContext {
 
 			// Log.log('\t<magenta,b>Export</>', export);
 			var field = fieldFromSymbol(nativeFieldName, export, access, null);
-			field.addAccess(AStatic);
+			field.enableAccess(AStatic);
 			hxModule.fields.push(field);
 		}
 
