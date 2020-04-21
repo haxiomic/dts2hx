@@ -51,7 +51,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] ESSymbol fields
     - [x] Handle `export default` better
     - [x] Global fields
-    - [ ] Detect constructable fields, promote to classes and merge with existing interfaces **← currently working on this**
+    - [ ] Detect constructable fields, promote to classes and merge with existing interfaces **← :star: currently working on this**
     - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
     - [ ] Classes and interfaces
         - [x] Constructors
