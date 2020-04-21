@@ -42,10 +42,13 @@
 # -cmd node dist/dts2hx.js ./test/unit/class --verbose
 # -cmd node dist/dts2hx.js ./test/unit/interface --verbose
 # -cmd node dist/dts2hx.js ./test/unit/ambient --verbose
+# -cmd node dist/dts2hx.js ./test/unit/export-default --verbose
+# -cmd node dist/dts2hx.js ./test/unit/export= --verbose
 
 # Abs path
 # -cmd node dist/dts2hx.js /Users/geo/Projects/dts2hx/test/unit/enum --verbose
+
 # -cmd node dist/dts2hx.js node --verbose
-# -cmd node dist/dts2hx.js node --verbose
+# -cmd node dist/dts2hx.js typescript --verbose
 
 -debug
