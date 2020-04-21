@@ -64,7 +64,6 @@ class ConverterContext {
 	**/
 	public final moduleDependencies: ReadOnlyArray<String>;
 
-	public final log: Log;
 	public final tc: TypeChecker;
 	public final host: CompilerHost;
 	public final program: Program;
@@ -92,19 +91,18 @@ class ConverterContext {
 
 	final shortenTypePaths = true;
 
-	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool, ?log_: Log) {
+	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool) {
 		// this will be used as the argument to require()
 		this.locationComments = locationComments;
-		this.log = log_ != null ? log_ : new Log();
 
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
 		this.tc = program.getTypeChecker();
 
 		this.entryPointModuleId = inline normalizeModuleName(moduleName);
-		log.log('<green>Converting module: <b>$entryPointModuleId</b>');
+		Log.log('<green>Converting module: <b>$entryPointModuleId</b>');
 
-		log.diagnostics(program.getAllDiagnostics());
+		Log.diagnostics(program.getAllDiagnostics());
 
 		var entryPointSourceFile = program.getSourceFile(entryPointFilePath);
 
@@ -129,7 +127,7 @@ class ConverterContext {
 				var packageInfo = moduleReference.resolvedTypeReferenceDirective.packageId;
 				var moduleName = packageInfo != null ? packageInfo.name : null;
 				if (moduleName == null) {
-					log.warn('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
+					Log.warn('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
 				}
 				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
 				if (sourceFile != null) {
@@ -139,26 +137,26 @@ class ConverterContext {
 						dependencyModuleNames.push(moduleName);
 					}
 				} else {
-					log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
+					Log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
 				}
 			} else {
-				log.error('Failed to find referenced module <b>${moduleReference.failedLookupLocations[0]}</b>');
+				Log.error('Failed to find referenced module <b>${moduleReference.failedLookupLocations[0]}</b>');
 			}
 		}
 
 		// populate symbol access map
 		var accessRoots = [cast entryPointSourceFile].concat(defaultLibSourceFiles).concat(dependencyRootSourceFiles);
-		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, accessRoots, log);
+		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, accessRoots);
 
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
-		haxeTypePathMap = new HaxeTypePathMap(entryPointModuleId, program, symbolAccessMap, log);
+		haxeTypePathMap = new HaxeTypePathMap(entryPointModuleId, program, symbolAccessMap);
 
 		// convert symbols for just this module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, _) -> {
 					declarationSymbolQueue.tryEnqueue(symbol);
-				}, log);
+				});
 			}
 		});
 
@@ -195,7 +193,7 @@ class ConverterContext {
 						}
 						hxModule.fields.push(moduleField);
 					} else {
-						log.warn('Module field without a parent', symbol);
+						Log.warn('Module field without a parent', symbol);
 					}
 					*/
 				}
@@ -203,7 +201,7 @@ class ConverterContext {
 			}
 
 			if (!handled) {
-				log.error('Unhandled symbol in declarationSymbol queue', symbol);
+				Log.error('Unhandled symbol in declarationSymbol queue', symbol);
 			}
 		} 
 	}
@@ -237,7 +235,7 @@ class ConverterContext {
 		Symbol must have flags Type | ValueModule
 	**/
 	function getHaxeModuleFromDeclarationSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
-		// log.log('getHaxeModuleFromDeclarationSymbol() <yellow>${access.toString()}</>', symbol);
+		// Log.log('getHaxeModuleFromDeclarationSymbol() <yellow>${access.toString()}</>', symbol);
 		var typePath = haxeTypePathMap.getTypePath(symbol, access);
 		var moduleKey = getHaxeModuleKey(typePath.pack, typePath.name);
 		var pos = TsSymbolTools.getPosition(symbol);
@@ -256,7 +254,7 @@ class ConverterContext {
 			
 			var classOrInterfaceDeclaration: Null<Node> = cast symbol.getDeclarationsArray().filter(node -> Ts.isInterfaceDeclaration(node) || Ts.isClassDeclaration(node))[0];
 			if (classOrInterfaceDeclaration == null) {
-				log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
+				Log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
 			}
 
 			var isClassAndInterface = (symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0);
@@ -276,14 +274,14 @@ class ConverterContext {
 				// we add metadata to mark the class which we might be able to use in the future
 				// @! maybe we can use an abstract for this
 				meta.push({name: ':interface', pos: pos});
-				log.warn('Symbol is both class and an interface, this combination is not fully supported', symbol);
+				Log.warn('Symbol is both class and an interface, this combination is not fully supported', symbol);
 			}
 
 			// class members
 			var declaredType: InterfaceType = cast tc.getDeclaredTypeOfSymbol(symbol);
 			// validate cast
 			if (!declaredType.isClassOrInterface()) {
-				log.error('Internal error: Expected type to be a class or interface type', symbol, declaredType);
+				Log.error('Internal error: Expected type to be a class or interface type', symbol, declaredType);
 			}
 
 			function generateFields(
@@ -300,27 +298,27 @@ class ConverterContext {
 
 				var callFieldName = symbol.getFreeMemberName(selfCallFunctionName);
 				if (callSignatures.length > 0) {
-					// log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
+					// Log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
 					fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, access, classOrInterfaceDeclaration));
 				}
 
 				if (symbol.flags & SymbolFlags.Function != 0) {
-					log.warn('todo: handle callable class type 2', symbol);
+					Log.warn('todo: handle callable class type 2', symbol);
 				}
 
 				if (constructSignatures.length > 0) {
 					// this is different from a _constructor_ declaration
-					log.error('Construct signatures are not yet supported', symbol);
+					Log.error('Construct signatures are not yet supported', symbol);
 				}
 
 				if (indexSignatures.length > 0) {
 					// this is different from a _constructor_ declaration
-					log.error('Index signatures are not yet supported', symbol);
+					Log.error('Index signatures are not yet supported', symbol);
 				}
 
 				// class-fields
 				for (classMember in classMembers) {
-					// log.log('\t<green>classMember</>', classMember);
+					// Log.log('\t<green>classMember</>', classMember);
 					fields.push(fieldFromSymbol(classMember, access, classOrInterfaceDeclaration));
 				}
 				return fields;
@@ -429,7 +427,7 @@ class ConverterContext {
 		} else if (symbol.flags & SymbolFlags.TypeAlias != 0) {
 			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
 			if (typeAliasDeclaration == null) {
-				log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
+				Log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 			}
 
 			var tsType = tc.getDeclaredTypeOfSymbol(symbol);
@@ -480,7 +478,7 @@ class ConverterContext {
 				tsSymbolAccess: access,
 			}
 		} else {
-			log.error('getHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
+			Log.error('getHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
 			{
 				pack: typePath.pack,
 				name: typePath.name,
@@ -496,7 +494,7 @@ class ConverterContext {
 
 		// add static fields, including module-member fields
 		for (export in symbol.getExports().filter(s -> s.isField())) {
-			// log.log('\t<magenta,b>Export</>', export);
+			// Log.log('\t<magenta,b>Export</>', export);
 			var field = fieldFromSymbol(export, access, null);
 			var access = if (field.access != null) {
 				field.access;
@@ -582,7 +580,7 @@ class ConverterContext {
 
 	function getSupportUnionType(types: Array<ComplexType>): ComplexType {
 		if (types.length == 0) {
-			log.error('getSupportUnionType(): no types provided');
+			Log.error('getSupportUnionType(): no types provided');
 			debug();
 			return macro :Any;
 		}
@@ -621,10 +619,10 @@ class ConverterContext {
 
 		var existingModule = generatedModules.get(path);
 		if (existingModule != null) {
-			log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-			// log.warn('\t Existing module <yellow,b>${existingModule.tsSymbolAccess.toString()}</>', existingModule.tsSymbol);
-			// log.warn('\t Overwriting module <yellow,b>${access.toString()}</>', symbol);
-			// log.warn('\t All access ' + symbolAccessMap.getAccess(symbol).map(s -> s.toString()));
+			Log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+			// Log.warn('\t Existing module <yellow,b>${existingModule.tsSymbolAccess.toString()}</>', existingModule.tsSymbol);
+			// Log.warn('\t Overwriting module <yellow,b>${access.toString()}</>', symbol);
+			// Log.warn('\t All access ' + symbolAccessMap.getAccess(symbol).map(s -> s.toString()));
 		}
 
 		if (generatedModules.exists(path)) {
@@ -672,7 +670,7 @@ class ConverterContext {
 		var type = tc.getTypeFromTypeNode(node);
 		if (untyped type.intrinsicName == 'error') {
 			debug();
-			log.error('Internal error: Error getting type from type node', node);
+			Log.error('Internal error: Error getting type from type node', node);
 		}
 		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 	}
@@ -680,14 +678,14 @@ class ConverterContext {
 	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		if (_currentTypeStack.indexOf(type) != -1) {
-			log.log('Breaking recursive type conversion with :Any', type);
+			Log.log('Breaking recursive type conversion with :Any', type);
 			return macro :Any;
 		}
 
 		_currentTypeStack.push(type);
-		// log.log('complexTypeFromTsType <b>${_currentTypeStack.length}</>');
+		// Log.log('complexTypeFromTsType <b>${_currentTypeStack.length}</>');
 		// for (t in _currentTypeStack) {
-		// 	log.log('\t<dim,i>${untyped t.id}</>', t);
+		// 	Log.log('\t<dim,i>${untyped t.id}</>', t);
 		// }
 
 		// handle fundamental type flags
@@ -736,7 +734,7 @@ class ConverterContext {
 			// Substitution    = 1 << 25,  // Type parameter substitution
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
-			log.error('Could not convert type', type);
+			Log.error('Could not convert type', type);
 			macro :Any;
 		}
 
@@ -775,7 +773,7 @@ class ConverterContext {
 				});
 			}
 		} else {
-			log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameter);
+			Log.error('Internal error: Failed to determine type parameter name, using `T`', typeParameter);
 			macro :T;
 		}
 	}
@@ -815,7 +813,7 @@ class ConverterContext {
 			var constructSignatures = objectType.getConstructSignatures();
 
 			if (objectType.getConstructSignatures().length > 0) {
-				log.warn('Type has construct signature but this is currently unhandled', objectType);
+				Log.warn('Type has construct signature but this is currently unhandled', objectType);
 			}
 
 			// for the special case of a single call signature and no props we can return a function type
@@ -845,7 +843,7 @@ class ConverterContext {
 				TAnonymous(fields);
 			}
 		} else {
-			log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
+			Log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
 			macro :Any;
 		}
@@ -939,7 +937,7 @@ class ConverterContext {
 		} else {
 			if (typeReference.target == cast typeReference) { // avoid direct cycles
 				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
-				log.error('Internal error: recursive type reference');
+				Log.error('Internal error: recursive type reference');
 				return macro :Any;
 			}
 			
@@ -955,10 +953,10 @@ class ConverterContext {
 					var argumentCount = hxTypeArguments.length;
 					var paramCount = p.params != null ? p.params.length : 0;
 					if (paramCount != argumentCount) {
-						log.warn('TypeReference has <b>$argumentCount</> arguments but target has <b>$paramCount</> parameters', typeReference);
+						Log.warn('TypeReference has <b>$argumentCount</> arguments but target has <b>$paramCount</> parameters', typeReference);
 					}
 					p.params = hxTypeArguments;
-				default: log.error('Internal error: Expected TPath from TypeReference', typeReference);
+				default: Log.error('Internal error: Expected TPath from TypeReference', typeReference);
 			}
 			hxTarget;
 		}
@@ -982,7 +980,7 @@ class ConverterContext {
 	}
 
 	function complexTypeFromTupleType(tupleType: TupleType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
-		log.warn('Todo: TupleType', tupleType);
+		Log.warn('Todo: TupleType', tupleType);
 		// need an example where this path is hit
 		debug();
 		return macro :Array<Any>;
@@ -996,7 +994,7 @@ class ConverterContext {
 			} else null;
 			TPath(hxTypePath);
 		} else {
-			log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
+			Log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
 			debug();
 			macro :Any;
 		}
@@ -1061,19 +1059,19 @@ class ConverterContext {
 
 		// add errors to field docs
 		function onError(message) {
-			log.error('fieldFromSymbol(): ' + message, symbol);
+			Log.error('fieldFromSymbol(): ' + message, symbol);
 			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
 		}
 		
 		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
 			// Prototype symbol should be filtered out of properties before converting to hx fields
-			log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
+			Log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
 			debug();
 			FVar(macro :Any, null);
 
 		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
 			if (symbol.valueDeclaration == null) {
-				log.error('Missing valueDeclaration for Property | Variable symbol', symbol);
+				Log.error('Missing valueDeclaration for Property | Variable symbol', symbol);
 				debug();
 			} else {
 				// variable field
@@ -1189,7 +1187,7 @@ class ConverterContext {
 	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		var tsTypeParameterDeclarations = new Array<TypeParameterDeclaration>();
 		if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface | SymbolFlags.TypeAlias) == 0) {
-			log.error('Internal error: typeParamDeclFromTypeDeclarationSymbol() unexpected symbol flags; expected Class, Interface or TypeAlias', symbol);
+			Log.error('Internal error: typeParamDeclFromTypeDeclarationSymbol() unexpected symbol flags; expected Class, Interface or TypeAlias', symbol);
 		}
 
 		for (declaration in symbol.declarations) {
@@ -1201,7 +1199,7 @@ class ConverterContext {
 			// validate the assumption that all declarations have the same type-parameters
 			if (tsTypeParameterDeclarations.length > 0 && declarationTypeParameters.length > 0) {
 				if (tsTypeParameterDeclarations.length != declarationTypeParameters.length) {
-					log.warn('Symbol declarations have varying number of type-parameters; this is not expected', symbol);
+					Log.warn('Symbol declarations have varying number of type-parameters; this is not expected', symbol);
 				}
 			}
 

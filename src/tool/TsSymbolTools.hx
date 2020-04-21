@@ -176,7 +176,7 @@ class TsSymbolTools {
 
 		While the symbol's parent path is [Module("events"), internal, EventEmitter], the accessChain is [Module("events"), EventEmitter]
 	**/
-	public static function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, log: Log, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
+	public static function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
 		accessChain = accessChain != null ? accessChain : [symbol];
 
 		// prevent cycles by terminating if the current symbol appears in the parent access chain
@@ -189,7 +189,7 @@ class TsSymbolTools {
 		// explicitly ignored symbols
 		var ignoredSymbolFlags = SymbolFlags.ExportStar;
 
-		// log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</>', symbol);
+		// Log.log('${[for (i in 0...depth) '\t'].join('')}<b>walkDeclarationSymbols()</b> <yellow>${accessChain.map(s -> s.name)}</>', symbol);
 
 		// handle module replacement: `export =`, for example, the module symbol
 		// `declare module "module" { export = Class; }`
@@ -200,8 +200,8 @@ class TsSymbolTools {
 
 			if (resolvedSymbol != symbol) {
 				// accessChain remains the same, we access the `export = symbol through the module symbol
-				log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlags()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlags()}</b></>', symbol);
-				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, log, accessChain, depth);
+				Log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlags()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlags()}</b></>', symbol);
+				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, accessChain, depth);
 				return;
 			}
 		}
@@ -212,7 +212,7 @@ class TsSymbolTools {
 			handled = true;
 			onSymbol(symbol, accessChain);
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			walkDeclarationSymbols(aliasedSymbol, tc, onSymbol, log, accessChain.concat([aliasedSymbol]), depth + 1);
+			walkDeclarationSymbols(aliasedSymbol, tc, onSymbol, accessChain.concat([aliasedSymbol]), depth + 1);
 		}
 
 		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.Property) != 0) {
@@ -229,12 +229,12 @@ class TsSymbolTools {
 
 			var moduleMembers: Array<Symbol> = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.ModuleMember != 0);
 			for (moduleExport in moduleMembers) {
-				walkDeclarationSymbols(moduleExport, tc, onSymbol, log, accessChain.concat([moduleExport]), depth + 1);
+				walkDeclarationSymbols(moduleExport, tc, onSymbol, accessChain.concat([moduleExport]), depth + 1);
 			}
 		}
 
 		if (!handled) {
-			log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
+			Log.warn('Symbol was not handled in <b>walkDeclarationSymbols()</>', symbol);
 		}
 	}
 

@@ -21,13 +21,11 @@ using tool.TsSymbolTools;
 class SymbolAccessMap {
 
 	final tc: TypeChecker;
-	final log: Log;
 	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
 
-	public function new(entryPointModuleId: String, program: Program, moduleRootSourceFiles: Array<SourceFile>, log: Log) {
+	public function new(entryPointModuleId: String, program: Program, moduleRootSourceFiles: Array<SourceFile>) {
 		// this.program = ctx.program;
 		this.tc = program.getTypeChecker();
-		this.log = log;
 
 		for (moduleSourceFile in moduleRootSourceFiles) {
 			program.walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
@@ -36,14 +34,14 @@ class SymbolAccessMap {
 				var sourceFileAccess: SymbolAccess = if (sourceFileSymbol != null) {
 					var moduleName = sourceFile.moduleName;
 					if (moduleName == null) {
-						log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
+						Log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
 					}
 					ExportModule(moduleName, sourceFileSymbol, []);
 				} else {
 					Global([]);
 				}
 
-				// log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
+				// Log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
 				for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 					TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, accessChain) -> {
 						var currentAccess = sourceFileAccess;
@@ -51,7 +49,7 @@ class SymbolAccessMap {
 							currentAccess = symbolAccessAppendSymbol(currentAccess, s);
 						}
 						setAccess(symbol, currentAccess);
-					}, log);
+					});
 				}
 			});
 		}
@@ -107,15 +105,15 @@ class SymbolAccessMap {
 			return switch access {
 				case ExportModule(moduleName, sourceFileSymbol, _):
 					if (symbol != sourceFileSymbol) {
-						log.error('Cannot change symbol access module from <b>ExportModule($moduleName, ${sourceFileSymbol.name})</> to ExportModule', symbol);
+						Log.error('Cannot change symbol access module from <b>ExportModule($moduleName, ${sourceFileSymbol.name})</> to ExportModule', symbol);
 					}
 					// clear identifier path because the root has been replaced
 					ExportModule(moduleName, sourceFileSymbol, []);
 				case AmbientModule(path, _):
-					log.error('Cannot change symbol access from <b>AmbientModule($path)</> to ExportModule', symbol);
+					Log.error('Cannot change symbol access from <b>AmbientModule($path)</> to ExportModule', symbol);
 					access;
 				case Global(_):
-					log.error('Cannot change symbol access from global to module', symbol);
+					Log.error('Cannot change symbol access from global to module', symbol);
 					access;
 				case Inaccessible:
 					// making accessible via the sourceFile
@@ -124,11 +122,11 @@ class SymbolAccessMap {
 		} else if (TsSymbolTools.isExternalModuleSymbol(symbol)) {
 			return switch access {
 				case ExportModule(rootModuleName, rootSourceFileSymbol, _):
-					log.error('Cannot change symbol access from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to <b>AmbientModule("${symbol.name}")</>', symbol);
+					Log.error('Cannot change symbol access from <b>ExportModule($rootModuleName, ${rootSourceFileSymbol.name})</> to <b>AmbientModule("${symbol.name}")</>', symbol);
 					access;
 				case AmbientModule(_):
 					// replace ambient module with a new one (we assume nested ambient modules is not possible)
-					log.warn('Nested ambient modules should be impossible. This might indicate an internal error', symbol);
+					Log.warn('Nested ambient modules should be impossible. This might indicate an internal error', symbol);
 					AmbientModule(symbol.name, symbol, []);
 				case Global(_):
 					// change from global access to ambient module access

@@ -21,19 +21,17 @@ class HaxeTypePathMap {
 	final program: Program;
 	final symbolAccessMap: SymbolAccessMap;
 	final tc: TypeChecker;
-	final log: Log;
 	// the same symbol may have multiple type paths if it has multiple SymbolAccess
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
 
 	// if a symbol has these flags, it requires a type-path in haxe
 	static final SymbolRequiresTypePath = SymbolFlags.Type | SymbolFlags.ValueModule;
 
-	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap, log: Log) {
+	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap) {
 		this.entryPointModuleId = entryPointModuleId;
 		this.program = program;
 		this.symbolAccessMap = symbolAccessMap;
 		this.tc = program.getTypeChecker();
-		this.log = log;
 		symbolTypePathMap = buildHaxeTypePathMap();
 	}
 
@@ -59,17 +57,17 @@ class HaxeTypePathMap {
 				return matchingModule;
 			} else {
 				// the access supplied to this method is not one the same accesses used to generate the type-path map
-				log.warn('Internal error: Could not find a type path for symbol with the supplied access context <b>${accessContext.toString()}</>', symbol);
+				Log.warn('Internal error: Could not find a type path for symbol with the supplied access context <b>${accessContext.toString()}</>', symbol);
 			}
 		} else {
 			// failed to find a matching pre-generated module
 			// this indicates we didn't find all symbols when building the map
-			log.warn('Internal error: No type paths were generated for this symbol', symbol);
+			Log.warn('Internal error: No type paths were generated for this symbol', symbol);
 		}
 
 		// reaching this point is considered an error because type-paths should have been pre-generated for _all_ appropriate symbols
 		if (symbol.flags & SymbolRequiresTypePath == 0) {
-			log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
+			Log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
 		}
 
 		debug();
@@ -133,7 +131,7 @@ class HaxeTypePathMap {
 						}
 					}
 				}
-			}, log);
+			});
 		}
 		
 		// resolve module name overlaps, for example "url", Url and URL all map to haxe module url.hx
@@ -176,7 +174,7 @@ class HaxeTypePathMap {
 						var moduleToRename = matches[0];
 						moduleToRename.name = moduleToRename.name + '_';
 
-						log.log('Resolved name overlap for <b>${matches[0].pack.concat([degenerateName]).join('/')}.hx</>: ${matches.map(m -> m.name).join(', ')}');
+						Log.log('Resolved name overlap for <b>${matches[0].pack.concat([degenerateName]).join('/')}.hx</>: ${matches.map(m -> m.name).join(', ')}');
 					}
 				}
 

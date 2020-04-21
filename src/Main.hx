@@ -17,7 +17,6 @@ using tool.StringTools;
 class Main {
 
 	static public final dts2hxPackageJson = Macro.getLocalPackageJson();
-	static public final log = new Log();
 
 	static function main() {
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';
@@ -147,7 +146,7 @@ class Main {
 			return;
 		}
 
-		log.setPrintLogLevel(cliOptions.logLevel);
+		Log.setPrintLogLevel(cliOptions.logLevel);
 
 		var defaultCompilerOptions = Ts.getDefaultCompilerOptions();
 		defaultCompilerOptions.target = ES2015; // default to ES6 for lib types
@@ -165,12 +164,12 @@ class Main {
 			if (readResult.config != null) {
 				var compilerOptionsObj = Reflect.field(readResult.config, 'compilerOptions');
 				var result = Ts.convertCompilerOptionsFromJson(compilerOptionsObj, Node.process.cwd(), cliOptions.tsConfigFilePath);
-				log.diagnostics(result.errors);
+				Log.diagnostics(result.errors);
 
 				compilerOptions = extend(compilerOptions, result.options);
 			} else {
 				if (readResult.error != null) {
-					log.diagnostics([readResult.error]);
+					Log.diagnostics([readResult.error]);
 				}
 			}
 		}
@@ -178,7 +177,7 @@ class Main {
 		// add user-supplied typescript compiler options
 		if (cliOptions.tsCompilerOptions.length > 0) {
 			var result = Ts.parseCommandLine(cliOptions.tsCompilerOptions);
-			log.diagnostics(result.errors);
+			Log.diagnostics(result.errors);
 			compilerOptions = extend(compilerOptions, result.options);
 		}
 
@@ -209,10 +208,10 @@ class Main {
 						}
 						continue;
 					}
-					log.warn('No type definitions found for <b>"${moduleName}"</b>');
+					Log.warn('No type definitions found for <b>"${moduleName}"</b>');
 				}
 			} catch (e: String) {
-				log.error(e);
+				Log.error(e);
 			}
 		}
 
@@ -236,7 +235,7 @@ class Main {
 			
 			var moduleDependencies = converterContext.moduleDependencies;
 			if (moduleDependencies.length > 0) {
-				log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
+				Log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 			}
 			for (moduleDependency in moduleDependencies) {
 				moduleQueue.tryEnqueue(moduleDependency);
@@ -251,7 +250,7 @@ class Main {
 		var result = Ts.resolveModuleName(moduleName, moduleSearchPath + '/.', compilerOptions, host);
 		if (result.resolvedModule == null) {
 			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
-			log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
+			Log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
 			return null;
 		}
 		resolvedModule = result.resolvedModule;
@@ -259,7 +258,7 @@ class Main {
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
 		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
 
-		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, locationComments, log);
+		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, locationComments);
 
 		if (!noOutput) {
 			// save modules to files

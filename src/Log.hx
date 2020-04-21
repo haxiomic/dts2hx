@@ -23,25 +23,27 @@ enum abstract LogLevel(Int) to Int {
 
 class Log {
 
-	public final logs = new Array<String>();
-	public final warnings = new Array<String>();
-	public final errors = new Array<String>();
+	static public var logs = new Array<String>();
+	static public var warnings = new Array<String>();
+	static public var errors = new Array<String>();
 
-	var printLogs: Bool;
-	var printWarnings: Bool;
-	var printErrors: Bool;
+	static var printLogs: Bool = true;
+	static var printWarnings: Bool = true;
+	static var printErrors: Bool = true;
 
-	public function new(?printLogLevel: LogLevel = All) {
-		setPrintLogLevel(printLogLevel);
-	}
-
-	public function setPrintLogLevel(level: LogLevel) {
+	static public function setPrintLogLevel(level: LogLevel) {
 		printLogs = (level: Int) >= (Logs: Int);
 		printWarnings = (level: Int) >= (Warning: Int);
 		printErrors = (level: Int) >= (Error: Int);
 	}
 
-	public function log(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
+	static public function clearAllLogs() {
+		logs = [];
+		warnings = [];
+		errors = [];
+	}
+
+	static public function log(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
 		var str = createMessage(message, node, symbol, type, diagnostic);
 		if (printLogs) {
 			Console.log(str);
@@ -49,7 +51,7 @@ class Log {
 		logs.push(str);
 	}
 
-	public function warn(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
+	static public function warn(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
 		var str = createMessage(message, node, symbol, type, diagnostic);
 		if (printWarnings) {
 			Console.warn(str);
@@ -57,7 +59,7 @@ class Log {
 		warnings.push(str);
 	}
 
-	public function error(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
+	static public function error(?message: String, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic) {
 		var str = createMessage(message, node, symbol, type, diagnostic);
 		if (printErrors) {
 			Console.error(str);
@@ -65,7 +67,7 @@ class Log {
 		errors.push(str);
 	}
 
-	public function diagnostics(?message: String, ?array: Array<Diagnostic>) {
+	static public function diagnostics(?message: String, ?array: Array<Diagnostic>) {
 		if (array == null) array = [];
 		for (diagnostic in array) {
 			switch diagnostic.category {
@@ -77,7 +79,7 @@ class Log {
 		}
 	}
 
-	public function formatLocation(location: {
+	static public function formatLocation(location: {
 		sourceFile: SourceFile,
 		start: Null<Float>,
 	}) {
@@ -91,7 +93,7 @@ class Log {
 		}
 	}
 
-	function createMessage(?arg: Any, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic): String {
+	static function createMessage(?arg: Any, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic): String {
 		var parts = new Array<String>();
 		if (arg != null) {
 			parts.push(Std.string(arg));
@@ -118,11 +120,11 @@ class Log {
 		return parts.join(' ');
 	}
 
-	function joinArgs(args: Array<Any>) {
+	static function joinArgs(args: Array<Any>) {
 		return args.filter(arg -> arg != null).join(', ');
 	}
 
-	function symbolInfo(symbol: Symbol): String {
+	static function symbolInfo(symbol: Symbol): String {
 		var str = '<b,cyan>${symbol.name} ${TsSymbolTools.getFlagsInfo(symbol)}</>';
 		if (symbol.valueDeclaration != null) {
 			str += ' ' + nodeInfo(symbol.valueDeclaration);
@@ -132,13 +134,13 @@ class Log {
 		return str;
 	}
 	
-	function nodeInfo(node: TsNode): String {
+	static function nodeInfo(node: TsNode): String {
 		return '<magenta>${TsSyntaxTools.getSyntaxKindName(node.kind)}</>${
 			try ' ' + formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() }) catch (e: Any) ''
 		}';
 	}
 
-	function typeInfo(type: TsType) {
+	static function typeInfo(type: TsType) {
 		return '<blue>${type.getFlagsInfo()}</>${type.symbol != null ? ' ' + symbolInfo(type.symbol) : ''}';
 	}
 }
