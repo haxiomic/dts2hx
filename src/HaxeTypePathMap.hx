@@ -216,15 +216,17 @@ class HaxeTypePathMap {
 		// handle built-ins and types available in the haxe standard library
 		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
 		if (defaultLibOnlyDeclarations) {
-			final topLevelTypeMap = [
-				'Array' => 'Array',
+			final specialTypeMap = [
+				'Array' => {name: 'Array', pack: []},
+				'Symbol' => {name: 'Symbol', pack: ['js', 'lib']},
 			];
 			switch access {
 				// match special-case built-ins
-				case Global([{name: name}]) if (topLevelTypeMap.exists(name)):
+				case Global([{name: name}]) if (specialTypeMap.exists(name)):
+					var tp = specialTypeMap.get(name);
 					return {
-						name: topLevelTypeMap.get(name),
-						pack: [],
+						name: tp.name,
+						pack: tp.pack,
 						isExistingStdLibType: true,
 					}
 				default:
