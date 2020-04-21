@@ -182,7 +182,7 @@ class ConverterContext {
 				for (access in symbolAccessMap.getAccess(symbol)) {
 					switch access {
 						case Global([_]):
-							Log.warn('Unhandled global field', symbol);
+							Log.warn('Todo: Unhandled global field', symbol);
 						default:
 					}
 				}
@@ -297,6 +297,7 @@ class ConverterContext {
 
 				if (constructSignatures.length > 0) {
 					// this is different from a _constructor_ declaration
+					// @! maybe to support this we can transmute the interface to a class? This obviously causes problems if other classes implement it, but maybe we don't need implements
 					Log.error('Construct signatures are not yet supported', symbol);
 				}
 
@@ -308,7 +309,7 @@ class ConverterContext {
 				// class-fields
 				for (classMember in classMembers) {
 					// Log.log('\t<green>classMember</>', classMember);
-					fields.push(fieldFromSymbol(classMember, access, classOrInterfaceDeclaration));
+					fields.push(fieldFromSymbol(classMember.name, classMember, access, classOrInterfaceDeclaration));
 				}
 				return fields;
 			}
@@ -481,10 +482,19 @@ class ConverterContext {
 			}
 		}
 
+		// for (export in symbol.getExports()) Log.log('\t<magenta,b>Export</>', export);
+
 		// add static fields, including module-member fields
-		for (export in symbol.getExports().filter(s -> s.isField())) {
+		for (export in symbol.getExports().filter(s -> s.isField() || s.flags & SymbolFlags.Alias != 0)) {
+			var nativeFieldName = export.name;
+
+			if (export.flags & SymbolFlags.Alias != 0) {
+				export = tc.getAliasedSymbol(export);
+				if (!export.isField()) continue;
+			}
+
 			// Log.log('\t<magenta,b>Export</>', export);
-			var field = fieldFromSymbol(export, access, null);
+			var field = fieldFromSymbol(nativeFieldName, export, access, null);
 			var access = if (field.access != null) {
 				field.access;
 			} else {
@@ -827,7 +837,7 @@ class ConverterContext {
 				}
 
 				// add properties
-				fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p, accessContext, enclosingDeclaration)));
+				fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, accessContext, enclosingDeclaration)));
 
 				TAnonymous(fields);
 			}
@@ -1029,14 +1039,14 @@ class ConverterContext {
 		- `Property`
 		- `Method`
 	**/
-	function fieldFromSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
+	function fieldFromSymbol(nativeFieldName: String, symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
 		var safeName = symbol.name.toSafeIdent();
-		var nameChanged = safeName != symbol.name;
+		var nameChanged = safeName != nativeFieldName;
 
 		if (nameChanged) {
-			meta.push({name: ':native', pos: pos, params: [HaxeTools.toStringExpr(symbol.name, pos)]});
+			meta.push({name: ':native', pos: pos, params: [HaxeTools.toStringExpr(nativeFieldName, pos)]});
 		}
 
 		if (symbol.flags & SymbolFlags.Optional != 0) {
