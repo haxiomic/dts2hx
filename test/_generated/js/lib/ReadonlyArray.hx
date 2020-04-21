@@ -3,7 +3,7 @@ extern interface ReadonlyArray<T> {
 	/**
 		Gets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/
-	var length : Float;
+	final length : Float;
 	/**
 		Returns a string representation of an array.
 	**/

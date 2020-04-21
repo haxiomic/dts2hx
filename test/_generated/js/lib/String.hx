@@ -118,7 +118,7 @@ extern interface String {
 	/**
 		Returns the length of a String object.
 	**/
-	var length : Float;
+	final length : Float;
 	/**
 		Gets a substring beginning at the specified location and having the specified length.
 	**/

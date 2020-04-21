@@ -9,5 +9,5 @@ extern interface Symbol {
 	**/
 	function valueOf():Any;
 	@:native("__@toStringTag")
-	var __AtToStringTag : String;
+	final __AtToStringTag : String;
 }

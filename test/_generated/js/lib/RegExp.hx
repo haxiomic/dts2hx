@@ -11,19 +11,19 @@ extern interface RegExp {
 	/**
 		Returns a copy of the text of the regular expression pattern. Read-only. The regExp argument is a Regular expression object. It can be a variable name or a literal.
 	**/
-	var source : String;
+	final source : String;
 	/**
 		Returns a Boolean value indicating the state of the global flag (g) used with a regular expression. Default is false. Read-only.
 	**/
-	var global : Bool;
+	final global : Bool;
 	/**
 		Returns a Boolean value indicating the state of the ignoreCase flag (i) used with a regular expression. Default is false. Read-only.
 	**/
-	var ignoreCase : Bool;
+	final ignoreCase : Bool;
 	/**
 		Returns a Boolean value indicating the state of the multiline flag (m) used with a regular expression. Default is false. Read-only.
 	**/
-	var multiline : Bool;
+	final multiline : Bool;
 	var lastIndex : Float;
 	function compile():RegExp;
 	/**
@@ -38,17 +38,17 @@ extern interface RegExp {
 		
 		If no flags are set, the value is the empty string.
 	**/
-	var flags : String;
+	final flags : String;
 	/**
 		Returns a Boolean value indicating the state of the sticky flag (y) used with a regular
 		expression. Default is false. Read-only.
 	**/
-	var sticky : Bool;
+	final sticky : Bool;
 	/**
 		Returns a Boolean value indicating the state of the Unicode flag (u) used with a regular
 		expression. Default is false. Read-only.
 	**/
-	var unicode : Bool;
+	final unicode : Bool;
 	/**
 		Matches a string with this regular expression, and returns an array containing the results of
 		that search.

@@ -6,7 +6,7 @@ extern interface Map<K, V> {
 	function get(key:K):Null<V>;
 	function has(key:K):Bool;
 	function set(key:K, value:V):Map<K, V>;
-	var size : Float;
+	final size : Float;
 	/**
 		Returns an iterable of entries in the map.
 	**/
@@ -25,5 +25,5 @@ extern interface Map<K, V> {
 	**/
 	function values():IterableIterator<V>;
 	@:native("__@toStringTag")
-	var __AtToStringTag : String;
+	final __AtToStringTag : String;
 }

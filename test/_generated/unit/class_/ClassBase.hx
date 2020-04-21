@@ -6,7 +6,7 @@ package unit.class_;
 	var arrayField : Array<String>;
 	var thisClassType : ClassBase<T>;
 	var typeParamField : T;
-	var readonlyField : Float;
+	final readonlyField : Float;
 	function __constructor(example:String):Void;
 	function method(a:Float, b:String):Any;
 	@:overload(function(a:String, b:Array<{ }>):Any { })

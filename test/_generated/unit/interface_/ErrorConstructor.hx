@@ -6,5 +6,5 @@ package unit.interface_;
 extern interface ErrorConstructor {
 	@:selfCall
 	function call(?message:String):Error;
-	var prototype : Error;
+	final prototype : Error;
 }

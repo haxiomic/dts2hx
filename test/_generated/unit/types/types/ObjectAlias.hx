@@ -16,5 +16,5 @@ typedef ObjectAlias = {
 	var methodProperty : (a:Any) -> Void;
 	@:optional
 	function methodSignatureOptional():String;
-	var readonlyField : String;
+	final readonlyField : String;
 };
