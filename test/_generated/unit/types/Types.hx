@@ -24,8 +24,8 @@ package unit.types;
 	static function functionNumberStringVoidAlt(a:Float, b:String):Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a:Float, tparam:T):Void;
 	@:overload(function(a:String):Any { })
-	@:overload(function(a:Array<Any>):Any { })
-	@:overload(function<T, U>(a:Array<Any>, u:U):T { })
+	@:overload(function(a:Array<js.lib.Symbol>):Any { })
+	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Any;
 	static function typeParameterWithConstraint<T:(Array<Float>)>(x:T):Any;
 	static function firstTypeFunction(node:{ }):Bool;
@@ -40,7 +40,7 @@ package unit.types;
 	static var stringObject : js.lib.String;
 	static var numberObject : js.lib.Number;
 	static var booleanObject : js.lib.Boolean;
-	static var symbolPrimitive : Any;
+	static var symbolPrimitive : js.lib.Symbol;
 	static var symbolObject : js.lib.Symbol;
 	static var any : Any;
 	static var typeInParentheses : Float;
@@ -102,8 +102,8 @@ package unit.types;
 	static var typeQueryNoType : Any;
 	static var typeQueryFunction : (x:Any, y:Any) -> Any;
 	static var typeQueryFunctionWithOverloads : { @:overload(function(a:String):Any { })
-	@:overload(function(a:Array<Any>):Any { })
-	@:overload(function<T, U>(a:Array<Any>, u:U):T { })
+	@:overload(function(a:Array<js.lib.Symbol>):Any { })
+	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	@:selfCall
 	function call(a:Float):Any; };
 }
