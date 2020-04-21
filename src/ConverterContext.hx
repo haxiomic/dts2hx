@@ -1084,21 +1084,19 @@ class ConverterContext {
 				}
 			}
 
-
 			var type = tc.getTypeAtLocation(symbol.valueDeclaration);
 			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 			FVar(hxType, null);
 
 		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
+			switch symbol.valueDeclaration.kind {
+				case MethodSignature, MethodDeclaration, FunctionDeclaration:
+				default: 
+					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(symbol.valueDeclaration.kind)}</>');
+			}
 			// function field
 			var baseDeclaration = symbol.valueDeclaration;
-			var overloadDeclarations = symbol.declarations.filter(d -> d != baseDeclaration && switch d.kind {
-				case MethodSignature, MethodDeclaration, FunctionDeclaration: true;
-				case ModuleDeclaration: false;
-				default:
-					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(d.kind)}</>');
-					false;
-			});
+			var overloadDeclarations = symbol.declarations.filter(d -> d != baseDeclaration && d.kind == baseDeclaration.kind);
 
 			for (overloadDeclaration in overloadDeclarations) {
 				var signature = tc.getSignatureFromDeclaration(cast overloadDeclaration);
