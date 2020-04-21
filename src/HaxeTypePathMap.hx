@@ -217,7 +217,7 @@ class HaxeTypePathMap {
 		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
 		if (defaultLibOnlyDeclarations) {
 			final specialTypeMap = [
-				'Array' => {name: 'Array', pack: []},
+				'Array' => {name: 'Array', pack: ['std']},
 				'Symbol' => {name: 'Symbol', pack: ['js', 'lib']},
 			];
 			switch access {
