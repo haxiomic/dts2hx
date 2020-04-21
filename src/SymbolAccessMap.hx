@@ -85,6 +85,11 @@ class SymbolAccessMap {
 	}
 
 	function symbolAccessAppendSymbol(access: SymbolAccess, symbol: Symbol): SymbolAccess {
+		switch symbol.escapedName {
+			case InternalSymbolName.ExportEquals:
+				Log.error('Internal error: `export=` symbol should not appear in a symbol access chain (${access.toString()})', symbol);
+		}
+
 		var symbolChain = access.extractSymbolChain();
 		// check if an existing symbol aliases to this symbol
 		for (i in 0...symbolChain.length) {
