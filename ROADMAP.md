@@ -1,13 +1,15 @@
 - Missing constructors from typedarray classes?
 	- Why are all html and lib types interfaces?
+	-> Because they're weird interfaces with *construct* signatures
+		-> maaaybe recognise and make a class? Or an abstract?
 
 - Handle callable classes
 	symbol.flags & SymbolFlags.Function != 0
 
 - Global modules
-- Understand `tc.getAugmentedPropertiesOfType(declaredType)`
-- Why is `export=` in the access path?
+	- Should we have Global.hx per-package or just one?
 
+- Understand `tc.getAugmentedPropertiesOfType(declaredType)`
 ? `tc.getBaseTypeOfLiteralType()` for literals?
 ? `tc.getBaseConstraintOfType(type)`
 ? `getBaseTypes(type:InterfaceType):Array<typescript.ts.BaseType>`
@@ -25,24 +27,21 @@
 	- Enum static fields
 	- ValueModule fields
 
+- Class and interface extend handling, add override etc
+
+- Abstract classes?
+
 ? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
 
-- Missing type parameters in Map.hx
-- Review what's going on with @:native('__@iterator') is this correct?
-	-> Probably not, should it be `[Symbol.iterator]`
+- review __promisify__
 
-- Global.hx
-	- Should we have Global.hx per-package or just one?
-
-
-- Review `export declare` in @actions/core
-- node_modules/@actions -> atactions
+- HaxeTools: fieldName deduplication
+	- Given an array of fields, find duplicate names and add _ + @:native
 
 - Three.hx could have type aliases, or not be generated since it's empty
+	- Maybe we don't want to ignore Export * symbols in `walkDeclarationSymbols`
 
 - getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
-
-- Add a compiler option so that it doesn't lib-wrap the directory, allowing you to just use a class-path rather than adding -lib for each dependency
 
 - Review class-expression syntax `let x = class ...`
 
