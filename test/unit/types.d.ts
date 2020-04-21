@@ -61,9 +61,11 @@ export namespace Types {
     const numberPrimitive: number;
     const booleanPrimitive: boolean;
     const stringPrimitive: string;
-    const stringObjectPrimitive: String;
-    const numberObjectPrimitive: Number;
+    const stringObject: String;
+    const numberObject: Number;
+    const booleanObject: Boolean;
     const symbolPrimitive: symbol;
+    const symbolObject: Symbol;
     const any: any;
     const typeInParentheses: ( number );
     const unionInParentheses: ( number | string );

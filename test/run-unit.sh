@@ -4,7 +4,8 @@ rm -rf _generated
 ../cli.js ./unit/built-in --verbose --output _generated
 ../cli.js ./unit/class --verbose --output _generated
 ../cli.js ./unit/enum --verbose --output _generated
-../cli.js ./unit/export-modules --verbose --output _generated
+../cli.js ./unit/export= --verbose --output _generated
+../cli.js ./unit/export-default --verbose --output _generated
 ../cli.js ./unit/interface --verbose --output _generated
 ../cli.js ./unit/named-tuple --verbose --output _generated
 ../cli.js ./unit/symbols --verbose --output _generated
