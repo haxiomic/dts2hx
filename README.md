@@ -49,8 +49,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] This type
         - [x] Overloads
         - [ ] Wrapped types
-        - [ ] ESSymbol fields
-    - [ ] Handle `export default` better
+        - [x] ESSymbol fields
+    - [x] Handle `export default` better
     - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
     - [ ] Classes and interfaces
         - [x] Constructors
