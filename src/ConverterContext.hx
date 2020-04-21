@@ -518,7 +518,7 @@ class ConverterContext {
 	**/
 	function getSupportTupleType(elementTypes: Array<ComplexType>): ComplexType {
 		if (elementTypes.length == 0) {
-			return macro :Array<Any>;
+			return macro :std.Array<Any>;
 		}
 		var baseType = HaxeTools.commonType(elementTypes);
 		var typePath = {
@@ -549,7 +549,7 @@ class ConverterContext {
 				}).fields);
 			}
 
-			var abstractType = macro :Array<Base>;
+			var abstractType = macro :std.Array<Base>;
 
 			var tupleTypeDefinition: HaxeModule = {
 				pack: typePath.pack,
@@ -907,7 +907,7 @@ class ConverterContext {
 			var tsType = tc.getTypeAtLocation(s.valueDeclaration);
 
 			var hxType = if (isLocalTypeParam(tsType)) {
-				macro : Any;
+				macro :Any;
 			} else {
 				complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
 			}
@@ -918,7 +918,7 @@ class ConverterContext {
 		var tsRet = tc.getReturnTypeOfSignature(callSignature);
 
 		var hxRet = if (isLocalTypeParam(tsRet)) {
-			macro : Any;
+			macro :Any;
 		} else {
 			complexTypeFromTsType(tc.getReturnTypeOfSignature(callSignature), accessContext, enclosingDeclaration);
 		}
@@ -983,7 +983,7 @@ class ConverterContext {
 		Log.warn('Todo: TupleType', tupleType);
 		// need an example where this path is hit
 		debug();
-		return macro :Array<Any>;
+		return macro :std.Array<Any>;
 	}
 
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
