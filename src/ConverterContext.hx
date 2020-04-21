@@ -688,7 +688,7 @@ class ConverterContext {
 		// }
 
 		// handle fundamental type flags
-		var complexType = if (type.flags & (TypeFlags.Any) != 0) {
+		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
 		} else if (type.flags & TypeFlags.Unknown != 0) {
 			// we can't really represent `unknown` in haxe at the moment
@@ -735,6 +735,9 @@ class ConverterContext {
 
 			Log.error('Could not convert type', type);
 			macro :Any;
+		} catch (e: Any) {
+			_currentTypeStack.pop();
+			throw e;
 		}
 
 		_currentTypeStack.pop();
