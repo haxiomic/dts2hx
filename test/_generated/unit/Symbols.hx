@@ -1,12 +1,6 @@
 package unit;
 @:jsRequire("./unit/symbols") extern class Symbols {
-	/**
-		@DTS2HX-ERROR: Unhandled declaration kind ClassDeclaration
-	**/
 	static function ClassValueModule(arg:Float):Any;
-	/**
-		@DTS2HX-ERROR: Unhandled declaration kind InterfaceDeclaration
-	**/
 	@:overload(function():Float { })
 	static function CallableInterface(overloadParam:Float):Float;
 	static function FunctionValueModule():Float;
