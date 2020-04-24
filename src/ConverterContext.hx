@@ -250,17 +250,6 @@ class ConverterContext {
 
 		if (symbol.isConstructorTypeVariable(tc)) {
 			Log.warn('getHaxeModuleFromSymbol(): Constructor type variable not yet handled, ${typePath.pack} ${typePath.name}', symbol);
-			{
-				pack: typePath.pack,
-				name: typePath.name,
-				fields: [],
-				kind: TDAlias(macro :Dynamic),
-				doc: getDoc(symbol),
-				pos: pos,
-				subTypes: [],
-				tsSymbol: symbol,
-				tsSymbolAccess: access,
-			}
 		}
 
 		var hxModule: HaxeModule = if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
@@ -504,7 +493,7 @@ class ConverterContext {
 				pack: typePath.pack,
 				name: typePath.name,
 				fields: [],
-				kind: TDAlias(macro :Dynamic),
+				kind: TDAbstract(macro :Dynamic, [macro :Dynamic], [macro :Dynamic]),
 				doc: getDoc(symbol),
 				pos: pos,
 				subTypes: [],
@@ -740,7 +729,7 @@ class ConverterContext {
 			/** 
 				In typescript, function types have the object flag 'Anonymous' because they're actually represented as the call signatures of anons
 				```typescript
-				let f: (a: number): string
+				let f: (a: number) => string
 				// is actually represented as
 				let f: { (a: number): string }
 				```
@@ -1396,91 +1385,91 @@ class ConverterContext {
 	**Type Flags**
 	```typescript
 	export const enum TypeFlags {
-        Any             = 1 << 0,
-        Unknown         = 1 << 1,
-        String          = 1 << 2,
-        Number          = 1 << 3,
-        Boolean         = 1 << 4,
-        Enum            = 1 << 5,
-        BigInt          = 1 << 6,
-        StringLiteral   = 1 << 7,
-        NumberLiteral   = 1 << 8,
-        BooleanLiteral  = 1 << 9,
-        EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
-        BigIntLiteral   = 1 << 11,
-        ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
-        UniqueESSymbol  = 1 << 13,  // unique symbol
-        Void            = 1 << 14,
-        Undefined       = 1 << 15,
-        Null            = 1 << 16,
-        Never           = 1 << 17,  // Never type
-        TypeParameter   = 1 << 18,  // Type parameter
-        Object          = 1 << 19,  // Object type
-        Union           = 1 << 20,  // Union (T | U)
-        Intersection    = 1 << 21,  // Intersection (T & U)
-        Index           = 1 << 22,  // keyof T
-        IndexedAccess   = 1 << 23,  // T[K]
-        Conditional     = 1 << 24,  // T extends U ? X : Y
-        Substitution    = 1 << 25,  // Type parameter substitution
-        NonPrimitive    = 1 << 26,  // intrinsic object type
+		Any             = 1 << 0,
+		Unknown         = 1 << 1,
+		String          = 1 << 2,
+		Number          = 1 << 3,
+		Boolean         = 1 << 4,
+		Enum            = 1 << 5,
+		BigInt          = 1 << 6,
+		StringLiteral   = 1 << 7,
+		NumberLiteral   = 1 << 8,
+		BooleanLiteral  = 1 << 9,
+		EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
+		BigIntLiteral   = 1 << 11,
+		ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
+		UniqueESSymbol  = 1 << 13,  // unique symbol
+		Void            = 1 << 14,
+		Undefined       = 1 << 15,
+		Null            = 1 << 16,
+		Never           = 1 << 17,  // Never type
+		TypeParameter   = 1 << 18,  // Type parameter
+		Object          = 1 << 19,  // Object type
+		Union           = 1 << 20,  // Union (T | U)
+		Intersection    = 1 << 21,  // Intersection (T & U)
+		Index           = 1 << 22,  // keyof T
+		IndexedAccess   = 1 << 23,  // T[K]
+		Conditional     = 1 << 24,  // T extends U ? X : Y
+		Substitution    = 1 << 25,  // Type parameter substitution
+		NonPrimitive    = 1 << 26,  // intrinsic object type
 
-        // @internal
-        AnyOrUnknown = Any | Unknown,
-        // @internal
-        Nullable = Undefined | Null,
-        Literal = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral,
-        Unit = Literal | UniqueESSymbol | Nullable,
-        StringOrNumberLiteral = StringLiteral | NumberLiteral,
-        // @internal
-        StringOrNumberLiteralOrUnique = StringLiteral | NumberLiteral | UniqueESSymbol,
-        // @internal
-        DefinitelyFalsy = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral | Void | Undefined | Null,
-        PossiblyFalsy = DefinitelyFalsy | String | Number | BigInt | Boolean,
-        // @internal
-        Intrinsic = Any | Unknown | String | Number | BigInt | Boolean | BooleanLiteral | ESSymbol | Void | Undefined | Null | Never | NonPrimitive,
-        // @internal
-        Primitive = String | Number | BigInt | Boolean | Enum | EnumLiteral | ESSymbol | Void | Undefined | Null | Literal | UniqueESSymbol,
-        StringLike = String | StringLiteral,
-        NumberLike = Number | NumberLiteral | Enum,
-        BigIntLike = BigInt | BigIntLiteral,
-        BooleanLike = Boolean | BooleanLiteral,
-        EnumLike = Enum | EnumLiteral,
-        ESSymbolLike = ESSymbol | UniqueESSymbol,
-        VoidLike = Void | Undefined,
-        // @internal
-        DisjointDomains = NonPrimitive | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbolLike | VoidLike | Null,
-        UnionOrIntersection = Union | Intersection,
-        StructuredType = Object | Union | Intersection,
-        TypeVariable = TypeParameter | IndexedAccess,
-        InstantiableNonPrimitive = TypeVariable | Conditional | Substitution,
-        InstantiablePrimitive = Index,
-        Instantiable = InstantiableNonPrimitive | InstantiablePrimitive,
-        StructuredOrInstantiable = StructuredType | Instantiable,
-        // @internal
-        ObjectFlagsType = Any | Nullable | Never | Object | Union | Intersection,
-        // @internal
-        Simplifiable = IndexedAccess | Conditional,
-        // @internal
-        Substructure = Object | Union | Intersection | Index | IndexedAccess | Conditional | Substitution,
-        // 'Narrowable' types are types where narrowing actually narrows.
-        // This *should* be every type other than null, undefined, void, and never
-        Narrowable = Any | Unknown | StructuredOrInstantiable | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbol | UniqueESSymbol | NonPrimitive,
-        NotUnionOrUnit = Any | Unknown | ESSymbol | Object | NonPrimitive,
-        // @internal
-        NotPrimitiveUnion = Any | Unknown | Enum | Void | Never | StructuredOrInstantiable,
-        // The following flags are aggregated during union and intersection type construction
-        // @internal
-        IncludesMask = Any | Unknown | Primitive | Never | Object | Union | Intersection | NonPrimitive,
-        // The following flags are used for different purposes during union and intersection type construction
-        // @internal
-        IncludesStructuredOrInstantiable = TypeParameter,
-        // @internal
-        IncludesNonWideningType = Index,
-        // @internal
-        IncludesWildcard = IndexedAccess,
-        // @internal
-        IncludesEmptyObject = Conditional,
-    }
+		// @internal
+		AnyOrUnknown = Any | Unknown,
+		// @internal
+		Nullable = Undefined | Null,
+		Literal = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral,
+		Unit = Literal | UniqueESSymbol | Nullable,
+		StringOrNumberLiteral = StringLiteral | NumberLiteral,
+		// @internal
+		StringOrNumberLiteralOrUnique = StringLiteral | NumberLiteral | UniqueESSymbol,
+		// @internal
+		DefinitelyFalsy = StringLiteral | NumberLiteral | BigIntLiteral | BooleanLiteral | Void | Undefined | Null,
+		PossiblyFalsy = DefinitelyFalsy | String | Number | BigInt | Boolean,
+		// @internal
+		Intrinsic = Any | Unknown | String | Number | BigInt | Boolean | BooleanLiteral | ESSymbol | Void | Undefined | Null | Never | NonPrimitive,
+		// @internal
+		Primitive = String | Number | BigInt | Boolean | Enum | EnumLiteral | ESSymbol | Void | Undefined | Null | Literal | UniqueESSymbol,
+		StringLike = String | StringLiteral,
+		NumberLike = Number | NumberLiteral | Enum,
+		BigIntLike = BigInt | BigIntLiteral,
+		BooleanLike = Boolean | BooleanLiteral,
+		EnumLike = Enum | EnumLiteral,
+		ESSymbolLike = ESSymbol | UniqueESSymbol,
+		VoidLike = Void | Undefined,
+		// @internal
+		DisjointDomains = NonPrimitive | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbolLike | VoidLike | Null,
+		UnionOrIntersection = Union | Intersection,
+		StructuredType = Object | Union | Intersection,
+		TypeVariable = TypeParameter | IndexedAccess,
+		InstantiableNonPrimitive = TypeVariable | Conditional | Substitution,
+		InstantiablePrimitive = Index,
+		Instantiable = InstantiableNonPrimitive | InstantiablePrimitive,
+		StructuredOrInstantiable = StructuredType | Instantiable,
+		// @internal
+		ObjectFlagsType = Any | Nullable | Never | Object | Union | Intersection,
+		// @internal
+		Simplifiable = IndexedAccess | Conditional,
+		// @internal
+		Substructure = Object | Union | Intersection | Index | IndexedAccess | Conditional | Substitution,
+		// 'Narrowable' types are types where narrowing actually narrows.
+		// This *should* be every type other than null, undefined, void, and never
+		Narrowable = Any | Unknown | StructuredOrInstantiable | StringLike | NumberLike | BigIntLike | BooleanLike | ESSymbol | UniqueESSymbol | NonPrimitive,
+		NotUnionOrUnit = Any | Unknown | ESSymbol | Object | NonPrimitive,
+		// @internal
+		NotPrimitiveUnion = Any | Unknown | Enum | Void | Never | StructuredOrInstantiable,
+		// The following flags are aggregated during union and intersection type construction
+		// @internal
+		IncludesMask = Any | Unknown | Primitive | Never | Object | Union | Intersection | NonPrimitive,
+		// The following flags are used for different purposes during union and intersection type construction
+		// @internal
+		IncludesStructuredOrInstantiable = TypeParameter,
+		// @internal
+		IncludesNonWideningType = Index,
+		// @internal
+		IncludesWildcard = IndexedAccess,
+		// @internal
+		IncludesEmptyObject = Conditional,
+	}
 	```
 
 	**TypeNode Kinds**
