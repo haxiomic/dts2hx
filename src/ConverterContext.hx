@@ -408,17 +408,7 @@ class ConverterContext {
 			var hxEnumType = complexTypeFromEnumSymbol(symbol);
 
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-			var hxEnumFields: Array<Field> = enumMembers.map(s -> {
-				var safeName = HaxeTools.toSafeIdent(s.name);
-				var nameChanged = s.name != safeName;
-				return ({
-					name: safeName,
-					pos: TsSymbolTools.getPosition(s),
-					kind: FVar(null, isCompileTimeEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast s.valueDeclaration)) : null),
-					doc: getDoc(s),
-					meta: nameChanged ? [{name: ':native', params: [s.name.toStringExpr(pos)], pos: pos}] : [],
-				}: Field);
-			});
+			var hxEnumFields = [for (enumMember in enumMembers) fieldFromSymbol(enumMember.name, enumMember, access, null)];
 
 			{
 				pack: typePath.pack,
@@ -513,6 +503,9 @@ class ConverterContext {
 				export = tc.getAliasedSymbol(export);
 				if (!export.isAccessibleField()) continue;
 			}
+
+			// skip constructor type variables because these have been converted into classes
+			if (export.isConstructorTypeVariable(tc)) continue;
 
 			// Log.log('\t<magenta,b>Export</>', export);
 			var field = fieldFromSymbol(nativeFieldName, export, access, null);
@@ -1060,6 +1053,18 @@ class ConverterContext {
 					expr: null,
 				});
 			}
+
+		} else if (symbol.flags & SymbolFlags.EnumMember != 0) {
+
+			var parent = symbol.getSymbolParent();
+			var isConstEnum = if (parent != null) {
+				parent.flags & SymbolFlags.ConstEnum != 0;
+			} else {
+				Log.error('EnumMember did not have a parent', symbol);
+				true;
+			}
+			
+			FVar(null, isConstEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast symbol.valueDeclaration)) : null);
 
 		} else {
 
