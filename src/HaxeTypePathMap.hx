@@ -24,9 +24,6 @@ class HaxeTypePathMap {
 	// the same symbol may have multiple type paths if it has multiple SymbolAccess
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
 
-	// if a symbol has these flags, it requires a type-path in haxe
-	static final SymbolRequiresTypePath = SymbolFlags.Type | SymbolFlags.ValueModule;
-
 	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap) {
 		this.entryPointModuleId = entryPointModuleId;
 		this.program = program;
@@ -66,7 +63,7 @@ class HaxeTypePathMap {
 		}
 
 		// reaching this point is considered an error because type-paths should have been pre-generated for _all_ appropriate symbols
-		if (symbol.flags & SymbolRequiresTypePath == 0) {
+		if (!ConverterContext.isHaxeModuleSource(tc, symbol)) {
 			Log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
 		}
 
@@ -100,10 +97,11 @@ class HaxeTypePathMap {
 		// find all declaration symbols in the program (including inaccessible ones) and add to package map as InternalModules
 		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
 			TsSymbolTools.walkDeclarationSymbols(topLevelSymbol, tc, (symbol, _) -> {
-				if (symbol.flags & SymbolRequiresTypePath != 0 ) {
-					for (access in symbolAccessMap.getAccess(symbol)) {
+				for (access in symbolAccessMap.getAccess(symbol)) {
+					if (ConverterContext.isHaxeModuleSource(tc, symbol)) {
 						var typePath = generateTypePath(symbol, access);
 						var modules = getModules(typePath.pack);
+						// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name}</>: ${typePath.pack} ${typePath.name}', symbol);
 
 						if (modules.find(m -> m.symbol == symbol) == null) {
 							modules.push({
@@ -116,26 +114,21 @@ class HaxeTypePathMap {
 							});
 						}
 					}
-				}
-				// for globally declared _values_, we use a module called Global
-				if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-					for (access in symbolAccessMap.getAccess(symbol)) {
-						switch access {
-							case Global([_]):
-								var typePath = generateTypePath(symbol, access);
-								var modules = getModules(typePath.pack);
 
-								if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
-									modules.push({
-										name: 'Global',
-										pack: typePath.pack,
-										isExistingStdLibType: false,
-										symbol: null,
-										access: Global([]),
-										renameable: false,
-									});
-								}
-							default:
+					// for globally declared _values_, we use a module called Global
+					if (ConverterContext.isGlobalField(tc, symbol, access)) {
+						var typePath = generateTypePath(symbol, access);
+						var modules = getModules(typePath.pack);
+
+						if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
+							modules.push({
+								name: 'Global',
+								pack: typePath.pack,
+								isExistingStdLibType: false,
+								symbol: null,
+								access: Global([]),
+								renameable: false,
+							});
 						}
 					}
 				}

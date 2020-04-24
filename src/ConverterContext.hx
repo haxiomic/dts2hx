@@ -169,38 +169,36 @@ class ConverterContext {
 		while (!declarationSymbolQueue.empty()) {
 			var symbol: Symbol = cast declarationSymbolQueue.dequeue();
 
-			// `Alias` here does not mean type-alias, instead it means export-alias (like `export {Type}`)
-			// aliases are accounted for with SymbolAccess and don't need to handled here
-			// NamespaceModules are just package and are handled in HaxeTypePathMap
-			var handled = symbol.flags & (SymbolFlags.Alias | SymbolFlags.NamespaceModule) != 0;
-
-			// symbol has type-declaration
-			if (symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0) {
-				for (access in symbolAccessMap.getAccess(symbol)) {
-					getHaxeModuleFromDeclarationSymbol(symbol, access);
+			for (access in symbolAccessMap.getAccess(symbol)) {
+				// symbol can be both a haxe-module source and a global field if it has multiple declarations
+				if (isHaxeModuleSource(tc, symbol)) {
+					getHaxeModuleFromSymbol(symbol, access);
 				}
-				handled = true;
-			}
-			
-			if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0) {
-				// find top-level global fields and add them to special Global.hx modules
-				for (access in symbolAccessMap.getAccess(symbol)) {
-					switch access {
-						case Global([_]):
-							var globalModule = this.getGlobalModuleForFieldSymbol(symbol, access);
-							var field = fieldFromSymbol(symbol.name, symbol, access, null);
-							field.enableAccess(AStatic);
-							globalModule.fields.push(field);
-						default:
-					}
-				}
-				handled = true;
-			}
 
-			if (!handled) {
-				Log.error('Unhandled symbol in declarationSymbol queue', symbol);
+				if (isGlobalField(tc, symbol, access)) {
+					var globalModule = this.getGlobalModuleForFieldSymbol(symbol, access);
+					var field = fieldFromSymbol(symbol.name, symbol, access, null);
+					field.enableAccess(AStatic);
+					globalModule.fields.push(field);
+				}
 			}
 		} 
+	}
+
+	static public function isHaxeModuleSource(tc: TypeChecker, symbol: Symbol) {
+		return symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
+			symbol.isConstructorTypeVariable(tc);
+	}
+
+	static public function isGlobalField(tc: TypeChecker, symbol: Symbol, access: SymbolAccess): Bool {
+		return switch access {
+			case Global([_])
+				if (
+					symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0 &&
+					!symbol.isConstructorTypeVariable(tc)
+				): true;
+			default: false;
+		}
 	}
 
 	/**
@@ -233,10 +231,10 @@ class ConverterContext {
 	}
 
 	/**
-		Symbol must have flags Type | ValueModule
+		Symbol+access must be a haxe-module source symbol (see `isHaxeModuleSource()`)
 	**/
-	function getHaxeModuleFromDeclarationSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
-		// Log.log('getHaxeModuleFromDeclarationSymbol() <yellow>${access.toString()}</>', symbol);
+	function getHaxeModuleFromSymbol(symbol: Symbol, access: SymbolAccess): HaxeModule {
+		// Log.log('getHaxeModuleFromSymbol() <yellow>${access.toString()}</>', symbol);
 		var pos = TsSymbolTools.getPosition(symbol);
 
 		var typePath = haxeTypePathMap.getTypePath(symbol, access);
@@ -246,6 +244,23 @@ class ConverterContext {
 
 		if (existingModule != null) {
 			return existingModule;
+		}
+
+		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !symbol.isConstructorTypeVariable(tc);
+
+		if (symbol.isConstructorTypeVariable(tc)) {
+			Log.warn('getHaxeModuleFromSymbol(): Constructor type variable not yet handled, ${typePath.pack} ${typePath.name}', symbol);
+			{
+				pack: typePath.pack,
+				name: typePath.name,
+				fields: [],
+				kind: TDAlias(macro :Dynamic),
+				doc: getDoc(symbol),
+				pos: pos,
+				subTypes: [],
+				tsSymbol: symbol,
+				tsSymbolAccess: access,
+			}
 		}
 
 		var hxModule: HaxeModule = if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
@@ -309,13 +324,17 @@ class ConverterContext {
 
 				if (constructSignatures.length > 0) {
 					// this is different from a _constructor_ declaration
-					// @! maybe to support this we can transmute the interface to a class? This obviously causes problems if other classes implement it, but maybe we don't need implements
-					Log.error('Construct signatures are not yet supported', symbol);
+					// construct signatures take the form `new(...): T`
+					// they can only appear on interfaces and anon objects, not classes
+					// when appearing on an interface, we _cannot_ do `new Interface()`, so we should not promote the interface to a class
+					// but they enable `var X: Interface; new X()`
+					// a new metadata `@:newCall` would enable support for construct signatures like `@:selfCall` does for call signatures
+					// @! we probably should ignore constuct signatures on interfaces
 				}
 
 				if (indexSignatures.length > 0) {
 					// this is different from a _constructor_ declaration
-					Log.error('Index signatures are not yet supported', symbol);
+					Log.warn('Index signatures are not yet supported', symbol);
 				}
 
 				// class-fields
@@ -463,7 +482,7 @@ class ConverterContext {
 				tsSymbolAccess: access,
 			}
 			hxTypeDef;
-		} else if (symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0) {
+		} else if (isValueModuleOnlySymbol) {
 			// ValueModule-only symbol
 			{
 				pack: typePath.pack,
@@ -480,7 +499,7 @@ class ConverterContext {
 				tsSymbolAccess: access,
 			}
 		} else {
-			Log.error('getHaxeModuleFromDeclarationSymbol(): Unhandled symbol, no flags were recognized', symbol);
+			Log.error('getHaxeModuleFromSymbol(): Unhandled symbol, no flags were recognized', symbol);
 			{
 				pack: typePath.pack,
 				name: typePath.name,
@@ -512,7 +531,6 @@ class ConverterContext {
 			hxModule.fields.push(field);
 		}
 
-		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0;
 		var isEmptyValueModuleClass = isValueModuleOnlySymbol && hxModule.fields.length == 0;
 
 		// don't save ValueModule classes with no fields
@@ -538,9 +556,6 @@ class ConverterContext {
 		var existingModule = generatedModules.get(path);
 		if (existingModule != null) {
 			Log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
-			// Log.warn('\t Existing module <yellow,b>${existingModule.tsSymbolAccess.toString()}</>', existingModule.tsSymbol);
-			// Log.warn('\t Overwriting module <yellow,b>${access.toString()}</>', symbol);
-			// Log.warn('\t All access ' + symbolAccessMap.getAccess(symbol).map(s -> s.toString()));
 		}
 
 		if (generatedModules.exists(path)) {
@@ -654,7 +669,7 @@ class ConverterContext {
 			// Substitution    = 1 << 25,  // Type parameter substitution
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
-			Log.error('Could not convert type', type);
+			Log.error('Type not yet supported', type);
 			macro :Any;
 		} catch (e: Any) {
 			_currentTypeStack.pop();
@@ -1237,7 +1252,8 @@ class ConverterContext {
 	- See [src/compiler/vistorPublic.ts](https://github.com/microsoft/TypeScript/blob/master/src/compiler/visitorPublic.ts) for an example of fully enumerating the AST
 
 	**Declaration**
-	Declarations can assign a name to a *type*, *value* and *namespace*. A single name may have be used for all of these
+	Declarations can assign a name to a *type*, *value* and *namespace*. A single name may have be used for all of these. This is called declaration merging.
+	https://www.typescriptlang.org/docs/handbook/declaration-merging.html#basic-concepts
 
 	**Modules** vs **Namespaces** and **"External Modules"**
 	- The form `declare module Name` is deprecated and equivalent to `declare namespace Name`. This creates an ambient namespace

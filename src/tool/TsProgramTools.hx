@@ -1,5 +1,8 @@
 package tool;
 
+import typescript.ts.Identifier;
+import typescript.ts.Statement;
+import typescript.ts.InternalSymbolName;
 import typescript.ts.FileReference;
 import typescript.ts.SourceFile;
 import typescript.Ts;
@@ -32,19 +35,42 @@ class TsProgramTools {
 		return typeReferences;
 	}
 
-	public static function getDeclarationSymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
+	public static function getGlobalScopeSymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
 		var tc = program.getTypeChecker();
-		// get all globally visible symbols and filter for those that have a declaration in the sourceFile
-		return tc.getSymbolsInScope(sourceFile, 0xFFFFFF)
-			.filter(
-				symbol -> {
-					if (symbol.declarations != null) for (declaration in symbol.declarations)
-						if (declaration.getSourceFile() == sourceFile)
-							return true;
-					return false;
+
+		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+
+		var globalSymbols = new Array<Symbol>();
+
+		// if there's a source-file module symbol then this sourceFile does not expose anything to the global scope
+		// however there's an exception if `declare global {...}` is used. We can get declare global symbols by searching sourceFile.moduleAugmentations
+		if (sourceFileSymbol == null) {
+			var locals: js.lib.Map<String, Symbol> = cast TsInternal.getSourceFileLocals(sourceFile);
+			locals.forEach((localSymbol, key, _) -> {
+				globalSymbols.push(tc.getExportSymbolOfSymbol(localSymbol));
+			});
+		}
+
+		// find instances of `declare global { ... }` and add symbols
+		var moduleAugmentations = TsInternal.getSourceFileModuleAugmentations(sourceFile);
+		var globalAugmentations = new Array<Symbol>();
+		for (moduleAugmentation in moduleAugmentations) {
+			if (Ts.isIdentifier(moduleAugmentation)) {
+				var ident: Identifier = cast moduleAugmentation;
+				var identSymbol = tc.getSymbolAtLocation(ident);
+				if (identSymbol != null && identSymbol.escapedName == InternalSymbolName.Global) {
+					globalAugmentations.push(identSymbol);
 				}
-			)
-			.map(tc.getExportSymbolOfSymbol);
+			}
+		}
+
+		for (g in globalAugmentations) {
+			for (s in tc.getExportsOfModule(g)) {
+				globalSymbols.push(tc.getExportSymbolOfSymbol(s));
+			}
+		}
+
+		return globalSymbols;
 	}
 	
 	/**
@@ -52,22 +78,11 @@ class TsProgramTools {
 	**/
 	public static function getExposedSymbolsOfSourceFile(program: Program, sourceFile: SourceFile): Array<Symbol> {
 		var tc = program.getTypeChecker();
+
+		var globalScopeSymbols = getGlobalScopeSymbolsInSourceFile(program, sourceFile);
 		var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-		if (sourceFileSymbol != null) {
-			// return tc.getExportsOfModule(sourceFileSymbol); // seems to miss symbols like export =
-			// var exports = [];
-			// if (sourceFileSymbol.exports != null) sourceFileSymbol.exports.forEach((symbol, key) -> {
-			// 	exports.push(symbol);
-			// });
-			// if (sourceFileSymbol.globalExports != null) sourceFileSymbol.globalExports.forEach((symbol, key) -> {
-			// 	exports.push(symbol);
-			// });
-			// return exports.map(tc.getExportSymbolOfSymbol);
-			return [sourceFileSymbol];
-		} else {
-			// sourcefile symbols are visible in the global scope
-			return getDeclarationSymbolsInSourceFile(program, sourceFile);
-		}
+
+		return sourceFileSymbol != null ? [sourceFileSymbol].concat(globalScopeSymbols) : globalScopeSymbols;
 	}
 
 	public static function getTopLevelDeclarationSymbols(program: Program) {

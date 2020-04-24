@@ -31,23 +31,26 @@ class SymbolAccessMap {
 			program.walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
 				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
 
-				var sourceFileAccess: SymbolAccess = if (sourceFileSymbol != null) {
-					var moduleName = sourceFile.moduleName;
-					if (moduleName == null) {
-						Log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
-					}
-					ExportModule(moduleName, sourceFileSymbol, []);
-				} else {
-					Global([]);
-				}
+				// Log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>', sourceFile);
 
-				// Log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>, scope <yellow,b>${sourceFileAccess.toString()}</>', sourceFile);
-				for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
+				// global-scope symbols
+				for (symbol in program.getGlobalScopeSymbolsInSourceFile(sourceFile)) {
 					TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, accessChain) -> {
-						var currentAccess = sourceFileAccess;
-						for (s in accessChain) {
-							currentAccess = symbolAccessAppendSymbol(currentAccess, s);
+						var currentAccess: SymbolAccess = Global([]);
+						for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
+						setAccess(symbol, currentAccess);
+					});
+				}
+				
+				// source-file module symbols
+				if (sourceFileSymbol != null) {
+					TsSymbolTools.walkDeclarationSymbols(sourceFileSymbol, tc, (symbol, accessChain) -> {
+						var moduleName = sourceFile.moduleName;
+						if (moduleName == null) {
+							Log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
 						}
+						var currentAccess: SymbolAccess = ExportModule(moduleName, sourceFileSymbol, []);
+						for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
 						setAccess(symbol, currentAccess);
 					});
 				}
@@ -151,19 +154,12 @@ class SymbolAccessMap {
 				}
 			}
 
-			// check if this symbol is globally available, in which case, set root to Global
-			// otherwise add an identifier to the chain
-			var symbolParent =  TsSymbolTools.getSymbolParent(symbol);
-			return if (symbolParent != null && symbolParent.escapedName == InternalSymbolName.Global) {
-				Global([]);
-			} else {
-				// append to symbol chain
-				return switch access {
-					case AmbientModule(m, r, s): AmbientModule(m, r, s.concat([symbol]));
-					case ExportModule(m, r, s): ExportModule(m, r, s.concat([symbol]));
-					case Global(s): Global(s.concat([symbol]));
-					case Inaccessible: Inaccessible;
-				}
+			// append to symbol chain
+			return switch access {
+				case AmbientModule(m, r, s): AmbientModule(m, r, s.concat([symbol]));
+				case ExportModule(m, r, s): ExportModule(m, r, s.concat([symbol]));
+				case Global(s): Global(s.concat([symbol]));
+				case Inaccessible: Inaccessible;
 			}
 		}
 	}

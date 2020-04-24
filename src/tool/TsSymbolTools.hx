@@ -49,6 +49,24 @@ class TsSymbolTools {
 				Ts.isSourceFile(symbol.valueDeclaration);
 	}
 
+	/**
+		A construct-type variable is a variable who's type has _construct_ signatures, for example
+		```typescript
+		const ExampleConstructor: {
+			new(): Example;
+			field: string;
+		}
+		```
+		This is a special pattern in typescript and roughly maps to a class in haxe
+		https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#335-constructor-types
+	**/
+	public static function isConstructorTypeVariable(symbol: Symbol, tc: TypeChecker): Bool {
+		return if (symbol.flags & SymbolFlags.Variable != 0 && symbol.valueDeclaration != null) {
+			var varType = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+			TsTypeTools.isConstructorType(varType, tc);
+		} else false;
+	}
+
 	public static function getSymbolRootParent(symbol: Symbol): Null<Symbol> {
 		var rootParent: Null<Symbol> = null;
 		var parentSymbol = getSymbolParent(symbol);

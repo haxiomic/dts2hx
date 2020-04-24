@@ -54,6 +54,14 @@ class TsTypeTools {
 		return activeFlags;
 	}
 
+	/**
+		Returns true if type has Construct signatures.
+		See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#335-constructor-types
+	**/
+	public static function isConstructorType(type: TsType, tc: TypeChecker): Bool {
+		return tc.getSignaturesOfType(type, Construct).length > 0;
+	}
+
 	static inline function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}

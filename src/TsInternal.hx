@@ -1,3 +1,6 @@
+import typescript.ts.Identifier;
+import typescript.ts.StringLiteral;
+import typescript.ts.SymbolTable;
 import typescript.ts.TypeParameter;
 import typescript.ts.Node;
 import typescript.ts.FileReference;
@@ -26,6 +29,14 @@ class TsInternal {
 
 	static public function convertToRelativePath(absoluteOrRelativePath: String, basePath: String, getCanonicalFileName: (path: String) -> String): String {
 		return untyped Ts.convertToRelativePath(absoluteOrRelativePath, basePath, getCanonicalFileName);
+	}
+
+	static public function getSourceFileLocals(sourceFile: SourceFile): SymbolTable {
+		return cast Reflect.field(sourceFile, 'locals');
+	}
+
+	static public function getSourceFileModuleAugmentations(sourceFile: SourceFile): Array<haxe.extern.EitherType<StringLiteral, Identifier>> {
+		return cast Reflect.field(sourceFile, 'moduleAugmentations');
 	}
 
 	/**
