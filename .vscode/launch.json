@@ -4,12 +4,21 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
             "name": "dts2hx.js",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": [],
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "dts2hx.js big.js",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["big.js", "--verbose"],
+            "cwd": "${workspaceFolder}/test/libs",
         },
         {
             "type": "node",
@@ -86,6 +95,13 @@
             "name": "dts2hx.js unit/type-parameters",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["./test/unit/type-parameters", "--verbose"],
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "dts2hx.js unit/ambient",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["./test/unit/ambient", "--verbose"],
         },
         {
             "type": "node",
