@@ -60,10 +60,10 @@ class TsSymbolTools {
 		This is a special pattern in typescript and roughly maps to a class in haxe
 		https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#335-constructor-types
 	**/
-	public static function isConstructorTypeVariable(symbol: Symbol, tc: TypeChecker): Bool {
+	public static function isConstructorTypeVariableSymbol(tc: TypeChecker, symbol: Symbol): Bool {
 		return if (symbol.flags & SymbolFlags.Variable != 0 && symbol.valueDeclaration != null) {
 			var varType = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
-			TsTypeTools.isConstructorType(varType, tc);
+			TsTypeTools.isConstructorType(tc, varType);
 		} else false;
 	}
 

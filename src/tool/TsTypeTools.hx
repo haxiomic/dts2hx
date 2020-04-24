@@ -58,8 +58,17 @@ class TsTypeTools {
 		Returns true if type has Construct signatures.
 		See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#335-constructor-types
 	**/
-	public static function isConstructorType(type: TsType, tc: TypeChecker): Bool {
+	public static function isConstructorType(tc: TypeChecker, type: TsType): Bool {
 		return tc.getSignaturesOfType(type, Construct).length > 0;
+	}
+
+	public static function getIndexSignaturesOfType(tc: TypeChecker, type: TsType) {
+		var indexDeclarations = new Array<typescript.ts.IndexSignatureDeclaration>();
+		var numberInfo = tc.getIndexInfoOfType(type, typescript.ts.IndexKind.Number);
+		var stringInfo = tc.getIndexInfoOfType(type, typescript.ts.IndexKind.String);
+		if (numberInfo != null && numberInfo.declaration != null) indexDeclarations.push(numberInfo.declaration);
+		if (stringInfo != null && stringInfo.declaration != null) indexDeclarations.push(stringInfo.declaration);
+		return indexDeclarations.map(d -> cast tc.getSignatureFromDeclaration(d));
 	}
 
 	static inline function isPowerOfTwo(x: Int) {

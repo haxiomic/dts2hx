@@ -1,3 +1,4 @@
+import typescript.ts.InternalSymbolName;
 import typescript.ts.Declaration;
 import typescript.ts.Modifier;
 import typescript.ts.ModifiersArray;
@@ -187,7 +188,7 @@ class ConverterContext {
 
 	static public function isHaxeModuleSource(tc: TypeChecker, symbol: Symbol) {
 		return symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
-			symbol.isConstructorTypeVariable(tc);
+			tc.isConstructorTypeVariableSymbol(symbol);
 	}
 
 	static public function isGlobalField(tc: TypeChecker, symbol: Symbol, access: SymbolAccess): Bool {
@@ -195,7 +196,7 @@ class ConverterContext {
 			case Global([_])
 				if (
 					symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0 &&
-					!symbol.isConstructorTypeVariable(tc)
+					!tc.isConstructorTypeVariableSymbol(symbol)
 				): true;
 			default: false;
 		}
@@ -246,11 +247,20 @@ class ConverterContext {
 			return existingModule;
 		}
 
-		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !symbol.isConstructorTypeVariable(tc);
+		/**
+			ConstructorType + Interface
+				-> Convert to class, add static fields and new
+			ConstructorType + Type-Alias
+				-> Convert to abstract, add static fields and new
+			ConstructorType + ValueModule
+				-> add static fields and new
 
-		if (symbol.isConstructorTypeVariable(tc)) {
-			Log.warn('getHaxeModuleFromSymbol(): Constructor type variable not yet handled, ${typePath.pack} ${typePath.name}', symbol);
-		}
+			ConstructorType + Class + Interface => Not allowed
+			ConstructorType + Class => Not allowed
+			ConstructorType + Enum => Not allowed
+		**/
+		var isConstructorTypeVariable = tc.isConstructorTypeVariableSymbol(symbol);
+		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !isConstructorTypeVariable;
 
 		var hxModule: HaxeModule = if (symbol.flags & (SymbolFlags.Class | SymbolFlags.Interface) != 0) {
 			// Class | Interface | Enum | EnumMember | TypeLiteral | TypeParameter | TypeAlias
@@ -262,10 +272,10 @@ class ConverterContext {
 				Log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
 			}
 
-			var isClassAndInterface = (symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0);
+			var forceClassKind = ((symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0)) || isConstructorTypeVariable;
 
 			// if it's a class and interface symbol, we use class
-			var isInterface = symbol.flags & SymbolFlags.Interface != 0 && !isClassAndInterface;
+			var isInterface = symbol.flags & SymbolFlags.Interface != 0 && !forceClassKind;
 
 			var meta = new Array<MetadataEntry>();
 
@@ -273,7 +283,7 @@ class ConverterContext {
 				meta.push(access.toAccessMetadata());
 			}
 
-			if (isClassAndInterface) {
+			if (forceClassKind) {
 				// in typescript this symbol can be used as a class or an interface
 				// we have no way of representing this in haxe yet
 				// we add metadata to mark the class which we might be able to use in the future
@@ -353,7 +363,7 @@ class ConverterContext {
 				}
 			}
 
-			var kind: TypeDefKind = if (isClassAndInterface) {
+			var kind: TypeDefKind = if (forceClassKind) {
 				// class + interface is a special case that we cannot trivially handle in haxe
 				TDClass(null, implementsTypes, false, false);
 			} else if (isInterface) {
@@ -362,19 +372,14 @@ class ConverterContext {
 				TDClass(extendsTypes[0], implementsTypes, false, false);
 			}
 
-			var fields = if (isClassAndInterface) {
+			var fields = if (forceClassKind) {
 				// class + interface is a special case that we cannot trivially handle in haxe
 				// we don't support extends in this case so instead we use all fields of the type
-				var indexDeclarations = new Array<typescript.ts.IndexSignatureDeclaration>();
-				var numberInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.Number);
-				var stringInfo = tc.getIndexInfoOfType(declaredType, typescript.ts.IndexKind.String);
-				if (numberInfo != null && numberInfo.declaration != null) indexDeclarations.push(numberInfo.declaration);
-				if (stringInfo != null && stringInfo.declaration != null) indexDeclarations.push(stringInfo.declaration);
 				generateFields(
 					symbol.getConstructorSignatures(tc),
 					tc.getSignaturesOfType(declaredType, Call),
 					tc.getSignaturesOfType(declaredType, Construct),
-					indexDeclarations.map(d -> cast tc.getSignatureFromDeclaration(d)),
+					tc.getIndexSignaturesOfType(declaredType),
 					tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
 				);
 			} else {
@@ -432,10 +437,11 @@ class ConverterContext {
 
 			var tsType = tc.getDeclaredTypeOfSymbol(symbol);
 			var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration);
+			var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
 
 			// if this symbol is also a ValueModule then it needs to have fields
 			// to enable this, we create a pseudo typedef with an abstract
-			var hxTypeDef: HaxeModule = if (symbol.flags & SymbolFlags.ValueModule != 0) {
+			var hxTypeDef: HaxeModule = if (forceAbstractKind) {
 				pack: typePath.pack,
 				name: typePath.name,
 				fields: [],
@@ -485,10 +491,46 @@ class ConverterContext {
 				fields: [],
 				kind: TDAbstract(macro :Dynamic, [macro :Dynamic], [macro :Dynamic]),
 				doc: getDoc(symbol),
+				isExtern: true,
 				pos: pos,
 				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
+			}
+		}
+
+		// add ConstructType fields
+		if (isConstructorTypeVariable) {
+			var constructorTypeDeclaration = symbol.valueDeclaration;
+			if (constructorTypeDeclaration != null) {
+				var constructorType = tc.getTypeOfSymbolAtLocation(symbol, constructorTypeDeclaration);
+
+				var constructSignatures = tc.getSignaturesOfType(constructorType, Construct);
+				var callSignatures = tc.getSignaturesOfType(constructorType, Call);
+				var indexSignatures = tc.getIndexSignaturesOfType(constructorType);
+				var fields = tc.getPropertiesOfType(constructorType).filter(s -> s.isAccessibleField());
+
+				// given constructor type cannot merge with class, we don't expect an existing new signature
+				// (and constructor type new signature takes precedence, not overload, over a class new signature if merged with a type-alias to class)
+				var newField = newFieldFromSignatures(constructSignatures, access, constructorTypeDeclaration);
+				hxModule.fields.unshift(newField);
+
+				if (callSignatures.length > 0) {
+					var callFieldName = TsTypeTools.getFreePropertyName(tc, constructorType, selfCallFunctionName);
+					var callField = functionFieldFromCallSignatures(callFieldName, callSignatures, access, constructorTypeDeclaration);
+					callField.enableAccess(AStatic);
+					hxModule.fields.push(callField);
+				}
+
+				// constructor type fields become class statics
+				for (field in fields) {
+					if (field.escapedName == 'prototype') continue;
+					var hxField = fieldFromSymbol(field.name, field, access, constructorTypeDeclaration);
+					hxField.enableAccess(AStatic);
+					hxModule.fields.push(hxField);
+				}
+			} else {
+				Log.error('A symbol with a constructor type variable declaration should have a valueDeclaration', symbol);
 			}
 		}
 
@@ -505,7 +547,7 @@ class ConverterContext {
 			}
 
 			// skip constructor type variables because these have been converted into classes
-			if (export.isConstructorTypeVariable(tc)) continue;
+			if (tc.isConstructorTypeVariableSymbol(export)) continue;
 
 			// Log.log('\t<magenta,b>Export</>', export);
 			var field = fieldFromSymbol(nativeFieldName, export, access, null);
