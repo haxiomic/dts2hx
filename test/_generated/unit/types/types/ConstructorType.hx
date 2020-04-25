@@ -1,2 +1,4 @@
 package unit.types.types;
-typedef ConstructorType = Dynamic;
+@:jsRequire("./unit/types", "Types.constructorType") extern class ConstructorType {
+	function new(a:String);
+}

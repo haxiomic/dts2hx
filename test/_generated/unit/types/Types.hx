@@ -82,7 +82,6 @@ package unit.types;
 	static var arrowNumberTVoidTypeParam : (a:Float, tparam:Any) -> Void;
 	static var arrowParamWithRest : (a:Float, b:Float, rest:std.Array<Float>) -> Void;
 	static var arrowParamObjectBindingPattern : (__0:{ var x : Any; var y : Any; }) -> Void;
-	static var constructorType : { };
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;
 	static var undefineableNullableNumber : Null<Float>;

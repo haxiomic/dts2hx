@@ -1,5 +1,8 @@
 package js.lib;
-extern interface Map<K, V> {
+@:native("Map") @:interface extern class Map<K, V> {
+	@:overload(function<K, V>(?entries:ReadonlyArray<js.lib.Tuple2<Any, K, V>>):Map<K, V> { })
+	@:overload(function<K, V>(iterable:Iterable<js.lib.Tuple2<Any, K, V>>):Map<K, V> { })
+	function new();
 	function clear():Void;
 	function delete(key:K):Bool;
 	function forEach(callbackfn:(value:V, key:K, map:Map<K, V>) -> Void, ?thisArg:Any):Void;
@@ -19,4 +22,5 @@ extern interface Map<K, V> {
 		Returns an iterable of values in the map
 	**/
 	function values():IterableIterator<V>;
+	static final prototype : Map<Any, Any>;
 }

@@ -1,5 +1,8 @@
 package js.lib;
-extern interface RegExp {
+@:native("RegExp") @:interface extern class RegExp {
+	@:overload(function(pattern:String, ?flags:String):RegExp { })
+	@:overload(function(pattern:haxe.extern.EitherType<String, RegExp>, ?flags:String):RegExp { })
+	function new(pattern:haxe.extern.EitherType<String, RegExp>);
 	/**
 		Executes a search on a string using a regular expression pattern, and returns an array containing the results of that search.
 	**/
@@ -49,4 +52,28 @@ extern interface RegExp {
 		expression. Default is false. Read-only.
 	**/
 	final unicode : Bool;
+	@:overload(function(pattern:String, ?flags:String):RegExp { })
+	@:overload(function(pattern:haxe.extern.EitherType<String, RegExp>, ?flags:String):RegExp { })
+	@:selfCall
+	static function call(pattern:haxe.extern.EitherType<String, RegExp>):RegExp;
+	static final prototype : RegExp;
+	@:native("$1")
+	static var Dollar1 : String;
+	@:native("$2")
+	static var Dollar2 : String;
+	@:native("$3")
+	static var Dollar3 : String;
+	@:native("$4")
+	static var Dollar4 : String;
+	@:native("$5")
+	static var Dollar5 : String;
+	@:native("$6")
+	static var Dollar6 : String;
+	@:native("$7")
+	static var Dollar7 : String;
+	@:native("$8")
+	static var Dollar8 : String;
+	@:native("$9")
+	static var Dollar9 : String;
+	static var lastMatch : String;
 }

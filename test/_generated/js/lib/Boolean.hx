@@ -1,7 +1,11 @@
 package js.lib;
-extern interface Boolean {
+@:native("Boolean") @:interface extern class Boolean {
+	function new(?value:Any);
 	/**
 		Returns the primitive value of the specified object.
 	**/
 	function valueOf():Bool;
+	@:selfCall
+	static function call<T>(?value:T):Bool;
+	static final prototype : Boolean;
 }

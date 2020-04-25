@@ -2,7 +2,8 @@ package js.lib;
 /**
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/
-extern interface String {
+@:native("String") @:interface extern class String {
+	function new(?value:Any);
 	/**
 		Returns a string representation of a string.
 	**/
@@ -221,4 +222,19 @@ extern interface String {
 		Returns a <sup> HTML element
 	**/
 	function sup():String;
+	@:selfCall
+	static function call(?value:Any):String;
+	static final prototype : String;
+	static function fromCharCode(codes:std.Array<Float>):String;
+	/**
+		Return the String value whose elements are, in order, the elements in the List elements.
+		If length is 0, the empty string is returned.
+	**/
+	static function fromCodePoint(codePoints:std.Array<Float>):String;
+	/**
+		String.raw is intended for use as a tag function of a Tagged Template String. When called
+		as such the first argument will be a well formed template call site object and the rest
+		parameter will contain the substitution values.
+	**/
+	static function raw(template:TemplateStringsArray, substitutions:std.Array<Any>):String;
 }

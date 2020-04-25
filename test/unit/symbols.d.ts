@@ -66,3 +66,41 @@ export function FunctionValueModule(): number;
 export namespace FunctionValueModule {
     const X: number;
 }
+
+export const ConstructorTypeAnon: {
+    prototype: ConstructorTypeAnon;
+    new(): ConstructorTypeAnon;
+    (constructorTypeCallParam: number): void;
+    [constructorTypeIndex: number]: string;
+    constructorTypeField: string;
+};
+export type ConstructorTypeAnon = {
+    anonTypeField: number;
+}
+
+export const ConstructorTypeInterface: {
+    new(constructorTypeParam: boolean[]): ConstructorTypeInterface;
+    (callSignatureParam: number): void;
+    constructorTypeField: string;
+};
+export interface ConstructorTypeInterface {
+    [interfaceIndex: number]: string;
+    new(overloadNewParam: string): ConstructorTypeInterface;
+    interfaceField: number;
+}
+
+
+export class ExampleClass {
+
+    constructor(exampleClassParam: string);
+
+}
+
+export const ConstructorTypeClassAlias: {
+    prototype: ConstructorTypeClassAlias;
+    new(constructorTypeParam: boolean[]): ConstructorTypeClassAlias;
+    (constructorTypeCallParam: number): void;
+    [constructorTypeIndex: number]: string;
+    constructorTypeField: string;
+};
+export type ConstructorTypeClassAlias = ExampleClass;
