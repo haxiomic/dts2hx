@@ -781,6 +781,7 @@ class ConverterContext {
 
 			if (objectType.getConstructSignatures().length > 0) {
 				Log.warn('Type has construct signature but this is currently unhandled', objectType);
+				debug();
 			}
 
 			// for the special case of a single call signature and no props we can return a function type
@@ -876,7 +877,7 @@ class ConverterContext {
 			var hxType = if (isLocalTypeParam(tsType)) {
 				macro :Any;
 			} else {
-				complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
+				complexTypeOfDeclaration(s.valueDeclaration, accessContext, enclosingDeclaration);
 			}
 
 			return TNamed(s.name.toSafeIdent(), hxType);
@@ -1052,8 +1053,11 @@ class ConverterContext {
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
-			var type = baseDeclaration == null ? tc.getDeclaredTypeOfSymbol(symbol) : tc.getTypeAtLocation(baseDeclaration);
-			var hxType = complexTypeFromTsType(type, accessContext, enclosingDeclaration);
+			var hxType = if (baseDeclaration == null) {
+				complexTypeFromTsType(tc.getDeclaredTypeOfSymbol(symbol), accessContext, enclosingDeclaration);
+			} else {
+				complexTypeOfDeclaration(baseDeclaration, accessContext, enclosingDeclaration);
+			}
 			FVar(hxType, null);
 
 		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
@@ -1137,8 +1141,7 @@ class ConverterContext {
 
 		var hxParameters = if (signature.parameters != null ) signature.parameters.map(s -> {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var tsType = tc.getTypeAtLocation(parameterDeclaration);
-			var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
+			var hxType = complexTypeOfDeclaration(parameterDeclaration, accessContext, enclosingDeclaration);
 			var isOptional = tc.isOptionalParameter(parameterDeclaration);
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
@@ -1208,6 +1211,17 @@ class ConverterContext {
 			name: typeParameter.symbol.name.toSafeTypeName(),
 			constraints: hxConstraint != null ? [hxConstraint] : null,
 		}
+	}
+
+	function complexTypeOfDeclaration(declaration: Declaration, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// // best to use the TypeNode because we get more information that way (i.e. `typeof X` isn't resolved yet)
+		// var typeNode: Null<TypeNode> = Reflect.field(declaration, 'type');
+		// if (typeNode != null) {
+		// 	return complexTypeFromTypeNode(typeNode, accessContext, enclosingDeclaration);
+		// } else {
+		// 	return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, enclosingDeclaration);
+		// }
+		return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, enclosingDeclaration);
 	}
 
 	function accessFromModifiers(modifiers: ModifiersArray, ?logSymbol: Symbol): Array<Access> {
