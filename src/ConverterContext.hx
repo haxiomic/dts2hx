@@ -872,15 +872,23 @@ class ConverterContext {
 		}
 
 		var hxParameters: Array<ComplexType> = callSignature.parameters.map(s -> {
-			var tsType = tc.getTypeAtLocation(s.valueDeclaration);
+			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
+			var tsType = tc.getTypeAtLocation(parameterDeclaration);
 
 			var hxType = if (isLocalTypeParam(tsType)) {
 				macro :Any;
 			} else {
-				complexTypeOfDeclaration(s.valueDeclaration, accessContext, enclosingDeclaration);
+				complexTypeOfDeclaration(parameterDeclaration, accessContext, enclosingDeclaration);
 			}
 
-			return TNamed(s.name.toSafeIdent(), hxType);
+			var isOptional = tc.isOptionalParameter(parameterDeclaration);
+			if (isOptional) {
+				hxType = HaxeTools.unwrapNull(hxType);
+			}
+
+			var hxParam = TNamed(s.name.toSafeIdent(), hxType);
+
+			return isOptional ? TOptional(hxParam) : hxParam;
 		});
 
 		var tsRet = tc.getReturnTypeOfSignature(callSignature);
