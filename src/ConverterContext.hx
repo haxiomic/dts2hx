@@ -263,11 +263,11 @@ class ConverterContext {
 			var forceClassKind = ((symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0)) || isConstructorTypeVariable;
 
 			// if it's a class and interface symbol, we use class
-			var isInterface = symbol.flags & SymbolFlags.Interface != 0 && !forceClassKind;
+			var isHxInterface = symbol.flags & SymbolFlags.Interface != 0 && !forceClassKind;
 
 			var meta = new Array<MetadataEntry>();
 
-			if (!isInterface) {
+			if (!isHxInterface) {
 				meta.push(access.toAccessMetadata());
 			}
 
@@ -277,7 +277,7 @@ class ConverterContext {
 				// we add metadata to mark the class which we might be able to use in the future
 				// @! maybe we can use an abstract for this
 				meta.push({name: ':interface', pos: pos});
-				Log.warn('Symbol is both class and an interface, this combination is not fully supported', symbol);
+				Log.warn('Symbol has been changed from an interface to a class', symbol);
 			}
 
 			// class members
@@ -354,9 +354,11 @@ class ConverterContext {
 			var kind: TypeDefKind = if (forceClassKind) {
 				// class + interface is a special case that we cannot trivially handle in haxe
 				TDClass(null, implementsTypes, false, false);
-			} else if (isInterface) {
-				TDClass(null, extendsTypes, isInterface, false);
+			} else if (isHxInterface) {
+				// interface
+				TDClass(null, extendsTypes, true, false);
 			} else {
+				// class
 				TDClass(extendsTypes[0], implementsTypes, false, false);
 			}
 
@@ -455,8 +457,8 @@ class ConverterContext {
 				tsSymbolAccess: access,
 			}
 			hxTypeDef;
-		} else if (isValueModuleOnlySymbol) {
-			// ValueModule-only symbol
+		} else if (isValueModuleOnlySymbol || isConstructorTypeVariable) {
+			// ValueModule-only symbol or ConstructorType-only symbol
 			{
 				pack: typePath.pack,
 				name: typePath.name,
