@@ -247,18 +247,6 @@ class ConverterContext {
 			return existingModule;
 		}
 
-		/**
-			ConstructorType + Interface
-				-> Convert to class, add static fields and new
-			ConstructorType + Type-Alias
-				-> Convert to abstract, add static fields and new
-			ConstructorType + ValueModule
-				-> add static fields and new
-
-			ConstructorType + Class + Interface => Not allowed
-			ConstructorType + Class => Not allowed
-			ConstructorType + Enum => Not allowed
-		**/
 		var isConstructorTypeVariable = tc.isConstructorTypeVariableSymbol(symbol);
 		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !isConstructorTypeVariable;
 
@@ -499,7 +487,20 @@ class ConverterContext {
 			}
 		}
 
-		// add ConstructType fields
+		/**
+			**Add ConstructType fields**
+
+			ConstructorType + Interface
+				-> Convert to class, add static fields and new
+			ConstructorType + Type-Alias
+				-> Convert to abstract, add static fields and new
+			ConstructorType + ValueModule
+				-> add static fields and new
+
+			ConstructorType + Class + Interface => Not allowed
+			ConstructorType + Class => Not allowed
+			ConstructorType + Enum => Not allowed
+		**/
 		if (isConstructorTypeVariable) {
 			var constructorTypeDeclaration = symbol.valueDeclaration;
 			if (constructorTypeDeclaration != null) {
@@ -510,21 +511,23 @@ class ConverterContext {
 				var indexSignatures = tc.getIndexSignaturesOfType(constructorType);
 				var fields = tc.getPropertiesOfType(constructorType).filter(s -> s.isAccessibleField());
 
+				if (indexSignatures.length > 0) {
+					Log.warn('Index signatures are not yet supported', symbol);
+				}
+
 				// given constructor type cannot merge with class, we don't expect an existing new signature
 				// (and constructor type new signature takes precedence, not overload, over a class new signature if merged with a type-alias to class)
 				var newField = newFieldFromSignatures(constructSignatures, access, constructorTypeDeclaration);
 				hxModule.fields.unshift(newField);
 
 				if (callSignatures.length > 0) {
-					var callFieldName = TsTypeTools.getFreePropertyName(tc, constructorType, selfCallFunctionName);
-					var callField = functionFieldFromCallSignatures(callFieldName, callSignatures, access, constructorTypeDeclaration);
+					var callField = functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, constructorTypeDeclaration);
 					callField.enableAccess(AStatic);
 					hxModule.fields.push(callField);
 				}
 
 				// constructor type fields become class statics
 				for (field in fields) {
-					if (field.escapedName == 'prototype') continue;
 					var hxField = fieldFromSymbol(field.name, field, access, constructorTypeDeclaration);
 					hxField.enableAccess(AStatic);
 					hxModule.fields.push(hxField);
