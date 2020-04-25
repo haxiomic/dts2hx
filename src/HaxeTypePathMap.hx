@@ -39,6 +39,10 @@ class HaxeTypePathMap {
 		The `isExistingStdLibType` flag means this is a reference to an already existing type in the haxe standard library and therefore it doesn't need converting
 	**/
 	public function getTypePath(symbol: Symbol, accessContext: SymbolAccess): TypePath {
+		if (symbol.flags & SymbolFlags.Alias != 0) {
+			symbol = tc.getAliasedSymbol(symbol);
+		}
+
 		var modules = symbolTypePathMap.get(symbol.getId());
 
 		if (modules != null) {
@@ -101,7 +105,7 @@ class HaxeTypePathMap {
 					if (ConverterContext.isHaxeModuleSource(tc, symbol)) {
 						var typePath = generateTypePath(symbol, access);
 						var modules = getModules(typePath.pack);
-						// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name}</>: ${typePath.pack} ${typePath.name}', symbol);
+						// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name} (${symbol.getId()})</>: ${typePath.pack} ${typePath.name}', symbol);
 
 						if (modules.find(m -> m.symbol == symbol) == null) {
 							modules.push({

@@ -178,7 +178,7 @@ class ConverterContext {
 
 				if (isGlobalField(tc, symbol, access)) {
 					var globalModule = this.getGlobalModuleForFieldSymbol(symbol, access);
-					var field = fieldFromSymbol(symbol.name, symbol, access, null);
+					var field = fieldFromSymbol(symbol.name, symbol, Global([]), null);
 					field.enableAccess(AStatic);
 					globalModule.fields.push(field);
 				}
@@ -214,7 +214,7 @@ class ConverterContext {
 		}
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
 		var noPack = if (shortenTypePaths) {
-		var accessSymbolChain = accessContext.extractSymbolChain();
+			var accessSymbolChain = accessContext.extractSymbolChain();
 			var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
 			if (lastAccessSymbol != null) {
 				var contextTypePath = haxeTypePathMap.getTypePath(lastAccessSymbol, accessContext);
