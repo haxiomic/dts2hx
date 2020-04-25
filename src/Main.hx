@@ -262,7 +262,7 @@ class Main {
 
 		if (!noOutput) {
 			// save modules to files
-			var printer = new haxe.macro.Printer();
+			var printer = new Printer();
 
 			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, generateLibraryName(converter.entryPointModuleId)]) : outputPath;
 
