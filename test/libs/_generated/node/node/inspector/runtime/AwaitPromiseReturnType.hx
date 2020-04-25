@@ -1,0 +1,12 @@
+package node.inspector.runtime;
+extern interface AwaitPromiseReturnType {
+	/**
+		Promise result. Will contain rejected value if promise was rejected.
+	**/
+	var result : RemoteObject;
+	/**
+		Exception details if stack strace is available.
+	**/
+	@:optional
+	var exceptionDetails : Null<ExceptionDetails>;
+}
