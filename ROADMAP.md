@@ -1,77 +1,21 @@
-- Why abstract (Dynamic) in constructor type conversion?
-
-- Call signatures and index signatures of constructor type
-	- Needs testing
-
-- What can a constructor type merge with?
-	- interface
-	- type
-	=> A constructor type sets the kind to class, only the constructor-anon fields become statics 
-
 - Use subtypes for typedef anons (so it's not an anon repreated 3x)
 
-- Printer, final static -> static final; enforce order when printing
-
-- Maybe we change how class + interface symbols get merged, this way, when a class is generated from the special field, it merges nicely with subsequent / prior HaxeModules
-	- We don't have to worry about class-class merges because `var X; class X` is still an error
-	- This is called a [`Constructor Type`](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3.3.5)
-		- Ts.isConstructorTypeNode
-
-- Do constructor types appear in the wild in a useful way?
-	
-- Can we use abstracts to handle Constructor types?
-	```haxe
-	@:generic @:forward abstract ConstructorType<T: Constructible>(T) {
-		public function construct() {
-			Type.createInstance(this); // or something similar
+- Do constructor types appear in the wild in a useful way? Can @:newCall help?	
+	- Can we use abstracts to handle Constructor types?
+		```haxe
+		@:generic @:forward abstract ConstructorType<T: Constructible>(T) {
+			public function construct() {
+				Type.createInstance(this); // or something similar
+			}
 		}
-	}
-	```
-	- Can we add a @:using to the interface?
+		```
+		- Can we add a @:using to the interface?
 
 - If a constructor type is a type parameter we can use `Constructible`
 
 - HaxeTools: fieldName deduplication
 	- Given an array of fields, find duplicate names and add _ + @:native
 	- Or, add a helper to handle fields.push() with auto-rename
-
-- Missing constructors from typedarray classes?
-	- Why are all html and lib types interfaces?
-	- Maybe recognize the pattern, happens in a few places in lib.es5
-	-> Because they're weird interfaces with *construct* signatures
-		-> maaaybe recognise and make a class? Or an abstract?
-	=> This isn't a massive issue because we will replace these types with stdlib types soon anyway
-
-	```typescript
-	interface Example {
-		readonly byteLength: number;
-		slice(begin: number, end?: number): Example;
-	}
-	declare var Example: {
-		new(byteLength: number): Example;
-		field: number;
-	};
-	```
-	-> If we have a field who's type has construct signatures, we could elevate this to a class
-	Now we have
-	```typescript
-	interface Example {
-		readonly byteLength: Float;
-		slice(begin: Float, end?: Float): Example;
-	}
-	declare class Example {
-		constructor(byteLength: Float);
-		static field: Float;
-	}
-	```
-	-> Then we have a merged interface-class and things work as normal
-	-> We need to prevent the global field generation however
-	~~... How to do this? As a transformer?~~
-	-> What happens to interfaces with construct type?
-		-> Cannot promote to a class because we don't know the @:native
-
-
-- Handle Interface `prototype` fields
 
 - Playcanvas, why 
 	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
