@@ -193,6 +193,14 @@ export namespace Types {
     const typeQueryNoType: typeof noType;
     const typeQueryFunction: typeof functionImplicit;
     const typeQueryFunctionWithOverloads: typeof overloadedFunction;
+    const typeQueryClassLike: typeof ClassLikeConstructorType;
+    const typeQueryClassLikeOrNull: null | typeof ClassLikeConstructorType;
+
+    interface ClassLikeConstructorType { }
+    const ClassLikeConstructorType: {
+        new(): ClassLikeConstructorType;
+        field: string;
+    }
 
     // Type reference enum
     type EnumValueAlias = ExampleEnum.A;

@@ -6,6 +6,7 @@ package unit.class_;
 	var arrayField : std.Array<String>;
 	var thisClassType : ClassBase<T>;
 	var typeParamField : T;
+	var typeofSelf : { function staticMethod<T>(a:Float):T; var staticField : Float; };
 	final readonlyField : Float;
 	function __constructor(example:String):Void;
 	function method(a:Float, b:String):Any;

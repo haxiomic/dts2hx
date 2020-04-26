@@ -106,4 +106,5 @@ package unit.types;
 	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
 	@:selfCall
 	function call(a:Float):Any; };
+	static var typeQueryClassLikeOrNull : Null<{ var field : String; }>;
 }

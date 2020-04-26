@@ -4,6 +4,8 @@ export class ClassBase<T> {
     thisClassType: this;
     typeParamField: T;
 
+    typeofSelf: typeof ClassBase;
+
     readonly readonlyField: number;
     
     // this field has a special name in typescript; we want to make sure it's not mistaken for the constructor
