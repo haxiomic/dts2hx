@@ -114,7 +114,7 @@ extern interface Global {
 	var isFinite : (number:Float) -> Bool;
 	var isNaN : (number:Float) -> Bool;
 	var parseFloat : (string:String) -> Float;
-	var parseInt : (s:String, radix:Null<Float>) -> Float;
+	var parseInt : (s:String, ?radix:Float) -> Float;
 	var process : Process;
 	var root : Global;
 	var setImmediate : (callback:(args:std.Array<Any>) -> Void, args:std.Array<Any>) -> Immediate;

@@ -1,8 +1,8 @@
 package node.net;
 @:jsRequire("net", "Socket") extern class Socket extends node.stream.Duplex {
 	function new(?options:SocketConstructorOpts);
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?encoding:String, ?cb:(err:Null<js.lib.Error>) -> Void):Bool { })
-	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?cb:(err:Null<js.lib.Error>) -> Void):Bool;
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?encoding:String, ?cb:(?err:js.lib.Error) -> Void):Bool { })
+	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?cb:(?err:js.lib.Error) -> Void):Bool;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })

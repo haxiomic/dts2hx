@@ -4,7 +4,7 @@ extern interface ReadLineOptions {
 	@:optional
 	var output : Null<global.nodejs.WritableStream>;
 	@:optional
-	var completer : Null<haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<Any, std.Array<String>, String>, (line:String, callback:(err:Null<js.lib.Error>, result:Null<js.lib.Tuple2<Any, std.Array<String>, String>>) -> Void) -> Any>>;
+	var completer : Null<haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<Any, std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<Any, std.Array<String>, String>) -> Void) -> Any>>;
 	@:optional
 	var terminal : Null<Bool>;
 	@:optional

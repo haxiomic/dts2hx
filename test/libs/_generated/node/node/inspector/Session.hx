@@ -304,7 +304,7 @@ package node.inspector;
 		
 		Detaches from all running workers and disables attaching to new workers as they are started.
 	**/
-	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>, params:Null<{ }>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>, ?params:{ }) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>) -> Void):Void { })
@@ -431,7 +431,7 @@ package node.inspector;
 	@:overload(function(method:String, ?params:node.inspector.nodeworker.EnableParameterType, ?callback:(err:Null<js.lib.Error>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<js.lib.Error>) -> Void):Void { })
-	function post(method:String, ?params:{ }, ?callback:(err:Null<js.lib.Error>, params:Null<{ }>) -> Void):Void;
+	function post(method:String, ?params:{ }, ?callback:(err:Null<js.lib.Error>, ?params:{ }) -> Void):Void;
 	/**
 		Emitted when any notification from the V8 Inspector is received.
 		

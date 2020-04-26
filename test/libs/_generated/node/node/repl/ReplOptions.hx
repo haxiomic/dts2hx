@@ -67,7 +67,7 @@ extern interface ReplOptions {
 		An optional function used for custom Tab auto completion.
 	**/
 	@:optional
-	var completer : Null<haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<Any, std.Array<String>, String>, (line:String, callback:(err:Null<js.lib.Error>, result:Null<js.lib.Tuple2<Any, std.Array<String>, String>>) -> Void) -> Any>>;
+	var completer : Null<haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<Any, std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<Any, std.Array<String>, String>) -> Void) -> Any>>;
 	/**
 		A flag that specifies whether the default evaluator executes all JavaScript commands in
 		strict mode or default (sloppy) mode.

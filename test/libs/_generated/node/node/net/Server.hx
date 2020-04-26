@@ -13,7 +13,7 @@ package node.net;
 	@:overload(function(handle:Any, ?backlog:Float, ?listeningListener:() -> Void):Server { })
 	@:overload(function(handle:Any, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
-	function close(?callback:(err:Null<js.lib.Error>) -> Void):Server;
+	function close(?callback:(?err:js.lib.Error) -> Void):Server;
 	function address():Null<haxe.extern.EitherType<String, AddressInfo>>;
 	function getConnections(cb:(error:Null<js.lib.Error>, count:Float) -> Void):Void;
 	function ref():Server;

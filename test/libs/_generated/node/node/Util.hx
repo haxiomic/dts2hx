@@ -43,17 +43,17 @@ package node;
 	@:overload(function<T1, T2, T3, T4, T5, T6, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, arg6:T6) -> js.lib.Promise<TResult>):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, arg6:T6, callback:(err:global.nodejs.ErrnoException, result:TResult) -> Void) -> Void { })
 	static function callbackify(fn:() -> js.lib.Promise<Void>):(callback:(err:global.nodejs.ErrnoException) -> Void) -> Void;
 	@:overload(function<TResult>(fn:(callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):() -> js.lib.Promise<TResult> { })
-	@:overload(function(fn:(callback:(err:Null<js.lib.Error>) -> Void) -> Void):() -> js.lib.Promise<Void> { })
+	@:overload(function(fn:(callback:(?err:js.lib.Error) -> Void) -> Void):() -> js.lib.Promise<Void> { })
 	@:overload(function<T1, TResult>(fn:(arg1:T1, callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):(arg1:T1) -> js.lib.Promise<TResult> { })
-	@:overload(function<T1>(fn:(arg1:T1, callback:(err:Null<js.lib.Error>) -> Void) -> Void):(arg1:T1) -> js.lib.Promise<Void> { })
+	@:overload(function<T1>(fn:(arg1:T1, callback:(?err:js.lib.Error) -> Void) -> Void):(arg1:T1) -> js.lib.Promise<Void> { })
 	@:overload(function<T1, T2, TResult>(fn:(arg1:T1, arg2:T2, callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2) -> js.lib.Promise<TResult> { })
-	@:overload(function<T1, T2>(fn:(arg1:T1, arg2:T2, callback:(err:Null<js.lib.Error>) -> Void) -> Void):(arg1:T1, arg2:T2) -> js.lib.Promise<Void> { })
+	@:overload(function<T1, T2>(fn:(arg1:T1, arg2:T2, callback:(?err:js.lib.Error) -> Void) -> Void):(arg1:T1, arg2:T2) -> js.lib.Promise<Void> { })
 	@:overload(function<T1, T2, T3, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3) -> js.lib.Promise<TResult> { })
-	@:overload(function<T1, T2, T3>(fn:(arg1:T1, arg2:T2, arg3:T3, callback:(err:Null<js.lib.Error>) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3) -> js.lib.Promise<Void> { })
+	@:overload(function<T1, T2, T3>(fn:(arg1:T1, arg2:T2, arg3:T3, callback:(?err:js.lib.Error) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3) -> js.lib.Promise<Void> { })
 	@:overload(function<T1, T2, T3, T4, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4) -> js.lib.Promise<TResult> { })
-	@:overload(function<T1, T2, T3, T4>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, callback:(err:Null<js.lib.Error>) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4) -> js.lib.Promise<Void> { })
+	@:overload(function<T1, T2, T3, T4>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, callback:(?err:js.lib.Error) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4) -> js.lib.Promise<Void> { })
 	@:overload(function<T1, T2, T3, T4, T5, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> js.lib.Promise<TResult> { })
-	@:overload(function<T1, T2, T3, T4, T5>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:(err:Null<js.lib.Error>) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> js.lib.Promise<Void> { })
+	@:overload(function<T1, T2, T3, T4, T5>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:(?err:js.lib.Error) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> js.lib.Promise<Void> { })
 	@:overload(function(fn:js.lib.Function):js.lib.Function { })
 	static function promisify<TCustom:(js.lib.Function)>(fn:node.util.CustomPromisify<TCustom>):TCustom;
 }

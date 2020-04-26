@@ -7,7 +7,7 @@ extern interface ReadStream extends Socket {
 	@:optional
 	function setRawMode(mode:Bool):Void;
 	function _read(size:Float):Void;
-	function _destroy(err:Null<js.lib.Error>, callback:(err:Null<js.lib.Error>) -> Void):Void;
+	function _destroy(err:Null<js.lib.Error>, callback:(?err:js.lib.Error) -> Void):Void;
 	function push(chunk:Any, ?encoding:String):Bool;
 	function destroy(?error:js.lib.Error):Void;
 }

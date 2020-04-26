@@ -4,11 +4,11 @@ package node.stream;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Any, encoding:String, callback:(error:Null<js.lib.Error>) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.Error) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(error:Null<js.lib.Error>) -> Void):Void;
-	function _destroy(error:Null<js.lib.Error>, callback:(error:Null<js.lib.Error>) -> Void):Void;
-	function _final(callback:(error:Null<js.lib.Error>) -> Void):Void;
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.Error) -> Void):Void;
+	function _destroy(error:Null<js.lib.Error>, callback:(?error:js.lib.Error) -> Void):Void;
+	function _final(callback:(?error:js.lib.Error) -> Void):Void;
 	@:overload(function(chunk:Any, ?encoding:String, ?cb:(error:Null<js.lib.Error>) -> Void):Bool { })
 	function write(chunk:Any, ?cb:(error:Null<js.lib.Error>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):Writable;

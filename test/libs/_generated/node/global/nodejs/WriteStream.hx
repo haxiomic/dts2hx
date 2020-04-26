@@ -6,9 +6,9 @@ extern interface WriteStream extends Socket {
 	var columns : Null<Float>;
 	@:optional
 	var rows : Null<Float>;
-	function _write(chunk:Any, encoding:String, callback:(err:Null<js.lib.Error>) -> Void):Void;
-	function _destroy(err:Null<js.lib.Error>, callback:(err:Null<js.lib.Error>) -> Void):Void;
-	function _final(callback:(err:Null<js.lib.Error>) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?err:js.lib.Error) -> Void):Void;
+	function _destroy(err:Null<js.lib.Error>, callback:(?err:js.lib.Error) -> Void):Void;
+	function _final(callback:(?err:js.lib.Error) -> Void):Void;
 	function setDefaultEncoding(encoding:String):WriteStream;
 	function cork():Void;
 	function uncork():Void;
