@@ -1,15 +1,10 @@
-- typeof [class-reference T] -> std.Class<T>
-	- Maybe the type node null issue is resolved if we switch the enclosing declaration
-	- type reference is to a constructor type variable
-	- What about `null | typeof T`?
-	-> Why is the type-query resolved? Can we prevent it from being resolved somehow?
-		- This would be much better than working at the node level
+- Class fields
+	- accessors
 
-- New for TupleType and remove `<Base>`
+- Intersection types
 
-- Use subtypes for typedef anons (so it's not an anon repreated 3x)
-
-- Interface types
+- Handle callable classes
+	symbol.flags & SymbolFlags.Function != 0
 
 - HaxeTools: fieldName deduplication
 	- Add test where two fields will collide
@@ -20,15 +15,11 @@
 	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
 	When the type is a class?
 
-- Call signatures on anons
+- review __promisify__
+
+- Construct signatures on anons
 	- Use a generic build macro that wraps the type until haxe has @:newCall
 	- Open feature request https://github.com/HaxeFoundation/haxe/issues/9335
-
-- Handle callable classes
-	symbol.flags & SymbolFlags.Function != 0
-
-- Global modules
-	- Should we have Global.hx per-package or just one?
 
 - Understand `tc.getAugmentedPropertiesOfType(declaredType)`
 ? `tc.getBaseTypeOfLiteralType()` for literals?
@@ -39,25 +30,23 @@
 ? could use `tc.getNonNullable` type instead of unwrap null
 ? `getRootSymbols()`
 
-- Fields
-	- Class fields
-		- accessors
-		- readonly
-	- Class static fields
-	- Typedef static fields
-	- Enum static fields
-	- ValueModule fields
-
 - Class and interface extend handling, add override etc
 
 - If a symbol is both a class and interface, we could split into a class implementation and an interface implementation, and then select the correct type when referencing by context: if used in implements, then use interface version 
 
+- typeof [class-reference T] -> std.Class<T>
+	- Maybe the type node null issue is resolved if we switch the enclosing declaration
+	- type reference is to a constructor type variable
+	- What about `null | typeof T`?
+	-> Why is the type-query resolved? Can we prevent it from being resolved somehow?
+		- This would be much better than working at the node level
+	=> What priority is this?
+
+- Use subtypes for typedef anons (so it's not an anon repreated 3x)
 
 - Should we handle `abstract` classes (typescript keyword abstract)?
 
 ? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
-
-- review __promisify__
 
 - getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
 	- Comments should be per-overload; need to extend Expr.hx
