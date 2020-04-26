@@ -3,6 +3,8 @@
 
 - Intersection types
 
+- Class and interface extend handling, add override etc
+
 - Handle callable classes
 	symbol.flags & SymbolFlags.Function != 0
 
@@ -17,6 +19,10 @@
 
 - review __promisify__
 
+- Enums:
+	- Generate method to get keys
+	- Support array access
+
 - Construct signatures on anons
 	- Use a generic build macro that wraps the type until haxe has @:newCall
 	- Open feature request https://github.com/HaxeFoundation/haxe/issues/9335
@@ -29,8 +35,6 @@
 ? `getApparentType()`
 ? could use `tc.getNonNullable` type instead of unwrap null
 ? `getRootSymbols()`
-
-- Class and interface extend handling, add override etc
 
 - If a symbol is both a class and interface, we could split into a class implementation and an interface implementation, and then select the correct type when referencing by context: if used in implements, then use interface version 
 
@@ -57,10 +61,6 @@
 - Review class-expression syntax `let x = class ...`
 
 - If a constructor type is a type parameter we can use `Constructible`
-
-- Enums:
-	- Generate method to get keys
-	- Support array access
 
 - **Command Line Interface**
 	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
