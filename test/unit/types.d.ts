@@ -47,6 +47,9 @@ export namespace Types {
      */
     type FunctionTypeWithTypeParam<T> = <K>(a: T, b: K) => K;
 
+    function functionWithOptional(a: string, b?: boolean): number;
+    type FunctionTypeWithOptional = (a: string, b?: boolean) => number;
+
     // Primitive Types
     //  implicit
     const implicitInt = 2; // number
