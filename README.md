@@ -51,8 +51,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] ESSymbol fields
     - [x] Handle `export default` better
     - [x] Global fields
-    - [ ] Detect constructable fields, promote to classes and merge with existing interfaces **← :star: currently working on this**
-    - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
+    - [x] Detect constructable fields, promote to classes and merge with existing interfaces
+    - [ ] Resolve typescript interface vs haxe interface (use anons instead?) **← :star: currently working on this**
     - [ ] Classes and interfaces
         - [x] Constructors
         - [ ] Index signatures (both class and interfaces)
@@ -67,23 +67,25 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Add `--install` option
 - [ ] :star: **Prelease** *Not perfect but practically useable*
 - [ ] Advanced type conversions
-    - [ ] Abstracts to support unnamed enums and improve type unions
-    - [ ] Support enum subsets; example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
+    - [ ] Generic build types, `Union$N<T0 ... T$N>` and `ConstUnion$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
+        - [ ] enum subset example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
-        - We can use generic build macro to generate an abstract until haxe has [`@:newCall`](https://github.com/HaxeFoundation/haxe/issues/9335) feature
-    - [ ] Maybe function argument unions could be improved by overloads?
+        - Maybe we can use generic build macro to generate an abstract until haxe has [`@:newCall`](https://github.com/HaxeFoundation/haxe/issues/9335) feature
+        - If a constructor type is used as a type parameter we can use haxe's `Constructible` type
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
     - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
-    - [ ] Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
-        - Either:
-            - bake into the externs
-            - include a macro that bundles at compile-time
+- [ ] Add cli option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
+    - Either:
+        - bake into the externs
+        - include a macro that bundles at compile-time
+- [ ] Add cli option to use haxe formatter (off by default)
 - [ ] :star2: **1.0 Release**
 - [ ] Systematize compatibility tweaks to make it easier for others to contribute
     - [ ] Contribution documentation
 - [ ] Unit tests
 - [ ] Cleaner output
+    - [ ] Improve formatting of `haxe.macro.Printer`
     - [ ] Replace full type references with imports for some types (like haxe.extern.EitherType)
     - [ ] *maybe*: If a package only has one type with the same name as package, replace with a module. For example:
         `babylonjs.cameras.inputs.freecameragamepadinput.FreeCameraGamepadInput` -> `babylonjs.cameras.inputs.FreeCameraGamepadInput`
