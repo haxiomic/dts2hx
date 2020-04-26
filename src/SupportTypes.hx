@@ -20,7 +20,7 @@ class SupportTypes {
 		var typePath = {
 			pack: ['js', 'lib'],
 			name: 'Tuple${elementTypes.length}',
-			params: [TPType(baseType)].concat(elementTypes.map(t -> TPType(t)))
+			params: elementTypes.map(t -> TPType(t))
 		};
 
 		var existingModule = ctx.getGeneratedModule(typePath);
@@ -28,6 +28,7 @@ class SupportTypes {
 		if (existingModule == null) {
 			// generate fields
 			var fields = new Array<Field>();
+			var initializerExpressions = new Array<Expr>();
 
 			for (i in 0...elementTypes.length) {
 				var name = 'element$i';
@@ -43,15 +44,23 @@ class SupportTypes {
 					inline function $get(): $type return cast this[$indexExpr];
 					inline function $set(v: $type): $type return cast this[$indexExpr] = cast v;
 				}).fields);
+				initializerExpressions.push(macro $i{set}($i{name}));
 			}
 
-			var abstractType = macro :std.Array<Base>;
+			var newParams = [for (i in 0...elementTypes.length) 'element$i:T$i'].join(', ');
+			fields.push((macro class {
+				public inline function new($newParams) {
+					$a{initializerExpressions}
+				}
+			}).fields[0]);
+
+			var abstractType = macro :std.Array<Any>;
 
 			var tupleTypeDefinition: HaxeModule = {
 				pack: typePath.pack,
 				name: typePath.name,
 				kind: TDAbstract(abstractType, [abstractType], [abstractType]),
-				params: [{name: 'Base'}].concat([for (i in 0...elementTypes.length) { name: 'T$i', }]),
+				params: [for (i in 0...elementTypes.length) { name: 'T$i', }],
 				fields: fields,
 				isExtern: true,
 				doc: tool.StringTools.removeIndentation('
