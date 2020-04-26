@@ -808,6 +808,14 @@ class ConverterContext {
 				// add properties
 				fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, accessContext, enclosingDeclaration)));
 
+				// remove disallowed accessors (only `final` is allowed on anon object fields)
+				for (field in fields) {
+					if (field.access != null) field.access = field.access.filter(a -> switch a {
+						case AFinal: true;
+						default: false;
+					});
+				};
+
 				TAnonymous(fields);
 			}
 		} else {
@@ -1026,7 +1034,9 @@ class ConverterContext {
 			meta.push({name: ':native', pos: pos, params: [HaxeTools.toStringExpr(nativeFieldName, pos)]});
 		}
 
-		if (symbol.flags & SymbolFlags.Optional != 0) {
+		var isOptional = symbol.flags & SymbolFlags.Optional != 0;
+
+		if (isOptional) {
 			meta.push({name: ':optional', pos: pos});
 		}
 
@@ -1222,12 +1232,12 @@ class ConverterContext {
 	}
 
 	function complexTypeOfDeclaration(declaration: Declaration, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// // best to use the TypeNode because we get more information that way (i.e. `typeof X` isn't resolved yet)
+		// best to use the TypeNode because we get more information that way (i.e. `typeof X` isn't resolved yet)
 		// var typeNode: Null<TypeNode> = Reflect.field(declaration, 'type');
 		// if (typeNode != null) {
-		// 	return complexTypeFromTypeNode(typeNode, accessContext, enclosingDeclaration);
+		// 	return complexTypeFromTypeNode(typeNode, accessContext, declaration);
 		// } else {
-		// 	return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, enclosingDeclaration);
+		// 	return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, declaration);
 		// }
 		return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, enclosingDeclaration);
 	}
