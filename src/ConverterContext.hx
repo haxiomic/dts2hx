@@ -1145,7 +1145,7 @@ class ConverterContext {
 			onError('Unhandled symbol flags');
 			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
 			debug();
-			FVar(macro :Any, null);
+			FVar(complexTypeFromTsType(type, accessContext, enclosingDeclaration), null);
 
 		}
 
