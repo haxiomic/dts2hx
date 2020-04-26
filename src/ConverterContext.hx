@@ -1076,6 +1076,11 @@ class ConverterContext {
 			} else {
 				complexTypeOfDeclaration(baseDeclaration, accessContext, enclosingDeclaration);
 			}
+
+			if (isOptional) {
+				hxType = hxType.unwrapNull();
+			}
+
 			FVar(hxType, null);
 
 		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
