@@ -132,8 +132,8 @@ extern interface ObjectConstructor {
 		
 		Returns an array of key/values of the enumerable properties of an object
 	**/
-	@:overload(function(o:{ }):std.Array<js.lib.Tuple2<Any, String, Any>> { })
-	function entries<T>(o:haxe.extern.EitherType<{ }, ArrayLike<T>>):std.Array<js.lib.Tuple2<Any, String, T>>;
+	@:overload(function(o:{ }):std.Array<js.lib.Tuple2<String, Any>> { })
+	function entries<T>(o:haxe.extern.EitherType<{ }, ArrayLike<T>>):std.Array<js.lib.Tuple2<String, T>>;
 	/**
 		Returns an object containing all own property descriptors of an object
 	**/

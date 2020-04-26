@@ -16,6 +16,6 @@ package node.http;
 	function getHeaderNames():std.Array<String>;
 	function hasHeader(name:String):Bool;
 	function removeHeader(name:String):Void;
-	function addTrailers(headers:haxe.extern.EitherType<OutgoingHttpHeaders, std.Array<js.lib.Tuple2<String, String, String>>>):Void;
+	function addTrailers(headers:haxe.extern.EitherType<OutgoingHttpHeaders, std.Array<js.lib.Tuple2<String, String>>>):Void;
 	function flushHeaders():Void;
 }

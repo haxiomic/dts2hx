@@ -15,7 +15,7 @@ package unit.class_;
 	/**
 		@DTS2HX-ERROR: Unhandled symbol flags
 	**/
-	var accessor : Any;
+	var accessor : Bool;
 	static function staticMethod<T>(a:Float):T;
 	static var staticField : Float;
 }

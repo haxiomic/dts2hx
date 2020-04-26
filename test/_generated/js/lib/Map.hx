@@ -1,7 +1,7 @@
 package js.lib;
 @:native("Map") @:interface extern class Map<K, V> {
-	@:overload(function<K, V>(?entries:ReadonlyArray<js.lib.Tuple2<Any, K, V>>):Map<K, V> { })
-	@:overload(function<K, V>(iterable:Iterable<js.lib.Tuple2<Any, K, V>>):Map<K, V> { })
+	@:overload(function<K, V>(?entries:ReadonlyArray<js.lib.Tuple2<K, V>>):Map<K, V> { })
+	@:overload(function<K, V>(iterable:Iterable<js.lib.Tuple2<K, V>>):Map<K, V> { })
 	function new();
 	function clear():Void;
 	function delete(key:K):Bool;
@@ -13,7 +13,7 @@ package js.lib;
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<js.lib.Tuple2<Any, K, V>>;
+	function entries():IterableIterator<js.lib.Tuple2<K, V>>;
 	/**
 		Returns an iterable of keys in the map
 	**/

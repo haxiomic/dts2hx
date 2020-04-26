@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef TupleReferenceNested = js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>;
+typedef TupleReferenceNested = js.lib.Tuple3<Float, String, js.lib.Tuple2<Bool, std.Array<Bool>>>;

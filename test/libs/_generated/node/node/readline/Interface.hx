@@ -1,7 +1,7 @@
 package node.readline;
 @:jsRequire("readline", "Interface") extern class Interface extends node.events.EventEmitter {
 	@:overload(function(options:ReadLineOptions):Interface { })
-	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<Any, std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<Any, std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
+	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
 	final terminal : Bool;
 	function setPrompt(prompt:String):Void;
 	function prompt(?preserveCursor:Bool):Void;

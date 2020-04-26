@@ -150,7 +150,7 @@ package global;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<js.lib.Tuple2<Float, Float, Float>>;
+	function entries():js.lib.IterableIterator<js.lib.Tuple2<Float, Float>>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/

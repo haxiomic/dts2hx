@@ -39,7 +39,7 @@ package node.tty;
 	function clearScreenDown():Void;
 	function cursorTo(x:Float, y:Float):Void;
 	function getColorDepth(?env:{ }):Float;
-	function getWindowSize():js.lib.Tuple2<Float, Float, Float>;
+	function getWindowSize():js.lib.Tuple2<Float, Float>;
 	var columns : Float;
 	var rows : Float;
 	var isTTY : Bool;

@@ -96,7 +96,7 @@ extern interface ReadonlyArray<T> {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<js.lib.Tuple2<Any, Float, T>>;
+	function entries():IterableIterator<js.lib.Tuple2<Float, T>>;
 	/**
 		Returns an iterable of keys in the array
 	**/

@@ -5,7 +5,7 @@ extern interface ChildProcess extends node.events.EventEmitter {
 	var stderr : Null<node.stream.Readable>;
 	@:optional
 	final channel : node.stream.Pipe;
-	final stdio : js.lib.Tuple5<Any, Null<node.stream.Writable>, Null<node.stream.Readable>, Null<node.stream.Readable>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>>;
+	final stdio : js.lib.Tuple5<Null<node.stream.Writable>, Null<node.stream.Readable>, Null<node.stream.Readable>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>>;
 	final killed : Bool;
 	final pid : Float;
 	final connected : Bool;
