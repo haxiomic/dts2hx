@@ -1,13 +1,12 @@
-/**
-	Extend haxe syntax printer with bug-fixes and formatting tweaks
-**/
-
 import haxe.macro.Expr.ComplexType;
 import haxe.macro.Expr.Access;
 import haxe.macro.Expr.Field;
 
 using Lambda;
 
+/**
+	Extended haxe syntax printer with bug-fixes and formatting tweaks
+**/
 // @:nullSafety
 class Printer extends haxe.macro.Printer {
 	

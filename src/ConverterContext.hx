@@ -290,7 +290,6 @@ class ConverterContext {
 			function generateFields(
 				constructorSignatures: Array<Signature>,
 				callSignatures: Array<Signature>,
-				constructSignatures: Array<Signature>,
 				indexSignatures: Array<Signature>,
 				classMembers: Array<Symbol>
 			) {
@@ -307,16 +306,6 @@ class ConverterContext {
 
 				if (symbol.flags & SymbolFlags.Function != 0) {
 					Log.warn('todo: handle callable class type 2', symbol);
-				}
-
-				if (constructSignatures.length > 0) {
-					// this is different from a _constructor_ declaration
-					// construct signatures take the form `new(...): T`
-					// they can only appear on interfaces and anon objects, not classes
-					// when appearing on an interface, we _cannot_ do `new Interface()`, so we should not promote the interface to a class
-					// but they enable `var X: Interface; new X()`
-					// a new metadata `@:newCall` would enable support for construct signatures like `@:selfCall` does for call signatures
-					// @! we probably should ignore constuct signatures on interfaces
 				}
 
 				if (indexSignatures.length > 0) {
@@ -368,7 +357,6 @@ class ConverterContext {
 				generateFields(
 					symbol.getConstructorSignatures(tc),
 					tc.getSignaturesOfType(declaredType, Call),
-					tc.getSignaturesOfType(declaredType, Construct),
 					tc.getIndexSignaturesOfType(declaredType),
 					tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
 				);
@@ -376,7 +364,6 @@ class ConverterContext {
 				generateFields(
 					symbol.getConstructorSignatures(tc),
 					symbol.getCallSignatures(tc),
-					symbol.getConstructSignatures(tc),
 					symbol.getIndexSignatures(tc),
 					symbol.getClassMembers()
 				);
@@ -637,6 +624,7 @@ class ConverterContext {
 		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 	}
 	
+	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		if (_currentTypeStack.indexOf(type) != -1) {
