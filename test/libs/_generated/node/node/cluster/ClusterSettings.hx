@@ -1,19 +1,19 @@
 package node.cluster;
 extern interface ClusterSettings {
 	@:optional
-	var execArgv : Null<std.Array<String>>;
+	var execArgv : std.Array<String>;
 	@:optional
-	var exec : Null<String>;
+	var exec : String;
 	@:optional
-	var args : Null<std.Array<String>>;
+	var args : std.Array<String>;
 	@:optional
-	var silent : Null<Bool>;
+	var silent : Bool;
 	@:optional
-	var stdio : Null<std.Array<Any>>;
+	var stdio : std.Array<Any>;
 	@:optional
-	var uid : Null<Float>;
+	var uid : Float;
 	@:optional
-	var gid : Null<Float>;
+	var gid : Float;
 	@:optional
-	var inspectPort : Null<haxe.extern.EitherType<Float, () -> Float>>;
+	var inspectPort : haxe.extern.EitherType<Float, () -> Float>;
 }

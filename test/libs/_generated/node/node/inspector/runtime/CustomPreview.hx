@@ -5,5 +5,5 @@ extern interface CustomPreview {
 	var formatterObjectId : String;
 	var bindRemoteObjectFunctionId : String;
 	@:optional
-	var configObjectId : Null<String>;
+	var configObjectId : String;
 }

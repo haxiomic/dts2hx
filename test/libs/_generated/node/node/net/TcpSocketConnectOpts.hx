@@ -2,15 +2,15 @@ package node.net;
 extern interface TcpSocketConnectOpts {
 	var port : Float;
 	@:optional
-	var host : Null<String>;
+	var host : String;
 	@:optional
-	var localAddress : Null<String>;
+	var localAddress : String;
 	@:optional
-	var localPort : Null<Float>;
+	var localPort : Float;
 	@:optional
-	var hints : Null<Float>;
+	var hints : Float;
 	@:optional
-	var family : Null<Float>;
+	var family : Float;
 	@:optional
-	var lookup : Null<(hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void) -> Void>;
+	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void) -> Void;
 }

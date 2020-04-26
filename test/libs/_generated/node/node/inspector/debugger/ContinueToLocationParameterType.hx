@@ -5,5 +5,5 @@ extern interface ContinueToLocationParameterType {
 	**/
 	var location : Location;
 	@:optional
-	var targetCallFrames : Null<String>;
+	var targetCallFrames : String;
 }

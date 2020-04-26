@@ -1,15 +1,15 @@
 package node.worker_threads;
 extern interface WorkerOptions {
 	@:optional
-	var eval : Null<Bool>;
+	var eval : Bool;
 	@:optional
 	var workerData : Any;
 	@:optional
-	var stdin : Null<Bool>;
+	var stdin : Bool;
 	@:optional
-	var stdout : Null<Bool>;
+	var stdout : Bool;
 	@:optional
-	var stderr : Null<Bool>;
+	var stderr : Bool;
 	@:optional
-	var execArgv : Null<std.Array<String>>;
+	var execArgv : std.Array<String>;
 }

@@ -1,11 +1,11 @@
 package node.stream;
 extern interface DuplexOptions extends ReadableOptions extends WritableOptions {
 	@:optional
-	var allowHalfOpen : Null<Bool>;
+	var allowHalfOpen : Bool;
 	@:optional
-	var readableObjectMode : Null<Bool>;
+	var readableObjectMode : Bool;
 	@:optional
-	var writableObjectMode : Null<Bool>;
+	var writableObjectMode : Bool;
 	@:optional
 	function read(size:Float):Void;
 	@:optional

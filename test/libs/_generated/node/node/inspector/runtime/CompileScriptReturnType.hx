@@ -4,10 +4,10 @@ extern interface CompileScriptReturnType {
 		Id of the script.
 	**/
 	@:optional
-	var scriptId : Null<String>;
+	var scriptId : String;
 	/**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : Null<ExceptionDetails>;
+	var exceptionDetails : ExceptionDetails;
 }

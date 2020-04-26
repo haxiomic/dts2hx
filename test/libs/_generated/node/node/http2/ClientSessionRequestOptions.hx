@@ -1,13 +1,13 @@
 package node.http2;
 extern interface ClientSessionRequestOptions {
 	@:optional
-	var endStream : Null<Bool>;
+	var endStream : Bool;
 	@:optional
-	var exclusive : Null<Bool>;
+	var exclusive : Bool;
 	@:optional
-	var parent : Null<Float>;
+	var parent : Float;
 	@:optional
-	var weight : Null<Float>;
+	var weight : Float;
 	@:optional
-	var getTrailers : Null<(trailers:node.http.OutgoingHttpHeaders, flags:Float) -> Void>;
+	var getTrailers : (trailers:node.http.OutgoingHttpHeaders, flags:Float) -> Void;
 }

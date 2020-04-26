@@ -1,23 +1,23 @@
 package node.url;
 extern interface UrlObjectCommon {
 	@:optional
-	var auth : Null<String>;
+	var auth : String;
 	@:optional
-	var hash : Null<String>;
+	var hash : String;
 	@:optional
-	var host : Null<String>;
+	var host : String;
 	@:optional
-	var hostname : Null<String>;
+	var hostname : String;
 	@:optional
-	var href : Null<String>;
+	var href : String;
 	@:optional
-	var path : Null<String>;
+	var path : String;
 	@:optional
-	var pathname : Null<String>;
+	var pathname : String;
 	@:optional
-	var protocol : Null<String>;
+	var protocol : String;
 	@:optional
-	var search : Null<String>;
+	var search : String;
 	@:optional
-	var slashes : Null<Bool>;
+	var slashes : Bool;
 }

@@ -1,11 +1,11 @@
 package node.dns;
 extern interface LookupOptions {
 	@:optional
-	var family : Null<Float>;
+	var family : Float;
 	@:optional
-	var hints : Null<Float>;
+	var hints : Float;
 	@:optional
-	var all : Null<Bool>;
+	var all : Bool;
 	@:optional
-	var verbatim : Null<Bool>;
+	var verbatim : Bool;
 }

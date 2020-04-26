@@ -11,5 +11,5 @@ package node.perf_hooks;
 		Property buffered defaults to false.
 	**/
 	function observe(options:{ var entryTypes : std.Array<String>; @:optional
-	var buffered : Null<Bool>; }):Void;
+	var buffered : Bool; }):Void;
 }

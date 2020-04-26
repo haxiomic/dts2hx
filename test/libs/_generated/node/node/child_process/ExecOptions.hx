@@ -1,9 +1,9 @@
 package node.child_process;
 extern interface ExecOptions extends CommonOptions {
 	@:optional
-	var shell : Null<String>;
+	var shell : String;
 	@:optional
-	var maxBuffer : Null<Float>;
+	var maxBuffer : Float;
 	@:optional
-	var killSignal : Null<String>;
+	var killSignal : String;
 }

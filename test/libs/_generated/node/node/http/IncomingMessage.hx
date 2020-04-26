@@ -14,22 +14,22 @@ package node.http;
 		Only valid for request obtained from http.Server.
 	**/
 	@:optional
-	var method : Null<String>;
+	var method : String;
 	/**
 		Only valid for request obtained from http.Server.
 	**/
 	@:optional
-	var url : Null<String>;
+	var url : String;
 	/**
 		Only valid for response obtained from http.ClientRequest.
 	**/
 	@:optional
-	var statusCode : Null<Float>;
+	var statusCode : Float;
 	/**
 		Only valid for response obtained from http.ClientRequest.
 	**/
 	@:optional
-	var statusMessage : Null<String>;
+	var statusMessage : String;
 	var socket : node.net.Socket;
 	function destroy(?error:js.lib.Error):Void;
 }

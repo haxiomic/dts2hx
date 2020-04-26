@@ -8,9 +8,9 @@ extern interface Cluster extends node.events.EventEmitter {
 	var settings : ClusterSettings;
 	function setupMaster(?settings:ClusterSettings):Void;
 	@:optional
-	var worker : Null<Worker>;
+	var worker : Worker;
 	@:optional
-	var workers : Null<{ }>;
+	var workers : { };
 	/**
 		events.EventEmitter
 		   1. disconnect

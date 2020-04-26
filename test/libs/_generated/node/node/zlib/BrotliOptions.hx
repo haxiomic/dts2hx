@@ -1,11 +1,11 @@
 package node.zlib;
 extern interface BrotliOptions {
 	@:optional
-	var flush : Null<Float>;
+	var flush : Float;
 	@:optional
-	var finishFlush : Null<Float>;
+	var finishFlush : Float;
 	@:optional
-	var chunkSize : Null<Float>;
+	var chunkSize : Float;
 	@:optional
-	var params : Null<{ }>;
+	var params : { };
 }

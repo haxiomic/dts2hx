@@ -24,5 +24,5 @@ extern interface PerformanceEntry {
 		The value may be one of perf_hooks.constants.
 	**/
 	@:optional
-	final kind : Null<Float>;
+	final kind : Float;
 }

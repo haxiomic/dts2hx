@@ -1,23 +1,23 @@
 package js.lib.intl;
 extern interface NumberFormatOptions {
 	@:optional
-	var localeMatcher : Null<String>;
+	var localeMatcher : String;
 	@:optional
-	var style : Null<String>;
+	var style : String;
 	@:optional
-	var currency : Null<String>;
+	var currency : String;
 	@:optional
-	var currencyDisplay : Null<String>;
+	var currencyDisplay : String;
 	@:optional
-	var useGrouping : Null<Bool>;
+	var useGrouping : Bool;
 	@:optional
-	var minimumIntegerDigits : Null<Float>;
+	var minimumIntegerDigits : Float;
 	@:optional
-	var minimumFractionDigits : Null<Float>;
+	var minimumFractionDigits : Float;
 	@:optional
-	var maximumFractionDigits : Null<Float>;
+	var maximumFractionDigits : Float;
 	@:optional
-	var minimumSignificantDigits : Null<Float>;
+	var minimumSignificantDigits : Float;
 	@:optional
-	var maximumSignificantDigits : Null<Float>;
+	var maximumSignificantDigits : Float;
 }

@@ -1,13 +1,13 @@
 package js.lib;
 extern interface PropertyDescriptor {
 	@:optional
-	var configurable : Null<Bool>;
+	var configurable : Bool;
 	@:optional
-	var enumerable : Null<Bool>;
+	var enumerable : Bool;
 	@:optional
 	var value : Any;
 	@:optional
-	var writable : Null<Bool>;
+	var writable : Bool;
 	@:optional
 	function get():Any;
 	@:optional

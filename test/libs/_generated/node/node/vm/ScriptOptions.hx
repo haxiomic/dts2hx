@@ -1,11 +1,11 @@
 package node.vm;
 extern interface ScriptOptions extends BaseOptions {
 	@:optional
-	var displayErrors : Null<Bool>;
+	var displayErrors : Bool;
 	@:optional
-	var timeout : Null<Float>;
+	var timeout : Float;
 	@:optional
-	var cachedData : Null<global.Buffer>;
+	var cachedData : global.Buffer;
 	@:optional
-	var produceCachedData : Null<Bool>;
+	var produceCachedData : Bool;
 }

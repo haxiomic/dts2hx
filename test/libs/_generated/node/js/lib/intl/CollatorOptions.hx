@@ -1,15 +1,15 @@
 package js.lib.intl;
 extern interface CollatorOptions {
 	@:optional
-	var usage : Null<String>;
+	var usage : String;
 	@:optional
-	var localeMatcher : Null<String>;
+	var localeMatcher : String;
 	@:optional
-	var numeric : Null<Bool>;
+	var numeric : Bool;
 	@:optional
-	var caseFirst : Null<String>;
+	var caseFirst : String;
 	@:optional
-	var sensitivity : Null<String>;
+	var sensitivity : String;
 	@:optional
-	var ignorePunctuation : Null<Bool>;
+	var ignorePunctuation : Bool;
 }

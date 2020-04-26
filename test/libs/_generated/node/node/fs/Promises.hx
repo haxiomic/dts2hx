@@ -73,9 +73,9 @@ package node.fs;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>):js.lib.Promise<std.Array<global.Buffer>> { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<haxe.extern.EitherType<std.Array<String>, std.Array<global.Buffer>>> { })
+	var encoding : String; }>):js.lib.Promise<haxe.extern.EitherType<std.Array<String>, std.Array<global.Buffer>>> { })
 	static function readdir(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<std.Array<String>>;
+	var encoding : String; }>):js.lib.Promise<std.Array<String>>;
 	/**
 		Asynchronous readlink(2) - read value of a symbolic link.
 		
@@ -89,9 +89,9 @@ package node.fs;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
+	var encoding : String; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
 	static function readlink(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<String>;
+	var encoding : String; }>):js.lib.Promise<String>;
 	/**
 		Asynchronous symlink(2) - Create a new symbolic link to an existing file.
 	**/
@@ -161,9 +161,9 @@ package node.fs;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
+	var encoding : String; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
 	static function realpath(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<String>;
+	var encoding : String; }>):js.lib.Promise<String>;
 	/**
 		Asynchronously creates a unique temporary directory.
 		Generates six random characters to be appended behind a required `prefix` to create a unique temporary directory.
@@ -180,24 +180,24 @@ package node.fs;
 	**/
 	@:overload(function(prefix:String, options:haxe.extern.EitherType<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(prefix:String, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
+	var encoding : String; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
 	static function mkdtemp(prefix:String, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<String>;
+	var encoding : String; }>):js.lib.Promise<String>;
 	/**
 		Asynchronously writes data to a file, replacing the file if it already exists.
 		It is unsafe to call `fsPromises.writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
 	**/
 	static function writeFile(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<node.url.URL, node.fs.promises.FileHandle>>>, data:Any, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<Void>;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<Void>;
 	/**
 		Asynchronously append data to a file, creating the file if it does not exist.
 	**/
 	static function appendFile(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<node.url.URL, node.fs.promises.FileHandle>>>, data:Any, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<Void>;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<Void>;
 	/**
 		Asynchronously reads the entire contents of a file.
 		
@@ -210,11 +210,11 @@ package node.fs;
 		Asynchronously reads the entire contents of a file.
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<node.url.URL, node.fs.promises.FileHandle>>>, options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<String> { })
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<node.url.URL, node.fs.promises.FileHandle>>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
+	var encoding : String; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
 	static function readFile(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<node.url.URL, node.fs.promises.FileHandle>>>, ?options:{ @:optional
-	var encoding : Null<Any>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }):js.lib.Promise<global.Buffer>;
+	var encoding : Any; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }):js.lib.Promise<global.Buffer>;
 }

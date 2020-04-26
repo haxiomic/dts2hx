@@ -1,6 +1,6 @@
 package js.lib;
 extern interface IteratorYieldResult<TYield> {
 	@:optional
-	var done : Null<Bool>;
+	var done : Bool;
 	var value : TYield;
 }

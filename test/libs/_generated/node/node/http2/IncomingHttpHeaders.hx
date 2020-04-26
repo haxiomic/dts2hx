@@ -2,14 +2,14 @@ package node.http2;
 extern interface IncomingHttpHeaders extends node.http.IncomingHttpHeaders {
 	@:native(":path")
 	@:optional
-	var ColonPath : Null<String>;
+	var ColonPath : String;
 	@:native(":method")
 	@:optional
-	var ColonMethod : Null<String>;
+	var ColonMethod : String;
 	@:native(":authority")
 	@:optional
-	var ColonAuthority : Null<String>;
+	var ColonAuthority : String;
 	@:native(":scheme")
 	@:optional
-	var ColonScheme : Null<String>;
+	var ColonScheme : String;
 }

@@ -19,11 +19,11 @@ extern interface Profile {
 		Ids of samples top nodes.
 	**/
 	@:optional
-	var samples : Null<std.Array<Float>>;
+	var samples : std.Array<Float>;
 	/**
 		Time intervals between adjacent samples in microseconds. The first delta is relative to the
 		profile startTime.
 	**/
 	@:optional
-	var timeDeltas : Null<std.Array<Float>>;
+	var timeDeltas : std.Array<Float>;
 }

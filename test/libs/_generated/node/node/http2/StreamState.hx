@@ -1,15 +1,15 @@
 package node.http2;
 extern interface StreamState {
 	@:optional
-	var localWindowSize : Null<Float>;
+	var localWindowSize : Float;
 	@:optional
-	var state : Null<Float>;
+	var state : Float;
 	@:optional
-	var streamLocalClose : Null<Float>;
+	var streamLocalClose : Float;
 	@:optional
-	var streamRemoteClose : Null<Float>;
+	var streamRemoteClose : Float;
 	@:optional
-	var sumDependencyWeight : Null<Float>;
+	var sumDependencyWeight : Float;
 	@:optional
-	var weight : Null<Float>;
+	var weight : Float;
 }

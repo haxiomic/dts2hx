@@ -1,29 +1,29 @@
 package js.lib.intl;
 extern interface DateTimeFormatOptions {
 	@:optional
-	var localeMatcher : Null<String>;
+	var localeMatcher : String;
 	@:optional
-	var weekday : Null<String>;
+	var weekday : String;
 	@:optional
-	var era : Null<String>;
+	var era : String;
 	@:optional
-	var year : Null<String>;
+	var year : String;
 	@:optional
-	var month : Null<String>;
+	var month : String;
 	@:optional
-	var day : Null<String>;
+	var day : String;
 	@:optional
-	var hour : Null<String>;
+	var hour : String;
 	@:optional
-	var minute : Null<String>;
+	var minute : String;
 	@:optional
-	var second : Null<String>;
+	var second : String;
 	@:optional
-	var timeZoneName : Null<String>;
+	var timeZoneName : String;
 	@:optional
-	var formatMatcher : Null<String>;
+	var formatMatcher : String;
 	@:optional
-	var hour12 : Null<Bool>;
+	var hour12 : Bool;
 	@:optional
-	var timeZone : Null<String>;
+	var timeZone : String;
 }

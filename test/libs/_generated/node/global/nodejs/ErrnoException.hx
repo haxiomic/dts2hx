@@ -1,13 +1,13 @@
 package global.nodejs;
 extern interface ErrnoException extends js.lib.Error {
 	@:optional
-	var errno : Null<Float>;
+	var errno : Float;
 	@:optional
-	var code : Null<String>;
+	var code : String;
 	@:optional
-	var path : Null<String>;
+	var path : String;
 	@:optional
-	var syscall : Null<String>;
+	var syscall : String;
 	@:optional
-	var stack : Null<String>;
+	var stack : String;
 }

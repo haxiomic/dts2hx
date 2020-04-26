@@ -12,26 +12,26 @@ extern interface PausedEventDataType {
 		Object containing break-specific auxiliary properties.
 	**/
 	@:optional
-	var data : Null<{ }>;
+	var data : { };
 	/**
 		Hit breakpoints IDs
 	**/
 	@:optional
-	var hitBreakpoints : Null<std.Array<String>>;
+	var hitBreakpoints : std.Array<String>;
 	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTrace : Null<node.inspector.runtime.StackTrace>;
+	var asyncStackTrace : node.inspector.runtime.StackTrace;
 	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTraceId : Null<node.inspector.runtime.StackTraceId>;
+	var asyncStackTraceId : node.inspector.runtime.StackTraceId;
 	/**
 		Just scheduled async call will have this stack trace as parent stack during async execution.
 		This field is available only after `Debugger.stepInto` call with `breakOnAsynCall` flag.
 	**/
 	@:optional
-	var asyncCallStackTraceId : Null<node.inspector.runtime.StackTraceId>;
+	var asyncCallStackTraceId : node.inspector.runtime.StackTraceId;
 }

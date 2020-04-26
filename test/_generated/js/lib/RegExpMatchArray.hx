@@ -1,7 +1,7 @@
 package js.lib;
 extern interface RegExpMatchArray extends std.Array<String> {
 	@:optional
-	var index : Null<Float>;
+	var index : Float;
 	@:optional
-	var input : Null<String>;
+	var input : String;
 }

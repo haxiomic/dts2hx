@@ -1,11 +1,11 @@
 package node.http2;
 extern interface StreamPriorityOptions {
 	@:optional
-	var exclusive : Null<Bool>;
+	var exclusive : Bool;
 	@:optional
-	var parent : Null<Float>;
+	var parent : Float;
 	@:optional
-	var weight : Null<Float>;
+	var weight : Float;
 	@:optional
-	var silent : Null<Bool>;
+	var silent : Bool;
 }

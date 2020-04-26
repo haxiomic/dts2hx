@@ -2,11 +2,11 @@ package global.nodejs;
 extern interface ConsoleConstructorOptions {
 	var stdout : WritableStream;
 	@:optional
-	var stderr : Null<WritableStream>;
+	var stderr : WritableStream;
 	@:optional
-	var ignoreErrors : Null<Bool>;
+	var ignoreErrors : Bool;
 	@:optional
-	var colorMode : Null<haxe.extern.EitherType<Bool, String>>;
+	var colorMode : haxe.extern.EitherType<Bool, String>;
 	@:optional
-	var inspectOptions : Null<InspectOptions>;
+	var inspectOptions : InspectOptions;
 }

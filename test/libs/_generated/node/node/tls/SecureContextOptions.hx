@@ -1,40 +1,40 @@
 package node.tls;
 extern interface SecureContextOptions {
 	@:optional
-	var pfx : Null<haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>>>;
+	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>>;
 	@:optional
-	var key : Null<haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>>;
+	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>;
 	@:optional
-	var passphrase : Null<String>;
+	var passphrase : String;
 	@:optional
-	var cert : Null<haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>>;
+	var cert : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
 	@:optional
-	var ca : Null<haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>>;
+	var ca : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
 	@:optional
-	var ciphers : Null<String>;
+	var ciphers : String;
 	@:optional
-	var honorCipherOrder : Null<Bool>;
+	var honorCipherOrder : Bool;
 	@:optional
-	var ecdhCurve : Null<String>;
+	var ecdhCurve : String;
 	@:optional
-	var clientCertEngine : Null<String>;
+	var clientCertEngine : String;
 	@:optional
-	var crl : Null<haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>>;
+	var crl : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
 	@:optional
-	var dhparam : Null<haxe.extern.EitherType<String, global.Buffer>>;
+	var dhparam : haxe.extern.EitherType<String, global.Buffer>;
 	@:optional
-	var secureOptions : Null<Float>;
+	var secureOptions : Float;
 	@:optional
-	var secureProtocol : Null<String>;
+	var secureProtocol : String;
 	@:optional
-	var sessionIdContext : Null<String>;
+	var sessionIdContext : String;
 	/**
 		Optionally set the maximum TLS version to allow. One
 		of `TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. Cannot be specified along with the
 		`secureProtocol` option, use one or the other.  **Default:** `'TLSv1.2'`.
 	**/
 	@:optional
-	var maxVersion : Null<String>;
+	var maxVersion : String;
 	/**
 		Optionally set the minimum TLS version to allow. One
 		of `TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. Cannot be specified along with the
@@ -45,5 +45,5 @@ extern interface SecureContextOptions {
 		the default to `'TLSv1.1'`.
 	**/
 	@:optional
-	var minVersion : Null<String>;
+	var minVersion : String;
 }

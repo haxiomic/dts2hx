@@ -15,21 +15,21 @@ extern interface ProfileNode {
 		Number of samples where this node was on top of the call stack.
 	**/
 	@:optional
-	var hitCount : Null<Float>;
+	var hitCount : Float;
 	/**
 		Child node ids.
 	**/
 	@:optional
-	var children : Null<std.Array<Float>>;
+	var children : std.Array<Float>;
 	/**
 		The reason of being not optimized. The function may be deoptimized or marked as don't
 		optimize.
 	**/
 	@:optional
-	var deoptReason : Null<String>;
+	var deoptReason : String;
 	/**
 		An array of source position ticks.
 	**/
 	@:optional
-	var positionTicks : Null<std.Array<PositionTickInfo>>;
+	var positionTicks : std.Array<PositionTickInfo>;
 }

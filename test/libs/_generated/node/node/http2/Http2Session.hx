@@ -1,18 +1,18 @@
 package node.http2;
 extern interface Http2Session extends node.events.EventEmitter {
 	@:optional
-	final alpnProtocol : Null<String>;
+	final alpnProtocol : String;
 	function close(?callback:() -> Void):Void;
 	final closed : Bool;
 	final connecting : Bool;
 	function destroy(?error:js.lib.Error, ?code:Float):Void;
 	final destroyed : Bool;
 	@:optional
-	final encrypted : Null<Bool>;
+	final encrypted : Bool;
 	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<js.lib.Uint8ClampedArray, haxe.extern.EitherType<js.lib.Uint16Array, haxe.extern.EitherType<js.lib.Uint32Array, haxe.extern.EitherType<js.lib.Int8Array, haxe.extern.EitherType<js.lib.Int16Array, haxe.extern.EitherType<js.lib.Int32Array, haxe.extern.EitherType<js.lib.Float32Array, haxe.extern.EitherType<js.lib.Float64Array, js.lib.DataView>>>>>>>>>>):Void;
 	final localSettings : Settings;
 	@:optional
-	final originSet : Null<std.Array<String>>;
+	final originSet : std.Array<String>;
 	final pendingSettingsAck : Bool;
 	@:overload(function(payload:haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<js.lib.Uint8ClampedArray, haxe.extern.EitherType<js.lib.Uint16Array, haxe.extern.EitherType<js.lib.Uint32Array, haxe.extern.EitherType<js.lib.Int8Array, haxe.extern.EitherType<js.lib.Int16Array, haxe.extern.EitherType<js.lib.Int32Array, haxe.extern.EitherType<js.lib.Float32Array, haxe.extern.EitherType<js.lib.Float64Array, js.lib.DataView>>>>>>>>>>, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
 	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;

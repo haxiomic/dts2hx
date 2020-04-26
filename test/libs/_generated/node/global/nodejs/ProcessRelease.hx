@@ -2,11 +2,11 @@ package global.nodejs;
 extern interface ProcessRelease {
 	var name : String;
 	@:optional
-	var sourceUrl : Null<String>;
+	var sourceUrl : String;
 	@:optional
-	var headersUrl : Null<String>;
+	var headersUrl : String;
 	@:optional
-	var libUrl : Null<String>;
+	var libUrl : String;
 	@:optional
-	var lts : Null<String>;
+	var lts : String;
 }

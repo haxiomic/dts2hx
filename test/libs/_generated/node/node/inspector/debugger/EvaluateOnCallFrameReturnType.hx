@@ -8,5 +8,5 @@ extern interface EvaluateOnCallFrameReturnType {
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : Null<node.inspector.runtime.ExceptionDetails>;
+	var exceptionDetails : node.inspector.runtime.ExceptionDetails;
 }

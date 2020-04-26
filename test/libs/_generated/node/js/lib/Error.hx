@@ -4,7 +4,7 @@ package js.lib;
 	var name : String;
 	var message : String;
 	@:optional
-	var stack : Null<String>;
+	var stack : String;
 	@:selfCall
 	static function call(?message:String):Error;
 	static final prototype : Error;
@@ -16,6 +16,6 @@ package js.lib;
 		Optional override for formatting stack traces
 	**/
 	@:optional
-	static var prepareStackTrace : Null<(err:Error, stackTraces:std.Array<global.nodejs.CallSite>) -> Any>;
+	static var prepareStackTrace : (err:Error, stackTraces:std.Array<global.nodejs.CallSite>) -> Any;
 	static var stackTraceLimit : Float;
 }

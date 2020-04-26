@@ -20,5 +20,5 @@ extern interface ExecutionContextDescription {
 		Embedder-specific auxiliary data.
 	**/
 	@:optional
-	var auxData : Null<{ }>;
+	var auxData : { };
 }

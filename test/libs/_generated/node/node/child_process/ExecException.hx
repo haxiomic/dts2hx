@@ -1,11 +1,11 @@
 package node.child_process;
 extern interface ExecException extends js.lib.Error {
 	@:optional
-	var cmd : Null<String>;
+	var cmd : String;
 	@:optional
-	var killed : Null<Bool>;
+	var killed : Bool;
 	@:optional
-	var code : Null<Float>;
+	var code : Float;
 	@:optional
-	var signal : Null<String>;
+	var signal : String;
 }

@@ -8,10 +8,10 @@ extern interface AwaitPromiseParameterType {
 		Whether the result is expected to be a JSON object that should be sent by value.
 	**/
 	@:optional
-	var returnByValue : Null<Bool>;
+	var returnByValue : Bool;
 	/**
 		Whether preview should be generated for the result.
 	**/
 	@:optional
-	var generatePreview : Null<Bool>;
+	var generatePreview : Bool;
 }

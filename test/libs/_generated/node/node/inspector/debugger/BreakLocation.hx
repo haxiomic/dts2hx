@@ -12,7 +12,7 @@ extern interface BreakLocation {
 		Column number in the script (0-based).
 	**/
 	@:optional
-	var columnNumber : Null<Float>;
+	var columnNumber : Float;
 	@:optional
-	var type : Null<String>;
+	var type : String;
 }

@@ -1,13 +1,13 @@
 package node.readline;
 extern interface Key {
 	@:optional
-	var sequence : Null<String>;
+	var sequence : String;
 	@:optional
-	var name : Null<String>;
+	var name : String;
 	@:optional
-	var ctrl : Null<Bool>;
+	var ctrl : Bool;
 	@:optional
-	var meta : Null<Bool>;
+	var meta : Bool;
 	@:optional
-	var shift : Null<Bool>;
+	var shift : Bool;
 }

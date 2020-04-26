@@ -15,5 +15,5 @@ extern interface Location {
 		Column number in the script (0-based).
 	**/
 	@:optional
-	var columnNumber : Null<Float>;
+	var columnNumber : Float;
 }

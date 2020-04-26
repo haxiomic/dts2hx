@@ -7,9 +7,9 @@ extern interface Http2Stream extends node.stream.Duplex {
 	final rstCode : Float;
 	final sentHeaders : node.http.OutgoingHttpHeaders;
 	@:optional
-	final sentInfoHeaders : Null<std.Array<node.http.OutgoingHttpHeaders>>;
+	final sentInfoHeaders : std.Array<node.http.OutgoingHttpHeaders>;
 	@:optional
-	final sentTrailers : Null<node.http.OutgoingHttpHeaders>;
+	final sentTrailers : node.http.OutgoingHttpHeaders;
 	final session : Http2Session;
 	final state : StreamState;
 	/**

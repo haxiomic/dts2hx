@@ -9,50 +9,50 @@ extern interface CallFunctionOnParameterType {
 		be specified.
 	**/
 	@:optional
-	var objectId : Null<String>;
+	var objectId : String;
 	/**
 		Call arguments. All call arguments must belong to the same JavaScript world as the target
 		object.
 	**/
 	@:optional
-	var arguments : Null<std.Array<CallArgument>>;
+	var arguments : std.Array<CallArgument>;
 	/**
 		In silent mode exceptions thrown during evaluation are not reported and do not pause
 		execution. Overrides `setPauseOnException` state.
 	**/
 	@:optional
-	var silent : Null<Bool>;
+	var silent : Bool;
 	/**
 		Whether the result is expected to be a JSON object which should be sent by value.
 	**/
 	@:optional
-	var returnByValue : Null<Bool>;
+	var returnByValue : Bool;
 	/**
 		Whether preview should be generated for the result.
 	**/
 	@:optional
-	var generatePreview : Null<Bool>;
+	var generatePreview : Bool;
 	/**
 		Whether execution should be treated as initiated by user in the UI.
 	**/
 	@:optional
-	var userGesture : Null<Bool>;
+	var userGesture : Bool;
 	/**
 		Whether execution should `await` for resulting value and return once awaited promise is
 		resolved.
 	**/
 	@:optional
-	var awaitPromise : Null<Bool>;
+	var awaitPromise : Bool;
 	/**
 		Specifies execution context which global object will be used to call function on. Either
 		executionContextId or objectId should be specified.
 	**/
 	@:optional
-	var executionContextId : Null<Float>;
+	var executionContextId : Float;
 	/**
 		Symbolic group name that can be used to release multiple objects. If objectGroup is not
 		specified and objectId is, objectGroup will be inherited from object.
 	**/
 	@:optional
-	var objectGroup : Null<String>;
+	var objectGroup : String;
 }

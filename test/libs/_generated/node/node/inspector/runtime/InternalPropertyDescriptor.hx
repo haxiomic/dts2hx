@@ -11,5 +11,5 @@ extern interface InternalPropertyDescriptor {
 		The value associated with the property.
 	**/
 	@:optional
-	var value : Null<RemoteObject>;
+	var value : RemoteObject;
 }

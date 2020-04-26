@@ -1,7 +1,7 @@
 package node.https;
 extern interface AgentOptions extends node.http.AgentOptions extends node.tls.ConnectionOptions {
 	@:optional
-	var rejectUnauthorized : Null<Bool>;
+	var rejectUnauthorized : Bool;
 	@:optional
-	var maxCachedSessions : Null<Float>;
+	var maxCachedSessions : Float;
 }

@@ -144,10 +144,10 @@ package node;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>, callback:(err:global.nodejs.ErrnoException, linkString:global.Buffer) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, linkString:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
+	var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, linkString:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, callback:(err:global.nodejs.ErrnoException, linkString:String) -> Void):Void { })
 	static function readlink(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, linkString:String) -> Void):Void;
+	var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, linkString:String) -> Void):Void;
 	/**
 		Synchronous readlink(2) - read value of a symbolic link.
 		
@@ -161,9 +161,9 @@ package node;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>):global.Buffer { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):haxe.extern.EitherType<String, global.Buffer> { })
+	var encoding : String; }>):haxe.extern.EitherType<String, global.Buffer> { })
 	static function readlinkSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):String;
+	var encoding : String; }>):String;
 	/**
 		Asynchronous realpath(3) - return the canonicalized absolute pathname.
 		
@@ -181,10 +181,10 @@ package node;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>, callback:(err:global.nodejs.ErrnoException, resolvedPath:global.Buffer) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, resolvedPath:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
+	var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, resolvedPath:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, callback:(err:global.nodejs.ErrnoException, resolvedPath:String) -> Void):Void { })
 	static function realpath(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, resolvedPath:String) -> Void):Void;
+	var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, resolvedPath:String) -> Void):Void;
 	/**
 		Synchronous realpath(3) - return the canonicalized absolute pathname.
 		
@@ -198,9 +198,9 @@ package node;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; }>):global.Buffer { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):haxe.extern.EitherType<String, global.Buffer> { })
+	var encoding : String; }>):haxe.extern.EitherType<String, global.Buffer> { })
 	static function realpathSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):String;
+	var encoding : String; }>):String;
 	/**
 		Asynchronous unlink(2) - delete a name and possibly the file it refers to.
 	**/
@@ -251,10 +251,10 @@ package node;
 	**/
 	@:overload(function(prefix:String, options:haxe.extern.EitherType<String, { var encoding : String; }>, callback:(err:global.nodejs.ErrnoException, folder:global.Buffer) -> Void):Void { })
 	@:overload(function(prefix:String, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, folder:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
+	var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, folder:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
 	@:overload(function(prefix:String, callback:(err:global.nodejs.ErrnoException, folder:String) -> Void):Void { })
 	static function mkdtemp(prefix:String, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, folder:String) -> Void):Void;
+	var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, folder:String) -> Void):Void;
 	/**
 		Synchronously creates a unique temporary directory.
 		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
@@ -271,9 +271,9 @@ package node;
 	**/
 	@:overload(function(prefix:String, options:haxe.extern.EitherType<String, { var encoding : String; }>):global.Buffer { })
 	@:overload(function(prefix:String, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):haxe.extern.EitherType<String, global.Buffer> { })
+	var encoding : String; }>):haxe.extern.EitherType<String, global.Buffer> { })
 	static function mkdtempSync(prefix:String, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):String;
+	var encoding : String; }>):String;
 	/**
 		Asynchronous readdir(3) - read a directory.
 		
@@ -294,14 +294,14 @@ package node;
 		Asynchronous readdir(3) - read a directory.
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var withFileTypes : Null<Bool>; }>, callback:(err:global.nodejs.ErrnoException, files:std.Array<global.Buffer>) -> Void):Void { })
+	var withFileTypes : Bool; }>, callback:(err:global.nodejs.ErrnoException, files:std.Array<global.Buffer>) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var withFileTypes : Null<Bool>; }>>, callback:(err:global.nodejs.ErrnoException, files:haxe.extern.EitherType<std.Array<String>, std.Array<global.Buffer>>) -> Void):Void { })
+	var encoding : String; @:optional
+	var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:haxe.extern.EitherType<std.Array<String>, std.Array<global.Buffer>>) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, callback:(err:global.nodejs.ErrnoException, files:std.Array<String>) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:{ var withFileTypes : Bool; }, callback:(err:global.nodejs.ErrnoException, files:std.Array<node.fs.Dirent>) -> Void):Void { })
 	static function readdir(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { var encoding : Null<String>; @:optional
-	var withFileTypes : Null<Bool>; }>>, callback:(err:global.nodejs.ErrnoException, files:std.Array<String>) -> Void):Void;
+	var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:std.Array<String>) -> Void):Void;
 	/**
 		Synchronous readdir(3) - read a directory.
 		
@@ -318,13 +318,13 @@ package node;
 		Asynchronous readdir(3) - read a directory.
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var withFileTypes : Null<Bool>; }>):std.Array<global.Buffer> { })
+	var withFileTypes : Bool; }>):std.Array<global.Buffer> { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var withFileTypes : Null<Bool>; }>):haxe.extern.EitherType<std.Array<String>, std.Array<global.Buffer>> { })
+	var encoding : String; @:optional
+	var withFileTypes : Bool; }>):haxe.extern.EitherType<std.Array<String>, std.Array<global.Buffer>> { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:{ var withFileTypes : Bool; }):std.Array<node.fs.Dirent> { })
 	static function readdirSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { var encoding : Null<String>; @:optional
-	var withFileTypes : Null<Bool>; }>):std.Array<String>;
+	var withFileTypes : Bool; }>):std.Array<String>;
 	/**
 		Asynchronous close(2) - close a file descriptor.
 	**/
@@ -437,14 +437,14 @@ package node;
 		Asynchronously reads the entire contents of a file.
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var flag : Null<String>; }>, callback:(err:global.nodejs.ErrnoException, data:String) -> Void):Void { })
+	var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:String) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var flag : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException, data:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
+	var encoding : String; @:optional
+	var flag : String; }>>, callback:(err:global.nodejs.ErrnoException, data:haxe.extern.EitherType<String, global.Buffer>) -> Void):Void { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, callback:(err:global.nodejs.ErrnoException, data:global.Buffer) -> Void):Void { })
 	static function readFile(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, options:Null<{ @:optional
-	var encoding : Null<Any>; @:optional
-	var flag : Null<String>; }>, callback:(err:global.nodejs.ErrnoException, data:global.Buffer) -> Void):Void;
+	var encoding : Any; @:optional
+	var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:global.Buffer) -> Void):Void;
 	/**
 		Synchronously reads the entire contents of a file.
 		
@@ -457,13 +457,13 @@ package node;
 		Synchronously reads the entire contents of a file.
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var flag : Null<String>; }>):String { })
+	var flag : String; }>):String { })
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var flag : Null<String>; }>):haxe.extern.EitherType<String, global.Buffer> { })
+	var encoding : String; @:optional
+	var flag : String; }>):haxe.extern.EitherType<String, global.Buffer> { })
 	static function readFileSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, ?options:{ @:optional
-	var encoding : Null<Any>; @:optional
-	var flag : Null<String>; }):global.Buffer;
+	var encoding : Any; @:optional
+	var flag : String; }):global.Buffer;
 	/**
 		Asynchronously writes data to a file, replacing the file if it already exists.
 		
@@ -473,16 +473,16 @@ package node;
 	**/
 	@:overload(function(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, data:Any, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
 	static function writeFile(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, data:Any, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : String; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously writes data to a file, replacing the file if it already exists.
 	**/
 	static function writeFileSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, data:Any, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<String>; }>):Void;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : String; }>):Void;
 	/**
 		Asynchronously append data to a file, creating the file if it does not exist.
 		
@@ -492,16 +492,16 @@ package node;
 	**/
 	@:overload(function(file:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, data:Any, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
 	static function appendFile(file:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, data:Any, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<String>; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : String; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously append data to a file, creating the file if it does not exist.
 	**/
 	static function appendFileSync(file:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<global.Buffer, node.url.URL>>>, data:Any, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<String>; }>):Void;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : String; }>):Void;
 	/**
 		Watch for changes on `filename`. The callback `listener` will be called each time the file is accessed.
 		
@@ -511,8 +511,8 @@ package node;
 	**/
 	@:overload(function(filename:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, listener:(curr:node.fs.Stats, prev:node.fs.Stats) -> Void):Void { })
 	static function watchFile(filename:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<{ @:optional
-	var persistent : Null<Bool>; @:optional
-	var interval : Null<Float>; }>, listener:(curr:node.fs.Stats, prev:node.fs.Stats) -> Void):Void;
+	var persistent : Bool; @:optional
+	var interval : Float; }>, listener:(curr:node.fs.Stats, prev:node.fs.Stats) -> Void):Void;
 	/**
 		Stop watching for changes on `filename`.
 	**/
@@ -533,17 +533,17 @@ package node;
 		Watch for changes on `filename`, where `filename` is either a file or a directory, returning an `FSWatcher`.
 	**/
 	@:overload(function(filename:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var persistent : Null<Bool>; @:optional
-	var recursive : Null<Bool>; }>, ?listener:(event:String, filename:global.Buffer) -> Void):node.fs.FSWatcher { })
+	var persistent : Bool; @:optional
+	var recursive : Bool; }>, ?listener:(event:String, filename:global.Buffer) -> Void):node.fs.FSWatcher { })
 	@:overload(function(filename:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var persistent : Null<Bool>; @:optional
-	var recursive : Null<Bool>; }>>, ?listener:(event:String, filename:haxe.extern.EitherType<String, global.Buffer>) -> Void):node.fs.FSWatcher { })
+	var encoding : String; @:optional
+	var persistent : Bool; @:optional
+	var recursive : Bool; }>>, ?listener:(event:String, filename:haxe.extern.EitherType<String, global.Buffer>) -> Void):node.fs.FSWatcher { })
 	@:overload(function(filename:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?listener:(event:String, filename:String) -> Any):node.fs.FSWatcher { })
 	static function watch(filename:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, options:Null<haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var persistent : Null<Bool>; @:optional
-	var recursive : Null<Bool>; }>>, ?listener:(event:String, filename:String) -> Void):node.fs.FSWatcher;
+	var encoding : String; @:optional
+	var persistent : Bool; @:optional
+	var recursive : Bool; }>>, ?listener:(event:String, filename:String) -> Void):node.fs.FSWatcher;
 	/**
 		Asynchronously tests whether or not the given path exists by checking with the file system.
 	**/
@@ -569,24 +569,24 @@ package node;
 		Returns a new `ReadStream` object.
 	**/
 	static function createReadStream(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var flags : Null<String>; @:optional
-	var encoding : Null<String>; @:optional
-	var fd : Null<Float>; @:optional
-	var mode : Null<Float>; @:optional
-	var autoClose : Null<Bool>; @:optional
-	var start : Null<Float>; @:optional
-	var end : Null<Float>; @:optional
-	var highWaterMark : Null<Float>; }>):node.fs.ReadStream;
+	var flags : String; @:optional
+	var encoding : String; @:optional
+	var fd : Float; @:optional
+	var mode : Float; @:optional
+	var autoClose : Bool; @:optional
+	var start : Float; @:optional
+	var end : Float; @:optional
+	var highWaterMark : Float; }>):node.fs.ReadStream;
 	/**
 		Returns a new `WriteStream` object.
 	**/
 	static function createWriteStream(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, node.url.URL>>, ?options:haxe.extern.EitherType<String, { @:optional
-	var flags : Null<String>; @:optional
-	var encoding : Null<String>; @:optional
-	var fd : Null<Float>; @:optional
-	var mode : Null<Float>; @:optional
-	var autoClose : Null<Bool>; @:optional
-	var start : Null<Float>; }>):node.fs.WriteStream;
+	var flags : String; @:optional
+	var encoding : String; @:optional
+	var fd : Float; @:optional
+	var mode : Float; @:optional
+	var autoClose : Bool; @:optional
+	var start : Float; }>):node.fs.WriteStream;
 	/**
 		Asynchronous fdatasync(2) - synchronize a file's in-core state with storage device.
 	**/

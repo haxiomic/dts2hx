@@ -44,7 +44,7 @@ extern interface Process extends EventEmitter {
 	var arch : String;
 	var platform : String;
 	@:optional
-	var mainModule : Null<global.NodeModule>;
+	var mainModule : global.NodeModule;
 	function memoryUsage():MemoryUsage;
 	function cpuUsage(?previousValue:CpuUsage):CpuUsage;
 	function nextTick(callback:js.lib.Function, args:std.Array<Any>):Void;

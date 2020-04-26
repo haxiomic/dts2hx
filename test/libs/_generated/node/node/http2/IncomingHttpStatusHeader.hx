@@ -2,5 +2,5 @@ package node.http2;
 extern interface IncomingHttpStatusHeader {
 	@:native(":status")
 	@:optional
-	var ColonStatus : Null<Float>;
+	var ColonStatus : Float;
 }

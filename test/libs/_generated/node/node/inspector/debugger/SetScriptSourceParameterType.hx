@@ -13,5 +13,5 @@ extern interface SetScriptSourceParameterType {
 		description without actually modifying the code.
 	**/
 	@:optional
-	var dryRun : Null<Bool>;
+	var dryRun : Bool;
 }

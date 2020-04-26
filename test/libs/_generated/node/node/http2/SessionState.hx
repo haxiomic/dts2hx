@@ -1,21 +1,21 @@
 package node.http2;
 extern interface SessionState {
 	@:optional
-	var effectiveLocalWindowSize : Null<Float>;
+	var effectiveLocalWindowSize : Float;
 	@:optional
-	var effectiveRecvDataLength : Null<Float>;
+	var effectiveRecvDataLength : Float;
 	@:optional
-	var nextStreamID : Null<Float>;
+	var nextStreamID : Float;
 	@:optional
-	var localWindowSize : Null<Float>;
+	var localWindowSize : Float;
 	@:optional
-	var lastProcStreamID : Null<Float>;
+	var lastProcStreamID : Float;
 	@:optional
-	var remoteWindowSize : Null<Float>;
+	var remoteWindowSize : Float;
 	@:optional
-	var outboundQueueSize : Null<Float>;
+	var outboundQueueSize : Float;
 	@:optional
-	var deflateDynamicTableSize : Null<Float>;
+	var deflateDynamicTableSize : Float;
 	@:optional
-	var inflateDynamicTableSize : Null<Float>;
+	var inflateDynamicTableSize : Float;
 }

@@ -17,5 +17,5 @@ extern interface CompileScriptParameterType {
 		evaluation will be performed in the context of the inspected page.
 	**/
 	@:optional
-	var executionContextId : Null<Float>;
+	var executionContextId : Float;
 }

@@ -1,19 +1,19 @@
 package node.http2;
 extern interface SessionOptions {
 	@:optional
-	var maxDeflateDynamicTableSize : Null<Float>;
+	var maxDeflateDynamicTableSize : Float;
 	@:optional
-	var maxReservedRemoteStreams : Null<Float>;
+	var maxReservedRemoteStreams : Float;
 	@:optional
-	var maxSendHeaderBlockLength : Null<Float>;
+	var maxSendHeaderBlockLength : Float;
 	@:optional
-	var paddingStrategy : Null<Float>;
+	var paddingStrategy : Float;
 	@:optional
-	var peerMaxConcurrentStreams : Null<Float>;
+	var peerMaxConcurrentStreams : Float;
 	@:optional
-	var selectPadding : Null<(frameLen:Float, maxFrameLen:Float) -> Float>;
+	var selectPadding : (frameLen:Float, maxFrameLen:Float) -> Float;
 	@:optional
-	var settings : Null<Settings>;
+	var settings : Settings;
 	@:optional
-	var createConnection : Null<(option:SessionOptions) -> node.stream.Duplex>;
+	var createConnection : (option:SessionOptions) -> node.stream.Duplex;
 }

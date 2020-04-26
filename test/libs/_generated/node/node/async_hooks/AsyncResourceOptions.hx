@@ -5,7 +5,7 @@ extern interface AsyncResourceOptions {
 		Default: `executionAsyncId()`
 	**/
 	@:optional
-	var triggerAsyncId : Null<Float>;
+	var triggerAsyncId : Float;
 	/**
 		Disables automatic `emitDestroy` when the object is garbage collected.
 		This usually does not need to be set (even if `emitDestroy` is called
@@ -14,5 +14,5 @@ extern interface AsyncResourceOptions {
 		Default: `false`
 	**/
 	@:optional
-	var requireManualDestroy : Null<Bool>;
+	var requireManualDestroy : Bool;
 }

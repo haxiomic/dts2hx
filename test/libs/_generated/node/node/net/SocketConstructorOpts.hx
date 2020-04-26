@@ -1,11 +1,11 @@
 package node.net;
 extern interface SocketConstructorOpts {
 	@:optional
-	var fd : Null<Float>;
+	var fd : Float;
 	@:optional
-	var allowHalfOpen : Null<Bool>;
+	var allowHalfOpen : Bool;
 	@:optional
-	var readable : Null<Bool>;
+	var readable : Bool;
 	@:optional
-	var writable : Null<Bool>;
+	var writable : Bool;
 }

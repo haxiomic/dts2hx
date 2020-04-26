@@ -1,140 +1,140 @@
 package node.http;
 extern interface IncomingHttpHeaders {
 	@:optional
-	var accept : Null<String>;
+	var accept : String;
 	@:native("accept-patch")
 	@:optional
-	var accept_patch : Null<String>;
+	var accept_patch : String;
 	@:native("accept-ranges")
 	@:optional
-	var accept_ranges : Null<String>;
+	var accept_ranges : String;
 	@:native("access-control-allow-credentials")
 	@:optional
-	var access_control_allow_credentials : Null<String>;
+	var access_control_allow_credentials : String;
 	@:native("access-control-allow-headers")
 	@:optional
-	var access_control_allow_headers : Null<String>;
+	var access_control_allow_headers : String;
 	@:native("access-control-allow-methods")
 	@:optional
-	var access_control_allow_methods : Null<String>;
+	var access_control_allow_methods : String;
 	@:native("access-control-allow-origin")
 	@:optional
-	var access_control_allow_origin : Null<String>;
+	var access_control_allow_origin : String;
 	@:native("access-control-expose-headers")
 	@:optional
-	var access_control_expose_headers : Null<String>;
+	var access_control_expose_headers : String;
 	@:native("access-control-max-age")
 	@:optional
-	var access_control_max_age : Null<String>;
+	var access_control_max_age : String;
 	@:optional
-	var age : Null<String>;
+	var age : String;
 	@:optional
-	var allow : Null<String>;
+	var allow : String;
 	@:native("alt-svc")
 	@:optional
-	var alt_svc : Null<String>;
+	var alt_svc : String;
 	@:optional
-	var authorization : Null<String>;
+	var authorization : String;
 	@:native("cache-control")
 	@:optional
-	var cache_control : Null<String>;
+	var cache_control : String;
 	@:optional
-	var connection : Null<String>;
+	var connection : String;
 	@:native("content-disposition")
 	@:optional
-	var content_disposition : Null<String>;
+	var content_disposition : String;
 	@:native("content-encoding")
 	@:optional
-	var content_encoding : Null<String>;
+	var content_encoding : String;
 	@:native("content-language")
 	@:optional
-	var content_language : Null<String>;
+	var content_language : String;
 	@:native("content-length")
 	@:optional
-	var content_length : Null<String>;
+	var content_length : String;
 	@:native("content-location")
 	@:optional
-	var content_location : Null<String>;
+	var content_location : String;
 	@:native("content-range")
 	@:optional
-	var content_range : Null<String>;
+	var content_range : String;
 	@:native("content-type")
 	@:optional
-	var content_type : Null<String>;
+	var content_type : String;
 	@:optional
-	var cookie : Null<String>;
+	var cookie : String;
 	@:optional
-	var date : Null<String>;
+	var date : String;
 	@:optional
-	var expect : Null<String>;
+	var expect : String;
 	@:optional
-	var expires : Null<String>;
+	var expires : String;
 	@:optional
-	var forwarded : Null<String>;
+	var forwarded : String;
 	@:optional
-	var from : Null<String>;
+	var from : String;
 	@:optional
-	var host : Null<String>;
+	var host : String;
 	@:native("if-match")
 	@:optional
-	var if_match : Null<String>;
+	var if_match : String;
 	@:native("if-modified-since")
 	@:optional
-	var if_modified_since : Null<String>;
+	var if_modified_since : String;
 	@:native("if-none-match")
 	@:optional
-	var if_none_match : Null<String>;
+	var if_none_match : String;
 	@:native("if-unmodified-since")
 	@:optional
-	var if_unmodified_since : Null<String>;
+	var if_unmodified_since : String;
 	@:native("last-modified")
 	@:optional
-	var last_modified : Null<String>;
+	var last_modified : String;
 	@:optional
-	var location : Null<String>;
+	var location : String;
 	@:optional
-	var pragma : Null<String>;
+	var pragma : String;
 	@:native("proxy-authenticate")
 	@:optional
-	var proxy_authenticate : Null<String>;
+	var proxy_authenticate : String;
 	@:native("proxy-authorization")
 	@:optional
-	var proxy_authorization : Null<String>;
+	var proxy_authorization : String;
 	@:native("public-key-pins")
 	@:optional
-	var public_key_pins : Null<String>;
+	var public_key_pins : String;
 	@:optional
-	var range : Null<String>;
+	var range : String;
 	@:optional
-	var referer : Null<String>;
+	var referer : String;
 	@:native("retry-after")
 	@:optional
-	var retry_after : Null<String>;
+	var retry_after : String;
 	@:native("set-cookie")
 	@:optional
-	var set_cookie : Null<std.Array<String>>;
+	var set_cookie : std.Array<String>;
 	@:native("strict-transport-security")
 	@:optional
-	var strict_transport_security : Null<String>;
+	var strict_transport_security : String;
 	@:optional
-	var tk : Null<String>;
+	var tk : String;
 	@:optional
-	var trailer : Null<String>;
+	var trailer : String;
 	@:native("transfer-encoding")
 	@:optional
-	var transfer_encoding : Null<String>;
+	var transfer_encoding : String;
 	@:optional
-	var upgrade : Null<String>;
+	var upgrade : String;
 	@:native("user-agent")
 	@:optional
-	var user_agent : Null<String>;
+	var user_agent : String;
 	@:optional
-	var vary : Null<String>;
+	var vary : String;
 	@:optional
-	var via : Null<String>;
+	var via : String;
 	@:optional
-	var warning : Null<String>;
+	var warning : String;
 	@:native("www-authenticate")
 	@:optional
-	var www_authenticate : Null<String>;
+	var www_authenticate : String;
 }

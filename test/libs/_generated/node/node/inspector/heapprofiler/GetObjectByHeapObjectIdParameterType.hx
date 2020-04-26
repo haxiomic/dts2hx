@@ -5,5 +5,5 @@ extern interface GetObjectByHeapObjectIdParameterType {
 		Symbolic group name that can be used to release multiple objects.
 	**/
 	@:optional
-	var objectGroup : Null<String>;
+	var objectGroup : String;
 }

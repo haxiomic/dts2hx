@@ -9,9 +9,9 @@ extern interface FileHandle {
 		The `FileHandle` must have been opened for appending.
 	**/
 	function appendFile(data:Any, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<Void>;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<Void>;
 	/**
 		Asynchronous fchown(2) - Change ownership of a file.
 	**/
@@ -48,13 +48,13 @@ extern interface FileHandle {
 		The `FileHandle` must have been opened for reading.
 	**/
 	@:overload(function(options:haxe.extern.EitherType<String, { var encoding : String; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<String> { })
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
+	var encoding : String; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
 	function readFile(?options:{ @:optional
-	var encoding : Null<Any>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }):js.lib.Promise<global.Buffer>;
+	var encoding : Any; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }):js.lib.Promise<global.Buffer>;
 	/**
 		Asynchronous fstat(2) - Get file status.
 	**/
@@ -86,9 +86,9 @@ extern interface FileHandle {
 		It is unsafe to call `writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
 	**/
 	function writeFile(data:Any, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; @:optional
-	var mode : Null<haxe.extern.EitherType<String, Float>>; @:optional
-	var flag : Null<haxe.extern.EitherType<String, Float>>; }>):js.lib.Promise<Void>;
+	var encoding : String; @:optional
+	var mode : haxe.extern.EitherType<String, Float>; @:optional
+	var flag : haxe.extern.EitherType<String, Float>; }>):js.lib.Promise<Void>;
 	/**
 		Asynchronous close(2) - close a `FileHandle`.
 	**/

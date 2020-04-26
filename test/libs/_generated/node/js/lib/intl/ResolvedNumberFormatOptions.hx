@@ -4,15 +4,15 @@ extern interface ResolvedNumberFormatOptions {
 	var numberingSystem : String;
 	var style : String;
 	@:optional
-	var currency : Null<String>;
+	var currency : String;
 	@:optional
-	var currencyDisplay : Null<String>;
+	var currencyDisplay : String;
 	var minimumIntegerDigits : Float;
 	var minimumFractionDigits : Float;
 	var maximumFractionDigits : Float;
 	@:optional
-	var minimumSignificantDigits : Null<Float>;
+	var minimumSignificantDigits : Float;
 	@:optional
-	var maximumSignificantDigits : Null<Float>;
+	var maximumSignificantDigits : Float;
 	var useGrouping : Bool;
 }

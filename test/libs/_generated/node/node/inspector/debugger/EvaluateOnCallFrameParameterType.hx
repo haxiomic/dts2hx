@@ -13,37 +13,37 @@ extern interface EvaluateOnCallFrameParameterType {
 		using `releaseObjectGroup`).
 	**/
 	@:optional
-	var objectGroup : Null<String>;
+	var objectGroup : String;
 	/**
 		Specifies whether command line API should be available to the evaluated expression, defaults
 		to false.
 	**/
 	@:optional
-	var includeCommandLineAPI : Null<Bool>;
+	var includeCommandLineAPI : Bool;
 	/**
 		In silent mode exceptions thrown during evaluation are not reported and do not pause
 		execution. Overrides `setPauseOnException` state.
 	**/
 	@:optional
-	var silent : Null<Bool>;
+	var silent : Bool;
 	/**
 		Whether the result is expected to be a JSON object that should be sent by value.
 	**/
 	@:optional
-	var returnByValue : Null<Bool>;
+	var returnByValue : Bool;
 	/**
 		Whether preview should be generated for the result.
 	**/
 	@:optional
-	var generatePreview : Null<Bool>;
+	var generatePreview : Bool;
 	/**
 		Whether to throw an exception if side effect cannot be ruled out during evaluation.
 	**/
 	@:optional
-	var throwOnSideEffect : Null<Bool>;
+	var throwOnSideEffect : Bool;
 	/**
 		Terminate execution after timing out (number of milliseconds).
 	**/
 	@:optional
-	var timeout : Null<Float>;
+	var timeout : Float;
 }

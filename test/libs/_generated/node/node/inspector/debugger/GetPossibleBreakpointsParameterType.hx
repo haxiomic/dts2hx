@@ -9,10 +9,10 @@ extern interface GetPossibleBreakpointsParameterType {
 		of scripts is used as end of range.
 	**/
 	@:optional
-	var end : Null<Location>;
+	var end : Location;
 	/**
 		Only consider locations which are in the same (non-nested) function as start.
 	**/
 	@:optional
-	var restrictToFunction : Null<Bool>;
+	var restrictToFunction : Bool;
 }

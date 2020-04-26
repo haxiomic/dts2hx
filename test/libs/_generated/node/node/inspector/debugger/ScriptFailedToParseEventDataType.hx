@@ -36,30 +36,30 @@ extern interface ScriptFailedToParseEventDataType {
 		Embedder-specific auxiliary data.
 	**/
 	@:optional
-	var executionContextAuxData : Null<{ }>;
+	var executionContextAuxData : { };
 	/**
 		URL of source map associated with script (if any).
 	**/
 	@:optional
-	var sourceMapURL : Null<String>;
+	var sourceMapURL : String;
 	/**
 		True, if this script has sourceURL.
 	**/
 	@:optional
-	var hasSourceURL : Null<Bool>;
+	var hasSourceURL : Bool;
 	/**
 		True, if this script is ES6 module.
 	**/
 	@:optional
-	var isModule : Null<Bool>;
+	var isModule : Bool;
 	/**
 		This script length.
 	**/
 	@:optional
-	var length : Null<Float>;
+	var length : Float;
 	/**
 		JavaScript top stack frame of where the script parsed event was triggered if available.
 	**/
 	@:optional
-	var stackTrace : Null<node.inspector.runtime.StackTrace>;
+	var stackTrace : node.inspector.runtime.StackTrace;
 }

@@ -11,12 +11,12 @@ extern interface ObjectPreview {
 		Object subtype hint. Specified for `object` type values only.
 	**/
 	@:optional
-	var subtype : Null<String>;
+	var subtype : String;
 	/**
 		String representation of the object.
 	**/
 	@:optional
-	var description : Null<String>;
+	var description : String;
 	/**
 		True iff some of the properties or entries of the original object did not fit.
 	**/
@@ -29,5 +29,5 @@ extern interface ObjectPreview {
 		List of the entries. Specified for `map` and `set` subtype values only.
 	**/
 	@:optional
-	var entries : Null<std.Array<EntryPreview>>;
+	var entries : std.Array<EntryPreview>;
 }

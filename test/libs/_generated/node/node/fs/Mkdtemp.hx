@@ -35,7 +35,7 @@ package node.fs;
 	**/
 	@:overload(function(prefix:String, options:haxe.extern.EitherType<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(prefix:String, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
+	var encoding : String; }>):js.lib.Promise<haxe.extern.EitherType<String, global.Buffer>> { })
 	static function __promisify__(prefix:String, ?options:haxe.extern.EitherType<String, { @:optional
-	var encoding : Null<String>; }>):js.lib.Promise<String>;
+	var encoding : String; }>):js.lib.Promise<String>;
 }

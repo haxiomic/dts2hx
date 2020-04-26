@@ -13,10 +13,10 @@ extern interface CallArgument {
 		Primitive value which can not be JSON-stringified.
 	**/
 	@:optional
-	var unserializableValue : Null<String>;
+	var unserializableValue : String;
 	/**
 		Remote object handle.
 	**/
 	@:optional
-	var objectId : Null<String>;
+	var objectId : String;
 }

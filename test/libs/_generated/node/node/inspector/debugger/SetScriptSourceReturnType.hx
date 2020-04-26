@@ -4,25 +4,25 @@ extern interface SetScriptSourceReturnType {
 		New stack trace in case editing has happened while VM was stopped.
 	**/
 	@:optional
-	var callFrames : Null<std.Array<CallFrame>>;
+	var callFrames : std.Array<CallFrame>;
 	/**
 		Whether current call stack  was modified after applying the changes.
 	**/
 	@:optional
-	var stackChanged : Null<Bool>;
+	var stackChanged : Bool;
 	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTrace : Null<node.inspector.runtime.StackTrace>;
+	var asyncStackTrace : node.inspector.runtime.StackTrace;
 	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTraceId : Null<node.inspector.runtime.StackTraceId>;
+	var asyncStackTraceId : node.inspector.runtime.StackTraceId;
 	/**
 		Exception details if any.
 	**/
 	@:optional
-	var exceptionDetails : Null<node.inspector.runtime.ExceptionDetails>;
+	var exceptionDetails : node.inspector.runtime.ExceptionDetails;
 }

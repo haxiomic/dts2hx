@@ -11,12 +11,12 @@ extern interface RemoteObject {
 		Object subtype hint. Specified for `object` type values only.
 	**/
 	@:optional
-	var subtype : Null<String>;
+	var subtype : String;
 	/**
 		Object class (constructor) name. Specified for `object` type values only.
 	**/
 	@:optional
-	var className : Null<String>;
+	var className : String;
 	/**
 		Remote object value in case of primitive values or JSON values (if it was requested).
 	**/
@@ -27,22 +27,22 @@ extern interface RemoteObject {
 		property.
 	**/
 	@:optional
-	var unserializableValue : Null<String>;
+	var unserializableValue : String;
 	/**
 		String representation of the object.
 	**/
 	@:optional
-	var description : Null<String>;
+	var description : String;
 	/**
 		Unique object identifier (for non-primitive values).
 	**/
 	@:optional
-	var objectId : Null<String>;
+	var objectId : String;
 	/**
 		Preview containing abbreviated property values. Specified for `object` type values only.
 	**/
 	@:optional
-	var preview : Null<ObjectPreview>;
+	var preview : ObjectPreview;
 	@:optional
-	var customPreview : Null<CustomPreview>;
+	var customPreview : CustomPreview;
 }

@@ -1,5 +1,5 @@
 package node.http2;
 extern interface ServerOptions extends SessionOptions {
 	@:optional
-	var allowHTTP1 : Null<Bool>;
+	var allowHTTP1 : Bool;
 }

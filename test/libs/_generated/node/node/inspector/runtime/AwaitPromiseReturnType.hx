@@ -8,5 +8,5 @@ extern interface AwaitPromiseReturnType {
 		Exception details if stack strace is available.
 	**/
 	@:optional
-	var exceptionDetails : Null<ExceptionDetails>;
+	var exceptionDetails : ExceptionDetails;
 }

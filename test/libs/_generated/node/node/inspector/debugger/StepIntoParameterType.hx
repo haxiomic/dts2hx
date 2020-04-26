@@ -5,5 +5,5 @@ extern interface StepIntoParameterType {
 		before next pause.
 	**/
 	@:optional
-	var breakOnAsyncCall : Null<Bool>;
+	var breakOnAsyncCall : Bool;
 }

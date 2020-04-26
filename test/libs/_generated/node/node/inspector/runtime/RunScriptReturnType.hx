@@ -8,5 +8,5 @@ extern interface RunScriptReturnType {
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : Null<ExceptionDetails>;
+	var exceptionDetails : ExceptionDetails;
 }

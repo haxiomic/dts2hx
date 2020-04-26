@@ -5,5 +5,5 @@ extern interface StopTrackingHeapObjectsParameterType {
 		when the tracking is stopped.
 	**/
 	@:optional
-	var reportProgress : Null<Bool>;
+	var reportProgress : Bool;
 }

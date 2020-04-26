@@ -1,11 +1,11 @@
 package node.url;
 extern interface URLFormatOptions {
 	@:optional
-	var auth : Null<Bool>;
+	var auth : Bool;
 	@:optional
-	var fragment : Null<Bool>;
+	var fragment : Bool;
 	@:optional
-	var search : Null<Bool>;
+	var search : Bool;
 	@:optional
-	var unicode : Null<Bool>;
+	var unicode : Bool;
 }

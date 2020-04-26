@@ -14,15 +14,15 @@ extern interface Scope {
 	**/
 	var object : node.inspector.runtime.RemoteObject;
 	@:optional
-	var name : Null<String>;
+	var name : String;
 	/**
 		Location in the source code where scope starts
 	**/
 	@:optional
-	var startLocation : Null<Location>;
+	var startLocation : Location;
 	/**
 		Location in the source code where scope ends
 	**/
 	@:optional
-	var endLocation : Null<Location>;
+	var endLocation : Location;
 }

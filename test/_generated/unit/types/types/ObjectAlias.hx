@@ -4,7 +4,7 @@ typedef ObjectAlias = {
 	var fieldB : Float;
 	var fieldArrayAlias : std.Array<String>;
 	@:optional
-	var fieldOptional : Null<Float>;
+	var fieldOptional : Float;
 	@:native("macro")
 	var macro_ : String;
 	var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>;

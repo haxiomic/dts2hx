@@ -10,5 +10,5 @@ extern interface ConsoleProfileFinishedEventDataType {
 		Profile title passed as an argument to console.profile().
 	**/
 	@:optional
-	var title : Null<String>;
+	var title : String;
 }

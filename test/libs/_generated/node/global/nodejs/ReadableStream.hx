@@ -7,7 +7,7 @@ extern interface ReadableStream extends EventEmitter {
 	function resume():ReadableStream;
 	function isPaused():Bool;
 	function pipe<T:(WritableStream)>(destination:T, ?options:{ @:optional
-	var end : Null<Bool>; }):T;
+	var end : Bool; }):T;
 	function unpipe(?destination:WritableStream):ReadableStream;
 	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;

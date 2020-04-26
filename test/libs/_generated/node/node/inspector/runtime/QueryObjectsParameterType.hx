@@ -8,5 +8,5 @@ extern interface QueryObjectsParameterType {
 		Symbolic group name that can be used to release the results.
 	**/
 	@:optional
-	var objectGroup : Null<String>;
+	var objectGroup : String;
 }

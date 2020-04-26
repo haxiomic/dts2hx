@@ -24,25 +24,25 @@ extern interface ExceptionDetails {
 		Script ID of the exception location.
 	**/
 	@:optional
-	var scriptId : Null<String>;
+	var scriptId : String;
 	/**
 		URL of the exception location, to be used when the script was not reported.
 	**/
 	@:optional
-	var url : Null<String>;
+	var url : String;
 	/**
 		JavaScript stack trace if available.
 	**/
 	@:optional
-	var stackTrace : Null<StackTrace>;
+	var stackTrace : StackTrace;
 	/**
 		Exception object if available.
 	**/
 	@:optional
-	var exception : Null<RemoteObject>;
+	var exception : RemoteObject;
 	/**
 		Identifier of the context where exception happened.
 	**/
 	@:optional
-	var executionContextId : Null<Float>;
+	var executionContextId : Float;
 }

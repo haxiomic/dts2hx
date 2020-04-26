@@ -1,8 +1,8 @@
 package node;
 @:jsRequire("net") extern class Net {
 	@:overload(function(?options:{ @:optional
-	var allowHalfOpen : Null<Bool>; @:optional
-	var pauseOnConnect : Null<Bool>; }, ?connectionListener:(socket:node.net.Socket) -> Void):node.net.Server { })
+	var allowHalfOpen : Bool; @:optional
+	var pauseOnConnect : Bool; }, ?connectionListener:(socket:node.net.Socket) -> Void):node.net.Server { })
 	static function createServer(?connectionListener:(socket:node.net.Socket) -> Void):node.net.Server;
 	@:overload(function(port:Float, ?host:String, ?connectionListener:() -> Void):node.net.Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):node.net.Socket { })

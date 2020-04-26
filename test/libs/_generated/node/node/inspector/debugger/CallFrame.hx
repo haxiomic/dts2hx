@@ -15,7 +15,7 @@ extern interface CallFrame {
 		Location in the source code.
 	**/
 	@:optional
-	var functionLocation : Null<Location>;
+	var functionLocation : Location;
 	/**
 		Location in the source code.
 	**/
@@ -37,5 +37,5 @@ extern interface CallFrame {
 		The value being returned, if the function is at return point.
 	**/
 	@:optional
-	var returnValue : Null<node.inspector.runtime.RemoteObject>;
+	var returnValue : node.inspector.runtime.RemoteObject;
 }

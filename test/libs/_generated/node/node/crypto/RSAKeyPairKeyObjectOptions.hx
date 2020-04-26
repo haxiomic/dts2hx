@@ -5,5 +5,5 @@ extern interface RSAKeyPairKeyObjectOptions {
 	**/
 	var modulusLength : Float;
 	@:optional
-	var publicExponent : Null<Float>;
+	var publicExponent : Float;
 }

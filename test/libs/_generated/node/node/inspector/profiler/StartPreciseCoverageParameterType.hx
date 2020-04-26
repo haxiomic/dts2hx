@@ -4,10 +4,10 @@ extern interface StartPreciseCoverageParameterType {
 		Collect accurate call counts beyond simple 'covered' or 'not covered'.
 	**/
 	@:optional
-	var callCount : Null<Bool>;
+	var callCount : Bool;
 	/**
 		Collect block-based coverage.
 	**/
 	@:optional
-	var detailed : Null<Bool>;
+	var detailed : Bool;
 }

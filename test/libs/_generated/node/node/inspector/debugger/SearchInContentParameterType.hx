@@ -12,10 +12,10 @@ extern interface SearchInContentParameterType {
 		If true, search is case sensitive.
 	**/
 	@:optional
-	var caseSensitive : Null<Bool>;
+	var caseSensitive : Bool;
 	/**
 		If true, treats string parameter as regex.
 	**/
 	@:optional
-	var isRegex : Null<Bool>;
+	var isRegex : Bool;
 }

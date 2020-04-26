@@ -1,11 +1,11 @@
 package node.stream;
 extern interface ReadableOptions {
 	@:optional
-	var highWaterMark : Null<Float>;
+	var highWaterMark : Float;
 	@:optional
-	var encoding : Null<String>;
+	var encoding : String;
 	@:optional
-	var objectMode : Null<Bool>;
+	var objectMode : Bool;
 	@:optional
 	function read(size:Float):Void;
 	@:optional

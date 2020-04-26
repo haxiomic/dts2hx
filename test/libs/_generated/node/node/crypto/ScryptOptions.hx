@@ -1,11 +1,11 @@
 package node.crypto;
 extern interface ScryptOptions {
 	@:optional
-	var N : Null<Float>;
+	var N : Float;
 	@:optional
-	var r : Null<Float>;
+	var r : Float;
 	@:optional
-	var p : Null<Float>;
+	var p : Float;
 	@:optional
-	var maxmem : Null<Float>;
+	var maxmem : Float;
 }

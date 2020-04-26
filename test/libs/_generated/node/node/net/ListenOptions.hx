@@ -1,19 +1,19 @@
 package node.net;
 extern interface ListenOptions {
 	@:optional
-	var port : Null<Float>;
+	var port : Float;
 	@:optional
-	var host : Null<String>;
+	var host : String;
 	@:optional
-	var backlog : Null<Float>;
+	var backlog : Float;
 	@:optional
-	var path : Null<String>;
+	var path : String;
 	@:optional
-	var exclusive : Null<Bool>;
+	var exclusive : Bool;
 	@:optional
-	var readableAll : Null<Bool>;
+	var readableAll : Bool;
 	@:optional
-	var writableAll : Null<Bool>;
+	var writableAll : Bool;
 	@:optional
-	var ipv6Only : Null<Bool>;
+	var ipv6Only : Bool;
 }

@@ -8,7 +8,7 @@ extern interface StackTrace {
 		initiated the async call.
 	**/
 	@:optional
-	var description : Null<String>;
+	var description : String;
 	/**
 		JavaScript function name.
 	**/
@@ -17,10 +17,10 @@ extern interface StackTrace {
 		Asynchronous JavaScript stack trace that preceded this stack, if available.
 	**/
 	@:optional
-	var parent : Null<StackTrace>;
+	var parent : StackTrace;
 	/**
 		Asynchronous JavaScript stack trace that preceded this stack, if available.
 	**/
 	@:optional
-	var parentId : Null<StackTraceId>;
+	var parentId : StackTraceId;
 }

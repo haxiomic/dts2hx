@@ -4,33 +4,33 @@ package node.tls;
 		An optional TLS context object from tls.createSecureContext()
 	**/
 	@:optional
-	var secureContext : Null<SecureContext>; /**
+	var secureContext : SecureContext; /**
 		If true the TLS socket will be instantiated in server-mode.
 		Defaults to false.
 	**/
 	@:optional
-	var isServer : Null<Bool>; /**
+	var isServer : Bool; /**
 		An optional net.Server instance.
 	**/
 	@:optional
-	var server : Null<node.net.Server>; /**
+	var server : node.net.Server; /**
 		If true the server will request a certificate from clients that
 		connect and attempt to verify that certificate. Defaults to
 		false.
 	**/
 	@:optional
-	var requestCert : Null<Bool>; /**
+	var requestCert : Bool; /**
 		If true the server will reject any connection which is not
 		authorized with the list of supplied CAs. This option only has an
 		effect if requestCert is true. Defaults to false.
 	**/
 	@:optional
-	var rejectUnauthorized : Null<Bool>; /**
+	var rejectUnauthorized : Bool; /**
 		An array of strings or a Buffer naming possible NPN protocols.
 		(Protocols should be ordered by their priority.)
 	**/
 	@:optional
-	var NPNProtocols : Null<haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>>; /**
+	var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>; /**
 		An array of strings or a Buffer naming possible ALPN protocols.
 		(Protocols should be ordered by their priority.) When the server
 		receives both NPN and ALPN extensions from the client, ALPN takes
@@ -38,7 +38,7 @@ package node.tls;
 		to the client.
 	**/
 	@:optional
-	var ALPNProtocols : Null<haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>>; /**
+	var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>; /**
 		SNICallback(servername, cb) <Function> A function that will be
 		called if the client supports SNI TLS extension. Two arguments
 		will be passed when called: servername and cb. SNICallback should
@@ -48,17 +48,17 @@ package node.tls;
 		with high-level API will be used (see below).
 	**/
 	@:optional
-	var SNICallback : Null<(servername:String, cb:(err:Null<js.lib.Error>, ctx:SecureContext) -> Void) -> Void>; /**
+	var SNICallback : (servername:String, cb:(err:Null<js.lib.Error>, ctx:SecureContext) -> Void) -> Void; /**
 		An optional Buffer instance containing a TLS session.
 	**/
 	@:optional
-	var session : Null<global.Buffer>; /**
+	var session : global.Buffer; /**
 		If true, specifies that the OCSP status request extension will be
 		added to the client hello and an 'OCSPResponse' event will be
 		emitted on the socket before establishing a secure communication
 	**/
 	@:optional
-	var requestOCSP : Null<Bool>; });
+	var requestOCSP : Bool; });
 	/**
 		A boolean that is true if the peer certificate was signed by one of the specified CAs, otherwise false.
 	**/
@@ -78,7 +78,7 @@ package node.tls;
 		When ALPN has no selected protocol, tlsSocket.alpnProtocol equals false.
 	**/
 	@:optional
-	var alpnProtocol : Null<String>;
+	var alpnProtocol : String;
 	/**
 		Returns an object representing the cipher name and the SSL/TLS protocol version of the current connection.
 	**/
@@ -116,8 +116,8 @@ package node.tls;
 		ANOTHER NOTE: When running as the server, socket will be destroyed with an error after handshakeTimeout timeout.
 	**/
 	function renegotiate(options:{ @:optional
-	var rejectUnauthorized : Null<Bool>; @:optional
-	var requestCert : Null<Bool>; }, callback:(err:Null<js.lib.Error>) -> Void):Null<Bool>;
+	var rejectUnauthorized : Bool; @:optional
+	var requestCert : Bool; }, callback:(err:Null<js.lib.Error>) -> Void):Null<Bool>;
 	/**
 		Set maximum TLS fragment size (default and maximum value is: 16384, minimum is: 512).
 		Smaller fragment size decreases buffering latency on the client: large fragments are buffered by

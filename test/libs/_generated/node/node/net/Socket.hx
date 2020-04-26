@@ -24,11 +24,11 @@ package node.net;
 	final localAddress : String;
 	final localPort : Float;
 	@:optional
-	final remoteAddress : Null<String>;
+	final remoteAddress : String;
 	@:optional
-	final remoteFamily : Null<String>;
+	final remoteFamily : String;
 	@:optional
-	final remotePort : Null<Float>;
+	final remotePort : Float;
 	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?cb:() -> Void):Void { })
 	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;

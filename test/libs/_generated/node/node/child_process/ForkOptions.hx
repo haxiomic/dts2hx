@@ -1,15 +1,15 @@
 package node.child_process;
 extern interface ForkOptions extends ProcessEnvOptions {
 	@:optional
-	var execPath : Null<String>;
+	var execPath : String;
 	@:optional
-	var execArgv : Null<std.Array<String>>;
+	var execArgv : std.Array<String>;
 	@:optional
-	var silent : Null<Bool>;
+	var silent : Bool;
 	@:optional
-	var stdio : Null<haxe.extern.EitherType<String, std.Array<Null<haxe.extern.EitherType<Float, haxe.extern.EitherType<String, node.stream.Stream>>>>>>;
+	var stdio : haxe.extern.EitherType<String, std.Array<Null<haxe.extern.EitherType<Float, haxe.extern.EitherType<String, node.stream.Stream>>>>>;
 	@:optional
-	var detached : Null<Bool>;
+	var detached : Bool;
 	@:optional
-	var windowsVerbatimArguments : Null<Bool>;
+	var windowsVerbatimArguments : Bool;
 }

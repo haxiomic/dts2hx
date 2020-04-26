@@ -9,16 +9,16 @@ extern interface GetPropertiesParameterType {
 		chain.
 	**/
 	@:optional
-	var ownProperties : Null<Bool>;
+	var ownProperties : Bool;
 	/**
 		If true, returns accessor properties (with getter/setter) only; internal properties are not
 		returned either.
 	**/
 	@:optional
-	var accessorPropertiesOnly : Null<Bool>;
+	var accessorPropertiesOnly : Bool;
 	/**
 		Whether preview should be generated for the results.
 	**/
 	@:optional
-	var generatePreview : Null<Bool>;
+	var generatePreview : Bool;
 }

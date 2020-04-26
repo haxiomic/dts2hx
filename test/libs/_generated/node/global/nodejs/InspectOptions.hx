@@ -8,21 +8,21 @@ extern interface InspectOptions {
 		the getter function.
 	**/
 	@:optional
-	var getters : Null<haxe.extern.EitherType<Bool, String>>;
+	var getters : haxe.extern.EitherType<Bool, String>;
 	@:optional
-	var showHidden : Null<Bool>;
+	var showHidden : Bool;
 	@:optional
-	var depth : Null<Float>;
+	var depth : Float;
 	@:optional
-	var colors : Null<Bool>;
+	var colors : Bool;
 	@:optional
-	var customInspect : Null<Bool>;
+	var customInspect : Bool;
 	@:optional
-	var showProxy : Null<Bool>;
+	var showProxy : Bool;
 	@:optional
-	var maxArrayLength : Null<Float>;
+	var maxArrayLength : Float;
 	@:optional
-	var breakLength : Null<Float>;
+	var breakLength : Float;
 	/**
 		Setting this to `false` causes each object key
 		to be displayed on a new line. It will also add new lines to text that is
@@ -33,7 +33,7 @@ extern interface InspectOptions {
 		For more information, see the example below.
 	**/
 	@:optional
-	var compact : Null<haxe.extern.EitherType<Float, Bool>>;
+	var compact : haxe.extern.EitherType<Float, Bool>;
 	@:optional
-	var sorted : Null<haxe.extern.EitherType<Bool, (a:String, b:String) -> Float>>;
+	var sorted : haxe.extern.EitherType<Bool, (a:String, b:String) -> Float>;
 }

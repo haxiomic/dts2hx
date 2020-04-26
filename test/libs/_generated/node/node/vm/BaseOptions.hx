@@ -5,17 +5,17 @@ extern interface BaseOptions {
 		Default: `''`.
 	**/
 	@:optional
-	var filename : Null<String>;
+	var filename : String;
 	/**
 		Specifies the line number offset that is displayed in stack traces produced by this script.
 		Default: `0`.
 	**/
 	@:optional
-	var lineOffset : Null<Float>;
+	var lineOffset : Float;
 	/**
 		Specifies the column number offset that is displayed in stack traces produced by this script.
 		Default: `0`
 	**/
 	@:optional
-	var columnOffset : Null<Float>;
+	var columnOffset : Float;
 }

@@ -9,5 +9,5 @@ extern interface SetBreakpointParameterType {
 		breakpoint if this expression evaluates to true.
 	**/
 	@:optional
-	var condition : Null<String>;
+	var condition : String;
 }

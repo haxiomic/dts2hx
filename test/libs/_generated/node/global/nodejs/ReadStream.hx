@@ -3,7 +3,7 @@ extern interface ReadStream extends Socket {
 	final readableHighWaterMark : Float;
 	final readableLength : Float;
 	@:optional
-	var isRaw : Null<Bool>;
+	var isRaw : Bool;
 	@:optional
 	function setRawMode(mode:Bool):Void;
 	function _read(size:Float):Void;

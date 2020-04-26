@@ -1,11 +1,11 @@
 package node.child_process;
 extern interface ProcessEnvOptions {
 	@:optional
-	var uid : Null<Float>;
+	var uid : Float;
 	@:optional
-	var gid : Null<Float>;
+	var gid : Float;
 	@:optional
-	var cwd : Null<String>;
+	var cwd : String;
 	@:optional
-	var env : Null<global.nodejs.ProcessEnv>;
+	var env : global.nodejs.ProcessEnv;
 }

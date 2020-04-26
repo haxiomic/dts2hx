@@ -1,37 +1,37 @@
 package node.http;
 extern interface ClientRequestArgs {
 	@:optional
-	var protocol : Null<String>;
+	var protocol : String;
 	@:optional
-	var host : Null<String>;
+	var host : String;
 	@:optional
-	var hostname : Null<String>;
+	var hostname : String;
 	@:optional
-	var family : Null<Float>;
+	var family : Float;
 	@:optional
-	var port : Null<haxe.extern.EitherType<String, Float>>;
+	var port : haxe.extern.EitherType<String, Float>;
 	@:optional
-	var defaultPort : Null<haxe.extern.EitherType<String, Float>>;
+	var defaultPort : haxe.extern.EitherType<String, Float>;
 	@:optional
-	var localAddress : Null<String>;
+	var localAddress : String;
 	@:optional
-	var socketPath : Null<String>;
+	var socketPath : String;
 	@:optional
-	var method : Null<String>;
+	var method : String;
 	@:optional
-	var path : Null<String>;
+	var path : String;
 	@:optional
-	var headers : Null<OutgoingHttpHeaders>;
+	var headers : OutgoingHttpHeaders;
 	@:optional
-	var auth : Null<String>;
+	var auth : String;
 	@:optional
-	var agent : Null<haxe.extern.EitherType<Bool, Agent>>;
+	var agent : haxe.extern.EitherType<Bool, Agent>;
 	@:optional
-	var _defaultAgent : Null<Agent>;
+	var _defaultAgent : Agent;
 	@:optional
-	var timeout : Null<Float>;
+	var timeout : Float;
 	@:optional
-	var setHost : Null<Bool>;
+	var setHost : Bool;
 	@:optional
-	var createConnection : Null<(options:ClientRequestArgs, oncreate:(err:js.lib.Error, socket:node.net.Socket) -> Void) -> node.net.Socket>;
+	var createConnection : (options:ClientRequestArgs, oncreate:(err:js.lib.Error, socket:node.net.Socket) -> Void) -> node.net.Socket;
 }

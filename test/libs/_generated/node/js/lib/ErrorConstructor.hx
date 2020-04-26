@@ -11,6 +11,6 @@ extern interface ErrorConstructor {
 		Optional override for formatting stack traces
 	**/
 	@:optional
-	var prepareStackTrace : Null<(err:Error, stackTraces:std.Array<global.nodejs.CallSite>) -> Any>;
+	var prepareStackTrace : (err:Error, stackTraces:std.Array<global.nodejs.CallSite>) -> Any;
 	var stackTraceLimit : Float;
 }

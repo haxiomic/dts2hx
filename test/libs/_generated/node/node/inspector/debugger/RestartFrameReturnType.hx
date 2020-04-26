@@ -8,10 +8,10 @@ extern interface RestartFrameReturnType {
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTrace : Null<node.inspector.runtime.StackTrace>;
+	var asyncStackTrace : node.inspector.runtime.StackTrace;
 	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTraceId : Null<node.inspector.runtime.StackTraceId>;
+	var asyncStackTraceId : node.inspector.runtime.StackTraceId;
 }

@@ -3,5 +3,5 @@ extern interface ReportHeapSnapshotProgressEventDataType {
 	var done : Float;
 	var total : Float;
 	@:optional
-	var finished : Null<Bool>;
+	var finished : Bool;
 }

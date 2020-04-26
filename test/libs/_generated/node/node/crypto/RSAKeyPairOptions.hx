@@ -5,7 +5,7 @@ extern interface RSAKeyPairOptions<PubF:(String), PrivF:(String)> {
 	**/
 	var modulusLength : Float;
 	@:optional
-	var publicExponent : Null<Float>;
+	var publicExponent : Float;
 	var publicKeyEncoding : { var type : String; var format : PubF; };
 	var privateKeyEncoding : Any;
 }

@@ -12,15 +12,15 @@ extern interface PropertyPreview {
 		User-friendly property value string.
 	**/
 	@:optional
-	var value : Null<String>;
+	var value : String;
 	/**
 		Nested value preview.
 	**/
 	@:optional
-	var valuePreview : Null<ObjectPreview>;
+	var valuePreview : ObjectPreview;
 	/**
 		Object subtype hint. Specified for `object` type values only.
 	**/
 	@:optional
-	var subtype : Null<String>;
+	var subtype : String;
 }

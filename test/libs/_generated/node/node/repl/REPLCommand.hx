@@ -4,7 +4,7 @@ extern interface REPLCommand {
 		Help text to be displayed when `.help` is entered.
 	**/
 	@:optional
-	var help : Null<String>;
+	var help : String;
 	/**
 		The function to execute, optionally accepting a single string argument.
 	**/

@@ -1,11 +1,11 @@
 package node.stream;
 extern interface WritableOptions {
 	@:optional
-	var highWaterMark : Null<Float>;
+	var highWaterMark : Float;
 	@:optional
-	var decodeStrings : Null<Bool>;
+	var decodeStrings : Bool;
 	@:optional
-	var objectMode : Null<Bool>;
+	var objectMode : Bool;
 	@:optional
 	function write(chunk:Any, encoding:String, callback:(?error:js.lib.Error) -> Void):Void;
 	@:optional

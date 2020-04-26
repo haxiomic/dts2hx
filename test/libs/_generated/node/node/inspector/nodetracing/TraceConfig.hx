@@ -4,7 +4,7 @@ extern interface TraceConfig {
 		Controls how the trace buffer stores data.
 	**/
 	@:optional
-	var recordMode : Null<String>;
+	var recordMode : String;
 	/**
 		Included category filters.
 	**/

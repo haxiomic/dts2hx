@@ -2,7 +2,7 @@ package node.dgram;
 extern interface BindOptions {
 	var port : Float;
 	@:optional
-	var address : Null<String>;
+	var address : String;
 	@:optional
-	var exclusive : Null<Bool>;
+	var exclusive : Bool;
 }

@@ -1,7 +1,7 @@
 package node.url;
 extern interface Url_ extends UrlObjectCommon {
 	@:optional
-	var port : Null<String>;
+	var port : String;
 	@:optional
-	var query : Null<haxe.extern.EitherType<String, node.querystring.ParsedUrlQuery>>;
+	var query : haxe.extern.EitherType<String, node.querystring.ParsedUrlQuery>;
 }

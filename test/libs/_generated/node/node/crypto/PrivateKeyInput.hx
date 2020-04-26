@@ -2,9 +2,9 @@ package node.crypto;
 extern interface PrivateKeyInput {
 	var key : haxe.extern.EitherType<String, global.Buffer>;
 	@:optional
-	var format : Null<String>;
+	var format : String;
 	@:optional
-	var type : Null<String>;
+	var type : String;
 	@:optional
-	var passphrase : Null<haxe.extern.EitherType<String, global.Buffer>>;
+	var passphrase : haxe.extern.EitherType<String, global.Buffer>;
 }

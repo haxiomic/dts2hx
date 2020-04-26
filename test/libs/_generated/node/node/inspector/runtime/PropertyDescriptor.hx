@@ -11,24 +11,24 @@ extern interface PropertyDescriptor {
 		The value associated with the property.
 	**/
 	@:optional
-	var value : Null<RemoteObject>;
+	var value : RemoteObject;
 	/**
 		True if the value associated with the property may be changed (data descriptors only).
 	**/
 	@:optional
-	var writable : Null<Bool>;
+	var writable : Bool;
 	/**
 		A function which serves as a getter for the property, or `undefined` if there is no getter
 		(accessor descriptors only).
 	**/
 	@:optional
-	var get : Null<RemoteObject>;
+	var get : RemoteObject;
 	/**
 		A function which serves as a setter for the property, or `undefined` if there is no setter
 		(accessor descriptors only).
 	**/
 	@:optional
-	var set : Null<RemoteObject>;
+	var set : RemoteObject;
 	/**
 		True if the type of this property descriptor may be changed and if the property may be
 		deleted from the corresponding object.
@@ -43,15 +43,15 @@ extern interface PropertyDescriptor {
 		True if the result was thrown during the evaluation.
 	**/
 	@:optional
-	var wasThrown : Null<Bool>;
+	var wasThrown : Bool;
 	/**
 		True if the property is owned for the object.
 	**/
 	@:optional
-	var isOwn : Null<Bool>;
+	var isOwn : Bool;
 	/**
 		Property symbol object, if the property is of the `symbol` type.
 	**/
 	@:optional
-	var symbol : Null<RemoteObject>;
+	var symbol : RemoteObject;
 }

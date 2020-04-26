@@ -6,5 +6,5 @@ package node.inspector.runtime;
 extern interface StackTraceId {
 	var id : String;
 	@:optional
-	var debuggerId : Null<String>;
+	var debuggerId : String;
 }

@@ -2,13 +2,13 @@ package node.dgram;
 extern interface SocketOptions {
 	var type : String;
 	@:optional
-	var reuseAddr : Null<Bool>;
+	var reuseAddr : Bool;
 	@:optional
-	var ipv6Only : Null<Bool>;
+	var ipv6Only : Bool;
 	@:optional
-	var recvBufferSize : Null<Float>;
+	var recvBufferSize : Float;
 	@:optional
-	var sendBufferSize : Null<Float>;
+	var sendBufferSize : Float;
 	@:optional
-	var lookup : Null<(hostname:String, options:node.dns.LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void) -> Void>;
+	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void) -> Void;
 }

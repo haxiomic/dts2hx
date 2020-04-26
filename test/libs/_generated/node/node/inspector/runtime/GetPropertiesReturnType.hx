@@ -8,10 +8,10 @@ extern interface GetPropertiesReturnType {
 		Internal object properties (only of the element itself).
 	**/
 	@:optional
-	var internalProperties : Null<std.Array<InternalPropertyDescriptor>>;
+	var internalProperties : std.Array<InternalPropertyDescriptor>;
 	/**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : Null<ExceptionDetails>;
+	var exceptionDetails : ExceptionDetails;
 }

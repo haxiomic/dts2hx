@@ -4,7 +4,7 @@ package js.lib;
 	var name : String;
 	var message : String;
 	@:optional
-	var stack : Null<String>;
+	var stack : String;
 	@:selfCall
 	static function call(?message:String):ReferenceError;
 	static final prototype : ReferenceError;

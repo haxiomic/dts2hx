@@ -5,5 +5,5 @@ extern interface EventLoopMonitorOptions {
 		Must be greater than zero.
 	**/
 	@:optional
-	var resolution : Null<Float>;
+	var resolution : Float;
 }

@@ -54,13 +54,13 @@ package unit.types;
 	static var typeReferenceStringAlias : String;
 	static var typeReferenceArrayAlias : std.Array<String>;
 	static var typeReferenceObjectAlias : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
-	var fieldOptional : Null<Float>; @:native("macro")
+	var fieldOptional : Float; @:native("macro")
 	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
 	function methodSignatureOptional():String; final readonlyField : String; };
 	static var typeReferenceAliasWithTypeParam : js.lib.Map<String, Float>;
 	static var object : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
-	var fieldOptional : Null<Float>; @:native("macro")
+	var fieldOptional : Float; @:native("macro")
 	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
 	function methodSignatureOptional():String; final readonlyField : String; };
@@ -95,7 +95,7 @@ package unit.types;
 	static var intersectionWithArray : Any;
 	static var typeQueryImplicitStr : String;
 	static var typeQueryObject : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
-	var fieldOptional : Null<Float>; @:native("macro")
+	var fieldOptional : Float; @:native("macro")
 	var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
 	function methodSignatureOptional():String; final readonlyField : String; };

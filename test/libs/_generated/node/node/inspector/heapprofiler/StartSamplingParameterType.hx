@@ -5,5 +5,5 @@ extern interface StartSamplingParameterType {
 		default value is 32768 bytes.
 	**/
 	@:optional
-	var samplingInterval : Null<Float>;
+	var samplingInterval : Float;
 }

@@ -3,9 +3,9 @@ extern interface WriteStream extends Socket {
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
 	@:optional
-	var columns : Null<Float>;
+	var columns : Float;
 	@:optional
-	var rows : Null<Float>;
+	var rows : Float;
 	function _write(chunk:Any, encoding:String, callback:(?err:js.lib.Error) -> Void):Void;
 	function _destroy(err:Null<js.lib.Error>, callback:(?err:js.lib.Error) -> Void):Void;
 	function _final(callback:(?err:js.lib.Error) -> Void):Void;

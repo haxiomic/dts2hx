@@ -19,15 +19,15 @@ extern interface ConsoleMessage {
 		URL of the message origin.
 	**/
 	@:optional
-	var url : Null<String>;
+	var url : String;
 	/**
 		Line number in the resource that generated this message (1-based).
 	**/
 	@:optional
-	var line : Null<Float>;
+	var line : Float;
 	/**
 		Column number in the resource that generated this message (1-based).
 	**/
 	@:optional
-	var column : Null<Float>;
+	var column : Float;
 }

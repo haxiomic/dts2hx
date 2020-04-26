@@ -1,19 +1,19 @@
 package node.tls;
 extern interface TlsOptions extends SecureContextOptions {
 	@:optional
-	var handshakeTimeout : Null<Float>;
+	var handshakeTimeout : Float;
 	@:optional
-	var requestCert : Null<Bool>;
+	var requestCert : Bool;
 	@:optional
-	var rejectUnauthorized : Null<Bool>;
+	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : Null<haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>>;
+	var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>;
 	@:optional
-	var ALPNProtocols : Null<haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>>;
+	var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>;
 	@:optional
-	var SNICallback : Null<(servername:String, cb:(err:Null<js.lib.Error>, ctx:SecureContext) -> Void) -> Void>;
+	var SNICallback : (servername:String, cb:(err:Null<js.lib.Error>, ctx:SecureContext) -> Void) -> Void;
 	@:optional
-	var sessionTimeout : Null<Float>;
+	var sessionTimeout : Float;
 	@:optional
-	var ticketKeys : Null<global.Buffer>;
+	var ticketKeys : global.Buffer;
 }

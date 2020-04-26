@@ -7,5 +7,5 @@ extern interface SpawnSyncReturns<T> {
 	var status : Float;
 	var signal : String;
 	@:optional
-	var error : Null<js.lib.Error>;
+	var error : js.lib.Error;
 }
