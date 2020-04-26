@@ -1,19 +1,18 @@
+- typeof [class-reference T] -> std.Class<T>
+	- Maybe the type node null issue is resolved if we switch the enclosing declaration
+	- type reference is to a constructor type variable
+	- What about `null | typeof T`?
+	-> Why is the type-query resolved? Can we prevent it from being resolved somehow?
+		- This would be much better than working at the node level
+
+- New for TupleType and remove `<Base>`
+
 - Use subtypes for typedef anons (so it's not an anon repreated 3x)
 
-- Do constructor types appear in the wild in a useful way? Can @:newCall help?	
-	- Can we use abstracts to handle Constructor types?
-		```haxe
-		@:generic @:forward abstract ConstructorType<T: Constructible>(T) {
-			public function construct() {
-				Type.createInstance(this); // or something similar
-			}
-		}
-		```
-		- Can we add a @:using to the interface?
-
-- If a constructor type is a type parameter we can use `Constructible`
+- Interface types
 
 - HaxeTools: fieldName deduplication
+	- Add test where two fields will collide
 	- Given an array of fields, find duplicate names and add _ + @:native
 	- Or, add a helper to handle fields.push() with auto-rename
 
@@ -51,18 +50,24 @@
 
 - Class and interface extend handling, add override etc
 
-- Abstract classes?
+- If a symbol is both a class and interface, we could split into a class implementation and an interface implementation, and then select the correct type when referencing by context: if used in implements, then use interface version 
+
+
+- Should we handle `abstract` classes (typescript keyword abstract)?
 
 ? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
 
 - review __promisify__
 
+- getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
+	- Comments should be per-overload; need to extend Expr.hx
+
 - Three.hx could have type aliases, or not be generated since it's empty
 	- Maybe we don't want to ignore Export * symbols in `walkDeclarationSymbols`
 
-- getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
-
 - Review class-expression syntax `let x = class ...`
+
+- If a constructor type is a type parameter we can use `Constructible`
 
 - Enums:
 	- Generate method to get keys
