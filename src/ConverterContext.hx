@@ -754,62 +754,66 @@ class ConverterContext {
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
 			complexTypeFromInterfaceType(cast objectType, accessContext, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
-			/** 
-				In typescript, function types have the object flag 'Anonymous' because they're actually represented as the call signatures of anons
-				```typescript
-				let f: (a: number) => string
-				// is actually represented as
-				let f: { (a: number): string }
-				```
-			**/
-
-			var typeFields = tc.getPropertiesOfType(objectType).filter(s -> s.isAccessibleField());
-			var callSignatures = objectType.getCallSignatures();
-			var constructSignatures = objectType.getConstructSignatures();
-
-			if (objectType.getConstructSignatures().length > 0) {
-				Log.warn('Type has construct signature but this is currently unhandled', objectType);
-				debug();
-			}
-
-			// for the special case of a single call signature and no props we can return a function type
-			if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
-				complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);
-			} else {
-				var fields = new Array<Field>();
-
-				/**
-					When a type has multiple signatures we can use a trick: wrap them in an object and adding @:selfCall
-					For example:
-					var x: {
-						@:selfCall
-						@:overload(function (a: Int): Void {})
-						function call(): Void;
-					}
-					Then to use overloads, you can do, `x.call(3)` and this compiles to `x(3)`
-				**/
-				if (callSignatures.length > 0) {
-					var callFieldName = TsTypeTools.getFreePropertyName(tc, objectType, selfCallFunctionName);
-					fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, accessContext, enclosingDeclaration));
-				}
-
-				// add properties
-				fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, accessContext, enclosingDeclaration)));
-
-				// remove disallowed accessors (only `final` is allowed on anon object fields)
-				for (field in fields) {
-					if (field.access != null) field.access = field.access.filter(a -> switch a {
-						case AFinal: true;
-						default: false;
-					});
-				};
-
-				TAnonymous(fields);
-			}
+			complexTypeFromAnonymousType(objectType, accessContext, enclosingDeclaration);
 		} else {
 			Log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
 			macro :Any;
+		}
+	}
+
+	function complexTypeFromAnonymousType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+		/** 
+			In typescript, function types have the object flag 'Anonymous' because they're actually represented as the call signatures of anons
+			```typescript
+			let f: (a: number) => string
+			// is actually represented as
+			let f: { (a: number): string }
+			```
+		**/
+
+		var typeFields = tc.getPropertiesOfType(objectType).filter(s -> s.isAccessibleField());
+		var callSignatures = objectType.getCallSignatures();
+		var constructSignatures = objectType.getConstructSignatures();
+
+		if (objectType.getConstructSignatures().length > 0) {
+			Log.warn('Type has construct signature but this is currently unhandled', objectType);
+			debug();
+		}
+
+		// for the special case of a single call signature and no props we can return a function type
+		return if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
+			complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);
+		} else {
+			var fields = new Array<Field>();
+
+			/**
+				When a type has multiple signatures we can use a trick: wrap them in an object and adding @:selfCall
+				For example:
+				var x: {
+					@:selfCall
+					@:overload(function (a: Int): Void {})
+					function call(): Void;
+				}
+				Then to use overloads, you can do, `x.call(3)` and this compiles to `x(3)`
+			**/
+			if (callSignatures.length > 0) {
+				var callFieldName = TsTypeTools.getFreePropertyName(tc, objectType, selfCallFunctionName);
+				fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, accessContext, enclosingDeclaration));
+			}
+
+			// add properties
+			fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, accessContext, enclosingDeclaration)));
+
+			// remove disallowed accessors (only `final` is allowed on anon object fields)
+			for (field in fields) {
+				if (field.access != null) field.access = field.access.filter(a -> switch a {
+					case AFinal: true;
+					default: false;
+				});
+			};
+
+			TAnonymous(fields);
 		}
 	}
 
@@ -874,7 +878,7 @@ class ConverterContext {
 			var hxType = if (isLocalTypeParam(tsType)) {
 				macro :Any;
 			} else {
-				complexTypeOfDeclaration(parameterDeclaration, accessContext, enclosingDeclaration);
+				complexTypeFromTsType(tsType, accessContext, parameterDeclaration);
 			}
 
 			var isOptional = tc.isOptionalParameter(parameterDeclaration);
@@ -1062,7 +1066,7 @@ class ConverterContext {
 			var hxType = if (baseDeclaration == null) {
 				complexTypeFromTsType(tc.getDeclaredTypeOfSymbol(symbol), accessContext, enclosingDeclaration);
 			} else {
-				complexTypeOfDeclaration(baseDeclaration, accessContext, enclosingDeclaration);
+				complexTypeFromTsType(tc.getTypeAtLocation(baseDeclaration), accessContext, baseDeclaration);
 			}
 
 			if (isOptional) {
@@ -1152,7 +1156,7 @@ class ConverterContext {
 
 		var hxParameters = if (signature.parameters != null ) signature.parameters.map(s -> {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var hxType = complexTypeOfDeclaration(parameterDeclaration, accessContext, enclosingDeclaration);
+			var hxType = complexTypeFromTsType(tc.getTypeAtLocation(parameterDeclaration), accessContext, parameterDeclaration);
 			var isOptional = tc.isOptionalParameter(parameterDeclaration);
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
@@ -1222,17 +1226,6 @@ class ConverterContext {
 			name: typeParameter.symbol.name.toSafeTypeName(),
 			constraints: hxConstraint != null ? [hxConstraint] : null,
 		}
-	}
-
-	function complexTypeOfDeclaration(declaration: Declaration, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// best to use the TypeNode because we get more information that way (i.e. `typeof X` isn't resolved yet)
-		// var typeNode: Null<TypeNode> = Reflect.field(declaration, 'type');
-		// if (typeNode != null) {
-		// 	return complexTypeFromTypeNode(typeNode, accessContext, declaration);
-		// } else {
-		// 	return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, declaration);
-		// }
-		return complexTypeFromTsType(tc.getTypeAtLocation(declaration), accessContext, enclosingDeclaration);
 	}
 
 	function accessFromModifiers(modifiers: ModifiersArray, ?logSymbol: Symbol): Array<Access> {
