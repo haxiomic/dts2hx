@@ -182,10 +182,21 @@ export namespace Types {
     const intersectionWithSubIntersection: { x: {a: number} } & { x: {b: string} };
     const intersectionXY: { x: number } & { y: number };
     const intersectionRedefinitionSame: { x: number } & { x: number };
-    const intersectionInvalidRedefinition: { x: number } & { x: string };
-    const extendedObject: typeof object & {extendedField: number};
+    const intersectionRedefinitionDifferent: { x: number } & { x: string };
+    const intersectionWithTypeof: typeof object & { extendedField: number };
     const intersectionWithAny: { x: number } & any;
     const intersectionWithArray: { x: number } & Array<number>;
+    const intersectionStringNumber: string & number;
+    const intersectionTripleAnon: {x: number} & {y: number} & {z: number};
+    const intersectionWithUnion: {a: string} & {b: boolean} | {c: number};
+    const intersectionWithCallSignatures: {(callParamA: string): number; call(): number} & {(callParamB: boolean): string[]; b: number};
+    type Anon = { a: string };
+    type AliasedAnon = Anon;
+    const intersectionAnonAlias: AliasedAnon & {b: boolean};
+
+    class IntersectionA {fieldA: number}
+    class IntersectionB {fieldB: number}
+    const intersectionBetweenClasses: IntersectionA & IntersectionB;
 
     // Type Query
     const typeQueryImplicitStr: typeof implicitStr;
