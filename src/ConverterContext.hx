@@ -298,10 +298,9 @@ class ConverterContext {
 					fields.push(newFieldFromSignatures(constructorSignatures, access, classOrInterfaceDeclaration));
 				}
 
-				var callFieldName = symbol.getFreeMemberName(selfCallFunctionName);
 				if (callSignatures.length > 0) {
 					// Log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
-					fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, access, classOrInterfaceDeclaration));
+					fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, classOrInterfaceDeclaration));
 				}
 
 				if (symbol.flags & SymbolFlags.Function != 0) {
@@ -546,6 +545,9 @@ class ConverterContext {
 			field.enableAccess(AStatic);
 			hxModule.fields.push(field);
 		}
+
+		// if any fields were mapped to the same name, rename further to resolve all collisions
+		HaxeTools.resolveNameCollisions(hxModule.fields);
 
 		var isEmptyValueModuleClass = isValueModuleOnlySymbol && hxModule.fields.length == 0;
 
@@ -798,8 +800,7 @@ class ConverterContext {
 				Then to use overloads, you can do, `x.call(3)` and this compiles to `x(3)`
 			**/
 			if (callSignatures.length > 0) {
-				var callFieldName = TsTypeTools.getFreePropertyName(tc, objectType, selfCallFunctionName);
-				fields.push(functionFieldFromCallSignatures(callFieldName, callSignatures, accessContext, enclosingDeclaration));
+				fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, accessContext, enclosingDeclaration));
 			}
 
 			// add properties
@@ -813,16 +814,15 @@ class ConverterContext {
 				});
 			};
 
+			HaxeTools.resolveNameCollisions(fields);
+
 			TAnonymous(fields);
 		}
 	}
 
 	function functionFieldFromCallSignatures(fieldName: String, callSignatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var field = functionFieldFromSignatures(fieldName, callSignatures, accessContext, enclosingDeclaration);
-		var metas = if (field.meta != null) field.meta else {
-			field.meta = [];
-		}
-		metas.push({ name: ':selfCall', pos: null });
+		field.setMeta(':selfCall');
 		return field;
 	}
 

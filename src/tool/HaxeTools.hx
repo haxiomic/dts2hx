@@ -4,6 +4,8 @@ import haxe.macro.Expr;
 import haxe.ds.ReadOnlyArray;
 using StringTools;
 
+using Lambda;
+
 class HaxeTools {
 
 	static final nullPosition = {
@@ -23,6 +25,80 @@ class HaxeTools {
 		}
 		if (accessArray.indexOf(access) == -1) {
 			accessArray.push(access);
+		}
+	}
+
+	static public function setMeta(field: Field, metaName: String, ?params: Array<Expr>) {
+		var metas = field.meta;
+		if (metas == null) {
+			field.meta = metas = [];
+		}
+		var existingMeta = metas.find(m -> m.name == metaName);
+		if (existingMeta != null) {
+			existingMeta.params = params;
+		} else {
+			metas.push({
+				name: metaName,
+				params: params,
+				pos: null,
+			});
+		}
+	}
+
+	static public function getMeta(field: Field, metaName: String): Null<MetadataEntry> {
+		return if (field.meta != null) {
+			field.meta.find(m -> m.name == metaName);
+		} else null;
+	}
+
+	static public function hasAccess(field: Field, access: Access) {
+		return if (field.access != null) {
+			field.access.has(access);
+		} else false;
+	}
+
+	/**
+		Renames fields where fields have the same name (and adds :native meta).
+		Modifies fields within the array
+	**/
+	static public function resolveNameCollisions(fields: Array<Field>) {
+		function renameability(field: Field) {
+			return 
+				// if field already has @:native metadata, we should prefer it for renaming (highest priority)
+				(getMeta(field, ':native') != null ? 1 : 0) << 2 |
+				// prefer to rename static fields over member fields
+				(hasAccess(field, AStatic) ? 1 : 0)         << 1 |
+				// prefer to rename variables rather than functions
+				(field.kind.match(FVar(_)) ? 1 : 0)         << 0
+			;
+		}
+
+		while (true) {
+			var nameMap = new Map<String, Array<Field>>();
+			for (field in fields) {
+				var array = nameMap.get(field.name);
+				if (array == null) {
+					array = [];
+					nameMap.set(field.name, array);
+				}
+				array.push(field);
+			}
+
+			var noNamesOverlap = true;
+			for (_ => collidingFields in nameMap) {
+				if (collidingFields.length > 1) {
+					noNamesOverlap = false;
+
+					haxe.ds.ArraySort.sort(collidingFields, (a, b) -> renameability(b) - renameability(a));
+					var fieldToRename = collidingFields[0];
+					if (getMeta(fieldToRename, ':native') == null) {
+						setMeta(fieldToRename, ':native', [toStringExpr(fieldToRename.name)]);
+					}
+					fieldToRename.name += '_';
+				}
+			}
+
+			if (noNamesOverlap) break;
 		}
 	}
 
