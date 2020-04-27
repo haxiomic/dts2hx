@@ -1,5 +1,13 @@
 package big_js;
 @:jsRequire("big.js", "Big") @tsInterface extern class Big {
+	/**
+		Returns a new instance of a Big number object
+		
+		String values may be in exponential, as well as normal (non-exponential) notation.
+		There is no limit to the number of digits of a string value (other than that of Javascript's maximum array size), but the largest recommended exponent magnitude is 1e+6.
+		Infinity, NaN and hexadecimal literal strings, e.g. '0xff', are not valid.
+		String values in octal literal form will be interpreted as decimals, e.g. '011' is 11, not 9.
+	**/
 	function new(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Big>>);
 	/**
 		Returns a Big number whose value is the absolute value, i.e. the magnitude, of this Big number.
@@ -157,6 +165,14 @@ package big_js;
 		Returns the sign, -1 or 1
 	**/
 	var s : Float;
+	/**
+		Returns a new instance of a Big number object
+		
+		String values may be in exponential, as well as normal (non-exponential) notation.
+		There is no limit to the number of digits of a string value (other than that of Javascript's maximum array size), but the largest recommended exponent magnitude is 1e+6.
+		Infinity, NaN and hexadecimal literal strings, e.g. '0xff', are not valid.
+		String values in octal literal form will be interpreted as decimals, e.g. '011' is 11, not 9.
+	**/
 	@:overload(function():BigConstructor { })
 	@:selfCall
 	static function call(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Big>>):Big;

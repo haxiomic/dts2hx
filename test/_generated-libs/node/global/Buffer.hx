@@ -5,6 +5,9 @@ package global;
 	Valid string encodings: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'
 **/
 @:native("Buffer") @tsInterface extern class Buffer {
+	/**
+		Allocates a new buffer containing the given {str}.
+	**/
 	@:overload(function(size:Float):Buffer { })
 	@:overload(function(array:js.lib.Uint8Array):Buffer { })
 	@:overload(function(arrayBuffer:haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):Buffer { })

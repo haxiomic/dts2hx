@@ -1,5 +1,8 @@
 package three;
 @:jsRequire("three", "Raycaster") extern class Raycaster {
+	/**
+		This creates a new raycaster object.
+	**/
 	function new(?origin:Vector3, ?direction:Vector3, ?near:Float, ?far:Float);
 	/**
 		The Ray used for the raycasting.

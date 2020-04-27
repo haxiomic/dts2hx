@@ -1,5 +1,11 @@
 package node.readline;
 @:jsRequire("readline", "Interface") extern class Interface extends node.events.EventEmitter {
+	/**
+		NOTE: According to the documentation:
+		
+		> Instances of the `readline.Interface` class are constructed using the
+		> `readline.createInterface()` method.
+	**/
 	@:overload(function(options:ReadLineOptions):Interface { })
 	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
 	final terminal : Bool;

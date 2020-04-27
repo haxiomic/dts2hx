@@ -3,6 +3,10 @@ package node.inspector;
 	The inspector.Session is used for dispatching messages to the V8 inspector back-end and receiving message responses and notifications.
 **/
 @:jsRequire("inspector", "Session") extern class Session extends node.events.EventEmitter {
+	/**
+		Create a new instance of the inspector.Session class.
+		The inspector session needs to be connected through session.connect() before the messages can be dispatched to the inspector backend.
+	**/
 	function new();
 	/**
 		Connects a session to the inspector back-end.

@@ -535,10 +535,9 @@ class ConverterContext {
 
 		// add module fields
 		if (symbol.flags & SymbolFlags.Module != 0) {
-			var moduleMemberFields =
-				tc.getExportsOfModule(symbol).filter(s ->
-					s.flags & SymbolFlags.ModuleMember != 0 && (s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)
-				);
+			var moduleMemberFields =tc.getExportsOfModule(symbol).filter(s ->
+				s.flags & SymbolFlags.ModuleMember != 0 && (s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)
+			);
 			for (moduleMember in moduleMemberFields) {
 				// field name before alias resolution (e.g. `default`)
 				var nativeFieldName = moduleMember.name;
@@ -843,10 +842,12 @@ class ConverterContext {
 				pos: null,
 			}: MetadataEntry);
 		});
+		var baseDoc = baseSignature.getDocumentationComment(tc).map(d -> d.text).join('\n\n');
 		return {
 			name: fieldName,
 			meta: overloadMetas,
 			kind: FFun(functionFromSignature(baseSignature, accessContext, enclosingDeclaration)),
+			doc: baseDoc,
 			pos: null,
 		};
 	}

@@ -1,5 +1,8 @@
 package js.lib;
 extern interface SymbolConstructor {
+	/**
+		Returns a new unique Symbol value.
+	**/
 	@:selfCall
 	function call(?description:haxe.extern.EitherType<String, Float>):js.lib.Symbol;
 	/**

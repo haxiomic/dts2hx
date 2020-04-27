@@ -14,6 +14,14 @@ package node.repl;
 	be created directly using the JavaScript `new` keyword.
 **/
 @:jsRequire("repl", "REPLServer") extern class REPLServer extends node.readline.Interface {
+	/**
+		NOTE: According to the documentation:
+		
+		> Instances of `repl.REPLServer` are created using the `repl.start()` method and
+		> _should not_ be created directly using the JavaScript `new` keyword.
+		
+		`REPLServer` cannot be subclassed due to implementation specifics in NodeJS.
+	**/
 	function new();
 	/**
 		The `vm.Context` provided to the `eval` function to be used for JavaScript

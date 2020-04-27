@@ -5,6 +5,9 @@ package three;
 	It is mainly interesting when working with static objects.
 **/
 @:jsRequire("three", "BufferGeometry") extern class BufferGeometry extends EventDispatcher {
+	/**
+		This creates a new BufferGeometry. It also sets several properties to an default value.
+	**/
 	function new();
 	/**
 		Unique number of this buffergeometry instance

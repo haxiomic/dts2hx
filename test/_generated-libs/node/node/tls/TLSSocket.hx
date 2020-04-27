@@ -1,5 +1,8 @@
 package node.tls;
 @:jsRequire("tls", "TLSSocket") extern class TLSSocket extends node.net.Socket {
+	/**
+		Construct a new tls.TLSSocket object from an existing TCP socket.
+	**/
 	function new(socket:node.net.Socket, ?options:{ /**
 		An optional TLS context object from tls.createSecureContext()
 	**/

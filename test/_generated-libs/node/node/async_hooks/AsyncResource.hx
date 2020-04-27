@@ -4,6 +4,11 @@ package node.async_hooks;
 	Using this users can easily trigger the lifetime events of their own resources.
 **/
 @:jsRequire("async_hooks", "AsyncResource") extern class AsyncResource {
+	/**
+		AsyncResource() is meant to be extended. Instantiating a
+		new AsyncResource() also triggers init. If triggerAsyncId is omitted then
+		async_hook.executionAsyncId() is used.
+	**/
 	function new(type:String, ?triggerAsyncId:haxe.extern.EitherType<Float, AsyncResourceOptions>);
 	/**
 		Call AsyncHooks before callbacks.

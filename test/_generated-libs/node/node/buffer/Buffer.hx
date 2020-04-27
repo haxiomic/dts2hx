@@ -1,5 +1,8 @@
 package node.buffer;
 @:jsRequire("buffer", "Buffer") @valueModuleOnly extern class Buffer {
+	/**
+		Allocates a new buffer containing the given {str}.
+	**/
 	@:overload(function(size:Float):global.Buffer { })
 	@:overload(function(array:js.lib.Uint8Array):global.Buffer { })
 	@:overload(function(arrayBuffer:haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):global.Buffer { })

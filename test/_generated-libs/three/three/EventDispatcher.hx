@@ -3,6 +3,9 @@ package three;
 	JavaScript events for custom objects
 **/
 @:jsRequire("three", "EventDispatcher") extern class EventDispatcher {
+	/**
+		Creates eventDispatcher object. It needs to be call with '.call' to add the functionality to an object.
+	**/
 	function new();
 	/**
 		Adds a listener to an event type.
