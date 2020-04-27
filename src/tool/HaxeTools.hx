@@ -91,7 +91,7 @@ class HaxeTools {
 
 					haxe.ds.ArraySort.sort(collidingFields, (a, b) -> renameability(b) - renameability(a));
 					var fieldToRename = collidingFields[0];
-					if (getMeta(fieldToRename, ':native') == null) {
+					if (getMeta(fieldToRename, ':native') == null && getMeta(fieldToRename, ':selfCall') == null) {
 						setMeta(fieldToRename, ':native', [toStringExpr(fieldToRename.name)]);
 					}
 					fieldToRename.name += '_';
