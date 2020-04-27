@@ -159,7 +159,7 @@ class ConverterContext {
 		// convert symbols for just this module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
-				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, access) -> {
+				TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, access) -> {
 					declarationSymbolQueue.tryEnqueue(symbol);
 				});
 			}
@@ -182,6 +182,23 @@ class ConverterContext {
 					field.enableAccess(AStatic);
 					globalModule.fields.push(field);
 				}
+				
+				/*
+				else if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0 && !tc.isConstructorTypeVariableSymbol(symbol)) {
+					var symbolChain = access.getFullSymbolChain();
+					var parent = symbolChain[symbolChain.length - 2];
+					if (parent != null) {
+						for (parentAccess in symbolAccessMap.getAccess(parent)) {
+							var hxModule = getHaxeModuleFromSymbol(parent, access);
+							var field = fieldFromSymbol(symbol.name, symbol, parentAccess, null);
+							field.enableAccess(AStatic);
+							hxModule.fields.push(field);
+						}
+					} else {
+						Log.error('Expected Variable | Function symbol to have parent', symbol);
+					}
+				}
+				*/
 			}
 		}
 
@@ -524,28 +541,36 @@ class ConverterContext {
 			}
 		}
 
-		// for (export in symbol.getExports()) Log.log('\t<magenta,b>Export</>', export);
-
-		// add static fields, including module-member fields
-		// symbol aliases are followed (like default) and the alias name is used as the field name
-		for (export in symbol.getExports().filter(s -> s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)) {
-			var nativeFieldName = export.name;
-
-			if (export.flags & SymbolFlags.Alias != 0) {
-				export = tc.getAliasedSymbol(export);
-				if (!export.isAccessibleField()) continue;
-			}
-
-			// skip constructor type variables because these have been converted into classes
-			if (tc.isConstructorTypeVariableSymbol(export)) continue;
-
-			// Log.log('\t<magenta,b>Export</>', export);
-			var field = fieldFromSymbol(nativeFieldName, export, access, null);
+		// add static class members
+		for (staticClassMember in symbol.getExports().filter(s -> s.flags & SymbolFlags.ClassMember != 0 && s.isAccessibleField())) {
+			var field = fieldFromSymbol(staticClassMember.name, staticClassMember, access, null);
 			field.enableAccess(AStatic);
 			hxModule.fields.push(field);
 		}
 
-		var isEmptyValueModuleClass = isValueModuleOnlySymbol && hxModule.fields.length == 0;
+		// add module fields
+		if (symbol.flags & SymbolFlags.Module != 0) {
+			var moduleMemberFields =
+				tc.getExportsOfModule(symbol).filter(s ->
+					s.flags & SymbolFlags.ModuleMember != 0 && (s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)
+				);
+			for (moduleMember in moduleMemberFields) {
+				// field name before alias resolution (e.g. `default`)
+				var nativeFieldName = moduleMember.name;
+
+				if (moduleMember.flags & SymbolFlags.Alias != 0) {
+					moduleMember = tc.getAliasedSymbol(moduleMember);
+					if (!moduleMember.isAccessibleField()) continue;
+				}
+
+				// skip constructor type variables because these have been converted into classes
+				if (tc.isConstructorTypeVariableSymbol(moduleMember)) continue;
+
+				var field = fieldFromSymbol(nativeFieldName, moduleMember, access, null);
+				field.enableAccess(AStatic);
+				hxModule.fields.push(field);
+			}
+		}
 
 		saveHaxeModule(hxModule);
 

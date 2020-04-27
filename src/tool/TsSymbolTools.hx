@@ -181,7 +181,7 @@ class TsSymbolTools {
 
 		While the symbol's parent path is [Module("events"), internal, EventEmitter], the accessChain is [Module("events"), EventEmitter]
 	**/
-	public static function walkDeclarationSymbols(symbol: Symbol, tc: TypeChecker, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
+	public static function walkDeclarationSymbols(tc: TypeChecker, symbol: Symbol, onSymbol: (Symbol, accessChain: ReadOnlyArray<Symbol>) -> Void, ?accessChain: ReadOnlyArray<Symbol>, depth: Int = 0) {
 		accessChain = accessChain != null ? accessChain : [symbol];
 
 		// prevent cycles by terminating if the current symbol appears in the parent access chain
@@ -206,7 +206,7 @@ class TsSymbolTools {
 			if (resolvedSymbol != symbol) {
 				// accessChain remains the same, we access the `export = symbol through the module symbol
 				// Log.log('<magenta>Module <b>${symbol.name} ${symbol.getFlags()}</b> mapped via `<i>export =</>` to <b>${resolvedSymbol.name} ${resolvedSymbol.getFlags()}</b></>', symbol);
-				walkDeclarationSymbols(resolvedSymbol, tc, onSymbol, accessChain, depth);
+				walkDeclarationSymbols(tc, resolvedSymbol, onSymbol, accessChain, depth);
 				return;
 			}
 		}
@@ -217,7 +217,7 @@ class TsSymbolTools {
 			handled = true;
 			onSymbol(symbol, accessChain);
 			var aliasedSymbol = tc.getAliasedSymbol(symbol);
-			walkDeclarationSymbols(aliasedSymbol, tc, onSymbol, accessChain.concat([aliasedSymbol]), depth + 1);
+			walkDeclarationSymbols(tc, aliasedSymbol, onSymbol, accessChain.concat([aliasedSymbol]), depth + 1);
 		}
 
 		if (symbol.flags & (SymbolFlags.Type | SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.Property) != 0) {
@@ -234,7 +234,7 @@ class TsSymbolTools {
 
 			var moduleMembers: Array<Symbol> = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.ModuleMember != 0);
 			for (moduleExport in moduleMembers) {
-				walkDeclarationSymbols(moduleExport, tc, onSymbol, accessChain.concat([moduleExport]), depth + 1);
+				walkDeclarationSymbols(tc, moduleExport, onSymbol, accessChain.concat([moduleExport]), depth + 1);
 			}
 		}
 

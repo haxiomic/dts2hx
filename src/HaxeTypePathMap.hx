@@ -100,7 +100,7 @@ class HaxeTypePathMap {
 
 		// find all declaration symbols in the program (including inaccessible ones) and add to package map as InternalModules
 		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
-			TsSymbolTools.walkDeclarationSymbols(topLevelSymbol, tc, (symbol, _) -> {
+			TsSymbolTools.walkDeclarationSymbols(tc, topLevelSymbol, (symbol, _) -> {
 				for (access in symbolAccessMap.getAccess(symbol)) {
 					if (ConverterContext.isHaxeModuleSource(tc, symbol)) {
 						var typePath = generateTypePath(symbol, access);

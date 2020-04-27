@@ -35,7 +35,7 @@ class SymbolAccessMap {
 
 				// global-scope symbols
 				for (symbol in program.getGlobalScopeSymbolsInSourceFile(sourceFile)) {
-					TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, accessChain) -> {
+					TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, accessChain) -> {
 						var currentAccess: SymbolAccess = Global([]);
 						for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
 						setAccess(symbol, currentAccess);
@@ -44,7 +44,7 @@ class SymbolAccessMap {
 				
 				// source-file module symbols
 				if (sourceFileSymbol != null) {
-					TsSymbolTools.walkDeclarationSymbols(sourceFileSymbol, tc, (symbol, accessChain) -> {
+					TsSymbolTools.walkDeclarationSymbols(tc, sourceFileSymbol, (symbol, accessChain) -> {
 						var moduleName = sourceFile.moduleName;
 						if (moduleName == null) {
 							Log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
