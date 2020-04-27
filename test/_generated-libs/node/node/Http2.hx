@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("http2") extern class Http2 {
+@:jsRequire("http2") @valueModuleOnly extern class Http2 {
 	static function getDefaultSettings():node.http2.Settings;
 	static function getPackedSettings(settings:node.http2.Settings):node.http2.Settings;
 	static function getUnpackedSettings(buf:haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>):node.http2.Settings;

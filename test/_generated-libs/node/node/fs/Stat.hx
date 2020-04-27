@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronous stat(2) - Get file status.
 **/
-@:jsRequire("fs", "stat") extern class Stat {
+@:jsRequire("fs", "stat") @valueModuleOnly extern class Stat {
 	/**
 		Asynchronous stat(2) - Get file status.
 	**/

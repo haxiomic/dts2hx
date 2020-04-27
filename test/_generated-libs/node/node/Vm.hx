@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("vm") extern class Vm {
+@:jsRequire("vm") @valueModuleOnly extern class Vm {
 	static function createContext(?sandbox:node.vm.Context):node.vm.Context;
 	static function isContext(sandbox:node.vm.Context):Bool;
 	static function runInContext(code:String, contextifiedSandbox:node.vm.Context, ?options:haxe.extern.EitherType<String, node.vm.RunningScriptOptions>):Any;

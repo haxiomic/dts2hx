@@ -1,5 +1,5 @@
 package node.util;
-@:jsRequire("util", "types") extern class Types {
+@:jsRequire("util", "types") @valueModuleOnly extern class Types {
 	static function isAnyArrayBuffer(object:Any):Bool;
 	static function isArgumentsObject(object:Any):Bool;
 	static function isArrayBuffer(object:Any):Bool;

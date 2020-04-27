@@ -1,5 +1,5 @@
 package global;
-@:native("Big") extern class Big {
+@:native("Big") @valueModuleOnly extern class Big {
 	function new(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, big_js.Big>>);
 	@:overload(function():big_js.BigConstructor { })
 	@:selfCall

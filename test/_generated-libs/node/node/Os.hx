@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("os") extern class Os {
+@:jsRequire("os") @valueModuleOnly extern class Os {
 	static function hostname():String;
 	static function loadavg():std.Array<Float>;
 	static function uptime():Float;

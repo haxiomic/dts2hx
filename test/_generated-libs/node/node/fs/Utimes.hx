@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronously change file timestamps of the file referenced by the supplied path.
 **/
-@:jsRequire("fs", "utimes") extern class Utimes {
+@:jsRequire("fs", "utimes") @valueModuleOnly extern class Utimes {
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied path.
 	**/

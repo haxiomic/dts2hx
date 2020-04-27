@@ -2,7 +2,7 @@ package node;
 /**
 	The inspector module provides an API for interacting with the V8 inspector.
 **/
-@:jsRequire("inspector") extern class Inspector {
+@:jsRequire("inspector") @valueModuleOnly extern class Inspector {
 	/**
 		Activate inspector on host and port. Equivalent to node --inspect=[[host:]port], but can be done programatically after node has started.
 		If wait is true, will block until a client has connected to the inspect port and flow control has been passed to the debugger client.

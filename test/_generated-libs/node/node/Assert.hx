@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("assert") extern class Assert {
+@:jsRequire("assert") @valueModuleOnly extern class Assert {
 	@:overload(function(actual:Any, expected:Any, ?message:haxe.extern.EitherType<String, js.lib.Error>, ?operator_:String, ?stackStartFn:js.lib.Function):Void { })
 	static function fail(?message:haxe.extern.EitherType<String, js.lib.Error>):Void;
 	static function ok(value:Any, ?message:haxe.extern.EitherType<String, js.lib.Error>):Void;

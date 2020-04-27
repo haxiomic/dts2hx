@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("timers") extern class Timers {
+@:jsRequire("timers") @valueModuleOnly extern class Timers {
 	static function setTimeout(callback:(args:std.Array<Any>) -> Void, ms:Float, args:std.Array<Any>):global.nodejs.Timeout;
 	static function clearTimeout(timeoutId:global.nodejs.Timeout):Void;
 	static function setInterval(callback:(args:std.Array<Any>) -> Void, ms:Float, args:std.Array<Any>):global.nodejs.Timeout;

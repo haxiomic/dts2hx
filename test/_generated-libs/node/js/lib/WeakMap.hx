@@ -1,5 +1,5 @@
 package js.lib;
-@:native("WeakMap") @:interface extern class WeakMap<K:(Any), V> {
+@:native("WeakMap") @tsInterface extern class WeakMap<K:(Any), V> {
 	@:overload(function<K:(Any), V>(iterable:Iterable<js.lib.Tuple2<K, V>>):WeakMap<K, V> { })
 	function new(?entries:ReadonlyArray<js.lib.Tuple2<K, V>>);
 	function delete(key:K):Bool;

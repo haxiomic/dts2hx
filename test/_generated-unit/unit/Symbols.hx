@@ -1,5 +1,5 @@
 package unit;
-@:jsRequire("./unit/symbols") extern class Symbols {
+@:jsRequire("./unit/symbols") @valueModuleOnly extern class Symbols {
 	static function ClassValueModule(arg:Float):Any;
 	@:overload(function():Float { })
 	static function CallableInterface(overloadParam:Float):Float;

@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("cluster") extern class Cluster {
+@:jsRequire("cluster") @valueModuleOnly extern class Cluster {
 	static function disconnect(?callback:() -> Void):Void;
 	static function fork(?env:Any):node.cluster.Worker;
 	static function setupMaster(?settings:node.cluster.ClusterSettings):Void;

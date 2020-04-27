@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("http") extern class Http {
+@:jsRequire("http") @valueModuleOnly extern class Http {
 	@:overload(function(options:node.http.ServerOptions, ?requestListener:(req:node.http.IncomingMessage, res:node.http.ServerResponse) -> Void):node.http.Server { })
 	static function createServer(?requestListener:(req:node.http.IncomingMessage, res:node.http.ServerResponse) -> Void):node.http.Server;
 	@:overload(function(url:haxe.extern.EitherType<String, node.url.URL>, options:node.http.RequestOptions, ?callback:(res:node.http.IncomingMessage) -> Void):node.http.ClientRequest { })

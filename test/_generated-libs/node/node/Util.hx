@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("util") extern class Util {
+@:jsRequire("util") @valueModuleOnly extern class Util {
 	static function format(format:Any, param:std.Array<Any>):String;
 	static function formatWithOptions(inspectOptions:node.util.InspectOptions, format:String, param:std.Array<Any>):String;
 	static function debug(string:String):Void;

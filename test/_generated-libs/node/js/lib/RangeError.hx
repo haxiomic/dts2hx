@@ -1,5 +1,5 @@
 package js.lib;
-@:native("RangeError") @:interface extern class RangeError {
+@:native("RangeError") @tsInterface extern class RangeError {
 	function new(?message:String);
 	var name : String;
 	var message : String;

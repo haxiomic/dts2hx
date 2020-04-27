@@ -1,5 +1,5 @@
 package node.stream;
-@:jsRequire("stream", "pipeline") extern class Pipeline {
+@:jsRequire("stream", "pipeline") @valueModuleOnly extern class Pipeline {
 	@:overload(function(stream1:global.nodejs.ReadableStream, stream2:global.nodejs.ReadWriteStream, stream3:global.nodejs.WritableStream):js.lib.Promise<Void> { })
 	@:overload(function(stream1:global.nodejs.ReadableStream, stream2:global.nodejs.ReadWriteStream, stream3:global.nodejs.ReadWriteStream, stream4:global.nodejs.WritableStream):js.lib.Promise<Void> { })
 	@:overload(function(stream1:global.nodejs.ReadableStream, stream2:global.nodejs.ReadWriteStream, stream3:global.nodejs.ReadWriteStream, stream4:global.nodejs.ReadWriteStream, stream5:global.nodejs.WritableStream):js.lib.Promise<Void> { })

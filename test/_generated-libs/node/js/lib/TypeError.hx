@@ -1,5 +1,5 @@
 package js.lib;
-@:native("TypeError") @:interface extern class TypeError {
+@:native("TypeError") @tsInterface extern class TypeError {
 	function new(?message:String);
 	var name : String;
 	var message : String;

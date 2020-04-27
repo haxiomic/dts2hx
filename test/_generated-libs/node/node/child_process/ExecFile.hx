@@ -1,5 +1,5 @@
 package node.child_process;
-@:jsRequire("child_process", "execFile") extern class ExecFile {
+@:jsRequire("child_process", "execFile") @valueModuleOnly extern class ExecFile {
 	@:overload(function(file:String, args:Null<std.Array<String>>):js.lib.Promise<{ var stdout : String; var stderr : String; }> { })
 	@:overload(function(file:String, options:ExecFileOptionsWithBufferEncoding):js.lib.Promise<{ var stdout : global.Buffer; var stderr : global.Buffer; }> { })
 	@:overload(function(file:String, args:Null<std.Array<String>>, options:ExecFileOptionsWithBufferEncoding):js.lib.Promise<{ var stdout : global.Buffer; var stderr : global.Buffer; }> { })

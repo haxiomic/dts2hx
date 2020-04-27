@@ -1,5 +1,5 @@
 package node.path;
-@:jsRequire("path", "win32") extern class Win32 {
+@:jsRequire("path", "win32") @valueModuleOnly extern class Win32 {
 	static function normalize(p:String):String;
 	static function join(paths:std.Array<String>):String;
 	static function resolve(pathSegments:std.Array<String>):String;

@@ -3,7 +3,7 @@ package js.lib;
 	A typed array of 32-bit signed integer values. The contents are initialized to 0. If the
 	requested number of bytes could not be allocated an exception is raised.
 **/
-@:native("Int32Array") @:interface extern class Int32Array {
+@:native("Int32Array") @tsInterface extern class Int32Array {
 	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<SharedArrayBuffer, ArrayLike<Float>>>):Int32Array { })
 	@:overload(function(buffer:haxe.extern.EitherType<ArrayBuffer, SharedArrayBuffer>, byteOffset:Float, ?length:Float):Int32Array { })
 	@:overload(function(elements:Iterable<Float>):Int32Array { })

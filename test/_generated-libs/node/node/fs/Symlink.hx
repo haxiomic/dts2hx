@@ -6,7 +6,7 @@ package node.fs;
 	
 	Asynchronous symlink(2) - Create a new symbolic link to an existing file.
 **/
-@:jsRequire("fs", "symlink") extern class Symlink {
+@:jsRequire("fs", "symlink") @valueModuleOnly extern class Symlink {
 	/**
 		Asynchronous symlink(2) - Create a new symbolic link to an existing file.
 	**/

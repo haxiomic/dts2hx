@@ -1,5 +1,5 @@
 package node.dns;
-@:jsRequire("dns", "resolve") extern class Resolve {
+@:jsRequire("dns", "resolve") @valueModuleOnly extern class Resolve {
 	@:overload(function(hostname:String, rrtype:String):js.lib.Promise<std.Array<haxe.extern.EitherType<AnyARecord, haxe.extern.EitherType<AnyAaaaRecord, haxe.extern.EitherType<AnyCnameRecord, haxe.extern.EitherType<AnyMxRecord, haxe.extern.EitherType<AnyNaptrRecord, haxe.extern.EitherType<AnyNsRecord, haxe.extern.EitherType<AnyPtrRecord, haxe.extern.EitherType<AnySoaRecord, haxe.extern.EitherType<AnySrvRecord, AnyTxtRecord>>>>>>>>>>> { })
 	@:overload(function(hostname:String, rrtype:String):js.lib.Promise<std.Array<MxRecord>> { })
 	@:overload(function(hostname:String, rrtype:String):js.lib.Promise<std.Array<NaptrRecord>> { })

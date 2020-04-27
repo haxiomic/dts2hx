@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronous fchmod(2) - Change permissions of a file.
 **/
-@:jsRequire("fs", "fchmod") extern class Fchmod {
+@:jsRequire("fs", "fchmod") @valueModuleOnly extern class Fchmod {
 	/**
 		Asynchronous fchmod(2) - Change permissions of a file.
 	**/

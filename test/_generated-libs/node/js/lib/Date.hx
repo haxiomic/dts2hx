@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Enables basic storage and retrieval of dates and times.
 **/
-@:native("Date") @:interface extern class Date {
+@:native("Date") @tsInterface extern class Date {
 	@:overload(function(value:haxe.extern.EitherType<String, Float>):Date { })
 	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Date { })
 	@:overload(function(vd:VarDate):Date { })

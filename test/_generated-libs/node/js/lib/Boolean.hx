@@ -1,5 +1,5 @@
 package js.lib;
-@:native("Boolean") @:interface extern class Boolean {
+@:native("Boolean") @tsInterface extern class Boolean {
 	function new(?value:Any);
 	/**
 		Returns the primitive value of the specified object.

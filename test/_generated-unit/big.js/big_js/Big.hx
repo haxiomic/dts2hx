@@ -1,5 +1,5 @@
 package big_js;
-@:jsRequire("big.js", "Big") @:interface extern class Big {
+@:jsRequire("big.js", "Big") @tsInterface extern class Big {
 	function new(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Big>>);
 	/**
 		Returns a Big number whose value is the absolute value, i.e. the magnitude, of this Big number.

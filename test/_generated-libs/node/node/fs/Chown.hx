@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronous chown(2) - Change ownership of a file.
 **/
-@:jsRequire("fs", "chown") extern class Chown {
+@:jsRequire("fs", "chown") @valueModuleOnly extern class Chown {
 	/**
 		Asynchronous chown(2) - Change ownership of a file.
 	**/

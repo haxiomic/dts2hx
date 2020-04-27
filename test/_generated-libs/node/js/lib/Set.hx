@@ -1,5 +1,5 @@
 package js.lib;
-@:native("Set") @:interface extern class Set<T> {
+@:native("Set") @tsInterface extern class Set<T> {
 	@:overload(function<T>(?iterable:Iterable<T>):Set<T> { })
 	function new(?values:ReadonlyArray<T>);
 	function add(value:T):Set<T>;

@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("net") extern class Net {
+@:jsRequire("net") @valueModuleOnly extern class Net {
 	@:overload(function(?options:{ @:optional
 	var allowHalfOpen : Bool; @:optional
 	var pauseOnConnect : Bool; }, ?connectionListener:(socket:node.net.Socket) -> Void):node.net.Server { })

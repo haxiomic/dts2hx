@@ -2,7 +2,7 @@ package node;
 /**
 	Async Hooks module: https://nodejs.org/api/async_hooks.html
 **/
-@:jsRequire("async_hooks") extern class Async_hooks {
+@:jsRequire("async_hooks") @valueModuleOnly extern class Async_hooks {
 	/**
 		Returns the asyncId of the current execution context.
 	**/

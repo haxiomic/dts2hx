@@ -2,7 +2,7 @@ package js.lib;
 /**
 	An object that represents a number of any kind. All JavaScript numbers are 64-bit floating-point numbers.
 **/
-@:native("Number") @:interface extern class Number {
+@:native("Number") @tsInterface extern class Number {
 	function new(?value:Any);
 	/**
 		Returns a string representation of an object.

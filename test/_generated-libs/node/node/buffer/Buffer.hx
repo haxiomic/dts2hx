@@ -1,5 +1,5 @@
 package node.buffer;
-@:jsRequire("buffer", "Buffer") extern class Buffer {
+@:jsRequire("buffer", "Buffer") @valueModuleOnly extern class Buffer {
 	@:overload(function(size:Float):global.Buffer { })
 	@:overload(function(array:js.lib.Uint8Array):global.Buffer { })
 	@:overload(function(arrayBuffer:haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):global.Buffer { })

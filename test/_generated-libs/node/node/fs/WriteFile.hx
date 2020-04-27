@@ -6,7 +6,7 @@ package node.fs;
 	
 	Asynchronously writes data to a file, replacing the file if it already exists.
 **/
-@:jsRequire("fs", "writeFile") extern class WriteFile {
+@:jsRequire("fs", "writeFile") @valueModuleOnly extern class WriteFile {
 	/**
 		Asynchronously writes data to a file, replacing the file if it already exists.
 	**/

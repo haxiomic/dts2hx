@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Creates a new function.
 **/
-@:native("Function") @:interface extern class Function {
+@:native("Function") @tsInterface extern class Function {
 	function new(args:std.Array<String>);
 	/**
 		Calls the function, substituting the specified object for the this value of the function, and the specified array for the arguments of the function.

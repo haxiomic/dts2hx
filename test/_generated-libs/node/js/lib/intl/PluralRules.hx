@@ -1,5 +1,5 @@
 package js.lib.intl;
-@:native("Intl.PluralRules") @:interface extern class PluralRules {
+@:native("Intl.PluralRules") @tsInterface extern class PluralRules {
 	function new(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:PluralRulesOptions);
 	function resolvedOptions():ResolvedPluralRulesOptions;
 	function select(n:Float):String;

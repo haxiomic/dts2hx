@@ -1,5 +1,5 @@
 package js.lib;
-@:native("RegExp") @:interface extern class RegExp {
+@:native("RegExp") @tsInterface extern class RegExp {
 	@:overload(function(pattern:String, ?flags:String):RegExp { })
 	@:overload(function(pattern:haxe.extern.EitherType<String, RegExp>, ?flags:String):RegExp { })
 	function new(pattern:haxe.extern.EitherType<String, RegExp>);

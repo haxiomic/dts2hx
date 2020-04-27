@@ -4,7 +4,7 @@ package global;
 	A Buffer is similar to an array of integers but corresponds to a raw memory allocation outside the V8 heap.  A Buffer cannot be resized.
 	Valid string encodings: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'
 **/
-@:native("Buffer") @:interface extern class Buffer {
+@:native("Buffer") @tsInterface extern class Buffer {
 	@:overload(function(size:Float):Buffer { })
 	@:overload(function(array:js.lib.Uint8Array):Buffer { })
 	@:overload(function(arrayBuffer:haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):Buffer { })

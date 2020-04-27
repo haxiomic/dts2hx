@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronous rmdir(2) - delete a directory.
 **/
-@:jsRequire("fs", "rmdir") extern class Rmdir {
+@:jsRequire("fs", "rmdir") @valueModuleOnly extern class Rmdir {
 	/**
 		Asynchronous rmdir(2) - delete a directory.
 	**/

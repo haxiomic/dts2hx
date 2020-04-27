@@ -14,7 +14,7 @@ package node.fs;
 	If an error occurs after the destination file has been opened for writing, Node.js will attempt
 	to remove the destination.
 **/
-@:jsRequire("fs", "copyFile") extern class CopyFile {
+@:jsRequire("fs", "copyFile") @valueModuleOnly extern class CopyFile {
 	/**
 		Asynchronously copies src to dest. By default, dest is overwritten if it already exists.
 		No arguments other than a possible exception are given to the callback function.

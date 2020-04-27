@@ -1,5 +1,5 @@
 package node.crypto;
-@:jsRequire("crypto", "generateKeyPair") extern class GenerateKeyPair {
+@:jsRequire("crypto", "generateKeyPair") @valueModuleOnly extern class GenerateKeyPair {
 	@:overload(function(type:String, options:RSAKeyPairOptions<String, String>):js.lib.Promise<{ var publicKey : String; var privateKey : global.Buffer; }> { })
 	@:overload(function(type:String, options:RSAKeyPairOptions<String, String>):js.lib.Promise<{ var publicKey : global.Buffer; var privateKey : String; }> { })
 	@:overload(function(type:String, options:RSAKeyPairOptions<String, String>):js.lib.Promise<{ var publicKey : global.Buffer; var privateKey : global.Buffer; }> { })

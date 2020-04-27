@@ -6,7 +6,7 @@ package node.fs;
 	
 	Asynchronously append data to a file, creating the file if it does not exist.
 **/
-@:jsRequire("fs", "appendFile") extern class AppendFile {
+@:jsRequire("fs", "appendFile") @valueModuleOnly extern class AppendFile {
 	/**
 		Asynchronously append data to a file, creating the file if it does not exist.
 	**/

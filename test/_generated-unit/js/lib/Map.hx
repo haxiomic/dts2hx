@@ -1,5 +1,5 @@
 package js.lib;
-@:native("Map") @:interface extern class Map<K, V> {
+@:native("Map") @tsInterface extern class Map<K, V> {
 	@:overload(function<K, V>(?entries:ReadonlyArray<js.lib.Tuple2<K, V>>):Map<K, V> { })
 	@:overload(function<K, V>(iterable:Iterable<js.lib.Tuple2<K, V>>):Map<K, V> { })
 	function new();

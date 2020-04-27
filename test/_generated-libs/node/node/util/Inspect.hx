@@ -1,5 +1,5 @@
 package node.util;
-@:jsRequire("util", "inspect") extern class Inspect {
+@:jsRequire("util", "inspect") @valueModuleOnly extern class Inspect {
 	static var colors : { };
 	static var styles : { };
 	static var defaultOptions : InspectOptions;

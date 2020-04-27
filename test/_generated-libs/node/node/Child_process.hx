@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("child_process") extern class Child_process {
+@:jsRequire("child_process") @valueModuleOnly extern class Child_process {
 	@:overload(function(command:String, ?args:js.lib.ReadonlyArray<String>, ?options:node.child_process.SpawnOptions):node.child_process.ChildProcess { })
 	static function spawn(command:String, ?options:node.child_process.SpawnOptions):node.child_process.ChildProcess;
 	@:overload(function(command:String, options:Any, ?callback:(error:Null<node.child_process.ExecException>, stdout:global.Buffer, stderr:global.Buffer) -> Void):node.child_process.ChildProcess { })

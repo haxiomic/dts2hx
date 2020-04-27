@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
 **/
-@:jsRequire("fs", "fsync") extern class Fsync {
+@:jsRequire("fs", "fsync") @valueModuleOnly extern class Fsync {
 	/**
 		Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
 	**/

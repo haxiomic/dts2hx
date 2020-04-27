@@ -1,5 +1,5 @@
 package js.lib;
-@:native("DataView") @:interface extern class DataView {
+@:native("DataView") @tsInterface extern class DataView {
 	function new(buffer:haxe.extern.EitherType<ArrayBuffer, SharedArrayBuffer>, ?byteOffset:Float, ?byteLength:Float);
 	final buffer : ArrayBuffer;
 	final byteLength : Float;

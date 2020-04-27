@@ -18,7 +18,7 @@ package unit.types;
 	  - intersection types
 	  - type parameters
 **/
-@:jsRequire("./unit/types", "Types") extern class Types {
+@:jsRequire("./unit/types", "Types") @valueModuleOnly extern class Types {
 	static function functionWithOptional(a:String, ?b:Bool):Float;
 	static function partialTypeParam<T>(x:Any):Void;
 	static function functionImplicit(x:Any, y:Any):Any;

@@ -3,7 +3,7 @@ package js.lib;
 	A typed array of 8-bit unsigned integer values. The contents are initialized to 0. If the
 	requested number of bytes could not be allocated an exception is raised.
 **/
-@:native("Uint8Array") @:interface extern class Uint8Array {
+@:native("Uint8Array") @tsInterface extern class Uint8Array {
 	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<SharedArrayBuffer, ArrayLike<Float>>>):Uint8Array { })
 	@:overload(function(buffer:haxe.extern.EitherType<ArrayBuffer, SharedArrayBuffer>, byteOffset:Float, ?length:Float):Uint8Array { })
 	@:overload(function(elements:Iterable<Float>):Uint8Array { })

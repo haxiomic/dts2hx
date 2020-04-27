@@ -2,7 +2,7 @@ package js.html;
 /**
 	Provides access to the browser's debugging console (e.g. the Web Console in Firefox). The specifics of how it works varies from browser to browser, but there is a de facto set of features that are typically provided.
 **/
-@:native("Console") @:interface extern class Console {
+@:native("Console") @tsInterface extern class Console {
 	function new();
 	var memory : Any;
 	/**

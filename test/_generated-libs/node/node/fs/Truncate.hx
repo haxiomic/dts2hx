@@ -6,7 +6,7 @@ package node.fs;
 	
 	Asynchronous truncate(2) - Truncate a file to a specified length.
 **/
-@:jsRequire("fs", "truncate") extern class Truncate {
+@:jsRequire("fs", "truncate") @valueModuleOnly extern class Truncate {
 	/**
 		Asynchronous truncate(2) - Truncate a file to a specified length.
 	**/

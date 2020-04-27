@@ -1,5 +1,5 @@
 package js.lib;
-@:native("URIError") @:interface extern class URIError {
+@:native("URIError") @tsInterface extern class URIError {
 	function new(?message:String);
 	var name : String;
 	var message : String;

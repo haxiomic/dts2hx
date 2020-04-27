@@ -2,7 +2,7 @@ package node.fs;
 /**
 	Asynchronous unlink(2) - delete a name and possibly the file it refers to.
 **/
-@:jsRequire("fs", "unlink") extern class Unlink {
+@:jsRequire("fs", "unlink") @valueModuleOnly extern class Unlink {
 	/**
 		Asynchronous unlink(2) - delete a name and possibly the file it refers to.
 	**/

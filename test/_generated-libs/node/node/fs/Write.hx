@@ -26,7 +26,7 @@ package node.fs;
 	
 	Asynchronously writes `string` to the file referenced by the supplied file descriptor.
 **/
-@:jsRequire("fs", "write") extern class Write {
+@:jsRequire("fs", "write") @valueModuleOnly extern class Write {
 	/**
 		Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
 		

@@ -1,5 +1,5 @@
 package js.lib;
-@:native("ReferenceError") @:interface extern class ReferenceError {
+@:native("ReferenceError") @tsInterface extern class ReferenceError {
 	function new(?message:String);
 	var name : String;
 	var message : String;

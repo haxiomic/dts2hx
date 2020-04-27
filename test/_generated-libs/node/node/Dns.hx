@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("dns") extern class Dns {
+@:jsRequire("dns") @valueModuleOnly extern class Dns {
 	@:overload(function(hostname:String, options:node.dns.LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void):Void { })
 	@:overload(function(hostname:String, options:node.dns.LookupAllOptions, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.LookupAddress>) -> Void):Void { })
 	@:overload(function(hostname:String, options:node.dns.LookupOptions, callback:(err:global.nodejs.ErrnoException, address:haxe.extern.EitherType<String, std.Array<node.dns.LookupAddress>>, family:Float) -> Void):Void { })

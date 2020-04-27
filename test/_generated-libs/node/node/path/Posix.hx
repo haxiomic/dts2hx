@@ -1,5 +1,5 @@
 package node.path;
-@:jsRequire("path", "posix") extern class Posix {
+@:jsRequire("path", "posix") @valueModuleOnly extern class Posix {
 	static function normalize(p:String):String;
 	static function join(paths:std.Array<String>):String;
 	static function resolve(pathSegments:std.Array<String>):String;

@@ -1,4 +1,4 @@
 package global;
-@:native("AmbientValueModule") extern class AmbientValueModule {
+@:native("AmbientValueModule") @valueModuleOnly extern class AmbientValueModule {
 	static var value : Int;
 }

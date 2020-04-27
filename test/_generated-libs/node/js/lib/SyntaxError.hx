@@ -1,5 +1,5 @@
 package js.lib;
-@:native("SyntaxError") @:interface extern class SyntaxError {
+@:native("SyntaxError") @tsInterface extern class SyntaxError {
 	function new(?message:String);
 	var name : String;
 	var message : String;

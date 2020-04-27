@@ -1,5 +1,5 @@
 package node;
-@:jsRequire("url") extern class Url {
+@:jsRequire("url") @valueModuleOnly extern class Url {
 	@:overload(function(urlStr:String, parseQueryString:Null<Bool>, ?slashesDenoteHost:Bool):node.url.UrlWithStringQuery { })
 	@:overload(function(urlStr:String, parseQueryString:Bool, ?slashesDenoteHost:Bool):node.url.UrlWithParsedQuery { })
 	@:overload(function(urlStr:String, parseQueryString:Bool, ?slashesDenoteHost:Bool):node.url.Url_ { })

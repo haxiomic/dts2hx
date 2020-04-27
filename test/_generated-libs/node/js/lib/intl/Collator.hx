@@ -1,5 +1,5 @@
 package js.lib.intl;
-@:native("Intl.Collator") @:interface extern class Collator {
+@:native("Intl.Collator") @tsInterface extern class Collator {
 	function new(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:CollatorOptions);
 	function compare(x:String, y:String):Float;
 	function resolvedOptions():ResolvedCollatorOptions;

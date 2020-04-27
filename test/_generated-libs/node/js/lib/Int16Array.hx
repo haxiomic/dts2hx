@@ -3,7 +3,7 @@ package js.lib;
 	A typed array of 16-bit signed integer values. The contents are initialized to 0. If the
 	requested number of bytes could not be allocated an exception is raised.
 **/
-@:native("Int16Array") @:interface extern class Int16Array {
+@:native("Int16Array") @tsInterface extern class Int16Array {
 	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<SharedArrayBuffer, ArrayLike<Float>>>):Int16Array { })
 	@:overload(function(buffer:haxe.extern.EitherType<ArrayBuffer, SharedArrayBuffer>, byteOffset:Float, ?length:Float):Int16Array { })
 	@:overload(function(elements:Iterable<Float>):Int16Array { })

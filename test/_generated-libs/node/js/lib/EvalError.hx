@@ -1,5 +1,5 @@
 package js.lib;
-@:native("EvalError") @:interface extern class EvalError {
+@:native("EvalError") @tsInterface extern class EvalError {
 	function new(?message:String);
 	var name : String;
 	var message : String;

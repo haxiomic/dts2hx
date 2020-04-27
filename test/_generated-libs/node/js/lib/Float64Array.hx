@@ -3,7 +3,7 @@ package js.lib;
 	A typed array of 64-bit float values. The contents are initialized to 0. If the requested
 	number of bytes could not be allocated an exception is raised.
 **/
-@:native("Float64Array") @:interface extern class Float64Array {
+@:native("Float64Array") @tsInterface extern class Float64Array {
 	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<SharedArrayBuffer, ArrayLike<Float>>>):Float64Array { })
 	@:overload(function(buffer:haxe.extern.EitherType<ArrayBuffer, SharedArrayBuffer>, byteOffset:Float, ?length:Float):Float64Array { })
 	@:overload(function(elements:Iterable<Float>):Float64Array { })

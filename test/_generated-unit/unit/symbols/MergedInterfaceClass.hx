@@ -1,5 +1,5 @@
 package unit.symbols;
-@:jsRequire("./unit/symbols", "MergedInterfaceClass") @:interface extern class MergedInterfaceClass {
+@:jsRequire("./unit/symbols", "MergedInterfaceClass") @tsInterface extern class MergedInterfaceClass {
 	function new();
 	var interfaceField1 : Float;
 	var interfaceField2 : Float;

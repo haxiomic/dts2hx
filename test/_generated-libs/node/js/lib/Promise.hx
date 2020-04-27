@@ -6,7 +6,7 @@ package js.lib;
 	
 	Represents the completion of an asynchronous operation
 **/
-@:native("Promise") @:interface extern class Promise<T> {
+@:native("Promise") @tsInterface extern class Promise<T> {
 	function new(executor:(resolve:(?value:haxe.extern.EitherType<T, PromiseLike<T>>) -> Void, reject:(?reason:Any) -> Void) -> Void);
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.

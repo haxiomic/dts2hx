@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Provides functionality common to all JavaScript objects.
 **/
-@:native("Object") @:interface extern class Object {
+@:native("Object") @tsInterface extern class Object {
 	function new(?value:Any);
 	/**
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.

@@ -1,5 +1,5 @@
 package js.lib;
-@:native("Error") @:interface extern class Error {
+@:native("Error") @tsInterface extern class Error {
 	function new(?message:String);
 	var name : String;
 	var message : String;

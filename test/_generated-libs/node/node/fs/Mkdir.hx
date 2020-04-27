@@ -6,7 +6,7 @@ package node.fs;
 	
 	Asynchronous mkdir(2) - create a directory with a mode of `0o777`.
 **/
-@:jsRequire("fs", "mkdir") extern class Mkdir {
+@:jsRequire("fs", "mkdir") @valueModuleOnly extern class Mkdir {
 	/**
 		Asynchronous mkdir(2) - create a directory.
 	**/

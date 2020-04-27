@@ -1,5 +1,5 @@
 package node.crypto;
-@:jsRequire("crypto", "constants") extern class Constants {
+@:jsRequire("crypto", "constants") @valueModuleOnly extern class Constants {
 	static var OPENSSL_VERSION_NUMBER : Float;
 	/**
 		Applies multiple bug workarounds within OpenSSL. See https://www.openssl.org/docs/man1.0.2/ssl/SSL_CTX_set_options.html for detail.

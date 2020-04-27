@@ -5,7 +5,7 @@ package js.lib;
 	but can be passed to a typed array or DataView Object to interpret the raw
 	buffer as needed.
 **/
-@:native("ArrayBuffer") @:interface extern class ArrayBuffer {
+@:native("ArrayBuffer") @tsInterface extern class ArrayBuffer {
 	function new(byteLength:Float);
 	/**
 		Read-only. The length of the ArrayBuffer (in bytes).

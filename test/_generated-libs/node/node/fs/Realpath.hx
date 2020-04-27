@@ -14,7 +14,7 @@ package node.fs;
 	
 	Asynchronous realpath(3) - return the canonicalized absolute pathname.
 **/
-@:jsRequire("fs", "realpath") extern class Realpath {
+@:jsRequire("fs", "realpath") @valueModuleOnly extern class Realpath {
 	/**
 		Asynchronous realpath(3) - return the canonicalized absolute pathname.
 		

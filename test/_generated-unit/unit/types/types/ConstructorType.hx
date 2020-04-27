@@ -1,4 +1,4 @@
 package unit.types.types;
-@:jsRequire("./unit/types", "Types.constructorType") extern class ConstructorType {
+@:jsRequire("./unit/types", "Types.constructorType") @valueModuleOnly extern class ConstructorType {
 	function new(a:String);
 }

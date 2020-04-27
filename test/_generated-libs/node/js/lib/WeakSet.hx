@@ -1,5 +1,5 @@
 package js.lib;
-@:native("WeakSet") @:interface extern class WeakSet<T:(Any)> {
+@:native("WeakSet") @tsInterface extern class WeakSet<T:(Any)> {
 	@:overload(function<T:(Any)>(iterable:Iterable<T>):WeakSet<T> { })
 	function new(?values:ReadonlyArray<T>);
 	function add(value:T):WeakSet<T>;

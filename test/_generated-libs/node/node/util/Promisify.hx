@@ -1,4 +1,4 @@
 package node.util;
-@:jsRequire("util", "promisify") extern class Promisify {
+@:jsRequire("util", "promisify") @valueModuleOnly extern class Promisify {
 	static var custom : js.lib.Symbol;
 }

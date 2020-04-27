@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/
-@:native("String") @:interface extern class String {
+@:native("String") @tsInterface extern class String {
 	function new(?value:Any);
 	/**
 		Returns a string representation of a string.

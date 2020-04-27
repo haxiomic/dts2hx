@@ -1,4 +1,4 @@
 package node;
-@:jsRequire("domain") extern class Domain {
+@:jsRequire("domain") @valueModuleOnly extern class Domain {
 	static function create():node.domain.Domain;
 }

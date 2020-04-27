@@ -14,7 +14,7 @@ package node.fs;
 	
 	Asynchronous readlink(2) - read value of a symbolic link.
 **/
-@:jsRequire("fs", "readlink") extern class Readlink {
+@:jsRequire("fs", "readlink") @valueModuleOnly extern class Readlink {
 	/**
 		Asynchronous readlink(2) - read value of a symbolic link.
 		

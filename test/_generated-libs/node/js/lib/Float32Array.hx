@@ -3,7 +3,7 @@ package js.lib;
 	A typed array of 32-bit float values. The contents are initialized to 0. If the requested number
 	of bytes could not be allocated an exception is raised.
 **/
-@:native("Float32Array") @:interface extern class Float32Array {
+@:native("Float32Array") @tsInterface extern class Float32Array {
 	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<SharedArrayBuffer, ArrayLike<Float>>>):Float32Array { })
 	@:overload(function(buffer:haxe.extern.EitherType<ArrayBuffer, SharedArrayBuffer>, byteOffset:Float, ?length:Float):Float32Array { })
 	@:overload(function(elements:Iterable<Float>):Float32Array { })
