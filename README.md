@@ -44,7 +44,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Function types
         - [x] Type parameters
         - [ ] Index signatures
-        - [ ] Intersection types `need better handling of redefined properties, aka sub intersections`
+        - [ ] Intersection types **← :star: currently working on this**
         - [x] Tuple types
         - [x] This type
         - [x] Overloads
@@ -52,7 +52,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Handle `export default` better
     - [x] Global fields
     - [x] Detect constructable fields, promote to classes and merge with existing interfaces
-    - [ ] Resolve typescript interface vs haxe interface (use anons instead?) **← :star: currently working on this**
+    - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
     - [ ] Classes and interfaces
         - [x] Constructors
         - [ ] Index signatures (both class and interfaces)

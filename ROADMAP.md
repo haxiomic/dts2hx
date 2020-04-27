@@ -1,17 +1,22 @@
-- Class fields
-	- accessors
+- Refactor how we handle special case type conversions so we can do `useStructureType(symbol)` or similar
 
-- Intersection types
+- `function intersectionBetweenTypeParams<A, B>(p: A & B): void;` -> `p: { }` ??
+
+- Interfaces as typedefs
+	- static fields are disallowed (InterfaceValueModule)
+	- Should we do interface symbol splitting? Maybe this is simpler
+
+- Improve structure printing, just make all fields have a newline (unless as an argument?)
 
 - Class and interface extend handling, add override etc
+	- Need to check where extending / intersection is allowed
+
+- Index signatures
+	- Haxe compiler feature requests
 
 - Handle callable classes
-	symbol.flags & SymbolFlags.Function != 0
-
-- HaxeTools: fieldName deduplication
-	- Add test where two fields will collide
-	- Given an array of fields, find duplicate names and add _ + @:native
-	- Or, add a helper to handle fields.push() with auto-rename
+	- symbol.flags & SymbolFlags.Function != 0
+	- play well with other call signatures (also from construct type)
 
 - Playcanvas, why 
 	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
@@ -25,9 +30,10 @@
 
 - Construct signatures on anons
 	- Use a generic build macro that wraps the type until haxe has @:newCall
+		- an abstract with `Type.create(this)` might work
 	- Open feature request https://github.com/HaxeFoundation/haxe/issues/9335
 
-- Understand `tc.getAugmentedPropertiesOfType(declaredType)`
+- Understand
 ? `tc.getBaseTypeOfLiteralType()` for literals?
 ? `tc.getBaseConstraintOfType(type)`
 ? `getBaseTypes(type:InterfaceType):Array<typescript.ts.BaseType>`
@@ -38,22 +44,15 @@
 
 - If a symbol is both a class and interface, we could split into a class implementation and an interface implementation, and then select the correct type when referencing by context: if used in implements, then use interface version 
 
-- typeof [class-reference T] -> std.Class<T>
-	- Maybe the type node null issue is resolved if we switch the enclosing declaration
-	- type reference is to a constructor type variable
-	- What about `null | typeof T`?
-	-> Why is the type-query resolved? Can we prevent it from being resolved somehow?
-		- This would be much better than working at the node level
-	=> What priority is this?
-
 - Use subtypes for typedef anons (so it's not an anon repreated 3x)
+	- i.e. `abstract Name({...}) to {...} from {...} { }`
 
-- Should we handle `abstract` classes (typescript keyword abstract)?
+- Do we need to do anything to handle `abstract` classes (typescript keyword abstract)?
 
-? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
+- ? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
 
-- getDoc should account for the relevant declaration – see `node/fs/ReadFile.hx`, doc is duplicated
-	- Comments should be per-overload; need to extend Expr.hx
+- Overload documentation, requires extending MetadataItem with doc field
+	- Will need to copy / reimplement jsdoc methods from services.ts
 
 - Three.hx could have type aliases, or not be generated since it's empty
 	- Maybe we don't want to ignore Export * symbols in `walkDeclarationSymbols`
