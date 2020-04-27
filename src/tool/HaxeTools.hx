@@ -45,6 +45,20 @@ class HaxeTools {
 		}
 	}
 
+	/**
+		Returns field name, or @:native(name) if there is metadata.
+	**/
+	static public function getNativeName(field: Field): String {
+		var nativeMeta = getMeta(field, ':native');
+		switch (nativeMeta: MetadataEntry) {
+			case null | {params: null}:
+			case {params: [{expr: EConst(CString(s, _))}]}:
+				return s;
+			default:
+		}
+		return field.name;
+	}
+
 	static public function getMeta(field: Field, metaName: String): Null<MetadataEntry> {
 		return if (field.meta != null) {
 			field.meta.find(m -> m.name == metaName);

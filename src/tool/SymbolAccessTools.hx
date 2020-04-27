@@ -21,6 +21,9 @@ class SymbolAccessTools {
 			case Inaccessible: [];
 		}
 	}
+
+	// static public function getAccessMatchingContext(accessArray: Array<SymbolAccess>, accessContext: SymbolAccess) {
+	// }
 	
 	/**
 		Extract symbolChain value from enum (does not include module symbol)

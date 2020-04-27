@@ -1,3 +1,4 @@
+import typescript.ts.IntersectionType;
 import typescript.ts.InternalSymbolName;
 import typescript.ts.Declaration;
 import typescript.ts.Modifier;
@@ -330,7 +331,7 @@ class ConverterContext {
 			// extends {types}
 			var heritageClauses = symbol.getHeritageClauses();
 			var extendsTypes = new Array<TypePath>();
-			var implementsTypes = new Array<TypePath>();
+			var implementsTypes = new Array<TypePath>(); // unused
 			for (heritageClause in heritageClauses) {
 				var hxTypes = (cast heritageClause.types: Array<ExpressionWithTypeArguments>).map(e -> complexTypeFromTypeNode(e, access, heritageClause.parent)).deduplicateTypes();
 				var typePaths = hxTypes.map(t -> switch t {
@@ -344,17 +345,6 @@ class ConverterContext {
 						implementsTypes = implementsTypes.concat(typePaths);
 					default:
 				}
-			}
-
-			var kind: TypeDefKind = if (forceClassKind) {
-				// class + interface is a special case that we cannot trivially handle in haxe
-				TDClass(null, implementsTypes, false, false);
-			} else if (isHxInterface) {
-				// interface
-				TDClass(null, extendsTypes, true, false);
-			} else {
-				// class
-				TDClass(extendsTypes[0], implementsTypes, false, false);
 			}
 
 			var fields = if (forceClassKind) {
@@ -373,6 +363,20 @@ class ConverterContext {
 					symbol.getIndexSignatures(tc),
 					symbol.getClassMembers()
 				);
+			}
+
+			// we ignore implements because we never use haxe interfaces
+			var kind: TypeDefKind = if (forceClassKind) {
+				// class + interface is a special case that we cannot trivially handle in haxe
+				// represent as class (this might change in the future)
+				TDClass(null, null, false, false);
+			} else if (isHxInterface) {
+				// interface
+				var hxStructure = TAnonymous(fields);
+				TDAlias(TIntersection(extendsTypes.map(t -> TPath(t)).concat([hxStructure])));
+			} else {
+				// class
+				TDClass(extendsTypes[0], null, false, false);
 			}
 			
 			{
@@ -535,7 +539,7 @@ class ConverterContext {
 
 		// add module fields
 		if (symbol.flags & SymbolFlags.Module != 0) {
-			var moduleMemberFields =tc.getExportsOfModule(symbol).filter(s ->
+			var moduleMemberFields = tc.getExportsOfModule(symbol).filter(s ->
 				s.flags & SymbolFlags.ModuleMember != 0 && (s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)
 			);
 			for (moduleMember in moduleMemberFields) {
@@ -559,6 +563,27 @@ class ConverterContext {
 		saveHaxeModule(hxModule);
 
 		return hxModule;
+	}
+
+	/**
+		Return true if the type will be represented as a structure in haxe
+	**/
+	@:pure function isTypeStructureInHaxe(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+		// check the type can be converted
+		switch complexTypeFromTsType(type, accessContext, enclosingDeclaration) {
+			case TPath({name: 'Any', pack: ['std' | '']}):
+				return false;
+			default:
+		}
+		return if (type.flags & TypeFlags.Object != 0) {
+			var objectType: ObjectType = cast type;
+			var isAnonType = objectType.objectFlags & ObjectFlags.Anonymous != 0;
+			var isInterfaceAndNotClass = type.symbol.flags & SymbolFlags.Interface != 0 && type.symbol.flags & SymbolFlags.Class == 0;
+			var isConstructorType = tc.isConstructorType(objectType); // constructor types are converted to classes
+			!isConstructorType && (isAnonType || isInterfaceAndNotClass);
+		} else {
+			false;
+		}
 	}
 
 	/**
@@ -641,8 +666,8 @@ class ConverterContext {
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
-		} else if (type.flags & (TypeFlags.Unknown) != 0) {
-			// we can't really represent `unknown` in haxe at the moment
+		} else if (type.flags & (TypeFlags.Unknown | TypeFlags.Never) != 0) {
+			// we can't really represent `unknown` or `never` in haxe at the moment
 			macro :Any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
 			macro :String;
@@ -650,13 +675,15 @@ class ConverterContext {
 			macro :Float;
 		} else if (type.flags & (TypeFlags.Boolean) != 0) {
 			macro :Bool;
-		} else if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
+		} else if (type.flags & (TypeFlags.VoidLike) != 0) {
 			macro :Void;
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
 			var hxTypePath = getReferencedHaxeTypePath(type.symbol, accessContext);
 			TPath(hxTypePath);
 		} else if (type.flags & (TypeFlags.Union) != 0) {
 			complexTypeFromUnionType(cast type, accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.Intersection != 0) {
+			complexTypeFromIntersectionType(cast type, accessContext, enclosingDeclaration);
 		}
 		// @! it would be nice to use an enum-generating support type so we can preserve values of literals, but for now we can use the literal's type
 		else if (type.flags & (TypeFlags.StringLiteral) != 0) {
@@ -681,7 +708,6 @@ class ConverterContext {
 			// BigIntLiteral   = 1 << 11,
 			// ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
 			// UniqueESSymbol  = 1 << 13,  // unique symbol
-			// Intersection    = 1 << 21,  // Intersection (T & U)
 			// Index           = 1 << 22,  // keyof T
 			// IndexedAccess   = 1 << 23,  // T[K]
 			// Conditional     = 1 << 24,  // T extends U ? X : Y
@@ -714,6 +740,61 @@ class ConverterContext {
 			default: this.getUnionType(hxTypes);
 		}
 		return nullable ? macro :Null<$unionType> : macro :$unionType;
+	}
+
+	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// haxe can only support a subset of intersections where all types are structures and all fields have unique names
+		var hxTypes = intersectionType.types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+
+		var nativelyIntersectable = true;
+
+		// in haxe we can only intersect structures, ensure all types will be represented as structures in haxe
+		for (type in intersectionType.types) {
+			if (!isTypeStructureInHaxe(type, accessContext, enclosingDeclaration)) {
+				nativelyIntersectable = false;
+				break;
+			}
+		}
+
+		// in haxe, structure intersections must all have unique field names
+		// convert all types to haxe anons and compare fields to determine if there are any name clashes
+		var hxAnonTypes = intersectionType.types.map(t -> complexTypeAnonFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+		var seenFieldNames = new Map<String, Bool>();
+		var selfCallFields = 0;
+		if (nativelyIntersectable) for (hxAnonType in hxAnonTypes) {
+			nativelyIntersectable = nativelyIntersectable && switch hxAnonType {
+				case TAnonymous(fields):
+					var nameClash = false;
+					for (field in fields) {
+						if (field.getMeta(':selfCall') != null) {
+							selfCallFields++;
+						} else {
+							var nativeName = field.getNativeName();
+							if (seenFieldNames.exists(nativeName)) {
+								nameClash = true;
+								break;
+							}
+							seenFieldNames.set(nativeName, true);
+						}
+					}
+					!nameClash;
+				default: false; // shouldn't happen
+			}
+
+			// if multiple types have @:selfCall fields, rasterize the intersection to avoid collision between `call()` functions
+			if (selfCallFields > 1) {
+				nativelyIntersectable = false;
+			}
+
+			if (!nativelyIntersectable) break;
+		}
+
+		// if all types are natively intersectable in haxe return TIntersection, if any are not, rasterize to a single anon
+		return if (nativelyIntersectable) {
+			TIntersection(hxTypes);
+		} else {
+			complexTypeAnonFromTsType(cast tc.getApparentType(intersectionType), accessContext, enclosingDeclaration);
+		}
 	}
 
 	function complexTypeFromTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -757,7 +838,7 @@ class ConverterContext {
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
 			complexTypeFromInterfaceType(cast objectType, accessContext, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
-			complexTypeFromAnonymousType(objectType, accessContext, enclosingDeclaration);
+			complexTypeAnonFromTsType(objectType, accessContext, enclosingDeclaration);
 		} else {
 			Log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
@@ -765,7 +846,10 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromAnonymousType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+	/**
+		Generates a haxe anonymous object from the type, type does not have to be a native typescript anon
+	**/
+	function complexTypeAnonFromTsType(tsType: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
 		/** 
 			In typescript, function types have the object flag 'Anonymous' because they're actually represented as the call signatures of anons
 			```typescript
@@ -775,18 +859,18 @@ class ConverterContext {
 			```
 		**/
 
-		var typeFields = tc.getPropertiesOfType(objectType).filter(s -> s.isAccessibleField());
-		var callSignatures = objectType.getCallSignatures();
-		var constructSignatures = objectType.getConstructSignatures();
+		var typeFields = tc.getPropertiesOfType(tsType).filter(s -> s.isAccessibleField());
+		var callSignatures = tsType.getCallSignatures();
+		var constructSignatures = tsType.getConstructSignatures();
 
-		if (objectType.getConstructSignatures().length > 0) {
-			Log.warn('Type has construct signature but this is currently unhandled', objectType);
+		if (tsType.getConstructSignatures().length > 0) {
+			Log.warn('Type has construct signature but this is currently unhandled', tsType);
 			debug();
 		}
 
 		// for the special case of a single call signature and no props we can return a function type
 		return if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
-			complexTypeFromCallSignature(objectType.getCallSignatures()[0], accessContext, enclosingDeclaration);
+			complexTypeFromCallSignature(tsType.getCallSignatures()[0], accessContext, enclosingDeclaration);
 		} else {
 			var fields = new Array<Field>();
 
@@ -1035,15 +1119,6 @@ class ConverterContext {
 			meta.push({name: ':optional', pos: pos});
 		}
 
-		var userDoc = getDoc(symbol);
-		var docParts = userDoc != '' ? [userDoc] : [];
-
-		// add errors to field docs
-		function onError(message) {
-			Log.error('fieldFromSymbol(): ' + message, symbol);
-			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
-		}
-
 		var baseDeclaration: Null<Declaration> = if (symbol.valueDeclaration != null) {
 			symbol.valueDeclaration;
 		} else {
@@ -1055,6 +1130,15 @@ class ConverterContext {
 		var access = if (baseDeclaration != null && baseDeclaration.modifiers != null) {
 			accessFromModifiers(baseDeclaration.modifiers, symbol);
 		} else [];
+
+		var userDoc = getDoc(symbol);
+		var docParts = userDoc != '' ? [userDoc] : [];
+
+		// add errors to field docs
+		function onError(message) {
+			Log.error('fieldFromSymbol(): ' + message, symbol);
+			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
+		}
 		
 		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
 			// Prototype symbol should be filtered out of properties before converting to hx fields
@@ -1581,4 +1665,7 @@ class ConverterContext {
 	- `StringLiteral`
 	- `TrueKeyword`
 	- `FalseKeyword`
+
+	**TypeChecker**
+	- `getAugmentedPropertiesOfType(declaredType)`, all properties but also includes `bind`, `apply` etc (don't use)
 **/
