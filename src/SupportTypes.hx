@@ -47,8 +47,9 @@ class SupportTypes {
 				initializerExpressions.push(macro $i{set}($i{name}));
 			}
 
+			// add new(...)
 			var newParams = [for (i in 0...elementTypes.length) 'element$i:T$i'].join(', ');
-			fields.push((macro class {
+			fields.unshift((macro class {
 				public inline function new($newParams) {
 					$a{initializerExpressions}
 				}
