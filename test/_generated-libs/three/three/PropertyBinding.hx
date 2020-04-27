@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "PropertyBinding") extern class PropertyBinding {
+@:jsRequire("three", "PropertyBinding") @tsInterface extern class PropertyBinding {
 	function new(rootNode:Any, path:String, ?parsedPath:Any);
 	var path : String;
 	var parsedPath : Any;

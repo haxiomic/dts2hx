@@ -1,18 +1,13 @@
 package node.inspector.debugger;
-extern interface BreakLocation {
-	/**
+extern typedef BreakLocation = { /**
 		Script identifier as reported in the `Debugger.scriptParsed`.
 	**/
-	var scriptId : String;
-	/**
+	var scriptId : String; /**
 		Line number in the script (0-based).
 	**/
-	var lineNumber : Float;
-	/**
+	var lineNumber : Float; /**
 		Column number in the script (0-based).
 	**/
 	@:optional
-	var columnNumber : Float;
-	@:optional
-	var type : String;
-}
+	var columnNumber : Float; @:optional
+	var type : String; };

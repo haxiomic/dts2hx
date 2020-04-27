@@ -1,7 +1,4 @@
 package js.html;
-extern interface BlobPropertyBag {
-	@:optional
-	var endings : String;
-	@:optional
-	var type : String;
-}
+extern typedef BlobPropertyBag = { @:optional
+	var endings : String; @:optional
+	var type : String; };

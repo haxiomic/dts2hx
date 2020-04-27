@@ -1,5 +1,3 @@
 package js.html;
-extern interface KeyframeAnimationOptions extends KeyframeEffectOptions {
-	@:optional
-	var id : String;
-}
+extern typedef KeyframeAnimationOptions = KeyframeEffectOptions & { @:optional
+	var id : String; };

@@ -2,7 +2,7 @@ package three;
 /**
 	( class Matrix3 implements Matrix&lt;Matrix3&gt; )
 **/
-@:jsRequire("three", "Matrix3") extern class Matrix3 implements Matrix {
+@:jsRequire("three", "Matrix3") extern class Matrix3 {
 	/**
 		Creates an identity matrix.
 	**/

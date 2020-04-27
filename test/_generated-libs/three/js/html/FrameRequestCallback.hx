@@ -1,5 +1,3 @@
 package js.html;
-extern interface FrameRequestCallback {
-	@:selfCall
-	function call(time:Float):Void;
-}
+extern typedef FrameRequestCallback = { @:selfCall
+	function call(time:Float):Void; };

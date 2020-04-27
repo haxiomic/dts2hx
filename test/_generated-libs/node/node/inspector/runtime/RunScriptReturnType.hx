@@ -1,12 +1,9 @@
 package node.inspector.runtime;
-extern interface RunScriptReturnType {
-	/**
+extern typedef RunScriptReturnType = { /**
 		Run result.
 	**/
-	var result : RemoteObject;
-	/**
+	var result : RemoteObject; /**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : ExceptionDetails;
-}
+	var exceptionDetails : ExceptionDetails; };

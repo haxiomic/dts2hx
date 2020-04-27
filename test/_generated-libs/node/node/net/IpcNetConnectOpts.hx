@@ -1,5 +1,3 @@
 package node.net;
-extern interface IpcNetConnectOpts extends IpcSocketConnectOpts extends SocketConstructorOpts {
-	@:optional
-	var timeout : Float;
-}
+extern typedef IpcNetConnectOpts = IpcSocketConnectOpts & SocketConstructorOpts & { @:optional
+	var timeout : Float; };

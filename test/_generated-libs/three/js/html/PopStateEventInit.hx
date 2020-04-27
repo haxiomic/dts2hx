@@ -1,5 +1,3 @@
 package js.html;
-extern interface PopStateEventInit extends EventInit {
-	@:optional
-	var state : Any;
-}
+extern typedef PopStateEventInit = EventInit & { @:optional
+	var state : Any; };

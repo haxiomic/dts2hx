@@ -1,4 +1,2 @@
 package global.nodejs;
-extern interface ConsoleConstructor {
-	var prototype : js.html.Console;
-}
+extern typedef ConsoleConstructor = { var prototype : js.html.Console; };

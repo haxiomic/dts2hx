@@ -1,5 +1,3 @@
 package js.html;
-extern interface RTCRtpSynchronizationSource extends RTCRtpContributingSource {
-	@:optional
-	var voiceActivityFlag : Bool;
-}
+extern typedef RTCRtpSynchronizationSource = RTCRtpContributingSource & { @:optional
+	var voiceActivityFlag : Bool; };

@@ -1,4 +1,2 @@
 package node.dns;
-extern interface AnySoaRecord extends SoaRecord {
-	var type : String;
-}
+extern typedef AnySoaRecord = SoaRecord & { var type : String; };

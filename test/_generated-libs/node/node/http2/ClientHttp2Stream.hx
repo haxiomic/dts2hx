@@ -1,6 +1,5 @@
 package node.http2;
-extern interface ClientHttp2Stream extends Http2Stream {
-	/**
+extern typedef ClientHttp2Stream = Http2Stream & { /**
 		Event emitter
 		The defined events on documents including:
 		1. close
@@ -599,28 +598,22 @@ extern interface ClientHttp2Stream extends Http2Stream {
 		4. readable
 		5. error
 	**/
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
-	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
-	@:overload(function(event:String, headers:Any, flags:Float):Bool { })
+	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
+	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream; @:overload(function(event:String, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
 	@:overload(function(event:String, headers:IncomingHttpHeaders, flags:Float):Bool { })
-	@:overload(function(event:String, headers:Any, flags:Float):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:String, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool; @:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
-	function on(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
+	function on(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream; @:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
-	function once(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
+	function once(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream; @:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
-	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
+	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream; @:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:String, listener:(headers:Any, flags:Float) -> Void):ClientHttp2Stream { })
-	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
-}
+	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
+	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream; };

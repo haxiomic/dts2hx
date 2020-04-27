@@ -1,5 +1,5 @@
 package unit.class_;
-@:jsRequire("./unit/class", "ClassBase") extern class ClassBase<T> {
+@:jsRequire("./unit/class", "ClassBase") @tsInterface extern class ClassBase<T> {
 	@:overload(function<T>(a:Float):ClassBase<T> { })
 	function new(overloadParam:T);
 	var intField : Float;

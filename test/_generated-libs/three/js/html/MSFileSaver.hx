@@ -1,5 +1,2 @@
 package js.html;
-extern interface MSFileSaver {
-	function msSaveBlob(blob:Any, ?defaultName:String):Bool;
-	function msSaveOrOpenBlob(blob:Any, ?defaultName:String):Bool;
-}
+extern typedef MSFileSaver = { function msSaveBlob(blob:Any, ?defaultName:String):Bool; function msSaveOrOpenBlob(blob:Any, ?defaultName:String):Bool; };

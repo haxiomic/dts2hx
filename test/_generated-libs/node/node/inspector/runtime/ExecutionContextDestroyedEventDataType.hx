@@ -1,7 +1,5 @@
 package node.inspector.runtime;
-extern interface ExecutionContextDestroyedEventDataType {
-	/**
+extern typedef ExecutionContextDestroyedEventDataType = { /**
 		Id of the destroyed context
 	**/
-	var executionContextId : Float;
-}
+	var executionContextId : Float; };

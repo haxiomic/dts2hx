@@ -1,5 +1,2 @@
 package js.html;
-extern interface SVGAnimatedPoints {
-	final animatedPoints : js.lib.SVGPointList;
-	final points : js.lib.SVGPointList;
-}
+extern typedef SVGAnimatedPoints = { final animatedPoints : js.lib.SVGPointList; final points : js.lib.SVGPointList; };

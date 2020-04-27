@@ -1,4 +1,2 @@
 package js.html;
-extern interface NavigatorConcurrentHardware {
-	final hardwareConcurrency : Float;
-}
+extern typedef NavigatorConcurrentHardware = { final hardwareConcurrency : Float; };

@@ -1,7 +1,3 @@
 package js.html;
-extern interface PaymentCurrencyAmount {
-	var currency : String;
-	@:optional
-	var currencySystem : String;
-	var value : String;
-}
+extern typedef PaymentCurrencyAmount = { var currency : String; @:optional
+	var currencySystem : String; var value : String; };

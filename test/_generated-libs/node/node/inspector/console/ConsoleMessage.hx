@@ -2,32 +2,25 @@ package node.inspector.console;
 /**
 	Console message.
 **/
-extern interface ConsoleMessage {
-	/**
+extern typedef ConsoleMessage = { /**
 		Message source.
 	**/
-	var source : String;
-	/**
+	var source : String; /**
 		Message severity.
 	**/
-	var level : String;
-	/**
+	var level : String; /**
 		Message text.
 	**/
-	var text : String;
-	/**
+	var text : String; /**
 		URL of the message origin.
 	**/
 	@:optional
-	var url : String;
-	/**
+	var url : String; /**
 		Line number in the resource that generated this message (1-based).
 	**/
 	@:optional
-	var line : Float;
-	/**
+	var line : Float; /**
 		Column number in the resource that generated this message (1-based).
 	**/
 	@:optional
-	var column : Float;
-}
+	var column : Float; };

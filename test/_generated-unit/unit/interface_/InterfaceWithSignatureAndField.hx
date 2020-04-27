@@ -1,4 +1,2 @@
 package unit.interface_;
-extern interface InterfaceWithSignatureAndField {
-	var field : Float;
-}
+extern typedef InterfaceWithSignatureAndField = { var field : Float; };

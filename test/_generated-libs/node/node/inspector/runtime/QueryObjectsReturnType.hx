@@ -1,7 +1,5 @@
 package node.inspector.runtime;
-extern interface QueryObjectsReturnType {
-	/**
+extern typedef QueryObjectsReturnType = { /**
 		Array with objects.
 	**/
-	var objects : RemoteObject;
-}
+	var objects : RemoteObject; };

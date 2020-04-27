@@ -1,5 +1,3 @@
 package node.dns;
-extern interface LookupOneOptions extends LookupOptions {
-	@:optional
-	var all : Bool;
-}
+extern typedef LookupOneOptions = LookupOptions & { @:optional
+	var all : Bool; };

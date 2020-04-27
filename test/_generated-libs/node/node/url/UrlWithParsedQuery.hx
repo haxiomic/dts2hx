@@ -1,4 +1,2 @@
 package node.url;
-extern interface UrlWithParsedQuery extends Url_ {
-	var query : node.querystring.ParsedUrlQuery;
-}
+extern typedef UrlWithParsedQuery = Url_ & { var query : node.querystring.ParsedUrlQuery; };

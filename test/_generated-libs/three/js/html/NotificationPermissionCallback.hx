@@ -1,5 +1,3 @@
 package js.html;
-extern interface NotificationPermissionCallback {
-	@:selfCall
-	function call(permission:String):Void;
-}
+extern typedef NotificationPermissionCallback = { @:selfCall
+	function call(permission:String):Void; };

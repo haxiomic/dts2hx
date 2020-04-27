@@ -1,7 +1,4 @@
 package js.html;
-extern interface QueuingStrategy<T> {
-	@:optional
-	var highWaterMark : Float;
-	@:optional
-	var size : QueuingStrategySizeCallback<T>;
-}
+extern typedef QueuingStrategy<T> = { @:optional
+	var highWaterMark : Float; @:optional
+	var size : QueuingStrategySizeCallback<T>; };

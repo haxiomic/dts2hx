@@ -1,4 +1,2 @@
 package node.net;
-extern interface IpcSocketConnectOpts {
-	var path : String;
-}
+extern typedef IpcSocketConnectOpts = { var path : String; };

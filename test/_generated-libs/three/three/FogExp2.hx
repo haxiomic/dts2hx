@@ -2,7 +2,7 @@ package three;
 /**
 	This class contains the parameters that define linear fog, i.e., that grows exponentially denser with the distance.
 **/
-@:jsRequire("three", "FogExp2") extern class FogExp2 implements IFog {
+@:jsRequire("three", "FogExp2") extern class FogExp2 {
 	function new(hex:haxe.extern.EitherType<String, Float>, ?density:Float);
 	var name : String;
 	var color : Color;

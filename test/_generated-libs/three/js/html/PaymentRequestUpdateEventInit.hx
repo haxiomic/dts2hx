@@ -1,4 +1,2 @@
 package js.html;
-extern interface PaymentRequestUpdateEventInit extends EventInit {
-
-}
+extern typedef PaymentRequestUpdateEventInit = EventInit & { };

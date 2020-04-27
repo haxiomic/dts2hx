@@ -1,4 +1,2 @@
 package node.url;
-extern interface UrlWithStringQuery extends Url_ {
-	var query : Null<String>;
-}
+extern typedef UrlWithStringQuery = Url_ & { var query : Null<String>; };

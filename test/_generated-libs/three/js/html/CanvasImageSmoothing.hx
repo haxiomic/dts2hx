@@ -1,5 +1,2 @@
 package js.html;
-extern interface CanvasImageSmoothing {
-	var imageSmoothingEnabled : Bool;
-	var imageSmoothingQuality : String;
-}
+extern typedef CanvasImageSmoothing = { var imageSmoothingEnabled : Bool; var imageSmoothingQuality : String; };

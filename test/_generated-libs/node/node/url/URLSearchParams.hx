@@ -1,5 +1,5 @@
 package node.url;
-@:jsRequire("url", "URLSearchParams") extern class URLSearchParams implements js.lib.Iterable<js.lib.Tuple2<String, String>> {
+@:jsRequire("url", "URLSearchParams") extern class URLSearchParams {
 	function new(?init:haxe.extern.EitherType<String, haxe.extern.EitherType<std.Array<js.lib.Tuple2<String, String>>, haxe.extern.EitherType<URLSearchParams, haxe.extern.EitherType<js.lib.Iterable<js.lib.Tuple2<String, String>>, { }>>>>);
 	function append(name:String, value:String):Void;
 	function delete(name:String):Void;

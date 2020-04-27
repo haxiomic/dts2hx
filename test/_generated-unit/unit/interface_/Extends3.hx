@@ -1,5 +1,2 @@
 package unit.interface_;
-extern interface Extends3 extends Base1 extends Base2 extends Base3 {
-	var x : Float;
-	var y : Float;
-}
+extern typedef Extends3 = Base1 & Base2 & Base3 & { var x : Float; var y : Float; };

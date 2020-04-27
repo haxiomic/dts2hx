@@ -1,7 +1,5 @@
 package node.inspector.debugger;
-extern interface SetSkipAllPausesParameterType {
-	/**
+extern typedef SetSkipAllPausesParameterType = { /**
 		New value for skip pauses state.
 	**/
-	var skip : Bool;
-}
+	var skip : Bool; };

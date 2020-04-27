@@ -1,4 +1,2 @@
 package unit.symbols;
-extern interface BaseInterface {
-	var baseInterfaceField : Float;
-}
+extern typedef BaseInterface = { var baseInterfaceField : Float; };

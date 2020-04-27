@@ -1,26 +1,20 @@
 package node.inspector.runtime;
-extern interface PropertyPreview {
-	/**
+extern typedef PropertyPreview = { /**
 		Property name.
 	**/
-	var name : String;
-	/**
+	var name : String; /**
 		Object type. Accessor means that the property itself is an accessor property.
 	**/
-	var type : String;
-	/**
+	var type : String; /**
 		User-friendly property value string.
 	**/
 	@:optional
-	var value : String;
-	/**
+	var value : String; /**
 		Nested value preview.
 	**/
 	@:optional
-	var valuePreview : ObjectPreview;
-	/**
+	var valuePreview : ObjectPreview; /**
 		Object subtype hint. Specified for `object` type values only.
 	**/
 	@:optional
-	var subtype : String;
-}
+	var subtype : String; };

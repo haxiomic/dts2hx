@@ -1,5 +1,3 @@
 package js.html;
-extern interface BlobCallback {
-	@:selfCall
-	function call(blob:Null<Blob>):Void;
-}
+extern typedef BlobCallback = { @:selfCall
+	function call(blob:Null<Blob>):Void; };

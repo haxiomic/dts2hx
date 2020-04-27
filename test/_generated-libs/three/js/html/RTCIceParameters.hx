@@ -1,7 +1,4 @@
 package js.html;
-extern interface RTCIceParameters {
-	@:optional
-	var password : String;
-	@:optional
-	var usernameFragment : String;
-}
+extern typedef RTCIceParameters = { @:optional
+	var password : String; @:optional
+	var usernameFragment : String; };

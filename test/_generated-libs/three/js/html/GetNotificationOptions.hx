@@ -1,5 +1,3 @@
 package js.html;
-extern interface GetNotificationOptions {
-	@:optional
-	var tag : String;
-}
+extern typedef GetNotificationOptions = { @:optional
+	var tag : String; };

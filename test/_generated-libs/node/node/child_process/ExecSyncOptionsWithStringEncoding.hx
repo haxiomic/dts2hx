@@ -1,4 +1,2 @@
 package node.child_process;
-extern interface ExecSyncOptionsWithStringEncoding extends ExecSyncOptions {
-	var encoding : String;
-}
+extern typedef ExecSyncOptionsWithStringEncoding = ExecSyncOptions & { var encoding : String; };

@@ -1,5 +1,3 @@
 package js.html;
-extern interface MSLaunchUriCallback {
-	@:selfCall
-	function call():Void;
-}
+extern typedef MSLaunchUriCallback = { @:selfCall
+	function call():Void; };

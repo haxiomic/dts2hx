@@ -1,4 +1,2 @@
 package js.lib;
-extern interface Iterable<T> {
-
-}
+extern typedef Iterable<T> = { };

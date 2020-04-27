@@ -3,7 +3,7 @@ package three;
 	The WebGL renderer displays your beautifully crafted scenes using WebGL, if your device supports it.
 	This renderer has way better performance than CanvasRenderer.
 **/
-@:jsRequire("three", "WebGLRenderer") extern class WebGLRenderer implements Renderer {
+@:jsRequire("three", "WebGLRenderer") extern class WebGLRenderer {
 	/**
 		parameters is an optional object with properties defining the renderer's behaviour. The constructor also accepts no parameters at all. In all cases, it will assume sane defaults when parameters are missing.
 	**/

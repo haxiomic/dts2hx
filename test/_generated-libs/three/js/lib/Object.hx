@@ -60,16 +60,16 @@ package js.lib;
 		
 		Creates an object that has the specified prototype, and that optionally contains specified properties.
 	**/
-	@:overload(function(o:Null<Any>, properties:Any):Any { })
+	@:overload(function(o:Null<Any>, properties:PropertyDescriptorMap & ThisType<Any>):Any { })
 	static function create(o:Null<Any>):Any;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	static function defineProperty(o:Any, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, attributes:Any):Any;
+	static function defineProperty(o:Any, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, attributes:PropertyDescriptor & ThisType<Any>):Any;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	static function defineProperties(o:Any, properties:Any):Any;
+	static function defineProperties(o:Any, properties:PropertyDescriptorMap & ThisType<Any>):Any;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
@@ -132,10 +132,10 @@ package js.lib;
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Any { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Any { })
+	@:overload(function<T, U, V>(target:T, source1:U, source2:V):{ } { })
+	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):{ } { })
 	@:overload(function(target:Any, sources:std.Array<Any>):Any { })
-	static function assign<T, U>(target:T, source:U):Any;
+	static function assign<T, U>(target:T, source:U):{ };
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/

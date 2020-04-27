@@ -1,5 +1,2 @@
 package node.dns;
-extern interface LookupAddress {
-	var address : String;
-	var family : Float;
-}
+extern typedef LookupAddress = { var address : String; var family : Float; };

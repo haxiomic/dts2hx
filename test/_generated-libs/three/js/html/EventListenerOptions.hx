@@ -1,5 +1,3 @@
 package js.html;
-extern interface EventListenerOptions {
-	@:optional
-	var capture : Bool;
-}
+extern typedef EventListenerOptions = { @:optional
+	var capture : Bool; };

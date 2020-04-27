@@ -1,4 +1,2 @@
 package js.html;
-extern interface CanvasFilters {
-	var filter : String;
-}
+extern typedef CanvasFilters = { var filter : String; };

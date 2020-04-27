@@ -1,5 +1,3 @@
 package js.html;
-extern interface ScrollOptions {
-	@:optional
-	var behavior : String;
-}
+extern typedef ScrollOptions = { @:optional
+	var behavior : String; };

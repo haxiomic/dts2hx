@@ -1,5 +1,3 @@
 package js.html;
-extern interface FocusEventInit extends UIEventInit {
-	@:optional
-	var relatedTarget : EventTarget;
-}
+extern typedef FocusEventInit = UIEventInit & { @:optional
+	var relatedTarget : EventTarget; };

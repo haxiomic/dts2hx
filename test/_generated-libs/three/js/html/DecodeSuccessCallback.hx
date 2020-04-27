@@ -1,5 +1,3 @@
 package js.html;
-extern interface DecodeSuccessCallback {
-	@:selfCall
-	function call(decodedData:AudioBuffer):Void;
-}
+extern typedef DecodeSuccessCallback = { @:selfCall
+	function call(decodedData:AudioBuffer):Void; };

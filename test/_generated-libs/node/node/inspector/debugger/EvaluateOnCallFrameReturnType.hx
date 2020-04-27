@@ -1,12 +1,9 @@
 package node.inspector.debugger;
-extern interface EvaluateOnCallFrameReturnType {
-	/**
+extern typedef EvaluateOnCallFrameReturnType = { /**
 		Object wrapper for the evaluation result.
 	**/
-	var result : node.inspector.runtime.RemoteObject;
-	/**
+	var result : node.inspector.runtime.RemoteObject; /**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : node.inspector.runtime.ExceptionDetails;
-}
+	var exceptionDetails : node.inspector.runtime.ExceptionDetails; };

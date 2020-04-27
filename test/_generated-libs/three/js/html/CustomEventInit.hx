@@ -1,5 +1,3 @@
 package js.html;
-extern interface CustomEventInit<T> extends EventInit {
-	@:optional
-	var detail : T;
-}
+extern typedef CustomEventInit<T> = EventInit & { @:optional
+	var detail : T; };

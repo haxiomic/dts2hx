@@ -1375,7 +1375,7 @@ package js.html;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<Node & ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/

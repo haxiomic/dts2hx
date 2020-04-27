@@ -1,17 +1,13 @@
 package node.inspector.debugger;
-extern interface SetScriptSourceParameterType {
-	/**
+extern typedef SetScriptSourceParameterType = { /**
 		Id of the script to edit.
 	**/
-	var scriptId : String;
-	/**
+	var scriptId : String; /**
 		New content of the script.
 	**/
-	var scriptSource : String;
-	/**
+	var scriptSource : String; /**
 		If true the change will not actually be applied. Dry run may be used to get result
 		description without actually modifying the code.
 	**/
 	@:optional
-	var dryRun : Bool;
-}
+	var dryRun : Bool; };

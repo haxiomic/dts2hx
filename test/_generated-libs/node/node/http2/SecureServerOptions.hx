@@ -1,5 +1,3 @@
 package node.http2;
-extern interface SecureServerOptions extends SecureServerSessionOptions {
-	@:optional
-	var allowHTTP1 : Bool;
-}
+extern typedef SecureServerOptions = SecureServerSessionOptions & { @:optional
+	var allowHTTP1 : Bool; };

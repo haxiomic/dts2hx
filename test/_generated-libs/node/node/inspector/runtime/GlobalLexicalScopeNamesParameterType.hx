@@ -1,8 +1,6 @@
 package node.inspector.runtime;
-extern interface GlobalLexicalScopeNamesParameterType {
-	/**
+extern typedef GlobalLexicalScopeNamesParameterType = { /**
 		Specifies in which execution context to lookup global scope variables.
 	**/
 	@:optional
-	var executionContextId : Float;
-}
+	var executionContextId : Float; };

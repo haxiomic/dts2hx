@@ -1,7 +1,4 @@
 package js.html;
-extern interface UIEventInit extends EventInit {
-	@:optional
-	var detail : Float;
-	@:optional
-	var view : Window;
-}
+extern typedef UIEventInit = EventInit & { @:optional
+	var detail : Float; @:optional
+	var view : Window; };

@@ -1,4 +1,2 @@
 package js.html;
-extern interface MediaElementAudioSourceOptions {
-	var mediaElement : HTMLMediaElement;
-}
+extern typedef MediaElementAudioSourceOptions = { var mediaElement : HTMLMediaElement; };

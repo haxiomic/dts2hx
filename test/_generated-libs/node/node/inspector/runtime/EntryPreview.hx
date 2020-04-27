@@ -1,12 +1,9 @@
 package node.inspector.runtime;
-extern interface EntryPreview {
-	/**
+extern typedef EntryPreview = { /**
 		Preview of the key. Specified for map-like collection entries.
 	**/
 	@:optional
-	var key : ObjectPreview;
-	/**
+	var key : ObjectPreview; /**
 		Preview of the value.
 	**/
-	var value : ObjectPreview;
-}
+	var value : ObjectPreview; };

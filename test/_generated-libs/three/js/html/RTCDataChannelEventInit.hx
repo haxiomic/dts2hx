@@ -1,4 +1,2 @@
 package js.html;
-extern interface RTCDataChannelEventInit extends EventInit {
-	var channel : RTCDataChannel;
-}
+extern typedef RTCDataChannelEventInit = EventInit & { var channel : RTCDataChannel; };

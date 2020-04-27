@@ -1,7 +1,5 @@
 package node.inspector.debugger;
-extern interface SetReturnValueParameterType {
-	/**
+extern typedef SetReturnValueParameterType = { /**
 		New return value.
 	**/
-	var newValue : node.inspector.runtime.CallArgument;
-}
+	var newValue : node.inspector.runtime.CallArgument; };

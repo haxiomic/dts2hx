@@ -1,5 +1,2 @@
 package node.inspector;
-extern interface InspectorNotification<T> {
-	var method : String;
-	var params : T;
-}
+extern typedef InspectorNotification<T> = { var method : String; var params : T; };

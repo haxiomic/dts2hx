@@ -416,7 +416,7 @@ package js.lib;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<js.html.Node & js.html.ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/

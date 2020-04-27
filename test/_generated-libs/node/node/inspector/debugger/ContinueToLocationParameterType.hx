@@ -1,9 +1,6 @@
 package node.inspector.debugger;
-extern interface ContinueToLocationParameterType {
-	/**
+extern typedef ContinueToLocationParameterType = { /**
 		Location to continue to.
 	**/
-	var location : Location;
-	@:optional
-	var targetCallFrames : String;
-}
+	var location : Location; @:optional
+	var targetCallFrames : String; };

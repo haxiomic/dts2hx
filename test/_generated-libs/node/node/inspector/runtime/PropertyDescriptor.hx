@@ -2,56 +2,45 @@ package node.inspector.runtime;
 /**
 	Object property descriptor.
 **/
-extern interface PropertyDescriptor {
-	/**
+extern typedef PropertyDescriptor = { /**
 		Property name or symbol description.
 	**/
-	var name : String;
-	/**
+	var name : String; /**
 		The value associated with the property.
 	**/
 	@:optional
-	var value : RemoteObject;
-	/**
+	var value : RemoteObject; /**
 		True if the value associated with the property may be changed (data descriptors only).
 	**/
 	@:optional
-	var writable : Bool;
-	/**
+	var writable : Bool; /**
 		A function which serves as a getter for the property, or `undefined` if there is no getter
 		(accessor descriptors only).
 	**/
 	@:optional
-	var get : RemoteObject;
-	/**
+	var get : RemoteObject; /**
 		A function which serves as a setter for the property, or `undefined` if there is no setter
 		(accessor descriptors only).
 	**/
 	@:optional
-	var set : RemoteObject;
-	/**
+	var set : RemoteObject; /**
 		True if the type of this property descriptor may be changed and if the property may be
 		deleted from the corresponding object.
 	**/
-	var configurable : Bool;
-	/**
+	var configurable : Bool; /**
 		True if this property shows up during enumeration of the properties on the corresponding
 		object.
 	**/
-	var enumerable : Bool;
-	/**
+	var enumerable : Bool; /**
 		True if the result was thrown during the evaluation.
 	**/
 	@:optional
-	var wasThrown : Bool;
-	/**
+	var wasThrown : Bool; /**
 		True if the property is owned for the object.
 	**/
 	@:optional
-	var isOwn : Bool;
-	/**
+	var isOwn : Bool; /**
 		Property symbol object, if the property is of the `symbol` type.
 	**/
 	@:optional
-	var symbol : RemoteObject;
-}
+	var symbol : RemoteObject; };

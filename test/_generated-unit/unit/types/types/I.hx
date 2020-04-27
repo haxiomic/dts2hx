@@ -1,4 +1,2 @@
 package unit.types.types;
-extern interface I {
-
-}
+extern typedef I = { };

@@ -1,5 +1,3 @@
 package js.html;
-extern interface PositionErrorCallback {
-	@:selfCall
-	function call(positionError:PositionError):Void;
-}
+extern typedef PositionErrorCallback = { @:selfCall
+	function call(positionError:PositionError):Void; };

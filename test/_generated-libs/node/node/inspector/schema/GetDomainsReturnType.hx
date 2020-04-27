@@ -1,7 +1,5 @@
 package node.inspector.schema;
-extern interface GetDomainsReturnType {
-	/**
+extern typedef GetDomainsReturnType = { /**
 		List of supported domains.
 	**/
-	var domains : std.Array<Domain>;
-}
+	var domains : std.Array<Domain>; };

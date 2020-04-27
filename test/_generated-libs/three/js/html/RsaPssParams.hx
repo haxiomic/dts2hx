@@ -1,4 +1,2 @@
 package js.html;
-extern interface RsaPssParams extends Algorithm {
-	var saltLength : Float;
-}
+extern typedef RsaPssParams = Algorithm & { var saltLength : Float; };

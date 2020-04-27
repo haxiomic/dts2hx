@@ -1,7 +1,3 @@
 package js.html;
-extern interface AudioBufferOptions {
-	var length : Float;
-	@:optional
-	var numberOfChannels : Float;
-	var sampleRate : Float;
-}
+extern typedef AudioBufferOptions = { var length : Float; @:optional
+	var numberOfChannels : Float; var sampleRate : Float; };

@@ -1,5 +1,2 @@
 package js.html;
-extern interface CanvasState {
-	function restore():Void;
-	function save():Void;
-}
+extern typedef CanvasState = { function restore():Void; function save():Void; };

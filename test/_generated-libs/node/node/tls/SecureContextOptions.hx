@@ -1,41 +1,25 @@
 package node.tls;
-extern interface SecureContextOptions {
-	@:optional
-	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>>;
-	@:optional
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>;
-	@:optional
-	var passphrase : String;
-	@:optional
-	var cert : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
-	@:optional
-	var ca : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
-	@:optional
-	var ciphers : String;
-	@:optional
-	var honorCipherOrder : Bool;
-	@:optional
-	var ecdhCurve : String;
-	@:optional
-	var clientCertEngine : String;
-	@:optional
-	var crl : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
-	@:optional
-	var dhparam : haxe.extern.EitherType<String, global.Buffer>;
-	@:optional
-	var secureOptions : Float;
-	@:optional
-	var secureProtocol : String;
-	@:optional
-	var sessionIdContext : String;
-	/**
+extern typedef SecureContextOptions = { @:optional
+	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>>; @:optional
+	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>; @:optional
+	var passphrase : String; @:optional
+	var cert : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>; @:optional
+	var ca : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>; @:optional
+	var ciphers : String; @:optional
+	var honorCipherOrder : Bool; @:optional
+	var ecdhCurve : String; @:optional
+	var clientCertEngine : String; @:optional
+	var crl : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>; @:optional
+	var dhparam : haxe.extern.EitherType<String, global.Buffer>; @:optional
+	var secureOptions : Float; @:optional
+	var secureProtocol : String; @:optional
+	var sessionIdContext : String; /**
 		Optionally set the maximum TLS version to allow. One
 		of `TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. Cannot be specified along with the
 		`secureProtocol` option, use one or the other.  **Default:** `'TLSv1.2'`.
 	**/
 	@:optional
-	var maxVersion : String;
-	/**
+	var maxVersion : String; /**
 		Optionally set the minimum TLS version to allow. One
 		of `TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. Cannot be specified along with the
 		`secureProtocol` option, use one or the other.  It is not recommended to use
@@ -45,5 +29,4 @@ extern interface SecureContextOptions {
 		the default to `'TLSv1.1'`.
 	**/
 	@:optional
-	var minVersion : String;
-}
+	var minVersion : String; };

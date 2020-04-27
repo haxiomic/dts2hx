@@ -1,4 +1,2 @@
 package js.html;
-extern interface PermissionDescriptor {
-	var name : String;
-}
+extern typedef PermissionDescriptor = { var name : String; };

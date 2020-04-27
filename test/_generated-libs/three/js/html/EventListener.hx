@@ -1,5 +1,3 @@
 package js.html;
-extern interface EventListener {
-	@:selfCall
-	function call(evt:Event):Void;
-}
+extern typedef EventListener = { @:selfCall
+	function call(evt:Event):Void; };

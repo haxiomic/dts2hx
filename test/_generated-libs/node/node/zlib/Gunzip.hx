@@ -1,4 +1,2 @@
 package node.zlib;
-extern interface Gunzip extends node.stream.Transform extends Zlib {
-
-}
+extern typedef Gunzip = node.stream.Transform & Zlib & { };

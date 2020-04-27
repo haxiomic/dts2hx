@@ -1,4 +1,2 @@
 package js.html;
-extern interface InnerHTML {
-	var innerHTML : String;
-}
+extern typedef InnerHTML = { var innerHTML : String; };

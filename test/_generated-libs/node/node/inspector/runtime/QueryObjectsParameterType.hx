@@ -1,12 +1,9 @@
 package node.inspector.runtime;
-extern interface QueryObjectsParameterType {
-	/**
+extern typedef QueryObjectsParameterType = { /**
 		Identifier of the prototype to return objects for.
 	**/
-	var prototypeObjectId : String;
-	/**
+	var prototypeObjectId : String; /**
 		Symbolic group name that can be used to release the results.
 	**/
 	@:optional
-	var objectGroup : String;
-}
+	var objectGroup : String; };

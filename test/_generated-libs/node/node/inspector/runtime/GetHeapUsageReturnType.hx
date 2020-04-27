@@ -1,11 +1,8 @@
 package node.inspector.runtime;
-extern interface GetHeapUsageReturnType {
-	/**
+extern typedef GetHeapUsageReturnType = { /**
 		Used heap size in bytes.
 	**/
-	var usedSize : Float;
-	/**
+	var usedSize : Float; /**
 		Allocated heap size in bytes.
 	**/
-	var totalSize : Float;
-}
+	var totalSize : Float; };

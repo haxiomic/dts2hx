@@ -1,4 +1,2 @@
 package js.html;
-extern interface MediaStreamAudioSourceOptions {
-	var mediaStream : MediaStream;
-}
+extern typedef MediaStreamAudioSourceOptions = { var mediaStream : MediaStream; };

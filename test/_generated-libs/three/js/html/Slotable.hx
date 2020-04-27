@@ -1,4 +1,2 @@
 package js.html;
-extern interface Slotable {
-	final assignedSlot : Null<HTMLSlotElement>;
-}
+extern typedef Slotable = { final assignedSlot : Null<HTMLSlotElement>; };

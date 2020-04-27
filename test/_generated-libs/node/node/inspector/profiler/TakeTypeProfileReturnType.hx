@@ -1,7 +1,5 @@
 package node.inspector.profiler;
-extern interface TakeTypeProfileReturnType {
-	/**
+extern typedef TakeTypeProfileReturnType = { /**
 		Type profile for all scripts since startTypeProfile() was turned on.
 	**/
-	var result : std.Array<ScriptTypeProfile>;
-}
+	var result : std.Array<ScriptTypeProfile>; };

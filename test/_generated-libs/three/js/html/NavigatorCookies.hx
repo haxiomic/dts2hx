@@ -1,4 +1,2 @@
 package js.html;
-extern interface NavigatorCookies {
-	final cookieEnabled : Bool;
-}
+extern typedef NavigatorCookies = { final cookieEnabled : Bool; };

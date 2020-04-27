@@ -1,5 +1,5 @@
 package node.assert;
-@:jsRequire("assert", "AssertionError") extern class AssertionError implements js.lib.Error {
+@:jsRequire("assert", "AssertionError") extern class AssertionError {
 	function new(?options:{ @:optional
 	var message : String; @:optional
 	var actual : Any; @:optional

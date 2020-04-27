@@ -1,5 +1,3 @@
 package js.html;
-extern interface MediaStreamEventInit extends EventInit {
-	@:optional
-	var stream : MediaStream;
-}
+extern typedef MediaStreamEventInit = EventInit & { @:optional
+	var stream : MediaStream; };

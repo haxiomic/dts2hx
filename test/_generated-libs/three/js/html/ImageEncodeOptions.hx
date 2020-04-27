@@ -1,7 +1,4 @@
 package js.html;
-extern interface ImageEncodeOptions {
-	@:optional
-	var quality : Float;
-	@:optional
-	var type : String;
-}
+extern typedef ImageEncodeOptions = { @:optional
+	var quality : Float; @:optional
+	var type : String; };

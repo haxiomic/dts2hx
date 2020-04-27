@@ -1,5 +1,2 @@
 package js.html;
-extern interface MediaKeyMessageEventInit extends EventInit {
-	var message : js.lib.ArrayBuffer;
-	var messageType : String;
-}
+extern typedef MediaKeyMessageEventInit = EventInit & { var message : js.lib.ArrayBuffer; var messageType : String; };

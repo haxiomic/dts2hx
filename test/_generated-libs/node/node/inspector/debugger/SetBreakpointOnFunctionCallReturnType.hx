@@ -1,7 +1,5 @@
 package node.inspector.debugger;
-extern interface SetBreakpointOnFunctionCallReturnType {
-	/**
+extern typedef SetBreakpointOnFunctionCallReturnType = { /**
 		Id of the created breakpoint for further reference.
 	**/
-	var breakpointId : String;
-}
+	var breakpointId : String; };

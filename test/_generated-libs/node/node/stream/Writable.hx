@@ -1,5 +1,5 @@
 package node.stream;
-@:jsRequire("stream", "Writable") extern class Writable extends Stream implements global.nodejs.WritableStream {
+@:jsRequire("stream", "Writable") extern class Writable extends Stream {
 	function new(?opts:WritableOptions);
 	var writable : Bool;
 	final writableHighWaterMark : Float;

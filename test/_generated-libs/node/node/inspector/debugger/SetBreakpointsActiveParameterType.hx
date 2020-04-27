@@ -1,7 +1,5 @@
 package node.inspector.debugger;
-extern interface SetBreakpointsActiveParameterType {
-	/**
+extern typedef SetBreakpointsActiveParameterType = { /**
 		New value for breakpoints active state.
 	**/
-	var active : Bool;
-}
+	var active : Bool; };

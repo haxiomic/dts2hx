@@ -1,21 +1,16 @@
 package node.inspector.debugger;
-extern interface SearchInContentParameterType {
-	/**
+extern typedef SearchInContentParameterType = { /**
 		Id of the script to search in.
 	**/
-	var scriptId : String;
-	/**
+	var scriptId : String; /**
 		String to search for.
 	**/
-	var query : String;
-	/**
+	var query : String; /**
 		If true, search is case sensitive.
 	**/
 	@:optional
-	var caseSensitive : Bool;
-	/**
+	var caseSensitive : Bool; /**
 		If true, treats string parameter as regex.
 	**/
 	@:optional
-	var isRegex : Bool;
-}
+	var isRegex : Bool; };

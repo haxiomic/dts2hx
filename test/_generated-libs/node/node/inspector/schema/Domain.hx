@@ -2,13 +2,10 @@ package node.inspector.schema;
 /**
 	Description of the protocol domain.
 **/
-extern interface Domain {
-	/**
+extern typedef Domain = { /**
 		Domain name.
 	**/
-	var name : String;
-	/**
+	var name : String; /**
 		Domain version.
 	**/
-	var version : String;
-}
+	var version : String; };

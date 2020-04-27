@@ -1,8 +1,5 @@
 package js.html;
-extern interface ScrollIntoViewOptions extends ScrollOptions {
+extern typedef ScrollIntoViewOptions = ScrollOptions & { @:optional
+	var block : String; @:native("inline")
 	@:optional
-	var block : String;
-	@:native("inline")
-	@:optional
-	var inline_ : String;
-}
+	var inline_ : String; };

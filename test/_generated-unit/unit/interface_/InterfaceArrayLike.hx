@@ -1,4 +1,2 @@
 package unit.interface_;
-extern interface InterfaceArrayLike<T> {
-
-}
+extern typedef InterfaceArrayLike<T> = { };

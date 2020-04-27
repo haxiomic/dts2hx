@@ -1,5 +1,2 @@
 package three;
-extern interface MorphNormals {
-	var name : String;
-	var normals : std.Array<Vector3>;
-}
+extern typedef MorphNormals = { var name : String; var normals : std.Array<Vector3>; };

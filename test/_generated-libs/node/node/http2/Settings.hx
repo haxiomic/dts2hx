@@ -1,15 +1,8 @@
 package node.http2;
-extern interface Settings {
-	@:optional
-	var headerTableSize : Float;
-	@:optional
-	var enablePush : Bool;
-	@:optional
-	var initialWindowSize : Float;
-	@:optional
-	var maxFrameSize : Float;
-	@:optional
-	var maxConcurrentStreams : Float;
-	@:optional
-	var maxHeaderListSize : Float;
-}
+extern typedef Settings = { @:optional
+	var headerTableSize : Float; @:optional
+	var enablePush : Bool; @:optional
+	var initialWindowSize : Float; @:optional
+	var maxFrameSize : Float; @:optional
+	var maxConcurrentStreams : Float; @:optional
+	var maxHeaderListSize : Float; };

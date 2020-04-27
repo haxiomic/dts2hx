@@ -1,5 +1,3 @@
 package js.html;
-extern interface GainOptions extends AudioNodeOptions {
-	@:optional
-	var gain : Float;
-}
+extern typedef GainOptions = AudioNodeOptions & { @:optional
+	var gain : Float; };

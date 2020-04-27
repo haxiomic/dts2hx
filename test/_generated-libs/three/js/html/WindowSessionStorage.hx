@@ -1,4 +1,2 @@
 package js.html;
-extern interface WindowSessionStorage {
-	final sessionStorage : Storage;
-}
+extern typedef WindowSessionStorage = { final sessionStorage : Storage; };

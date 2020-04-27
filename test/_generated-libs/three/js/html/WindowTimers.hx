@@ -1,4 +1,2 @@
 package js.html;
-extern interface WindowTimers {
-
-}
+extern typedef WindowTimers = { };

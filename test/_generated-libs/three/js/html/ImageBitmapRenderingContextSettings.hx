@@ -1,5 +1,3 @@
 package js.html;
-extern interface ImageBitmapRenderingContextSettings {
-	@:optional
-	var alpha : Bool;
-}
+extern typedef ImageBitmapRenderingContextSettings = { @:optional
+	var alpha : Bool; };

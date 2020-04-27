@@ -1,4 +1,2 @@
 package js.html;
-extern interface OfflineAudioCompletionEventInit extends EventInit {
-	var renderedBuffer : AudioBuffer;
-}
+extern typedef OfflineAudioCompletionEventInit = EventInit & { var renderedBuffer : AudioBuffer; };

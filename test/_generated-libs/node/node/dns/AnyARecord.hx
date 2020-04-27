@@ -1,4 +1,2 @@
 package node.dns;
-extern interface AnyARecord extends RecordWithTtl {
-	var type : String;
-}
+extern typedef AnyARecord = RecordWithTtl & { var type : String; };

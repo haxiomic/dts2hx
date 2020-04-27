@@ -1,7 +1,4 @@
 package js.html;
-extern interface KeyframeEffectOptions extends EffectTiming {
-	@:optional
-	var composite : String;
-	@:optional
-	var iterationComposite : String;
-}
+extern typedef KeyframeEffectOptions = EffectTiming & { @:optional
+	var composite : String; @:optional
+	var iterationComposite : String; };

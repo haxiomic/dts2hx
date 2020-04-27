@@ -1,7 +1,4 @@
 package js.html;
-extern interface RTCIceCandidatePair {
-	@:optional
-	var local : RTCIceCandidate;
-	@:optional
-	var remote : RTCIceCandidate;
-}
+extern typedef RTCIceCandidatePair = { @:optional
+	var local : RTCIceCandidate; @:optional
+	var remote : RTCIceCandidate; };

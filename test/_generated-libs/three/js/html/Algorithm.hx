@@ -1,4 +1,2 @@
 package js.html;
-extern interface Algorithm {
-	var name : String;
-}
+extern typedef Algorithm = { var name : String; };

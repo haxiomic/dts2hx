@@ -1,12 +1,9 @@
 package node.inspector.runtime;
-extern interface CallFunctionOnReturnType {
-	/**
+extern typedef CallFunctionOnReturnType = { /**
 		Call result.
 	**/
-	var result : RemoteObject;
-	/**
+	var result : RemoteObject; /**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : ExceptionDetails;
-}
+	var exceptionDetails : ExceptionDetails; };

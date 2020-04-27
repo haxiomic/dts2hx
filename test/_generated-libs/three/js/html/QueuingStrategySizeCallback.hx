@@ -1,5 +1,3 @@
 package js.html;
-extern interface QueuingStrategySizeCallback<T> {
-	@:selfCall
-	function call(chunk:T):Float;
-}
+extern typedef QueuingStrategySizeCallback<T> = { @:selfCall
+	function call(chunk:T):Float; };

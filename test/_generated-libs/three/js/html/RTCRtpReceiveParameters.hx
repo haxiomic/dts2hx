@@ -1,4 +1,2 @@
 package js.html;
-extern interface RTCRtpReceiveParameters extends RTCRtpParameters {
-	var encodings : std.Array<RTCRtpDecodingParameters>;
-}
+extern typedef RTCRtpReceiveParameters = RTCRtpParameters & { var encodings : std.Array<RTCRtpDecodingParameters>; };
