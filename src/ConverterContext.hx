@@ -182,23 +182,8 @@ class ConverterContext {
 					field.enableAccess(AStatic);
 					globalModule.fields.push(field);
 				}
-				
-				/*
-				else if (symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0 && !tc.isConstructorTypeVariableSymbol(symbol)) {
-					var symbolChain = access.getFullSymbolChain();
-					var parent = symbolChain[symbolChain.length - 2];
-					if (parent != null) {
-						for (parentAccess in symbolAccessMap.getAccess(parent)) {
-							var hxModule = getHaxeModuleFromSymbol(parent, access);
-							var field = fieldFromSymbol(symbol.name, symbol, parentAccess, null);
-							field.enableAccess(AStatic);
-							hxModule.fields.push(field);
-						}
-					} else {
-						Log.error('Expected Variable | Function symbol to have parent', symbol);
-					}
-				}
-				*/
+			
+				// we will also get module variable symbols here but these are handled in `getHaxeModuleFromSymbol` instead
 			}
 		}
 
