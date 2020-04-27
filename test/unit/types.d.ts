@@ -197,6 +197,7 @@ export namespace Types {
     class IntersectionA {fieldA: number}
     class IntersectionB {fieldB: number}
     const intersectionBetweenClasses: IntersectionA & IntersectionB;
+    function intersectionBetweenTypeParams<A, B>(p: A & B): void;
 
     // Type Query
     const typeQueryImplicitStr: typeof implicitStr;
