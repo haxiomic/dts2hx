@@ -267,8 +267,12 @@ class ConverterContext {
 			if (classOrInterfaceDeclaration == null) {
 				Log.warn('Class|Interface symbol did not have a Class or Interface declaration', symbol);
 			}
-
-			var forceClassKind = ((symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0)) || isConstructorTypeVariable;
+			
+			// see also isTypeStructureInHaxe()
+			var forceClassKind =
+				((symbol.flags & SymbolFlags.Interface != 0) && (symbol.flags & SymbolFlags.Class != 0))
+				|| isConstructorTypeVariable
+				|| symbol.flags & SymbolFlags.ValueModule != 0;
 
 			// if it's a class and interface symbol, we use class
 			var isHxInterface = symbol.flags & SymbolFlags.Interface != 0 && !forceClassKind;
@@ -565,6 +569,13 @@ class ConverterContext {
 		return hxModule;
 	}
 
+	// function shouldUseClassType(symbol: Symbol) {
+	// 	var isInterfaceAndNotClass = type.symbol.flags & SymbolFlags.Interface != 0 && type.symbol.flags & SymbolFlags.Class == 0;
+	// 	var isValueModule = type.symbol.flags & SymbolFlags.ValueModule != 0;
+	// 	var isConstructorType = tc.isConstructorTypeVariableSymbol(symbol);
+	// 	return isConstructorType || isValueModule || type.symbol.flags & SymbolFlags.Class == 0;
+	// }
+
 	/**
 		Return true if the type will be represented as a structure in haxe
 	**/
@@ -579,8 +590,9 @@ class ConverterContext {
 			var objectType: ObjectType = cast type;
 			var isAnonType = objectType.objectFlags & ObjectFlags.Anonymous != 0;
 			var isInterfaceAndNotClass = type.symbol.flags & SymbolFlags.Interface != 0 && type.symbol.flags & SymbolFlags.Class == 0;
+			var isValueModule = type.symbol.flags & SymbolFlags.ValueModule != 0; 
 			var isConstructorType = tc.isConstructorType(objectType); // constructor types are converted to classes
-			!isConstructorType && (isAnonType || isInterfaceAndNotClass);
+			!isConstructorType && !isValueModule && (isAnonType || isInterfaceAndNotClass);
 		} else {
 			false;
 		}
