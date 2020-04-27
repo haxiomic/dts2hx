@@ -1,4 +1,2 @@
 ./run-unit.sh
-
-cd libs
-./run.sh
+./run-libs.sh

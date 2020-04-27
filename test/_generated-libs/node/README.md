@@ -2,7 +2,7 @@
 
 Generated from **[@types/node v11.11.3](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.0.6** using **TypeScript 3.7.4** with arguments:
 
-	dts2hx node --verbose -o _generated
+	dts2hx node --moduleSearchPath ./libs --verbose --output _generated-libs
 
 ## Contributors to @types/node
 - [Microsoft TypeScript](https://github.com/Microsoft)
