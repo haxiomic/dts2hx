@@ -270,10 +270,6 @@ class Main {
 				var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
 				var moduleHaxeStr = printer.printTypeDefinition(haxeModule);
 
-				for (subType in haxeModule.subTypes) {
-					moduleHaxeStr += '\n\n' + printer.printTypeDefinition(subType);
-				}
-
 				touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
 			}

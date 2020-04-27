@@ -69,7 +69,6 @@ class SupportTypes {
 				').trim(),
 				meta: [{name: ':forward', pos: null}, {name: ':forwardStatics', pos: null}],
 				pos: null,
-				subTypes: [],
 				tsSymbol: null,
 				tsSymbolAccess: null,
 			}
@@ -119,7 +118,6 @@ class SupportTypes {
 			doc: '',
 			meta: [SymbolAccess.Global([]).toAccessMetadata()],
 			pos: null,
-			subTypes: [],
 			tsSymbol: symbol,
 			tsSymbolAccess: access,
 		}

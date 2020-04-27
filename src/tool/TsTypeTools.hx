@@ -9,21 +9,6 @@ private typedef TsType = typescript.ts.Type;
 class TsTypeTools {
 
 	/**
-		Adds underscore suffix repeatedly to find a name that doesn't clash with existing property names
-	**/
-	public static function getFreePropertyName(tc: TypeChecker, type: TsType, suggestedName: String): String {
-		var currentName = suggestedName;
-		var takenNames = [
-			for (property in tc.getPropertiesOfType(type))
-				property.name.toSafeIdent() => true
-		];
-		while (takenNames.exists(currentName)) {
-			currentName = currentName + '_';
-		}
-		return currentName;
-	}
-
-	/**
 		An array of matched TypeFlags
 		If `compositeFlags` is true, TypeFlags that are unions of other flags are included, for example:
 			TypeFlags Module = ValueModule | NamespaceModule

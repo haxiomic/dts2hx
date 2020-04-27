@@ -130,21 +130,6 @@ class TsSymbolTools {
 		}
 	}
 
-	/**
-		Adds underscore suffix repeatedly to find a name that doesn't clash with existing property names
-	**/
-	public static function getFreeMemberName(symbol: Symbol, suggestedName: String): String {
-		var currentName = suggestedName;
-		var takenNames = [
-			for (member in getExports(symbol).concat(getMembers(symbol)))
-				member.name.toSafeIdent() => true
-		];
-		while (takenNames.exists(currentName)) {
-			currentName = currentName + '_';
-		}
-		return currentName;
-	}
-
 	public static function getExports(symbol: Symbol): Array<Symbol> {
 		var exports = [];
 		if (symbol.exports != null) symbol.exports.forEach((s, _) -> exports.push(s));

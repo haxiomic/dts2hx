@@ -159,7 +159,7 @@ class ConverterContext {
 		// convert symbols for just this module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
-				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, _) -> {
+				TsSymbolTools.walkDeclarationSymbols(symbol, tc, (symbol, access) -> {
 					declarationSymbolQueue.tryEnqueue(symbol);
 				});
 			}
@@ -183,7 +183,12 @@ class ConverterContext {
 					globalModule.fields.push(field);
 				}
 			}
-		} 
+		}
+
+		// iterate the generated types and resolve name collisions in fields
+		for (_ => hxModule in generatedModules) {
+			HaxeTools.resolveNameCollisions(hxModule.fields);
+		}
 	}
 
 	static public function isHaxeModuleSource(tc: TypeChecker, symbol: Symbol) {
@@ -276,7 +281,7 @@ class ConverterContext {
 				// we have no way of representing this in haxe yet
 				// we add metadata to mark the class which we might be able to use in the future
 				// @! maybe we can use an abstract for this
-				meta.push({name: ':interface', pos: pos});
+				meta.push({name: 'tsInterface', pos: pos});
 				Log.warn('Symbol has been changed from an interface to a class', symbol);
 			}
 
@@ -378,7 +383,6 @@ class ConverterContext {
 				doc: getDoc(symbol),
 				meta: meta,
 				pos: pos,
-				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
 			}
@@ -386,7 +390,7 @@ class ConverterContext {
 			// a ConstEnum does not exist at runtime
 			var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
 
-			var hxEnumType = complexTypeFromEnumSymbol(symbol);
+			var hxEnumType = complexTypeBaseOfEnumSymbol(symbol);
 
 			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
 			var hxEnumFields = [for (enumMember in enumMembers) fieldFromSymbol(enumMember.name, enumMember, access, null)];
@@ -401,7 +405,6 @@ class ConverterContext {
 				doc: getDoc(symbol),
 				meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
 				pos: pos,
-				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
 			}
@@ -427,7 +430,6 @@ class ConverterContext {
 				isExtern: true,
 				meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
 				pos: pos,
-				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
 			} else {
@@ -438,7 +440,6 @@ class ConverterContext {
 				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
 				doc: getDoc(symbol),
 				pos: pos,
-				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
 			}
@@ -453,9 +454,8 @@ class ConverterContext {
 				params: [],
 				isExtern: true,
 				doc: getDoc(symbol),
-				meta: [access.toAccessMetadata()],
+				meta: [access.toAccessMetadata(), {name: 'valueModuleOnly', pos: pos}],
 				pos: pos,
-				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
 			}
@@ -469,7 +469,6 @@ class ConverterContext {
 				doc: getDoc(symbol),
 				isExtern: true,
 				pos: pos,
-				subTypes: [],
 				tsSymbol: symbol,
 				tsSymbolAccess: access,
 			}
@@ -546,15 +545,9 @@ class ConverterContext {
 			hxModule.fields.push(field);
 		}
 
-		// if any fields were mapped to the same name, rename further to resolve all collisions
-		HaxeTools.resolveNameCollisions(hxModule.fields);
-
 		var isEmptyValueModuleClass = isValueModuleOnlySymbol && hxModule.fields.length == 0;
 
-		// don't save ValueModule classes with no fields
-		if (!isEmptyValueModuleClass) {
-			saveHaxeModule(hxModule);
-		}
+		saveHaxeModule(hxModule);
 
 		return hxModule;
 	}
@@ -635,15 +628,11 @@ class ConverterContext {
 		}
 
 		_currentTypeStack.push(type);
-		// Log.log('complexTypeFromTsType <b>${_currentTypeStack.length}</>');
-		// for (t in _currentTypeStack) {
-		// 	Log.log('\t<dim,i>${untyped t.id}</>', t);
-		// }
 
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Any;
-		} else if (type.flags & TypeFlags.Unknown != 0) {
+		} else if (type.flags & (TypeFlags.Unknown) != 0) {
 			// we can't really represent `unknown` in haxe at the moment
 			macro :Any;
 		} else if (type.flags & (TypeFlags.String) != 0) {
@@ -654,6 +643,9 @@ class ConverterContext {
 			macro :Bool;
 		} else if (type.flags & (TypeFlags.VoidLike | TypeFlags.Never) != 0) {
 			macro :Void;
+		} else if (type.flags & (TypeFlags.Enum) != 0) {
+			var hxTypePath = getReferencedHaxeTypePath(type.symbol, accessContext);
+			TPath(hxTypePath);
 		} else if (type.flags & (TypeFlags.Union) != 0) {
 			complexTypeFromUnionType(cast type, accessContext, enclosingDeclaration);
 		}
@@ -675,7 +667,6 @@ class ConverterContext {
 			macro :js.lib.Symbol;
 		} else {
 			// @! todo:
-			// Enum            = 1 << 5,
 			// BigInt          = 1 << 6,
 			// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
 			// BigIntLiteral   = 1 << 11,
@@ -689,6 +680,7 @@ class ConverterContext {
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
 			Log.error('Type not yet supported', type);
+			debug();
 			macro :Any;
 		} catch (e: Any) {
 			_currentTypeStack.pop();
@@ -976,7 +968,7 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromEnumSymbol(symbol: Symbol): ComplexType {
+	function complexTypeBaseOfEnumSymbol(symbol: Symbol): ComplexType {
 		var hxEnumTypeName: Null<String> = null;
 		// determine underlying type of enum by iterating its members
 		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
