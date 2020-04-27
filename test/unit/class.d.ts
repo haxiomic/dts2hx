@@ -23,6 +23,11 @@ export class ClassBase<T> {
     get accessor(): boolean;
     set accessor(value: boolean);
 
+    // should be readonly
+    get getOnlyAccessor(): number;
+
+    set setOnlyAccessor(v: number);
+
     [Symbol.iterator](): IterableIterator<[string, number]>;
 
     static staticMethod<T>(a: number): T;

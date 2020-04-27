@@ -12,10 +12,9 @@ package unit.class_;
 	function method(a:Float, b:String):Any;
 	@:overload(function(a:String, b:std.Array<{ }>):Any { })
 	function methodOverloaded(a:Float):Any;
-	/**
-		@DTS2HX-ERROR: Unhandled symbol flags
-	**/
 	var accessor : Bool;
+	final getOnlyAccessor : Float;
+	var setOnlyAccessor : Float;
 	static function staticMethod<T>(a:Float):T;
 	static var staticField : Float;
 	static var namespaceField : String;
