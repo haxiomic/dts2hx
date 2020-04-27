@@ -30,6 +30,7 @@ package js.lib;
 	**/
 	final name : String;
 	@:selfCall
-	static function call(args:std.Array<String>):Function;
-	static final prototype : Function;
+	static function call_(args:std.Array<String>):Function;
+	@:native("prototype")
+	static final prototype_ : Function;
 }

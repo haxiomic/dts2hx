@@ -158,7 +158,8 @@ package js.lib;
 	/**
 		The size in bytes of each element in the array.
 	**/
-	static final BYTES_PER_ELEMENT : Float;
+	@:native("BYTES_PER_ELEMENT")
+	static final BYTES_PER_ELEMENT_ : Float;
 	/**
 		Returns a new array from a set of elements.
 	**/

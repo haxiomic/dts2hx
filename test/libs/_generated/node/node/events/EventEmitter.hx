@@ -15,6 +15,7 @@ package node.events;
 	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
-	static function listenerCount(emitter:EventEmitter, event:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	@:native("listenerCount")
+	static function listenerCount_(emitter:EventEmitter, event:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 	static var defaultMaxListeners : Float;
 }

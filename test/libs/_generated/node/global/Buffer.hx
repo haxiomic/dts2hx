@@ -301,7 +301,8 @@ package global;
 		Gives the actual byte length of a string. encoding defaults to 'utf8'.
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
-	static function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<js.lib.ArrayBuffer, haxe.extern.EitherType<js.lib.SharedArrayBuffer, haxe.extern.EitherType<js.lib.Uint8ClampedArray, haxe.extern.EitherType<js.lib.Uint16Array, haxe.extern.EitherType<js.lib.Uint32Array, haxe.extern.EitherType<js.lib.Int8Array, haxe.extern.EitherType<js.lib.Int16Array, haxe.extern.EitherType<js.lib.Int32Array, haxe.extern.EitherType<js.lib.Float32Array, haxe.extern.EitherType<js.lib.Float64Array, js.lib.DataView>>>>>>>>>>>>, ?encoding:String):Float;
+	@:native("byteLength")
+	static function byteLength_(string:haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<js.lib.ArrayBuffer, haxe.extern.EitherType<js.lib.SharedArrayBuffer, haxe.extern.EitherType<js.lib.Uint8ClampedArray, haxe.extern.EitherType<js.lib.Uint16Array, haxe.extern.EitherType<js.lib.Uint32Array, haxe.extern.EitherType<js.lib.Int8Array, haxe.extern.EitherType<js.lib.Int16Array, haxe.extern.EitherType<js.lib.Int32Array, haxe.extern.EitherType<js.lib.Float32Array, haxe.extern.EitherType<js.lib.Float64Array, js.lib.DataView>>>>>>>>>>>>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		
@@ -313,7 +314,8 @@ package global;
 	/**
 		The same as buf1.compare(buf2).
 	**/
-	static function compare(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
+	@:native("compare")
+	static function compare_(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
 	/**
 		Allocates a new buffer of {size} octets.
 	**/

@@ -85,6 +85,7 @@ export const ConstructorTypeInterface: {
 };
 export interface ConstructorTypeInterface {
     [interfaceIndex: number]: string;
+    (interfaceCallParam): void;
     new(overloadNewParam: string): ConstructorTypeInterface;
     interfaceField: number;
 }
