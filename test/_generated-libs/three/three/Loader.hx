@@ -1,0 +1,41 @@
+package three;
+/**
+	Base class for implementing loaders.
+	
+	Events:
+			 load
+					 Dispatched when the image has completed loading
+					 content — loaded image
+	
+			 error
+	
+						Dispatched when the image can't be loaded
+						message — error message
+**/
+@:jsRequire("three", "Loader") extern class Loader {
+	function new();
+	/**
+		Will be called when load starts.
+		The default is a function with empty body.
+	**/
+	var onLoadStart : () -> Void;
+	/**
+		Will be called while load progresses.
+		The default is a function with empty body.
+	**/
+	var onLoadProgress : () -> Void;
+	/**
+		Will be called when load completes.
+		The default is a function with empty body.
+	**/
+	var onLoadComplete : () -> Void;
+	/**
+		default — null.
+		If set, assigns the crossOrigin attribute of the image to the value of crossOrigin, prior to starting the load.
+	**/
+	var crossOrigin : String;
+	function extractUrlBase(url:String):String;
+	function initMaterials(materials:std.Array<Material>, texturePath:String):std.Array<Material>;
+	function createMaterial(m:Material, texturePath:String, ?crossOrigin:String):Bool;
+	static var Handlers : LoaderHandler;
+}

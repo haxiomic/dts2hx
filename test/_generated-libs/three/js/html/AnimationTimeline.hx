@@ -1,0 +1,6 @@
+package js.html;
+@:native("AnimationTimeline") @tsInterface extern class AnimationTimeline {
+	function new();
+	final currentTime : Null<Float>;
+	static var prototype : AnimationTimeline;
+}

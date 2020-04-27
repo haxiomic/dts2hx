@@ -1,0 +1,42 @@
+package three;
+@:jsRequire("three", "Audio") extern class Audio extends Object3D {
+	function new(listener:AudioListener);
+	var type : String;
+	var context : js.html.AudioContext;
+	var gain : js.html.GainNode;
+	var autoplay : Bool;
+	var buffer : Null<Audio>;
+	var detune : Float;
+	var loop : Bool;
+	var startTime : Float;
+	var offset : Float;
+	var playbackRate : Float;
+	var isPlaying : Bool;
+	var hasPlaybackControl : Bool;
+	var sourceType : String;
+	var source : js.html.AudioBufferSourceNode;
+	var filters : std.Array<Any>;
+	function getOutput():js.html.GainNode;
+	function setNodeSource(audioNode:js.html.AudioBufferSourceNode):Audio;
+	function setMediaElementSource(mediaElement:js.html.MediaElementAudioSourceNode):Audio;
+	function setBuffer(audioBuffer:AudioBuffer):Audio;
+	function play():Audio;
+	function onEnded():Void;
+	function pause():Audio;
+	function stop():Audio;
+	function connect():Audio;
+	function disconnect():Audio;
+	function setDetune(value:Float):Audio;
+	function getDetune():Float;
+	function getFilters():std.Array<Any>;
+	@:overload(function(filter:Any):Audio { })
+	function setFilter(value:std.Array<Any>):Audio;
+	function getFilter():Any;
+	function setPlaybackRate(value:Float):Audio;
+	function getPlaybackRate():Float;
+	function getLoop():Bool;
+	function setLoop(value:Bool):Void;
+	function getVolume():Float;
+	function setVolume(value:Float):Audio;
+	function load(file:String):Audio;
+}
