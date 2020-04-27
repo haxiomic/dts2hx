@@ -1,2 +1,4 @@
 package js.html;
-extern typedef IDBEnvironment = { final indexedDB : IDBFactory; };
+extern interface IDBEnvironment {
+	final indexedDB : IDBFactory;
+}

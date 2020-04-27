@@ -1,3 +1,5 @@
 package js.html;
-extern typedef FunctionStringCallback = { @:selfCall
-	function call(data:String):Void; };
+extern interface FunctionStringCallback {
+	@:selfCall
+	function call(data:String):Void;
+}

@@ -3,36 +3,46 @@ package node.inspector.runtime;
 	Detailed information about exception (or error) that was thrown during script compilation or
 	execution.
 **/
-extern typedef ExceptionDetails = { /**
+extern interface ExceptionDetails {
+	/**
 		Exception id.
 	**/
-	var exceptionId : Float; /**
+	var exceptionId : Float;
+	/**
 		Exception text, which should be used together with exception object when available.
 	**/
-	var text : String; /**
+	var text : String;
+	/**
 		Line number of the exception location (0-based).
 	**/
-	var lineNumber : Float; /**
+	var lineNumber : Float;
+	/**
 		Column number of the exception location (0-based).
 	**/
-	var columnNumber : Float; /**
+	var columnNumber : Float;
+	/**
 		Script ID of the exception location.
 	**/
 	@:optional
-	var scriptId : String; /**
+	var scriptId : String;
+	/**
 		URL of the exception location, to be used when the script was not reported.
 	**/
 	@:optional
-	var url : String; /**
+	var url : String;
+	/**
 		JavaScript stack trace if available.
 	**/
 	@:optional
-	var stackTrace : StackTrace; /**
+	var stackTrace : StackTrace;
+	/**
 		Exception object if available.
 	**/
 	@:optional
-	var exception : RemoteObject; /**
+	var exception : RemoteObject;
+	/**
 		Identifier of the context where exception happened.
 	**/
 	@:optional
-	var executionContextId : Float; };
+	var executionContextId : Float;
+}

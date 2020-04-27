@@ -1,3 +1,5 @@
 package js.html;
-extern typedef ExceptionInformation = { @:optional
-	var domain : String; };
+extern interface ExceptionInformation {
+	@:optional
+	var domain : String;
+}

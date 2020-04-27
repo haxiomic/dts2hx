@@ -2,21 +2,27 @@ package node.inspector.debugger;
 /**
 	Scope description.
 **/
-extern typedef Scope = { /**
+extern interface Scope {
+	/**
 		Scope type.
 	**/
-	var type : String; /**
+	var type : String;
+	/**
 		Object representing the scope. For `global` and `with` scopes it represents the actual
 		object; for the rest of the scopes, it is artificial transient object enumerating scope
 		variables as its properties.
 	**/
-	var object : node.inspector.runtime.RemoteObject; @:optional
-	var name : String; /**
+	var object : node.inspector.runtime.RemoteObject;
+	@:optional
+	var name : String;
+	/**
 		Location in the source code where scope starts
 	**/
 	@:optional
-	var startLocation : Location; /**
+	var startLocation : Location;
+	/**
 		Location in the source code where scope ends
 	**/
 	@:optional
-	var endLocation : Location; };
+	var endLocation : Location;
+}

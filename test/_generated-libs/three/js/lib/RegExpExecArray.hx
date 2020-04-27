@@ -1,2 +1,5 @@
 package js.lib;
-extern typedef RegExpExecArray = std.Array<String> & { var index : Float; var input : String; };
+extern interface RegExpExecArray extends std.Array<String> {
+	var index : Float;
+	var input : String;
+}

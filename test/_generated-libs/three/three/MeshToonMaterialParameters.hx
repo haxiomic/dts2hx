@@ -1,3 +1,5 @@
 package three;
-extern typedef MeshToonMaterialParameters = MeshPhongMaterialParameters & { @:optional
-	var gradientMap : Texture; };
+extern interface MeshToonMaterialParameters extends MeshPhongMaterialParameters {
+	@:optional
+	var gradientMap : Texture;
+}

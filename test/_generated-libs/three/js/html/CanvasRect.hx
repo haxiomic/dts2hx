@@ -1,2 +1,6 @@
 package js.html;
-extern typedef CanvasRect = { function clearRect(x:Float, y:Float, w:Float, h:Float):Void; function fillRect(x:Float, y:Float, w:Float, h:Float):Void; function strokeRect(x:Float, y:Float, w:Float, h:Float):Void; };
+extern interface CanvasRect {
+	function clearRect(x:Float, y:Float, w:Float, h:Float):Void;
+	function fillRect(x:Float, y:Float, w:Float, h:Float):Void;
+	function strokeRect(x:Float, y:Float, w:Float, h:Float):Void;
+}

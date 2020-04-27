@@ -1,4 +1,7 @@
 package js.html;
-extern typedef PaymentDetailsUpdate = PaymentDetailsBase & { @:optional
-	var error : String; @:optional
-	var total : PaymentItem; };
+extern interface PaymentDetailsUpdate extends PaymentDetailsBase {
+	@:optional
+	var error : String;
+	@:optional
+	var total : PaymentItem;
+}

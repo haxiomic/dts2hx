@@ -1,5 +1,7 @@
 package node.inspector.heapprofiler;
-extern typedef StopSamplingReturnType = { /**
+extern interface StopSamplingReturnType {
+	/**
 		Recorded sampling heap profile.
 	**/
-	var profile : SamplingHeapProfile; };
+	var profile : SamplingHeapProfile;
+}

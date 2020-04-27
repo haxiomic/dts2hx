@@ -1,2 +1,5 @@
 package node.inspector.heapprofiler;
-extern typedef LastSeenObjectIdEventDataType = { var lastSeenObjectId : Float; var timestamp : Float; };
+extern interface LastSeenObjectIdEventDataType {
+	var lastSeenObjectId : Float;
+	var timestamp : Float;
+}

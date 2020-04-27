@@ -1,2 +1,4 @@
 package node.os;
-extern typedef NetworkInterfaceInfoIPv4 = NetworkInterfaceBase & { var family : String; };
+extern interface NetworkInterfaceInfoIPv4 extends NetworkInterfaceBase {
+	var family : String;
+}

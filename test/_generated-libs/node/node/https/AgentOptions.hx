@@ -1,4 +1,7 @@
 package node.https;
-extern typedef AgentOptions = node.http.AgentOptions & node.tls.ConnectionOptions & { @:optional
-	var rejectUnauthorized : Bool; @:optional
-	var maxCachedSessions : Float; };
+extern interface AgentOptions extends node.http.AgentOptions extends node.tls.ConnectionOptions {
+	@:optional
+	var rejectUnauthorized : Bool;
+	@:optional
+	var maxCachedSessions : Float;
+}

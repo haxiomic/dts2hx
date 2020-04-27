@@ -1,2 +1,4 @@
 package js.html;
-extern typedef MediaStreamTrackAudioSourceOptions = { var mediaStreamTrack : MediaStreamTrack; };
+extern interface MediaStreamTrackAudioSourceOptions {
+	var mediaStreamTrack : MediaStreamTrack;
+}

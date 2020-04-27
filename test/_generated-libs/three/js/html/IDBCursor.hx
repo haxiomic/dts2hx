@@ -19,7 +19,7 @@ package js.html;
 	/**
 		Returns the IDBObjectStore or IDBIndex the cursor was opened from.
 	**/
-	final source : haxe.extern.EitherType<IDBIndex, js.lib.IDBObjectStore>;
+	final source : haxe.extern.EitherType<js.lib.IDBObjectStore, IDBIndex>;
 	/**
 		Advances the cursor through the next count records in range.
 	**/

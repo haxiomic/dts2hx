@@ -2,18 +2,23 @@ package node.inspector.runtime;
 /**
 	Description of an isolated world.
 **/
-extern typedef ExecutionContextDescription = { /**
+extern interface ExecutionContextDescription {
+	/**
 		Unique id of the execution context. It can be used to specify in which execution context
 		script evaluation should be performed.
 	**/
-	var id : Float; /**
+	var id : Float;
+	/**
 		Execution context origin.
 	**/
-	var origin : String; /**
+	var origin : String;
+	/**
 		Human readable name describing given context.
 	**/
-	var name : String; /**
+	var name : String;
+	/**
 		Embedder-specific auxiliary data.
 	**/
 	@:optional
-	var auxData : { }; };
+	var auxData : { };
+}

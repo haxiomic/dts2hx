@@ -1,2 +1,6 @@
 package node.net;
-extern typedef AddressInfo = { var address : String; var family : String; var port : Float; };
+extern interface AddressInfo {
+	var address : String;
+	var family : String;
+	var port : Float;
+}

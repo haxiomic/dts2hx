@@ -29,7 +29,6 @@ package unit.types;
 	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Any;
 	static function typeParameterWithConstraint<T:(std.Array<Float>)>(x:T):Any;
-	static function intersectionBetweenTypeParams<A, B>(p:{ }):Void;
 	static function firstTypeFunction(node:{ }):Bool;
 	static var implicitInt : Int;
 	static var implicitFloat : Float;
@@ -87,29 +86,13 @@ package unit.types;
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;
 	static var undefineableNullableNumber : Null<Float>;
-	static var intersectionWithSubIntersection : { var x : Any; };
-	static var intersectionXY : { var x : Float; } & { var y : Float; };
-	static var intersectionRedefinitionSame : { var x : Float; };
-	static var intersectionRedefinitionDifferent : { var x : Any; };
-	static var intersectionWithTypeof : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
-	var fieldOptional : Float; @:native("macro")
-	var macro_ : String; var nestedTuple : js.lib.Tuple3<Float, String, js.lib.Tuple2<Bool, std.Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
-	function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
-	function methodSignatureOptional():String; final readonlyField : String; } & { var extendedField : Float; };
+	static var intersectionWithSubIntersection : Any;
+	static var intersectionXY : Any;
+	static var intersectionRedefinitionSame : Any;
+	static var intersectionInvalidRedefinition : Any;
+	static var extendedObject : Any;
 	static var intersectionWithAny : Any;
-	static var intersectionWithArray : { var x : Float; } & std.Array<Float>;
-	static var intersectionStringNumber : Any;
-	static var intersectionTripleAnon : { var x : Float; } & { var y : Float; } & { var z : Float; };
-	static var intersectionWithUnion : haxe.extern.EitherType<{ var a : String; } & { var b : Bool; }, { var c : Float; }>;
-	static var intersectionWithCallSignatures : { @:overload(function(callParamB:Bool):std.Array<String> { })
-	@:selfCall
-	function call(callParamA:String):Float; /**
-		Calls a method of an object, substituting another object for the current object.
-	**/
-	@:native("call")
-	var call_ : Any; var b : Float; };
-	static var intersectionAnonAlias : { var a : String; } & { var b : Bool; };
-	static var intersectionBetweenClasses : { var fieldA : Float; var fieldB : Float; };
+	static var intersectionWithArray : Any;
 	static var typeQueryImplicitStr : String;
 	static var typeQueryObject : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : std.Array<String>; @:optional
 	var fieldOptional : Float; @:native("macro")

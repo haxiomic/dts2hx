@@ -1,4 +1,7 @@
 package js.html;
-extern typedef ScrollToOptions = ScrollOptions & { @:optional
-	var left : Float; @:optional
-	var top : Float; };
+extern interface ScrollToOptions extends ScrollOptions {
+	@:optional
+	var left : Float;
+	@:optional
+	var top : Float;
+}

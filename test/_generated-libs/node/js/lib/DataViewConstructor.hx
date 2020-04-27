@@ -1,2 +1,4 @@
 package js.lib;
-extern typedef DataViewConstructor = { };
+extern interface DataViewConstructor {
+
+}

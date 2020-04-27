@@ -1,3 +1,5 @@
 package js.html;
-extern typedef ChannelMergerOptions = AudioNodeOptions & { @:optional
-	var numberOfInputs : Float; };
+extern interface ChannelMergerOptions extends AudioNodeOptions {
+	@:optional
+	var numberOfInputs : Float;
+}

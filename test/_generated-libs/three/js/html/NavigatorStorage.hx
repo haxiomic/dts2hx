@@ -1,2 +1,4 @@
 package js.html;
-extern typedef NavigatorStorage = { final storage : StorageManager; };
+extern interface NavigatorStorage {
+	final storage : StorageManager;
+}

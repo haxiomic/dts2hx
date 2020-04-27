@@ -1,2 +1,4 @@
 package node.inspector.heapprofiler;
-extern typedef AddHeapSnapshotChunkEventDataType = { var chunk : String; };
+extern interface AddHeapSnapshotChunkEventDataType {
+	var chunk : String;
+}

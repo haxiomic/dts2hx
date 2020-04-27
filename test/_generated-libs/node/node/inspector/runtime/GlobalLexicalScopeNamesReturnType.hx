@@ -1,2 +1,4 @@
 package node.inspector.runtime;
-extern typedef GlobalLexicalScopeNamesReturnType = { var names : std.Array<String>; };
+extern interface GlobalLexicalScopeNamesReturnType {
+	var names : std.Array<String>;
+}

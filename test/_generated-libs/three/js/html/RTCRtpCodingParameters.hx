@@ -1,3 +1,5 @@
 package js.html;
-extern typedef RTCRtpCodingParameters = { @:optional
-	var rid : String; };
+extern interface RTCRtpCodingParameters {
+	@:optional
+	var rid : String;
+}

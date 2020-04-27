@@ -1,2 +1,4 @@
 package js.html;
-extern typedef KeyAlgorithm = { var name : String; };
+extern interface KeyAlgorithm {
+	var name : String;
+}

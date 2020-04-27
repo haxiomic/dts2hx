@@ -1,2 +1,4 @@
 package node.zlib;
-extern typedef Inflate = node.stream.Transform & Zlib & ZlibReset & { };
+extern interface Inflate extends node.stream.Transform extends Zlib extends ZlibReset {
+
+}

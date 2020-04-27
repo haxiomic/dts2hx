@@ -1,3 +1,5 @@
 package js.html;
-extern typedef StoreSiteSpecificExceptionsInformation = StoreExceptionsInformation & { @:optional
-	var arrayOfDomainStrings : std.Array<String>; };
+extern interface StoreSiteSpecificExceptionsInformation extends StoreExceptionsInformation {
+	@:optional
+	var arrayOfDomainStrings : std.Array<String>;
+}

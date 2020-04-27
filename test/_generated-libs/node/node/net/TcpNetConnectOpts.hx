@@ -1,3 +1,5 @@
 package node.net;
-extern typedef TcpNetConnectOpts = TcpSocketConnectOpts & SocketConstructorOpts & { @:optional
-	var timeout : Float; };
+extern interface TcpNetConnectOpts extends TcpSocketConnectOpts extends SocketConstructorOpts {
+	@:optional
+	var timeout : Float;
+}

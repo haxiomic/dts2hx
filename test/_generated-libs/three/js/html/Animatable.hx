@@ -1,2 +1,5 @@
 package js.html;
-extern typedef Animatable = { function animate(keyframes:Null<haxe.extern.EitherType<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, KeyframeAnimationOptions>):Animation; function getAnimations():std.Array<Animation>; };
+extern interface Animatable {
+	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, KeyframeAnimationOptions>):Animation;
+	function getAnimations():std.Array<Animation>;
+}

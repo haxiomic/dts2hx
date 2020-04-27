@@ -1,2 +1,4 @@
 package js.html;
-extern typedef NavigatorOnLine = { final onLine : Bool; };
+extern interface NavigatorOnLine {
+	final onLine : Bool;
+}

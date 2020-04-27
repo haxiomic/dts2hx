@@ -1,2 +1,4 @@
 package node.zlib;
-extern typedef InflateRaw = node.stream.Transform & Zlib & ZlibReset & { };
+extern interface InflateRaw extends node.stream.Transform extends Zlib extends ZlibReset {
+
+}

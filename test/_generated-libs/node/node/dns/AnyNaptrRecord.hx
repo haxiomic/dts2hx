@@ -1,2 +1,4 @@
 package node.dns;
-extern typedef AnyNaptrRecord = NaptrRecord & { var type : String; };
+extern interface AnyNaptrRecord extends NaptrRecord {
+	var type : String;
+}

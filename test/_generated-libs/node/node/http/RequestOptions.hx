@@ -1,2 +1,4 @@
 package node.http;
-extern typedef RequestOptions = ClientRequestArgs & { };
+extern interface RequestOptions extends ClientRequestArgs {
+
+}

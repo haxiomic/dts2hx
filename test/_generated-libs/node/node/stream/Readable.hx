@@ -1,5 +1,5 @@
 package node.stream;
-@:jsRequire("stream", "Readable") extern class Readable extends Stream {
+@:jsRequire("stream", "Readable") extern class Readable extends Stream implements global.nodejs.ReadableStream {
 	function new(?opts:ReadableOptions);
 	var readable : Bool;
 	final readableHighWaterMark : Float;

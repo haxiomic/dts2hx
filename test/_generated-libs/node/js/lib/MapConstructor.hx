@@ -1,2 +1,4 @@
 package js.lib;
-extern typedef MapConstructor = { final prototype : Map<Any, Any>; };
+extern interface MapConstructor {
+	final prototype : Map<Any, Any>;
+}

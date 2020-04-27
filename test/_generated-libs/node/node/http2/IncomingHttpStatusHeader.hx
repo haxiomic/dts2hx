@@ -1,4 +1,6 @@
 package node.http2;
-extern typedef IncomingHttpStatusHeader = { @:native(":status")
+extern interface IncomingHttpStatusHeader {
+	@:native(":status")
 	@:optional
-	var ColonStatus : Float; };
+	var ColonStatus : Float;
+}

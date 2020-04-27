@@ -45,7 +45,7 @@ package js.lib;
 		
 		If successful, request's result will be the count.
 	**/
-	function count(?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>):js.html.IDBRequest<Float>;
+	function count(?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>):js.html.IDBRequest<Float>;
 	/**
 		Creates a new index in store with the given name, keyPath and options and returns a new IDBIndex. If the keyPath and options define constraints that cannot be satisfied with the data already in store the upgrade transaction will abort with a "ConstraintError" DOMException.
 		
@@ -64,7 +64,7 @@ package js.lib;
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>):js.html.IDBRequest<Void>;
+	function delete(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>):js.html.IDBRequest<Void>;
 	/**
 		Deletes the index in store with the given name.
 		
@@ -76,38 +76,38 @@ package js.lib;
 		
 		If successful, request's result will be the value, or undefined if there was no matching record.
 	**/
-	function get(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>):js.html.IDBRequest<Any>;
+	function get(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>):js.html.IDBRequest<Any>;
 	/**
 		Retrieves the values of the records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>, ?count:Float):js.html.IDBRequest<std.Array<Any>>;
+	function getAll(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>, ?count:Float):js.html.IDBRequest<std.Array<Any>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>, ?count:Float):js.html.IDBRequest<std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>>;
+	function getAllKeys(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>, ?count:Float):js.html.IDBRequest<std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		
 		If successful, request's result will be the key, or undefined if there was no matching record.
 	**/
-	function getKey(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>):js.html.IDBRequest<Null<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>>;
+	function getKey(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>):js.html.IDBRequest<Null<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>>;
 	function index(name:String):js.html.IDBIndex;
 	/**
 		Opens a cursor over the records matching query, ordered by direction. If query is null, all records in store are matched.
 		
 		If successful, request's result will be an IDBCursorWithValue pointing at the first matching record, or null if there were no matching records.
 	**/
-	function openCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>, ?direction:String):js.html.IDBRequest<Null<js.html.IDBCursorWithValue>>;
+	function openCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>, ?direction:String):js.html.IDBRequest<Null<js.html.IDBCursorWithValue>>;
 	/**
 		Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in store are matched.
 		
 		If successful, request's result will be an IDBCursor pointing at the first matching record, or null if there were no matching records.
 	**/
-	function openKeyCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<js.html.IDBKeyRange, haxe.extern.EitherType<Date, js.html.IDBArrayKey>>>>>>, ?direction:String):js.html.IDBRequest<Null<js.html.IDBCursor>>;
+	function openKeyCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<Date, haxe.extern.EitherType<js.html.IDBArrayKey, js.html.IDBKeyRange>>>>>>, ?direction:String):js.html.IDBRequest<Null<js.html.IDBCursor>>;
 	/**
 		Adds or updates a record in store with the given value and key.
 		

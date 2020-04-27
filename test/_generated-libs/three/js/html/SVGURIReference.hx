@@ -1,2 +1,4 @@
 package js.html;
-extern typedef SVGURIReference = { final href : SVGAnimatedString; };
+extern interface SVGURIReference {
+	final href : SVGAnimatedString;
+}

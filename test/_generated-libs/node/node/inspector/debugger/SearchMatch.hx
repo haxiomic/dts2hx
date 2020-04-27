@@ -2,10 +2,13 @@ package node.inspector.debugger;
 /**
 	Search match for resource.
 **/
-extern typedef SearchMatch = { /**
+extern interface SearchMatch {
+	/**
 		Line number in resource content.
 	**/
-	var lineNumber : Float; /**
+	var lineNumber : Float;
+	/**
 		Line with match content.
 	**/
-	var lineContent : String; };
+	var lineContent : String;
+}

@@ -1,2 +1,5 @@
 package node.dns;
-extern typedef AnyNsRecord = { var type : String; var value : String; };
+extern interface AnyNsRecord {
+	var type : String;
+	var value : String;
+}

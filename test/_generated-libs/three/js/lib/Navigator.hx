@@ -33,7 +33,7 @@ package js.lib;
 	function storeSiteSpecificTrackingException(args:js.html.StoreSiteSpecificExceptionsInformation):Void;
 	function storeWebWideTrackingException(args:js.html.StoreExceptionsInformation):Void;
 	final webdriver : Bool;
-	function sendBeacon(url:String, ?data:haxe.extern.EitherType<String, haxe.extern.EitherType<Int8Array, haxe.extern.EitherType<Uint8Array, haxe.extern.EitherType<Uint8ClampedArray, haxe.extern.EitherType<Int16Array, haxe.extern.EitherType<Uint16Array, haxe.extern.EitherType<Int32Array, haxe.extern.EitherType<Uint32Array, haxe.extern.EitherType<Float32Array, haxe.extern.EitherType<Float64Array, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<js.html.Blob, haxe.extern.EitherType<FormData, DataView>>>>>>>>>>>>>):Bool;
+	function sendBeacon(url:String, ?data:haxe.extern.EitherType<String, haxe.extern.EitherType<Int8Array, haxe.extern.EitherType<Uint8Array, haxe.extern.EitherType<Uint8ClampedArray, haxe.extern.EitherType<Int16Array, haxe.extern.EitherType<Uint16Array, haxe.extern.EitherType<Int32Array, haxe.extern.EitherType<Uint32Array, haxe.extern.EitherType<Float32Array, haxe.extern.EitherType<Float64Array, haxe.extern.EitherType<ArrayBuffer, haxe.extern.EitherType<js.html.Blob, haxe.extern.EitherType<DataView, FormData>>>>>>>>>>>>>):Bool;
 	final hardwareConcurrency : Float;
 	function registerProtocolHandler(scheme:String, url:String, title:String):Void;
 	function unregisterProtocolHandler(scheme:String, url:String):Void;

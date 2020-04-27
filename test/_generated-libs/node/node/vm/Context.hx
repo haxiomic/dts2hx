@@ -1,2 +1,4 @@
 package node.vm;
-extern typedef Context = { };
+extern interface Context {
+
+}

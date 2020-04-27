@@ -1,2 +1,4 @@
 package js.html;
-extern typedef WindowLocalStorage = { final localStorage : Storage; };
+extern interface WindowLocalStorage {
+	final localStorage : Storage;
+}

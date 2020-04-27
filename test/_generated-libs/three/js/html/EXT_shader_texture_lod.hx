@@ -1,2 +1,4 @@
 package js.html;
-extern typedef EXT_shader_texture_lod = { };
+extern interface EXT_shader_texture_lod {
+
+}

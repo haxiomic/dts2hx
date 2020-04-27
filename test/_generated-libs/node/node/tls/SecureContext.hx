@@ -1,2 +1,4 @@
 package node.tls;
-extern typedef SecureContext = { var context : Any; };
+extern interface SecureContext {
+	var context : Any;
+}

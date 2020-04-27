@@ -1,5 +1,7 @@
 package node.inspector.heapprofiler;
-extern typedef AddInspectedHeapObjectParameterType = { /**
+extern interface AddInspectedHeapObjectParameterType {
+	/**
 		Heap snapshot object id to be accessible by means of $x command line API.
 	**/
-	var heapObjectId : String; };
+	var heapObjectId : String;
+}

@@ -1,2 +1,5 @@
 package js.lib.intl;
-extern typedef NumberFormatPart = { var type : String; var value : String; };
+extern interface NumberFormatPart {
+	var type : String;
+	var value : String;
+}

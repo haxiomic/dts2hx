@@ -1,3 +1,5 @@
 package js.html;
-extern typedef DeviceLightEventInit = EventInit & { @:optional
-	var value : Float; };
+extern interface DeviceLightEventInit extends EventInit {
+	@:optional
+	var value : Float;
+}

@@ -1,2 +1,4 @@
 package js.html;
-extern typedef RTCIceCandidateComplete = { };
+extern interface RTCIceCandidateComplete {
+
+}

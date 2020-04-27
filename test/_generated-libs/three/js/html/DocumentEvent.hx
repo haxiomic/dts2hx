@@ -1,5 +1,6 @@
 package js.html;
-extern typedef DocumentEvent = { @:overload(function(eventInterface:String):AnimationPlaybackEvent { })
+extern interface DocumentEvent {
+	@:overload(function(eventInterface:String):AnimationPlaybackEvent { })
 	@:overload(function(eventInterface:String):AudioProcessingEvent { })
 	@:overload(function(eventInterface:String):BeforeUnloadEvent { })
 	@:overload(function(eventInterface:String):ClipboardEvent { })
@@ -77,4 +78,5 @@ extern typedef DocumentEvent = { @:overload(function(eventInterface:String):Anim
 	@:overload(function(eventInterface:String):WebGLContextEvent { })
 	@:overload(function(eventInterface:String):WheelEvent { })
 	@:overload(function(eventInterface:String):Event { })
-	function createEvent(eventInterface:String):AnimationEvent; };
+	function createEvent(eventInterface:String):AnimationEvent;
+}

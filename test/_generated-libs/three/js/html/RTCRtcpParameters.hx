@@ -1,4 +1,7 @@
 package js.html;
-extern typedef RTCRtcpParameters = { @:optional
-	var cname : String; @:optional
-	var reducedSize : Bool; };
+extern interface RTCRtcpParameters {
+	@:optional
+	var cname : String;
+	@:optional
+	var reducedSize : Bool;
+}

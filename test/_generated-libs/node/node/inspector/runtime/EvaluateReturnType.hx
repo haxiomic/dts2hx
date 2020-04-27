@@ -1,9 +1,12 @@
 package node.inspector.runtime;
-extern typedef EvaluateReturnType = { /**
+extern interface EvaluateReturnType {
+	/**
 		Evaluation result.
 	**/
-	var result : RemoteObject; /**
+	var result : RemoteObject;
+	/**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : ExceptionDetails; };
+	var exceptionDetails : ExceptionDetails;
+}

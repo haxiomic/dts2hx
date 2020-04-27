@@ -1,2 +1,4 @@
 package three;
-extern typedef IUniform = { var value : Any; };
+extern interface IUniform {
+	var value : Any;
+}

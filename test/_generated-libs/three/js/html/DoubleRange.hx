@@ -1,4 +1,7 @@
 package js.html;
-extern typedef DoubleRange = { @:optional
-	var max : Float; @:optional
-	var min : Float; };
+extern interface DoubleRange {
+	@:optional
+	var max : Float;
+	@:optional
+	var min : Float;
+}

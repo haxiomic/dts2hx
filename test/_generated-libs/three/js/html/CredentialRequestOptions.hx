@@ -1,5 +1,9 @@
 package js.html;
-extern typedef CredentialRequestOptions = { @:optional
-	var mediation : String; @:optional
-	var publicKey : PublicKeyCredentialRequestOptions; @:optional
-	var signal : AbortSignal; };
+extern interface CredentialRequestOptions {
+	@:optional
+	var mediation : String;
+	@:optional
+	var publicKey : PublicKeyCredentialRequestOptions;
+	@:optional
+	var signal : AbortSignal;
+}

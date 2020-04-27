@@ -1,5 +1,9 @@
 package js.html;
-extern typedef Keyframe = { @:optional
-	var composite : String; @:optional
-	var easing : String; @:optional
-	var offset : Float; };
+extern interface Keyframe {
+	@:optional
+	var composite : String;
+	@:optional
+	var easing : String;
+	@:optional
+	var offset : Float;
+}

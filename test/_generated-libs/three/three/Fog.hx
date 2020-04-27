@@ -2,7 +2,7 @@ package three;
 /**
 	This class contains the parameters that define linear fog, i.e., that grows linearly denser with the distance.
 **/
-@:jsRequire("three", "Fog") extern class Fog {
+@:jsRequire("three", "Fog") extern class Fog implements IFog {
 	function new(hex:Float, ?near:Float, ?far:Float);
 	var name : String;
 	/**

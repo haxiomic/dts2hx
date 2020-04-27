@@ -2,13 +2,17 @@ package node.inspector.profiler;
 /**
 	Type profile data collected during runtime for a JavaScript script.
 **/
-extern typedef ScriptTypeProfile = { /**
+extern interface ScriptTypeProfile {
+	/**
 		JavaScript script id.
 	**/
-	var scriptId : String; /**
+	var scriptId : String;
+	/**
 		JavaScript script name or url.
 	**/
-	var url : String; /**
+	var url : String;
+	/**
 		Type profile entries for parameters and return values of the functions in the script.
 	**/
-	var entries : std.Array<TypeProfileEntry>; };
+	var entries : std.Array<TypeProfileEntry>;
+}

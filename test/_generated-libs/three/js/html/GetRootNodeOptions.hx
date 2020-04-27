@@ -1,3 +1,5 @@
 package js.html;
-extern typedef GetRootNodeOptions = { @:optional
-	var composed : Bool; };
+extern interface GetRootNodeOptions {
+	@:optional
+	var composed : Bool;
+}

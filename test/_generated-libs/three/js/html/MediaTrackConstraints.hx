@@ -1,3 +1,5 @@
 package js.html;
-extern typedef MediaTrackConstraints = MediaTrackConstraintSet & { @:optional
-	var advanced : std.Array<MediaTrackConstraintSet>; };
+extern interface MediaTrackConstraints extends MediaTrackConstraintSet {
+	@:optional
+	var advanced : std.Array<MediaTrackConstraintSet>;
+}

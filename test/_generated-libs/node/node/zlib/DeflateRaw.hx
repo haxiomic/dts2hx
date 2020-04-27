@@ -1,2 +1,4 @@
 package node.zlib;
-extern typedef DeflateRaw = node.stream.Transform & Zlib & ZlibReset & ZlibParams & { };
+extern interface DeflateRaw extends node.stream.Transform extends Zlib extends ZlibReset extends ZlibParams {
+
+}

@@ -1,4 +1,7 @@
 package node.crypto;
-extern typedef SignPrivateKeyInput = PrivateKeyInput & { @:optional
-	var padding : Float; @:optional
-	var saltLength : Float; };
+extern interface SignPrivateKeyInput extends PrivateKeyInput {
+	@:optional
+	var padding : Float;
+	@:optional
+	var saltLength : Float;
+}

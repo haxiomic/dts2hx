@@ -1,3 +1,6 @@
 package js.html;
-extern typedef HmacImportParams = Algorithm & { var hash : haxe.extern.EitherType<String, Algorithm>; @:optional
-	var length : Float; };
+extern interface HmacImportParams extends Algorithm {
+	var hash : haxe.extern.EitherType<String, Algorithm>;
+	@:optional
+	var length : Float;
+}

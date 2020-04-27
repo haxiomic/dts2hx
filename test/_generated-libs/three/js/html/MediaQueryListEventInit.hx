@@ -1,4 +1,7 @@
 package js.html;
-extern typedef MediaQueryListEventInit = EventInit & { @:optional
-	var matches : Bool; @:optional
-	var media : String; };
+extern interface MediaQueryListEventInit extends EventInit {
+	@:optional
+	var matches : Bool;
+	@:optional
+	var media : String;
+}

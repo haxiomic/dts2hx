@@ -1,3 +1,5 @@
 package js.html;
-extern typedef StereoPannerOptions = AudioNodeOptions & { @:optional
-	var pan : Float; };
+extern interface StereoPannerOptions extends AudioNodeOptions {
+	@:optional
+	var pan : Float;
+}

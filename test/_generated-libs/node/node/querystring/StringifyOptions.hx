@@ -1,3 +1,5 @@
 package node.querystring;
-extern typedef StringifyOptions = { @:optional
-	var encodeURIComponent : (str:String) -> String; };
+extern interface StringifyOptions {
+	@:optional
+	var encodeURIComponent : (str:String) -> String;
+}

@@ -1,8 +1,11 @@
 package node.inspector.debugger;
-extern typedef BreakpointResolvedEventDataType = { /**
+extern interface BreakpointResolvedEventDataType {
+	/**
 		Breakpoint unique identifier.
 	**/
-	var breakpointId : String; /**
+	var breakpointId : String;
+	/**
 		Actual breakpoint location.
 	**/
-	var location : Location; };
+	var location : Location;
+}

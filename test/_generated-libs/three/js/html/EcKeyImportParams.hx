@@ -1,2 +1,4 @@
 package js.html;
-extern typedef EcKeyImportParams = Algorithm & { var namedCurve : String; };
+extern interface EcKeyImportParams extends Algorithm {
+	var namedCurve : String;
+}

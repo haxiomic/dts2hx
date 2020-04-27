@@ -1,2 +1,5 @@
 package node.os;
-extern typedef NetworkInterfaceInfoIPv6 = NetworkInterfaceBase & { var family : String; var scopeid : Float; };
+extern interface NetworkInterfaceInfoIPv6 extends NetworkInterfaceBase {
+	var family : String;
+	var scopeid : Float;
+}

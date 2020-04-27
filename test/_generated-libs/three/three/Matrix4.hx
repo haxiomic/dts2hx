@@ -2,7 +2,7 @@ package three;
 /**
 	A 4x4 Matrix.
 **/
-@:jsRequire("three", "Matrix4") extern class Matrix4 {
+@:jsRequire("three", "Matrix4") extern class Matrix4 implements Matrix {
 	function new();
 	/**
 		Array with matrix values.

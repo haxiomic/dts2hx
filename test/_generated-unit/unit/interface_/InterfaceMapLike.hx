@@ -1,2 +1,4 @@
 package unit.interface_;
-extern typedef InterfaceMapLike<T> = { };
+extern interface InterfaceMapLike<T> {
+
+}

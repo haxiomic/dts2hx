@@ -1,4 +1,7 @@
 package js.html;
-extern typedef NavigationPreloadState = { @:optional
-	var enabled : Bool; @:optional
-	var headerValue : String; };
+extern interface NavigationPreloadState {
+	@:optional
+	var enabled : Bool;
+	@:optional
+	var headerValue : String;
+}

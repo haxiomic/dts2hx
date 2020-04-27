@@ -1,2 +1,0 @@
-package js.html;
-extern typedef SVGFilterPrimitiveStandardAttributes = { final height : SVGAnimatedLength; final result : SVGAnimatedString; final width : SVGAnimatedLength; final x : SVGAnimatedLength; final y : SVGAnimatedLength; };

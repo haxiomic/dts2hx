@@ -1,2 +1,4 @@
 package js.html;
-extern typedef GamepadEventInit = EventInit & { var gamepad : Gamepad; };
+extern interface GamepadEventInit extends EventInit {
+	var gamepad : Gamepad;
+}

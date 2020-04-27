@@ -1,3 +1,6 @@
 package js.html;
-extern typedef PromiseRejectionEventInit = EventInit & { var promise : js.lib.Promise<Any>; @:optional
-	var reason : Any; };
+extern interface PromiseRejectionEventInit extends EventInit {
+	var promise : js.lib.Promise<Any>;
+	@:optional
+	var reason : Any;
+}

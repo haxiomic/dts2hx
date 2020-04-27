@@ -1,2 +1,4 @@
 package js.html;
-extern typedef RTCStatsEventInit = EventInit & { var report : js.lib.RTCStatsReport; };
+extern interface RTCStatsEventInit extends EventInit {
+	var report : js.lib.RTCStatsReport;
+}

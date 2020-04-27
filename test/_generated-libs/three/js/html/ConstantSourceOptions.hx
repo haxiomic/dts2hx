@@ -1,3 +1,5 @@
 package js.html;
-extern typedef ConstantSourceOptions = { @:optional
-	var offset : Float; };
+extern interface ConstantSourceOptions {
+	@:optional
+	var offset : Float;
+}

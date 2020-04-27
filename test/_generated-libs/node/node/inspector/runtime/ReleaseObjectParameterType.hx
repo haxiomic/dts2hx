@@ -1,5 +1,7 @@
 package node.inspector.runtime;
-extern typedef ReleaseObjectParameterType = { /**
+extern interface ReleaseObjectParameterType {
+	/**
 		Identifier of the object to release.
 	**/
-	var objectId : String; };
+	var objectId : String;
+}

@@ -1,4 +1,7 @@
 package js.html;
-extern typedef AnimationPlaybackEventInit = EventInit & { @:optional
-	var currentTime : Float; @:optional
-	var timelineTime : Float; };
+extern interface AnimationPlaybackEventInit extends EventInit {
+	@:optional
+	var currentTime : Float;
+	@:optional
+	var timelineTime : Float;
+}

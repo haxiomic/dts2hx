@@ -1,2 +1,4 @@
 package node.dns;
-extern typedef AnySrvRecord = SrvRecord & { var type : String; };
+extern interface AnySrvRecord extends SrvRecord {
+	var type : String;
+}

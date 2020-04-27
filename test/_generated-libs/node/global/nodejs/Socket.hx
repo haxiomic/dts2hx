@@ -1,3 +1,5 @@
 package global.nodejs;
-extern typedef Socket = ReadWriteStream & { @:optional
-	var isTTY : Bool; };
+extern interface Socket extends ReadWriteStream {
+	@:optional
+	var isTTY : Bool;
+}

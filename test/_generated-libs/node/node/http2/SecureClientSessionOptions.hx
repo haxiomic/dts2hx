@@ -1,2 +1,4 @@
 package node.http2;
-extern typedef SecureClientSessionOptions = SessionOptions & node.tls.ConnectionOptions & { };
+extern interface SecureClientSessionOptions extends SessionOptions extends node.tls.ConnectionOptions {
+
+}

@@ -2,7 +2,7 @@ package three;
 /**
 	3D vector.
 **/
-@:jsRequire("three", "Vector3") extern class Vector3 {
+@:jsRequire("three", "Vector3") extern class Vector3 implements Vector {
 	function new(?x:Float, ?y:Float, ?z:Float);
 	var x : Float;
 	var y : Float;

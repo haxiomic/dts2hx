@@ -1,2 +1,4 @@
 package js.html;
-extern typedef AesKeyGenParams = Algorithm & { var length : Float; };
+extern interface AesKeyGenParams extends Algorithm {
+	var length : Float;
+}

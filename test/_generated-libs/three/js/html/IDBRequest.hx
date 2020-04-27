@@ -21,7 +21,7 @@ package js.html;
 	/**
 		Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
 	**/
-	final source : haxe.extern.EitherType<IDBCursor, haxe.extern.EitherType<IDBIndex, js.lib.IDBObjectStore>>;
+	final source : haxe.extern.EitherType<js.lib.IDBObjectStore, haxe.extern.EitherType<IDBIndex, IDBCursor>>;
 	/**
 		Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
 	**/

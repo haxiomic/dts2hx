@@ -1,3 +1,5 @@
 package js.html;
-extern typedef ClipboardEventInit = EventInit & { @:optional
-	var clipboardData : DataTransfer; };
+extern interface ClipboardEventInit extends EventInit {
+	@:optional
+	var clipboardData : DataTransfer;
+}

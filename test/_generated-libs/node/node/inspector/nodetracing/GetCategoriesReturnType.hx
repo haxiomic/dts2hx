@@ -1,5 +1,7 @@
 package node.inspector.nodetracing;
-extern typedef GetCategoriesReturnType = { /**
+extern interface GetCategoriesReturnType {
+	/**
 		A list of supported tracing categories.
 	**/
-	var categories : std.Array<String>; };
+	var categories : std.Array<String>;
+}

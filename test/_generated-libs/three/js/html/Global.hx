@@ -8,9 +8,4 @@ package js.html;
 		Used to reflect the zoomAndPan attribute, and is mixed in to other interfaces for elements that support this attribute.
 	**/
 	static var SVGZoomAndPan : { final SVG_ZOOMANDPAN_DISABLE : Float; final SVG_ZOOMANDPAN_MAGNIFY : Float; final SVG_ZOOMANDPAN_UNKNOWN : Float; };
-	/**
-		Holds useful CSS-related methods. No object with this interface are implemented: it contains only static methods and therefore is a utilitarian interface.
-	**/
-	static var CSS : js.html.CSS;
-	static var ServiceUIFrameContext : js.html.ServiceUIFrameContext;
 }

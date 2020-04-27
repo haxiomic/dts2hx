@@ -1,5 +1,7 @@
 package node.inspector.profiler;
-extern typedef SetSamplingIntervalParameterType = { /**
+extern interface SetSamplingIntervalParameterType {
+	/**
 		New sampling interval in microseconds.
 	**/
-	var interval : Float; };
+	var interval : Float;
+}

@@ -1,2 +1,4 @@
 package node.dns;
-extern typedef AnyMxRecord = MxRecord & { var type : String; };
+extern interface AnyMxRecord extends MxRecord {
+	var type : String;
+}

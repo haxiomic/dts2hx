@@ -1,2 +1,4 @@
 package node.zlib;
-extern typedef ZlibParams = { function params(level:Float, strategy:Float, callback:() -> Void):Void; };
+extern interface ZlibParams {
+	function params(level:Float, strategy:Float, callback:() -> Void):Void;
+}

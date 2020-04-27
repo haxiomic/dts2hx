@@ -1,2 +1,4 @@
 package node.stream;
-extern typedef Pipe = { };
+extern interface Pipe {
+
+}

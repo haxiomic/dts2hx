@@ -1,6 +1,8 @@
 package node.inspector.heapprofiler;
-extern typedef TakeHeapSnapshotParameterType = { /**
+extern interface TakeHeapSnapshotParameterType {
+	/**
 		If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
 	**/
 	@:optional
-	var reportProgress : Bool; };
+	var reportProgress : Bool;
+}

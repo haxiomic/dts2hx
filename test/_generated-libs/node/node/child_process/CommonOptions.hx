@@ -1,4 +1,7 @@
 package node.child_process;
-extern typedef CommonOptions = ProcessEnvOptions & { @:optional
-	var windowsHide : Bool; @:optional
-	var timeout : Float; };
+extern interface CommonOptions extends ProcessEnvOptions {
+	@:optional
+	var windowsHide : Bool;
+	@:optional
+	var timeout : Float;
+}

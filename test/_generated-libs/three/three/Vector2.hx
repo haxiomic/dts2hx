@@ -4,7 +4,7 @@ package three;
 	
 	( class Vector2 implements Vector<Vector2> )
 **/
-@:jsRequire("three", "Vector2") extern class Vector2 {
+@:jsRequire("three", "Vector2") extern class Vector2 implements Vector {
 	function new(?x:Float, ?y:Float);
 	var x : Float;
 	var y : Float;

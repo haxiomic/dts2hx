@@ -1,5 +1,7 @@
 package node.inspector.runtime;
-extern typedef GetIsolateIdReturnType = { /**
+extern interface GetIsolateIdReturnType {
+	/**
 		The isolate id.
 	**/
-	var id : String; };
+	var id : String;
+}

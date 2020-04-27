@@ -1,2 +1,4 @@
 package js.html;
-extern typedef WindowConsole = { final console : Console; };
+extern interface WindowConsole {
+	final console : Console;
+}

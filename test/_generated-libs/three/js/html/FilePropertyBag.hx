@@ -1,3 +1,5 @@
 package js.html;
-extern typedef FilePropertyBag = BlobPropertyBag & { @:optional
-	var lastModified : Float; };
+extern interface FilePropertyBag extends BlobPropertyBag {
+	@:optional
+	var lastModified : Float;
+}

@@ -1,3 +1,5 @@
 package js.html;
-extern typedef WebGLContextEventInit = EventInit & { @:optional
-	var statusMessage : String; };
+extern interface WebGLContextEventInit extends EventInit {
+	@:optional
+	var statusMessage : String;
+}

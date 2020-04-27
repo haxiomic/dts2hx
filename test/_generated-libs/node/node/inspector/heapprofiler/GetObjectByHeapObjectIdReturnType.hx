@@ -1,5 +1,7 @@
 package node.inspector.heapprofiler;
-extern typedef GetObjectByHeapObjectIdReturnType = { /**
+extern interface GetObjectByHeapObjectIdReturnType {
+	/**
 		Evaluation result.
 	**/
-	var result : node.inspector.runtime.RemoteObject; };
+	var result : node.inspector.runtime.RemoteObject;
+}

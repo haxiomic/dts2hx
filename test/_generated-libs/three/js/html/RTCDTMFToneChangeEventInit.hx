@@ -1,2 +1,4 @@
 package js.html;
-extern typedef RTCDTMFToneChangeEventInit = EventInit & { var tone : String; };
+extern interface RTCDTMFToneChangeEventInit extends EventInit {
+	var tone : String;
+}

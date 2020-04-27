@@ -1,5 +1,7 @@
 package node.inspector.profiler;
-extern typedef GetBestEffortCoverageReturnType = { /**
+extern interface GetBestEffortCoverageReturnType {
+	/**
 		Coverage data for the current isolate.
 	**/
-	var result : std.Array<ScriptCoverage>; };
+	var result : std.Array<ScriptCoverage>;
+}

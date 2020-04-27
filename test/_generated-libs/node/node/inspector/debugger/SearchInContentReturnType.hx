@@ -1,5 +1,7 @@
 package node.inspector.debugger;
-extern typedef SearchInContentReturnType = { /**
+extern interface SearchInContentReturnType {
+	/**
 		List of search matches.
 	**/
-	var result : std.Array<SearchMatch>; };
+	var result : std.Array<SearchMatch>;
+}

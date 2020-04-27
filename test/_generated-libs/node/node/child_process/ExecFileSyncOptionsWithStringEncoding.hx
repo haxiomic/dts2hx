@@ -1,2 +1,4 @@
 package node.child_process;
-extern typedef ExecFileSyncOptionsWithStringEncoding = ExecFileSyncOptions & { var encoding : String; };
+extern interface ExecFileSyncOptionsWithStringEncoding extends ExecFileSyncOptions {
+	var encoding : String;
+}

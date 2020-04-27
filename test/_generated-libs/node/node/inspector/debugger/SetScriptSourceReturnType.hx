@@ -1,22 +1,28 @@
 package node.inspector.debugger;
-extern typedef SetScriptSourceReturnType = { /**
+extern interface SetScriptSourceReturnType {
+	/**
 		New stack trace in case editing has happened while VM was stopped.
 	**/
 	@:optional
-	var callFrames : std.Array<CallFrame>; /**
+	var callFrames : std.Array<CallFrame>;
+	/**
 		Whether current call stack  was modified after applying the changes.
 	**/
 	@:optional
-	var stackChanged : Bool; /**
+	var stackChanged : Bool;
+	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTrace : node.inspector.runtime.StackTrace; /**
+	var asyncStackTrace : node.inspector.runtime.StackTrace;
+	/**
 		Async stack trace, if any.
 	**/
 	@:optional
-	var asyncStackTraceId : node.inspector.runtime.StackTraceId; /**
+	var asyncStackTraceId : node.inspector.runtime.StackTraceId;
+	/**
 		Exception details if any.
 	**/
 	@:optional
-	var exceptionDetails : node.inspector.runtime.ExceptionDetails; };
+	var exceptionDetails : node.inspector.runtime.ExceptionDetails;
+}

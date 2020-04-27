@@ -1,2 +1,4 @@
 package node.dns;
-extern typedef LookupAllOptions = LookupOptions & { var all : Bool; };
+extern interface LookupAllOptions extends LookupOptions {
+	var all : Bool;
+}

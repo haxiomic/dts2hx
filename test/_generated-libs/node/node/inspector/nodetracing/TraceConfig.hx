@@ -1,9 +1,12 @@
 package node.inspector.nodetracing;
-extern typedef TraceConfig = { /**
+extern interface TraceConfig {
+	/**
 		Controls how the trace buffer stores data.
 	**/
 	@:optional
-	var recordMode : String; /**
+	var recordMode : String;
+	/**
 		Included category filters.
 	**/
-	var includedCategories : std.Array<String>; };
+	var includedCategories : std.Array<String>;
+}

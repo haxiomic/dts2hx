@@ -1,5 +1,7 @@
 package node.crypto;
-extern typedef ECKeyPairKeyObjectOptions = { /**
+extern interface ECKeyPairKeyObjectOptions {
+	/**
 		Name of the curve to use.
 	**/
-	var namedCurve : String; };
+	var namedCurve : String;
+}

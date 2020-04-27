@@ -1,3 +1,5 @@
 package node.crypto;
-extern typedef CipherGCMOptions = node.stream.TransformOptions & { @:optional
-	var authTagLength : Float; };
+extern interface CipherGCMOptions extends node.stream.TransformOptions {
+	@:optional
+	var authTagLength : Float;
+}

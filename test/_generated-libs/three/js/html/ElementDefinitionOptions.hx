@@ -1,4 +1,6 @@
 package js.html;
-extern typedef ElementDefinitionOptions = { @:native("extends")
+extern interface ElementDefinitionOptions {
+	@:native("extends")
 	@:optional
-	var extends_ : String; };
+	var extends_ : String;
+}

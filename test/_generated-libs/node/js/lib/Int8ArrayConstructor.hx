@@ -1,11 +1,15 @@
 package js.lib;
-extern typedef Int8ArrayConstructor = { final prototype : Int8Array; /**
+extern interface Int8ArrayConstructor {
+	final prototype : Int8Array;
+	/**
 		The size in bytes of each element in the array.
 	**/
-	final BYTES_PER_ELEMENT : Float; /**
+	final BYTES_PER_ELEMENT : Float;
+	/**
 		Returns a new array from a set of elements.
 	**/
-	function of(items:std.Array<Float>):Int8Array; /**
+	function of(items:std.Array<Float>):Int8Array;
+	/**
 		Creates an array from an array-like or iterable object.
 		
 		
@@ -18,4 +22,5 @@ extern typedef Int8ArrayConstructor = { final prototype : Int8Array; /**
 	**/
 	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Any):Int8Array { })
 	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Any):Int8Array { })
-	function from(arrayLike:ArrayLike<Float>):Int8Array; };
+	function from(arrayLike:ArrayLike<Float>):Int8Array;
+}

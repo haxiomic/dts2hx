@@ -1,2 +1,4 @@
 package node.zlib;
-extern typedef BrotliDecompress = node.stream.Transform & Zlib & { };
+extern interface BrotliDecompress extends node.stream.Transform extends Zlib {
+
+}

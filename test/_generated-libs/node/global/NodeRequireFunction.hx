@@ -1,3 +1,5 @@
 package global;
-extern typedef NodeRequireFunction = { @:selfCall
-	function call(id:String):Any; };
+extern interface NodeRequireFunction {
+	@:selfCall
+	function call(id:String):Any;
+}

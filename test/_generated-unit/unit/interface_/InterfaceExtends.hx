@@ -1,2 +1,4 @@
 package unit.interface_;
-extern typedef InterfaceExtends<T> = InterfaceMapLike<T> & { var additionalField : T; };
+extern interface InterfaceExtends<T> extends InterfaceMapLike<T> {
+	var additionalField : T;
+}

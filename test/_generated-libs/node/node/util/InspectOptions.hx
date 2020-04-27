@@ -1,2 +1,4 @@
 package node.util;
-extern typedef InspectOptions = global.nodejs.InspectOptions & { };
+extern interface InspectOptions extends global.nodejs.InspectOptions {
+
+}

@@ -1,3 +1,5 @@
 package node.child_process;
-extern typedef MessageOptions = { @:optional
-	var keepOpen : Bool; };
+extern interface MessageOptions {
+	@:optional
+	var keepOpen : Bool;
+}

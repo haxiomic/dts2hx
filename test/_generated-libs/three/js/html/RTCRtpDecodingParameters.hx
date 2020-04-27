@@ -1,2 +1,4 @@
 package js.html;
-extern typedef RTCRtpDecodingParameters = RTCRtpCodingParameters & { };
+extern interface RTCRtpDecodingParameters extends RTCRtpCodingParameters {
+
+}

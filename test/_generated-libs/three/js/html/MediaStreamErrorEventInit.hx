@@ -1,3 +1,5 @@
 package js.html;
-extern typedef MediaStreamErrorEventInit = EventInit & { @:optional
-	var error : MediaStreamError; };
+extern interface MediaStreamErrorEventInit extends EventInit {
+	@:optional
+	var error : MediaStreamError;
+}

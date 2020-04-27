@@ -1,5 +1,5 @@
 package unit.symbols;
-@:jsRequire("./unit/symbols", "InterfaceValueModule") @tsInterface extern class InterfaceValueModule {
+extern interface InterfaceValueModule {
 	var field : String;
 	static var X : Float;
 }

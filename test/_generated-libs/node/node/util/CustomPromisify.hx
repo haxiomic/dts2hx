@@ -1,2 +1,4 @@
 package node.util;
-extern typedef CustomPromisify<TCustom:(js.lib.Function)> = js.lib.Function & { var __promisify__ : TCustom; };
+extern interface CustomPromisify<TCustom:(js.lib.Function)> extends js.lib.Function {
+	var __promisify__ : TCustom;
+}

@@ -1,3 +1,5 @@
 package js.html;
-extern typedef PeriodicWaveConstraints = { @:optional
-	var disableNormalization : Bool; };
+extern interface PeriodicWaveConstraints {
+	@:optional
+	var disableNormalization : Bool;
+}

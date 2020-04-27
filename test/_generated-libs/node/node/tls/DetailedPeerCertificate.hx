@@ -1,2 +1,4 @@
 package node.tls;
-extern typedef DetailedPeerCertificate = PeerCertificate & { var issuerCertificate : DetailedPeerCertificate; };
+extern interface DetailedPeerCertificate extends PeerCertificate {
+	var issuerCertificate : DetailedPeerCertificate;
+}

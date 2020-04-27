@@ -1,2 +1,5 @@
 package js.html;
-extern typedef CanvasCompositing = { var globalAlpha : Float; var globalCompositeOperation : String; };
+extern interface CanvasCompositing {
+	var globalAlpha : Float;
+	var globalCompositeOperation : String;
+}

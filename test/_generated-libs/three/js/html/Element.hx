@@ -234,7 +234,7 @@ package js.html;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Node & ParentNode>;
+	final parentNode : Null<Any>;
 	/**
 		Returns the previous sibling.
 	**/

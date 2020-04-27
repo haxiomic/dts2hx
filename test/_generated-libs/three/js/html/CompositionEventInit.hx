@@ -1,3 +1,5 @@
 package js.html;
-extern typedef CompositionEventInit = UIEventInit & { @:optional
-	var data : String; };
+extern interface CompositionEventInit extends UIEventInit {
+	@:optional
+	var data : String;
+}

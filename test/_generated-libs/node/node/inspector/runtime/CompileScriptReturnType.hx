@@ -1,10 +1,13 @@
 package node.inspector.runtime;
-extern typedef CompileScriptReturnType = { /**
+extern interface CompileScriptReturnType {
+	/**
 		Id of the script.
 	**/
 	@:optional
-	var scriptId : String; /**
+	var scriptId : String;
+	/**
 		Exception details.
 	**/
 	@:optional
-	var exceptionDetails : ExceptionDetails; };
+	var exceptionDetails : ExceptionDetails;
+}

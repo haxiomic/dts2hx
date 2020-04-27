@@ -1,2 +1,4 @@
 package node.zlib;
-extern typedef Gzip = node.stream.Transform & Zlib & { };
+extern interface Gzip extends node.stream.Transform extends Zlib {
+
+}

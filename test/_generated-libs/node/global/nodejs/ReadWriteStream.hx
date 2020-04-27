@@ -1,2 +1,4 @@
 package global.nodejs;
-extern typedef ReadWriteStream = ReadableStream & WritableStream & { };
+extern interface ReadWriteStream extends ReadableStream extends WritableStream {
+
+}

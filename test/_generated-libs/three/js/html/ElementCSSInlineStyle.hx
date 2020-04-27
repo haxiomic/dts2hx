@@ -1,2 +1,4 @@
 package js.html;
-extern typedef ElementCSSInlineStyle = { final style : js.lib.CSSStyleDeclaration; };
+extern interface ElementCSSInlineStyle {
+	final style : js.lib.CSSStyleDeclaration;
+}

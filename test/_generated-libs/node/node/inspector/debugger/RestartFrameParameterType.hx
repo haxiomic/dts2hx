@@ -1,5 +1,7 @@
 package node.inspector.debugger;
-extern typedef RestartFrameParameterType = { /**
+extern interface RestartFrameParameterType {
+	/**
 		Call frame identifier to evaluate on.
 	**/
-	var callFrameId : String; };
+	var callFrameId : String;
+}

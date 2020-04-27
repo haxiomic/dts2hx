@@ -1,5 +1,7 @@
 package three;
-extern typedef WebGLDebug = { /**
+extern interface WebGLDebug {
+	/**
 		Enables error checking and reporting when shader programs are being compiled.
 	**/
-	var checkShaderErrors : Bool; };
+	var checkShaderErrors : Bool;
+}

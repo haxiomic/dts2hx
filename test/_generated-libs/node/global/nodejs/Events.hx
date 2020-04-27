@@ -1,2 +1,4 @@
 package global.nodejs;
-extern typedef Events = EventEmitter & { };
+extern interface Events extends EventEmitter {
+
+}

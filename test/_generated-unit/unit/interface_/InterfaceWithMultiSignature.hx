@@ -1,2 +1,4 @@
 package unit.interface_;
-extern typedef InterfaceWithMultiSignature<T> = { };
+extern interface InterfaceWithMultiSignature<T> {
+
+}

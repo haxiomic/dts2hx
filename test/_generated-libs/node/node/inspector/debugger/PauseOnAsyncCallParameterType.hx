@@ -1,5 +1,7 @@
 package node.inspector.debugger;
-extern typedef PauseOnAsyncCallParameterType = { /**
+extern interface PauseOnAsyncCallParameterType {
+	/**
 		Debugger will pause when async call with given stack trace is started.
 	**/
-	var parentStackTraceId : node.inspector.runtime.StackTraceId; };
+	var parentStackTraceId : node.inspector.runtime.StackTraceId;
+}

@@ -1,2 +1,4 @@
 package node.child_process;
-extern typedef ExecOptionsWithBufferEncoding = ExecOptions & { var encoding : Null<String>; };
+extern interface ExecOptionsWithBufferEncoding extends ExecOptions {
+	var encoding : Null<String>;
+}

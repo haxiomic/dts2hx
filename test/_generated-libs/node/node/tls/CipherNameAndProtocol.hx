@@ -1,8 +1,11 @@
 package node.tls;
-extern typedef CipherNameAndProtocol = { /**
+extern interface CipherNameAndProtocol {
+	/**
 		The cipher name.
 	**/
-	var name : String; /**
+	var name : String;
+	/**
 		SSL/TLS protocol version.
 	**/
-	var version : String; };
+	var version : String;
+}
