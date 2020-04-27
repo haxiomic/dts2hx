@@ -12,6 +12,7 @@ import typescript.ts.ResolvedModuleFull;
 
 using StringTools;
 using tool.StringTools;
+using Lambda;
 
 @:nullSafety
 class Main {
@@ -267,6 +268,15 @@ class Main {
 			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, generateLibraryName(converter.entryPointModuleId)]) : outputPath;
 
 			for (_ => haxeModule in converter.generatedModules) {
+
+				// skip empty @valueModuleOnly classes
+				var skipModule = if (haxeModule.meta != null) {
+					var isValueModuleOnly = haxeModule.meta.find(m -> m.name == 'valueModuleOnly') != null;
+					isValueModuleOnly && haxeModule.fields.length == 0;
+				} else false;
+
+				if (skipModule) continue;
+
 				var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
 				var moduleHaxeStr = printer.printTypeDefinition(haxeModule);
 
