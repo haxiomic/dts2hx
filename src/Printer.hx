@@ -9,7 +9,10 @@ using Lambda;
 **/
 // @:nullSafety
 class Printer extends haxe.macro.Printer {
-	
+
+	/**
+		Fixes https://github.com/HaxeFoundation/haxe/issues/9353
+	**/
 	public override function printComplexType(ct:ComplexType) return switch(ct) {
 		case TPath(tp): printTypePath(tp);
 		case TFunction(args, ret):
@@ -32,6 +35,9 @@ class Printer extends haxe.macro.Printer {
 		case TIntersection(tl): tl.map(printComplexType).join(" & ");
 	}
 	
+	/**
+		Fixes https://github.com/HaxeFoundation/haxe/issues/9349
+	**/
 	public override function printField(field:Field) {
 		inline function orderAccess(access: Array<Access>) {
 			// final should always be printed last
