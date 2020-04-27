@@ -6,7 +6,7 @@ package unit.class_;
 	var arrayField : std.Array<String>;
 	var thisClassType : ClassBase<T>;
 	var typeParamField : T;
-	var typeofSelf : { function staticMethod<T>(a:Float):T; var staticField : Float; };
+	var typeofSelf : { function staticMethod<T>(a:Float):T; var staticField : Float; var namespaceField : String; };
 	final readonlyField : Float;
 	function __constructor(example:String):Void;
 	function method(a:Float, b:String):Any;
@@ -18,4 +18,5 @@ package unit.class_;
 	var accessor : Bool;
 	static function staticMethod<T>(a:Float):T;
 	static var staticField : Float;
+	static var namespaceField : String;
 }

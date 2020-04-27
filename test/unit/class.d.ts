@@ -29,6 +29,10 @@ export class ClassBase<T> {
     static staticField: number;
 }
 
+export namespace ClassBase {
+    const namespaceField: string;
+}
+
 export class ClassExtending<K> extends ClassBase<Array<K>> {
     additionalField: number;
 }
