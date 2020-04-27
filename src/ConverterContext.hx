@@ -1051,16 +1051,21 @@ class ConverterContext {
 			null;
 		}
 		
+		var access = if (baseDeclaration != null && baseDeclaration.modifiers != null) {
+			accessFromModifiers(baseDeclaration.modifiers, symbol);
+		} else [];
+		
 		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
 			// Prototype symbol should be filtered out of properties before converting to hx fields
 			Log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
 			debug();
 			FVar(macro :Any, null);
 
-		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable) != 0) {
+		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable | SymbolFlags.GetAccessor | SymbolFlags.SetAccessor) != 0) {
 			// variable field
 			if (baseDeclaration != null) switch baseDeclaration.kind {
 				case VariableDeclaration, PropertySignature, PropertyDeclaration:
+				case GetAccessor, SetAccessor:
 				default: 
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
@@ -1073,6 +1078,11 @@ class ConverterContext {
 
 			if (isOptional) {
 				hxType = hxType.unwrapNull();
+			}
+
+			// get-only accessors are readonly
+			if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
+				if (!access.has(AFinal)) access.push(AFinal);
 			}
 
 			FVar(hxType, null);
@@ -1149,7 +1159,7 @@ class ConverterContext {
 			pos: pos,
 			kind: kind,
 			doc: docParts.join('\n\n'),
-			access: (baseDeclaration != null && baseDeclaration.modifiers != null) ? accessFromModifiers(baseDeclaration.modifiers, symbol) : [],
+			access: access,
 		};
 	}
 
