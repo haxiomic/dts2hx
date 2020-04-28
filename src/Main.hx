@@ -23,7 +23,7 @@ class Main {
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';
 		Console.errorPrefix = '<b,red>> Error:</b> ';
 
-		Console.warn('Tool is under active development and externs may not compile');
+		Console.warn('Tool is under active development - externs may not compile');
 
 		var userArgs = Node.process.argv.slice(2);
 
@@ -280,7 +280,8 @@ class Main {
 				if (skipModule) continue;
 
 				var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
-				var moduleHaxeStr = printer.printTypeDefinition(haxeModule);
+				var printPackage = true;
+				var moduleHaxeStr = printer.printTypeDefinition(haxeModule, printPackage);
 
 				touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
