@@ -36,7 +36,7 @@ class Printer extends haxe.macro.Printer {
 		}
 
 		function printExtends(tpl: Array<TypePath>): String {
-			var e = [for (tp in tpl) '>' + printTypePath(tp) + ','];
+			var e = [for (tp in tpl) '> ${printTypePath(tp)},'];
 			return if (_multiLineStructures) {
 				e.map(e -> tabs + e + '\n').join('');
 			} else {
