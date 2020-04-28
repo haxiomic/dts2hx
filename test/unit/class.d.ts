@@ -8,7 +8,9 @@ export class ClassBase<T> {
 
     readonly readonlyField: number;
     
-    // this field has a special name in typescript; we want to make sure it's not mistaken for the constructor
+    /**
+     * This field has a special name in typescript; we want to make sure it's not mistaken for the constructor
+     */
     __constructor(example: string): void;
 
     constructor(overloadParam: T)
@@ -16,14 +18,18 @@ export class ClassBase<T> {
 
     
     method(a: number, b: string);
-
+    
+    /** single parameter signature */
     methodOverloaded(a: number);
+    /** multi-parameter signature */
     methodOverloaded(a: string, b: Array<{}>);
 
     get accessor(): boolean;
     set accessor(value: boolean);
 
-    // should be readonly
+    /**
+     * should be readonly
+     */
     get getOnlyAccessor(): number;
 
     set setOnlyAccessor(v: number);
