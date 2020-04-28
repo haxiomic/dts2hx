@@ -647,7 +647,7 @@ class ConverterContext {
 		return symbol.getDocumentationComment(tc)
 			.map(s -> s.text.trim())
 			.concat(sourceLocationInfo)
-			.join('\n\n');
+			.join('\n');
 	}
 
 	/**
@@ -938,7 +938,7 @@ class ConverterContext {
 				pos: null,
 			}: MetadataEntry);
 		});
-		var baseDoc = baseSignature.getDocumentationComment(tc).map(d -> d.text).join('\n\n');
+		var baseDoc = baseSignature.getDocumentationComment(tc).map(d -> d.text).join('\n');
 		return {
 			name: fieldName,
 			meta: overloadMetas,
