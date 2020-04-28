@@ -1,5 +1,5 @@
 package unit.interface_;
-extern interface InterfaceNested {
+extern typedef InterfaceNested = {
 	@:optional
 	var color : String;
-}
+};

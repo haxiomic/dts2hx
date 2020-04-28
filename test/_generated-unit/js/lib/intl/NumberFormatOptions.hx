@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface NumberFormatOptions {
+extern typedef NumberFormatOptions = {
 	@:optional
 	var localeMatcher : String;
 	@:optional
@@ -20,4 +20,4 @@ extern interface NumberFormatOptions {
 	var minimumSignificantDigits : Float;
 	@:optional
 	var maximumSignificantDigits : Float;
-}
+};

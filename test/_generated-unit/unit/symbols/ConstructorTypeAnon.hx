@@ -3,6 +3,8 @@ package unit.symbols;
 	function new();
 	@:selfCall
 	static function call(constructorTypeCallParam:Float):Void;
-	static var prototype : { var anonTypeField : Float; };
+	static var prototype : {
+		var anonTypeField : Float;
+	};
 	static var constructorTypeField : String;
 }

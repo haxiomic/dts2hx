@@ -1,5 +1,5 @@
 package big_js;
-extern interface BigConstructor {
+extern typedef BigConstructor = {
 	/**
 		Returns a new instance of a Big number object
 		
@@ -38,4 +38,4 @@ extern interface BigConstructor {
 		Default value: 21
 	**/
 	var PE : Float;
-}
+};

@@ -1,5 +1,5 @@
 package js.lib;
-extern interface Iterator<T, TReturn, TNext> {
+extern typedef Iterator<T, TReturn, TNext> = {
 	function next(args:haxe.extern.EitherType<std.Array<Any>, js.lib.Tuple1<TNext>>):haxe.extern.EitherType<IteratorYieldResult<T>, IteratorReturnResult<TReturn>>;
 	@:native("return")
 	@:optional
@@ -7,4 +7,4 @@ extern interface Iterator<T, TReturn, TNext> {
 	@:native("throw")
 	@:optional
 	function throw_(?e:Any):haxe.extern.EitherType<IteratorYieldResult<T>, IteratorReturnResult<TReturn>>;
-}
+};

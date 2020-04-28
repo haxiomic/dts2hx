@@ -31,16 +31,12 @@ package js.lib;
 	/**
 		Determines whether two strings are equivalent in the current locale.
 		
-		
-		
 		Determines whether two strings are equivalent in the current or specified locale.
 	**/
 	@:overload(function(that:String, ?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.CollatorOptions):Float { })
 	function localeCompare(that:String):Float;
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.
-		
-		
 		
 		Matches a string an object that supports being matched against, and returns an array containing the results of that search.
 	**/
@@ -49,15 +45,9 @@ package js.lib;
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
-		
-		
 		Replaces text in a string, using a regular expression or search string.
 		
-		
-		
 		Replaces text in a string, using an object that supports replacement within a string.
-		
-		
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
@@ -67,8 +57,6 @@ package js.lib;
 	function replace(searchValue:haxe.extern.EitherType<String, RegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
-		
-		
 		
 		Finds the first substring match in a regular expression search.
 	**/
@@ -80,8 +68,6 @@ package js.lib;
 	function slice(?start:Float, ?end:Float):String;
 	/**
 		Split a string into substrings using the specified separator and return them as an array.
-		
-		
 		
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
@@ -147,8 +133,6 @@ package js.lib;
 		Returns the String value result of normalizing the string into the normalization form
 		named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
 		
-		
-		
 		Returns the String value result of normalizing the string into the normalization form
 		named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
 	**/
@@ -191,8 +175,6 @@ package js.lib;
 	function fontcolor(color:String):String;
 	/**
 		Returns a <font> HTML element and sets the size attribute value
-		
-		
 		
 		Returns a <font> HTML element and sets the size attribute value
 	**/

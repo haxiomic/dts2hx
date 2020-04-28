@@ -1,4 +1,4 @@
 package unit.interface_;
-extern interface Base3 {
+extern typedef Base3 = {
 	var field3 : Float;
-}
+};

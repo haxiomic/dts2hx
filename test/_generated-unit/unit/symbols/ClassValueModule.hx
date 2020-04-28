@@ -1,5 +1,5 @@
 package unit.symbols;
-@:jsRequire("./unit/symbols", "ClassValueModule") extern class ClassValueModule {
+@:jsRequire("./unit/symbols", "ClassValueModule") @tsInterface extern class ClassValueModule {
 	function new(i:Float);
 	var field : String;
 	static var staticField : Float;

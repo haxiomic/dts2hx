@@ -1,7 +1,7 @@
 package unit.interface_;
-extern interface Error {
+extern typedef Error = {
 	var name : String;
 	var message : String;
 	@:optional
 	var stack : String;
-}
+};

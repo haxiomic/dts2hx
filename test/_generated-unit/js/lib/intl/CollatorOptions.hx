@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface CollatorOptions {
+extern typedef CollatorOptions = {
 	@:optional
 	var usage : String;
 	@:optional
@@ -12,4 +12,4 @@ extern interface CollatorOptions {
 	var sensitivity : String;
 	@:optional
 	var ignorePunctuation : Bool;
-}
+};

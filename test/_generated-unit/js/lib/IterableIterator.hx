@@ -1,4 +1,2 @@
 package js.lib;
-extern interface IterableIterator<T> extends Iterator<T, Any, Void> {
-
-}
+extern typedef IterableIterator<T> = Iterator<T, Any, Void> & { };
