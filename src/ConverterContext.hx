@@ -982,7 +982,7 @@ class ConverterContext {
 		var hxRet = if (isLocalTypeParam(tsRet)) {
 			macro :Any;
 		} else {
-			complexTypeFromTsType(tc.getReturnTypeOfSignature(callSignature), accessContext, enclosingDeclaration);
+			complexTypeFromTsType(tc.getReturnTypeOfSignature(callSignature), accessContext, callSignature.declaration);
 		}
 
 		// callSignature.typeParameters
@@ -1267,7 +1267,7 @@ class ConverterContext {
 			}: FunctionArg);
 		}) else [];
 
-		var hxRet = complexTypeFromTsType(tc.getReturnTypeOfSignature(signature), accessContext, enclosingDeclaration);
+		var hxRet = complexTypeFromTsType(tc.getReturnTypeOfSignature(signature), accessContext, signature.declaration);
 
 		return {
 			args: hxParameters,
