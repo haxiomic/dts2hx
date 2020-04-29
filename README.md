@@ -1,4 +1,4 @@
-# .d.ts to .hx
+# TypeScript Definitions to Haxe Extern Converter
 
 Hi, this is a work in progress TypeScript Definition to Haxe Extern converter that uses the typescript compiler. It's not yet ready to use but much of the groundwork has been laid
 
