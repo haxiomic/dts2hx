@@ -28,6 +28,9 @@ export class TypeParameterBug {
 
 export interface DefaultTypeParameter<X = boolean> {
 	field: X;
+	fieldUnion: number | X;
+	fieldTupleUnion: number | [X];
+	fn(arg: X, argTuple: [X], argUnion: number | X): X;
 }
 export type DefaultTypeParameterUser = DefaultTypeParameter;
 export type DefaultTypeParameterField = DefaultTypeParameterUser['field'];
