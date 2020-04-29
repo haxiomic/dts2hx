@@ -99,6 +99,13 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js unit/interface",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["./test/unit/interface", "--verbose"],
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "dts2hx.js unit/ambient",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["./test/unit/ambient", "--verbose"],
