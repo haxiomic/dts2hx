@@ -1,8 +1,3 @@
-import typescript.ts.IntersectionType;
-import typescript.ts.InternalSymbolName;
-import typescript.ts.Declaration;
-import typescript.ts.Modifier;
-import typescript.ts.ModifiersArray;
 import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
@@ -10,9 +5,12 @@ import tool.TsSyntaxTools;
 import typescript.Ts;
 import typescript.ts.CompilerHost;
 import typescript.ts.CompilerOptions;
-import typescript.ts.ExpressionWithTypeArguments;
+import typescript.ts.Declaration;
 import typescript.ts.GenericType;
 import typescript.ts.InterfaceType;
+import typescript.ts.IntersectionType;
+import typescript.ts.Modifier;
+import typescript.ts.ModifiersArray;
 import typescript.ts.Node;
 import typescript.ts.NodeBuilderFlags;
 import typescript.ts.NumberLiteralType;
@@ -38,13 +36,13 @@ import typescript.ts.UnionType;
 
 using Lambda;
 using StringTools;
+using SupportTypes;
 using TsInternal;
 using tool.HaxeTools;
 using tool.SymbolAccessTools;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
 using tool.TsTypeTools;
-using SupportTypes;
 
 private typedef TsType = typescript.ts.Type;
 
