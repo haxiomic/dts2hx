@@ -1133,6 +1133,12 @@ class ConverterContext {
 		var userDoc = getDoc(symbol);
 		var docParts = userDoc != '' ? [userDoc] : [];
 
+		var tsType = if (baseDeclaration == null) {
+			tc.getDeclaredTypeOfSymbol(symbol);
+		} else {
+			tc.getTypeOfSymbolAtLocation(symbol, baseDeclaration);
+		}
+
 		// add errors to field docs
 		function onError(message) {
 			Log.error('fieldFromSymbol(): ' + message, symbol);
@@ -1154,11 +1160,7 @@ class ConverterContext {
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
-			var hxType = if (baseDeclaration == null) {
-				complexTypeFromTsType(tc.getDeclaredTypeOfSymbol(symbol), accessContext, enclosingDeclaration);
-			} else {
-				complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(symbol, baseDeclaration), accessContext, baseDeclaration);
-			}
+			var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
 
 			if (isOptional) {
 				hxType = hxType.unwrapNull();
@@ -1178,36 +1180,15 @@ class ConverterContext {
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
-			// function field
-			var overloadDeclarations = if (baseDeclaration != null) {
-				symbol.declarations.filter(d -> d != baseDeclaration && d.kind == baseDeclaration.kind);
-			} else [];
-
-			for (overloadDeclaration in overloadDeclarations) {
-				var signature = tc.getSignatureFromDeclaration(cast overloadDeclaration);
-				if (signature == null) {
-					onError('Signature was null');
-					continue;
+			var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
+			if (signatures.length > 0) {
+				var functionField = functionFieldFromSignatures(safeName, signatures, accessContext, enclosingDeclaration);
+				if (functionField.meta != null) {
+					meta = meta.concat(functionField.meta);
 				}
-				var fun = functionFromSignature(signature, accessContext, enclosingDeclaration);
-				// overloads require an empty expression
-				fun.expr = macro {};
-				meta.push({
-					name: ':overload',
-					pos: pos,
-					params: [{
-						expr: EFunction(FAnonymous, fun),
-						pos: pos,
-					}]
-				});
-			}
-
-			var signature = tc.getSignatureFromDeclaration(cast baseDeclaration);
-			if (signature != null) {
-				// haxe use overload metadata to handle multiple declarations
-				FFun(functionFromSignature(signature, accessContext, enclosingDeclaration));
+				functionField.kind;
 			} else {
-				onError('Signature was null');
+				onError('Internal error: failed to get function signatures from type (type is probably wrapped in another)');
 				FFun({
 					args: [],
 					ret: macro :Any,
@@ -1215,7 +1196,6 @@ class ConverterContext {
 					expr: null,
 				});
 			}
-
 		} else if (symbol.flags & SymbolFlags.EnumMember != 0) {
 
 			var parent = symbol.getSymbolParent();
@@ -1252,7 +1232,7 @@ class ConverterContext {
 
 		var hxParameters = if (signature.parameters != null ) signature.parameters.map(s -> {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var hxType = complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(s, parameterDeclaration), accessContext, parameterDeclaration);
+			var hxType = complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(s, parameterDeclaration), accessContext, enclosingDeclaration);
 			var isOptional = tc.isOptionalParameter(parameterDeclaration);
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
