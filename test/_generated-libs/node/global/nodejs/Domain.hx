@@ -10,14 +10,14 @@ extern typedef Domain = {
 	function once(event:String, listener:(args:std.Array<Any>) -> Void):Domain;
 	function removeListener(event:String, listener:(args:std.Array<Any>) -> Void):Domain;
 	function removeAllListeners(?event:String):Domain;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
-	function setMaxListeners(n:Float):EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Domain;
+	function setMaxListeners(n:Float):Domain;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
-	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
-	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Domain;
+	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Domain;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 };

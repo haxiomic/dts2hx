@@ -74,8 +74,8 @@ package three;
 	function normalizeNormals():Void;
 	function toNonIndexed():BufferGeometry;
 	function toJSON():Any;
-	function clone():BufferGeometry;
-	function copy(source:BufferGeometry):BufferGeometry;
+	function clone():TorusBufferGeometry;
+	function copy(source:BufferGeometry):TorusBufferGeometry;
 	/**
 		Disposes the object from memory.
 		You need to call this when you want the bufferGeometry removed while the application is running.

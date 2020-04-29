@@ -210,11 +210,11 @@ package three;
 	/**
 		Return a new material with the same parameters as this material.
 	**/
-	function clone():Material;
+	function clone():MeshBasicMaterial;
 	/**
 		Copy the parameters from the passed material into this material.
 	**/
-	function copy(material:Material):Material;
+	function copy(material:Material):MeshBasicMaterial;
 	/**
 		This disposes the material. Textures of a material don't get disposed. These needs to be disposed by {@link Texture}.
 	**/

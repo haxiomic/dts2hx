@@ -203,7 +203,7 @@ package three;
 	/**
 		Return a new material with the same parameters as this material.
 	**/
-	function clone():Material;
+	function clone():SpriteMaterial;
 	/**
 		This disposes the material. Textures of a material don't get disposed. These needs to be disposed by {@link Texture}.
 	**/

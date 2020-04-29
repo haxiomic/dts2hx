@@ -9,32 +9,32 @@ extern typedef CipherCCM = {
 	@:native("final")
 	@:overload(function(output_encoding:String):String { })
 	function final_():global.IBuffer;
-	function setAutoPadding(?auto_padding:Bool):Cipher;
+	function setAutoPadding(?auto_padding:Bool):CipherCCM;
 	var readable : Bool;
 	function read(?size:Float):haxe.extern.EitherType<String, global.IBuffer>;
-	function setEncoding(encoding:String):global.nodejs.ReadableStream;
-	function pause():global.nodejs.ReadableStream;
-	function resume():global.nodejs.ReadableStream;
+	function setEncoding(encoding:String):CipherCCM;
+	function pause():CipherCCM;
+	function resume():CipherCCM;
 	function isPaused():Bool;
 	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function unpipe(?destination:global.nodejs.WritableStream):global.nodejs.ReadableStream;
+	function unpipe(?destination:global.nodejs.WritableStream):CipherCCM;
 	@:overload(function(chunk:global.IBuffer):Void { })
 	function unshift(chunk:String):Void;
-	function wrap(oldStream:global.nodejs.ReadableStream):global.nodejs.ReadableStream;
-	function addListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
-	function on(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
-	function once(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):global.nodejs.EventEmitter;
-	function setMaxListeners(n:Float):global.nodejs.EventEmitter;
+	function wrap(oldStream:global.nodejs.ReadableStream):CipherCCM;
+	function addListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
+	function on(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
+	function once(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):CipherCCM;
+	function setMaxListeners(n:Float):CipherCCM;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
-	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
-	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):global.nodejs.EventEmitter;
+	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
+	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):CipherCCM;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })

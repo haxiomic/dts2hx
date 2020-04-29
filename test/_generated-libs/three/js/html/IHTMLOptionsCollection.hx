@@ -34,6 +34,6 @@ extern typedef IHTMLOptionsCollection = {
 	/**
 		Retrieves an object from various collections.
 	**/
-	function item(index:Float):Null<T>;
-	function namedItem(name:String):Null<T>;
+	function item(index:Float):Null<IHTMLOptionElement>;
+	function namedItem(name:String):Null<IHTMLOptionElement>;
 };

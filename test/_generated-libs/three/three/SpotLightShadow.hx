@@ -7,7 +7,7 @@ package three;
 	var mapSize : Vector2;
 	var map : RenderTarget;
 	var matrix : Matrix4;
-	function copy(source:LightShadow):LightShadow;
-	function clone(?recursive:Bool):LightShadow;
+	function copy(source:LightShadow):SpotLightShadow;
+	function clone(?recursive:Bool):SpotLightShadow;
 	function toJSON():Any;
 }

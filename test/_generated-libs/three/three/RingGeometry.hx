@@ -145,14 +145,14 @@ package three;
 		Duplicated vertices are removed and faces' vertices are updated.
 	**/
 	function mergeVertices():Float;
-	function setFromPoints(points:haxe.extern.EitherType<std.Array<Vector3>, std.Array<Vector2>>):Geometry;
+	function setFromPoints(points:haxe.extern.EitherType<std.Array<Vector3>, std.Array<Vector2>>):RingGeometry;
 	function sortFacesByMaterialIndex():Void;
 	function toJSON():Any;
 	/**
 		Creates a new clone of the Geometry.
 	**/
-	function clone():Geometry;
-	function copy(source:Geometry):Geometry;
+	function clone():RingGeometry;
+	function copy(source:Geometry):RingGeometry;
 	/**
 		Removes The object from memory.
 		Don't forget to call this method when you remove an geometry because it can cuase meomory leaks.

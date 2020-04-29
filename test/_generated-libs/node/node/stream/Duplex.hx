@@ -22,13 +22,13 @@ package node.stream;
 	final readableLength : Float;
 	function _read(size:Float):Void;
 	function read(?size:Float):Any;
-	function setEncoding(encoding:String):Readable;
-	function pause():Readable;
-	function resume():Readable;
+	function setEncoding(encoding:String):Duplex;
+	function pause():Duplex;
+	function resume():Duplex;
 	function isPaused():Bool;
-	function unpipe(?destination:global.nodejs.WritableStream):Readable;
+	function unpipe(?destination:global.nodejs.WritableStream):Duplex;
 	function unshift(chunk:Any):Void;
-	function wrap(oldStream:global.nodejs.ReadableStream):Readable;
+	function wrap(oldStream:global.nodejs.ReadableStream):Duplex;
 	function push(chunk:Any, ?encoding:String):Bool;
 	function destroy(?error:js.lib.IError):Void;
 	/**
@@ -40,52 +40,52 @@ package node.stream;
 		4. readable
 		5. error
 	**/
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Readable { })
-	function addListener(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex { })
+	function addListener(event:String, listener:() -> Void):Duplex;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:js.lib.IError):Bool { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
 	function emit(event:String):Bool;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Readable { })
-	function on(event:String, listener:() -> Void):Readable;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Readable { })
-	function once(event:String, listener:() -> Void):Readable;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Readable { })
-	function prependListener(event:String, listener:() -> Void):Readable;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Readable { })
-	function prependOnceListener(event:String, listener:() -> Void):Readable;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:() -> Void):Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Readable { })
-	function removeListener(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex { })
+	function on(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex { })
+	function once(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex { })
+	function prependListener(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex { })
+	function prependOnceListener(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex { })
+	function removeListener(event:String, listener:() -> Void):Duplex;
 	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Duplex;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Duplex;
+	function setMaxListeners(n:Float):Duplex;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

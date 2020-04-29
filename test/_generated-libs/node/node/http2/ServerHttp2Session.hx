@@ -46,10 +46,10 @@ extern typedef ServerHttp2Session = {
 	function settings(settings:Settings):Void;
 	final type : Float;
 	function unref():Void;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ServerHttp2Session;
+	function setMaxListeners(n:Float):ServerHttp2Session;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

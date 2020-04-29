@@ -60,10 +60,10 @@ extern typedef ChildProcess = {
 	@:overload(function(event:String, listener:(code:Null<Float>, signal:Null<String>) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):ChildProcess { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):ChildProcess;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ChildProcess;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ChildProcess;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ChildProcess;
+	function setMaxListeners(n:Float):ChildProcess;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

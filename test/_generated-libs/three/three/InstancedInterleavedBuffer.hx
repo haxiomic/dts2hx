@@ -16,8 +16,8 @@ package three;
 	var needsUpdate : Bool;
 	function setArray(?array:js.lib.ArrayBufferView):Void;
 	function setDynamic(dynamic_:Bool):InterleavedBuffer;
-	function clone():InterleavedBuffer;
-	function copy(source:InterleavedBuffer):InterleavedBuffer;
+	function clone():InstancedInterleavedBuffer;
+	function copy(source:InterleavedBuffer):InstancedInterleavedBuffer;
 	function copyAt(index1:Float, attribute:InterleavedBufferAttribute, index2:Float):InterleavedBuffer;
 	function set(value:js.lib.ArrayLike<Float>, index:Float):InterleavedBuffer;
 }

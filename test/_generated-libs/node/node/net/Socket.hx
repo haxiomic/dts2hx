@@ -105,7 +105,7 @@ package node.net;
 	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
 	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
 	function _final(callback:(?error:js.lib.IError) -> Void):Void;
-	function setDefaultEncoding(encoding:String):node.stream.Duplex;
+	function setDefaultEncoding(encoding:String):Socket;
 	function cork():Void;
 	function uncork():Void;
 	var readable : Bool;
@@ -114,21 +114,21 @@ package node.net;
 	function _read(size:Float):Void;
 	function read(?size:Float):Any;
 	function isPaused():Bool;
-	function unpipe(?destination:global.nodejs.WritableStream):node.stream.Readable;
+	function unpipe(?destination:global.nodejs.WritableStream):Socket;
 	function unshift(chunk:Any):Void;
-	function wrap(oldStream:global.nodejs.ReadableStream):node.stream.Readable;
+	function wrap(oldStream:global.nodejs.ReadableStream):Socket;
 	function push(chunk:Any, ?encoding:String):Bool;
 	function destroy(?error:js.lib.IError):Void;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):node.stream.Readable { })
-	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
-	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):node.stream.Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.stream.Readable { })
-	function removeListener(event:String, listener:() -> Void):node.stream.Readable;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Socket { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Socket { })
+	function removeListener(event:String, listener:() -> Void):Socket;
 	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Socket;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Socket;
+	function setMaxListeners(n:Float):Socket;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

@@ -58,10 +58,10 @@ package node.dgram;
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Socket;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Socket;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Socket;
+	function setMaxListeners(n:Float):Socket;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

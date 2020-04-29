@@ -199,10 +199,10 @@ extern typedef Process = {
 	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void> { })
 	@:overload(function(event:String):std.Array<(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void> { })
 	function listeners(event:String):std.Array<(code:Float) -> Void>;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):EventEmitter;
-	function setMaxListeners(n:Float):EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Process;
+	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;

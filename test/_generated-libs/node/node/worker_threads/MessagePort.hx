@@ -29,8 +29,8 @@ package node.worker_threads;
 	@:overload(function(event:String, listener:(value:Any) -> Void):MessagePort { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):MessagePort { })
 	function off(event:String, listener:() -> Void):MessagePort;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):MessagePort;
+	function setMaxListeners(n:Float):MessagePort;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

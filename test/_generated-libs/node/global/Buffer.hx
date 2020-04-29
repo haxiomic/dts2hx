@@ -198,7 +198,7 @@ package global;
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 	**/
-	function copyWithin(target:Float, start:Float, ?end:Float):js.lib.IUint8Array;
+	function copyWithin(target:Float, start:Float, ?end:Float):IBuffer;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
@@ -269,7 +269,7 @@ package global;
 	/**
 		Sorts an array.
 	**/
-	function sort(?compareFn:(a:Float, b:Float) -> Float):js.lib.IUint8Array;
+	function sort(?compareFn:(a:Float, b:Float) -> Float):IBuffer;
 	/**
 		Converts a number to a string by using the current locale.
 	**/

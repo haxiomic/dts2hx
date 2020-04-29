@@ -6,7 +6,7 @@ package three;
 	var geometry : haxe.extern.EitherType<Geometry, BufferGeometry>;
 	var material : haxe.extern.EitherType<Material, std.Array<Material>>;
 	var isLine : Bool;
-	function computeLineDistances():Line;
+	function computeLineDistances():AxesHelper;
 	function raycast(raycaster:Raycaster, intersects:std.Array<Intersection>):Void;
 	/**
 		Unique number of this object instance.
@@ -116,7 +116,7 @@ package three;
 		This updates the position, rotation and scale with the matrix.
 	**/
 	function applyMatrix(matrix:Matrix4):Void;
-	function applyQuaternion(quaternion:Quaternion):Object3D;
+	function applyQuaternion(quaternion:Quaternion):AxesHelper;
 	function setRotationFromAxisAngle(axis:Vector3, angle:Float):Void;
 	function setRotationFromEuler(euler:Euler):Void;
 	function setRotationFromMatrix(m:Matrix4):Void;
@@ -124,27 +124,27 @@ package three;
 	/**
 		Rotate an object along an axis in object space. The axis is assumed to be normalized.
 	**/
-	function rotateOnAxis(axis:Vector3, angle:Float):Object3D;
+	function rotateOnAxis(axis:Vector3, angle:Float):AxesHelper;
 	/**
 		Rotate an object along an axis in world space. The axis is assumed to be normalized. Method Assumes no rotated parent.
 	**/
-	function rotateOnWorldAxis(axis:Vector3, angle:Float):Object3D;
-	function rotateX(angle:Float):Object3D;
-	function rotateY(angle:Float):Object3D;
-	function rotateZ(angle:Float):Object3D;
-	function translateOnAxis(axis:Vector3, distance:Float):Object3D;
+	function rotateOnWorldAxis(axis:Vector3, angle:Float):AxesHelper;
+	function rotateX(angle:Float):AxesHelper;
+	function rotateY(angle:Float):AxesHelper;
+	function rotateZ(angle:Float):AxesHelper;
+	function translateOnAxis(axis:Vector3, distance:Float):AxesHelper;
 	/**
 		Translates object along x axis by distance.
 	**/
-	function translateX(distance:Float):Object3D;
+	function translateX(distance:Float):AxesHelper;
 	/**
 		Translates object along y axis by distance.
 	**/
-	function translateY(distance:Float):Object3D;
+	function translateY(distance:Float):AxesHelper;
 	/**
 		Translates object along z axis by distance.
 	**/
-	function translateZ(distance:Float):Object3D;
+	function translateZ(distance:Float):AxesHelper;
 	/**
 		Updates the vector from local space to world space.
 	**/
@@ -160,15 +160,15 @@ package three;
 	/**
 		Adds object as child of this object.
 	**/
-	function add(object:std.Array<Object3D>):Object3D;
+	function add(object:std.Array<Object3D>):AxesHelper;
 	/**
 		Removes object as child of this object.
 	**/
-	function remove(object:std.Array<Object3D>):Object3D;
+	function remove(object:std.Array<Object3D>):AxesHelper;
 	/**
 		Adds object as a child of this, while maintaining the object's world transform.
 	**/
-	function attach(object:Object3D):Object3D;
+	function attach(object:Object3D):AxesHelper;
 	/**
 		Searches through the object's children and returns the first with a matching id.
 	**/
@@ -195,8 +195,8 @@ package three;
 	function updateMatrixWorld(?force:Bool):Void;
 	function updateWorldMatrix(updateParents:Bool, updateChildren:Bool):Void;
 	function toJSON(?meta:{ var geometries : Any; var materials : Any; var textures : Any; var images : Any; }):Any;
-	function clone(?recursive:Bool):Object3D;
-	function copy(source:Object3D, ?recursive:Bool):Object3D;
+	function clone(?recursive:Bool):AxesHelper;
+	function copy(source:AxesHelper, ?recursive:Bool):AxesHelper;
 	/**
 		Adds a listener to an event type.
 	**/

@@ -101,16 +101,16 @@ package node.tls;
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
 	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })
 	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:(?err:js.lib.IError) -> Void):Bool;
-	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):node.net.Socket { })
-	@:overload(function(port:Float, ?connectionListener:() -> Void):node.net.Socket { })
-	@:overload(function(path:String, ?connectionListener:() -> Void):node.net.Socket { })
-	function connect(options:haxe.extern.EitherType<node.net.TcpSocketConnectOpts, node.net.IpcSocketConnectOpts>, ?connectionListener:() -> Void):node.net.Socket;
-	function setEncoding(?encoding:String):node.net.Socket;
-	function pause():node.net.Socket;
-	function resume():node.net.Socket;
-	function setTimeout(timeout:Float, ?callback:() -> Void):node.net.Socket;
-	function setNoDelay(?noDelay:Bool):node.net.Socket;
-	function setKeepAlive(?enable:Bool, ?initialDelay:Float):node.net.Socket;
+	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):TLSSocket { })
+	@:overload(function(port:Float, ?connectionListener:() -> Void):TLSSocket { })
+	@:overload(function(path:String, ?connectionListener:() -> Void):TLSSocket { })
+	function connect(options:haxe.extern.EitherType<node.net.TcpSocketConnectOpts, node.net.IpcSocketConnectOpts>, ?connectionListener:() -> Void):TLSSocket;
+	function setEncoding(?encoding:String):TLSSocket;
+	function pause():TLSSocket;
+	function resume():TLSSocket;
+	function setTimeout(timeout:Float, ?callback:() -> Void):TLSSocket;
+	function setNoDelay(?noDelay:Bool):TLSSocket;
+	function setKeepAlive(?enable:Bool, ?initialDelay:Float):TLSSocket;
 	function address():haxe.extern.EitherType<String, node.net.AddressInfo>;
 	function unref():Void;
 	function ref():Void;
@@ -138,7 +138,7 @@ package node.tls;
 	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
 	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
 	function _final(callback:(?error:js.lib.IError) -> Void):Void;
-	function setDefaultEncoding(encoding:String):node.stream.Duplex;
+	function setDefaultEncoding(encoding:String):TLSSocket;
 	function cork():Void;
 	function uncork():Void;
 	var readable : Bool;
@@ -147,21 +147,21 @@ package node.tls;
 	function _read(size:Float):Void;
 	function read(?size:Float):Any;
 	function isPaused():Bool;
-	function unpipe(?destination:global.nodejs.WritableStream):node.stream.Readable;
+	function unpipe(?destination:global.nodejs.WritableStream):TLSSocket;
 	function unshift(chunk:Any):Void;
-	function wrap(oldStream:global.nodejs.ReadableStream):node.stream.Readable;
+	function wrap(oldStream:global.nodejs.ReadableStream):TLSSocket;
 	function push(chunk:Any, ?encoding:String):Bool;
 	function destroy(?error:js.lib.IError):Void;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):node.stream.Readable { })
-	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
-	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):node.stream.Readable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.stream.Readable { })
-	function removeListener(event:String, listener:() -> Void):node.stream.Readable;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):TLSSocket { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):TLSSocket { })
+	function removeListener(event:String, listener:() -> Void):TLSSocket;
 	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):TLSSocket;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):TLSSocket;
+	function setMaxListeners(n:Float):TLSSocket;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

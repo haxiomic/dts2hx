@@ -22,8 +22,8 @@ package three;
 	var type : Any;
 	var generateMipmaps : Any;
 	function setSize(width:Float, height:Float):Void;
-	function clone():WebGLRenderTarget;
-	function copy(source:WebGLRenderTarget):WebGLRenderTarget;
+	function clone():WebGLMultisampleRenderTarget;
+	function copy(source:WebGLRenderTarget):WebGLMultisampleRenderTarget;
 	function dispose():Void;
 	/**
 		Adds a listener to an event type.

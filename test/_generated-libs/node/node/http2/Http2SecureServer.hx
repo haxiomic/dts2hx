@@ -93,27 +93,27 @@ extern typedef Http2SecureServer = {
 	@:overload(function(event:String, listener:(socket:node.tls.TLSSocket) -> Void):Http2SecureServer { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Http2SecureServer;
 	function addContext(hostName:String, credentials:{ var key : String; var cert : String; var ca : String; }):Void;
-	@:overload(function(?port:Float, ?hostname:String, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(?port:Float, ?backlog:Float, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(?port:Float, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(path:String, ?backlog:Float, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(path:String, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(options:node.net.ListenOptions, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(handle:Any, ?backlog:Float, ?listeningListener:() -> Void):node.net.Server { })
-	@:overload(function(handle:Any, ?listeningListener:() -> Void):node.net.Server { })
-	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):node.net.Server;
-	function close(?callback:(?err:js.lib.IError) -> Void):node.net.Server;
+	@:overload(function(?port:Float, ?hostname:String, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(?port:Float, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(?port:Float, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(path:String, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(path:String, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(options:node.net.ListenOptions, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(handle:Any, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer { })
+	@:overload(function(handle:Any, ?listeningListener:() -> Void):Http2SecureServer { })
+	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer;
+	function close(?callback:(?err:js.lib.IError) -> Void):Http2SecureServer;
 	function address():Null<haxe.extern.EitherType<String, node.net.AddressInfo>>;
 	function getConnections(cb:(error:Null<js.lib.IError>, count:Float) -> Void):Void;
-	function ref():node.net.Server;
-	function unref():node.net.Server;
+	function ref():Http2SecureServer;
+	function unref():Http2SecureServer;
 	var maxConnections : Float;
 	var connections : Float;
 	var listening : Bool;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Http2SecureServer;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Http2SecureServer;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Http2SecureServer;
+	function setMaxListeners(n:Float):Http2SecureServer;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

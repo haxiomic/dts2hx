@@ -21,10 +21,10 @@ extern typedef FSWatcher = {
 	@:overload(function(event:String, listener:(eventType:String, filename:haxe.extern.EitherType<String, global.IBuffer>) -> Void):FSWatcher { })
 	@:overload(function(event:String, listener:(error:js.lib.IError) -> Void):FSWatcher { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):FSWatcher;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):FSWatcher;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):FSWatcher;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):FSWatcher;
+	function setMaxListeners(n:Float):FSWatcher;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;

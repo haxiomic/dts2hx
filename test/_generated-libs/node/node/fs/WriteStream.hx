@@ -33,7 +33,7 @@ package node.fs;
 	function _final(callback:(?error:js.lib.IError) -> Void):Void;
 	@:overload(function(chunk:Any, ?encoding:String, ?cb:(error:Null<js.lib.IError>) -> Void):Bool { })
 	function write(chunk:Any, ?cb:(error:Null<js.lib.IError>) -> Void):Bool;
-	function setDefaultEncoding(encoding:String):node.stream.Writable;
+	function setDefaultEncoding(encoding:String):WriteStream;
 	@:overload(function(chunk:Any, ?cb:() -> Void):Void { })
 	@:overload(function(chunk:Any, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
@@ -47,17 +47,17 @@ package node.fs;
 	@:overload(function(event:String, src:node.stream.Readable):Bool { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
 	function emit(event:String):Bool;
-	@:overload(function(event:String, listener:() -> Void):node.stream.Writable { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):node.stream.Writable { })
-	@:overload(function(event:String, listener:() -> Void):node.stream.Writable { })
-	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):node.stream.Writable { })
-	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):node.stream.Writable { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.stream.Writable { })
-	function removeListener(event:String, listener:() -> Void):node.stream.Writable;
+	@:overload(function(event:String, listener:() -> Void):WriteStream { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):WriteStream { })
+	@:overload(function(event:String, listener:() -> Void):WriteStream { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):WriteStream { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):WriteStream { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):WriteStream { })
+	function removeListener(event:String, listener:() -> Void):WriteStream;
 	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
-	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):WriteStream;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):WriteStream;
+	function setMaxListeners(n:Float):WriteStream;
 	function getMaxListeners():Float;
 	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
 	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
