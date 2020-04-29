@@ -1,5 +1,5 @@
 package global;
-@:native("Big") @valueModuleOnly extern class Big {
+@:native("Big") extern class Big {
 	/**
 		Returns a new instance of a Big number object
 		
@@ -8,7 +8,7 @@ package global;
 		Infinity, NaN and hexadecimal literal strings, e.g. '0xff', are not valid.
 		String values in octal literal form will be interpreted as decimals, e.g. '011' is 11, not 9.
 	**/
-	function new(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, big_js.Big>>);
+	function new(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, big_js.IBig>>);
 	/**
 		Returns a new instance of a Big number object
 		
@@ -19,7 +19,7 @@ package global;
 	**/
 	@:overload(function():big_js.BigConstructor { })
 	@:selfCall
-	static function call(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, big_js.Big>>):big_js.Big;
+	static function call(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, big_js.IBig>>):big_js.IBig;
 	/**
 		The maximum number of decimal places of the results of operations involving division.
 		It is relevant only to the div and sqrt methods, and the pow method when the exponent is negative.

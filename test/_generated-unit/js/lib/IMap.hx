@@ -1,8 +1,5 @@
 package js.lib;
-@:native("Map") extern class Map<K, V> {
-	@:overload(function<K, V>(?entries:ReadonlyArray<js.lib.Tuple2<K, V>>):IMap<K, V> { })
-	@:overload(function<K, V>(iterable:Iterable<js.lib.Tuple2<K, V>>):IMap<K, V> { })
-	function new();
+extern typedef IMap<K, V> = {
 	function clear():Void;
 	function delete(key:K):Bool;
 	function forEach(callbackfn:(value:V, key:K, map:IMap<K, V>) -> Void, ?thisArg:Any):Void;
@@ -22,5 +19,4 @@ package js.lib;
 		Returns an iterable of values in the map
 	**/
 	function values():IterableIterator<V>;
-	static final prototype : IMap<Any, Any>;
-}
+};

@@ -1,5 +1,5 @@
 package unit.symbols;
-@:jsRequire("./unit/symbols", "ConstructorTypeInterface") @tsInterface extern class ConstructorTypeInterface {
+@:jsRequire("./unit/symbols", "ConstructorTypeInterface") extern class ConstructorTypeInterface {
 	function new(constructorTypeParam:std.Array<Bool>);
 	@:selfCall
 	function call(interfaceCallParam:Any):Void;

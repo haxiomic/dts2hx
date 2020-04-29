@@ -1,5 +1,5 @@
 package unit.types.types;
-@:jsRequire("./unit/types", "Types.typeQueryClassLike") @valueModuleOnly extern class TypeQueryClassLike {
+@:jsRequire("./unit/types", "Types.typeQueryClassLike") extern class TypeQueryClassLike {
 	function new();
 	static var field : String;
 }
