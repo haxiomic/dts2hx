@@ -26,12 +26,14 @@ export class TypeParameterBug {
 	parse<X extends string>(a: X): X;
 }
 
-export interface DefaultTypeParameter<X = boolean> {
-	field: X;
-	fieldUnion: number | X;
-	fieldTupleUnion: number | [X];
-	fn(optionalOverloadArg?: X): X;
-	fn(arg: X, argTuple: [X], argUnion: number | X): X;
+export interface DefaultTypeParameter<DefaultBool = boolean> {
+	field: DefaultBool;
+	fieldUnion: string | DefaultBool;
+	fieldTupleUnion: string | [DefaultBool];
+	fn(optionalOverloadArg?: DefaultBool): DefaultBool;
+	fn(arg: DefaultBool, argTuple: [DefaultBool], argUnion: string | DefaultBool): DefaultBool;
+	
+	(callSignatureArg: DefaultBool): DefaultBool;
 }
 export type DefaultTypeParameterUser = DefaultTypeParameter;
 export type DefaultTypeParameterField = DefaultTypeParameterUser['field'];
