@@ -4,13 +4,7 @@ package js.lib;
 **/
 @:forward @:forwardStatics extern abstract Tuple7<T0, T1, T2, T3, T4, T5, T6>(std.Array<Any>) from std.Array<Any> to std.Array<Any> {
 	public inline function new(element0:T0, element1:T1, element2:T2, element3:T3, element4:T4, element5:T5, element6:T6) {
-		set_element0(element0);
-		set_element1(element1);
-		set_element2(element2);
-		set_element3(element3);
-		set_element4(element4);
-		set_element5(element5);
-		set_element6(element6);
+		this = [element0, element1, element2, element3, element4, element5, element6];
 	}
 	public var element0(get, set) : T0;
 	inline function get_element0():T0 return cast this[0];

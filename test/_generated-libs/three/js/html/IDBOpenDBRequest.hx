@@ -81,7 +81,7 @@ package js.html;
 	/**
 		When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
 	**/
-	final result : T;
+	final result : IIDBDatabase;
 	/**
 		Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
 	**/

@@ -25,7 +25,7 @@ package three;
 	function absarc(aX:Float, aY:Float, aRadius:Float, aStartAngle:Float, aEndAngle:Float, aClockwise:Bool):Void;
 	function ellipse(aX:Float, aY:Float, xRadius:Float, yRadius:Float, aStartAngle:Float, aEndAngle:Float, aClockwise:Bool, aRotation:Float):Void;
 	function absellipse(aX:Float, aY:Float, xRadius:Float, yRadius:Float, aStartAngle:Float, aEndAngle:Float, aClockwise:Bool, aRotation:Float):Void;
-	var curves : std.Array<Curve<T>>;
+	var curves : std.Array<Curve<Vector2>>;
 	var autoClose : Bool;
 	function add(curve:Curve<T>):Void;
 	function checkConnection():Bool;
