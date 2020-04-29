@@ -31,6 +31,11 @@ class TsSymbolTools {
 	public static function isAccessibleField(symbol: Symbol) {
 		var isKnownSymbol = std.StringTools.startsWith(symbol.escapedName, '__@'); // see typescript's utilities.ts
 		final FieldSymbolFlags = SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.ClassMember;
+
+		if (symbol.name == '__promisify__') {
+			return false;
+		}
+
 		return !isKnownSymbol && symbol.flags & FieldSymbolFlags != 0 && symbol.flags & SymbolFlags.Prototype == 0;
 	}
 	
