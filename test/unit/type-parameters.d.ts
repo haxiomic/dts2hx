@@ -20,15 +20,17 @@ export class ShadowedTp<ShadowT> {
 	field: ShadowT;
 }
 
-export class Object3D {
-
+export class Object3D {}
+export class TypeParameterBug {
+	// Object3D was reported as having a type parameter
+	parse<X extends string>(a: X): X;
 }
 
-export class TypeParameterBug {
-
-	/**
-	 * Object3D was reported as having a type parameter
-	 */
-	parse<X extends string>(a: X): X;
-
+export interface DefaultTypeParameter<X = boolean> {
+	field: X;
+}
+export type DefaultTypeParameterUser = DefaultTypeParameter;
+export type DefaultTypeParameterField = DefaultTypeParameterUser['field'];
+export interface DefaultTypeParameterExtension extends DefaultTypeParameter {
+	extensionField: number;
 }

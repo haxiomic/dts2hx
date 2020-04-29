@@ -3,8 +3,8 @@ package unit.class_;
 	var additionalField : Float;
 	var intField : Float;
 	var arrayField : std.Array<String>;
-	var thisClassType : ClassBase<T>;
-	var typeParamField : T;
+	var thisClassType : ClassExtending<K>;
+	var typeParamField : std.Array<K>;
 	var typeofSelf : {
 		function staticMethod<T>(a:Float):T;
 		var staticField : Float;

@@ -2,7 +2,7 @@ package unit.interface_;
 extern typedef InterfaceExtendsWithRedefinition = {
 	@:overload(function<T>(a:T, b:String):InterfaceExtendsWithRedefinition { })
 	@:selfCall
-	function call_(array:std.Array<Interface>):Any;
+	function call_(array:std.Array<InterfaceExtendsWithRedefinition>):Any;
 	var field : std.Array<Float>;
 	function exampleMethod(a:Float):Void;
 	@:optional
