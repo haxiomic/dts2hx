@@ -1,7 +1,7 @@
 package js.html;
-extern interface AudioTimestamp {
+extern typedef AudioTimestamp = {
 	@:optional
 	var contextTime : Float;
 	@:optional
 	var performanceTime : Float;
-}
+};

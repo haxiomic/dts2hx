@@ -1,5 +1,5 @@
 package js.html;
-extern interface DOMPointInit {
+extern typedef DOMPointInit = {
 	@:optional
 	var w : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface DOMPointInit {
 	var y : Float;
 	@:optional
 	var z : Float;
-}
+};

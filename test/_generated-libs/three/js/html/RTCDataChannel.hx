@@ -1,5 +1,5 @@
 package js.html;
-@:native("RTCDataChannel") @tsInterface extern class RTCDataChannel {
+@:native("RTCDataChannel") extern class RTCDataChannel {
 	function new();
 	var binaryType : String;
 	final bufferedAmount : Float;
@@ -9,18 +9,18 @@ package js.html;
 	final maxPacketLifeTime : Null<Float>;
 	final maxRetransmits : Null<Float>;
 	final negotiated : Bool;
-	var onbufferedamountlow : Null<(ev:Event) -> Any>;
-	var onclose : Null<(ev:Event) -> Any>;
-	var onerror : Null<(ev:RTCErrorEvent) -> Any>;
-	var onmessage : Null<(ev:MessageEvent) -> Any>;
-	var onopen : Null<(ev:Event) -> Any>;
+	var onbufferedamountlow : Null<(ev:IEvent) -> Any>;
+	var onclose : Null<(ev:IEvent) -> Any>;
+	var onerror : Null<(ev:IRTCErrorEvent) -> Any>;
+	var onmessage : Null<(ev:IMessageEvent) -> Any>;
+	var onopen : Null<(ev:IEvent) -> Any>;
 	final ordered : Bool;
 	final priority : String;
 	final protocol : String;
 	final readyState : String;
 	function close():Void;
-	@:overload(function(data:Blob):Void { })
-	@:overload(function(data:js.lib.ArrayBuffer):Void { })
+	@:overload(function(data:IBlob):Void { })
+	@:overload(function(data:js.lib.IArrayBuffer):Void { })
 	@:overload(function(data:js.lib.ArrayBufferView):Void { })
 	function send(data:String):Void;
 	/**
@@ -35,8 +35,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -55,8 +53,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -64,6 +60,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : RTCDataChannel;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IRTCDataChannel;
 }

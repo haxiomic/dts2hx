@@ -1,5 +1,5 @@
 package node.readline;
-extern interface Key {
+extern typedef Key = {
 	@:optional
 	var sequence : String;
 	@:optional
@@ -10,4 +10,4 @@ extern interface Key {
 	var meta : Bool;
 	@:optional
 	var shift : Bool;
-}
+};

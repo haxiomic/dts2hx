@@ -1,5 +1,5 @@
 package node.http2;
-extern interface ServerStreamFileResponseOptions {
+extern typedef ServerStreamFileResponseOptions = {
 	@:optional
 	var statCheck : (stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions) -> haxe.extern.EitherType<Bool, Void>;
 	@:optional
@@ -8,4 +8,4 @@ extern interface ServerStreamFileResponseOptions {
 	var offset : Float;
 	@:optional
 	var length : Float;
-}
+};

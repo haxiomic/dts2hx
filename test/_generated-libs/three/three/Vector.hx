@@ -6,7 +6,7 @@ package three;
 	Currently the members of Vector is NOT type safe because it accepts different typed vectors.
 	Those definitions will be changed when TypeScript innovates Generics to be type safe.
 **/
-extern interface Vector {
+extern typedef Vector = {
 	function setComponent(index:Float, value:Float):Vector;
 	function getComponent(index:Float):Float;
 	function set(args:std.Array<Float>):Vector;
@@ -96,4 +96,4 @@ extern interface Vector {
 		clone():T;
 	**/
 	function clone():Vector;
-}
+};

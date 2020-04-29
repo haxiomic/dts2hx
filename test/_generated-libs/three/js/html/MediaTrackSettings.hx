@@ -1,5 +1,5 @@
 package js.html;
-extern interface MediaTrackSettings {
+extern typedef MediaTrackSettings = {
 	@:optional
 	var aspectRatio : Float;
 	@:optional
@@ -30,4 +30,4 @@ extern interface MediaTrackSettings {
 	var sampleSize : Float;
 	@:optional
 	var width : Float;
-}
+};

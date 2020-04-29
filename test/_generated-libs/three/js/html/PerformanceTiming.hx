@@ -2,7 +2,7 @@ package js.html;
 /**
 	A legacy interface kept for backwards compatibility and contains properties that offer performance timing information for various events which occur during the loading and use of the current page. You get a PerformanceTiming object describing your page using the window.performance.timing property.
 **/
-@:native("PerformanceTiming") @tsInterface extern class PerformanceTiming {
+@:native("PerformanceTiming") extern class PerformanceTiming {
 	function new();
 	final connectEnd : Float;
 	final connectStart : Float;
@@ -26,5 +26,5 @@ package js.html;
 	final unloadEventEnd : Float;
 	final unloadEventStart : Float;
 	function toJSON():Any;
-	static var prototype : PerformanceTiming;
+	static var prototype : IPerformanceTiming;
 }

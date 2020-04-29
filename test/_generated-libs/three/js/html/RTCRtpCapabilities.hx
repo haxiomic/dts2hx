@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCRtpCapabilities {
+extern typedef RTCRtpCapabilities = {
 	var codecs : std.Array<RTCRtpCodecCapability>;
 	var headerExtensions : std.Array<RTCRtpHeaderExtensionCapability>;
-}
+};

@@ -2,13 +2,13 @@ package js.html;
 /**
 	This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
 **/
-@:native("ServiceWorker") @tsInterface extern class ServiceWorker {
+@:native("ServiceWorker") extern class ServiceWorker {
 	function new();
-	var onstatechange : Null<(ev:Event) -> Any>;
+	var onstatechange : Null<(ev:IEvent) -> Any>;
 	final scriptURL : String;
 	final state : String;
 	@:overload(function(message:Any, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<js.lib.ArrayBuffer, haxe.extern.EitherType<ImageBitmap, MessagePort>>>):Void;
+	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<js.lib.IArrayBuffer, haxe.extern.EitherType<IImageBitmap, IMessagePort>>>):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -21,8 +21,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -41,8 +39,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -50,7 +46,7 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	var onerror : Null<(ev:ErrorEvent) -> Any>;
-	static var prototype : ServiceWorker;
+	function dispatchEvent(event:IEvent):Bool;
+	var onerror : Null<(ev:IErrorEvent) -> Any>;
+	static var prototype : IServiceWorker;
 }

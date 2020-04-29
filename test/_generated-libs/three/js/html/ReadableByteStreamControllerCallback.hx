@@ -1,5 +1,5 @@
 package js.html;
-extern interface ReadableByteStreamControllerCallback {
+extern typedef ReadableByteStreamControllerCallback = {
 	@:selfCall
 	function call(controller:ReadableByteStreamController):haxe.extern.EitherType<Void, js.lib.PromiseLike<Void>>;
-}
+};

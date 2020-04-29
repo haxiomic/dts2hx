@@ -1,5 +1,5 @@
 package node.child_process;
-extern interface ProcessEnvOptions {
+extern typedef ProcessEnvOptions = {
 	@:optional
 	var uid : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface ProcessEnvOptions {
 	var cwd : String;
 	@:optional
 	var env : global.nodejs.ProcessEnv;
-}
+};

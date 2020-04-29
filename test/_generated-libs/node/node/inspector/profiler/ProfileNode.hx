@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Profile node. Holds callsite information, execution statistics and child nodes.
 **/
-extern interface ProfileNode {
+extern typedef ProfileNode = {
 	/**
 		Unique id of the node.
 	**/
@@ -32,4 +32,4 @@ extern interface ProfileNode {
 	**/
 	@:optional
 	var positionTicks : std.Array<PositionTickInfo>;
-}
+};

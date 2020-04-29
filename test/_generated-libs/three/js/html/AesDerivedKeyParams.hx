@@ -1,4 +1,5 @@
 package js.html;
-extern interface AesDerivedKeyParams extends Algorithm {
+extern typedef AesDerivedKeyParams = {
 	var length : Float;
-}
+	var name : String;
+};

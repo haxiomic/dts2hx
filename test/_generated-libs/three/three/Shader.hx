@@ -1,6 +1,6 @@
 package three;
-extern interface Shader {
+extern typedef Shader = {
 	var uniforms : { };
 	var vertexShader : String;
 	var fragmentShader : String;
-}
+};

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface GetPropertiesReturnType {
+extern typedef GetPropertiesReturnType = {
 	/**
 		Object properties.
 	**/
@@ -14,4 +14,4 @@ extern interface GetPropertiesReturnType {
 	**/
 	@:optional
 	var exceptionDetails : ExceptionDetails;
-}
+};

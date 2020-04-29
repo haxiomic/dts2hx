@@ -2,19 +2,19 @@ package js.html;
 /**
 	This EncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM).
 **/
-@:native("MediaKeySession") @tsInterface extern class MediaKeySession {
+@:native("MediaKeySession") extern class MediaKeySession {
 	function new();
-	final closed : js.lib.Promise<Void>;
+	final closed : js.lib.IPromise<Void>;
 	final expiration : Float;
-	final keyStatuses : js.lib.MediaKeyStatusMap;
-	var onkeystatuseschange : Null<(ev:Event) -> Any>;
-	var onmessage : Null<(ev:MessageEvent) -> Any>;
+	final keyStatuses : js.lib.IMediaKeyStatusMap;
+	var onkeystatuseschange : Null<(ev:IEvent) -> Any>;
+	var onmessage : Null<(ev:IMessageEvent) -> Any>;
 	final sessionId : String;
-	function close():js.lib.Promise<Void>;
-	function generateRequest(initDataType:String, initData:haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.ArrayBufferView>):js.lib.Promise<Void>;
-	function load(sessionId:String):js.lib.Promise<Bool>;
-	function remove():js.lib.Promise<Void>;
-	function update(response:haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.ArrayBufferView>):js.lib.Promise<Void>;
+	function close():js.lib.IPromise<Void>;
+	function generateRequest(initDataType:String, initData:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ArrayBufferView>):js.lib.IPromise<Void>;
+	function load(sessionId:String):js.lib.IPromise<Bool>;
+	function remove():js.lib.IPromise<Void>;
+	function update(response:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ArrayBufferView>):js.lib.IPromise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -27,8 +27,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -47,8 +45,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -56,6 +52,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : MediaKeySession;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IMediaKeySession;
 }

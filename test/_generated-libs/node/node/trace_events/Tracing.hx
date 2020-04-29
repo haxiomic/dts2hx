@@ -9,7 +9,7 @@ package node.trace_events;
 	event categories. Calling `tracing.disable()` will remove the categories
 	from the set of enabled trace event categories.
 **/
-extern interface Tracing {
+extern typedef Tracing = {
 	/**
 		A comma-separated list of the trace event categories covered by this
 		`Tracing` object.
@@ -32,4 +32,4 @@ extern interface Tracing {
 		`true` only if the `Tracing` object has been enabled.
 	**/
 	final enabled : Bool;
-}
+};

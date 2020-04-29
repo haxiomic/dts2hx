@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern interface Performance {
+extern typedef Performance = {
 	/**
 		If name is not provided, removes all PerformanceFunction objects from the Performance Timeline.
 		If name is provided, removes entries with name.
@@ -63,4 +63,4 @@ extern interface Performance {
 		A PerformanceObserver must be subscribed to the 'function' event type in order for the timing details to be accessed.
 	**/
 	function timerify<T:((optionalParams:std.Array<Any>) -> Any)>(fn:T):T;
-}
+};

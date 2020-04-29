@@ -1,5 +1,5 @@
 package node.http2;
-extern interface Settings {
+extern typedef Settings = {
 	@:optional
 	var headerTableSize : Float;
 	@:optional
@@ -12,4 +12,4 @@ extern interface Settings {
 	var maxConcurrentStreams : Float;
 	@:optional
 	var maxHeaderListSize : Float;
-}
+};

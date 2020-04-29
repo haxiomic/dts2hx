@@ -1,5 +1,5 @@
 package node.tls;
-extern interface PeerCertificate {
+extern typedef PeerCertificate = {
 	var subject : Certificate;
 	var issuer : Certificate;
 	var subjectaltname : String;
@@ -11,5 +11,5 @@ extern interface PeerCertificate {
 	var fingerprint : String;
 	var ext_key_usage : std.Array<String>;
 	var serialNumber : String;
-	var raw : global.Buffer;
-}
+	var raw : global.IBuffer;
+};

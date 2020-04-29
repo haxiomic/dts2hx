@@ -1,5 +1,5 @@
 package node.http2;
-extern interface SessionState {
+extern typedef SessionState = {
 	@:optional
 	var effectiveLocalWindowSize : Float;
 	@:optional
@@ -18,4 +18,4 @@ extern interface SessionState {
 	var deflateDynamicTableSize : Float;
 	@:optional
 	var inflateDynamicTableSize : Float;
-}
+};

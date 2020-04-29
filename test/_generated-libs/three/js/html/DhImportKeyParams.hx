@@ -1,5 +1,6 @@
 package js.html;
-extern interface DhImportKeyParams extends Algorithm {
-	var generator : js.lib.Uint8Array;
-	var prime : js.lib.Uint8Array;
-}
+extern typedef DhImportKeyParams = {
+	var generator : js.lib.IUint8Array;
+	var prime : js.lib.IUint8Array;
+	var name : String;
+};

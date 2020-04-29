@@ -1,6 +1,6 @@
 package three;
 @:jsRequire("three", "WebGLTextures") extern class WebGLTextures {
-	function new(gl:Any, extensions:Any, state:Any, properties:Any, capabilities:Any, paramThreeToGL:js.lib.Function, info:Any);
+	function new(gl:Any, extensions:Any, state:Any, properties:Any, capabilities:Any, paramThreeToGL:js.lib.IFunction, info:Any);
 	function setTexture2D(texture:Any, slot:Float):Void;
 	function setTextureCube(texture:Any, slot:Float):Void;
 	function setTextureCubeDynamic(texture:Any, slot:Float):Void;

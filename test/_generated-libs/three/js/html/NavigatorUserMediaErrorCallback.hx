@@ -1,5 +1,5 @@
 package js.html;
-extern interface NavigatorUserMediaErrorCallback {
+extern typedef NavigatorUserMediaErrorCallback = {
 	@:selfCall
-	function call(error:MediaStreamError):Void;
-}
+	function call(error:IMediaStreamError):Void;
+};

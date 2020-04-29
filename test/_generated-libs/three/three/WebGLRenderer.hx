@@ -3,7 +3,7 @@ package three;
 	The WebGL renderer displays your beautifully crafted scenes using WebGL, if your device supports it.
 	This renderer has way better performance than CanvasRenderer.
 **/
-@:jsRequire("three", "WebGLRenderer") extern class WebGLRenderer implements Renderer {
+@:jsRequire("three", "WebGLRenderer") extern class WebGLRenderer {
 	/**
 		parameters is an optional object with properties defining the renderer's behaviour. The constructor also accepts no parameters at all. In all cases, it will assume sane defaults when parameters are missing.
 	**/
@@ -12,11 +12,11 @@ package three;
 		A Canvas where the renderer draws its output.
 		This is automatically created by the renderer in the constructor (if not provided already); you just need to add it to your page.
 	**/
-	var domElement : js.html.HTMLCanvasElement;
+	var domElement : js.html.IHTMLCanvasElement;
 	/**
 		The HTML5 Canvas's 'webgl' context obtained from the canvas where the renderer will draw.
 	**/
-	var context : js.html.WebGLRenderingContext;
+	var context : js.html.IWebGLRenderingContext;
 	/**
 		Defines whether the renderer should automatically clear its output before rendering.
 	**/
@@ -79,7 +79,7 @@ package three;
 	/**
 		Return the WebGL context.
 	**/
-	function getContext():js.html.WebGLRenderingContext;
+	function getContext():js.html.IWebGLRenderingContext;
 	function getContextAttributes():Any;
 	function forceContextLoss():Void;
 	function getMaxAnisotropy():Float;
@@ -148,13 +148,13 @@ package three;
 	/**
 		Tells the shadow map plugin to update using the passed scene and camera parameters.
 	**/
-	function renderBufferImmediate(object:Object3D, program:js.lib.Object, material:Material):Void;
+	function renderBufferImmediate(object:Object3D, program:js.lib.IObject, material:Material):Void;
 	function renderBufferDirect(camera:Camera, fog:Fog, geometry:haxe.extern.EitherType<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Any):Void;
 	/**
 		A build in function that can be used instead of requestAnimationFrame. For WebVR projects this function must be used.
 	**/
-	function setAnimationLoop(callback:js.lib.Function):Void;
-	function animate(callback:js.lib.Function):Void;
+	function setAnimationLoop(callback:js.lib.IFunction):Void;
+	function animate(callback:js.lib.IFunction):Void;
 	/**
 		Compiles all materials in the scene with the camera. This is useful to precompile shaders before the first rendering.
 	**/

@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSegLinetoHorizontalRel") @tsInterface extern class SVGPathSegLinetoHorizontalRel {
+@:native("SVGPathSegLinetoHorizontalRel") extern class SVGPathSegLinetoHorizontalRel {
 	function new();
 	var x : Float;
 	final pathSegType : Float;
@@ -24,5 +24,5 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSegLinetoHorizontalRel;
+	static var prototype : ISVGPathSegLinetoHorizontalRel;
 }

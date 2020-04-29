@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Creates a new function.
 **/
-@:native("Function") @tsInterface extern class Function {
+@:native("Function") extern class Function {
 	/**
 		Creates a new function.
 	**/
@@ -27,13 +27,13 @@ package js.lib;
 	var prototype : Any;
 	final length : Float;
 	var arguments : Any;
-	var caller : Function;
+	var caller : IFunction;
 	/**
 		Returns the name of the function. Function names are read-only and can not be changed.
 	**/
 	final name : String;
 	@:selfCall
-	static function call_(args:std.Array<String>):Function;
+	static function call_(args:std.Array<String>):IFunction;
 	@:native("prototype")
-	static final prototype_ : Function;
+	static final prototype_ : IFunction;
 }

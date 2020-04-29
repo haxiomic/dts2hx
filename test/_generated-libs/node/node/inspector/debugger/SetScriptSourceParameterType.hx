@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface SetScriptSourceParameterType {
+extern typedef SetScriptSourceParameterType = {
 	/**
 		Id of the script to edit.
 	**/
@@ -14,4 +14,4 @@ extern interface SetScriptSourceParameterType {
 	**/
 	@:optional
 	var dryRun : Bool;
-}
+};

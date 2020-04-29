@@ -1,5 +1,5 @@
 package node.dgram;
-extern interface SocketOptions {
+extern typedef SocketOptions = {
 	var type : String;
 	@:optional
 	var reuseAddr : Bool;
@@ -11,4 +11,4 @@ extern interface SocketOptions {
 	var sendBufferSize : Float;
 	@:optional
 	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void) -> Void;
-}
+};

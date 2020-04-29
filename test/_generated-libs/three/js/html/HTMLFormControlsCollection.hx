@@ -2,14 +2,14 @@ package js.html;
 /**
 	A collection of HTML form control elements.
 **/
-@:native("HTMLFormControlsCollection") @tsInterface extern class HTMLFormControlsCollection {
+@:native("HTMLFormControlsCollection") extern class HTMLFormControlsCollection {
 	function new();
 	/**
 		Returns the item with ID or name name from the collection.
 		
 		If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
 	**/
-	function namedItem(name:String):Null<haxe.extern.EitherType<Element, RadioNodeList>>;
+	function namedItem(name:String):Null<haxe.extern.EitherType<IElement, IRadioNodeList>>;
 	/**
 		Sets or retrieves the number of objects in a collection.
 	**/
@@ -17,6 +17,6 @@ package js.html;
 	/**
 		Retrieves an object from various collections.
 	**/
-	function item(index:Float):Null<Element>;
-	static var prototype : HTMLFormControlsCollection;
+	function item(index:Float):Null<IElement>;
+	static var prototype : IHTMLFormControlsCollection;
 }

@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSegLinetoVerticalAbs") @tsInterface extern class SVGPathSegLinetoVerticalAbs {
+@:native("SVGPathSegLinetoVerticalAbs") extern class SVGPathSegLinetoVerticalAbs {
 	function new();
 	var y : Float;
 	final pathSegType : Float;
@@ -24,5 +24,5 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSegLinetoVerticalAbs;
+	static var prototype : ISVGPathSegLinetoVerticalAbs;
 }

@@ -1,5 +1,5 @@
 package node.worker_threads;
-extern interface WorkerOptions {
+extern typedef WorkerOptions = {
 	@:optional
 	var eval : Bool;
 	@:optional
@@ -12,4 +12,4 @@ extern interface WorkerOptions {
 	var stderr : Bool;
 	@:optional
 	var execArgv : std.Array<String>;
-}
+};

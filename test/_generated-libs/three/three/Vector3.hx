@@ -2,7 +2,7 @@ package three;
 /**
 	3D vector.
 **/
-@:jsRequire("three", "Vector3") extern class Vector3 implements Vector {
+@:jsRequire("three", "Vector3") extern class Vector3 {
 	function new(?x:Float, ?y:Float, ?z:Float);
 	var x : Float;
 	var y : Float;
@@ -164,8 +164,6 @@ package three;
 	function fromArray(xyz:std.Array<Float>, ?offset:Float):Vector3;
 	/**
 		Returns an array [x, y, z], or copies x, y and z into the provided array.
-		
-		
 		
 		Copies x, y and z into the provided array-like.
 	**/

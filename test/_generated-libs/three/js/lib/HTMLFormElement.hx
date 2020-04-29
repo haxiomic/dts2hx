@@ -2,7 +2,7 @@ package js.lib;
 /**
 	A <form> element in the DOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 **/
-@:native("HTMLFormElement") @tsInterface extern class HTMLFormElement {
+@:native("HTMLFormElement") extern class HTMLFormElement {
 	function new();
 	/**
 		Sets or retrieves a list of character encodings for input data that must be accepted by the server processing the form.
@@ -19,7 +19,7 @@ package js.lib;
 	/**
 		Retrieves a collection, in source order, of all controls in a given form.
 	**/
-	final elements : js.html.HTMLFormControlsCollection;
+	final elements : js.html.IHTMLFormControlsCollection;
 	/**
 		Sets or retrieves the MIME encoding for the form.
 	**/
@@ -74,7 +74,17 @@ package js.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
+		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
+		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+		
+		When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
+		
+		When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in §2.8 Observing event listeners.
+		
+		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
+		
+		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -88,7 +98,17 @@ package js.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
+		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
+		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+		
+		When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
+		
+		When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in §2.8 Observing event listeners.
+		
+		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
+		
+		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -102,8 +122,6 @@ package js.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -116,8 +134,6 @@ package js.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -129,36 +145,6 @@ package js.lib;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
-		
-		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-		
-		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-		
-		When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-		
-		When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in §2.8 Observing event listeners.
-		
-		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-		
-		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
-		
-		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-		
-		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-		
-		When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-		
-		When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in §2.8 Observing event listeners.
-		
-		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-		
-		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -177,31 +163,17 @@ package js.lib;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
+		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
+		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
-		
-		
-		
-		Removes the event listener in target's event listener list with the same type, callback, and options.
-		
-		
-		
-		Removes the event listener in target's event listener list with the same type, callback, and options.
-		
-		
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
@@ -217,19 +189,19 @@ package js.lib;
 	var lang : String;
 	final offsetHeight : Float;
 	final offsetLeft : Float;
-	final offsetParent : Null<js.html.Element>;
+	final offsetParent : Null<js.html.IElement>;
 	final offsetTop : Float;
 	final offsetWidth : Float;
 	var spellcheck : Bool;
 	var title : String;
 	var translate : Bool;
 	function click():Void;
-	final assignedSlot : Null<js.html.HTMLSlotElement>;
-	final attributes : NamedNodeMap;
+	final assignedSlot : Null<js.html.IHTMLSlotElement>;
+	final attributes : INamedNodeMap;
 	/**
 		Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
 	**/
-	final classList : DOMTokenList;
+	final classList : IDOMTokenList;
 	/**
 		Returns the value of element's class content attribute. Can be set to change it.
 	**/
@@ -250,8 +222,8 @@ package js.lib;
 		Returns the namespace.
 	**/
 	final namespaceURI : Null<String>;
-	var onfullscreenchange : Null<(ev:js.html.Event) -> Any>;
-	var onfullscreenerror : Null<(ev:js.html.Event) -> Any>;
+	var onfullscreenchange : Null<(ev:js.html.IEvent) -> Any>;
+	var onfullscreenerror : Null<(ev:js.html.IEvent) -> Any>;
 	var outerHTML : String;
 	/**
 		Returns the namespace prefix.
@@ -264,7 +236,7 @@ package js.lib;
 	/**
 		Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
 	**/
-	final shadowRoot : Null<js.html.ShadowRoot>;
+	final shadowRoot : Null<js.html.IShadowRoot>;
 	/**
 		Returns the value of element's slot content attribute. Can be set to change it.
 	**/
@@ -276,12 +248,12 @@ package js.lib;
 	/**
 		Creates a shadow root for element and returns it.
 	**/
-	function attachShadow(init:js.html.ShadowRootInit):js.html.ShadowRoot;
+	function attachShadow(init:js.html.ShadowRootInit):js.html.IShadowRoot;
 	/**
 		Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 	**/
 	@:overload(function<K:(String)>(selector:K):Null<Any> { })
-	@:overload(function<E:(js.html.Element)>(selector:String):Null<E> { })
+	@:overload(function<E:(js.html.IElement)>(selector:String):Null<E> { })
 	function closest<K:(String)>(selector:K):Null<Any>;
 	/**
 		Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
@@ -295,20 +267,20 @@ package js.lib;
 		Returns the qualified names of all element's attributes. Can contain duplicates.
 	**/
 	function getAttributeNames():std.Array<String>;
-	function getAttributeNode(name:String):Null<js.html.Attr>;
-	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<js.html.Attr>;
-	function getBoundingClientRect():js.html.DOMRect;
-	function getClientRects():DOMRectList;
+	function getAttributeNode(name:String):Null<js.html.IAttr>;
+	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<js.html.IAttr>;
+	function getBoundingClientRect():js.html.IDOMRect;
+	function getClientRects():IDOMRectList;
 	/**
 		Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 	**/
-	function getElementsByClassName(classNames:String):HTMLCollectionOf<js.html.Element>;
+	function getElementsByClassName(classNames:String):HTMLCollectionOf<js.html.IElement>;
 	@:overload(function<K:(String)>(qualifiedName:K):HTMLCollectionOf<Any> { })
-	@:overload(function(qualifiedName:String):HTMLCollectionOf<js.html.Element> { })
+	@:overload(function(qualifiedName:String):HTMLCollectionOf<js.html.IElement> { })
 	function getElementsByTagName<K:(String)>(qualifiedName:K):HTMLCollectionOf<Any>;
-	@:overload(function(namespaceURI:String, localName:String):HTMLCollectionOf<js.html.SVGElement> { })
-	@:overload(function(namespaceURI:String, localName:String):HTMLCollectionOf<js.html.Element> { })
-	function getElementsByTagNameNS(namespaceURI:String, localName:String):HTMLCollectionOf<js.html.HTMLElement>;
+	@:overload(function(namespaceURI:String, localName:String):HTMLCollectionOf<js.html.ISVGElement> { })
+	@:overload(function(namespaceURI:String, localName:String):HTMLCollectionOf<js.html.IElement> { })
+	function getElementsByTagNameNS(namespaceURI:String, localName:String):HTMLCollectionOf<js.html.IHTMLElement>;
 	/**
 		Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
 	**/
@@ -322,7 +294,7 @@ package js.lib;
 	**/
 	function hasAttributes():Bool;
 	function hasPointerCapture(pointerId:Float):Bool;
-	function insertAdjacentElement(position:String, insertedElement:js.html.Element):Null<js.html.Element>;
+	function insertAdjacentElement(position:String, insertedElement:js.html.IElement):Null<js.html.IElement>;
 	function insertAdjacentHTML(where:String, html:String):Void;
 	function insertAdjacentText(where:String, text:String):Void;
 	/**
@@ -339,13 +311,13 @@ package js.lib;
 		Removes element's attribute whose namespace is namespace and local name is localName.
 	**/
 	function removeAttributeNS(namespace:Null<String>, localName:String):Void;
-	function removeAttributeNode(attr:js.html.Attr):js.html.Attr;
+	function removeAttributeNode(attr:js.html.IAttr):js.html.IAttr;
 	/**
 		Displays element fullscreen and resolves promise when done.
 		
 		When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to "show", navigation simplicity is preferred over screen space, and if set to "hide", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value "auto" indicates no application preference.
 	**/
-	function requestFullscreen(?options:js.html.FullscreenOptions):Promise<Void>;
+	function requestFullscreen(?options:js.html.FullscreenOptions):IPromise<Void>;
 	function requestPointerLock():Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scroll(?options:js.html.ScrollToOptions):Void;
@@ -362,8 +334,8 @@ package js.lib;
 		Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 	**/
 	function setAttributeNS(namespace:Null<String>, qualifiedName:String, value:String):Void;
-	function setAttributeNode(attr:js.html.Attr):Null<js.html.Attr>;
-	function setAttributeNodeNS(attr:js.html.Attr):Null<js.html.Attr>;
+	function setAttributeNode(attr:js.html.IAttr):Null<js.html.IAttr>;
+	function setAttributeNodeNS(attr:js.html.IAttr):Null<js.html.IAttr>;
 	function setPointerCapture(pointerId:Float):Void;
 	/**
 		If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -408,56 +380,56 @@ package js.lib;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<js.html.Document>;
+	final ownerDocument : Null<js.html.IDocument>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<js.html.HTMLElement>;
+	final parentElement : Null<js.html.IHTMLElement>;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<js.html.INode & js.html.ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<js.html.Node>;
+	final previousSibling : Null<js.html.INode>;
 	var textContent : Null<String>;
-	function appendChild<T:(js.html.Node)>(newChild:T):T;
+	function appendChild<T:(js.html.INode)>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):js.html.Node;
+	function cloneNode(?deep:Bool):js.html.INode;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:js.html.Node):Float;
+	function compareDocumentPosition(other:js.html.INode):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<js.html.Node>):Bool;
+	function contains(other:Null<js.html.INode>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:js.html.GetRootNodeOptions):js.html.Node;
+	function getRootNode(?options:js.html.GetRootNodeOptions):js.html.INode;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T:(js.html.Node)>(newChild:T, refChild:Null<js.html.Node>):T;
+	function insertBefore<T:(js.html.INode)>(newChild:T, refChild:Null<js.html.INode>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<js.html.Node>):Bool;
-	function isSameNode(otherNode:Null<js.html.Node>):Bool;
+	function isEqualNode(otherNode:Null<js.html.INode>):Bool;
+	function isSameNode(otherNode:Null<js.html.INode>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
 		Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
 	**/
 	function normalize():Void;
-	function removeChild<T:(js.html.Node)>(oldChild:T):T;
-	function replaceChild<T:(js.html.Node)>(newChild:js.html.Node, oldChild:T):T;
+	function removeChild<T:(js.html.INode)>(oldChild:T):T;
+	function replaceChild<T:(js.html.INode)>(newChild:js.html.INode, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -518,21 +490,21 @@ package js.lib;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:js.html.Event):Bool;
-	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<js.html.Keyframe>, js.html.PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, js.html.KeyframeAnimationOptions>):js.html.Animation;
-	function getAnimations():std.Array<js.html.Animation>;
+	function dispatchEvent(event:js.html.IEvent):Bool;
+	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<js.html.Keyframe>, js.html.PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, js.html.KeyframeAnimationOptions>):js.html.IAnimation;
+	function getAnimations():std.Array<js.html.IAnimation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:std.Array<haxe.extern.EitherType<String, js.html.Node>>):Void;
+	function after(nodes:std.Array<haxe.extern.EitherType<String, js.html.INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:std.Array<haxe.extern.EitherType<String, js.html.Node>>):Void;
+	function before(nodes:std.Array<haxe.extern.EitherType<String, js.html.INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -542,135 +514,135 @@ package js.lib;
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, js.html.Node>>):Void;
+	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, js.html.INode>>):Void;
 	var innerHTML : String;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
 	**/
-	final nextElementSibling : Null<js.html.Element>;
+	final nextElementSibling : Null<js.html.IElement>;
 	/**
 		Returns the first preceding sibling that is an element, and null otherwise.
 	**/
-	final previousElementSibling : Null<js.html.Element>;
+	final previousElementSibling : Null<js.html.IElement>;
 	final childElementCount : Float;
 	/**
 		Returns the child elements.
 	**/
-	final children : js.html.HTMLCollection;
+	final children : js.html.IHTMLCollection;
 	/**
 		Returns the first child that is an element, and null otherwise.
 	**/
-	final firstElementChild : Null<js.html.Element>;
+	final firstElementChild : Null<js.html.IElement>;
 	/**
 		Returns the last child that is an element, and null otherwise.
 	**/
-	final lastElementChild : Null<js.html.Element>;
+	final lastElementChild : Null<js.html.IElement>;
 	/**
 		Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:std.Array<haxe.extern.EitherType<String, js.html.Node>>):Void;
+	function append(nodes:std.Array<haxe.extern.EitherType<String, js.html.INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:std.Array<haxe.extern.EitherType<String, js.html.Node>>):Void;
+	function prepend(nodes:std.Array<haxe.extern.EitherType<String, js.html.INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
 	@:overload(function<K:(String)>(selectors:K):Null<Any> { })
-	@:overload(function<E:(js.html.Element)>(selectors:String):Null<E> { })
+	@:overload(function<E:(js.html.IElement)>(selectors:String):Null<E> { })
 	function querySelector<K:(String)>(selectors:K):Null<Any>;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
 	@:overload(function<K:(String)>(selectors:K):NodeListOf<Any> { })
-	@:overload(function<E:(js.html.Element)>(selectors:String):NodeListOf<E> { })
+	@:overload(function<E:(js.html.IElement)>(selectors:String):NodeListOf<E> { })
 	function querySelectorAll<K:(String)>(selectors:K):NodeListOf<Any>;
-	var oncopy : Null<(ev:js.html.ClipboardEvent) -> Any>;
-	var oncut : Null<(ev:js.html.ClipboardEvent) -> Any>;
-	var onpaste : Null<(ev:js.html.ClipboardEvent) -> Any>;
-	final style : CSSStyleDeclaration;
+	var oncopy : Null<(ev:js.html.IClipboardEvent) -> Any>;
+	var oncut : Null<(ev:js.html.IClipboardEvent) -> Any>;
+	var onpaste : Null<(ev:js.html.IClipboardEvent) -> Any>;
+	final style : ICSSStyleDeclaration;
 	var contentEditable : String;
 	var inputMode : String;
 	final isContentEditable : Bool;
 	/**
 		Fires when the user aborts the download.
 	**/
-	var onabort : Null<(ev:js.html.UIEvent) -> Any>;
-	var onanimationcancel : Null<(ev:js.html.AnimationEvent) -> Any>;
-	var onanimationend : Null<(ev:js.html.AnimationEvent) -> Any>;
-	var onanimationiteration : Null<(ev:js.html.AnimationEvent) -> Any>;
-	var onanimationstart : Null<(ev:js.html.AnimationEvent) -> Any>;
-	var onauxclick : Null<(ev:js.html.MouseEvent) -> Any>;
+	var onabort : Null<(ev:js.html.IUIEvent) -> Any>;
+	var onanimationcancel : Null<(ev:js.html.IAnimationEvent) -> Any>;
+	var onanimationend : Null<(ev:js.html.IAnimationEvent) -> Any>;
+	var onanimationiteration : Null<(ev:js.html.IAnimationEvent) -> Any>;
+	var onanimationstart : Null<(ev:js.html.IAnimationEvent) -> Any>;
+	var onauxclick : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Fires when the object loses the input focus.
 	**/
-	var onblur : Null<(ev:js.html.FocusEvent) -> Any>;
-	var oncancel : Null<(ev:js.html.Event) -> Any>;
+	var onblur : Null<(ev:js.html.IFocusEvent) -> Any>;
+	var oncancel : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when playback is possible, but would require further buffering.
 	**/
-	var oncanplay : Null<(ev:js.html.Event) -> Any>;
-	var oncanplaythrough : Null<(ev:js.html.Event) -> Any>;
+	var oncanplay : Null<(ev:js.html.IEvent) -> Any>;
+	var oncanplaythrough : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the contents of the object or selection have changed.
 	**/
-	var onchange : Null<(ev:js.html.Event) -> Any>;
+	var onchange : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the user clicks the left mouse button on the object
 	**/
-	var onclick : Null<(ev:js.html.MouseEvent) -> Any>;
-	var onclose : Null<(ev:js.html.Event) -> Any>;
+	var onclick : Null<(ev:js.html.IMouseEvent) -> Any>;
+	var onclose : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the user clicks the right mouse button in the client area, opening the context menu.
 	**/
-	var oncontextmenu : Null<(ev:js.html.MouseEvent) -> Any>;
-	var oncuechange : Null<(ev:js.html.Event) -> Any>;
+	var oncontextmenu : Null<(ev:js.html.IMouseEvent) -> Any>;
+	var oncuechange : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the user double-clicks the object.
 	**/
-	var ondblclick : Null<(ev:js.html.MouseEvent) -> Any>;
+	var ondblclick : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Fires on the source object continuously during a drag operation.
 	**/
-	var ondrag : Null<(ev:js.html.DragEvent) -> Any>;
+	var ondrag : Null<(ev:js.html.IDragEvent) -> Any>;
 	/**
 		Fires on the source object when the user releases the mouse at the close of a drag operation.
 	**/
-	var ondragend : Null<(ev:js.html.DragEvent) -> Any>;
+	var ondragend : Null<(ev:js.html.IDragEvent) -> Any>;
 	/**
 		Fires on the target element when the user drags the object to a valid drop target.
 	**/
-	var ondragenter : Null<(ev:js.html.DragEvent) -> Any>;
-	var ondragexit : Null<(ev:js.html.Event) -> Any>;
+	var ondragenter : Null<(ev:js.html.IDragEvent) -> Any>;
+	var ondragexit : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
 	**/
-	var ondragleave : Null<(ev:js.html.DragEvent) -> Any>;
+	var ondragleave : Null<(ev:js.html.IDragEvent) -> Any>;
 	/**
 		Fires on the target element continuously while the user drags the object over a valid drop target.
 	**/
-	var ondragover : Null<(ev:js.html.DragEvent) -> Any>;
+	var ondragover : Null<(ev:js.html.IDragEvent) -> Any>;
 	/**
 		Fires on the source object when the user starts to drag a text selection or selected object.
 	**/
-	var ondragstart : Null<(ev:js.html.DragEvent) -> Any>;
-	var ondrop : Null<(ev:js.html.DragEvent) -> Any>;
+	var ondragstart : Null<(ev:js.html.IDragEvent) -> Any>;
+	var ondrop : Null<(ev:js.html.IDragEvent) -> Any>;
 	/**
 		Occurs when the duration attribute is updated.
 	**/
-	var ondurationchange : Null<(ev:js.html.Event) -> Any>;
+	var ondurationchange : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the media element is reset to its initial state.
 	**/
-	var onemptied : Null<(ev:js.html.Event) -> Any>;
+	var onemptied : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the end of playback is reached.
 	**/
-	var onended : Null<(ev:js.html.Event) -> Any>;
+	var onended : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when an error occurs during object loading.
 	**/
@@ -678,150 +650,150 @@ package js.lib;
 	/**
 		Fires when the object receives focus.
 	**/
-	var onfocus : Null<(ev:js.html.FocusEvent) -> Any>;
-	var ongotpointercapture : Null<(ev:js.html.PointerEvent) -> Any>;
-	var oninput : Null<(ev:js.html.Event) -> Any>;
-	var oninvalid : Null<(ev:js.html.Event) -> Any>;
+	var onfocus : Null<(ev:js.html.IFocusEvent) -> Any>;
+	var ongotpointercapture : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var oninput : Null<(ev:js.html.IEvent) -> Any>;
+	var oninvalid : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the user presses a key.
 	**/
-	var onkeydown : Null<(ev:js.html.KeyboardEvent) -> Any>;
+	var onkeydown : Null<(ev:js.html.IKeyboardEvent) -> Any>;
 	/**
 		Fires when the user presses an alphanumeric key.
 	**/
-	var onkeypress : Null<(ev:js.html.KeyboardEvent) -> Any>;
+	var onkeypress : Null<(ev:js.html.IKeyboardEvent) -> Any>;
 	/**
 		Fires when the user releases a key.
 	**/
-	var onkeyup : Null<(ev:js.html.KeyboardEvent) -> Any>;
+	var onkeyup : Null<(ev:js.html.IKeyboardEvent) -> Any>;
 	/**
 		Fires immediately after the browser loads the object.
 	**/
-	var onload : Null<(ev:js.html.Event) -> Any>;
+	var onload : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when media data is loaded at the current playback position.
 	**/
-	var onloadeddata : Null<(ev:js.html.Event) -> Any>;
+	var onloadeddata : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the duration and dimensions of the media have been determined.
 	**/
-	var onloadedmetadata : Null<(ev:js.html.Event) -> Any>;
-	var onloadend : Null<(ev:js.html.ProgressEvent<js.html.EventTarget>) -> Any>;
+	var onloadedmetadata : Null<(ev:js.html.IEvent) -> Any>;
+	var onloadend : Null<(ev:js.html.IProgressEvent<js.html.IEventTarget>) -> Any>;
 	/**
 		Occurs when Internet Explorer begins looking for media data.
 	**/
-	var onloadstart : Null<(ev:js.html.Event) -> Any>;
-	var onlostpointercapture : Null<(ev:js.html.PointerEvent) -> Any>;
+	var onloadstart : Null<(ev:js.html.IEvent) -> Any>;
+	var onlostpointercapture : Null<(ev:js.html.IPointerEvent) -> Any>;
 	/**
 		Fires when the user clicks the object with either mouse button.
 	**/
-	var onmousedown : Null<(ev:js.html.MouseEvent) -> Any>;
-	var onmouseenter : Null<(ev:js.html.MouseEvent) -> Any>;
-	var onmouseleave : Null<(ev:js.html.MouseEvent) -> Any>;
+	var onmousedown : Null<(ev:js.html.IMouseEvent) -> Any>;
+	var onmouseenter : Null<(ev:js.html.IMouseEvent) -> Any>;
+	var onmouseleave : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Fires when the user moves the mouse over the object.
 	**/
-	var onmousemove : Null<(ev:js.html.MouseEvent) -> Any>;
+	var onmousemove : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Fires when the user moves the mouse pointer outside the boundaries of the object.
 	**/
-	var onmouseout : Null<(ev:js.html.MouseEvent) -> Any>;
+	var onmouseout : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Fires when the user moves the mouse pointer into the object.
 	**/
-	var onmouseover : Null<(ev:js.html.MouseEvent) -> Any>;
+	var onmouseover : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Fires when the user releases a mouse button while the mouse is over the object.
 	**/
-	var onmouseup : Null<(ev:js.html.MouseEvent) -> Any>;
+	var onmouseup : Null<(ev:js.html.IMouseEvent) -> Any>;
 	/**
 		Occurs when playback is paused.
 	**/
-	var onpause : Null<(ev:js.html.Event) -> Any>;
+	var onpause : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the play method is requested.
 	**/
-	var onplay : Null<(ev:js.html.Event) -> Any>;
+	var onplay : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the audio or video has started playing.
 	**/
-	var onplaying : Null<(ev:js.html.Event) -> Any>;
-	var onpointercancel : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointerdown : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointerenter : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointerleave : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointermove : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointerout : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointerover : Null<(ev:js.html.PointerEvent) -> Any>;
-	var onpointerup : Null<(ev:js.html.PointerEvent) -> Any>;
+	var onplaying : Null<(ev:js.html.IEvent) -> Any>;
+	var onpointercancel : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointerdown : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointerenter : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointerleave : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointermove : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointerout : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointerover : Null<(ev:js.html.IPointerEvent) -> Any>;
+	var onpointerup : Null<(ev:js.html.IPointerEvent) -> Any>;
 	/**
 		Occurs to indicate progress while downloading media data.
 	**/
-	var onprogress : Null<(ev:js.html.ProgressEvent<js.html.EventTarget>) -> Any>;
+	var onprogress : Null<(ev:js.html.IProgressEvent<js.html.IEventTarget>) -> Any>;
 	/**
 		Occurs when the playback rate is increased or decreased.
 	**/
-	var onratechange : Null<(ev:js.html.Event) -> Any>;
+	var onratechange : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the user resets a form.
 	**/
-	var onreset : Null<(ev:js.html.Event) -> Any>;
-	var onresize : Null<(ev:js.html.UIEvent) -> Any>;
+	var onreset : Null<(ev:js.html.IEvent) -> Any>;
+	var onresize : Null<(ev:js.html.IUIEvent) -> Any>;
 	/**
 		Fires when the user repositions the scroll box in the scroll bar on the object.
 	**/
-	var onscroll : Null<(ev:js.html.Event) -> Any>;
-	var onsecuritypolicyviolation : Null<(ev:js.html.SecurityPolicyViolationEvent) -> Any>;
+	var onscroll : Null<(ev:js.html.IEvent) -> Any>;
+	var onsecuritypolicyviolation : Null<(ev:js.html.ISecurityPolicyViolationEvent) -> Any>;
 	/**
 		Occurs when the seek operation ends.
 	**/
-	var onseeked : Null<(ev:js.html.Event) -> Any>;
+	var onseeked : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the current playback position is moved.
 	**/
-	var onseeking : Null<(ev:js.html.Event) -> Any>;
+	var onseeking : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Fires when the current selection changes.
 	**/
-	var onselect : Null<(ev:js.html.Event) -> Any>;
-	var onselectionchange : Null<(ev:js.html.Event) -> Any>;
-	var onselectstart : Null<(ev:js.html.Event) -> Any>;
+	var onselect : Null<(ev:js.html.IEvent) -> Any>;
+	var onselectionchange : Null<(ev:js.html.IEvent) -> Any>;
+	var onselectstart : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when the download has stopped.
 	**/
-	var onstalled : Null<(ev:js.html.Event) -> Any>;
-	var onsubmit : Null<(ev:js.html.Event) -> Any>;
+	var onstalled : Null<(ev:js.html.IEvent) -> Any>;
+	var onsubmit : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs if the load operation has been intentionally halted.
 	**/
-	var onsuspend : Null<(ev:js.html.Event) -> Any>;
+	var onsuspend : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs to indicate the current playback position.
 	**/
-	var ontimeupdate : Null<(ev:js.html.Event) -> Any>;
-	var ontoggle : Null<(ev:js.html.Event) -> Any>;
-	var ontouchcancel : Null<(ev:js.html.TouchEvent) -> Any>;
-	var ontouchend : Null<(ev:js.html.TouchEvent) -> Any>;
-	var ontouchmove : Null<(ev:js.html.TouchEvent) -> Any>;
-	var ontouchstart : Null<(ev:js.html.TouchEvent) -> Any>;
-	var ontransitioncancel : Null<(ev:js.html.TransitionEvent) -> Any>;
-	var ontransitionend : Null<(ev:js.html.TransitionEvent) -> Any>;
-	var ontransitionrun : Null<(ev:js.html.TransitionEvent) -> Any>;
-	var ontransitionstart : Null<(ev:js.html.TransitionEvent) -> Any>;
+	var ontimeupdate : Null<(ev:js.html.IEvent) -> Any>;
+	var ontoggle : Null<(ev:js.html.IEvent) -> Any>;
+	var ontouchcancel : Null<(ev:js.html.ITouchEvent) -> Any>;
+	var ontouchend : Null<(ev:js.html.ITouchEvent) -> Any>;
+	var ontouchmove : Null<(ev:js.html.ITouchEvent) -> Any>;
+	var ontouchstart : Null<(ev:js.html.ITouchEvent) -> Any>;
+	var ontransitioncancel : Null<(ev:js.html.ITransitionEvent) -> Any>;
+	var ontransitionend : Null<(ev:js.html.ITransitionEvent) -> Any>;
+	var ontransitionrun : Null<(ev:js.html.ITransitionEvent) -> Any>;
+	var ontransitionstart : Null<(ev:js.html.ITransitionEvent) -> Any>;
 	/**
 		Occurs when the volume is changed, or playback is muted or unmuted.
 	**/
-	var onvolumechange : Null<(ev:js.html.Event) -> Any>;
+	var onvolumechange : Null<(ev:js.html.IEvent) -> Any>;
 	/**
 		Occurs when playback stops because the next frame of a video resource is not available.
 	**/
-	var onwaiting : Null<(ev:js.html.Event) -> Any>;
-	var onwheel : Null<(ev:js.html.WheelEvent) -> Any>;
-	final dataset : js.html.DOMStringMap;
+	var onwaiting : Null<(ev:js.html.IEvent) -> Any>;
+	var onwheel : Null<(ev:js.html.IWheelEvent) -> Any>;
+	final dataset : js.html.IDOMStringMap;
 	@:optional
 	var nonce : String;
 	var tabIndex : Float;
 	function blur():Void;
 	function focus(?options:js.html.FocusOptions):Void;
-	static var prototype : HTMLFormElement;
+	static var prototype : IHTMLFormElement;
 }

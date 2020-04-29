@@ -1,5 +1,5 @@
 package js.lib;
-extern interface WEBGL_draw_buffers {
+extern typedef WEBGL_draw_buffers = {
 	@:overload(function(buffers:Iterable<Float>):Void { })
 	function drawBuffersWEBGL(buffers:std.Array<Float>):Void;
 	final COLOR_ATTACHMENT0_WEBGL : Float;
@@ -36,4 +36,4 @@ extern interface WEBGL_draw_buffers {
 	final DRAW_BUFFER9_WEBGL : Float;
 	final MAX_COLOR_ATTACHMENTS_WEBGL : Float;
 	final MAX_DRAW_BUFFERS_WEBGL : Float;
-}
+};

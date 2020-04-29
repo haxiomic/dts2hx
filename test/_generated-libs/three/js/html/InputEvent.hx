@@ -1,11 +1,11 @@
 package js.html;
-@:native("InputEvent") @tsInterface extern class InputEvent {
+@:native("InputEvent") extern class InputEvent {
 	function new(type:String, ?eventInitDict:InputEventInit);
 	final data : Null<String>;
 	final inputType : String;
 	final isComposing : Bool;
 	final detail : Float;
-	final view : Null<Window>;
+	final view : Null<IWindow>;
 	final which : Float;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
@@ -23,7 +23,7 @@ package js.html;
 	/**
 		Returns the object whose event listener's callback is currently being invoked.
 	**/
-	final currentTarget : Null<EventTarget>;
+	final currentTarget : Null<IEventTarget>;
 	/**
 		Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
 	**/
@@ -37,11 +37,11 @@ package js.html;
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<EventTarget>;
+	final srcElement : Null<IEventTarget>;
 	/**
 		Returns the object to which event is dispatched (its target).
 	**/
-	final target : Null<EventTarget>;
+	final target : Null<IEventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -53,7 +53,7 @@ package js.html;
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():std.Array<EventTarget>;
+	function composedPath():std.Array<IEventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	/**
 		If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.
@@ -71,5 +71,5 @@ package js.html;
 	final BUBBLING_PHASE : Float;
 	final CAPTURING_PHASE : Float;
 	final NONE : Float;
-	static var prototype : InputEvent;
+	static var prototype : IInputEvent;
 }

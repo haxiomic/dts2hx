@@ -1,5 +1,5 @@
 package js.html;
-@:native("PermissionRequest") @tsInterface extern class PermissionRequest {
+@:native("PermissionRequest") extern class PermissionRequest {
 	function new();
 	final state : String;
 	function defer():Void;
@@ -8,5 +8,5 @@ package js.html;
 	final uri : String;
 	function allow():Void;
 	function deny():Void;
-	static var prototype : PermissionRequest;
+	static var prototype : IPermissionRequest;
 }

@@ -2,12 +2,12 @@ package js.html;
 /**
 	A DOM element's attribute as an object. In most DOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
 **/
-@:native("Attr") @tsInterface extern class Attr {
+@:native("Attr") extern class Attr {
 	function new();
 	final localName : String;
 	final name : String;
 	final namespaceURI : Null<String>;
-	final ownerElement : Null<Element>;
+	final ownerElement : Null<IElement>;
 	final prefix : Null<String>;
 	final specified : Bool;
 	var value : String;
@@ -47,56 +47,56 @@ package js.html;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<Document>;
+	final ownerDocument : Null<IDocument>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<HTMLElement>;
+	final parentElement : Null<IHTMLElement>;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<INode & ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<Node>;
+	final previousSibling : Null<INode>;
 	var textContent : Null<String>;
-	function appendChild<T:(Node)>(newChild:T):T;
+	function appendChild<T:(INode)>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):Node;
+	function cloneNode(?deep:Bool):INode;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:Node):Float;
+	function compareDocumentPosition(other:INode):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<Node>):Bool;
+	function contains(other:Null<INode>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):Node;
+	function getRootNode(?options:GetRootNodeOptions):INode;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T:(Node)>(newChild:T, refChild:Null<Node>):T;
+	function insertBefore<T:(INode)>(newChild:T, refChild:Null<INode>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<Node>):Bool;
-	function isSameNode(otherNode:Null<Node>):Bool;
+	function isEqualNode(otherNode:Null<INode>):Bool;
+	function isSameNode(otherNode:Null<INode>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
 		Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
 	**/
 	function normalize():Void;
-	function removeChild<T:(Node)>(oldChild:T):T;
-	function replaceChild<T:(Node)>(newChild:Node, oldChild:T):T;
+	function removeChild<T:(INode)>(oldChild:T):T;
+	function replaceChild<T:(INode)>(newChild:INode, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -171,10 +171,10 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	static var prototype : Attr;
+	static var prototype : IAttr;
 }

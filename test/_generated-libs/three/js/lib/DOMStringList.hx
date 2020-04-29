@@ -2,7 +2,7 @@ package js.lib;
 /**
 	A type returned by some APIs which contains a list of DOMString (strings).
 **/
-@:native("DOMStringList") @tsInterface extern class DOMStringList {
+@:native("DOMStringList") extern class DOMStringList {
 	function new();
 	/**
 		Returns the number of strings in strings.
@@ -16,5 +16,5 @@ package js.lib;
 		Returns the string with index index from strings.
 	**/
 	function item(index:Float):Null<String>;
-	static var prototype : DOMStringList;
+	static var prototype : IDOMStringList;
 }

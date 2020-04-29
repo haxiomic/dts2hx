@@ -1,5 +1,5 @@
 package js.lib;
-extern interface SymbolConstructor {
+extern typedef SymbolConstructor = {
 	/**
 		Returns a new unique Symbol value.
 	**/
@@ -81,4 +81,4 @@ extern interface SymbolConstructor {
 	**/
 	final asyncIterator : js.lib.Symbol;
 	final observable : js.lib.Symbol;
-}
+};

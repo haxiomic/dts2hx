@@ -1,7 +1,7 @@
 package node.inspector.console;
-extern interface MessageAddedEventDataType {
+extern typedef MessageAddedEventDataType = {
 	/**
 		Console message that has been added.
 	**/
 	var message : ConsoleMessage;
-}
+};

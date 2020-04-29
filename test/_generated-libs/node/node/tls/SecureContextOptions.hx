@@ -1,15 +1,15 @@
 package node.tls;
-extern interface SecureContextOptions {
+extern typedef SecureContextOptions = {
 	@:optional
-	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>>;
+	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IObject, global.IBuffer>>>>>;
 	@:optional
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<js.lib.Object, global.Buffer>>>>;
+	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<js.lib.IObject, global.IBuffer>>>>;
 	@:optional
 	var passphrase : String;
 	@:optional
-	var cert : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
+	var cert : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, global.IBuffer>>>>;
 	@:optional
-	var ca : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
+	var ca : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, global.IBuffer>>>>;
 	@:optional
 	var ciphers : String;
 	@:optional
@@ -19,9 +19,9 @@ extern interface SecureContextOptions {
 	@:optional
 	var clientCertEngine : String;
 	@:optional
-	var crl : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, std.Array<haxe.extern.EitherType<String, global.Buffer>>>>;
+	var crl : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, global.IBuffer>>>>;
 	@:optional
-	var dhparam : haxe.extern.EitherType<String, global.Buffer>;
+	var dhparam : haxe.extern.EitherType<String, global.IBuffer>;
 	@:optional
 	var secureOptions : Float;
 	@:optional
@@ -46,4 +46,4 @@ extern interface SecureContextOptions {
 	**/
 	@:optional
 	var minVersion : String;
-}
+};

@@ -1,5 +1,5 @@
 package node.http2;
-extern interface StreamState {
+extern typedef StreamState = {
 	@:optional
 	var localWindowSize : Float;
 	@:optional
@@ -12,4 +12,4 @@ extern interface StreamState {
 	var sumDependencyWeight : Float;
 	@:optional
 	var weight : Float;
-}
+};

@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Mirror object referencing original JavaScript object.
 **/
-extern interface RemoteObject {
+extern typedef RemoteObject = {
 	/**
 		Object type.
 	**/
@@ -45,4 +45,4 @@ extern interface RemoteObject {
 	var preview : ObjectPreview;
 	@:optional
 	var customPreview : CustomPreview;
-}
+};

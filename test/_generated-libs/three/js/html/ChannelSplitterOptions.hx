@@ -1,5 +1,11 @@
 package js.html;
-extern interface ChannelSplitterOptions extends AudioNodeOptions {
+extern typedef ChannelSplitterOptions = {
 	@:optional
 	var numberOfOutputs : Float;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

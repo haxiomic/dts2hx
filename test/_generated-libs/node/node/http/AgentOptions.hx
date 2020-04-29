@@ -1,5 +1,5 @@
 package node.http;
-extern interface AgentOptions {
+extern typedef AgentOptions = {
 	/**
 		Keep sockets around in a pool to be used by other requests in the future. Default = false
 	**/
@@ -26,4 +26,4 @@ extern interface AgentOptions {
 	**/
 	@:optional
 	var timeout : Float;
-}
+};

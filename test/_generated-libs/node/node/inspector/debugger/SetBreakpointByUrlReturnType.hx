@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface SetBreakpointByUrlReturnType {
+extern typedef SetBreakpointByUrlReturnType = {
 	/**
 		Id of the created breakpoint for further reference.
 	**/
@@ -8,4 +8,4 @@ extern interface SetBreakpointByUrlReturnType {
 		List of the locations this breakpoint resolved into upon addition.
 	**/
 	var locations : std.Array<Location>;
-}
+};

@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface CpuUsage {
+extern typedef CpuUsage = {
 	var user : Float;
 	var system : Float;
-}
+};

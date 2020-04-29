@@ -1,5 +1,5 @@
 package node.url;
-extern interface UrlObjectCommon {
+extern typedef UrlObjectCommon = {
 	@:optional
 	var auth : String;
 	@:optional
@@ -20,4 +20,4 @@ extern interface UrlObjectCommon {
 	var search : String;
 	@:optional
 	var slashes : Bool;
-}
+};

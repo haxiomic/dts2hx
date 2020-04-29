@@ -3,10 +3,10 @@ package js.lib;
 	A typed array of 32-bit unsigned integer values. The contents are initialized to 0. If the
 	requested number of bytes could not be allocated an exception is raised.
 **/
-@:native("Uint32Array") @tsInterface extern class Uint32Array {
-	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<ArrayBuffer, ArrayLike<Float>>):Uint32Array { })
-	@:overload(function(buffer:ArrayBuffer, byteOffset:Float, ?length:Float):Uint32Array { })
-	@:overload(function(elements:Iterable<Float>):Uint32Array { })
+@:native("Uint32Array") extern class Uint32Array {
+	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<IArrayBuffer, ArrayLike<Float>>):IUint32Array { })
+	@:overload(function(buffer:IArrayBuffer, byteOffset:Float, ?length:Float):IUint32Array { })
+	@:overload(function(elements:Iterable<Float>):IUint32Array { })
 	function new(length:Float);
 	/**
 		The size in bytes of each element in the array.
@@ -15,7 +15,7 @@ package js.lib;
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : ArrayBuffer;
+	final buffer : IArrayBuffer;
 	/**
 		The length in bytes of the array.
 	**/
@@ -28,33 +28,33 @@ package js.lib;
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 	**/
-	function copyWithin(target:Float, start:Float, ?end:Float):Uint32Array;
+	function copyWithin(target:Float, start:Float, ?end:Float):IUint32Array;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:Uint32Array) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:IUint32Array) -> Any, ?thisArg:Any):Bool;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
-	function fill(value:Float, ?start:Float, ?end:Float):Uint32Array;
+	function fill(value:Float, ?start:Float, ?end:Float):IUint32Array;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:Uint32Array) -> Any, ?thisArg:Any):Uint32Array;
+	function filter(callbackfn:(value:Float, index:Float, array:IUint32Array) -> Any, ?thisArg:Any):IUint32Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:Uint32Array) -> Bool, ?thisArg:Any):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:IUint32Array) -> Bool, ?thisArg:Any):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:Uint32Array) -> Bool, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:IUint32Array) -> Bool, ?thisArg:Any):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:Uint32Array) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:IUint32Array) -> Void, ?thisArg:Any):Void;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -75,39 +75,35 @@ package js.lib;
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:Uint32Array) -> Float, ?thisArg:Any):Uint32Array;
+	function map(callbackfn:(value:Float, index:Float, array:IUint32Array) -> Float, ?thisArg:Any):IUint32Array;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 		
-		
-		
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint32Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:Uint32Array) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint32Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint32Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:IUint32Array) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint32Array) -> Float):Float;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 		
-		
-		
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint32Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:Uint32Array) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint32Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint32Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:IUint32Array) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint32Array) -> Float):Float;
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():Uint32Array;
+	function reverse():IUint32Array;
 	/**
 		Sets a value or an array of values.
 	**/
@@ -115,20 +111,20 @@ package js.lib;
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):Uint32Array;
+	function slice(?start:Float, ?end:Float):IUint32Array;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:Uint32Array) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:IUint32Array) -> Any, ?thisArg:Any):Bool;
 	/**
 		Sorts an array.
 	**/
-	function sort(?compareFn:(a:Float, b:Float) -> Float):Uint32Array;
+	function sort(?compareFn:(a:Float, b:Float) -> Float):IUint32Array;
 	/**
 		Gets a new Uint32Array view of the ArrayBuffer store for this array, referencing the elements
 		at begin, inclusive, up to end, exclusive.
 	**/
-	function subarray(?begin:Float, ?end:Float):Uint32Array;
+	function subarray(?begin:Float, ?end:Float):IUint32Array;
 	/**
 		Converts a number to a string by using the current locale.
 	**/
@@ -149,7 +145,7 @@ package js.lib;
 		Returns an list of values in the array
 	**/
 	function values():IterableIterator<Float>;
-	static final prototype : Uint32Array;
+	static final prototype : IUint32Array;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -158,19 +154,15 @@ package js.lib;
 	/**
 		Returns a new array from a set of elements.
 	**/
-	static function of(items:std.Array<Float>):Uint32Array;
+	static function of(items:std.Array<Float>):IUint32Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		
-		
-		
 		Creates an array from an array-like or iterable object.
-		
-		
 		
 		Creates an array from an array-like or iterable object.
 	**/
-	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Any):Uint32Array { })
-	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Any):Uint32Array { })
-	static function from(arrayLike:ArrayLike<Float>):Uint32Array;
+	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Any):IUint32Array { })
+	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Any):IUint32Array { })
+	static function from(arrayLike:ArrayLike<Float>):IUint32Array;
 }

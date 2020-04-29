@@ -1,13 +1,23 @@
 package global.nodejs;
-extern interface Domain extends Events {
+extern typedef Domain = {
 	function run<T>(fn:(args:std.Array<Any>) -> T, args:std.Array<Any>):T;
 	function add(emitter:haxe.extern.EitherType<EventEmitter, Timer>):Void;
 	function remove(emitter:haxe.extern.EitherType<EventEmitter, Timer>):Void;
-	function bind<T:(js.lib.Function)>(cb:T):T;
-	function intercept<T:(js.lib.Function)>(cb:T):T;
+	function bind<T:(js.lib.IFunction)>(cb:T):T;
+	function intercept<T:(js.lib.IFunction)>(cb:T):T;
 	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):Domain;
 	function on(event:String, listener:(args:std.Array<Any>) -> Void):Domain;
 	function once(event:String, listener:(args:std.Array<Any>) -> Void):Domain;
 	function removeListener(event:String, listener:(args:std.Array<Any>) -> Void):Domain;
 	function removeAllListeners(?event:String):Domain;
-}
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function setMaxListeners(n:Float):EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+};

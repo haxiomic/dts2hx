@@ -1,7 +1,7 @@
 package node.http2;
-extern interface ServerStreamResponseOptions {
+extern typedef ServerStreamResponseOptions = {
 	@:optional
 	var endStream : Bool;
 	@:optional
 	var waitForTrailers : Bool;
-}
+};

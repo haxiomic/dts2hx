@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCIceCandidateInit {
+extern typedef RTCIceCandidateInit = {
 	@:optional
 	var candidate : String;
 	@:optional
@@ -8,4 +8,4 @@ extern interface RTCIceCandidateInit {
 	var sdpMid : String;
 	@:optional
 	var usernameFragment : String;
-}
+};

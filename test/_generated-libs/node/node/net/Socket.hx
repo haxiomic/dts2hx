@@ -1,8 +1,8 @@
 package node.net;
-@:jsRequire("net", "Socket") extern class Socket extends node.stream.Duplex {
+@:jsRequire("net", "Socket") extern class Socket {
 	function new(?options:SocketConstructorOpts);
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?encoding:String, ?cb:(?err:js.lib.Error) -> Void):Bool { })
-	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?cb:(?err:js.lib.Error) -> Void):Bool;
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })
+	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:(?err:js.lib.IError) -> Void):Bool;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })
@@ -29,8 +29,8 @@ package node.net;
 	final remoteFamily : String;
 	@:optional
 	final remotePort : Float;
-	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?cb:() -> Void):Void { })
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, js.lib.Uint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
+	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:() -> Void):Void { })
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	/**
 		events.EventEmitter
@@ -45,56 +45,93 @@ package node.net;
 	**/
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
+	@:overload(function(event:String, listener:(data:global.IBuffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
 	@:overload(function(event:String, had_error:Bool):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, data:global.Buffer):Bool { })
+	@:overload(function(event:String, data:global.IBuffer):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:js.lib.Error):Bool { })
-	@:overload(function(event:String, err:js.lib.Error, address:String, family:haxe.extern.EitherType<String, Float>, host:String):Bool { })
+	@:overload(function(event:String, err:js.lib.IError):Bool { })
+	@:overload(function(event:String, err:js.lib.IError, address:String, family:haxe.extern.EitherType<String, Float>, host:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
+	@:overload(function(event:String, listener:(data:global.IBuffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function on(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
+	@:overload(function(event:String, listener:(data:global.IBuffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function once(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
+	@:overload(function(event:String, listener:(data:global.IBuffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
+	@:overload(function(event:String, listener:(data:global.IBuffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.IError, address:String, family:haxe.extern.EitherType<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
+	var writable : Bool;
+	final writableHighWaterMark : Float;
+	final writableLength : Float;
+	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.IError) -> Void):Void;
+	@:optional
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
+	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
+	function _final(callback:(?error:js.lib.IError) -> Void):Void;
+	function setDefaultEncoding(encoding:String):node.stream.Duplex;
+	function cork():Void;
+	function uncork():Void;
+	var readable : Bool;
+	final readableHighWaterMark : Float;
+	final readableLength : Float;
+	function _read(size:Float):Void;
+	function read(?size:Float):Any;
+	function isPaused():Bool;
+	function unpipe(?destination:global.nodejs.WritableStream):node.stream.Readable;
+	function unshift(chunk:Any):Void;
+	function wrap(oldStream:global.nodejs.ReadableStream):node.stream.Readable;
+	function push(chunk:Any, ?encoding:String):Bool;
+	function destroy(?error:js.lib.IError):Void;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):node.stream.Readable { })
+	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
+	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):node.stream.Readable { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.stream.Readable { })
+	function removeListener(event:String, listener:() -> Void):node.stream.Readable;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
+	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

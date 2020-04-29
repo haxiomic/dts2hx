@@ -1,5 +1,11 @@
 package js.html;
-extern interface TrackEventInit extends EventInit {
+extern typedef TrackEventInit = {
 	@:optional
-	var track : haxe.extern.EitherType<TextTrack, haxe.extern.EitherType<AudioTrack, VideoTrack>>;
-}
+	var track : haxe.extern.EitherType<ITextTrack, haxe.extern.EitherType<IAudioTrack, IVideoTrack>>;
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCIceCandidateDictionary {
+extern typedef RTCIceCandidateDictionary = {
 	@:optional
 	var foundation : String;
 	@:optional
@@ -20,4 +20,4 @@ extern interface RTCIceCandidateDictionary {
 	var tcpType : String;
 	@:optional
 	var type : String;
-}
+};

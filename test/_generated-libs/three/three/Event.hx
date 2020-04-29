@@ -1,6 +1,6 @@
 package three;
-extern interface Event {
+extern typedef Event = {
 	var type : String;
 	@:optional
 	var target : Any;
-}
+};

@@ -1,9 +1,9 @@
 package js.html;
-extern interface AuthenticationExtensionsClientInputs {
+extern typedef AuthenticationExtensionsClientInputs = {
 	@:optional
 	var appid : String;
 	@:optional
-	var authnSel : std.Array<haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.ArrayBufferView>>;
+	var authnSel : std.Array<haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ArrayBufferView>>;
 	@:optional
 	var exts : Bool;
 	@:optional
@@ -16,4 +16,4 @@ extern interface AuthenticationExtensionsClientInputs {
 	var uvi : Bool;
 	@:optional
 	var uvm : Bool;
-}
+};

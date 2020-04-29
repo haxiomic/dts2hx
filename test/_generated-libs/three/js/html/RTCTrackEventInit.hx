@@ -1,8 +1,14 @@
 package js.html;
-extern interface RTCTrackEventInit extends EventInit {
-	var receiver : RTCRtpReceiver;
+extern typedef RTCTrackEventInit = {
+	var receiver : IRTCRtpReceiver;
 	@:optional
-	var streams : std.Array<MediaStream>;
-	var track : MediaStreamTrack;
-	var transceiver : js.lib.RTCRtpTransceiver;
-}
+	var streams : std.Array<IMediaStream>;
+	var track : IMediaStreamTrack;
+	var transceiver : js.lib.IRTCRtpTransceiver;
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

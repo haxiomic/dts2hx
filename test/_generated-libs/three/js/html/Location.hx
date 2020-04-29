@@ -2,12 +2,12 @@ package js.html;
 /**
 	The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 **/
-@:native("Location") @tsInterface extern class Location {
+@:native("Location") extern class Location {
 	function new();
 	/**
 		Returns a DOMStringList object listing the origins of the ancestor browsing contexts, from the parent browsing context to the top-level browsing context.
 	**/
-	final ancestorOrigins : js.lib.DOMStringList;
+	final ancestorOrigins : js.lib.IDOMStringList;
 	/**
 		Returns the Location object's URL's fragment (includes leading "#" if non-empty).
 		
@@ -73,5 +73,5 @@ package js.html;
 		Removes the current page from the session history and navigates to the given URL.
 	**/
 	function replace(url:String):Void;
-	static var prototype : Location;
+	static var prototype : ILocation;
 }

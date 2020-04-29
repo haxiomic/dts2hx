@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSegMovetoRel") @tsInterface extern class SVGPathSegMovetoRel {
+@:native("SVGPathSegMovetoRel") extern class SVGPathSegMovetoRel {
 	function new();
 	var x : Float;
 	var y : Float;
@@ -25,5 +25,5 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSegMovetoRel;
+	static var prototype : ISVGPathSegMovetoRel;
 }

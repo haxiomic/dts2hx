@@ -2,8 +2,8 @@ package js.html;
 /**
 	This Fetch API interface represents a resource request.
 **/
-@:native("Request") @tsInterface extern class Request {
-	function new(input:haxe.extern.EitherType<String, Request>, ?init:RequestInit);
+@:native("Request") extern class Request {
+	function new(input:haxe.extern.EitherType<String, IRequest>, ?init:RequestInit);
 	/**
 		Returns the cache mode associated with request, which is a string indicating how the request will interact with the browser's cache when fetching.
 	**/
@@ -19,7 +19,7 @@ package js.html;
 	/**
 		Returns a Headers object consisting of the headers associated with request. Note that headers added in the network layer by the user agent will not be accounted for in this object, e.g., the "Host" header.
 	**/
-	final headers : js.lib.Headers;
+	final headers : js.lib.IHeaders;
 	/**
 		Returns request's subresource integrity metadata, which is a cryptographic hash of the resource being fetched. Its value consists of multiple hashes separated by whitespace. [SRI]
 	**/
@@ -59,18 +59,18 @@ package js.html;
 	/**
 		Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
 	**/
-	final signal : AbortSignal;
+	final signal : IAbortSignal;
 	/**
 		Returns the URL of request as a string.
 	**/
 	final url : String;
-	function clone():Request;
-	final body : Null<ReadableStream<js.lib.Uint8Array>>;
+	function clone():IRequest;
+	final body : Null<IReadableStream<js.lib.IUint8Array>>;
 	final bodyUsed : Bool;
-	function arrayBuffer():js.lib.Promise<js.lib.ArrayBuffer>;
-	function blob():js.lib.Promise<Blob>;
-	function formData():js.lib.Promise<js.lib.FormData>;
-	function json():js.lib.Promise<Any>;
-	function text():js.lib.Promise<String>;
-	static var prototype : Request;
+	function arrayBuffer():js.lib.IPromise<js.lib.IArrayBuffer>;
+	function blob():js.lib.IPromise<IBlob>;
+	function formData():js.lib.IPromise<js.lib.IFormData>;
+	function json():js.lib.IPromise<Any>;
+	function text():js.lib.IPromise<String>;
+	static var prototype : IRequest;
 }

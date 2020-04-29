@@ -1,5 +1,5 @@
 package js.html;
-extern interface FocusOptions {
+extern typedef FocusOptions = {
 	@:optional
 	var preventScroll : Bool;
-}
+};

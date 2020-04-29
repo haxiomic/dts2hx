@@ -1,9 +1,9 @@
 package node.crypto;
-extern interface RSAKeyPairKeyObjectOptions {
+extern typedef RSAKeyPairKeyObjectOptions = {
 	/**
 		Key size in bits
 	**/
 	var modulusLength : Float;
 	@:optional
 	var publicExponent : Float;
-}
+};

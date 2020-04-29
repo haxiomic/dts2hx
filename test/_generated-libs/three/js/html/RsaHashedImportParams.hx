@@ -1,4 +1,5 @@
 package js.html;
-extern interface RsaHashedImportParams extends Algorithm {
+extern typedef RsaHashedImportParams = {
 	var hash : haxe.extern.EitherType<String, Algorithm>;
-}
+	var name : String;
+};

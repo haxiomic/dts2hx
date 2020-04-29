@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern interface PerformanceEntry {
+extern typedef PerformanceEntry = {
 	/**
 		The total number of milliseconds elapsed for this entry.
 		This value will not be meaningful for all Performance Entry types.
@@ -25,4 +25,4 @@ extern interface PerformanceEntry {
 	**/
 	@:optional
 	final kind : Float;
-}
+};

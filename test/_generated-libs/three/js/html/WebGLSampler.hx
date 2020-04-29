@@ -1,5 +1,5 @@
 package js.html;
-@:native("WebGLSampler") @tsInterface extern class WebGLSampler {
+@:native("WebGLSampler") extern class WebGLSampler {
 	function new();
-	static var prototype : WebGLSampler;
+	static var prototype : IWebGLSampler;
 }

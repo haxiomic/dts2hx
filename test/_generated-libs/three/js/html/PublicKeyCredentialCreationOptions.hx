@@ -1,10 +1,10 @@
 package js.html;
-extern interface PublicKeyCredentialCreationOptions {
+extern typedef PublicKeyCredentialCreationOptions = {
 	@:optional
 	var attestation : String;
 	@:optional
 	var authenticatorSelection : AuthenticatorSelectionCriteria;
-	var challenge : haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.ArrayBufferView>;
+	var challenge : haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ArrayBufferView>;
 	@:optional
 	var excludeCredentials : std.Array<PublicKeyCredentialDescriptor>;
 	@:optional
@@ -14,4 +14,4 @@ extern interface PublicKeyCredentialCreationOptions {
 	@:optional
 	var timeout : Float;
 	var user : PublicKeyCredentialUserEntity;
-}
+};

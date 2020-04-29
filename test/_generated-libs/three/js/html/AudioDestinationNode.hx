@@ -2,23 +2,23 @@ package js.html;
 /**
 	AudioDestinationNode has no output (as it is the output, no more AudioNode can be linked after it in the audio graph) and one input. The number of channels in the input must be between 0 and the maxChannelCount value or an exception is raised.
 **/
-@:native("AudioDestinationNode") @tsInterface extern class AudioDestinationNode {
+@:native("AudioDestinationNode") extern class AudioDestinationNode {
 	function new();
 	final maxChannelCount : Float;
 	var channelCount : Float;
 	var channelCountMode : String;
 	var channelInterpretation : String;
-	final context : js.lib.BaseAudioContext;
+	final context : js.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:js.lib.AudioParam, ?output:Float):Void { })
-	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
+	@:overload(function(destinationParam:js.lib.IAudioParam, ?output:Float):Void { })
+	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -37,10 +37,10 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	static var prototype : AudioDestinationNode;
+	static var prototype : IAudioDestinationNode;
 }

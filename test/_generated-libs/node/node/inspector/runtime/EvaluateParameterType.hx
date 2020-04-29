@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface EvaluateParameterType {
+extern typedef EvaluateParameterType = {
 	/**
 		Expression to evaluate.
 	**/
@@ -57,4 +57,4 @@ extern interface EvaluateParameterType {
 	**/
 	@:optional
 	var timeout : Float;
-}
+};

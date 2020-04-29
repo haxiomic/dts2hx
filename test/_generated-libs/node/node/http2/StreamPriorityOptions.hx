@@ -1,5 +1,5 @@
 package node.http2;
-extern interface StreamPriorityOptions {
+extern typedef StreamPriorityOptions = {
 	@:optional
 	var exclusive : Bool;
 	@:optional
@@ -8,4 +8,4 @@ extern interface StreamPriorityOptions {
 	var weight : Float;
 	@:optional
 	var silent : Bool;
-}
+};

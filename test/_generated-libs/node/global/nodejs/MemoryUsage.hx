@@ -1,7 +1,7 @@
 package global.nodejs;
-extern interface MemoryUsage {
+extern typedef MemoryUsage = {
 	var rss : Float;
 	var heapTotal : Float;
 	var heapUsed : Float;
 	var external : Float;
-}
+};

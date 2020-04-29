@@ -1,5 +1,5 @@
 package three;
-extern interface RaycasterParameters {
+extern typedef RaycasterParameters = {
 	@:optional
 	var Mesh : Any;
 	@:optional
@@ -7,7 +7,9 @@ extern interface RaycasterParameters {
 	@:optional
 	var LOD : Any;
 	@:optional
-	var Points : { var threshold : Float; };
+	var Points : {
+		var threshold : Float;
+	};
 	@:optional
 	var Sprite : Any;
-}
+};

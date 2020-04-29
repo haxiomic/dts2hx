@@ -1,5 +1,5 @@
 package js.html;
-extern interface JsonWebKey {
+extern typedef JsonWebKey = {
 	@:optional
 	var alg : String;
 	@:optional
@@ -36,4 +36,4 @@ extern interface JsonWebKey {
 	var x : String;
 	@:optional
 	var y : String;
-}
+};

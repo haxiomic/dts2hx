@@ -1,5 +1,5 @@
 package node.async_hooks;
-extern interface AsyncResourceOptions {
+extern typedef AsyncResourceOptions = {
 	/**
 		The ID of the execution context that created this async event.
 		Default: `executionAsyncId()`
@@ -15,4 +15,4 @@ extern interface AsyncResourceOptions {
 	**/
 	@:optional
 	var requireManualDestroy : Bool;
-}
+};

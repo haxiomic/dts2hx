@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface ResolvedNumberFormatOptions {
+extern typedef ResolvedNumberFormatOptions = {
 	var locale : String;
 	var numberingSystem : String;
 	var style : String;
@@ -15,4 +15,4 @@ extern interface ResolvedNumberFormatOptions {
 	@:optional
 	var maximumSignificantDigits : Float;
 	var useGrouping : Bool;
-}
+};

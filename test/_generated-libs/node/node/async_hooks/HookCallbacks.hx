@@ -1,10 +1,10 @@
 package node.async_hooks;
-extern interface HookCallbacks {
+extern typedef HookCallbacks = {
 	/**
 		Called when a class is constructed that has the possibility to emit an asynchronous event.
 	**/
 	@:optional
-	function init(asyncId:Float, type:String, triggerAsyncId:Float, resource:js.lib.Object):Void;
+	function init(asyncId:Float, type:String, triggerAsyncId:Float, resource:js.lib.IObject):Void;
 	/**
 		When an asynchronous operation is initiated or completes a callback is called to notify the user.
 		The before callback is called just before said callback is executed.
@@ -27,4 +27,4 @@ extern interface HookCallbacks {
 	**/
 	@:optional
 	function destroy(asyncId:Float):Void;
-}
+};

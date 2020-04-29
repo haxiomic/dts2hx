@@ -1,5 +1,5 @@
 package js.lib;
-@:native("MediaList") @tsInterface extern class MediaList {
+@:native("MediaList") extern class MediaList {
 	function new();
 	final length : Float;
 	var mediaText : String;
@@ -7,5 +7,5 @@ package js.lib;
 	function deleteMedium(medium:String):Void;
 	function item(index:Float):Null<String>;
 	function toString():Float;
-	static var prototype : MediaList;
+	static var prototype : IMediaList;
 }

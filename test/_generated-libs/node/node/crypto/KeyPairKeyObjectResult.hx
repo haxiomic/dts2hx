@@ -1,5 +1,5 @@
 package node.crypto;
-extern interface KeyPairKeyObjectResult {
+extern typedef KeyPairKeyObjectResult = {
 	var publicKey : KeyObject;
 	var privateKey : KeyObject;
-}
+};

@@ -1,7 +1,7 @@
 package js.html;
-extern interface AudioBufferSourceOptions {
+extern typedef AudioBufferSourceOptions = {
 	@:optional
-	var buffer : AudioBuffer;
+	var buffer : IAudioBuffer;
 	@:optional
 	var detune : Float;
 	@:optional
@@ -12,4 +12,4 @@ extern interface AudioBufferSourceOptions {
 	var loopStart : Float;
 	@:optional
 	var playbackRate : Float;
-}
+};

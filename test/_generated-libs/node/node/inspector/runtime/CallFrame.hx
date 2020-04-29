@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Stack entry for runtime errors and assertions.
 **/
-extern interface CallFrame {
+extern typedef CallFrame = {
 	/**
 		JavaScript function name.
 	**/
@@ -23,4 +23,4 @@ extern interface CallFrame {
 		JavaScript script column number (0-based).
 	**/
 	var columnNumber : Float;
-}
+};

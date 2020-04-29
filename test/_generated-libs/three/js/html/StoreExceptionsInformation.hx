@@ -1,9 +1,11 @@
 package js.html;
-extern interface StoreExceptionsInformation extends ExceptionInformation {
+extern typedef StoreExceptionsInformation = {
 	@:optional
 	var detailURI : String;
 	@:optional
 	var explanationString : String;
 	@:optional
 	var siteName : String;
-}
+	@:optional
+	var domain : String;
+};

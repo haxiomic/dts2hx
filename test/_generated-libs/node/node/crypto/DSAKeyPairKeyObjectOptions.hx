@@ -1,5 +1,5 @@
 package node.crypto;
-extern interface DSAKeyPairKeyObjectOptions {
+extern typedef DSAKeyPairKeyObjectOptions = {
 	/**
 		Key size in bits
 	**/
@@ -8,4 +8,4 @@ extern interface DSAKeyPairKeyObjectOptions {
 		Size of q in bits
 	**/
 	var divisorLength : Float;
-}
+};

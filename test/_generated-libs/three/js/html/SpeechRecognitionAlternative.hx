@@ -1,7 +1,7 @@
 package js.html;
-@:native("SpeechRecognitionAlternative") @tsInterface extern class SpeechRecognitionAlternative {
+@:native("SpeechRecognitionAlternative") extern class SpeechRecognitionAlternative {
 	function new();
 	final confidence : Float;
 	final transcript : String;
-	static var prototype : SpeechRecognitionAlternative;
+	static var prototype : ISpeechRecognitionAlternative;
 }

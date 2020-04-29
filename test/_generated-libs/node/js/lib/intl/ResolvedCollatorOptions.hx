@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface ResolvedCollatorOptions {
+extern typedef ResolvedCollatorOptions = {
 	var locale : String;
 	var usage : String;
 	var sensitivity : String;
@@ -7,4 +7,4 @@ extern interface ResolvedCollatorOptions {
 	var collation : String;
 	var caseFirst : String;
 	var numeric : Bool;
-}
+};

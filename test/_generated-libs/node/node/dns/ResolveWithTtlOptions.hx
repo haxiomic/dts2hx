@@ -1,4 +1,4 @@
 package node.dns;
-extern interface ResolveWithTtlOptions extends ResolveOptions {
+extern typedef ResolveWithTtlOptions = {
 	var ttl : Bool;
-}
+};

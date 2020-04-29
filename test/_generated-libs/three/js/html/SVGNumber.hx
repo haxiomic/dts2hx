@@ -2,8 +2,8 @@ package js.html;
 /**
 	Corresponds to the <number> basic data type.
 **/
-@:native("SVGNumber") @tsInterface extern class SVGNumber {
+@:native("SVGNumber") extern class SVGNumber {
 	function new();
 	var value : Float;
-	static var prototype : SVGNumber;
+	static var prototype : ISVGNumber;
 }

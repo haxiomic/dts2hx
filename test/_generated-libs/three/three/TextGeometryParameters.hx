@@ -1,5 +1,5 @@
 package three;
-extern interface TextGeometryParameters {
+extern typedef TextGeometryParameters = {
 	@:optional
 	var font : Font;
 	@:optional
@@ -18,4 +18,4 @@ extern interface TextGeometryParameters {
 	var bevelOffset : Float;
 	@:optional
 	var bevelSegments : Float;
-}
+};

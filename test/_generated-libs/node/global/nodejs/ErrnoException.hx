@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface ErrnoException extends js.lib.Error {
+extern typedef ErrnoException = {
 	@:optional
 	var errno : Float;
 	@:optional
@@ -10,4 +10,6 @@ extern interface ErrnoException extends js.lib.Error {
 	var syscall : String;
 	@:optional
 	var stack : String;
-}
+	var name : String;
+	var message : String;
+};

@@ -1,6 +1,6 @@
 package global.nodejs;
-extern interface Timer {
+extern typedef Timer = {
 	function ref():Void;
 	function refresh():Void;
 	function unref():Void;
-}
+};

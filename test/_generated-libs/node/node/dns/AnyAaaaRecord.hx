@@ -1,4 +1,6 @@
 package node.dns;
-extern interface AnyAaaaRecord extends RecordWithTtl {
+extern typedef AnyAaaaRecord = {
 	var type : String;
-}
+	var address : String;
+	var ttl : Float;
+};

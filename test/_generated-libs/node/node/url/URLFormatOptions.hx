@@ -1,5 +1,5 @@
 package node.url;
-extern interface URLFormatOptions {
+extern typedef URLFormatOptions = {
 	@:optional
 	var auth : Bool;
 	@:optional
@@ -8,4 +8,4 @@ extern interface URLFormatOptions {
 	var search : Bool;
 	@:optional
 	var unicode : Bool;
-}
+};

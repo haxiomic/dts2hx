@@ -1,12 +1,12 @@
 package js.lib;
-extern interface ObjectConstructor {
+extern typedef ObjectConstructor = {
 	@:overload(function(value:Any):Any { })
 	@:selfCall
 	function call():Any;
 	/**
 		A reference to the prototype for a class of objects.
 	**/
-	final prototype : Object;
+	final prototype : IObject;
 	/**
 		Returns the prototype of an object.
 	**/
@@ -24,20 +24,18 @@ extern interface ObjectConstructor {
 	/**
 		Creates an object that has the specified prototype or that has null prototype.
 		
-		
-		
 		Creates an object that has the specified prototype, and that optionally contains specified properties.
 	**/
-	@:overload(function(o:Null<Any>, properties:Any):Any { })
+	@:overload(function(o:Null<Any>, properties:PropertyDescriptorMap & ThisType<Any>):Any { })
 	function create(o:Null<Any>):Any;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	function defineProperty(o:Any, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, attributes:Any):Any;
+	function defineProperty(o:Any, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, attributes:PropertyDescriptor & ThisType<Any>):Any;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	function defineProperties(o:Any, properties:Any):Any;
+	function defineProperties(o:Any, properties:PropertyDescriptorMap & ThisType<Any>):Any;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
@@ -45,15 +43,11 @@ extern interface ObjectConstructor {
 	/**
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 		
-		
-		
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-		
-		
 		
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
-	@:overload(function<T:(Function)>(f:T):T { })
+	@:overload(function<T:(IFunction)>(f:T):T { })
 	@:overload(function<T>(o:T):Any { })
 	function freeze<T>(a:std.Array<T>):ReadonlyArray<T>;
 	/**
@@ -75,8 +69,6 @@ extern interface ObjectConstructor {
 	/**
 		Returns the names of the enumerable string properties and methods of an object.
 		
-		
-		
 		Returns the names of the enumerable string properties and methods of an object.
 	**/
 	@:overload(function(o:{ }):std.Array<String> { })
@@ -85,25 +77,19 @@ extern interface ObjectConstructor {
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 		
-		
-		
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 		
-		
-		
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
-		
-		
 		
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Any { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Any { })
+	@:overload(function<T, U, V>(target:T, source1:U, source2:V):{ } { })
+	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):{ } { })
 	@:overload(function(target:Any, sources:std.Array<Any>):Any { })
-	function assign<T, U>(target:T, source:U):Any;
+	function assign<T, U>(target:T, source:U):{ };
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
@@ -119,16 +105,12 @@ extern interface ObjectConstructor {
 	/**
 		Returns an array of values of the enumerable properties of an object
 		
-		
-		
 		Returns an array of values of the enumerable properties of an object
 	**/
 	@:overload(function(o:{ }):std.Array<Any> { })
 	function values<T>(o:haxe.extern.EitherType<{ }, ArrayLike<T>>):std.Array<T>;
 	/**
 		Returns an array of key/values of the enumerable properties of an object
-		
-		
 		
 		Returns an array of key/values of the enumerable properties of an object
 	**/
@@ -137,5 +119,5 @@ extern interface ObjectConstructor {
 	/**
 		Returns an object containing all own property descriptors of an object
 	**/
-	function getOwnPropertyDescriptors<T>(o:T):Any;
-}
+	function getOwnPropertyDescriptors<T>(o:T):{ };
+};

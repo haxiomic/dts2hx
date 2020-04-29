@@ -1,7 +1,7 @@
 package node.inspector.debugger;
-extern interface EnableReturnType {
+extern typedef EnableReturnType = {
 	/**
 		Unique identifier of the debugger.
 	**/
 	var debuggerId : String;
-}
+};

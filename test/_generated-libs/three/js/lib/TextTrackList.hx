@@ -1,9 +1,9 @@
 package js.lib;
-@:native("TextTrackList") @tsInterface extern class TextTrackList {
+@:native("TextTrackList") extern class TextTrackList {
 	function new();
 	final length : Float;
-	var onaddtrack : Null<(ev:js.html.TrackEvent) -> Any>;
-	function item(index:Float):js.html.TextTrack;
+	var onaddtrack : Null<(ev:js.html.ITrackEvent) -> Any>;
+	function item(index:Float):js.html.ITextTrack;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -16,8 +16,6 @@ package js.lib;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -36,8 +34,6 @@ package js.lib;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<js.html.EventListener, js.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, js.html.EventListenerOptions>):Void { })
@@ -45,6 +41,6 @@ package js.lib;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:js.html.Event):Bool;
-	static var prototype : TextTrackList;
+	function dispatchEvent(event:js.html.IEvent):Bool;
+	static var prototype : ITextTrackList;
 }

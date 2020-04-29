@@ -1,9 +1,9 @@
 package js.html;
-extern interface RTCRtpCodecCapability {
+extern typedef RTCRtpCodecCapability = {
 	@:optional
 	var channels : Float;
 	var clockRate : Float;
 	var mimeType : String;
 	@:optional
 	var sdpFmtpLine : String;
-}
+};

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface CallFunctionOnParameterType {
+extern typedef CallFunctionOnParameterType = {
 	/**
 		Declaration of the function to call.
 	**/
@@ -55,4 +55,4 @@ extern interface CallFunctionOnParameterType {
 	**/
 	@:optional
 	var objectGroup : String;
-}
+};

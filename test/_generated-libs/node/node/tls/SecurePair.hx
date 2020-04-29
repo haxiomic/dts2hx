@@ -1,5 +1,5 @@
 package node.tls;
-extern interface SecurePair {
+extern typedef SecurePair = {
 	var encrypted : TLSSocket;
 	var cleartext : TLSSocket;
-}
+};

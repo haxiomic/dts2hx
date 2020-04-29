@@ -2,7 +2,7 @@ package js.html;
 /**
 	Provides contains information about a MIME type associated with a particular plugin. NavigatorPlugins.mimeTypes returns an array of this object.
 **/
-@:native("MimeType") @tsInterface extern class MimeType {
+@:native("MimeType") extern class MimeType {
 	function new();
 	/**
 		Returns the MIME type's description.
@@ -11,7 +11,7 @@ package js.html;
 	/**
 		Returns the Plugin object that implements this MIME type.
 	**/
-	final enabledPlugin : js.lib.Plugin;
+	final enabledPlugin : js.lib.IPlugin;
 	/**
 		Returns the MIME type's typical file extensions, in a comma-separated list.
 	**/
@@ -20,5 +20,5 @@ package js.html;
 		Returns the MIME type.
 	**/
 	final type : String;
-	static var prototype : MimeType;
+	static var prototype : IMimeType;
 }

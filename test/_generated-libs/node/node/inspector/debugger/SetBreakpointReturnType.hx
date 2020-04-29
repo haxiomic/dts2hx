@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface SetBreakpointReturnType {
+extern typedef SetBreakpointReturnType = {
 	/**
 		Id of the created breakpoint for further reference.
 	**/
@@ -8,4 +8,4 @@ extern interface SetBreakpointReturnType {
 		Location this breakpoint resolved into.
 	**/
 	var actualLocation : Location;
-}
+};

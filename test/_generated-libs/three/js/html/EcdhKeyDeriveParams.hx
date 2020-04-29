@@ -1,5 +1,6 @@
 package js.html;
-extern interface EcdhKeyDeriveParams extends Algorithm {
+extern typedef EcdhKeyDeriveParams = {
 	@:native("public")
-	var public_ : CryptoKey;
-}
+	var public_ : ICryptoKey;
+	var name : String;
+};

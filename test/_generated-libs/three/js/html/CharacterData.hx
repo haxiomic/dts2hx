@@ -2,7 +2,7 @@ package js.html;
 /**
 	The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.
 **/
-@:native("CharacterData") @tsInterface extern class CharacterData {
+@:native("CharacterData") extern class CharacterData {
 	function new();
 	var data : String;
 	final length : Float;
@@ -48,56 +48,56 @@ package js.html;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<Document>;
+	final ownerDocument : Null<IDocument>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<HTMLElement>;
+	final parentElement : Null<IHTMLElement>;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<INode & ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<Node>;
+	final previousSibling : Null<INode>;
 	var textContent : Null<String>;
-	function appendChild<T:(Node)>(newChild:T):T;
+	function appendChild<T:(INode)>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):Node;
+	function cloneNode(?deep:Bool):INode;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:Node):Float;
+	function compareDocumentPosition(other:INode):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<Node>):Bool;
+	function contains(other:Null<INode>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):Node;
+	function getRootNode(?options:GetRootNodeOptions):INode;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T:(Node)>(newChild:T, refChild:Null<Node>):T;
+	function insertBefore<T:(INode)>(newChild:T, refChild:Null<INode>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<Node>):Bool;
-	function isSameNode(otherNode:Null<Node>):Bool;
+	function isEqualNode(otherNode:Null<INode>):Bool;
+	function isSameNode(otherNode:Null<INode>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
 		Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
 	**/
 	function normalize():Void;
-	function removeChild<T:(Node)>(oldChild:T):T;
-	function replaceChild<T:(Node)>(newChild:Node, oldChild:T):T;
+	function removeChild<T:(INode)>(oldChild:T):T;
+	function replaceChild<T:(INode)>(newChild:INode, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -172,7 +172,7 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
@@ -182,13 +182,13 @@ package js.html;
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function after(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function before(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -198,14 +198,14 @@ package js.html;
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
 	**/
-	final nextElementSibling : Null<Element>;
+	final nextElementSibling : Null<IElement>;
 	/**
 		Returns the first preceding sibling that is an element, and null otherwise.
 	**/
-	final previousElementSibling : Null<Element>;
-	static var prototype : CharacterData;
+	final previousElementSibling : Null<IElement>;
+	static var prototype : ICharacterData;
 }

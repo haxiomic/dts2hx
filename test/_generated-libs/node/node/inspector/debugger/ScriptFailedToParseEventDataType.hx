@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface ScriptFailedToParseEventDataType {
+extern typedef ScriptFailedToParseEventDataType = {
 	/**
 		Identifier of the script parsed.
 	**/
@@ -62,4 +62,4 @@ extern interface ScriptFailedToParseEventDataType {
 	**/
 	@:optional
 	var stackTrace : node.inspector.runtime.StackTrace;
-}
+};

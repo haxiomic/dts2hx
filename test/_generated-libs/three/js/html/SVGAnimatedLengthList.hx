@@ -2,9 +2,9 @@ package js.html;
 /**
 	Used for attributes of type SVGLengthList which can be animated.
 **/
-@:native("SVGAnimatedLengthList") @tsInterface extern class SVGAnimatedLengthList {
+@:native("SVGAnimatedLengthList") extern class SVGAnimatedLengthList {
 	function new();
-	final animVal : js.lib.SVGLengthList;
-	final baseVal : js.lib.SVGLengthList;
-	static var prototype : SVGAnimatedLengthList;
+	final animVal : js.lib.ISVGLengthList;
+	final baseVal : js.lib.ISVGLengthList;
+	static var prototype : ISVGAnimatedLengthList;
 }

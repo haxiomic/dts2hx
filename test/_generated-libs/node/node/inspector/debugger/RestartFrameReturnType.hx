@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface RestartFrameReturnType {
+extern typedef RestartFrameReturnType = {
 	/**
 		New stack trace.
 	**/
@@ -14,4 +14,4 @@ extern interface RestartFrameReturnType {
 	**/
 	@:optional
 	var asyncStackTraceId : node.inspector.runtime.StackTraceId;
-}
+};

@@ -12,7 +12,7 @@ package three;
 	/**
 		Begin loading from url
 	**/
-	function load(url:String, ?onLoad:(image:js.html.HTMLImageElement) -> Void, ?onProgress:(event:js.html.ProgressEvent<js.html.EventTarget>) -> Void, ?onError:(event:js.html.ErrorEvent) -> Void):js.html.HTMLImageElement;
+	function load(url:String, ?onLoad:(image:js.html.IHTMLImageElement) -> Void, ?onProgress:(event:js.html.IProgressEvent<js.html.IEventTarget>) -> Void, ?onError:(event:js.html.IErrorEvent) -> Void):js.html.IHTMLImageElement;
 	function setCrossOrigin(crossOrigin:String):ImageLoader;
 	function setWithCredentials(value:String):ImageLoader;
 	function setPath(value:String):ImageLoader;

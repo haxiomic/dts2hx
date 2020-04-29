@@ -6,12 +6,15 @@ package three;
 	var itemSize : Float;
 	@:native("dynamic")
 	var dynamic_ : Bool;
-	var updateRange : { var offset : Float; var count : Float; };
+	var updateRange : {
+		var offset : Float;
+		var count : Float;
+	};
 	var version : Float;
 	var normalized : Bool;
 	var needsUpdate : Bool;
 	var count : Float;
-	var onUpload : js.lib.Function;
+	var onUpload : js.lib.IFunction;
 	function setArray(?array:js.lib.ArrayBufferView):Void;
 	function setDynamic(dynamic_:Bool):BufferAttribute;
 	function clone():BufferAttribute;

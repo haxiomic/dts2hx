@@ -1,4 +1,2 @@
 package three;
-extern interface RenderTarget {
-
-}
+extern typedef RenderTarget = { };

@@ -1,4 +1,4 @@
 package js.html;
-extern interface EventListenerObject {
-	function handleEvent(evt:Event):Void;
-}
+extern typedef EventListenerObject = {
+	function handleEvent(evt:IEvent):Void;
+};

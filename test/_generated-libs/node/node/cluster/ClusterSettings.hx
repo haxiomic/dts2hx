@@ -1,5 +1,5 @@
 package node.cluster;
-extern interface ClusterSettings {
+extern typedef ClusterSettings = {
 	@:optional
 	var execArgv : std.Array<String>;
 	@:optional
@@ -16,4 +16,4 @@ extern interface ClusterSettings {
 	var gid : Float;
 	@:optional
 	var inspectPort : haxe.extern.EitherType<Float, () -> Float>;
-}
+};

@@ -2,7 +2,7 @@ package three;
 /**
 	( interface Matrix&lt;T&gt; )
 **/
-extern interface Matrix {
+extern typedef Matrix = {
 	/**
 		Array with matrix values.
 	**/
@@ -32,4 +32,4 @@ extern interface Matrix {
 		clone():T;
 	**/
 	function clone():Matrix;
-}
+};

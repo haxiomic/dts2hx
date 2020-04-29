@@ -3,7 +3,7 @@ package node.inspector.runtime;
 	Represents function call argument. Either remote object id `objectId`, primitive `value`,
 	unserializable primitive value or neither of (for undefined) them should be specified.
 **/
-extern interface CallArgument {
+extern typedef CallArgument = {
 	/**
 		Primitive value or serializable javascript object.
 	**/
@@ -19,4 +19,4 @@ extern interface CallArgument {
 	**/
 	@:optional
 	var objectId : String;
-}
+};

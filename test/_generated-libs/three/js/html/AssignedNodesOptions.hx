@@ -1,5 +1,5 @@
 package js.html;
-extern interface AssignedNodesOptions {
+extern typedef AssignedNodesOptions = {
 	@:optional
 	var flatten : Bool;
-}
+};

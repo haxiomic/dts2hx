@@ -1,7 +1,7 @@
 package js.html;
-extern interface PaymentItem {
+extern typedef PaymentItem = {
 	var amount : PaymentCurrencyAmount;
 	var label : String;
 	@:optional
 	var pending : Bool;
-}
+};

@@ -1,7 +1,7 @@
 package js.html;
-extern interface PushSubscriptionOptionsInit {
+extern typedef PushSubscriptionOptionsInit = {
 	@:optional
-	var applicationServerKey : haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.ArrayBufferView>>;
+	var applicationServerKey : haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ArrayBufferView>>;
 	@:optional
 	var userVisibleOnly : Bool;
-}
+};

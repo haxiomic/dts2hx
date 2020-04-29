@@ -1,16 +1,16 @@
 package js.lib;
-extern interface ErrorConstructor {
+extern typedef ErrorConstructor = {
 	@:selfCall
-	function call(?message:String):Error;
-	final prototype : Error;
+	function call(?message:String):IError;
+	final prototype : IError;
 	/**
 		Create .stack property on a target object
 	**/
-	function captureStackTrace(targetObject:Object, ?constructorOpt:Function):Void;
+	function captureStackTrace(targetObject:IObject, ?constructorOpt:IFunction):Void;
 	/**
 		Optional override for formatting stack traces
 	**/
 	@:optional
-	var prepareStackTrace : (err:Error, stackTraces:std.Array<global.nodejs.CallSite>) -> Any;
+	var prepareStackTrace : (err:IError, stackTraces:std.Array<global.nodejs.CallSite>) -> Any;
 	var stackTraceLimit : Float;
-}
+};

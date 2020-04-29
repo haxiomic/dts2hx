@@ -1,5 +1,5 @@
 package js.lib;
-extern interface NodeListOf<TNode:(js.html.Node)> extends NodeList {
+extern typedef NodeListOf<TNode:(js.html.INode)> = {
 	/**
 		Returns the number of nodes in the collection.
 	**/
@@ -24,4 +24,4 @@ extern interface NodeListOf<TNode:(js.html.Node)> extends NodeList {
 		Returns an list of values in the list.
 	**/
 	function values():IterableIterator<TNode>;
-}
+};

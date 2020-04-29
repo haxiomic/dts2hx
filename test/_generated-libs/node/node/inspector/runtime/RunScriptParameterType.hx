@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface RunScriptParameterType {
+extern typedef RunScriptParameterType = {
 	/**
 		Id of the script to run.
 	**/
@@ -42,4 +42,4 @@ extern interface RunScriptParameterType {
 	**/
 	@:optional
 	var awaitPromise : Bool;
-}
+};

@@ -1,9 +1,9 @@
 package node.child_process;
-extern interface SpawnSyncOptions extends CommonOptions {
+extern typedef SpawnSyncOptions = {
 	@:optional
 	var argv0 : String;
 	@:optional
-	var input : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<js.lib.Uint8ClampedArray, haxe.extern.EitherType<js.lib.Uint16Array, haxe.extern.EitherType<js.lib.Uint32Array, haxe.extern.EitherType<js.lib.Int8Array, haxe.extern.EitherType<js.lib.Int16Array, haxe.extern.EitherType<js.lib.Int32Array, haxe.extern.EitherType<js.lib.Float32Array, haxe.extern.EitherType<js.lib.Float64Array, js.lib.DataView>>>>>>>>>>>;
+	var input : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>>;
 	@:optional
 	var stdio : haxe.extern.EitherType<String, std.Array<Null<haxe.extern.EitherType<Float, haxe.extern.EitherType<String, node.stream.Stream>>>>>;
 	@:optional
@@ -16,4 +16,16 @@ extern interface SpawnSyncOptions extends CommonOptions {
 	var shell : haxe.extern.EitherType<String, Bool>;
 	@:optional
 	var windowsVerbatimArguments : Bool;
-}
+	@:optional
+	var windowsHide : Bool;
+	@:optional
+	var timeout : Float;
+	@:optional
+	var uid : Float;
+	@:optional
+	var gid : Float;
+	@:optional
+	var cwd : String;
+	@:optional
+	var env : global.nodejs.ProcessEnv;
+};

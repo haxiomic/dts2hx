@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Object internal property descriptor. This property isn't normally visible in JavaScript code.
 **/
-extern interface InternalPropertyDescriptor {
+extern typedef InternalPropertyDescriptor = {
 	/**
 		Conventional property name.
 	**/
@@ -12,4 +12,4 @@ extern interface InternalPropertyDescriptor {
 	**/
 	@:optional
 	var value : RemoteObject;
-}
+};

@@ -1,5 +1,5 @@
 package node.http;
-extern interface IncomingHttpHeaders {
+extern typedef IncomingHttpHeaders = {
 	@:optional
 	var accept : String;
 	@:native("accept-patch")
@@ -137,4 +137,4 @@ extern interface IncomingHttpHeaders {
 	@:native("www-authenticate")
 	@:optional
 	var www_authenticate : String;
-}
+};

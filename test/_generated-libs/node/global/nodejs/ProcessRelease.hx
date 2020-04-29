@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface ProcessRelease {
+extern typedef ProcessRelease = {
 	var name : String;
 	@:optional
 	var sourceUrl : String;
@@ -9,4 +9,4 @@ extern interface ProcessRelease {
 	var libUrl : String;
 	@:optional
 	var lts : String;
-}
+};

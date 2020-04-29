@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Object containing abbreviated remote object value.
 **/
-extern interface ObjectPreview {
+extern typedef ObjectPreview = {
 	/**
 		Object type.
 	**/
@@ -30,4 +30,4 @@ extern interface ObjectPreview {
 	**/
 	@:optional
 	var entries : std.Array<EntryPreview>;
-}
+};

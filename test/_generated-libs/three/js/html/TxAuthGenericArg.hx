@@ -1,5 +1,5 @@
 package js.html;
-extern interface TxAuthGenericArg {
-	var content : js.lib.ArrayBuffer;
+extern typedef TxAuthGenericArg = {
+	var content : js.lib.IArrayBuffer;
 	var contentType : String;
-}
+};

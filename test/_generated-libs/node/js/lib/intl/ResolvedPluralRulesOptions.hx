@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface ResolvedPluralRulesOptions {
+extern typedef ResolvedPluralRulesOptions = {
 	var locale : String;
 	var pluralCategories : std.Array<String>;
 	var type : String;
@@ -8,4 +8,4 @@ extern interface ResolvedPluralRulesOptions {
 	var maximumFractionDigits : Float;
 	var minimumSignificantDigits : Float;
 	var maximumSignificantDigits : Float;
-}
+};

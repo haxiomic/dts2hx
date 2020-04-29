@@ -2,14 +2,14 @@ package js.html;
 /**
 	The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance.
 **/
-@:native("IDBRequest") @tsInterface extern class IDBRequest<T> {
+@:native("IDBRequest") extern class IDBRequest<T> {
 	function new();
 	/**
 		When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
 	**/
-	final error : Null<DOMException>;
-	var onerror : Null<(ev:Event) -> Any>;
-	var onsuccess : Null<(ev:Event) -> Any>;
+	final error : Null<IDOMException>;
+	var onerror : Null<(ev:IEvent) -> Any>;
+	var onsuccess : Null<(ev:IEvent) -> Any>;
 	/**
 		Returns "pending" until a request is complete, then returns "done".
 	**/
@@ -21,11 +21,11 @@ package js.html;
 	/**
 		Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
 	**/
-	final source : haxe.extern.EitherType<js.lib.IDBObjectStore, haxe.extern.EitherType<IDBIndex, IDBCursor>>;
+	final source : haxe.extern.EitherType<IIDBCursor, haxe.extern.EitherType<IIDBIndex, js.lib.IIDBObjectStore>>;
 	/**
 		Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
 	**/
-	final transaction : Null<IDBTransaction>;
+	final transaction : Null<IIDBTransaction>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -38,8 +38,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -58,8 +56,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -67,6 +63,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : IDBRequest<Any>;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IIDBRequest<Any>;
 }

@@ -1,5 +1,5 @@
 package js.html;
-extern interface DOMRectInit {
+extern typedef DOMRectInit = {
 	@:optional
 	var height : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface DOMRectInit {
 	var x : Float;
 	@:optional
 	var y : Float;
-}
+};

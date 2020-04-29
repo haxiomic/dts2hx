@@ -1,5 +1,5 @@
 package js.html;
-extern interface ComputedEffectTiming extends EffectTiming {
+extern typedef ComputedEffectTiming = {
 	@:optional
 	var activeDuration : Float;
 	@:optional
@@ -10,4 +10,20 @@ extern interface ComputedEffectTiming extends EffectTiming {
 	var localTime : Float;
 	@:optional
 	var progress : Float;
-}
+	@:optional
+	var delay : Float;
+	@:optional
+	var direction : String;
+	@:optional
+	var duration : haxe.extern.EitherType<String, Float>;
+	@:optional
+	var easing : String;
+	@:optional
+	var endDelay : Float;
+	@:optional
+	var fill : String;
+	@:optional
+	var iterationStart : Float;
+	@:optional
+	var iterations : Float;
+};

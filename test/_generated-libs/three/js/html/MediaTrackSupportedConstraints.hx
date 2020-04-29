@@ -1,5 +1,5 @@
 package js.html;
-extern interface MediaTrackSupportedConstraints {
+extern typedef MediaTrackSupportedConstraints = {
 	@:optional
 	var aspectRatio : Bool;
 	@:optional
@@ -30,4 +30,4 @@ extern interface MediaTrackSupportedConstraints {
 	var sampleSize : Bool;
 	@:optional
 	var width : Bool;
-}
+};

@@ -1,5 +1,5 @@
 package node.dns;
-extern interface AnyPtrRecord {
+extern typedef AnyPtrRecord = {
 	var type : String;
 	var value : String;
-}
+};

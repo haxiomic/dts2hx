@@ -1,5 +1,5 @@
 package three;
-extern interface RenderItem {
+extern typedef RenderItem = {
 	var id : Float;
 	var object : Object3D;
 	var geometry : Null<BufferGeometry>;
@@ -9,4 +9,4 @@ extern interface RenderItem {
 	var renderOrder : Float;
 	var z : Float;
 	var group : Null<Group>;
-}
+};

@@ -1,5 +1,5 @@
 package node.net;
-extern interface ListenOptions {
+extern typedef ListenOptions = {
 	@:optional
 	var port : Float;
 	@:optional
@@ -16,4 +16,4 @@ extern interface ListenOptions {
 	var writableAll : Bool;
 	@:optional
 	var ipv6Only : Bool;
-}
+};

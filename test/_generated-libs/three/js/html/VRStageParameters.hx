@@ -1,9 +1,9 @@
 package js.html;
-extern interface VRStageParameters {
+extern typedef VRStageParameters = {
 	@:optional
-	var sittingToStandingTransform : js.lib.Float32Array;
+	var sittingToStandingTransform : js.lib.IFloat32Array;
 	@:optional
 	var sizeX : Float;
 	@:optional
 	var sizeY : Float;
-}
+};

@@ -1,5 +1,5 @@
 package node.dns;
-extern interface RecordWithTtl {
+extern typedef RecordWithTtl = {
 	var address : String;
 	var ttl : Float;
-}
+};

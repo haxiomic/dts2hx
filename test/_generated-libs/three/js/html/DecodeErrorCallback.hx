@@ -1,5 +1,5 @@
 package js.html;
-extern interface DecodeErrorCallback {
+extern typedef DecodeErrorCallback = {
 	@:selfCall
-	function call(error:DOMException):Void;
-}
+	function call(error:IDOMException):Void;
+};

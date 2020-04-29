@@ -2,7 +2,7 @@ package js.html;
 /**
 	Provides access to the browser's debugging console (e.g. the Web Console in Firefox). The specifics of how it works varies from browser to browser, but there is a de facto set of features that are typically provided.
 **/
-@:native("Console") @tsInterface extern class Console {
+@:native("Console") extern class Console {
 	function new();
 	var memory : Any;
 	/**
@@ -142,5 +142,5 @@ package js.html;
 		For a timer that was previously started by calling {@link console.time()}, prints the elapsed time and other `data` arguments to `stdout`.
 	**/
 	function timeLog(?label:String, data:std.Array<Any>):Void;
-	static var prototype : Console;
+	static var prototype : IConsole;
 }

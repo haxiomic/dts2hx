@@ -2,9 +2,9 @@ package js.lib;
 /**
 	This WebVR API interface represents any VR device supported by this API. It includes generic information such as device IDs and descriptions, as well as methods for starting to present a VR scene, retrieving eye parameters and display capabilities, and other important functionality.
 **/
-@:native("VRDisplay") @tsInterface extern class VRDisplay {
+@:native("VRDisplay") extern class VRDisplay {
 	function new();
-	final capabilities : js.html.VRDisplayCapabilities;
+	final capabilities : js.html.IVRDisplayCapabilities;
 	var depthFar : Float;
 	var depthNear : Float;
 	final displayId : Float;
@@ -13,16 +13,16 @@ package js.lib;
 	final isPresenting : Bool;
 	final stageParameters : Null<js.html.VRStageParameters>;
 	function cancelAnimationFrame(handle:Float):Void;
-	function exitPresent():Promise<Void>;
-	function getEyeParameters(whichEye:String):js.html.VREyeParameters;
-	function getFrameData(frameData:js.html.VRFrameData):Bool;
+	function exitPresent():IPromise<Void>;
+	function getEyeParameters(whichEye:String):js.html.IVREyeParameters;
+	function getFrameData(frameData:js.html.IVRFrameData):Bool;
 	function getLayers():std.Array<js.html.VRLayer>;
-	function getPose():js.html.VRPose;
+	function getPose():js.html.IVRPose;
 	function requestAnimationFrame(callback:js.html.FrameRequestCallback):Float;
-	@:overload(function(layers:Iterable<js.html.VRLayer>):Promise<Void> { })
-	function requestPresent(layers:std.Array<js.html.VRLayer>):Promise<Void>;
+	@:overload(function(layers:Iterable<js.html.VRLayer>):IPromise<Void> { })
+	function requestPresent(layers:std.Array<js.html.VRLayer>):IPromise<Void>;
 	function resetPose():Void;
-	function submitFrame(?pose:js.html.VRPose):Void;
+	function submitFrame(?pose:js.html.IVRPose):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -40,10 +40,10 @@ package js.lib;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:js.html.Event):Bool;
+	function dispatchEvent(event:js.html.IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<js.html.EventListener, js.html.EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, js.html.EventListenerOptions>):Void;
-	static var prototype : VRDisplay;
+	static var prototype : IVRDisplay;
 }

@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCRtpCodecParameters {
+extern typedef RTCRtpCodecParameters = {
 	@:optional
 	var channels : Float;
 	var clockRate : Float;
@@ -7,4 +7,4 @@ extern interface RTCRtpCodecParameters {
 	var payloadType : Float;
 	@:optional
 	var sdpFmtpLine : String;
-}
+};

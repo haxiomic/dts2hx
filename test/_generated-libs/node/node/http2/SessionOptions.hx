@@ -1,5 +1,5 @@
 package node.http2;
-extern interface SessionOptions {
+extern typedef SessionOptions = {
 	@:optional
 	var maxDeflateDynamicTableSize : Float;
 	@:optional
@@ -16,4 +16,4 @@ extern interface SessionOptions {
 	var settings : Settings;
 	@:optional
 	var createConnection : (option:SessionOptions) -> node.stream.Duplex;
-}
+};

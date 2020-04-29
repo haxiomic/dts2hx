@@ -2,7 +2,7 @@ package js.html;
 /**
 	This Web Storage API interface provides access to a particular domain's session or local storage. It allows, for example, the addition, modification, or deletion of stored data items.
 **/
-@:native("Storage") @tsInterface extern class Storage {
+@:native("Storage") extern class Storage {
 	function new();
 	/**
 		Returns the number of key/value pairs currently present in the list associated with the object.
@@ -30,5 +30,5 @@ package js.html;
 		Throws a "QuotaExceededError" DOMException exception if the new value couldn't be set. (Setting could fail if, e.g., the user has disabled storage for the site, or if the quota has been exceeded.)
 	**/
 	function setItem(key:String, value:String):Void;
-	static var prototype : Storage;
+	static var prototype : IStorage;
 }

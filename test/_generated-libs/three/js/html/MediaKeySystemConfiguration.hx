@@ -1,5 +1,5 @@
 package js.html;
-extern interface MediaKeySystemConfiguration {
+extern typedef MediaKeySystemConfiguration = {
 	@:optional
 	var audioCapabilities : std.Array<MediaKeySystemMediaCapability>;
 	@:optional
@@ -14,4 +14,4 @@ extern interface MediaKeySystemConfiguration {
 	var sessionTypes : std.Array<String>;
 	@:optional
 	var videoCapabilities : std.Array<MediaKeySystemMediaCapability>;
-}
+};

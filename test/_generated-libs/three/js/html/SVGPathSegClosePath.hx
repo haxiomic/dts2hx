@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSegClosePath") @tsInterface extern class SVGPathSegClosePath {
+@:native("SVGPathSegClosePath") extern class SVGPathSegClosePath {
 	function new();
 	final pathSegType : Float;
 	final pathSegTypeAsLetter : String;
@@ -23,5 +23,5 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSegClosePath;
+	static var prototype : ISVGPathSegClosePath;
 }

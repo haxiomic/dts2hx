@@ -2,7 +2,7 @@ package js.html;
 /**
 	An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
 **/
-@:native("MediaError") @tsInterface extern class MediaError {
+@:native("MediaError") extern class MediaError {
 	function new();
 	final code : Float;
 	final message : String;
@@ -12,7 +12,7 @@ package js.html;
 	final MEDIA_ERR_NETWORK : Float;
 	final MEDIA_ERR_SRC_NOT_SUPPORTED : Float;
 	final MS_MEDIA_ERR_ENCRYPTED : Float;
-	static var prototype : MediaError;
+	static var prototype : IMediaError;
 	@:native("MEDIA_ERR_ABORTED")
 	static final MEDIA_ERR_ABORTED_ : Float;
 	@:native("MEDIA_ERR_DECODE")

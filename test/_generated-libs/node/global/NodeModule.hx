@@ -1,5 +1,5 @@
 package global;
-extern interface NodeModule {
+extern typedef NodeModule = {
 	var exports : Any;
 	var require : NodeRequireFunction;
 	var id : String;
@@ -8,4 +8,4 @@ extern interface NodeModule {
 	var parent : Null<NodeModule>;
 	var children : std.Array<NodeModule>;
 	var paths : std.Array<String>;
-}
+};

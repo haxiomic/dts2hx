@@ -1,5 +1,5 @@
 package js.html;
-extern interface ElementCreationOptions {
+extern typedef ElementCreationOptions = {
 	@:optional
 	var is : String;
-}
+};

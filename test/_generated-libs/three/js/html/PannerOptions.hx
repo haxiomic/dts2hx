@@ -1,5 +1,5 @@
 package js.html;
-extern interface PannerOptions extends AudioNodeOptions {
+extern typedef PannerOptions = {
 	@:optional
 	var coneInnerAngle : Float;
 	@:optional
@@ -28,4 +28,10 @@ extern interface PannerOptions extends AudioNodeOptions {
 	var refDistance : Float;
 	@:optional
 	var rolloffFactor : Float;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

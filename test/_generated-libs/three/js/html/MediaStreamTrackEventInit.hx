@@ -1,4 +1,10 @@
 package js.html;
-extern interface MediaStreamTrackEventInit extends EventInit {
-	var track : MediaStreamTrack;
-}
+extern typedef MediaStreamTrackEventInit = {
+	var track : IMediaStreamTrack;
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

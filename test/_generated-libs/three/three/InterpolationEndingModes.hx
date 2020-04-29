@@ -1,4 +1,2 @@
 package three;
-@:jsRequire("three", "InterpolationEndingModes") @:enum extern abstract InterpolationEndingModes(Any) from Any to Any {
-
-}
+@:jsRequire("three", "InterpolationEndingModes") @:enum extern abstract InterpolationEndingModes(Any) from Any to Any { }

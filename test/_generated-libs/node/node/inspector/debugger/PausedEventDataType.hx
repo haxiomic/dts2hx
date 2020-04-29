@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface PausedEventDataType {
+extern typedef PausedEventDataType = {
 	/**
 		Call stack the virtual machine stopped on.
 	**/
@@ -34,4 +34,4 @@ extern interface PausedEventDataType {
 	**/
 	@:optional
 	var asyncCallStackTraceId : node.inspector.runtime.StackTraceId;
-}
+};

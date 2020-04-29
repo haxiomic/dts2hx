@@ -2,9 +2,9 @@ package js.html;
 /**
 	The SVGAnimatedNumber interface is used for attributes which take a list of numbers and which can be animated.
 **/
-@:native("SVGAnimatedNumberList") @tsInterface extern class SVGAnimatedNumberList {
+@:native("SVGAnimatedNumberList") extern class SVGAnimatedNumberList {
 	function new();
-	final animVal : js.lib.SVGNumberList;
-	final baseVal : js.lib.SVGNumberList;
-	static var prototype : SVGAnimatedNumberList;
+	final animVal : js.lib.ISVGNumberList;
+	final baseVal : js.lib.ISVGNumberList;
+	static var prototype : ISVGAnimatedNumberList;
 }

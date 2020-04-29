@@ -2,19 +2,19 @@ package js.html;
 /**
 	This Media Source Extensions API interface represents a source of media data for an HTMLMediaElement object. A MediaSource object can be attached to a HTMLMediaElement to be played in the user agent.
 **/
-@:native("MediaSource") @tsInterface extern class MediaSource {
+@:native("MediaSource") extern class MediaSource {
 	function new();
-	final activeSourceBuffers : js.lib.SourceBufferList;
+	final activeSourceBuffers : js.lib.ISourceBufferList;
 	var duration : Float;
-	var onsourceclose : Null<(ev:Event) -> Any>;
-	var onsourceended : Null<(ev:Event) -> Any>;
-	var onsourceopen : Null<(ev:Event) -> Any>;
+	var onsourceclose : Null<(ev:IEvent) -> Any>;
+	var onsourceended : Null<(ev:IEvent) -> Any>;
+	var onsourceopen : Null<(ev:IEvent) -> Any>;
 	final readyState : String;
-	final sourceBuffers : js.lib.SourceBufferList;
-	function addSourceBuffer(type:String):SourceBuffer;
+	final sourceBuffers : js.lib.ISourceBufferList;
+	function addSourceBuffer(type:String):ISourceBuffer;
 	function clearLiveSeekableRange():Void;
 	function endOfStream(?error:String):Void;
-	function removeSourceBuffer(sourceBuffer:SourceBuffer):Void;
+	function removeSourceBuffer(sourceBuffer:ISourceBuffer):Void;
 	function setLiveSeekableRange(start:Float, end:Float):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -28,8 +28,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -48,8 +46,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -57,7 +53,7 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : MediaSource;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IMediaSource;
 	static function isTypeSupported(type:String):Bool;
 }

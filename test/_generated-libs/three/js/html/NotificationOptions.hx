@@ -1,5 +1,5 @@
 package js.html;
-extern interface NotificationOptions {
+extern typedef NotificationOptions = {
 	@:optional
 	var actions : std.Array<NotificationAction>;
 	@:optional
@@ -28,4 +28,4 @@ extern interface NotificationOptions {
 	var timestamp : Float;
 	@:optional
 	var vibrate : haxe.extern.EitherType<Float, std.Array<Float>>;
-}
+};

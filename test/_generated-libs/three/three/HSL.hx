@@ -1,6 +1,6 @@
 package three;
-extern interface HSL {
+extern typedef HSL = {
 	var h : Float;
 	var s : Float;
 	var l : Float;
-}
+};

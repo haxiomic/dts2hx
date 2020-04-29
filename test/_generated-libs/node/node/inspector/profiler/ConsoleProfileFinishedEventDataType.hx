@@ -1,5 +1,5 @@
 package node.inspector.profiler;
-extern interface ConsoleProfileFinishedEventDataType {
+extern typedef ConsoleProfileFinishedEventDataType = {
 	var id : String;
 	/**
 		Location of console.profileEnd().
@@ -11,4 +11,4 @@ extern interface ConsoleProfileFinishedEventDataType {
 	**/
 	@:optional
 	var title : String;
-}
+};

@@ -1,5 +1,5 @@
 package js.html;
-extern interface TouchInit {
+extern typedef TouchInit = {
 	@:optional
 	var altitudeAngle : Float;
 	@:optional
@@ -25,7 +25,7 @@ extern interface TouchInit {
 	var screenX : Float;
 	@:optional
 	var screenY : Float;
-	var target : EventTarget;
+	var target : IEventTarget;
 	@:optional
 	var touchType : String;
-}
+};

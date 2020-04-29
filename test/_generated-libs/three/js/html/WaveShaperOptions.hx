@@ -1,7 +1,13 @@
 package js.html;
-extern interface WaveShaperOptions extends AudioNodeOptions {
+extern typedef WaveShaperOptions = {
 	@:optional
-	var curve : haxe.extern.EitherType<js.lib.Float32Array, std.Array<Float>>;
+	var curve : haxe.extern.EitherType<js.lib.IFloat32Array, std.Array<Float>>;
 	@:optional
 	var oversample : String;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

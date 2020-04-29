@@ -2,7 +2,7 @@ package js.lib;
 /**
 	The SVGStringList defines a list of DOMString objects.
 **/
-@:native("SVGStringList") @tsInterface extern class SVGStringList {
+@:native("SVGStringList") extern class SVGStringList {
 	function new();
 	final length : Float;
 	final numberOfItems : Float;
@@ -13,5 +13,5 @@ package js.lib;
 	function insertItemBefore(newItem:String, index:Float):String;
 	function removeItem(index:Float):String;
 	function replaceItem(newItem:String, index:Float):String;
-	static var prototype : SVGStringList;
+	static var prototype : ISVGStringList;
 }

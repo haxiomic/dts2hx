@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Coverage data for a JavaScript function.
 **/
-extern interface FunctionCoverage {
+extern typedef FunctionCoverage = {
 	/**
 		JavaScript function name.
 	**/
@@ -15,4 +15,4 @@ extern interface FunctionCoverage {
 		Whether coverage data for this function has block granularity.
 	**/
 	var isBlockCoverage : Bool;
-}
+};

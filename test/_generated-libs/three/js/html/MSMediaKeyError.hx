@@ -1,5 +1,5 @@
 package js.html;
-@:native("MSMediaKeyError") @tsInterface extern class MSMediaKeyError {
+@:native("MSMediaKeyError") extern class MSMediaKeyError {
 	function new();
 	final code : Float;
 	final systemCode : Float;
@@ -9,7 +9,7 @@ package js.html;
 	final MS_MEDIA_KEYERR_OUTPUT : Float;
 	final MS_MEDIA_KEYERR_SERVICE : Float;
 	final MS_MEDIA_KEYERR_UNKNOWN : Float;
-	static var prototype : MSMediaKeyError;
+	static var prototype : IMSMediaKeyError;
 	@:native("MS_MEDIA_KEYERR_CLIENT")
 	static final MS_MEDIA_KEYERR_CLIENT_ : Float;
 	@:native("MS_MEDIA_KEYERR_DOMAIN")

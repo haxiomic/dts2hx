@@ -1,5 +1,5 @@
 package js.html;
-extern interface EffectTiming {
+extern typedef EffectTiming = {
 	@:optional
 	var delay : Float;
 	@:optional
@@ -16,4 +16,4 @@ extern interface EffectTiming {
 	var iterationStart : Float;
 	@:optional
 	var iterations : Float;
-}
+};

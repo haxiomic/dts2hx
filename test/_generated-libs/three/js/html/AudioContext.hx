@@ -2,18 +2,18 @@ package js.html;
 /**
 	An audio-processing graph built from audio modules linked together, each represented by an AudioNode.
 **/
-@:native("AudioContext") @tsInterface extern class AudioContext {
+@:native("AudioContext") extern class AudioContext {
 	function new(?contextOptions:AudioContextOptions);
 	final baseLatency : Float;
 	final outputLatency : Float;
-	function close():js.lib.Promise<Void>;
-	function createMediaElementSource(mediaElement:HTMLMediaElement):MediaElementAudioSourceNode;
-	function createMediaStreamDestination():MediaStreamAudioDestinationNode;
-	function createMediaStreamSource(mediaStream:MediaStream):MediaStreamAudioSourceNode;
-	function createMediaStreamTrackSource(mediaStreamTrack:MediaStreamTrack):MediaStreamTrackAudioSourceNode;
+	function close():js.lib.IPromise<Void>;
+	function createMediaElementSource(mediaElement:IHTMLMediaElement):IMediaElementAudioSourceNode;
+	function createMediaStreamDestination():IMediaStreamAudioDestinationNode;
+	function createMediaStreamSource(mediaStream:IMediaStream):IMediaStreamAudioSourceNode;
+	function createMediaStreamTrackSource(mediaStreamTrack:IMediaStreamTrack):IMediaStreamTrackAudioSourceNode;
 	function getOutputTimestamp():AudioTimestamp;
-	function resume():js.lib.Promise<Void>;
-	function suspend():js.lib.Promise<Void>;
+	function resume():js.lib.IPromise<Void>;
+	function suspend():js.lib.IPromise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -27,8 +27,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -41,8 +39,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -54,8 +50,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -74,51 +68,45 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
-		
-		
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K:(String)>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	final audioWorklet : AudioWorklet;
+	final audioWorklet : IAudioWorklet;
 	final currentTime : Float;
-	final destination : AudioDestinationNode;
-	final listener : AudioListener;
-	var onstatechange : Null<(ev:Event) -> Any>;
+	final destination : IAudioDestinationNode;
+	final listener : IAudioListener;
+	var onstatechange : Null<(ev:IEvent) -> Any>;
 	final sampleRate : Float;
 	final state : String;
-	function createAnalyser():AnalyserNode;
-	function createBiquadFilter():BiquadFilterNode;
-	function createBuffer(numberOfChannels:Float, length:Float, sampleRate:Float):AudioBuffer;
-	function createBufferSource():AudioBufferSourceNode;
-	function createChannelMerger(?numberOfInputs:Float):ChannelMergerNode;
-	function createChannelSplitter(?numberOfOutputs:Float):ChannelSplitterNode;
-	function createConstantSource():ConstantSourceNode;
-	function createConvolver():ConvolverNode;
-	function createDelay(?maxDelayTime:Float):DelayNode;
-	function createDynamicsCompressor():DynamicsCompressorNode;
-	function createGain():GainNode;
-	@:overload(function(feedforward:js.lib.Iterable<Float>, feedback:js.lib.Iterable<Float>):IIRFilterNode { })
-	function createIIRFilter(feedforward:std.Array<Float>, feedback:std.Array<Float>):IIRFilterNode;
-	function createOscillator():OscillatorNode;
-	function createPanner():PannerNode;
-	@:overload(function(real:js.lib.Iterable<Float>, imag:js.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):PeriodicWave { })
-	function createPeriodicWave(real:haxe.extern.EitherType<js.lib.Float32Array, std.Array<Float>>, imag:haxe.extern.EitherType<js.lib.Float32Array, std.Array<Float>>, ?constraints:PeriodicWaveConstraints):PeriodicWave;
-	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):ScriptProcessorNode;
-	function createStereoPanner():StereoPannerNode;
-	function createWaveShaper():WaveShaperNode;
-	function decodeAudioData(audioData:js.lib.ArrayBuffer, ?successCallback:DecodeSuccessCallback, ?errorCallback:DecodeErrorCallback):js.lib.Promise<AudioBuffer>;
+	function createAnalyser():IAnalyserNode;
+	function createBiquadFilter():IBiquadFilterNode;
+	function createBuffer(numberOfChannels:Float, length:Float, sampleRate:Float):IAudioBuffer;
+	function createBufferSource():IAudioBufferSourceNode;
+	function createChannelMerger(?numberOfInputs:Float):IChannelMergerNode;
+	function createChannelSplitter(?numberOfOutputs:Float):IChannelSplitterNode;
+	function createConstantSource():IConstantSourceNode;
+	function createConvolver():IConvolverNode;
+	function createDelay(?maxDelayTime:Float):IDelayNode;
+	function createDynamicsCompressor():IDynamicsCompressorNode;
+	function createGain():IGainNode;
+	@:overload(function(feedforward:js.lib.Iterable<Float>, feedback:js.lib.Iterable<Float>):IIIRFilterNode { })
+	function createIIRFilter(feedforward:std.Array<Float>, feedback:std.Array<Float>):IIIRFilterNode;
+	function createOscillator():IOscillatorNode;
+	function createPanner():IPannerNode;
+	@:overload(function(real:js.lib.Iterable<Float>, imag:js.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):IPeriodicWave { })
+	function createPeriodicWave(real:haxe.extern.EitherType<js.lib.IFloat32Array, std.Array<Float>>, imag:haxe.extern.EitherType<js.lib.IFloat32Array, std.Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
+	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):IScriptProcessorNode;
+	function createStereoPanner():IStereoPannerNode;
+	function createWaveShaper():IWaveShaperNode;
+	function decodeAudioData(audioData:js.lib.IArrayBuffer, ?successCallback:DecodeSuccessCallback, ?errorCallback:DecodeErrorCallback):js.lib.IPromise<IAudioBuffer>;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : AudioContext;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IAudioContext;
 }

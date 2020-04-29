@@ -1,5 +1,5 @@
 package node.cluster;
-extern interface Cluster extends node.events.EventEmitter {
+extern typedef Cluster = {
 	var Worker : Worker;
 	function disconnect(?callback:() -> Void):Void;
 	function fork(?env:Any):Worker;
@@ -69,4 +69,13 @@ extern interface Cluster extends node.events.EventEmitter {
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(settings:ClusterSettings) -> Void):Cluster { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Cluster;
-}
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
+	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+};

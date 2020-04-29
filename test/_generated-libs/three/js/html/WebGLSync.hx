@@ -1,5 +1,5 @@
 package js.html;
-@:native("WebGLSync") @tsInterface extern class WebGLSync {
+@:native("WebGLSync") extern class WebGLSync {
 	function new();
-	static var prototype : WebGLSync;
+	static var prototype : IWebGLSync;
 }

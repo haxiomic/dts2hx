@@ -1,8 +1,8 @@
 package js.html;
-@:native("SVGElementInstance") @tsInterface extern class SVGElementInstance {
+@:native("SVGElementInstance") extern class SVGElementInstance {
 	function new();
-	final correspondingElement : SVGElement;
-	final correspondingUseElement : SVGUseElement;
+	final correspondingElement : ISVGElement;
+	final correspondingUseElement : ISVGUseElement;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -20,10 +20,10 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	static var prototype : SVGElementInstance;
+	static var prototype : ISVGElementInstance;
 }

@@ -1,5 +1,11 @@
 package js.html;
-extern interface RTCErrorEventInit extends EventInit {
+extern typedef RTCErrorEventInit = {
 	@:optional
-	var error : RTCError;
-}
+	var error : IRTCError;
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

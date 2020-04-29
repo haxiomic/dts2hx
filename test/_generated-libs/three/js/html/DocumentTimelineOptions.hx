@@ -1,5 +1,5 @@
 package js.html;
-extern interface DocumentTimelineOptions {
+extern typedef DocumentTimelineOptions = {
 	@:optional
 	var originTime : Float;
-}
+};

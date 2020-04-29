@@ -1,5 +1,5 @@
 package js.html;
-@:native("WebGLObject") @tsInterface extern class WebGLObject {
+@:native("WebGLObject") extern class WebGLObject {
 	function new();
-	static var prototype : WebGLObject;
+	static var prototype : IWebGLObject;
 }

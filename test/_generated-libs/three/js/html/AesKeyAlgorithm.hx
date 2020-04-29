@@ -1,4 +1,5 @@
 package js.html;
-extern interface AesKeyAlgorithm extends KeyAlgorithm {
+extern typedef AesKeyAlgorithm = {
 	var length : Float;
-}
+	var name : String;
+};

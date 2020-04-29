@@ -1,4 +1,2 @@
 package three;
-@:jsRequire("three", "Wrapping") @:enum extern abstract Wrapping(Any) from Any to Any {
-
-}
+@:jsRequire("three", "Wrapping") @:enum extern abstract Wrapping(Any) from Any to Any { }

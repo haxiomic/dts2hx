@@ -2,28 +2,28 @@ package js.html;
 /**
 	A Selection object represents the range of text selected by the user or the current position of the caret. To obtain a Selection object for examination or modification, call Window.getSelection().
 **/
-@:native("Selection") @tsInterface extern class Selection {
+@:native("Selection") extern class Selection {
 	function new();
-	final anchorNode : Null<Node>;
+	final anchorNode : Null<INode>;
 	final anchorOffset : Float;
-	final focusNode : Null<Node>;
+	final focusNode : Null<INode>;
 	final focusOffset : Float;
 	final isCollapsed : Bool;
 	final rangeCount : Float;
 	final type : String;
-	function addRange(range:Range):Void;
-	function collapse(node:Null<Node>, ?offset:Float):Void;
+	function addRange(range:IRange):Void;
+	function collapse(node:Null<INode>, ?offset:Float):Void;
 	function collapseToEnd():Void;
 	function collapseToStart():Void;
-	function containsNode(node:Node, ?allowPartialContainment:Bool):Bool;
+	function containsNode(node:INode, ?allowPartialContainment:Bool):Bool;
 	function deleteFromDocument():Void;
 	function empty():Void;
-	function extend(node:Node, ?offset:Float):Void;
-	function getRangeAt(index:Float):Range;
+	function extend(node:INode, ?offset:Float):Void;
+	function getRangeAt(index:Float):IRange;
 	function removeAllRanges():Void;
-	function removeRange(range:Range):Void;
-	function selectAllChildren(node:Node):Void;
-	function setBaseAndExtent(anchorNode:Node, anchorOffset:Float, focusNode:Node, focusOffset:Float):Void;
-	function setPosition(node:Null<Node>, ?offset:Float):Void;
-	static var prototype : Selection;
+	function removeRange(range:IRange):Void;
+	function selectAllChildren(node:INode):Void;
+	function setBaseAndExtent(anchorNode:INode, anchorOffset:Float, focusNode:INode, focusOffset:Float):Void;
+	function setPosition(node:Null<INode>, ?offset:Float):Void;
+	static var prototype : ISelection;
 }

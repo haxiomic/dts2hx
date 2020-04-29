@@ -1,5 +1,5 @@
 package js.html;
-extern interface ErrorEventInit extends EventInit {
+extern typedef ErrorEventInit = {
 	@:optional
 	var colno : Float;
 	@:optional
@@ -10,4 +10,10 @@ extern interface ErrorEventInit extends EventInit {
 	var lineno : Float;
 	@:optional
 	var message : String;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

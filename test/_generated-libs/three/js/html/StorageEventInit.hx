@@ -1,5 +1,5 @@
 package js.html;
-extern interface StorageEventInit extends EventInit {
+extern typedef StorageEventInit = {
 	@:optional
 	var key : String;
 	@:optional
@@ -7,7 +7,13 @@ extern interface StorageEventInit extends EventInit {
 	@:optional
 	var oldValue : String;
 	@:optional
-	var storageArea : Storage;
+	var storageArea : IStorage;
 	@:optional
 	var url : String;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

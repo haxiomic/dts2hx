@@ -1,9 +1,9 @@
 package js.html;
-@:native("NavigationPreloadManager") @tsInterface extern class NavigationPreloadManager {
+@:native("NavigationPreloadManager") extern class NavigationPreloadManager {
 	function new();
-	function disable():js.lib.Promise<Void>;
-	function enable():js.lib.Promise<Void>;
-	function getState():js.lib.Promise<NavigationPreloadState>;
-	function setHeaderValue(value:String):js.lib.Promise<Void>;
-	static var prototype : NavigationPreloadManager;
+	function disable():js.lib.IPromise<Void>;
+	function enable():js.lib.IPromise<Void>;
+	function getState():js.lib.IPromise<NavigationPreloadState>;
+	function setHeaderValue(value:String):js.lib.IPromise<Void>;
+	static var prototype : INavigationPreloadManager;
 }

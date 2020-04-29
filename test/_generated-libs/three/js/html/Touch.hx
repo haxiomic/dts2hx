@@ -2,7 +2,7 @@ package js.html;
 /**
 	A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad.
 **/
-@:native("Touch") @tsInterface extern class Touch {
+@:native("Touch") extern class Touch {
 	function new(touchInitDict:TouchInit);
 	final altitudeAngle : Float;
 	final azimuthAngle : Float;
@@ -17,7 +17,7 @@ package js.html;
 	final rotationAngle : Float;
 	final screenX : Float;
 	final screenY : Float;
-	final target : EventTarget;
+	final target : IEventTarget;
 	final touchType : String;
-	static var prototype : Touch;
+	static var prototype : ITouch;
 }

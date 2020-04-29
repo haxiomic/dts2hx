@@ -2,7 +2,7 @@ package node.inspector.console;
 /**
 	Console message.
 **/
-extern interface ConsoleMessage {
+extern typedef ConsoleMessage = {
 	/**
 		Message source.
 	**/
@@ -30,4 +30,4 @@ extern interface ConsoleMessage {
 	**/
 	@:optional
 	var column : Float;
-}
+};

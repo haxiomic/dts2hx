@@ -1,5 +1,5 @@
 package three;
-extern interface Intersection {
+extern typedef Intersection = {
 	var distance : Float;
 	@:optional
 	var distanceToRay : Float;
@@ -13,4 +13,4 @@ extern interface Intersection {
 	var object : Object3D;
 	@:optional
 	var uv : Vector2;
-}
+};

@@ -1,5 +1,5 @@
 package js.html;
-extern interface DeviceMotionEventInit extends EventInit {
+extern typedef DeviceMotionEventInit = {
 	@:optional
 	var acceleration : DeviceMotionEventAccelerationInit;
 	@:optional
@@ -8,4 +8,10 @@ extern interface DeviceMotionEventInit extends EventInit {
 	var interval : Float;
 	@:optional
 	var rotationRate : DeviceMotionEventRotationRateInit;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

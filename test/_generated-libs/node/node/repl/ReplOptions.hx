@@ -1,5 +1,5 @@
 package node.repl;
-extern interface ReplOptions {
+extern typedef ReplOptions = {
 	/**
 		The input prompt to display.
 		Default: `"> "`
@@ -33,7 +33,7 @@ extern interface ReplOptions {
 		additional lines.
 	**/
 	@:optional
-	var eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.Error>, result:Any) -> Void) -> Void;
+	var eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.IError>, result:Any) -> Void) -> Void;
 	/**
 		If `true`, specifies that the default `writer` function should include ANSI color
 		styling to REPL output. If a custom `writer` function is provided then this has no
@@ -67,7 +67,7 @@ extern interface ReplOptions {
 		An optional function used for custom Tab auto completion.
 	**/
 	@:optional
-	var completer : haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
+	var completer : haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.IError, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
 	/**
 		A flag that specifies whether the default evaluator executes all JavaScript commands in
 		strict mode or default (sloppy) mode.
@@ -85,4 +85,4 @@ extern interface ReplOptions {
 	**/
 	@:optional
 	var breakEvalOnSigint : Bool;
-}
+};

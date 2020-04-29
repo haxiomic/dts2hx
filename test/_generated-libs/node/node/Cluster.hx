@@ -49,7 +49,7 @@ package node;
 	static function removeAllListeners(?event:String):node.cluster.Cluster;
 	static function setMaxListeners(n:Float):node.cluster.Cluster;
 	static function getMaxListeners():Float;
-	static function listeners(event:String):std.Array<js.lib.Function>;
+	static function listeners(event:String):std.Array<js.lib.IFunction>;
 	static function listenerCount(type:String):Float;
 	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
 	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })

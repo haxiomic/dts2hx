@@ -1,8 +1,8 @@
 package js.html;
-@:native("Clipboard") @tsInterface extern class Clipboard {
+@:native("Clipboard") extern class Clipboard {
 	function new();
-	function readText():js.lib.Promise<String>;
-	function writeText(data:String):js.lib.Promise<Void>;
+	function readText():js.lib.IPromise<String>;
+	function writeText(data:String):js.lib.IPromise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -20,10 +20,10 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	static var prototype : Clipboard;
+	static var prototype : IClipboard;
 }

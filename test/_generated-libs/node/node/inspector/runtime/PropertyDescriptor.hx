@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Object property descriptor.
 **/
-extern interface PropertyDescriptor {
+extern typedef PropertyDescriptor = {
 	/**
 		Property name or symbol description.
 	**/
@@ -54,4 +54,4 @@ extern interface PropertyDescriptor {
 	**/
 	@:optional
 	var symbol : RemoteObject;
-}
+};

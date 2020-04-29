@@ -1,5 +1,5 @@
 package node.child_process;
-extern interface SpawnSyncReturns<T> {
+extern typedef SpawnSyncReturns<T> = {
 	var pid : Float;
 	var output : std.Array<String>;
 	var stdout : T;
@@ -7,5 +7,5 @@ extern interface SpawnSyncReturns<T> {
 	var status : Float;
 	var signal : String;
 	@:optional
-	var error : js.lib.Error;
-}
+	var error : js.lib.IError;
+};

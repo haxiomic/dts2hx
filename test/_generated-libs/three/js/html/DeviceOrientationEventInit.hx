@@ -1,5 +1,5 @@
 package js.html;
-extern interface DeviceOrientationEventInit extends EventInit {
+extern typedef DeviceOrientationEventInit = {
 	@:optional
 	var absolute : Bool;
 	@:optional
@@ -8,4 +8,10 @@ extern interface DeviceOrientationEventInit extends EventInit {
 	var beta : Float;
 	@:optional
 	var gamma : Float;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

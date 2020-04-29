@@ -1,5 +1,5 @@
 package three;
-extern interface WebGLRenderTargetOptions {
+extern typedef WebGLRenderTargetOptions = {
 	@:optional
 	var wrapS : Wrapping;
 	@:optional
@@ -20,4 +20,4 @@ extern interface WebGLRenderTargetOptions {
 	var stencilBuffer : Bool;
 	@:optional
 	var generateMipmaps : Bool;
-}
+};

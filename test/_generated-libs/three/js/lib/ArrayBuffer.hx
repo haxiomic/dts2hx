@@ -5,7 +5,7 @@ package js.lib;
 	but can be passed to a typed array or DataView Object to interpret the raw
 	buffer as needed.
 **/
-@:native("ArrayBuffer") @tsInterface extern class ArrayBuffer {
+@:native("ArrayBuffer") extern class ArrayBuffer {
 	function new(byteLength:Float);
 	/**
 		Read-only. The length of the ArrayBuffer (in bytes).
@@ -14,7 +14,7 @@ package js.lib;
 	/**
 		Returns a section of an ArrayBuffer.
 	**/
-	function slice(begin:Float, ?end:Float):ArrayBuffer;
-	static final prototype : ArrayBuffer;
+	function slice(begin:Float, ?end:Float):IArrayBuffer;
+	static final prototype : IArrayBuffer;
 	static function isView(arg:Any):Bool;
 }

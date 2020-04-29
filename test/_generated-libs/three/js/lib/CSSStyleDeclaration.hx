@@ -2,7 +2,7 @@ package js.lib;
 /**
 	An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
 **/
-@:native("CSSStyleDeclaration") @tsInterface extern class CSSStyleDeclaration {
+@:native("CSSStyleDeclaration") extern class CSSStyleDeclaration {
 	function new();
 	var alignContent : String;
 	var alignItems : String;
@@ -295,7 +295,7 @@ package js.lib;
 	var pageBreakBefore : String;
 	var pageBreakInside : String;
 	var paintOrder : String;
-	final parentRule : js.html.CSSRule;
+	final parentRule : js.html.ICSSRule;
 	var penAction : Null<String>;
 	var perspective : String;
 	var perspectiveOrigin : String;
@@ -467,5 +467,5 @@ package js.lib;
 	function item(index:Float):String;
 	function removeProperty(propertyName:String):String;
 	function setProperty(propertyName:String, value:Null<String>, ?priority:String):Void;
-	static var prototype : CSSStyleDeclaration;
+	static var prototype : ICSSStyleDeclaration;
 }

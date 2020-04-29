@@ -1,5 +1,5 @@
 package node.net;
-extern interface SocketConstructorOpts {
+extern typedef SocketConstructorOpts = {
 	@:optional
 	var fd : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface SocketConstructorOpts {
 	var readable : Bool;
 	@:optional
 	var writable : Bool;
-}
+};

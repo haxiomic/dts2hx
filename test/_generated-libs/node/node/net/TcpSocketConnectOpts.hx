@@ -1,5 +1,5 @@
 package node.net;
-extern interface TcpSocketConnectOpts {
+extern typedef TcpSocketConnectOpts = {
 	var port : Float;
 	@:optional
 	var host : String;
@@ -13,4 +13,4 @@ extern interface TcpSocketConnectOpts {
 	var family : Float;
 	@:optional
 	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void) -> Void;
-}
+};

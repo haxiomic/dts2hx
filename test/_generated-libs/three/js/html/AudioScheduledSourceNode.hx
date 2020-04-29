@@ -1,7 +1,7 @@
 package js.html;
-@:native("AudioScheduledSourceNode") @tsInterface extern class AudioScheduledSourceNode {
+@:native("AudioScheduledSourceNode") extern class AudioScheduledSourceNode {
 	function new();
-	var onended : Null<(ev:Event) -> Any>;
+	var onended : Null<(ev:IEvent) -> Any>;
 	function start(?when:Float):Void;
 	function stop(?when:Float):Void;
 	/**
@@ -16,8 +16,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -36,8 +34,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -45,21 +41,21 @@ package js.html;
 	var channelCount : Float;
 	var channelCountMode : String;
 	var channelInterpretation : String;
-	final context : js.lib.BaseAudioContext;
+	final context : js.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:js.lib.AudioParam, ?output:Float):Void { })
-	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
+	@:overload(function(destinationParam:js.lib.IAudioParam, ?output:Float):Void { })
+	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : AudioScheduledSourceNode;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IAudioScheduledSourceNode;
 }

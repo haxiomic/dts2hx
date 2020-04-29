@@ -2,7 +2,11 @@ package node.repl;
 /**
 	Indicates a recoverable error that a `REPLServer` can use to support multi-line input.
 **/
-@:jsRequire("repl", "Recoverable") extern class Recoverable extends js.lib.SyntaxError {
-	function new(err:js.lib.Error);
-	var err : js.lib.Error;
+@:jsRequire("repl", "Recoverable") extern class Recoverable {
+	function new(err:js.lib.IError);
+	var err : js.lib.IError;
+	var name : String;
+	var message : String;
+	@:optional
+	var stack : String;
 }

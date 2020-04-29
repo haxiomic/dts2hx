@@ -1,4 +1,4 @@
 package node.inspector.nodetracing;
-extern interface DataCollectedEventDataType {
+extern typedef DataCollectedEventDataType = {
 	var value : std.Array<{ }>;
-}
+};

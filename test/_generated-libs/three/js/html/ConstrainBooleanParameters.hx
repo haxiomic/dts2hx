@@ -1,7 +1,7 @@
 package js.html;
-extern interface ConstrainBooleanParameters {
+extern typedef ConstrainBooleanParameters = {
 	@:optional
 	var exact : Bool;
 	@:optional
 	var ideal : Bool;
-}
+};

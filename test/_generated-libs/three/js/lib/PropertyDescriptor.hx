@@ -1,5 +1,5 @@
 package js.lib;
-extern interface PropertyDescriptor {
+extern typedef PropertyDescriptor = {
 	@:optional
 	var configurable : Bool;
 	@:optional
@@ -12,4 +12,4 @@ extern interface PropertyDescriptor {
 	function get():Any;
 	@:optional
 	function set(v:Any):Void;
-}
+};

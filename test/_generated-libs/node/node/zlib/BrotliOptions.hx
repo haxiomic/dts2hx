@@ -1,5 +1,5 @@
 package node.zlib;
-extern interface BrotliOptions {
+extern typedef BrotliOptions = {
 	@:optional
 	var flush : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface BrotliOptions {
 	var chunkSize : Float;
 	@:optional
 	var params : { };
-}
+};

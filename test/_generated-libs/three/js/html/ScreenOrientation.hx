@@ -1,10 +1,10 @@
 package js.html;
-@:native("ScreenOrientation") @tsInterface extern class ScreenOrientation {
+@:native("ScreenOrientation") extern class ScreenOrientation {
 	function new();
 	final angle : Float;
-	var onchange : Null<(ev:Event) -> Any>;
+	var onchange : Null<(ev:IEvent) -> Any>;
 	final type : String;
-	function lock(orientation:String):js.lib.Promise<Void>;
+	function lock(orientation:String):js.lib.IPromise<Void>;
 	function unlock():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -18,8 +18,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -38,8 +36,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -47,6 +43,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : ScreenOrientation;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IScreenOrientation;
 }

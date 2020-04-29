@@ -1,7 +1,7 @@
 package node.worker_threads;
-@:jsRequire("worker_threads", "MessagePort") extern class MessagePort extends node.events.EventEmitter {
+@:jsRequire("worker_threads", "MessagePort") extern class MessagePort {
 	function close():Void;
-	function postMessage(value:Any, ?transferList:std.Array<haxe.extern.EitherType<MessagePort, js.lib.ArrayBuffer>>):Void;
+	function postMessage(value:Any, ?transferList:std.Array<haxe.extern.EitherType<MessagePort, js.lib.IArrayBuffer>>):Void;
 	function ref():Void;
 	function unref():Void;
 	function start():Void;
@@ -29,4 +29,11 @@ package node.worker_threads;
 	@:overload(function(event:String, listener:(value:Any) -> Void):MessagePort { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):MessagePort { })
 	function off(event:String, listener:() -> Void):MessagePort;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
+	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

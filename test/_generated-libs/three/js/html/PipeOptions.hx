@@ -1,5 +1,5 @@
 package js.html;
-extern interface PipeOptions {
+extern typedef PipeOptions = {
 	@:optional
 	var preventAbort : Bool;
 	@:optional
@@ -7,5 +7,5 @@ extern interface PipeOptions {
 	@:optional
 	var preventClose : Bool;
 	@:optional
-	var signal : AbortSignal;
-}
+	var signal : IAbortSignal;
+};

@@ -1,4 +1,4 @@
 package js.lib;
-extern interface ArrayLike<T> {
+extern typedef ArrayLike<T> = {
 	final length : Float;
-}
+};

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface GetPropertiesParameterType {
+extern typedef GetPropertiesParameterType = {
 	/**
 		Identifier of the object to return properties for.
 	**/
@@ -21,4 +21,4 @@ extern interface GetPropertiesParameterType {
 	**/
 	@:optional
 	var generatePreview : Bool;
-}
+};

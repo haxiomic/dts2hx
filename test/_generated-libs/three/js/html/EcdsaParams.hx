@@ -1,4 +1,5 @@
 package js.html;
-extern interface EcdsaParams extends Algorithm {
+extern typedef EcdsaParams = {
 	var hash : haxe.extern.EitherType<String, Algorithm>;
-}
+	var name : String;
+};

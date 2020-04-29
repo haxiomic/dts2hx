@@ -1,5 +1,5 @@
 package node.vm;
-extern interface BaseOptions {
+extern typedef BaseOptions = {
 	/**
 		Specifies the filename used in stack traces produced by this script.
 		Default: `''`.
@@ -18,4 +18,4 @@ extern interface BaseOptions {
 	**/
 	@:optional
 	var columnOffset : Float;
-}
+};

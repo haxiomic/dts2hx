@@ -1,15 +1,29 @@
 package global.nodejs;
-extern interface ReadableStream extends EventEmitter {
+extern typedef ReadableStream = {
 	var readable : Bool;
-	function read(?size:Float):haxe.extern.EitherType<String, global.Buffer>;
+	function read(?size:Float):haxe.extern.EitherType<String, global.IBuffer>;
 	function setEncoding(encoding:String):ReadableStream;
 	function pause():ReadableStream;
 	function resume():ReadableStream;
 	function isPaused():Bool;
-	function pipe<T:(WritableStream)>(destination:T, ?options:{ @:optional
-	var end : Bool; }):T;
+	function pipe<T:(WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:WritableStream):ReadableStream;
-	@:overload(function(chunk:global.Buffer):Void { })
+	@:overload(function(chunk:global.IBuffer):Void { })
 	function unshift(chunk:String):Void;
 	function wrap(oldStream:ReadableStream):ReadableStream;
-}
+	function addListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function on(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function once(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):EventEmitter;
+	function setMaxListeners(n:Float):EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+};

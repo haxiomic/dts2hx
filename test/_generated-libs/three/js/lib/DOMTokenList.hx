@@ -2,7 +2,7 @@ package js.lib;
 /**
 	A set of space-separated tokens. Such a set is returned by Element.classList, HTMLLinkElement.relList, HTMLAnchorElement.relList, HTMLAreaElement.relList, HTMLIframeElement.sandbox, or HTMLOutputElement.htmlFor. It is indexed beginning with 0 as with JavaScript Array objects. DOMTokenList is always case-sensitive.
 **/
-@:native("DOMTokenList") @tsInterface extern class DOMTokenList {
+@:native("DOMTokenList") extern class DOMTokenList {
 	function new();
 	/**
 		Returns the number of tokens.
@@ -64,9 +64,9 @@ package js.lib;
 		Throws an "InvalidCharacterError" DOMException if token contains any spaces.
 	**/
 	function toggle(token:String, ?force:Bool):Bool;
-	function forEach(callbackfn:(value:String, key:Float, parent:DOMTokenList) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:String, key:Float, parent:IDOMTokenList) -> Void, ?thisArg:Any):Void;
 	function entries():IterableIterator<js.lib.Tuple2<Float, String>>;
 	function keys():IterableIterator<Float>;
 	function values():IterableIterator<String>;
-	static var prototype : DOMTokenList;
+	static var prototype : IDOMTokenList;
 }

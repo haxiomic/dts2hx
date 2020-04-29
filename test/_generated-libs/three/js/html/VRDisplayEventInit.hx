@@ -1,6 +1,12 @@
 package js.html;
-extern interface VRDisplayEventInit extends EventInit {
-	var display : js.lib.VRDisplay;
+extern typedef VRDisplayEventInit = {
+	var display : js.lib.IVRDisplay;
 	@:optional
 	var reason : String;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

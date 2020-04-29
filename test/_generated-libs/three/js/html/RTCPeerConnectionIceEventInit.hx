@@ -1,7 +1,13 @@
 package js.html;
-extern interface RTCPeerConnectionIceEventInit extends EventInit {
+extern typedef RTCPeerConnectionIceEventInit = {
 	@:optional
-	var candidate : RTCIceCandidate;
+	var candidate : IRTCIceCandidate;
 	@:optional
 	var url : String;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

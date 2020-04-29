@@ -1,5 +1,5 @@
 package node.v8;
-extern interface HeapInfo {
+extern typedef HeapInfo = {
 	var total_heap_size : Float;
 	var total_heap_size_executable : Float;
 	var total_physical_size : Float;
@@ -9,4 +9,4 @@ extern interface HeapInfo {
 	var malloced_memory : Float;
 	var peak_malloced_memory : Float;
 	var does_zap_garbage : Int;
-}
+};

@@ -1,6 +1,6 @@
 package js.html;
-extern interface ShadowRootInit {
+extern typedef ShadowRootInit = {
 	@:optional
 	var delegatesFocus : Bool;
 	var mode : String;
-}
+};

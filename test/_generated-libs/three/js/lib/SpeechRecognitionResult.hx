@@ -1,8 +1,8 @@
 package js.lib;
-@:native("SpeechRecognitionResult") @tsInterface extern class SpeechRecognitionResult {
+@:native("SpeechRecognitionResult") extern class SpeechRecognitionResult {
 	function new();
 	final isFinal : Bool;
 	final length : Float;
-	function item(index:Float):js.html.SpeechRecognitionAlternative;
-	static var prototype : SpeechRecognitionResult;
+	function item(index:Float):js.html.ISpeechRecognitionAlternative;
+	static var prototype : ISpeechRecognitionResult;
 }

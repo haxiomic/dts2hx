@@ -1,67 +1,9 @@
 package node.tls;
-@:jsRequire("tls", "TLSSocket") extern class TLSSocket extends node.net.Socket {
+@:jsRequire("tls", "TLSSocket") extern class TLSSocket {
 	/**
 		Construct a new tls.TLSSocket object from an existing TCP socket.
 	**/
-	function new(socket:node.net.Socket, ?options:{ /**
-		An optional TLS context object from tls.createSecureContext()
-	**/
-	@:optional
-	var secureContext : SecureContext; /**
-		If true the TLS socket will be instantiated in server-mode.
-		Defaults to false.
-	**/
-	@:optional
-	var isServer : Bool; /**
-		An optional net.Server instance.
-	**/
-	@:optional
-	var server : node.net.Server; /**
-		If true the server will request a certificate from clients that
-		connect and attempt to verify that certificate. Defaults to
-		false.
-	**/
-	@:optional
-	var requestCert : Bool; /**
-		If true the server will reject any connection which is not
-		authorized with the list of supplied CAs. This option only has an
-		effect if requestCert is true. Defaults to false.
-	**/
-	@:optional
-	var rejectUnauthorized : Bool; /**
-		An array of strings or a Buffer naming possible NPN protocols.
-		(Protocols should be ordered by their priority.)
-	**/
-	@:optional
-	var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>; /**
-		An array of strings or a Buffer naming possible ALPN protocols.
-		(Protocols should be ordered by their priority.) When the server
-		receives both NPN and ALPN extensions from the client, ALPN takes
-		precedence over NPN and the server does not send an NPN extension
-		to the client.
-	**/
-	@:optional
-	var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.Buffer, haxe.extern.EitherType<js.lib.Uint8Array, haxe.extern.EitherType<std.Array<js.lib.Uint8Array>, std.Array<global.Buffer>>>>>; /**
-		SNICallback(servername, cb) <Function> A function that will be
-		called if the client supports SNI TLS extension. Two arguments
-		will be passed when called: servername and cb. SNICallback should
-		invoke cb(null, ctx), where ctx is a SecureContext instance.
-		(tls.createSecureContext(...) can be used to get a proper
-		SecureContext.) If SNICallback wasn't provided the default callback
-		with high-level API will be used (see below).
-	**/
-	@:optional
-	var SNICallback : (servername:String, cb:(err:Null<js.lib.Error>, ctx:SecureContext) -> Void) -> Void; /**
-		An optional Buffer instance containing a TLS session.
-	**/
-	@:optional
-	var session : global.Buffer; /**
-		If true, specifies that the OCSP status request extension will be
-		added to the client hello and an 'OCSPResponse' event will be
-		emitted on the socket before establishing a secure communication
-	**/
-	@:optional
-	var requestOCSP : Bool; });
+	function new(socket:node.net.Socket, ?options:{ /** An optional TLS context object from tls.createSecureContext() **/ @:optional var secureContext : SecureContext; /** If true the TLS socket will be instantiated in server-mode.Defaults to false. **/ @:optional var isServer : Bool; /** An optional net.Server instance. **/ @:optional var server : node.net.Server; /** If true the server will request a certificate from clients thatconnect and attempt to verify that certificate. Defaults tofalse. **/ @:optional var requestCert : Bool; /** If true the server will reject any connection which is notauthorized with the list of supplied CAs. This option only has aneffect if requestCert is true. Defaults to false. **/ @:optional var rejectUnauthorized : Bool; /** An array of strings or a Buffer naming possible NPN protocols.(Protocols should be ordered by their priority.) **/ @:optional var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<std.Array<js.lib.IUint8Array>, std.Array<global.IBuffer>>>>>; /** An array of strings or a Buffer naming possible ALPN protocols.(Protocols should be ordered by their priority.) When the serverreceives both NPN and ALPN extensions from the client, ALPN takesprecedence over NPN and the server does not send an NPN extensionto the client. **/ @:optional var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<std.Array<js.lib.IUint8Array>, std.Array<global.IBuffer>>>>>; /** SNICallback(servername, cb) <Function> A function that will becalled if the client supports SNI TLS extension. Two argumentswill be passed when called: servername and cb. SNICallback shouldinvoke cb(null, ctx), where ctx is a SecureContext instance.(tls.createSecureContext(...) can be used to get a properSecureContext.) If SNICallback wasn't provided the default callbackwith high-level API will be used (see below). **/ @:optional var SNICallback : (servername:String, cb:(err:Null<js.lib.IError>, ctx:SecureContext) -> Void) -> Void; /** An optional Buffer instance containing a TLS session. **/ @:optional var session : global.IBuffer; /** If true, specifies that the OCSP status request extension will beadded to the client hello and an 'OCSPResponse' event will beemitted on the socket before establishing a secure communication **/ @:optional var requestOCSP : Bool; });
 	/**
 		A boolean that is true if the peer certificate was signed by one of the specified CAs, otherwise false.
 	**/
@@ -70,7 +12,7 @@ package node.tls;
 		The reason why the peer's certificate has not been verified.
 		This property becomes available only when tlsSocket.authorized === false.
 	**/
-	var authorizationError : js.lib.Error;
+	var authorizationError : js.lib.IError;
 	/**
 		Static boolean value, always true.
 		May be used to distinguish TLS sockets from regular ones.
@@ -106,21 +48,19 @@ package node.tls;
 	/**
 		Could be used to speed up handshake establishment when reconnecting to the server.
 	**/
-	function getSession():Null<global.Buffer>;
+	function getSession():Null<global.IBuffer>;
 	/**
 		NOTE: Works only with client TLS sockets.
 		Useful only for debugging, for session reuse provide session option to tls.connect().
 	**/
-	function getTLSTicket():Null<global.Buffer>;
+	function getTLSTicket():Null<global.IBuffer>;
 	/**
 		Initiate TLS renegotiation process.
 		
 		NOTE: Can be used to request peer's certificate after the secure connection has been established.
 		ANOTHER NOTE: When running as the server, socket will be destroyed with an error after handshakeTimeout timeout.
 	**/
-	function renegotiate(options:{ @:optional
-	var rejectUnauthorized : Bool; @:optional
-	var requestCert : Bool; }, callback:(err:Null<js.lib.Error>) -> Void):Null<Bool>;
+	function renegotiate(options:{ @:optional var rejectUnauthorized : Bool; @:optional var requestCert : Bool; }, callback:(err:Null<js.lib.IError>) -> Void):Null<Bool>;
 	/**
 		Set maximum TLS fragment size (default and maximum value is: 16384, minimum is: 512).
 		Smaller fragment size decreases buffering latency on the client: large fragments are buffered by
@@ -135,28 +75,96 @@ package node.tls;
 		1. OCSPResponse
 		2. secureConnect
 	**/
-	@:overload(function(event:String, listener:(response:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
-	@:overload(function(event:String, listener:(session:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
 	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
-	@:overload(function(event:String, response:global.Buffer):Bool { })
+	@:overload(function(event:String, response:global.IBuffer):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, session:global.Buffer):Bool { })
+	@:overload(function(event:String, session:global.IBuffer):Bool { })
 	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
-	@:overload(function(event:String, listener:(response:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
-	@:overload(function(event:String, listener:(session:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
 	function on(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
-	@:overload(function(event:String, listener:(response:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
-	@:overload(function(event:String, listener:(session:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
 	function once(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
-	@:overload(function(event:String, listener:(response:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
-	@:overload(function(event:String, listener:(session:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
 	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
-	@:overload(function(event:String, listener:(response:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
-	@:overload(function(event:String, listener:(session:global.Buffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })
+	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:(?err:js.lib.IError) -> Void):Bool;
+	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):node.net.Socket { })
+	@:overload(function(port:Float, ?connectionListener:() -> Void):node.net.Socket { })
+	@:overload(function(path:String, ?connectionListener:() -> Void):node.net.Socket { })
+	function connect(options:haxe.extern.EitherType<node.net.TcpSocketConnectOpts, node.net.IpcSocketConnectOpts>, ?connectionListener:() -> Void):node.net.Socket;
+	function setEncoding(?encoding:String):node.net.Socket;
+	function pause():node.net.Socket;
+	function resume():node.net.Socket;
+	function setTimeout(timeout:Float, ?callback:() -> Void):node.net.Socket;
+	function setNoDelay(?noDelay:Bool):node.net.Socket;
+	function setKeepAlive(?enable:Bool, ?initialDelay:Float):node.net.Socket;
+	function address():haxe.extern.EitherType<String, node.net.AddressInfo>;
+	function unref():Void;
+	function ref():Void;
+	final bufferSize : Float;
+	final bytesRead : Float;
+	final bytesWritten : Float;
+	final connecting : Bool;
+	final destroyed : Bool;
+	final localAddress : String;
+	final localPort : Float;
+	@:optional
+	final remoteAddress : String;
+	@:optional
+	final remoteFamily : String;
+	@:optional
+	final remotePort : Float;
+	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:() -> Void):Void { })
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
+	function end(?cb:() -> Void):Void;
+	var writable : Bool;
+	final writableHighWaterMark : Float;
+	final writableLength : Float;
+	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.IError) -> Void):Void;
+	@:optional
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
+	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
+	function _final(callback:(?error:js.lib.IError) -> Void):Void;
+	function setDefaultEncoding(encoding:String):node.stream.Duplex;
+	function cork():Void;
+	function uncork():Void;
+	var readable : Bool;
+	final readableHighWaterMark : Float;
+	final readableLength : Float;
+	function _read(size:Float):Void;
+	function read(?size:Float):Any;
+	function isPaused():Bool;
+	function unpipe(?destination:global.nodejs.WritableStream):node.stream.Readable;
+	function unshift(chunk:Any):Void;
+	function wrap(oldStream:global.nodejs.ReadableStream):node.stream.Readable;
+	function push(chunk:Any, ?encoding:String):Bool;
+	function destroy(?error:js.lib.IError):Void;
+	@:overload(function(event:String, listener:(chunk:Any) -> Void):node.stream.Readable { })
+	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
+	@:overload(function(event:String, listener:() -> Void):node.stream.Readable { })
+	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):node.stream.Readable { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.stream.Readable { })
+	function removeListener(event:String, listener:() -> Void):node.stream.Readable;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
+	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

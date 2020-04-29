@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	Scope description.
 **/
-extern interface Scope {
+extern typedef Scope = {
 	/**
 		Scope type.
 	**/
@@ -25,4 +25,4 @@ extern interface Scope {
 	**/
 	@:optional
 	var endLocation : Location;
-}
+};

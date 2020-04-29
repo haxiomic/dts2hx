@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface EvaluateOnCallFrameParameterType {
+extern typedef EvaluateOnCallFrameParameterType = {
 	/**
 		Call frame identifier to evaluate on.
 	**/
@@ -46,4 +46,4 @@ extern interface EvaluateOnCallFrameParameterType {
 	**/
 	@:optional
 	var timeout : Float;
-}
+};

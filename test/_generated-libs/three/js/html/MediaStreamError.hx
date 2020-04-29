@@ -1,8 +1,8 @@
 package js.html;
-@:native("MediaStreamError") @tsInterface extern class MediaStreamError {
+@:native("MediaStreamError") extern class MediaStreamError {
 	function new();
 	final constraintName : Null<String>;
 	final message : Null<String>;
 	final name : String;
-	static var prototype : MediaStreamError;
+	static var prototype : IMediaStreamError;
 }

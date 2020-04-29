@@ -1,6 +1,6 @@
 package js.html;
-extern interface PushPermissionDescriptor extends PermissionDescriptor {
+extern typedef PushPermissionDescriptor = {
 	var name : String;
 	@:optional
 	var userVisibleOnly : Bool;
-}
+};

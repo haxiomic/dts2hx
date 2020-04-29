@@ -1,4 +1,2 @@
 package js.html;
-extern interface WebGLVertexArrayObjectOES extends WebGLObject {
-
-}
+extern typedef WebGLVertexArrayObjectOES = { };

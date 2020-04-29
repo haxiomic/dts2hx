@@ -1,5 +1,5 @@
 package js.html;
-extern interface FocusNavigationOrigin {
+extern typedef FocusNavigationOrigin = {
 	@:optional
 	var originHeight : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface FocusNavigationOrigin {
 	var originTop : Float;
 	@:optional
 	var originWidth : Float;
-}
+};

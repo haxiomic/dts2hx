@@ -1,5 +1,5 @@
 package node.crypto;
-extern interface ScryptOptions {
+extern typedef ScryptOptions = {
 	@:optional
 	var N : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface ScryptOptions {
 	var p : Float;
 	@:optional
 	var maxmem : Float;
-}
+};

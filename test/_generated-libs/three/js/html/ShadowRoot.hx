@@ -1,12 +1,12 @@
 package js.html;
-@:native("ShadowRoot") @tsInterface extern class ShadowRoot {
+@:native("ShadowRoot") extern class ShadowRoot {
 	function new();
-	final host : Element;
+	final host : IElement;
 	final mode : String;
 	/**
 		Returns the first element within node's descendants whose ID is elementId.
 	**/
-	function getElementById(elementId:String):Null<HTMLElement>;
+	function getElementById(elementId:String):Null<IHTMLElement>;
 	/**
 		Returns node's node document's document base URL.
 	**/
@@ -44,56 +44,56 @@ package js.html;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<Document>;
+	final ownerDocument : Null<IDocument>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<HTMLElement>;
+	final parentElement : Null<IHTMLElement>;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<INode & ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<Node>;
+	final previousSibling : Null<INode>;
 	var textContent : Null<String>;
-	function appendChild<T:(Node)>(newChild:T):T;
+	function appendChild<T:(INode)>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):Node;
+	function cloneNode(?deep:Bool):INode;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:Node):Float;
+	function compareDocumentPosition(other:INode):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<Node>):Bool;
+	function contains(other:Null<INode>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):Node;
+	function getRootNode(?options:GetRootNodeOptions):INode;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T:(Node)>(newChild:T, refChild:Null<Node>):T;
+	function insertBefore<T:(INode)>(newChild:T, refChild:Null<INode>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<Node>):Bool;
-	function isSameNode(otherNode:Null<Node>):Bool;
+	function isEqualNode(otherNode:Null<INode>):Bool;
+	function isSameNode(otherNode:Null<INode>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
 		Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
 	**/
 	function normalize():Void;
-	function removeChild<T:(Node)>(oldChild:T):T;
-	function replaceChild<T:(Node)>(newChild:Node, oldChild:T):T;
+	function removeChild<T:(INode)>(oldChild:T):T;
+	function replaceChild<T:(INode)>(newChild:INode, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -168,7 +168,7 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
@@ -177,54 +177,54 @@ package js.html;
 	/**
 		Returns the child elements.
 	**/
-	final children : HTMLCollection;
+	final children : IHTMLCollection;
 	/**
 		Returns the first child that is an element, and null otherwise.
 	**/
-	final firstElementChild : Null<Element>;
+	final firstElementChild : Null<IElement>;
 	/**
 		Returns the last child that is an element, and null otherwise.
 	**/
-	final lastElementChild : Null<Element>;
+	final lastElementChild : Null<IElement>;
 	/**
 		Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function append(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function prepend(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
 	@:overload(function<K:(String)>(selectors:K):Null<Any> { })
-	@:overload(function<E:(Element)>(selectors:String):Null<E> { })
+	@:overload(function<E:(IElement)>(selectors:String):Null<E> { })
 	function querySelector<K:(String)>(selectors:K):Null<Any>;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
 	@:overload(function<K:(String)>(selectors:K):js.lib.NodeListOf<Any> { })
-	@:overload(function<E:(Element)>(selectors:String):js.lib.NodeListOf<E> { })
+	@:overload(function<E:(IElement)>(selectors:String):js.lib.NodeListOf<E> { })
 	function querySelectorAll<K:(String)>(selectors:K):js.lib.NodeListOf<Any>;
-	final activeElement : Null<Element>;
+	final activeElement : Null<IElement>;
 	/**
 		Returns document's fullscreen element.
 	**/
-	final fullscreenElement : Null<Element>;
-	final pointerLockElement : Null<Element>;
+	final fullscreenElement : Null<IElement>;
+	final pointerLockElement : Null<IElement>;
 	/**
 		Retrieves a collection of styleSheet objects representing the style sheets that correspond to each instance of a link or style object in the document.
 	**/
-	final styleSheets : js.lib.StyleSheetList;
-	function caretPositionFromPoint(x:Float, y:Float):Null<CaretPosition>;
-	function caretRangeFromPoint(x:Float, y:Float):Range;
-	function elementFromPoint(x:Float, y:Float):Null<Element>;
-	function elementsFromPoint(x:Float, y:Float):std.Array<Element>;
-	function getSelection():Null<Selection>;
+	final styleSheets : js.lib.IStyleSheetList;
+	function caretPositionFromPoint(x:Float, y:Float):Null<ICaretPosition>;
+	function caretRangeFromPoint(x:Float, y:Float):IRange;
+	function elementFromPoint(x:Float, y:Float):Null<IElement>;
+	function elementsFromPoint(x:Float, y:Float):std.Array<IElement>;
+	function getSelection():Null<ISelection>;
 	var innerHTML : String;
-	static var prototype : ShadowRoot;
+	static var prototype : IShadowRoot;
 }

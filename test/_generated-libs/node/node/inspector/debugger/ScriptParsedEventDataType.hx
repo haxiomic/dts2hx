@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface ScriptParsedEventDataType {
+extern typedef ScriptParsedEventDataType = {
 	/**
 		Identifier of the script parsed.
 	**/
@@ -67,4 +67,4 @@ extern interface ScriptParsedEventDataType {
 	**/
 	@:optional
 	var stackTrace : node.inspector.runtime.StackTrace;
-}
+};

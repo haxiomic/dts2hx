@@ -1,16 +1,50 @@
 package global.nodejs;
-extern interface WriteStream extends Socket {
+extern typedef WriteStream = {
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
 	@:optional
 	var columns : Float;
 	@:optional
 	var rows : Float;
-	function _write(chunk:Any, encoding:String, callback:(?err:js.lib.Error) -> Void):Void;
-	function _destroy(err:Null<js.lib.Error>, callback:(?err:js.lib.Error) -> Void):Void;
-	function _final(callback:(?err:js.lib.Error) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?err:js.lib.IError) -> Void):Void;
+	function _destroy(err:Null<js.lib.IError>, callback:(?err:js.lib.IError) -> Void):Void;
+	function _final(callback:(?err:js.lib.IError) -> Void):Void;
 	function setDefaultEncoding(encoding:String):WriteStream;
 	function cork():Void;
 	function uncork():Void;
-	function destroy(?error:js.lib.Error):Void;
-}
+	function destroy(?error:js.lib.IError):Void;
+	@:optional
+	var isTTY : Bool;
+	var readable : Bool;
+	function read(?size:Float):haxe.extern.EitherType<String, global.IBuffer>;
+	function setEncoding(encoding:String):ReadableStream;
+	function pause():ReadableStream;
+	function resume():ReadableStream;
+	function isPaused():Bool;
+	function pipe<T:(WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function unpipe(?destination:WritableStream):ReadableStream;
+	@:overload(function(chunk:global.IBuffer):Void { })
+	function unshift(chunk:String):Void;
+	function wrap(oldStream:ReadableStream):ReadableStream;
+	function addListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function on(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function once(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):EventEmitter;
+	function setMaxListeners(n:Float):EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):EventEmitter;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	var writable : Bool;
+	@:overload(function(str:String, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })
+	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:(?err:js.lib.IError) -> Void):Bool;
+	@:overload(function(data:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:() -> Void):Void { })
+	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
+	function end(?cb:() -> Void):Void;
+};

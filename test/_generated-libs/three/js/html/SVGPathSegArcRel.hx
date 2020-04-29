@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSegArcRel") @tsInterface extern class SVGPathSegArcRel {
+@:native("SVGPathSegArcRel") extern class SVGPathSegArcRel {
 	function new();
 	var angle : Float;
 	var largeArcFlag : Bool;
@@ -30,5 +30,5 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSegArcRel;
+	static var prototype : ISVGPathSegArcRel;
 }

@@ -1,5 +1,5 @@
 package js.html;
-@:native("WebGLTransformFeedback") @tsInterface extern class WebGLTransformFeedback {
+@:native("WebGLTransformFeedback") extern class WebGLTransformFeedback {
 	function new();
-	static var prototype : WebGLTransformFeedback;
+	static var prototype : IWebGLTransformFeedback;
 }

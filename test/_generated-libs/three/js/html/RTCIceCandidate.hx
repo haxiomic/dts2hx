@@ -2,7 +2,7 @@ package js.html;
 /**
 	The RTCIceCandidate interface—part of the WebRTC API—represents a candidate Internet Connectivity Establishment (ICE) configuration which may be used to establish an RTCPeerConnection.
 **/
-@:native("RTCIceCandidate") @tsInterface extern class RTCIceCandidate {
+@:native("RTCIceCandidate") extern class RTCIceCandidate {
 	function new(?candidateInitDict:RTCIceCandidateInit);
 	final candidate : String;
 	final component : Null<String>;
@@ -19,5 +19,5 @@ package js.html;
 	final type : Null<String>;
 	final usernameFragment : Null<String>;
 	function toJSON():RTCIceCandidateInit;
-	static var prototype : RTCIceCandidate;
+	static var prototype : IRTCIceCandidate;
 }

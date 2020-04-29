@@ -6,6 +6,6 @@ package three;
 	var value : Any;
 	@:native("dynamic")
 	var dynamic_ : Bool;
-	var onUpdateCallback : js.lib.Function;
-	function onUpdate(callback:js.lib.Function):Uniform;
+	var onUpdateCallback : js.lib.IFunction;
+	function onUpdate(callback:js.lib.IFunction):Uniform;
 }

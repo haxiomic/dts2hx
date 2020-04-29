@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface ConsoleAPICalledEventDataType {
+extern typedef ConsoleAPICalledEventDataType = {
 	/**
 		Type of the call.
 	**/
@@ -28,4 +28,4 @@ extern interface ConsoleAPICalledEventDataType {
 	**/
 	@:optional
 	var context : String;
-}
+};

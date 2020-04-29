@@ -1,5 +1,5 @@
 package js.lib;
-extern interface ReadonlySet<T> {
+extern typedef ReadonlySet<T> = {
 	function forEach(callbackfn:(value:T, value2:T, set:ReadonlySet<T>) -> Void, ?thisArg:Any):Void;
 	function has(value:T):Bool;
 	final size : Float;
@@ -15,4 +15,4 @@ extern interface ReadonlySet<T> {
 		Returns an iterable of values in the set.
 	**/
 	function values():IterableIterator<T>;
-}
+};

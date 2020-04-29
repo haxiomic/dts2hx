@@ -1,7 +1,13 @@
 package js.html;
-extern interface MediaEncryptedEventInit extends EventInit {
+extern typedef MediaEncryptedEventInit = {
 	@:optional
-	var initData : js.lib.ArrayBuffer;
+	var initData : js.lib.IArrayBuffer;
 	@:optional
 	var initDataType : String;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

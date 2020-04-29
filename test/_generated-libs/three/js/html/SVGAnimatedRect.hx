@@ -2,9 +2,9 @@ package js.html;
 /**
 	Used for attributes of basic SVGRect which can be animated.
 **/
-@:native("SVGAnimatedRect") @tsInterface extern class SVGAnimatedRect {
+@:native("SVGAnimatedRect") extern class SVGAnimatedRect {
 	function new();
-	final animVal : DOMRectReadOnly;
-	final baseVal : DOMRect;
-	static var prototype : SVGAnimatedRect;
+	final animVal : IDOMRectReadOnly;
+	final baseVal : IDOMRect;
+	static var prototype : ISVGAnimatedRect;
 }

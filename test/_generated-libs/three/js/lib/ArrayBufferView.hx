@@ -1,9 +1,9 @@
 package js.lib;
-extern interface ArrayBufferView {
+extern typedef ArrayBufferView = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	var buffer : ArrayBuffer;
+	var buffer : IArrayBuffer;
 	/**
 		The length in bytes of the array.
 	**/
@@ -12,4 +12,4 @@ extern interface ArrayBufferView {
 		The offset in bytes of the array.
 	**/
 	var byteOffset : Float;
-}
+};

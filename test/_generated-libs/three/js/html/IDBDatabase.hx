@@ -2,7 +2,7 @@ package js.html;
 /**
 	This IndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.
 **/
-@:native("IDBDatabase") @tsInterface extern class IDBDatabase {
+@:native("IDBDatabase") extern class IDBDatabase {
 	function new();
 	/**
 		Returns the name of the database.
@@ -11,11 +11,11 @@ package js.html;
 	/**
 		Returns a list of the names of object stores in the database.
 	**/
-	final objectStoreNames : js.lib.DOMStringList;
-	var onabort : Null<(ev:Event) -> Any>;
-	var onclose : Null<(ev:Event) -> Any>;
-	var onerror : Null<(ev:Event) -> Any>;
-	var onversionchange : Null<(ev:IDBVersionChangeEvent) -> Any>;
+	final objectStoreNames : js.lib.IDOMStringList;
+	var onabort : Null<(ev:IEvent) -> Any>;
+	var onclose : Null<(ev:IEvent) -> Any>;
+	var onerror : Null<(ev:IEvent) -> Any>;
+	var onversionchange : Null<(ev:IIDBVersionChangeEvent) -> Any>;
 	/**
 		Returns the version of the database.
 	**/
@@ -29,7 +29,7 @@ package js.html;
 		
 		Throws a "InvalidStateError" DOMException if not called within an upgrade transaction.
 	**/
-	function createObjectStore(name:String, ?optionalParameters:IDBObjectStoreParameters):js.lib.IDBObjectStore;
+	function createObjectStore(name:String, ?optionalParameters:IDBObjectStoreParameters):js.lib.IIDBObjectStore;
 	/**
 		Deletes the object store with the given name.
 		
@@ -39,7 +39,7 @@ package js.html;
 	/**
 		Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
 	**/
-	function transaction(storeNames:haxe.extern.EitherType<String, std.Array<String>>, ?mode:String):IDBTransaction;
+	function transaction(storeNames:haxe.extern.EitherType<String, std.Array<String>>, ?mode:String):IIDBTransaction;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -52,8 +52,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -72,8 +70,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -81,6 +77,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : IDBDatabase;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IIDBDatabase;
 }

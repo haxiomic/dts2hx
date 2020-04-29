@@ -1,5 +1,5 @@
 package js.html;
-extern interface WorkletOptions {
+extern typedef WorkletOptions = {
 	@:optional
 	var credentials : String;
-}
+};

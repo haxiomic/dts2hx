@@ -2,18 +2,18 @@ package js.html;
 /**
 	Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
 **/
-@:native("Performance") @tsInterface extern class Performance {
+@:native("Performance") extern class Performance {
 	function new();
-	final navigation : PerformanceNavigation;
-	var onresourcetimingbufferfull : Null<(ev:Event) -> Any>;
+	final navigation : IPerformanceNavigation;
+	var onresourcetimingbufferfull : Null<(ev:IEvent) -> Any>;
 	final timeOrigin : Float;
-	final timing : PerformanceTiming;
+	final timing : IPerformanceTiming;
 	function clearMarks(?markName:String):Void;
 	function clearMeasures(?measureName:String):Void;
 	function clearResourceTimings():Void;
-	function getEntries():std.Array<PerformanceEntry>;
-	function getEntriesByName(name:String, ?type:String):std.Array<PerformanceEntry>;
-	function getEntriesByType(type:String):std.Array<PerformanceEntry>;
+	function getEntries():std.Array<IPerformanceEntry>;
+	function getEntriesByName(name:String, ?type:String):std.Array<IPerformanceEntry>;
+	function getEntriesByType(type:String):std.Array<IPerformanceEntry>;
 	function mark(markName:String):Void;
 	function measure(measureName:String, ?startMark:String, ?endMark:String):Void;
 	function now():Float;
@@ -32,8 +32,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -51,8 +49,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -60,6 +56,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : Performance;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IPerformance;
 }

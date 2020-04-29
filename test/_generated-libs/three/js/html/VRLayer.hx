@@ -1,9 +1,9 @@
 package js.html;
-extern interface VRLayer {
+extern typedef VRLayer = {
 	@:optional
-	var leftBounds : haxe.extern.EitherType<js.lib.Float32Array, std.Array<Float>>;
+	var leftBounds : haxe.extern.EitherType<js.lib.IFloat32Array, std.Array<Float>>;
 	@:optional
-	var rightBounds : haxe.extern.EitherType<js.lib.Float32Array, std.Array<Float>>;
+	var rightBounds : haxe.extern.EitherType<js.lib.IFloat32Array, std.Array<Float>>;
 	@:optional
-	var source : HTMLCanvasElement;
-}
+	var source : IHTMLCanvasElement;
+};

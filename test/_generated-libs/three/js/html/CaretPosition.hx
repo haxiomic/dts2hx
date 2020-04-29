@@ -1,8 +1,8 @@
 package js.html;
-@:native("CaretPosition") @tsInterface extern class CaretPosition {
+@:native("CaretPosition") extern class CaretPosition {
 	function new();
 	final offset : Float;
-	final offsetNode : Node;
-	function getClientRect():Null<DOMRect>;
-	static var prototype : CaretPosition;
+	final offsetNode : INode;
+	function getClientRect():Null<IDOMRect>;
+	static var prototype : ICaretPosition;
 }

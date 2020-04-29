@@ -1,5 +1,15 @@
 package js.html;
-extern interface FocusEventInit extends UIEventInit {
+extern typedef FocusEventInit = {
 	@:optional
-	var relatedTarget : EventTarget;
-}
+	var relatedTarget : IEventTarget;
+	@:optional
+	var detail : Float;
+	@:optional
+	var view : IWindow;
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

@@ -4,7 +4,7 @@ package three;
 	
 	( class Vector2 implements Vector<Vector2> )
 **/
-@:jsRequire("three", "Vector2") extern class Vector2 implements Vector {
+@:jsRequire("three", "Vector2") extern class Vector2 {
 	function new(?x:Float, ?y:Float);
 	var x : Float;
 	var y : Float;
@@ -155,8 +155,6 @@ package three;
 	/**
 		Computes the Manhattan length of this vector.
 		
-		
-		
 		Computes the Manhattan length of this vector.
 	**/
 	@:overload(function():Float { })
@@ -180,8 +178,6 @@ package three;
 	function distanceToManhattan(v:Vector2):Float;
 	/**
 		Computes the Manhattan length (distance) from this vector to the given vector v
-		
-		
 		
 		Computes the Manhattan length (distance) from this vector to the given vector v
 	**/
@@ -209,8 +205,6 @@ package three;
 	function fromArray(array:std.Array<Float>, ?offset:Float):Vector2;
 	/**
 		Returns an array [x, y], or copies x and y into the provided array.
-		
-		
 		
 		Copies x and y into the provided array-like.
 	**/

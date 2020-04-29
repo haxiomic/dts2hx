@@ -1,7 +1,7 @@
 package js.html;
-@:native("Credential") @tsInterface extern class Credential {
+@:native("Credential") extern class Credential {
 	function new();
 	final id : String;
 	final type : String;
-	static var prototype : Credential;
+	static var prototype : ICredential;
 }

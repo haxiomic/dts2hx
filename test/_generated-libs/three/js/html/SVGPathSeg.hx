@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSeg") @tsInterface extern class SVGPathSeg {
+@:native("SVGPathSeg") extern class SVGPathSeg {
 	function new();
 	final pathSegType : Float;
 	final pathSegTypeAsLetter : String;
@@ -23,7 +23,7 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSeg;
+	static var prototype : ISVGPathSeg;
 	@:native("PATHSEG_ARC_ABS")
 	static final PATHSEG_ARC_ABS_ : Float;
 	@:native("PATHSEG_ARC_REL")

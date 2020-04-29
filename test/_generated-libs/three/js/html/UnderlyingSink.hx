@@ -1,5 +1,5 @@
 package js.html;
-extern interface UnderlyingSink<W> {
+extern typedef UnderlyingSink<W> = {
 	@:optional
 	var abort : WritableStreamErrorCallback;
 	@:optional
@@ -10,4 +10,4 @@ extern interface UnderlyingSink<W> {
 	var type : Void;
 	@:optional
 	var write : WritableStreamDefaultControllerWriteCallback<W>;
-}
+};

@@ -2,11 +2,11 @@ package js.html;
 /**
 	A single CSS rule. There are several types of rules, listed in the Type constants section below.
 **/
-@:native("CSSRule") @tsInterface extern class CSSRule {
+@:native("CSSRule") extern class CSSRule {
 	function new();
 	var cssText : String;
-	final parentRule : Null<CSSRule>;
-	final parentStyleSheet : Null<CSSStyleSheet>;
+	final parentRule : Null<ICSSRule>;
+	final parentStyleSheet : Null<ICSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -20,7 +20,7 @@ package js.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : CSSRule;
+	static var prototype : ICSSRule;
 	@:native("CHARSET_RULE")
 	static final CHARSET_RULE_ : Float;
 	@:native("FONT_FACE_RULE")

@@ -1,17 +1,17 @@
 package three;
-extern interface WebGLRendererParameters {
+extern typedef WebGLRendererParameters = {
 	/**
 		A Canvas where the renderer draws its output.
 	**/
 	@:optional
-	var canvas : js.html.HTMLCanvasElement;
+	var canvas : js.html.IHTMLCanvasElement;
 	/**
 		A WebGL Rendering Context.
 		(https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext)
 		Default is null
 	**/
 	@:optional
-	var context : js.html.WebGLRenderingContext;
+	var context : js.html.IWebGLRenderingContext;
 	/**
 		shader precision. Can be "highp", "mediump" or "lowp".
 	**/
@@ -57,4 +57,4 @@ extern interface WebGLRendererParameters {
 	**/
 	@:optional
 	var logarithmicDepthBuffer : Bool;
-}
+};

@@ -1,5 +1,5 @@
 package js.html;
-extern interface PostMessageOptions {
+extern typedef PostMessageOptions = {
 	@:optional
 	var transfer : std.Array<Any>;
-}
+};

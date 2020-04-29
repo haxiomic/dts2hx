@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface AwaitPromiseReturnType {
+extern typedef AwaitPromiseReturnType = {
 	/**
 		Promise result. Will contain rejected value if promise was rejected.
 	**/
@@ -9,4 +9,4 @@ extern interface AwaitPromiseReturnType {
 	**/
 	@:optional
 	var exceptionDetails : ExceptionDetails;
-}
+};

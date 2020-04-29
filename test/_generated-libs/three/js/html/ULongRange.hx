@@ -1,7 +1,7 @@
 package js.html;
-extern interface ULongRange {
+extern typedef ULongRange = {
 	@:optional
 	var max : Float;
 	@:optional
 	var min : Float;
-}
+};

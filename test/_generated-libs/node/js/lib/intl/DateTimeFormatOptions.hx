@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface DateTimeFormatOptions {
+extern typedef DateTimeFormatOptions = {
 	@:optional
 	var localeMatcher : String;
 	@:optional
@@ -26,4 +26,4 @@ extern interface DateTimeFormatOptions {
 	var hour12 : Bool;
 	@:optional
 	var timeZone : String;
-}
+};

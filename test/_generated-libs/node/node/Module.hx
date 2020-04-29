@@ -13,5 +13,11 @@ package node;
 	static function wrap(code:String):String;
 	static function createRequireFromPath(path:String):(path:String) -> Any;
 	static var builtinModules : std.Array<String>;
-	static var Module : { function runMain():Void; function wrap(code:String):String; function createRequireFromPath(path:String):(path:String) -> Any; var builtinModules : std.Array<String>; var Module : Any; };
+	static var Module : {
+		function runMain():Void;
+		function wrap(code:String):String;
+		function createRequireFromPath(path:String):(path:String) -> Any;
+		var builtinModules : std.Array<String>;
+		var Module : Any;
+	};
 }

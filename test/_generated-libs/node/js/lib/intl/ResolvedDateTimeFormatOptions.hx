@@ -1,5 +1,5 @@
 package js.lib.intl;
-extern interface ResolvedDateTimeFormatOptions {
+extern typedef ResolvedDateTimeFormatOptions = {
 	var locale : String;
 	var calendar : String;
 	var numberingSystem : String;
@@ -24,4 +24,4 @@ extern interface ResolvedDateTimeFormatOptions {
 	var second : String;
 	@:optional
 	var timeZoneName : String;
-}
+};

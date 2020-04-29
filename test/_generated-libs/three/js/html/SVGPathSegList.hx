@@ -1,13 +1,13 @@
 package js.html;
-@:native("SVGPathSegList") @tsInterface extern class SVGPathSegList {
+@:native("SVGPathSegList") extern class SVGPathSegList {
 	function new();
 	final numberOfItems : Float;
-	function appendItem(newItem:SVGPathSeg):SVGPathSeg;
+	function appendItem(newItem:ISVGPathSeg):ISVGPathSeg;
 	function clear():Void;
-	function getItem(index:Float):SVGPathSeg;
-	function initialize(newItem:SVGPathSeg):SVGPathSeg;
-	function insertItemBefore(newItem:SVGPathSeg, index:Float):SVGPathSeg;
-	function removeItem(index:Float):SVGPathSeg;
-	function replaceItem(newItem:SVGPathSeg, index:Float):SVGPathSeg;
-	static var prototype : SVGPathSegList;
+	function getItem(index:Float):ISVGPathSeg;
+	function initialize(newItem:ISVGPathSeg):ISVGPathSeg;
+	function insertItemBefore(newItem:ISVGPathSeg, index:Float):ISVGPathSeg;
+	function removeItem(index:Float):ISVGPathSeg;
+	function replaceItem(newItem:ISVGPathSeg, index:Float):ISVGPathSeg;
+	static var prototype : ISVGPathSegList;
 }

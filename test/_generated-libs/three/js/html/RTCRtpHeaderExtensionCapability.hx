@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCRtpHeaderExtensionCapability {
+extern typedef RTCRtpHeaderExtensionCapability = {
 	@:optional
 	var uri : String;
-}
+};

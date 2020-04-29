@@ -1,7 +1,7 @@
 package js.html;
-extern interface StorageEstimate {
+extern typedef StorageEstimate = {
 	@:optional
 	var quota : Float;
 	@:optional
 	var usage : Float;
-}
+};

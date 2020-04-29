@@ -1,5 +1,5 @@
 package js.html;
-extern interface MediaTrackConstraintSet {
+extern typedef MediaTrackConstraintSet = {
 	@:optional
 	var aspectRatio : haxe.extern.EitherType<Float, ConstrainDoubleRange>;
 	@:optional
@@ -30,4 +30,4 @@ extern interface MediaTrackConstraintSet {
 	var sampleSize : haxe.extern.EitherType<Float, ConstrainULongRange>;
 	@:optional
 	var width : haxe.extern.EitherType<Float, ConstrainULongRange>;
-}
+};

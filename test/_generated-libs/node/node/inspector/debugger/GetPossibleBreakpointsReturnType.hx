@@ -1,7 +1,7 @@
 package node.inspector.debugger;
-extern interface GetPossibleBreakpointsReturnType {
+extern typedef GetPossibleBreakpointsReturnType = {
 	/**
 		List of the possible breakpoint locations.
 	**/
 	var locations : std.Array<BreakLocation>;
-}
+};

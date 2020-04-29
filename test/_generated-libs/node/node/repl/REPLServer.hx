@@ -13,7 +13,7 @@ package node.repl;
 	Instances of `repl.REPLServer` are created using the `repl.start()` method and _should not_
 	be created directly using the JavaScript `new` keyword.
 **/
-@:jsRequire("repl", "REPLServer") extern class REPLServer extends node.readline.Interface {
+@:jsRequire("repl", "REPLServer") extern class REPLServer {
 	/**
 		NOTE: According to the documentation:
 		
@@ -65,7 +65,7 @@ package node.repl;
 		given line of input. If not specified in the REPL options, this is an async wrapper
 		for the JavaScript `eval()` function.
 	**/
-	final eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.Error>, result:Any) -> Void) -> Void;
+	final eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.IError>, result:Any) -> Void) -> Void;
 	/**
 		Specified in the REPL options, this is a value indicating whether the default
 		`writer` function should include ANSI color styling to REPL output.
@@ -91,7 +91,7 @@ package node.repl;
 	/**
 		Specified in the REPL options, this is the function to use for custom Tab auto-completion.
 	**/
-	final completer : haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
+	final completer : haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.IError, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
 	/**
 		Specified in the REPL options, this is a flag that specifies whether the default `eval`
 		function should execute all JavaScript commands in strict mode or default (sloppy) mode.
@@ -130,7 +130,7 @@ package node.repl;
 		programmatically. Use this method to initialize a history log file when working
 		with REPL instances programmatically.
 	**/
-	function setupHistory(path:String, cb:(err:Null<js.lib.Error>, repl:REPLServer) -> Void):Void;
+	function setupHistory(path:String, cb:(err:Null<js.lib.IError>, repl:REPLServer) -> Void):Void;
 	/**
 		events.EventEmitter
 		1. close - inherited from `readline.Interface`
@@ -203,4 +203,21 @@ package node.repl;
 	@:overload(function(event:String, listener:() -> Void):REPLServer { })
 	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):REPLServer;
+	final terminal : Bool;
+	function setPrompt(prompt:String):Void;
+	function prompt(?preserveCursor:Bool):Void;
+	function question(query:String, callback:(answer:String) -> Void):Void;
+	function pause():node.readline.Interface;
+	function resume():node.readline.Interface;
+	function close():Void;
+	function write(data:haxe.extern.EitherType<String, global.IBuffer>, ?key:node.readline.Key):Void;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
+	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

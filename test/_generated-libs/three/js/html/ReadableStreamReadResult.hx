@@ -1,5 +1,5 @@
 package js.html;
-extern interface ReadableStreamReadResult<T> {
+extern typedef ReadableStreamReadResult<T> = {
 	var done : Bool;
 	var value : T;
-}
+};

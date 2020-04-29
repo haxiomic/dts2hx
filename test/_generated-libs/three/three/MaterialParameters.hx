@@ -1,5 +1,5 @@
 package three;
-extern interface MaterialParameters {
+extern typedef MaterialParameters = {
 	@:optional
 	var alphaTest : Float;
 	@:optional
@@ -80,4 +80,4 @@ extern interface MaterialParameters {
 	var stencilZFail : StencilOp;
 	@:optional
 	var stencilZPass : StencilOp;
-}
+};

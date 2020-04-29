@@ -1,5 +1,11 @@
 package node.dns;
-extern interface LookupOneOptions extends LookupOptions {
+extern typedef LookupOneOptions = {
 	@:optional
 	var all : Bool;
-}
+	@:optional
+	var family : Float;
+	@:optional
+	var hints : Float;
+	@:optional
+	var verbatim : Bool;
+};

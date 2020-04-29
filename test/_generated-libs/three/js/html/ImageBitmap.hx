@@ -1,5 +1,5 @@
 package js.html;
-@:native("ImageBitmap") @tsInterface extern class ImageBitmap {
+@:native("ImageBitmap") extern class ImageBitmap {
 	function new();
 	/**
 		Returns the intrinsic height of the image, in CSS pixels.
@@ -13,5 +13,5 @@ package js.html;
 		Releases imageBitmap's underlying bitmap data.
 	**/
 	function close():Void;
-	static var prototype : ImageBitmap;
+	static var prototype : IImageBitmap;
 }

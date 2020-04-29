@@ -2,20 +2,20 @@ package js.html;
 /**
 	A PannerNode always has exactly one input and one output: the input can be mono or stereo but the output is always stereo (2 channels); you can't have panning effects without at least two audio channels!
 **/
-@:native("PannerNode") @tsInterface extern class PannerNode {
-	function new(context:js.lib.BaseAudioContext, ?options:PannerOptions);
+@:native("PannerNode") extern class PannerNode {
+	function new(context:js.lib.IBaseAudioContext, ?options:PannerOptions);
 	var coneInnerAngle : Float;
 	var coneOuterAngle : Float;
 	var coneOuterGain : Float;
 	var distanceModel : String;
 	var maxDistance : Float;
-	final orientationX : js.lib.AudioParam;
-	final orientationY : js.lib.AudioParam;
-	final orientationZ : js.lib.AudioParam;
+	final orientationX : js.lib.IAudioParam;
+	final orientationY : js.lib.IAudioParam;
+	final orientationZ : js.lib.IAudioParam;
 	var panningModel : String;
-	final positionX : js.lib.AudioParam;
-	final positionY : js.lib.AudioParam;
-	final positionZ : js.lib.AudioParam;
+	final positionX : js.lib.IAudioParam;
+	final positionY : js.lib.IAudioParam;
+	final positionZ : js.lib.IAudioParam;
 	var refDistance : Float;
 	var rolloffFactor : Float;
 	function setOrientation(x:Float, y:Float, z:Float):Void;
@@ -23,17 +23,17 @@ package js.html;
 	var channelCount : Float;
 	var channelCountMode : String;
 	var channelInterpretation : String;
-	final context : js.lib.BaseAudioContext;
+	final context : js.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:js.lib.AudioParam, ?output:Float):Void { })
-	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
+	@:overload(function(destinationParam:js.lib.IAudioParam, ?output:Float):Void { })
+	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -52,10 +52,10 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	static var prototype : PannerNode;
+	static var prototype : IPannerNode;
 }

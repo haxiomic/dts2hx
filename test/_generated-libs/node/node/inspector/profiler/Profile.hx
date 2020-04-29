@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Profile.
 **/
-extern interface Profile {
+extern typedef Profile = {
 	/**
 		The list of profile nodes. First item is the root node.
 	**/
@@ -26,4 +26,4 @@ extern interface Profile {
 	**/
 	@:optional
 	var timeDeltas : std.Array<Float>;
-}
+};

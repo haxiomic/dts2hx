@@ -2,7 +2,7 @@ package js.html;
 /**
 	Part of the WebGL API and represents a collection of buffers that serve as a rendering destination.
 **/
-@:native("WebGLFramebuffer") @tsInterface extern class WebGLFramebuffer {
+@:native("WebGLFramebuffer") extern class WebGLFramebuffer {
 	function new();
-	static var prototype : WebGLFramebuffer;
+	static var prototype : IWebGLFramebuffer;
 }

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface PropertyPreview {
+extern typedef PropertyPreview = {
 	/**
 		Property name.
 	**/
@@ -23,4 +23,4 @@ extern interface PropertyPreview {
 	**/
 	@:optional
 	var subtype : String;
-}
+};

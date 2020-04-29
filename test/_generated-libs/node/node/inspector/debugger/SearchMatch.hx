@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	Search match for resource.
 **/
-extern interface SearchMatch {
+extern typedef SearchMatch = {
 	/**
 		Line number in resource content.
 	**/
@@ -11,4 +11,4 @@ extern interface SearchMatch {
 		Line with match content.
 	**/
 	var lineContent : String;
-}
+};

@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface ProcessVersions {
+extern typedef ProcessVersions = {
 	var http_parser : String;
 	var node : String;
 	var v8 : String;
@@ -8,4 +8,4 @@ extern interface ProcessVersions {
 	var zlib : String;
 	var modules : String;
 	var openssl : String;
-}
+};

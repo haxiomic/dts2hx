@@ -2,7 +2,7 @@ package js.html;
 /**
 	Corresponds to the preserveAspectRatio attribute, which is available for some of SVG's elements.
 **/
-@:native("SVGPreserveAspectRatio") @tsInterface extern class SVGPreserveAspectRatio {
+@:native("SVGPreserveAspectRatio") extern class SVGPreserveAspectRatio {
 	function new();
 	var align : Float;
 	var meetOrSlice : Float;
@@ -20,7 +20,7 @@ package js.html;
 	final SVG_PRESERVEASPECTRATIO_XMINYMAX : Float;
 	final SVG_PRESERVEASPECTRATIO_XMINYMID : Float;
 	final SVG_PRESERVEASPECTRATIO_XMINYMIN : Float;
-	static var prototype : SVGPreserveAspectRatio;
+	static var prototype : ISVGPreserveAspectRatio;
 	@:native("SVG_MEETORSLICE_MEET")
 	static final SVG_MEETORSLICE_MEET_ : Float;
 	@:native("SVG_MEETORSLICE_SLICE")

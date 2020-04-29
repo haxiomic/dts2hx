@@ -1,5 +1,5 @@
 package js.html;
-extern interface AnalyserOptions extends AudioNodeOptions {
+extern typedef AnalyserOptions = {
 	@:optional
 	var fftSize : Float;
 	@:optional
@@ -8,4 +8,10 @@ extern interface AnalyserOptions extends AudioNodeOptions {
 	var minDecibels : Float;
 	@:optional
 	var smoothingTimeConstant : Float;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

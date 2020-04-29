@@ -1,6 +1,6 @@
 package js.lib;
-@:native("URLSearchParams") @tsInterface extern class URLSearchParams {
-	function new(?init:haxe.extern.EitherType<String, haxe.extern.EitherType<URLSearchParams, haxe.extern.EitherType<Any, std.Array<std.Array<String>>>>>);
+@:native("URLSearchParams") extern class URLSearchParams {
+	function new(?init:haxe.extern.EitherType<String, haxe.extern.EitherType<IURLSearchParams, haxe.extern.EitherType<Any, std.Array<std.Array<String>>>>>);
 	/**
 		Appends a specified key/value pair as a new search parameter.
 	**/
@@ -26,7 +26,7 @@ package js.lib;
 	**/
 	function set(name:String, value:String):Void;
 	function sort():Void;
-	function forEach(callbackfn:(value:String, key:String, parent:URLSearchParams) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:String, key:String, parent:IURLSearchParams) -> Void, ?thisArg:Any):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the search params.
 	**/
@@ -39,5 +39,5 @@ package js.lib;
 		Returns a list of values in the search params.
 	**/
 	function values():IterableIterator<String>;
-	static var prototype : URLSearchParams;
+	static var prototype : IURLSearchParams;
 }

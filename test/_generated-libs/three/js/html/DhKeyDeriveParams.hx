@@ -1,5 +1,6 @@
 package js.html;
-extern interface DhKeyDeriveParams extends Algorithm {
+extern typedef DhKeyDeriveParams = {
 	@:native("public")
-	var public_ : CryptoKey;
-}
+	var public_ : ICryptoKey;
+	var name : String;
+};

@@ -2,12 +2,12 @@ package js.html;
 /**
 	SVGTransform is the interface for one of the component transformations within an SVGTransformList; thus, an SVGTransform object corresponds to a single component (e.g., scale(…) or matrix(…)) within a transform attribute.
 **/
-@:native("SVGTransform") @tsInterface extern class SVGTransform {
+@:native("SVGTransform") extern class SVGTransform {
 	function new();
 	final angle : Float;
-	final matrix : DOMMatrix;
+	final matrix : IDOMMatrix;
 	final type : Float;
-	function setMatrix(matrix:DOMMatrix):Void;
+	function setMatrix(matrix:IDOMMatrix):Void;
 	function setRotate(angle:Float, cx:Float, cy:Float):Void;
 	function setScale(sx:Float, sy:Float):Void;
 	function setSkewX(angle:Float):Void;
@@ -20,7 +20,7 @@ package js.html;
 	final SVG_TRANSFORM_SKEWY : Float;
 	final SVG_TRANSFORM_TRANSLATE : Float;
 	final SVG_TRANSFORM_UNKNOWN : Float;
-	static var prototype : SVGTransform;
+	static var prototype : ISVGTransform;
 	@:native("SVG_TRANSFORM_MATRIX")
 	static final SVG_TRANSFORM_MATRIX_ : Float;
 	@:native("SVG_TRANSFORM_ROTATE")

@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface SetBreakpointOnFunctionCallParameterType {
+extern typedef SetBreakpointOnFunctionCallParameterType = {
 	/**
 		Function object id.
 	**/
@@ -10,4 +10,4 @@ extern interface SetBreakpointOnFunctionCallParameterType {
 	**/
 	@:optional
 	var condition : String;
-}
+};

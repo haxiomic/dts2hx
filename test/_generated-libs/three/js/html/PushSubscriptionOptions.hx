@@ -1,7 +1,7 @@
 package js.html;
-@:native("PushSubscriptionOptions") @tsInterface extern class PushSubscriptionOptions {
+@:native("PushSubscriptionOptions") extern class PushSubscriptionOptions {
 	function new();
-	final applicationServerKey : Null<js.lib.ArrayBuffer>;
+	final applicationServerKey : Null<js.lib.IArrayBuffer>;
 	final userVisibleOnly : Bool;
-	static var prototype : PushSubscriptionOptions;
+	static var prototype : IPushSubscriptionOptions;
 }

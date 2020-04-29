@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface CallFunctionOnReturnType {
+extern typedef CallFunctionOnReturnType = {
 	/**
 		Call result.
 	**/
@@ -9,4 +9,4 @@ extern interface CallFunctionOnReturnType {
 	**/
 	@:optional
 	var exceptionDetails : ExceptionDetails;
-}
+};

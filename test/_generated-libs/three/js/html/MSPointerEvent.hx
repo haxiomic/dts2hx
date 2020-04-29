@@ -1,5 +1,5 @@
 package js.html;
-@:native("MSPointerEvent") @tsInterface extern class MSPointerEvent {
+@:native("MSPointerEvent") extern class MSPointerEvent {
 	function new(typeArg:String, ?eventInitDict:PointerEventInit);
 	final currentPoint : Any;
 	final height : Float;
@@ -13,9 +13,9 @@ package js.html;
 	final tiltX : Float;
 	final tiltY : Float;
 	final width : Float;
-	function getCurrentPoint(element:Element):Void;
-	function getIntermediatePoints(element:Element):Void;
-	function initPointerEvent(typeArg:String, canBubbleArg:Bool, cancelableArg:Bool, viewArg:Window, detailArg:Float, screenXArg:Float, screenYArg:Float, clientXArg:Float, clientYArg:Float, ctrlKeyArg:Bool, altKeyArg:Bool, shiftKeyArg:Bool, metaKeyArg:Bool, buttonArg:Float, relatedTargetArg:EventTarget, offsetXArg:Float, offsetYArg:Float, widthArg:Float, heightArg:Float, pressure:Float, rotation:Float, tiltX:Float, tiltY:Float, pointerIdArg:Float, pointerType:Any, hwTimestampArg:Float, isPrimary:Bool):Void;
+	function getCurrentPoint(element:IElement):Void;
+	function getIntermediatePoints(element:IElement):Void;
+	function initPointerEvent(typeArg:String, canBubbleArg:Bool, cancelableArg:Bool, viewArg:IWindow, detailArg:Float, screenXArg:Float, screenYArg:Float, clientXArg:Float, clientYArg:Float, ctrlKeyArg:Bool, altKeyArg:Bool, shiftKeyArg:Bool, metaKeyArg:Bool, buttonArg:Float, relatedTargetArg:IEventTarget, offsetXArg:Float, offsetYArg:Float, widthArg:Float, heightArg:Float, pressure:Float, rotation:Float, tiltX:Float, tiltY:Float, pointerIdArg:Float, pointerType:Any, hwTimestampArg:Float, isPrimary:Bool):Void;
 	final altKey : Bool;
 	final button : Float;
 	final buttons : Float;
@@ -29,16 +29,16 @@ package js.html;
 	final offsetY : Float;
 	final pageX : Float;
 	final pageY : Float;
-	final relatedTarget : Null<EventTarget>;
+	final relatedTarget : Null<IEventTarget>;
 	final screenX : Float;
 	final screenY : Float;
 	final shiftKey : Bool;
 	final x : Float;
 	final y : Float;
 	function getModifierState(keyArg:String):Bool;
-	function initMouseEvent(typeArg:String, canBubbleArg:Bool, cancelableArg:Bool, viewArg:Window, detailArg:Float, screenXArg:Float, screenYArg:Float, clientXArg:Float, clientYArg:Float, ctrlKeyArg:Bool, altKeyArg:Bool, shiftKeyArg:Bool, metaKeyArg:Bool, buttonArg:Float, relatedTargetArg:Null<EventTarget>):Void;
+	function initMouseEvent(typeArg:String, canBubbleArg:Bool, cancelableArg:Bool, viewArg:IWindow, detailArg:Float, screenXArg:Float, screenYArg:Float, clientXArg:Float, clientYArg:Float, ctrlKeyArg:Bool, altKeyArg:Bool, shiftKeyArg:Bool, metaKeyArg:Bool, buttonArg:Float, relatedTargetArg:Null<IEventTarget>):Void;
 	final detail : Float;
-	final view : Null<Window>;
+	final view : Null<IWindow>;
 	final which : Float;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
@@ -56,7 +56,7 @@ package js.html;
 	/**
 		Returns the object whose event listener's callback is currently being invoked.
 	**/
-	final currentTarget : Null<EventTarget>;
+	final currentTarget : Null<IEventTarget>;
 	/**
 		Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
 	**/
@@ -70,11 +70,11 @@ package js.html;
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<EventTarget>;
+	final srcElement : Null<IEventTarget>;
 	/**
 		Returns the object to which event is dispatched (its target).
 	**/
-	final target : Null<EventTarget>;
+	final target : Null<IEventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -86,7 +86,7 @@ package js.html;
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():std.Array<EventTarget>;
+	function composedPath():std.Array<IEventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	/**
 		If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.
@@ -104,5 +104,5 @@ package js.html;
 	final BUBBLING_PHASE : Float;
 	final CAPTURING_PHASE : Float;
 	final NONE : Float;
-	static var prototype : MSPointerEvent;
+	static var prototype : IMSPointerEvent;
 }

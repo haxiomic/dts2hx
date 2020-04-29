@@ -2,18 +2,18 @@ package js.html;
 /**
 	The position and orientation of the unique person listening to the audio scene, and is used in audio spatialization. All PannerNodes spatialize in relation to the AudioListener stored in the BaseAudioContext.listener attribute.
 **/
-@:native("AudioListener") @tsInterface extern class AudioListener {
+@:native("AudioListener") extern class AudioListener {
 	function new();
-	final forwardX : js.lib.AudioParam;
-	final forwardY : js.lib.AudioParam;
-	final forwardZ : js.lib.AudioParam;
-	final positionX : js.lib.AudioParam;
-	final positionY : js.lib.AudioParam;
-	final positionZ : js.lib.AudioParam;
-	final upX : js.lib.AudioParam;
-	final upY : js.lib.AudioParam;
-	final upZ : js.lib.AudioParam;
+	final forwardX : js.lib.IAudioParam;
+	final forwardY : js.lib.IAudioParam;
+	final forwardZ : js.lib.IAudioParam;
+	final positionX : js.lib.IAudioParam;
+	final positionY : js.lib.IAudioParam;
+	final positionZ : js.lib.IAudioParam;
+	final upX : js.lib.IAudioParam;
+	final upY : js.lib.IAudioParam;
+	final upZ : js.lib.IAudioParam;
 	function setOrientation(x:Float, y:Float, z:Float, xUp:Float, yUp:Float, zUp:Float):Void;
 	function setPosition(x:Float, y:Float, z:Float):Void;
-	static var prototype : AudioListener;
+	static var prototype : IAudioListener;
 }

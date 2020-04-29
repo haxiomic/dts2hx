@@ -1,7 +1,7 @@
 package node.inspector.nodeworker;
-extern interface DetachedFromWorkerEventDataType {
+extern typedef DetachedFromWorkerEventDataType = {
 	/**
 		Detached session identifier.
 	**/
 	var sessionId : String;
-}
+};

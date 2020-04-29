@@ -1,8 +1,8 @@
 package js.html;
-@:native("AnimationEffect") @tsInterface extern class AnimationEffect {
+@:native("AnimationEffect") extern class AnimationEffect {
 	function new();
 	function getComputedTiming():ComputedEffectTiming;
 	function getTiming():EffectTiming;
 	function updateTiming(?timing:OptionalEffectTiming):Void;
-	static var prototype : AnimationEffect;
+	static var prototype : IAnimationEffect;
 }

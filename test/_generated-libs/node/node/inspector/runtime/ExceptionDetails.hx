@@ -3,7 +3,7 @@ package node.inspector.runtime;
 	Detailed information about exception (or error) that was thrown during script compilation or
 	execution.
 **/
-extern interface ExceptionDetails {
+extern typedef ExceptionDetails = {
 	/**
 		Exception id.
 	**/
@@ -45,4 +45,4 @@ extern interface ExceptionDetails {
 	**/
 	@:optional
 	var executionContextId : Float;
-}
+};

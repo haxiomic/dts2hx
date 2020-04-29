@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCRtpEncodingParameters extends RTCRtpCodingParameters {
+extern typedef RTCRtpEncodingParameters = {
 	@:optional
 	var active : Bool;
 	@:optional
@@ -16,4 +16,6 @@ extern interface RTCRtpEncodingParameters extends RTCRtpCodingParameters {
 	var ptime : Float;
 	@:optional
 	var scaleResolutionDownBy : Float;
-}
+	@:optional
+	var rid : String;
+};

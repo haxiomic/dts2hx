@@ -1,5 +1,5 @@
 package js.html;
-extern interface MessageEventInit extends EventInit {
+extern typedef MessageEventInit = {
 	@:optional
 	var data : Any;
 	@:optional
@@ -7,7 +7,13 @@ extern interface MessageEventInit extends EventInit {
 	@:optional
 	var origin : String;
 	@:optional
-	var ports : std.Array<MessagePort>;
+	var ports : std.Array<IMessagePort>;
 	@:optional
-	var source : haxe.extern.EitherType<Window, haxe.extern.EitherType<MessagePort, ServiceWorker>>;
-}
+	var source : haxe.extern.EitherType<IWindow, haxe.extern.EitherType<IMessagePort, IServiceWorker>>;
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

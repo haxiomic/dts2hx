@@ -1,5 +1,5 @@
 package js.html;
-extern interface WebGLContextAttributes {
+extern typedef WebGLContextAttributes = {
 	@:optional
 	var alpha : Bool;
 	@:optional
@@ -18,4 +18,4 @@ extern interface WebGLContextAttributes {
 	var preserveDrawingBuffer : Bool;
 	@:optional
 	var stencil : Bool;
-}
+};

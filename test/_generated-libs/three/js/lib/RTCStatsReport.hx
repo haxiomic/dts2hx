@@ -1,7 +1,7 @@
 package js.lib;
-@:native("RTCStatsReport") @tsInterface extern class RTCStatsReport {
+@:native("RTCStatsReport") extern class RTCStatsReport {
 	function new();
-	function forEach(callbackfn:(value:Any, key:String, parent:RTCStatsReport) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:Any, key:String, parent:IRTCStatsReport) -> Void, ?thisArg:Any):Void;
 	function get(key:K):Null<V>;
 	function has(key:K):Bool;
 	final size : Float;
@@ -17,5 +17,5 @@ package js.lib;
 		Returns an iterable of values in the map
 	**/
 	function values():IterableIterator<V>;
-	static var prototype : RTCStatsReport;
+	static var prototype : IRTCStatsReport;
 }

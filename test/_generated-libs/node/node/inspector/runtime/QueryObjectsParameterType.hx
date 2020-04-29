@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface QueryObjectsParameterType {
+extern typedef QueryObjectsParameterType = {
 	/**
 		Identifier of the prototype to return objects for.
 	**/
@@ -9,4 +9,4 @@ extern interface QueryObjectsParameterType {
 	**/
 	@:optional
 	var objectGroup : String;
-}
+};

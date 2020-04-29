@@ -1,5 +1,5 @@
 package node.tls;
-extern interface Certificate {
+extern typedef Certificate = {
 	/**
 		Country code.
 	**/
@@ -24,4 +24,4 @@ extern interface Certificate {
 		Common name.
 	**/
 	var CN : String;
-}
+};

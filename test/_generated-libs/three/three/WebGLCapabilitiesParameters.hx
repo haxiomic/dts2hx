@@ -1,7 +1,7 @@
 package three;
-extern interface WebGLCapabilitiesParameters {
+extern typedef WebGLCapabilitiesParameters = {
 	@:optional
 	var precision : Any;
 	@:optional
 	var logarithmicDepthBuffer : Any;
-}
+};

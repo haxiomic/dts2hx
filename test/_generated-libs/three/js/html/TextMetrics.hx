@@ -2,7 +2,7 @@ package js.html;
 /**
 	The dimensions of a piece of text in the canvas, as created by the CanvasRenderingContext2D.measureText() method.
 **/
-@:native("TextMetrics") @tsInterface extern class TextMetrics {
+@:native("TextMetrics") extern class TextMetrics {
 	function new();
 	/**
 		Returns the measurement described below.
@@ -52,5 +52,5 @@ package js.html;
 		Returns the measurement described below.
 	**/
 	final width : Float;
-	static var prototype : TextMetrics;
+	static var prototype : ITextMetrics;
 }

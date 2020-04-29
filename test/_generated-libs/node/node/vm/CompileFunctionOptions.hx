@@ -1,10 +1,10 @@
 package node.vm;
-extern interface CompileFunctionOptions extends BaseOptions {
+extern typedef CompileFunctionOptions = {
 	/**
 		Provides an optional data with V8's code cache data for the supplied source.
 	**/
 	@:optional
-	var cachedData : global.Buffer;
+	var cachedData : global.IBuffer;
 	/**
 		Specifies whether to produce new cache data.
 		Default: `false`,
@@ -20,5 +20,23 @@ extern interface CompileFunctionOptions extends BaseOptions {
 		An array containing a collection of context extensions (objects wrapping the current scope) to be applied while compiling
 	**/
 	@:optional
-	var contextExtensions : std.Array<js.lib.Object>;
-}
+	var contextExtensions : std.Array<js.lib.IObject>;
+	/**
+		Specifies the filename used in stack traces produced by this script.
+		Default: `''`.
+	**/
+	@:optional
+	var filename : String;
+	/**
+		Specifies the line number offset that is displayed in stack traces produced by this script.
+		Default: `0`.
+	**/
+	@:optional
+	var lineOffset : Float;
+	/**
+		Specifies the column number offset that is displayed in stack traces produced by this script.
+		Default: `0`
+	**/
+	@:optional
+	var columnOffset : Float;
+};

@@ -1,4 +1,2 @@
 package three;
-@:jsRequire("three", "PixelFormat") @:enum extern abstract PixelFormat(Any) from Any to Any {
-
-}
+@:jsRequire("three", "PixelFormat") @:enum extern abstract PixelFormat(Any) from Any to Any { }

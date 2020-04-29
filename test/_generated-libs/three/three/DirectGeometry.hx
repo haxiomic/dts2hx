@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "DirectGeometry") extern class DirectGeometry extends EventDispatcher {
+@:jsRequire("three", "DirectGeometry") extern class DirectGeometry {
 	function new();
 	var id : Float;
 	var uuid : String;
@@ -11,7 +11,10 @@ package three;
 	var colors : std.Array<Color>;
 	var uvs : std.Array<Vector2>;
 	var uvs2 : std.Array<Vector2>;
-	var groups : std.Array<{ var start : Float; var materialIndex : Float; }>;
+	var groups : std.Array<{
+		var start : Float;
+		var materialIndex : Float;
+	}>;
 	var morphTargets : std.Array<MorphTarget>;
 	var skinWeights : std.Array<Vector4>;
 	var skinIndices : std.Array<Vector4>;

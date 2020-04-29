@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Provides information about a browser plugin.
 **/
-@:native("Plugin") @tsInterface extern class Plugin {
+@:native("Plugin") extern class Plugin {
 	function new();
 	/**
 		Returns the plugin's description.
@@ -23,7 +23,7 @@ package js.lib;
 	/**
 		Returns the specified MimeType object.
 	**/
-	function item(index:Float):Null<js.html.MimeType>;
-	function namedItem(name:String):Null<js.html.MimeType>;
-	static var prototype : Plugin;
+	function item(index:Float):Null<js.html.IMimeType>;
+	function namedItem(name:String):Null<js.html.IMimeType>;
+	static var prototype : IPlugin;
 }

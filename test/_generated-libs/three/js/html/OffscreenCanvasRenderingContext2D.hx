@@ -1,35 +1,35 @@
 package js.html;
-@:native("OffscreenCanvasRenderingContext2D") @tsInterface extern class OffscreenCanvasRenderingContext2D {
+@:native("OffscreenCanvasRenderingContext2D") extern class OffscreenCanvasRenderingContext2D {
 	function new();
-	final canvas : OffscreenCanvas;
+	final canvas : IOffscreenCanvas;
 	function commit():Void;
 	var globalAlpha : Float;
 	var globalCompositeOperation : String;
-	@:overload(function(image:haxe.extern.EitherType<HTMLCanvasElement, haxe.extern.EitherType<HTMLVideoElement, haxe.extern.EitherType<HTMLImageElement, haxe.extern.EitherType<OffscreenCanvas, haxe.extern.EitherType<ImageBitmap, SVGImageElement>>>>>, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
-	@:overload(function(image:haxe.extern.EitherType<HTMLCanvasElement, haxe.extern.EitherType<HTMLVideoElement, haxe.extern.EitherType<HTMLImageElement, haxe.extern.EitherType<OffscreenCanvas, haxe.extern.EitherType<ImageBitmap, SVGImageElement>>>>>, sx:Float, sy:Float, sw:Float, sh:Float, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
-	function drawImage(image:haxe.extern.EitherType<HTMLCanvasElement, haxe.extern.EitherType<HTMLVideoElement, haxe.extern.EitherType<HTMLImageElement, haxe.extern.EitherType<OffscreenCanvas, haxe.extern.EitherType<ImageBitmap, SVGImageElement>>>>>, dx:Float, dy:Float):Void;
+	@:overload(function(image:haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IImageBitmap, ISVGImageElement>>>>>, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
+	@:overload(function(image:haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IImageBitmap, ISVGImageElement>>>>>, sx:Float, sy:Float, sw:Float, sh:Float, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
+	function drawImage(image:haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IImageBitmap, ISVGImageElement>>>>>, dx:Float, dy:Float):Void;
 	function beginPath():Void;
-	@:overload(function(path:Path2D, ?fillRule:String):Void { })
+	@:overload(function(path:IPath2D, ?fillRule:String):Void { })
 	function clip(?fillRule:String):Void;
-	@:overload(function(path:Path2D, ?fillRule:String):Void { })
+	@:overload(function(path:IPath2D, ?fillRule:String):Void { })
 	function fill(?fillRule:String):Void;
-	@:overload(function(path:Path2D, x:Float, y:Float, ?fillRule:String):Bool { })
+	@:overload(function(path:IPath2D, x:Float, y:Float, ?fillRule:String):Bool { })
 	function isPointInPath(x:Float, y:Float, ?fillRule:String):Bool;
-	@:overload(function(path:Path2D, x:Float, y:Float):Bool { })
+	@:overload(function(path:IPath2D, x:Float, y:Float):Bool { })
 	function isPointInStroke(x:Float, y:Float):Bool;
-	@:overload(function(path:Path2D):Void { })
+	@:overload(function(path:IPath2D):Void { })
 	function stroke():Void;
-	var fillStyle : haxe.extern.EitherType<String, haxe.extern.EitherType<CanvasGradient, CanvasPattern>>;
-	var strokeStyle : haxe.extern.EitherType<String, haxe.extern.EitherType<CanvasGradient, CanvasPattern>>;
-	function createLinearGradient(x0:Float, y0:Float, x1:Float, y1:Float):CanvasGradient;
-	function createPattern(image:haxe.extern.EitherType<HTMLCanvasElement, haxe.extern.EitherType<HTMLVideoElement, haxe.extern.EitherType<HTMLImageElement, haxe.extern.EitherType<OffscreenCanvas, haxe.extern.EitherType<ImageBitmap, SVGImageElement>>>>>, repetition:String):Null<CanvasPattern>;
-	function createRadialGradient(x0:Float, y0:Float, r0:Float, x1:Float, y1:Float, r1:Float):CanvasGradient;
+	var fillStyle : haxe.extern.EitherType<String, haxe.extern.EitherType<ICanvasGradient, ICanvasPattern>>;
+	var strokeStyle : haxe.extern.EitherType<String, haxe.extern.EitherType<ICanvasGradient, ICanvasPattern>>;
+	function createLinearGradient(x0:Float, y0:Float, x1:Float, y1:Float):ICanvasGradient;
+	function createPattern(image:haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IImageBitmap, ISVGImageElement>>>>>, repetition:String):Null<ICanvasPattern>;
+	function createRadialGradient(x0:Float, y0:Float, r0:Float, x1:Float, y1:Float, r1:Float):ICanvasGradient;
 	var filter : String;
-	@:overload(function(imagedata:ImageData):ImageData { })
-	function createImageData(sw:Float, sh:Float):ImageData;
-	function getImageData(sx:Float, sy:Float, sw:Float, sh:Float):ImageData;
-	@:overload(function(imagedata:ImageData, dx:Float, dy:Float, dirtyX:Float, dirtyY:Float, dirtyWidth:Float, dirtyHeight:Float):Void { })
-	function putImageData(imagedata:ImageData, dx:Float, dy:Float):Void;
+	@:overload(function(imagedata:IImageData):IImageData { })
+	function createImageData(sw:Float, sh:Float):IImageData;
+	function getImageData(sx:Float, sy:Float, sw:Float, sh:Float):IImageData;
+	@:overload(function(imagedata:IImageData, dx:Float, dy:Float, dirtyX:Float, dirtyY:Float, dirtyWidth:Float, dirtyHeight:Float):Void { })
+	function putImageData(imagedata:IImageData, dx:Float, dy:Float):Void;
 	var imageSmoothingEnabled : Bool;
 	var imageSmoothingQuality : String;
 	function arc(x:Float, y:Float, radius:Float, startAngle:Float, endAngle:Float, ?anticlockwise:Bool):Void;
@@ -59,13 +59,13 @@ package js.html;
 	function restore():Void;
 	function save():Void;
 	function fillText(text:String, x:Float, y:Float, ?maxWidth:Float):Void;
-	function measureText(text:String):TextMetrics;
+	function measureText(text:String):ITextMetrics;
 	function strokeText(text:String, x:Float, y:Float, ?maxWidth:Float):Void;
 	var direction : String;
 	var font : String;
 	var textAlign : String;
 	var textBaseline : String;
-	function getTransform():DOMMatrix;
+	function getTransform():IDOMMatrix;
 	function resetTransform():Void;
 	function rotate(angle:Float):Void;
 	function scale(x:Float, y:Float):Void;
@@ -73,5 +73,5 @@ package js.html;
 	function setTransform(a:Float, b:Float, c:Float, d:Float, e:Float, f:Float):Void;
 	function transform(a:Float, b:Float, c:Float, d:Float, e:Float, f:Float):Void;
 	function translate(x:Float, y:Float):Void;
-	static var prototype : OffscreenCanvasRenderingContext2D;
+	static var prototype : IOffscreenCanvasRenderingContext2D;
 }

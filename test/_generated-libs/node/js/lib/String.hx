@@ -2,7 +2,7 @@ package js.lib;
 /**
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/
-@:native("String") @tsInterface extern class String {
+@:native("String") extern class String {
 	function new(?value:Any);
 	/**
 		Returns a string representation of a string.
@@ -31,8 +31,6 @@ package js.lib;
 	/**
 		Determines whether two strings are equivalent in the current locale.
 		
-		
-		
 		Determines whether two strings are equivalent in the current or specified locale.
 	**/
 	@:overload(function(that:String, ?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.CollatorOptions):Float { })
@@ -40,40 +38,30 @@ package js.lib;
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.
 		
-		
-		
 		Matches a string an object that supports being matched against, and returns an array containing the results of that search.
 	**/
 	@:overload(function(matcher:{ }):Null<RegExpMatchArray> { })
-	function match(regexp:haxe.extern.EitherType<String, RegExp>):Null<RegExpMatchArray>;
+	function match(regexp:haxe.extern.EitherType<String, IRegExp>):Null<RegExpMatchArray>;
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
-		
-		
 		Replaces text in a string, using a regular expression or search string.
 		
-		
-		
 		Replaces text in a string, using an object that supports replacement within a string.
-		
-		
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:haxe.extern.EitherType<String, RegExp>, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
+	@:overload(function(searchValue:haxe.extern.EitherType<String, IRegExp>, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
 	@:overload(function(searchValue:{ }, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
-	function replace(searchValue:haxe.extern.EitherType<String, RegExp>, replaceValue:String):String;
+	function replace(searchValue:haxe.extern.EitherType<String, IRegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
-		
-		
 		
 		Finds the first substring match in a regular expression search.
 	**/
 	@:overload(function(searcher:{ }):Float { })
-	function search(regexp:haxe.extern.EitherType<String, RegExp>):Float;
+	function search(regexp:haxe.extern.EitherType<String, IRegExp>):Float;
 	/**
 		Returns a section of a string.
 	**/
@@ -81,12 +69,10 @@ package js.lib;
 	/**
 		Split a string into substrings using the specified separator and return them as an array.
 		
-		
-		
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
 	@:overload(function(splitter:{ }, ?limit:Float):std.Array<String> { })
-	function split(separator:haxe.extern.EitherType<String, RegExp>, ?limit:Float):std.Array<String>;
+	function split(separator:haxe.extern.EitherType<String, IRegExp>, ?limit:Float):std.Array<String>;
 	/**
 		Returns the substring at the specified location within a String object.
 	**/
@@ -147,8 +133,6 @@ package js.lib;
 		Returns the String value result of normalizing the string into the normalization form
 		named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
 		
-		
-		
 		Returns the String value result of normalizing the string into the normalization form
 		named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
 	**/
@@ -191,8 +175,6 @@ package js.lib;
 	function fontcolor(color:String):String;
 	/**
 		Returns a <font> HTML element and sets the size attribute value
-		
-		
 		
 		Returns a <font> HTML element and sets the size attribute value
 	**/
@@ -242,7 +224,7 @@ package js.lib;
 	function trimRight():String;
 	@:selfCall
 	static function call(?value:Any):String;
-	static final prototype : String;
+	static final prototype : IString;
 	static function fromCharCode(codes:std.Array<Float>):String;
 	/**
 		Return the String value whose elements are, in order, the elements in the List elements.

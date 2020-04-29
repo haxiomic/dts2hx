@@ -1,5 +1,5 @@
 package js.html;
-extern interface SVGBoundingBoxOptions {
+extern typedef SVGBoundingBoxOptions = {
 	@:optional
 	var clipped : Bool;
 	@:optional
@@ -8,4 +8,4 @@ extern interface SVGBoundingBoxOptions {
 	var markers : Bool;
 	@:optional
 	var stroke : Bool;
-}
+};

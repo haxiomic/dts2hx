@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface ExceptionRevokedEventDataType {
+extern typedef ExceptionRevokedEventDataType = {
 	/**
 		Reason describing why exception was revoked.
 	**/
@@ -8,4 +8,4 @@ extern interface ExceptionRevokedEventDataType {
 		The id of revoked exception, as reported in `exceptionThrown`.
 	**/
 	var exceptionId : Float;
-}
+};

@@ -1,14 +1,14 @@
 package js.html;
-@:native("ApplicationCache") @tsInterface extern class ApplicationCache {
+@:native("ApplicationCache") extern class ApplicationCache {
 	function new();
-	var oncached : Null<(ev:Event) -> Any>;
-	var onchecking : Null<(ev:Event) -> Any>;
-	var ondownloading : Null<(ev:Event) -> Any>;
-	var onerror : Null<(ev:Event) -> Any>;
-	var onnoupdate : Null<(ev:Event) -> Any>;
-	var onobsolete : Null<(ev:Event) -> Any>;
-	var onprogress : Null<(ev:ProgressEvent<ApplicationCache>) -> Any>;
-	var onupdateready : Null<(ev:Event) -> Any>;
+	var oncached : Null<(ev:IEvent) -> Any>;
+	var onchecking : Null<(ev:IEvent) -> Any>;
+	var ondownloading : Null<(ev:IEvent) -> Any>;
+	var onerror : Null<(ev:IEvent) -> Any>;
+	var onnoupdate : Null<(ev:IEvent) -> Any>;
+	var onobsolete : Null<(ev:IEvent) -> Any>;
+	var onprogress : Null<(ev:IProgressEvent<IApplicationCache>) -> Any>;
+	var onupdateready : Null<(ev:IEvent) -> Any>;
 	final status : Float;
 	function abort():Void;
 	function swapCache():Void;
@@ -32,8 +32,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -51,8 +49,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -60,8 +56,8 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : ApplicationCache;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IApplicationCache;
 	@:native("CHECKING")
 	static final CHECKING_ : Float;
 	@:native("DOWNLOADING")

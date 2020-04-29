@@ -1,5 +1,5 @@
 package js.html;
-extern interface DOMMatrix2DInit {
+extern typedef DOMMatrix2DInit = {
 	@:optional
 	var a : Float;
 	@:optional
@@ -24,4 +24,4 @@ extern interface DOMMatrix2DInit {
 	var m41 : Float;
 	@:optional
 	var m42 : Float;
-}
+};

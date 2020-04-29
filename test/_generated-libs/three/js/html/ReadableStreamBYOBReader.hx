@@ -1,7 +1,7 @@
 package js.html;
-extern interface ReadableStreamBYOBReader {
-	final closed : js.lib.Promise<Void>;
-	function cancel(?reason:Any):js.lib.Promise<Void>;
-	function read<T:(js.lib.ArrayBufferView)>(view:T):js.lib.Promise<ReadableStreamReadResult<T>>;
+extern typedef ReadableStreamBYOBReader = {
+	final closed : js.lib.IPromise<Void>;
+	function cancel(?reason:Any):js.lib.IPromise<Void>;
+	function read<T:(js.lib.ArrayBufferView)>(view:T):js.lib.IPromise<ReadableStreamReadResult<T>>;
 	function releaseLock():Void;
-}
+};

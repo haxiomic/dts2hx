@@ -1,5 +1,5 @@
 package js.html;
-extern interface MediaTrackCapabilities {
+extern typedef MediaTrackCapabilities = {
 	@:optional
 	var aspectRatio : DoubleRange;
 	@:optional
@@ -30,4 +30,4 @@ extern interface MediaTrackCapabilities {
 	var sampleSize : ULongRange;
 	@:optional
 	var width : ULongRange;
-}
+};

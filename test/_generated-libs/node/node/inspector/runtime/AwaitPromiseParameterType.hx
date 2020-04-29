@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface AwaitPromiseParameterType {
+extern typedef AwaitPromiseParameterType = {
 	/**
 		Identifier of the promise.
 	**/
@@ -14,4 +14,4 @@ extern interface AwaitPromiseParameterType {
 	**/
 	@:optional
 	var generatePreview : Bool;
-}
+};

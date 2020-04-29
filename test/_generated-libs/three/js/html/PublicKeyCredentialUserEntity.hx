@@ -1,5 +1,8 @@
 package js.html;
-extern interface PublicKeyCredentialUserEntity extends PublicKeyCredentialEntity {
+extern typedef PublicKeyCredentialUserEntity = {
 	var displayName : String;
-	var id : haxe.extern.EitherType<js.lib.ArrayBuffer, js.lib.ArrayBufferView>;
-}
+	var id : haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ArrayBufferView>;
+	@:optional
+	var icon : String;
+	var name : String;
+};

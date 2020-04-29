@@ -1,5 +1,7 @@
 package js.html;
-extern interface ConfirmSiteSpecificExceptionsInformation extends ExceptionInformation {
+extern typedef ConfirmSiteSpecificExceptionsInformation = {
 	@:optional
 	var arrayOfDomainStrings : std.Array<String>;
-}
+	@:optional
+	var domain : String;
+};

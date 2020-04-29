@@ -2,15 +2,15 @@ package js.html;
 /**
 	This WebRTC API interface manages the reception and decoding of data for a MediaStreamTrack on an RTCPeerConnection.
 **/
-@:native("RTCRtpReceiver") @tsInterface extern class RTCRtpReceiver {
+@:native("RTCRtpReceiver") extern class RTCRtpReceiver {
 	function new();
-	final rtcpTransport : Null<RTCDtlsTransport>;
-	final track : MediaStreamTrack;
-	final transport : Null<RTCDtlsTransport>;
+	final rtcpTransport : Null<IRTCDtlsTransport>;
+	final track : IMediaStreamTrack;
+	final transport : Null<IRTCDtlsTransport>;
 	function getContributingSources():std.Array<RTCRtpContributingSource>;
 	function getParameters():RTCRtpReceiveParameters;
-	function getStats():js.lib.Promise<js.lib.RTCStatsReport>;
+	function getStats():js.lib.IPromise<js.lib.IRTCStatsReport>;
 	function getSynchronizationSources():std.Array<RTCRtpSynchronizationSource>;
-	static var prototype : RTCRtpReceiver;
+	static var prototype : IRTCRtpReceiver;
 	static function getCapabilities(kind:String):Null<RTCRtpCapabilities>;
 }

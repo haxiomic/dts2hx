@@ -1,10 +1,10 @@
 package js.html;
-extern interface RequestInit {
+extern typedef RequestInit = {
 	/**
 		A BodyInit object or null to set request's body.
 	**/
 	@:optional
-	var body : haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.ArrayBuffer, haxe.extern.EitherType<js.lib.ArrayBufferView, haxe.extern.EitherType<Blob, haxe.extern.EitherType<js.lib.FormData, haxe.extern.EitherType<js.lib.URLSearchParams, ReadableStream<js.lib.Uint8Array>>>>>>>;
+	var body : haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IArrayBuffer, haxe.extern.EitherType<js.lib.ArrayBufferView, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<js.lib.IFormData, haxe.extern.EitherType<js.lib.IURLSearchParams, IReadableStream<js.lib.IUint8Array>>>>>>>;
 	/**
 		A string indicating how the request will interact with the browser's cache to set request's cache.
 	**/
@@ -19,7 +19,7 @@ extern interface RequestInit {
 		A Headers object, an object literal, or an array of two-item arrays to set request's headers.
 	**/
 	@:optional
-	var headers : haxe.extern.EitherType<js.lib.Headers, haxe.extern.EitherType<std.Array<std.Array<String>>, Any>>;
+	var headers : haxe.extern.EitherType<js.lib.IHeaders, haxe.extern.EitherType<std.Array<std.Array<String>>, Any>>;
 	/**
 		A cryptographic hash of the resource to be fetched by request. Sets request's integrity.
 	**/
@@ -59,10 +59,10 @@ extern interface RequestInit {
 		An AbortSignal to set request's signal.
 	**/
 	@:optional
-	var signal : AbortSignal;
+	var signal : IAbortSignal;
 	/**
 		Can only be null. Used to disassociate request from any Window.
 	**/
 	@:optional
 	var window : Any;
-}
+};

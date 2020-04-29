@@ -1,5 +1,5 @@
 package node.path;
-extern interface FormatInputPathObject {
+extern typedef FormatInputPathObject = {
 	/**
 		The root of the path such as '/' or 'c:\'
 	**/
@@ -25,4 +25,4 @@ extern interface FormatInputPathObject {
 	**/
 	@:optional
 	var name : String;
-}
+};

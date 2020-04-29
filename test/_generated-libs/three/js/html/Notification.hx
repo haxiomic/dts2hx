@@ -2,7 +2,7 @@ package js.html;
 /**
 	This Notifications API interface is used to configure and display desktop notifications to the user.
 **/
-@:native("Notification") @tsInterface extern class Notification {
+@:native("Notification") extern class Notification {
 	function new(title:String, ?options:NotificationOptions);
 	final actions : js.lib.ReadonlyArray<NotificationAction>;
 	final badge : String;
@@ -12,10 +12,10 @@ package js.html;
 	final icon : String;
 	final image : String;
 	final lang : String;
-	var onclick : Null<(ev:Event) -> Any>;
-	var onclose : Null<(ev:Event) -> Any>;
-	var onerror : Null<(ev:Event) -> Any>;
-	var onshow : Null<(ev:Event) -> Any>;
+	var onclick : Null<(ev:IEvent) -> Any>;
+	var onclose : Null<(ev:IEvent) -> Any>;
+	var onerror : Null<(ev:IEvent) -> Any>;
+	var onshow : Null<(ev:IEvent) -> Any>;
 	final renotify : Bool;
 	final requireInteraction : Bool;
 	final silent : Bool;
@@ -37,8 +37,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -56,8 +54,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -65,9 +61,9 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : Notification;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : INotification;
 	static final maxActions : Float;
 	static final permission : String;
-	static function requestPermission(?deprecatedCallback:NotificationPermissionCallback):js.lib.Promise<String>;
+	static function requestPermission(?deprecatedCallback:NotificationPermissionCallback):js.lib.IPromise<String>;
 }

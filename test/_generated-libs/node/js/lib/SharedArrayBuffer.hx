@@ -1,5 +1,5 @@
 package js.lib;
-@:native("SharedArrayBuffer") @tsInterface extern class SharedArrayBuffer {
+@:native("SharedArrayBuffer") extern class SharedArrayBuffer {
 	function new(byteLength:Float);
 	/**
 		Read-only. The length of the ArrayBuffer (in bytes).
@@ -9,6 +9,6 @@ package js.lib;
 	/**
 		Returns a section of an SharedArrayBuffer.
 	**/
-	function slice(begin:Float, ?end:Float):SharedArrayBuffer;
-	static final prototype : SharedArrayBuffer;
+	function slice(begin:Float, ?end:Float):ISharedArrayBuffer;
+	static final prototype : ISharedArrayBuffer;
 }

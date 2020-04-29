@@ -2,7 +2,7 @@ package js.html;
 /**
 	An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
 **/
-@:native("DOMException") @tsInterface extern class DOMException {
+@:native("DOMException") extern class DOMException {
 	function new(?message:String, ?name:String);
 	final code : Float;
 	final message : String;
@@ -32,7 +32,7 @@ package js.html;
 	final URL_MISMATCH_ERR : Float;
 	final VALIDATION_ERR : Float;
 	final WRONG_DOCUMENT_ERR : Float;
-	static var prototype : DOMException;
+	static var prototype : IDOMException;
 	@:native("ABORT_ERR")
 	static final ABORT_ERR_ : Float;
 	@:native("DATA_CLONE_ERR")

@@ -1,5 +1,5 @@
 package node.repl;
-extern interface REPLCommand {
+extern typedef REPLCommand = {
 	/**
 		Help text to be displayed when `.help` is entered.
 	**/
@@ -9,4 +9,4 @@ extern interface REPLCommand {
 		The function to execute, optionally accepting a single string argument.
 	**/
 	var action : (text:String) -> Void;
-}
+};

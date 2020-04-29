@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Call frames for assertions or error messages.
 **/
-extern interface StackTrace {
+extern typedef StackTrace = {
 	/**
 		String label of this stack trace. For async traces this may be a name of the function that
 		initiated the async call.
@@ -23,4 +23,4 @@ extern interface StackTrace {
 	**/
 	@:optional
 	var parentId : StackTraceId;
-}
+};

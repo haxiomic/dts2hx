@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface SetScriptSourceReturnType {
+extern typedef SetScriptSourceReturnType = {
 	/**
 		New stack trace in case editing has happened while VM was stopped.
 	**/
@@ -25,4 +25,4 @@ extern interface SetScriptSourceReturnType {
 	**/
 	@:optional
 	var exceptionDetails : node.inspector.runtime.ExceptionDetails;
-}
+};

@@ -1,8 +1,8 @@
 package js.lib;
-@:native("TextTrackCueList") @tsInterface extern class TextTrackCueList {
+@:native("TextTrackCueList") extern class TextTrackCueList {
 	function new();
 	final length : Float;
-	function getCueById(id:String):js.html.TextTrackCue;
-	function item(index:Float):js.html.TextTrackCue;
-	static var prototype : TextTrackCueList;
+	function getCueById(id:String):js.html.ITextTrackCue;
+	function item(index:Float):js.html.ITextTrackCue;
+	static var prototype : ITextTrackCueList;
 }

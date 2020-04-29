@@ -1,7 +1,7 @@
 package js.html;
-extern interface IDBIndexParameters {
+extern typedef IDBIndexParameters = {
 	@:optional
 	var multiEntry : Bool;
 	@:optional
 	var unique : Bool;
-}
+};

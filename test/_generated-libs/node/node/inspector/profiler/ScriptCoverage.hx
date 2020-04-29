@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Coverage data for a JavaScript script.
 **/
-extern interface ScriptCoverage {
+extern typedef ScriptCoverage = {
 	/**
 		JavaScript script id.
 	**/
@@ -15,4 +15,4 @@ extern interface ScriptCoverage {
 		Functions contained in the script that has coverage data.
 	**/
 	var functions : std.Array<FunctionCoverage>;
-}
+};

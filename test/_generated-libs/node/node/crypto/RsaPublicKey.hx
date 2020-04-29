@@ -1,6 +1,6 @@
 package node.crypto;
-extern interface RsaPublicKey {
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.Buffer, KeyObject>>;
+extern typedef RsaPublicKey = {
+	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, KeyObject>>;
 	@:optional
 	var padding : Float;
-}
+};

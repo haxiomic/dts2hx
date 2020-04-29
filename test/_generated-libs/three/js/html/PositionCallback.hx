@@ -1,5 +1,5 @@
 package js.html;
-extern interface PositionCallback {
+extern typedef PositionCallback = {
 	@:selfCall
 	function call(position:Position):Void;
-}
+};

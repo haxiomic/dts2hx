@@ -2,7 +2,7 @@ package three;
 /**
 	A 4x4 Matrix.
 **/
-@:jsRequire("three", "Matrix4") extern class Matrix4 implements Matrix {
+@:jsRequire("three", "Matrix4") extern class Matrix4 {
 	function new();
 	/**
 		Array with matrix values.
@@ -113,11 +113,9 @@ package three;
 		Decomposes this matrix into the translation, rotation and scale components.
 		If parameters are not passed, new instances will be created.
 	**/
-	function decompose(?translation:Vector3, ?rotation:Quaternion, ?scale:Vector3):std.Array<js.lib.Object>;
+	function decompose(?translation:Vector3, ?rotation:Quaternion, ?scale:Vector3):std.Array<js.lib.IObject>;
 	/**
 		Creates a frustum matrix.
-		
-		
 		
 		Creates a perspective projection matrix.
 	**/

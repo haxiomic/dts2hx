@@ -1,14 +1,14 @@
 package js.html;
-@:native("IDBTransaction") @tsInterface extern class IDBTransaction {
+@:native("IDBTransaction") extern class IDBTransaction {
 	function new();
 	/**
 		Returns the transaction's connection.
 	**/
-	final db : IDBDatabase;
+	final db : IIDBDatabase;
 	/**
 		If the transaction was aborted, returns the error (a DOMException) providing the reason.
 	**/
-	final error : DOMException;
+	final error : IDOMException;
 	/**
 		Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
 	**/
@@ -16,10 +16,10 @@ package js.html;
 	/**
 		Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
 	**/
-	final objectStoreNames : js.lib.DOMStringList;
-	var onabort : Null<(ev:Event) -> Any>;
-	var oncomplete : Null<(ev:Event) -> Any>;
-	var onerror : Null<(ev:Event) -> Any>;
+	final objectStoreNames : js.lib.IDOMStringList;
+	var onabort : Null<(ev:IEvent) -> Any>;
+	var oncomplete : Null<(ev:IEvent) -> Any>;
+	var onerror : Null<(ev:IEvent) -> Any>;
 	/**
 		Aborts the transaction. All pending requests will fail with a "AbortError" DOMException and all changes made to the database will be reverted.
 	**/
@@ -27,7 +27,7 @@ package js.html;
 	/**
 		Returns an IDBObjectStore in the transaction's scope.
 	**/
-	function objectStore(name:String):js.lib.IDBObjectStore;
+	function objectStore(name:String):js.lib.IIDBObjectStore;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -40,8 +40,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -60,8 +58,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -69,6 +65,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : IDBTransaction;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IIDBTransaction;
 }

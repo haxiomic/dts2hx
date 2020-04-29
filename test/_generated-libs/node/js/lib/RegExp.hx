@@ -1,8 +1,8 @@
 package js.lib;
-@:native("RegExp") @tsInterface extern class RegExp {
-	@:overload(function(pattern:String, ?flags:String):RegExp { })
-	@:overload(function(pattern:haxe.extern.EitherType<String, RegExp>, ?flags:String):RegExp { })
-	function new(pattern:haxe.extern.EitherType<String, RegExp>);
+@:native("RegExp") extern class RegExp {
+	@:overload(function(pattern:String, ?flags:String):IRegExp { })
+	@:overload(function(pattern:haxe.extern.EitherType<String, IRegExp>, ?flags:String):IRegExp { })
+	function new(pattern:haxe.extern.EitherType<String, IRegExp>);
 	/**
 		Executes a search on a string using a regular expression pattern, and returns an array containing the results of that search.
 	**/
@@ -28,7 +28,7 @@ package js.lib;
 	**/
 	final multiline : Bool;
 	var lastIndex : Float;
-	function compile():RegExp;
+	function compile():IRegExp;
 	/**
 		Returns a string indicating the flags of the regular expression in question. This field is read-only.
 		The characters in this string are sequenced and concatenated in the following order:
@@ -57,11 +57,11 @@ package js.lib;
 		Default is false. Read-only.
 	**/
 	final dotAll : Bool;
-	@:overload(function(pattern:String, ?flags:String):RegExp { })
-	@:overload(function(pattern:haxe.extern.EitherType<String, RegExp>, ?flags:String):RegExp { })
+	@:overload(function(pattern:String, ?flags:String):IRegExp { })
+	@:overload(function(pattern:haxe.extern.EitherType<String, IRegExp>, ?flags:String):IRegExp { })
 	@:selfCall
-	static function call(pattern:haxe.extern.EitherType<String, RegExp>):RegExp;
-	static final prototype : RegExp;
+	static function call(pattern:haxe.extern.EitherType<String, IRegExp>):IRegExp;
+	static final prototype : IRegExp;
 	@:native("$1")
 	static var Dollar1 : String;
 	@:native("$2")

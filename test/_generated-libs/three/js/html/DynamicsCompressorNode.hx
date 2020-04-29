@@ -2,28 +2,28 @@ package js.html;
 /**
 	Inherits properties from its parent, AudioNode.
 **/
-@:native("DynamicsCompressorNode") @tsInterface extern class DynamicsCompressorNode {
-	function new(context:js.lib.BaseAudioContext, ?options:DynamicsCompressorOptions);
-	final attack : js.lib.AudioParam;
-	final knee : js.lib.AudioParam;
-	final ratio : js.lib.AudioParam;
+@:native("DynamicsCompressorNode") extern class DynamicsCompressorNode {
+	function new(context:js.lib.IBaseAudioContext, ?options:DynamicsCompressorOptions);
+	final attack : js.lib.IAudioParam;
+	final knee : js.lib.IAudioParam;
+	final ratio : js.lib.IAudioParam;
 	final reduction : Float;
-	final release : js.lib.AudioParam;
-	final threshold : js.lib.AudioParam;
+	final release : js.lib.IAudioParam;
+	final threshold : js.lib.IAudioParam;
 	var channelCount : Float;
 	var channelCountMode : String;
 	var channelInterpretation : String;
-	final context : js.lib.BaseAudioContext;
+	final context : js.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:js.lib.AudioParam, ?output:Float):Void { })
-	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
+	@:overload(function(destinationParam:js.lib.IAudioParam, ?output:Float):Void { })
+	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam):Void { })
-	@:overload(function(destinationParam:js.lib.AudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam):Void { })
+	@:overload(function(destinationParam:js.lib.IAudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -42,10 +42,10 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:IEvent):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	static var prototype : DynamicsCompressorNode;
+	static var prototype : IDynamicsCompressorNode;
 }

@@ -2,6 +2,6 @@ package node.inspector.heapprofiler;
 /**
 	Profile.
 **/
-extern interface SamplingHeapProfile {
+extern typedef SamplingHeapProfile = {
 	var head : SamplingHeapProfileNode;
-}
+};

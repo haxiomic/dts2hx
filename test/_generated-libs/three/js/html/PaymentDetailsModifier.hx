@@ -1,5 +1,5 @@
 package js.html;
-extern interface PaymentDetailsModifier {
+extern typedef PaymentDetailsModifier = {
 	@:optional
 	var additionalDisplayItems : std.Array<PaymentItem>;
 	@:optional
@@ -7,4 +7,4 @@ extern interface PaymentDetailsModifier {
 	var supportedMethods : haxe.extern.EitherType<String, std.Array<String>>;
 	@:optional
 	var total : PaymentItem;
-}
+};

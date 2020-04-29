@@ -1,7 +1,9 @@
 package js.html;
-extern interface AddEventListenerOptions extends EventListenerOptions {
+extern typedef AddEventListenerOptions = {
 	@:optional
 	var once : Bool;
 	@:optional
 	var passive : Bool;
-}
+	@:optional
+	var capture : Bool;
+};

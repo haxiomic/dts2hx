@@ -1,4 +1,5 @@
 package js.html;
-extern interface AesCmacParams extends Algorithm {
+extern typedef AesCmacParams = {
 	var length : Float;
-}
+	var name : String;
+};

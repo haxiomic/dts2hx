@@ -1,5 +1,5 @@
 package js.html;
-extern interface NavigatorUserMediaSuccessCallback {
+extern typedef NavigatorUserMediaSuccessCallback = {
 	@:selfCall
-	function call(stream:MediaStream):Void;
-}
+	function call(stream:IMediaStream):Void;
+};

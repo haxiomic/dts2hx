@@ -1,5 +1,5 @@
 package js.html;
-extern interface OnErrorEventHandlerNonNull {
+extern typedef OnErrorEventHandlerNonNull = {
 	@:selfCall
-	function call(event:haxe.extern.EitherType<String, Event>, ?source:String, ?lineno:Float, ?colno:Float, ?error:js.lib.Error):Any;
-}
+	function call(event:haxe.extern.EitherType<String, IEvent>, ?source:String, ?lineno:Float, ?colno:Float, ?error:js.lib.IError):Any;
+};

@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface SearchInContentParameterType {
+extern typedef SearchInContentParameterType = {
 	/**
 		Id of the script to search in.
 	**/
@@ -18,4 +18,4 @@ extern interface SearchInContentParameterType {
 	**/
 	@:optional
 	var isRegex : Bool;
-}
+};

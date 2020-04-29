@@ -2,14 +2,14 @@ package js.html;
 /**
 	Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
 **/
-@:native("Element") @tsInterface extern class Element {
+@:native("Element") extern class Element {
 	function new();
-	final assignedSlot : Null<HTMLSlotElement>;
-	final attributes : js.lib.NamedNodeMap;
+	final assignedSlot : Null<IHTMLSlotElement>;
+	final attributes : js.lib.INamedNodeMap;
 	/**
 		Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
 	**/
-	final classList : js.lib.DOMTokenList;
+	final classList : js.lib.IDOMTokenList;
 	/**
 		Returns the value of element's class content attribute. Can be set to change it.
 	**/
@@ -30,8 +30,8 @@ package js.html;
 		Returns the namespace.
 	**/
 	final namespaceURI : Null<String>;
-	var onfullscreenchange : Null<(ev:Event) -> Any>;
-	var onfullscreenerror : Null<(ev:Event) -> Any>;
+	var onfullscreenchange : Null<(ev:IEvent) -> Any>;
+	var onfullscreenerror : Null<(ev:IEvent) -> Any>;
 	var outerHTML : String;
 	/**
 		Returns the namespace prefix.
@@ -44,7 +44,7 @@ package js.html;
 	/**
 		Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
 	**/
-	final shadowRoot : Null<ShadowRoot>;
+	final shadowRoot : Null<IShadowRoot>;
 	/**
 		Returns the value of element's slot content attribute. Can be set to change it.
 	**/
@@ -56,12 +56,12 @@ package js.html;
 	/**
 		Creates a shadow root for element and returns it.
 	**/
-	function attachShadow(init:ShadowRootInit):ShadowRoot;
+	function attachShadow(init:ShadowRootInit):IShadowRoot;
 	/**
 		Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 	**/
 	@:overload(function<K:(String)>(selector:K):Null<Any> { })
-	@:overload(function<E:(Element)>(selector:String):Null<E> { })
+	@:overload(function<E:(IElement)>(selector:String):Null<E> { })
 	function closest<K:(String)>(selector:K):Null<Any>;
 	/**
 		Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
@@ -75,20 +75,20 @@ package js.html;
 		Returns the qualified names of all element's attributes. Can contain duplicates.
 	**/
 	function getAttributeNames():std.Array<String>;
-	function getAttributeNode(name:String):Null<Attr>;
-	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<Attr>;
-	function getBoundingClientRect():DOMRect;
-	function getClientRects():js.lib.DOMRectList;
+	function getAttributeNode(name:String):Null<IAttr>;
+	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<IAttr>;
+	function getBoundingClientRect():IDOMRect;
+	function getClientRects():js.lib.IDOMRectList;
 	/**
 		Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 	**/
-	function getElementsByClassName(classNames:String):js.lib.HTMLCollectionOf<Element>;
+	function getElementsByClassName(classNames:String):js.lib.HTMLCollectionOf<IElement>;
 	@:overload(function<K:(String)>(qualifiedName:K):js.lib.HTMLCollectionOf<Any> { })
-	@:overload(function(qualifiedName:String):js.lib.HTMLCollectionOf<Element> { })
+	@:overload(function(qualifiedName:String):js.lib.HTMLCollectionOf<IElement> { })
 	function getElementsByTagName<K:(String)>(qualifiedName:K):js.lib.HTMLCollectionOf<Any>;
-	@:overload(function(namespaceURI:String, localName:String):js.lib.HTMLCollectionOf<SVGElement> { })
-	@:overload(function(namespaceURI:String, localName:String):js.lib.HTMLCollectionOf<Element> { })
-	function getElementsByTagNameNS(namespaceURI:String, localName:String):js.lib.HTMLCollectionOf<HTMLElement>;
+	@:overload(function(namespaceURI:String, localName:String):js.lib.HTMLCollectionOf<ISVGElement> { })
+	@:overload(function(namespaceURI:String, localName:String):js.lib.HTMLCollectionOf<IElement> { })
+	function getElementsByTagNameNS(namespaceURI:String, localName:String):js.lib.HTMLCollectionOf<IHTMLElement>;
 	/**
 		Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
 	**/
@@ -102,7 +102,7 @@ package js.html;
 	**/
 	function hasAttributes():Bool;
 	function hasPointerCapture(pointerId:Float):Bool;
-	function insertAdjacentElement(position:String, insertedElement:Element):Null<Element>;
+	function insertAdjacentElement(position:String, insertedElement:IElement):Null<IElement>;
 	function insertAdjacentHTML(where:String, html:String):Void;
 	function insertAdjacentText(where:String, text:String):Void;
 	/**
@@ -119,13 +119,13 @@ package js.html;
 		Removes element's attribute whose namespace is namespace and local name is localName.
 	**/
 	function removeAttributeNS(namespace:Null<String>, localName:String):Void;
-	function removeAttributeNode(attr:Attr):Attr;
+	function removeAttributeNode(attr:IAttr):IAttr;
 	/**
 		Displays element fullscreen and resolves promise when done.
 		
 		When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to "show", navigation simplicity is preferred over screen space, and if set to "hide", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value "auto" indicates no application preference.
 	**/
-	function requestFullscreen(?options:FullscreenOptions):js.lib.Promise<Void>;
+	function requestFullscreen(?options:FullscreenOptions):js.lib.IPromise<Void>;
 	function requestPointerLock():Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scroll(?options:ScrollToOptions):Void;
@@ -142,8 +142,8 @@ package js.html;
 		Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 	**/
 	function setAttributeNS(namespace:Null<String>, qualifiedName:String, value:String):Void;
-	function setAttributeNode(attr:Attr):Null<Attr>;
-	function setAttributeNodeNS(attr:Attr):Null<Attr>;
+	function setAttributeNode(attr:IAttr):Null<IAttr>;
+	function setAttributeNodeNS(attr:IAttr):Null<IAttr>;
 	function setPointerCapture(pointerId:Float):Void;
 	/**
 		If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -165,8 +165,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -183,8 +181,6 @@ package js.html;
 	function addEventListener<K:(String)>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
-		
-		
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
@@ -226,56 +222,56 @@ package js.html;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<Document>;
+	final ownerDocument : Null<IDocument>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<HTMLElement>;
+	final parentElement : Null<IHTMLElement>;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<Any>;
+	final parentNode : Null<INode & ParentNode>;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<Node>;
+	final previousSibling : Null<INode>;
 	var textContent : Null<String>;
-	function appendChild<T:(Node)>(newChild:T):T;
+	function appendChild<T:(INode)>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):Node;
+	function cloneNode(?deep:Bool):INode;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:Node):Float;
+	function compareDocumentPosition(other:INode):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<Node>):Bool;
+	function contains(other:Null<INode>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):Node;
+	function getRootNode(?options:GetRootNodeOptions):INode;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T:(Node)>(newChild:T, refChild:Null<Node>):T;
+	function insertBefore<T:(INode)>(newChild:T, refChild:Null<INode>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<Node>):Bool;
-	function isSameNode(otherNode:Null<Node>):Bool;
+	function isEqualNode(otherNode:Null<INode>):Bool;
+	function isSameNode(otherNode:Null<INode>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
 		Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
 	**/
 	function normalize():Void;
-	function removeChild<T:(Node)>(oldChild:T):T;
-	function replaceChild<T:(Node)>(newChild:Node, oldChild:T):T;
+	function removeChild<T:(INode)>(oldChild:T):T;
+	function replaceChild<T:(INode)>(newChild:INode, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -336,21 +332,21 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, KeyframeAnimationOptions>):Animation;
-	function getAnimations():std.Array<Animation>;
+	function dispatchEvent(event:IEvent):Bool;
+	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, KeyframeAnimationOptions>):IAnimation;
+	function getAnimations():std.Array<IAnimation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function after(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function before(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -360,52 +356,52 @@ package js.html;
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	var innerHTML : String;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
 	**/
-	final nextElementSibling : Null<Element>;
+	final nextElementSibling : Null<IElement>;
 	/**
 		Returns the first preceding sibling that is an element, and null otherwise.
 	**/
-	final previousElementSibling : Null<Element>;
+	final previousElementSibling : Null<IElement>;
 	final childElementCount : Float;
 	/**
 		Returns the child elements.
 	**/
-	final children : HTMLCollection;
+	final children : IHTMLCollection;
 	/**
 		Returns the first child that is an element, and null otherwise.
 	**/
-	final firstElementChild : Null<Element>;
+	final firstElementChild : Null<IElement>;
 	/**
 		Returns the last child that is an element, and null otherwise.
 	**/
-	final lastElementChild : Null<Element>;
+	final lastElementChild : Null<IElement>;
 	/**
 		Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function append(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:std.Array<haxe.extern.EitherType<String, Node>>):Void;
+	function prepend(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
 	@:overload(function<K:(String)>(selectors:K):Null<Any> { })
-	@:overload(function<E:(Element)>(selectors:String):Null<E> { })
+	@:overload(function<E:(IElement)>(selectors:String):Null<E> { })
 	function querySelector<K:(String)>(selectors:K):Null<Any>;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
 	@:overload(function<K:(String)>(selectors:K):js.lib.NodeListOf<Any> { })
-	@:overload(function<E:(Element)>(selectors:String):js.lib.NodeListOf<E> { })
+	@:overload(function<E:(IElement)>(selectors:String):js.lib.NodeListOf<E> { })
 	function querySelectorAll<K:(String)>(selectors:K):js.lib.NodeListOf<Any>;
-	static var prototype : Element;
+	static var prototype : IElement;
 }

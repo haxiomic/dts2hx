@@ -1,5 +1,5 @@
 package node.stream;
-extern interface ReadableOptions {
+extern typedef ReadableOptions = {
 	@:optional
 	var highWaterMark : Float;
 	@:optional
@@ -9,5 +9,5 @@ extern interface ReadableOptions {
 	@:optional
 	function read(size:Float):Void;
 	@:optional
-	function destroy(error:Null<js.lib.Error>, callback:(error:Null<js.lib.Error>) -> Void):Void;
-}
+	function destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
+};

@@ -1,5 +1,5 @@
 package js.lib;
-extern interface ReadonlyArray<T> {
+extern typedef ReadonlyArray<T> = {
 	/**
 		Gets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/
@@ -14,8 +14,6 @@ extern interface ReadonlyArray<T> {
 	function toLocaleString():String;
 	/**
 		Combines two or more arrays.
-		
-		
 		
 		Combines two or more arrays.
 	**/
@@ -56,16 +54,12 @@ extern interface ReadonlyArray<T> {
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
-		
-		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
 	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Any):std.Array<T> { })
 	function filter<S:(T)>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Any):std.Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
-		
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
@@ -74,8 +68,6 @@ extern interface ReadonlyArray<T> {
 	function reduce(callbackfn:(previousValue:T, currentValue:T, currentIndex:Float, array:ReadonlyArray<T>) -> T):T;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
-		
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
@@ -109,4 +101,4 @@ extern interface ReadonlyArray<T> {
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
 	function includes(searchElement:T, ?fromIndex:Float):Bool;
-}
+};

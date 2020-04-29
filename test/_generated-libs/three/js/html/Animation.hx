@@ -1,18 +1,18 @@
 package js.html;
-@:native("Animation") @tsInterface extern class Animation {
-	function new(?effect:AnimationEffect, ?timeline:AnimationTimeline);
+@:native("Animation") extern class Animation {
+	function new(?effect:IAnimationEffect, ?timeline:IAnimationTimeline);
 	var currentTime : Null<Float>;
-	var effect : Null<AnimationEffect>;
-	final finished : js.lib.Promise<Animation>;
+	var effect : Null<IAnimationEffect>;
+	final finished : js.lib.IPromise<IAnimation>;
 	var id : String;
-	var oncancel : Null<(ev:AnimationPlaybackEvent) -> Any>;
-	var onfinish : Null<(ev:AnimationPlaybackEvent) -> Any>;
+	var oncancel : Null<(ev:IAnimationPlaybackEvent) -> Any>;
+	var onfinish : Null<(ev:IAnimationPlaybackEvent) -> Any>;
 	final pending : Bool;
 	final playState : String;
 	var playbackRate : Float;
-	final ready : js.lib.Promise<Animation>;
+	final ready : js.lib.IPromise<IAnimation>;
 	var startTime : Null<Float>;
-	var timeline : Null<AnimationTimeline>;
+	var timeline : Null<IAnimationTimeline>;
 	function cancel():Void;
 	function finish():Void;
 	function pause():Void;
@@ -32,8 +32,6 @@ package js.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 		
-		
-		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
 		The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
@@ -51,8 +49,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -60,6 +56,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : Animation;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : IAnimation;
 }

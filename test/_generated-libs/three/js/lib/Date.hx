@@ -2,11 +2,11 @@ package js.lib;
 /**
 	Enables basic storage and retrieval of dates and times.
 **/
-@:native("Date") @tsInterface extern class Date {
-	@:overload(function(value:haxe.extern.EitherType<String, Float>):Date { })
-	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Date { })
-	@:overload(function(vd:VarDate):Date { })
-	@:overload(function(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Date>>):Date { })
+@:native("Date") extern class Date {
+	@:overload(function(value:haxe.extern.EitherType<String, Float>):IDate { })
+	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):IDate { })
+	@:overload(function(vd:VarDate):IDate { })
+	@:overload(function(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, IDate>>):IDate { })
 	function new();
 	/**
 		Returns a string representation of a date. The format of the string depends on the locale.
@@ -23,8 +23,6 @@ package js.lib;
 	/**
 		Returns a value as a string value appropriate to the host environment's current locale.
 		
-		
-		
 		Converts a date and time to a string by using the current or specified locale.
 	**/
 	@:overload(function(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):String { })
@@ -32,16 +30,12 @@ package js.lib;
 	/**
 		Returns a date as a string value appropriate to the host environment's current locale.
 		
-		
-		
 		Converts a date to a string by using the current or specified locale.
 	**/
 	@:overload(function(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):String { })
 	function toLocaleDateString():String;
 	/**
 		Returns a time as a string value appropriate to the host environment's current locale.
-		
-		
 		
 		Converts a time to a string by using the current or specified locale.
 	**/
@@ -198,7 +192,7 @@ package js.lib;
 	var getVarDate : () -> VarDate;
 	@:selfCall
 	static function call():String;
-	static final prototype : Date;
+	static final prototype : IDate;
 	/**
 		Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.
 	**/

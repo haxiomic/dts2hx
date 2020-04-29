@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface GetPossibleBreakpointsParameterType {
+extern typedef GetPossibleBreakpointsParameterType = {
 	/**
 		Start of range to search possible breakpoint locations in.
 	**/
@@ -15,4 +15,4 @@ extern interface GetPossibleBreakpointsParameterType {
 	**/
 	@:optional
 	var restrictToFunction : Bool;
-}
+};

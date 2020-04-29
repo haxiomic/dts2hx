@@ -1,5 +1,5 @@
 package js.html;
-extern interface FocusNavigationEventInit extends EventInit {
+extern typedef FocusNavigationEventInit = {
 	@:optional
 	var navigationReason : String;
 	@:optional
@@ -10,4 +10,10 @@ extern interface FocusNavigationEventInit extends EventInit {
 	var originTop : Float;
 	@:optional
 	var originWidth : Float;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

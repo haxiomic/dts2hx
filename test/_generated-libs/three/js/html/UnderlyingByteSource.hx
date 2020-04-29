@@ -1,5 +1,5 @@
 package js.html;
-extern interface UnderlyingByteSource {
+extern typedef UnderlyingByteSource = {
 	@:optional
 	var autoAllocateChunkSize : Float;
 	@:optional
@@ -9,4 +9,4 @@ extern interface UnderlyingByteSource {
 	@:optional
 	var start : ReadableByteStreamControllerCallback;
 	var type : String;
-}
+};

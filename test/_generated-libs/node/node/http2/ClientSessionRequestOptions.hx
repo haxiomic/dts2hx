@@ -1,5 +1,5 @@
 package node.http2;
-extern interface ClientSessionRequestOptions {
+extern typedef ClientSessionRequestOptions = {
 	@:optional
 	var endStream : Bool;
 	@:optional
@@ -10,4 +10,4 @@ extern interface ClientSessionRequestOptions {
 	var weight : Float;
 	@:optional
 	var getTrailers : (trailers:node.http.OutgoingHttpHeaders, flags:Float) -> Void;
-}
+};

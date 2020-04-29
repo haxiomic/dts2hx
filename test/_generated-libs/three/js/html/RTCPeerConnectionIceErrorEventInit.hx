@@ -1,5 +1,5 @@
 package js.html;
-extern interface RTCPeerConnectionIceErrorEventInit extends EventInit {
+extern typedef RTCPeerConnectionIceErrorEventInit = {
 	var errorCode : Float;
 	@:optional
 	var hostCandidate : String;
@@ -7,4 +7,10 @@ extern interface RTCPeerConnectionIceErrorEventInit extends EventInit {
 	var statusText : String;
 	@:optional
 	var url : String;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};

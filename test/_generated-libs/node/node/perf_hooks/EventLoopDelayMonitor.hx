@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern interface EventLoopDelayMonitor {
+extern typedef EventLoopDelayMonitor = {
 	/**
 		Enables the event loop delay sample timer. Returns `true` if the timer was started, `false` if it was already started.
 	**/
@@ -19,7 +19,7 @@ extern interface EventLoopDelayMonitor {
 	/**
 		A `Map` object detailing the accumulated percentile distribution.
 	**/
-	final percentiles : js.lib.Map<Float, Float>;
+	final percentiles : js.lib.IMap<Float, Float>;
 	/**
 		The number of times the event loop delay exceeded the maximum 1 hour eventloop delay threshold.
 	**/
@@ -40,4 +40,4 @@ extern interface EventLoopDelayMonitor {
 		The standard deviation of the recorded event loop delays.
 	**/
 	final stddev : Float;
-}
+};

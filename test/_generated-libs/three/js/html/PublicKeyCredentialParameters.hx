@@ -1,5 +1,5 @@
 package js.html;
-extern interface PublicKeyCredentialParameters {
+extern typedef PublicKeyCredentialParameters = {
 	var alg : Float;
 	var type : String;
-}
+};

@@ -1,5 +1,5 @@
 package js.html;
-extern interface UnderlyingSource<R> {
+extern typedef UnderlyingSource<R> = {
 	@:optional
 	var cancel : ReadableStreamErrorCallback;
 	@:optional
@@ -8,4 +8,4 @@ extern interface UnderlyingSource<R> {
 	var start : ReadableStreamDefaultControllerCallback<R>;
 	@:optional
 	var type : Void;
-}
+};

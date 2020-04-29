@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "CurvePath") extern class CurvePath<T:(Vector)> extends Curve<T> {
+@:jsRequire("three", "CurvePath") extern class CurvePath<T:(Vector)> {
 	function new();
 	var curves : std.Array<Curve<T>>;
 	var autoClose : Bool;
@@ -33,4 +33,33 @@ package three;
 	function createPointsGeometry(divisions:Float):Geometry;
 	function createSpacedPointsGeometry(divisions:Float):Geometry;
 	function createGeometry(points:std.Array<T>):Geometry;
+	/**
+		This value determines the amount of divisions when calculating the cumulative segment lengths of a curve via .getLengths.
+		To ensure precision when using methods like .getSpacedPoints, it is recommended to increase .arcLengthDivisions if the curve is very large.
+		Default is 200.
+	**/
+	var arcLengthDivisions : Float;
+	/**
+		Returns a vector for point at relative position in curve according to arc length
+		getPointAt(u: number): T;
+	**/
+	function getPointAt(u:Float, ?optionalTarget:T):T;
+	/**
+		Get list of cumulative segment lengths
+	**/
+	function getLengths(?divisions:Float):std.Array<Float>;
+	/**
+		Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equi distance
+	**/
+	function getUtoTmapping(u:Float, distance:Float):Float;
+	/**
+		Returns a unit vector tangent at t. If the subclassed curve do not implement its tangent derivation, 2 points a small delta apart will be used to find its gradient which seems to give a reasonable approximation
+		getTangent(t: number): T;
+	**/
+	function getTangent(t:Float):T;
+	/**
+		Returns tangent at equidistance point u on the curve
+		getTangentAt(u: number): T;
+	**/
+	function getTangentAt(u:Float):T;
 }

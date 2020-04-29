@@ -1,5 +1,5 @@
 package js.html;
-extern interface BiquadFilterOptions extends AudioNodeOptions {
+extern typedef BiquadFilterOptions = {
 	@:optional
 	var Q : Float;
 	@:optional
@@ -10,4 +10,10 @@ extern interface BiquadFilterOptions extends AudioNodeOptions {
 	var gain : Float;
 	@:optional
 	var type : String;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

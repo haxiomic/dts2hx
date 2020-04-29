@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern interface CompileScriptParameterType {
+extern typedef CompileScriptParameterType = {
 	/**
 		Expression to compile.
 	**/
@@ -18,4 +18,4 @@ extern interface CompileScriptParameterType {
 	**/
 	@:optional
 	var executionContextId : Float;
-}
+};

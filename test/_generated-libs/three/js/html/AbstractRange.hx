@@ -1,5 +1,5 @@
 package js.html;
-@:native("AbstractRange") @tsInterface extern class AbstractRange {
+@:native("AbstractRange") extern class AbstractRange {
 	function new();
 	/**
 		Returns true if range is collapsed, and false otherwise.
@@ -8,7 +8,7 @@ package js.html;
 	/**
 		Returns range's end node.
 	**/
-	final endContainer : Node;
+	final endContainer : INode;
 	/**
 		Returns range's end offset.
 	**/
@@ -16,10 +16,10 @@ package js.html;
 	/**
 		Returns range's start node.
 	**/
-	final startContainer : Node;
+	final startContainer : INode;
 	/**
 		Returns range's start offset.
 	**/
 	final startOffset : Float;
-	static var prototype : AbstractRange;
+	static var prototype : IAbstractRange;
 }

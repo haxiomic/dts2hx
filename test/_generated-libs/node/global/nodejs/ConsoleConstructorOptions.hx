@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface ConsoleConstructorOptions {
+extern typedef ConsoleConstructorOptions = {
 	var stdout : WritableStream;
 	@:optional
 	var stderr : WritableStream;
@@ -9,4 +9,4 @@ extern interface ConsoleConstructorOptions {
 	var colorMode : haxe.extern.EitherType<Bool, String>;
 	@:optional
 	var inspectOptions : InspectOptions;
-}
+};

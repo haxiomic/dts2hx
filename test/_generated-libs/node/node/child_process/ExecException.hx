@@ -1,5 +1,5 @@
 package node.child_process;
-extern interface ExecException extends js.lib.Error {
+extern typedef ExecException = {
 	@:optional
 	var cmd : String;
 	@:optional
@@ -8,4 +8,8 @@ extern interface ExecException extends js.lib.Error {
 	var code : Float;
 	@:optional
 	var signal : String;
-}
+	var name : String;
+	var message : String;
+	@:optional
+	var stack : String;
+};

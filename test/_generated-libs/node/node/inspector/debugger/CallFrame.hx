@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	JavaScript call frame. Array of call frames form the call stack.
 **/
-extern interface CallFrame {
+extern typedef CallFrame = {
 	/**
 		Call frame identifier. This identifier is only valid while the virtual machine is paused.
 	**/
@@ -38,4 +38,4 @@ extern interface CallFrame {
 	**/
 	@:optional
 	var returnValue : node.inspector.runtime.RemoteObject;
-}
+};

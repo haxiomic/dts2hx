@@ -1,5 +1,5 @@
 package node.dns;
-extern interface LookupOptions {
+extern typedef LookupOptions = {
 	@:optional
 	var family : Float;
 	@:optional
@@ -8,4 +8,4 @@ extern interface LookupOptions {
 	var all : Bool;
 	@:optional
 	var verbatim : Bool;
-}
+};

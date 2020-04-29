@@ -1,5 +1,5 @@
 package node.http2;
-extern interface StatOptions {
+extern typedef StatOptions = {
 	var offset : Float;
 	var length : Float;
-}
+};

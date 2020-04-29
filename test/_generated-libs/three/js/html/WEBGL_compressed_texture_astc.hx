@@ -1,5 +1,5 @@
 package js.html;
-extern interface WEBGL_compressed_texture_astc {
+extern typedef WEBGL_compressed_texture_astc = {
 	function getSupportedProfiles():std.Array<String>;
 	final COMPRESSED_RGBA_ASTC_10x10_KHR : Float;
 	final COMPRESSED_RGBA_ASTC_10x5_KHR : Float;
@@ -29,4 +29,4 @@ extern interface WEBGL_compressed_texture_astc {
 	final COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR : Float;
 	final COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR : Float;
 	final COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR : Float;
-}
+};

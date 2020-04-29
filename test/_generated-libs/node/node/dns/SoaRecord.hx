@@ -1,5 +1,5 @@
 package node.dns;
-extern interface SoaRecord {
+extern typedef SoaRecord = {
 	var nsname : String;
 	var hostmaster : String;
 	var serial : Float;
@@ -7,4 +7,4 @@ extern interface SoaRecord {
 	var retry : Float;
 	var expire : Float;
 	var minttl : Float;
-}
+};

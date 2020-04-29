@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern interface EvaluateOnCallFrameReturnType {
+extern typedef EvaluateOnCallFrameReturnType = {
 	/**
 		Object wrapper for the evaluation result.
 	**/
@@ -9,4 +9,4 @@ extern interface EvaluateOnCallFrameReturnType {
 	**/
 	@:optional
 	var exceptionDetails : node.inspector.runtime.ExceptionDetails;
-}
+};

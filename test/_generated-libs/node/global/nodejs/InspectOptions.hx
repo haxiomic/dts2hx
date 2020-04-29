@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface InspectOptions {
+extern typedef InspectOptions = {
 	/**
 		If set to `true`, getters are going to be
 		inspected as well. If set to `'get'` only getters without setter are going
@@ -36,4 +36,4 @@ extern interface InspectOptions {
 	var compact : haxe.extern.EitherType<Float, Bool>;
 	@:optional
 	var sorted : haxe.extern.EitherType<Bool, (a:String, b:String) -> Float>;
-}
+};

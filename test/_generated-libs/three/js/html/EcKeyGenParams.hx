@@ -1,4 +1,5 @@
 package js.html;
-extern interface EcKeyGenParams extends Algorithm {
+extern typedef EcKeyGenParams = {
 	var namedCurve : String;
-}
+	var name : String;
+};

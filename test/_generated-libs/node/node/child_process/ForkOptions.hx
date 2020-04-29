@@ -1,5 +1,5 @@
 package node.child_process;
-extern interface ForkOptions extends ProcessEnvOptions {
+extern typedef ForkOptions = {
 	@:optional
 	var execPath : String;
 	@:optional
@@ -12,4 +12,12 @@ extern interface ForkOptions extends ProcessEnvOptions {
 	var detached : Bool;
 	@:optional
 	var windowsVerbatimArguments : Bool;
-}
+	@:optional
+	var uid : Float;
+	@:optional
+	var gid : Float;
+	@:optional
+	var cwd : String;
+	@:optional
+	var env : global.nodejs.ProcessEnv;
+};

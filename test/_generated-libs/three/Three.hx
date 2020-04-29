@@ -2,15 +2,273 @@
 	static function warn(?message:Any, optionalParams:std.Array<Any>):Void;
 	static function error(?message:Any, optionalParams:std.Array<Any>):Void;
 	static function log(?message:Any, optionalParams:std.Array<Any>):Void;
-	static var ShaderLib : { var basic : three.Shader; var lambert : three.Shader; var phong : three.Shader; var standard : three.Shader; var matcap : three.Shader; var points : three.Shader; var dashed : three.Shader; var depth : three.Shader; var normal : three.Shader; var sprite : three.Shader; var background : three.Shader; var cube : three.Shader; var equirect : three.Shader; var distanceRGBA : three.Shader; var shadow : three.Shader; var physical : three.Shader; };
-	static var UniformsLib : { var common : { var diffuse : three.IUniform; var opacity : three.IUniform; var map : three.IUniform; var uvTransform : three.IUniform; var alphaMap : three.IUniform; }; var specularmap : { var specularMap : three.IUniform; }; var envmap : { var envMap : three.IUniform; var flipEnvMap : three.IUniform; var reflectivity : three.IUniform; var refractionRatio : three.IUniform; var maxMipLevel : three.IUniform; }; var aomap : { var aoMap : three.IUniform; var aoMapIntensity : three.IUniform; }; var lightmap : { var lightMap : three.IUniform; var lightMapIntensity : three.IUniform; }; var emissivemap : { var emissiveMap : three.IUniform; }; var bumpmap : { var bumpMap : three.IUniform; var bumpScale : three.IUniform; }; var normalmap : { var normalMap : three.IUniform; var normalScale : three.IUniform; }; var displacementmap : { var displacementMap : three.IUniform; var displacementScale : three.IUniform; var displacementBias : three.IUniform; }; var roughnessmap : { var roughnessMap : three.IUniform; }; var metalnessmap : { var metalnessMap : three.IUniform; }; var gradientmap : { var gradientMap : three.IUniform; }; var fog : { var fogDensity : three.IUniform; var fogNear : three.IUniform; var fogFar : three.IUniform; var fogColor : three.IUniform; }; var lights : { var ambientLightColor : three.IUniform; var directionalLights : { var value : std.Array<Any>; var properties : { var direction : { }; var color : { }; var shadow : { }; var shadowBias : { }; var shadowRadius : { }; var shadowMapSize : { }; }; }; var directionalShadowMap : three.IUniform; var directionalShadowMatrix : three.IUniform; var spotLights : { var value : std.Array<Any>; var properties : { var color : { }; var position : { }; var direction : { }; var distance : { }; var coneCos : { }; var penumbraCos : { }; var decay : { }; var shadow : { }; var shadowBias : { }; var shadowRadius : { }; var shadowMapSize : { }; }; }; var spotShadowMap : three.IUniform; var spotShadowMatrix : three.IUniform; var pointLights : { var value : std.Array<Any>; var properties : { var color : { }; var position : { }; var decay : { }; var distance : { }; var shadow : { }; var shadowBias : { }; var shadowRadius : { }; var shadowMapSize : { }; }; }; var pointShadowMap : three.IUniform; var pointShadowMatrix : three.IUniform; var hemisphereLights : { var value : std.Array<Any>; var properties : { var direction : { }; var skycolor : { }; var groundColor : { }; }; }; var rectAreaLights : { var value : std.Array<Any>; var properties : { var color : { }; var position : { }; var width : { }; var height : { }; }; }; }; var points : { var diffuse : three.IUniform; var opacity : three.IUniform; var size : three.IUniform; var scale : three.IUniform; var map : three.IUniform; var uvTransform : three.IUniform; }; };
-	static var ShaderChunk : { var alphamap_fragment : String; var alphamap_pars_fragment : String; var alphatest_fragment : String; var aomap_fragment : String; var aomap_pars_fragment : String; var begin_vertex : String; var beginnormal_vertex : String; var bsdfs : String; var bumpmap_pars_fragment : String; var clipping_planes_fragment : String; var clipping_planes_pars_fragment : String; var clipping_planes_pars_vertex : String; var clipping_planes_vertex : String; var color_fragment : String; var color_pars_fragment : String; var color_pars_vertex : String; var color_vertex : String; var common : String; var cube_frag : String; var cube_vert : String; var cube_uv_reflection_fragment : String; var defaultnormal_vertex : String; var depth_frag : String; var depth_vert : String; var distanceRGBA_frag : String; var distanceRGBA_vert : String; var displacementmap_vertex : String; var displacementmap_pars_vertex : String; var emissivemap_fragment : String; var emissivemap_pars_fragment : String; var encodings_pars_fragment : String; var encodings_fragment : String; var envmap_fragment : String; var envmap_pars_fragment : String; var envmap_pars_vertex : String; var envmap_vertex : String; var equirect_frag : String; var equirect_vert : String; var fog_fragment : String; var fog_pars_fragment : String; var linedashed_frag : String; var linedashed_vert : String; var lightmap_fragment : String; var lightmap_pars_fragment : String; var lights_lambert_vertex : String; var lights_pars_begin : String; var lights_pars_map : String; var lights_phong_fragment : String; var lights_phong_pars_fragment : String; var lights_physical_fragment : String; var lights_physical_pars_fragment : String; var lights_fragment_begin : String; var lights_fragment_maps : String; var lights_fragment_end : String; var logdepthbuf_fragment : String; var logdepthbuf_pars_fragment : String; var logdepthbuf_pars_vertex : String; var logdepthbuf_vertex : String; var map_fragment : String; var map_pars_fragment : String; var map_particle_fragment : String; var map_particle_pars_fragment : String; var meshbasic_frag : String; var meshbasic_vert : String; var meshlambert_frag : String; var meshlambert_vert : String; var meshphong_frag : String; var meshphong_vert : String; var meshphysical_frag : String; var meshphysical_vert : String; var metalnessmap_fragment : String; var metalnessmap_pars_fragment : String; var morphnormal_vertex : String; var morphtarget_pars_vertex : String; var morphtarget_vertex : String; var normal_flip : String; var normal_frag : String; var normal_fragment_begin : String; var normal_fragment_maps : String; var normal_vert : String; var normalmap_pars_fragment : String; var packing : String; var points_frag : String; var points_vert : String; var shadow_frag : String; var shadow_vert : String; var premultiplied_alpha_fragment : String; var project_vertex : String; var roughnessmap_fragment : String; var roughnessmap_pars_fragment : String; var shadowmap_pars_fragment : String; var shadowmap_pars_vertex : String; var shadowmap_vertex : String; var shadowmask_pars_fragment : String; var skinbase_vertex : String; var skinning_pars_vertex : String; var skinning_vertex : String; var skinnormal_vertex : String; var specularmap_fragment : String; var specularmap_pars_fragment : String; var tonemapping_fragment : String; var tonemapping_pars_fragment : String; var uv2_pars_fragment : String; var uv2_pars_vertex : String; var uv2_vertex : String; var uv_pars_fragment : String; var uv_pars_vertex : String; var uv_vertex : String; var worldpos_vertex : String; };
+	static var ShaderLib : {
+		var basic : three.Shader;
+		var lambert : three.Shader;
+		var phong : three.Shader;
+		var standard : three.Shader;
+		var matcap : three.Shader;
+		var points : three.Shader;
+		var dashed : three.Shader;
+		var depth : three.Shader;
+		var normal : three.Shader;
+		var sprite : three.Shader;
+		var background : three.Shader;
+		var cube : three.Shader;
+		var equirect : three.Shader;
+		var distanceRGBA : three.Shader;
+		var shadow : three.Shader;
+		var physical : three.Shader;
+	};
+	static var UniformsLib : {
+		var common : {
+			var diffuse : three.IUniform;
+			var opacity : three.IUniform;
+			var map : three.IUniform;
+			var uvTransform : three.IUniform;
+			var alphaMap : three.IUniform;
+		};
+		var specularmap : {
+			var specularMap : three.IUniform;
+		};
+		var envmap : {
+			var envMap : three.IUniform;
+			var flipEnvMap : three.IUniform;
+			var reflectivity : three.IUniform;
+			var refractionRatio : three.IUniform;
+			var maxMipLevel : three.IUniform;
+		};
+		var aomap : {
+			var aoMap : three.IUniform;
+			var aoMapIntensity : three.IUniform;
+		};
+		var lightmap : {
+			var lightMap : three.IUniform;
+			var lightMapIntensity : three.IUniform;
+		};
+		var emissivemap : {
+			var emissiveMap : three.IUniform;
+		};
+		var bumpmap : {
+			var bumpMap : three.IUniform;
+			var bumpScale : three.IUniform;
+		};
+		var normalmap : {
+			var normalMap : three.IUniform;
+			var normalScale : three.IUniform;
+		};
+		var displacementmap : {
+			var displacementMap : three.IUniform;
+			var displacementScale : three.IUniform;
+			var displacementBias : three.IUniform;
+		};
+		var roughnessmap : {
+			var roughnessMap : three.IUniform;
+		};
+		var metalnessmap : {
+			var metalnessMap : three.IUniform;
+		};
+		var gradientmap : {
+			var gradientMap : three.IUniform;
+		};
+		var fog : {
+			var fogDensity : three.IUniform;
+			var fogNear : three.IUniform;
+			var fogFar : three.IUniform;
+			var fogColor : three.IUniform;
+		};
+		var lights : {
+			var ambientLightColor : three.IUniform;
+			var directionalLights : {
+				var value : std.Array<Any>;
+				var properties : {
+					var direction : { };
+					var color : { };
+					var shadow : { };
+					var shadowBias : { };
+					var shadowRadius : { };
+					var shadowMapSize : { };
+				};
+			};
+			var directionalShadowMap : three.IUniform;
+			var directionalShadowMatrix : three.IUniform;
+			var spotLights : {
+				var value : std.Array<Any>;
+				var properties : {
+					var color : { };
+					var position : { };
+					var direction : { };
+					var distance : { };
+					var coneCos : { };
+					var penumbraCos : { };
+					var decay : { };
+					var shadow : { };
+					var shadowBias : { };
+					var shadowRadius : { };
+					var shadowMapSize : { };
+				};
+			};
+			var spotShadowMap : three.IUniform;
+			var spotShadowMatrix : three.IUniform;
+			var pointLights : {
+				var value : std.Array<Any>;
+				var properties : {
+					var color : { };
+					var position : { };
+					var decay : { };
+					var distance : { };
+					var shadow : { };
+					var shadowBias : { };
+					var shadowRadius : { };
+					var shadowMapSize : { };
+				};
+			};
+			var pointShadowMap : three.IUniform;
+			var pointShadowMatrix : three.IUniform;
+			var hemisphereLights : {
+				var value : std.Array<Any>;
+				var properties : {
+					var direction : { };
+					var skycolor : { };
+					var groundColor : { };
+				};
+			};
+			var rectAreaLights : {
+				var value : std.Array<Any>;
+				var properties : {
+					var color : { };
+					var position : { };
+					var width : { };
+					var height : { };
+				};
+			};
+		};
+		var points : {
+			var diffuse : three.IUniform;
+			var opacity : three.IUniform;
+			var size : three.IUniform;
+			var scale : three.IUniform;
+			var map : three.IUniform;
+			var uvTransform : three.IUniform;
+		};
+	};
+	static var ShaderChunk : {
+		var alphamap_fragment : String;
+		var alphamap_pars_fragment : String;
+		var alphatest_fragment : String;
+		var aomap_fragment : String;
+		var aomap_pars_fragment : String;
+		var begin_vertex : String;
+		var beginnormal_vertex : String;
+		var bsdfs : String;
+		var bumpmap_pars_fragment : String;
+		var clipping_planes_fragment : String;
+		var clipping_planes_pars_fragment : String;
+		var clipping_planes_pars_vertex : String;
+		var clipping_planes_vertex : String;
+		var color_fragment : String;
+		var color_pars_fragment : String;
+		var color_pars_vertex : String;
+		var color_vertex : String;
+		var common : String;
+		var cube_frag : String;
+		var cube_vert : String;
+		var cube_uv_reflection_fragment : String;
+		var defaultnormal_vertex : String;
+		var depth_frag : String;
+		var depth_vert : String;
+		var distanceRGBA_frag : String;
+		var distanceRGBA_vert : String;
+		var displacementmap_vertex : String;
+		var displacementmap_pars_vertex : String;
+		var emissivemap_fragment : String;
+		var emissivemap_pars_fragment : String;
+		var encodings_pars_fragment : String;
+		var encodings_fragment : String;
+		var envmap_fragment : String;
+		var envmap_pars_fragment : String;
+		var envmap_pars_vertex : String;
+		var envmap_vertex : String;
+		var equirect_frag : String;
+		var equirect_vert : String;
+		var fog_fragment : String;
+		var fog_pars_fragment : String;
+		var linedashed_frag : String;
+		var linedashed_vert : String;
+		var lightmap_fragment : String;
+		var lightmap_pars_fragment : String;
+		var lights_lambert_vertex : String;
+		var lights_pars_begin : String;
+		var lights_pars_map : String;
+		var lights_phong_fragment : String;
+		var lights_phong_pars_fragment : String;
+		var lights_physical_fragment : String;
+		var lights_physical_pars_fragment : String;
+		var lights_fragment_begin : String;
+		var lights_fragment_maps : String;
+		var lights_fragment_end : String;
+		var logdepthbuf_fragment : String;
+		var logdepthbuf_pars_fragment : String;
+		var logdepthbuf_pars_vertex : String;
+		var logdepthbuf_vertex : String;
+		var map_fragment : String;
+		var map_pars_fragment : String;
+		var map_particle_fragment : String;
+		var map_particle_pars_fragment : String;
+		var meshbasic_frag : String;
+		var meshbasic_vert : String;
+		var meshlambert_frag : String;
+		var meshlambert_vert : String;
+		var meshphong_frag : String;
+		var meshphong_vert : String;
+		var meshphysical_frag : String;
+		var meshphysical_vert : String;
+		var metalnessmap_fragment : String;
+		var metalnessmap_pars_fragment : String;
+		var morphnormal_vertex : String;
+		var morphtarget_pars_vertex : String;
+		var morphtarget_vertex : String;
+		var normal_flip : String;
+		var normal_frag : String;
+		var normal_fragment_begin : String;
+		var normal_fragment_maps : String;
+		var normal_vert : String;
+		var normalmap_pars_fragment : String;
+		var packing : String;
+		var points_frag : String;
+		var points_vert : String;
+		var shadow_frag : String;
+		var shadow_vert : String;
+		var premultiplied_alpha_fragment : String;
+		var project_vertex : String;
+		var roughnessmap_fragment : String;
+		var roughnessmap_pars_fragment : String;
+		var shadowmap_pars_fragment : String;
+		var shadowmap_pars_vertex : String;
+		var shadowmap_vertex : String;
+		var shadowmask_pars_fragment : String;
+		var skinbase_vertex : String;
+		var skinning_pars_vertex : String;
+		var skinning_vertex : String;
+		var skinnormal_vertex : String;
+		var specularmap_fragment : String;
+		var specularmap_pars_fragment : String;
+		var tonemapping_fragment : String;
+		var tonemapping_pars_fragment : String;
+		var uv2_pars_fragment : String;
+		var uv2_pars_vertex : String;
+		var uv2_vertex : String;
+		var uv_pars_fragment : String;
+		var uv_pars_vertex : String;
+		var uv_vertex : String;
+		var worldpos_vertex : String;
+	};
 	static var LineStrip : Float;
 	static var LinePieces : Float;
 	static var TextureIdCount : Float;
 	static var MaterialIdCount : Float;
 	static var DefaultLoadingManager : three.LoadingManager;
-	static var AudioContext : js.html.AudioContext;
+	static var AudioContext : js.html.IAudioContext;
 	static var GeometryIdCount : Float;
 	static var Object3DIdCount : Float;
 	static var REVISION : String;

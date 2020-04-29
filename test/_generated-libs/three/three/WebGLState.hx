@@ -1,7 +1,11 @@
 package three;
 @:jsRequire("three", "WebGLState") extern class WebGLState {
-	function new(gl:js.html.WebGLRenderingContext, extensions:WebGLExtensions, utils:Any, capabilities:WebGLCapabilities);
-	var buffers : { var color : WebGLColorBuffer; var depth : WebGLDepthBuffer; var stencil : WebGLStencilBuffer; };
+	function new(gl:js.html.IWebGLRenderingContext, extensions:WebGLExtensions, utils:Any, capabilities:WebGLCapabilities);
+	var buffers : {
+		var color : WebGLColorBuffer;
+		var depth : WebGLDepthBuffer;
+		var stencil : WebGLStencilBuffer;
+	};
 	function initAttributes():Void;
 	function enableAttribute(attribute:Float):Void;
 	function enableAttributeAndDivisor(attribute:Float, meshPerAttribute:Float):Void;

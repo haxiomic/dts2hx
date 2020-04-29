@@ -2,41 +2,41 @@ package js.html;
 /**
 	A fragment of a document that can contain nodes and parts of text nodes.
 **/
-@:native("Range") @tsInterface extern class Range {
+@:native("Range") extern class Range {
 	function new();
 	/**
 		Returns the node, furthest away from the document, that is an ancestor of both range's start node and end node.
 	**/
-	final commonAncestorContainer : Node;
-	function cloneContents():DocumentFragment;
-	function cloneRange():Range;
+	final commonAncestorContainer : INode;
+	function cloneContents():IDocumentFragment;
+	function cloneRange():IRange;
 	function collapse(?toStart:Bool):Void;
-	function compareBoundaryPoints(how:Float, sourceRange:Range):Float;
+	function compareBoundaryPoints(how:Float, sourceRange:IRange):Float;
 	/**
 		Returns −1 if the point is before the range, 0 if the point is in the range, and 1 if the point is after the range.
 	**/
-	function comparePoint(node:Node, offset:Float):Float;
-	function createContextualFragment(fragment:String):DocumentFragment;
+	function comparePoint(node:INode, offset:Float):Float;
+	function createContextualFragment(fragment:String):IDocumentFragment;
 	function deleteContents():Void;
 	function detach():Void;
-	function extractContents():DocumentFragment;
-	function getBoundingClientRect():DOMRect;
-	function getClientRects():js.lib.DOMRectList;
-	function insertNode(node:Node):Void;
+	function extractContents():IDocumentFragment;
+	function getBoundingClientRect():IDOMRect;
+	function getClientRects():js.lib.IDOMRectList;
+	function insertNode(node:INode):Void;
 	/**
 		Returns whether range intersects node.
 	**/
-	function intersectsNode(node:Node):Bool;
-	function isPointInRange(node:Node, offset:Float):Bool;
-	function selectNode(node:Node):Void;
-	function selectNodeContents(node:Node):Void;
-	function setEnd(node:Node, offset:Float):Void;
-	function setEndAfter(node:Node):Void;
-	function setEndBefore(node:Node):Void;
-	function setStart(node:Node, offset:Float):Void;
-	function setStartAfter(node:Node):Void;
-	function setStartBefore(node:Node):Void;
-	function surroundContents(newParent:Node):Void;
+	function intersectsNode(node:INode):Bool;
+	function isPointInRange(node:INode, offset:Float):Bool;
+	function selectNode(node:INode):Void;
+	function selectNodeContents(node:INode):Void;
+	function setEnd(node:INode, offset:Float):Void;
+	function setEndAfter(node:INode):Void;
+	function setEndBefore(node:INode):Void;
+	function setStart(node:INode, offset:Float):Void;
+	function setStartAfter(node:INode):Void;
+	function setStartBefore(node:INode):Void;
+	function surroundContents(newParent:INode):Void;
 	final END_TO_END : Float;
 	final END_TO_START : Float;
 	final START_TO_END : Float;
@@ -48,7 +48,7 @@ package js.html;
 	/**
 		Returns range's end node.
 	**/
-	final endContainer : Node;
+	final endContainer : INode;
 	/**
 		Returns range's end offset.
 	**/
@@ -56,12 +56,12 @@ package js.html;
 	/**
 		Returns range's start node.
 	**/
-	final startContainer : Node;
+	final startContainer : INode;
 	/**
 		Returns range's start offset.
 	**/
 	final startOffset : Float;
-	static var prototype : Range;
+	static var prototype : IRange;
 	@:native("END_TO_END")
 	static final END_TO_END_ : Float;
 	@:native("END_TO_START")

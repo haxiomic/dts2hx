@@ -1,5 +1,5 @@
 package three;
-extern interface MorphTarget {
+extern typedef MorphTarget = {
 	var name : String;
 	var vertices : std.Array<Vector3>;
-}
+};

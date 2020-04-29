@@ -1,7 +1,7 @@
 package node.inspector.debugger;
-extern interface GetScriptSourceReturnType {
+extern typedef GetScriptSourceReturnType = {
 	/**
 		Script source.
 	**/
 	var scriptSource : String;
-}
+};

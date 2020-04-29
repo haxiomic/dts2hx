@@ -2,7 +2,7 @@ package js.html;
 /**
 	Correspond to the <length> basic data type.
 **/
-@:native("SVGLength") @tsInterface extern class SVGLength {
+@:native("SVGLength") extern class SVGLength {
 	function new();
 	final unitType : Float;
 	var value : Float;
@@ -21,7 +21,7 @@ package js.html;
 	final SVG_LENGTHTYPE_PT : Float;
 	final SVG_LENGTHTYPE_PX : Float;
 	final SVG_LENGTHTYPE_UNKNOWN : Float;
-	static var prototype : SVGLength;
+	static var prototype : ISVGLength;
 	@:native("SVG_LENGTHTYPE_CM")
 	static final SVG_LENGTHTYPE_CM_ : Float;
 	@:native("SVG_LENGTHTYPE_EMS")

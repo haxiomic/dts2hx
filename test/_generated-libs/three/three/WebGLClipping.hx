@@ -1,6 +1,9 @@
 package three;
 @:jsRequire("three", "WebGLClipping") extern class WebGLClipping {
-	var uniform : { var value : Any; var needsUpdate : Bool; };
+	var uniform : {
+		var value : Any;
+		var needsUpdate : Bool;
+	};
 	var numPlanes : Float;
 	function init(planes:std.Array<Any>, enableLocalClipping:Bool, camera:Camera):Bool;
 	function beginShadows():Void;

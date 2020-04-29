@@ -1,5 +1,5 @@
 package three;
-extern interface PathAction {
+extern typedef PathAction = {
 	var action : PathActions;
 	var args : Any;
-}
+};

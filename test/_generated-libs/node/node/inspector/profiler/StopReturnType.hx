@@ -1,7 +1,7 @@
 package node.inspector.profiler;
-extern interface StopReturnType {
+extern typedef StopReturnType = {
 	/**
 		Recorded profile.
 	**/
 	var profile : Profile;
-}
+};

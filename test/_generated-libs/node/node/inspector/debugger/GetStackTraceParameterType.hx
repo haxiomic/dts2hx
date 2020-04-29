@@ -1,4 +1,4 @@
 package node.inspector.debugger;
-extern interface GetStackTraceParameterType {
+extern typedef GetStackTraceParameterType = {
 	var stackTraceId : node.inspector.runtime.StackTraceId;
-}
+};

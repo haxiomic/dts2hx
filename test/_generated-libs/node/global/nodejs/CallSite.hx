@@ -1,5 +1,5 @@
 package global.nodejs;
-extern interface CallSite {
+extern typedef CallSite = {
 	/**
 		Value of "this"
 	**/
@@ -14,7 +14,7 @@ extern interface CallSite {
 	/**
 		Current function
 	**/
-	function getFunction():Null<js.lib.Function>;
+	function getFunction():Null<js.lib.IFunction>;
 	/**
 		Name of the current function, typically its name property.
 		If a name property is not available an attempt will be made to try
@@ -59,4 +59,4 @@ extern interface CallSite {
 		Is this a constructor call?
 	**/
 	function isConstructor():Bool;
-}
+};

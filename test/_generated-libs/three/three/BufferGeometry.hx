@@ -4,7 +4,7 @@ package three;
 	It reduces memory costs and cpu cycles. But it is not as easy to work with because of all the nessecary buffer calculations.
 	It is mainly interesting when working with static objects.
 **/
-@:jsRequire("three", "BufferGeometry") extern class BufferGeometry extends EventDispatcher {
+@:jsRequire("three", "BufferGeometry") extern class BufferGeometry {
 	/**
 		This creates a new BufferGeometry. It also sets several properties to an default value.
 	**/
@@ -19,11 +19,18 @@ package three;
 	var index : BufferAttribute;
 	var attributes : { };
 	var morphAttributes : Any;
-	var groups : std.Array<{ var start : Float; var count : Float; @:optional
-	var materialIndex : Float; }>;
+	var groups : std.Array<{
+		var start : Float;
+		var count : Float;
+		@:optional
+		var materialIndex : Float;
+	}>;
 	var boundingBox : Box3;
 	var boundingSphere : Sphere;
-	var drawRange : { var start : Float; var count : Float; };
+	var drawRange : {
+		var start : Float;
+		var count : Float;
+	};
 	var userData : { };
 	function getIndex():BufferAttribute;
 	function setIndex(index:haxe.extern.EitherType<std.Array<Float>, BufferAttribute>):Void;
@@ -80,5 +87,21 @@ package three;
 	function addIndex(index:Any):Void;
 	function addDrawCall(start:Any, count:Any, ?indexOffset:Any):Void;
 	function clearDrawCalls():Void;
+	/**
+		Adds a listener to an event type.
+	**/
+	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
+	/**
+		Checks if listener is added to an event type.
+	**/
+	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
+	/**
+		Removes a listener from an event type.
+	**/
+	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
+	/**
+		Fire an event type.
+	**/
+	function dispatchEvent(event:{ var type : String; }):Void;
 	static var MaxIndex : Float;
 }

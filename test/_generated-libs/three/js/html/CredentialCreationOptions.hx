@@ -1,7 +1,7 @@
 package js.html;
-extern interface CredentialCreationOptions {
+extern typedef CredentialCreationOptions = {
 	@:optional
 	var publicKey : PublicKeyCredentialCreationOptions;
 	@:optional
-	var signal : AbortSignal;
-}
+	var signal : IAbortSignal;
+};

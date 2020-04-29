@@ -1,5 +1,5 @@
 package node.dns;
-extern interface AnyCnameRecord {
+extern typedef AnyCnameRecord = {
 	var type : String;
 	var value : String;
-}
+};

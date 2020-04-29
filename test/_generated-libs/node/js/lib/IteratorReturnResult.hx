@@ -1,5 +1,5 @@
 package js.lib;
-extern interface IteratorReturnResult<TReturn> {
+extern typedef IteratorReturnResult<TReturn> = {
 	var done : Bool;
 	var value : TReturn;
-}
+};

@@ -1,5 +1,5 @@
 package js.html;
-@:native("SVGPathSegCurvetoQuadraticRel") @tsInterface extern class SVGPathSegCurvetoQuadraticRel {
+@:native("SVGPathSegCurvetoQuadraticRel") extern class SVGPathSegCurvetoQuadraticRel {
 	function new();
 	var x : Float;
 	var x1 : Float;
@@ -27,5 +27,5 @@ package js.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : SVGPathSegCurvetoQuadraticRel;
+	static var prototype : ISVGPathSegCurvetoQuadraticRel;
 }

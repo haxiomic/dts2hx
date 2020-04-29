@@ -1,5 +1,8 @@
 package js.html;
-extern interface PublicKeyCredentialRpEntity extends PublicKeyCredentialEntity {
+extern typedef PublicKeyCredentialRpEntity = {
 	@:optional
 	var id : String;
-}
+	@:optional
+	var icon : String;
+	var name : String;
+};

@@ -1,11 +1,17 @@
 package js.html;
-extern interface OscillatorOptions extends AudioNodeOptions {
+extern typedef OscillatorOptions = {
 	@:optional
 	var detune : Float;
 	@:optional
 	var frequency : Float;
 	@:optional
-	var periodicWave : PeriodicWave;
+	var periodicWave : IPeriodicWave;
 	@:optional
 	var type : String;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

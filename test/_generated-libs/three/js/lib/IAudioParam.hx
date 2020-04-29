@@ -1,0 +1,19 @@
+package js.lib;
+/**
+	The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
+**/
+extern typedef IAudioParam = {
+	var automationRate : String;
+	final defaultValue : Float;
+	final maxValue : Float;
+	final minValue : Float;
+	var value : Float;
+	function cancelAndHoldAtTime(cancelTime:Float):IAudioParam;
+	function cancelScheduledValues(cancelTime:Float):IAudioParam;
+	function exponentialRampToValueAtTime(value:Float, endTime:Float):IAudioParam;
+	function linearRampToValueAtTime(value:Float, endTime:Float):IAudioParam;
+	function setTargetAtTime(target:Float, startTime:Float, timeConstant:Float):IAudioParam;
+	function setValueAtTime(value:Float, startTime:Float):IAudioParam;
+	@:overload(function(values:Iterable<Float>, startTime:Float, duration:Float):IAudioParam { })
+	function setValueCurveAtTime(values:haxe.extern.EitherType<IFloat32Array, std.Array<Float>>, startTime:Float, duration:Float):IAudioParam;
+};

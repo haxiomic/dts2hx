@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	Location in the source code.
 **/
-extern interface Location {
+extern typedef Location = {
 	/**
 		Script identifier as reported in the `Debugger.scriptParsed`.
 	**/
@@ -16,4 +16,4 @@ extern interface Location {
 	**/
 	@:optional
 	var columnNumber : Float;
-}
+};

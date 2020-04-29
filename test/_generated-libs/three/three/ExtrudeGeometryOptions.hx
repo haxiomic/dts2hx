@@ -1,5 +1,5 @@
 package three;
-extern interface ExtrudeGeometryOptions {
+extern typedef ExtrudeGeometryOptions = {
 	@:optional
 	var curveSegments : Float;
 	@:optional
@@ -20,4 +20,4 @@ extern interface ExtrudeGeometryOptions {
 	var extrudePath : Curve<Vector3>;
 	@:optional
 	var UVGenerator : UVGenerator;
-}
+};

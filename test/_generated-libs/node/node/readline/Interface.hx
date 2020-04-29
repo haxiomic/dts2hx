@@ -1,5 +1,5 @@
 package node.readline;
-@:jsRequire("readline", "Interface") extern class Interface extends node.events.EventEmitter {
+@:jsRequire("readline", "Interface") extern class Interface {
 	/**
 		NOTE: According to the documentation:
 		
@@ -7,7 +7,7 @@ package node.readline;
 		> `readline.createInterface()` method.
 	**/
 	@:overload(function(options:ReadLineOptions):Interface { })
-	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.Error, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
+	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.IError, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
 	final terminal : Bool;
 	function setPrompt(prompt:String):Void;
 	function prompt(?preserveCursor:Bool):Void;
@@ -15,7 +15,7 @@ package node.readline;
 	function pause():Interface;
 	function resume():Interface;
 	function close():Void;
-	function write(data:haxe.extern.EitherType<String, global.Buffer>, ?key:Key):Void;
+	function write(data:haxe.extern.EitherType<String, global.IBuffer>, ?key:Key):Void;
 	/**
 		events.EventEmitter
 		1. close
@@ -74,4 +74,13 @@ package node.readline;
 	@:overload(function(event:String, listener:() -> Void):Interface { })
 	@:overload(function(event:String, listener:() -> Void):Interface { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Interface;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):node.events.EventEmitter;
+	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):node.events.EventEmitter;
+	function setMaxListeners(n:Float):node.events.EventEmitter;
+	function getMaxListeners():Float;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

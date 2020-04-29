@@ -2,17 +2,17 @@ package js.html;
 /**
 	TextTrackCues represent a string of text that will be displayed for some duration of time on a TextTrack. This includes the start and end times that the cue will be displayed. A TextTrackCue cannot be used directly, instead one of the derived types (e.g. VTTCue) must be used.
 **/
-@:native("TextTrackCue") @tsInterface extern class TextTrackCue {
+@:native("TextTrackCue") extern class TextTrackCue {
 	function new(startTime:Float, endTime:Float, text:String);
 	var endTime : Float;
 	var id : String;
-	var onenter : Null<(ev:Event) -> Any>;
-	var onexit : Null<(ev:Event) -> Any>;
+	var onenter : Null<(ev:IEvent) -> Any>;
+	var onexit : Null<(ev:IEvent) -> Any>;
 	var pauseOnExit : Bool;
 	var startTime : Float;
 	var text : String;
-	final track : TextTrack;
-	function getCueAsHTML():DocumentFragment;
+	final track : ITextTrack;
+	function getCueAsHTML():IDocumentFragment;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -25,8 +25,6 @@ package js.html;
 		When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-		
-		
 		
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -45,8 +43,6 @@ package js.html;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
-		
-		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
@@ -54,6 +50,6 @@ package js.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
-	static var prototype : TextTrackCue;
+	function dispatchEvent(event:IEvent):Bool;
+	static var prototype : ITextTrackCue;
 }

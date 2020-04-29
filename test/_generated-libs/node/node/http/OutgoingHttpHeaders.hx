@@ -1,4 +1,2 @@
 package node.http;
-extern interface OutgoingHttpHeaders {
-
-}
+extern typedef OutgoingHttpHeaders = { };

@@ -1,7 +1,7 @@
 package js.html;
-extern interface MediaKeySystemMediaCapability {
+extern typedef MediaKeySystemMediaCapability = {
 	@:optional
 	var contentType : String;
 	@:optional
 	var robustness : String;
-}
+};

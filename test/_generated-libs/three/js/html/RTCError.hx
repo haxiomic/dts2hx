@@ -1,5 +1,5 @@
 package js.html;
-@:native("RTCError") @tsInterface extern class RTCError {
+@:native("RTCError") extern class RTCError {
 	function new(?errorDetail:String, ?message:String);
 	var errorDetail : String;
 	var httpRequestStatusCode : Float;
@@ -11,5 +11,5 @@ package js.html;
 	var sentAlert : Null<Float>;
 	@:optional
 	var stack : String;
-	static var prototype : RTCError;
+	static var prototype : IRTCError;
 }

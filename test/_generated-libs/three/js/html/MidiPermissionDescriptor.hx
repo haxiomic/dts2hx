@@ -1,6 +1,6 @@
 package js.html;
-extern interface MidiPermissionDescriptor extends PermissionDescriptor {
+extern typedef MidiPermissionDescriptor = {
 	var name : String;
 	@:optional
 	var sysex : Bool;
-}
+};

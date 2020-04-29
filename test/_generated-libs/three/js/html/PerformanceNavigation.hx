@@ -2,7 +2,7 @@ package js.html;
 /**
 	The legacy PerformanceNavigation interface represents information about how the navigation to the current document was done.
 **/
-@:native("PerformanceNavigation") @tsInterface extern class PerformanceNavigation {
+@:native("PerformanceNavigation") extern class PerformanceNavigation {
 	function new();
 	final redirectCount : Float;
 	final type : Float;
@@ -11,7 +11,7 @@ package js.html;
 	final TYPE_NAVIGATE : Float;
 	final TYPE_RELOAD : Float;
 	final TYPE_RESERVED : Float;
-	static var prototype : PerformanceNavigation;
+	static var prototype : IPerformanceNavigation;
 	@:native("TYPE_BACK_FORWARD")
 	static final TYPE_BACK_FORWARD_ : Float;
 	@:native("TYPE_NAVIGATE")

@@ -2,7 +2,7 @@ package three;
 /**
 	Base class for geometries
 **/
-@:jsRequire("three", "Geometry") extern class Geometry extends EventDispatcher {
+@:jsRequire("three", "Geometry") extern class Geometry {
 	function new();
 	/**
 		Unique number of this geometry instance

@@ -1,5 +1,5 @@
 package js.html;
-extern interface DynamicsCompressorOptions extends AudioNodeOptions {
+extern typedef DynamicsCompressorOptions = {
 	@:optional
 	var attack : Float;
 	@:optional
@@ -10,4 +10,10 @@ extern interface DynamicsCompressorOptions extends AudioNodeOptions {
 	var release : Float;
 	@:optional
 	var threshold : Float;
-}
+	@:optional
+	var channelCount : Float;
+	@:optional
+	var channelCountMode : String;
+	@:optional
+	var channelInterpretation : String;
+};

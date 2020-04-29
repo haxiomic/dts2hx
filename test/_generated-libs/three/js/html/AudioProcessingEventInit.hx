@@ -1,6 +1,12 @@
 package js.html;
-extern interface AudioProcessingEventInit extends EventInit {
-	var inputBuffer : AudioBuffer;
-	var outputBuffer : AudioBuffer;
+extern typedef AudioProcessingEventInit = {
+	var inputBuffer : IAudioBuffer;
+	var outputBuffer : IAudioBuffer;
 	var playbackTime : Float;
-}
+	@:optional
+	var bubbles : Bool;
+	@:optional
+	var cancelable : Bool;
+	@:optional
+	var composed : Bool;
+};
