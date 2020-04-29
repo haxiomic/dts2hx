@@ -29,7 +29,6 @@ class SupportTypes {
 		if (existingModule == null) {
 			// generate fields
 			var fields = new Array<Field>();
-			var initializerExpressions = new Array<Expr>();
 
 			for (i in 0...elementTypes.length) {
 				var name = 'element$i';
@@ -45,7 +44,6 @@ class SupportTypes {
 					inline function $get(): $type return cast this[$indexExpr];
 					inline function $set(v: $type): $type return cast this[$indexExpr] = cast v;
 				}).fields);
-				initializerExpressions.push(macro $i{set}($i{name}));
 			}
 
 			// add new(...)
