@@ -59,8 +59,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Remove type-path prefix if referencing type within the same module
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
-- [ ] Handle type parameters when rasterizing types
-    - [ ] Information loss in function signatures **← :star: currently working on this**
+- [x] Handle type parameters when rasterizing types
+    - [x] Information loss in function signatures **← :star: currently working on this**
 - [ ] All test code compiles
 - [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
 
