@@ -50,9 +50,10 @@ class SupportTypes {
 
 			// add new(...)
 			var newParams = [for (i in 0...elementTypes.length) 'element$i:T$i'].join(', ');
+			var elementInitializerArray = [for (i in 0...elementTypes.length) macro $i{'element$i'}];
 			fields.unshift((macro class {
 				public inline function new($newParams) {
-					$a{initializerExpressions}
+					this = $a{elementInitializerArray};
 				}
 			}).fields[0]);
 
