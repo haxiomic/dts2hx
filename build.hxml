@@ -8,30 +8,28 @@
 
 -js dist/dts2hx.js
 
-# -cmd rm -rf dts2hx-output
-
 # run with no args
 # -cmd node dist/dts2hx.js
 
 # -cmd node dist/dts2hx.js --all --verbose
 
 # Ambient 
-# -cmd node dist/dts2hx.js babylonjs -p test/libs --verbose
-# -cmd node dist/dts2hx.js pixi.js -p test/libs --verbose
+# -cmd node dist/dts2hx.js babylonjs -p test --verbose
+# -cmd node dist/dts2hx.js pixi.js -p test --verbose
 
 # Export
-# -cmd node dist/dts2hx.js three -p test/libs --verbose
-# -cmd node dist/dts2hx.js big.js -p test/libs --verbose
-# -cmd node dist/dts2hx.js playcanvas -p test/libs --verbose
+# -cmd node dist/dts2hx.js three -p test --verbose
+# -cmd node dist/dts2hx.js big.js -p test --verbose
+# -cmd node dist/dts2hx.js playcanvas -p test --verbose
 
 # Export declare
-# -cmd node dist/dts2hx.js @actions/core -p test/libs --verbose
+# -cmd node dist/dts2hx.js @actions/core -p test --verbose
 
 # Function-module export
-# -cmd node dist/dts2hx.js mxgraph -p test/libs --verbose
+# -cmd node dist/dts2hx.js mxgraph -p test --verbose
 
 # External references
-# -cmd node dist/dts2hx.js jquery -p test/libs --verbose
+# -cmd node dist/dts2hx.js jquery -p test --verbose
 # -cmd node dist/dts2hx.js ./test/unit/tripple-slash-references --verbose
 
 # Unit tests
