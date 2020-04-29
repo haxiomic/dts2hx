@@ -1,8 +1,11 @@
 package unit.type_parameters;
 extern typedef DefaultTypeParameterExtension = {
+	@:selfCall
+	function call(callSignatureArg:Bool):Bool;
 	var extensionField : Float;
 	var field : Bool;
-	var fieldUnion : haxe.extern.EitherType<Float, Bool>;
-	var fieldTupleUnion : haxe.extern.EitherType<Float, js.lib.Tuple1<Bool>>;
-	function fn(arg:X, argTuple:js.lib.Tuple1<X>, argUnion:haxe.extern.EitherType<Float, X>):X;
+	var fieldUnion : haxe.extern.EitherType<String, Bool>;
+	var fieldTupleUnion : haxe.extern.EitherType<String, js.lib.Tuple1<Bool>>;
+	@:overload(function(arg:Bool, argTuple:js.lib.Tuple1<Bool>, argUnion:haxe.extern.EitherType<String, Bool>):Bool { })
+	function fn(?optionalOverloadArg:Bool):Bool;
 };
