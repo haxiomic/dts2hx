@@ -44,7 +44,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Function types
         - [x] Type parameters
         - [ ] Index signatures
-        - [ ] Intersection types **← :star: currently working on this**
+        - [ ] Intersection types
         - [x] Tuple types
         - [x] This type
         - [x] Overloads
@@ -52,43 +52,37 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Handle `export default` better
     - [x] Global fields
     - [x] Detect constructable fields, promote to classes and merge with existing interfaces
-    - [ ] Resolve typescript interface vs haxe interface (use anons instead?)
+    - [x] Resolve typescript interface vs haxe interface (use anons instead?)
     - [ ] Classes and interfaces
         - [x] Constructors
         - [ ] Index signatures (both class and interfaces)
-        - [ ] Extends & implements
-    - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
+        - [ ] Extends & implements **← :star: currently working on this**
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
     - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
     - [x] Remove type-path prefix if referencing type within the same module
+- [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
     - [ ] Add `--install` option
 - [ ] :star: **Prelease** *Not perfect but practically useable*
+- [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [ ] Advanced type conversions
-    - [ ] Generic build types, `Union$N<T0 ... T$N>` and `ConstUnion$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
+    - [ ] Support native iteration (by handling `iterator` symbol)
+    - [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
         - [ ] enum subset example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
-        - Maybe we can use generic build macro to generate an abstract until haxe has [`@:newCall`](https://github.com/HaxeFoundation/haxe/issues/9335) feature
+        - Requires [`@:newCall`](https://github.com/HaxeFoundation/haxe/issues/9335) feature
         - If a constructor type is used as a type parameter we can use haxe's `Constructible` type
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
-    - [ ] Use abstracts to support interfaces and structures with index signatures _and_ fields
 - [ ] Add cli option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
     - Either:
         - bake into the externs
         - include a macro that bundles at compile-time
 - [ ] Add cli option to use haxe formatter (off by default)
+- [ ] Copy printer improvements to haxe standard library
 - [ ] :star2: **1.0 Release**
-- [ ] Systematize compatibility tweaks to make it easier for others to contribute
-    - [ ] Contribution documentation
-- [ ] Unit tests
-- [ ] Cleaner output
-    - [ ] Improve formatting of `haxe.macro.Printer`
-    - [ ] Replace full type references with imports for some types (like haxe.extern.EitherType)
-    - [ ] *maybe*: If a package only has one type with the same name as package, replace with a module. For example:
-        `babylonjs.cameras.inputs.freecameragamepadinput.FreeCameraGamepadInput` -> `babylonjs.cameras.inputs.FreeCameraGamepadInput`
 
 # FAQ
 
