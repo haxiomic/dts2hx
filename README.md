@@ -1,4 +1,4 @@
-# Work-in-Progress .d.ts to .hx
+# .d.ts to .hx
 
 Hi, this is a work in progress TypeScript Definition to Haxe Extern converter that uses the typescript compiler. It's not yet ready to use but much of the groundwork has been laid
 
