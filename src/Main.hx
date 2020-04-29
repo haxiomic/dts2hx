@@ -23,8 +23,6 @@ class Main {
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';
 		Console.errorPrefix = '<b,red>> Error:</b> ';
 
-		Console.warn('Tool is under active development - externs may not compile');
-
 		var userArgs = Node.process.argv.slice(2);
 
 		var cliOptions = {
