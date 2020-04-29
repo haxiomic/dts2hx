@@ -270,7 +270,7 @@ class ConverterContext {
 		var pos = TsSymbolTools.getPosition(symbol);
 
 		var isConstructorTypeVariable = tc.isConstructorTypeVariableSymbol(symbol);
-		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !isConstructorTypeVariable;
+		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !isConstructorTypeVariable; // (allowed to be a variable symbol)
 
 		var hxModule: HaxeModule = if (symbol.flags & SymbolFlags.Enum != 0) {
 			var typePath = haxeTypePathMap.getTypePath(symbol, access, false);
