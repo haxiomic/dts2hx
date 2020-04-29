@@ -959,7 +959,7 @@ class ConverterContext {
 
 		var hxParameters: Array<ComplexType> = callSignature.parameters.map(s -> {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var tsType = tc.getTypeAtLocation(parameterDeclaration);
+			var tsType = tc.getTypeOfSymbolAtLocation(s, parameterDeclaration);
 
 			var hxType = if (isLocalTypeParam(tsType)) {
 				macro :Any;
@@ -1157,7 +1157,7 @@ class ConverterContext {
 			var hxType = if (baseDeclaration == null) {
 				complexTypeFromTsType(tc.getDeclaredTypeOfSymbol(symbol), accessContext, enclosingDeclaration);
 			} else {
-				complexTypeFromTsType(tc.getTypeAtLocation(baseDeclaration), accessContext, baseDeclaration);
+				complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(symbol, baseDeclaration), accessContext, baseDeclaration);
 			}
 
 			if (isOptional) {
@@ -1252,7 +1252,7 @@ class ConverterContext {
 
 		var hxParameters = if (signature.parameters != null ) signature.parameters.map(s -> {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var hxType = complexTypeFromTsType(tc.getTypeAtLocation(parameterDeclaration), accessContext, parameterDeclaration);
+			var hxType = complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(s, parameterDeclaration), accessContext, parameterDeclaration);
 			var isOptional = tc.isOptionalParameter(parameterDeclaration);
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
