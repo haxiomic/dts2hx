@@ -1,3 +1,8 @@
+- Fix type-information loss in function signatures
+- Complete validation
+
+---- Tests should compile
+
 - Class and interface extend handling, add override etc
 	- Need to check where extending / intersection is allowed
 	- Class extends should not `preferInterfaceStructure`, what else?
@@ -23,6 +28,8 @@
 	- symbol.flags & SymbolFlags.Function != 0
 	- play well with other call signatures (also from construct type)
 
+- Lots of array extensions, can we do better here?
+
 - `getTopLevelDeclarationSymbols` sucks, can we use alternative methods now? Why does it exist?
 
 - Playcanvas, why 
@@ -33,6 +40,8 @@
 	- don't set singleLineFields on function args
 	- set it on function signatures, check if resulting line length > x
 	- if > x, re-print with multiLineFields
+
+- Formatting issues in Typescript.hx
 
 - Enums:
 	- Generate method to get keys
