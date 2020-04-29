@@ -35,7 +35,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
         - [x] Generate externs for built-in types that aren't in the haxe standard library yet
         - [x] Type-node references
-    - [ ] Basic conversion of fundamental types
+    - [x] Basic conversion of fundamental types
         - [x] Enums
         - [x] Primitives
         - [x] Type references
@@ -43,8 +43,6 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - [x] Unions with EitherType
         - [x] Function types
         - [x] Type parameters
-        - [ ] Index signatures
-        - [ ] Intersection types
         - [x] Tuple types
         - [x] This type
         - [x] Overloads
@@ -53,19 +51,28 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Global fields
     - [x] Detect constructable fields, promote to classes and merge with existing interfaces
     - [x] Resolve typescript interface vs haxe interface (use anons instead?)
-    - [ ] Classes and interfaces
+    - [x] Classes and interfaces
         - [x] Constructors
-        - [ ] Index signatures (both class and interfaces)
-        - [ ] Extends & implements **← :star: currently working on this**
     - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
     - [x] Generate a haxelib.json file
     - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
     - [x] Remove type-path prefix if referencing type within the same module
-- [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
-    - [ ] Add `--install` option
-- [ ] :star: **Prelease** *Not perfect but practically useable*
+- [ ] Handle type parameters when rasterizing types **← :star: currently working on this**
+- [ ] All test code compiles
+- [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
+
+**Road to Beta**
+- [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
+- [ ] Classes and interfaces
+    - [ ] Index signatures (both class and interfaces)
+    - [ ] Extends & implements
+- [ ] Index signatures
+- [ ] Intersection types
+- [ ] :star: **Beta Release** *Not perfect but practically useable*
+
+**Road to 1.0**
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [ ] Advanced type conversions
     - [ ] Support native iteration (by handling `iterator` symbol)
@@ -76,11 +83,11 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
         - If a constructor type is used as a type parameter we can use haxe's `Constructible` type
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
-- [ ] Add cli option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
+- [ ] CLI: Add `--install` option
+- [ ] CLI: Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
     - Either:
         - bake into the externs
         - include a macro that bundles at compile-time
-- [ ] Add cli option to use haxe formatter (off by default)
 - [ ] Copy printer improvements to haxe standard library
 - [ ] :star2: **1.0 Release**
 
