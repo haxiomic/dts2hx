@@ -104,6 +104,11 @@ class Main {
 			@doc('Disable command-line output')
 			'--silent' => () -> silent = true,
 
+			@doc('Disable printing warnings')
+			'--noWarn' => () -> {
+				cliOptions.logLevel = Error;
+			},
+
 			@doc('Print all logs')
 			'--verbose' => () -> {
 				cliOptions.logLevel = All;
@@ -297,6 +302,8 @@ class Main {
 				var haxelibJsonStr = generateHaxelibJson(moduleName, moduleSearchPath, converter, resolvedModule, packageJson);
 				Fs.writeFileSync(Path.join([outputLibraryPath, 'haxelib.json']), haxelibJsonStr);
 			}
+
+			Console.success('<green>Generated <b>$outputLibraryPath</></>');
 		}
 
 		return converter;
