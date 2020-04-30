@@ -1,4 +1,3 @@
-- Fix type-information loss in function signatures
 - Complete validation
 
 ---- Tests should compile
@@ -42,6 +41,8 @@
 	- if > x, re-print with multiLineFields
 
 - Formatting issues in Typescript.hx
+
+- Issue: Global.hx, multiple root Global.hx's will override each other
 
 - Enums:
 	- Generate method to get keys

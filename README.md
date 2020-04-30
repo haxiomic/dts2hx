@@ -18,7 +18,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - (generated externs are not ready to use yet)
 
 # Roadmap
-- [ ] Rewrite in haxe using generated TypeScript compiler externs
+- [x] Rewrite in haxe using generated TypeScript compiler externs
     - [x] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
         - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
         - babylon.js and many other project use both, do we merge or just parse as-is?
@@ -61,7 +61,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Convert local `.d.ts` files
 - [x] Handle type parameters when rasterizing types
     - [x] Information loss in function signatures **← :star: currently working on this**
-- [ ] All test code compiles
+- [ ] Validation system to confirm all test code compiles
+- [ ] Use example docs
 - [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
 
 **Road to Beta**
@@ -71,6 +72,8 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [ ] Extends & implements
 - [ ] Index signatures
 - [ ] Intersection types
+- [ ] Other missing types
+- [ ] Review situation with constraints (currently disabled), can issues be resolved?
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 **Road to 1.0**
