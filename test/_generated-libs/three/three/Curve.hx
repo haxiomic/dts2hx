@@ -3,7 +3,7 @@ package three;
 	An extensible curve object which contains methods for interpolation
 	class Curve&lt;T extends Vector&gt;
 **/
-@:jsRequire("three", "Curve") extern class Curve<T:(Vector)> {
+@:jsRequire("three", "Curve") extern class Curve<T> {
 	/**
 		This value determines the amount of divisions when calculating the cumulative segment lengths of a curve via .getLengths.
 		To ensure precision when using methods like .getSpacedPoints, it is recommended to increase .arcLengthDivisions if the curve is very large.
@@ -56,5 +56,5 @@ package three;
 		getTangentAt(u: number): T;
 	**/
 	function getTangentAt(u:Float):T;
-	static function create(constructorFunc:js.lib.IFunction, getPointFunc:js.lib.IFunction):js.lib.IFunction;
+	static function create(constructorFunc:ts.lib.IFunction, getPointFunc:ts.lib.IFunction):ts.lib.IFunction;
 }

@@ -33,7 +33,7 @@ extern typedef ReplOptions = {
 		additional lines.
 	**/
 	@:optional
-	var eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.IError>, result:Any) -> Void) -> Void;
+	var eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<ts.lib.IError>, result:Any) -> Void) -> Void;
 	/**
 		If `true`, specifies that the default `writer` function should include ANSI color
 		styling to REPL output. If a custom `writer` function is provided then this has no
@@ -67,7 +67,7 @@ extern typedef ReplOptions = {
 		An optional function used for custom Tab auto completion.
 	**/
 	@:optional
-	var completer : haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.IError, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
+	var completer : haxe.extern.EitherType<(line:String) -> ts.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
 	/**
 		A flag that specifies whether the default evaluator executes all JavaScript commands in
 		strict mode or default (sloppy) mode.

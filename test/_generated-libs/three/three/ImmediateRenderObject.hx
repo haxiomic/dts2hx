@@ -2,7 +2,7 @@ package three;
 @:jsRequire("three", "ImmediateRenderObject") extern class ImmediateRenderObject {
 	function new(material:Material);
 	var material : Material;
-	function render(renderCallback:js.lib.IFunction):Void;
+	function render(renderCallback:ts.lib.IFunction):Void;
 	/**
 		Unique number of this object instance.
 	**/

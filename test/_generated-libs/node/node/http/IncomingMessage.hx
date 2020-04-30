@@ -31,7 +31,7 @@ package node.http;
 	@:optional
 	var statusMessage : String;
 	var socket : node.net.Socket;
-	function destroy(?error:js.lib.IError):Void;
+	function destroy(?error:ts.lib.IError):Void;
 	var readable : Bool;
 	final readableHighWaterMark : Float;
 	final readableLength : Float;
@@ -45,7 +45,7 @@ package node.http;
 	function unshift(chunk:Any):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):IncomingMessage;
 	function push(chunk:Any, ?encoding:String):Bool;
-	function _destroy(error:Null<js.lib.IError>, callback:(?error:js.lib.IError) -> Void):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(?error:ts.lib.IError) -> Void):Void;
 	/**
 		Event emitter
 		The defined events on documents including:
@@ -58,52 +58,52 @@ package node.http;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):IncomingMessage { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage { })
 	function addListener(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:js.lib.IError):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):IncomingMessage { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage { })
 	function on(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):IncomingMessage { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage { })
 	function once(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):IncomingMessage { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage { })
 	function prependListener(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):IncomingMessage { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage { })
 	function prependOnceListener(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):IncomingMessage { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage { })
 	function removeListener(event:String, listener:() -> Void):IncomingMessage;
-	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):IncomingMessage;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):IncomingMessage;
 	function setMaxListeners(n:Float):IncomingMessage;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

@@ -18,7 +18,7 @@ extern typedef Process = {
 	function chdir(directory:String):Void;
 	function cwd():String;
 	var debugPort : Float;
-	function emitWarning(warning:haxe.extern.EitherType<String, js.lib.IError>, ?name:String, ?ctor:js.lib.IFunction):Void;
+	function emitWarning(warning:haxe.extern.EitherType<String, ts.lib.IError>, ?name:String, ?ctor:ts.lib.IFunction):Void;
 	var env : ProcessEnv;
 	function exit(?code:Float):Any;
 	var exitCode : Float;
@@ -32,7 +32,7 @@ extern typedef Process = {
 	function setegid(id:haxe.extern.EitherType<String, Float>):Void;
 	function getgroups():std.Array<Float>;
 	function setgroups(groups:std.Array<haxe.extern.EitherType<String, Float>>):Void;
-	function setUncaughtExceptionCaptureCallback(cb:Null<(err:js.lib.IError) -> Void>):Void;
+	function setUncaughtExceptionCaptureCallback(cb:Null<(err:ts.lib.IError) -> Void>):Void;
 	function hasUncaughtExceptionCaptureCallback():Bool;
 	var version : String;
 	var versions : ProcessVersions;
@@ -72,7 +72,7 @@ extern typedef Process = {
 	var mainModule : global.NodeModule;
 	function memoryUsage():MemoryUsage;
 	function cpuUsage(?previousValue:CpuUsage):CpuUsage;
-	function nextTick(callback:js.lib.IFunction, args:std.Array<Any>):Void;
+	function nextTick(callback:ts.lib.IFunction, args:std.Array<Any>):Void;
 	var release : ProcessRelease;
 	var features : {
 		var inspector : Bool;
@@ -100,7 +100,7 @@ extern typedef Process = {
 		read-only `Set` of flags allowable within the [`NODE_OPTIONS`][]
 		environment variable.
 	**/
-	var allowedNodeEnvironmentFlags : js.lib.ReadonlySet<String>;
+	var allowedNodeEnvironmentFlags : ts.lib.ReadonlySet<String>;
 	/**
 		EventEmitter
 		   1. beforeExit
@@ -117,94 +117,94 @@ extern typedef Process = {
 	**/
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(error:js.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(warning:js.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function addListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, code:Float):Bool { })
-	@:overload(function(event:String, promise:js.lib.IPromise<Any>):Bool { })
-	@:overload(function(event:String, error:js.lib.IError):Bool { })
-	@:overload(function(event:String, reason:Any, promise:js.lib.IPromise<Any>):Bool { })
-	@:overload(function(event:String, warning:js.lib.IError):Bool { })
+	@:overload(function(event:String, promise:ts.lib.IPromise<Any>):Bool { })
+	@:overload(function(event:String, error:ts.lib.IError):Bool { })
+	@:overload(function(event:String, reason:Any, promise:ts.lib.IPromise<Any>):Bool { })
+	@:overload(function(event:String, warning:ts.lib.IError):Bool { })
 	@:overload(function(event:String, message:Any, sendHandle:Any):Process { })
 	@:overload(function(event:String, signal:String):Bool { })
 	@:overload(function(event:String, eventName:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process { })
 	@:overload(function(event:String, eventName:String, listener:(args:std.Array<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function emit(event:String, code:Float):Bool;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(error:js.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(warning:js.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function on(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(error:js.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(warning:js.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function once(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(error:js.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(warning:js.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function prependListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(error:js.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:js.lib.IPromise<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(warning:js.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function prependOnceListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String):std.Array<() -> Void> { })
 	@:overload(function(event:String):std.Array<(code:Float) -> Void> { })
-	@:overload(function(event:String):std.Array<(promise:js.lib.IPromise<Any>) -> Void> { })
-	@:overload(function(event:String):std.Array<(error:js.lib.IError) -> Void> { })
-	@:overload(function(event:String):std.Array<(reason:Null<{ }>, promise:js.lib.IPromise<Any>) -> Void> { })
-	@:overload(function(event:String):std.Array<(warning:js.lib.IError) -> Void> { })
+	@:overload(function(event:String):std.Array<(promise:ts.lib.IPromise<Any>) -> Void> { })
+	@:overload(function(event:String):std.Array<(error:ts.lib.IError) -> Void> { })
+	@:overload(function(event:String):std.Array<(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void> { })
+	@:overload(function(event:String):std.Array<(warning:ts.lib.IError) -> Void> { })
 	@:overload(function(event:String):std.Array<(message:Any, sendHandle:Any) -> Void> { })
 	@:overload(function(event:String):std.Array<(signal:String) -> Void> { })
 	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void> { })
 	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void> { })
-	@:overload(function(event:String):std.Array<(type:String, promise:js.lib.IPromise<Any>, value:Any) -> Void> { })
+	@:overload(function(event:String):std.Array<(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void> { })
 	function listeners(event:String):std.Array<(code:Float) -> Void>;
 	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Process;
 	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 };

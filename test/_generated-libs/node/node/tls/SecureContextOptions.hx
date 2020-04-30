@@ -1,9 +1,9 @@
 package node.tls;
 extern typedef SecureContextOptions = {
 	@:optional
-	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IObject, global.IBuffer>>>>>;
+	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IObject, global.IBuffer>>>>>;
 	@:optional
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<js.lib.IObject, global.IBuffer>>>>;
+	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<ts.lib.IObject, global.IBuffer>>>>;
 	@:optional
 	var passphrase : String;
 	@:optional

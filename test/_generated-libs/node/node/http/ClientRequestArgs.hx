@@ -33,5 +33,5 @@ extern typedef ClientRequestArgs = {
 	@:optional
 	var setHost : Bool;
 	@:optional
-	var createConnection : (options:ClientRequestArgs, oncreate:(err:js.lib.IError, socket:node.net.Socket) -> Void) -> node.net.Socket;
+	var createConnection : (options:ClientRequestArgs, oncreate:(err:ts.lib.IError, socket:node.net.Socket) -> Void) -> node.net.Socket;
 };

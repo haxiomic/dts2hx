@@ -68,8 +68,8 @@ package three;
 	function fromArray(n:std.Array<Float>):Quaternion;
 	@:overload(function(?xyzw:std.Array<Float>, ?offset:Float):std.Array<Float> { })
 	function toArray():std.Array<Float>;
-	function _onChange(callback:js.lib.IFunction):Quaternion;
-	var _onChangeCallback : js.lib.IFunction;
+	function _onChange(callback:ts.lib.IFunction):Quaternion;
+	var _onChangeCallback : ts.lib.IFunction;
 	function multiplyVector3(v:Any):Any;
 	/**
 		Adapted from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/.

@@ -62,5 +62,5 @@ extern typedef Performance = {
 		Wraps a function within a new function that measures the running time of the wrapped function.
 		A PerformanceObserver must be subscribed to the 'function' event type in order for the timing details to be accessed.
 	**/
-	function timerify<T:((optionalParams:std.Array<Any>) -> Any)>(fn:T):T;
+	function timerify<T>(fn:T):T;
 };

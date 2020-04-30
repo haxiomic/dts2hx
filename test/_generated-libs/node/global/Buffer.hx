@@ -9,8 +9,8 @@ package global;
 		Allocates a new buffer containing the given {str}.
 	**/
 	@:overload(function(size:Float):IBuffer { })
-	@:overload(function(array:js.lib.IUint8Array):IBuffer { })
-	@:overload(function(arrayBuffer:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>):IBuffer { })
+	@:overload(function(array:ts.lib.IUint8Array):IBuffer { })
+	@:overload(function(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>):IBuffer { })
 	@:overload(function(array:std.Array<Any>):IBuffer { })
 	@:overload(function(buffer:IBuffer):IBuffer { })
 	function new(str:String, ?encoding:String);
@@ -32,9 +32,9 @@ package global;
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
 		@:overload(function(data:std.Array<Float>):IBuffer { })
-		@:overload(function(data:js.lib.IUint8Array):IBuffer { })
+		@:overload(function(data:ts.lib.IUint8Array):IBuffer { })
 		@:overload(function(str:String, ?encoding:String):IBuffer { })
-		function from(arrayBuffer:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
+		function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -52,7 +52,7 @@ package global;
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IArrayBuffer, haxe.extern.EitherType<js.lib.ISharedArrayBuffer, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+		function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -60,11 +60,11 @@ package global;
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:std.Array<js.lib.IUint8Array>, ?totalLength:Float):IBuffer;
+		function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):IBuffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
-		function compare(buf1:js.lib.IUint8Array, buf2:js.lib.IUint8Array):Float;
+		function compare(buf1:ts.lib.IUint8Array, buf2:ts.lib.IUint8Array):Float;
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
@@ -95,9 +95,9 @@ package global;
 		var type : String;
 		var data : std.Array<Float>;
 	};
-	function equals(otherBuffer:js.lib.IUint8Array):Bool;
-	function compare(otherBuffer:js.lib.IUint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
-	function copy(targetBuffer:js.lib.IUint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function equals(otherBuffer:ts.lib.IUint8Array):Bool;
+	function compare(otherBuffer:ts.lib.IUint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function copy(targetBuffer:ts.lib.IUint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
 	/**
 		Returns a section of an array.
 	**/
@@ -157,15 +157,15 @@ package global;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IUint8Array>>, ?byteOffset:Float, ?encoding:String):Float;
+	function indexOf(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IUint8Array>>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns the index of the last occurrence of a value in an array.
 	**/
-	function lastIndexOf(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IUint8Array>>, ?byteOffset:Float, ?encoding:String):Float;
+	function lastIndexOf(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IUint8Array>>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<js.lib.Tuple2<Float, Float>>;
+	function entries():ts.lib.IterableIterator<ts.lib.Tuple2<Float, Float>>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
@@ -173,11 +173,11 @@ package global;
 	/**
 		Returns an list of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():ts.lib.IterableIterator<Float>;
 	/**
 		Returns an list of values in the array
 	**/
-	function values():js.lib.IterableIterator<Float>;
+	function values():ts.lib.IterableIterator<Float>;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -185,7 +185,7 @@ package global;
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>;
+	final buffer : haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>;
 	/**
 		The length in bytes of the array.
 	**/
@@ -202,25 +202,25 @@ package global;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:js.lib.IUint8Array) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Any):Bool;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:js.lib.IUint8Array) -> Any, ?thisArg:Any):js.lib.IUint8Array;
+	function filter(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Any):ts.lib.IUint8Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:js.lib.IUint8Array) -> Bool, ?thisArg:Any):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Any):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:js.lib.IUint8Array) -> Bool, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Any):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:js.lib.IUint8Array) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Void, ?thisArg:Any):Void;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -233,7 +233,7 @@ package global;
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:js.lib.IUint8Array) -> Float, ?thisArg:Any):js.lib.IUint8Array;
+	function map(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Float, ?thisArg:Any):ts.lib.IUint8Array;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -243,9 +243,9 @@ package global;
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.IUint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.IUint8Array) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.IUint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float):Float;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
@@ -255,17 +255,17 @@ package global;
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.IUint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.IUint8Array) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.IUint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float):Float;
 	/**
 		Sets a value or an array of values.
 	**/
-	function set(array:js.lib.ArrayLike<Float>, ?offset:Float):Void;
+	function set(array:ts.lib.ArrayLike<Float>, ?offset:Float):Void;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:js.lib.IUint8Array) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Any):Bool;
 	/**
 		Sorts an array.
 	**/
@@ -288,9 +288,9 @@ package global;
 		If not provided, {encoding} defaults to 'utf8'.
 	**/
 	@:overload(function(data:std.Array<Float>):IBuffer { })
-	@:overload(function(data:js.lib.IUint8Array):IBuffer { })
+	@:overload(function(data:ts.lib.IUint8Array):IBuffer { })
 	@:overload(function(str:String, ?encoding:String):IBuffer { })
-	static function from(arrayBuffer:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
+	static function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
@@ -309,7 +309,7 @@ package global;
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
 	@:native("byteLength")
-	static function byteLength_(string:haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IArrayBuffer, haxe.extern.EitherType<js.lib.ISharedArrayBuffer, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+	static function byteLength_(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		
@@ -317,12 +317,12 @@ package global;
 		If the list has exactly one item, then the first item of the list is returned.
 		If the list has more than one item, then a new Buffer is created.
 	**/
-	static function concat(list:std.Array<js.lib.IUint8Array>, ?totalLength:Float):IBuffer;
+	static function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):IBuffer;
 	/**
 		The same as buf1.compare(buf2).
 	**/
 	@:native("compare")
-	static function compare_(buf1:js.lib.IUint8Array, buf2:js.lib.IUint8Array):Float;
+	static function compare_(buf1:ts.lib.IUint8Array, buf2:ts.lib.IUint8Array):Float;
 	/**
 		Allocates a new buffer of {size} octets.
 	**/

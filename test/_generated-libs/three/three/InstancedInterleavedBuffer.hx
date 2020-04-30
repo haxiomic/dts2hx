@@ -1,8 +1,8 @@
 package three;
 @:jsRequire("three", "InstancedInterleavedBuffer") extern class InstancedInterleavedBuffer {
-	function new(array:js.lib.ArrayLike<Float>, stride:Float, ?meshPerAttribute:Float);
+	function new(array:ts.lib.ArrayLike<Float>, stride:Float, ?meshPerAttribute:Float);
 	var meshPerAttribute : Float;
-	var array : js.lib.ArrayLike<Float>;
+	var array : ts.lib.ArrayLike<Float>;
 	var stride : Float;
 	@:native("dynamic")
 	var dynamic_ : Bool;
@@ -14,10 +14,10 @@ package three;
 	var length : Float;
 	var count : Float;
 	var needsUpdate : Bool;
-	function setArray(?array:js.lib.ArrayBufferView):Void;
+	function setArray(?array:ts.lib.ArrayBufferView):Void;
 	function setDynamic(dynamic_:Bool):InterleavedBuffer;
 	function clone():InstancedInterleavedBuffer;
 	function copy(source:InterleavedBuffer):InstancedInterleavedBuffer;
 	function copyAt(index1:Float, attribute:InterleavedBufferAttribute, index2:Float):InterleavedBuffer;
-	function set(value:js.lib.ArrayLike<Float>, index:Float):InterleavedBuffer;
+	function set(value:ts.lib.ArrayLike<Float>, index:Float):InterleavedBuffer;
 }

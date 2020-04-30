@@ -1,7 +1,7 @@
 package node.worker_threads;
 @:jsRequire("worker_threads", "MessagePort") extern class MessagePort {
 	function close():Void;
-	function postMessage(value:Any, ?transferList:std.Array<haxe.extern.EitherType<MessagePort, js.lib.IArrayBuffer>>):Void;
+	function postMessage(value:Any, ?transferList:std.Array<haxe.extern.EitherType<MessagePort, ts.lib.IArrayBuffer>>):Void;
 	function ref():Void;
 	function unref():Void;
 	function start():Void;
@@ -32,8 +32,8 @@ package node.worker_threads;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):MessagePort;
 	function setMaxListeners(n:Float):MessagePort;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

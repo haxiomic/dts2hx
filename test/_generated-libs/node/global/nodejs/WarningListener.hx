@@ -1,2 +1,2 @@
 package global.nodejs;
-typedef WarningListener = (warning:js.lib.IError) -> Void;
+typedef WarningListener = (warning:ts.lib.IError) -> Void;

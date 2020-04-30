@@ -2,10 +2,10 @@ package three;
 @:jsRequire("three", "AudioListener") extern class AudioListener {
 	function new();
 	var type : String;
-	var context : js.html.IAudioContext;
-	var gain : js.html.IGainNode;
+	var context : ts.html.IAudioContext;
+	var gain : ts.html.IGainNode;
 	var filter : Any;
-	function getInput():js.html.IGainNode;
+	function getInput():ts.html.IGainNode;
 	function removeFilter():Void;
 	function setFilter(value:Any):Void;
 	function getFilter():Any;

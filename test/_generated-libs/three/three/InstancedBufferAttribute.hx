@@ -1,9 +1,9 @@
 package three;
 @:jsRequire("three", "InstancedBufferAttribute") extern class InstancedBufferAttribute {
-	function new(array:js.lib.ArrayLike<Float>, itemSize:Float, ?normalized:Bool, ?meshPerAttribute:Float);
+	function new(array:ts.lib.ArrayLike<Float>, itemSize:Float, ?normalized:Bool, ?meshPerAttribute:Float);
 	var meshPerAttribute : Float;
 	var name : String;
-	var array : js.lib.ArrayLike<Float>;
+	var array : ts.lib.ArrayLike<Float>;
 	var itemSize : Float;
 	@:native("dynamic")
 	var dynamic_ : Bool;
@@ -15,18 +15,18 @@ package three;
 	var normalized : Bool;
 	var needsUpdate : Bool;
 	var count : Float;
-	var onUpload : js.lib.IFunction;
-	function setArray(?array:js.lib.ArrayBufferView):Void;
+	var onUpload : ts.lib.IFunction;
+	function setArray(?array:ts.lib.ArrayBufferView):Void;
 	function setDynamic(dynamic_:Bool):BufferAttribute;
 	function clone():InstancedBufferAttribute;
 	function copy(source:BufferAttribute):InstancedBufferAttribute;
 	function copyAt(index1:Float, attribute:BufferAttribute, index2:Float):BufferAttribute;
-	function copyArray(array:js.lib.ArrayLike<Float>):BufferAttribute;
+	function copyArray(array:ts.lib.ArrayLike<Float>):BufferAttribute;
 	function copyColorsArray(colors:std.Array<{ var r : Float; var g : Float; var b : Float; }>):BufferAttribute;
 	function copyVector2sArray(vectors:std.Array<{ var x : Float; var y : Float; }>):BufferAttribute;
 	function copyVector3sArray(vectors:std.Array<{ var x : Float; var y : Float; var z : Float; }>):BufferAttribute;
 	function copyVector4sArray(vectors:std.Array<{ var x : Float; var y : Float; var z : Float; var w : Float; }>):BufferAttribute;
-	function set(value:haxe.extern.EitherType<js.lib.ArrayLike<Float>, js.lib.ArrayBufferView>, ?offset:Float):BufferAttribute;
+	function set(value:haxe.extern.EitherType<ts.lib.ArrayLike<Float>, ts.lib.ArrayBufferView>, ?offset:Float):BufferAttribute;
 	function getX(index:Float):Float;
 	function setX(index:Float, x:Float):BufferAttribute;
 	function getY(index:Float):Float;

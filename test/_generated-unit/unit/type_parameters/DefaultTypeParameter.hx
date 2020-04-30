@@ -4,7 +4,7 @@ extern typedef DefaultTypeParameter<DefaultBool> = {
 	function call(callSignatureArg:DefaultBool):DefaultBool;
 	var field : DefaultBool;
 	var fieldUnion : haxe.extern.EitherType<String, DefaultBool>;
-	var fieldTupleUnion : haxe.extern.EitherType<String, js.lib.Tuple1<DefaultBool>>;
-	@:overload(function(arg:DefaultBool, argTuple:js.lib.Tuple1<DefaultBool>, argUnion:haxe.extern.EitherType<String, DefaultBool>):DefaultBool { })
+	var fieldTupleUnion : haxe.extern.EitherType<String, ts.lib.Tuple1<DefaultBool>>;
+	@:overload(function(arg:DefaultBool, argTuple:ts.lib.Tuple1<DefaultBool>, argUnion:haxe.extern.EitherType<String, DefaultBool>):DefaultBool { })
 	function fn(?optionalOverloadArg:DefaultBool):DefaultBool;
 };

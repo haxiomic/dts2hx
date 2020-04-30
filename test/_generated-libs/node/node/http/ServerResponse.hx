@@ -23,25 +23,25 @@ package node.http;
 	function getHeaderNames():std.Array<String>;
 	function hasHeader(name:String):Bool;
 	function removeHeader(name:String):Void;
-	function addTrailers(headers:haxe.extern.EitherType<OutgoingHttpHeaders, std.Array<js.lib.Tuple2<String, String>>>):Void;
+	function addTrailers(headers:haxe.extern.EitherType<OutgoingHttpHeaders, std.Array<ts.lib.Tuple2<String, String>>>):Void;
 	function flushHeaders():Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.IError) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
-	function _destroy(error:Null<js.lib.IError>, callback:(?error:js.lib.IError) -> Void):Void;
-	function _final(callback:(?error:js.lib.IError) -> Void):Void;
-	@:overload(function(chunk:Any, ?encoding:String, ?cb:(error:Null<js.lib.IError>) -> Void):Bool { })
-	function write(chunk:Any, ?cb:(error:Null<js.lib.IError>) -> Void):Bool;
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _final(callback:(?error:ts.lib.IError) -> Void):Void;
+	@:overload(function(chunk:Any, ?encoding:String, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
+	function write(chunk:Any, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):ServerResponse;
 	@:overload(function(chunk:Any, ?cb:() -> Void):Void { })
 	@:overload(function(chunk:Any, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	function cork():Void;
 	function uncork():Void;
-	function destroy(?error:js.lib.IError):Void;
+	function destroy(?error:ts.lib.IError):Void;
 	/**
 		Event emitter
 		The defined events on documents including:
@@ -53,61 +53,61 @@ package node.http;
 		6. unpipe
 	**/
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerResponse { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse { })
 	function addListener(event:String, listener:() -> Void):ServerResponse;
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:js.lib.IError):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, src:node.stream.Readable):Bool { })
 	@:overload(function(event:String, src:node.stream.Readable):Bool { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerResponse { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse { })
 	function on(event:String, listener:() -> Void):ServerResponse;
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerResponse { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse { })
 	function once(event:String, listener:() -> Void):ServerResponse;
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerResponse { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse { })
 	function prependListener(event:String, listener:() -> Void):ServerResponse;
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerResponse { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse { })
 	function prependOnceListener(event:String, listener:() -> Void):ServerResponse;
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerResponse { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse { })
 	function removeListener(event:String, listener:() -> Void):ServerResponse;
-	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerResponse;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ServerResponse;
 	function setMaxListeners(n:Float):ServerResponse;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

@@ -3,6 +3,6 @@ package three;
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;
 	var path : String;
-	function load(url:String, onLoad:(texture:CompressedTexture) -> Void, ?onProgress:(event:js.html.IProgressEvent<js.html.IEventTarget>) -> Void, ?onError:(event:js.html.IErrorEvent) -> Void):Void;
+	function load(url:String, onLoad:(texture:CompressedTexture) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Void;
 	function setPath(path:String):CompressedTextureLoader;
 }

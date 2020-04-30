@@ -1,8 +1,8 @@
 package global.nodejs;
 extern typedef Global = {
-	var Array : js.lib.ArrayConstructor;
-	var ArrayBuffer : js.lib.ArrayBufferConstructor;
-	var Boolean : js.lib.BooleanConstructor;
+	var Array : ts.lib.ArrayConstructor;
+	var ArrayBuffer : ts.lib.ArrayBufferConstructor;
+	var Boolean : ts.lib.BooleanConstructor;
 	var Buffer : {
 		var prototype : global.IBuffer;
 		/**
@@ -18,9 +18,9 @@ extern typedef Global = {
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
 		@:overload(function(data:std.Array<Float>):global.IBuffer { })
-		@:overload(function(data:js.lib.IUint8Array):global.IBuffer { })
+		@:overload(function(data:ts.lib.IUint8Array):global.IBuffer { })
 		@:overload(function(str:String, ?encoding:String):global.IBuffer { })
-		function from(arrayBuffer:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
+		function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -38,7 +38,7 @@ extern typedef Global = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IArrayBuffer, haxe.extern.EitherType<js.lib.ISharedArrayBuffer, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+		function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -46,11 +46,11 @@ extern typedef Global = {
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:std.Array<js.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
+		function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
-		function compare(buf1:js.lib.IUint8Array, buf2:js.lib.IUint8Array):Float;
+		function compare(buf1:ts.lib.IUint8Array, buf2:ts.lib.IUint8Array):Float;
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
@@ -70,66 +70,66 @@ extern typedef Global = {
 		**/
 		var poolSize : Float;
 	};
-	var DataView : js.lib.DataViewConstructor;
-	var Date : js.lib.DateConstructor;
-	var Error : js.lib.ErrorConstructor;
-	var EvalError : js.lib.EvalErrorConstructor;
-	var Float32Array : js.lib.Float32ArrayConstructor;
-	var Float64Array : js.lib.Float64ArrayConstructor;
-	var Function : js.lib.FunctionConstructor;
+	var DataView : ts.lib.DataViewConstructor;
+	var Date : ts.lib.DateConstructor;
+	var Error : ts.lib.ErrorConstructor;
+	var EvalError : ts.lib.EvalErrorConstructor;
+	var Float32Array : ts.lib.Float32ArrayConstructor;
+	var Float64Array : ts.lib.Float64ArrayConstructor;
+	var Function : ts.lib.FunctionConstructor;
 	var GLOBAL : Global;
 	var Infinity : Float;
-	var Int16Array : js.lib.Int16ArrayConstructor;
-	var Int32Array : js.lib.Int32ArrayConstructor;
-	var Int8Array : js.lib.Int8ArrayConstructor;
+	var Int16Array : ts.lib.Int16ArrayConstructor;
+	var Int32Array : ts.lib.Int32ArrayConstructor;
+	var Int8Array : ts.lib.Int8ArrayConstructor;
 	var Intl : {
 		var Collator : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.CollatorOptions):js.lib.intl.ICollator;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.CollatorOptions):std.Array<String>;
+			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):ts.lib.intl.ICollator;
+			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):std.Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.NumberFormatOptions):js.lib.intl.INumberFormat;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.NumberFormatOptions):std.Array<String>;
+			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):ts.lib.intl.INumberFormat;
+			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):std.Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):js.lib.intl.IDateTimeFormat;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):std.Array<String>;
+			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):ts.lib.intl.IDateTimeFormat;
+			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):std.Array<String>;
 		};
 		var PluralRules : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.PluralRulesOptions):js.lib.intl.IPluralRules;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:js.lib.intl.PluralRulesOptions):std.Array<String>;
+			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):ts.lib.intl.IPluralRules;
+			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):std.Array<String>;
 		};
 	};
-	var JSON : js.lib.JSON;
-	var Map : js.lib.MapConstructor;
-	var Math : js.lib.Math;
+	var JSON : ts.lib.JSON;
+	var Map : ts.lib.MapConstructor;
+	var Math : ts.lib.Math;
 	var NaN : Float;
-	var Number : js.lib.NumberConstructor;
-	var Object : js.lib.ObjectConstructor;
-	var Promise : js.lib.IFunction;
-	var RangeError : js.lib.RangeErrorConstructor;
-	var ReferenceError : js.lib.ReferenceErrorConstructor;
-	var RegExp : js.lib.RegExpConstructor;
-	var Set : js.lib.SetConstructor;
-	var String : js.lib.StringConstructor;
-	var Symbol : js.lib.IFunction;
-	var SyntaxError : js.lib.SyntaxErrorConstructor;
-	var TypeError : js.lib.TypeErrorConstructor;
-	var URIError : js.lib.URIErrorConstructor;
-	var Uint16Array : js.lib.Uint16ArrayConstructor;
-	var Uint32Array : js.lib.Uint32ArrayConstructor;
-	var Uint8Array : js.lib.Uint8ArrayConstructor;
-	var Uint8ClampedArray : js.lib.IFunction;
-	var WeakMap : js.lib.WeakMapConstructor;
-	var WeakSet : js.lib.WeakSetConstructor;
+	var Number : ts.lib.NumberConstructor;
+	var Object : ts.lib.ObjectConstructor;
+	var Promise : ts.lib.IFunction;
+	var RangeError : ts.lib.RangeErrorConstructor;
+	var ReferenceError : ts.lib.ReferenceErrorConstructor;
+	var RegExp : ts.lib.RegExpConstructor;
+	var Set : ts.lib.SetConstructor;
+	var String : ts.lib.StringConstructor;
+	var Symbol : ts.lib.IFunction;
+	var SyntaxError : ts.lib.SyntaxErrorConstructor;
+	var TypeError : ts.lib.TypeErrorConstructor;
+	var URIError : ts.lib.URIErrorConstructor;
+	var Uint16Array : ts.lib.Uint16ArrayConstructor;
+	var Uint32Array : ts.lib.Uint32ArrayConstructor;
+	var Uint8Array : ts.lib.Uint8ArrayConstructor;
+	var Uint8ClampedArray : ts.lib.IFunction;
+	var WeakMap : ts.lib.WeakMapConstructor;
+	var WeakSet : ts.lib.WeakSetConstructor;
 	var clearImmediate : (immediateId:Immediate) -> Void;
 	var clearInterval : (intervalId:Timeout) -> Void;
 	var clearTimeout : (timeoutId:Timeout) -> Void;
-	var console : js.html.IConsole;
+	var console : ts.html.IConsole;
 	var decodeURI : (encodedURI:String) -> String;
 	var decodeURIComponent : (encodedURIComponent:String) -> String;
 	var encodeURI : (uri:String) -> String;
@@ -149,7 +149,7 @@ extern typedef Global = {
 	var queueMicrotask : {
 		@:overload(function(callback:() -> Void):Void { })
 		@:selfCall
-		function call(callback:js.lib.IFunction):Void;
+		function call(callback:ts.lib.IFunction):Void;
 	};
 	var undefined : Void;
 	var unescape : (str:String) -> String;

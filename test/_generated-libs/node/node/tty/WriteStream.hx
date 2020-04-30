@@ -37,12 +37,12 @@ package node.tty;
 	function clearScreenDown():Void;
 	function cursorTo(x:Float, y:Float):Void;
 	function getColorDepth(?env:{ }):Float;
-	function getWindowSize():js.lib.Tuple2<Float, Float>;
+	function getWindowSize():ts.lib.Tuple2<Float, Float>;
 	var columns : Float;
 	var rows : Float;
 	var isTTY : Bool;
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })
-	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:(?err:js.lib.IError) -> Void):Bool;
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:ts.lib.IError) -> Void):Bool { })
+	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?cb:(?err:ts.lib.IError) -> Void):Bool;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):WriteStream { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):WriteStream { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):WriteStream { })
@@ -69,17 +69,17 @@ package node.tty;
 	final remoteFamily : String;
 	@:optional
 	final remotePort : Float;
-	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:() -> Void):Void { })
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
+	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?cb:() -> Void):Void { })
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.IError) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
-	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
-	function _final(callback:(?error:js.lib.IError) -> Void):Void;
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
+	function _final(callback:(?error:ts.lib.IError) -> Void):Void;
 	function setDefaultEncoding(encoding:String):WriteStream;
 	function cork():Void;
 	function uncork():Void;
@@ -93,20 +93,20 @@ package node.tty;
 	function unshift(chunk:Any):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):WriteStream;
 	function push(chunk:Any, ?encoding:String):Bool;
-	function destroy(?error:js.lib.IError):Void;
+	function destroy(?error:ts.lib.IError):Void;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):WriteStream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):WriteStream { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):WriteStream { })
 	function removeListener(event:String, listener:() -> Void):WriteStream;
-	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):WriteStream;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):WriteStream;
 	function setMaxListeners(n:Float):WriteStream;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

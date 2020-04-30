@@ -1,2 +1,2 @@
 package global.nodejs;
-typedef RejectionHandledListener = (promise:js.lib.IPromise<Any>) -> Void;
+typedef RejectionHandledListener = (promise:ts.lib.IPromise<Any>) -> Void;

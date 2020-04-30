@@ -275,19 +275,19 @@ package node;
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied path.
 	**/
-	static function utimes(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, node.url.URL>>, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function utimes(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, node.url.URL>>, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously change file timestamps of the file referenced by the supplied path.
 	**/
-	static function utimesSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, node.url.URL>>, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>):Void;
+	static function utimesSync(path:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, node.url.URL>>, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>):Void;
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied file descriptor.
 	**/
-	static function futimes(fd:Float, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function futimes(fd:Float, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously change file timestamps of the file referenced by the supplied file descriptor.
 	**/
-	static function futimesSync(fd:Float, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.IDate>>):Void;
+	static function futimesSync(fd:Float, atime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>, mtime:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IDate>>):Void;
 	/**
 		Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
 	**/
@@ -311,28 +311,28 @@ package node;
 		
 		Asynchronously writes `string` to the file referenced by the supplied file descriptor.
 	**/
-	@:overload(function<TBuffer:(haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>)>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
-	@:overload(function<TBuffer:(haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>)>(fd:Float, buffer:TBuffer, offset:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
-	@:overload(function<TBuffer:(haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>)>(fd:Float, buffer:TBuffer, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
+	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
+	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
+	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
 	@:overload(function(fd:Float, string:Any, position:Null<Float>, encoding:Null<String>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
 	@:overload(function(fd:Float, string:Any, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
 	@:overload(function(fd:Float, string:Any, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
-	static function write<TBuffer:(haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>)>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void;
+	static function write<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void;
 	/**
 		Synchronously writes `buffer` to the file referenced by the supplied file descriptor, returning the number of bytes written.
 		
 		Synchronously writes `string` to the file referenced by the supplied file descriptor, returning the number of bytes written.
 	**/
 	@:overload(function(fd:Float, string:Any, ?position:Float, ?encoding:String):Float { })
-	static function writeSync(fd:Float, buffer:haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>, ?offset:Float, ?length:Float, ?position:Float):Float;
+	static function writeSync(fd:Float, buffer:haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>, ?offset:Float, ?length:Float, ?position:Float):Float;
 	/**
 		Asynchronously reads data from the file referenced by the supplied file descriptor.
 	**/
-	static function read<TBuffer:(haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>)>(fd:Float, buffer:TBuffer, offset:Float, length:Float, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, bytesRead:Float, buffer:TBuffer) -> Void):Void;
+	static function read<TBuffer>(fd:Float, buffer:TBuffer, offset:Float, length:Float, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, bytesRead:Float, buffer:TBuffer) -> Void):Void;
 	/**
 		Synchronously reads data from the file referenced by the supplied file descriptor, returning the number of bytes read.
 	**/
-	static function readSync(fd:Float, buffer:haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>, offset:Float, length:Float, position:Null<Float>):Float;
+	static function readSync(fd:Float, buffer:haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>, offset:Float, length:Float, position:Null<Float>):Float;
 	/**
 		Asynchronously reads the entire contents of a file.
 		

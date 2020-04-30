@@ -74,8 +74,8 @@ extern typedef Cluster = {
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Cluster;
 	function setMaxListeners(n:Float):Cluster;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 };

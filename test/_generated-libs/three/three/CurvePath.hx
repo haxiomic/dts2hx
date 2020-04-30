@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "CurvePath") extern class CurvePath<T:(Vector)> {
+@:jsRequire("three", "CurvePath") extern class CurvePath<T> {
 	function new();
 	var curves : std.Array<Curve<T>>;
 	var autoClose : Bool;

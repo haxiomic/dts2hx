@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef FromSomeIndex<K:(String)> = Any;
+typedef FromSomeIndex<K> = Any;

@@ -14,7 +14,7 @@ extern typedef CallSite = {
 	/**
 		Current function
 	**/
-	function getFunction():Null<js.lib.IFunction>;
+	function getFunction():Null<ts.lib.IFunction>;
 	/**
 		Name of the current function, typically its name property.
 		If a name property is not available an attempt will be made to try

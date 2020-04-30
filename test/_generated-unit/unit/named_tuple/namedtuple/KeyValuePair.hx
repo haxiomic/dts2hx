@@ -29,8 +29,8 @@ extern typedef KeyValuePair<K, V> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:std.Array<haxe.extern.EitherType<K, haxe.extern.EitherType<V, js.lib.ConcatArray<haxe.extern.EitherType<K, V>>>>>):std.Array<haxe.extern.EitherType<K, V>> { })
-	function concat(items:std.Array<js.lib.ConcatArray<haxe.extern.EitherType<K, V>>>):std.Array<haxe.extern.EitherType<K, V>>;
+	@:overload(function(items:std.Array<haxe.extern.EitherType<K, haxe.extern.EitherType<V, ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>>>):std.Array<haxe.extern.EitherType<K, V>> { })
+	function concat(items:std.Array<ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>):std.Array<haxe.extern.EitherType<K, V>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -92,7 +92,7 @@ extern typedef KeyValuePair<K, V> = {
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
 	@:overload(function(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):std.Array<haxe.extern.EitherType<K, V>> { })
-	function filter<S:(T)>(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Bool, ?thisArg:Any):std.Array<S>;
+	function filter<S>(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Bool, ?thisArg:Any):std.Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
@@ -114,7 +114,7 @@ extern typedef KeyValuePair<K, V> = {
 		otherwise.
 	**/
 	@:overload(function(predicate:(value:haxe.extern.EitherType<K, V>, index:Float, obj:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):Null<haxe.extern.EitherType<K, V>> { })
-	function find<S:(T)>(predicate:(value:haxe.extern.EitherType<K, V>, index:Float, obj:std.Array<haxe.extern.EitherType<K, V>>) -> Bool, ?thisArg:Any):Null<S>;
+	function find<S>(predicate:(value:haxe.extern.EitherType<K, V>, index:Float, obj:std.Array<haxe.extern.EitherType<K, V>>) -> Bool, ?thisArg:Any):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
@@ -132,13 +132,13 @@ extern typedef KeyValuePair<K, V> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<js.lib.Tuple2<Float, haxe.extern.EitherType<K, V>>>;
+	function entries():ts.lib.IterableIterator<ts.lib.Tuple2<Float, haxe.extern.EitherType<K, V>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():ts.lib.IterableIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():js.lib.IterableIterator<haxe.extern.EitherType<K, V>>;
+	function values():ts.lib.IterableIterator<haxe.extern.EitherType<K, V>>;
 };

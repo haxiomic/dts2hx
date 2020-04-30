@@ -4,8 +4,8 @@ package node.buffer;
 		Allocates a new buffer containing the given {str}.
 	**/
 	@:overload(function(size:Float):global.IBuffer { })
-	@:overload(function(array:js.lib.IUint8Array):global.IBuffer { })
-	@:overload(function(arrayBuffer:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>):global.IBuffer { })
+	@:overload(function(array:ts.lib.IUint8Array):global.IBuffer { })
+	@:overload(function(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>):global.IBuffer { })
 	@:overload(function(array:std.Array<Any>):global.IBuffer { })
 	@:overload(function(buffer:global.IBuffer):global.IBuffer { })
 	function new(str:String, ?encoding:String);
@@ -23,9 +23,9 @@ package node.buffer;
 		If not provided, {encoding} defaults to 'utf8'.
 	**/
 	@:overload(function(data:std.Array<Float>):global.IBuffer { })
-	@:overload(function(data:js.lib.IUint8Array):global.IBuffer { })
+	@:overload(function(data:ts.lib.IUint8Array):global.IBuffer { })
 	@:overload(function(str:String, ?encoding:String):global.IBuffer { })
-	static function from(arrayBuffer:haxe.extern.EitherType<js.lib.IArrayBuffer, js.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
+	static function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
@@ -43,7 +43,7 @@ package node.buffer;
 		Gives the actual byte length of a string. encoding defaults to 'utf8'.
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
-	static function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IArrayBuffer, haxe.extern.EitherType<js.lib.ISharedArrayBuffer, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IFloat32Array, haxe.extern.EitherType<js.lib.IFloat64Array, js.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+	static function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		
@@ -51,11 +51,11 @@ package node.buffer;
 		If the list has exactly one item, then the first item of the list is returned.
 		If the list has more than one item, then a new Buffer is created.
 	**/
-	static function concat(list:std.Array<js.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
+	static function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
 	/**
 		The same as buf1.compare(buf2).
 	**/
-	static function compare(buf1:js.lib.IUint8Array, buf2:js.lib.IUint8Array):Float;
+	static function compare(buf1:ts.lib.IUint8Array, buf2:ts.lib.IUint8Array):Float;
 	/**
 		Allocates a new buffer of {size} octets.
 	**/

@@ -1,4 +1,4 @@
 package global.nodejs;
 extern typedef ConsoleConstructor = {
-	var prototype : js.html.IConsole;
+	var prototype : ts.html.IConsole;
 };

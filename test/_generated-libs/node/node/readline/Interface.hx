@@ -7,7 +7,7 @@ package node.readline;
 		> `readline.createInterface()` method.
 	**/
 	@:overload(function(options:ReadLineOptions):Interface { })
-	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.IError, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
+	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:haxe.extern.EitherType<(line:String) -> ts.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>, ?terminal:Bool);
 	final terminal : Bool;
 	function setPrompt(prompt:String):Void;
 	function prompt(?preserveCursor:Bool):Void;
@@ -79,8 +79,8 @@ package node.readline;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Interface;
 	function setMaxListeners(n:Float):Interface;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

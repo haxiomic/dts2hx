@@ -5,7 +5,7 @@ package three;
 	var y : Float;
 	var z : Float;
 	var order : String;
-	var _onChangeCallback : js.lib.IFunction;
+	var _onChangeCallback : ts.lib.IFunction;
 	function set(x:Float, y:Float, z:Float, ?order:String):Euler;
 	function clone():Euler;
 	function copy(euler:Euler):Euler;
@@ -17,7 +17,7 @@ package three;
 	function fromArray(xyzo:std.Array<Any>):Euler;
 	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
 	function toVector3(?optionalResult:Vector3):Vector3;
-	function _onChange(callback:js.lib.IFunction):Euler;
+	function _onChange(callback:ts.lib.IFunction):Euler;
 	static var RotationOrders : std.Array<String>;
 	static var DefaultOrder : String;
 }

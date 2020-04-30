@@ -268,7 +268,7 @@
 	static var TextureIdCount : Float;
 	static var MaterialIdCount : Float;
 	static var DefaultLoadingManager : three.LoadingManager;
-	static var AudioContext : js.html.IAudioContext;
+	static var AudioContext : ts.html.IAudioContext;
 	static var GeometryIdCount : Float;
 	static var Object3DIdCount : Float;
 	static var REVISION : String;

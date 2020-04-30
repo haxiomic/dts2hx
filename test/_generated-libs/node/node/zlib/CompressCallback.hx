@@ -1,2 +1,2 @@
 package node.zlib;
-typedef CompressCallback = (error:Null<js.lib.IError>, result:global.IBuffer) -> Void;
+typedef CompressCallback = (error:Null<ts.lib.IError>, result:global.IBuffer) -> Void;

@@ -25,19 +25,19 @@ extern typedef SecureServerOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<std.Array<js.lib.IUint8Array>, std.Array<global.IBuffer>>>>>;
+	var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<std.Array<ts.lib.IUint8Array>, std.Array<global.IBuffer>>>>>;
 	@:optional
-	var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<std.Array<js.lib.IUint8Array>, std.Array<global.IBuffer>>>>>;
+	var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<std.Array<ts.lib.IUint8Array>, std.Array<global.IBuffer>>>>>;
 	@:optional
-	var SNICallback : (servername:String, cb:(err:Null<js.lib.IError>, ctx:node.tls.SecureContext) -> Void) -> Void;
+	var SNICallback : (servername:String, cb:(err:Null<ts.lib.IError>, ctx:node.tls.SecureContext) -> Void) -> Void;
 	@:optional
 	var sessionTimeout : Float;
 	@:optional
 	var ticketKeys : global.IBuffer;
 	@:optional
-	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<js.lib.IObject, global.IBuffer>>>>>;
+	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IObject, global.IBuffer>>>>>;
 	@:optional
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<js.lib.IObject, global.IBuffer>>>>;
+	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<ts.lib.IObject, global.IBuffer>>>>;
 	@:optional
 	var passphrase : String;
 	@:optional

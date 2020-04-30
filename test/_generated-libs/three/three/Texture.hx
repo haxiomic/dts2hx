@@ -1,12 +1,12 @@
 package three;
 @:jsRequire("three", "Texture") extern class Texture {
-	function new(?image:haxe.extern.EitherType<js.html.IHTMLCanvasElement, haxe.extern.EitherType<js.html.IHTMLVideoElement, js.html.IHTMLImageElement>>, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float, ?encoding:TextureEncoding);
+	function new(?image:haxe.extern.EitherType<ts.html.IHTMLCanvasElement, haxe.extern.EitherType<ts.html.IHTMLVideoElement, ts.html.IHTMLImageElement>>, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float, ?encoding:TextureEncoding);
 	var id : Float;
 	var uuid : String;
 	var name : String;
 	var sourceFile : String;
 	var image : Any;
-	var mipmaps : std.Array<js.html.IImageData>;
+	var mipmaps : std.Array<ts.html.IImageData>;
 	var mapping : Mapping;
 	var wrapS : Wrapping;
 	var wrapT : Wrapping;

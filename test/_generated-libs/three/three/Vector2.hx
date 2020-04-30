@@ -208,7 +208,7 @@ package three;
 		
 		Copies x and y into the provided array-like.
 	**/
-	@:overload(function(array:js.lib.ArrayLike<Float>, ?offset:Float):js.lib.ArrayLike<Float> { })
+	@:overload(function(array:ts.lib.ArrayLike<Float>, ?offset:Float):ts.lib.ArrayLike<Float> { })
 	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
 	/**
 		Sets this vector's x and y values from the attribute.

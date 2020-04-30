@@ -1,5 +1,5 @@
 package node.util;
-extern typedef CustomPromisify<TCustom:(js.lib.IFunction)> = {
+extern typedef CustomPromisify<TCustom> = {
 	/**
 		Calls the function, substituting the specified object for the this value of the function, and the specified array for the arguments of the function.
 	**/
@@ -20,7 +20,7 @@ extern typedef CustomPromisify<TCustom:(js.lib.IFunction)> = {
 	var prototype : Any;
 	final length : Float;
 	var arguments : Any;
-	var caller : js.lib.IFunction;
+	var caller : ts.lib.IFunction;
 	/**
 		Returns the name of the function. Function names are read-only and can not be changed.
 	**/

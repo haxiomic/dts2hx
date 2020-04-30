@@ -53,21 +53,21 @@ package node.http2;
 	function unshift(chunk:Any):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):Http2ServerRequest;
 	function push(chunk:Any, ?encoding:String):Bool;
-	function _destroy(error:Null<js.lib.IError>, callback:(?error:js.lib.IError) -> Void):Void;
-	function destroy(?error:js.lib.IError):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function destroy(?error:ts.lib.IError):Void;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerRequest { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):Http2ServerRequest { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2ServerRequest { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Http2ServerRequest { })
 	function removeListener(event:String, listener:() -> Void):Http2ServerRequest;
-	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Http2ServerRequest;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Http2ServerRequest;
 	function setMaxListeners(n:Float):Http2ServerRequest;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

@@ -1,12 +1,12 @@
 package three;
 @:jsRequire("three", "VideoTexture") extern class VideoTexture {
-	function new(video:js.html.IHTMLVideoElement, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float);
+	function new(video:ts.html.IHTMLVideoElement, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float);
 	var id : Float;
 	var uuid : String;
 	var name : String;
 	var sourceFile : String;
 	var image : Any;
-	var mipmaps : std.Array<js.html.IImageData>;
+	var mipmaps : std.Array<ts.html.IImageData>;
 	var mapping : Mapping;
 	var wrapS : Wrapping;
 	var wrapT : Wrapping;

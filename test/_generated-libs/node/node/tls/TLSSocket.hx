@@ -3,7 +3,7 @@ package node.tls;
 	/**
 		Construct a new tls.TLSSocket object from an existing TCP socket.
 	**/
-	function new(socket:node.net.Socket, ?options:{ /** An optional TLS context object from tls.createSecureContext() **/ @:optional var secureContext : SecureContext; /** If true the TLS socket will be instantiated in server-mode.Defaults to false. **/ @:optional var isServer : Bool; /** An optional net.Server instance. **/ @:optional var server : node.net.Server; /** If true the server will request a certificate from clients thatconnect and attempt to verify that certificate. Defaults tofalse. **/ @:optional var requestCert : Bool; /** If true the server will reject any connection which is notauthorized with the list of supplied CAs. This option only has aneffect if requestCert is true. Defaults to false. **/ @:optional var rejectUnauthorized : Bool; /** An array of strings or a Buffer naming possible NPN protocols.(Protocols should be ordered by their priority.) **/ @:optional var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<std.Array<js.lib.IUint8Array>, std.Array<global.IBuffer>>>>>; /** An array of strings or a Buffer naming possible ALPN protocols.(Protocols should be ordered by their priority.) When the serverreceives both NPN and ALPN extensions from the client, ALPN takesprecedence over NPN and the server does not send an NPN extensionto the client. **/ @:optional var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<std.Array<js.lib.IUint8Array>, std.Array<global.IBuffer>>>>>; /** SNICallback(servername, cb) <Function> A function that will becalled if the client supports SNI TLS extension. Two argumentswill be passed when called: servername and cb. SNICallback shouldinvoke cb(null, ctx), where ctx is a SecureContext instance.(tls.createSecureContext(...) can be used to get a properSecureContext.) If SNICallback wasn't provided the default callbackwith high-level API will be used (see below). **/ @:optional var SNICallback : (servername:String, cb:(err:Null<js.lib.IError>, ctx:SecureContext) -> Void) -> Void; /** An optional Buffer instance containing a TLS session. **/ @:optional var session : global.IBuffer; /** If true, specifies that the OCSP status request extension will beadded to the client hello and an 'OCSPResponse' event will beemitted on the socket before establishing a secure communication **/ @:optional var requestOCSP : Bool; });
+	function new(socket:node.net.Socket, ?options:{ /** An optional TLS context object from tls.createSecureContext() **/ @:optional var secureContext : SecureContext; /** If true the TLS socket will be instantiated in server-mode.Defaults to false. **/ @:optional var isServer : Bool; /** An optional net.Server instance. **/ @:optional var server : node.net.Server; /** If true the server will request a certificate from clients thatconnect and attempt to verify that certificate. Defaults tofalse. **/ @:optional var requestCert : Bool; /** If true the server will reject any connection which is notauthorized with the list of supplied CAs. This option only has aneffect if requestCert is true. Defaults to false. **/ @:optional var rejectUnauthorized : Bool; /** An array of strings or a Buffer naming possible NPN protocols.(Protocols should be ordered by their priority.) **/ @:optional var NPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<std.Array<ts.lib.IUint8Array>, std.Array<global.IBuffer>>>>>; /** An array of strings or a Buffer naming possible ALPN protocols.(Protocols should be ordered by their priority.) When the serverreceives both NPN and ALPN extensions from the client, ALPN takesprecedence over NPN and the server does not send an NPN extensionto the client. **/ @:optional var ALPNProtocols : haxe.extern.EitherType<std.Array<String>, haxe.extern.EitherType<global.IBuffer, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<std.Array<ts.lib.IUint8Array>, std.Array<global.IBuffer>>>>>; /** SNICallback(servername, cb) <Function> A function that will becalled if the client supports SNI TLS extension. Two argumentswill be passed when called: servername and cb. SNICallback shouldinvoke cb(null, ctx), where ctx is a SecureContext instance.(tls.createSecureContext(...) can be used to get a properSecureContext.) If SNICallback wasn't provided the default callbackwith high-level API will be used (see below). **/ @:optional var SNICallback : (servername:String, cb:(err:Null<ts.lib.IError>, ctx:SecureContext) -> Void) -> Void; /** An optional Buffer instance containing a TLS session. **/ @:optional var session : global.IBuffer; /** If true, specifies that the OCSP status request extension will beadded to the client hello and an 'OCSPResponse' event will beemitted on the socket before establishing a secure communication **/ @:optional var requestOCSP : Bool; });
 	/**
 		A boolean that is true if the peer certificate was signed by one of the specified CAs, otherwise false.
 	**/
@@ -12,7 +12,7 @@ package node.tls;
 		The reason why the peer's certificate has not been verified.
 		This property becomes available only when tlsSocket.authorized === false.
 	**/
-	var authorizationError : js.lib.IError;
+	var authorizationError : ts.lib.IError;
 	/**
 		Static boolean value, always true.
 		May be used to distinguish TLS sockets from regular ones.
@@ -60,7 +60,7 @@ package node.tls;
 		NOTE: Can be used to request peer's certificate after the secure connection has been established.
 		ANOTHER NOTE: When running as the server, socket will be destroyed with an error after handshakeTimeout timeout.
 	**/
-	function renegotiate(options:{ @:optional var rejectUnauthorized : Bool; @:optional var requestCert : Bool; }, callback:(err:Null<js.lib.IError>) -> Void):Null<Bool>;
+	function renegotiate(options:{ @:optional var rejectUnauthorized : Bool; @:optional var requestCert : Bool; }, callback:(err:Null<ts.lib.IError>) -> Void):Null<Bool>;
 	/**
 		Set maximum TLS fragment size (default and maximum value is: 16384, minimum is: 512).
 		Smaller fragment size decreases buffering latency on the client: large fragments are buffered by
@@ -99,8 +99,8 @@ package node.tls;
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):TLSSocket;
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:js.lib.IError) -> Void):Bool { })
-	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:(?err:js.lib.IError) -> Void):Bool;
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?encoding:String, ?cb:(?err:ts.lib.IError) -> Void):Bool { })
+	function write(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?cb:(?err:ts.lib.IError) -> Void):Bool;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):TLSSocket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):TLSSocket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):TLSSocket { })
@@ -127,17 +127,17 @@ package node.tls;
 	final remoteFamily : String;
 	@:optional
 	final remotePort : Float;
-	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?cb:() -> Void):Void { })
-	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
+	@:overload(function(buffer:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?cb:() -> Void):Void { })
+	@:overload(function(str:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.IError) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
-	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
-	function _final(callback:(?error:js.lib.IError) -> Void):Void;
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
+	function _final(callback:(?error:ts.lib.IError) -> Void):Void;
 	function setDefaultEncoding(encoding:String):TLSSocket;
 	function cork():Void;
 	function uncork():Void;
@@ -151,20 +151,20 @@ package node.tls;
 	function unshift(chunk:Any):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):TLSSocket;
 	function push(chunk:Any, ?encoding:String):Bool;
-	function destroy(?error:js.lib.IError):Void;
+	function destroy(?error:ts.lib.IError):Void;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):TLSSocket { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):TLSSocket { })
 	function removeListener(event:String, listener:() -> Void):TLSSocket;
-	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):TLSSocket;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):TLSSocket;
 	function setMaxListeners(n:Float):TLSSocket;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

@@ -3,8 +3,8 @@ extern typedef ServerHttp2Stream = {
 	function additionalHeaders(headers:node.http.OutgoingHttpHeaders):Void;
 	final headersSent : Bool;
 	final pushAllowed : Bool;
-	@:overload(function(headers:node.http.OutgoingHttpHeaders, ?options:StreamPriorityOptions, ?callback:(err:Null<js.lib.IError>, pushStream:ServerHttp2Stream, headers:node.http.OutgoingHttpHeaders) -> Void):Void { })
-	function pushStream(headers:node.http.OutgoingHttpHeaders, ?callback:(err:Null<js.lib.IError>, pushStream:ServerHttp2Stream, headers:node.http.OutgoingHttpHeaders) -> Void):Void;
+	@:overload(function(headers:node.http.OutgoingHttpHeaders, ?options:StreamPriorityOptions, ?callback:(err:Null<ts.lib.IError>, pushStream:ServerHttp2Stream, headers:node.http.OutgoingHttpHeaders) -> Void):Void { })
+	function pushStream(headers:node.http.OutgoingHttpHeaders, ?callback:(err:Null<ts.lib.IError>, pushStream:ServerHttp2Stream, headers:node.http.OutgoingHttpHeaders) -> Void):Void;
 	function respond(?headers:node.http.OutgoingHttpHeaders, ?options:ServerStreamResponseOptions):Void;
 	function respondWithFD(fd:Float, ?headers:node.http.OutgoingHttpHeaders, ?options:ServerStreamFileResponseOptions):Void;
 	function respondWithFile(path:String, ?headers:node.http.OutgoingHttpHeaders, ?options:ServerStreamFileResponseOptionsWithError):Void;
@@ -154,7 +154,7 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerHttp2Stream { })
@@ -169,7 +169,7 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, chunk:haxe.extern.EitherType<String, global.IBuffer>):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:js.lib.IError):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, frameType:Float, errorCode:Float):Bool { })
 	@:overload(function(event:String, src:node.stream.Readable):Bool { })
@@ -184,7 +184,7 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerHttp2Stream { })
@@ -199,7 +199,7 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerHttp2Stream { })
@@ -214,7 +214,7 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerHttp2Stream { })
@@ -229,7 +229,7 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerHttp2Stream { })
@@ -243,13 +243,13 @@ extern typedef ServerHttp2Stream = {
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Any, encoding:String, callback:(?error:js.lib.IError) -> Void):Void;
+	function _write(chunk:Any, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:js.lib.IError) -> Void):Void;
-	function _destroy(error:Null<js.lib.IError>, callback:(error:Null<js.lib.IError>) -> Void):Void;
-	function _final(callback:(?error:js.lib.IError) -> Void):Void;
-	@:overload(function(chunk:Any, ?cb:(error:Null<js.lib.IError>) -> Void):Bool { })
-	function write(chunk:Any, ?encoding:String, ?cb:(error:Null<js.lib.IError>) -> Void):Bool;
+	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
+	function _final(callback:(?error:ts.lib.IError) -> Void):Void;
+	@:overload(function(chunk:Any, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
+	function write(chunk:Any, ?encoding:String, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):ServerHttp2Stream;
 	@:overload(function(chunk:Any, ?cb:() -> Void):Void { })
 	@:overload(function(chunk:Any, ?encoding:String, ?cb:() -> Void):Void { })
@@ -269,20 +269,20 @@ extern typedef ServerHttp2Stream = {
 	function unshift(chunk:Any):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):ServerHttp2Stream;
 	function push(chunk:Any, ?encoding:String):Bool;
-	function destroy(?error:js.lib.IError):Void;
+	function destroy(?error:ts.lib.IError):Void;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerHttp2Stream { })
 	function removeListener(event:String, listener:() -> Void):ServerHttp2Stream;
-	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerHttp2Stream;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ServerHttp2Stream;
 	function setMaxListeners(n:Float):ServerHttp2Stream;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 };

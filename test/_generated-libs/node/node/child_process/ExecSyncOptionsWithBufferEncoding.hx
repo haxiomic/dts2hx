@@ -2,7 +2,7 @@ package node.child_process;
 extern typedef ExecSyncOptionsWithBufferEncoding = {
 	var encoding : String;
 	@:optional
-	var input : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, js.lib.IUint8Array>>;
+	var input : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>;
 	@:optional
 	var stdio : haxe.extern.EitherType<String, std.Array<Null<haxe.extern.EitherType<Float, haxe.extern.EitherType<String, node.stream.Stream>>>>>;
 	@:optional

@@ -5,14 +5,14 @@ extern typedef ChildProcess = {
 	var stderr : Null<node.stream.Readable>;
 	@:optional
 	final channel : node.stream.Pipe;
-	final stdio : js.lib.Tuple5<Null<node.stream.Writable>, Null<node.stream.Readable>, Null<node.stream.Readable>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>>;
+	final stdio : ts.lib.Tuple5<Null<node.stream.Writable>, Null<node.stream.Readable>, Null<node.stream.Readable>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>, Null<haxe.extern.EitherType<node.stream.Writable, node.stream.Readable>>>;
 	final killed : Bool;
 	final pid : Float;
 	final connected : Bool;
 	function kill(?signal:String):Void;
-	@:overload(function(message:Any, ?sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>, ?callback:(error:js.lib.IError) -> Void):Bool { })
-	@:overload(function(message:Any, ?sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>, ?options:MessageOptions, ?callback:(error:js.lib.IError) -> Void):Bool { })
-	function send(message:Any, ?callback:(error:js.lib.IError) -> Void):Bool;
+	@:overload(function(message:Any, ?sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>, ?callback:(error:ts.lib.IError) -> Void):Bool { })
+	@:overload(function(message:Any, ?sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>, ?options:MessageOptions, ?callback:(error:ts.lib.IError) -> Void):Bool { })
+	function send(message:Any, ?callback:(error:ts.lib.IError) -> Void):Bool;
 	function disconnect():Void;
 	function unref():Void;
 	function ref():Void;
@@ -26,37 +26,37 @@ extern typedef ChildProcess = {
 	**/
 	@:overload(function(event:String, listener:(code:Float, signal:String) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:() -> Void):ChildProcess { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ChildProcess { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(code:Null<Float>, signal:Null<String>) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):ChildProcess { })
 	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):ChildProcess;
 	@:overload(function(event:String, code:Float, signal:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:js.lib.IError):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
 	@:overload(function(event:String, code:Null<Float>, signal:Null<String>):Bool { })
 	@:overload(function(event:String, message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>):Bool { })
 	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
 	@:overload(function(event:String, listener:(code:Float, signal:String) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:() -> Void):ChildProcess { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ChildProcess { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(code:Null<Float>, signal:Null<String>) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):ChildProcess { })
 	function on(event:String, listener:(args:std.Array<Any>) -> Void):ChildProcess;
 	@:overload(function(event:String, listener:(code:Float, signal:String) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:() -> Void):ChildProcess { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ChildProcess { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(code:Null<Float>, signal:Null<String>) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):ChildProcess { })
 	function once(event:String, listener:(args:std.Array<Any>) -> Void):ChildProcess;
 	@:overload(function(event:String, listener:(code:Float, signal:String) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:() -> Void):ChildProcess { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ChildProcess { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(code:Null<Float>, signal:Null<String>) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):ChildProcess { })
 	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):ChildProcess;
 	@:overload(function(event:String, listener:(code:Float, signal:String) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:() -> Void):ChildProcess { })
-	@:overload(function(event:String, listener:(err:js.lib.IError) -> Void):ChildProcess { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(code:Null<Float>, signal:Null<String>) -> Void):ChildProcess { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):ChildProcess { })
 	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):ChildProcess;
@@ -65,8 +65,8 @@ extern typedef ChildProcess = {
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ChildProcess;
 	function setMaxListeners(n:Float):ChildProcess;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 };

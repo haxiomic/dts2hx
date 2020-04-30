@@ -65,7 +65,7 @@ package node.repl;
 		given line of input. If not specified in the REPL options, this is an async wrapper
 		for the JavaScript `eval()` function.
 	**/
-	final eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.IError>, result:Any) -> Void) -> Void;
+	final eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<ts.lib.IError>, result:Any) -> Void) -> Void;
 	/**
 		Specified in the REPL options, this is a value indicating whether the default
 		`writer` function should include ANSI color styling to REPL output.
@@ -91,7 +91,7 @@ package node.repl;
 	/**
 		Specified in the REPL options, this is the function to use for custom Tab auto-completion.
 	**/
-	final completer : haxe.extern.EitherType<(line:String) -> js.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:js.lib.IError, ?result:js.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
+	final completer : haxe.extern.EitherType<(line:String) -> ts.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
 	/**
 		Specified in the REPL options, this is a flag that specifies whether the default `eval`
 		function should execute all JavaScript commands in strict mode or default (sloppy) mode.
@@ -130,7 +130,7 @@ package node.repl;
 		programmatically. Use this method to initialize a history log file when working
 		with REPL instances programmatically.
 	**/
-	function setupHistory(path:String, cb:(err:Null<js.lib.IError>, repl:REPLServer) -> Void):Void;
+	function setupHistory(path:String, cb:(err:Null<ts.lib.IError>, repl:REPLServer) -> Void):Void;
 	/**
 		events.EventEmitter
 		1. close - inherited from `readline.Interface`
@@ -216,8 +216,8 @@ package node.repl;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):REPLServer;
 	function setMaxListeners(n:Float):REPLServer;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<js.lib.IFunction>;
+	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
 	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
 	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

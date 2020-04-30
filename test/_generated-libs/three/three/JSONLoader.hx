@@ -6,7 +6,7 @@ package three;
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;
 	var withCredentials : Bool;
-	function load(url:String, ?onLoad:(geometry:Geometry, materials:std.Array<Material>) -> Void, ?onProgress:(event:js.html.IProgressEvent<js.html.IEventTarget>) -> Void, ?onError:(event:js.html.IErrorEvent) -> Void):Void;
+	function load(url:String, ?onLoad:(geometry:Geometry, materials:std.Array<Material>) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Void;
 	function setTexturePath(value:String):Void;
 	function parse(json:Any, ?texturePath:String):{
 		var geometry : Geometry;

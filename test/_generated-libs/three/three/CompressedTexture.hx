@@ -1,6 +1,6 @@
 package three;
 @:jsRequire("three", "CompressedTexture") extern class CompressedTexture {
-	function new(mipmaps:std.Array<js.html.IImageData>, width:Float, height:Float, ?format:CompressedPixelFormat, ?type:TextureDataType, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?anisotropy:Float, ?encoding:TextureEncoding);
+	function new(mipmaps:std.Array<ts.html.IImageData>, width:Float, height:Float, ?format:CompressedPixelFormat, ?type:TextureDataType, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?anisotropy:Float, ?encoding:TextureEncoding);
 	var image : {
 		var width : Float;
 		var height : Float;
@@ -9,7 +9,7 @@ package three;
 	var uuid : String;
 	var name : String;
 	var sourceFile : String;
-	var mipmaps : std.Array<js.html.IImageData>;
+	var mipmaps : std.Array<ts.html.IImageData>;
 	var mapping : Mapping;
 	var wrapS : Wrapping;
 	var wrapT : Wrapping;

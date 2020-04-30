@@ -1,12 +1,12 @@
 package three;
 @:jsRequire("three", "DataTexture3D") extern class DataTexture3D {
-	function new(data:haxe.extern.EitherType<js.lib.IInt8Array, haxe.extern.EitherType<js.lib.IUint8Array, haxe.extern.EitherType<js.lib.IUint8ClampedArray, haxe.extern.EitherType<js.lib.IInt16Array, haxe.extern.EitherType<js.lib.IUint16Array, haxe.extern.EitherType<js.lib.IInt32Array, haxe.extern.EitherType<js.lib.IUint32Array, haxe.extern.EitherType<js.lib.IFloat32Array, js.lib.IFloat64Array>>>>>>>>, width:Float, height:Float, depth:Float);
+	function new(data:haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, ts.lib.IFloat64Array>>>>>>>>, width:Float, height:Float, depth:Float);
 	var id : Float;
 	var uuid : String;
 	var name : String;
 	var sourceFile : String;
 	var image : Any;
-	var mipmaps : std.Array<js.html.IImageData>;
+	var mipmaps : std.Array<ts.html.IImageData>;
 	var mapping : Mapping;
 	var wrapS : Wrapping;
 	var wrapT : Wrapping;
