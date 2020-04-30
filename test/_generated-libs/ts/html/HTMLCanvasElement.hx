@@ -18,7 +18,7 @@ package ts.html;
 	@:overload(function(contextId:String, ?options:ImageBitmapRenderingContextSettings):Null<IImageBitmapRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGLRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGL2RenderingContext> { })
-	@:overload(function(contextId:String, ?options:Any):Null<haxe.extern.EitherType<IWebGLRenderingContext, haxe.extern.EitherType<IImageBitmapRenderingContext, haxe.extern.EitherType<IWebGL2RenderingContext, ICanvasRenderingContext2D>>>> { })
+	@:overload(function(contextId:String, ?options:Any):Null<haxe.extern.EitherType<ICanvasRenderingContext2D, haxe.extern.EitherType<IImageBitmapRenderingContext, haxe.extern.EitherType<IWebGL2RenderingContext, IWebGLRenderingContext>>>> { })
 	function getContext(contextId:String, ?options:CanvasRenderingContext2DSettings):Null<ICanvasRenderingContext2D>;
 	function toBlob(callback:BlobCallback, ?type:String, ?quality:Any):Void;
 	/**

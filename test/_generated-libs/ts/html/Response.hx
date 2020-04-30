@@ -3,7 +3,7 @@ package ts.html;
 	This Fetch API interface represents the response to a request.
 **/
 @:native("Response") extern class Response {
-	function new(?body:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, IReadableStream<ts.lib.IUint8Array>>>>>>>, ?init:ResponseInit);
+	function new(?body:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, haxe.extern.EitherType<ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>>>>>>, ?init:ResponseInit);
 	final headers : ts.lib.IHeaders;
 	final ok : Bool;
 	final redirected : Bool;

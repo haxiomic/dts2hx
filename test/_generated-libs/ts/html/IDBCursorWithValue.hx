@@ -15,11 +15,11 @@ package ts.html;
 	/**
 		Returns the key of the cursor. Throws a "InvalidStateError" DOMException if the cursor is advancing or is finished.
 	**/
-	final key : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<ts.lib.IDate, IDBArrayKey>>>>>;
+	final key : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>;
 	/**
 		Returns the effective key of the cursor. Throws a "InvalidStateError" DOMException if the cursor is advancing or is finished.
 	**/
-	final primaryKey : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<ts.lib.IDate, IDBArrayKey>>>>>;
+	final primaryKey : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>;
 	/**
 		Returns the IDBObjectStore or IDBIndex the cursor was opened from.
 	**/
@@ -32,11 +32,11 @@ package ts.html;
 		Advances the cursor to the next record in range.
 	**/
 	@:native("continue")
-	function continue_(?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<ts.lib.IDate, IDBArrayKey>>>>>):Void;
+	function continue_(?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>):Void;
 	/**
 		Advances the cursor to the next record in range matching or after key and primaryKey. Throws an "InvalidAccessError" DOMException if the source is not an index.
 	**/
-	function continuePrimaryKey(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<ts.lib.IDate, IDBArrayKey>>>>>, primaryKey:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<ts.lib.IDate, IDBArrayKey>>>>>):Void;
+	function continuePrimaryKey(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>, primaryKey:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>):Void;
 	/**
 		Delete the record pointed at by the cursor with a new value.
 		
@@ -50,6 +50,6 @@ package ts.html;
 		
 		If successful, request's result will be the record's key.
 	**/
-	function update(value:Any):IIDBRequest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<ts.lib.IDate, IDBArrayKey>>>>>>;
+	function update(value:Any):IIDBRequest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>;
 	static var prototype : IIDBCursorWithValue;
 }

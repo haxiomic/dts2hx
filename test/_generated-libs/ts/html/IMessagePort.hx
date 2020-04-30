@@ -15,7 +15,7 @@ extern typedef IMessagePort = {
 		Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
 	**/
 	@:overload(function(message:Any, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IImageBitmap, IMessagePort>>>):Void;
+	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IMessagePort, IImageBitmap>>>):Void;
 	/**
 		Begins dispatching messages received on the port.
 	**/

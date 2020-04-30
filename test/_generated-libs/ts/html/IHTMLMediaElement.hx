@@ -120,7 +120,7 @@ extern typedef IHTMLMediaElement = {
 		The address or URL of the a media resource that is to be considered.
 	**/
 	var src : String;
-	var srcObject : Null<haxe.extern.EitherType<IMediaStream, haxe.extern.EitherType<IMediaSource, IBlob>>>;
+	var srcObject : Null<haxe.extern.EitherType<IBlob, haxe.extern.EitherType<IMediaSource, IMediaStream>>>;
 	final textTracks : ts.lib.ITextTrackList;
 	final videoTracks : ts.lib.IVideoTrackList;
 	/**

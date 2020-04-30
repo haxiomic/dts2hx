@@ -15,7 +15,7 @@ package ts.html;
 	final readyState : Float;
 	final url : String;
 	function close(?code:Float, ?reason:String):Void;
-	function send(data:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, IBlob>>>):Void;
+	function send(data:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IBlob, ts.lib.ArrayBufferView>>>):Void;
 	final CLOSED : Float;
 	final CLOSING : Float;
 	final CONNECTING : Float;

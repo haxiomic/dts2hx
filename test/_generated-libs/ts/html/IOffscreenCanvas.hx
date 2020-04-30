@@ -28,7 +28,7 @@ extern typedef IOffscreenCanvas = {
 	@:overload(function(contextId:String, ?options:ImageBitmapRenderingContextSettings):Null<IImageBitmapRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGLRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGL2RenderingContext> { })
-	@:overload(function(contextId:String, ?options:Any):Null<haxe.extern.EitherType<IWebGLRenderingContext, haxe.extern.EitherType<IImageBitmapRenderingContext, haxe.extern.EitherType<IWebGL2RenderingContext, IOffscreenCanvasRenderingContext2D>>>> { })
+	@:overload(function(contextId:String, ?options:Any):Null<haxe.extern.EitherType<IImageBitmapRenderingContext, haxe.extern.EitherType<IOffscreenCanvasRenderingContext2D, haxe.extern.EitherType<IWebGL2RenderingContext, IWebGLRenderingContext>>>> { })
 	function getContext(contextId:String, ?options:CanvasRenderingContext2DSettings):Null<IOffscreenCanvasRenderingContext2D>;
 	/**
 		Returns a newly created ImageBitmap object with the image in the OffscreenCanvas object. The image in the OffscreenCanvas object is replaced with a new blank image.

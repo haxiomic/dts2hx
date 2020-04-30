@@ -4,7 +4,7 @@ extern typedef RequestInit = {
 		A BodyInit object or null to set request's body.
 	**/
 	@:optional
-	var body : haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, IReadableStream<ts.lib.IUint8Array>>>>>>>;
+	var body : haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, haxe.extern.EitherType<ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>>>>>>;
 	/**
 		A string indicating how the request will interact with the browser's cache to set request's cache.
 	**/

@@ -5,4 +5,4 @@ rm -rf _generated-libs
 # @! consider removing when types are mapped to haxe stb lib
 ../cli.js node --verbose --output _generated-libs --noLibWrap
 ../cli.js three --verbose --output _generated-libs --noLibWrap
-# ../cli.js jquery --verbose --output _generated-libs
+../cli.js jquery --verbose --output _generated-libs --noLibWrap

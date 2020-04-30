@@ -102,7 +102,7 @@ package ts.html;
 	function moveTo(x:Float, y:Float):Void;
 	function msWriteProfilerMark(profilerMarkName:String):Void;
 	function open(?url:String, ?target:String, ?features:String, ?replace:Bool):Null<IWindow>;
-	function postMessage(message:Any, targetOrigin:String, ?transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IImageBitmap, IMessagePort>>>):Void;
+	function postMessage(message:Any, targetOrigin:String, ?transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IMessagePort, IImageBitmap>>>):Void;
 	function print():Void;
 	function prompt(?message:String, ?_default:String):Null<String>;
 	function releaseEvents():Void;
@@ -404,8 +404,8 @@ package ts.html;
 	final origin : String;
 	function clearInterval(?handle:Float):Void;
 	function clearTimeout(?handle:Float):Void;
-	@:overload(function(image:haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IImageData, haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<IBlob, ISVGImageElement>>>>>>>, sx:Float, sy:Float, sw:Float, sh:Float):ts.lib.IPromise<IImageBitmap> { })
-	function createImageBitmap(image:haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IImageData, haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<IBlob, ISVGImageElement>>>>>>>):ts.lib.IPromise<IImageBitmap>;
+	@:overload(function(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>, sx:Float, sy:Float, sw:Float, sh:Float):ts.lib.IPromise<IImageBitmap> { })
+	function createImageBitmap(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>):ts.lib.IPromise<IImageBitmap>;
 	function fetch(input:haxe.extern.EitherType<String, IRequest>, ?init:RequestInit):ts.lib.IPromise<IResponse>;
 	function queueMicrotask(callback:ts.lib.IFunction):Void;
 	function setInterval(handler:haxe.extern.EitherType<String, ts.lib.IFunction>, ?timeout:Float, arguments:std.Array<Any>):Float;

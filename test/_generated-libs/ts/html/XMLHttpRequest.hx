@@ -84,7 +84,7 @@ package ts.html;
 		
 		Throws an "InvalidStateError" DOMException if either state is not opened or the send() flag is set.
 	**/
-	function send(?body:haxe.extern.EitherType<String, haxe.extern.EitherType<IDocument, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, IReadableStream<ts.lib.IUint8Array>>>>>>>>):Void;
+	function send(?body:haxe.extern.EitherType<String, haxe.extern.EitherType<IDocument, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, haxe.extern.EitherType<ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>>>>>>>):Void;
 	/**
 		Combines a header in author request headers.
 		

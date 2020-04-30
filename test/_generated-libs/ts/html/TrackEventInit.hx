@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef TrackEventInit = {
 	@:optional
-	var track : haxe.extern.EitherType<ITextTrack, haxe.extern.EitherType<IAudioTrack, IVideoTrack>>;
+	var track : haxe.extern.EitherType<IAudioTrack, haxe.extern.EitherType<ITextTrack, IVideoTrack>>;
 	@:optional
 	var bubbles : Bool;
 	@:optional

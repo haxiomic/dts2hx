@@ -32,7 +32,7 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function add(value:Any, ?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>):ts.html.IIDBRequest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>;
+	function add(value:Any, ?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>):ts.html.IIDBRequest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>;
 	/**
 		Deletes all records in store.
 		
@@ -44,7 +44,7 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the count.
 	**/
-	function count(?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Float>;
+	function count(?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Float>;
 	/**
 		Creates a new index in store with the given name, keyPath and options and returns a new IDBIndex. If the keyPath and options define constraints that cannot be satisfied with the data already in store the upgrade transaction will abort with a "ConstraintError" DOMException.
 		
@@ -61,7 +61,7 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Null<Any>>;
+	function delete(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Null<Any>>;
 	/**
 		Deletes the index in store with the given name.
 		
@@ -73,38 +73,38 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the value, or undefined if there was no matching record.
 	**/
-	function get(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Any>;
+	function get(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Any>;
 	/**
 		Retrieves the values of the records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>, ?count:Float):ts.html.IIDBRequest<std.Array<Any>>;
+	function getAll(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>, ?count:Float):ts.html.IIDBRequest<std.Array<Any>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>, ?count:Float):ts.html.IIDBRequest<std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>>;
+	function getAllKeys(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>, ?count:Float):ts.html.IIDBRequest<std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		
 		If successful, request's result will be the key, or undefined if there was no matching record.
 	**/
-	function getKey(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Null<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>>;
+	function getKey(query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Null<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>>;
 	function index(name:String):ts.html.IIDBIndex;
 	/**
 		Opens a cursor over the records matching query, ordered by direction. If query is null, all records in store are matched.
 		
 		If successful, request's result will be an IDBCursorWithValue pointing at the first matching record, or null if there were no matching records.
 	**/
-	function openCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursorWithValue>>;
+	function openCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursorWithValue>>;
 	/**
 		Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in store are matched.
 		
 		If successful, request's result will be an IDBCursor pointing at the first matching record, or null if there were no matching records.
 	**/
-	function openKeyCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursor>>;
+	function openKeyCursor(?query:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursor>>;
 	/**
 		Adds or updates a record in store with the given value and key.
 		
@@ -114,5 +114,5 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function put(value:Any, ?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>):ts.html.IIDBRequest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>;
+	function put(value:Any, ?key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>):ts.html.IIDBRequest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<IDate, haxe.extern.EitherType<ArrayBufferView, ts.html.IDBArrayKey>>>>>>;
 };

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("TrackEvent") extern class TrackEvent {
 	function new(typeArg:String, ?eventInitDict:TrackEventInit);
-	final track : Null<haxe.extern.EitherType<ITextTrack, haxe.extern.EitherType<IAudioTrack, IVideoTrack>>>;
+	final track : Null<haxe.extern.EitherType<IAudioTrack, haxe.extern.EitherType<ITextTrack, IVideoTrack>>>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

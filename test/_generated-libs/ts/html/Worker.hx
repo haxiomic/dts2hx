@@ -6,7 +6,7 @@ package ts.html;
 	function new(stringUrl:haxe.extern.EitherType<String, IURL>, ?options:WorkerOptions);
 	var onmessage : Null<(ev:IMessageEvent) -> Any>;
 	@:overload(function(message:Any, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IImageBitmap, IMessagePort>>>):Void;
+	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IMessagePort, IImageBitmap>>>):Void;
 	function terminate():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
