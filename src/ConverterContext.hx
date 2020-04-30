@@ -676,7 +676,9 @@ class ConverterContext {
 			macro :Float;
 		} else if (type.flags & (TypeFlags.Boolean) != 0) {
 			macro :Bool;
-		} else if (type.flags & (TypeFlags.VoidLike) != 0) {
+		} else if (type.flags & (TypeFlags.Undefined) != 0) {
+			macro :Null<Any>;
+		} else if (type.flags & (TypeFlags.Void) != 0) {
 			macro :Void;
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
 			var hxTypePath = getReferencedHaxeTypePath(type.symbol, accessContext, false);
