@@ -48,11 +48,16 @@
 	- set it on function signatures, check if resulting line length > x
 	- if > x, re-print with multiLineFields
 
+- Issue: jquery sizzle dependency, generates sizzle files within jquery library
+	- Solution: don't generate types for external modules
+
 - Issue: struct/function formatting problems in Typescript.hx
 
 - Issue: toSafeIdent(), result can be just `_` which has special meaning in haxe
 
 - Issue: Global.hx, multiple root Global.hx's will override each other
+
+- Issue: could not find local file reference module in the cwd: e.g. `dts2hx ./scratch`
 
 - Enums:
 	- Generate method to get keys
@@ -75,11 +80,7 @@ A generic build version of this would work
 ? `tc.getBaseConstraintOfType(type)`
 ? `getBaseTypes(type:InterfaceType):Array<typescript.ts.BaseType>`
 ? `tc.getWidenedType()`
-? `getApparentType()`
-? could use `tc.getNonNullable` type instead of unwrap null
 ? `getRootSymbols()`
-
-- If a symbol is both a class and interface, we could split into a class implementation and an interface implementation, and then select the correct type when referencing by context: if used in implements, then use interface version 
 
 - Use subtypes for typedef anons (so it's not an anon repreated 3x)
 	- i.e. `abstract Name({...}) to {...} from {...} { }`
@@ -102,16 +103,3 @@ A generic build version of this would work
 - **Command Line Interface**
 	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
 	- maybe check for .d.ts at end and remove when doing module search
-
-- babylon d.ts is borked to heck. It defines the same classes into multiple modules, only a few of which actually exist. Each module generates a type that currently has the same package as the others, so they overwrite each other (and it's not clear the correct one is left)
-	-> Could prefix the package path with the root module and remove duplicates
-
-- Open haxe printer bug
-```haxe
-// this is a single field, the object has crappy printing
-static var typeQueryObject : { var fieldA : Float; var fieldB : Float; var fieldArrayAlias : Array<String>; @:optional
-var fieldOptional : Null<Float>; @:native("macro")
-var macro_ : String; var nestedTuple : js.lib.Tuple3<Any, Float, String, js.lib.Tuple2<Any, Bool, Array<Bool>>>; var computedFieldName : String; var sub : { var a : Float; var b : Float; }; function methodSignatureComplex<T:(haxe.extern.EitherType<String, Float>)>(a:Float, ?opt:String):T; @:overload(function(a:Float):Void { })
-function methodSignatureWithOverload<T>(a:T):Void; var methodProperty : (a:Any) -> Void; @:optional
-function methodSignatureOptional():String; var readonlyField : String; };
-```
