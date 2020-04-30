@@ -19,7 +19,7 @@ class SupportTypes {
 		// var baseType = HaxeTools.commonType(elementTypes);
 
 		var typePath = {
-			pack: ['js', 'lib'],
+			pack: ['ts', 'lib'],
 			name: 'Tuple${elementTypes.length}',
 			params: elementTypes.map(t -> TPType(t))
 		};

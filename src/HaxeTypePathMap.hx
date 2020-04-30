@@ -274,8 +274,8 @@ class HaxeTypePathMap {
 		// otherwise prefix the module name (if it's a path, add a pack for each directory)
 		var pack = if (defaultLibName != null) {
 			switch defaultLibName.toLowerCase() {
-				case 'lib.dom.d.ts': ['js', 'html'];
-				default: ['js', 'lib'];
+				case 'lib.dom.d.ts': ['ts', 'html'];
+				default: ['ts', 'lib'];
 			}
 		} else {
 			[];
