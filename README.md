@@ -74,6 +74,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 - [ ] Other missing types
 - [ ] Callable classes type II
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
+- [ ] Support complex Rest parameters like unions and tuples
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
