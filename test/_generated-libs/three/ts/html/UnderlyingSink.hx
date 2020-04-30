@@ -7,7 +7,7 @@ extern typedef UnderlyingSink<W> = {
 	@:optional
 	var start : WritableStreamDefaultControllerStartCallback;
 	@:optional
-	var type : Void;
+	var type : Any;
 	@:optional
 	var write : WritableStreamDefaultControllerWriteCallback<W>;
 };

@@ -7,5 +7,5 @@ extern typedef UnderlyingSource<R> = {
 	@:optional
 	var start : ReadableStreamDefaultControllerCallback<R>;
 	@:optional
-	var type : Void;
+	var type : Any;
 };

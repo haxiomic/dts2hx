@@ -41,7 +41,7 @@ extern typedef IIDBCursorWithValue = {
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete():IIDBRequest<Void>;
+	function delete():IIDBRequest<Null<Any>>;
 	/**
 		Updated the record pointed at by the cursor with a new value.
 		

@@ -151,7 +151,7 @@ extern typedef Global = {
 		@:selfCall
 		function call(callback:ts.lib.IFunction):Void;
 	};
-	var undefined : Void;
+	var undefined : Null<Any>;
 	var unescape : (str:String) -> String;
 	var gc : () -> Void;
 	@:optional

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("ReadableStream") extern class ReadableStream<R> {
 	@:overload(function<R>(?underlyingSource:UnderlyingSource<R>, ?strategy:QueuingStrategy<R>):IReadableStream<R> { })
-	function new(underlyingSource:UnderlyingByteSource, ?strategy:{ @:optional var highWaterMark : Float; @:optional var size : Void; });
+	function new(underlyingSource:UnderlyingByteSource, ?strategy:{ @:optional var highWaterMark : Float; @:optional var size : Any; });
 	final locked : Bool;
 	function cancel(?reason:Any):ts.lib.IPromise<Void>;
 	@:overload(function():ReadableStreamDefaultReader<R> { })

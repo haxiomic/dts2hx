@@ -38,7 +38,7 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be undefined.
 	**/
-	function clear():ts.html.IIDBRequest<Void>;
+	function clear():ts.html.IIDBRequest<Null<Any>>;
 	/**
 		Retrieves the number of records matching the given key or key range in query.
 		
@@ -61,7 +61,7 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Void>;
+	function delete(key:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ArrayBufferView, haxe.extern.EitherType<ts.html.IIDBKeyRange, haxe.extern.EitherType<IDate, ts.html.IDBArrayKey>>>>>>):ts.html.IIDBRequest<Null<Any>>;
 	/**
 		Deletes the index in store with the given name.
 		
