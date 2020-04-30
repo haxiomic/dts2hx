@@ -763,6 +763,11 @@ class ConverterContext {
 		var nullable = typesWithoutNullable.length != unionType.types.length;
 		// convert union's TsTypes to haxe ComplexTypes
 		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+		// if we have :Any in our union, just replace the whole thing with :Any (this can happen if a type failed conversion)
+		// Null<Any> is useful as doc however
+		if (!nullable && hxTypes.exists(t -> t.match(TPath({name: 'Any', pack: [] | ['std']})))) {
+			return macro :Any;
+		}
 		// if union is of length 1, no need for support type
 		var unionType = switch hxTypes.length {
 			case 0: macro :Any;
