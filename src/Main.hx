@@ -396,7 +396,7 @@ class Main {
 	}
 
 	static function printDoc(argHandler: ArgHandler) {
-		Console.printlnFormatted('<b>dts2hx</b> <b>${dts2hxPackageJson.version}</> using <b>TypeScript ${typescript.Ts.version}</>');
+		Console.printlnFormatted('<b>dts2hx</b> <b>${dts2hxPackageJson.version}</> <red>alpha</> using <b>TypeScript ${typescript.Ts.version}</>');
 		Console.println('TypeScript definition to haxe extern converter');
 		Console.println('');
 		Console.printlnFormatted('<b>Usage:</b>');
@@ -418,7 +418,7 @@ class Main {
 		for (item in argHandler.options) {
 			if (item.doc == null) continue;
 
-			var usageString = '<light_white>${item.flags.join(', ')}</>';
+			var usageString = '${item.flags.join(', ')}';
 
 			if (item.args.length > 0) {
 				usageString += ' <i,cyan>' + item.args.map(a -> '{${a.opt?'?':''}${a.name}}').join(', ') + '</>';
