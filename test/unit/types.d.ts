@@ -162,6 +162,9 @@ export namespace Types {
     const arrowNumberStringVoid: (a: number, noType) => void;
     const arrowNumberTVoidTypeParam: <T>(a: number, tparam: T) => void;
     const arrowParamWithRest: (a: number, b: number, ...rest: Array<number>) => void;
+    const arrowParamWithRestUnion: (a: number, b: number, ...rest: number[] | boolean[]) => void;
+    const arrowParamWithRestTuple: (a: number, b: number, ...rest: [number]) => void;
+    const arrowParamWithRestTupleUnion: (a: number, b: number, ...rest: [number] | [boolean]) => void;
     const arrowParamObjectBindingPattern: ({ x: number , y: string }) => void;
     function functionImplicit(x, y);
     function functionNumberStringVoidAlt (a: number, b: string): void;
