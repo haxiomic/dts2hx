@@ -758,14 +758,17 @@ class ConverterContext {
 		} else if (type.flags & TypeFlags.BigInt != 0) {
 			// we don't support BigInt at a language level, but we can convert the BigInt type itself instead
 			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
-		} else if (type.flags & TypeFlags.Index != 0) {
-			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
-		} else if (type.flags & TypeFlags.Conditional != 0) {
-			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
-		} else if (type.flags & TypeFlags.Substitution != 0) {
-			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
-		} else if (type.flags & TypeFlags.IndexedAccess != 0) {
-			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+
+		// these probably don't work properly:
+		// } else if (type.flags & TypeFlags.Index != 0) {
+		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// } else if (type.flags & TypeFlags.Conditional != 0) {
+		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// } else if (type.flags & TypeFlags.Substitution != 0) {
+		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// } else if (type.flags & TypeFlags.IndexedAccess != 0) {
+		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+
 		} else {
 			Log.error('Type not yet supported', type);
 			// @! todo:
