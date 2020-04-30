@@ -303,7 +303,7 @@ class Main {
 				Fs.writeFileSync(Path.join([outputLibraryPath, 'haxelib.json']), haxelibJsonStr);
 			}
 
-			Console.success('<green>Generated <b>$outputLibraryPath</></>');
+			Console.success('<green>Generated externs for <b>$moduleName</> in <b>$outputLibraryPath</></>');
 		}
 
 		return converter;
