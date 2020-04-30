@@ -1,3 +1,6 @@
+import typescript.ts.ExpressionWithTypeArguments;
+import typescript.ts.HeritageClause;
+import typescript.ts.ClassDeclaration;
 import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
@@ -347,39 +350,65 @@ class ConverterContext {
 			}
 
 			var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
+			var meta = [access.toAccessMetadata()];
+			var superClassPath: Null<TypePath> = null;
+
+			if (isValueModuleOnlySymbol) {
+				meta.push({name: 'valueModuleOnly', pos: pos});
+			}
+
+			var callSignatures = symbol.getCallSignatures(tc);
+			var indexSignatures = symbol.getIndexSignatures(tc);
+			var classMembers = symbol.getClassMembers();
+
+			// alternatively, get effective members:
+			// symbol.getConstructorSignatures(tc),
+			// tc.getSignaturesOfType(declaredType, Call),
+			// tc.getIndexSignaturesOfType(declaredType),
+			// tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
+
+			// determine super type (if class declaration)
+			var classDeclaration: Null<ClassDeclaration> = declaration != null && Ts.isClassDeclaration(declaration) ? cast declaration : null;
+
+			if (classDeclaration != null && classDeclaration.heritageClauses != null) {
+				// classes can only extend one class in TypeScript
+				var extendsClause = (cast classDeclaration.heritageClauses: Array<HeritageClause>).find(h -> h.token == ExtendsKeyword);
+				if (extendsClause != null) {
+					var superTypeNode = (cast extendsClause.types: Array<ExpressionWithTypeArguments>)[0];
+					var superType = tc.getTypeFromTypeNode(superTypeNode);
+					var hxSuperType = complexTypeFromTsType(superType, access, declaration);
+					superClassPath = switch hxSuperType {
+						case TPath(p): p;
+						default:
+							Log.error('Class super-type did not translate to a class-path');
+							null;
+					}
+					var superClassMembers = tc.getPropertiesOfType(superType).filter(s -> s.isAccessibleField());
+
+					// remove redefined class members
+					classMembers = classMembers.filter(m -> {
+						// filter out field if it has the same name as a super-type field
+						return !superClassMembers.exists(sm -> sm.name == m.name);
+					});
+				}
+			}
 
 			var fields = generateTypeFields(
 				symbol,
 				access,
 				declaration,
 				symbol.getConstructorSignatures(tc),
-				tc.getSignaturesOfType(declaredType, Call),
-				tc.getIndexSignaturesOfType(declaredType),
-				tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
+				callSignatures,
+				indexSignatures,
+				classMembers
 			);
-			/*
-			// alternative when we just want _this_ symbol's fields and not to include heritage
-			generateFields(
-				symbol.getConstructorSignatures(tc),
-				symbol.getCallSignatures(tc),
-				symbol.getIndexSignatures(tc),
-				symbol.getClassMembers()
-			);
-			*/
 
-			var superClass: Null<TypePath> = null;
-
-			var meta = [access.toAccessMetadata()];
-
-			if (isValueModuleOnlySymbol) {
-				meta.push({name: 'valueModuleOnly', pos: pos});
-			}
 
 			{
 				pack: typePath.pack,
 				name: typePath.name,
 				fields: fields,
-				kind: TDClass(superClass, [], false, false),
+				kind: TDClass(superClassPath, [], false, false),
 				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, symbol.valueDeclaration),
 				isExtern: true,
 				doc: getDoc(symbol),

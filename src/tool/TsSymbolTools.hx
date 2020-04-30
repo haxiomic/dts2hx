@@ -271,7 +271,10 @@ class TsSymbolTools {
 		var signatures = declarations.map(d -> tc.getSignatureFromDeclaration(cast d));
 		return cast signatures.filter(s -> s != null);
 	}
-
+	
+	/**
+		Different from construct signatures
+	**/
 	static public function getConstructorSignatures(symbol: Symbol, tc: TypeChecker): Array<Signature> {
 		var symbols = getMembers(symbol).filter(s -> s.flags & SymbolFlags.Constructor != 0 && s.escapedName == InternalSymbolName.Constructor);
 		var declarations = symbols.map(s -> getDeclarationsArray(s).filter(d -> Ts.isConstructorDeclaration(d))).flatten();
@@ -282,24 +285,6 @@ class TsSymbolTools {
 	static public function getClassMembers(symbol: Symbol): Array<Symbol> {
 		return getMembers(symbol).filter(s -> isAccessibleField(s) && s.flags & SymbolFlags.ClassMember != 0);
 	}
-
-	static public function getHeritageClauses(symbol: Symbol): Array<HeritageClause> {
-		var heritageClauses = new Array<HeritageClause>();
-		for (node in getDeclarationsArray(symbol)) {
-			if (Ts.isInterfaceDeclaration(node)) {
-				var interfaceDeclaration: InterfaceDeclaration = cast node;
-				if (interfaceDeclaration.heritageClauses != null) {
-					heritageClauses = heritageClauses.concat((cast interfaceDeclaration.heritageClauses: Array<HeritageClause>));
-				}
-			} else if (Ts.isClassDeclaration(node)) {
-				var classDeclaration: ClassDeclaration = cast node;
-				if (classDeclaration.heritageClauses != null) {
-					heritageClauses = heritageClauses.concat((cast classDeclaration.heritageClauses: Array<HeritageClause>));
-				}
-			}
-		}
-		return heritageClauses;
-	} 
 
 	static public function isInternalSymbol(symbol: Symbol) {
 		return isInternalSymbolName(symbol.name);
