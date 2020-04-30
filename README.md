@@ -60,15 +60,15 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 - [x] Handle type parameters when rasterizing types
     - [x] Information loss in function signatures
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
-- [ ] How to use docs
+- [ ] Class extends
+- [ ] Interface extends
+- [ ] Docs: How-to-use + examples
 - [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
 
 **Road to Beta**
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
-- [ ] Classes and interfaces
-    - [ ] Index signatures (both class and interfaces)
-    - [ ] Extends & implements
 - [ ] Index signatures
+    - [ ] Classes and interfaces
 - [ ] Intersection types
 - [ ] Other missing types
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
