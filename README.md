@@ -60,9 +60,9 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [x] Command-line interface
     - [x] Convert local `.d.ts` files
 - [x] Handle type parameters when rasterizing types
-    - [x] Information loss in function signatures **← :star: currently working on this**
-- [ ] Validation system to confirm all test code compiles
-- [ ] Use example docs
+    - [x] Information loss in function signatures
+- [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
+- [ ] How to use docs
 - [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
 
 **Road to Beta**
