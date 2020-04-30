@@ -1101,11 +1101,6 @@ class ConverterContext {
 		}
 	}
 
-	/**
-		Valid symbol flags
-		- `Property`
-		- `Method`
-	**/
 	function fieldFromSymbol(nativeFieldName: String, symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
