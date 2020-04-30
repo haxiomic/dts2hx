@@ -677,7 +677,7 @@ extern typedef JQueryStatic = {
 	@:overload(function<TContext, TReturn, A, T, U, V, W, X, Y, Z>(fun_Tion:(a:A, t:T, u:U, v:V, w:W, x:X, y:Y, z:Z, args:std.Array<Any>) -> TReturn, context:TContext, a:A):(t:T, u:U, v:V, w:W, x:X, y:Y, z:Z, args:std.Array<Any>) -> TReturn { })
 	@:overload(function<TContext, TReturn, T, U, V, W, X, Y, Z>(fun_Tion:(t:T, u:U, v:V, w:W, x:X, y:Y, z:Z, args:std.Array<Any>) -> TReturn, context:TContext):(t:T, u:U, v:V, w:W, x:X, y:Y, z:Z, args:std.Array<Any>) -> TReturn { })
 	@:overload(function<TContext, TReturn>(fun_Tion:(args:std.Array<Any>) -> TReturn, context:TContext, additionalArguments:std.Array<Any>):(args:std.Array<Any>) -> TReturn { })
-	@:overload(function<TContext>(context:TContext, name:Any, additionalArguments:std.Array<Any>):(args:std.Array<Any>) -> Any { })
+	@:overload(function<TContext>(context:TContext, name:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, additionalArguments:std.Array<Any>):(args:std.Array<Any>) -> Any { })
 	function proxy<TReturn, A, B, C, D, E, F, G>(fun_Tion:(a:A, b:B, c:C, d:D, e:E, f:F, g:G) -> TReturn, context:Null<Any>, a:A, b:B, c:C, d:D, e:E, f:F, g:G):() -> TReturn;
 	/**
 		Manipulate the queue of functions to be executed on the matched element.
