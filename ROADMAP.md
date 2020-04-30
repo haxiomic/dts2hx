@@ -1,3 +1,9 @@
+- jquery infinite loop?
+	- transient types from intersection can create loops because we can't recognize when we've seen them before
+
+- Maybe use macro to enable finally
+- Use macro to call complexType methods with type-stack pushing?
+
 - Complete validation
 
 ---- Tests should compile
