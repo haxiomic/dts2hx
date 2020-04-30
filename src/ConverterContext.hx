@@ -1283,7 +1283,7 @@ class ConverterContext {
 
 		return [for (t in tsTypeParameterDeclarations) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
-			constraints: t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : []
+			// constraints: t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : []
 		}];
 	}
 
@@ -1296,7 +1296,7 @@ class ConverterContext {
 		} else null;
 		return {
 			name: typeParameter.symbol.name.toSafeTypeName(),
-			constraints: hxConstraint != null ? [hxConstraint] : null,
+			// constraints: hxConstraint != null ? [hxConstraint] : null,
 		}
 	}
 
