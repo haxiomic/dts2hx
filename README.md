@@ -62,7 +62,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
 - [x] Class extends
 - [ ] Interface extends
-- [ ] Rest parameters
+- [x] Rest parameters
 - [ ] Docs: How-to-use + examples
 - [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
 
