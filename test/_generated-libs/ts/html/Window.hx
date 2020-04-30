@@ -145,14 +145,14 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, haxe.extern.EitherType<IBeforeUnloadEvent, haxe.extern.EitherType<IUIEvent, haxe.extern.EitherType<IDeviceLightEvent, haxe.extern.EitherType<IDeviceMotionEvent, haxe.extern.EitherType<IDeviceOrientationEvent, haxe.extern.EitherType<IDragEvent, haxe.extern.EitherType<IMouseEvent, haxe.extern.EitherType<IErrorEvent, haxe.extern.EitherType<IFocusEvent, haxe.extern.EitherType<IHashChangeEvent, haxe.extern.EitherType<IKeyboardEvent, haxe.extern.EitherType<IMessageEvent, haxe.extern.EitherType<IPageTransitionEvent, haxe.extern.EitherType<IPointerEvent, haxe.extern.EitherType<IPopStateEvent, haxe.extern.EitherType<IProgressEvent<IEventTarget>, haxe.extern.EitherType<IPromiseRejectionEvent, haxe.extern.EitherType<ISecurityPolicyViolationEvent, haxe.extern.EitherType<IStorageEvent, haxe.extern.EitherType<ITouchEvent, haxe.extern.EitherType<ITransitionEvent, haxe.extern.EitherType<IWheelEvent, haxe.extern.EitherType<IAnimationEvent, IProgressEvent<IWindow>>>>>>>>>>>>>>>>>>>>>>>>>) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, haxe.extern.EitherType<IBeforeUnloadEvent, haxe.extern.EitherType<IUIEvent, haxe.extern.EitherType<IDeviceLightEvent, haxe.extern.EitherType<IDeviceMotionEvent, haxe.extern.EitherType<IDeviceOrientationEvent, haxe.extern.EitherType<IDragEvent, haxe.extern.EitherType<IMouseEvent, haxe.extern.EitherType<IErrorEvent, haxe.extern.EitherType<IFocusEvent, haxe.extern.EitherType<IHashChangeEvent, haxe.extern.EitherType<IKeyboardEvent, haxe.extern.EitherType<IMessageEvent, haxe.extern.EitherType<IPageTransitionEvent, haxe.extern.EitherType<IPointerEvent, haxe.extern.EitherType<IPopStateEvent, haxe.extern.EitherType<IProgressEvent<IEventTarget>, haxe.extern.EitherType<IPromiseRejectionEvent, haxe.extern.EitherType<ISecurityPolicyViolationEvent, haxe.extern.EitherType<IStorageEvent, haxe.extern.EitherType<ITouchEvent, haxe.extern.EitherType<ITransitionEvent, haxe.extern.EitherType<IWheelEvent, haxe.extern.EitherType<IAnimationEvent, IProgressEvent<IWindow>>>>>>>>>>>>>>>>>>>>>>>>>) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
@@ -404,8 +404,8 @@ package ts.html;
 	final origin : String;
 	function clearInterval(?handle:Float):Void;
 	function clearTimeout(?handle:Float):Void;
-	@:overload(function(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>, sx:Float, sy:Float, sw:Float, sh:Float):ts.lib.IPromise<IImageBitmap> { })
-	function createImageBitmap(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>):ts.lib.IPromise<IImageBitmap>;
+	@:overload(function(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>, sx:Float, sy:Float, sw:Float, sh:Float):ts.lib.IPromise<IImageBitmap> { })
+	function createImageBitmap(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>):ts.lib.IPromise<IImageBitmap>;
 	function fetch(input:haxe.extern.EitherType<String, IRequest>, ?init:RequestInit):ts.lib.IPromise<IResponse>;
 	function queueMicrotask(callback:ts.lib.IFunction):Void;
 	function setInterval(handler:haxe.extern.EitherType<String, ts.lib.IFunction>, ?timeout:Float, arguments:std.Array<Any>):Float;

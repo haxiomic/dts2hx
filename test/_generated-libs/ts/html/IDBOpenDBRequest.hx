@@ -56,7 +56,7 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, IIDBVersionChangeEvent>) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -67,7 +67,7 @@ package ts.html;
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, IIDBVersionChangeEvent>) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
 	/**
 		When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
 	**/

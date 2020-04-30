@@ -1,2 +1,2 @@
 package global.jquery;
-typedef TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, TType> = (t:Any, args:std.Array<Any>) -> Any;
+typedef TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, TType> = (t:TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget, Any>, args:std.Array<Any>) -> Any;

@@ -102,9 +102,9 @@ extern typedef JQuery<TElement> = {
 		
 		Attach a handler to an event for the elements.
 	**/
-	@:overload(function<TType>(eventType:TType, handler_preventBubble:Null<haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>>):JQuery<TElement> { })
+	@:overload(function<TType>(eventType:TType, handler_preventBubble:Null<haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:std.Array<Any>) -> Any>>):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
-	function bind<TType, TData>(eventType:TType, eventData:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function bind<TType, TData>(eventType:TType, eventData:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "blur" JavaScript event, or trigger that event on an element.
 		
@@ -203,9 +203,9 @@ extern typedef JQuery<TElement> = {
 		
 		Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.
 	**/
-	@:overload(function<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
 	@:overload(function(selector:String, events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Any, Any>):JQuery<TElement> { })
-	function delegate<TType, TData>(selector:String, eventType:TType, eventData:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function delegate<TType, TData>(selector:String, eventType:TType, eventData:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
 	/**
 		Execute the next function on the queue for the matched elements.
 	**/
@@ -494,10 +494,10 @@ extern typedef JQuery<TElement> = {
 		
 		Remove an event handler.
 	**/
-	@:overload(function<TType>(events:TType, ?selector_handler:haxe.extern.EitherType<String, haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>>):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, ?selector_handler:haxe.extern.EitherType<String, haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:std.Array<Any>) -> Any>>):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Any, Any, Any>, ?selector:String):JQuery<TElement> { })
 	@:overload(function(?event:global.jquery.TriggeredEvent<TElement, Any, Any, Any>):JQuery<TElement> { })
-	function off<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	function off<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Set the current coordinates of every element in the set of matched elements, relative to the document.
 		
@@ -536,19 +536,19 @@ extern typedef JQuery<TElement> = {
 		
 		Attach an event handler function for one or more events to the selected elements.
 	**/
-	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
 	@:overload(function(events:String, selector:Null<String>, data:Any, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
 	@:overload(function(events:String, selector_data:Any, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
 	@:overload(function(events:String, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Any, Any>, selector:String, data:TData):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Any>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Any, Any>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
-	function on<TType, TData>(events:TType, selector:String, data:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function on<TType, TData>(events:TType, selector:String, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
 		
@@ -570,16 +570,16 @@ extern typedef JQuery<TElement> = {
 		
 		Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
 	**/
-	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Any, Any>, selector:String, data:TData):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Any>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Any, Any>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
-	function one<TType, TData>(events:TType, selector:String, data:TData, handler:(t:Any, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function one<TType, TData>(events:TType, selector:String, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
 	/**
 		Set the CSS outer height of each element in the set of matched elements.
 		
@@ -852,7 +852,7 @@ extern typedef JQuery<TElement> = {
 		Remove a previously-attached event handler from the elements.
 	**/
 	@:overload(function(?event:haxe.extern.EitherType<String, global.jquery.TriggeredEvent<TElement, Any, Any, Any>>):JQuery<TElement> { })
-	function unbind<TType>(event:TType, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	function unbind<TType>(event:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, TElement, TElement, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Remove a handler from the event for all elements which match the current selector, based upon a specific set of root elements.
 		
@@ -862,7 +862,7 @@ extern typedef JQuery<TElement> = {
 	**/
 	@:overload(function(selector:String, eventType_events:haxe.extern.EitherType<String, global.jquery.TypeEventHandlers<TElement, Any, Any, Any>>):JQuery<TElement> { })
 	@:overload(function(?namespace:String):JQuery<TElement> { })
-	function undelegate<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:Any, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	function undelegate<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.
 	**/

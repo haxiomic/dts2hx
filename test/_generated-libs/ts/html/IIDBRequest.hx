@@ -51,14 +51,14 @@ extern typedef IIDBRequest<T> = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:IEvent) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:IEvent) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
