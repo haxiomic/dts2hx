@@ -124,7 +124,7 @@ package unit.types;
 	static var partial : Any;
 	static var arrowNumberStringVoid : (a:Float, noType:Any) -> Void;
 	static var arrowNumberTVoidTypeParam : (a:Float, tparam:Any) -> Void;
-	static var arrowParamWithRest : (a:Float, b:Float, rest:std.Array<Float>) -> Void;
+	static var arrowParamWithRest : (a:Float, b:Float, rest:haxe.extern.Rest<Float>) -> Void;
 	static var arrowParamObjectBindingPattern : (__0:{ var x : Any; var y : Any; }) -> Void;
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;

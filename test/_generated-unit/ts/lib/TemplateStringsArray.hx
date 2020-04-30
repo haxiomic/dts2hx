@@ -18,8 +18,8 @@ extern typedef TemplateStringsArray = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:std.Array<haxe.extern.EitherType<String, ConcatArray<String>>>):std.Array<String> { })
-	function concat(items:std.Array<ConcatArray<String>>):std.Array<String>;
+	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<String, ConcatArray<String>>>):std.Array<String> { })
+	function concat(items:haxe.extern.Rest<ConcatArray<String>>):std.Array<String>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/

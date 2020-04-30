@@ -49,6 +49,7 @@ export namespace Types {
 
     function functionWithOptional(a: string, b?: boolean): number;
     type FunctionTypeWithOptional = (a: string, b?: boolean) => number;
+    type FunctionWithRest = (...a: number[]) => string;
 
     // Primitive Types
     //  implicit

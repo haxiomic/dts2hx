@@ -23,14 +23,14 @@ extern typedef KeyValuePair<K, V> = {
 	/**
 		Appends new elements to an array, and returns the new length of the array.
 	**/
-	function push(items:std.Array<haxe.extern.EitherType<K, V>>):Float;
+	function push(items:haxe.extern.Rest<haxe.extern.EitherType<K, V>>):Float;
 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:std.Array<haxe.extern.EitherType<K, haxe.extern.EitherType<V, ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>>>):std.Array<haxe.extern.EitherType<K, V>> { })
-	function concat(items:std.Array<ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>):std.Array<haxe.extern.EitherType<K, V>>;
+	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<K, haxe.extern.EitherType<V, ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>>>):std.Array<haxe.extern.EitherType<K, V>> { })
+	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>):std.Array<haxe.extern.EitherType<K, V>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -56,12 +56,12 @@ extern typedef KeyValuePair<K, V> = {
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:std.Array<haxe.extern.EitherType<K, V>>):std.Array<haxe.extern.EitherType<K, V>> { })
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<haxe.extern.EitherType<K, V>>):std.Array<haxe.extern.EitherType<K, V>> { })
 	function splice(start:Float, ?deleteCount:Float):std.Array<haxe.extern.EitherType<K, V>>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
-	function unshift(items:std.Array<haxe.extern.EitherType<K, V>>):Float;
+	function unshift(items:haxe.extern.Rest<haxe.extern.EitherType<K, V>>):Float;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
