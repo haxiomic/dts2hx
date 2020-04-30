@@ -93,7 +93,9 @@ class ConverterContext {
 
 	final locationComments: Bool;
 
+	// settings
 	final shortenTypePaths = true;
+	final enableTypeParameterConstraints = false;
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool) {
 		// this will be used as the argument to require()
@@ -1283,7 +1285,7 @@ class ConverterContext {
 
 		return [for (t in tsTypeParameterDeclarations) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
-			// constraints: t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : []
+			constraints: enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : null
 		}];
 	}
 
@@ -1296,7 +1298,7 @@ class ConverterContext {
 		} else null;
 		return {
 			name: typeParameter.symbol.name.toSafeTypeName(),
-			// constraints: hxConstraint != null ? [hxConstraint] : null,
+			constraints: enableTypeParameterConstraints && hxConstraint != null ? [hxConstraint] : null,
 		}
 	}
 
