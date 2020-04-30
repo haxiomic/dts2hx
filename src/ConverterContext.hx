@@ -1022,6 +1022,8 @@ class ConverterContext {
 		var hxParameters: Array<ComplexType> = callSignature.parameters.map(s -> {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
 			var tsType = tc.getTypeOfSymbolAtLocation(s, parameterDeclaration);
+			var isOptional = tc.isOptionalParameter(parameterDeclaration);
+			var isRest = parameterDeclaration.dotDotDotToken != null;
 
 			var hxType = if (isLocalTypeParam(tsType)) {
 				macro :Any;
@@ -1029,7 +1031,17 @@ class ConverterContext {
 				complexTypeFromTsType(tsType, accessContext, parameterDeclaration);
 			}
 
-			var isOptional = tc.isOptionalParameter(parameterDeclaration);
+			// a rest parameter cannot be optional in ts
+			if (isRest) {
+				// hxType should be Array<T>, we want to unwrap this and change to Rest<T>
+				hxType = switch hxType {
+					case TPath({name: 'Array', params: [TPType(param)]}):
+						macro :haxe.extern.Rest<$param>;
+					default:
+						Log.error('Expected rest parameter type to be Array<T>');
+						hxType;
+				}
+			}
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
 			}
@@ -1291,6 +1303,18 @@ class ConverterContext {
 			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
 			var hxType = complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(s, parameterDeclaration), accessContext, enclosingDeclaration);
 			var isOptional = tc.isOptionalParameter(parameterDeclaration);
+			var isRest = parameterDeclaration.dotDotDotToken != null;
+			// a rest parameter cannot be optional in ts
+			if (isRest) {
+				// hxType should be Array<T>, we want to unwrap this and change to Rest<T>
+				hxType = switch hxType {
+					case TPath({name: 'Array', params: [TPType(param)]}):
+						macro :haxe.extern.Rest<$param>;
+					default:
+						Log.error('Expected rest parameter type to be Array<T>');
+						hxType;
+				}
+			}
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
 			}
