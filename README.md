@@ -13,7 +13,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 - Install a node module with types, e.g. `npm install three` 
 - Run dts2hx on the node module `npx dts2hx three`
 - Alternatively, generate externs for all local node dependencies with `npx dts2hx --all`
-- The generated externs require haxe 4+ syntax
+- (The generated externs require haxe 4+ syntax)
 
 # Roadmap
 - [x] Rewrite in haxe using generated TypeScript compiler externs
@@ -106,5 +106,3 @@ Command-line tool to convert TypeScript type definitions to haxe externs
    The idea of generating Haxe externs from `.d.ts` files is not new, [ts2hx](https://github.com/Simn/ts2hx) for instance was started 5 years ago already. However, this turned out to not be viable because it implemented a TypeScript parser in Haxe. The maintenance effort required turned out to be too great since TypeScript is evolving quickly.
 
    This project takes the _opposite_ approach and hooks into the TypeScript compiler API, which simplifies future maintenance a lot.
-
-Useful tool to help understand the TS AST https://ts-ast-viewer.com/
