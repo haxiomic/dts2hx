@@ -1041,7 +1041,7 @@ class ConverterContext {
 					case TPath({name: 'Array', params: [TPType(param)]}):
 						macro :haxe.extern.Rest<$param>;
 					default:
-						Log.error('Expected rest parameter type to be Array<T>');
+						Log.error('Expected rest parameter type to be Array<T>', s);
 						hxType;
 				}
 			}
@@ -1314,7 +1314,7 @@ class ConverterContext {
 					case TPath({name: 'Array', params: [TPType(param)]}):
 						macro :haxe.extern.Rest<$param>;
 					default:
-						Log.error('Expected rest parameter type to be Array<T>');
+						Log.error('Expected rest parameter type to be Array<T>', s);
 						hxType;
 				}
 			}
