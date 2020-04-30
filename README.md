@@ -1,21 +1,16 @@
 # TypeScript Definitions to Haxe Extern Converter
 
-Hi, this is a work in progress TypeScript Definition to Haxe Extern converter that uses the typescript compiler. It's not yet ready to use but much of the groundwork has been laid
-
-The ultimate aim is to be able to do something like `dts2hx three --install` and have it pull definitions and convert them to haxe
+Command-line tool to convert TypeScript type definitions to haxe externs
 
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
 # Getting Started
-- **be aware, this tool is currently unfinished and your externs probably won't work yet!**
-- requires haxe > 4.0.5
 - install dts2hx in your local project as a development dependency:
 
-    `npm install https://github.com/haxiomic/dts2hx --save-dev`
+    `npm install dts2hx --save-dev`
 - install a node module with types, e.g. `npm install three` 
 - run dts2hx on the node module `npx dts2hx three`
 - alternatively, generate externs for all local node dependencies with `npx dts2hx --all`
-- (generated externs are not ready to use yet)
 
 # Roadmap
 - [x] Rewrite in haxe using generated TypeScript compiler externs
@@ -74,6 +69,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
 - [ ] Intersection types
 - [ ] Other missing types
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
+- [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 **Road to 1.0**
@@ -88,6 +84,7 @@ The ultimate aim is to be able to do something like `dts2hx three --install` and
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
 - [ ] CLI: Add `--install` option
+    - [ ] Automatically try `install @types/{name}` if no types found in main module
 - [ ] CLI: Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
     - Either:
         - bake into the externs

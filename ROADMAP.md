@@ -2,6 +2,8 @@
 
 ---- Tests should compile
 
+- Constructor comments missing from pixi.js
+
 - Class and interface extend handling, add override etc
 	- Need to check where extending / intersection is allowed
 	- Class extends should not `preferInterfaceStructure`, what else?
