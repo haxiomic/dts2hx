@@ -726,20 +726,24 @@ class ConverterContext {
 			complexTypeFromObjectType(cast type, accessContext, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
+		} else if (type.flags & TypeFlags.BigInt != 0) {
+			// we don't support BigInt at a language level, but we can convert the BigInt type itself instead
+			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.Index != 0) {
+			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.Conditional != 0) {
+			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 		} else {
+			Log.error('Type not yet supported', type);
 			// @! todo:
-			// BigInt          = 1 << 6,
 			// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
 			// BigIntLiteral   = 1 << 11,
-			// ESSymbol        = 1 << 12,  // Type of symbol primitive introduced in ES6
-			// UniqueESSymbol  = 1 << 13,  // unique symbol
 			// Index           = 1 << 22,  // keyof T
 			// IndexedAccess   = 1 << 23,  // T[K]
 			// Conditional     = 1 << 24,  // T extends U ? X : Y
 			// Substitution    = 1 << 25,  // Type parameter substitution
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
-			Log.error('Type not yet supported', type);
 			// debug();
 			macro :Any;
 		} catch (e: Any) {
