@@ -5,12 +5,13 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
 # Getting Started
-- install dts2hx in your local project as a development dependency:
+- Install dts2hx in your local project as a development dependency:
 
     `npm install dts2hx --save-dev`
-- install a node module with types, e.g. `npm install three` 
-- run dts2hx on the node module `npx dts2hx three`
-- alternatively, generate externs for all local node dependencies with `npx dts2hx --all`
+- Install a node module with types, e.g. `npm install three` 
+- Run dts2hx on the node module `npx dts2hx three`
+- Alternatively, generate externs for all local node dependencies with `npx dts2hx --all`
+- The generated externs require haxe 4+ syntax
 
 # Roadmap
 - [x] Rewrite in haxe using generated TypeScript compiler externs
