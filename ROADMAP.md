@@ -1,5 +1,5 @@
-- jquery infinite loop?
-	- transient types from intersection can create loops because we can't recognize when we've seen them before
+- Should we convert all `const Name: T;` fields to classes rather than global variables?
+	-> Probably, what about `var Name: T;`? I think so.
 
 - Maybe use macro to enable finally
 - Use macro to call complexType methods with type-stack pushing?

@@ -60,7 +60,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 - [x] Handle type parameters when rasterizing types
     - [x] Information loss in function signatures
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
-- [ ] Class extends
+- [x] Class extends
 - [ ] Interface extends
 - [ ] Docs: How-to-use + examples
 - [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
@@ -71,6 +71,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
     - [ ] Classes and interfaces
 - [ ] Intersection types
 - [ ] Other missing types
+- [ ] Callable classes type II
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
