@@ -29,7 +29,7 @@ package unit.types;
 	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Any;
 	static function typeParameterWithConstraint<T>(x:T):Any;
-	static function intersectionBetweenTypeParams<A, B>(p:{ }):Void;
+	static function intersectionBetweenTypeParams<A, B>(p:Any):Void;
 	static function firstTypeFunction(node:{ }):Bool;
 	static var implicitInt : Int;
 	static var implicitFloat : Float;
@@ -129,9 +129,7 @@ package unit.types;
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;
 	static var undefineableNullableNumber : Null<Float>;
-	static var intersectionWithSubIntersection : {
-		var x : Any;
-	};
+	static var intersectionWithSubIntersection : Any;
 	static var intersectionXY : {
 		var x : Float;
 	} & {
@@ -140,9 +138,7 @@ package unit.types;
 	static var intersectionRedefinitionSame : {
 		var x : Float;
 	};
-	static var intersectionRedefinitionDifferent : {
-		var x : Any;
-	};
+	static var intersectionRedefinitionDifferent : Any;
 	static var intersectionWithTypeof : {
 		var fieldA : Float;
 		var fieldB : Float;
@@ -186,26 +182,13 @@ package unit.types;
 	}, {
 		var c : Float;
 	}>;
-	static var intersectionWithCallSignatures : {
-		@:overload(function(callParamB:Bool):std.Array<String> { })
-		@:selfCall
-		function call(callParamA:String):Float;
-		/**
-			Calls a method of an object, substituting another object for the current object.
-		**/
-		@:native("call")
-		var call_ : Any;
-		var b : Float;
-	};
+	static var intersectionWithCallSignatures : Any;
 	static var intersectionAnonAlias : {
 		var a : String;
 	} & {
 		var b : Bool;
 	};
-	static var intersectionBetweenClasses : {
-		var fieldA : Float;
-		var fieldB : Float;
-	};
+	static var intersectionBetweenClasses : Any;
 	static var typeQueryImplicitStr : String;
 	static var typeQueryObject : {
 		var fieldA : Float;
