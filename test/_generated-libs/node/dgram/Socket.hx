@@ -1,5 +1,5 @@
 package node.dgram;
-@:jsRequire("dgram", "Socket") extern class Socket {
+@:jsRequire("dgram", "Socket") extern class Socket extends node.events.EventEmitter {
 	@:overload(function(msg:haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>, offset:Float, length:Float, port:Float, ?address:String, ?callback:(error:Null<ts.lib.IError>, bytes:Float) -> Void):Void { })
 	function send(msg:haxe.extern.EitherType<String, haxe.extern.EitherType<std.Array<Any>, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>>, port:Float, ?address:String, ?callback:(error:Null<ts.lib.IError>, bytes:Float) -> Void):Void;
 	@:overload(function(?port:Float, ?callback:() -> Void):Void { })
@@ -21,50 +21,4 @@ package node.dgram;
 	function setSendBufferSize(size:Float):Void;
 	function getRecvBufferSize():Float;
 	function getSendBufferSize():Float;
-	/**
-		events.EventEmitter
-		1. close
-		2. error
-		3. listening
-		4. message
-	**/
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
-	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, msg:global.IBuffer, rinfo:RemoteInfo):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
-	function on(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
-	function once(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
-	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
-	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
-	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Socket;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Socket;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Socket;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Socket;
-	function setMaxListeners(n:Float):Socket;
-	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

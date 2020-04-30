@@ -18,17 +18,5 @@ package ts.html;
 		If the error mode is "fatal" and encoding's decoder returns error, throws a TypeError.
 	**/
 	function decode(?input:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>, ?options:TextDecodeOptions):String;
-	/**
-		Returns encoding's name, lowercased.
-	**/
-	final encoding : String;
-	/**
-		Returns true if error mode is "fatal", and false otherwise.
-	**/
-	final fatal : Bool;
-	/**
-		Returns true if ignore BOM flag is set, and false otherwise.
-	**/
-	final ignoreBOM : Bool;
 	static var prototype : ITextDecoder;
 }

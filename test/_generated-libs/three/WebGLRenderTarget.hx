@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "WebGLRenderTarget") extern class WebGLRenderTarget {
+@:jsRequire("three", "WebGLRenderTarget") extern class WebGLRenderTarget extends EventDispatcher {
 	function new(width:Float, height:Float, ?options:WebGLRenderTargetOptions);
 	var uuid : String;
 	var width : Float;
@@ -25,20 +25,4 @@ package three;
 	function clone():WebGLRenderTarget;
 	function copy(source:WebGLRenderTarget):WebGLRenderTarget;
 	function dispose():Void;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 }

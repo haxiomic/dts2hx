@@ -1,11 +1,12 @@
 package unit.class_;
-@:jsRequire("./unit/class", "ClassBase") extern class ClassBase<T> {
-	@:overload(function<T>(a:Float):ClassBase<T> { })
+@:jsRequire("./unit/class", "ClassBase") extern class ClassBase<T, DefaultBool> {
+	@:overload(function<T, DefaultBool>(a:Float):ClassBase<T, DefaultBool> { })
 	function new(overloadParam:T);
 	var intField : Float;
 	var arrayField : std.Array<String>;
-	var thisClassType : ClassBase<T>;
+	var thisClassType : ClassBase<T, DefaultBool>;
 	var typeParamField : T;
+	var defaultBoolField : DefaultBool;
 	var typeofSelf : {
 		function staticMethod<T>(a:Float):T;
 		var staticField : Float;

@@ -81,10 +81,6 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, haxe.extern.EitherType<IRTCDataChannelEvent, haxe.extern.EitherType<IRTCPeerConnectionIceErrorEvent, haxe.extern.EitherType<IRTCPeerConnectionIceEvent, haxe.extern.EitherType<IRTCStatsEvent, IRTCTrackEvent>>>>>) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	/**
-		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-	**/
-	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IRTCPeerConnection;
 	static function generateCertificate(keygenAlgorithm:haxe.extern.EitherType<String, Algorithm>):ts.lib.IPromise<IRTCCertificate>;
 	static function getDefaultIceServers():std.Array<RTCIceServer>;

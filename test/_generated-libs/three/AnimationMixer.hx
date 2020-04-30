@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "AnimationMixer") extern class AnimationMixer {
+@:jsRequire("three", "AnimationMixer") extern class AnimationMixer extends EventDispatcher {
 	function new(root:Any);
 	var time : Float;
 	var timeScale : Float;
@@ -11,20 +11,4 @@ package three;
 	function uncacheClip(clip:AnimationClip):Void;
 	function uncacheRoot(root:Any):Void;
 	function uncacheAction(clip:AnimationClip, ?root:Any):Void;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 }

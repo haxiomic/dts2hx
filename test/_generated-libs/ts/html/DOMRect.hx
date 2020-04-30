@@ -5,11 +5,6 @@ package ts.html;
 	var width : Float;
 	var x : Float;
 	var y : Float;
-	final bottom : Float;
-	final left : Float;
-	final right : Float;
-	final top : Float;
-	function toJSON():Any;
 	static var prototype : IDOMRect;
 	static function fromRect(?other:DOMRectInit):IDOMRect;
 }

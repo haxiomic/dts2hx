@@ -38,24 +38,5 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:IEvent) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
-	final context : ts.lib.IBaseAudioContext;
-	final numberOfInputs : Float;
-	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:ts.lib.IAudioParam, ?output:Float):Void { })
-	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
-	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam, output:Float):Void { })
-	function disconnect():Void;
-	/**
-		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-	**/
-	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IAudioScheduledSourceNode;
 }

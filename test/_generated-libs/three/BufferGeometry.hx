@@ -4,7 +4,7 @@ package three;
 	It reduces memory costs and cpu cycles. But it is not as easy to work with because of all the nessecary buffer calculations.
 	It is mainly interesting when working with static objects.
 **/
-@:jsRequire("three", "BufferGeometry") extern class BufferGeometry {
+@:jsRequire("three", "BufferGeometry") extern class BufferGeometry extends EventDispatcher {
 	/**
 		This creates a new BufferGeometry. It also sets several properties to an default value.
 	**/
@@ -87,21 +87,5 @@ package three;
 	function addIndex(index:Any):Void;
 	function addDrawCall(start:Any, count:Any, ?indexOffset:Any):Void;
 	function clearDrawCalls():Void;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 	static var MaxIndex : Float;
 }

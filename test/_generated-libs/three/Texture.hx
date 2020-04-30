@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "Texture") extern class Texture {
+@:jsRequire("three", "Texture") extern class Texture extends EventDispatcher {
 	function new(?image:haxe.extern.EitherType<ts.html.IHTMLCanvasElement, haxe.extern.EitherType<ts.html.IHTMLVideoElement, ts.html.IHTMLImageElement>>, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float, ?encoding:TextureEncoding);
 	var id : Float;
 	var uuid : String;
@@ -32,22 +32,6 @@ package three;
 	function toJSON(meta:Any):Any;
 	function dispose():Void;
 	function transformUv(uv:Vector):Void;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 	static var DEFAULT_IMAGE : Any;
 	static var DEFAULT_MAPPING : Any;
 }

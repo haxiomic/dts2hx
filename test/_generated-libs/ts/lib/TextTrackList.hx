@@ -38,9 +38,5 @@ package ts.lib;
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:ts.html.ITrackEvent) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void;
-	/**
-		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-	**/
-	function dispatchEvent(event:ts.html.IEvent):Bool;
 	static var prototype : ITextTrackList;
 }

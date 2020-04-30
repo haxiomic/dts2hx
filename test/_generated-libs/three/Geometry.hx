@@ -2,7 +2,7 @@ package three;
 /**
 	Base class for geometries
 **/
-@:jsRequire("three", "Geometry") extern class Geometry {
+@:jsRequire("three", "Geometry") extern class Geometry extends EventDispatcher {
 	function new();
 	/**
 		Unique number of this geometry instance
@@ -156,20 +156,4 @@ package three;
 	var bones : std.Array<Bone>;
 	var animation : AnimationClip;
 	var animations : std.Array<AnimationClip>;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 }

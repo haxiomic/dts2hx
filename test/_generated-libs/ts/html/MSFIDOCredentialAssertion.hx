@@ -5,7 +5,5 @@ package ts.html;
 	final attestation : Any;
 	final publicKey : String;
 	final transportHints : std.Array<String>;
-	final id : String;
-	final type : String;
 	static var prototype : IMSFIDOCredentialAssertion;
 }

@@ -1,8 +1,9 @@
-export class ClassBase<T> {
+export class ClassBase<T, DefaultBool = boolean> {
     intField: number;
     arrayField: Array<string>;
     thisClassType: this;
     typeParamField: T;
+    defaultBoolField: DefaultBool;
 
     typeofSelf: typeof ClassBase;
 
@@ -44,8 +45,12 @@ export namespace ClassBase {
     const namespaceField: string;
 }
 
-export class ClassExtending<K> extends ClassBase<Array<K>> {
+export class ClassExtends<K> extends ClassBase<Array<K>> {
     additionalField: number;
+}
+
+export class ClassExtendsWithRedefine extends ClassBase<number> {
+    defaultBoolField: true;
 }
 
 export class ClassWithIndexSignature {

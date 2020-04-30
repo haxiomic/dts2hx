@@ -2,7 +2,7 @@ package three;
 /**
 	A loader for loading objects in JSON format.
 **/
-@:jsRequire("three", "JSONLoader") extern class JSONLoader {
+@:jsRequire("three", "JSONLoader") extern class JSONLoader extends Loader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;
 	var withCredentials : Bool;
@@ -13,27 +13,4 @@ package three;
 		@:optional
 		var materials : std.Array<Material>;
 	};
-	/**
-		Will be called when load starts.
-		The default is a function with empty body.
-	**/
-	var onLoadStart : () -> Void;
-	/**
-		Will be called while load progresses.
-		The default is a function with empty body.
-	**/
-	var onLoadProgress : () -> Void;
-	/**
-		Will be called when load completes.
-		The default is a function with empty body.
-	**/
-	var onLoadComplete : () -> Void;
-	/**
-		default — null.
-		If set, assigns the crossOrigin attribute of the image to the value of crossOrigin, prior to starting the load.
-	**/
-	var crossOrigin : String;
-	function extractUrlBase(url:String):String;
-	function initMaterials(materials:std.Array<Material>, texturePath:String):std.Array<Material>;
-	function createMaterial(m:Material, texturePath:String, ?crossOrigin:String):Bool;
 }

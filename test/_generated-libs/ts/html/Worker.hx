@@ -42,10 +42,5 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IErrorEvent, IMessageEvent>) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	/**
-		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-	**/
-	function dispatchEvent(event:IEvent):Bool;
-	var onerror : Null<(ev:IErrorEvent) -> Any>;
 	static var prototype : IWorker;
 }

@@ -2,7 +2,7 @@ package three;
 /**
 	Materials describe the appearance of objects. They are defined in a (mostly) renderer-independent way, so you don't have to rewrite materials if you decide to use a different renderer.
 **/
-@:jsRequire("three", "Material") extern class Material {
+@:jsRequire("three", "Material") extern class Material extends EventDispatcher {
 	function new();
 	/**
 		Sets the alpha value to be used when running an alpha test. Default is 0.
@@ -218,20 +218,4 @@ package three;
 		Call .dispatchEvent ( { type: 'update' }) on the material.
 	**/
 	function update():Void;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 }

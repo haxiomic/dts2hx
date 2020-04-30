@@ -64,18 +64,5 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:IEvent) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
-	var endTime : Float;
-	var id : String;
-	var onenter : Null<(ev:IEvent) -> Any>;
-	var onexit : Null<(ev:IEvent) -> Any>;
-	var pauseOnExit : Bool;
-	var startTime : Float;
-	var text : String;
-	final track : ITextTrack;
-	function getCueAsHTML():IDocumentFragment;
-	/**
-		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-	**/
-	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IDataCue;
 }

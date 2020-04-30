@@ -13,7 +13,7 @@ package node.repl;
 	Instances of `repl.REPLServer` are created using the `repl.start()` method and _should not_
 	be created directly using the JavaScript `new` keyword.
 **/
-@:jsRequire("repl", "REPLServer") extern class REPLServer {
+@:jsRequire("repl", "REPLServer") extern class REPLServer extends node.readline.Interface {
 	/**
 		NOTE: According to the documentation:
 		
@@ -131,93 +131,4 @@ package node.repl;
 		with REPL instances programmatically.
 	**/
 	function setupHistory(path:String, cb:(err:Null<ts.lib.IError>, repl:REPLServer) -> Void):Void;
-	/**
-		events.EventEmitter
-		1. close - inherited from `readline.Interface`
-		2. line - inherited from `readline.Interface`
-		3. pause - inherited from `readline.Interface`
-		4. resume - inherited from `readline.Interface`
-		5. SIGCONT - inherited from `readline.Interface`
-		6. SIGINT - inherited from `readline.Interface`
-		7. SIGTSTP - inherited from `readline.Interface`
-		8. exit
-		9. reset
-	**/
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
-	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, input:String):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, context:node.vm.Context):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
-	function on(event:String, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
-	function once(event:String, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
-	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:() -> Void):REPLServer { })
-	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
-	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	final terminal : Bool;
-	function setPrompt(prompt:String):Void;
-	function prompt(?preserveCursor:Bool):Void;
-	function question(query:String, callback:(answer:String) -> Void):Void;
-	function pause():REPLServer;
-	function resume():REPLServer;
-	function close():Void;
-	function write(data:haxe.extern.EitherType<String, global.IBuffer>, ?key:node.readline.Key):Void;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):REPLServer;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):REPLServer;
-	function setMaxListeners(n:Float):REPLServer;
-	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
 }

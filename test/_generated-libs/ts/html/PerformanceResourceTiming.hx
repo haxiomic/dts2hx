@@ -22,9 +22,5 @@ package ts.html;
 	final transferSize : Float;
 	final workerStart : Float;
 	function toJSON():Any;
-	final duration : Float;
-	final entryType : String;
-	final name : String;
-	final startTime : Float;
 	static var prototype : IPerformanceResourceTiming;
 }

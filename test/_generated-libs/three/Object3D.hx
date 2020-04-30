@@ -2,7 +2,7 @@ package three;
 /**
 	Base class for scene graph objects
 **/
-@:jsRequire("three", "Object3D") extern class Object3D {
+@:jsRequire("three", "Object3D") extern class Object3D extends EventDispatcher {
 	function new();
 	/**
 		Unique number of this object instance.
@@ -195,22 +195,6 @@ package three;
 	function toJSON(?meta:{ var geometries : Any; var materials : Any; var textures : Any; var images : Any; }):Any;
 	function clone(?recursive:Bool):Object3D;
 	function copy(source:Object3D, ?recursive:Bool):Object3D;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 	static var DefaultUp : Vector3;
 	static var DefaultMatrixAutoUpdate : Bool;
 }

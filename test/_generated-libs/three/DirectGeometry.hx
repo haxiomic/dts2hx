@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "DirectGeometry") extern class DirectGeometry {
+@:jsRequire("three", "DirectGeometry") extern class DirectGeometry extends EventDispatcher {
 	function new();
 	var id : Float;
 	var uuid : String;
@@ -30,20 +30,4 @@ package three;
 	function computeGroups(geometry:Geometry):Void;
 	function fromGeometry(geometry:Geometry):DirectGeometry;
 	function dispose():Void;
-	/**
-		Adds a listener to an event type.
-	**/
-	function addEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Checks if listener is added to an event type.
-	**/
-	function hasEventListener(type:String, listener:(event:Event) -> Void):Bool;
-	/**
-		Removes a listener from an event type.
-	**/
-	function removeEventListener(type:String, listener:(event:Event) -> Void):Void;
-	/**
-		Fire an event type.
-	**/
-	function dispatchEvent(event:{ var type : String; }):Void;
 }
