@@ -733,15 +733,15 @@ class ConverterContext {
 			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.Conditional != 0) {
 			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.Substitution != 0) {
+			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.IndexedAccess != 0) {
+			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 		} else {
 			Log.error('Type not yet supported', type);
 			// @! todo:
 			// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
 			// BigIntLiteral   = 1 << 11,
-			// Index           = 1 << 22,  // keyof T
-			// IndexedAccess   = 1 << 23,  // T[K]
-			// Conditional     = 1 << 24,  // T extends U ? X : Y
-			// Substitution    = 1 << 25,  // Type parameter substitution
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
 			// debug();
