@@ -40,7 +40,9 @@
 	- set it on function signatures, check if resulting line length > x
 	- if > x, re-print with multiLineFields
 
-- Formatting issues in Typescript.hx
+- Issue: struct/function formatting problems in Typescript.hx
+
+- Issue: toSafeIdent(), result can be just `_` which has special meaning in haxe
 
 - Issue: Global.hx, multiple root Global.hx's will override each other
 
