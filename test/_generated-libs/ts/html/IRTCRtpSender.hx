@@ -11,5 +11,5 @@ extern typedef IRTCRtpSender = {
 	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
 	function replaceTrack(withTrack:Null<IMediaStreamTrack>):ts.lib.IPromise<Void>;
 	function setParameters(parameters:RTCRtpSendParameters):ts.lib.IPromise<Void>;
-	function setStreams(streams:std.Array<IMediaStream>):Void;
+	function setStreams(streams:haxe.extern.Rest<IMediaStream>):Void;
 };

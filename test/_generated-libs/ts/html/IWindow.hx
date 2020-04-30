@@ -407,7 +407,7 @@ extern typedef IWindow = {
 	function createImageBitmap(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IHTMLCanvasElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<IOffscreenCanvas, haxe.extern.EitherType<IBlob, IImageData>>>>>>>):ts.lib.IPromise<IImageBitmap>;
 	function fetch(input:haxe.extern.EitherType<String, IRequest>, ?init:RequestInit):ts.lib.IPromise<IResponse>;
 	function queueMicrotask(callback:ts.lib.IFunction):Void;
-	function setInterval(handler:haxe.extern.EitherType<String, ts.lib.IFunction>, ?timeout:Float, arguments:std.Array<Any>):Float;
-	function setTimeout(handler:haxe.extern.EitherType<String, ts.lib.IFunction>, ?timeout:Float, arguments:std.Array<Any>):Float;
+	function setInterval(handler:haxe.extern.EitherType<String, ts.lib.IFunction>, ?timeout:Float, arguments:haxe.extern.Rest<Any>):Float;
+	function setTimeout(handler:haxe.extern.EitherType<String, ts.lib.IFunction>, ?timeout:Float, arguments:haxe.extern.Rest<Any>):Float;
 	final sessionStorage : IStorage;
 };

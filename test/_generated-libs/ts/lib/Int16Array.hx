@@ -154,7 +154,7 @@ package ts.lib;
 	/**
 		Returns a new array from a set of elements.
 	**/
-	static function of(items:std.Array<Float>):IInt16Array;
+	static function of(items:haxe.extern.Rest<Float>):IInt16Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		

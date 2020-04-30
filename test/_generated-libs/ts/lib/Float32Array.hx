@@ -154,7 +154,7 @@ package ts.lib;
 	/**
 		Returns a new array from a set of elements.
 	**/
-	static function of(items:std.Array<Float>):IFloat32Array;
+	static function of(items:haxe.extern.Rest<Float>):IFloat32Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		

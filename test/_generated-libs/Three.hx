@@ -1,7 +1,7 @@
 @:jsRequire("three") @valueModuleOnly extern class Three {
-	static function warn(?message:Any, optionalParams:std.Array<Any>):Void;
-	static function error(?message:Any, optionalParams:std.Array<Any>):Void;
-	static function log(?message:Any, optionalParams:std.Array<Any>):Void;
+	static function warn(?message:Any, optionalParams:haxe.extern.Rest<Any>):Void;
+	static function error(?message:Any, optionalParams:haxe.extern.Rest<Any>):Void;
+	static function log(?message:Any, optionalParams:haxe.extern.Rest<Any>):Void;
 	static var ShaderLib : {
 		var basic : three.Shader;
 		var lambert : three.Shader;

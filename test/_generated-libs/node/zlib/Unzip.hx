@@ -45,46 +45,46 @@ extern typedef Unzip = {
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Unzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip { })
 	function addListener(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Unzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip { })
 	function on(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Unzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip { })
 	function once(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Unzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip { })
 	function prependListener(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Unzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip { })
 	function prependOnceListener(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Unzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip { })
 	function removeListener(event:String, listener:() -> Void):Unzip;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Unzip;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Unzip;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Unzip;
 	function setMaxListeners(n:Float):Unzip;
 	function getMaxListeners():Float;

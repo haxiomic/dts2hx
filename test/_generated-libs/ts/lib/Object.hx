@@ -120,7 +120,7 @@ package ts.lib;
 	**/
 	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Any { })
 	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Any { })
-	@:overload(function(target:Any, sources:std.Array<Any>):Any { })
+	@:overload(function(target:Any, sources:haxe.extern.Rest<Any>):Any { })
 	static function assign<T, U>(target:T, source:U):Any;
 	/**
 		Returns an array of all symbol properties found directly on object o.

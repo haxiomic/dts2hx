@@ -10,12 +10,12 @@ extern typedef IFunction = {
 	/**
 		Calls a method of an object, substituting another object for the current object.
 	**/
-	function call(thisArg:Any, argArray:std.Array<Any>):Any;
+	function call(thisArg:Any, argArray:haxe.extern.Rest<Any>):Any;
 	/**
 		For a given function, creates a bound function that has the same body as the original function.
 		The this object of the bound function is associated with the specified object, and has the specified initial parameters.
 	**/
-	function bind(thisArg:Any, argArray:std.Array<Any>):Any;
+	function bind(thisArg:Any, argArray:haxe.extern.Rest<Any>):Any;
 	/**
 		Returns a string representation of a function.
 	**/

@@ -45,46 +45,46 @@ extern typedef BrotliDecompress = {
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):BrotliDecompress { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress { })
 	function addListener(event:String, listener:() -> Void):BrotliDecompress;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):BrotliDecompress { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress { })
 	function on(event:String, listener:() -> Void):BrotliDecompress;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):BrotliDecompress { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress { })
 	function once(event:String, listener:() -> Void):BrotliDecompress;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):BrotliDecompress { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress { })
 	function prependListener(event:String, listener:() -> Void):BrotliDecompress;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):BrotliDecompress { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress { })
 	function prependOnceListener(event:String, listener:() -> Void):BrotliDecompress;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:() -> Void):BrotliDecompress { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):BrotliDecompress { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress { })
 	function removeListener(event:String, listener:() -> Void):BrotliDecompress;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):BrotliDecompress;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):BrotliDecompress;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):BrotliDecompress;
 	function setMaxListeners(n:Float):BrotliDecompress;
 	function getMaxListeners():Float;

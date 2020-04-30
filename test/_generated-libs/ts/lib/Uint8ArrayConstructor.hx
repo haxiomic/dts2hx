@@ -8,7 +8,7 @@ extern typedef Uint8ArrayConstructor = {
 	/**
 		Returns a new array from a set of elements.
 	**/
-	function of(items:std.Array<Float>):IUint8Array;
+	function of(items:haxe.extern.Rest<Float>):IUint8Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		

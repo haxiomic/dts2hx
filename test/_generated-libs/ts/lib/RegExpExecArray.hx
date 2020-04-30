@@ -21,14 +21,14 @@ extern typedef RegExpExecArray = {
 	/**
 		Appends new elements to an array, and returns the new length of the array.
 	**/
-	function push(items:std.Array<String>):Float;
+	function push(items:haxe.extern.Rest<String>):Float;
 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:std.Array<haxe.extern.EitherType<String, ConcatArray<String>>>):std.Array<String> { })
-	function concat(items:std.Array<ConcatArray<String>>):std.Array<String>;
+	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<String, ConcatArray<String>>>):std.Array<String> { })
+	function concat(items:haxe.extern.Rest<ConcatArray<String>>):std.Array<String>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -54,12 +54,12 @@ extern typedef RegExpExecArray = {
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:std.Array<String>):std.Array<String> { })
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<String>):std.Array<String> { })
 	function splice(start:Float, ?deleteCount:Float):std.Array<String>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
-	function unshift(items:std.Array<String>):Float;
+	function unshift(items:haxe.extern.Rest<String>):Float;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/

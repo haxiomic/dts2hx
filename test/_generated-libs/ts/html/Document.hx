@@ -401,11 +401,11 @@ package ts.html;
 	/**
 		Writes one or more HTML expressions to a document in the specified window.
 	**/
-	function write(text:std.Array<String>):Void;
+	function write(text:haxe.extern.Rest<String>):Void;
 	/**
 		Writes one or more HTML expressions, followed by a carriage return, to a document in the specified window.
 	**/
-	function writeln(text:std.Array<String>):Void;
+	function writeln(text:haxe.extern.Rest<String>):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		

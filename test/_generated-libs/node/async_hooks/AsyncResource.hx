@@ -25,7 +25,7 @@ package node.async_hooks;
 		trigger the AsyncHooks after callbacks, and then restore the original
 		execution context.
 	**/
-	function runInAsyncScope<This, Result>(fn:(args:std.Array<Any>) -> Result, ?thisArg:This, args:std.Array<Any>):Result;
+	function runInAsyncScope<This, Result>(fn:(args:haxe.extern.Rest<Any>) -> Result, ?thisArg:This, args:haxe.extern.Rest<Any>):Result;
 	/**
 		Call AsyncHooks destroy callbacks.
 	**/

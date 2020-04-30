@@ -28,7 +28,7 @@ extern typedef Cluster = {
 	@:overload(function(event:String, listener:(worker:Worker, message:Any, handle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(settings:ClusterSettings) -> Void):Cluster { })
-	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):Cluster;
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
 	@:overload(function(event:String, worker:Worker):Bool { })
 	@:overload(function(event:String, worker:Worker, code:Float, signal:String):Bool { })
 	@:overload(function(event:String, worker:Worker):Bool { })
@@ -36,7 +36,7 @@ extern typedef Cluster = {
 	@:overload(function(event:String, worker:Worker, message:Any, handle:haxe.extern.EitherType<node.net.Socket, node.net.Server>):Bool { })
 	@:overload(function(event:String, worker:Worker):Bool { })
 	@:overload(function(event:String, settings:ClusterSettings):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker, code:Float, signal:String) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
@@ -44,7 +44,7 @@ extern typedef Cluster = {
 	@:overload(function(event:String, listener:(worker:Worker, message:Any, handle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(settings:ClusterSettings) -> Void):Cluster { })
-	function on(event:String, listener:(args:std.Array<Any>) -> Void):Cluster;
+	function on(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker, code:Float, signal:String) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
@@ -52,7 +52,7 @@ extern typedef Cluster = {
 	@:overload(function(event:String, listener:(worker:Worker, message:Any, handle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(settings:ClusterSettings) -> Void):Cluster { })
-	function once(event:String, listener:(args:std.Array<Any>) -> Void):Cluster;
+	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker, code:Float, signal:String) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
@@ -60,7 +60,7 @@ extern typedef Cluster = {
 	@:overload(function(event:String, listener:(worker:Worker, message:Any, handle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(settings:ClusterSettings) -> Void):Cluster { })
-	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):Cluster;
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker, code:Float, signal:String) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
@@ -68,9 +68,9 @@ extern typedef Cluster = {
 	@:overload(function(event:String, listener:(worker:Worker, message:Any, handle:haxe.extern.EitherType<node.net.Socket, node.net.Server>) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(settings:ClusterSettings) -> Void):Cluster { })
-	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):Cluster;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Cluster;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Cluster;
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Cluster;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Cluster;
 	function setMaxListeners(n:Float):Cluster;
 	function getMaxListeners():Float;

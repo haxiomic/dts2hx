@@ -9,7 +9,7 @@ package three;
 extern typedef Vector = {
 	function setComponent(index:Float, value:Float):Vector;
 	function getComponent(index:Float):Float;
-	function set(args:std.Array<Float>):Vector;
+	function set(args:haxe.extern.Rest<Float>):Vector;
 	function setScalar(scalar:Float):Vector;
 	/**
 		copy(v:T):T;

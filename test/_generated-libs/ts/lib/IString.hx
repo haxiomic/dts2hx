@@ -18,7 +18,7 @@ extern typedef IString = {
 	/**
 		Returns a string that contains the concatenation of two or more strings.
 	**/
-	function concat(strings:std.Array<String>):String;
+	function concat(strings:haxe.extern.Rest<String>):String;
 	/**
 		Returns the position of the first occurrence of a substring.
 	**/
@@ -50,9 +50,9 @@ extern typedef IString = {
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:haxe.extern.EitherType<String, IRegExp>, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
+	@:overload(function(searchValue:haxe.extern.EitherType<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
-	@:overload(function(searchValue:{ }, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
+	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
 	function replace(searchValue:haxe.extern.EitherType<String, IRegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.

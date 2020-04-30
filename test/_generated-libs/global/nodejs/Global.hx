@@ -24,7 +24,7 @@ extern typedef Global = {
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
-		function of(items:std.Array<Float>):global.IBuffer;
+		function of(items:haxe.extern.Rest<Float>):global.IBuffer;
 		/**
 			Returns true if {obj} is a Buffer
 		**/
@@ -143,9 +143,9 @@ extern typedef Global = {
 	var parseInt : (s:String, ?radix:Float) -> Float;
 	var process : Process;
 	var root : Global;
-	var setImmediate : (callback:(args:std.Array<Any>) -> Void, args:std.Array<Any>) -> Immediate;
-	var setInterval : (callback:(args:std.Array<Any>) -> Void, ms:Float, args:std.Array<Any>) -> Timeout;
-	var setTimeout : (callback:(args:std.Array<Any>) -> Void, ms:Float, args:std.Array<Any>) -> Timeout;
+	var setImmediate : (callback:(args:haxe.extern.Rest<Any>) -> Void, args:haxe.extern.Rest<Any>) -> Immediate;
+	var setInterval : (callback:(args:haxe.extern.Rest<Any>) -> Void, ms:Float, args:haxe.extern.Rest<Any>) -> Timeout;
+	var setTimeout : (callback:(args:haxe.extern.Rest<Any>) -> Void, ms:Float, args:haxe.extern.Rest<Any>) -> Timeout;
 	var queueMicrotask : {
 		@:overload(function(callback:() -> Void):Void { })
 		@:selfCall

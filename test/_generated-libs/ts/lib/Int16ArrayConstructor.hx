@@ -8,7 +8,7 @@ extern typedef Int16ArrayConstructor = {
 	/**
 		Returns a new array from a set of elements.
 	**/
-	function of(items:std.Array<Float>):IInt16Array;
+	function of(items:haxe.extern.Rest<Float>):IInt16Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		

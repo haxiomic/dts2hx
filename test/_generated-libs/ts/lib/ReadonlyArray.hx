@@ -17,8 +17,8 @@ extern typedef ReadonlyArray<T> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:std.Array<haxe.extern.EitherType<T, ConcatArray<T>>>):std.Array<T> { })
-	function concat(items:std.Array<ConcatArray<T>>):std.Array<T>;
+	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<T, ConcatArray<T>>>):std.Array<T> { })
+	function concat(items:haxe.extern.Rest<ConcatArray<T>>):std.Array<T>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/

@@ -45,46 +45,46 @@ extern typedef Deflate = {
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
 	function addListener(event:String, listener:() -> Void):Deflate;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
 	function on(event:String, listener:() -> Void):Deflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
 	function once(event:String, listener:() -> Void):Deflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
 	function prependListener(event:String, listener:() -> Void):Deflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
 	function prependOnceListener(event:String, listener:() -> Void):Deflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
 	function removeListener(event:String, listener:() -> Void):Deflate;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Deflate;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Deflate;
 	function setMaxListeners(n:Float):Deflate;
 	function getMaxListeners():Float;

@@ -7,6 +7,6 @@ package ts.html;
 	function createDocument(namespaceURI:Null<String>, qualifiedName:Null<String>, doctype:Null<IDocumentType>):IDocument;
 	function createDocumentType(qualifiedName:String, publicId:String, systemId:String):IDocumentType;
 	function createHTMLDocument(?title:String):IDocument;
-	function hasFeature(args:std.Array<Any>):Bool;
+	function hasFeature(args:haxe.extern.Rest<Any>):Bool;
 	static var prototype : IDOMImplementation;
 }

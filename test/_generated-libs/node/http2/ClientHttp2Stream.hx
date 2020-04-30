@@ -484,27 +484,27 @@ extern typedef ClientHttp2Stream = {
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
-	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
 	@:overload(function(event:String, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
 	@:overload(function(event:String, headers:IncomingHttpHeaders, flags:Float):Bool { })
 	@:overload(function(event:String, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
-	function on(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
+	function on(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
-	function once(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
+	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
-	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
-	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
 	final aborted : Bool;
 	final closed : Bool;
 	final destroyed : Bool;
@@ -560,10 +560,10 @@ extern typedef ClientHttp2Stream = {
 	@:overload(function(event:String, listener:() -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream { })
 	function removeListener(event:String, listener:() -> Void):ClientHttp2Stream;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ClientHttp2Stream;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ClientHttp2Stream;
 	function setMaxListeners(n:Float):ClientHttp2Stream;
 	function getMaxListeners():Float;

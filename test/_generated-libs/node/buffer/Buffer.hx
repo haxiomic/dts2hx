@@ -29,7 +29,7 @@ package node.buffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
-	static function of(items:std.Array<Float>):global.IBuffer;
+	static function of(items:haxe.extern.Rest<Float>):global.IBuffer;
 	/**
 		Returns true if {obj} is a Buffer
 	**/

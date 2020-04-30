@@ -1,11 +1,11 @@
 package node;
 @:jsRequire("util") @valueModuleOnly extern class Util {
-	static function format(format:Any, param:std.Array<Any>):String;
-	static function formatWithOptions(inspectOptions:node.util.InspectOptions, format:String, param:std.Array<Any>):String;
+	static function format(format:Any, param:haxe.extern.Rest<Any>):String;
+	static function formatWithOptions(inspectOptions:node.util.InspectOptions, format:String, param:haxe.extern.Rest<Any>):String;
 	static function debug(string:String):Void;
-	static function error(param:std.Array<Any>):Void;
-	static function puts(param:std.Array<Any>):Void;
-	static function print(param:std.Array<Any>):Void;
+	static function error(param:haxe.extern.Rest<Any>):Void;
+	static function puts(param:haxe.extern.Rest<Any>):Void;
+	static function print(param:haxe.extern.Rest<Any>):Void;
 	static function log(string:String):Void;
 	@:overload(function(object:Any, options:node.util.InspectOptions):String { })
 	static function inspect(object:Any, ?showHidden:Bool, ?depth:Float, ?color:Bool):String;
@@ -14,7 +14,7 @@ package node;
 	static function isDate(object:Any):Bool;
 	static function isError(object:Any):Bool;
 	static function inherits(constructor:Any, superConstructor:Any):Void;
-	static function debuglog(key:String):(msg:String, param:std.Array<Any>) -> Void;
+	static function debuglog(key:String):(msg:String, param:haxe.extern.Rest<Any>) -> Void;
 	static function isBoolean(object:Any):Bool;
 	static function isBuffer(object:Any):Bool;
 	static function isFunction(object:Any):Bool;

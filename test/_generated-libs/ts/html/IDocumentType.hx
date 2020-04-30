@@ -177,13 +177,13 @@ extern typedef IDocumentType = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function after(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function before(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -193,5 +193,5 @@ extern typedef IDocumentType = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 };

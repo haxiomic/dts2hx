@@ -19,7 +19,7 @@ package ts.lib;
 	/**
 		Returns a string that contains the concatenation of two or more strings.
 	**/
-	function concat(strings:std.Array<String>):String;
+	function concat(strings:haxe.extern.Rest<String>):String;
 	/**
 		Returns the position of the first occurrence of a substring.
 	**/
@@ -51,9 +51,9 @@ package ts.lib;
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:haxe.extern.EitherType<String, IRegExp>, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
+	@:overload(function(searchValue:haxe.extern.EitherType<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
-	@:overload(function(searchValue:{ }, replacer:(substring:String, args:std.Array<Any>) -> String):String { })
+	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
 	function replace(searchValue:haxe.extern.EitherType<String, IRegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
@@ -207,16 +207,16 @@ package ts.lib;
 	@:selfCall
 	static function call(?value:Any):String;
 	static final prototype : IString;
-	static function fromCharCode(codes:std.Array<Float>):String;
+	static function fromCharCode(codes:haxe.extern.Rest<Float>):String;
 	/**
 		Return the String value whose elements are, in order, the elements in the List elements.
 		If length is 0, the empty string is returned.
 	**/
-	static function fromCodePoint(codePoints:std.Array<Float>):String;
+	static function fromCodePoint(codePoints:haxe.extern.Rest<Float>):String;
 	/**
 		String.raw is intended for use as a tag function of a Tagged Template String. When called
 		as such the first argument will be a well formed template call site object and the rest
 		parameter will contain the substitution values.
 	**/
-	static function raw(template:TemplateStringsArray, substitutions:std.Array<Any>):String;
+	static function raw(template:TemplateStringsArray, substitutions:haxe.extern.Rest<Any>):String;
 }

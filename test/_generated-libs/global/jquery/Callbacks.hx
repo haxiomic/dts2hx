@@ -3,7 +3,7 @@ extern typedef Callbacks<T> = {
 	/**
 		Add a callback or a collection of callbacks to a callback list.
 	**/
-	function add(callback:haxe.extern.EitherType<T, std.Array<T>>, callbacks:std.Array<haxe.extern.EitherType<T, std.Array<T>>>):Callbacks<T>;
+	function add(callback:haxe.extern.EitherType<T, std.Array<T>>, callbacks:haxe.extern.Rest<haxe.extern.EitherType<T, std.Array<T>>>):Callbacks<T>;
 	/**
 		Disable a callback list from doing anything more.
 	**/
@@ -19,7 +19,7 @@ extern typedef Callbacks<T> = {
 	/**
 		Call all of the callbacks with the given arguments.
 	**/
-	function fire(args:std.Array<Any>):Callbacks<T>;
+	function fire(args:haxe.extern.Rest<Any>):Callbacks<T>;
 	/**
 		Determine if the callbacks have already been called at least once.
 	**/
@@ -43,5 +43,5 @@ extern typedef Callbacks<T> = {
 	/**
 		Remove a callback or a collection of callbacks from a callback list.
 	**/
-	function remove(callbacks:std.Array<T>):Callbacks<T>;
+	function remove(callbacks:haxe.extern.Rest<T>):Callbacks<T>;
 };

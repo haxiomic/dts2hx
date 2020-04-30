@@ -19,14 +19,14 @@ extern typedef IDBArrayKey = {
 	/**
 		Appends new elements to an array, and returns the new length of the array.
 	**/
-	function push(items:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>):Float;
+	function push(items:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>):Float;
 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<IDBArrayKey, ts.lib.ConcatArray<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>>>>>>>>):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>> { })
-	function concat(items:std.Array<ts.lib.ConcatArray<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>>):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>;
+	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, haxe.extern.EitherType<IDBArrayKey, ts.lib.ConcatArray<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>>>>>>>>):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>> { })
+	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>>):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -52,12 +52,12 @@ extern typedef IDBArrayKey = {
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>> { })
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>> { })
 	function splice(start:Float, ?deleteCount:Float):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
-	function unshift(items:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>):Float;
+	function unshift(items:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.IDate, haxe.extern.EitherType<ts.lib.ArrayBufferView, IDBArrayKey>>>>>>):Float;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/

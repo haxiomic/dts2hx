@@ -29,7 +29,7 @@ extern typedef IRTCPeerConnection = {
 	final sctp : Null<IRTCSctpTransport>;
 	final signalingState : String;
 	function addIceCandidate(candidate:haxe.extern.EitherType<IRTCIceCandidate, RTCIceCandidateInit>):ts.lib.IPromise<Void>;
-	function addTrack(track:IMediaStreamTrack, streams:std.Array<IMediaStream>):IRTCRtpSender;
+	function addTrack(track:IMediaStreamTrack, streams:haxe.extern.Rest<IMediaStream>):IRTCRtpSender;
 	function addTransceiver(trackOrKind:haxe.extern.EitherType<String, IMediaStreamTrack>, ?init:RTCRtpTransceiverInit):ts.lib.IRTCRtpTransceiver;
 	function close():Void;
 	function createAnswer(?options:RTCOfferOptions):ts.lib.IPromise<RTCSessionDescriptionInit>;

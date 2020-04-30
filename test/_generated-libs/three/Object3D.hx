@@ -157,11 +157,11 @@ package three;
 	/**
 		Adds object as child of this object.
 	**/
-	function add(object:std.Array<Object3D>):Object3D;
+	function add(object:haxe.extern.Rest<Object3D>):Object3D;
 	/**
 		Removes object as child of this object.
 	**/
-	function remove(object:std.Array<Object3D>):Object3D;
+	function remove(object:haxe.extern.Rest<Object3D>):Object3D;
 	/**
 		Adds object as a child of this, while maintaining the object's world transform.
 	**/

@@ -8,7 +8,7 @@ extern typedef Uint32ArrayConstructor = {
 	/**
 		Returns a new array from a set of elements.
 	**/
-	function of(items:std.Array<Float>):IUint32Array;
+	function of(items:haxe.extern.Rest<Float>):IUint32Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		

@@ -1,7 +1,7 @@
 package ts.lib;
 extern typedef ArrayConstructor = {
 	@:overload(function<T>(arrayLength:Float):std.Array<T> { })
-	@:overload(function<T>(items:std.Array<T>):std.Array<T> { })
+	@:overload(function<T>(items:haxe.extern.Rest<T>):std.Array<T> { })
 	@:selfCall
 	function call(?arrayLength:Float):std.Array<Any>;
 	function isArray(arg:Any):Bool;
@@ -22,5 +22,5 @@ extern typedef ArrayConstructor = {
 	/**
 		Returns a new array from a set of elements.
 	**/
-	function of<T>(items:std.Array<T>):std.Array<T>;
+	function of<T>(items:haxe.extern.Rest<T>):std.Array<T>;
 };

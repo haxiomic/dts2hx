@@ -9,7 +9,7 @@ package node;
 		Join all arguments together and normalize the resulting path.
 		Arguments must be strings. In v0.8, non-string arguments were silently ignored. In v0.10 and up, an exception is thrown.
 	**/
-	static function join(paths:std.Array<String>):String;
+	static function join(paths:haxe.extern.Rest<String>):String;
 	/**
 		The right-most parameter is considered {to}.  Other parameters are considered an array of {from}.
 		
@@ -20,7 +20,7 @@ package node;
 		the current working directory is used as well. The resulting path is normalized,
 		and trailing slashes are removed unless the path gets resolved to the root directory.
 	**/
-	static function resolve(pathSegments:std.Array<String>):String;
+	static function resolve(pathSegments:haxe.extern.Rest<String>):String;
 	/**
 		Determines whether {path} is an absolute path. An absolute path will always resolve to the same location, regardless of the working directory.
 	**/

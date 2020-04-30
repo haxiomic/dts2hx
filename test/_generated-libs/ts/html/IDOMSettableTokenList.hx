@@ -17,7 +17,7 @@ extern typedef IDOMSettableTokenList = {
 		
 		Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
 	**/
-	function add(tokens:std.Array<String>):Void;
+	function add(tokens:haxe.extern.Rest<String>):Void;
 	/**
 		Returns true if token is present, and false otherwise.
 	**/
@@ -33,7 +33,7 @@ extern typedef IDOMSettableTokenList = {
 		
 		Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
 	**/
-	function remove(tokens:std.Array<String>):Void;
+	function remove(tokens:haxe.extern.Rest<String>):Void;
 	/**
 		Replaces token with newToken.
 		

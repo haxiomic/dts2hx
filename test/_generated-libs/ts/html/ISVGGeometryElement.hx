@@ -543,13 +543,13 @@ extern typedef ISVGGeometryElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function after(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function before(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -559,7 +559,7 @@ extern typedef ISVGGeometryElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	var innerHTML : String;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
@@ -587,13 +587,13 @@ extern typedef ISVGGeometryElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function append(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:std.Array<haxe.extern.EitherType<String, INode>>):Void;
+	function prepend(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/

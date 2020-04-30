@@ -45,46 +45,46 @@ extern typedef Inflate = {
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Inflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate { })
 	function addListener(event:String, listener:() -> Void):Inflate;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Inflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate { })
 	function on(event:String, listener:() -> Void):Inflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Inflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate { })
 	function once(event:String, listener:() -> Void):Inflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Inflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate { })
 	function prependListener(event:String, listener:() -> Void):Inflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Inflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate { })
 	function prependOnceListener(event:String, listener:() -> Void):Inflate;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:() -> Void):Inflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Inflate { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate { })
+	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate { })
 	function removeListener(event:String, listener:() -> Void):Inflate;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Inflate;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Inflate;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Inflate;
 	function setMaxListeners(n:Float):Inflate;
 	function getMaxListeners():Float;

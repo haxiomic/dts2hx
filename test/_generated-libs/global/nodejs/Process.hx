@@ -72,7 +72,7 @@ extern typedef Process = {
 	var mainModule : global.NodeModule;
 	function memoryUsage():MemoryUsage;
 	function cpuUsage(?previousValue:CpuUsage):CpuUsage;
-	function nextTick(callback:ts.lib.IFunction, args:std.Array<Any>):Void;
+	function nextTick(callback:ts.lib.IFunction, args:haxe.extern.Rest<Any>):Void;
 	var release : ProcessRelease;
 	var features : {
 		var inspector : Bool;
@@ -123,8 +123,8 @@ extern typedef Process = {
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function addListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String):Bool { })
@@ -135,8 +135,8 @@ extern typedef Process = {
 	@:overload(function(event:String, warning:ts.lib.IError):Bool { })
 	@:overload(function(event:String, message:Any, sendHandle:Any):Process { })
 	@:overload(function(event:String, signal:String):Bool { })
-	@:overload(function(event:String, eventName:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process { })
-	@:overload(function(event:String, eventName:String, listener:(args:std.Array<Any>) -> Void):Process { })
+	@:overload(function(event:String, eventName:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Process { })
+	@:overload(function(event:String, eventName:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function emit(event:String, code:Float):Bool;
 	@:overload(function(event:String, listener:() -> Void):Process { })
@@ -147,8 +147,8 @@ extern typedef Process = {
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function on(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
@@ -159,8 +159,8 @@ extern typedef Process = {
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function once(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
@@ -171,8 +171,8 @@ extern typedef Process = {
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function prependListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
@@ -183,8 +183,8 @@ extern typedef Process = {
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
 	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
 	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
 	function prependOnceListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String):std.Array<() -> Void> { })
@@ -195,12 +195,12 @@ extern typedef Process = {
 	@:overload(function(event:String):std.Array<(warning:ts.lib.IError) -> Void> { })
 	@:overload(function(event:String):std.Array<(message:Any, sendHandle:Any) -> Void> { })
 	@:overload(function(event:String):std.Array<(signal:String) -> Void> { })
-	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void> { })
-	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void) -> Void> { })
+	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void> { })
+	@:overload(function(event:String):std.Array<(type:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void> { })
 	@:overload(function(event:String):std.Array<(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void> { })
 	function listeners(event:String):std.Array<(code:Float) -> Void>;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):Process;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Process;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Process;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Process;
 	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;

@@ -29,7 +29,7 @@ extern typedef JQuery<TElement> = {
 		Insert content, specified by the parameter, after each element in the set of matched elements.
 	**/
 	@:overload(function(function_function_Html:(index:Float, html:String) -> haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>):JQuery<TElement> { })
-	function after(contents:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
+	function after(contents:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete. This is an AjaxEvent.
 	**/
@@ -73,7 +73,7 @@ extern typedef JQuery<TElement> = {
 		Insert content, specified by the parameter, to the end of each element in the set of matched elements.
 	**/
 	@:overload(function(fun_Tion:(index:Float, html:String) -> haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>):JQuery<TElement> { })
-	function append(contents:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
+	function append(contents:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the end of the target.
 	**/
@@ -94,7 +94,7 @@ extern typedef JQuery<TElement> = {
 		Insert content, specified by the parameter, before each element in the set of matched elements.
 	**/
 	@:overload(function(function_function_Html:(index:Float, html:String) -> haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>):JQuery<TElement> { })
-	function before(contents:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
+	function before(contents:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements.
 		
@@ -102,23 +102,23 @@ extern typedef JQuery<TElement> = {
 		
 		Attach a handler to an event for the elements.
 	**/
-	@:overload(function<TType>(eventType:TType, handler_preventBubble:Null<haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:std.Array<Any>) -> Any>>):JQuery<TElement> { })
+	@:overload(function<TType>(eventType:TType, handler_preventBubble:Null<haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any>>):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
-	function bind<TType, TData>(eventType:TType, eventData:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function bind<TType, TData>(eventType:TType, eventData:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "blur" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "blur" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.BlurEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function blur<TData>(eventData:TData, handler:(t:global.jquery.BlurEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.BlurEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function blur<TData>(eventData:TData, handler:(t:global.jquery.BlurEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "change" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "change" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ChangeEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function change<TData>(eventData:TData, handler:(t:global.jquery.ChangeEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ChangeEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function change<TData>(eventData:TData, handler:(t:global.jquery.ChangeEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Get the children of each element in the set of matched elements, optionally filtered by a selector.
 	**/
@@ -132,8 +132,8 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "click" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ClickEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function click<TData>(eventData:TData, handler:(t:global.jquery.ClickEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ClickEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function click<TData>(eventData:TData, handler:(t:global.jquery.ClickEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Create a deep copy of the set of matched elements.
 	**/
@@ -154,8 +154,8 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "contextmenu" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ContextMenuEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function contextmenu<TData>(eventData:TData, handler:(t:global.jquery.ContextMenuEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ContextMenuEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function contextmenu<TData>(eventData:TData, handler:(t:global.jquery.ContextMenuEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Set one or more CSS properties for the set of matched elements.
 		
@@ -190,8 +190,8 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.DoubleClickEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function dblclick<TData>(eventData:TData, handler:(t:global.jquery.DoubleClickEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.DoubleClickEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function dblclick<TData>(eventData:TData, handler:(t:global.jquery.DoubleClickEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Set a timer to delay execution of subsequent items in the queue.
 	**/
@@ -203,9 +203,9 @@ extern typedef JQuery<TElement> = {
 		
 		Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.
 	**/
-	@:overload(function<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
 	@:overload(function(selector:String, events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Any, Any>):JQuery<TElement> { })
-	function delegate<TType, TData>(selector:String, eventType:TType, eventData:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function delegate<TType, TData>(selector:String, eventType:TType, eventData:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Execute the next function on the queue for the matched elements.
 	**/
@@ -292,22 +292,22 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "focus" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.FocusEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function focus<TData>(eventData:TData, handler:(t:global.jquery.FocusEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.FocusEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function focus<TData>(eventData:TData, handler:(t:global.jquery.FocusEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "focusin" event.
 		
 		Bind an event handler to the "focusin" event.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.FocusInEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function focusin<TData>(eventData:TData, handler:(t:global.jquery.FocusInEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.FocusInEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function focusin<TData>(eventData:TData, handler:(t:global.jquery.FocusInEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "focusout" JavaScript event.
 		
 		Bind an event handler to the "focusout" JavaScript event.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.FocusOutEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function focusout<TData>(eventData:TData, handler:(t:global.jquery.FocusOutEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.FocusOutEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function focusout<TData>(eventData:TData, handler:(t:global.jquery.FocusOutEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Retrieve one of the elements matched by the jQuery object.
 		
@@ -345,8 +345,8 @@ extern typedef JQuery<TElement> = {
 		
 		Bind a single handler to the matched elements, to be executed when the mouse pointer enters or leaves the elements.
 	**/
-	@:overload(function(handlerInOut:haxe.extern.EitherType<Bool, (t:haxe.extern.EitherType<global.jquery.MouseEnterEvent<TElement, Any, TElement, TElement>, global.jquery.MouseLeaveEvent<TElement, Any, TElement, TElement>>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function hover(handlerIn:haxe.extern.EitherType<Bool, (t:global.jquery.MouseEnterEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>, handlerOut:haxe.extern.EitherType<Bool, (t:global.jquery.MouseLeaveEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	@:overload(function(handlerInOut:haxe.extern.EitherType<Bool, (t:haxe.extern.EitherType<global.jquery.MouseEnterEvent<TElement, Any, TElement, TElement>, global.jquery.MouseLeaveEvent<TElement, Any, TElement, TElement>>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function hover(handlerIn:haxe.extern.EitherType<Bool, (t:global.jquery.MouseEnterEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>, handlerOut:haxe.extern.EitherType<Bool, (t:global.jquery.MouseLeaveEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Set the HTML contents of each element in the set of matched elements.
 		
@@ -389,22 +389,22 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.KeyDownEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function keydown<TData>(eventData:TData, handler:(t:global.jquery.KeyDownEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.KeyDownEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function keydown<TData>(eventData:TData, handler:(t:global.jquery.KeyDownEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "keypress" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "keypress" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.KeyPressEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function keypress<TData>(eventData:TData, handler:(t:global.jquery.KeyPressEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.KeyPressEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function keypress<TData>(eventData:TData, handler:(t:global.jquery.KeyPressEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "keyup" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "keyup" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.KeyUpEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function keyup<TData>(eventData:TData, handler:(t:global.jquery.KeyUpEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.KeyUpEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function keyup<TData>(eventData:TData, handler:(t:global.jquery.KeyUpEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Reduce the set of matched elements to the final one in the set.
 	**/
@@ -425,50 +425,50 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "mousedown" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseDownEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mousedown<TData>(eventData:TData, handler:(t:global.jquery.MouseDownEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseDownEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mousedown<TData>(eventData:TData, handler:(t:global.jquery.MouseDownEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to be fired when the mouse enters an element, or trigger that handler on an element.
 		
 		Bind an event handler to be fired when the mouse enters an element, or trigger that handler on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseEnterEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mouseenter<TData>(eventData:TData, handler:(t:global.jquery.MouseEnterEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseEnterEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mouseenter<TData>(eventData:TData, handler:(t:global.jquery.MouseEnterEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to be fired when the mouse leaves an element, or trigger that handler on an element.
 		
 		Bind an event handler to be fired when the mouse leaves an element, or trigger that handler on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseLeaveEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mouseleave<TData>(eventData:TData, handler:(t:global.jquery.MouseLeaveEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseLeaveEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mouseleave<TData>(eventData:TData, handler:(t:global.jquery.MouseLeaveEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "mousemove" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "mousemove" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseMoveEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mousemove<TData>(eventData:TData, handler:(t:global.jquery.MouseMoveEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseMoveEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mousemove<TData>(eventData:TData, handler:(t:global.jquery.MouseMoveEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "mouseout" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "mouseout" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseOutEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mouseout<TData>(eventData:TData, handler:(t:global.jquery.MouseOutEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseOutEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mouseout<TData>(eventData:TData, handler:(t:global.jquery.MouseOutEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "mouseover" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "mouseover" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseOverEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mouseover<TData>(eventData:TData, handler:(t:global.jquery.MouseOverEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseOverEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mouseover<TData>(eventData:TData, handler:(t:global.jquery.MouseOverEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "mouseup" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "mouseup" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseUpEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function mouseup<TData>(eventData:TData, handler:(t:global.jquery.MouseUpEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.MouseUpEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function mouseup<TData>(eventData:TData, handler:(t:global.jquery.MouseUpEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.
 	**/
@@ -494,10 +494,10 @@ extern typedef JQuery<TElement> = {
 		
 		Remove an event handler.
 	**/
-	@:overload(function<TType>(events:TType, ?selector_handler:haxe.extern.EitherType<String, haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:std.Array<Any>) -> Any>>):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, ?selector_handler:haxe.extern.EitherType<String, haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any>>):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Any, Any, Any>, ?selector:String):JQuery<TElement> { })
 	@:overload(function(?event:global.jquery.TriggeredEvent<TElement, Any, Any, Any>):JQuery<TElement> { })
-	function off<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	function off<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Set the current coordinates of every element in the set of matched elements, relative to the document.
 		
@@ -536,19 +536,19 @@ extern typedef JQuery<TElement> = {
 		
 		Attach an event handler function for one or more events to the selected elements.
 	**/
-	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement> { })
 	@:overload(function(events:String, selector:Null<String>, data:Any, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement> { })
 	@:overload(function(events:String, selector_data:Any, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
 	@:overload(function(events:String, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Any, Any>, selector:String, data:TData):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Any>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Any, Any>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
-	function on<TType, TData>(events:TType, selector:String, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function on<TType, TData>(events:TType, selector:String, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
 		
@@ -570,16 +570,16 @@ extern typedef JQuery<TElement> = {
 		
 		Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
 	**/
-	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:std.Array<Any>) -> Any):JQuery<TElement> { })
-	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, selector:String, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement> { })
+	@:overload(function<TType>(events:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Null<Any>, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Any, Any>, selector:String, data:TData):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Any>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Any, Any>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
-	function one<TType, TData>(events:TType, selector:String, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	function one<TType, TData>(events:TType, selector:String, data:TData, handler:(t:global.jquery.TriggeredEvent<TElement, TData, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Set the CSS outer height of each element in the set of matched elements.
 		
@@ -616,7 +616,7 @@ extern typedef JQuery<TElement> = {
 		Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
 	**/
 	@:overload(function(fun_Tion:(index:Float, html:String) -> haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>):JQuery<TElement> { })
-	function prepend(contents:std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
+	function prepend(contents:haxe.extern.Rest<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, haxe.extern.EitherType<JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>, std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, haxe.extern.EitherType<ts.html.IDocumentFragment, JQuery<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>>>>>>>>>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the beginning of the target.
 	**/
@@ -710,15 +710,15 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ResizeEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function resize<TData>(eventData:TData, handler:(t:global.jquery.ResizeEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ResizeEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function resize<TData>(eventData:TData, handler:(t:global.jquery.ResizeEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Bind an event handler to the "scroll" JavaScript event, or trigger that event on an element.
 		
 		Bind an event handler to the "scroll" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ScrollEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function scroll<TData>(eventData:TData, handler:(t:global.jquery.ScrollEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.ScrollEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function scroll<TData>(eventData:TData, handler:(t:global.jquery.ScrollEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Set the current horizontal position of the scroll bar for each of the set of matched elements.
 		
@@ -738,8 +738,8 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "select" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.SelectEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function select<TData>(eventData:TData, handler:(t:global.jquery.SelectEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.SelectEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function select<TData>(eventData:TData, handler:(t:global.jquery.SelectEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Encode a set of form elements as a string for submission.
 	**/
@@ -808,8 +808,8 @@ extern typedef JQuery<TElement> = {
 		
 		Bind an event handler to the "submit" JavaScript event, or trigger that event on an element.
 	**/
-	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.SubmitEvent<TElement, Any, TElement, TElement>, args:std.Array<Any>) -> Any>):JQuery<TElement> { })
-	function submit<TData>(eventData:TData, handler:(t:global.jquery.SubmitEvent<TElement, TData, TElement, TElement>, args:std.Array<Any>) -> Any):JQuery<TElement>;
+	@:overload(function(?handler:haxe.extern.EitherType<Bool, (t:global.jquery.SubmitEvent<TElement, Any, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement> { })
+	function submit<TData>(eventData:TData, handler:(t:global.jquery.SubmitEvent<TElement, TData, TElement, TElement>, args:haxe.extern.Rest<Any>) -> Any):JQuery<TElement>;
 	/**
 		Set the content of each element in the set of matched elements to the specified text.
 		
@@ -852,7 +852,7 @@ extern typedef JQuery<TElement> = {
 		Remove a previously-attached event handler from the elements.
 	**/
 	@:overload(function(?event:haxe.extern.EitherType<String, global.jquery.TriggeredEvent<TElement, Any, Any, Any>>):JQuery<TElement> { })
-	function unbind<TType>(event:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, TElement, TElement, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	function unbind<TType>(event:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, TElement, TElement, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Remove a handler from the event for all elements which match the current selector, based upon a specific set of root elements.
 		
@@ -862,7 +862,7 @@ extern typedef JQuery<TElement> = {
 	**/
 	@:overload(function(selector:String, eventType_events:haxe.extern.EitherType<String, global.jquery.TypeEventHandlers<TElement, Any, Any, Any>>):JQuery<TElement> { })
 	@:overload(function(?namespace:String):JQuery<TElement> { })
-	function undelegate<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:std.Array<Any>) -> Any>):JQuery<TElement>;
+	function undelegate<TType>(selector:String, eventType:TType, handler:haxe.extern.EitherType<Bool, (t:global.jquery.TriggeredEvent<TElement, Any, Any, Any, Any>, args:haxe.extern.Rest<Any>) -> Any>):JQuery<TElement>;
 	/**
 		Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.
 	**/

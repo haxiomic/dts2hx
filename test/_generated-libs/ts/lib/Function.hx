@@ -6,7 +6,7 @@ package ts.lib;
 	/**
 		Creates a new function.
 	**/
-	function new(args:std.Array<String>);
+	function new(args:haxe.extern.Rest<String>);
 	/**
 		Calls the function, substituting the specified object for the this value of the function, and the specified array for the arguments of the function.
 	**/
@@ -14,12 +14,12 @@ package ts.lib;
 	/**
 		Calls a method of an object, substituting another object for the current object.
 	**/
-	function call(thisArg:Any, argArray:std.Array<Any>):Any;
+	function call(thisArg:Any, argArray:haxe.extern.Rest<Any>):Any;
 	/**
 		For a given function, creates a bound function that has the same body as the original function.
 		The this object of the bound function is associated with the specified object, and has the specified initial parameters.
 	**/
-	function bind(thisArg:Any, argArray:std.Array<Any>):Any;
+	function bind(thisArg:Any, argArray:haxe.extern.Rest<Any>):Any;
 	/**
 		Returns a string representation of a function.
 	**/
@@ -33,7 +33,7 @@ package ts.lib;
 	**/
 	final name : String;
 	@:selfCall
-	static function call_(args:std.Array<String>):IFunction;
+	static function call_(args:haxe.extern.Rest<String>):IFunction;
 	@:native("prototype")
 	static final prototype_ : IFunction;
 }

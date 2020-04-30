@@ -1,2 +1,2 @@
 package global.jquery.deferred;
-typedef Callback<T> = (args:std.Array<T>) -> Void;
+typedef Callback<T> = (args:haxe.extern.Rest<T>) -> Void;

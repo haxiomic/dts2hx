@@ -79,11 +79,11 @@ extern typedef Math = {
 	/**
 		Returns the larger of a set of supplied numeric expressions.
 	**/
-	function max(values:std.Array<Float>):Float;
+	function max(values:haxe.extern.Rest<Float>):Float;
 	/**
 		Returns the smaller of a set of supplied numeric expressions.
 	**/
-	function min(values:std.Array<Float>):Float;
+	function min(values:haxe.extern.Rest<Float>):Float;
 	/**
 		Returns the value of a base expression taken to a specified power.
 	**/
@@ -165,7 +165,7 @@ extern typedef Math = {
 	/**
 		Returns the square root of the sum of squares of its arguments.
 	**/
-	function hypot(values:std.Array<Float>):Float;
+	function hypot(values:haxe.extern.Rest<Float>):Float;
 	/**
 		Returns the integral part of the a numeric expression, x, removing any fractional digits.
 		If x is already an integer, the result is x.

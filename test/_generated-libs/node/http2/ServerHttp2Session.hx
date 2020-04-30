@@ -4,22 +4,22 @@ extern typedef ServerHttp2Session = {
 	final server : haxe.extern.EitherType<Http2Server, Http2SecureServer>;
 	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function addListener(event:String, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
 	@:overload(function(event:String, session:ServerHttp2Session, socket:haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>):Bool { })
 	@:overload(function(event:String, stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:std.Array<Any>):Bool;
+	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
 	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function on(event:String, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function on(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
 	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function once(event:String, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
 	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function prependListener(event:String, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
 	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function prependOnceListener(event:String, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
 	@:optional
 	final alpnProtocol : String;
 	function close(?callback:() -> Void):Void;
@@ -46,8 +46,8 @@ extern typedef ServerHttp2Session = {
 	function settings(settings:Settings):Void;
 	final type : Float;
 	function unref():Void;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:std.Array<Any>) -> Void):ServerHttp2Session;
+	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
+	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Session;
 	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ServerHttp2Session;
 	function setMaxListeners(n:Float):ServerHttp2Session;
 	function getMaxListeners():Float;

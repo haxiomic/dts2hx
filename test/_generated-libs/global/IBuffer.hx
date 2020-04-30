@@ -29,7 +29,7 @@ extern typedef IBuffer = {
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
-		function of(items:std.Array<Float>):IBuffer;
+		function of(items:haxe.extern.Rest<Float>):IBuffer;
 		/**
 			Returns true if {obj} is a Buffer
 		**/
