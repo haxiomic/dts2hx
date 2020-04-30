@@ -1,2 +1,2 @@
 package global.jquery;
-typedef TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, TType> = (t:TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget, Any>, args:haxe.extern.Rest<Any>) -> Any;
+typedef TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, TType> = (t:Any, args:haxe.extern.Rest<Any>) -> Any;

@@ -35,8 +35,8 @@ package ts.html;
 	function getComputedStyle(elt:IElement, ?pseudoElt:String):ts.lib.ICSSStyleDeclaration;
 	function getCurrentTime():Float;
 	function getElementById(elementId:String):IElement;
-	function getEnclosureList(rect:IDOMRect, referenceElement:ISVGElement):ts.lib.NodeListOf<haxe.extern.EitherType<ISVGCircleElement, haxe.extern.EitherType<ISVGEllipseElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<ISVGLineElement, haxe.extern.EitherType<ISVGPathElement, haxe.extern.EitherType<ISVGPolygonElement, haxe.extern.EitherType<ISVGPolylineElement, haxe.extern.EitherType<ISVGRectElement, haxe.extern.EitherType<ISVGTextElement, ISVGUseElement>>>>>>>>>>;
-	function getIntersectionList(rect:IDOMRect, referenceElement:ISVGElement):ts.lib.NodeListOf<haxe.extern.EitherType<ISVGCircleElement, haxe.extern.EitherType<ISVGEllipseElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<ISVGLineElement, haxe.extern.EitherType<ISVGPathElement, haxe.extern.EitherType<ISVGPolygonElement, haxe.extern.EitherType<ISVGPolylineElement, haxe.extern.EitherType<ISVGRectElement, haxe.extern.EitherType<ISVGTextElement, ISVGUseElement>>>>>>>>>>;
+	function getEnclosureList(rect:IDOMRect, referenceElement:ISVGElement):ts.lib.NodeListOf<haxe.extern.EitherType<ISVGUseElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<ISVGCircleElement, haxe.extern.EitherType<ISVGEllipseElement, haxe.extern.EitherType<ISVGLineElement, haxe.extern.EitherType<ISVGPathElement, haxe.extern.EitherType<ISVGPolygonElement, haxe.extern.EitherType<ISVGPolylineElement, haxe.extern.EitherType<ISVGRectElement, ISVGTextElement>>>>>>>>>>;
+	function getIntersectionList(rect:IDOMRect, referenceElement:ISVGElement):ts.lib.NodeListOf<haxe.extern.EitherType<ISVGUseElement, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<ISVGCircleElement, haxe.extern.EitherType<ISVGEllipseElement, haxe.extern.EitherType<ISVGLineElement, haxe.extern.EitherType<ISVGPathElement, haxe.extern.EitherType<ISVGPolygonElement, haxe.extern.EitherType<ISVGPolylineElement, haxe.extern.EitherType<ISVGRectElement, ISVGTextElement>>>>>>>>>>;
 	function pauseAnimations():Void;
 	function setCurrentTime(seconds:Float):Void;
 	function suspendRedraw(maxWaitMilliseconds:Float):Float;
@@ -237,7 +237,7 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, haxe.extern.EitherType<IClipboardEvent, haxe.extern.EitherType<IUIEvent, haxe.extern.EitherType<IDragEvent, haxe.extern.EitherType<IMouseEvent, haxe.extern.EitherType<IErrorEvent, haxe.extern.EitherType<IFocusEvent, haxe.extern.EitherType<IKeyboardEvent, haxe.extern.EitherType<IPointerEvent, haxe.extern.EitherType<IProgressEvent<IEventTarget>, haxe.extern.EitherType<ISVGZoomEvent, haxe.extern.EitherType<ISecurityPolicyViolationEvent, haxe.extern.EitherType<ITouchEvent, haxe.extern.EitherType<ITransitionEvent, haxe.extern.EitherType<IWheelEvent, IAnimationEvent>>>>>>>>>>>>>>>) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -272,7 +272,7 @@ package ts.html;
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:haxe.extern.EitherType<IEvent, haxe.extern.EitherType<IClipboardEvent, haxe.extern.EitherType<IUIEvent, haxe.extern.EitherType<IDragEvent, haxe.extern.EitherType<IMouseEvent, haxe.extern.EitherType<IErrorEvent, haxe.extern.EitherType<IFocusEvent, haxe.extern.EitherType<IKeyboardEvent, haxe.extern.EitherType<IPointerEvent, haxe.extern.EitherType<IProgressEvent<IEventTarget>, haxe.extern.EitherType<ISVGZoomEvent, haxe.extern.EitherType<ISecurityPolicyViolationEvent, haxe.extern.EitherType<ITouchEvent, haxe.extern.EitherType<ITransitionEvent, haxe.extern.EitherType<IWheelEvent, IAnimationEvent>>>>>>>>>>>>>>>) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
 	static var prototype : ISVGSVGElement;
 	static final SVG_ZOOMANDPAN_DISABLE : Float;
 	static final SVG_ZOOMANDPAN_MAGNIFY : Float;
