@@ -504,7 +504,7 @@ extern typedef JQuery<TElement> = {
 		Get the current coordinates of the first element in the set of matched elements, relative to the document.
 	**/
 	@:overload(function():Null<global.jquery.Coordinates> { })
-	function offset(coordinates_function:haxe.extern.EitherType<Any, haxe.extern.EitherType<{ }, (index:Float, coords:global.jquery.Coordinates) -> haxe.extern.EitherType<Any, { }>>>):JQuery<TElement>;
+	function offset(coordinates_function:Any):JQuery<TElement>;
 	/**
 		Get the closest ancestor element that is positioned.
 	**/
