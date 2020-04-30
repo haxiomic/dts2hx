@@ -93,6 +93,26 @@ class Log {
 		}
 	}
 
+	static public function symbolInfo(symbol: Symbol): String {
+		var str = '<b,cyan>${symbol.name} ${TsSymbolTools.getFlagsInfo(symbol)}</>';
+		if (symbol.valueDeclaration != null) {
+			str += ' ' + nodeInfo(symbol.valueDeclaration);
+		} else if (symbol.declarations != null && symbol.declarations[0] != null) {
+			str += ' ' + nodeInfo(symbol.declarations[0]);
+		}
+		return str;
+	}
+
+	static public function nodeInfo(node: TsNode): String {
+		return '<magenta>${TsSyntaxTools.getSyntaxKindName(node.kind)}</>${
+			try ' ' + formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() }) catch (e: Any) ''
+		}';
+	}
+
+	static public function typeInfo(type: TsType) {
+		return '<blue>${type.getFlagsInfo()}</>${type.symbol != null ? ' ' + symbolInfo(type.symbol) : ''}';
+	}
+
 	static function createMessage(?arg: Any, ?node: TsNode, ?symbol: Symbol, ?type: TsType, ?diagnostic: Diagnostic): String {
 		var parts = new Array<String>();
 		if (arg != null) {
@@ -122,25 +142,5 @@ class Log {
 
 	static function joinArgs(args: Array<Any>) {
 		return args.filter(arg -> arg != null).join(', ');
-	}
-
-	static function symbolInfo(symbol: Symbol): String {
-		var str = '<b,cyan>${symbol.name} ${TsSymbolTools.getFlagsInfo(symbol)}</>';
-		if (symbol.valueDeclaration != null) {
-			str += ' ' + nodeInfo(symbol.valueDeclaration);
-		} else if (symbol.declarations != null && symbol.declarations[0] != null) {
-			str += ' ' + nodeInfo(symbol.declarations[0]);
-		}
-		return str;
-	}
-	
-	static function nodeInfo(node: TsNode): String {
-		return '<magenta>${TsSyntaxTools.getSyntaxKindName(node.kind)}</>${
-			try ' ' + formatLocation({ sourceFile: node.getSourceFile(), start: node.getStart() }) catch (e: Any) ''
-		}';
-	}
-
-	static function typeInfo(type: TsType) {
-		return '<blue>${type.getFlagsInfo()}</>${type.symbol != null ? ' ' + symbolInfo(type.symbol) : ''}';
 	}
 }

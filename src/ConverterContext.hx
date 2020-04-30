@@ -568,22 +568,34 @@ class ConverterContext {
 		Return true if the type will be represented as a structure in haxe
 		@! needs review
 	**/
-	@:pure function isTypeStructureInHaxe(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
-		// check the type can be converted
-		switch complexTypeFromTsType(type, accessContext, enclosingDeclaration) {
-			case TPath({name: 'Any', pack: ['std' | '']}):
-				return false;
-			default:
-		}
-		return if (type.flags & TypeFlags.Object != 0) {
+	@:pure function isTypeStructureInHaxe(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Bool {
+		if (type.flags & TypeFlags.Object != 0) {
+			// check the type can be converted
+			switch complexTypeFromTsType(type, accessContext, enclosingDeclaration) {
+				case TPath({name: 'Any', pack: ['std' | '']}):
+					return false;
+				default:
+			}
+
 			var objectType: ObjectType = cast type;
 			var isAnonType = objectType.objectFlags & ObjectFlags.Anonymous != 0;
-			var isInterfaceAndNotClass = type.symbol.flags & SymbolFlags.Interface != 0 && type.symbol.flags & SymbolFlags.Class == 0;
+			var isInterface = type.symbol.flags & SymbolFlags.Interface != 0;
 			var isValueModule = type.symbol.flags & SymbolFlags.ValueModule != 0; 
 			var isConstructorType = tc.isConstructorType(objectType); // constructor types are converted to classes
-			!isConstructorType && !isValueModule && (isAnonType || isInterfaceAndNotClass);
+			var appearsToBeStructure = !isConstructorType && !isValueModule && (isAnonType || isInterface);
+
+			if (appearsToBeStructure) {
+				// @! todo
+				// assume any types in the haxe standard library are not structures. @! This can be improved in the future
+				// var hxTypePath = haxeTypePathMap.getTypePath(type.symbol, accessContext, false);
+				// if (hxTypePath.isExistingStdLibType) {
+				// 	return false;
+				// }
+			}
+
+			return appearsToBeStructure;
 		} else {
-			false;
+			return false;
 		}
 	}
 
@@ -657,12 +669,22 @@ class ConverterContext {
 	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		if (_currentTypeStack.indexOf(type) != -1) {
+		if (_currentTypeStack.has(type)) {
 			Log.log('Breaking recursive type conversion with :Any', type);
+			_currentTypeStack.pop();
+			return macro :Any;
+		}
+
+		if (_currentTypeStack.length >= 50) {
+			Log.error('Internal error: Reached type-depth limit, stopping further type conversions with :Any. This indicates unbound recursive type conversion');
+			debug();
+			_currentTypeStack.pop();
 			return macro :Any;
 		}
 
 		_currentTypeStack.push(type);
+
+		// Log.log('${untyped type.id} [${_currentTypeStack.length}]', type);
 
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
@@ -718,9 +740,10 @@ class ConverterContext {
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
 			Log.error('Type not yet supported', type);
-			debug();
+			// debug();
 			macro :Any;
 		} catch (e: Any) {
+			debug();
 			_currentTypeStack.pop();
 			throw e;
 		}
@@ -746,57 +769,54 @@ class ConverterContext {
 	}
 
 	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// haxe can only support a subset of intersections where all types are structures and all fields have unique names
-		var hxTypes = intersectionType.types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
-
-		var nativelyIntersectable = true;
-
 		// in haxe we can only intersect structures, ensure all types will be represented as structures in haxe
-		for (type in intersectionType.types) {
-			if (!isTypeStructureInHaxe(type, accessContext, enclosingDeclaration)) {
-				nativelyIntersectable = false;
-				break;
-			}
-		}
+		var hasNonStructureType = intersectionType.types.exists(t -> !isTypeStructureInHaxe(t, accessContext, enclosingDeclaration));
+
+		var nativelyIntersectable = !hasNonStructureType;
 
 		// in haxe, structure intersections must all have unique field names
 		// convert all types to haxe anons and compare fields to determine if there are any name clashes
-		var hxAnonTypes = intersectionType.types.map(t -> complexTypeAnonFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
-		var seenFieldNames = new Map<String, Bool>();
-		var selfCallFields = 0;
-		if (nativelyIntersectable) for (hxAnonType in hxAnonTypes) {
-			nativelyIntersectable = nativelyIntersectable && switch hxAnonType {
-				case TAnonymous(fields):
-					var nameClash = false;
-					for (field in fields) {
-						if (field.getMeta(':selfCall') != null) {
-							selfCallFields++;
-						} else {
-							var nativeName = field.getNativeName();
-							if (seenFieldNames.exists(nativeName)) {
-								nameClash = true;
-								break;
+		if (nativelyIntersectable) {
+			var hxAnonTypes = intersectionType.types.map(t -> complexTypeAnonFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+			var seenFieldNames = new Map<String, Bool>();
+			var selfCallFields = 0;
+			for (hxAnonType in hxAnonTypes) {
+				nativelyIntersectable = nativelyIntersectable && switch hxAnonType {
+					case TAnonymous(fields):
+						var nameClash = false;
+						for (field in fields) {
+							if (field.getMeta(':selfCall') != null) {
+								selfCallFields++;
+							} else {
+								var nativeName = field.getNativeName();
+								if (seenFieldNames.exists(nativeName)) {
+									nameClash = true;
+									break;
+								}
+								seenFieldNames.set(nativeName, true);
 							}
-							seenFieldNames.set(nativeName, true);
 						}
-					}
-					!nameClash;
-				default: false; // shouldn't happen
-			}
+						!nameClash;
+					default: false; // shouldn't happen
+				}
 
-			// if multiple types have @:selfCall fields, rasterize the intersection to avoid collision between `call()` functions
-			if (selfCallFields > 1) {
-				nativelyIntersectable = false;
-			}
+				// if multiple types have @:selfCall fields, rasterize the intersection to avoid collision between `call()` functions
+				if (selfCallFields > 1) {
+					nativelyIntersectable = false;
+				}
 
-			if (!nativelyIntersectable) break;
+				if (!nativelyIntersectable) break;
+			}
 		}
 
 		// if all types are natively intersectable in haxe return TIntersection, if any are not, rasterize to a single anon
 		return if (nativelyIntersectable) {
+			var hxTypes = intersectionType.types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 			TIntersection(hxTypes);
 		} else {
-			complexTypeAnonFromTsType(cast tc.getApparentType(intersectionType), accessContext, enclosingDeclaration);
+			macro :Any;
+			// @! todo: avoid recursive type conversion (see jquery)
+			// complexTypeAnonFromTsType(cast tc.getApparentType(intersectionType), accessContext, enclosingDeclaration);
 		}
 	}
 
@@ -1643,4 +1663,5 @@ class ConverterContext {
 
 	**TypeChecker**
 	- `getAugmentedPropertiesOfType(declaredType)`, all properties but also includes `bind`, `apply` etc (don't use)
+	- `getApparentType()` can create transient types. Transient types can lead to infinite loop type conversions because we cannot match a transient type against another. Avoid using
 **/

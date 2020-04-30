@@ -36,6 +36,8 @@ class HaxeTypePathMap {
 		If a symbol has multiple type paths, `accessContext` is used to preference the access of the reference.
 		For example, if a symbol has both a global and modular access and we reference it from a module, we want to prefer the module version.
 
+		Set `preferInterfaceStructure` to true to return the interface-structure version of a symbol if one exists.
+
 		The `isExistingStdLibType` flag means this is a reference to an already existing type in the haxe standard library and therefore it doesn't need converting
 	**/
 	public function getTypePath(symbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool): TypePath {
