@@ -118,10 +118,10 @@ package ts.lib;
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):{ } { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):{ } { })
+	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Any { })
+	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Any { })
 	@:overload(function(target:Any, sources:std.Array<Any>):Any { })
-	static function assign<T, U>(target:T, source:U):{ };
+	static function assign<T, U>(target:T, source:U):Any;
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
@@ -151,5 +151,5 @@ package ts.lib;
 	/**
 		Returns an object containing all own property descriptors of an object
 	**/
-	static function getOwnPropertyDescriptors<T>(o:T):{ };
+	static function getOwnPropertyDescriptors<T>(o:T):Any;
 }
