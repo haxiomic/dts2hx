@@ -4,10 +4,6 @@ import three.*;
 class Main {
 
 	static function main() {
-		// remove no-script message
-		var el = document.getElementById('no-script-warning');
-		el.remove();
-
 		/**
 			three.js introduction example
 			https://threejs.org/docs/#manual/en/introduction/Creating-a-scene

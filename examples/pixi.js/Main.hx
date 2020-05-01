@@ -12,10 +12,6 @@ import js.Browser.*;
 class Main {
 
 	static function main() {
-		// remove no-script message
-		var el = document.getElementById('no-script-warning');
-		el.remove();
-
 		/**
 			pixi.js text example
 			https://pixijs.io/examples/#/text/text.js

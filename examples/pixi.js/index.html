@@ -4,6 +4,6 @@
 	<body>
 		<h1 id="no-script-warning">dist/main.js was not loaded, generate it by running <code>haxe build.hxml</code></h1>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.2.3/pixi.min.js"></script>
-		<script src="dist/main.js"></script>
+		<script src="dist/main.js" onload="javascript: document.getElementById('no-script-warning').remove()"></script>
 	</body>
 </html>
