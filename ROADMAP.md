@@ -1,8 +1,4 @@
-- Should we convert all `const Name: T;` fields to classes rather than global variables?
-	-> Probably, what about `var Name: T;`? I think so.
-
-- Maybe use macro to enable finally
-- Use macro to call complexType methods with type-stack pushing?
+- Create alternative field for redefined class and interface fields (if type is not same)
 
 - Complete validation
 
@@ -39,6 +35,14 @@
 
 - `getTopLevelDeclarationSymbols` sucks, can we use alternative methods now? Why does it exist?
 
+- Should we convert all `const Name: T;` fields to classes rather than global variables?
+	-> Probably, what about `var Name: T;`? I think so.
+
+- Maybe use macro to enable finally
+- Use macro to call complexType methods with type-stack pushing?
+
+- **react+react-dom have issues**
+
 - Playcanvas, why 
 	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
 	When the type is a class?
@@ -50,6 +54,7 @@
 
 - Issue: jquery sizzle dependency, generates sizzle files within jquery library
 	- Solution: don't generate types for external modules
+	- This is probably the same problem in react-dom, but here we get unexpectedly `@jsInaccessible`
 
 - Issue: struct/function formatting problems in Typescript.hx
 
@@ -103,3 +108,18 @@ A generic build version of this would work
 - **Command Line Interface**
 	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
 	- maybe check for .d.ts at end and remove when doing module search
+
+------
+
+**haxe on npm**
+- npm haxe version should exactly always match haxe compiler version
+	- e.g. `npm install haxe 4.0.5` should do exactly that
+	- Should include prebuilt binaries / download based on arch after install
+	- This is annoying because we can never reuse the same name/version on npm (may need to get in touch with npm admins?)
+		- We can unpublish specific old versions by contacting `support@npmjs.com` and replace them with a shim to new version so they will still work
+		- We could leave all the other versions up unchanged
+		- This is a big change but I think it's worth it.
+	- npm publish should be an automatic part of haxe release process
+- haxe lib directory set to node_modules/@haxe
+- install haxe libraries with the @haxe namespace prefix
+- `npm install @haxe/openfl`
