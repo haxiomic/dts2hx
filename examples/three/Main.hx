@@ -8,6 +8,11 @@ class Main {
 		var el = document.getElementById('no-script-warning');
 		el.remove();
 
+		/**
+			three.js introduction example
+			https://threejs.org/docs/#manual/en/introduction/Creating-a-scene
+		**/
+
 		var pixelRatio = window.devicePixelRatio;
 
 		var displayWidthPx = 800;
