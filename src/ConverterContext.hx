@@ -357,15 +357,14 @@ class ConverterContext {
 				meta.push({name: 'valueModuleOnly', pos: pos});
 			}
 
-			var callSignatures = symbol.getCallSignatures(tc);
-			var indexSignatures = symbol.getIndexSignatures(tc);
-			var classMembers = symbol.getClassMembers();
 
-			// alternatively, get effective members:
-			// symbol.getConstructorSignatures(tc),
-			// tc.getSignaturesOfType(declaredType, Call),
-			// tc.getIndexSignaturesOfType(declaredType),
-			// tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
+			var callSignatures = tc.getSignaturesOfType(declaredType, Call);
+			var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
+			var classMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
+			// alternatively get just this symbols members with:
+			// var callSignatures = symbol.getCallSignatures(tc);
+			// var indexSignatures = symbol.getIndexSignatures(tc);
+			// var classMembers = symbol.getClassMembers();
 
 			// determine super type (if class declaration)
 			var classDeclaration: Null<ClassDeclaration> = declaration != null && Ts.isClassDeclaration(declaration) ? cast declaration : null;
@@ -404,7 +403,6 @@ class ConverterContext {
 				indexSignatures,
 				classMembers
 			);
-
 
 			{
 				pack: typePath.pack,
@@ -609,10 +607,8 @@ class ConverterContext {
 	@:pure function isTypeStructureInHaxe(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Bool {
 		if (type.flags & TypeFlags.Object != 0) {
 			// check the type can be converted
-			switch complexTypeFromTsType(type, accessContext, enclosingDeclaration) {
-				case TPath({name: 'Any', pack: ['std' | '']}):
-					return false;
-				default:
+			if (isHxAny(complexTypeFromTsType(type, accessContext, enclosingDeclaration))) {
+				return false;
 			}
 
 			var objectType: ObjectType = cast type;
@@ -710,14 +706,14 @@ class ConverterContext {
 		if (_currentTypeStack.has(type)) {
 			Log.log('Breaking recursive type conversion with :Any', type);
 			_currentTypeStack.pop();
-			return macro :Any;
+			return macro :Dynamic;
 		}
 
 		if (_currentTypeStack.length >= 50) {
 			Log.error('Internal error: Reached type-depth limit, stopping further type conversions with :Any. This indicates unbound recursive type conversion');
 			debug();
 			_currentTypeStack.pop();
-			return macro :Any;
+			return macro :Dynamic;
 		}
 
 		_currentTypeStack.push(type);
@@ -726,7 +722,7 @@ class ConverterContext {
 
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
-			macro :Any;
+			macro :Dynamic;
 		} else if (type.flags & (TypeFlags.Unknown | TypeFlags.Never) != 0) {
 			// we can't really represent `unknown` or `never` in haxe at the moment
 			macro :Any;
@@ -737,7 +733,7 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.Boolean) != 0) {
 			macro :Bool;
 		} else if (type.flags & (TypeFlags.Undefined) != 0) {
-			macro :Null<Any>;
+			macro :Null<macro :Any>;
 		} else if (type.flags & (TypeFlags.Void) != 0) {
 			macro :Void;
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
@@ -788,7 +784,7 @@ class ConverterContext {
 			// NonPrimitive    = 1 << 26,  // intrinsic object type
 
 			// debug();
-			macro :Any;
+			macro :Dynamic;
 		} catch (e: Any) {
 			debug();
 			_currentTypeStack.pop();
@@ -808,12 +804,12 @@ class ConverterContext {
 		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 		// if we have :Any in our union, just replace the whole thing with :Any (this can happen if a type failed conversion)
 		// Null<Any> is useful as doc however
-		if (!nullable && hxTypes.exists(t -> t.match(TPath({name: 'Any', pack: [] | ['std']})))) {
-			return macro :Any;
+		if (!nullable && hxTypes.exists(t -> isHxAny(t))) {
+			return macro :Dynamic;
 		}
 		// if union is of length 1, no need for support type
 		var unionType = switch hxTypes.length {
-			case 0: macro :Any;
+			case 0: macro :Dynamic;
 			case 1: hxTypes[0];
 			default: this.getUnionType(hxTypes);
 		}
@@ -866,7 +862,7 @@ class ConverterContext {
 			var hxTypes = intersectionType.types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 			TIntersection(hxTypes);
 		} else {
-			macro :Any;
+			macro :Dynamic;
 			// @! todo: avoid recursive type conversion (see jquery)
 			// complexTypeAnonFromTsType(cast tc.getApparentType(intersectionType), accessContext, enclosingDeclaration);
 		}
@@ -917,7 +913,7 @@ class ConverterContext {
 		} else {
 			Log.warn('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
-			macro :Any;
+			macro :Dynamic;
 		}
 	}
 
@@ -1031,7 +1027,7 @@ class ConverterContext {
 		if (fun.params != null && fun.params.length > 0) {
 			fun = tool.ComplexTypeTools.mapFunction(fun, t -> {
 				switch t {
-					case TPath({ pack: [], name: name }) if (fun.params.exists(tp -> tp.name == name)): macro :Any;
+					case TPath({ pack: [], name: name }) if (fun.params.exists(tp -> tp.name == name)): macro :Dynamic;
 					default: t;
 				}
 			});
@@ -1040,10 +1036,10 @@ class ConverterContext {
 
 		return TFunction(
 			fun.args.map(arg -> {
-				var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
+				var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Dynamic);
 				return arg.opt != null  && arg.opt ? TOptional(param) : param;
 			}),
-			fun.ret != null ? fun.ret : macro :Any
+			fun.ret != null ? fun.ret : macro :Dynamic
 		);
 	}
 
@@ -1058,7 +1054,7 @@ class ConverterContext {
 			if (typeReference.target == cast typeReference) { // avoid direct cycles
 				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
 				Log.error('Internal error: recursive type reference');
-				return macro :Any;
+				return macro :Dynamic;
 			}
 			
 			var hxTarget = complexTypeFromTsType(cast typeReference.target, accessContext, enclosingDeclaration);
@@ -1116,7 +1112,7 @@ class ConverterContext {
 		} else {
 			Log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
 			debug();
-			macro :Any;
+			macro :Dynamic;
 		}
 	}
 
@@ -1151,7 +1147,7 @@ class ConverterContext {
 		return if (hxEnumTypeName != null) {
 			TPath({pack: [], name: cast hxEnumTypeName});
 		} else {
-			TPath({pack: [], name: 'Any'});
+			macro :Any;
 		}
 	}
 
@@ -1245,7 +1241,7 @@ class ConverterContext {
 				onError('Internal error: failed to get function signatures from type (type is probably wrapped in another)');
 				FFun({
 					args: [],
-					ret: macro :Any,
+					ret: macro :Dynamic,
 					params: [],
 					expr: null,
 				});
@@ -1401,6 +1397,13 @@ class ConverterContext {
 			}
 		}
 		return access;
+	}
+
+	function isHxAny(t: ComplexType) {
+		return switch t {
+			case TPath({name: 'Any' | 'Dynamic', pack: ['std'] | []}): true;
+			default: false;
+		}
 	}
 
 	/**
