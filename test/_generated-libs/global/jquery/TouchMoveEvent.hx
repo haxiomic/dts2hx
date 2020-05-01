@@ -8,37 +8,37 @@ extern typedef TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> =
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var button : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var buttons : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var clientX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var clientY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var offsetX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var offsetY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var relatedTarget : Any;
+	var button : Null<Any>;
+	var buttons : Null<Any>;
+	var clientX : Null<Any>;
+	var clientY : Null<Any>;
+	var offsetX : Null<Any>;
+	var offsetY : Null<Any>;
 	/**
 		The mouse position relative to the left edge of the document.
 	**/
-	var pageX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var pageX : Null<Any>;
 	/**
 		The mouse position relative to the top edge of the document.
 	**/
-	var pageY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var screenX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var screenY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var toElement : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var pointerId : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var pointerType : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var char : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var charCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var key : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var keyCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var pageY : Null<Any>;
+	var screenX : Null<Any>;
+	var screenY : Null<Any>;
+	var toElement : Null<Any>;
+	var pointerId : Null<Any>;
+	var pointerType : Null<Any>;
+	var char : Null<Any>;
+	var charCode : Null<Any>;
+	var key : Null<Any>;
+	var keyCode : Null<Any>;
 	var changedTouches : ts.lib.ITouchList;
 	var targetTouches : ts.lib.ITouchList;
 	var touches : ts.lib.ITouchList;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/
-	var which : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var which : Null<Any>;
 	var altKey : Bool;
 	var ctrlKey : Bool;
 	/**

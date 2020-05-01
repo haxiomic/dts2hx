@@ -33,15 +33,15 @@ extern typedef JQuery<TElement> = {
 	/**
 		Register a handler to be called when Ajax requests complete. This is an AjaxEvent.
 	**/
-	function ajaxComplete(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxComplete(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<Any>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.
 	**/
-	function ajaxError(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxSettings:global.jquery.AjaxSettings<Dynamic>, thrownError:String) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxError(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<Any>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxSettings:global.jquery.AjaxSettings<Dynamic>, thrownError:String) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.
 	**/
-	function ajaxSend(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxSend(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<Any>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Register a handler to be called when the first Ajax request begins. This is an Ajax Event.
 	**/
@@ -53,7 +53,7 @@ extern typedef JQuery<TElement> = {
 	/**
 		Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.
 	**/
-	function ajaxSuccess(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>, data:global.jquery.PlainObject<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxSuccess(handler:(event:global.jquery.TriggeredEvent<ts.html.IDocument, Null<Any>, ts.html.IDocument, ts.html.IDocument>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>, data:global.jquery.PlainObject<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Perform a custom animation of a set of CSS properties.
 		
@@ -103,7 +103,7 @@ extern typedef JQuery<TElement> = {
 		Attach a handler to an event for the elements.
 	**/
 	@:overload(function<TType>(eventType:TType, handler_preventBubble:Null<ts.AnyOf2<Bool, (t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):JQuery<TElement> { })
-	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, TElement, TElement>):JQuery<TElement> { })
+	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
 	function bind<TType, TData>(eventType:TType, eventData:TData, handler:(t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic):JQuery<TElement>;
 	/**
 		Bind an event handler to the "blur" JavaScript event, or trigger that event on an element.
@@ -181,7 +181,7 @@ extern typedef JQuery<TElement> = {
 		Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.
 	**/
 	@:overload(function(obj:global.jquery.PlainObject<Dynamic>):JQuery<TElement> { })
-	@:overload(function(key:String, value:Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>):Dynamic { })
+	@:overload(function(key:String, value:Null<Any>):Dynamic { })
 	@:overload(function(key:String):Dynamic { })
 	@:overload(function():global.jquery.PlainObject<Dynamic> { })
 	function data(key:String, value:Null<ts.AnyOf5<String, Float, Bool, js.lib.Symbol, Dynamic>>):JQuery<TElement>;
@@ -204,7 +204,7 @@ extern typedef JQuery<TElement> = {
 		Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.
 	**/
 	@:overload(function<TType>(selector:String, eventType:TType, handler:ts.AnyOf2<Bool, (t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic>):JQuery<TElement> { })
-	@:overload(function(selector:String, events:global.jquery.TypeEventHandlers<TElement, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, Dynamic, Dynamic>):JQuery<TElement> { })
+	@:overload(function(selector:String, events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Dynamic, Dynamic>):JQuery<TElement> { })
 	function delegate<TType, TData>(selector:String, eventType:TType, eventData:TData, handler:(t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic):JQuery<TElement>;
 	/**
 		Execute the next function on the queue for the matched elements.
@@ -545,9 +545,9 @@ extern typedef JQuery<TElement> = {
 	@:overload(function(events:String, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Dynamic, Dynamic>, selector:String, data:TData):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Dynamic>, data:TData):JQuery<TElement> { })
-	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, Dynamic, Dynamic>, selector:String):JQuery<TElement> { })
+	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Dynamic, Dynamic>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
-	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, TElement, TElement>):JQuery<TElement> { })
+	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
 	function on<TType, TData>(events:TType, selector:String, data:TData, handler:(t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
@@ -576,9 +576,9 @@ extern typedef JQuery<TElement> = {
 	@:overload(function<TType>(events:TType, handler:ts.AnyOf2<Bool, (t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic>):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Dynamic, Dynamic>, selector:String, data:TData):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Dynamic>, data:TData):JQuery<TElement> { })
-	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, Dynamic, Dynamic>, selector:String):JQuery<TElement> { })
+	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Dynamic, Dynamic>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
-	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>, TElement, TElement>):JQuery<TElement> { })
+	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
 	function one<TType, TData>(events:TType, selector:String, data:TData, handler:(t:Dynamic, args:haxe.extern.Rest<Dynamic>) -> Dynamic):JQuery<TElement>;
 	/**
 		Set the CSS outer height of each element in the set of matched elements.

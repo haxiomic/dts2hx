@@ -9,43 +9,43 @@ extern typedef FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	**/
 	@:optional
 	var relatedTarget : ts.html.IEventTarget;
-	var button : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var buttons : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var clientX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var clientY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var offsetX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var offsetY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var button : Null<Any>;
+	var buttons : Null<Any>;
+	var clientX : Null<Any>;
+	var clientY : Null<Any>;
+	var offsetX : Null<Any>;
+	var offsetY : Null<Any>;
 	/**
 		The mouse position relative to the left edge of the document.
 	**/
-	var pageX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var pageX : Null<Any>;
 	/**
 		The mouse position relative to the top edge of the document.
 	**/
-	var pageY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var screenX : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var screenY : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var toElement : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var pointerId : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var pointerType : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var char : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var charCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var key : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var keyCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var changedTouches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var targetTouches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var touches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var pageY : Null<Any>;
+	var screenX : Null<Any>;
+	var screenY : Null<Any>;
+	var toElement : Null<Any>;
+	var pointerId : Null<Any>;
+	var pointerType : Null<Any>;
+	var char : Null<Any>;
+	var charCode : Null<Any>;
+	var key : Null<Any>;
+	var keyCode : Null<Any>;
+	var changedTouches : Null<Any>;
+	var targetTouches : Null<Any>;
+	var touches : Null<Any>;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/
-	var which : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var altKey : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var ctrlKey : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var which : Null<Any>;
+	var altKey : Null<Any>;
+	var ctrlKey : Null<Any>;
 	/**
 		Indicates whether the META key was pressed when the event fired.
 	**/
-	var metaKey : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var shiftKey : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var metaKey : Null<Any>;
+	var shiftKey : Null<Any>;
 	@:optional
 	var originalEvent : ts.html.IFocusEvent;
 	var bubbles : Bool;

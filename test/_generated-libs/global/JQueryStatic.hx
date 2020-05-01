@@ -75,7 +75,7 @@ extern typedef JQueryStatic = {
 		
 		Returns value at named data store for the element, as set by `jQuery.data(element, name, value)`, or the full data store for the element.
 	**/
-	@:overload(function(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>):Dynamic { })
+	@:overload(function(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<Any>):Dynamic { })
 	@:overload(function(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Dynamic>>, ?key:String):Dynamic { })
 	function data<T>(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Dynamic>>, key:String, value:T):T;
 	/**
@@ -248,7 +248,7 @@ extern typedef JQueryStatic = {
 	/**
 		An empty function.
 	**/
-	function noop():Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	function noop():Null<Any>;
 	/**
 		Return a number representing the current time.
 	**/

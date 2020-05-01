@@ -42,7 +42,7 @@ package ts.html;
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete():IIDBRequest<Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>>;
+	function delete():IIDBRequest<Null<Any>>;
 	/**
 		Updated the record pointed at by the cursor with a new value.
 		

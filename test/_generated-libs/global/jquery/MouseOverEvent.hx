@@ -26,15 +26,15 @@ extern typedef MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> =
 	var screenX : Float;
 	var screenY : Float;
 	var toElement : ts.html.IElement;
-	var pointerId : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var pointerType : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var char : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var charCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var key : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var keyCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var changedTouches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var targetTouches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
-	var touches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var pointerId : Null<Any>;
+	var pointerType : Null<Any>;
+	var char : Null<Any>;
+	var charCode : Null<Any>;
+	var key : Null<Any>;
+	var keyCode : Null<Any>;
+	var changedTouches : Null<Any>;
+	var targetTouches : Null<Any>;
+	var touches : Null<Any>;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/

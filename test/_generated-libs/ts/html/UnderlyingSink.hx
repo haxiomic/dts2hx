@@ -7,7 +7,7 @@ extern typedef UnderlyingSink<W> = {
 	@:optional
 	var start : WritableStreamDefaultControllerStartCallback;
 	@:optional
-	var type : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var type : Any;
 	@:optional
 	var write : WritableStreamDefaultControllerWriteCallback<W>;
 };

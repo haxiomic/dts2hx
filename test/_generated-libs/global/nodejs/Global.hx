@@ -151,7 +151,7 @@ extern typedef Global = {
 		@:selfCall
 		function call(callback:ts.lib.IFunction):Void;
 	};
-	var undefined : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var undefined : Null<Any>;
 	var unescape : (str:String) -> String;
 	var gc : () -> Void;
 	@:optional
