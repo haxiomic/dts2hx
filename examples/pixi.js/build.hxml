@@ -1,0 +1,6 @@
+-main Main
+# include pixi.js externs
+--class-path externs/pixi.js
+
+-js dist/main.js
+-dce full

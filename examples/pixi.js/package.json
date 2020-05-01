@@ -1,0 +1,18 @@
+{
+  "name": "pixi.js-example",
+  "version": "1.0.0",
+  "description": "Reproducing the [three.js introduction example](https://threejs.org/docs/#manual/en/introduction/Creating-a-scene)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "dts2hx --all"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pixi.js": "5.2.3"
+  },
+  "devDependencies": {
+    "dts2hx": "^0.3.0"
+  }
+}
