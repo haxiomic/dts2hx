@@ -82,25 +82,25 @@ extern typedef JqXHR<TResolve> = {
 	/**
 		Cancels any network activity.
 	**/
-	var abort : Any;
-	var getAllResponseHeaders : Any;
-	var getResponseHeader : Any;
+	var abort : () -> Void;
+	var getAllResponseHeaders : () -> String;
+	var getResponseHeader : (name:String) -> Null<String>;
 	/**
 		Acts as if the `Content-Type` header value for response is mime. (It does not actually change the header though.)
 		
 		Throws an "InvalidStateError" DOMException if state is loading or done.
 	**/
-	var overrideMimeType : Any;
+	var overrideMimeType : (mime:String) -> Void;
 	/**
 		Returns client's state.
 	**/
-	var readyState : Any;
+	var readyState : Float;
 	/**
 		Returns the text response.
 		
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "text".
 	**/
-	var responseText : Any;
+	var responseText : String;
 	/**
 		Combines a header in author request headers.
 		
@@ -108,14 +108,14 @@ extern typedef JqXHR<TResolve> = {
 		
 		Throws a "SyntaxError" DOMException if name is not a header name or if value is not a header value.
 	**/
-	var setRequestHeader : Any;
-	var status : Any;
-	var statusText : Any;
+	var setRequestHeader : (name:String, value:String) -> Void;
+	var status : Float;
+	var statusText : String;
 	/**
 		Returns the document response.
 		
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "document".
 	**/
 	@:optional
-	var responseXML : Any;
+	var responseXML : ts.html.IDocument;
 };

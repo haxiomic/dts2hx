@@ -8,9 +8,9 @@ extern typedef XHRFields = {
 		When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
 	**/
 	@:optional
-	var timeout : Any;
+	var timeout : Float;
 	@:optional
-	var onreadystatechange : Any;
+	var onreadystatechange : (ev:ts.html.IEvent) -> Any;
 	/**
 		Returns the response type.
 		
@@ -23,12 +23,12 @@ extern typedef XHRFields = {
 		When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
 	**/
 	@:optional
-	var responseType : Any;
+	var responseType : String;
 	/**
 		True when credentials are to be included in a cross-origin request. False when they are to be excluded in a cross-origin request and when cookies are to be ignored in its response. Initially false.
 		
 		When set: throws an "InvalidStateError" DOMException if state is not unsent or opened, or if the send() flag is set.
 	**/
 	@:optional
-	var withCredentials : Any;
+	var withCredentials : Bool;
 };
