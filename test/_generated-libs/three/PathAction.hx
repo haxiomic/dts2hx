@@ -1,5 +1,5 @@
 package three;
-extern typedef PathAction = {
+typedef PathAction = {
 	var action : PathActions;
 	var args : Dynamic;
 };

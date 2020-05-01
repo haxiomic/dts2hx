@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MidiPermissionDescriptor = {
+typedef MidiPermissionDescriptor = {
 	var name : String;
 	@:optional
 	var sysex : Bool;

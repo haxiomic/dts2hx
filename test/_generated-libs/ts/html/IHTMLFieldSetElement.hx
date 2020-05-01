@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <fieldset> elements.
 **/
-extern typedef IHTMLFieldSetElement = {
+typedef IHTMLFieldSetElement = {
 	var disabled : Bool;
 	final elements : IHTMLCollection;
 	/**

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef INavigationPreloadManager = {
+typedef INavigationPreloadManager = {
 	function disable():ts.lib.IPromise<Void>;
 	function enable():ts.lib.IPromise<Void>;
 	function getState():ts.lib.IPromise<NavigationPreloadState>;

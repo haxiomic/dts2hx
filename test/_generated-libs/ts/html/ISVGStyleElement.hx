@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the SVG <style> element.
 **/
-extern typedef ISVGStyleElement = {
+typedef ISVGStyleElement = {
 	var disabled : Bool;
 	var media : String;
 	var title : String;

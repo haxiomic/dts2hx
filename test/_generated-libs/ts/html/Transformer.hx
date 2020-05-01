@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef Transformer<I, O> = {
+typedef Transformer<I, O> = {
 	@:optional
 	var flush : TransformStreamDefaultControllerCallback<O>;
 	@:optional

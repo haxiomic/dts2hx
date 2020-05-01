@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single media track within a stream; typically, these are audio or video tracks, but other track types may exist as well.
 **/
-extern typedef IMediaStreamTrack = {
+typedef IMediaStreamTrack = {
 	var enabled : Bool;
 	final id : String;
 	final isolated : Bool;

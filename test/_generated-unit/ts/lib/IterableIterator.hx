@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IterableIterator<T> = {
+typedef IterableIterator<T> = {
 	function next(args:haxe.extern.Rest<Any>):ts.AnyOf2<IteratorYieldResult<T>, IteratorReturnResult<Dynamic>>;
 	@:native("return")
 	@:optional

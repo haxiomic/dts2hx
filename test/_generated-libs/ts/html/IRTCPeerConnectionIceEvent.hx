@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events that occurs in relation to ICE candidates with the target, usually an RTCPeerConnection. Only one event is of this type: icecandidate.
 **/
-extern typedef IRTCPeerConnectionIceEvent = {
+typedef IRTCPeerConnectionIceEvent = {
 	final candidate : Null<IRTCIceCandidate>;
 	final url : Null<String>;
 	/**

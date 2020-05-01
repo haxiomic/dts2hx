@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IFocusNavigationEvent = {
+typedef IFocusNavigationEvent = {
 	final navigationReason : String;
 	final originHeight : Float;
 	final originLeft : Float;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ProgressEventInit = {
+typedef ProgressEventInit = {
 	@:optional
 	var lengthComputable : Bool;
 	@:optional

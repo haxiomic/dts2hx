@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef DecipherCCM = {
+typedef DecipherCCM = {
 	function setAuthTag(buffer:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>):DecipherCCM;
 	function setAAD(buffer:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, options:{ var plaintextLength : Float; }):DecipherCCM;
 	@:overload(function(data:String, input_encoding:String):global.IBuffer { })

@@ -1,5 +1,5 @@
 package unit.interface_;
-extern typedef InterfaceExtendsWithRedefinition = {
+typedef InterfaceExtendsWithRedefinition = {
 	@:overload(function<T>(a:T, b:String):InterfaceExtendsWithRedefinition { })
 	@:selfCall
 	function call_(array:std.Array<InterfaceExtendsWithRedefinition>):Dynamic;

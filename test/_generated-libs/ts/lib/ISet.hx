@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ISet<T> = {
+typedef ISet<T> = {
 	function add(value:T):ISet<T>;
 	function clear():Void;
 	function delete(value:T):Bool;

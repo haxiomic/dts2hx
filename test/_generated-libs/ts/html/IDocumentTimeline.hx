@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef IDocumentTimeline = {
+typedef IDocumentTimeline = {
 	final currentTime : Null<Float>;
 };

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to information about the ICE transport layer over which the data is being sent and received.
 **/
-extern typedef IRTCIceTransport = {
+typedef IRTCIceTransport = {
 	final component : String;
 	final gatheringState : String;
 	var ongatheringstatechange : Null<(ev:IEvent) -> Dynamic>;

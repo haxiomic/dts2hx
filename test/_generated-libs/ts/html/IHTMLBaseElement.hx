@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Contains the base URI for a document. This object inherits all of the properties and methods as described in the HTMLElement interface.
 **/
-extern typedef IHTMLBaseElement = {
+typedef IHTMLBaseElement = {
 	/**
 		Gets or sets the baseline URL on which relative links are based.
 	**/

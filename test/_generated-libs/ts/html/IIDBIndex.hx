@@ -2,7 +2,7 @@ package ts.html;
 /**
 	IDBIndex interface of the IndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data.
 **/
-extern typedef IIDBIndex = {
+typedef IIDBIndex = {
 	final keyPath : ts.AnyOf2<String, std.Array<String>>;
 	final multiEntry : Bool;
 	/**

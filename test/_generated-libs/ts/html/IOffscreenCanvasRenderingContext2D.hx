@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IOffscreenCanvasRenderingContext2D = {
+typedef IOffscreenCanvasRenderingContext2D = {
 	final canvas : IOffscreenCanvas;
 	function commit():Void;
 	var globalAlpha : Float;

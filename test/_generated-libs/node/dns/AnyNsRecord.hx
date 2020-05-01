@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef AnyNsRecord = {
+typedef AnyNsRecord = {
 	var type : String;
 	var value : String;
 };

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PipeOptions = {
+typedef PipeOptions = {
 	@:optional
 	var preventAbort : Bool;
 	@:optional

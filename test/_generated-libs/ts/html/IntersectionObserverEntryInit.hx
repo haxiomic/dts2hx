@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IntersectionObserverEntryInit = {
+typedef IntersectionObserverEntryInit = {
 	var boundingClientRect : DOMRectInit;
 	var intersectionRatio : Float;
 	var intersectionRect : DOMRectInit;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ICaretPosition = {
+typedef ICaretPosition = {
 	final offset : Float;
 	final offsetNode : INode;
 	function getClientRect():Null<IDOMRect>;

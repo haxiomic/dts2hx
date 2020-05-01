@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone.
 **/
-extern typedef IOscillatorNode = {
+typedef IOscillatorNode = {
 	final detune : ts.lib.IAudioParam;
 	final frequency : ts.lib.IAudioParam;
 	var type : String;

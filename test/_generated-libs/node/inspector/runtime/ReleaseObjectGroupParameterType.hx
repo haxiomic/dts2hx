@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef ReleaseObjectGroupParameterType = {
+typedef ReleaseObjectGroupParameterType = {
 	/**
 		Symbolic object group name.
 	**/

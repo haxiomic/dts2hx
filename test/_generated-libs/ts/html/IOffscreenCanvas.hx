@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IOffscreenCanvas = {
+typedef IOffscreenCanvas = {
 	/**
 		These attributes return the dimensions of the OffscreenCanvas object's bitmap.
 		

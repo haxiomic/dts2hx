@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides event properties that are specific to modifications to the Document Object Model (DOM) hierarchy and nodes.
 **/
-extern typedef IMutationEvent = {
+typedef IMutationEvent = {
 	final attrChange : Float;
 	final attrName : String;
 	final newValue : String;

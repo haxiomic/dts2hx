@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef MxRecord = {
+typedef MxRecord = {
 	var priority : Float;
 	var exchange : String;
 };

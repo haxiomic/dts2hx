@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This WebVR API interface represents all the information needed to render a single frame of a VR scene; constructed by VRDisplay.getFrameData().
 **/
-extern typedef IVRFrameData = {
+typedef IVRFrameData = {
 	final leftProjectionMatrix : ts.lib.IFloat32Array;
 	final leftViewMatrix : ts.lib.IFloat32Array;
 	final pose : IVRPose;

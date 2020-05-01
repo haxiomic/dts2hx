@@ -2,7 +2,7 @@ package ts.html;
 /**
 	<option> elements and inherits all classes and methods of the HTMLElement interface.
 **/
-extern typedef IHTMLOptionElement = {
+typedef IHTMLOptionElement = {
 	/**
 		Sets or retrieves the status of an option.
 	**/

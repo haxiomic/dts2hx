@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

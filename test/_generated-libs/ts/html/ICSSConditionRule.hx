@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single condition CSS at-rule, which consists of a condition and a statement block. It is a child of CSSGroupingRule.
 **/
-extern typedef ICSSConditionRule = {
+typedef ICSSConditionRule = {
 	var conditionText : String;
 	final cssRules : ts.lib.ICSSRuleList;
 	function deleteRule(index:Float):Void;

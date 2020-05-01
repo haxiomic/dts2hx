@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DeviceMotionEventAcceleration = {
+typedef DeviceMotionEventAcceleration = {
 	final x : Null<Float>;
 	final y : Null<Float>;
 	final z : Null<Float>;

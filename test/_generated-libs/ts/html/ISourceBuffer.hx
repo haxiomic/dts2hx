@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A chunk of media to be passed into an HTMLMediaElement and played, via a MediaSource object. This can be made up of one or several media segments.
 **/
-extern typedef ISourceBuffer = {
+typedef ISourceBuffer = {
 	var appendWindowEnd : Float;
 	var appendWindowStart : Float;
 	final audioTracks : ts.lib.IAudioTrackList;

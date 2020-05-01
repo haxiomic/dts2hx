@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IWebGL2RenderingContext = {
+typedef IWebGL2RenderingContext = {
 	function beginQuery(target:Float, query:IWebGLQuery):Void;
 	function beginTransformFeedback(primitiveMode:Float):Void;
 	function bindBufferBase(target:Float, index:Float, buffer:Null<IWebGLBuffer>):Void;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef TouchInit = {
+typedef TouchInit = {
 	@:optional
 	var altitudeAngle : Float;
 	@:optional

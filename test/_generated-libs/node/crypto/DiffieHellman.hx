@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef DiffieHellman = {
+typedef DiffieHellman = {
 	@:overload(function(encoding:String):String { })
 	function generateKeys():global.IBuffer;
 	@:overload(function(other_public_key:String, input_encoding:String):global.IBuffer { })

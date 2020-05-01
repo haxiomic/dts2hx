@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The Web Audio API OfflineAudioCompletionEvent interface represents events that occur when the processing of an OfflineAudioContext is terminated. The complete event implements this interface.
 **/
-extern typedef IOfflineAudioCompletionEvent = {
+typedef IOfflineAudioCompletionEvent = {
 	final renderedBuffer : IAudioBuffer;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

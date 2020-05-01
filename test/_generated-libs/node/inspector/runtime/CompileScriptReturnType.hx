@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef CompileScriptReturnType = {
+typedef CompileScriptReturnType = {
 	/**
 		Id of the script.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef TouchEventInit = {
+typedef TouchEventInit = {
 	@:optional
 	var changedTouches : std.Array<ITouch>;
 	@:optional

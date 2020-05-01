@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef CipherCCMOptions = {
+typedef CipherCCMOptions = {
 	var authTagLength : Float;
 	@:optional
 	function read(size:Float):Void;

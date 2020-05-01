@@ -1,5 +1,5 @@
 package node.dgram;
-extern typedef BindOptions = {
+typedef BindOptions = {
 	var port : Float;
 	@:optional
 	var address : String;

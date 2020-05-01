@@ -2,7 +2,7 @@ package node.inspector.heapprofiler;
 /**
 	Sampling Heap Profile node. Holds callsite information, allocation statistics and child nodes.
 **/
-extern typedef SamplingHeapProfileNode = {
+typedef SamplingHeapProfileNode = {
 	/**
 		Function location.
 	**/

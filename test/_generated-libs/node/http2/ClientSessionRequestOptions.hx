@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef ClientSessionRequestOptions = {
+typedef ClientSessionRequestOptions = {
 	@:optional
 	var endStream : Bool;
 	@:optional

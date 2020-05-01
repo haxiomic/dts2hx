@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feImage> element.
 **/
-extern typedef ISVGFEImageElement = {
+typedef ISVGFEImageElement = {
 	final preserveAspectRatio : ISVGAnimatedPreserveAspectRatio;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

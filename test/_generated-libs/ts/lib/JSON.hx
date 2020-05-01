@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	An intrinsic object that provides functions to convert JavaScript values to and from the JavaScript Object Notation (JSON) format.
 **/
-extern typedef JSON = {
+typedef JSON = {
 	/**
 		Converts a JavaScript Object Notation (JSON) string into an object.
 	**/

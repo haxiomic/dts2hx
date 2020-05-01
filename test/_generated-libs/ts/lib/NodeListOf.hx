@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef NodeListOf<TNode> = {
+typedef NodeListOf<TNode> = {
 	/**
 		Returns the number of nodes in the collection.
 	**/

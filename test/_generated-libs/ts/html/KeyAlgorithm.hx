@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef KeyAlgorithm = {
+typedef KeyAlgorithm = {
 	var name : String;
 };

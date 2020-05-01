@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef StringConstructor = {
+typedef StringConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):String;
 	final prototype : IString;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IPermissionRequest = {
+typedef IPermissionRequest = {
 	final state : String;
 	function defer():Void;
 	final id : Float;

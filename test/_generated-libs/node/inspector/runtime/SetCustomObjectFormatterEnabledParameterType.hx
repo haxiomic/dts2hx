@@ -1,4 +1,4 @@
 package node.inspector.runtime;
-extern typedef SetCustomObjectFormatterEnabledParameterType = {
+typedef SetCustomObjectFormatterEnabledParameterType = {
 	var enabled : Bool;
 };

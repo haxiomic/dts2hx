@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMMatrix = {
+typedef IDOMMatrix = {
 	var a : Float;
 	var b : Float;
 	var c : Float;

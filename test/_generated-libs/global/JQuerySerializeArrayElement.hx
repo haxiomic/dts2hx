@@ -1,5 +1,5 @@
 package global;
-extern typedef JQuerySerializeArrayElement = {
+typedef JQuerySerializeArrayElement = {
 	var name : String;
 	var value : String;
 };

@@ -1,2 +1,2 @@
 package ts.lib;
-extern typedef VBArrayConstructor = { };
+typedef VBArrayConstructor = { };

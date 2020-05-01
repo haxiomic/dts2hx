@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ErrorEventInit = {
+typedef ErrorEventInit = {
 	@:optional
 	var colno : Float;
 	@:optional

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
 **/
-extern typedef IDocument = {
+typedef IDocument = {
 	/**
 		Sets or gets the URL for the current document.
 	**/

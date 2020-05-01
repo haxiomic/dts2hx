@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This WebRTC API interface manages the reception and decoding of data for a MediaStreamTrack on an RTCPeerConnection.
 **/
-extern typedef IRTCRtpReceiver = {
+typedef IRTCRtpReceiver = {
 	final rtcpTransport : Null<IRTCDtlsTransport>;
 	final track : IMediaStreamTrack;
 	final transport : Null<IRTCDtlsTransport>;

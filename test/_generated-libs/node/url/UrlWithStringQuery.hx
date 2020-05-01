@@ -1,5 +1,5 @@
 package node.url;
-extern typedef UrlWithStringQuery = {
+typedef UrlWithStringQuery = {
 	var query : Null<String>;
 	@:optional
 	var port : String;

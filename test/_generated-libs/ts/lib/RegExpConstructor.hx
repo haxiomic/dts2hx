@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef RegExpConstructor = {
+typedef RegExpConstructor = {
 	@:overload(function(pattern:String, ?flags:String):IRegExp { })
 	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
 	@:selfCall

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Contains the descriptive information, or metadata, for a document. This object inherits all of the properties and methods described in the HTMLElement interface.
 **/
-extern typedef IHTMLHeadElement = {
+typedef IHTMLHeadElement = {
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		

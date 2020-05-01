@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMPoint = {
+typedef IDOMPoint = {
 	var w : Float;
 	var x : Float;
 	var y : Float;

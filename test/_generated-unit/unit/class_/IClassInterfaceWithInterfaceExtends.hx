@@ -1,5 +1,5 @@
 package unit.class_;
-extern typedef IClassInterfaceWithInterfaceExtends = {
+typedef IClassInterfaceWithInterfaceExtends = {
 	@:overload(function(baseCallSig:String):BaseInterface { })
 	@:selfCall
 	function call(extendCallSig:Float):IClassInterfaceWithInterfaceExtends;

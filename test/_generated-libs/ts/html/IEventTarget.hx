@@ -2,7 +2,7 @@ package ts.html;
 /**
 	EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.
 **/
-extern typedef IEventTarget = {
+typedef IEventTarget = {
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		

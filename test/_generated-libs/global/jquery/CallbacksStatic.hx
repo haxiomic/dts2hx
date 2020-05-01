@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef CallbacksStatic = {
+typedef CallbacksStatic = {
 	/**
 		A multi-purpose callbacks list object that provides a powerful way to manage callback lists.
 	**/

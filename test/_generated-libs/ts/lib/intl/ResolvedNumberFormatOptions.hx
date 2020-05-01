@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef ResolvedNumberFormatOptions = {
+typedef ResolvedNumberFormatOptions = {
 	var locale : String;
 	var numberingSystem : String;
 	var style : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef KeyframeEffectOptions = {
+typedef KeyframeEffectOptions = {
 	@:optional
 	var composite : String;
 	@:optional

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods for manipulating <img> elements.
 **/
-extern typedef IHTMLImageElement = {
+typedef IHTMLImageElement = {
 	var align : String;
 	/**
 		Sets or retrieves a text alternative to the graphic.

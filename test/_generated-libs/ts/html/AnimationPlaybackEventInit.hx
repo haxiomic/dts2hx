@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AnimationPlaybackEventInit = {
+typedef AnimationPlaybackEventInit = {
 	@:optional
 	var currentTime : Float;
 	@:optional

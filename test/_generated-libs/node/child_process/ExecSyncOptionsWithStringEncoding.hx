@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecSyncOptionsWithStringEncoding = {
+typedef ExecSyncOptionsWithStringEncoding = {
 	var encoding : String;
 	@:optional
 	var input : ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>;

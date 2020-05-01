@@ -1,5 +1,5 @@
 package node.os;
-extern typedef NetworkInterfaceInfoIPv6 = {
+typedef NetworkInterfaceInfoIPv6 = {
 	var family : String;
 	var scopeid : Float;
 	var address : String;

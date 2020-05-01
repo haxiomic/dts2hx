@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentDetailsModifier = {
+typedef PaymentDetailsModifier = {
 	@:optional
 	var additionalDisplayItems : std.Array<PaymentItem>;
 	@:optional

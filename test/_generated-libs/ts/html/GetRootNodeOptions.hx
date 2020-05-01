@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef GetRootNodeOptions = {
+typedef GetRootNodeOptions = {
 	@:optional
 	var composed : Bool;
 };

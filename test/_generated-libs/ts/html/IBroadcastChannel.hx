@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IBroadcastChannel = {
+typedef IBroadcastChannel = {
 	/**
 		Returns the channel name (as passed to the constructor).
 	**/

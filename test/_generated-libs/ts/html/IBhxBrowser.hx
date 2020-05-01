@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IBhxBrowser = {
+typedef IBhxBrowser = {
 	final lastError : IDOMException;
 	function checkMatchesGlobExpression(pattern:String, value:String):Bool;
 	function checkMatchesUriExpression(pattern:String, value:String):Bool;

@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetBlackboxedRangesParameterType = {
+typedef SetBlackboxedRangesParameterType = {
 	/**
 		Id of the script.
 	**/

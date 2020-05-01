@@ -1,5 +1,5 @@
 package three;
-extern typedef ShaderMaterialParameters = {
+typedef ShaderMaterialParameters = {
 	@:optional
 	var defines : Dynamic;
 	@:optional

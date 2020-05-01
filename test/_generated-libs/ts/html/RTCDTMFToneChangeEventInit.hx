@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCDTMFToneChangeEventInit = {
+typedef RTCDTMFToneChangeEventInit = {
 	var tone : String;
 	@:optional
 	var bubbles : Bool;

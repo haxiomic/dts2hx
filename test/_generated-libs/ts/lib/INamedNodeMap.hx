@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
 **/
-extern typedef INamedNodeMap = {
+typedef INamedNodeMap = {
 	final length : Float;
 	function getNamedItem(qualifiedName:String):Null<ts.html.IAttr>;
 	function getNamedItemNS(namespace:Null<String>, localName:String):Null<ts.html.IAttr>;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDBObjectStoreParameters = {
+typedef IDBObjectStoreParameters = {
 	@:optional
 	var autoIncrement : Bool;
 	@:optional

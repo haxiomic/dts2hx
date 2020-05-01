@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <linearGradient> element.
 **/
-extern typedef ISVGLinearGradientElement = {
+typedef ISVGLinearGradientElement = {
 	final x1 : ISVGAnimatedLength;
 	final x2 : ISVGAnimatedLength;
 	final y1 : ISVGAnimatedLength;

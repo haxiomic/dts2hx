@@ -1,5 +1,5 @@
 package node.readline;
-extern typedef Key = {
+typedef Key = {
 	@:optional
 	var sequence : String;
 	@:optional

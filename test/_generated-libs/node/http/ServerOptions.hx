@@ -1,5 +1,5 @@
 package node.http;
-extern typedef ServerOptions = {
+typedef ServerOptions = {
 	@:optional
 	var IncomingMessage : {
 		function finished(stream:ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadableStream, global.nodejs.ReadWriteStream>, callback:(?err:global.nodejs.ErrnoException) -> Void):() -> Void;

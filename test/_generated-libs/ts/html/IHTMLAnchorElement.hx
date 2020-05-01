@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements.
 **/
-extern typedef IHTMLAnchorElement = {
+typedef IHTMLAnchorElement = {
 	var charset : String;
 	var coords : String;
 	var download : String;

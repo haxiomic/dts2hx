@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <path> element.
 **/
-extern typedef ISVGPathElement = {
+typedef ISVGPathElement = {
 	final pathSegList : ISVGPathSegList;
 	function createSVGPathSegArcAbs(x:Float, y:Float, r1:Float, r2:Float, angle:Float, largeArcFlag:Bool, sweepFlag:Bool):ISVGPathSegArcAbs;
 	function createSVGPathSegArcRel(x:Float, y:Float, r1:Float, r2:Float, angle:Float, largeArcFlag:Bool, sweepFlag:Bool):ISVGPathSegArcRel;

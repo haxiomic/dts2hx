@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The position and altitude of the device on Earth, as well as the accuracy with which these properties are calculated.
 **/
-extern typedef Coordinates = {
+typedef Coordinates = {
 	final accuracy : Float;
 	final altitude : Null<Float>;
 	final altitudeAccuracy : Null<Float>;

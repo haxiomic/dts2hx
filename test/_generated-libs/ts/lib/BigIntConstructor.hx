@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef BigIntConstructor = {
+typedef BigIntConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):BigInt;
 	final prototype : BigInt;

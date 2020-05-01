@@ -1,5 +1,5 @@
 package unit.type_parameters;
-extern typedef DefaultTypeParameterExtension = {
+typedef DefaultTypeParameterExtension = {
 	@:selfCall
 	function call(callSignatureArg:Bool):Bool;
 	var extensionField : Float;

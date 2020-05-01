@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Node is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
 **/
-extern typedef INode = {
+typedef INode = {
 	/**
 		Returns node's node document's document base URL.
 	**/

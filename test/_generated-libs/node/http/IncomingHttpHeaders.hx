@@ -1,5 +1,5 @@
 package node.http;
-extern typedef IncomingHttpHeaders = {
+typedef IncomingHttpHeaders = {
 	@:optional
 	var accept : String;
 	@:native("accept-patch")

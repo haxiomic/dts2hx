@@ -1,5 +1,5 @@
 package node.async_hooks;
-extern typedef AsyncResourceOptions = {
+typedef AsyncResourceOptions = {
 	/**
 		The ID of the execution context that created this async event.
 		Default: `executionAsyncId()`

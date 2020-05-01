@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A list of StyleSheet.
 **/
-extern typedef IStyleSheetList = {
+typedef IStyleSheetList = {
 	final length : Float;
 	function item(index:Float):Null<ts.html.IStyleSheet>;
 };

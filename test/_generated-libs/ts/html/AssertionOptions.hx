@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AssertionOptions = {
+typedef AssertionOptions = {
 	@:optional
 	var allowList : std.Array<ScopedCredentialDescriptor>;
 	@:optional

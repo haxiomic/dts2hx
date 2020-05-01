@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond those of the regular HTMLElement object interface it inherits) for manipulating <param> elements, representing a pair of a key and a value that acts as a parameter for an <object> element.
 **/
-extern typedef IHTMLParamElement = {
+typedef IHTMLParamElement = {
 	/**
 		Sets or retrieves the name of an input parameter for an element.
 	**/

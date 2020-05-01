@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Reference information for external resources and the relationship of those resources to a document and vice-versa. This object inherits all of the properties and methods of the HTMLElement interface.
 **/
-extern typedef IHTMLLinkElement = {
+typedef IHTMLLinkElement = {
 	var as : String;
 	var charset : String;
 	var crossOrigin : Null<String>;

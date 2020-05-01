@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feMorphology> element.
 **/
-extern typedef ISVGFEMorphologyElement = {
+typedef ISVGFEMorphologyElement = {
 	final in1 : ISVGAnimatedString;
 	@:native("operator")
 	final operator_ : ISVGAnimatedEnumeration;

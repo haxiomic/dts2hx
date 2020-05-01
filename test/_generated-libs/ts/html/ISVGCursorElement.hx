@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGCursorElement = {
+typedef ISVGCursorElement = {
 	final x : ISVGAnimatedLength;
 	final y : ISVGAnimatedLength;
 	/**

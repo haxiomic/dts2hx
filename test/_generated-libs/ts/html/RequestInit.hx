@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RequestInit = {
+typedef RequestInit = {
 	/**
 		A BodyInit object or null to set request's body.
 	**/

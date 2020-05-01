@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DOMRectInit = {
+typedef DOMRectInit = {
 	@:optional
 	var height : Float;
 	@:optional

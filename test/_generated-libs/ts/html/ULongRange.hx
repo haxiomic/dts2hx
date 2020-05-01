@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ULongRange = {
+typedef ULongRange = {
 	@:optional
 	var max : Float;
 	@:optional

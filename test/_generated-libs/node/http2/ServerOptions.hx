@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef ServerOptions = {
+typedef ServerOptions = {
 	@:optional
 	var allowHTTP1 : Bool;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IURLSearchParams = {
+typedef IURLSearchParams = {
 	/**
 		Appends a specified key/value pair as a new search parameter.
 	**/

@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Profile.
 **/
-extern typedef Profile = {
+typedef Profile = {
 	/**
 		The list of profile nodes. First item is the root node.
 	**/

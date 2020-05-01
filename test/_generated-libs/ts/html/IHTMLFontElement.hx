@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Implements the document object model (DOM) representation of the font element. The HTML Font Element <font> defines the font size, font face and color of text.
 **/
-extern typedef IHTMLFontElement = {
+typedef IHTMLFontElement = {
 	var color : String;
 	var face : String;
 	var size : String;

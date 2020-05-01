@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RsaOtherPrimesInfo = {
+typedef RsaOtherPrimesInfo = {
 	@:optional
 	var d : String;
 	@:optional

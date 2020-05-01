@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCStatsEventInit = {
+typedef RTCStatsEventInit = {
 	var report : ts.lib.IRTCStatsReport;
 	@:optional
 	var bubbles : Bool;

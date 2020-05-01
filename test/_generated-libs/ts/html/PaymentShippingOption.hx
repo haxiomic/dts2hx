@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentShippingOption = {
+typedef PaymentShippingOption = {
 	var amount : PaymentCurrencyAmount;
 	var id : String;
 	var label : String;

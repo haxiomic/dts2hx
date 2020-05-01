@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ParentNode = {
+typedef ParentNode = {
 	final childElementCount : Float;
 	/**
 		Returns the child elements.

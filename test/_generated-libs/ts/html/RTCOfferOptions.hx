@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCOfferOptions = {
+typedef RTCOfferOptions = {
 	@:optional
 	var iceRestart : Bool;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpTransceiverInit = {
+typedef RTCRtpTransceiverInit = {
 	@:optional
 	var direction : String;
 	@:optional

@@ -1,4 +1,4 @@
 package node.zlib;
-extern typedef ZlibReset = {
+typedef ZlibReset = {
 	function reset():Void;
 };

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The RTCIceCandidate interface—part of the WebRTC API—represents a candidate Internet Connectivity Establishment (ICE) configuration which may be used to establish an RTCPeerConnection.
 **/
-extern typedef IRTCIceCandidate = {
+typedef IRTCIceCandidate = {
 	final candidate : String;
 	final component : Null<String>;
 	final foundation : Null<String>;

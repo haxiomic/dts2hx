@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpSynchronizationSource = {
+typedef RTCRtpSynchronizationSource = {
 	@:optional
 	var voiceActivityFlag : Bool;
 	@:optional

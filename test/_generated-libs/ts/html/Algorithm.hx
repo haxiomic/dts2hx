@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef Algorithm = {
+typedef Algorithm = {
 	var name : String;
 };

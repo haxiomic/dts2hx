@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond those inherited from the regular HTMLElement interface) for manipulating <body> elements.
 **/
-extern typedef IHTMLBodyElement = {
+typedef IHTMLBodyElement = {
 	var aLink : String;
 	var background : String;
 	var bgColor : String;

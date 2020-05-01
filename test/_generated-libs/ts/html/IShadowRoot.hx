@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IShadowRoot = {
+typedef IShadowRoot = {
 	final host : IElement;
 	final mode : String;
 	/**

@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef GetPossibleBreakpointsParameterType = {
+typedef GetPossibleBreakpointsParameterType = {
 	/**
 		Start of range to search possible breakpoint locations in.
 	**/

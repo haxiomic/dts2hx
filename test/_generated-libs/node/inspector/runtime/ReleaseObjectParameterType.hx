@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef ReleaseObjectParameterType = {
+typedef ReleaseObjectParameterType = {
 	/**
 		Identifier of the object to release.
 	**/

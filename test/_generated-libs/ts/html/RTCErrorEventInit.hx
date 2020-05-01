@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCErrorEventInit = {
+typedef RTCErrorEventInit = {
 	@:optional
 	var error : IRTCError;
 	@:optional

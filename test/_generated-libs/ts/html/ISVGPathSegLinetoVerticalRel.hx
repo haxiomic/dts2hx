@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGPathSegLinetoVerticalRel = {
+typedef ISVGPathSegLinetoVerticalRel = {
 	var y : Float;
 	final pathSegType : Float;
 	final pathSegTypeAsLetter : String;

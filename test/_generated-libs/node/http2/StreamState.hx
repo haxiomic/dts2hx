@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef StreamState = {
+typedef StreamState = {
 	@:optional
 	var localWindowSize : Float;
 	@:optional

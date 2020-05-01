@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ScrollToOptions = {
+typedef ScrollToOptions = {
 	@:optional
 	var left : Float;
 	@:optional

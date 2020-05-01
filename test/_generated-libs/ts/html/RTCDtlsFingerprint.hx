@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCDtlsFingerprint = {
+typedef RTCDtlsFingerprint = {
 	@:optional
 	var algorithm : String;
 	@:optional

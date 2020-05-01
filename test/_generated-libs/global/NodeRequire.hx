@@ -1,5 +1,5 @@
 package global;
-extern typedef NodeRequire = {
+typedef NodeRequire = {
 	@:selfCall
 	function call(id:String):Dynamic;
 	var resolve : RequireResolve;

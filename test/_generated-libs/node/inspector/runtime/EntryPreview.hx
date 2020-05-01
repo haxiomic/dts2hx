@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef EntryPreview = {
+typedef EntryPreview = {
 	/**
 		Preview of the key. Specified for map-like collection entries.
 	**/

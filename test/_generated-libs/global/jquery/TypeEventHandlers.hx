@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef TypeEventHandlers<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef TypeEventHandlers<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	@:optional
 	var change : ts.AnyOf3<Bool, Dynamic, (t:ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	@:optional

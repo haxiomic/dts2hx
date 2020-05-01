@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	JavaScript call frame. Array of call frames form the call stack.
 **/
-extern typedef CallFrame = {
+typedef CallFrame = {
 	/**
 		Call frame identifier. This identifier is only valid while the virtual machine is paused.
 	**/

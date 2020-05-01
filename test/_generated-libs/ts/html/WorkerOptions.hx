@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WorkerOptions = {
+typedef WorkerOptions = {
 	@:optional
 	var credentials : String;
 	@:optional

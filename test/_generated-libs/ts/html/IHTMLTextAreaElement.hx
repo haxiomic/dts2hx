@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
 **/
-extern typedef IHTMLTextAreaElement = {
+typedef IHTMLTextAreaElement = {
 	var autocomplete : String;
 	/**
 		Provides a way to direct a user to a specific field when a document loads. This can provide both direction and convenience for a user, reducing the need to click or tab to a field when a page opens. This attribute is true when present on an element, and false when missing.

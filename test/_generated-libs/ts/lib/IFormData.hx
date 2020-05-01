@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".
 **/
-extern typedef IFormData = {
+typedef IFormData = {
 	function append(name:String, value:ts.AnyOf2<String, ts.html.IBlob>, ?fileName:String):Void;
 	function delete(name:String):Void;
 	function get(name:String):Null<ts.AnyOf2<String, ts.html.IFile>>;

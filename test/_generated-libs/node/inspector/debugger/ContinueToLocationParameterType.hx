@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef ContinueToLocationParameterType = {
+typedef ContinueToLocationParameterType = {
 	/**
 		Location to continue to.
 	**/

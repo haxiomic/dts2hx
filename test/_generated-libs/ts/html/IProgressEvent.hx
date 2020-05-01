@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events measuring progress of an underlying process, like an HTTP request (for an XMLHttpRequest, or the loading of the underlying resource of an <img>, <audio>, <video>, <style> or <link>).
 **/
-extern typedef IProgressEvent<T> = {
+typedef IProgressEvent<T> = {
 	final lengthComputable : Bool;
 	final loaded : Float;
 	/**

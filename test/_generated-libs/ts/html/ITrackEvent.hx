@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The TrackEvent interface, part of the HTML DOM specification, is used for events which represent changes to the set of available tracks on an HTML media element; these events are addtrack and removetrack.
 **/
-extern typedef ITrackEvent = {
+typedef ITrackEvent = {
 	final track : Null<ts.AnyOf3<IAudioTrack, ITextTrack, IVideoTrack>>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

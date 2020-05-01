@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WorkletOptions = {
+typedef WorkletOptions = {
 	@:optional
 	var credentials : String;
 };

@@ -1,5 +1,5 @@
 package three;
-extern typedef TextGeometryParameters = {
+typedef TextGeometryParameters = {
 	@:optional
 	var font : Font;
 	@:optional

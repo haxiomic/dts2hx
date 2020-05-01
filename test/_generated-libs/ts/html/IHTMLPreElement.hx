@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Exposes specific properties and methods (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating a block of preformatted text (<pre>).
 **/
-extern typedef IHTMLPreElement = {
+typedef IHTMLPreElement = {
 	var width : Float;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

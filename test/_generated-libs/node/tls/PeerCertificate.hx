@@ -1,5 +1,5 @@
 package node.tls;
-extern typedef PeerCertificate = {
+typedef PeerCertificate = {
 	var subject : Certificate;
 	var issuer : Certificate;
 	var subjectaltname : String;

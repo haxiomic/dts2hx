@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The DeviceOrientationEvent provides web developers with information from the physical orientation of the device running the web page.
 **/
-extern typedef IDeviceOrientationEvent = {
+typedef IDeviceOrientationEvent = {
 	final absolute : Bool;
 	final alpha : Null<Float>;
 	final beta : Null<Float>;

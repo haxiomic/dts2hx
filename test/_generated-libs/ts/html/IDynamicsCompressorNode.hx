@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Inherits properties from its parent, AudioNode.
 **/
-extern typedef IDynamicsCompressorNode = {
+typedef IDynamicsCompressorNode = {
 	final attack : ts.lib.IAudioParam;
 	final knee : ts.lib.IAudioParam;
 	final ratio : ts.lib.IAudioParam;

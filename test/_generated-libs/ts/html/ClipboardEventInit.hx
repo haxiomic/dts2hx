@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ClipboardEventInit = {
+typedef ClipboardEventInit = {
 	@:optional
 	var clipboardData : IDataTransfer;
 	@:optional

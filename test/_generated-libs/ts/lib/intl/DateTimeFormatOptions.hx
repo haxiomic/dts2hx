@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef DateTimeFormatOptions = {
+typedef DateTimeFormatOptions = {
 	@:optional
 	var localeMatcher : String;
 	@:optional

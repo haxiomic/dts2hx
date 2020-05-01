@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The dimensions of a piece of text in the canvas, as created by the CanvasRenderingContext2D.measureText() method.
 **/
-extern typedef ITextMetrics = {
+typedef ITextMetrics = {
 	/**
 		Returns the measurement described below.
 	**/

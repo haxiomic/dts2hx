@@ -2,7 +2,7 @@ package ts.html;
 /**
 	TextEncoder takes a stream of code points as input and emits a stream of bytes. For a more scalable, non-native library, see StringView – a C-like representation of strings based on typed arrays.
 **/
-extern typedef ITextEncoder = {
+typedef ITextEncoder = {
 	/**
 		Returns the result of running UTF-8's encoder.
 	**/

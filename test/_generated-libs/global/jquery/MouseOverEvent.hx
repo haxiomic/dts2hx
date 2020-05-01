@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

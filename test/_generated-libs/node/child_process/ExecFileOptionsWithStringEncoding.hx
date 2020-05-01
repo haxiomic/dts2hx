@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecFileOptionsWithStringEncoding = {
+typedef ExecFileOptionsWithStringEncoding = {
 	var encoding : String;
 	@:optional
 	var maxBuffer : Float;

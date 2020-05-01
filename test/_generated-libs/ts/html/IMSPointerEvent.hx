@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSPointerEvent = {
+typedef IMSPointerEvent = {
 	final currentPoint : Dynamic;
 	final height : Float;
 	final hwTimestamp : Float;

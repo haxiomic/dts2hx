@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An object representing a complete set of keyframes for a CSS animation. It corresponds to the contains of a whole @keyframes at-rule. It implements the CSSRule interface with a type value of 7 (CSSRule.KEYFRAMES_RULE).
 **/
-extern typedef ICSSKeyframesRule = {
+typedef ICSSKeyframesRule = {
 	final cssRules : ts.lib.ICSSRuleList;
 	var name : String;
 	function appendRule(rule:String):Void;

@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef MemoryUsage = {
+typedef MemoryUsage = {
 	var rss : Float;
 	var heapTotal : Float;
 	var heapUsed : Float;

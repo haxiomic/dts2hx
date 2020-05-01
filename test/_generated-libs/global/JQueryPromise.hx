@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryPromise<T> = {
+typedef JQueryPromise<T> = {
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/

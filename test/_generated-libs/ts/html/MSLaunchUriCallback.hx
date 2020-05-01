@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MSLaunchUriCallback = {
+typedef MSLaunchUriCallback = {
 	@:selfCall
 	function call():Void;
 };

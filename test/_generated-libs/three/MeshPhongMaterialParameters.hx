@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshPhongMaterialParameters = {
+typedef MeshPhongMaterialParameters = {
 	/**
 		geometry color in hexadecimal. Default is 0xffffff.
 	**/

@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

@@ -1,5 +1,5 @@
 package three;
-extern typedef WebGLCapabilitiesParameters = {
+typedef WebGLCapabilitiesParameters = {
 	@:optional
 	var precision : Dynamic;
 	@:optional

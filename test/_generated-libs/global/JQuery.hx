@@ -1,5 +1,5 @@
 package global;
-extern typedef JQuery<TElement> = {
+typedef JQuery<TElement> = {
 	/**
 		A string containing the jQuery version number.
 	**/

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef ExceptionThrownEventDataType = {
+typedef ExceptionThrownEventDataType = {
 	/**
 		Timestamp of the exception.
 	**/

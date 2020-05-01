@@ -1,2 +1,2 @@
 package global.nodejs;
-extern typedef ProcessEnv = { };
+typedef ProcessEnv = { };

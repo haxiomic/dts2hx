@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Used to represent a list of the audio tracks contained within a given HTML media element, with each track represented by a separate AudioTrack object in the list.
 **/
-extern typedef IAudioTrackList = {
+typedef IAudioTrackList = {
 	final length : Float;
 	var onaddtrack : Null<(ev:ts.html.ITrackEvent) -> Dynamic>;
 	var onchange : Null<(ev:ts.html.IEvent) -> Dynamic>;

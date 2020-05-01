@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A CloseEvent is sent to clients using WebSockets when the connection is closed. This is delivered to the listener indicated by the WebSocket object's onclose attribute.
 **/
-extern typedef ICloseEvent = {
+typedef ICloseEvent = {
 	final code : Float;
 	final reason : String;
 	final wasClean : Bool;

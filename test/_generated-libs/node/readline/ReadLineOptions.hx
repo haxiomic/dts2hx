@@ -1,5 +1,5 @@
 package node.readline;
-extern typedef ReadLineOptions = {
+typedef ReadLineOptions = {
 	var input : global.nodejs.ReadableStream;
 	@:optional
 	var output : global.nodejs.WritableStream;

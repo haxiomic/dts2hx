@@ -1,5 +1,5 @@
 package node.inspector.nodeworker;
-extern typedef DetachedFromWorkerEventDataType = {
+typedef DetachedFromWorkerEventDataType = {
 	/**
 		Detached session identifier.
 	**/

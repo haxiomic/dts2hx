@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef EventInit = {
+typedef EventInit = {
 	@:optional
 	var bubbles : Bool;
 	@:optional

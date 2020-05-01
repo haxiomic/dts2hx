@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IClipboard = {
+typedef IClipboard = {
 	function readText():ts.lib.IPromise<String>;
 	function writeText(data:String):ts.lib.IPromise<Void>;
 	/**

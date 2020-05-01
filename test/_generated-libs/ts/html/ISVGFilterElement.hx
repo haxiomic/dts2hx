@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <filter> elements, as well as methods to manipulate them.
 **/
-extern typedef ISVGFilterElement = {
+typedef ISVGFilterElement = {
 	final filterUnits : ISVGAnimatedEnumeration;
 	final height : ISVGAnimatedLength;
 	final primitiveUnits : ISVGAnimatedEnumeration;

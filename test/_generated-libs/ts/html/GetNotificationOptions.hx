@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef GetNotificationOptions = {
+typedef GetNotificationOptions = {
 	@:optional
 	var tag : String;
 };

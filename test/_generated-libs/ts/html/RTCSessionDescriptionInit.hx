@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCSessionDescriptionInit = {
+typedef RTCSessionDescriptionInit = {
 	@:optional
 	var sdp : String;
 	var type : String;

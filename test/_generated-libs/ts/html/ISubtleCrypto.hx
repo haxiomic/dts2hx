@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Web Crypto API interface provides a number of low-level cryptographic functions. It is accessed via the Crypto.subtle properties available in a window context (via Window.crypto).
 **/
-extern typedef ISubtleCrypto = {
+typedef ISubtleCrypto = {
 	function decrypt(algorithm:ts.AnyOf7<String, RsaOaepParams, AesCtrParams, AesCbcParams, AesCmacParams, AesGcmParams, AesCfbParams>, key:ICryptoKey, data:ts.AnyOf11<ts.lib.IArrayBuffer, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IUint8Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IUint8ClampedArray, ts.lib.IDataView>):ts.lib.PromiseLike<ts.lib.IArrayBuffer>;
 	function deriveBits(algorithm:ts.AnyOf6<String, EcdhKeyDeriveParams, DhKeyDeriveParams, ConcatParams, HkdfCtrParams, Pbkdf2Params>, baseKey:ICryptoKey, length:Float):ts.lib.PromiseLike<ts.lib.IArrayBuffer>;
 	function deriveKey(algorithm:ts.AnyOf6<String, EcdhKeyDeriveParams, DhKeyDeriveParams, ConcatParams, HkdfCtrParams, Pbkdf2Params>, baseKey:ICryptoKey, derivedKeyType:ts.AnyOf6<String, ConcatParams, HkdfCtrParams, Pbkdf2Params, AesDerivedKeyParams, HmacImportParams>, extractable:Bool, keyUsages:std.Array<String>):ts.lib.PromiseLike<ICryptoKey>;

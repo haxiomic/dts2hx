@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef PromiseConstructor = {
+typedef PromiseConstructor = {
 	/**
 		Creates a Promise that is resolved with an array of results when all of the provided Promises
 		resolve, or rejected when any Promise is rejected.

@@ -1,5 +1,5 @@
 package node.inspector.heapprofiler;
-extern typedef StartTrackingHeapObjectsParameterType = {
+typedef StartTrackingHeapObjectsParameterType = {
 	@:optional
 	var trackAllocations : Bool;
 };

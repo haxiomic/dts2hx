@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IntersectionObserverInit = {
+typedef IntersectionObserverInit = {
 	@:optional
 	var root : IElement;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IPerfWidgetExternal = {
+typedef IPerfWidgetExternal = {
 	final activeNetworkRequestCount : Float;
 	final averageFrameTime : Float;
 	final averagePaintTime : Float;

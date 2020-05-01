@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The DOM CompositionEvent represents events that occur due to the user indirectly entering text.
 **/
-extern typedef ICompositionEvent = {
+typedef ICompositionEvent = {
 	final data : String;
 	final detail : Float;
 	final view : Null<IWindow>;

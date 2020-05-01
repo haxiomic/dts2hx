@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The ServiceWorkerContainer interface of the ServiceWorker API provides an object representing the service worker as an overall unit in the network ecosystem, including facilities to register, unregister and update service workers, and access the state of service workers and their registrations.
 **/
-extern typedef IServiceWorkerContainer = {
+typedef IServiceWorkerContainer = {
 	final controller : Null<IServiceWorker>;
 	var oncontrollerchange : Null<(ev:IEvent) -> Dynamic>;
 	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;

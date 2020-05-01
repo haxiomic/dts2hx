@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaStreamTrackEventInit = {
+typedef MediaStreamTrackEventInit = {
 	var track : IMediaStreamTrack;
 	@:optional
 	var bubbles : Bool;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef BlobPropertyBag = {
+typedef BlobPropertyBag = {
 	@:optional
 	var endings : String;
 	@:optional

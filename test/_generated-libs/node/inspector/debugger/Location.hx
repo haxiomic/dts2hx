@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	Location in the source code.
 **/
-extern typedef Location = {
+typedef Location = {
 	/**
 		Script identifier as reported in the `Debugger.scriptParsed`.
 	**/

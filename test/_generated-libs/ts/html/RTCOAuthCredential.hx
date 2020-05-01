@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCOAuthCredential = {
+typedef RTCOAuthCredential = {
 	var accessToken : String;
 	var macKey : String;
 };

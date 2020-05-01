@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef AnyARecord = {
+typedef AnyARecord = {
 	var type : String;
 	var address : String;
 	var ttl : Float;

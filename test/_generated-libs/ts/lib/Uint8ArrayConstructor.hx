@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef Uint8ArrayConstructor = {
+typedef Uint8ArrayConstructor = {
 	final prototype : IUint8Array;
 	/**
 		The size in bytes of each element in the array.

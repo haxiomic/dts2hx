@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ITextTrackList = {
+typedef ITextTrackList = {
 	final length : Float;
 	var onaddtrack : Null<(ev:ts.html.ITrackEvent) -> Dynamic>;
 	function item(index:Float):ts.html.ITextTrack;

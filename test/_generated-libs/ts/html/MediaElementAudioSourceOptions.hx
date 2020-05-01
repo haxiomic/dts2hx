@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef MediaElementAudioSourceOptions = {
+typedef MediaElementAudioSourceOptions = {
 	var mediaElement : IHTMLMediaElement;
 };

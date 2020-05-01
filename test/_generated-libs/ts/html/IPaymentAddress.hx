@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Payment Request API interface is used to store shipping or payment address information.
 **/
-extern typedef IPaymentAddress = {
+typedef IPaymentAddress = {
 	final addressLine : std.Array<String>;
 	final city : String;
 	final country : String;

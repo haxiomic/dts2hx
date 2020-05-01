@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCPeerConnectionIceErrorEvent = {
+typedef IRTCPeerConnectionIceErrorEvent = {
 	final errorCode : Float;
 	final errorText : String;
 	final hostCandidate : String;

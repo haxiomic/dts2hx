@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef EnableReturnType = {
+typedef EnableReturnType = {
 	/**
 		Unique identifier of the debugger.
 	**/

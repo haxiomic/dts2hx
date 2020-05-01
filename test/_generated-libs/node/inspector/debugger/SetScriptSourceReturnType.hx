@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetScriptSourceReturnType = {
+typedef SetScriptSourceReturnType = {
 	/**
 		New stack trace in case editing has happened while VM was stopped.
 	**/

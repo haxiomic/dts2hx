@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DOMQuadInit = {
+typedef DOMQuadInit = {
 	@:optional
 	var p1 : DOMPointInit;
 	@:optional

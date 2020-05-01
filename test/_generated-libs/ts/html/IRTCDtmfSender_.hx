@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCDtmfSender_ = {
+typedef IRTCDtmfSender_ = {
 	final canInsertDTMF : Bool;
 	final duration : Float;
 	final interToneGap : Float;

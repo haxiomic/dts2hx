@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Provides information about a browser plugin.
 **/
-extern typedef IPlugin = {
+typedef IPlugin = {
 	/**
 		Returns the plugin's description.
 	**/

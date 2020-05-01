@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGAnimationElement = {
+typedef ISVGAnimationElement = {
 	final targetElement : ISVGElement;
 	function getCurrentTime():Float;
 	function getSimpleDuration():Float;

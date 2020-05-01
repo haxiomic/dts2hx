@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef AnySrvRecord = {
+typedef AnySrvRecord = {
 	var type : String;
 	var priority : Float;
 	var weight : Float;

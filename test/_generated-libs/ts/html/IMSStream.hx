@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSStream = {
+typedef IMSStream = {
 	final type : String;
 	function msClose():Void;
 	function msDetachStream():Dynamic;

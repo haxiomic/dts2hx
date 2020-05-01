@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single CSS @media rule. It implements the CSSConditionRule interface, and therefore the CSSGroupingRule and the CSSRule interface with a type value of 4 (CSSRule.MEDIA_RULE).
 **/
-extern typedef ICSSMediaRule = {
+typedef ICSSMediaRule = {
 	final media : ts.lib.IMediaList;
 	var conditionText : String;
 	final cssRules : ts.lib.ICSSRuleList;

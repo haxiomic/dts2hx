@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef DeferredStatic = {
+typedef DeferredStatic = {
 	/**
 		A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.
 	**/

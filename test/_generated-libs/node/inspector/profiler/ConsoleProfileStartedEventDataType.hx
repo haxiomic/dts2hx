@@ -1,5 +1,5 @@
 package node.inspector.profiler;
-extern typedef ConsoleProfileStartedEventDataType = {
+typedef ConsoleProfileStartedEventDataType = {
 	var id : String;
 	/**
 		Location of console.profile().

@@ -1,5 +1,5 @@
 package three;
-extern typedef ExtrudeGeometryOptions = {
+typedef ExtrudeGeometryOptions = {
 	@:optional
 	var curveSegments : Float;
 	@:optional

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events sent to indicate that DTMF tones have started or finished playing. This interface is used by the tonechange event.
 **/
-extern typedef IRTCDTMFToneChangeEvent = {
+typedef IRTCDTMFToneChangeEvent = {
 	final tone : String;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

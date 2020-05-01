@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IHTMLAllCollection = {
+typedef IHTMLAllCollection = {
 	/**
 		Returns the number of elements in the collection.
 	**/

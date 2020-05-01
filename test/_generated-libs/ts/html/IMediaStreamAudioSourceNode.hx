@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A type of AudioNode which operates as an audio source whose media is received from a MediaStream obtained using the WebRTC or Media Capture and Streams APIs.
 **/
-extern typedef IMediaStreamAudioSourceNode = {
+typedef IMediaStreamAudioSourceNode = {
 	final mediaStream : IMediaStream;
 	var channelCount : Float;
 	var channelCountMode : String;

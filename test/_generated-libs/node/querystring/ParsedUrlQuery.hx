@@ -1,2 +1,2 @@
 package node.querystring;
-extern typedef ParsedUrlQuery = { };
+typedef ParsedUrlQuery = { };

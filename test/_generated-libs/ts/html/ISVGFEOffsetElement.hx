@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feOffset> element.
 **/
-extern typedef ISVGFEOffsetElement = {
+typedef ISVGFEOffsetElement = {
 	final dx : ISVGAnimatedNumber;
 	final dy : ISVGAnimatedNumber;
 	final in1 : ISVGAnimatedString;

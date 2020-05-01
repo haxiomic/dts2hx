@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A generic interface for representing an audio processing module. Examples include:
 **/
-extern typedef IAudioNode = {
+typedef IAudioNode = {
 	var channelCount : Float;
 	var channelCountMode : String;
 	var channelInterpretation : String;

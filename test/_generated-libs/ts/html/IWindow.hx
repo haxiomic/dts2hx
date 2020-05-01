@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A window containing a DOM document; the document property points to the DOM document loaded in that window.
 **/
-extern typedef IWindow = {
+typedef IWindow = {
 	final applicationCache : IApplicationCache;
 	final caches : ICacheStorage;
 	final clientInformation : ts.lib.INavigator;

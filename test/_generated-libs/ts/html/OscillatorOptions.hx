@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef OscillatorOptions = {
+typedef OscillatorOptions = {
 	@:optional
 	var detune : Float;
 	@:optional

@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryMouseEventObject = {
+typedef JQueryMouseEventObject = {
 	var button : Float;
 	var clientX : Float;
 	var clientY : Float;

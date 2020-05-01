@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A WaveShaperNode always has exactly one input and one output.
 **/
-extern typedef IWaveShaperNode = {
+typedef IWaveShaperNode = {
 	var curve : Null<ts.lib.IFloat32Array>;
 	var oversample : String;
 	var channelCount : Float;

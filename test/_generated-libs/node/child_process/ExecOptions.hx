@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecOptions = {
+typedef ExecOptions = {
 	@:optional
 	var shell : String;
 	@:optional

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef GetPropertiesParameterType = {
+typedef GetPropertiesParameterType = {
 	/**
 		Identifier of the object to return properties for.
 	**/

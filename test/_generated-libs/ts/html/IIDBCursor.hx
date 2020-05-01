@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This IndexedDB API interface represents a cursor for traversing or iterating over multiple records in a database.
 **/
-extern typedef IIDBCursor = {
+typedef IIDBCursor = {
 	/**
 		Returns the direction ("next", "nextunique", "prev" or "prevunique") of the cursor.
 	**/

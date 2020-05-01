@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Coverage data for a JavaScript script.
 **/
-extern typedef ScriptCoverage = {
+typedef ScriptCoverage = {
 	/**
 		JavaScript script id.
 	**/

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef Int16ArrayConstructor = {
+typedef Int16ArrayConstructor = {
 	final prototype : IInt16Array;
 	/**
 		The size in bytes of each element in the array.

@@ -1,5 +1,5 @@
 package three;
-extern typedef MorphColor = {
+typedef MorphColor = {
 	var name : String;
 	var colors : std.Array<Color>;
 };

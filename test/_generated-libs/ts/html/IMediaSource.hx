@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Media Source Extensions API interface represents a source of media data for an HTMLMediaElement object. A MediaSource object can be attached to a HTMLMediaElement to be played in the user agent.
 **/
-extern typedef IMediaSource = {
+typedef IMediaSource = {
 	final activeSourceBuffers : ts.lib.ISourceBufferList;
 	var duration : Float;
 	var onsourceclose : Null<(ev:IEvent) -> Dynamic>;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events which indicate that a MediaStream has had tracks added to or removed from the stream through calls to Media Stream API methods. These events are sent to the stream when these changes occur.
 **/
-extern typedef IMediaStreamTrackEvent = {
+typedef IMediaStreamTrackEvent = {
 	final track : IMediaStreamTrack;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

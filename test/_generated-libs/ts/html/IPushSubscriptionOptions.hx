@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IPushSubscriptionOptions = {
+typedef IPushSubscriptionOptions = {
 	final applicationServerKey : Null<ts.lib.IArrayBuffer>;
 	final userVisibleOnly : Bool;
 };

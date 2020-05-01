@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
 **/
-extern typedef IServiceWorkerRegistration = {
+typedef IServiceWorkerRegistration = {
 	final active : Null<IServiceWorker>;
 	final installing : Null<IServiceWorker>;
 	final navigationPreload : INavigationPreloadManager;

@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the ServiceWorker life cycle. Note that the Cache interface is exposed to windowed scopes as well as workers. You don't have to use it in conjunction with service workers, even though it is defined in the service worker spec.
 **/
-extern typedef ICache = {
+typedef ICache = {
 	function add(request:ts.AnyOf2<String, ts.html.IRequest>):IPromise<Void>;
 	@:overload(function(requests:Iterable<ts.AnyOf2<String, ts.html.IRequest>>):IPromise<Void> { })
 	function addAll(requests:std.Array<ts.AnyOf2<String, ts.html.IRequest>>):IPromise<Void>;

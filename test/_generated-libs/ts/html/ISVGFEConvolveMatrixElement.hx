@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feConvolveMatrix> element.
 **/
-extern typedef ISVGFEConvolveMatrixElement = {
+typedef ISVGFEConvolveMatrixElement = {
 	final bias : ISVGAnimatedNumber;
 	final divisor : ISVGAnimatedNumber;
 	final edgeMode : ISVGAnimatedEnumeration;

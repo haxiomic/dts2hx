@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A Node containing a doctype.
 **/
-extern typedef IDocumentType = {
+typedef IDocumentType = {
 	final name : String;
 	final publicId : String;
 	final systemId : String;

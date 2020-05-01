@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpEncodingParameters = {
+typedef RTCRtpEncodingParameters = {
 	@:optional
 	var active : Bool;
 	@:optional

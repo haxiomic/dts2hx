@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IURIError = {
+typedef IURIError = {
 	var name : String;
 	var message : String;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtcpParameters = {
+typedef RTCRtcpParameters = {
 	@:optional
 	var cname : String;
 	@:optional

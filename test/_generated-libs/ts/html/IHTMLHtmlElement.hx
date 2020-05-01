@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Serves as the root node for a given HTML document. This object inherits the properties and methods described in the HTMLElement interface.
 **/
-extern typedef IHTMLHtmlElement = {
+typedef IHTMLHtmlElement = {
 	var version : String;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

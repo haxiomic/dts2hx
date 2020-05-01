@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ITextEncoderStream = {
+typedef ITextEncoderStream = {
 	/**
 		Returns a readable stream whose chunks are strings resulting from running encoding's decoder on the chunks written to writable.
 	**/

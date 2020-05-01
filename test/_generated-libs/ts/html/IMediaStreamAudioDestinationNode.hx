@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMediaStreamAudioDestinationNode = {
+typedef IMediaStreamAudioDestinationNode = {
 	final stream : IMediaStream;
 	var channelCount : Float;
 	var channelCountMode : String;

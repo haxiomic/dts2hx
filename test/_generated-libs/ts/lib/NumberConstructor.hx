@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef NumberConstructor = {
+typedef NumberConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):Float;
 	final prototype : INumber;

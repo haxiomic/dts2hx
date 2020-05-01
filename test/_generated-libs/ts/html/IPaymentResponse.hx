@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Payment Request API interface is returned after a user selects a payment method and approves a payment request.
 **/
-extern typedef IPaymentResponse = {
+typedef IPaymentResponse = {
 	final details : Dynamic;
 	final methodName : String;
 	final payerEmail : Null<String>;

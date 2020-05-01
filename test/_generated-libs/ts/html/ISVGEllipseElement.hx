@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <ellipse> elements.
 **/
-extern typedef ISVGEllipseElement = {
+typedef ISVGEllipseElement = {
 	final cx : ISVGAnimatedLength;
 	final cy : ISVGAnimatedLength;
 	final rx : ISVGAnimatedLength;

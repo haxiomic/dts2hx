@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The Web Audio API events that occur when a ScriptProcessorNode input buffer is ready to be processed.
 **/
-extern typedef IAudioProcessingEvent = {
+typedef IAudioProcessingEvent = {
 	final inputBuffer : IAudioBuffer;
 	final outputBuffer : IAudioBuffer;
 	final playbackTime : Float;

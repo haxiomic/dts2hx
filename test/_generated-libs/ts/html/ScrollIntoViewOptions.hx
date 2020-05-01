@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ScrollIntoViewOptions = {
+typedef ScrollIntoViewOptions = {
 	@:optional
 	var block : String;
 	@:native("inline")

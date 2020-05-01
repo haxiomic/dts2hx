@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Gamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.
 **/
-extern typedef IGamepad = {
+typedef IGamepad = {
 	final axes : ts.lib.ReadonlyArray<Float>;
 	final buttons : ts.lib.ReadonlyArray<IGamepadButton>;
 	final connected : Bool;

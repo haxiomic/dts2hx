@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document.
 **/
-extern typedef IHTMLTableCellElement = {
+typedef IHTMLTableCellElement = {
 	/**
 		Sets or retrieves abbreviated text for the object.
 	**/

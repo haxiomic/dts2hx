@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Textual notations within markup; although it is generally not visually shown, such comments are available to be read in the source view.
 **/
-extern typedef IComment = {
+typedef IComment = {
 	var data : String;
 	final length : Float;
 	function appendData(data:String):Void;

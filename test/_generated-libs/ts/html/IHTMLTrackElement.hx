@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The HTMLTrackElement
 **/
-extern typedef IHTMLTrackElement = {
+typedef IHTMLTrackElement = {
 	@:native("default")
 	var default_ : Bool;
 	var kind : String;

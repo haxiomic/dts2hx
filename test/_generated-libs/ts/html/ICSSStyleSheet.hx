@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
 **/
-extern typedef ICSSStyleSheet = {
+typedef ICSSStyleSheet = {
 	final cssRules : ts.lib.ICSSRuleList;
 	var cssText : String;
 	final id : String;

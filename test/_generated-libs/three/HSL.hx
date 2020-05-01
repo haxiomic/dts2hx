@@ -1,5 +1,5 @@
 package three;
-extern typedef HSL = {
+typedef HSL = {
 	var h : Float;
 	var s : Float;
 	var l : Float;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaQueryListEventInit = {
+typedef MediaQueryListEventInit = {
 	@:optional
 	var matches : Bool;
 	@:optional

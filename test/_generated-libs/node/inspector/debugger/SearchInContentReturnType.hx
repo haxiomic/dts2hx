@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SearchInContentReturnType = {
+typedef SearchInContentReturnType = {
 	/**
 		List of search matches.
 	**/

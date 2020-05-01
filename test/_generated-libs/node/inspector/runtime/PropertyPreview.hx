@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef PropertyPreview = {
+typedef PropertyPreview = {
 	/**
 		Property name.
 	**/

@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef IAnimationTimeline = {
+typedef IAnimationTimeline = {
 	final currentTime : Null<Float>;
 };

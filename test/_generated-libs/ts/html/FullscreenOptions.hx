@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FullscreenOptions = {
+typedef FullscreenOptions = {
 	@:optional
 	var navigationUI : String;
 };

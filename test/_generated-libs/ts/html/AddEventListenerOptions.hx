@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AddEventListenerOptions = {
+typedef AddEventListenerOptions = {
 	@:optional
 	var once : Bool;
 	@:optional

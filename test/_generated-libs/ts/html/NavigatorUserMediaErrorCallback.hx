@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef NavigatorUserMediaErrorCallback = {
+typedef NavigatorUserMediaErrorCallback = {
 	@:selfCall
 	function call(error:IMediaStreamError):Void;
 };

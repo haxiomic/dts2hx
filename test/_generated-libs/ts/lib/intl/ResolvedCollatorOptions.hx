@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef ResolvedCollatorOptions = {
+typedef ResolvedCollatorOptions = {
 	var locale : String;
 	var usage : String;
 	var sensitivity : String;

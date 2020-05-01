@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad.
 **/
-extern typedef ITouch = {
+typedef ITouch = {
 	final altitudeAngle : Float;
 	final azimuthAngle : Float;
 	final clientX : Float;

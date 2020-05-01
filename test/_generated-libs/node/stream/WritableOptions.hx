@@ -1,5 +1,5 @@
 package node.stream;
-extern typedef WritableOptions = {
+typedef WritableOptions = {
 	@:optional
 	var highWaterMark : Float;
 	@:optional

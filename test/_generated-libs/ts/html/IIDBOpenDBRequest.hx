@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Also inherits methods from its parents IDBRequest and EventTarget.
 **/
-extern typedef IIDBOpenDBRequest = {
+typedef IIDBOpenDBRequest = {
 	var onblocked : Null<(ev:IEvent) -> Dynamic>;
 	var onupgradeneeded : Null<(ev:IIDBVersionChangeEvent) -> Dynamic>;
 	/**

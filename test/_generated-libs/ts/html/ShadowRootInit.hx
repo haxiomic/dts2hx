@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ShadowRootInit = {
+typedef ShadowRootInit = {
 	@:optional
 	var delegatesFocus : Bool;
 	var mode : String;

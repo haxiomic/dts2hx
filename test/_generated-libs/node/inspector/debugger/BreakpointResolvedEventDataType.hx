@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef BreakpointResolvedEventDataType = {
+typedef BreakpointResolvedEventDataType = {
 	/**
 		Breakpoint unique identifier.
 	**/

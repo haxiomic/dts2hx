@@ -1,4 +1,4 @@
 package ts.lib;
-extern typedef SetConstructor = {
+typedef SetConstructor = {
 	final prototype : ISet<Dynamic>;
 };

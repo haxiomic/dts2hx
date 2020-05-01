@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryEasingFunctions = {
+typedef JQueryEasingFunctions = {
 	var linear : JQueryEasingFunction;
 	var swing : JQueryEasingFunction;
 };

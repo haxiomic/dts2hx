@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef ConsoleConstructorOptions = {
+typedef ConsoleConstructorOptions = {
 	var stdout : WritableStream;
 	@:optional
 	var stderr : WritableStream;

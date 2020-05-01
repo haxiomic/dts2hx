@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FilePropertyBag = {
+typedef FilePropertyBag = {
 	@:optional
 	var lastModified : Float;
 	@:optional

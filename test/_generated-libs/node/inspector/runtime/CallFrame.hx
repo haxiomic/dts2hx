@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Stack entry for runtime errors and assertions.
 **/
-extern typedef CallFrame = {
+typedef CallFrame = {
 	/**
 		JavaScript function name.
 	**/

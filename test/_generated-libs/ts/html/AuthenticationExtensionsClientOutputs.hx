@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AuthenticationExtensionsClientOutputs = {
+typedef AuthenticationExtensionsClientOutputs = {
 	@:optional
 	var appid : Bool;
 	@:optional

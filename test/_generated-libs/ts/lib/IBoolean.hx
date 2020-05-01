@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IBoolean = {
+typedef IBoolean = {
 	/**
 		Returns the primitive value of the specified object.
 	**/

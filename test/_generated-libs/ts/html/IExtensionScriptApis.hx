@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IExtensionScriptApis = {
+typedef IExtensionScriptApis = {
 	function extensionIdToShortId(extensionId:String):Float;
 	function fireExtensionApiTelemetry(functionName:String, isSucceeded:Bool, isSupported:Bool, errorString:String):Void;
 	function genericFunction(routerAddress:Dynamic, ?parameters:String, ?callbackId:Float):Void;

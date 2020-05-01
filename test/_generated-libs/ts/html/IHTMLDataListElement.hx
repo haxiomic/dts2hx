@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the HTMLElement object interface it also has available to it by inheritance) to manipulate <datalist> elements and their content.
 **/
-extern typedef IHTMLDataListElement = {
+typedef IHTMLDataListElement = {
 	final options : ts.lib.HTMLCollectionOf<IHTMLOptionElement>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

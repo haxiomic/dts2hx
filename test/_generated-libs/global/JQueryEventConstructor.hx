@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryEventConstructor = {
+typedef JQueryEventConstructor = {
 	/**
 		The jQuery.Event constructor is exposed and can be used when calling trigger. The new operator is optional.
 		

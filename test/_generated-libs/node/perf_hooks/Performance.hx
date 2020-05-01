@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern typedef Performance = {
+typedef Performance = {
 	/**
 		If name is not provided, removes all PerformanceFunction objects from the Performance Timeline.
 		If name is provided, removes entries with name.

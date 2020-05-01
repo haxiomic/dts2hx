@@ -2,7 +2,7 @@ package node.inspector.console;
 /**
 	Console message.
 **/
-extern typedef ConsoleMessage = {
+typedef ConsoleMessage = {
 	/**
 		Message source.
 	**/

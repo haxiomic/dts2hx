@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Streams API interface represents a readable stream of byte data. The Fetch API offers a concrete instance of a ReadableStream through the body property of a Response object.
 **/
-extern typedef IReadableStream<R> = {
+typedef IReadableStream<R> = {
 	final locked : Bool;
 	function cancel(?reason:Dynamic):ts.lib.IPromise<Void>;
 	@:overload(function():ReadableStreamDefaultReader<R> { })

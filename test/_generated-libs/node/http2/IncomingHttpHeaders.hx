@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef IncomingHttpHeaders = {
+typedef IncomingHttpHeaders = {
 	@:native(":path")
 	@:optional
 	var ColonPath : String;

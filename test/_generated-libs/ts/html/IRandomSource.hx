@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef IRandomSource = {
+typedef IRandomSource = {
 	function getRandomValues<T>(array:T):T;
 };

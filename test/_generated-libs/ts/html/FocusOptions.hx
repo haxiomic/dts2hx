@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FocusOptions = {
+typedef FocusOptions = {
 	@:optional
 	var preventScroll : Bool;
 };

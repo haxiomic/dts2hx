@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A PannerNode always has exactly one input and one output: the input can be mono or stereo but the output is always stereo (2 channels); you can't have panning effects without at least two audio channels!
 **/
-extern typedef IPannerNode = {
+typedef IPannerNode = {
 	var coneInnerAngle : Float;
 	var coneOuterAngle : Float;
 	var coneOuterGain : Float;

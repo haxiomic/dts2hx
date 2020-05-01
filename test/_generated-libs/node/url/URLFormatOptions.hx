@@ -1,5 +1,5 @@
 package node.url;
-extern typedef URLFormatOptions = {
+typedef URLFormatOptions = {
 	@:optional
 	var auth : Bool;
 	@:optional

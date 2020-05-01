@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DOMPointInit = {
+typedef DOMPointInit = {
 	@:optional
 	var w : Float;
 	@:optional

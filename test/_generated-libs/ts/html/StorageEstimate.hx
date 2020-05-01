@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef StorageEstimate = {
+typedef StorageEstimate = {
 	@:optional
 	var quota : Float;
 	@:optional

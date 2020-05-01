@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feSpecularLighting> element.
 **/
-extern typedef ISVGFESpecularLightingElement = {
+typedef ISVGFESpecularLightingElement = {
 	final in1 : ISVGAnimatedString;
 	final kernelUnitLengthX : ISVGAnimatedNumber;
 	final kernelUnitLengthY : ISVGAnimatedNumber;

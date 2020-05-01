@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef KeyboardEventInit = {
+typedef KeyboardEventInit = {
 	@:optional
 	var code : String;
 	@:optional

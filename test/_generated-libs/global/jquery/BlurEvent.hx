@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

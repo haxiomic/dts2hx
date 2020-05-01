@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Coverage data for a source range.
 **/
-extern typedef CoverageRange = {
+typedef CoverageRange = {
 	/**
 		JavaScript script source offset for the range start.
 	**/

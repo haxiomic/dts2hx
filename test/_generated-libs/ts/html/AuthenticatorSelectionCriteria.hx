@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AuthenticatorSelectionCriteria = {
+typedef AuthenticatorSelectionCriteria = {
 	@:optional
 	var authenticatorAttachment : String;
 	@:optional

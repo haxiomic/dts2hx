@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef SoaRecord = {
+typedef SoaRecord = {
 	var nsname : String;
 	var hostmaster : String;
 	var serial : Float;

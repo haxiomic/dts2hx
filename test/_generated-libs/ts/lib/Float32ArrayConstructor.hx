@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef Float32ArrayConstructor = {
+typedef Float32ArrayConstructor = {
 	final prototype : IFloat32Array;
 	/**
 		The size in bytes of each element in the array.

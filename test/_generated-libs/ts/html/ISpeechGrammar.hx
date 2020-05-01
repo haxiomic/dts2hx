@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISpeechGrammar = {
+typedef ISpeechGrammar = {
 	var src : String;
 	var weight : Float;
 };

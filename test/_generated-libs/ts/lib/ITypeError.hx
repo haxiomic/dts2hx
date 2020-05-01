@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ITypeError = {
+typedef ITypeError = {
 	var name : String;
 	var message : String;
 	@:optional

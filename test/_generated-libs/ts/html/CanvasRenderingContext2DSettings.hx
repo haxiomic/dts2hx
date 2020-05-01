@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef CanvasRenderingContext2DSettings = {
+typedef CanvasRenderingContext2DSettings = {
 	@:optional
 	var alpha : Bool;
 	@:optional

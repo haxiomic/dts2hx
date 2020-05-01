@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IReferenceError = {
+typedef IReferenceError = {
 	var name : String;
 	var message : String;
 	@:optional

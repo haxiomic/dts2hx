@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef NumberFormatOptions = {
+typedef NumberFormatOptions = {
 	@:optional
 	var localeMatcher : String;
 	@:optional

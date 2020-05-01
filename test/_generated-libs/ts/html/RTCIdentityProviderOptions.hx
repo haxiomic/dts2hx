@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIdentityProviderOptions = {
+typedef RTCIdentityProviderOptions = {
 	@:optional
 	var peerIdentity : String;
 	@:optional

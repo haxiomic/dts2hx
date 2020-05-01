@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IAudioWorkletNode = {
+typedef IAudioWorkletNode = {
 	var onprocessorerror : Null<(ev:IEvent) -> Dynamic>;
 	final parameters : ts.lib.IAudioParamMap;
 	final port : IMessagePort;

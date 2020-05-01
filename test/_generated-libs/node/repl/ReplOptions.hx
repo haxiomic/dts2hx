@@ -1,5 +1,5 @@
 package node.repl;
-extern typedef ReplOptions = {
+typedef ReplOptions = {
 	/**
 		The input prompt to display.
 		Default: `"> "`

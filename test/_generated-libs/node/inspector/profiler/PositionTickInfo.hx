@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Specifies a number of samples attributed to a certain source position.
 **/
-extern typedef PositionTickInfo = {
+typedef PositionTickInfo = {
 	/**
 		Source line number (1-based).
 	**/

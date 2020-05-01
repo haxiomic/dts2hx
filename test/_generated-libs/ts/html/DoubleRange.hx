@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DoubleRange = {
+typedef DoubleRange = {
 	@:optional
 	var max : Float;
 	@:optional

@@ -1,5 +1,5 @@
 package node.net;
-extern typedef TcpSocketConnectOpts = {
+typedef TcpSocketConnectOpts = {
 	var port : Float;
 	@:optional
 	var host : String;

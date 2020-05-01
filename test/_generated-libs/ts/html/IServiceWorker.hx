@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
 **/
-extern typedef IServiceWorker = {
+typedef IServiceWorker = {
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
 	final scriptURL : String;
 	final state : String;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Contains descriptive metadata about a document. It inherits all of the properties and methods described in the HTMLElement interface.
 **/
-extern typedef IHTMLMetaElement = {
+typedef IHTMLMetaElement = {
 	/**
 		Gets or sets meta-information to associate with httpEquiv or name.
 	**/

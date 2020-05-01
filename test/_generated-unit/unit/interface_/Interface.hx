@@ -1,5 +1,5 @@
 package unit.interface_;
-extern typedef Interface = {
+typedef Interface = {
 	@:overload(function<T>(a:T, b:String):Interface { })
 	@:selfCall
 	function call_(array:std.Array<Interface>):Dynamic;

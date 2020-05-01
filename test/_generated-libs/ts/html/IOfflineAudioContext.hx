@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An AudioContext interface representing an audio-processing graph built from linked together AudioNodes. In contrast with a standard AudioContext, an OfflineAudioContext doesn't render the audio to the device hardware; instead, it generates it, as fast as it can, and outputs the result to an AudioBuffer.
 **/
-extern typedef IOfflineAudioContext = {
+typedef IOfflineAudioContext = {
 	final length : Float;
 	var oncomplete : Null<(ev:IOfflineAudioCompletionEvent) -> Dynamic>;
 	function resume():ts.lib.IPromise<Void>;

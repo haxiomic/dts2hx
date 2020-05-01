@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConstrainULongRange = {
+typedef ConstrainULongRange = {
 	@:optional
 	var exact : Float;
 	@:optional

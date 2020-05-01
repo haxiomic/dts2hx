@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIceCandidateInit = {
+typedef RTCIceCandidateInit = {
 	@:optional
 	var candidate : String;
 	@:optional

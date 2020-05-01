@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef GetPossibleBreakpointsReturnType = {
+typedef GetPossibleBreakpointsReturnType = {
 	/**
 		List of the possible breakpoint locations.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DevicePermissionDescriptor = {
+typedef DevicePermissionDescriptor = {
 	@:optional
 	var deviceId : String;
 	var name : String;

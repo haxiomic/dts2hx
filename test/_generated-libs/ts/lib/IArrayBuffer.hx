@@ -5,7 +5,7 @@ package ts.lib;
 	but can be passed to a typed array or DataView Object to interpret the raw
 	buffer as needed.
 **/
-extern typedef IArrayBuffer = {
+typedef IArrayBuffer = {
 	/**
 		Read-only. The length of the ArrayBuffer (in bytes).
 	**/

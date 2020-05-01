@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryStatic = {
+typedef JQueryStatic = {
 	@:overload(function<TElement>(html:String, ?ownerDocument_attributes:ts.AnyOf2<ts.html.IDocument, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
 	@:overload(function<TElement>(selector:String, ?context:ts.AnyOf3<ts.html.IDocument, ts.html.IElement, JQuery<ts.html.IHTMLElement>>):JQuery<TElement> { })
 	@:overload(function(element:ts.lib.IHTMLSelectElement):JQuery<ts.lib.IHTMLSelectElement> { })

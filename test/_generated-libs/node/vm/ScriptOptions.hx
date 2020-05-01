@@ -1,5 +1,5 @@
 package node.vm;
-extern typedef ScriptOptions = {
+typedef ScriptOptions = {
 	@:optional
 	var displayErrors : Bool;
 	@:optional

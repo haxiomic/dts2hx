@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef AnyNaptrRecord = {
+typedef AnyNaptrRecord = {
 	var type : String;
 	var flags : String;
 	var service : String;

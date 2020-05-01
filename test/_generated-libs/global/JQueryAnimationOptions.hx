@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryAnimationOptions = {
+typedef JQueryAnimationOptions = {
 	/**
 		A function to be called when the animation on an element completes or stops without completing (its Promise object is either resolved or rejected).
 	**/

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This interface also inherits properties from EventTarget.
 **/
-extern typedef ITextTrack = {
+typedef ITextTrack = {
 	final activeCues : ts.lib.ITextTrackCueList;
 	final cues : ts.lib.ITextTrackCueList;
 	final inBandMetadataTrackDispatchType : String;

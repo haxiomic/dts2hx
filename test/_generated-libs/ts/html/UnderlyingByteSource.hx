@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef UnderlyingByteSource = {
+typedef UnderlyingByteSource = {
 	@:optional
 	var autoAllocateChunkSize : Float;
 	@:optional

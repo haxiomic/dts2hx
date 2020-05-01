@@ -1,2 +1,2 @@
 package global.jquery;
-extern typedef Easings = { };
+typedef Easings = { };

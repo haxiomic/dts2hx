@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Used to represent a list of the video tracks contained within a <video> element, with each track represented by a separate VideoTrack object in the list.
 **/
-extern typedef IVideoTrackList = {
+typedef IVideoTrackList = {
 	final length : Float;
 	var onaddtrack : Null<(ev:ts.html.ITrackEvent) -> Dynamic>;
 	var onchange : Null<(ev:ts.html.IEvent) -> Dynamic>;

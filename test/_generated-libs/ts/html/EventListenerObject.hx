@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef EventListenerObject = {
+typedef EventListenerObject = {
 	function handleEvent(evt:IEvent):Void;
 };

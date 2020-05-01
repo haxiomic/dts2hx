@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef RsaPrivateKey = {
+typedef RsaPrivateKey = {
 	var key : ts.AnyOf3<String, global.IBuffer, KeyObject>;
 	@:optional
 	var passphrase : String;

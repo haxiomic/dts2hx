@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef NameValuePair = {
+typedef NameValuePair = {
 	var name : String;
 	var value : String;
 };

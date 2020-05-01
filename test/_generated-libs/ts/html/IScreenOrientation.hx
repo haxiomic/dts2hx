@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IScreenOrientation = {
+typedef IScreenOrientation = {
 	final angle : Float;
 	var onchange : Null<(ev:IEvent) -> Dynamic>;
 	final type : String;

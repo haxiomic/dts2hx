@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef Global = {
+typedef Global = {
 	var Array : ts.lib.ArrayConstructor;
 	var ArrayBuffer : ts.lib.ArrayBufferConstructor;
 	var Boolean : ts.lib.BooleanConstructor;

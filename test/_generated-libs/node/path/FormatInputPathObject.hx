@@ -1,5 +1,5 @@
 package node.path;
-extern typedef FormatInputPathObject = {
+typedef FormatInputPathObject = {
 	/**
 		The root of the path such as '/' or 'c:\'
 	**/

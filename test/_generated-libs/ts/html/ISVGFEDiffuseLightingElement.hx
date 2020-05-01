@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feDiffuseLighting> element.
 **/
-extern typedef ISVGFEDiffuseLightingElement = {
+typedef ISVGFEDiffuseLightingElement = {
 	final diffuseConstant : ISVGAnimatedNumber;
 	final in1 : ISVGAnimatedString;
 	final kernelUnitLengthX : ISVGAnimatedNumber;

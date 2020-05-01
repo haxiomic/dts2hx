@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PeriodicWaveOptions = {
+typedef PeriodicWaveOptions = {
 	@:optional
 	var imag : ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>;
 	@:optional

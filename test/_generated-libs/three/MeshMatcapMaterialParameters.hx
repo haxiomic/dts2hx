@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshMatcapMaterialParameters = {
+typedef MeshMatcapMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional

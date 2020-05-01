@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DynamicsCompressorOptions = {
+typedef DynamicsCompressorOptions = {
 	@:optional
 	var attack : Float;
 	@:optional

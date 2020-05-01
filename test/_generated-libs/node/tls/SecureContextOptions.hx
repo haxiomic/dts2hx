@@ -1,5 +1,5 @@
 package node.tls;
-extern typedef SecureContextOptions = {
+typedef SecureContextOptions = {
 	@:optional
 	var pfx : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
 	@:optional

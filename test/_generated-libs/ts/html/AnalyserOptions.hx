@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AnalyserOptions = {
+typedef AnalyserOptions = {
 	@:optional
 	var fftSize : Float;
 	@:optional

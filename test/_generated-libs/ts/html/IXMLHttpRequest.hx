@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Use XMLHttpRequest (XHR) objects to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing.
 **/
-extern typedef IXMLHttpRequest = {
+typedef IXMLHttpRequest = {
 	var onreadystatechange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Returns client's state.

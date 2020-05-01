@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This WebVR API interface represents represents the event object of WebVR-related events (see the list of WebVR window extensions).
 **/
-extern typedef IVRDisplayEvent = {
+typedef IVRDisplayEvent = {
 	final display : ts.lib.IVRDisplay;
 	final reason : Null<String>;
 	/**

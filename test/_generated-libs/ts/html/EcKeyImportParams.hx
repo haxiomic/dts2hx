@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef EcKeyImportParams = {
+typedef EcKeyImportParams = {
 	var namedCurve : String;
 	var name : String;
 };

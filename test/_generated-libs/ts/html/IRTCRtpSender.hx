@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides the ability to control and obtain details about how a particular MediaStreamTrack is encoded and sent to a remote peer.
 **/
-extern typedef IRTCRtpSender = {
+typedef IRTCRtpSender = {
 	final dtmf : Null<IRTCDTMFSender>;
 	final rtcpTransport : Null<IRTCDtlsTransport>;
 	final track : Null<IMediaStreamTrack>;

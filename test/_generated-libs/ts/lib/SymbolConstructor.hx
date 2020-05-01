@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef SymbolConstructor = {
+typedef SymbolConstructor = {
 	/**
 		Returns a new unique Symbol value.
 	**/

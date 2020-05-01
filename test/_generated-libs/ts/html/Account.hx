@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef Account = {
+typedef Account = {
 	var displayName : String;
 	var id : String;
 	@:optional

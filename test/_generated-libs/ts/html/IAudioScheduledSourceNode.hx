@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IAudioScheduledSourceNode = {
+typedef IAudioScheduledSourceNode = {
 	var onended : Null<(ev:IEvent) -> Dynamic>;
 	function start(?when:Float):Void;
 	function stop(?when:Float):Void;

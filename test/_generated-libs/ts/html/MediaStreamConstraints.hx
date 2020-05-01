@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaStreamConstraints = {
+typedef MediaStreamConstraints = {
 	@:optional
 	var audio : ts.AnyOf2<Bool, MediaTrackConstraints>;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef VRStageParameters = {
+typedef VRStageParameters = {
 	@:optional
 	var sittingToStandingTransform : ts.lib.IFloat32Array;
 	@:optional

@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef KeyboardEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef KeyboardEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		The other DOM element involved in the event, if any.
 	**/

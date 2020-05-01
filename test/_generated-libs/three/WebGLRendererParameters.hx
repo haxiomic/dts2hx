@@ -1,5 +1,5 @@
 package three;
-extern typedef WebGLRendererParameters = {
+typedef WebGLRendererParameters = {
 	/**
 		A Canvas where the renderer draws its output.
 	**/

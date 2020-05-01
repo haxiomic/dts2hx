@@ -1,5 +1,5 @@
 package node.vm;
-extern typedef RunningScriptOptions = {
+typedef RunningScriptOptions = {
 	@:optional
 	var displayErrors : Bool;
 	@:optional

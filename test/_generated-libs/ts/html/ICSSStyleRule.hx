@@ -2,7 +2,7 @@ package ts.html;
 /**
 	CSSStyleRule represents a single CSS style rule. It implements the CSSRule interface with a type value of 1 (CSSRule.STYLE_RULE).
 **/
-extern typedef ICSSStyleRule = {
+typedef ICSSStyleRule = {
 	var selectorText : String;
 	final style : ts.lib.ICSSStyleDeclaration;
 	var cssText : String;

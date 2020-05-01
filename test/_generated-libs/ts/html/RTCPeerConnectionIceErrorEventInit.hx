@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCPeerConnectionIceErrorEventInit = {
+typedef RTCPeerConnectionIceErrorEventInit = {
 	var errorCode : Float;
 	@:optional
 	var hostCandidate : String;

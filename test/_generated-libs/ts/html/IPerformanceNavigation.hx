@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The legacy PerformanceNavigation interface represents information about how the navigation to the current document was done.
 **/
-extern typedef IPerformanceNavigation = {
+typedef IPerformanceNavigation = {
 	final redirectCount : Float;
 	final type : Float;
 	function toJSON():Dynamic;

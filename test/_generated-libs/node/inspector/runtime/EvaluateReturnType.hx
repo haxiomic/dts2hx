@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef EvaluateReturnType = {
+typedef EvaluateReturnType = {
 	/**
 		Evaluation result.
 	**/

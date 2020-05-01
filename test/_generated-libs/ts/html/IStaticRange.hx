@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IStaticRange = {
+typedef IStaticRange = {
 	/**
 		Returns true if range is collapsed, and false otherwise.
 	**/

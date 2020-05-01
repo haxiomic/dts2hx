@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IHTMLSlotElement = {
+typedef IHTMLSlotElement = {
 	var name : String;
 	function assignedElements(?options:AssignedNodesOptions):std.Array<IElement>;
 	function assignedNodes(?options:AssignedNodesOptions):std.Array<INode>;

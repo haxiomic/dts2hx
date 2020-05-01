@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document.
 **/
-extern typedef IHTMLTableElement = {
+typedef IHTMLTableElement = {
 	var align : String;
 	var bgColor : String;
 	var border : String;

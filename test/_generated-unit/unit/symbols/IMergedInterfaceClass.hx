@@ -1,5 +1,5 @@
 package unit.symbols;
-extern typedef IMergedInterfaceClass = {
+typedef IMergedInterfaceClass = {
 	var interfaceField1 : Float;
 	var interfaceField2 : Float;
 	var classField : String;

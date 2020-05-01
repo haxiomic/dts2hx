@@ -1,5 +1,5 @@
 package node.net;
-extern typedef SocketConstructorOpts = {
+typedef SocketConstructorOpts = {
 	@:optional
 	var fd : Float;
 	@:optional

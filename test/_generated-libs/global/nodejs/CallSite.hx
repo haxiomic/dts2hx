@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef CallSite = {
+typedef CallSite = {
 	/**
 		Value of "this"
 	**/

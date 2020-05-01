@@ -1,5 +1,5 @@
 package node.worker_threads;
-extern typedef WorkerOptions = {
+typedef WorkerOptions = {
 	@:optional
 	var eval : Bool;
 	@:optional

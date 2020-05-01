@@ -1,5 +1,5 @@
 package node.inspector.heapprofiler;
-extern typedef ReportHeapSnapshotProgressEventDataType = {
+typedef ReportHeapSnapshotProgressEventDataType = {
 	var done : Float;
 	var total : Float;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGElementInstanceList = {
+typedef ISVGElementInstanceList = {
 	final length : Float;
 	function item(index:Float):ISVGElementInstance;
 };

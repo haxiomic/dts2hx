@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConstantSourceOptions = {
+typedef ConstantSourceOptions = {
 	@:optional
 	var offset : Float;
 };

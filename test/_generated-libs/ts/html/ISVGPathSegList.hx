@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGPathSegList = {
+typedef ISVGPathSegList = {
 	final numberOfItems : Float;
 	function appendItem(newItem:ISVGPathSeg):ISVGPathSeg;
 	function clear():Void;

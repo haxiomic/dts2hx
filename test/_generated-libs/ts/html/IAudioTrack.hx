@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single audio track from one of the HTML media elements, <audio> or <video>.
 **/
-extern typedef IAudioTrack = {
+typedef IAudioTrack = {
 	var enabled : Bool;
 	final id : String;
 	var kind : String;

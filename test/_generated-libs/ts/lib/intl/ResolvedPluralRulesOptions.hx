@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef ResolvedPluralRulesOptions = {
+typedef ResolvedPluralRulesOptions = {
 	var locale : String;
 	var pluralCategories : std.Array<String>;
 	var type : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef StereoPannerOptions = {
+typedef StereoPannerOptions = {
 	@:optional
 	var pan : Float;
 	@:optional

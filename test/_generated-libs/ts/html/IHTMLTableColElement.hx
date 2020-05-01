@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the HTMLElement interface it also has available to it inheritance) for manipulating single or grouped table column elements.
 **/
-extern typedef IHTMLTableColElement = {
+typedef IHTMLTableColElement = {
 	var align : String;
 	var ch : String;
 	var chOff : String;

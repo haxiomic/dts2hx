@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The DeviceLightEvent provides web developers with information from photo sensors or similiar detectors about ambient light levels near the device. For example this may be useful to adjust the screen's brightness based on the current ambient light level in order to save energy or provide better readability.
 **/
-extern typedef IDeviceLightEvent = {
+typedef IDeviceLightEvent = {
 	final value : Float;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

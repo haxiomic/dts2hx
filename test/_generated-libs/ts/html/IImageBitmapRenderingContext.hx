@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IImageBitmapRenderingContext = {
+typedef IImageBitmapRenderingContext = {
 	/**
 		Returns the canvas element that the context is bound to.
 	**/

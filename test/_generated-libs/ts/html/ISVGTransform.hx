@@ -2,7 +2,7 @@ package ts.html;
 /**
 	SVGTransform is the interface for one of the component transformations within an SVGTransformList; thus, an SVGTransform object corresponds to a single component (e.g., scale(…) or matrix(…)) within a transform attribute.
 **/
-extern typedef ISVGTransform = {
+typedef ISVGTransform = {
 	final angle : Float;
 	final matrix : IDOMMatrix;
 	final type : Float;

@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetBreakpointOnFunctionCallReturnType = {
+typedef SetBreakpointOnFunctionCallReturnType = {
 	/**
 		Id of the created breakpoint for further reference.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PropertyIndexedKeyframes = {
+typedef PropertyIndexedKeyframes = {
 	@:optional
 	var composite : ts.AnyOf2<String, std.Array<String>>;
 	@:optional

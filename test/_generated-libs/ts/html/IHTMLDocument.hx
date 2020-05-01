@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The HTMLDocument property of Window objects is an alias that browsers expose for the Document interface object.
 **/
-extern typedef IHTMLDocument = {
+typedef IHTMLDocument = {
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		

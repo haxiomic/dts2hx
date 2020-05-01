@@ -1,5 +1,5 @@
 package node.cluster;
-extern typedef Cluster = {
+typedef Cluster = {
 	var Worker : Worker;
 	function disconnect(?callback:() -> Void):Void;
 	function fork(?env:Dynamic):Worker;

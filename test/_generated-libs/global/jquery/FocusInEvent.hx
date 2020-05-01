@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

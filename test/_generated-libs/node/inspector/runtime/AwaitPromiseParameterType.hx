@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef AwaitPromiseParameterType = {
+typedef AwaitPromiseParameterType = {
 	/**
 		Identifier of the promise.
 	**/

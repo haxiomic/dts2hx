@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides contains information about a MIME type associated with a particular plugin. NavigatorPlugins.mimeTypes returns an array of this object.
 **/
-extern typedef IMimeType = {
+typedef IMimeType = {
 	/**
 		Returns the MIME type's description.
 	**/

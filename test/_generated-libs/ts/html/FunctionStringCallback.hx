@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FunctionStringCallback = {
+typedef FunctionStringCallback = {
 	@:selfCall
 	function call(data:String):Void;
 };

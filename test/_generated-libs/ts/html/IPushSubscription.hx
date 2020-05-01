@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Push API interface provides a subcription's URL endpoint and allows unsubscription from a push service.
 **/
-extern typedef IPushSubscription = {
+typedef IPushSubscription = {
 	final endpoint : String;
 	final expirationTime : Null<Float>;
 	final options : IPushSubscriptionOptions;

@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef ReadableStream = {
+typedef ReadableStream = {
 	var readable : Bool;
 	function read(?size:Float):ts.AnyOf2<String, global.IBuffer>;
 	function setEncoding(encoding:String):ReadableStream;

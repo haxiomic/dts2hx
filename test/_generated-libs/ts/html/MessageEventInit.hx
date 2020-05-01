@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MessageEventInit = {
+typedef MessageEventInit = {
 	@:optional
 	var data : Dynamic;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConstrainBooleanParameters = {
+typedef ConstrainBooleanParameters = {
 	@:optional
 	var exact : Bool;
 	@:optional

@@ -1,4 +1,4 @@
 package three;
-extern typedef IUniform = {
+typedef IUniform = {
 	var value : Dynamic;
 };

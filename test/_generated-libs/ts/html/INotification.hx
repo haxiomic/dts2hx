@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Notifications API interface is used to configure and display desktop notifications to the user.
 **/
-extern typedef INotification = {
+typedef INotification = {
 	final actions : ts.lib.ReadonlyArray<NotificationAction>;
 	final badge : String;
 	final body : String;

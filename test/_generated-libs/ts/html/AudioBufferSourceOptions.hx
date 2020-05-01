@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AudioBufferSourceOptions = {
+typedef AudioBufferSourceOptions = {
 	@:optional
 	var buffer : IAudioBuffer;
 	@:optional

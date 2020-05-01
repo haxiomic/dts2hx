@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern typedef EventLoopDelayMonitor = {
+typedef EventLoopDelayMonitor = {
 	/**
 		Enables the event loop delay sample timer. Returns `true` if the timer was started, `false` if it was already started.
 	**/

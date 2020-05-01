@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ArrayBufferView = {
+typedef ArrayBufferView = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/

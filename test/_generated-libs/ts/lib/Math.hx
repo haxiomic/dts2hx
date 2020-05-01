@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	An intrinsic object that provides basic mathematics functionality and constants.
 **/
-extern typedef Math = {
+typedef Math = {
 	/**
 		The mathematical constant e. This is Euler's number, the base of natural logarithms.
 	**/

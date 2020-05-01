@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The reason of an error occurring when using the geolocating device.
 **/
-extern typedef PositionError = {
+typedef PositionError = {
 	final code : Float;
 	final message : String;
 	final PERMISSION_DENIED : Float;

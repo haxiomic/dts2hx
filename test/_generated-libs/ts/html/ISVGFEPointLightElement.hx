@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <fePointLight> element.
 **/
-extern typedef ISVGFEPointLightElement = {
+typedef ISVGFEPointLightElement = {
 	final x : ISVGAnimatedNumber;
 	final y : ISVGAnimatedNumber;
 	final z : ISVGAnimatedNumber;

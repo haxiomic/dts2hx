@@ -1,5 +1,5 @@
 package node.inspector.profiler;
-extern typedef StartPreciseCoverageParameterType = {
+typedef StartPreciseCoverageParameterType = {
 	/**
 		Collect accurate call counts beyond simple 'covered' or 'not covered'.
 	**/

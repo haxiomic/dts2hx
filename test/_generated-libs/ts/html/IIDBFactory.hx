@@ -2,7 +2,7 @@ package ts.html;
 /**
 	In the following code snippet, we make a request to open a database, and include handlers for the success and error cases. For a full working example, see our To-do Notifications app (view example live.)
 **/
-extern typedef IIDBFactory = {
+typedef IIDBFactory = {
 	/**
 		Compares two values as keys. Returns -1 if key1 precedes key2, 1 if key2 precedes key1, and 0 if the keys are equal.
 		

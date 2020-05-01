@@ -2,7 +2,7 @@ package three;
 /**
 	parameters is an object with one or more properties defining the material's appearance.
 **/
-extern typedef MeshBasicMaterialParameters = {
+typedef MeshBasicMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional

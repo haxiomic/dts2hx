@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecException = {
+typedef ExecException = {
 	@:optional
 	var cmd : String;
 	@:optional

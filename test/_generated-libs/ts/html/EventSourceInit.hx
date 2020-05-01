@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef EventSourceInit = {
+typedef EventSourceInit = {
 	@:optional
 	var withCredentials : Bool;
 };

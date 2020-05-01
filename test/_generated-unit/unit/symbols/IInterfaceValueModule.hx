@@ -1,4 +1,4 @@
 package unit.symbols;
-extern typedef IInterfaceValueModule = {
+typedef IInterfaceValueModule = {
 	var field : String;
 };

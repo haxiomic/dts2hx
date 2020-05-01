@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides methods to manipulate <marquee> elements.
 **/
-extern typedef IHTMLMarqueeElement = {
+typedef IHTMLMarqueeElement = {
 	var behavior : String;
 	var bgColor : String;
 	var direction : String;

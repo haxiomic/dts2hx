@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshPhysicalMaterialParameters = {
+typedef MeshPhysicalMaterialParameters = {
 	@:optional
 	var reflectivity : Float;
 	@:optional

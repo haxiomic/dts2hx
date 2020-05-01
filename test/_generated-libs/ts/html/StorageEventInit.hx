@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef StorageEventInit = {
+typedef StorageEventInit = {
 	@:optional
 	var key : String;
 	@:optional

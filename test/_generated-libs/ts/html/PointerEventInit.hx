@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PointerEventInit = {
+typedef PointerEventInit = {
 	@:optional
 	var height : Float;
 	@:optional

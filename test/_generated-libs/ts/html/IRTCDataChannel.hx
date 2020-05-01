@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCDataChannel = {
+typedef IRTCDataChannel = {
 	var binaryType : String;
 	final bufferedAmount : Float;
 	var bufferedAmountLowThreshold : Float;

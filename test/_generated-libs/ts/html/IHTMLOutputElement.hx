@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements.
 **/
-extern typedef IHTMLOutputElement = {
+typedef IHTMLOutputElement = {
 	var defaultValue : String;
 	final form : Null<ts.lib.IHTMLFormElement>;
 	final htmlFor : ts.lib.IDOMTokenList;

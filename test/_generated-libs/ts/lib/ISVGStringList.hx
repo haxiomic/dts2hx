@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	The SVGStringList defines a list of DOMString objects.
 **/
-extern typedef ISVGStringList = {
+typedef ISVGStringList = {
 	final length : Float;
 	final numberOfItems : Float;
 	function appendItem(newItem:String):String;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond those of the regular HTMLElement object interface it inherits) for manipulating <p> elements.
 **/
-extern typedef IHTMLParagraphElement = {
+typedef IHTMLParagraphElement = {
 	var align : String;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

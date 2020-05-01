@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Stores information on a media query applied to a document, and handles sending notifications to listeners when the media query state change (i.e. when the media query test starts or stops evaluating to true).
 **/
-extern typedef IMediaQueryList = {
+typedef IMediaQueryList = {
 	final matches : Bool;
 	final media : String;
 	var onchange : Null<(ev:IMediaQueryListEvent) -> Dynamic>;

@@ -6,7 +6,7 @@ package global.jquery;
 	
 	The standard events in the Document Object Model are: `blur`, `focus`, `load`, `resize`, `scroll`, `unload`, `beforeunload`, `click`, `dblclick`, `mousedown`, `mouseup`, `mousemove`, `mouseover`, `mouseout`, `mouseenter`, `mouseleave`, `change`, `select`, `submit`, `keydown`, `keypress`, and `keyup`. Since the DOM event names have predefined meanings for some elements, using them for other purposes is not recommended. jQuery's event model can trigger an event by any name on an element, and it is propagated up the DOM tree to which that element belongs, if any.
 **/
-extern typedef EventStatic = {
+typedef EventStatic = {
 	/**
 		The jQuery.Event constructor is exposed and can be used when calling trigger. The new operator is optional.
 		

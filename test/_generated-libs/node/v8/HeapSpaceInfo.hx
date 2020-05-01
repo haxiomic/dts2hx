@@ -1,5 +1,5 @@
 package node.v8;
-extern typedef HeapSpaceInfo = {
+typedef HeapSpaceInfo = {
 	var space_name : String;
 	var space_size : Float;
 	var space_used_size : Float;

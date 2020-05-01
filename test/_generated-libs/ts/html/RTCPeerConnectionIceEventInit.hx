@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCPeerConnectionIceEventInit = {
+typedef RTCPeerConnectionIceEventInit = {
 	@:optional
 	var candidate : IRTCIceCandidate;
 	@:optional

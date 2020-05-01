@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Inherits from Event, and represents the event object of an event sent on a document or worker when its content security policy is violated.
 **/
-extern typedef ISecurityPolicyViolationEvent = {
+typedef ISecurityPolicyViolationEvent = {
 	final blockedURI : String;
 	final columnNumber : Float;
 	final documentURI : String;

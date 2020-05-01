@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A collection of HTML form control elements.
 **/
-extern typedef IHTMLFormControlsCollection = {
+typedef IHTMLFormControlsCollection = {
 	/**
 		Returns the item with ID or name name from the collection.
 		

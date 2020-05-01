@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef QueuingStrategy<T> = {
+typedef QueuingStrategy<T> = {
 	@:optional
 	var highWaterMark : Float;
 	@:optional

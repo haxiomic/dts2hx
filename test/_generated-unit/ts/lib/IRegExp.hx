@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IRegExp = {
+typedef IRegExp = {
 	/**
 		Executes a search on a string using a regular expression pattern, and returns an array containing the results of that search.
 	**/

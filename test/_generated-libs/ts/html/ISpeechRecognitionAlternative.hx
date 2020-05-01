@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISpeechRecognitionAlternative = {
+typedef ISpeechRecognitionAlternative = {
 	final confidence : Float;
 	final transcript : String;
 };

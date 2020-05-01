@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSFIDOCredentialAssertion = {
+typedef IMSFIDOCredentialAssertion = {
 	final algorithm : ts.AnyOf2<String, Algorithm>;
 	final attestation : Dynamic;
 	final publicKey : String;

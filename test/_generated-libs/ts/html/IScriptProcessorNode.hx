@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Allows the generation, processing, or analyzing of audio using JavaScript.
 **/
-extern typedef IScriptProcessorNode = {
+typedef IScriptProcessorNode = {
 	final bufferSize : Float;
 	var onaudioprocess : Null<(ev:IAudioProcessingEvent) -> Dynamic>;
 	/**

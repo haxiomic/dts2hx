@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Payment Request API interface is the primary access point into the API, and lets web content and apps accept payments from the end user.
 **/
-extern typedef IPaymentRequest = {
+typedef IPaymentRequest = {
 	final id : String;
 	var onshippingaddresschange : Null<(ev:IEvent) -> Dynamic>;
 	var onshippingoptionchange : Null<(ev:IEvent) -> Dynamic>;

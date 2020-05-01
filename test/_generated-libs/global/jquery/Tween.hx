@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef Tween<TElement> = {
+typedef Tween<TElement> = {
 	/**
 		The easing used
 	**/

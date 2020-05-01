@@ -1,2 +1,2 @@
 package three;
-extern typedef RenderTarget = { };
+typedef RenderTarget = { };

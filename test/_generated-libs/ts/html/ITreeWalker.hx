@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The nodes of a document subtree and a position within them.
 **/
-extern typedef ITreeWalker = {
+typedef ITreeWalker = {
 	var currentNode : INode;
 	final filter : Null<NodeFilter>;
 	final root : INode;

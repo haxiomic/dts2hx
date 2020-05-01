@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PositionErrorCallback = {
+typedef PositionErrorCallback = {
 	@:selfCall
 	function call(positionError:PositionError):Void;
 };

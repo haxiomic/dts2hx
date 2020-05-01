@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IAbstractRange = {
+typedef IAbstractRange = {
 	/**
 		Returns true if range is collapsed, and false otherwise.
 	**/

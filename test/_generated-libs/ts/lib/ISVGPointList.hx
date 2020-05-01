@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ISVGPointList = {
+typedef ISVGPointList = {
 	final length : Float;
 	final numberOfItems : Float;
 	function appendItem(newItem:ts.html.IDOMPoint):ts.html.IDOMPoint;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConstrainDOMStringParameters = {
+typedef ConstrainDOMStringParameters = {
 	@:optional
 	var exact : ts.AnyOf2<String, std.Array<String>>;
 	@:optional

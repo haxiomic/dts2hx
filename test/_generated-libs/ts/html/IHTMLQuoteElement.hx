@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating quoting elements, like <blockquote> and <q>, but not the <cite> element.
 **/
-extern typedef IHTMLQuoteElement = {
+typedef IHTMLQuoteElement = {
 	/**
 		Sets or retrieves reference information about the object.
 	**/

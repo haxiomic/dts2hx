@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshToonMaterialParameters = {
+typedef MeshToonMaterialParameters = {
 	@:optional
 	var gradientMap : Texture;
 	/**

@@ -1,5 +1,5 @@
 package node.net;
-extern typedef IpcNetConnectOpts = {
+typedef IpcNetConnectOpts = {
 	@:optional
 	var timeout : Float;
 	var path : String;

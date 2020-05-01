@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef InputEventInit = {
+typedef InputEventInit = {
 	@:optional
 	var data : String;
 	@:optional

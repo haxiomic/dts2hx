@@ -1,2 +1,2 @@
 package ts.html;
-extern typedef IWebGLVertexArrayObject = { };
+typedef IWebGLVertexArrayObject = { };

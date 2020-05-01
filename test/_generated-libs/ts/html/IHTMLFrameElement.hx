@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IHTMLFrameElement = {
+typedef IHTMLFrameElement = {
 	final contentDocument : Null<IDocument>;
 	final contentWindow : Null<IWindow>;
 	var frameBorder : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FrameRequestCallback = {
+typedef FrameRequestCallback = {
 	@:selfCall
 	function call(time:Float):Void;
 };

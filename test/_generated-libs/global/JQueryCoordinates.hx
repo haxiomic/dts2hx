@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryCoordinates = {
+typedef JQueryCoordinates = {
 	var left : Float;
 	var top : Float;
 };

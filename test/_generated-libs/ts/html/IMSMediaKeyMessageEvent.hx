@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSMediaKeyMessageEvent = {
+typedef IMSMediaKeyMessageEvent = {
 	final destinationURL : Null<String>;
 	final message : ts.lib.IUint8Array;
 	/**

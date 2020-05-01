@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AudioWorkletNodeOptions = {
+typedef AudioWorkletNodeOptions = {
 	@:optional
 	var numberOfInputs : Float;
 	@:optional

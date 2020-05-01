@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaTrackConstraintSet = {
+typedef MediaTrackConstraintSet = {
 	@:optional
 	var aspectRatio : ts.AnyOf2<Float, ConstrainDoubleRange>;
 	@:optional

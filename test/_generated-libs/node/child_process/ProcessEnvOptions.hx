@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ProcessEnvOptions = {
+typedef ProcessEnvOptions = {
 	@:optional
 	var uid : Float;
 	@:optional

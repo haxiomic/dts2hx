@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ICustomEvent<T> = {
+typedef ICustomEvent<T> = {
 	/**
 		Returns any custom data event was created with. Typically used for synthetic events.
 	**/

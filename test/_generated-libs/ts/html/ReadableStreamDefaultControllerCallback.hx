@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ReadableStreamDefaultControllerCallback<R> = {
+typedef ReadableStreamDefaultControllerCallback<R> = {
 	@:selfCall
 	function call(controller:ReadableStreamDefaultController<R>):ts.AnyOf2<Void, ts.lib.PromiseLike<Void>>;
 };

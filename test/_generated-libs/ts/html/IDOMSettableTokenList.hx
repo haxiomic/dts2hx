@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMSettableTokenList = {
+typedef IDOMSettableTokenList = {
 	/**
 		Returns the associated set as string.
 		

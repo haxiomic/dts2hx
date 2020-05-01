@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <stop> element.
 **/
-extern typedef ISVGStopElement = {
+typedef ISVGStopElement = {
 	final offset : ISVGAnimatedNumber;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

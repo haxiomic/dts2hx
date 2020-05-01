@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AnimationEventInit = {
+typedef AnimationEventInit = {
 	@:optional
 	var animationName : String;
 	@:optional

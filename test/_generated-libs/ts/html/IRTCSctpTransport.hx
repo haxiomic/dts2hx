@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCSctpTransport = {
+typedef IRTCSctpTransport = {
 	final maxChannels : Null<Float>;
 	final maxMessageSize : Float;
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ReferenceErrorConstructor = {
+typedef ReferenceErrorConstructor = {
 	@:selfCall
 	function call(?message:String):IReferenceError;
 	final prototype : IReferenceError;

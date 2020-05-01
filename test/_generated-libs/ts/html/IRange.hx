@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A fragment of a document that can contain nodes and parts of text nodes.
 **/
-extern typedef IRange = {
+typedef IRange = {
 	/**
 		Returns the node, furthest away from the document, that is an ancestor of both range's start node and end node.
 	**/

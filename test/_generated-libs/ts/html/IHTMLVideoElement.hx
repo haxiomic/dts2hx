@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods for manipulating video objects. It also inherits properties and methods of HTMLMediaElement and HTMLElement.
 **/
-extern typedef IHTMLVideoElement = {
+typedef IHTMLVideoElement = {
 	/**
 		Gets or sets the height of the video element.
 	**/

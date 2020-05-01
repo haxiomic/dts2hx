@@ -1,5 +1,5 @@
 package node.url;
-extern typedef Url_ = {
+typedef Url_ = {
 	@:optional
 	var port : String;
 	@:optional

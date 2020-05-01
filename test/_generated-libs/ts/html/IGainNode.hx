@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A change in volume. It is an AudioNode audio-processing module that causes a given gain to be applied to the input data before its propagation to the output. A GainNode always has exactly one input and one output, both with the same number of channels.
 **/
-extern typedef IGainNode = {
+typedef IGainNode = {
 	final gain : ts.lib.IAudioParam;
 	var channelCount : Float;
 	var channelCountMode : String;

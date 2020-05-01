@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AesDerivedKeyParams = {
+typedef AesDerivedKeyParams = {
 	var length : Float;
 	var name : String;
 };

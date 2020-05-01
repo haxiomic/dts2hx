@@ -1,2 +1,2 @@
 package sizzle.selectors;
-extern typedef FindFunctions = { };
+typedef FindFunctions = { };

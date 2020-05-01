@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

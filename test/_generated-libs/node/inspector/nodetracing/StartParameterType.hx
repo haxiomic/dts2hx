@@ -1,4 +1,4 @@
 package node.inspector.nodetracing;
-extern typedef StartParameterType = {
+typedef StartParameterType = {
 	var traceConfig : TraceConfig;
 };

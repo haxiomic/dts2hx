@@ -1,4 +1,4 @@
 package node.tls;
-extern typedef SecureContext = {
+typedef SecureContext = {
 	var context : Dynamic;
 };

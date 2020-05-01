@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpSendParameters = {
+typedef RTCRtpSendParameters = {
 	@:optional
 	var degradationPreference : String;
 	var encodings : std.Array<RTCRtpEncodingParameters>;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The SVGTransformList defines a list of SVGTransform objects.
 **/
-extern typedef ISVGTransformList = {
+typedef ISVGTransformList = {
 	final numberOfItems : Float;
 	function appendItem(newItem:ISVGTransform):ISVGTransform;
 	function clear():Void;

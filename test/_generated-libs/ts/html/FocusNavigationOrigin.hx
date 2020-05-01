@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FocusNavigationOrigin = {
+typedef FocusNavigationOrigin = {
 	@:optional
 	var originHeight : Float;
 	@:optional

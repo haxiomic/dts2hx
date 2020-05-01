@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIceGatherOptions = {
+typedef RTCIceGatherOptions = {
 	@:optional
 	var gatherPolicy : String;
 	@:optional

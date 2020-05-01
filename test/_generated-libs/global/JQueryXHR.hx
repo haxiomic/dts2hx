@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryXHR = {
+typedef JQueryXHR = {
 	@:optional
 	var responseJSON : Dynamic;
 	/**

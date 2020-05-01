@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A WebRTC connection between the local computer and a remote peer. It provides methods to connect to a remote peer, maintain and monitor the connection, and close the connection once it's no longer needed.
 **/
-extern typedef IRTCPeerConnection = {
+typedef IRTCPeerConnection = {
 	final canTrickleIceCandidates : Null<Bool>;
 	final connectionState : String;
 	final currentLocalDescription : Null<IRTCSessionDescription>;

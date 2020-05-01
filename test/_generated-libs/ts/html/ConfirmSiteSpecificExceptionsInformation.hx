@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConfirmSiteSpecificExceptionsInformation = {
+typedef ConfirmSiteSpecificExceptionsInformation = {
 	@:optional
 	var arrayOfDomainStrings : std.Array<String>;
 	@:optional

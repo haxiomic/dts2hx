@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PromiseRejectionEventInit = {
+typedef PromiseRejectionEventInit = {
 	var promise : ts.lib.IPromise<Dynamic>;
 	@:optional
 	var reason : Dynamic;

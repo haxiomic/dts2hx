@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshNormalMaterialParameters = {
+typedef MeshNormalMaterialParameters = {
 	@:optional
 	var bumpMap : Texture;
 	@:optional

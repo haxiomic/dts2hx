@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
 **/
-extern typedef IHTMLInputElement = {
+typedef IHTMLInputElement = {
 	/**
 		Sets or retrieves a comma-separated list of content types.
 	**/

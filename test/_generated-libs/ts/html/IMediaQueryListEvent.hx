@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMediaQueryListEvent = {
+typedef IMediaQueryListEvent = {
 	final matches : Bool;
 	final media : String;
 	/**

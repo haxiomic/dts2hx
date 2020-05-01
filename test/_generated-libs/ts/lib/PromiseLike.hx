@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef PromiseLike<T> = {
+typedef PromiseLike<T> = {
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIceCandidatePair = {
+typedef RTCIceCandidatePair = {
 	@:optional
 	var local : IRTCIceCandidate;
 	@:optional

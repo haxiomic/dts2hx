@@ -1,2 +1,2 @@
 package global;
-extern typedef JQuerySupport = { };
+typedef JQuerySupport = { };

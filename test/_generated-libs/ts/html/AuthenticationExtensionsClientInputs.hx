@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AuthenticationExtensionsClientInputs = {
+typedef AuthenticationExtensionsClientInputs = {
 	@:optional
 	var appid : String;
 	@:optional

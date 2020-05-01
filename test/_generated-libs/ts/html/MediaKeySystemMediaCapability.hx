@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaKeySystemMediaCapability = {
+typedef MediaKeySystemMediaCapability = {
 	@:optional
 	var contentType : String;
 	@:optional

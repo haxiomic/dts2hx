@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Source offset and types for a parameter or return value.
 **/
-extern typedef TypeProfileEntry = {
+typedef TypeProfileEntry = {
 	/**
 		Source offset of the parameter or end of function for return values.
 	**/

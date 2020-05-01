@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMediaEncryptedEvent = {
+typedef IMediaEncryptedEvent = {
 	final initData : Null<ts.lib.IArrayBuffer>;
 	final initDataType : String;
 	/**

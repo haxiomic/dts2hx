@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events providing information related to animations.
 **/
-extern typedef IAnimationEvent = {
+typedef IAnimationEvent = {
 	final animationName : String;
 	final elapsedTime : Float;
 	final pseudoElement : String;

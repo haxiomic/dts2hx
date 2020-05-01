@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef CipherGCM = {
+typedef CipherGCM = {
 	function setAAD(buffer:global.IBuffer, ?options:{ var plaintextLength : Float; }):CipherGCM;
 	function getAuthTag():global.IBuffer;
 	@:overload(function(data:String, input_encoding:String):global.IBuffer { })

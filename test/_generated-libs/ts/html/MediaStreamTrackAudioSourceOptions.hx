@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef MediaStreamTrackAudioSourceOptions = {
+typedef MediaStreamTrackAudioSourceOptions = {
 	var mediaStreamTrack : IMediaStreamTrack;
 };

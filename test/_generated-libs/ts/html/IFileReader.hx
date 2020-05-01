@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read.
 **/
-extern typedef IFileReader = {
+typedef IFileReader = {
 	final error : Null<IDOMException>;
 	var onabort : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
 	var onerror : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;

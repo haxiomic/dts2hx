@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond those of the regular HTMLElement interface they also inherit) for manipulating <frameset> elements.
 **/
-extern typedef IHTMLFrameSetElement = {
+typedef IHTMLFrameSetElement = {
 	var cols : String;
 	var rows : String;
 	/**

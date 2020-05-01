@@ -1,5 +1,5 @@
 package sizzle;
-extern typedef Selectors = {
+typedef Selectors = {
 	var cacheLength : Float;
 	var match : sizzle.selectors.Matches;
 	var find : sizzle.selectors.FindFunctions;

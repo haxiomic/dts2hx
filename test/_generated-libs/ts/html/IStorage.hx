@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Web Storage API interface provides access to a particular domain's session or local storage. It allows, for example, the addition, modification, or deletion of stored data items.
 **/
-extern typedef IStorage = {
+typedef IStorage = {
 	/**
 		Returns the number of key/value pairs currently present in the list associated with the object.
 	**/

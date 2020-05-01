@@ -1,5 +1,5 @@
 package three;
-extern typedef IFog = {
+typedef IFog = {
 	var name : String;
 	var color : Color;
 	function clone():IFog;

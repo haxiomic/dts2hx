@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

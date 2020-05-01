@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMRect = {
+typedef IDOMRect = {
 	var height : Float;
 	var width : Float;
 	var x : Float;

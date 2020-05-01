@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef KeyframeAnimationOptions = {
+typedef KeyframeAnimationOptions = {
 	@:optional
 	var id : String;
 	@:optional

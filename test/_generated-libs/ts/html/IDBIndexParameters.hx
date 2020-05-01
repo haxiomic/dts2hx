@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDBIndexParameters = {
+typedef IDBIndexParameters = {
 	@:optional
 	var multiEntry : Bool;
 	@:optional

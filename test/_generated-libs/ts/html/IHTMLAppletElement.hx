@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IHTMLAppletElement = {
+typedef IHTMLAppletElement = {
 	var align : String;
 	var alt : String;
 	var archive : String;

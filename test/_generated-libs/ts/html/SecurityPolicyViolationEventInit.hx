@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef SecurityPolicyViolationEventInit = {
+typedef SecurityPolicyViolationEventInit = {
 	@:optional
 	var blockedURI : String;
 	@:optional

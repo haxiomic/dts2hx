@@ -1,5 +1,5 @@
 package unit.interface_;
-extern typedef Extends3 = {
+typedef Extends3 = {
 	var x : Float;
 	var y : Float;
 	var field1 : Float;

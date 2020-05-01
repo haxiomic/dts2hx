@@ -1,5 +1,5 @@
 package node.os;
-extern typedef CpuInfo = {
+typedef CpuInfo = {
 	var model : String;
 	var speed : Float;
 	var times : {

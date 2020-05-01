@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

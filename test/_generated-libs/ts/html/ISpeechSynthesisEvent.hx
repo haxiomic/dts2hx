@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Web Speech API interface contains information about the current state of SpeechSynthesisUtterance objects that have been processed in the speech service.
 **/
-extern typedef ISpeechSynthesisEvent = {
+typedef ISpeechSynthesisEvent = {
 	final charIndex : Float;
 	final elapsedTime : Float;
 	final name : String;

@@ -1,5 +1,5 @@
 package node.fs;
-extern typedef FSWatcher = {
+typedef FSWatcher = {
 	function close():Void;
 	/**
 		events.EventEmitter

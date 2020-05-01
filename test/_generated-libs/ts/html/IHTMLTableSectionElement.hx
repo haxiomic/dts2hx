@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of sections, that is headers, footers and bodies, in an HTML table.
 **/
-extern typedef IHTMLTableSectionElement = {
+typedef IHTMLTableSectionElement = {
 	var align : String;
 	var ch : String;
 	var chOff : String;

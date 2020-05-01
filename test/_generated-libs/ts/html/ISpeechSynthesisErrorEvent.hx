@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISpeechSynthesisErrorEvent = {
+typedef ISpeechSynthesisErrorEvent = {
 	final error : String;
 	final charIndex : Float;
 	final elapsedTime : Float;

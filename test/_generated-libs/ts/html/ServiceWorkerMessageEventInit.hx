@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ServiceWorkerMessageEventInit = {
+typedef ServiceWorkerMessageEventInit = {
 	@:optional
 	var data : Dynamic;
 	@:optional

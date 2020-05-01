@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
 **/
-extern typedef INavigator = {
+typedef INavigator = {
 	final activeVRDisplays : ReadonlyArray<IVRDisplay>;
 	final clipboard : ts.html.IClipboard;
 	final credentials : ts.html.ICredentialsContainer;

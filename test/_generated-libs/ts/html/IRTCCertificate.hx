@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCCertificate = {
+typedef IRTCCertificate = {
 	final expires : Float;
 	function getFingerprints():std.Array<RTCDtlsFingerprint>;
 };

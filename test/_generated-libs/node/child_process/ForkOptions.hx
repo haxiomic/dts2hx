@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ForkOptions = {
+typedef ForkOptions = {
 	@:optional
 	var execPath : String;
 	@:optional

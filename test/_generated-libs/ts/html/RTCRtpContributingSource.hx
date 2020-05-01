@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpContributingSource = {
+typedef RTCRtpContributingSource = {
 	@:optional
 	var audioLevel : Float;
 	var source : Float;

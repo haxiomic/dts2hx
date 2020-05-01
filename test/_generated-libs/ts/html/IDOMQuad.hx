@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMQuad = {
+typedef IDOMQuad = {
 	final p1 : IDOMPoint;
 	final p2 : IDOMPoint;
 	final p3 : IDOMPoint;

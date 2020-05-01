@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <line> elements, as well as methods to manipulate them.
 **/
-extern typedef ISVGLineElement = {
+typedef ISVGLineElement = {
 	final x1 : ISVGAnimatedLength;
 	final x2 : ISVGAnimatedLength;
 	final y1 : ISVGAnimatedLength;

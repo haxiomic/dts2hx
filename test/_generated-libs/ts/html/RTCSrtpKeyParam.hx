@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCSrtpKeyParam = {
+typedef RTCSrtpKeyParam = {
 	@:optional
 	var keyMethod : String;
 	@:optional

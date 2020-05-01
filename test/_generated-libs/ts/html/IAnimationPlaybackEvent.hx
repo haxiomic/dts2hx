@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IAnimationPlaybackEvent = {
+typedef IAnimationPlaybackEvent = {
 	final currentTime : Null<Float>;
 	final timelineTime : Null<Float>;
 	/**

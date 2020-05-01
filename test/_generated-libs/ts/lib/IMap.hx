@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IMap<K, V> = {
+typedef IMap<K, V> = {
 	function clear():Void;
 	function delete(key:K):Bool;
 	function forEach(callbackfn:(value:V, key:K, map:IMap<K, V>) -> Void, ?thisArg:Dynamic):Void;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCSrtpSdesTransport = {
+typedef IRTCSrtpSdesTransport = {
 	var onerror : Null<(ev:IEvent) -> Dynamic>;
 	final transport : IRTCIceTransport;
 	/**

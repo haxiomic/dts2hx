@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PerformanceObserverCallback = {
+typedef PerformanceObserverCallback = {
 	@:selfCall
 	function call(entries:IPerformanceObserverEntryList, observer:IPerformanceObserver):Void;
 };

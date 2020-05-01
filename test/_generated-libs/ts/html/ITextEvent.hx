@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ITextEvent = {
+typedef ITextEvent = {
 	final data : String;
 	function initTextEvent(typeArg:String, canBubbleArg:Bool, cancelableArg:Bool, viewArg:IWindow, dataArg:String, inputMethod:Float, locale:String):Void;
 	final DOM_INPUT_METHOD_DROP : Float;

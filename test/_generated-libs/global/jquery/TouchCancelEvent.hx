@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

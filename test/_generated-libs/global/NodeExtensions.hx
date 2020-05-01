@@ -1,5 +1,5 @@
 package global;
-extern typedef NodeExtensions = {
+typedef NodeExtensions = {
 	@:native(".js")
 	var _js : (m:NodeModule, filename:String) -> Dynamic;
 	@:native(".json")

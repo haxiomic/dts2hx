@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feGaussianBlur> element.
 **/
-extern typedef ISVGFEGaussianBlurElement = {
+typedef ISVGFEGaussianBlurElement = {
 	final in1 : ISVGAnimatedString;
 	final stdDeviationX : ISVGAnimatedNumber;
 	final stdDeviationY : ISVGAnimatedNumber;

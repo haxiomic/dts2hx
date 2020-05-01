@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An event which takes place in the DOM.
 **/
-extern typedef IEvent = {
+typedef IEvent = {
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

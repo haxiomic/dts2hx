@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentItem = {
+typedef PaymentItem = {
 	var amount : PaymentCurrencyAmount;
 	var label : String;
 	@:optional

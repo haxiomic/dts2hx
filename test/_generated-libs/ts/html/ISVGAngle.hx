@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Used to represent a value that can be an <angle> or <number> value. An SVGAngle reflected through the animVal attribute is always read only.
 **/
-extern typedef ISVGAngle = {
+typedef ISVGAngle = {
 	final unitType : Float;
 	var value : Float;
 	var valueAsString : String;

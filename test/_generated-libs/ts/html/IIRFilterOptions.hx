@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IIRFilterOptions = {
+typedef IIRFilterOptions = {
 	var feedback : std.Array<Float>;
 	var feedforward : std.Array<Float>;
 	@:optional

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <basefont> elements.
 **/
-extern typedef IHTMLBaseFontElement = {
+typedef IHTMLBaseFontElement = {
 	var face : String;
 	var size : Float;
 	/**

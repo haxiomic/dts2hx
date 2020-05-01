@@ -1,5 +1,5 @@
 package node.net;
-extern typedef TcpNetConnectOpts = {
+typedef TcpNetConnectOpts = {
 	@:optional
 	var timeout : Float;
 	var port : Float;

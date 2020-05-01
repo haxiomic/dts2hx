@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCConfiguration = {
+typedef RTCConfiguration = {
 	@:optional
 	var bundlePolicy : String;
 	@:optional

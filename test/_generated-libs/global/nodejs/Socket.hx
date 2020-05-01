@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef Socket = {
+typedef Socket = {
 	@:optional
 	var isTTY : Bool;
 	var readable : Bool;

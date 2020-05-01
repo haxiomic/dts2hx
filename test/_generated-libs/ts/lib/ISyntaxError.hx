@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ISyntaxError = {
+typedef ISyntaxError = {
 	var name : String;
 	var message : String;
 	@:optional

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <mask> elements, as well as methods to manipulate them.
 **/
-extern typedef ISVGMaskElement = {
+typedef ISVGMaskElement = {
 	final height : ISVGAnimatedLength;
 	final maskContentUnits : ISVGAnimatedEnumeration;
 	final maskUnits : ISVGAnimatedEnumeration;

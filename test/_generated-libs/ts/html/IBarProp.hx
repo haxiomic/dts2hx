@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef IBarProp = {
+typedef IBarProp = {
 	final visible : Bool;
 };

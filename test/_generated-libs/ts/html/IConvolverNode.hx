@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An AudioNode that performs a Linear Convolution on a given AudioBuffer, often used to achieve a reverb effect. A ConvolverNode always has exactly one input and one output.
 **/
-extern typedef IConvolverNode = {
+typedef IConvolverNode = {
 	var buffer : Null<IAudioBuffer>;
 	var normalize : Bool;
 	var channelCount : Float;

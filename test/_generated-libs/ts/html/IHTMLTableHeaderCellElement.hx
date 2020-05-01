@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IHTMLTableHeaderCellElement = {
+typedef IHTMLTableHeaderCellElement = {
 	/**
 		Sets or retrieves the group of cells in a table to which the object's information applies.
 	**/

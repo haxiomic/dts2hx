@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef OfflineAudioContextOptions = {
+typedef OfflineAudioContextOptions = {
 	var length : Float;
 	@:optional
 	var numberOfChannels : Float;

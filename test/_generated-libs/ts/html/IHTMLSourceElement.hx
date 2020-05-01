@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating <source> elements.
 **/
-extern typedef IHTMLSourceElement = {
+typedef IHTMLSourceElement = {
 	/**
 		Gets or sets the intended media type of the media source.
 	**/

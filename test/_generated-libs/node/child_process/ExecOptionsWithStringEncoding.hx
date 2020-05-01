@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecOptionsWithStringEncoding = {
+typedef ExecOptionsWithStringEncoding = {
 	var encoding : String;
 	@:optional
 	var shell : String;

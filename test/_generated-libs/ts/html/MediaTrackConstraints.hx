@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaTrackConstraints = {
+typedef MediaTrackConstraints = {
 	@:optional
 	var advanced : std.Array<MediaTrackConstraintSet>;
 	@:optional

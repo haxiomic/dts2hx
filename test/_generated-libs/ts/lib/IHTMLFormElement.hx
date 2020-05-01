@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A <form> element in the DOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
 **/
-extern typedef IHTMLFormElement = {
+typedef IHTMLFormElement = {
 	/**
 		Sets or retrieves a list of character encodings for input data that must be accepted by the server processing the form.
 	**/

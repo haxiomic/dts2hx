@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ChannelMergerOptions = {
+typedef ChannelMergerOptions = {
 	@:optional
 	var numberOfInputs : Float;
 	@:optional

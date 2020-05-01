@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	Search match for resource.
 **/
-extern typedef SearchMatch = {
+typedef SearchMatch = {
 	/**
 		Line number in resource content.
 	**/

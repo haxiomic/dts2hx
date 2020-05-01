@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef StreamPriorityOptions = {
+typedef StreamPriorityOptions = {
 	@:optional
 	var exclusive : Bool;
 	@:optional

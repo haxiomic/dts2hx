@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PeriodicWaveConstraints = {
+typedef PeriodicWaveConstraints = {
 	@:optional
 	var disableNormalization : Bool;
 };

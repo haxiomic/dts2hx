@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A type returned by some APIs which contains a list of DOMString (strings).
 **/
-extern typedef IDOMStringList = {
+typedef IDOMStringList = {
 	/**
 		Returns the number of strings in strings.
 	**/

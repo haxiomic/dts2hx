@@ -3,7 +3,7 @@ package ts.lib;
 	A typed array of 16-bit signed integer values. The contents are initialized to 0. If the
 	requested number of bytes could not be allocated an exception is raised.
 **/
-extern typedef IInt16Array = {
+typedef IInt16Array = {
 	/**
 		The size in bytes of each element in the array.
 	**/

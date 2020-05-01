@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A Selection object represents the range of text selected by the user or the current position of the caret. To obtain a Selection object for examination or modification, call Window.getSelection().
 **/
-extern typedef ISelection = {
+typedef ISelection = {
 	final anchorNode : Null<INode>;
 	final anchorOffset : Float;
 	final focusNode : Null<INode>;

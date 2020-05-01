@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef CloseEventInit = {
+typedef CloseEventInit = {
 	@:optional
 	var code : Float;
 	@:optional

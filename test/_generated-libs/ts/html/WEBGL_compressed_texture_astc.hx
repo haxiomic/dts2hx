@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WEBGL_compressed_texture_astc = {
+typedef WEBGL_compressed_texture_astc = {
 	function getSupportedProfiles():std.Array<String>;
 	final COMPRESSED_RGBA_ASTC_10x10_KHR : Float;
 	final COMPRESSED_RGBA_ASTC_10x5_KHR : Float;

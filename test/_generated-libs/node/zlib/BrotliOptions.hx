@@ -1,5 +1,5 @@
 package node.zlib;
-extern typedef BrotliOptions = {
+typedef BrotliOptions = {
 	@:optional
 	var flush : Float;
 	@:optional

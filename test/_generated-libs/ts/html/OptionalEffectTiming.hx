@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef OptionalEffectTiming = {
+typedef OptionalEffectTiming = {
 	@:optional
 	var delay : Float;
 	@:optional

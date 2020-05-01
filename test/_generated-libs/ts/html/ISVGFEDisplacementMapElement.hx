@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feDisplacementMap> element.
 **/
-extern typedef ISVGFEDisplacementMapElement = {
+typedef ISVGFEDisplacementMapElement = {
 	final in1 : ISVGAnimatedString;
 	final in2 : ISVGAnimatedString;
 	final scale : ISVGAnimatedNumber;

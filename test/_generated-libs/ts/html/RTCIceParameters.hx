@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIceParameters = {
+typedef RTCIceParameters = {
 	@:optional
 	var password : String;
 	@:optional

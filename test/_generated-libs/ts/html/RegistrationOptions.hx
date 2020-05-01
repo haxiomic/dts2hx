@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RegistrationOptions = {
+typedef RegistrationOptions = {
 	@:optional
 	var scope : String;
 	@:optional

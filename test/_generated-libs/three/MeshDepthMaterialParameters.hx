@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshDepthMaterialParameters = {
+typedef MeshDepthMaterialParameters = {
 	@:optional
 	var depthPacking : DepthPackingStrategies;
 	@:optional

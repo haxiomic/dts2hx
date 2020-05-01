@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IInputEvent = {
+typedef IInputEvent = {
 	final data : Null<String>;
 	final inputType : String;
 	final isComposing : Bool;

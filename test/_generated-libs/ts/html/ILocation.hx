@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the Document and Window interface have such a linked Location, accessible via Document.location and Window.location respectively.
 **/
-extern typedef ILocation = {
+typedef ILocation = {
 	/**
 		Returns a DOMStringList object listing the origins of the ancestor browsing contexts, from the parent browsing context to the top-level browsing context.
 	**/

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A MutationRecord represents an individual DOM mutation. It is the object that is passed to MutationObserver's callback.
 **/
-extern typedef IMutationRecord = {
+typedef IMutationRecord = {
 	/**
 		Return the nodes added and removed respectively.
 	**/

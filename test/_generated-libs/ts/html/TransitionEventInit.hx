@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef TransitionEventInit = {
+typedef TransitionEventInit = {
 	@:optional
 	var elapsedTime : Float;
 	@:optional

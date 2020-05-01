@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef EventListener = {
+typedef EventListener = {
 	@:selfCall
 	function call(evt:IEvent):Void;
 };

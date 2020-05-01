@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef TextStreamReader = {
+typedef TextStreamReader = {
 	/**
 		Returns a specified number of characters from an input stream, starting at the current pointer position.
 		Does not return until the ENTER key is pressed.

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGElementInstance = {
+typedef ISVGElementInstance = {
 	final correspondingElement : ISVGElement;
 	final correspondingUseElement : ISVGUseElement;
 	/**

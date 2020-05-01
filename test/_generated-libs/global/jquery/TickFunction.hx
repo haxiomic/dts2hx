@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef TickFunction<TElement> = {
+typedef TickFunction<TElement> = {
 	@:selfCall
 	function call():Dynamic;
 	var anim : Animation<TElement>;

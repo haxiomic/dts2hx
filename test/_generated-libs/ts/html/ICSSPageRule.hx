@@ -2,7 +2,7 @@ package ts.html;
 /**
 	CSSPageRule is an interface representing a single CSS @page rule. It implements the CSSRule interface with a type value of 6 (CSSRule.PAGE_RULE).
 **/
-extern typedef ICSSPageRule = {
+typedef ICSSPageRule = {
 	final pseudoClass : String;
 	final selector : String;
 	var selectorText : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ICSSImportRule = {
+typedef ICSSImportRule = {
 	final href : String;
 	final media : ts.lib.IMediaList;
 	final styleSheet : ICSSStyleSheet;

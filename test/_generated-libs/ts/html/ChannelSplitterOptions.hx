@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ChannelSplitterOptions = {
+typedef ChannelSplitterOptions = {
 	@:optional
 	var numberOfOutputs : Float;
 	@:optional

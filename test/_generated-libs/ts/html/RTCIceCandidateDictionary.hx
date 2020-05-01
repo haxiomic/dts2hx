@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIceCandidateDictionary = {
+typedef RTCIceCandidateDictionary = {
 	@:optional
 	var foundation : String;
 	@:optional

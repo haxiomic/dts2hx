@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSMediaKeySession = {
+typedef IMSMediaKeySession = {
 	final error : Null<IMSMediaKeyError>;
 	final keySystem : String;
 	final sessionId : String;

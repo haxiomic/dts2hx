@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PublicKeyCredentialCreationOptions = {
+typedef PublicKeyCredentialCreationOptions = {
 	@:optional
 	var attestation : String;
 	@:optional

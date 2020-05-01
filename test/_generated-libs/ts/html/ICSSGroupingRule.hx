@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Any CSS at-rule that contains other rules nested within it.
 **/
-extern typedef ICSSGroupingRule = {
+typedef ICSSGroupingRule = {
 	final cssRules : ts.lib.ICSSRuleList;
 	function deleteRule(index:Float):Void;
 	function insertRule(rule:String, index:Float):Float;

@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef ICollator = {
+typedef ICollator = {
 	function compare(x:String, y:String):Float;
 	function resolvedOptions():ResolvedCollatorOptions;
 };

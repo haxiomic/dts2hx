@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaTrackSettings = {
+typedef MediaTrackSettings = {
 	@:optional
 	var aspectRatio : Float;
 	@:optional

@@ -1,2 +1,2 @@
 package sizzle.selectors;
-extern typedef SetFilterFunctions = { };
+typedef SetFilterFunctions = { };

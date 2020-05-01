@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Channel Messaging API interface allows us to create a new message channel and send data through it via its two MessagePort properties.
 **/
-extern typedef IMessageChannel = {
+typedef IMessageChannel = {
 	/**
 		Returns the first MessagePort object.
 	**/

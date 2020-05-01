@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <textPath> element.
 **/
-extern typedef ISVGTextPathElement = {
+typedef ISVGTextPathElement = {
 	final method : ISVGAnimatedEnumeration;
 	final spacing : ISVGAnimatedEnumeration;
 	final startOffset : ISVGAnimatedLength;

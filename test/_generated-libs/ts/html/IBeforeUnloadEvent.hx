@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The beforeunload event is fired when the window, the document and its resources are about to be unloaded.
 **/
-extern typedef IBeforeUnloadEvent = {
+typedef IBeforeUnloadEvent = {
 	var returnValue : Dynamic;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

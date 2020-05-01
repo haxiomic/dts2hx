@@ -1,5 +1,5 @@
 package node.inspector.nodetracing;
-extern typedef GetCategoriesReturnType = {
+typedef GetCategoriesReturnType = {
 	/**
 		A list of supported tracing categories.
 	**/

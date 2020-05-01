@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef Keyframe = {
+typedef Keyframe = {
 	@:optional
 	var composite : String;
 	@:optional

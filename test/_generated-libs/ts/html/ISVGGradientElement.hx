@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The SVGGradient interface is a base interface used by SVGLinearGradientElement and SVGRadialGradientElement.
 **/
-extern typedef ISVGGradientElement = {
+typedef ISVGGradientElement = {
 	final gradientTransform : ISVGAnimatedTransformList;
 	final gradientUnits : ISVGAnimatedEnumeration;
 	final spreadMethod : ISVGAnimatedEnumeration;

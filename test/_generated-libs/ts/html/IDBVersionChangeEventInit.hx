@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDBVersionChangeEventInit = {
+typedef IDBVersionChangeEventInit = {
 	@:optional
 	var newVersion : Float;
 	@:optional

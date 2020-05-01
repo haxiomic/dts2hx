@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DOMMatrix2DInit = {
+typedef DOMMatrix2DInit = {
 	@:optional
 	var a : Float;
 	@:optional

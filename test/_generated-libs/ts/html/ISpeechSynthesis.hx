@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Web Speech API interface is the controller interface for the speech service; this can be used to retrieve information about the synthesis voices available on the device, start and pause speech, and other commands besides.
 **/
-extern typedef ISpeechSynthesis = {
+typedef ISpeechSynthesis = {
 	var onvoiceschanged : Null<(ev:IEvent) -> Dynamic>;
 	final paused : Bool;
 	final pending : Bool;

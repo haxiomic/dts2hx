@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef ProcessVersions = {
+typedef ProcessVersions = {
 	var http_parser : String;
 	var node : String;
 	var v8 : String;

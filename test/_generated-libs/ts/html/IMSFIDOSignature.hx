@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSFIDOSignature = {
+typedef IMSFIDOSignature = {
 	final authnrData : String;
 	final clientData : String;
 	final signature : String;

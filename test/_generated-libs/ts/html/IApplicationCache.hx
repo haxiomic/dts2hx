@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IApplicationCache = {
+typedef IApplicationCache = {
 	var oncached : Null<(ev:IEvent) -> Dynamic>;
 	var onchecking : Null<(ev:IEvent) -> Dynamic>;
 	var ondownloading : Null<(ev:IEvent) -> Dynamic>;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PushSubscriptionJSON = {
+typedef PushSubscriptionJSON = {
 	@:optional
 	var endpoint : String;
 	@:optional

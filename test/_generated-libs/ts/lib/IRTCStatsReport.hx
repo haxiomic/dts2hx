@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IRTCStatsReport = {
+typedef IRTCStatsReport = {
 	function forEach(callbackfn:(value:Dynamic, key:String, parent:IRTCStatsReport) -> Void, ?thisArg:Dynamic):Void;
 	function get(key:String):Dynamic;
 	function has(key:String):Bool;

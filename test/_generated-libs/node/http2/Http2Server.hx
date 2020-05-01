@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef Http2Server = {
+typedef Http2Server = {
 	/**
 		events.EventEmitter
 		   1. close

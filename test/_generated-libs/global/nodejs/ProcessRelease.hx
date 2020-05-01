@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef ProcessRelease = {
+typedef ProcessRelease = {
 	var name : String;
 	@:optional
 	var sourceUrl : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMMatrixReadOnly = {
+typedef IDOMMatrixReadOnly = {
 	final a : Float;
 	final b : Float;
 	final c : Float;

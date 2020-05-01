@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events that fire when the fragment identifier of the URL has changed.
 **/
-extern typedef IHashChangeEvent = {
+typedef IHashChangeEvent = {
 	final newURL : String;
 	final oldURL : String;
 	/**

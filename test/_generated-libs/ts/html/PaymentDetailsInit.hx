@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentDetailsInit = {
+typedef PaymentDetailsInit = {
 	@:optional
 	var id : String;
 	var total : PaymentItem;

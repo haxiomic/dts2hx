@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef ServerStreamResponseOptions = {
+typedef ServerStreamResponseOptions = {
 	@:optional
 	var endStream : Bool;
 	@:optional

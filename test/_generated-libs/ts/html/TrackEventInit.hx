@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef TrackEventInit = {
+typedef TrackEventInit = {
 	@:optional
 	var track : ts.AnyOf3<IAudioTrack, ITextTrack, IVideoTrack>;
 	@:optional

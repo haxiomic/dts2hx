@@ -1,5 +1,5 @@
 package three;
-extern typedef Intersection = {
+typedef Intersection = {
 	var distance : Float;
 	@:optional
 	var distanceToRay : Float;

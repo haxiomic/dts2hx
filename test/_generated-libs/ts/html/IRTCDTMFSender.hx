@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCDTMFSender = {
+typedef IRTCDTMFSender = {
 	final canInsertDTMF : Bool;
 	var ontonechange : Null<(ev:IRTCDTMFToneChangeEvent) -> Dynamic>;
 	final toneBuffer : String;

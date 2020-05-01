@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpDecodingParameters = {
+typedef RTCRtpDecodingParameters = {
 	@:optional
 	var rid : String;
 };

@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef SpawnSyncOptionsWithBufferEncoding = {
+typedef SpawnSyncOptionsWithBufferEncoding = {
 	var encoding : String;
 	@:optional
 	var argv0 : String;

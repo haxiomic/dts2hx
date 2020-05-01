@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IRTCRtpTransceiver = {
+typedef IRTCRtpTransceiver = {
 	final currentDirection : Null<String>;
 	var direction : String;
 	final mid : Null<String>;

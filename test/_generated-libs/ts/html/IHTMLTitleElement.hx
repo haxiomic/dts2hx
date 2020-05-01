@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Contains the title for a document. This element inherits all of the properties and methods of the HTMLElement interface.
 **/
-extern typedef IHTMLTitleElement = {
+typedef IHTMLTitleElement = {
 	/**
 		Retrieves or sets the text of the object as a string.
 	**/

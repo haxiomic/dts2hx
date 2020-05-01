@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef CacheQueryOptions = {
+typedef CacheQueryOptions = {
 	@:optional
 	var ignoreMethod : Bool;
 	@:optional

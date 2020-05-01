@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides an interface to the OpenGL ES 2.0 graphics rendering context for the drawing surface of an HTML <canvas> element.
 **/
-extern typedef IWebGLRenderingContext = {
+typedef IWebGLRenderingContext = {
 	final canvas : ts.AnyOf2<IHTMLCanvasElement, IOffscreenCanvas>;
 	final drawingBufferHeight : Float;
 	final drawingBufferWidth : Float;

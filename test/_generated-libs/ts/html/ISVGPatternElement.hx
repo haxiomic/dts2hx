@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <pattern> element.
 **/
-extern typedef ISVGPatternElement = {
+typedef ISVGPatternElement = {
 	final height : ISVGAnimatedLength;
 	final patternContentUnits : ISVGAnimatedEnumeration;
 	final patternTransform : ISVGAnimatedTransformList;

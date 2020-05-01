@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef Settings = {
+typedef Settings = {
 	@:optional
 	var headerTableSize : Float;
 	@:optional

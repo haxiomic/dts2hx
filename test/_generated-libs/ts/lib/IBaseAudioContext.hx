@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IBaseAudioContext = {
+typedef IBaseAudioContext = {
 	final audioWorklet : ts.html.IAudioWorklet;
 	final currentTime : Float;
 	final destination : ts.html.IAudioDestinationNode;

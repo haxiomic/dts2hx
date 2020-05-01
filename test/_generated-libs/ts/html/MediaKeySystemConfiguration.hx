@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaKeySystemConfiguration = {
+typedef MediaKeySystemConfiguration = {
 	@:optional
 	var audioCapabilities : std.Array<MediaKeySystemMediaCapability>;
 	@:optional

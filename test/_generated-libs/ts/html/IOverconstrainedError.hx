@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IOverconstrainedError = {
+typedef IOverconstrainedError = {
 	var constraint : String;
 	var name : String;
 	var message : String;

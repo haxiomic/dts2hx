@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaStreamEventInit = {
+typedef MediaStreamEventInit = {
 	@:optional
 	var stream : IMediaStream;
 	@:optional

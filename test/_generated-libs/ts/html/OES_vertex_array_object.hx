@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef OES_vertex_array_object = {
+typedef OES_vertex_array_object = {
 	function bindVertexArrayOES(arrayObject:Null<WebGLVertexArrayObjectOES>):Void;
 	function createVertexArrayOES():Null<WebGLVertexArrayObjectOES>;
 	function deleteVertexArrayOES(arrayObject:Null<WebGLVertexArrayObjectOES>):Void;

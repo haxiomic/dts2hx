@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Coverage data for a JavaScript function.
 **/
-extern typedef FunctionCoverage = {
+typedef FunctionCoverage = {
 	/**
 		JavaScript function name.
 	**/

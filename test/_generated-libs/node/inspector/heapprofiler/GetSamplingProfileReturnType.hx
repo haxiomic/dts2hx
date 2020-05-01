@@ -1,5 +1,5 @@
 package node.inspector.heapprofiler;
-extern typedef GetSamplingProfileReturnType = {
+typedef GetSamplingProfileReturnType = {
 	/**
 		Return the sampling profile being collected.
 	**/

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ISpeechRecognitionResultList = {
+typedef ISpeechRecognitionResultList = {
 	final length : Float;
 	function item(index:Float):ISpeechRecognitionResult;
 };

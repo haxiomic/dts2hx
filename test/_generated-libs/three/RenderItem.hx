@@ -1,5 +1,5 @@
 package three;
-extern typedef RenderItem = {
+typedef RenderItem = {
 	var id : Float;
 	var object : Object3D;
 	var geometry : Null<BufferGeometry>;

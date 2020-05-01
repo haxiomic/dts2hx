@@ -2,7 +2,7 @@ package global.jquery;
 /**
 	Base type for jQuery events that have been triggered (including events triggered on plain objects).
 **/
-extern typedef TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

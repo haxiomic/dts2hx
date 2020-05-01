@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

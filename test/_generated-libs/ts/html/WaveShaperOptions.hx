@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WaveShaperOptions = {
+typedef WaveShaperOptions = {
 	@:optional
 	var curve : ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>;
 	@:optional

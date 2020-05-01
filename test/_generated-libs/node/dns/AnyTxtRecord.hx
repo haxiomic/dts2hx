@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef AnyTxtRecord = {
+typedef AnyTxtRecord = {
 	var type : String;
 	var entries : std.Array<String>;
 };

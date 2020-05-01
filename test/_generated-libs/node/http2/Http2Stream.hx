@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef Http2Stream = {
+typedef Http2Stream = {
 	final aborted : Bool;
 	final closed : Bool;
 	final destroyed : Bool;

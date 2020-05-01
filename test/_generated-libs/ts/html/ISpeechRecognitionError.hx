@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISpeechRecognitionError = {
+typedef ISpeechRecognitionError = {
 	final error : String;
 	final message : String;
 	/**

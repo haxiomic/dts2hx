@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef CallFunctionOnParameterType = {
+typedef CallFunctionOnParameterType = {
 	/**
 		Declaration of the function to call.
 	**/

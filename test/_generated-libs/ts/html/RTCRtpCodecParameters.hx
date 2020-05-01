@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpCodecParameters = {
+typedef RTCRtpCodecParameters = {
 	@:optional
 	var channels : Float;
 	var clockRate : Float;

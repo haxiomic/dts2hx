@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCError = {
+typedef IRTCError = {
 	var errorDetail : String;
 	var httpRequestStatusCode : Float;
 	var message : String;

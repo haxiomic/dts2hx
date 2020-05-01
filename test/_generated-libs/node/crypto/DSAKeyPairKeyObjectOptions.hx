@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef DSAKeyPairKeyObjectOptions = {
+typedef DSAKeyPairKeyObjectOptions = {
 	/**
 		Key size in bits
 	**/

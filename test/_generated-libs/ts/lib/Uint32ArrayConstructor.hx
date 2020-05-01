@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef Uint32ArrayConstructor = {
+typedef Uint32ArrayConstructor = {
 	final prototype : IUint32Array;
 	/**
 		The size in bytes of each element in the array.

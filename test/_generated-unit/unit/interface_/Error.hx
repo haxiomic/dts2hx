@@ -1,5 +1,5 @@
 package unit.interface_;
-extern typedef Error = {
+typedef Error = {
 	var name : String;
 	var message : String;
 	@:optional

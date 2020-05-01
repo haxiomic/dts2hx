@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	This WebVR API interface represents any VR device supported by this API. It includes generic information such as device IDs and descriptions, as well as methods for starting to present a VR scene, retrieving eye parameters and display capabilities, and other important functionality.
 **/
-extern typedef IVRDisplay = {
+typedef IVRDisplay = {
 	final capabilities : ts.html.IVRDisplayCapabilities;
 	var depthFar : Float;
 	var depthNear : Float;

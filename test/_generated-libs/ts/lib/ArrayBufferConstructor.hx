@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ArrayBufferConstructor = {
+typedef ArrayBufferConstructor = {
 	final prototype : IArrayBuffer;
 	function isView(arg:Dynamic):Bool;
 };

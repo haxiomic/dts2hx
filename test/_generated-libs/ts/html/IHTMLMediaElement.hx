@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Adds to HTMLElement the properties and methods needed to support basic media-related capabilities that are common to audio and video.
 **/
-extern typedef IHTMLMediaElement = {
+typedef IHTMLMediaElement = {
 	/**
 		Returns an AudioTrackList object with the audio tracks for a given video element.
 	**/

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	One drag data item. During a drag operation, each drag event has a dataTransfer property which contains a list of drag data items. Each item in the list is a DataTransferItem object.
 **/
-extern typedef IDataTransferItem = {
+typedef IDataTransferItem = {
 	/**
 		Returns the drag data item kind, one of: "string", "file".
 	**/

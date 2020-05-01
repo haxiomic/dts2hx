@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef HashChangeEventInit = {
+typedef HashChangeEventInit = {
 	@:optional
 	var newURL : String;
 	@:optional

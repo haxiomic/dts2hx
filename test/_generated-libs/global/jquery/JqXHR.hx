@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef JqXHR<TResolve> = {
+typedef JqXHR<TResolve> = {
 	@:optional
 	var responseJSON : Dynamic;
 	/**

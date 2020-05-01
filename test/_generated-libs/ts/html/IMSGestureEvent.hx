@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The MSGestureEvent is a proprietary interface specific to Internet Explorer and Microsoft Edge which represents events that occur due to touch gestures. Events using this interface include MSGestureStart, MSGestureEnd, MSGestureTap, MSGestureHold, MSGestureChange, and MSInertiaStart.
 **/
-extern typedef IMSGestureEvent = {
+typedef IMSGestureEvent = {
 	final clientX : Float;
 	final clientY : Float;
 	final expansion : Float;

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef CompileScriptParameterType = {
+typedef CompileScriptParameterType = {
 	/**
 		Expression to compile.
 	**/

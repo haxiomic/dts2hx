@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef CustomEventInit<T> = {
+typedef CustomEventInit<T> = {
 	@:optional
 	var detail : T;
 	@:optional

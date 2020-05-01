@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events that occur due to the user moving a mouse wheel or similar input device.
 **/
-extern typedef IWheelEvent = {
+typedef IWheelEvent = {
 	final deltaMode : Float;
 	final deltaX : Float;
 	final deltaY : Float;

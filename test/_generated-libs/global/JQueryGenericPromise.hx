@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryGenericPromise<T> = {
+typedef JQueryGenericPromise<T> = {
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/

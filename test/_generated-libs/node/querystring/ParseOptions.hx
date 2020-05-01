@@ -1,5 +1,5 @@
 package node.querystring;
-extern typedef ParseOptions = {
+typedef ParseOptions = {
 	@:optional
 	var maxKeys : Float;
 	@:optional

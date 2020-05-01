@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryEventObject = {
+typedef JQueryEventObject = {
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

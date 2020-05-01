@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feTurbulence> element.
 **/
-extern typedef ISVGFETurbulenceElement = {
+typedef ISVGFETurbulenceElement = {
 	final baseFrequencyX : ISVGAnimatedNumber;
 	final baseFrequencyY : ISVGAnimatedNumber;
 	final numOctaves : ISVGAnimatedInteger;

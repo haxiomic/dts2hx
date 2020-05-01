@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Correspond to the <length> basic data type.
 **/
-extern typedef ISVGLength = {
+typedef ISVGLength = {
 	final unitType : Float;
 	var value : Float;
 	var valueAsString : String;

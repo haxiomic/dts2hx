@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <progress> elements.
 **/
-extern typedef IHTMLProgressElement = {
+typedef IHTMLProgressElement = {
 	final labels : ts.lib.NodeListOf<IHTMLLabelElement>;
 	/**
 		Defines the maximum, or "done" value for a progress element.

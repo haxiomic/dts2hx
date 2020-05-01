@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WebGLContextEventInit = {
+typedef WebGLContextEventInit = {
 	@:optional
 	var statusMessage : String;
 	@:optional

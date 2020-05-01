@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PublicKeyCredentialRequestOptions = {
+typedef PublicKeyCredentialRequestOptions = {
 	@:optional
 	var allowCredentials : std.Array<PublicKeyCredentialDescriptor>;
 	var challenge : ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>;

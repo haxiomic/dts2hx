@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ISharedArrayBuffer = {
+typedef ISharedArrayBuffer = {
 	/**
 		Read-only. The length of the ArrayBuffer (in bytes).
 	**/

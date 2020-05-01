@@ -1,5 +1,5 @@
 package node.vm;
-extern typedef BaseOptions = {
+typedef BaseOptions = {
 	/**
 		Specifies the filename used in stack traces produced by this script.
 		Default: `''`.

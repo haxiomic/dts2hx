@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Enables retrieval and analysis of detailed network timing data regarding the loading of an application's resources. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource, such as an XMLHttpRequest, <SVG>, image, or script.
 **/
-extern typedef IPerformanceResourceTiming = {
+typedef IPerformanceResourceTiming = {
 	final connectEnd : Float;
 	final connectStart : Float;
 	final decodedBodySize : Float;

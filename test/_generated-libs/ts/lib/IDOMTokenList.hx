@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A set of space-separated tokens. Such a set is returned by Element.classList, HTMLLinkElement.relList, HTMLAnchorElement.relList, HTMLAreaElement.relList, HTMLIframeElement.sandbox, or HTMLOutputElement.htmlFor. It is indexed beginning with 0 as with JavaScript Array objects. DOMTokenList is always case-sensitive.
 **/
-extern typedef IDOMTokenList = {
+typedef IDOMTokenList = {
 	/**
 		Returns the number of tokens.
 	**/

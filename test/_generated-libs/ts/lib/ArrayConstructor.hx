@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ArrayConstructor = {
+typedef ArrayConstructor = {
 	@:overload(function<T>(arrayLength:Float):std.Array<T> { })
 	@:overload(function<T>(items:haxe.extern.Rest<T>):std.Array<T> { })
 	@:selfCall

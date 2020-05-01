@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feDistantLight> element.
 **/
-extern typedef ISVGFEDistantLightElement = {
+typedef ISVGFEDistantLightElement = {
 	final azimuth : ISVGAnimatedNumber;
 	final elevation : ISVGAnimatedNumber;
 	/**

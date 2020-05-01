@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef Http2SecureServer = {
+typedef Http2SecureServer = {
 	/**
 		events.EventEmitter
 		1. tlsClientError

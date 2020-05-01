@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGPathSegArcAbs = {
+typedef ISVGPathSegArcAbs = {
 	var angle : Float;
 	var largeArcFlag : Bool;
 	var r1 : Float;

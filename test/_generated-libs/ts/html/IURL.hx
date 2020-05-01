@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The URL interface represents an object providing static methods used for creating object URLs.
 **/
-extern typedef IURL = {
+typedef IURL = {
 	var hash : String;
 	var host : String;
 	var hostname : String;

@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef Process = {
+typedef Process = {
 	/**
 		Can also be a tty.WriteStream, not typed due to limitation.s
 	**/

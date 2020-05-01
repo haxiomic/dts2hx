@@ -1,5 +1,5 @@
 package node.os;
-extern typedef NetworkInterfaceBase = {
+typedef NetworkInterfaceBase = {
 	var address : String;
 	var netmask : String;
 	var mac : String;

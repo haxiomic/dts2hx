@@ -2,7 +2,7 @@ package ts.html;
 /**
 	SVG elements whose primary purpose is to directly render graphics into a group.
 **/
-extern typedef ISVGGraphicsElement = {
+typedef ISVGGraphicsElement = {
 	final transform : ISVGAnimatedTransformList;
 	function getBBox(?options:SVGBoundingBoxOptions):IDOMRect;
 	function getCTM():Null<IDOMMatrix>;

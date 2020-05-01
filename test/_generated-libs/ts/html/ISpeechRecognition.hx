@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISpeechRecognition = {
+typedef ISpeechRecognition = {
 	var continuous : Bool;
 	var grammars : ts.lib.ISpeechGrammarList;
 	var interimResults : Bool;

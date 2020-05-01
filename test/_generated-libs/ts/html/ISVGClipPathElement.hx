@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <clipPath> elements, as well as methods to manipulate them.
 **/
-extern typedef ISVGClipPathElement = {
+typedef ISVGClipPathElement = {
 	final clipPathUnits : ISVGAnimatedEnumeration;
 	final transform : ISVGAnimatedTransformList;
 	/**

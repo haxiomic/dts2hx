@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Implemented by elements that support rendering child text content. It is inherited by various text-related interfaces, such as SVGTextElement, SVGTSpanElement, SVGTRefElement, SVGAltGlyphElement and SVGTextPathElement.
 **/
-extern typedef ISVGTextContentElement = {
+typedef ISVGTextContentElement = {
 	final lengthAdjust : ISVGAnimatedEnumeration;
 	final textLength : ISVGAnimatedLength;
 	function getCharNumAtPosition(point:IDOMPoint):Float;

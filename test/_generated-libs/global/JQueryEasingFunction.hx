@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryEasingFunction = {
+typedef JQueryEasingFunction = {
 	@:selfCall
 	function call(percent:Float):Float;
 };

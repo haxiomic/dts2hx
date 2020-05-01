@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.
 **/
-extern typedef IMouseEvent = {
+typedef IMouseEvent = {
 	final altKey : Bool;
 	final button : Float;
 	final buttons : Float;

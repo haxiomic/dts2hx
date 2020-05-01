@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ProxyHandler<T> = {
+typedef ProxyHandler<T> = {
 	@:optional
 	function getPrototypeOf(target:T):Null<Dynamic>;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCIceGatherer = {
+typedef IRTCIceGatherer = {
 	final component : String;
 	var onerror : Null<(ev:IEvent) -> Dynamic>;
 	var onlocalcandidate : Null<(ev:IRTCIceGathererEvent) -> Dynamic>;

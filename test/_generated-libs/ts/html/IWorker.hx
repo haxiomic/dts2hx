@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Web Workers API interface represents a background task that can be easily created and can send messages back to its creator. Creating a worker is as simple as calling the Worker() constructor and specifying a script to be run in the worker thread.
 **/
-extern typedef IWorker = {
+typedef IWorker = {
 	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
 	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
 	function postMessage(message:Dynamic, transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of map elements.
 **/
-extern typedef IHTMLMapElement = {
+typedef IHTMLMapElement = {
 	/**
 		Retrieves a collection of the area objects defined for the given map object.
 	**/

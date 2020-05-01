@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCIdentityAssertion = {
+typedef IRTCIdentityAssertion = {
 	var idp : String;
 	var name : String;
 };

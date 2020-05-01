@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef RunScriptReturnType = {
+typedef RunScriptReturnType = {
 	/**
 		Run result.
 	**/

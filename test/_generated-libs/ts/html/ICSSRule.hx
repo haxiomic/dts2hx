@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single CSS rule. There are several types of rules, listed in the Type constants section below.
 **/
-extern typedef ICSSRule = {
+typedef ICSSRule = {
 	var cssText : String;
 	final parentRule : Null<ICSSRule>;
 	final parentStyleSheet : Null<ICSSStyleSheet>;

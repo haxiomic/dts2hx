@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DeviceMotionEventRotationRateInit = {
+typedef DeviceMotionEventRotationRateInit = {
 	@:optional
 	var alpha : Float;
 	@:optional

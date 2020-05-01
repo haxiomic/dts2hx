@@ -1,5 +1,5 @@
 package global.nodejs;
-extern typedef WritableStream = {
+typedef WritableStream = {
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:(?err:ts.lib.IError) -> Void):Bool { })
 	function write(buffer:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:(?err:ts.lib.IError) -> Void):Bool;

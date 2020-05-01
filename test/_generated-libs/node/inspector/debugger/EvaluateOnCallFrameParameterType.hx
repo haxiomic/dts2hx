@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef EvaluateOnCallFrameParameterType = {
+typedef EvaluateOnCallFrameParameterType = {
 	/**
 		Call frame identifier to evaluate on.
 	**/

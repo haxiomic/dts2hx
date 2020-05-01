@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A simple container list for multiple SourceBuffer objects.
 **/
-extern typedef ISourceBufferList = {
+typedef ISourceBufferList = {
 	final length : Float;
 	var onaddsourcebuffer : Null<(ev:ts.html.IEvent) -> Dynamic>;
 	var onremovesourcebuffer : Null<(ev:ts.html.IEvent) -> Dynamic>;

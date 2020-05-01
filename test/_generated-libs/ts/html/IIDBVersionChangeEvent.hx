@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This IndexedDB API interface indicates that the version of the database has changed, as the result of an IDBOpenDBRequest.onupgradeneeded event handler function.
 **/
-extern typedef IIDBVersionChangeEvent = {
+typedef IIDBVersionChangeEvent = {
 	final newVersion : Null<Float>;
 	final oldVersion : Float;
 	/**

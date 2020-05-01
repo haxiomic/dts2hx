@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WheelEventInit = {
+typedef WheelEventInit = {
 	@:optional
 	var deltaMode : Float;
 	@:optional

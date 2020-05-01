@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef TypeToTriggeredEventMap<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef TypeToTriggeredEventMap<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var change : ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>;
 	var resize : ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>;
 	var scroll : ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>;

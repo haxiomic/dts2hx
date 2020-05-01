@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef ExceptionRevokedEventDataType = {
+typedef ExceptionRevokedEventDataType = {
 	/**
 		Reason describing why exception was revoked.
 	**/

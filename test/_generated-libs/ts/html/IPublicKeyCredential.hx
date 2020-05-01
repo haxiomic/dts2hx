@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IPublicKeyCredential = {
+typedef IPublicKeyCredential = {
 	final rawId : ts.lib.IArrayBuffer;
 	final response : IAuthenticatorResponse;
 	function getClientExtensionResults():AuthenticationExtensionsClientOutputs;

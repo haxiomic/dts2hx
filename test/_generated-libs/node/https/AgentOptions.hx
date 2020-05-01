@@ -1,5 +1,5 @@
 package node.https;
-extern typedef AgentOptions = {
+typedef AgentOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional

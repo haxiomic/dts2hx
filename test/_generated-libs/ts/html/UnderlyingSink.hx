@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef UnderlyingSink<W> = {
+typedef UnderlyingSink<W> = {
 	@:optional
 	var abort : WritableStreamErrorCallback;
 	@:optional

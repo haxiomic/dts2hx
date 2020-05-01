@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCDtlsTransport = {
+typedef IRTCDtlsTransport = {
 	var onerror : Null<(ev:IRTCErrorEvent) -> Dynamic>;
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
 	final state : String;

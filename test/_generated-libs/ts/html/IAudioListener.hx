@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The position and orientation of the unique person listening to the audio scene, and is used in audio spatialization. All PannerNodes spatialize in relation to the AudioListener stored in the BaseAudioContext.listener attribute.
 **/
-extern typedef IAudioListener = {
+typedef IAudioListener = {
 	final forwardX : ts.lib.IAudioParam;
 	final forwardY : ts.lib.IAudioParam;
 	final forwardZ : ts.lib.IAudioParam;

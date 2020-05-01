@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecSyncOptions = {
+typedef ExecSyncOptions = {
 	@:optional
 	var input : ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>;
 	@:optional

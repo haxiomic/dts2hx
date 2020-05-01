@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MutationObserverInit = {
+typedef MutationObserverInit = {
 	/**
 		Set to a list of attribute local names (without namespace) if not all attribute mutations need to be observed and attributes is true or omitted.
 	**/

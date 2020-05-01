@@ -1,5 +1,5 @@
 package node.inspector.nodeworker;
-extern typedef WorkerInfo = {
+typedef WorkerInfo = {
 	var workerId : String;
 	var type : String;
 	var title : String;

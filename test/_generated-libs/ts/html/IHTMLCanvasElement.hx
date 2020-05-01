@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides properties and methods for manipulating the layout and presentation of <canvas> elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface.
 **/
-extern typedef IHTMLCanvasElement = {
+typedef IHTMLCanvasElement = {
 	/**
 		Gets or sets the height of a canvas element on a document.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef JsonWebKey = {
+typedef JsonWebKey = {
 	@:optional
 	var alg : String;
 	@:optional

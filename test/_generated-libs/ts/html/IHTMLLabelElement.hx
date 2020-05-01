@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Gives access to properties specific to <label> elements. It inherits methods and properties from the base HTMLElement interface.
 **/
-extern typedef IHTMLLabelElement = {
+typedef IHTMLLabelElement = {
 	final control : Null<IHTMLElement>;
 	/**
 		Retrieves a reference to the form that the object is embedded in.

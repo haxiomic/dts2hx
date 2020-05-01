@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <image> element.
 **/
-extern typedef ISVGImageElement = {
+typedef ISVGImageElement = {
 	final height : ISVGAnimatedLength;
 	final preserveAspectRatio : ISVGAnimatedPreserveAspectRatio;
 	final width : ISVGAnimatedLength;

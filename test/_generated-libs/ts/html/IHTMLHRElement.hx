@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating <hr> elements.
 **/
-extern typedef IHTMLHRElement = {
+typedef IHTMLHRElement = {
 	var align : String;
 	var color : String;
 	var noShade : Bool;

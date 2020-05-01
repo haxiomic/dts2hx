@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
 **/
-extern typedef IHTMLEmbedElement = {
+typedef IHTMLEmbedElement = {
 	var align : String;
 	/**
 		Sets or retrieves the height of the object.

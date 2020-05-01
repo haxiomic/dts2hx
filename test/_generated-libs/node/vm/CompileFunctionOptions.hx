@@ -1,5 +1,5 @@
 package node.vm;
-extern typedef CompileFunctionOptions = {
+typedef CompileFunctionOptions = {
 	/**
 		Provides an optional data with V8's code cache data for the supplied source.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ICSSFontFaceRule = {
+typedef ICSSFontFaceRule = {
 	final style : ts.lib.ICSSStyleDeclaration;
 	var cssText : String;
 	final parentRule : Null<ICSSRule>;

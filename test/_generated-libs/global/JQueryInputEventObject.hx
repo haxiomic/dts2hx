@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryInputEventObject = {
+typedef JQueryInputEventObject = {
 	var altKey : Bool;
 	var ctrlKey : Bool;
 	/**

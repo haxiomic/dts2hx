@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef GetScriptSourceParameterType = {
+typedef GetScriptSourceParameterType = {
 	/**
 		Id of the script to get source for.
 	**/

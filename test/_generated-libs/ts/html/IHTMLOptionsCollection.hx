@@ -2,7 +2,7 @@ package ts.html;
 /**
 	HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select.
 **/
-extern typedef IHTMLOptionsCollection = {
+typedef IHTMLOptionsCollection = {
 	/**
 		Returns the number of elements in the collection.
 		

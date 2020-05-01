@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ComputedEffectTiming = {
+typedef ComputedEffectTiming = {
 	@:optional
 	var activeDuration : Float;
 	@:optional

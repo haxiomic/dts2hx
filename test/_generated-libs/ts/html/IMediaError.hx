@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
 **/
-extern typedef IMediaError = {
+typedef IMediaError = {
 	final code : Float;
 	final message : String;
 	final msExtendedCode : Float;

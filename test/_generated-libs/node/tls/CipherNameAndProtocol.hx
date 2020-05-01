@@ -1,5 +1,5 @@
 package node.tls;
-extern typedef CipherNameAndProtocol = {
+typedef CipherNameAndProtocol = {
 	/**
 		The cipher name.
 	**/

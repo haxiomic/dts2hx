@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef Selectors = {
+typedef Selectors = {
 	@:native(":")
 	var Colon : sizzle.selectors.PseudoFunctions;
 	var filter : sizzle.selectors.FilterFunctions;

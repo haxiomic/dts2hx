@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A simple low-order filter, and is created using the AudioContext.createBiquadFilter() method. It is an AudioNode that can represent different kinds of filters, tone control devices, and graphic equalizers.
 **/
-extern typedef IBiquadFilterNode = {
+typedef IBiquadFilterNode = {
 	final Q : ts.lib.IAudioParam;
 	final detune : ts.lib.IAudioParam;
 	final frequency : ts.lib.IAudioParam;

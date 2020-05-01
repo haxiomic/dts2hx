@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef SrvRecord = {
+typedef SrvRecord = {
 	var priority : Float;
 	var weight : Float;
 	var port : Float;

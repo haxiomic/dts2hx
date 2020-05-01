@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DecodeSuccessCallback = {
+typedef DecodeSuccessCallback = {
 	@:selfCall
 	function call(decodedData:IAudioBuffer):Void;
 };

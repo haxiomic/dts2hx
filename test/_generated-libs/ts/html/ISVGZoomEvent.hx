@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGZoomEvent = {
+typedef ISVGZoomEvent = {
 	final newScale : Float;
 	final newTranslate : IDOMPoint;
 	final previousScale : Float;

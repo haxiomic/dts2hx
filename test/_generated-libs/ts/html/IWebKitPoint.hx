@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IWebKitPoint = {
+typedef IWebKitPoint = {
 	var x : Float;
 	var y : Float;
 };

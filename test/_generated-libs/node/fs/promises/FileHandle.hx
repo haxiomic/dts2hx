@@ -1,5 +1,5 @@
 package node.fs.promises;
-extern typedef FileHandle = {
+typedef FileHandle = {
 	/**
 		Gets the file descriptor for this file handle.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ScopedCredentialOptions = {
+typedef ScopedCredentialOptions = {
 	@:optional
 	var excludeList : std.Array<ScopedCredentialDescriptor>;
 	@:optional

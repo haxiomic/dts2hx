@@ -1,4 +1,4 @@
 package ts.html;
-extern typedef PermissionDescriptor = {
+typedef PermissionDescriptor = {
 	var name : String;
 };

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IOverflowEvent = {
+typedef IOverflowEvent = {
 	final horizontalOverflow : Bool;
 	final orient : Float;
 	final verticalOverflow : Bool;

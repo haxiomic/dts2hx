@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMRectReadOnly = {
+typedef IDOMRectReadOnly = {
 	final bottom : Float;
 	final height : Float;
 	final left : Float;

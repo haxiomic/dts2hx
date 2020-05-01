@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGGeometryElement = {
+typedef ISVGGeometryElement = {
 	final pathLength : ISVGAnimatedNumber;
 	function getPointAtLength(distance:Float):IDOMPoint;
 	function getTotalLength():Float;

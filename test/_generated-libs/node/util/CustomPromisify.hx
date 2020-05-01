@@ -1,5 +1,5 @@
 package node.util;
-extern typedef CustomPromisify<TCustom> = {
+typedef CustomPromisify<TCustom> = {
 	/**
 		Calls the function, substituting the specified object for the this value of the function, and the specified array for the arguments of the function.
 	**/

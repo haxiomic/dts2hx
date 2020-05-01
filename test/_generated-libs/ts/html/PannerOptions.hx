@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PannerOptions = {
+typedef PannerOptions = {
 	@:optional
 	var coneInnerAngle : Float;
 	@:optional

@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef RSAKeyPairKeyObjectOptions = {
+typedef RSAKeyPairKeyObjectOptions = {
 	/**
 		Key size in bits
 	**/

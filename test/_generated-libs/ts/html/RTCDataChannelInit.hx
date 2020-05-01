@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCDataChannelInit = {
+typedef RTCDataChannelInit = {
 	@:optional
 	var id : Float;
 	@:optional

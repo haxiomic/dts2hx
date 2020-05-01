@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetSkipAllPausesParameterType = {
+typedef SetSkipAllPausesParameterType = {
 	/**
 		New value for skip pauses state.
 	**/

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events providing information related to errors in scripts or in files.
 **/
-extern typedef IErrorEvent = {
+typedef IErrorEvent = {
 	final colno : Float;
 	final error : Dynamic;
 	final filename : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PositionOptions = {
+typedef PositionOptions = {
 	@:optional
 	var enableHighAccuracy : Bool;
 	@:optional

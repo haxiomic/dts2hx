@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
 **/
-extern typedef IAudioParam = {
+typedef IAudioParam = {
 	var automationRate : String;
 	final defaultValue : Float;
 	final maxValue : Float;

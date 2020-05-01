@@ -1,5 +1,5 @@
 package node.inspector.profiler;
-extern typedef StopReturnType = {
+typedef StopReturnType = {
 	/**
 		Recorded profile.
 	**/

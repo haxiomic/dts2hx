@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef ServerStreamFileResponseOptionsWithError = {
+typedef ServerStreamFileResponseOptionsWithError = {
 	@:optional
 	var onError : (err:global.nodejs.ErrnoException) -> Void;
 	@:optional

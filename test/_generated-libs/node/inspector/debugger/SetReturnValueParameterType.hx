@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetReturnValueParameterType = {
+typedef SetReturnValueParameterType = {
 	/**
 		New return value.
 	**/

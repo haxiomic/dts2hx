@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetBreakpointByUrlParameterType = {
+typedef SetBreakpointByUrlParameterType = {
 	/**
 		Line number to set breakpoint at.
 	**/

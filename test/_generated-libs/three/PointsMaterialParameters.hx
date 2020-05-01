@@ -1,5 +1,5 @@
 package three;
-extern typedef PointsMaterialParameters = {
+typedef PointsMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef CallFunctionOnReturnType = {
+typedef CallFunctionOnReturnType = {
 	/**
 		Call result.
 	**/

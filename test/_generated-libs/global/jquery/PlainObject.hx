@@ -4,4 +4,4 @@ package global.jquery;
 	
 	**Note**: The type declaration of PlainObject is imprecise. It includes host objects and user-defined arrays which do not match jQuery's definition.
 **/
-extern typedef PlainObject<T> = { };
+typedef PlainObject<T> = { };

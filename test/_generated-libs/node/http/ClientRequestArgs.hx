@@ -1,5 +1,5 @@
 package node.http;
-extern typedef ClientRequestArgs = {
+typedef ClientRequestArgs = {
 	@:optional
 	var protocol : String;
 	@:optional

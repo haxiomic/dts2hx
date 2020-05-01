@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentRequestUpdateEventInit = {
+typedef PaymentRequestUpdateEventInit = {
 	@:optional
 	var bubbles : Bool;
 	@:optional

@@ -1,5 +1,5 @@
 package node.dgram;
-extern typedef SocketOptions = {
+typedef SocketOptions = {
 	var type : String;
 	@:optional
 	var reuseAddr : Bool;

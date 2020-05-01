@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCIceServer = {
+typedef RTCIceServer = {
 	@:optional
 	var credential : ts.AnyOf2<String, RTCOAuthCredential>;
 	@:optional

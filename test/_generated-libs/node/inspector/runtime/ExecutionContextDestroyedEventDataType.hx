@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef ExecutionContextDestroyedEventDataType = {
+typedef ExecutionContextDestroyedEventDataType = {
 	/**
 		Id of the destroyed context
 	**/

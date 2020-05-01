@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DragEventInit = {
+typedef DragEventInit = {
 	@:optional
 	var dataTransfer : IDataTransfer;
 	@:optional

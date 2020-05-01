@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IKeyframeEffect = {
+typedef IKeyframeEffect = {
 	var composite : String;
 	var iterationComposite : String;
 	var target : Null<IElement>;

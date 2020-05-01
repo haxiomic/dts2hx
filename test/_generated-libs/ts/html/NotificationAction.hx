@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef NotificationAction = {
+typedef NotificationAction = {
 	var action : String;
 	@:optional
 	var icon : String;

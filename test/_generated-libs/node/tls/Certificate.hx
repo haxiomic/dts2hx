@@ -1,5 +1,5 @@
 package node.tls;
-extern typedef Certificate = {
+typedef Certificate = {
 	/**
 		Country code.
 	**/

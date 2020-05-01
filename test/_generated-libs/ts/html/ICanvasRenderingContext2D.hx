@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The CanvasRenderingContext2D interface, part of the Canvas API, provides the 2D rendering context for the drawing surface of a <canvas> element. It is used for drawing shapes, text, images, and other objects.
 **/
-extern typedef ICanvasRenderingContext2D = {
+typedef ICanvasRenderingContext2D = {
 	final canvas : IHTMLCanvasElement;
 	var globalAlpha : Float;
 	var globalCompositeOperation : String;

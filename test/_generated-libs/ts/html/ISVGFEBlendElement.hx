@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feBlend> element.
 **/
-extern typedef ISVGFEBlendElement = {
+typedef ISVGFEBlendElement = {
 	final in1 : ISVGAnimatedString;
 	final in2 : ISVGAnimatedString;
 	final mode : ISVGAnimatedEnumeration;

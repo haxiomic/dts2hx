@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaStreamErrorEventInit = {
+typedef MediaStreamErrorEventInit = {
 	@:optional
 	var error : IMediaStreamError;
 	@:optional

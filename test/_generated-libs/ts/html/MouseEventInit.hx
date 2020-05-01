@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MouseEventInit = {
+typedef MouseEventInit = {
 	@:optional
 	var button : Float;
 	@:optional

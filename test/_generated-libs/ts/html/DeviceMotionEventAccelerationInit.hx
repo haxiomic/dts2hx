@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DeviceMotionEventAccelerationInit = {
+typedef DeviceMotionEventAccelerationInit = {
 	@:optional
 	var x : Float;
 	@:optional

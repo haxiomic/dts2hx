@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef ClientHttp2Stream = {
+typedef ClientHttp2Stream = {
 	/**
 		Event emitter
 		The defined events on documents including:

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PositionCallback = {
+typedef PositionCallback = {
 	@:selfCall
 	function call(position:Position):Void;
 };

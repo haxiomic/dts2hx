@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef ServerHttp2Session = {
+typedef ServerHttp2Session = {
 	function altsvc(alt:String, originOrStream:ts.AnyOf4<String, Float, node.url.URL, AlternativeServiceOptions>):Void;
 	final server : ts.AnyOf2<Http2Server, Http2SecureServer>;
 	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })

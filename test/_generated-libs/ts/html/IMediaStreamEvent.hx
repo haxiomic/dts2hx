@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events that occurs in relation to a MediaStream. Two events of this type can be thrown: addstream and removestream.
 **/
-extern typedef IMediaStreamEvent = {
+typedef IMediaStreamEvent = {
 	final stream : Null<IMediaStream>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

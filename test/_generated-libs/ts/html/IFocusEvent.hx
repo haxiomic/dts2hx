@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Focus-related events like focus, blur, focusin, or focusout.
 **/
-extern typedef IFocusEvent = {
+typedef IFocusEvent = {
 	final relatedTarget : Null<IEventTarget>;
 	final detail : Float;
 	final view : Null<IWindow>;

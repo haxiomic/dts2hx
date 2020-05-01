@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

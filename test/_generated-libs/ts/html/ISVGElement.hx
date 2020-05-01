@@ -2,7 +2,7 @@ package ts.html;
 /**
 	All of the SVG DOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.
 **/
-extern typedef ISVGElement = {
+typedef ISVGElement = {
 	/**
 		Returns the value of element's class content attribute. Can be set to change it.
 	**/

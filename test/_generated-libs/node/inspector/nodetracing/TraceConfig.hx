@@ -1,5 +1,5 @@
 package node.inspector.nodetracing;
-extern typedef TraceConfig = {
+typedef TraceConfig = {
 	/**
 		Controls how the trace buffer stores data.
 	**/

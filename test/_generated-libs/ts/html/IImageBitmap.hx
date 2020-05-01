@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IImageBitmap = {
+typedef IImageBitmap = {
 	/**
 		Returns the intrinsic height of the image, in CSS pixels.
 	**/

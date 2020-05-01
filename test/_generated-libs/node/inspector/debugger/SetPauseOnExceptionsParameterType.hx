@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef SetPauseOnExceptionsParameterType = {
+typedef SetPauseOnExceptionsParameterType = {
 	/**
 		Pause on exceptions mode.
 	**/

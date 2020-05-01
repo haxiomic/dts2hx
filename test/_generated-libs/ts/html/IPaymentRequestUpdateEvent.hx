@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Payment Request API interface enables a web page to update the details of a PaymentRequest in response to a user action.
 **/
-extern typedef IPaymentRequestUpdateEvent = {
+typedef IPaymentRequestUpdateEvent = {
 	function updateWith(detailsPromise:ts.AnyOf2<PaymentDetailsUpdate, ts.lib.IPromise<PaymentDetailsUpdate>>):Void;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

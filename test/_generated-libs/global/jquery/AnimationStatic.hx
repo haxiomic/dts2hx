@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef AnimationStatic = {
+typedef AnimationStatic = {
 	@:selfCall
 	function call<TElement>(element:TElement, props:PlainObject<Dynamic>, opts:EffectsOptions<TElement>):Animation<TElement>;
 	/**

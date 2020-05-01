@@ -1,5 +1,5 @@
 package three;
-extern typedef LineBasicMaterialParameters = {
+typedef LineBasicMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional

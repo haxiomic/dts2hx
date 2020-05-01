@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef HTMLCollectionOf<T> = {
+typedef HTMLCollectionOf<T> = {
 	/**
 		Retrieves an object from various collections.
 	**/

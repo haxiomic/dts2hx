@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <use> element.
 **/
-extern typedef ISVGUseElement = {
+typedef ISVGUseElement = {
 	final animatedInstanceRoot : Null<ISVGElementInstance>;
 	final height : ISVGAnimatedLength;
 	final instanceRoot : Null<ISVGElementInstance>;

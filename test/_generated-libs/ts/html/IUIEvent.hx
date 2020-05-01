@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Simple user interface events.
 **/
-extern typedef IUIEvent = {
+typedef IUIEvent = {
 	final detail : Float;
 	final view : Null<IWindow>;
 	final which : Float;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An interface for the <circle> element. The circle element is defined by the cx and cy attributes that denote the coordinates of the centre of the circle.
 **/
-extern typedef ISVGCircleElement = {
+typedef ISVGCircleElement = {
 	final cx : ISVGAnimatedLength;
 	final cy : ISVGAnimatedLength;
 	final r : ISVGAnimatedLength;

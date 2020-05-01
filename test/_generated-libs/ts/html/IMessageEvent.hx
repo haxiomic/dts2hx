@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A message received by a target object.
 **/
-extern typedef IMessageEvent = {
+typedef IMessageEvent = {
 	/**
 		Returns the data of the message.
 	**/

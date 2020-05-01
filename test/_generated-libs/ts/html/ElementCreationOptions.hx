@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ElementCreationOptions = {
+typedef ElementCreationOptions = {
 	@:optional
 	var is : String;
 };

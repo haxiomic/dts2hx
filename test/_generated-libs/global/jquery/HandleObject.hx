@@ -2,7 +2,7 @@ package global.jquery;
 /**
 	Many of the special event hook functions below are passed a `handleObj` object that provides more information about the event, how it was attached, and its current state. This object and its contents should be treated as read-only data, and only the properties below are documented for use by special event handlers.
 **/
-extern typedef HandleObject<TTarget, TData> = {
+typedef HandleObject<TTarget, TData> = {
 	/**
 		The type of event, such as `"click"`. When special event mapping is used via `bindType` or `delegateType`, this will be the mapped type.
 	**/

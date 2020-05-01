@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef UIEventInit = {
+typedef UIEventInit = {
 	@:optional
 	var detail : Float;
 	@:optional

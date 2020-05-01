@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	An object that is a CSS declaration block, and exposes style information and various style-related methods and properties.
 **/
-extern typedef ICSSStyleDeclaration = {
+typedef ICSSStyleDeclaration = {
 	var alignContent : String;
 	var alignItems : String;
 	var alignSelf : String;

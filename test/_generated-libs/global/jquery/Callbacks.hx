@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef Callbacks<T> = {
+typedef Callbacks<T> = {
 	/**
 		Add a callback or a collection of callbacks to a callback list.
 	**/

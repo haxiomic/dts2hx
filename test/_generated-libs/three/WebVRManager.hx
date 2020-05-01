@@ -1,5 +1,5 @@
 package three;
-extern typedef WebVRManager = {
+typedef WebVRManager = {
 	var enabled : Bool;
 	function getDevice():Null<ts.lib.IVRDisplay>;
 	function setDevice(device:Null<ts.lib.IVRDisplay>):Void;

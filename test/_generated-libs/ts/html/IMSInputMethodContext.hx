@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSInputMethodContext = {
+typedef IMSInputMethodContext = {
 	final compositionEndOffset : Float;
 	final compositionStartOffset : Float;
 	var oncandidatewindowhide : Null<(ev:IEvent) -> Dynamic>;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDOMPointReadOnly = {
+typedef IDOMPointReadOnly = {
 	final w : Float;
 	final x : Float;
 	final y : Float;

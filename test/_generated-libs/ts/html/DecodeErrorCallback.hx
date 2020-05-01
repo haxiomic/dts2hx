@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DecodeErrorCallback = {
+typedef DecodeErrorCallback = {
 	@:selfCall
 	function call(error:IDOMException):Void;
 };

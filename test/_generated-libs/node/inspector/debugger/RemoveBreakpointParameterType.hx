@@ -1,4 +1,4 @@
 package node.inspector.debugger;
-extern typedef RemoveBreakpointParameterType = {
+typedef RemoveBreakpointParameterType = {
 	var breakpointId : String;
 };

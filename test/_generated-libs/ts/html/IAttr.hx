@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A DOM element's attribute as an object. In most DOM methods, you will probably directly retrieve the attribute as a string (e.g., Element.getAttribute(), but certain functions (e.g., Element.getAttributeNode()) or means of iterating give Attr types.
 **/
-extern typedef IAttr = {
+typedef IAttr = {
 	final localName : String;
 	final name : String;
 	final namespaceURI : Null<String>;

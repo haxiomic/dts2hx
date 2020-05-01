@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Type profile data collected during runtime for a JavaScript script.
 **/
-extern typedef ScriptTypeProfile = {
+typedef ScriptTypeProfile = {
 	/**
 		JavaScript script id.
 	**/

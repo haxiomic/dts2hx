@@ -1,5 +1,5 @@
 package node.inspector.nodeworker;
-extern typedef SendMessageToWorkerParameterType = {
+typedef SendMessageToWorkerParameterType = {
 	var message : String;
 	/**
 		Identifier of the session.

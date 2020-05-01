@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCTrackEvent = {
+typedef IRTCTrackEvent = {
 	final receiver : IRTCRtpReceiver;
 	final streams : ts.lib.ReadonlyArray<IMediaStream>;
 	final track : IMediaStreamTrack;

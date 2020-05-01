@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef RunScriptParameterType = {
+typedef RunScriptParameterType = {
 	/**
 		Id of the script to run.
 	**/

@@ -1,5 +1,5 @@
 package three;
-extern typedef WebGLRenderTargetOptions = {
+typedef WebGLRenderTargetOptions = {
 	@:optional
 	var wrapS : Wrapping;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PushPermissionDescriptor = {
+typedef PushPermissionDescriptor = {
 	var name : String;
 	@:optional
 	var userVisibleOnly : Bool;

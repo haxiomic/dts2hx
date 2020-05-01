@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef WebGLContextAttributes = {
+typedef WebGLContextAttributes = {
 	@:optional
 	var alpha : Bool;
 	@:optional

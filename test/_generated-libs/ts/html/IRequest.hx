@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Fetch API interface represents a resource request.
 **/
-extern typedef IRequest = {
+typedef IRequest = {
 	/**
 		Returns the cache mode associated with request, which is a string indicating how the request will interact with the browser's cache when fetching.
 	**/

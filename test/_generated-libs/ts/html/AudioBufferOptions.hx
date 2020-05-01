@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AudioBufferOptions = {
+typedef AudioBufferOptions = {
 	var length : Float;
 	@:optional
 	var numberOfChannels : Float;

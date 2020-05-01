@@ -1,5 +1,5 @@
 package node.inspector.profiler;
-extern typedef GetBestEffortCoverageReturnType = {
+typedef GetBestEffortCoverageReturnType = {
 	/**
 		Coverage data for the current isolate.
 	**/

@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Object containing abbreviated remote object value.
 **/
-extern typedef ObjectPreview = {
+typedef ObjectPreview = {
 	/**
 		Object type.
 	**/

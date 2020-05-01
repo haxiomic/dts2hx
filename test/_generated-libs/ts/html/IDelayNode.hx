@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A delay-line; an AudioNode audio-processing module that causes a delay between the arrival of an input data and its propagation to the output.
 **/
-extern typedef IDelayNode = {
+typedef IDelayNode = {
 	final delayTime : ts.lib.IAudioParam;
 	var channelCount : Float;
 	var channelCountMode : String;

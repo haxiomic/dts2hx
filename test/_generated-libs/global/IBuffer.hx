@@ -4,7 +4,7 @@ package global;
 	A Buffer is similar to an array of integers but corresponds to a raw memory allocation outside the V8 heap.  A Buffer cannot be resized.
 	Valid string encodings: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'
 **/
-extern typedef IBuffer = {
+typedef IBuffer = {
 	/**
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/

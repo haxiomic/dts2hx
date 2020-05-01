@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	This EncryptedMediaExtensions API interface is a read-only map of media key statuses by key IDs.
 **/
-extern typedef IMediaKeyStatusMap = {
+typedef IMediaKeyStatusMap = {
 	final size : Float;
 	function get(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Dynamic;
 	function has(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Bool;

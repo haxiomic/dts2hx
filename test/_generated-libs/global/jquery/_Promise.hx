@@ -2,7 +2,7 @@ package global.jquery;
 /**
 	Represents the completion of an asynchronous operation
 **/
-extern typedef _Promise<T> = {
+typedef _Promise<T> = {
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/

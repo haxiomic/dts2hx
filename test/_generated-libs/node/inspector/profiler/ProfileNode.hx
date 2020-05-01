@@ -2,7 +2,7 @@ package node.inspector.profiler;
 /**
 	Profile node. Holds callsite information, execution statistics and child nodes.
 **/
-extern typedef ProfileNode = {
+typedef ProfileNode = {
 	/**
 		Unique id of the node.
 	**/

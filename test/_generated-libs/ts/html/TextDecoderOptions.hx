@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef TextDecoderOptions = {
+typedef TextDecoderOptions = {
 	@:optional
 	var fatal : Bool;
 	@:optional

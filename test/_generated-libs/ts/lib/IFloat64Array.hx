@@ -3,7 +3,7 @@ package ts.lib;
 	A typed array of 64-bit float values. The contents are initialized to 0. If the requested
 	number of bytes could not be allocated an exception is raised.
 **/
-extern typedef IFloat64Array = {
+typedef IFloat64Array = {
 	/**
 		The size in bytes of each element in the array.
 	**/

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PopStateEventInit = {
+typedef PopStateEventInit = {
 	@:optional
 	var state : Dynamic;
 	@:optional

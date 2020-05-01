@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGFEDropShadowElement = {
+typedef ISVGFEDropShadowElement = {
 	final dx : ISVGAnimatedNumber;
 	final dy : ISVGAnimatedNumber;
 	final in1 : ISVGAnimatedString;

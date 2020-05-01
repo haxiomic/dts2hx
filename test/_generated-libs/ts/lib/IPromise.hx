@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Represents the completion of an asynchronous operation
 **/
-extern typedef IPromise<T> = {
+typedef IPromise<T> = {
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/

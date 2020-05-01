@@ -1,5 +1,5 @@
 package three;
-extern typedef SpriteMaterialParameters = {
+typedef SpriteMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional

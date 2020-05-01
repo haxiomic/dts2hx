@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef StoreExceptionsInformation = {
+typedef StoreExceptionsInformation = {
 	@:optional
 	var detailURI : String;
 	@:optional

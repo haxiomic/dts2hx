@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef Symbol = {
+typedef Symbol = {
 	/**
 		Returns a string representation of an object.
 	**/

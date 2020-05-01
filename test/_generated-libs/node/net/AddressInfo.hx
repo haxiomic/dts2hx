@@ -1,5 +1,5 @@
 package node.net;
-extern typedef AddressInfo = {
+typedef AddressInfo = {
 	var address : String;
 	var family : String;
 	var port : Float;

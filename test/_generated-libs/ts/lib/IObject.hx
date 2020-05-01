@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Provides functionality common to all JavaScript objects.
 **/
-extern typedef IObject = {
+typedef IObject = {
 	/**
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/

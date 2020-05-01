@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A stream of media content. A stream consists of several tracks such as video or audio tracks. Each track is specified as an instance of MediaStreamTrack.
 **/
-extern typedef IMediaStream = {
+typedef IMediaStream = {
 	final active : Bool;
 	final id : String;
 	var onaddtrack : Null<(ev:IMediaStreamTrackEvent) -> Dynamic>;

@@ -2,7 +2,7 @@ package node.inspector.debugger;
 /**
 	Scope description.
 **/
-extern typedef Scope = {
+typedef Scope = {
 	/**
 		Scope type.
 	**/

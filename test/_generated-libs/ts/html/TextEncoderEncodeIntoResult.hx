@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef TextEncoderEncodeIntoResult = {
+typedef TextEncoderEncodeIntoResult = {
 	@:optional
 	var read : Float;
 	@:optional

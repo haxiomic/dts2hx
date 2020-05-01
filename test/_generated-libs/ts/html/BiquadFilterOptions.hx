@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef BiquadFilterOptions = {
+typedef BiquadFilterOptions = {
 	@:optional
 	var Q : Float;
 	@:optional

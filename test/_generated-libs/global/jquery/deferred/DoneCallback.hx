@@ -1,5 +1,5 @@
 package global.jquery.deferred;
-extern typedef DoneCallback<TResolve> = {
+typedef DoneCallback<TResolve> = {
 	@:selfCall
 	function call(args:haxe.extern.Rest<TResolve>):Void;
 };

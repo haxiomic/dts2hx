@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef UIEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef UIEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;

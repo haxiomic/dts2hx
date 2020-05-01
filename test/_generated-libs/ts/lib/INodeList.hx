@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
 **/
-extern typedef INodeList = {
+typedef INodeList = {
 	/**
 		Returns the number of nodes in the collection.
 	**/

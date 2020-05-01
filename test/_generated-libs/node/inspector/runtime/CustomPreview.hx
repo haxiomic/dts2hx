@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef CustomPreview = {
+typedef CustomPreview = {
 	var header : String;
 	var hasBody : Bool;
 	var formatterObjectId : String;

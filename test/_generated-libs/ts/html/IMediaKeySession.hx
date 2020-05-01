@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This EncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM).
 **/
-extern typedef IMediaKeySession = {
+typedef IMediaKeySession = {
 	final closed : ts.lib.IPromise<Void>;
 	final expiration : Float;
 	final keyStatuses : ts.lib.IMediaKeyStatusMap;

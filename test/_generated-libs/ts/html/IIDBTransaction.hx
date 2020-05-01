@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IIDBTransaction = {
+typedef IIDBTransaction = {
 	/**
 		Returns the transaction's connection.
 	**/

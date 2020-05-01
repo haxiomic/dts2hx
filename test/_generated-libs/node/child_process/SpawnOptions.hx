@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef SpawnOptions = {
+typedef SpawnOptions = {
 	@:optional
 	var argv0 : String;
 	@:optional

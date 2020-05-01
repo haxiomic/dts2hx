@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feColorMatrix> element.
 **/
-extern typedef ISVGFEColorMatrixElement = {
+typedef ISVGFEColorMatrixElement = {
 	final in1 : ISVGAnimatedString;
 	final type : ISVGAnimatedEnumeration;
 	final values : ISVGAnimatedNumberList;

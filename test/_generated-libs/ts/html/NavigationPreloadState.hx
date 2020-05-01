@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef NavigationPreloadState = {
+typedef NavigationPreloadState = {
 	@:optional
 	var enabled : Bool;
 	@:optional

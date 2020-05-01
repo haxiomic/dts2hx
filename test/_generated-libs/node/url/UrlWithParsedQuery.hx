@@ -1,5 +1,5 @@
 package node.url;
-extern typedef UrlWithParsedQuery = {
+typedef UrlWithParsedQuery = {
 	var query : node.querystring.ParsedUrlQuery;
 	@:optional
 	var port : String;

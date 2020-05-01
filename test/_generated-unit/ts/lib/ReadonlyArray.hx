@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef ReadonlyArray<T> = {
+typedef ReadonlyArray<T> = {
 	/**
 		Gets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/

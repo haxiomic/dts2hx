@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	The SVGLengthList defines a list of SVGLength objects.
 **/
-extern typedef ISVGLengthList = {
+typedef ISVGLengthList = {
 	final length : Float;
 	final numberOfItems : Float;
 	function appendItem(newItem:ts.html.ISVGLength):ts.html.ISVGLength;

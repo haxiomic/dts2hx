@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An audio-processing graph built from audio modules linked together, each represented by an AudioNode.
 **/
-extern typedef IAudioContext = {
+typedef IAudioContext = {
 	final baseLatency : Float;
 	final outputLatency : Float;
 	function close():ts.lib.IPromise<Void>;

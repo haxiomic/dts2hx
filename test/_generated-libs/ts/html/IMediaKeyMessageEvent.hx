@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This EncryptedMediaExtensions API interface contains the content and related data when the content decryption module generates a message for the session.
 **/
-extern typedef IMediaKeyMessageEvent = {
+typedef IMediaKeyMessageEvent = {
 	final message : ts.lib.IArrayBuffer;
 	final messageType : String;
 	/**

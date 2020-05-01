@@ -2,7 +2,7 @@ package global.jquery;
 /**
 	This object provides a subset of the methods of the Deferred object (then, done, fail, always, pipe, progress, state and promise) to prevent users from changing the state of the Deferred.
 **/
-extern typedef PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN> = {
+typedef PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN> = {
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/

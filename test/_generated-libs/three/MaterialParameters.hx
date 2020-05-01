@@ -1,5 +1,5 @@
 package three;
-extern typedef MaterialParameters = {
+typedef MaterialParameters = {
 	@:optional
 	var alphaTest : Float;
 	@:optional

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRTCStatsProvider = {
+typedef IRTCStatsProvider = {
 	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
 	function msGetStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
 	/**

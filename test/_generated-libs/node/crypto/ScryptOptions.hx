@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef ScryptOptions = {
+typedef ScryptOptions = {
 	@:optional
 	var N : Float;
 	@:optional

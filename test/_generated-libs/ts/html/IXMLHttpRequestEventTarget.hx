@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IXMLHttpRequestEventTarget = {
+typedef IXMLHttpRequestEventTarget = {
 	var onabort : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
 	var onerror : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
 	var onload : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;

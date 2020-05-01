@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ExceptionInformation = {
+typedef ExceptionInformation = {
 	@:optional
 	var domain : String;
 };

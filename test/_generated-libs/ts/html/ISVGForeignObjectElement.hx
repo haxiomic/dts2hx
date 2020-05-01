@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <foreignObject> elements, as well as methods to manipulate them.
 **/
-extern typedef ISVGForeignObjectElement = {
+typedef ISVGForeignObjectElement = {
 	final height : ISVGAnimatedLength;
 	final width : ISVGAnimatedLength;
 	final x : ISVGAnimatedLength;

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef TextStreamWriter = {
+typedef TextStreamWriter = {
 	/**
 		Sends a string to an output stream.
 	**/

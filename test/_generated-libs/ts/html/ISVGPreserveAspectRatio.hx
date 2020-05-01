@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the preserveAspectRatio attribute, which is available for some of SVG's elements.
 **/
-extern typedef ISVGPreserveAspectRatio = {
+typedef ISVGPreserveAspectRatio = {
 	var align : Float;
 	var meetOrSlice : Float;
 	final SVG_MEETORSLICE_MEET : Float;

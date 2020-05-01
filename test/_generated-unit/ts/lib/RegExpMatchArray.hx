@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef RegExpMatchArray = {
+typedef RegExpMatchArray = {
 	@:optional
 	var index : Float;
 	@:optional

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface).
 **/
-extern typedef IHTMLScriptElement = {
+typedef IHTMLScriptElement = {
 	var async : Bool;
 	var charset : String;
 	var crossOrigin : Null<String>;

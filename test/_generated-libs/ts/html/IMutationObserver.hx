@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides the ability to watch for changes being made to the DOM tree. It is designed as a replacement for the older Mutation Events feature which was part of the DOM3 Events specification.
 **/
-extern typedef IMutationObserver = {
+typedef IMutationObserver = {
 	/**
 		Stops observer from observing any mutations. Until the observe() method is used again, observer's callback will not be invoked.
 	**/

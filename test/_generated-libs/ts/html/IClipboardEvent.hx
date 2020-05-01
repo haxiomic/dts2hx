@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events providing information related to modification of the clipboard, that is cut, copy, and paste events.
 **/
-extern typedef IClipboardEvent = {
+typedef IClipboardEvent = {
 	final clipboardData : Null<IDataTransfer>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

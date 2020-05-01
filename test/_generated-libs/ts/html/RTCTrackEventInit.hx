@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCTrackEventInit = {
+typedef RTCTrackEventInit = {
 	var receiver : IRTCRtpReceiver;
 	@:optional
 	var streams : std.Array<IMediaStream>;

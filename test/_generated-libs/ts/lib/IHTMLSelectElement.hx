@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	A <select> HTML Element. These elements also share all of the properties and methods of other HTML elements via the HTMLElement interface.
 **/
-extern typedef IHTMLSelectElement = {
+typedef IHTMLSelectElement = {
 	var autocomplete : String;
 	/**
 		Provides a way to direct a user to a specific field when a document loads. This can provide both direction and convenience for a user, reducing the need to click or tab to a field when a page opens. This attribute is true when present on an element, and false when missing.

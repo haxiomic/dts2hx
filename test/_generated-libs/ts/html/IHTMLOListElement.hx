@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond those defined on the regular HTMLElement interface it also has available to it by inheritance) for manipulating ordered list elements.
 **/
-extern typedef IHTMLOListElement = {
+typedef IHTMLOListElement = {
 	var compact : Bool;
 	var reversed : Bool;
 	/**

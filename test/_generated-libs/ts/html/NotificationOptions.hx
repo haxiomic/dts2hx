@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef NotificationOptions = {
+typedef NotificationOptions = {
 	@:optional
 	var actions : std.Array<NotificationAction>;
 	@:optional

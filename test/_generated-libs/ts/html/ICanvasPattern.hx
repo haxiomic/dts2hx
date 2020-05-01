@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An opaque object describing a pattern, based on an image, a canvas, or a video, created by the CanvasRenderingContext2D.createPattern() method.
 **/
-extern typedef ICanvasPattern = {
+typedef ICanvasPattern = {
 	/**
 		Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.
 	**/

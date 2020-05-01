@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IRangeError = {
+typedef IRangeError = {
 	var name : String;
 	var message : String;
 	@:optional

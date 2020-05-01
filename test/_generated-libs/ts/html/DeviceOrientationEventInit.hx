@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DeviceOrientationEventInit = {
+typedef DeviceOrientationEventInit = {
 	@:optional
 	var absolute : Bool;
 	@:optional

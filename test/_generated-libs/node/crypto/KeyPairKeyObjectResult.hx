@@ -1,5 +1,5 @@
 package node.crypto;
-extern typedef KeyPairKeyObjectResult = {
+typedef KeyPairKeyObjectResult = {
 	var publicKey : KeyObject;
 	var privateKey : KeyObject;
 };

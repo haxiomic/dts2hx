@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ReadableByteStreamController = {
+typedef ReadableByteStreamController = {
 	final byobRequest : Null<ReadableStreamBYOBRequest>;
 	final desiredSize : Null<Float>;
 	function close():Void;

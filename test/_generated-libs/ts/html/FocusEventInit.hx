@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FocusEventInit = {
+typedef FocusEventInit = {
 	@:optional
 	var relatedTarget : IEventTarget;
 	@:optional

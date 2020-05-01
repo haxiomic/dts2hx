@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ImageBitmapRenderingContextSettings = {
+typedef ImageBitmapRenderingContextSettings = {
 	@:optional
 	var alpha : Bool;
 };

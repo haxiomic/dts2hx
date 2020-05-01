@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ChildNode = {
+typedef ChildNode = {
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		

@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef ExecutionContextCreatedEventDataType = {
+typedef ExecutionContextCreatedEventDataType = {
 	/**
 		A newly created execution context.
 	**/

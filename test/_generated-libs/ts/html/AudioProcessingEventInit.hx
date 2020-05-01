@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AudioProcessingEventInit = {
+typedef AudioProcessingEventInit = {
 	var inputBuffer : IAudioBuffer;
 	var outputBuffer : IAudioBuffer;
 	var playbackTime : Float;

@@ -1,5 +1,5 @@
 package node.inspector.nodeworker;
-extern typedef AttachedToWorkerEventDataType = {
+typedef AttachedToWorkerEventDataType = {
 	/**
 		Identifier assigned to the session used to send/receive messages.
 	**/

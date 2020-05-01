@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConstrainDoubleRange = {
+typedef ConstrainDoubleRange = {
 	@:optional
 	var exact : Float;
 	@:optional

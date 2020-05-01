@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A base interface used by the component transfer function interfaces.
 **/
-extern typedef ISVGComponentTransferFunctionElement = {
+typedef ISVGComponentTransferFunctionElement = {
 	final amplitude : ISVGAnimatedNumber;
 	final exponent : ISVGAnimatedNumber;
 	final intercept : ISVGAnimatedNumber;

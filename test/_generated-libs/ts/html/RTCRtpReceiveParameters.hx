@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpReceiveParameters = {
+typedef RTCRtpReceiveParameters = {
 	var encodings : std.Array<RTCRtpDecodingParameters>;
 	var codecs : std.Array<RTCRtpCodecParameters>;
 	var headerExtensions : std.Array<RTCRtpHeaderExtensionParameters>;

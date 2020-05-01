@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef CredentialRequestOptions = {
+typedef CredentialRequestOptions = {
 	@:optional
 	var mediation : String;
 	@:optional

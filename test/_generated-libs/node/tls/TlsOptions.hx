@@ -1,5 +1,5 @@
 package node.tls;
-extern typedef TlsOptions = {
+typedef TlsOptions = {
 	@:optional
 	var handshakeTimeout : Float;
 	@:optional

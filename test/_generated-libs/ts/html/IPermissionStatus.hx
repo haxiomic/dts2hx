@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IPermissionStatus = {
+typedef IPermissionStatus = {
 	var onchange : Null<(ev:IEvent) -> Dynamic>;
 	final state : String;
 	/**

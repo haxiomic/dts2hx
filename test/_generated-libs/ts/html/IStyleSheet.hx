@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.
 **/
-extern typedef IStyleSheet = {
+typedef IStyleSheet = {
 	var disabled : Bool;
 	final href : Null<String>;
 	final media : ts.lib.IMediaList;

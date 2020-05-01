@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Implemented by elements that support attributes that position individual text glyphs. It is inherited by SVGTextElement, SVGTSpanElement, SVGTRefElement and SVGAltGlyphElement.
 **/
-extern typedef ISVGTextPositioningElement = {
+typedef ISVGTextPositioningElement = {
 	final dx : ISVGAnimatedLengthList;
 	final dy : ISVGAnimatedLengthList;
 	final rotate : ISVGAnimatedNumberList;

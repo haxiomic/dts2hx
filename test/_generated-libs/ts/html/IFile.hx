@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides information about files and allows JavaScript in a web page to access their content.
 **/
-extern typedef IFile = {
+typedef IFile = {
 	final lastModified : Float;
 	final name : String;
 	final size : Float;

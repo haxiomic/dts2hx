@@ -1,5 +1,5 @@
 package node.zlib;
-extern typedef Zlib = {
+typedef Zlib = {
 	final bytesRead : Float;
 	final bytesWritten : Float;
 	@:optional

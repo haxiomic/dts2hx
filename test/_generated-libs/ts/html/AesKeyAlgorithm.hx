@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AesKeyAlgorithm = {
+typedef AesKeyAlgorithm = {
 	var length : Float;
 	var name : String;
 };

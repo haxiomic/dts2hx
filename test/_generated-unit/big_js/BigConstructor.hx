@@ -1,5 +1,5 @@
 package big_js;
-extern typedef BigConstructor = {
+typedef BigConstructor = {
 	/**
 		Returns a new instance of a Big number object
 		

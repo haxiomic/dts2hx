@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.
 	**/

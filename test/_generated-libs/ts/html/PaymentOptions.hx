@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentOptions = {
+typedef PaymentOptions = {
 	@:optional
 	var requestPayerEmail : Bool;
 	@:optional

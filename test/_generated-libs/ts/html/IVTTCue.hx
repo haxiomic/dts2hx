@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IVTTCue = {
+typedef IVTTCue = {
 	var align : String;
 	var line : ts.AnyOf2<Float, String>;
 	var lineAlign : String;

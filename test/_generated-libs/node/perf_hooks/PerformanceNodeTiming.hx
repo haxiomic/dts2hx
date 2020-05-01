@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern typedef PerformanceNodeTiming = {
+typedef PerformanceNodeTiming = {
 	/**
 		The high resolution millisecond timestamp at which the Node.js process completed bootstrap.
 	**/

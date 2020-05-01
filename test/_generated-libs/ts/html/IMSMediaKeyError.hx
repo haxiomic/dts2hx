@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSMediaKeyError = {
+typedef IMSMediaKeyError = {
 	final code : Float;
 	final systemCode : Float;
 	final MS_MEDIA_KEYERR_CLIENT : Float;

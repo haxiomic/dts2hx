@@ -1,5 +1,5 @@
 package node.dns;
-extern typedef LookupOneOptions = {
+typedef LookupOneOptions = {
 	@:optional
 	var all : Bool;
 	@:optional

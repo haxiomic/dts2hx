@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef ResolvedDateTimeFormatOptions = {
+typedef ResolvedDateTimeFormatOptions = {
 	var locale : String;
 	var calendar : String;
 	var numberingSystem : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCRtpHeaderExtensionParameters = {
+typedef RTCRtpHeaderExtensionParameters = {
 	@:optional
 	var encrypted : Bool;
 	var id : Float;

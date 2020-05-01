@@ -1,5 +1,5 @@
 package node.perf_hooks;
-extern typedef PerformanceEntry = {
+typedef PerformanceEntry = {
 	/**
 		The total number of milliseconds elapsed for this entry.
 		This value will not be meaningful for all Performance Entry types.

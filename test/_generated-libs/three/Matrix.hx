@@ -2,7 +2,7 @@ package three;
 /**
 	( interface Matrix&lt;T&gt; )
 **/
-extern typedef Matrix = {
+typedef Matrix = {
 	/**
 		Array with matrix values.
 	**/

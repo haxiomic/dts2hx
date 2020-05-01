@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef EvaluateParameterType = {
+typedef EvaluateParameterType = {
 	/**
 		Expression to evaluate.
 	**/

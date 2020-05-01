@@ -1,5 +1,5 @@
 package global;
-extern typedef NodeModule = {
+typedef NodeModule = {
 	var exports : Dynamic;
 	var require : NodeRequireFunction;
 	var id : String;

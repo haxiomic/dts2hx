@@ -1,5 +1,5 @@
 package node.inspector.schema;
-extern typedef GetDomainsReturnType = {
+typedef GetDomainsReturnType = {
 	/**
 		List of supported domains.
 	**/

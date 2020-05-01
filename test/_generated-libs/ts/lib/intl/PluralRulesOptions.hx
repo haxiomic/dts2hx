@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef PluralRulesOptions = {
+typedef PluralRulesOptions = {
 	@:optional
 	var localeMatcher : String;
 	@:optional

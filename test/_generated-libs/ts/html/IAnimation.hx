@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IAnimation = {
+typedef IAnimation = {
 	var currentTime : Null<Float>;
 	var effect : Null<IAnimationEffect>;
 	final finished : ts.lib.IPromise<IAnimation>;

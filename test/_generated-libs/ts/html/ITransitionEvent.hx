@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Events providing information related to transitions.
 **/
-extern typedef ITransitionEvent = {
+typedef ITransitionEvent = {
 	final elapsedTime : Float;
 	final propertyName : String;
 	final pseudoElement : String;

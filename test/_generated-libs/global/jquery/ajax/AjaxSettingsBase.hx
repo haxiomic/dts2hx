@@ -1,5 +1,5 @@
 package global.jquery.ajax;
-extern typedef AjaxSettingsBase<TContext> = {
+typedef AjaxSettingsBase<TContext> = {
 	/**
 		A set of key/value pairs that map a given dataType to its MIME type, which gets sent in the Accept request header. This header tells the server what kind of response it will accept in return.
 	**/

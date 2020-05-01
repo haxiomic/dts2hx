@@ -1,5 +1,5 @@
 package node.inspector.debugger;
-extern typedef GetScriptSourceReturnType = {
+typedef GetScriptSourceReturnType = {
 	/**
 		Script source.
 	**/

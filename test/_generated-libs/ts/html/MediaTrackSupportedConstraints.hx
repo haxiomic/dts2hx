@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaTrackSupportedConstraints = {
+typedef MediaTrackSupportedConstraints = {
 	@:optional
 	var aspectRatio : Bool;
 	@:optional

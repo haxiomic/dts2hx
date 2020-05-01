@@ -1,5 +1,5 @@
 package global;
-extern typedef JQueryKeyEventObject = {
+typedef JQueryKeyEventObject = {
 	var char : String;
 	var charCode : Float;
 	var key : String;

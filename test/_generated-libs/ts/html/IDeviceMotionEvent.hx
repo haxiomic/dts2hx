@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The DeviceMotionEvent provides web developers with information about the speed of changes for the device's position and orientation.
 **/
-extern typedef IDeviceMotionEvent = {
+typedef IDeviceMotionEvent = {
 	final acceleration : Null<DeviceMotionEventAcceleration>;
 	final accelerationIncludingGravity : Null<DeviceMotionEventAcceleration>;
 	final interval : Float;

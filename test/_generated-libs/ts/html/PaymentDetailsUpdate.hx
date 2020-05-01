@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentDetailsUpdate = {
+typedef PaymentDetailsUpdate = {
 	@:optional
 	var error : String;
 	@:optional

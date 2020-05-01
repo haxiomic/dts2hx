@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ConcatParams = {
+typedef ConcatParams = {
 	var algorithmId : ts.lib.IUint8Array;
 	@:optional
 	var hash : ts.AnyOf2<String, Algorithm>;

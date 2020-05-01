@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A node able to provide real-time frequency and time-domain analysis information. It is an AudioNode that passes the audio stream unchanged from the input to the output, but allows you to take the generated data, process it, and create audio visualizations.
 **/
-extern typedef IAnalyserNode = {
+typedef IAnalyserNode = {
 	var fftSize : Float;
 	final frequencyBinCount : Float;
 	var maxDecibels : Float;

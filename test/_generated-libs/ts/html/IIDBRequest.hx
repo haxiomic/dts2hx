@@ -2,7 +2,7 @@ package ts.html;
 /**
 	The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance.
 **/
-extern typedef IIDBRequest<T> = {
+typedef IIDBRequest<T> = {
 	/**
 		When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
 	**/

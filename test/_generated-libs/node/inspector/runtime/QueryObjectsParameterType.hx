@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef QueryObjectsParameterType = {
+typedef QueryObjectsParameterType = {
 	/**
 		Identifier of the prototype to return objects for.
 	**/

@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef Deferred<TR, TJ, TN> = {
+typedef Deferred<TR, TJ, TN> = {
 	/**
 		Call the progressCallbacks on a Deferred object with the given args.
 	**/

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IDataView = {
+typedef IDataView = {
 	final buffer : IArrayBuffer;
 	final byteLength : Float;
 	final byteOffset : Float;

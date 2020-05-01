@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Fetch API interface represents the response to a request.
 **/
-extern typedef IResponse = {
+typedef IResponse = {
 	final headers : ts.lib.IHeaders;
 	final ok : Bool;
 	final redirected : Bool;

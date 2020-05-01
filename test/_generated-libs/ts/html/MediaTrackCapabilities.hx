@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef MediaTrackCapabilities = {
+typedef MediaTrackCapabilities = {
 	@:optional
 	var aspectRatio : DoubleRange;
 	@:optional

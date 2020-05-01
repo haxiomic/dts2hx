@@ -2,7 +2,7 @@ package global.jquery;
 /**
 	Any object that has a then method.
 **/
-extern typedef Thenable<T> = {
+typedef Thenable<T> = {
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/

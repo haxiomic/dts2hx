@@ -1,5 +1,5 @@
 package node.util;
-extern typedef InspectOptions = {
+typedef InspectOptions = {
 	/**
 		If set to `true`, getters are going to be
 		inspected as well. If set to `'get'` only getters without setter are going

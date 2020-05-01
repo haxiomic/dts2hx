@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef CompositionEventInit = {
+typedef CompositionEventInit = {
 	@:optional
 	var data : String;
 	@:optional

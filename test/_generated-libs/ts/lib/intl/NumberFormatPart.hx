@@ -1,5 +1,5 @@
 package ts.lib.intl;
-extern typedef NumberFormatPart = {
+typedef NumberFormatPart = {
 	var type : String;
 	var value : String;
 };

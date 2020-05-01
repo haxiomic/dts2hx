@@ -1,5 +1,5 @@
 package node.cluster;
-extern typedef ClusterSettings = {
+typedef ClusterSettings = {
 	@:optional
 	var execArgv : std.Array<String>;
 	@:optional

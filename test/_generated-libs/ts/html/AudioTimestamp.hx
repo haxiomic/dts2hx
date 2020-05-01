@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AudioTimestamp = {
+typedef AudioTimestamp = {
 	@:optional
 	var contextTime : Float;
 	@:optional

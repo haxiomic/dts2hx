@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef SecureServerSessionOptions = {
+typedef SecureServerSessionOptions = {
 	@:optional
 	var maxDeflateDynamicTableSize : Float;
 	@:optional

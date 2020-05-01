@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties and methods (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements.
 **/
-extern typedef IHTMLIFrameElement = {
+typedef IHTMLIFrameElement = {
 	var align : String;
 	var allow : String;
 	var allowFullscreen : Bool;

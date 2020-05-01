@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef GetIsolateIdReturnType = {
+typedef GetIsolateIdReturnType = {
 	/**
 		The isolate id.
 	**/

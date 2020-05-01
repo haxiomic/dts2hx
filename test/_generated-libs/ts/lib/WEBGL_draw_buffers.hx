@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef WEBGL_draw_buffers = {
+typedef WEBGL_draw_buffers = {
 	@:overload(function(buffers:Iterable<Float>):Void { })
 	function drawBuffersWEBGL(buffers:std.Array<Float>):Void;
 	final COLOR_ATTACHMENT0_WEBGL : Float;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to connected media input devices like cameras and microphones, as well as screen sharing. In essence, it lets you obtain access to any hardware source of media data.
 **/
-extern typedef IMediaDevices = {
+typedef IMediaDevices = {
 	var ondevicechange : Null<(ev:IEvent) -> Dynamic>;
 	function enumerateDevices():ts.lib.IPromise<std.Array<IMediaDeviceInfo>>;
 	function getSupportedConstraints():MediaTrackSupportedConstraints;

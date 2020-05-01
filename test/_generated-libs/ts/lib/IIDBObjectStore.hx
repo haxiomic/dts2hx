@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	This example shows a variety of different uses of object stores, from updating the data structure with IDBObjectStore.createIndex inside an onupgradeneeded function, to adding a new item to our object store with IDBObjectStore.add. For a full working example, see our To-do Notifications app (view example live.)
 **/
-extern typedef IIDBObjectStore = {
+typedef IIDBObjectStore = {
 	/**
 		Returns true if the store has a key generator, and false otherwise.
 	**/

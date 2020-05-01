@@ -1,4 +1,4 @@
 package unit.interface_;
-extern typedef InterfaceExtends<T> = {
+typedef InterfaceExtends<T> = {
 	var additionalField : T;
 };

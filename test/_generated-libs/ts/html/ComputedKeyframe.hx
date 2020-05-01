@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ComputedKeyframe = {
+typedef ComputedKeyframe = {
 	var composite : String;
 	var computedOffset : Float;
 	var easing : String;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IHTMLCollection = {
+typedef IHTMLCollection = {
 	/**
 		Retrieves a select object or an object from an options collection.
 	**/

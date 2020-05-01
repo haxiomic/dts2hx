@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGPathSegClosePath = {
+typedef ISVGPathSegClosePath = {
 	final pathSegType : Float;
 	final pathSegTypeAsLetter : String;
 	final PATHSEG_ARC_ABS : Float;

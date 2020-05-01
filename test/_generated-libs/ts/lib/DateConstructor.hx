@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef DateConstructor = {
+typedef DateConstructor = {
 	@:selfCall
 	function call():String;
 	final prototype : IDate;

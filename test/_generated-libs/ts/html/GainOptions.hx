@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef GainOptions = {
+typedef GainOptions = {
 	@:optional
 	var gain : Float;
 	@:optional

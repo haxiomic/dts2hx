@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IMediaList = {
+typedef IMediaList = {
 	final length : Float;
 	var mediaText : String;
 	function appendMedium(medium:String):Void;

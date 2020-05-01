@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IDBArrayKey = {
+typedef IDBArrayKey = {
 	/**
 		Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/

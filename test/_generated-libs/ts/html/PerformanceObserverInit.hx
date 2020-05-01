@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PerformanceObserverInit = {
+typedef PerformanceObserverInit = {
 	@:optional
 	var buffered : Bool;
 	@:optional

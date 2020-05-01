@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IVTTRegion = {
+typedef IVTTRegion = {
 	var id : String;
 	var lines : Float;
 	var regionAnchorX : Float;

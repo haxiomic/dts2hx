@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the regular methods and properties available through the HTMLElement interface they also have available to them by inheritance) for manipulating modification elements, that is <del> and <ins>.
 **/
-extern typedef IHTMLModElement = {
+typedef IHTMLModElement = {
 	/**
 		Sets or retrieves reference information about the object.
 	**/

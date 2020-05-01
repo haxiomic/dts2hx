@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef SpawnSyncReturns<T> = {
+typedef SpawnSyncReturns<T> = {
 	var pid : Float;
 	var output : std.Array<String>;
 	var stdout : T;

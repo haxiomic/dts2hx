@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PublicKeyCredentialRpEntity = {
+typedef PublicKeyCredentialRpEntity = {
 	@:optional
 	var id : String;
 	@:optional

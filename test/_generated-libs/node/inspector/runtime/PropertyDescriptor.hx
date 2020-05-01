@@ -2,7 +2,7 @@ package node.inspector.runtime;
 /**
 	Object property descriptor.
 **/
-extern typedef PropertyDescriptor = {
+typedef PropertyDescriptor = {
 	/**
 		Property name or symbol description.
 	**/

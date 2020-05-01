@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IListeningStateChangedEvent = {
+typedef IListeningStateChangedEvent = {
 	final label : String;
 	final state : String;
 	/**

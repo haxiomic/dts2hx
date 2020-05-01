@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef UnderlyingSource<R> = {
+typedef UnderlyingSource<R> = {
 	@:optional
 	var cancel : ReadableStreamErrorCallback;
 	@:optional

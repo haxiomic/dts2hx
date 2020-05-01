@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef PaymentCurrencyAmount = {
+typedef PaymentCurrencyAmount = {
 	var currency : String;
 	@:optional
 	var currencySystem : String;

@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef BigInt = {
+typedef BigInt = {
 	/**
 		Returns a string representation of an object.
 	**/

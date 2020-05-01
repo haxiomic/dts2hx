@@ -1,5 +1,5 @@
 package node.zlib;
-extern typedef Gunzip = {
+typedef Gunzip = {
 	function _transform(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
 	function _flush(callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
 	var writable : Bool;

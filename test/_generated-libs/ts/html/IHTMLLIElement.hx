@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Exposes specific properties and methods (beyond those defined by regular HTMLElement interface it also has available to it by inheritance) for manipulating list elements.
 **/
-extern typedef IHTMLLIElement = {
+typedef IHTMLLIElement = {
 	var type : String;
 	/**
 		Sets or retrieves the value of a list item.

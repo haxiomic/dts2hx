@@ -1,5 +1,5 @@
 package node.inspector.runtime;
-extern typedef InspectRequestedEventDataType = {
+typedef InspectRequestedEventDataType = {
 	var object : RemoteObject;
 	var hints : { };
 };

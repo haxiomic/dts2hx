@@ -1,5 +1,5 @@
 package global.jquery;
-extern typedef MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
+typedef MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		The other DOM element involved in the event, if any.
 	**/

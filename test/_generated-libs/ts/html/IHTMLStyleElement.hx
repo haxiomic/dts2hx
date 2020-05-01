@@ -2,7 +2,7 @@ package ts.html;
 /**
 	A <style> element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle.
 **/
-extern typedef IHTMLStyleElement = {
+typedef IHTMLStyleElement = {
 	/**
 		Sets or retrieves the media type.
 	**/

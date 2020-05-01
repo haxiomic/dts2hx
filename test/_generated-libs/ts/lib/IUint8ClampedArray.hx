@@ -3,7 +3,7 @@ package ts.lib;
 	A typed array of 8-bit unsigned integer (clamped) values. The contents are initialized to 0.
 	If the requested number of bytes could not be allocated an exception is raised.
 **/
-extern typedef IUint8ClampedArray = {
+typedef IUint8ClampedArray = {
 	/**
 		The size in bytes of each element in the array.
 	**/

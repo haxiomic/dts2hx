@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGMarkerElement = {
+typedef ISVGMarkerElement = {
 	final markerHeight : ISVGAnimatedLength;
 	final markerUnits : ISVGAnimatedEnumeration;
 	final markerWidth : ISVGAnimatedLength;

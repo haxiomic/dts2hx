@@ -2,7 +2,7 @@ package ts.html;
 /**
 	An object representing a single CSS @namespace at-rule. It implements the CSSRule interface, with a type value of 10 (CSSRule.NAMESPACE_RULE).
 **/
-extern typedef ICSSNamespaceRule = {
+typedef ICSSNamespaceRule = {
 	final namespaceURI : String;
 	final prefix : String;
 	var cssText : String;

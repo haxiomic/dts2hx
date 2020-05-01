@@ -1,5 +1,5 @@
 package three;
-extern typedef Event = {
+typedef Event = {
 	var type : String;
 	@:optional
 	var target : Dynamic;

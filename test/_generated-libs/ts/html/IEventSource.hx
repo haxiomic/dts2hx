@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IEventSource = {
+typedef IEventSource = {
 	var onerror : Null<(ev:IEvent) -> Dynamic>;
 	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
 	var onopen : Null<(ev:IEvent) -> Dynamic>;

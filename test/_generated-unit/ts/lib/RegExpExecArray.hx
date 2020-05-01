@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef RegExpExecArray = {
+typedef RegExpExecArray = {
 	var index : Float;
 	var input : String;
 	/**

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IRadioNodeList = {
+typedef IRadioNodeList = {
 	var value : String;
 	/**
 		Returns the number of nodes in the collection.

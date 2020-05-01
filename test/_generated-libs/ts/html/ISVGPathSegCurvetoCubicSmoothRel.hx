@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ISVGPathSegCurvetoCubicSmoothRel = {
+typedef ISVGPathSegCurvetoCubicSmoothRel = {
 	var x : Float;
 	var x2 : Float;
 	var y : Float;

@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <data> elements.
 **/
-extern typedef IHTMLDataElement = {
+typedef IHTMLDataElement = {
 	var value : String;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

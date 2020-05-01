@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Corresponds to the <feComposite> element.
 **/
-extern typedef ISVGFECompositeElement = {
+typedef ISVGFECompositeElement = {
 	final in1 : ISVGAnimatedString;
 	final in2 : ISVGAnimatedString;
 	final k1 : ISVGAnimatedNumber;

@@ -1,5 +1,5 @@
 package three;
-extern typedef MeshDistanceMaterialParameters = {
+typedef MeshDistanceMaterialParameters = {
 	@:optional
 	var referencePosition : Vector3;
 	@:optional

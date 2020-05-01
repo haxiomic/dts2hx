@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DOMMatrixInit = {
+typedef DOMMatrixInit = {
 	@:optional
 	var is2D : Bool;
 	@:optional

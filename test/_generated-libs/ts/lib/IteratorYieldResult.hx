@@ -1,5 +1,5 @@
 package ts.lib;
-extern typedef IteratorYieldResult<TYield> = {
+typedef IteratorYieldResult<TYield> = {
 	@:optional
 	var done : Bool;
 	var value : TYield;

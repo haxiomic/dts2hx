@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef SVGBoundingBoxOptions = {
+typedef SVGBoundingBoxOptions = {
 	@:optional
 	var clipped : Bool;
 	@:optional

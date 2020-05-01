@@ -2,7 +2,7 @@ package ts.html;
 /**
 	Provides access to the properties of <rect> elements, as well as methods to manipulate them.
 **/
-extern typedef ISVGRectElement = {
+typedef ISVGRectElement = {
 	final height : ISVGAnimatedLength;
 	final rx : ISVGAnimatedLength;
 	final ry : ISVGAnimatedLength;

@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IMSMediaKeys = {
+typedef IMSMediaKeys = {
 	final keySystem : String;
 	function createSession(type:String, initData:ts.lib.IUint8Array, ?cdmData:ts.lib.IUint8Array):IMSMediaKeySession;
 };

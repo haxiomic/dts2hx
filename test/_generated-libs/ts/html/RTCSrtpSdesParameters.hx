@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef RTCSrtpSdesParameters = {
+typedef RTCSrtpSdesParameters = {
 	@:optional
 	var cryptoSuite : String;
 	@:optional

@@ -1,5 +1,5 @@
 package node.os;
-extern typedef NetworkInterfaceInfoIPv4 = {
+typedef NetworkInterfaceInfoIPv4 = {
 	var family : String;
 	var address : String;
 	var netmask : String;

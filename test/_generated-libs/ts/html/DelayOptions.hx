@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef DelayOptions = {
+typedef DelayOptions = {
 	@:optional
 	var delayTime : Float;
 	@:optional

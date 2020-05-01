@@ -1,5 +1,5 @@
 package node.child_process;
-extern typedef ExecFileOptions = {
+typedef ExecFileOptions = {
 	@:optional
 	var maxBuffer : Float;
 	@:optional

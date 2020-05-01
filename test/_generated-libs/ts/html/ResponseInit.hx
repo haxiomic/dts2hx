@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef ResponseInit = {
+typedef ResponseInit = {
 	@:optional
 	var headers : ts.AnyOf3<ts.lib.IHeaders, std.Array<std.Array<String>>, Dynamic>;
 	@:optional

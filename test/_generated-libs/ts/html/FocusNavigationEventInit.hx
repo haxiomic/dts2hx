@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef FocusNavigationEventInit = {
+typedef FocusNavigationEventInit = {
 	@:optional
 	var navigationReason : String;
 	@:optional

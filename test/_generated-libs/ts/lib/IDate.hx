@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Enables basic storage and retrieval of dates and times.
 **/
-extern typedef IDate = {
+typedef IDate = {
 	/**
 		Returns a string representation of a date. The format of the string depends on the locale.
 	**/

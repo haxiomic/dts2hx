@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AssignedNodesOptions = {
+typedef AssignedNodesOptions = {
 	@:optional
 	var flatten : Bool;
 };

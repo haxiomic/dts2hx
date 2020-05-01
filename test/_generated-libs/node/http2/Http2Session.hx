@@ -1,5 +1,5 @@
 package node.http2;
-extern typedef Http2Session = {
+typedef Http2Session = {
 	@:optional
 	final alpnProtocol : String;
 	function close(?callback:() -> Void):Void;

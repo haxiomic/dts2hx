@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IInputDeviceInfo = {
+typedef IInputDeviceInfo = {
 	function getCapabilities():MediaTrackCapabilities;
 	final deviceId : String;
 	final groupId : String;

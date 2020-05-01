@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef IHTMLDialogElement = {
+typedef IHTMLDialogElement = {
 	var open : Bool;
 	var returnValue : String;
 	function close(?returnValue:String):Void;

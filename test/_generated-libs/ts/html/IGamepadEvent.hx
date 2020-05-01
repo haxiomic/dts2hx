@@ -2,7 +2,7 @@ package ts.html;
 /**
 	This Gamepad API interface contains references to gamepads connected to the system, which is what the gamepad events Window.gamepadconnected and Window.gamepaddisconnected are fired in response to.
 **/
-extern typedef IGamepadEvent = {
+typedef IGamepadEvent = {
 	final gamepad : IGamepad;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.

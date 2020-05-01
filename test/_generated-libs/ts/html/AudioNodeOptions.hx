@@ -1,5 +1,5 @@
 package ts.html;
-extern typedef AudioNodeOptions = {
+typedef AudioNodeOptions = {
 	@:optional
 	var channelCount : Float;
 	@:optional
