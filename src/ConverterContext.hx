@@ -553,7 +553,7 @@ class ConverterContext {
 			fields: [],
 			kind: TDAlias(TAnonymous(fields)),
 			params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, declaration),
-			isExtern: true,
+			isExtern: false,
 			doc: getDoc(symbol),
 			meta: [],
 			pos: pos,
