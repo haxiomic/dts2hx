@@ -3,5 +3,5 @@ package ts.html;
 	function new(?transformer:Transformer<I, O>, ?writableStrategy:QueuingStrategy<I>, ?readableStrategy:QueuingStrategy<O>);
 	final readable : IReadableStream<O>;
 	final writable : IWritableStream<I>;
-	static var prototype : ITransformStream<Any, Any>;
+	static var prototype : ITransformStream<Dynamic, Dynamic>;
 }

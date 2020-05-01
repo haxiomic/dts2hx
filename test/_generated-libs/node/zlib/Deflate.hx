@@ -1,20 +1,20 @@
 package node.zlib;
 extern typedef Deflate = {
-	function _transform(chunk:Any, encoding:String, callback:(?error:ts.lib.IError, ?data:Any) -> Void):Void;
-	function _flush(callback:(?error:ts.lib.IError, ?data:Any) -> Void):Void;
+	function _transform(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
+	function _flush(callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Any, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _write(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _writev(chunks:std.Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
 	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
 	function _final(callback:(?error:ts.lib.IError) -> Void):Void;
-	@:overload(function(chunk:Any, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
-	function write(chunk:Any, ?encoding:String, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool;
+	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
+	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):Deflate;
-	@:overload(function(chunk:Any, ?cb:() -> Void):Void { })
-	@:overload(function(chunk:Any, ?encoding:String, ?cb:() -> Void):Void { })
+	@:overload(function(chunk:Dynamic, ?cb:() -> Void):Void { })
+	@:overload(function(chunk:Dynamic, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	function cork():Void;
 	function uncork():Void;
@@ -22,15 +22,15 @@ extern typedef Deflate = {
 	final readableHighWaterMark : Float;
 	final readableLength : Float;
 	function _read(size:Float):Void;
-	function read(?size:Float):Any;
+	function read(?size:Float):Dynamic;
 	function setEncoding(encoding:String):Deflate;
 	function pause():Deflate;
 	function resume():Deflate;
 	function isPaused():Bool;
 	function unpipe(?destination:global.nodejs.WritableStream):Deflate;
-	function unshift(chunk:Any):Void;
+	function unshift(chunk:Dynamic):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):Deflate;
-	function push(chunk:Any, ?encoding:String):Bool;
+	function push(chunk:Dynamic, ?encoding:String):Bool;
 	function destroy(?error:ts.lib.IError):Void;
 	/**
 		Event emitter
@@ -41,50 +41,50 @@ extern typedef Deflate = {
 		4. readable
 		5. error
 	**/
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate { })
 	function addListener(event:String, listener:() -> Void):Deflate;
-	@:overload(function(event:String, chunk:Any):Bool { })
+	@:overload(function(event:String, chunk:Dynamic):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool { })
 	function emit(event:String):Bool;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate { })
 	function on(event:String, listener:() -> Void):Deflate;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate { })
 	function once(event:String, listener:() -> Void):Deflate;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate { })
 	function prependListener(event:String, listener:() -> Void):Deflate;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate { })
 	function prependOnceListener(event:String, listener:() -> Void):Deflate;
-	@:overload(function(event:String, listener:(chunk:Any) -> Void):Deflate { })
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:() -> Void):Deflate { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Deflate { })
-	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate { })
 	function removeListener(event:String, listener:() -> Void):Deflate;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Deflate;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Deflate;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Deflate;
 	function setMaxListeners(n:Float):Deflate;
 	function getMaxListeners():Float;

@@ -8,5 +8,5 @@ extern typedef IDOMRectReadOnly = {
 	final width : Float;
 	final x : Float;
 	final y : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

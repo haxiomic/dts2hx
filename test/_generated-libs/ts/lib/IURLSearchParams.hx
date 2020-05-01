@@ -25,7 +25,7 @@ extern typedef IURLSearchParams = {
 	**/
 	function set(name:String, value:String):Void;
 	function sort():Void;
-	function forEach(callbackfn:(value:String, key:String, parent:IURLSearchParams) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:String, key:String, parent:IURLSearchParams) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the search params.
 	**/

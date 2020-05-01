@@ -13,7 +13,7 @@ package ts.html;
 	/**
 		Performs the specified action for each node in an list.
 	**/
-	function forEach(callbackfn:(value:INode, key:Float, parent:ts.lib.INodeList) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:INode, key:Float, parent:ts.lib.INodeList) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/

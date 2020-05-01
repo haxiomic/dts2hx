@@ -9,5 +9,5 @@ package three;
 	var matrix : Matrix4;
 	function copy(source:LightShadow):LightShadow;
 	function clone(?recursive:Bool):LightShadow;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 }

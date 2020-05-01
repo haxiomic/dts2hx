@@ -33,5 +33,5 @@ package three;
 	function stopWarping():AnimationAction;
 	function getMixer():AnimationMixer;
 	function getClip():AnimationClip;
-	function getRoot():Any;
+	function getRoot():Dynamic;
 }

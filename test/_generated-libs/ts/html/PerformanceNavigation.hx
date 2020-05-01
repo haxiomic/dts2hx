@@ -6,7 +6,7 @@ package ts.html;
 	function new();
 	final redirectCount : Float;
 	final type : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	final TYPE_BACK_FORWARD : Float;
 	final TYPE_NAVIGATE : Float;
 	final TYPE_RELOAD : Float;

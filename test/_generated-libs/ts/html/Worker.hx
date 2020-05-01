@@ -4,9 +4,9 @@ package ts.html;
 **/
 @:native("Worker") extern class Worker {
 	function new(stringUrl:ts.AnyOf2<String, IURL>, ?options:WorkerOptions);
-	var onmessage : Null<(ev:IMessageEvent) -> Any>;
-	@:overload(function(message:Any, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Any, transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
+	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
+	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
+	function postMessage(message:Dynamic, transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
 	function terminate():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -34,18 +34,18 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
 	function dispatchEvent(event:IEvent):Bool;
-	var onerror : Null<(ev:IErrorEvent) -> Any>;
+	var onerror : Null<(ev:IErrorEvent) -> Dynamic>;
 	static var prototype : IWorker;
 }

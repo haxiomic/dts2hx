@@ -7,7 +7,7 @@ extern typedef NotificationOptions = {
 	@:optional
 	var body : String;
 	@:optional
-	var data : Any;
+	var data : Dynamic;
 	@:optional
 	var dir : String;
 	@:optional

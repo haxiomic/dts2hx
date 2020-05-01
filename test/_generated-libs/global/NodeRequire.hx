@@ -1,9 +1,9 @@
 package global;
 extern typedef NodeRequire = {
 	@:selfCall
-	function call(id:String):Any;
+	function call(id:String):Dynamic;
 	var resolve : RequireResolve;
-	var cache : Any;
+	var cache : Dynamic;
 	var extensions : NodeExtensions;
 	var main : Null<NodeModule>;
 };

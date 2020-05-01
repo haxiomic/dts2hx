@@ -6,7 +6,7 @@ package ts.html;
 	@:overload(function(numberOfChannels:Float, length:Float, sampleRate:Float):IOfflineAudioContext { })
 	function new(contextOptions:OfflineAudioContextOptions);
 	final length : Float;
-	var oncomplete : Null<(ev:IOfflineAudioCompletionEvent) -> Any>;
+	var oncomplete : Null<(ev:IOfflineAudioCompletionEvent) -> Dynamic>;
 	function resume():ts.lib.IPromise<Void>;
 	function startRendering():ts.lib.IPromise<IAudioBuffer>;
 	function suspend(suspendTime:Float):ts.lib.IPromise<Void>;
@@ -60,7 +60,7 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -71,12 +71,12 @@ package ts.html;
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final audioWorklet : IAudioWorklet;
 	final currentTime : Float;
 	final destination : IAudioDestinationNode;
 	final listener : IAudioListener;
-	var onstatechange : Null<(ev:IEvent) -> Any>;
+	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
 	final sampleRate : Float;
 	final state : String;
 	function createAnalyser():IAnalyserNode;

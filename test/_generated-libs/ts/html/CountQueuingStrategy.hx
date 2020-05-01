@@ -5,6 +5,6 @@ package ts.html;
 @:native("CountQueuingStrategy") extern class CountQueuingStrategy {
 	function new(options:{ var highWaterMark : Float; });
 	var highWaterMark : Float;
-	function size(chunk:Any):Int;
+	function size(chunk:Dynamic):Int;
 	static var prototype : ICountQueuingStrategy;
 }

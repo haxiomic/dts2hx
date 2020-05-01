@@ -6,7 +6,7 @@ extern typedef IIDBKeyRange = {
 	/**
 		Returns lower bound, or undefined if none.
 	**/
-	final lower : Any;
+	final lower : Dynamic;
 	/**
 		Returns true if the lower open flag is set, and false otherwise.
 	**/
@@ -14,7 +14,7 @@ extern typedef IIDBKeyRange = {
 	/**
 		Returns upper bound, or undefined if none.
 	**/
-	final upper : Any;
+	final upper : Dynamic;
 	/**
 		Returns true if the upper open flag is set, and false otherwise.
 	**/
@@ -22,5 +22,5 @@ extern typedef IIDBKeyRange = {
 	/**
 		Returns true if key is included in the range, and false otherwise.
 	**/
-	function includes(key:Any):Bool;
+	function includes(key:Dynamic):Bool;
 };

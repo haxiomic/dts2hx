@@ -8,5 +8,5 @@ package three;
 	function addLevel(object:Object3D, ?distance:Float):LOD;
 	function getObjectForDistance(distance:Float):Object3D;
 	function update(camera:Camera):Void;
-	var objects : std.Array<Any>;
+	var objects : std.Array<Dynamic>;
 }

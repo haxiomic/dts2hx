@@ -25,13 +25,13 @@ extern typedef IIDBIndex = {
 		
 		If successful, request's result will be the value, or undefined if there was no matching record.
 	**/
-	function get(key:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):IIDBRequest<Any>;
+	function get(key:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):IIDBRequest<Dynamic>;
 	/**
 		Retrieves the values of the records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<std.Array<Any>>;
+	function getAll(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<std.Array<Dynamic>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		

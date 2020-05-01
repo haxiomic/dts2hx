@@ -41,7 +41,7 @@ package three;
 		Defines whether the renderer should sort objects. Default is true.
 	**/
 	var sortObjects : Bool;
-	var clippingPlanes : std.Array<Any>;
+	var clippingPlanes : std.Array<Dynamic>;
 	var localClippingEnabled : Bool;
 	var extensions : WebGLExtensions;
 	/**
@@ -80,7 +80,7 @@ package three;
 		Return the WebGL context.
 	**/
 	function getContext():ts.html.IWebGLRenderingContext;
-	function getContextAttributes():Any;
+	function getContextAttributes():Dynamic;
 	function forceContextLoss():Void;
 	function getMaxAnisotropy():Float;
 	function getPrecision():String;
@@ -149,7 +149,7 @@ package three;
 		Tells the shadow map plugin to update using the passed scene and camera parameters.
 	**/
 	function renderBufferImmediate(object:Object3D, program:ts.lib.IObject, material:Material):Void;
-	function renderBufferDirect(camera:Camera, fog:Fog, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Any):Void;
+	function renderBufferDirect(camera:Camera, fog:Fog, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Dynamic):Void;
 	/**
 		A build in function that can be used instead of requestAnimationFrame. For WebVR projects this function must be used.
 	**/
@@ -188,18 +188,18 @@ package three;
 		Sets the active render target.
 	**/
 	function setRenderTarget(renderTarget:Null<RenderTarget>, ?activeCubeFace:Float, ?activeMipmapLevel:Float):Void;
-	function readRenderTargetPixels(renderTarget:RenderTarget, x:Float, y:Float, width:Float, height:Float, buffer:Any, ?activeCubeFaceIndex:Float):Void;
+	function readRenderTargetPixels(renderTarget:RenderTarget, x:Float, y:Float, width:Float, height:Float, buffer:Dynamic, ?activeCubeFaceIndex:Float):Void;
 	var gammaFactor : Float;
 	var shadowMapEnabled : Bool;
 	var shadowMapType : ShadowMapType;
 	var shadowMapCullFace : CullFace;
-	function supportsFloatTextures():Any;
-	function supportsHalfFloatTextures():Any;
-	function supportsStandardDerivatives():Any;
-	function supportsCompressedTextureS3TC():Any;
-	function supportsCompressedTexturePVRTC():Any;
-	function supportsBlendMinMax():Any;
-	function supportsVertexTextures():Any;
-	function supportsInstancedArrays():Any;
-	function enableScissorTest(boolean:Any):Any;
+	function supportsFloatTextures():Dynamic;
+	function supportsHalfFloatTextures():Dynamic;
+	function supportsStandardDerivatives():Dynamic;
+	function supportsCompressedTextureS3TC():Dynamic;
+	function supportsCompressedTexturePVRTC():Dynamic;
+	function supportsBlendMinMax():Dynamic;
+	function supportsVertexTextures():Dynamic;
+	function supportsInstancedArrays():Dynamic;
+	function enableScissorTest(boolean:Dynamic):Dynamic;
 }

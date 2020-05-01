@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef MessageEventInit = {
 	@:optional
-	var data : Any;
+	var data : Dynamic;
 	@:optional
 	var lastEventId : String;
 	@:optional

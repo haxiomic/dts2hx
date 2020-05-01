@@ -1,9 +1,9 @@
 package ts.lib;
 extern typedef ProxyHandler<T> = {
 	@:optional
-	function getPrototypeOf(target:T):Null<Any>;
+	function getPrototypeOf(target:T):Null<Dynamic>;
 	@:optional
-	function setPrototypeOf(target:T, v:Any):Bool;
+	function setPrototypeOf(target:T, v:Dynamic):Bool;
 	@:optional
 	function isExtensible(target:T):Bool;
 	@:optional
@@ -13,9 +13,9 @@ extern typedef ProxyHandler<T> = {
 	@:optional
 	function has(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	@:optional
-	function get(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, receiver:Any):Any;
+	function get(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, receiver:Dynamic):Dynamic;
 	@:optional
-	function set(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, value:Any, receiver:Any):Bool;
+	function set(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, value:Dynamic, receiver:Dynamic):Bool;
 	@:optional
 	function deleteProperty(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	@:optional
@@ -25,7 +25,7 @@ extern typedef ProxyHandler<T> = {
 	@:optional
 	function ownKeys(target:T):std.Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
 	@:optional
-	function apply(target:T, thisArg:Any, ?argArray:Any):Any;
+	function apply(target:T, thisArg:Dynamic, ?argArray:Dynamic):Dynamic;
 	@:optional
-	function construct(target:T, argArray:Any, ?newTarget:Any):Any;
+	function construct(target:T, argArray:Dynamic, ?newTarget:Dynamic):Dynamic;
 };

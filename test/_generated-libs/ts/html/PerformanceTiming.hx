@@ -25,6 +25,6 @@ package ts.html;
 	final secureConnectionStart : Float;
 	final unloadEventEnd : Float;
 	final unloadEventStart : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IPerformanceTiming;
 }

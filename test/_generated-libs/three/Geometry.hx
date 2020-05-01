@@ -142,7 +142,7 @@ package three;
 	function mergeVertices():Float;
 	function setFromPoints(points:ts.AnyOf2<std.Array<Vector3>, std.Array<Vector2>>):Geometry;
 	function sortFacesByMaterialIndex():Void;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	/**
 		Creates a new clone of the Geometry.
 	**/

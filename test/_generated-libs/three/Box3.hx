@@ -33,7 +33,7 @@ package three;
 	function applyMatrix4(matrix:Matrix4):Box3;
 	function translate(offset:Vector3):Box3;
 	function equals(box:Box3):Bool;
-	function empty():Any;
-	function isIntersectionBox(b:Any):Any;
-	function isIntersectionSphere(s:Any):Any;
+	function empty():Dynamic;
+	function isIntersectionBox(b:Dynamic):Dynamic;
+	function isIntersectionSphere(s:Dynamic):Dynamic;
 }

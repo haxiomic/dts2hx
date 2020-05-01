@@ -5,5 +5,5 @@ extern typedef IDOMQuad = {
 	final p3 : IDOMPoint;
 	final p4 : IDOMPoint;
 	function getBounds():IDOMRect;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

@@ -19,7 +19,7 @@ extern typedef JQueryCallback = {
 	/**
 		Call all of the callbacks with the given arguments.
 	**/
-	function fire(args:haxe.extern.Rest<Any>):JQueryCallback;
+	function fire(args:haxe.extern.Rest<Dynamic>):JQueryCallback;
 	/**
 		Determine if the callbacks have already been called at least once.
 	**/
@@ -27,7 +27,7 @@ extern typedef JQueryCallback = {
 	/**
 		Call all callbacks in a list with the given context and arguments.
 	**/
-	function fireWith(context:Any, ?args:ts.lib.ArrayLike<Any>):JQueryCallback;
+	function fireWith(context:Dynamic, ?args:ts.lib.ArrayLike<Dynamic>):JQueryCallback;
 	/**
 		Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.
 	**/

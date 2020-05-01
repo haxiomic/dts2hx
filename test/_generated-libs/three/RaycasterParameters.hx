@@ -1,15 +1,15 @@
 package three;
 extern typedef RaycasterParameters = {
 	@:optional
-	var Mesh : Any;
+	var Mesh : Dynamic;
 	@:optional
-	var Line : Any;
+	var Line : Dynamic;
 	@:optional
-	var LOD : Any;
+	var LOD : Dynamic;
 	@:optional
 	var Points : {
 		var threshold : Float;
 	};
 	@:optional
-	var Sprite : Any;
+	var Sprite : Dynamic;
 };

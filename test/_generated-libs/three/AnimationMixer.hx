@@ -1,14 +1,14 @@
 package three;
 @:jsRequire("three", "AnimationMixer") extern class AnimationMixer extends EventDispatcher {
-	function new(root:Any);
+	function new(root:Dynamic);
 	var time : Float;
 	var timeScale : Float;
-	function clipAction(clip:AnimationClip, ?root:Any):AnimationAction;
-	function existingAction(clip:AnimationClip, ?root:Any):AnimationAction;
+	function clipAction(clip:AnimationClip, ?root:Dynamic):AnimationAction;
+	function existingAction(clip:AnimationClip, ?root:Dynamic):AnimationAction;
 	function stopAllAction():AnimationMixer;
 	function update(deltaTime:Float):AnimationMixer;
-	function getRoot():Any;
+	function getRoot():Dynamic;
 	function uncacheClip(clip:AnimationClip):Void;
-	function uncacheRoot(root:Any):Void;
-	function uncacheAction(clip:AnimationClip, ?root:Any):Void;
+	function uncacheRoot(root:Dynamic):Void;
+	function uncacheAction(clip:AnimationClip, ?root:Dynamic):Void;
 }

@@ -1,2 +1,2 @@
 package global.jquery;
-typedef CoordinatesPartial = Any;
+typedef CoordinatesPartial = Dynamic;

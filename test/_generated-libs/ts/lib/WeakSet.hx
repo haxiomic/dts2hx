@@ -5,5 +5,5 @@ package ts.lib;
 	function add(value:T):IWeakSet<T>;
 	function delete(value:T):Bool;
 	function has(value:T):Bool;
-	static final prototype : IWeakSet<Any>;
+	static final prototype : IWeakSet<Dynamic>;
 }

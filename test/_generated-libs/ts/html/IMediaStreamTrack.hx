@@ -9,10 +9,10 @@ extern typedef IMediaStreamTrack = {
 	final kind : String;
 	final label : String;
 	final muted : Bool;
-	var onended : Null<(ev:IEvent) -> Any>;
-	var onisolationchange : Null<(ev:IEvent) -> Any>;
-	var onmute : Null<(ev:IEvent) -> Any>;
-	var onunmute : Null<(ev:IEvent) -> Any>;
+	var onended : Null<(ev:IEvent) -> Dynamic>;
+	var onisolationchange : Null<(ev:IEvent) -> Dynamic>;
+	var onmute : Null<(ev:IEvent) -> Dynamic>;
+	var onunmute : Null<(ev:IEvent) -> Dynamic>;
 	final readyState : String;
 	function applyConstraints(?constraints:MediaTrackConstraints):ts.lib.IPromise<Void>;
 	function clone():IMediaStreamTrack;
@@ -46,14 +46,14 @@ extern typedef IMediaStreamTrack = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

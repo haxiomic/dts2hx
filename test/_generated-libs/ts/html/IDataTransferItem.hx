@@ -19,5 +19,5 @@ extern typedef IDataTransferItem = {
 		Invokes the callback with the string data as the argument, if the drag data item kind is Plain Unicode string.
 	**/
 	function getAsString(callback:Null<FunctionStringCallback>):Void;
-	function webkitGetAsEntry():Any;
+	function webkitGetAsEntry():Dynamic;
 };

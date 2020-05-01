@@ -1,2 +1,2 @@
 package global.jquery;
-typedef CSSHook<TElement> = Any;
+typedef CSSHook<TElement> = Dynamic;

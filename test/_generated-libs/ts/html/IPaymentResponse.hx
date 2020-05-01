@@ -3,7 +3,7 @@ package ts.html;
 	This Payment Request API interface is returned after a user selects a payment method and approves a payment request.
 **/
 extern typedef IPaymentResponse = {
-	final details : Any;
+	final details : Dynamic;
 	final methodName : String;
 	final payerEmail : Null<String>;
 	final payerName : Null<String>;
@@ -12,5 +12,5 @@ extern typedef IPaymentResponse = {
 	final shippingAddress : Null<IPaymentAddress>;
 	final shippingOption : Null<String>;
 	function complete(?result:String):ts.lib.IPromise<Void>;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

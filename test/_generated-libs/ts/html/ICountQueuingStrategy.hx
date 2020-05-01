@@ -4,5 +4,5 @@ package ts.html;
 **/
 extern typedef ICountQueuingStrategy = {
 	var highWaterMark : Float;
-	function size(chunk:Any):Int;
+	function size(chunk:Dynamic):Int;
 };

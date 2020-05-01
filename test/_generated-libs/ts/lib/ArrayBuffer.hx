@@ -16,5 +16,5 @@ package ts.lib;
 	**/
 	function slice(begin:Float, ?end:Float):IArrayBuffer;
 	static final prototype : IArrayBuffer;
-	static function isView(arg:Any):Bool;
+	static function isView(arg:Dynamic):Bool;
 }

@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef ISpeechRecognitionEvent = {
 	final emma : Null<IDocument>;
-	final interpretation : Any;
+	final interpretation : Dynamic;
 	final resultIndex : Float;
 	final results : ts.lib.ISpeechRecognitionResultList;
 	/**

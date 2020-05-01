@@ -3,7 +3,7 @@ package ts.lib;
 	Provides functionality common to all JavaScript objects.
 **/
 @:native("Object") extern class Object {
-	function new(?value:Any);
+	function new(?value:Dynamic);
 	/**
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/
@@ -32,9 +32,9 @@ package ts.lib;
 		Determines whether a specified property is enumerable.
 	**/
 	function propertyIsEnumerable(v:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
-	@:overload(function(value:Any):Any { })
+	@:overload(function(value:Dynamic):Dynamic { })
 	@:selfCall
-	static function call():Any;
+	static function call():Dynamic;
 	/**
 		A reference to the prototype for a class of objects.
 	**/
@@ -42,32 +42,32 @@ package ts.lib;
 	/**
 		Returns the prototype of an object.
 	**/
-	static function getPrototypeOf(o:Any):Any;
+	static function getPrototypeOf(o:Dynamic):Dynamic;
 	/**
 		Gets the own property descriptor of the specified object.
 		An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
 	**/
-	static function getOwnPropertyDescriptor(o:Any, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
+	static function getOwnPropertyDescriptor(o:Dynamic, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
 	/**
 		Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 		on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
 	**/
-	static function getOwnPropertyNames(o:Any):std.Array<String>;
+	static function getOwnPropertyNames(o:Dynamic):std.Array<String>;
 	/**
 		Creates an object that has the specified prototype or that has null prototype.
 		
 		Creates an object that has the specified prototype, and that optionally contains specified properties.
 	**/
-	@:overload(function(o:Null<Any>, properties:PropertyDescriptorMap & ThisType<Any>):Any { })
-	static function create(o:Null<Any>):Any;
+	@:overload(function(o:Null<Dynamic>, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic { })
+	static function create(o:Null<Dynamic>):Dynamic;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	static function defineProperty(o:Any, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor & ThisType<Any>):Any;
+	static function defineProperty(o:Dynamic, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor & ThisType<Dynamic>):Dynamic;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	static function defineProperties(o:Any, properties:PropertyDescriptorMap & ThisType<Any>):Any;
+	static function defineProperties(o:Dynamic, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
@@ -80,7 +80,7 @@ package ts.lib;
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
 	@:overload(function<T>(f:T):T { })
-	@:overload(function<T>(o:T):Any { })
+	@:overload(function<T>(o:T):Dynamic { })
 	static function freeze<T>(a:std.Array<T>):ReadonlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.
@@ -89,22 +89,22 @@ package ts.lib;
 	/**
 		Returns true if existing property attributes cannot be modified in an object and new properties cannot be added to the object.
 	**/
-	static function isSealed(o:Any):Bool;
+	static function isSealed(o:Dynamic):Bool;
 	/**
 		Returns true if existing property attributes and values cannot be modified in an object, and new properties cannot be added to the object.
 	**/
-	static function isFrozen(o:Any):Bool;
+	static function isFrozen(o:Dynamic):Bool;
 	/**
 		Returns a value that indicates whether new properties can be added to an object.
 	**/
-	static function isExtensible(o:Any):Bool;
+	static function isExtensible(o:Dynamic):Bool;
 	/**
 		Returns the names of the enumerable string properties and methods of an object.
 		
 		Returns the names of the enumerable string properties and methods of an object.
 	**/
 	@:overload(function(o:{ }):std.Array<String> { })
-	static function keys(o:Any):std.Array<String>;
+	static function keys(o:Dynamic):std.Array<String>;
 	/**
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
@@ -118,20 +118,20 @@ package ts.lib;
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Any { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Any { })
-	@:overload(function(target:Any, sources:haxe.extern.Rest<Any>):Any { })
-	static function assign<T, U>(target:T, source:U):Any;
+	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Dynamic { })
+	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Dynamic { })
+	@:overload(function(target:Dynamic, sources:haxe.extern.Rest<Dynamic>):Dynamic { })
+	static function assign<T, U>(target:T, source:U):Dynamic;
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
-	static function getOwnPropertySymbols(o:Any):std.Array<js.lib.Symbol>;
+	static function getOwnPropertySymbols(o:Dynamic):std.Array<js.lib.Symbol>;
 	/**
 		Returns true if the values are the same value, false otherwise.
 	**/
-	static function is(value1:Any, value2:Any):Bool;
+	static function is(value1:Dynamic, value2:Dynamic):Bool;
 	/**
 		Sets the prototype of a specified object o to object proto or null. Returns the object o.
 	**/
-	static function setPrototypeOf(o:Any, proto:Null<Any>):Any;
+	static function setPrototypeOf(o:Dynamic, proto:Null<Dynamic>):Dynamic;
 }

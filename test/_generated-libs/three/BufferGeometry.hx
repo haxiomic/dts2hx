@@ -18,7 +18,7 @@ package three;
 	var type : String;
 	var index : BufferAttribute;
 	var attributes : { };
-	var morphAttributes : Any;
+	var morphAttributes : Dynamic;
 	var groups : std.Array<{
 		var start : Float;
 		var count : Float;
@@ -34,7 +34,7 @@ package three;
 	var userData : { };
 	function getIndex():BufferAttribute;
 	function setIndex(index:ts.AnyOf2<std.Array<Float>, BufferAttribute>):Void;
-	@:overload(function(name:Any, array:Any, itemSize:Any):Any { })
+	@:overload(function(name:Dynamic, array:Dynamic, itemSize:Dynamic):Dynamic { })
 	function addAttribute(name:String, attribute:ts.AnyOf2<BufferAttribute, InterleavedBufferAttribute>):BufferGeometry;
 	function getAttribute(name:String):ts.AnyOf2<BufferAttribute, InterleavedBufferAttribute>;
 	function removeAttribute(name:String):BufferGeometry;
@@ -55,7 +55,7 @@ package three;
 	function setFromObject(object:Object3D):BufferGeometry;
 	function setFromPoints(points:ts.AnyOf2<std.Array<Vector3>, std.Array<Vector2>>):BufferGeometry;
 	function updateFromObject(object:Object3D):Void;
-	function fromGeometry(geometry:Geometry, ?settings:Any):BufferGeometry;
+	function fromGeometry(geometry:Geometry, ?settings:Dynamic):BufferGeometry;
 	function fromDirectGeometry(geometry:DirectGeometry):BufferGeometry;
 	/**
 		Computes bounding box of the geometry, updating Geometry.boundingBox attribute.
@@ -74,7 +74,7 @@ package three;
 	function merge(geometry:BufferGeometry, offset:Float):BufferGeometry;
 	function normalizeNormals():Void;
 	function toNonIndexed():BufferGeometry;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	function clone():BufferGeometry;
 	function copy(source:BufferGeometry):BufferGeometry;
 	/**
@@ -82,10 +82,10 @@ package three;
 		You need to call this when you want the bufferGeometry removed while the application is running.
 	**/
 	function dispose():Void;
-	var drawcalls : Any;
-	var offsets : Any;
-	function addIndex(index:Any):Void;
-	function addDrawCall(start:Any, count:Any, ?indexOffset:Any):Void;
+	var drawcalls : Dynamic;
+	var offsets : Dynamic;
+	function addIndex(index:Dynamic):Void;
+	function addDrawCall(start:Dynamic, count:Dynamic, ?indexOffset:Dynamic):Void;
 	function clearDrawCalls():Void;
 	static var MaxIndex : Float;
 }

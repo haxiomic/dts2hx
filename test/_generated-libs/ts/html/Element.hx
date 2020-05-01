@@ -30,8 +30,8 @@ package ts.html;
 		Returns the namespace.
 	**/
 	final namespaceURI : Null<String>;
-	var onfullscreenchange : Null<(ev:IEvent) -> Any>;
-	var onfullscreenerror : Null<(ev:IEvent) -> Any>;
+	var onfullscreenchange : Null<(ev:IEvent) -> Dynamic>;
+	var onfullscreenerror : Null<(ev:IEvent) -> Dynamic>;
 	var outerHTML : String;
 	/**
 		Returns the namespace prefix.
@@ -60,9 +60,9 @@ package ts.html;
 	/**
 		Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 	**/
-	@:overload(function<K>(selector:K):Null<Any> { })
+	@:overload(function<K>(selector:K):Null<Dynamic> { })
 	@:overload(function<E>(selector:String):Null<E> { })
-	function closest<K>(selector:K):Null<Any>;
+	function closest<K>(selector:K):Null<Dynamic>;
 	/**
 		Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
 	**/
@@ -83,9 +83,9 @@ package ts.html;
 		Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 	**/
 	function getElementsByClassName(classNames:String):ts.lib.HTMLCollectionOf<IElement>;
-	@:overload(function<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Any> { })
+	@:overload(function<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Dynamic> { })
 	@:overload(function(qualifiedName:String):ts.lib.HTMLCollectionOf<IElement> { })
-	function getElementsByTagName<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Any>;
+	function getElementsByTagName<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Dynamic>;
 	@:overload(function(namespaceURI:String, localName:String):ts.lib.HTMLCollectionOf<ISVGElement> { })
 	@:overload(function(namespaceURI:String, localName:String):ts.lib.HTMLCollectionOf<IElement> { })
 	function getElementsByTagNameNS(namespaceURI:String, localName:String):ts.lib.HTMLCollectionOf<IHTMLElement>;
@@ -109,7 +109,7 @@ package ts.html;
 		Returns true if matching selectors against element's root yields element, and false otherwise.
 	**/
 	function matches(selectors:String):Bool;
-	function msGetRegionContent():Any;
+	function msGetRegionContent():Dynamic;
 	function releasePointerCapture(pointerId:Float):Void;
 	/**
 		Removes element's first attribute whose qualified name is qualifiedName.
@@ -178,14 +178,14 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Returns node's node document's document base URL.
 	**/
@@ -394,14 +394,14 @@ package ts.html;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
-	@:overload(function<K>(selectors:K):Null<Any> { })
+	@:overload(function<K>(selectors:K):Null<Dynamic> { })
 	@:overload(function<E>(selectors:String):Null<E> { })
-	function querySelector<K>(selectors:K):Null<Any>;
+	function querySelector<K>(selectors:K):Null<Dynamic>;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
-	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Any> { })
+	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Dynamic> { })
 	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
-	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Any>;
+	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Dynamic>;
 	static var prototype : IElement;
 }

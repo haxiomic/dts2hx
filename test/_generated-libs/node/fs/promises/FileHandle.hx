@@ -8,7 +8,7 @@ extern typedef FileHandle = {
 		Asynchronously append data to a file, creating the file if it does not exist. The underlying file will _not_ be closed automatically.
 		The `FileHandle` must have been opened for appending.
 	**/
-	function appendFile(data:Any, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
+	function appendFile(data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronous fchown(2) - Change ownership of a file.
 	**/
@@ -45,7 +45,7 @@ extern typedef FileHandle = {
 	**/
 	@:overload(function(options:ts.AnyOf2<String, { var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<String> { })
 	@:overload(function(?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<ts.AnyOf2<String, global.IBuffer>> { })
-	function readFile(?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):ts.lib.IPromise<global.IBuffer>;
+	function readFile(?options:{ @:optional var encoding : Dynamic; @:optional var flag : ts.AnyOf2<String, Float>; }):ts.lib.IPromise<global.IBuffer>;
 	/**
 		Asynchronous fstat(2) - Get file status.
 	**/
@@ -67,7 +67,7 @@ extern typedef FileHandle = {
 		It is unsafe to call `write()` multiple times on the same file without waiting for the `Promise`
 		to be resolved (or rejected). For this scenario, `fs.createWriteStream` is strongly recommended.
 	**/
-	@:overload(function(data:Any, ?position:Float, ?encoding:String):ts.lib.IPromise<{
+	@:overload(function(data:Dynamic, ?position:Float, ?encoding:String):ts.lib.IPromise<{
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
@@ -80,7 +80,7 @@ extern typedef FileHandle = {
 		The `FileHandle` must have been opened for writing.
 		It is unsafe to call `writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
 	**/
-	function writeFile(data:Any, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
+	function writeFile(data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronous close(2) - close a `FileHandle`.
 	**/

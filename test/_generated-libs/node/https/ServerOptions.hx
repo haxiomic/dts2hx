@@ -1,2 +1,2 @@
 package node.https;
-typedef ServerOptions = Any;
+typedef ServerOptions = Dynamic;

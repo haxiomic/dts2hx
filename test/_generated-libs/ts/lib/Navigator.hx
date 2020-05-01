@@ -24,8 +24,8 @@ package ts.lib;
 	@:overload(function(keySystem:String, supportedConfigurations:Iterable<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess> { })
 	function requestMediaKeySystemAccess(keySystem:String, supportedConfigurations:std.Array<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess>;
 	function vibrate(pattern:ts.AnyOf2<Float, std.Array<Float>>):Bool;
-	function msSaveBlob(blob:Any, ?defaultName:String):Bool;
-	function msSaveOrOpenBlob(blob:Any, ?defaultName:String):Bool;
+	function msSaveBlob(blob:Dynamic, ?defaultName:String):Bool;
+	function msSaveOrOpenBlob(blob:Dynamic, ?defaultName:String):Bool;
 	function confirmSiteSpecificTrackingException(args:ts.html.ConfirmSiteSpecificExceptionsInformation):Bool;
 	function confirmWebWideTrackingException(args:ts.html.ExceptionInformation):Bool;
 	function removeSiteSpecificTrackingException(args:ts.html.ExceptionInformation):Void;

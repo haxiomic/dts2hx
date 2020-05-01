@@ -9,7 +9,7 @@ extern typedef IFormData = {
 	function getAll(name:String):std.Array<ts.AnyOf2<String, ts.html.IFile>>;
 	function has(name:String):Bool;
 	function set(name:String, value:ts.AnyOf2<String, ts.html.IBlob>, ?fileName:String):Void;
-	function forEach(callbackfn:(value:ts.AnyOf2<String, ts.html.IFile>, key:String, parent:IFormData) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:ts.AnyOf2<String, ts.html.IFile>, key:String, parent:IFormData) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/

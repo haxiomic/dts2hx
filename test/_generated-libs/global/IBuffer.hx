@@ -33,7 +33,7 @@ extern typedef IBuffer = {
 		/**
 			Returns true if {obj} is a Buffer
 		**/
-		function isBuffer(obj:Any):Bool;
+		function isBuffer(obj:Dynamic):Bool;
 		/**
 			Returns true if {encoding} is a valid encoding argument.
 			Valid string encodings in Node 0.12: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'
@@ -144,7 +144,7 @@ extern typedef IBuffer = {
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
-	function fill(value:Any, ?offset:Float, ?end:Float):IBuffer;
+	function fill(value:Dynamic, ?offset:Float, ?end:Float):IBuffer;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -193,25 +193,25 @@ extern typedef IBuffer = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Any):ts.lib.IUint8Array;
+	function filter(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Dynamic, ?thisArg:Dynamic):ts.lib.IUint8Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Any):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -224,7 +224,7 @@ extern typedef IBuffer = {
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Float, ?thisArg:Any):ts.lib.IUint8Array;
+	function map(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Float, ?thisArg:Dynamic):ts.lib.IUint8Array;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -256,7 +256,7 @@ extern typedef IBuffer = {
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/

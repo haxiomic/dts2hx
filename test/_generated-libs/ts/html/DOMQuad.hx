@@ -6,7 +6,7 @@ package ts.html;
 	final p3 : IDOMPoint;
 	final p4 : IDOMPoint;
 	function getBounds():IDOMRect;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IDOMQuad;
 	static function fromQuad(?other:DOMQuadInit):IDOMQuad;
 	static function fromRect(?other:DOMRectInit):IDOMQuad;

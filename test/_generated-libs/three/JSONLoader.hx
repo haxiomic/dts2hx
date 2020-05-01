@@ -8,7 +8,7 @@ package three;
 	var withCredentials : Bool;
 	function load(url:String, ?onLoad:(geometry:Geometry, materials:std.Array<Material>) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Void;
 	function setTexturePath(value:String):Void;
-	function parse(json:Any, ?texturePath:String):{
+	function parse(json:Dynamic, ?texturePath:String):{
 		var geometry : Geometry;
 		@:optional
 		var materials : std.Array<Material>;

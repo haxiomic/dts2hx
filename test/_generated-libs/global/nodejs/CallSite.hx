@@ -3,7 +3,7 @@ extern typedef CallSite = {
 	/**
 		Value of "this"
 	**/
-	function getThis():Any;
+	function getThis():Dynamic;
 	/**
 		Type of "this" as a string.
 		This is the name of the function stored in the constructor field of

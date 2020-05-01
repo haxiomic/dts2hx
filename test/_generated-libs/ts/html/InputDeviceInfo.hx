@@ -6,6 +6,6 @@ package ts.html;
 	final groupId : String;
 	final kind : String;
 	final label : String;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IInputDeviceInfo;
 }

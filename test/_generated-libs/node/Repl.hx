@@ -8,7 +8,7 @@ package node;
 		This is the default "writer" value, if none is passed in the REPL options,
 		and it can be overridden by custom print functions.
 	**/
-	static var writer : Any;
+	static var writer : Dynamic;
 	/**
 		A flag passed in the REPL options. Evaluates expressions in sloppy mode.
 	**/

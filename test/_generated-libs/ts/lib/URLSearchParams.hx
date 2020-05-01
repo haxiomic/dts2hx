@@ -1,6 +1,6 @@
 package ts.lib;
 @:native("URLSearchParams") extern class URLSearchParams {
-	function new(?init:ts.AnyOf4<String, IURLSearchParams, Any, std.Array<std.Array<String>>>);
+	function new(?init:ts.AnyOf4<String, IURLSearchParams, Dynamic, std.Array<std.Array<String>>>);
 	/**
 		Appends a specified key/value pair as a new search parameter.
 	**/
@@ -26,7 +26,7 @@ package ts.lib;
 	**/
 	function set(name:String, value:String):Void;
 	function sort():Void;
-	function forEach(callbackfn:(value:String, key:String, parent:IURLSearchParams) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:String, key:String, parent:IURLSearchParams) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the search params.
 	**/

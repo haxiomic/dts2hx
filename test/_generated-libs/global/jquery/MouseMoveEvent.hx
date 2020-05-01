@@ -4,7 +4,7 @@ extern typedef MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> =
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : Any;
+	var relatedTarget : Dynamic;
 	/**
 		Describes the nature of the event.
 	**/
@@ -26,15 +26,15 @@ extern typedef MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> =
 	var screenX : Float;
 	var screenY : Float;
 	var toElement : ts.html.IElement;
-	var pointerId : Null<Any>;
-	var pointerType : Null<Any>;
-	var char : Null<Any>;
-	var charCode : Null<Any>;
-	var key : Null<Any>;
-	var keyCode : Null<Any>;
-	var changedTouches : Null<Any>;
-	var targetTouches : Null<Any>;
-	var touches : Null<Any>;
+	var pointerId : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var pointerType : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var char : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var charCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var key : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var keyCode : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var changedTouches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var targetTouches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
+	var touches : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/
@@ -78,7 +78,7 @@ extern typedef MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> =
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
 	@:optional
-	var result : Any;
+	var result : Dynamic;
 	/**
 		The difference in milliseconds between the time the browser created the event and January 1, 1970.
 	**/

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("PopStateEvent") extern class PopStateEvent {
 	function new(type:String, ?eventInitDict:PopStateEventInit);
-	final state : Any;
+	final state : Dynamic;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

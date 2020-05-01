@@ -1,5 +1,5 @@
 package sizzle.selectors;
 extern typedef CreatePseudoFunction = {
 	@:selfCall
-	function call(args:haxe.extern.Rest<Any>):PseudoFunction;
+	function call(args:haxe.extern.Rest<Dynamic>):PseudoFunction;
 };

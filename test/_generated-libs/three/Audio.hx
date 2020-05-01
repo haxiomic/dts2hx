@@ -14,7 +14,7 @@ package three;
 	var hasPlaybackControl : Bool;
 	var sourceType : String;
 	var source : ts.html.IAudioBufferSourceNode;
-	var filters : std.Array<Any>;
+	var filters : std.Array<Dynamic>;
 	function getOutput():ts.html.IGainNode;
 	function setNodeSource(audioNode:ts.html.IAudioBufferSourceNode):Audio;
 	function setMediaElementSource(mediaElement:ts.html.IMediaElementAudioSourceNode):Audio;
@@ -27,10 +27,10 @@ package three;
 	function disconnect():Audio;
 	function setDetune(value:Float):Audio;
 	function getDetune():Float;
-	function getFilters():std.Array<Any>;
-	@:overload(function(filter:Any):Audio { })
-	function setFilter(value:std.Array<Any>):Audio;
-	function getFilter():Any;
+	function getFilters():std.Array<Dynamic>;
+	@:overload(function(filter:Dynamic):Audio { })
+	function setFilter(value:std.Array<Dynamic>):Audio;
+	function getFilter():Dynamic;
 	function setPlaybackRate(value:Float):Audio;
 	function getPlaybackRate():Float;
 	function getLoop():Bool;

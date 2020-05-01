@@ -9,7 +9,7 @@ extern typedef ClusterSettings = {
 	@:optional
 	var silent : Bool;
 	@:optional
-	var stdio : std.Array<Any>;
+	var stdio : std.Array<Dynamic>;
 	@:optional
 	var uid : Float;
 	@:optional

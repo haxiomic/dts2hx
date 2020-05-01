@@ -1,7 +1,7 @@
 package three;
 @:jsRequire("three", "MeshStandardMaterial") extern class MeshStandardMaterial extends Material {
 	function new(?parameters:MeshStandardMaterialParameters);
-	var defines : Any;
+	var defines : Dynamic;
 	var color : Color;
 	var roughness : Float;
 	var metalness : Float;

@@ -5,7 +5,7 @@ package ts.html;
 @:native("ErrorEvent") extern class ErrorEvent {
 	function new(type:String, ?eventInitDict:ErrorEventInit);
 	final colno : Float;
-	final error : Any;
+	final error : Dynamic;
 	final filename : String;
 	final lineno : Float;
 	final message : String;

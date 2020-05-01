@@ -8,7 +8,7 @@ extern typedef IHeaders = {
 	function get(name:String):Null<String>;
 	function has(name:String):Bool;
 	function set(name:String, value:String):Void;
-	function forEach(callbackfn:(value:String, key:String, parent:IHeaders) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:String, key:String, parent:IHeaders) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an iterator allowing to go through all key/value pairs contained in this object.
 	**/

@@ -23,5 +23,5 @@ package three;
 	function applyMatrix4(matrix:Matrix4, ?optionalNormalMatrix:Matrix3):Plane;
 	function translate(offset:Vector3):Plane;
 	function equals(plane:Plane):Bool;
-	function isIntersectionLine(l:Any):Any;
+	function isIntersectionLine(l:Dynamic):Dynamic;
 }

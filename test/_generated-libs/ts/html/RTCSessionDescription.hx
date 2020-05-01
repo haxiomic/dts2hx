@@ -6,6 +6,6 @@ package ts.html;
 	function new(descriptionInitDict:RTCSessionDescriptionInit);
 	final sdp : String;
 	final type : String;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IRTCSessionDescription;
 }

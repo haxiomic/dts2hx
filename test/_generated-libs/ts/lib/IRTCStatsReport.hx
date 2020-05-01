@@ -1,13 +1,13 @@
 package ts.lib;
 extern typedef IRTCStatsReport = {
-	function forEach(callbackfn:(value:Any, key:String, parent:IRTCStatsReport) -> Void, ?thisArg:Any):Void;
-	function get(key:String):Any;
+	function forEach(callbackfn:(value:Dynamic, key:String, parent:IRTCStatsReport) -> Void, ?thisArg:Dynamic):Void;
+	function get(key:String):Dynamic;
 	function has(key:String):Bool;
 	final size : Float;
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<ts.Tuple2<String, Any>>;
+	function entries():IterableIterator<ts.Tuple2<String, Dynamic>>;
 	/**
 		Returns an iterable of keys in the map
 	**/
@@ -15,5 +15,5 @@ extern typedef IRTCStatsReport = {
 	/**
 		Returns an iterable of values in the map
 	**/
-	function values():IterableIterator<Any>;
+	function values():IterableIterator<Dynamic>;
 };

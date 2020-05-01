@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("BeforeUnloadEvent") extern class BeforeUnloadEvent {
 	function new();
-	var returnValue : Any;
+	var returnValue : Dynamic;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

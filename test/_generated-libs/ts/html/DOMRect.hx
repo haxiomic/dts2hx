@@ -9,7 +9,7 @@ package ts.html;
 	final left : Float;
 	final right : Float;
 	final top : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IDOMRect;
 	static function fromRect(?other:DOMRectInit):IDOMRect;
 }

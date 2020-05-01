@@ -70,5 +70,5 @@ package ts.html;
 	final BUBBLING_PHASE : Float;
 	final CAPTURING_PHASE : Float;
 	final NONE : Float;
-	static var prototype : ICustomEvent<Any>;
+	static var prototype : ICustomEvent<Dynamic>;
 }

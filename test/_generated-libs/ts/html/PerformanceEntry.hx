@@ -8,6 +8,6 @@ package ts.html;
 	final entryType : String;
 	final name : String;
 	final startTime : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IPerformanceEntry;
 }

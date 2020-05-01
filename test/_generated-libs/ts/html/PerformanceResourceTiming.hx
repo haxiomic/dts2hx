@@ -21,7 +21,7 @@ package ts.html;
 	final secureConnectionStart : Float;
 	final transferSize : Float;
 	final workerStart : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	final duration : Float;
 	final entryType : String;
 	final name : String;

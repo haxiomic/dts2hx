@@ -11,7 +11,7 @@ extern typedef ICSSStyleSheet = {
 	final isPrefAlternate : Bool;
 	final ownerRule : Null<ICSSRule>;
 	final owningElement : IElement;
-	final pages : Any;
+	final pages : Dynamic;
 	final readOnly : Bool;
 	final rules : ts.lib.ICSSRuleList;
 	function addImport(bstrURL:String, ?lIndex:Float):Float;

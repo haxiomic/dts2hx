@@ -4,18 +4,18 @@ extern typedef CipherCCMOptions = {
 	@:optional
 	function read(size:Float):Void;
 	@:optional
-	function write(chunk:Any, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
+	function write(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function writev(chunks:std.Array<{ var chunk : Any; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function writev(chunks:std.Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:native("final")
 	@:optional
 	function final_(callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
 	function destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
 	@:optional
-	function transform(chunk:Any, encoding:String, callback:(?error:ts.lib.IError, ?data:Any) -> Void):Void;
+	function transform(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
 	@:optional
-	function flush(callback:(?error:ts.lib.IError, ?data:Any) -> Void):Void;
+	function flush(callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
 	@:optional
 	var allowHalfOpen : Bool;
 	@:optional

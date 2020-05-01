@@ -6,7 +6,7 @@ package ts.html;
 	var y : Float;
 	var z : Float;
 	function matrixTransform(?matrix:DOMMatrixInit):IDOMPoint;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IDOMPoint;
 	static function fromPoint(?other:DOMPointInit):IDOMPoint;
 }

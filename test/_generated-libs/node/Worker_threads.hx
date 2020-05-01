@@ -3,5 +3,5 @@ package node;
 	static var isMainThread : Bool;
 	static var parentPort : Null<node.worker_threads.MessagePort>;
 	static var threadId : Float;
-	static var workerData : Any;
+	static var workerData : Dynamic;
 }

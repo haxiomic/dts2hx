@@ -314,16 +314,16 @@ package node;
 	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
 	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
 	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
-	@:overload(function(fd:Float, string:Any, position:Null<Float>, encoding:Null<String>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
-	@:overload(function(fd:Float, string:Any, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
-	@:overload(function(fd:Float, string:Any, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
+	@:overload(function(fd:Float, string:Dynamic, position:Null<Float>, encoding:Null<String>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
+	@:overload(function(fd:Float, string:Dynamic, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
+	@:overload(function(fd:Float, string:Dynamic, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
 	static function write<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void;
 	/**
 		Synchronously writes `buffer` to the file referenced by the supplied file descriptor, returning the number of bytes written.
 		
 		Synchronously writes `string` to the file referenced by the supplied file descriptor, returning the number of bytes written.
 	**/
-	@:overload(function(fd:Float, string:Any, ?position:Float, ?encoding:String):Float { })
+	@:overload(function(fd:Float, string:Dynamic, ?position:Float, ?encoding:String):Float { })
 	static function writeSync(fd:Float, buffer:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, ?offset:Float, ?length:Float, ?position:Float):Float;
 	/**
 		Asynchronously reads data from the file referenced by the supplied file descriptor.
@@ -345,7 +345,7 @@ package node;
 	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, options:ts.AnyOf2<String, { var encoding : String; @:optional var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:String) -> Void):Void { })
 	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : String; }>>, callback:(err:global.nodejs.ErrnoException, data:ts.AnyOf2<String, global.IBuffer>) -> Void):Void { })
 	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, callback:(err:global.nodejs.ErrnoException, data:global.IBuffer) -> Void):Void { })
-	static function readFile(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, options:Null<{ @:optional var encoding : Any; @:optional var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:global.IBuffer) -> Void):Void;
+	static function readFile(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, options:Null<{ @:optional var encoding : Dynamic; @:optional var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:global.IBuffer) -> Void):Void;
 	/**
 		Synchronously reads the entire contents of a file.
 		
@@ -355,29 +355,29 @@ package node;
 	**/
 	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, options:ts.AnyOf2<String, { var encoding : String; @:optional var flag : String; }>):String { })
 	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : String; }>):ts.AnyOf2<String, global.IBuffer> { })
-	static function readFileSync(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, ?options:{ @:optional var encoding : Any; @:optional var flag : String; }):global.IBuffer;
+	static function readFileSync(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, ?options:{ @:optional var encoding : Dynamic; @:optional var flag : String; }):global.IBuffer;
 	/**
 		Asynchronously writes data to a file, replacing the file if it already exists.
 		
 		Asynchronously writes data to a file, replacing the file if it already exists.
 	**/
-	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Any, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
-	static function writeFile(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Any, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	@:overload(function(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Dynamic, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
+	static function writeFile(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Dynamic, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously writes data to a file, replacing the file if it already exists.
 	**/
-	static function writeFileSync(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Any, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>):Void;
+	static function writeFileSync(path:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>):Void;
 	/**
 		Asynchronously append data to a file, creating the file if it does not exist.
 		
 		Asynchronously append data to a file, creating the file if it does not exist.
 	**/
-	@:overload(function(file:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Any, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
-	static function appendFile(file:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Any, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	@:overload(function(file:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Dynamic, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
+	static function appendFile(file:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Dynamic, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously append data to a file, creating the file if it does not exist.
 	**/
-	static function appendFileSync(file:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Any, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>):Void;
+	static function appendFileSync(file:ts.AnyOf4<String, Float, global.IBuffer, node.url.URL>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>):Void;
 	/**
 		Watch for changes on `filename`. The callback `listener` will be called each time the file is accessed.
 		
@@ -400,7 +400,7 @@ package node;
 	**/
 	@:overload(function(filename:ts.AnyOf3<String, global.IBuffer, node.url.URL>, options:ts.AnyOf2<String, { var encoding : String; @:optional var persistent : Bool; @:optional var recursive : Bool; }>, ?listener:(event:String, filename:global.IBuffer) -> Void):node.fs.FSWatcher { })
 	@:overload(function(filename:ts.AnyOf3<String, global.IBuffer, node.url.URL>, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var persistent : Bool; @:optional var recursive : Bool; }>>, ?listener:(event:String, filename:ts.AnyOf2<String, global.IBuffer>) -> Void):node.fs.FSWatcher { })
-	@:overload(function(filename:ts.AnyOf3<String, global.IBuffer, node.url.URL>, ?listener:(event:String, filename:String) -> Any):node.fs.FSWatcher { })
+	@:overload(function(filename:ts.AnyOf3<String, global.IBuffer, node.url.URL>, ?listener:(event:String, filename:String) -> Dynamic):node.fs.FSWatcher { })
 	static function watch(filename:ts.AnyOf3<String, global.IBuffer, node.url.URL>, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var persistent : Bool; @:optional var recursive : Bool; }>>, ?listener:(event:String, filename:String) -> Void):node.fs.FSWatcher;
 	/**
 		Asynchronously tests whether or not the given path exists by checking with the file system.

@@ -1,4 +1,4 @@
 package ts.lib;
 extern typedef MapConstructor = {
-	final prototype : IMap<Any, Any>;
+	final prototype : IMap<Dynamic, Dynamic>;
 };

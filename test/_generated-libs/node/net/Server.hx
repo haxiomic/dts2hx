@@ -8,8 +8,8 @@ package node.net;
 	@:overload(function(path:String, ?backlog:Float, ?listeningListener:() -> Void):Server { })
 	@:overload(function(path:String, ?listeningListener:() -> Void):Server { })
 	@:overload(function(options:ListenOptions, ?listeningListener:() -> Void):Server { })
-	@:overload(function(handle:Any, ?backlog:Float, ?listeningListener:() -> Void):Server { })
-	@:overload(function(handle:Any, ?listeningListener:() -> Void):Server { })
+	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Server { })
+	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
 	function close(?callback:(?err:ts.lib.IError) -> Void):Server;
 	function address():Null<ts.AnyOf2<String, AddressInfo>>;

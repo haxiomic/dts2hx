@@ -1,9 +1,9 @@
 package three;
 @:jsRequire("three", "PropertyMixer") extern class PropertyMixer {
-	function new(binding:Any, typeName:String, valueSize:Float);
-	var binding : Any;
+	function new(binding:Dynamic, typeName:String, valueSize:Float);
+	var binding : Dynamic;
 	var valueSize : Float;
-	var buffer : Any;
+	var buffer : Dynamic;
 	var cumulativeWeight : Float;
 	var useCount : Float;
 	var referenceCount : Float;

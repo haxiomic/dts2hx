@@ -3,7 +3,7 @@ extern typedef ErrorEventInit = {
 	@:optional
 	var colno : Float;
 	@:optional
-	var error : Any;
+	var error : Dynamic;
 	@:optional
 	var filename : String;
 	@:optional

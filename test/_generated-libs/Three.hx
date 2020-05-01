@@ -1,7 +1,7 @@
 @:jsRequire("three") @valueModuleOnly extern class Three {
-	static function warn(?message:Any, optionalParams:haxe.extern.Rest<Any>):Void;
-	static function error(?message:Any, optionalParams:haxe.extern.Rest<Any>):Void;
-	static function log(?message:Any, optionalParams:haxe.extern.Rest<Any>):Void;
+	static function warn(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void;
+	static function error(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void;
+	static function log(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void;
 	static var ShaderLib : {
 		var basic : three.Shader;
 		var lambert : three.Shader;
@@ -80,7 +80,7 @@
 		var lights : {
 			var ambientLightColor : three.IUniform;
 			var directionalLights : {
-				var value : std.Array<Any>;
+				var value : std.Array<Dynamic>;
 				var properties : {
 					var direction : { };
 					var color : { };
@@ -93,7 +93,7 @@
 			var directionalShadowMap : three.IUniform;
 			var directionalShadowMatrix : three.IUniform;
 			var spotLights : {
-				var value : std.Array<Any>;
+				var value : std.Array<Dynamic>;
 				var properties : {
 					var color : { };
 					var position : { };
@@ -111,7 +111,7 @@
 			var spotShadowMap : three.IUniform;
 			var spotShadowMatrix : three.IUniform;
 			var pointLights : {
-				var value : std.Array<Any>;
+				var value : std.Array<Dynamic>;
 				var properties : {
 					var color : { };
 					var position : { };
@@ -126,7 +126,7 @@
 			var pointShadowMap : three.IUniform;
 			var pointShadowMatrix : three.IUniform;
 			var hemisphereLights : {
-				var value : std.Array<Any>;
+				var value : std.Array<Dynamic>;
 				var properties : {
 					var direction : { };
 					var skycolor : { };
@@ -134,7 +134,7 @@
 				};
 			};
 			var rectAreaLights : {
-				var value : std.Array<Any>;
+				var value : std.Array<Dynamic>;
 				var properties : {
 					var color : { };
 					var position : { };

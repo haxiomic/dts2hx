@@ -4,11 +4,11 @@ package ts.html;
 **/
 extern typedef IXSLTProcessor = {
 	function clearParameters():Void;
-	function getParameter(namespaceURI:String, localName:String):Any;
+	function getParameter(namespaceURI:String, localName:String):Dynamic;
 	function importStylesheet(style:INode):Void;
 	function removeParameter(namespaceURI:String, localName:String):Void;
 	function reset():Void;
-	function setParameter(namespaceURI:String, localName:String, value:Any):Void;
+	function setParameter(namespaceURI:String, localName:String, value:Dynamic):Void;
 	function transformToDocument(source:INode):IDocument;
 	function transformToFragment(source:INode, document:IDocument):IDocumentFragment;
 };

@@ -6,16 +6,16 @@ package ts.lib;
 	/**
 		Creates a new Promise.
 	**/
-	function new(executor:(resolve:(?value:ts.AnyOf2<T, PromiseLike<T>>) -> Void, reject:(?reason:Any) -> Void) -> Void);
+	function new(executor:(resolve:(?value:ts.AnyOf2<T, PromiseLike<T>>) -> Void, reject:(?reason:Dynamic) -> Void) -> Void);
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/
-	function then<TResult1, TResult2>(?onfulfilled:(value:T) -> ts.AnyOf2<TResult1, PromiseLike<TResult1>>, ?onrejected:(reason:Any) -> ts.AnyOf2<TResult2, PromiseLike<TResult2>>):IPromise<ts.AnyOf2<TResult1, TResult2>>;
+	function then<TResult1, TResult2>(?onfulfilled:(value:T) -> ts.AnyOf2<TResult1, PromiseLike<TResult1>>, ?onrejected:(reason:Dynamic) -> ts.AnyOf2<TResult2, PromiseLike<TResult2>>):IPromise<ts.AnyOf2<TResult1, TResult2>>;
 	/**
 		Attaches a callback for only the rejection of the Promise.
 	**/
 	@:native("catch")
-	function catch_<TResult>(?onrejected:(reason:Any) -> ts.AnyOf2<TResult, PromiseLike<TResult>>):IPromise<ts.AnyOf2<T, TResult>>;
+	function catch_<TResult>(?onrejected:(reason:Dynamic) -> ts.AnyOf2<TResult, PromiseLike<TResult>>):IPromise<ts.AnyOf2<T, TResult>>;
 	/**
 		Creates a Promise that is resolved with an array of results when all of the provided Promises
 		resolve, or rejected when any Promise is rejected.
@@ -71,17 +71,17 @@ package ts.lib;
 		Creates a Promise that is resolved or rejected when any of the provided Promises are resolved
 		or rejected.
 	**/
-	@:overload(function<T>(values:ReadonlyArray<T>):IPromise<Any> { })
-	@:overload(function<T>(values:Iterable<T>):IPromise<Any> { })
+	@:overload(function<T>(values:ReadonlyArray<T>):IPromise<Dynamic> { })
+	@:overload(function<T>(values:Iterable<T>):IPromise<Dynamic> { })
 	static function race<T>(values:Iterable<ts.AnyOf2<T, PromiseLike<T>>>):IPromise<T>;
 	/**
 		A reference to the prototype.
 	**/
-	static final prototype : IPromise<Any>;
+	static final prototype : IPromise<Dynamic>;
 	/**
 		Creates a new rejected promise for the provided reason.
 	**/
-	static function reject<T>(?reason:Any):IPromise<T>;
+	static function reject<T>(?reason:Dynamic):IPromise<T>;
 	/**
 		Creates a new resolved promise for the provided value.
 		

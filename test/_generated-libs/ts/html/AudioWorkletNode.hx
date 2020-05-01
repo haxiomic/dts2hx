@@ -1,7 +1,7 @@
 package ts.html;
 @:native("AudioWorkletNode") extern class AudioWorkletNode {
 	function new(context:ts.lib.IBaseAudioContext, name:String, ?options:AudioWorkletNodeOptions);
-	var onprocessorerror : Null<(ev:IEvent) -> Any>;
+	var onprocessorerror : Null<(ev:IEvent) -> Dynamic>;
 	final parameters : ts.lib.IAudioParamMap;
 	final port : IMessagePort;
 	/**
@@ -30,14 +30,14 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	var channelCount : Float;
 	var channelCountMode : String;
 	var channelInterpretation : String;

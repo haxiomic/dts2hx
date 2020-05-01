@@ -1,7 +1,7 @@
 package three;
 @:jsRequire("three", "ShaderMaterial") extern class ShaderMaterial extends Material {
 	function new(?parameters:ShaderMaterialParameters);
-	var defines : Any;
+	var defines : Dynamic;
 	var uniforms : { };
 	var vertexShader : String;
 	var fragmentShader : String;
@@ -12,13 +12,13 @@ package three;
 	var skinning : Bool;
 	var morphTargets : Bool;
 	var morphNormals : Bool;
-	var derivatives : Any;
+	var derivatives : Dynamic;
 	var extensions : {
 		var derivatives : Bool;
 		var fragDepth : Bool;
 		var drawBuffers : Bool;
 		var shaderTextureLOD : Bool;
 	};
-	var defaultAttributeValues : Any;
+	var defaultAttributeValues : Dynamic;
 	var index0AttributeName : Null<String>;
 }

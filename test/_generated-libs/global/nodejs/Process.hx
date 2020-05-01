@@ -38,7 +38,7 @@ extern typedef Process = {
 	var versions : ProcessVersions;
 	var config : {
 		var target_defaults : {
-			var cflags : std.Array<Any>;
+			var cflags : std.Array<Dynamic>;
 			var default_configuration : String;
 			var defines : std.Array<String>;
 			var include_dirs : std.Array<String>;
@@ -72,7 +72,7 @@ extern typedef Process = {
 	var mainModule : global.NodeModule;
 	function memoryUsage():MemoryUsage;
 	function cpuUsage(?previousValue:CpuUsage):CpuUsage;
-	function nextTick(callback:ts.lib.IFunction, args:haxe.extern.Rest<Any>):Void;
+	function nextTick(callback:ts.lib.IFunction, args:haxe.extern.Rest<Dynamic>):Void;
 	var release : ProcessRelease;
 	var features : {
 		var inspector : Bool;
@@ -92,7 +92,7 @@ extern typedef Process = {
 	var hrtime : HRTime;
 	var domain : Domain;
 	@:optional
-	function send(message:Any, ?sendHandle:Any):Void;
+	function send(message:Dynamic, ?sendHandle:Dynamic):Void;
 	function disconnect():Void;
 	var connected : Bool;
 	/**
@@ -117,90 +117,90 @@ extern typedef Process = {
 	**/
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(message:Dynamic, sendHandle:Dynamic) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void):Process { })
 	function addListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, code:Float):Bool { })
-	@:overload(function(event:String, promise:ts.lib.IPromise<Any>):Bool { })
+	@:overload(function(event:String, promise:ts.lib.IPromise<Dynamic>):Bool { })
 	@:overload(function(event:String, error:ts.lib.IError):Bool { })
-	@:overload(function(event:String, reason:Any, promise:ts.lib.IPromise<Any>):Bool { })
+	@:overload(function(event:String, reason:Dynamic, promise:ts.lib.IPromise<Dynamic>):Bool { })
 	@:overload(function(event:String, warning:ts.lib.IError):Bool { })
-	@:overload(function(event:String, message:Any, sendHandle:Any):Process { })
+	@:overload(function(event:String, message:Dynamic, sendHandle:Dynamic):Process { })
 	@:overload(function(event:String, signal:String):Bool { })
-	@:overload(function(event:String, eventName:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Process { })
-	@:overload(function(event:String, eventName:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, eventName:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process { })
+	@:overload(function(event:String, eventName:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void):Process { })
 	function emit(event:String, code:Float):Bool;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(message:Dynamic, sendHandle:Dynamic) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void):Process { })
 	function on(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(message:Dynamic, sendHandle:Dynamic) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void):Process { })
 	function once(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(message:Dynamic, sendHandle:Dynamic) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void):Process { })
 	function prependListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String, listener:() -> Void):Process { })
 	@:overload(function(event:String, listener:(code:Float) -> Void):Process { })
-	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(error:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void):Process { })
+	@:overload(function(event:String, listener:(reason:Null<{ }>, promise:ts.lib.IPromise<Dynamic>) -> Void):Process { })
 	@:overload(function(event:String, listener:(warning:ts.lib.IError) -> Void):Process { })
-	@:overload(function(event:String, listener:(message:Any, sendHandle:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(message:Dynamic, sendHandle:Dynamic) -> Void):Process { })
 	@:overload(function(event:String, listener:(signal:String) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void):Process { })
-	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void):Process { })
+	@:overload(function(event:String, listener:(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void):Process { })
 	function prependOnceListener(event:String, listener:(code:Float) -> Void):Process;
 	@:overload(function(event:String):std.Array<() -> Void> { })
 	@:overload(function(event:String):std.Array<(code:Float) -> Void> { })
-	@:overload(function(event:String):std.Array<(promise:ts.lib.IPromise<Any>) -> Void> { })
+	@:overload(function(event:String):std.Array<(promise:ts.lib.IPromise<Dynamic>) -> Void> { })
 	@:overload(function(event:String):std.Array<(error:ts.lib.IError) -> Void> { })
-	@:overload(function(event:String):std.Array<(reason:Null<{ }>, promise:ts.lib.IPromise<Any>) -> Void> { })
+	@:overload(function(event:String):std.Array<(reason:Null<{ }>, promise:ts.lib.IPromise<Dynamic>) -> Void> { })
 	@:overload(function(event:String):std.Array<(warning:ts.lib.IError) -> Void> { })
-	@:overload(function(event:String):std.Array<(message:Any, sendHandle:Any) -> Void> { })
+	@:overload(function(event:String):std.Array<(message:Dynamic, sendHandle:Dynamic) -> Void> { })
 	@:overload(function(event:String):std.Array<(signal:String) -> Void> { })
-	@:overload(function(event:String):std.Array<(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void> { })
-	@:overload(function(event:String):std.Array<(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void) -> Void> { })
-	@:overload(function(event:String):std.Array<(type:String, promise:ts.lib.IPromise<Any>, value:Any) -> Void> { })
+	@:overload(function(event:String):std.Array<(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void> { })
+	@:overload(function(event:String):std.Array<(type:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void) -> Void> { })
+	@:overload(function(event:String):std.Array<(type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void> { })
 	function listeners(event:String):std.Array<(code:Float) -> Void>;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Process;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Process;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Process;
 	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;

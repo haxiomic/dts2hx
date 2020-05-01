@@ -26,5 +26,5 @@ extern typedef HandleObject<TTarget, TData> = {
 	/**
 		Event handler function passed to jQuery during event binding. If `false` was passed during event binding, the handler refers to a single shared function that simply returns `false`.
 	**/
-	final handler : (t:TriggeredEvent<TTarget, TData, Any, Any>, args:haxe.extern.Rest<Any>) -> Any;
+	final handler : (t:TriggeredEvent<TTarget, TData, Dynamic, Dynamic>, args:haxe.extern.Rest<Dynamic>) -> Dynamic;
 };

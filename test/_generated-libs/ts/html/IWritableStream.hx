@@ -4,6 +4,6 @@ package ts.html;
 **/
 extern typedef IWritableStream<W> = {
 	final locked : Bool;
-	function abort(?reason:Any):ts.lib.IPromise<Void>;
+	function abort(?reason:Dynamic):ts.lib.IPromise<Void>;
 	function getWriter():WritableStreamDefaultWriter<W>;
 };

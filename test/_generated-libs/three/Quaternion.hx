@@ -70,7 +70,7 @@ package three;
 	function toArray():std.Array<Float>;
 	function _onChange(callback:ts.lib.IFunction):Quaternion;
 	var _onChangeCallback : ts.lib.IFunction;
-	function multiplyVector3(v:Any):Any;
+	function multiplyVector3(v:Dynamic):Dynamic;
 	/**
 		Adapted from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/.
 	**/

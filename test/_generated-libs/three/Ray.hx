@@ -23,7 +23,7 @@ package three;
 	function intersectTriangle(a:Vector3, b:Vector3, c:Vector3, backfaceCulling:Bool, target:Vector3):Vector3;
 	function applyMatrix4(matrix4:Matrix4):Ray;
 	function equals(ray:Ray):Bool;
-	function isIntersectionBox(b:Any):Any;
-	function isIntersectionPlane(p:Any):Any;
-	function isIntersectionSphere(s:Any):Any;
+	function isIntersectionBox(b:Dynamic):Dynamic;
+	function isIntersectionPlane(p:Dynamic):Dynamic;
+	function isIntersectionSphere(s:Dynamic):Dynamic;
 }

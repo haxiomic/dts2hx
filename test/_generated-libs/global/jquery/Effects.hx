@@ -24,5 +24,5 @@ extern typedef Effects = {
 		
 		There is an example of overriding the timer loop in \`{@link https://github.com/gnarf37/jquery-requestAnimationFrame jquery.requestAnimationFrame}\`
 	**/
-	function timer(tickFunction:TickFunction<Any>):Void;
+	function timer(tickFunction:TickFunction<Dynamic>):Void;
 };

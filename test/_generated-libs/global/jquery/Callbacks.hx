@@ -19,7 +19,7 @@ extern typedef Callbacks<T> = {
 	/**
 		Call all of the callbacks with the given arguments.
 	**/
-	function fire(args:haxe.extern.Rest<Any>):Callbacks<T>;
+	function fire(args:haxe.extern.Rest<Dynamic>):Callbacks<T>;
 	/**
 		Determine if the callbacks have already been called at least once.
 	**/
@@ -27,7 +27,7 @@ extern typedef Callbacks<T> = {
 	/**
 		Call all callbacks in a list with the given context and arguments.
 	**/
-	function fireWith(context:Any, ?args:ts.lib.ArrayLike<Any>):Callbacks<T>;
+	function fireWith(context:Dynamic, ?args:ts.lib.ArrayLike<Dynamic>):Callbacks<T>;
 	/**
 		Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.
 	**/

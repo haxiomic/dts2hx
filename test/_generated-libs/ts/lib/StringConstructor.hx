@@ -1,7 +1,7 @@
 package ts.lib;
 extern typedef StringConstructor = {
 	@:selfCall
-	function call(?value:Any):String;
+	function call(?value:Dynamic):String;
 	final prototype : IString;
 	function fromCharCode(codes:haxe.extern.Rest<Float>):String;
 	/**
@@ -14,5 +14,5 @@ extern typedef StringConstructor = {
 		as such the first argument will be a well formed template call site object and the rest
 		parameter will contain the substitution values.
 	**/
-	function raw(template:TemplateStringsArray, substitutions:haxe.extern.Rest<Any>):String;
+	function raw(template:TemplateStringsArray, substitutions:haxe.extern.Rest<Dynamic>):String;
 };

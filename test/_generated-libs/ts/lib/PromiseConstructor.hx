@@ -55,17 +55,17 @@ extern typedef PromiseConstructor = {
 		Creates a Promise that is resolved or rejected when any of the provided Promises are resolved
 		or rejected.
 	**/
-	@:overload(function<T>(values:ReadonlyArray<T>):IPromise<Any> { })
-	@:overload(function<T>(values:Iterable<T>):IPromise<Any> { })
+	@:overload(function<T>(values:ReadonlyArray<T>):IPromise<Dynamic> { })
+	@:overload(function<T>(values:Iterable<T>):IPromise<Dynamic> { })
 	function race<T>(values:Iterable<ts.AnyOf2<T, PromiseLike<T>>>):IPromise<T>;
 	/**
 		A reference to the prototype.
 	**/
-	final prototype : IPromise<Any>;
+	final prototype : IPromise<Dynamic>;
 	/**
 		Creates a new rejected promise for the provided reason.
 	**/
-	function reject<T>(?reason:Any):IPromise<T>;
+	function reject<T>(?reason:Dynamic):IPromise<T>;
 	/**
 		Creates a new resolved promise for the provided value.
 		

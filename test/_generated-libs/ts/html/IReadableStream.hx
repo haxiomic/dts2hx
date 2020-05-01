@@ -4,7 +4,7 @@ package ts.html;
 **/
 extern typedef IReadableStream<R> = {
 	final locked : Bool;
-	function cancel(?reason:Any):ts.lib.IPromise<Void>;
+	function cancel(?reason:Dynamic):ts.lib.IPromise<Void>;
 	@:overload(function():ReadableStreamDefaultReader<R> { })
 	function getReader(options:{ var mode : String; }):ReadableStreamBYOBReader;
 	function pipeThrough<T>(__0:{ var writable : IWritableStream<R>; var readable : IReadableStream<T>; }, ?options:PipeOptions):IReadableStream<T>;

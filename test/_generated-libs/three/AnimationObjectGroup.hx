@@ -1,6 +1,6 @@
 package three;
 @:jsRequire("three", "AnimationObjectGroup") extern class AnimationObjectGroup {
-	function new(args:haxe.extern.Rest<Any>);
+	function new(args:haxe.extern.Rest<Dynamic>);
 	var uuid : String;
 	var stats : {
 		var bindingsPerObject : Float;
@@ -9,7 +9,7 @@ package three;
 			var inUse : Float;
 		};
 	};
-	function add(args:haxe.extern.Rest<Any>):Void;
-	function remove(args:haxe.extern.Rest<Any>):Void;
-	function uncache(args:haxe.extern.Rest<Any>):Void;
+	function add(args:haxe.extern.Rest<Dynamic>):Void;
+	function remove(args:haxe.extern.Rest<Dynamic>):Void;
+	function uncache(args:haxe.extern.Rest<Dynamic>):Void;
 }

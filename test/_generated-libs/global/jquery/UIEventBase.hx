@@ -32,7 +32,7 @@ extern typedef UIEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
 	@:optional
-	var result : Any;
+	var result : Dynamic;
 	var button : Null<Float>;
 	var buttons : Null<Float>;
 	var clientX : Null<Float>;

@@ -1,7 +1,7 @@
 package three;
 @:jsRequire("three", "WebGLObjects") extern class WebGLObjects {
-	function new(gl:ts.html.IWebGLRenderingContext, properties:Any, info:Any);
-	function getAttributeBuffer(attribute:Any):Any;
-	function getWireframeAttribute(geometry:Any):Any;
-	function update(object:Any):Void;
+	function new(gl:ts.html.IWebGLRenderingContext, properties:Dynamic, info:Dynamic);
+	function getAttributeBuffer(attribute:Dynamic):Dynamic;
+	function getWireframeAttribute(geometry:Dynamic):Dynamic;
+	function update(object:Dynamic):Void;
 }

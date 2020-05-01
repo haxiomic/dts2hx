@@ -9,7 +9,7 @@ package ts.html;
 		
 		Throws a "DataError" DOMException if either input is not a valid key.
 	**/
-	function cmp(first:Any, second:Any):Float;
+	function cmp(first:Dynamic, second:Dynamic):Float;
 	/**
 		Attempts to delete the named database. If the database already exists and there are open connections that don't close in response to a versionchange event, the request will be blocked until all they close. If the request is successful request's result will be null.
 	**/

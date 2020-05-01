@@ -25,7 +25,7 @@ typedef SpecialEventHook<TTarget, TData> = ts.AnyOf13<{
 		
 		This hook can perform whatever processing it desires, including attaching its own event handlers to the element or to other elements and recording setup information on the element using the `jQuery.data()` method. If the setup hook wants jQuery to add a browser event (via `addEventListener` or `attachEvent`, depending on browser) it should return `false`. In all other cases, jQuery will not add the browser event, but will continue all its other bookkeeping for the event. This would be appropriate, for example, if the event was never fired by the browser but invoked by `.trigger()`. To attach the jQuery event handler in the setup hook, use the `eventHandle` argument.
 	**/
-	function setup(data:TData, namespaces:String, eventHandle:(t:TriggeredEvent<TTarget, TData, Any, Any>, args:haxe.extern.Rest<Any>) -> Any):ts.AnyOf2<Bool, Void>;
+	function setup(data:TData, namespaces:String, eventHandle:(t:TriggeredEvent<TTarget, TData, Dynamic, Dynamic>, args:haxe.extern.Rest<Dynamic>) -> Dynamic):ts.AnyOf2<Bool, Void>;
 }, {
 	/**
 		The teardown hook is called when the final event of a particular type is removed from an element. The `this` keyword will be a reference to the element where the event is being cleaned up. This hook should return `false` if it wants jQuery to remove the event from the browser's event system (via `removeEventListener` or `detachEvent`). In most cases, the setup and teardown hooks should return the same value.
@@ -54,14 +54,14 @@ typedef SpecialEventHook<TTarget, TData> = ts.AnyOf13<{
 	/**
 		When the `.trigger()` method finishes running all the event handlers for an event, it also looks for and runs any method on the target object by the same name unless of the handlers called `event.preventDefault()`. So, `.trigger( "submit" )` will execute the `submit()` method on the element if one exists. When a `_default` hook is specified, the hook is called just prior to checking for and executing the element's default method. If this hook returns the value `false` the element's default method will be called; otherwise it is not.
 	**/
-	function _default(event:TriggeredEvent<TTarget, TData, Any, Any>, data:TData):ts.AnyOf2<Bool, Void>;
+	function _default(event:TriggeredEvent<TTarget, TData, Dynamic, Dynamic>, data:TData):ts.AnyOf2<Bool, Void>;
 }, {
 	/**
 		jQuery calls a handle hook when the event has occurred and jQuery would normally call the user's event handler specified by `.on()` or another event binding method. If the hook exists, jQuery calls it _instead_ of that event handler, passing it the event and any data passed from `.trigger()` if it was not a native event. The `this` keyword is the DOM element being handled, and `event.handleObj` property has the detailed event information.
 		
 		Based in the information it has, the handle hook should decide whether to call the original handler function which is in `event.handleObj.handler`. It can modify information in the event object before calling the original handler, but _must restore_ that data before returning or subsequent unrelated event handlers may act unpredictably. In most cases, the handle hook should return the result of the original handler, but that is at the discretion of the hook. The handle hook is unique in that it is the only special event function hook that is called under its original special event name when the type is mapped using `bindType` and `delegateType`. For that reason, it is almost always an error to have anything other than a handle hook present if the special event defines a `bindType` and `delegateType`, since those other hooks will never be called.
 	**/
-	function handle(event:TriggeredEvent<TTarget, TData, Any, Any> & { var handleObj : HandleObject<TTarget, TData>; }, data:haxe.extern.Rest<TData>):Void;
+	function handle(event:TriggeredEvent<TTarget, TData, Dynamic, Dynamic> & { var handleObj : HandleObject<TTarget, TData>; }, data:haxe.extern.Rest<TData>):Void;
 }, {
 	function preDispatch(event:Event):ts.AnyOf2<Bool, Void>;
 }, {

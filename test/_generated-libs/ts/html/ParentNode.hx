@@ -28,13 +28,13 @@ extern typedef ParentNode = {
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
-	@:overload(function<K>(selectors:K):Null<Any> { })
+	@:overload(function<K>(selectors:K):Null<Dynamic> { })
 	@:overload(function<E>(selectors:String):Null<E> { })
-	function querySelector<K>(selectors:K):Null<Any>;
+	function querySelector<K>(selectors:K):Null<Dynamic>;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
-	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Any> { })
+	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Dynamic> { })
 	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
-	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Any>;
+	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Dynamic>;
 };

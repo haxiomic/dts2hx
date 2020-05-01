@@ -4,9 +4,9 @@ package ts.lib;
 **/
 extern typedef IVideoTrackList = {
 	final length : Float;
-	var onaddtrack : Null<(ev:ts.html.ITrackEvent) -> Any>;
-	var onchange : Null<(ev:ts.html.IEvent) -> Any>;
-	var onremovetrack : Null<(ev:ts.html.ITrackEvent) -> Any>;
+	var onaddtrack : Null<(ev:ts.html.ITrackEvent) -> Dynamic>;
+	var onchange : Null<(ev:ts.html.IEvent) -> Dynamic>;
+	var onremovetrack : Null<(ev:ts.html.ITrackEvent) -> Dynamic>;
 	final selectedIndex : Float;
 	function getTrackById(id:String):Null<ts.html.IVideoTrack>;
 	function item(index:Float):ts.html.IVideoTrack;
@@ -36,14 +36,14 @@ extern typedef IVideoTrackList = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

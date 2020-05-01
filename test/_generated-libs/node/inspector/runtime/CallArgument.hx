@@ -8,7 +8,7 @@ extern typedef CallArgument = {
 		Primitive value or serializable javascript object.
 	**/
 	@:optional
-	var value : Any;
+	var value : Dynamic;
 	/**
 		Primitive value which can not be JSON-stringified.
 	**/

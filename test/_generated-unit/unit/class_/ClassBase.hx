@@ -17,14 +17,14 @@ package unit.class_;
 		This field has a special name in typescript; we want to make sure it's not mistaken for the constructor
 	**/
 	function __constructor(example:String):Void;
-	function method(a:Float, b:String):Any;
+	function method(a:Float, b:String):Dynamic;
 	/**
 		single parameter signature
 		
 		multi-parameter signature
 	**/
-	@:overload(function(a:String, b:std.Array<{ }>):Any { })
-	function methodOverloaded(a:Float):Any;
+	@:overload(function(a:String, b:std.Array<{ }>):Dynamic { })
+	function methodOverloaded(a:Float):Dynamic;
 	var accessor : Bool;
 	/**
 		should be readonly

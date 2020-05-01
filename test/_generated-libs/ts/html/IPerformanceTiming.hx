@@ -24,5 +24,5 @@ extern typedef IPerformanceTiming = {
 	final secureConnectionStart : Float;
 	final unloadEventEnd : Float;
 	final unloadEventStart : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

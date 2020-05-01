@@ -1,2 +1,2 @@
 package node.repl;
-typedef REPLWriter = (obj:Any) -> String;
+typedef REPLWriter = (obj:Dynamic) -> String;

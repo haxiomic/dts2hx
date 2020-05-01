@@ -19,5 +19,5 @@ package three;
 	**/
 	var far : Float;
 	function clone():Fog;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 }

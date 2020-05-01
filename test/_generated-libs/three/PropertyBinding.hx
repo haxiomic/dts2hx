@@ -1,19 +1,19 @@
 package three;
 @:jsRequire("three", "PropertyBinding") extern class PropertyBinding {
-	function new(rootNode:Any, path:String, ?parsedPath:Any);
+	function new(rootNode:Dynamic, path:String, ?parsedPath:Dynamic);
 	var path : String;
-	var parsedPath : Any;
-	var node : Any;
-	var rootNode : Any;
-	function getValue(targetArray:Any, offset:Float):Any;
-	function setValue(sourceArray:Any, offset:Float):Void;
+	var parsedPath : Dynamic;
+	var node : Dynamic;
+	var rootNode : Dynamic;
+	function getValue(targetArray:Dynamic, offset:Float):Dynamic;
+	function setValue(sourceArray:Dynamic, offset:Float):Void;
 	function bind():Void;
 	function unbind():Void;
 	var BindingType : { };
 	var Versioning : { };
 	var GetterByBindingType : std.Array<ts.lib.IFunction>;
 	var SetterByBindingTypeAndVersioning : std.Array<std.Array<ts.lib.IFunction>>;
-	static function create(root:Any, path:Any, ?parsedPath:Any):ts.AnyOf2<PropertyBinding, three.propertybinding.Composite>;
-	static function parseTrackName(trackName:String):Any;
-	static function findNode(root:Any, nodeName:String):Any;
+	static function create(root:Dynamic, path:Dynamic, ?parsedPath:Dynamic):ts.AnyOf2<PropertyBinding, three.propertybinding.Composite>;
+	static function parseTrackName(trackName:String):Dynamic;
+	static function findNode(root:Dynamic, nodeName:String):Dynamic;
 }

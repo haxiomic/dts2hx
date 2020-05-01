@@ -5,7 +5,7 @@ package ts.lib;
 	function add(value:T):ISet<T>;
 	function clear():Void;
 	function delete(value:T):Bool;
-	function forEach(callbackfn:(value:T, value2:T, set:ISet<T>) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:T, value2:T, set:ISet<T>) -> Void, ?thisArg:Dynamic):Void;
 	function has(value:T):Bool;
 	final size : Float;
 	/**
@@ -20,5 +20,5 @@ package ts.lib;
 		Returns an iterable of values in the set.
 	**/
 	function values():IterableIterator<T>;
-	static final prototype : ISet<Any>;
+	static final prototype : ISet<Dynamic>;
 }

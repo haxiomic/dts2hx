@@ -10,7 +10,7 @@ extern typedef XHRFields = {
 	@:optional
 	var timeout : Float;
 	@:optional
-	var onreadystatechange : (ev:ts.html.IEvent) -> Any;
+	var onreadystatechange : (ev:ts.html.IEvent) -> Dynamic;
 	/**
 		Returns the response type.
 		

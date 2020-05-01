@@ -5,9 +5,9 @@ package ts.lib;
 @:native("MediaKeyStatusMap") extern class MediaKeyStatusMap {
 	function new();
 	final size : Float;
-	function get(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Any;
+	function get(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Dynamic;
 	function has(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Bool;
-	function forEach(callbackfn:(value:String, key:ts.AnyOf2<IArrayBuffer, ArrayBufferView>, parent:IMediaKeyStatusMap) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:String, key:ts.AnyOf2<IArrayBuffer, ArrayBufferView>, parent:IMediaKeyStatusMap) -> Void, ?thisArg:Dynamic):Void;
 	function entries():IterableIterator<ts.Tuple2<ts.AnyOf2<IArrayBuffer, ArrayBufferView>, String>>;
 	function keys():IterableIterator<ts.AnyOf2<IArrayBuffer, ArrayBufferView>>;
 	function values():IterableIterator<String>;

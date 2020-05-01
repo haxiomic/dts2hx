@@ -1,5 +1,5 @@
 package three;
 @:jsRequire("three", "GeometryUtils") @valueModuleOnly extern class GeometryUtils {
-	static function merge(geometry1:Any, geometry2:Any, ?materialIndexOffset:Any):Any;
-	static function center(geometry:Any):Any;
+	static function merge(geometry1:Dynamic, geometry2:Dynamic, ?materialIndexOffset:Dynamic):Dynamic;
+	static function center(geometry:Dynamic):Dynamic;
 }

@@ -3,7 +3,7 @@ package ts.lib;
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/
 @:native("String") extern class String {
-	function new(?value:Any);
+	function new(?value:Dynamic);
 	/**
 		Returns a string representation of a string.
 	**/
@@ -51,9 +51,9 @@ package ts.lib;
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:ts.AnyOf2<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
+	@:overload(function(searchValue:ts.AnyOf2<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
-	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
+	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
 	function replace(searchValue:ts.AnyOf2<String, IRegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
@@ -205,7 +205,7 @@ package ts.lib;
 	**/
 	function sup():String;
 	@:selfCall
-	static function call(?value:Any):String;
+	static function call(?value:Dynamic):String;
 	static final prototype : IString;
 	static function fromCharCode(codes:haxe.extern.Rest<Float>):String;
 	/**
@@ -218,5 +218,5 @@ package ts.lib;
 		as such the first argument will be a well formed template call site object and the rest
 		parameter will contain the substitution values.
 	**/
-	static function raw(template:TemplateStringsArray, substitutions:haxe.extern.Rest<Any>):String;
+	static function raw(template:TemplateStringsArray, substitutions:haxe.extern.Rest<Dynamic>):String;
 }

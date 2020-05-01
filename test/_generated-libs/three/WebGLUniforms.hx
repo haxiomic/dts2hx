@@ -1,10 +1,10 @@
 package three;
 @:jsRequire("three", "WebGLUniforms") extern class WebGLUniforms {
-	function new(gl:Any, program:WebGLProgram);
-	function setValue(gl:Any, name:String, value:Any, textures:WebGLTextures):Void;
-	function setOptional(gl:Any, object:Any, name:String):Void;
-	static function upload(gl:Any, seq:Any, values:std.Array<Any>, textures:WebGLTextures):Void;
-	static function seqWithValue(seq:Any, values:std.Array<Any>):std.Array<Any>;
-	static function splitDynamic(seq:Any, values:std.Array<Any>):std.Array<Any>;
-	static function evalDynamic(seq:Any, values:std.Array<Any>, object:Any, camera:Any):std.Array<Any>;
+	function new(gl:Dynamic, program:WebGLProgram);
+	function setValue(gl:Dynamic, name:String, value:Dynamic, textures:WebGLTextures):Void;
+	function setOptional(gl:Dynamic, object:Dynamic, name:String):Void;
+	static function upload(gl:Dynamic, seq:Dynamic, values:std.Array<Dynamic>, textures:WebGLTextures):Void;
+	static function seqWithValue(seq:Dynamic, values:std.Array<Dynamic>):std.Array<Dynamic>;
+	static function splitDynamic(seq:Dynamic, values:std.Array<Dynamic>):std.Array<Dynamic>;
+	static function evalDynamic(seq:Dynamic, values:std.Array<Dynamic>, object:Dynamic, camera:Dynamic):std.Array<Dynamic>;
 }

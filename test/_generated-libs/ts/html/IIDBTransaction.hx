@@ -16,9 +16,9 @@ extern typedef IIDBTransaction = {
 		Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
 	**/
 	final objectStoreNames : ts.lib.IDOMStringList;
-	var onabort : Null<(ev:IEvent) -> Any>;
-	var oncomplete : Null<(ev:IEvent) -> Any>;
-	var onerror : Null<(ev:IEvent) -> Any>;
+	var onabort : Null<(ev:IEvent) -> Dynamic>;
+	var oncomplete : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Aborts the transaction. All pending requests will fail with a "AbortError" DOMException and all changes made to the database will be reverted.
 	**/
@@ -53,14 +53,14 @@ extern typedef IIDBTransaction = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

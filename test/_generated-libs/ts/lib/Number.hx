@@ -3,7 +3,7 @@ package ts.lib;
 	An object that represents a number of any kind. All JavaScript numbers are 64-bit floating-point numbers.
 **/
 @:native("Number") extern class Number {
-	function new(?value:Any);
+	function new(?value:Dynamic);
 	/**
 		Returns a string representation of an object.
 	**/
@@ -29,7 +29,7 @@ package ts.lib;
 	**/
 	function toLocaleString(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):String;
 	@:selfCall
-	static function call(?value:Any):Float;
+	static function call(?value:Dynamic):Float;
 	static final prototype : INumber;
 	/**
 		The largest number that can be represented in JavaScript. Equal to approximately 1.79E+308.

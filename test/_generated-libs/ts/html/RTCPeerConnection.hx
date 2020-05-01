@@ -13,16 +13,16 @@ package ts.html;
 	final idpErrorInfo : Null<String>;
 	final idpLoginUrl : Null<String>;
 	final localDescription : Null<IRTCSessionDescription>;
-	var onconnectionstatechange : Null<(ev:IEvent) -> Any>;
-	var ondatachannel : Null<(ev:IRTCDataChannelEvent) -> Any>;
-	var onicecandidate : Null<(ev:IRTCPeerConnectionIceEvent) -> Any>;
-	var onicecandidateerror : Null<(ev:IRTCPeerConnectionIceErrorEvent) -> Any>;
-	var oniceconnectionstatechange : Null<(ev:IEvent) -> Any>;
-	var onicegatheringstatechange : Null<(ev:IEvent) -> Any>;
-	var onnegotiationneeded : Null<(ev:IEvent) -> Any>;
-	var onsignalingstatechange : Null<(ev:IEvent) -> Any>;
-	var onstatsended : Null<(ev:IRTCStatsEvent) -> Any>;
-	var ontrack : Null<(ev:IRTCTrackEvent) -> Any>;
+	var onconnectionstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var ondatachannel : Null<(ev:IRTCDataChannelEvent) -> Dynamic>;
+	var onicecandidate : Null<(ev:IRTCPeerConnectionIceEvent) -> Dynamic>;
+	var onicecandidateerror : Null<(ev:IRTCPeerConnectionIceErrorEvent) -> Dynamic>;
+	var oniceconnectionstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onicegatheringstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onnegotiationneeded : Null<(ev:IEvent) -> Dynamic>;
+	var onsignalingstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onstatsended : Null<(ev:IRTCStatsEvent) -> Dynamic>;
+	var ontrack : Null<(ev:IRTCTrackEvent) -> Dynamic>;
 	final peerIdentity : ts.lib.IPromise<IRTCIdentityAssertion>;
 	final pendingLocalDescription : Null<IRTCSessionDescription>;
 	final pendingRemoteDescription : Null<IRTCSessionDescription>;
@@ -73,14 +73,14 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef PopStateEventInit = {
 	@:optional
-	var state : Any;
+	var state : Dynamic;
 	@:optional
 	var bubbles : Bool;
 	@:optional

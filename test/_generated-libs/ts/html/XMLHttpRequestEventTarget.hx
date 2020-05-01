@@ -1,13 +1,13 @@
 package ts.html;
 @:native("XMLHttpRequestEventTarget") extern class XMLHttpRequestEventTarget {
 	function new();
-	var onabort : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
-	var onerror : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
-	var onload : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
-	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
-	var onloadstart : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
-	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
-	var ontimeout : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onabort : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onerror : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onload : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onloadstart : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var ontimeout : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -34,14 +34,14 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

@@ -1,9 +1,9 @@
 package three;
 extern typedef ShaderMaterialParameters = {
 	@:optional
-	var defines : Any;
+	var defines : Dynamic;
 	@:optional
-	var uniforms : Any;
+	var uniforms : Dynamic;
 	@:optional
 	var vertexShader : String;
 	@:optional

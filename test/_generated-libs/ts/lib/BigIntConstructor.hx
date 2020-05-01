@@ -1,7 +1,7 @@
 package ts.lib;
 extern typedef BigIntConstructor = {
 	@:selfCall
-	function call(?value:Any):BigInt;
+	function call(?value:Dynamic):BigInt;
 	final prototype : BigInt;
 	/**
 		Interprets the low bits of a BigInt as a 2's-complement signed integer.

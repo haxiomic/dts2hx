@@ -32,7 +32,7 @@ package ts.lib;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
@@ -40,21 +40,21 @@ package ts.lib;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Any, ?thisArg:Any):IFloat32Array;
+	function filter(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Dynamic, ?thisArg:Dynamic):IFloat32Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:IFloat32Array) -> Bool, ?thisArg:Any):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:IFloat32Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:IFloat32Array) -> Bool, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:IFloat32Array) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -75,7 +75,7 @@ package ts.lib;
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Float, ?thisArg:Any):IFloat32Array;
+	function map(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Float, ?thisArg:Dynamic):IFloat32Array;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -115,7 +115,7 @@ package ts.lib;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:IFloat32Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/
@@ -162,7 +162,7 @@ package ts.lib;
 		
 		Creates an array from an array-like or iterable object.
 	**/
-	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Any):IFloat32Array { })
-	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Any):IFloat32Array { })
+	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):IFloat32Array { })
+	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):IFloat32Array { })
 	static function from(arrayLike:ArrayLike<Float>):IFloat32Array;
 }

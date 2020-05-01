@@ -11,7 +11,7 @@ extern typedef NodeListOf<TNode> = {
 	/**
 		Performs the specified action for each node in an list.
 	**/
-	function forEach(callbackfn:(value:TNode, key:Float, parent:NodeListOf<TNode>) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:TNode, key:Float, parent:NodeListOf<TNode>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/

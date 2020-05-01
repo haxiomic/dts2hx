@@ -8,11 +8,11 @@ extern typedef ISourceBuffer = {
 	final audioTracks : ts.lib.IAudioTrackList;
 	final buffered : ITimeRanges;
 	var mode : String;
-	var onabort : Null<(ev:IEvent) -> Any>;
-	var onerror : Null<(ev:IEvent) -> Any>;
-	var onupdate : Null<(ev:IEvent) -> Any>;
-	var onupdateend : Null<(ev:IEvent) -> Any>;
-	var onupdatestart : Null<(ev:IEvent) -> Any>;
+	var onabort : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:IEvent) -> Dynamic>;
+	var onupdate : Null<(ev:IEvent) -> Dynamic>;
+	var onupdateend : Null<(ev:IEvent) -> Dynamic>;
+	var onupdatestart : Null<(ev:IEvent) -> Dynamic>;
 	final textTracks : ts.lib.ITextTrackList;
 	var timestampOffset : Float;
 	final updating : Bool;
@@ -46,14 +46,14 @@ extern typedef ISourceBuffer = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

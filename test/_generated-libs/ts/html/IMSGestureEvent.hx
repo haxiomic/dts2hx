@@ -6,7 +6,7 @@ extern typedef IMSGestureEvent = {
 	final clientX : Float;
 	final clientY : Float;
 	final expansion : Float;
-	final gestureObject : Any;
+	final gestureObject : Dynamic;
 	final hwTimestamp : Float;
 	final offsetX : Float;
 	final offsetY : Float;

@@ -64,7 +64,7 @@ package three;
 		Sets this matrix to a x b.
 	**/
 	function multiplyMatrices(a:Matrix3, b:Matrix3):Matrix3;
-	function multiplyVector3(vector:Vector3):Any;
-	function multiplyVector3Array(a:Any):Any;
+	function multiplyVector3(vector:Vector3):Dynamic;
+	function multiplyVector3Array(a:Dynamic):Dynamic;
 	function flattenToArrayOffset(array:std.Array<Float>, offset:Float):std.Array<Float>;
 }

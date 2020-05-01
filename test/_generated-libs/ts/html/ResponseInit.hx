@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef ResponseInit = {
 	@:optional
-	var headers : ts.AnyOf3<ts.lib.IHeaders, std.Array<std.Array<String>>, Any>;
+	var headers : ts.AnyOf3<ts.lib.IHeaders, std.Array<std.Array<String>>, Dynamic>;
 	@:optional
 	var status : Float;
 	@:optional

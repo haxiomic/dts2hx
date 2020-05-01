@@ -6,11 +6,11 @@ package ts.html;
 	function new();
 	final length : Float;
 	var scrollRestoration : String;
-	final state : Any;
+	final state : Dynamic;
 	function back():Void;
 	function forward():Void;
 	function go(?delta:Float):Void;
-	function pushState(data:Any, title:String, ?url:String):Void;
-	function replaceState(data:Any, title:String, ?url:String):Void;
+	function pushState(data:Dynamic, title:String, ?url:String):Void;
+	function replaceState(data:Dynamic, title:String, ?url:String):Void;
 	static var prototype : IHistory;
 }

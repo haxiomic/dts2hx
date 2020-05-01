@@ -130,10 +130,10 @@ package three;
 	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
 	function extractPosition(m:Matrix4):Matrix4;
 	function setRotationFromQuaternion(q:Quaternion):Matrix4;
-	function multiplyVector3(v:Any):Any;
-	function multiplyVector4(v:Any):Any;
+	function multiplyVector3(v:Dynamic):Dynamic;
+	function multiplyVector4(v:Dynamic):Dynamic;
 	function multiplyVector3Array(array:std.Array<Float>):std.Array<Float>;
-	function rotateAxis(v:Any):Void;
-	function crossVector(v:Any):Void;
+	function rotateAxis(v:Dynamic):Void;
+	function crossVector(v:Dynamic):Void;
 	function flattenToArrayOffset(array:std.Array<Float>, offset:Float):std.Array<Float>;
 }

@@ -8,5 +8,5 @@ extern typedef IDOMRect = {
 	final left : Float;
 	final right : Float;
 	final top : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

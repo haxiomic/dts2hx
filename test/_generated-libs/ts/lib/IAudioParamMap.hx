@@ -1,6 +1,6 @@
 package ts.lib;
 extern typedef IAudioParamMap = {
-	function forEach(callbackfn:(value:IAudioParam, key:String, parent:IAudioParamMap) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:IAudioParam, key:String, parent:IAudioParamMap) -> Void, ?thisArg:Dynamic):Void;
 	function get(key:String):Null<IAudioParam>;
 	function has(key:String):Bool;
 	final size : Float;

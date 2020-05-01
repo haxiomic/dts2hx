@@ -1,4 +1,4 @@
 package ts.lib;
 extern typedef WeakSetConstructor = {
-	final prototype : IWeakSet<Any>;
+	final prototype : IWeakSet<Dynamic>;
 };

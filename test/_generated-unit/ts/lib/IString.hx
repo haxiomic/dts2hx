@@ -50,9 +50,9 @@ extern typedef IString = {
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:ts.AnyOf2<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
+	@:overload(function(searchValue:ts.AnyOf2<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
-	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
+	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
 	function replace(searchValue:ts.AnyOf2<String, IRegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.

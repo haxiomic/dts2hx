@@ -54,7 +54,7 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -65,7 +65,7 @@ package ts.html;
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Sets or gets the URL for the current document.
 	**/
@@ -182,15 +182,15 @@ package ts.html;
 		Contains information about the current URL.
 	**/
 	var location : ILocation;
-	var onfullscreenchange : Null<(ev:IEvent) -> Any>;
-	var onfullscreenerror : Null<(ev:IEvent) -> Any>;
-	var onpointerlockchange : Null<(ev:IEvent) -> Any>;
-	var onpointerlockerror : Null<(ev:IEvent) -> Any>;
+	var onfullscreenchange : Null<(ev:IEvent) -> Dynamic>;
+	var onfullscreenerror : Null<(ev:IEvent) -> Dynamic>;
+	var onpointerlockchange : Null<(ev:IEvent) -> Dynamic>;
+	var onpointerlockerror : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the state of the object has changed.
 	**/
-	var onreadystatechange : Null<(ev:IProgressEvent<IDocument>) -> Any>;
-	var onvisibilitychange : Null<(ev:IEvent) -> Any>;
+	var onreadystatechange : Null<(ev:IProgressEvent<IDocument>) -> Dynamic>;
+	var onvisibilitychange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Returns document's origin.
 	**/
@@ -253,9 +253,9 @@ package ts.html;
 	/**
 		Creates an instance of the element for the specified tag.
 	**/
-	@:overload(function<K>(tagName:K, ?options:ElementCreationOptions):Any { })
+	@:overload(function<K>(tagName:K, ?options:ElementCreationOptions):Dynamic { })
 	@:overload(function(tagName:String, ?options:ElementCreationOptions):IHTMLElement { })
-	function createElement<K>(tagName:K, ?options:ElementCreationOptions):Any;
+	function createElement<K>(tagName:K, ?options:ElementCreationOptions):Dynamic;
 	/**
 		Returns an element with namespace namespace. Its namespace prefix will be everything before ":" (U+003E) in qualifiedName or null. Its local name will be everything after ":" (U+003E) in qualifiedName or qualifiedName.
 		
@@ -271,7 +271,7 @@ package ts.html;
 		
 		When supplied, options's is can be used to create a customized built-in element.
 	**/
-	@:overload(function<K>(namespaceURI:String, qualifiedName:K):Any { })
+	@:overload(function<K>(namespaceURI:String, qualifiedName:K):Dynamic { })
 	@:overload(function(namespaceURI:String, qualifiedName:String):ISVGElement { })
 	@:overload(function(namespaceURI:Null<String>, qualifiedName:String, ?options:ElementCreationOptions):IElement { })
 	@:overload(function(namespace:Null<String>, qualifiedName:String, ?options:ts.AnyOf2<String, ElementCreationOptions>):IElement { })
@@ -282,7 +282,7 @@ package ts.html;
 	@:overload(function(eventInterface:String):IClipboardEvent { })
 	@:overload(function(eventInterface:String):ICloseEvent { })
 	@:overload(function(eventInterface:String):ICompositionEvent { })
-	@:overload(function(eventInterface:String):ICustomEvent<Any> { })
+	@:overload(function(eventInterface:String):ICustomEvent<Dynamic> { })
 	@:overload(function(eventInterface:String):IDeviceLightEvent { })
 	@:overload(function(eventInterface:String):IDeviceMotionEvent { })
 	@:overload(function(eventInterface:String):IDeviceOrientationEvent { })
@@ -406,9 +406,9 @@ package ts.html;
 	/**
 		Retrieves a collection of objects based on the specified element name.
 	**/
-	@:overload(function<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Any> { })
+	@:overload(function<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Dynamic> { })
 	@:overload(function(qualifiedName:String):ts.lib.HTMLCollectionOf<IElement> { })
-	function getElementsByTagName<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Any>;
+	function getElementsByTagName<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Dynamic>;
 	/**
 		If namespace and localName are "*" returns a HTMLCollection of all descendant elements.
 		
@@ -616,9 +616,9 @@ package ts.html;
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
 	function dispatchEvent(event:IEvent):Bool;
-	var oncopy : Null<(ev:IClipboardEvent) -> Any>;
-	var oncut : Null<(ev:IClipboardEvent) -> Any>;
-	var onpaste : Null<(ev:IClipboardEvent) -> Any>;
+	var oncopy : Null<(ev:IClipboardEvent) -> Dynamic>;
+	var oncut : Null<(ev:IClipboardEvent) -> Dynamic>;
+	var onpaste : Null<(ev:IClipboardEvent) -> Dynamic>;
 	/**
 		Returns document's fullscreen element.
 	**/
@@ -631,78 +631,78 @@ package ts.html;
 	/**
 		Fires when the user aborts the download.
 	**/
-	var onabort : Null<(ev:IUIEvent) -> Any>;
-	var onanimationcancel : Null<(ev:IAnimationEvent) -> Any>;
-	var onanimationend : Null<(ev:IAnimationEvent) -> Any>;
-	var onanimationiteration : Null<(ev:IAnimationEvent) -> Any>;
-	var onanimationstart : Null<(ev:IAnimationEvent) -> Any>;
-	var onauxclick : Null<(ev:IMouseEvent) -> Any>;
+	var onabort : Null<(ev:IUIEvent) -> Dynamic>;
+	var onanimationcancel : Null<(ev:IAnimationEvent) -> Dynamic>;
+	var onanimationend : Null<(ev:IAnimationEvent) -> Dynamic>;
+	var onanimationiteration : Null<(ev:IAnimationEvent) -> Dynamic>;
+	var onanimationstart : Null<(ev:IAnimationEvent) -> Dynamic>;
+	var onauxclick : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Fires when the object loses the input focus.
 	**/
-	var onblur : Null<(ev:IFocusEvent) -> Any>;
-	var oncancel : Null<(ev:IEvent) -> Any>;
+	var onblur : Null<(ev:IFocusEvent) -> Dynamic>;
+	var oncancel : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when playback is possible, but would require further buffering.
 	**/
-	var oncanplay : Null<(ev:IEvent) -> Any>;
-	var oncanplaythrough : Null<(ev:IEvent) -> Any>;
+	var oncanplay : Null<(ev:IEvent) -> Dynamic>;
+	var oncanplaythrough : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the contents of the object or selection have changed.
 	**/
-	var onchange : Null<(ev:IEvent) -> Any>;
+	var onchange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the user clicks the left mouse button on the object
 	**/
-	var onclick : Null<(ev:IMouseEvent) -> Any>;
-	var onclose : Null<(ev:IEvent) -> Any>;
+	var onclick : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onclose : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the user clicks the right mouse button in the client area, opening the context menu.
 	**/
-	var oncontextmenu : Null<(ev:IMouseEvent) -> Any>;
-	var oncuechange : Null<(ev:IEvent) -> Any>;
+	var oncontextmenu : Null<(ev:IMouseEvent) -> Dynamic>;
+	var oncuechange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the user double-clicks the object.
 	**/
-	var ondblclick : Null<(ev:IMouseEvent) -> Any>;
+	var ondblclick : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Fires on the source object continuously during a drag operation.
 	**/
-	var ondrag : Null<(ev:IDragEvent) -> Any>;
+	var ondrag : Null<(ev:IDragEvent) -> Dynamic>;
 	/**
 		Fires on the source object when the user releases the mouse at the close of a drag operation.
 	**/
-	var ondragend : Null<(ev:IDragEvent) -> Any>;
+	var ondragend : Null<(ev:IDragEvent) -> Dynamic>;
 	/**
 		Fires on the target element when the user drags the object to a valid drop target.
 	**/
-	var ondragenter : Null<(ev:IDragEvent) -> Any>;
-	var ondragexit : Null<(ev:IEvent) -> Any>;
+	var ondragenter : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondragexit : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
 	**/
-	var ondragleave : Null<(ev:IDragEvent) -> Any>;
+	var ondragleave : Null<(ev:IDragEvent) -> Dynamic>;
 	/**
 		Fires on the target element continuously while the user drags the object over a valid drop target.
 	**/
-	var ondragover : Null<(ev:IDragEvent) -> Any>;
+	var ondragover : Null<(ev:IDragEvent) -> Dynamic>;
 	/**
 		Fires on the source object when the user starts to drag a text selection or selected object.
 	**/
-	var ondragstart : Null<(ev:IDragEvent) -> Any>;
-	var ondrop : Null<(ev:IDragEvent) -> Any>;
+	var ondragstart : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondrop : Null<(ev:IDragEvent) -> Dynamic>;
 	/**
 		Occurs when the duration attribute is updated.
 	**/
-	var ondurationchange : Null<(ev:IEvent) -> Any>;
+	var ondurationchange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the media element is reset to its initial state.
 	**/
-	var onemptied : Null<(ev:IEvent) -> Any>;
+	var onemptied : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the end of playback is reached.
 	**/
-	var onended : Null<(ev:IEvent) -> Any>;
+	var onended : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when an error occurs during object loading.
 	**/
@@ -710,145 +710,145 @@ package ts.html;
 	/**
 		Fires when the object receives focus.
 	**/
-	var onfocus : Null<(ev:IFocusEvent) -> Any>;
-	var ongotpointercapture : Null<(ev:IPointerEvent) -> Any>;
-	var oninput : Null<(ev:IEvent) -> Any>;
-	var oninvalid : Null<(ev:IEvent) -> Any>;
+	var onfocus : Null<(ev:IFocusEvent) -> Dynamic>;
+	var ongotpointercapture : Null<(ev:IPointerEvent) -> Dynamic>;
+	var oninput : Null<(ev:IEvent) -> Dynamic>;
+	var oninvalid : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the user presses a key.
 	**/
-	var onkeydown : Null<(ev:IKeyboardEvent) -> Any>;
+	var onkeydown : Null<(ev:IKeyboardEvent) -> Dynamic>;
 	/**
 		Fires when the user presses an alphanumeric key.
 	**/
-	var onkeypress : Null<(ev:IKeyboardEvent) -> Any>;
+	var onkeypress : Null<(ev:IKeyboardEvent) -> Dynamic>;
 	/**
 		Fires when the user releases a key.
 	**/
-	var onkeyup : Null<(ev:IKeyboardEvent) -> Any>;
+	var onkeyup : Null<(ev:IKeyboardEvent) -> Dynamic>;
 	/**
 		Fires immediately after the browser loads the object.
 	**/
-	var onload : Null<(ev:IEvent) -> Any>;
+	var onload : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when media data is loaded at the current playback position.
 	**/
-	var onloadeddata : Null<(ev:IEvent) -> Any>;
+	var onloadeddata : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the duration and dimensions of the media have been determined.
 	**/
-	var onloadedmetadata : Null<(ev:IEvent) -> Any>;
-	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onloadedmetadata : Null<(ev:IEvent) -> Dynamic>;
+	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
 	/**
 		Occurs when Internet Explorer begins looking for media data.
 	**/
-	var onloadstart : Null<(ev:IEvent) -> Any>;
-	var onlostpointercapture : Null<(ev:IPointerEvent) -> Any>;
+	var onloadstart : Null<(ev:IEvent) -> Dynamic>;
+	var onlostpointercapture : Null<(ev:IPointerEvent) -> Dynamic>;
 	/**
 		Fires when the user clicks the object with either mouse button.
 	**/
-	var onmousedown : Null<(ev:IMouseEvent) -> Any>;
-	var onmouseenter : Null<(ev:IMouseEvent) -> Any>;
-	var onmouseleave : Null<(ev:IMouseEvent) -> Any>;
+	var onmousedown : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmouseenter : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmouseleave : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Fires when the user moves the mouse over the object.
 	**/
-	var onmousemove : Null<(ev:IMouseEvent) -> Any>;
+	var onmousemove : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Fires when the user moves the mouse pointer outside the boundaries of the object.
 	**/
-	var onmouseout : Null<(ev:IMouseEvent) -> Any>;
+	var onmouseout : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Fires when the user moves the mouse pointer into the object.
 	**/
-	var onmouseover : Null<(ev:IMouseEvent) -> Any>;
+	var onmouseover : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Fires when the user releases a mouse button while the mouse is over the object.
 	**/
-	var onmouseup : Null<(ev:IMouseEvent) -> Any>;
+	var onmouseup : Null<(ev:IMouseEvent) -> Dynamic>;
 	/**
 		Occurs when playback is paused.
 	**/
-	var onpause : Null<(ev:IEvent) -> Any>;
+	var onpause : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the play method is requested.
 	**/
-	var onplay : Null<(ev:IEvent) -> Any>;
+	var onplay : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the audio or video has started playing.
 	**/
-	var onplaying : Null<(ev:IEvent) -> Any>;
-	var onpointercancel : Null<(ev:IPointerEvent) -> Any>;
-	var onpointerdown : Null<(ev:IPointerEvent) -> Any>;
-	var onpointerenter : Null<(ev:IPointerEvent) -> Any>;
-	var onpointerleave : Null<(ev:IPointerEvent) -> Any>;
-	var onpointermove : Null<(ev:IPointerEvent) -> Any>;
-	var onpointerout : Null<(ev:IPointerEvent) -> Any>;
-	var onpointerover : Null<(ev:IPointerEvent) -> Any>;
-	var onpointerup : Null<(ev:IPointerEvent) -> Any>;
+	var onplaying : Null<(ev:IEvent) -> Dynamic>;
+	var onpointercancel : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointerdown : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointerenter : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointerleave : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointermove : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointerout : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointerover : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onpointerup : Null<(ev:IPointerEvent) -> Dynamic>;
 	/**
 		Occurs to indicate progress while downloading media data.
 	**/
-	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
 	/**
 		Occurs when the playback rate is increased or decreased.
 	**/
-	var onratechange : Null<(ev:IEvent) -> Any>;
+	var onratechange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the user resets a form.
 	**/
-	var onreset : Null<(ev:IEvent) -> Any>;
-	var onresize : Null<(ev:IUIEvent) -> Any>;
+	var onreset : Null<(ev:IEvent) -> Dynamic>;
+	var onresize : Null<(ev:IUIEvent) -> Dynamic>;
 	/**
 		Fires when the user repositions the scroll box in the scroll bar on the object.
 	**/
-	var onscroll : Null<(ev:IEvent) -> Any>;
-	var onsecuritypolicyviolation : Null<(ev:ISecurityPolicyViolationEvent) -> Any>;
+	var onscroll : Null<(ev:IEvent) -> Dynamic>;
+	var onsecuritypolicyviolation : Null<(ev:ISecurityPolicyViolationEvent) -> Dynamic>;
 	/**
 		Occurs when the seek operation ends.
 	**/
-	var onseeked : Null<(ev:IEvent) -> Any>;
+	var onseeked : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the current playback position is moved.
 	**/
-	var onseeking : Null<(ev:IEvent) -> Any>;
+	var onseeking : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Fires when the current selection changes.
 	**/
-	var onselect : Null<(ev:IEvent) -> Any>;
-	var onselectionchange : Null<(ev:IEvent) -> Any>;
-	var onselectstart : Null<(ev:IEvent) -> Any>;
+	var onselect : Null<(ev:IEvent) -> Dynamic>;
+	var onselectionchange : Null<(ev:IEvent) -> Dynamic>;
+	var onselectstart : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when the download has stopped.
 	**/
-	var onstalled : Null<(ev:IEvent) -> Any>;
-	var onsubmit : Null<(ev:IEvent) -> Any>;
+	var onstalled : Null<(ev:IEvent) -> Dynamic>;
+	var onsubmit : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs if the load operation has been intentionally halted.
 	**/
-	var onsuspend : Null<(ev:IEvent) -> Any>;
+	var onsuspend : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs to indicate the current playback position.
 	**/
-	var ontimeupdate : Null<(ev:IEvent) -> Any>;
-	var ontoggle : Null<(ev:IEvent) -> Any>;
-	var ontouchcancel : Null<(ev:ITouchEvent) -> Any>;
-	var ontouchend : Null<(ev:ITouchEvent) -> Any>;
-	var ontouchmove : Null<(ev:ITouchEvent) -> Any>;
-	var ontouchstart : Null<(ev:ITouchEvent) -> Any>;
-	var ontransitioncancel : Null<(ev:ITransitionEvent) -> Any>;
-	var ontransitionend : Null<(ev:ITransitionEvent) -> Any>;
-	var ontransitionrun : Null<(ev:ITransitionEvent) -> Any>;
-	var ontransitionstart : Null<(ev:ITransitionEvent) -> Any>;
+	var ontimeupdate : Null<(ev:IEvent) -> Dynamic>;
+	var ontoggle : Null<(ev:IEvent) -> Dynamic>;
+	var ontouchcancel : Null<(ev:ITouchEvent) -> Dynamic>;
+	var ontouchend : Null<(ev:ITouchEvent) -> Dynamic>;
+	var ontouchmove : Null<(ev:ITouchEvent) -> Dynamic>;
+	var ontouchstart : Null<(ev:ITouchEvent) -> Dynamic>;
+	var ontransitioncancel : Null<(ev:ITransitionEvent) -> Dynamic>;
+	var ontransitionend : Null<(ev:ITransitionEvent) -> Dynamic>;
+	var ontransitionrun : Null<(ev:ITransitionEvent) -> Dynamic>;
+	var ontransitionstart : Null<(ev:ITransitionEvent) -> Dynamic>;
 	/**
 		Occurs when the volume is changed, or playback is muted or unmuted.
 	**/
-	var onvolumechange : Null<(ev:IEvent) -> Any>;
+	var onvolumechange : Null<(ev:IEvent) -> Dynamic>;
 	/**
 		Occurs when playback stops because the next frame of a video resource is not available.
 	**/
-	var onwaiting : Null<(ev:IEvent) -> Any>;
-	var onwheel : Null<(ev:IWheelEvent) -> Any>;
+	var onwaiting : Null<(ev:IEvent) -> Dynamic>;
+	var onwheel : Null<(ev:IWheelEvent) -> Dynamic>;
 	final childElementCount : Float;
 	/**
 		Returns the child elements.
@@ -877,15 +877,15 @@ package ts.html;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
-	@:overload(function<K>(selectors:K):Null<Any> { })
+	@:overload(function<K>(selectors:K):Null<Dynamic> { })
 	@:overload(function<E>(selectors:String):Null<E> { })
-	function querySelector<K>(selectors:K):Null<Any>;
+	function querySelector<K>(selectors:K):Null<Dynamic>;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
-	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Any> { })
+	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Dynamic> { })
 	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
-	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Any>;
+	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Dynamic>;
 	function createExpression(expression:String, ?resolver:ts.AnyOf2<(prefix:Null<String>) -> Null<String>, { function lookupNamespaceURI(prefix:Null<String>):Null<String>; }>):IXPathExpression;
 	function createNSResolver(nodeResolver:INode):ts.AnyOf2<(prefix:Null<String>) -> Null<String>, {
 		function lookupNamespaceURI(prefix:Null<String>):Null<String>;

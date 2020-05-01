@@ -34,7 +34,7 @@ extern typedef Http2Session = {
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
 	@:overload(function(event:String, frameType:Float, errorCode:Float, streamID:Float):Bool { })
@@ -43,7 +43,7 @@ extern typedef Http2Session = {
 	@:overload(function(event:String, settings:Settings):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
@@ -52,7 +52,7 @@ extern typedef Http2Session = {
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	function on(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
@@ -61,7 +61,7 @@ extern typedef Http2Session = {
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
@@ -70,7 +70,7 @@ extern typedef Http2Session = {
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	function prependListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
@@ -79,9 +79,9 @@ extern typedef Http2Session = {
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2Session;
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Http2Session;
 	function setMaxListeners(n:Float):Http2Session;
 	function getMaxListeners():Float;

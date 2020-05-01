@@ -7,5 +7,5 @@ extern typedef IPerformanceMeasure = {
 	final entryType : String;
 	final name : String;
 	final startTime : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

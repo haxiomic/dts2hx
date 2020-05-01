@@ -25,6 +25,6 @@ package three;
 	function union(box:Box2):Box2;
 	function translate(offset:Vector2):Box2;
 	function equals(box:Box2):Bool;
-	function empty():Any;
-	function isIntersectionBox(b:Any):Any;
+	function empty():Dynamic;
+	function isIntersectionBox(b:Dynamic):Dynamic;
 }

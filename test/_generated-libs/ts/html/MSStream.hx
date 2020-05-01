@@ -3,6 +3,6 @@ package ts.html;
 	function new();
 	final type : String;
 	function msClose():Void;
-	function msDetachStream():Any;
+	function msDetachStream():Dynamic;
 	static var prototype : IMSStream;
 }

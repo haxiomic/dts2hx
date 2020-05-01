@@ -28,7 +28,7 @@ extern typedef Global = {
 		/**
 			Returns true if {obj} is a Buffer
 		**/
-		function isBuffer(obj:Any):Bool;
+		function isBuffer(obj:Dynamic):Bool;
 		/**
 			Returns true if {encoding} is a valid encoding argument.
 			Valid string encodings in Node 0.12: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'
@@ -135,7 +135,7 @@ extern typedef Global = {
 	var encodeURI : (uri:String) -> String;
 	var encodeURIComponent : (uriComponent:ts.AnyOf3<String, Float, Bool>) -> String;
 	var escape : (str:String) -> String;
-	var eval : (x:String) -> Any;
+	var eval : (x:String) -> Dynamic;
 	var global : Global;
 	var isFinite : (number:Float) -> Bool;
 	var isNaN : (number:Float) -> Bool;
@@ -143,17 +143,17 @@ extern typedef Global = {
 	var parseInt : (s:String, ?radix:Float) -> Float;
 	var process : Process;
 	var root : Global;
-	var setImmediate : (callback:(args:haxe.extern.Rest<Any>) -> Void, args:haxe.extern.Rest<Any>) -> Immediate;
-	var setInterval : (callback:(args:haxe.extern.Rest<Any>) -> Void, ms:Float, args:haxe.extern.Rest<Any>) -> Timeout;
-	var setTimeout : (callback:(args:haxe.extern.Rest<Any>) -> Void, ms:Float, args:haxe.extern.Rest<Any>) -> Timeout;
+	var setImmediate : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, args:haxe.extern.Rest<Dynamic>) -> Immediate;
+	var setInterval : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>) -> Timeout;
+	var setTimeout : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>) -> Timeout;
 	var queueMicrotask : {
 		@:overload(function(callback:() -> Void):Void { })
 		@:selfCall
 		function call(callback:ts.lib.IFunction):Void;
 	};
-	var undefined : Null<Any>;
+	var undefined : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
 	var unescape : (str:String) -> String;
 	var gc : () -> Void;
 	@:optional
-	var v8debug : Any;
+	var v8debug : Dynamic;
 };

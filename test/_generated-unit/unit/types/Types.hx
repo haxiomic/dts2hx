@@ -20,22 +20,22 @@ package unit.types;
 **/
 @:jsRequire("./unit/types", "Types") @valueModuleOnly extern class Types {
 	static function functionWithOptional(a:String, ?b:Bool):Float;
-	static function partialTypeParam<T>(x:Any):Void;
-	static function functionImplicit(x:Any, y:Any):Any;
+	static function partialTypeParam<T>(x:Dynamic):Void;
+	static function functionImplicit(x:Dynamic, y:Dynamic):Dynamic;
 	static function functionNumberStringVoidAlt(a:Float, b:String):Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a:Float, tparam:T):Void;
-	@:overload(function(a:String):Any { })
-	@:overload(function(a:std.Array<js.lib.Symbol>):Any { })
+	@:overload(function(a:String):Dynamic { })
+	@:overload(function(a:std.Array<js.lib.Symbol>):Dynamic { })
 	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
-	static function overloadedFunction(a:Float):Any;
-	static function typeParameterWithConstraint<T>(x:T):Any;
-	static function intersectionBetweenTypeParams<A, B>(p:Any):Void;
+	static function overloadedFunction(a:Float):Dynamic;
+	static function typeParameterWithConstraint<T>(x:T):Dynamic;
+	static function intersectionBetweenTypeParams<A, B>(p:Dynamic):Void;
 	static function firstTypeFunction(node:{ }):Bool;
 	static var implicitInt : Int;
 	static var implicitFloat : Float;
 	static var implicitBool : Bool;
 	static var implicitStr : String;
-	static var noType : Any;
+	static var noType : Dynamic;
 	static var numberPrimitive : Float;
 	static var booleanPrimitive : Bool;
 	static var stringPrimitive : String;
@@ -44,7 +44,7 @@ package unit.types;
 	static var booleanObject : ts.lib.IBoolean;
 	static var symbolPrimitive : js.lib.Symbol;
 	static var symbolObject : js.lib.Symbol;
-	static var any : Any;
+	static var any : Dynamic;
 	static var typeInParentheses : Float;
 	static var unionInParentheses : ts.AnyOf2<String, Float>;
 	static var intLiteral : Int;
@@ -100,7 +100,7 @@ package unit.types;
 		final readonlyField : String;
 	};
 	static var objectSingleField : {
-		var a : Any;
+		var a : Dynamic;
 	};
 	static var arrayString : std.Array<String>;
 	static var arrayStringAlt : std.Array<String>;
@@ -120,20 +120,20 @@ package unit.types;
 	static var stringAndNumberMapWithField : {
 		var length : String;
 	};
-	static var mappedStringIndex : Any;
-	static var partial : Any;
-	static var arrowNumberStringVoid : (a:Float, noType:Any) -> Void;
+	static var mappedStringIndex : Dynamic;
+	static var partial : Dynamic;
+	static var arrowNumberStringVoid : (a:Float, noType:Dynamic) -> Void;
 	static var arrowNumberTVoidTypeParam : (a:Float, tParam:Any, arrayTParam:std.Array<Any>) -> Void;
 	static var arrowParamWithRest : (a:Float, b:Float, rest:haxe.extern.Rest<Float>) -> Void;
 	static var arrowParamWithRestOr : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
 	static var arrowParamWithRestUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
 	static var arrowParamWithRestTuple : (a:Float, b:Float, rest_0:Float) -> Void;
 	static var arrowParamWithRestTupleUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
-	static var arrowParamObjectBindingPattern : (__0:{ var x : Any; var y : Any; }) -> Void;
+	static var arrowParamObjectBindingPattern : (__0:{ var x : Dynamic; var y : Dynamic; }) -> Void;
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;
 	static var undefineableNullableNumber : Null<Float>;
-	static var intersectionWithSubIntersection : Any;
+	static var intersectionWithSubIntersection : Dynamic;
 	static var intersectionXY : {
 		var x : Float;
 	} & {
@@ -142,7 +142,7 @@ package unit.types;
 	static var intersectionRedefinitionSame : {
 		var x : Float;
 	};
-	static var intersectionRedefinitionDifferent : Any;
+	static var intersectionRedefinitionDifferent : Dynamic;
 	static var intersectionWithTypeof : {
 		var fieldA : Float;
 		var fieldB : Float;
@@ -167,7 +167,7 @@ package unit.types;
 	} & {
 		var extendedField : Float;
 	};
-	static var intersectionWithAny : Any;
+	static var intersectionWithAny : Dynamic;
 	static var intersectionWithArray : {
 		var x : Float;
 	} & std.Array<Float>;
@@ -186,13 +186,13 @@ package unit.types;
 	}, {
 		var c : Float;
 	}>;
-	static var intersectionWithCallSignatures : Any;
+	static var intersectionWithCallSignatures : Dynamic;
 	static var intersectionAnonAlias : {
 		var a : String;
 	} & {
 		var b : Bool;
 	};
-	static var intersectionBetweenClasses : Any;
+	static var intersectionBetweenClasses : Dynamic;
 	static var typeQueryImplicitStr : String;
 	static var typeQueryObject : {
 		var fieldA : Float;
@@ -216,14 +216,14 @@ package unit.types;
 		function methodSignatureOptional():String;
 		final readonlyField : String;
 	};
-	static var typeQueryNoType : Any;
-	static var typeQueryFunction : (x:Any, y:Any) -> Any;
+	static var typeQueryNoType : Dynamic;
+	static var typeQueryFunction : (x:Dynamic, y:Dynamic) -> Dynamic;
 	static var typeQueryFunctionWithOverloads : {
-		@:overload(function(a:String):Any { })
-		@:overload(function(a:std.Array<js.lib.Symbol>):Any { })
+		@:overload(function(a:String):Dynamic { })
+		@:overload(function(a:std.Array<js.lib.Symbol>):Dynamic { })
 		@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
 		@:selfCall
-		function call(a:Float):Any;
+		function call(a:Float):Dynamic;
 	};
 	static var typeQueryClassLikeOrNull : Null<{
 		var field : String;

@@ -1,8 +1,8 @@
 package ts.html;
 extern typedef PromiseRejectionEventInit = {
-	var promise : ts.lib.IPromise<Any>;
+	var promise : ts.lib.IPromise<Dynamic>;
 	@:optional
-	var reason : Any;
+	var reason : Dynamic;
 	@:optional
 	var bubbles : Bool;
 	@:optional

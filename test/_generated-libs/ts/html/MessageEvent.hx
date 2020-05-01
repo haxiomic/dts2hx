@@ -7,7 +7,7 @@ package ts.html;
 	/**
 		Returns the data of the message.
 	**/
-	final data : Any;
+	final data : Dynamic;
 	/**
 		Returns the last event ID string, for server-sent events.
 	**/

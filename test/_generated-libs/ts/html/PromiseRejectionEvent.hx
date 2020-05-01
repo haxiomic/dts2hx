@@ -1,8 +1,8 @@
 package ts.html;
 @:native("PromiseRejectionEvent") extern class PromiseRejectionEvent {
 	function new(type:String, eventInitDict:PromiseRejectionEventInit);
-	final promise : ts.lib.IPromise<Any>;
-	final reason : Any;
+	final promise : ts.lib.IPromise<Dynamic>;
+	final reason : Dynamic;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

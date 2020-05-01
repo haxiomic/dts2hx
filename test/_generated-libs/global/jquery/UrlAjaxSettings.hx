@@ -18,7 +18,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A pre-request callback function that can be used to modify the jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object before it is sent. Use this to set custom headers, etc. The jqXHR and settings objects are passed as arguments. This is an Ajax Event. Returning false in the beforeSend function will cancel the request. As of jQuery 1.5, the beforeSend option will be called regardless of the type of request.
 	**/
 	@:optional
-	function beforeSend(jqXHR:JqXHR<Any>, settings:UrlAjaxSettings<TContext>):ts.AnyOf2<Bool, Void>;
+	function beforeSend(jqXHR:JqXHR<Dynamic>, settings:UrlAjaxSettings<TContext>):ts.AnyOf2<Bool, Void>;
 	/**
 		If set to false, it will force requested pages not to be cached by the browser. Note: Setting cache to false will only work correctly with HEAD and GET requests. It works by appending "_={timestamp}" to the GET parameters. The parameter is not needed for other types of requests, except in IE8 when a POST is made to a URL that has already been requested by a GET.
 	**/
@@ -28,7 +28,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A function to be called when the request finishes (after success and error callbacks are executed). The function gets passed two arguments: The jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object and a string categorizing the status of the request ("success", "notmodified", "nocontent", "error", "timeout", "abort", or "parsererror"). As of jQuery 1.5, the complete setting can accept an array of functions. Each function will be called in turn. This is an Ajax Event.
 	**/
 	@:optional
-	var complete : ts.AnyOf2<(jqXHR:JqXHR<Any>, textStatus:String) -> Void, std.Array<(jqXHR:JqXHR<Any>, textStatus:String) -> Void>>;
+	var complete : ts.AnyOf2<(jqXHR:JqXHR<Dynamic>, textStatus:String) -> Void, std.Array<(jqXHR:JqXHR<Dynamic>, textStatus:String) -> Void>>;
 	/**
 		An object of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
 	**/
@@ -48,7 +48,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		An object containing dataType-to-dataType converters. Each converter's value is a function that returns the transformed value of the response.
 	**/
 	@:optional
-	var converters : PlainObject<ts.AnyOf2<Bool, (value:Any) -> Any>>;
+	var converters : PlainObject<ts.AnyOf2<Bool, (value:Dynamic) -> Dynamic>>;
 	/**
 		If you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true. This allows, for example, server-side redirection to another domain.
 	**/
@@ -58,12 +58,12 @@ extern typedef UrlAjaxSettings<TContext> = {
 		Data to be sent to the server. It is converted to a query string, if not already a string. It's appended to the url for GET-requests. See processData option to prevent this automatic processing. Object must be Key/Value pairs. If value is an Array, jQuery serializes multiple values with same key based on the value of the traditional setting (described below).
 	**/
 	@:optional
-	var data : ts.AnyOf2<String, PlainObject<Any>>;
+	var data : ts.AnyOf2<String, PlainObject<Dynamic>>;
 	/**
 		A function to be used to handle the raw response data of XMLHttpRequest. This is a pre-filtering function to sanitize the response. You should return the sanitized data. The function accepts two arguments: The raw data returned from the server and the 'dataType' parameter.
 	**/
 	@:optional
-	function dataFilter(data:String, type:String):Any;
+	function dataFilter(data:String, type:String):Dynamic;
 	/**
 		The type of data that you're expecting back from the server. If none is specified, jQuery will try to infer it based on the MIME type of the response (an XML MIME type will yield XML, in 1.4 JSON will yield a JavaScript object, in 1.4 script will execute the script, and anything else will be returned as a string). The available types (and the result passed as the first argument to your success callback) are:
 		
@@ -87,7 +87,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A function to be called if the request fails. The function receives three arguments: The jqXHR (in jQuery 1.4.x, XMLHttpRequest) object, a string describing the type of error that occurred and an optional exception object, if one occurred. Possible values for the second argument (besides null) are "timeout", "error", "abort", and "parsererror". When an HTTP error occurs, errorThrown receives the textual portion of the HTTP status, such as "Not Found" or "Internal Server Error." As of jQuery 1.5, the error setting can accept an array of functions. Each function will be called in turn. Note: This handler is not called for cross-domain script and cross-domain JSONP requests. This is an Ajax Event.
 	**/
 	@:optional
-	var error : ts.AnyOf2<(jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void, std.Array<(jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void>>;
+	var error : ts.AnyOf2<(jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void, std.Array<(jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void>>;
 	/**
 		Whether to trigger global Ajax event handlers for this request. The default is true. Set to false to prevent the global handlers like ajaxStart or ajaxStop from being triggered. This can be used to control various Ajax Events.
 	**/
@@ -152,1210 +152,1210 @@ extern typedef UrlAjaxSettings<TContext> = {
 	var statusCode : {
 		@:native("200")
 		@:optional
-		var TwoZeroZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("201")
 		@:optional
-		var TwoZeroOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("202")
 		@:optional
-		var TwoZeroTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("203")
 		@:optional
-		var TwoZeroThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("204")
 		@:optional
-		var TwoZeroFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("205")
 		@:optional
-		var TwoZeroFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("206")
 		@:optional
-		var TwoZeroSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("207")
 		@:optional
-		var TwoZeroSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("208")
 		@:optional
-		var TwoZeroEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("209")
 		@:optional
-		var TwoZeroNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoZeroNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("210")
 		@:optional
-		var TwoOneZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("211")
 		@:optional
-		var TwoOneOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("212")
 		@:optional
-		var TwoOneTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("213")
 		@:optional
-		var TwoOneThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("214")
 		@:optional
-		var TwoOneFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("215")
 		@:optional
-		var TwoOneFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("216")
 		@:optional
-		var TwoOneSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("217")
 		@:optional
-		var TwoOneSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("218")
 		@:optional
-		var TwoOneEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("219")
 		@:optional
-		var TwoOneNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoOneNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("220")
 		@:optional
-		var TwoTwoZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("221")
 		@:optional
-		var TwoTwoOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("222")
 		@:optional
-		var TwoTwoTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("223")
 		@:optional
-		var TwoTwoThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("224")
 		@:optional
-		var TwoTwoFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("225")
 		@:optional
-		var TwoTwoFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("226")
 		@:optional
-		var TwoTwoSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("227")
 		@:optional
-		var TwoTwoSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("228")
 		@:optional
-		var TwoTwoEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("229")
 		@:optional
-		var TwoTwoNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoTwoNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("230")
 		@:optional
-		var TwoThreeZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("231")
 		@:optional
-		var TwoThreeOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("232")
 		@:optional
-		var TwoThreeTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("233")
 		@:optional
-		var TwoThreeThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("234")
 		@:optional
-		var TwoThreeFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("235")
 		@:optional
-		var TwoThreeFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("236")
 		@:optional
-		var TwoThreeSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("237")
 		@:optional
-		var TwoThreeSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("238")
 		@:optional
-		var TwoThreeEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("239")
 		@:optional
-		var TwoThreeNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoThreeNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("240")
 		@:optional
-		var TwoFourZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("241")
 		@:optional
-		var TwoFourOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("242")
 		@:optional
-		var TwoFourTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("243")
 		@:optional
-		var TwoFourThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("244")
 		@:optional
-		var TwoFourFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("245")
 		@:optional
-		var TwoFourFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("246")
 		@:optional
-		var TwoFourSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("247")
 		@:optional
-		var TwoFourSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("248")
 		@:optional
-		var TwoFourEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("249")
 		@:optional
-		var TwoFourNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFourNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("250")
 		@:optional
-		var TwoFiveZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("251")
 		@:optional
-		var TwoFiveOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("252")
 		@:optional
-		var TwoFiveTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("253")
 		@:optional
-		var TwoFiveThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("254")
 		@:optional
-		var TwoFiveFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("255")
 		@:optional
-		var TwoFiveFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("256")
 		@:optional
-		var TwoFiveSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("257")
 		@:optional
-		var TwoFiveSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("258")
 		@:optional
-		var TwoFiveEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("259")
 		@:optional
-		var TwoFiveNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoFiveNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("260")
 		@:optional
-		var TwoSixZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("261")
 		@:optional
-		var TwoSixOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("262")
 		@:optional
-		var TwoSixTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("263")
 		@:optional
-		var TwoSixThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("264")
 		@:optional
-		var TwoSixFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("265")
 		@:optional
-		var TwoSixFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("266")
 		@:optional
-		var TwoSixSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("267")
 		@:optional
-		var TwoSixSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("268")
 		@:optional
-		var TwoSixEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("269")
 		@:optional
-		var TwoSixNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSixNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("270")
 		@:optional
-		var TwoSevenZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("271")
 		@:optional
-		var TwoSevenOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("272")
 		@:optional
-		var TwoSevenTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("273")
 		@:optional
-		var TwoSevenThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("274")
 		@:optional
-		var TwoSevenFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("275")
 		@:optional
-		var TwoSevenFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("276")
 		@:optional
-		var TwoSevenSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("277")
 		@:optional
-		var TwoSevenSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("278")
 		@:optional
-		var TwoSevenEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("279")
 		@:optional
-		var TwoSevenNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoSevenNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("280")
 		@:optional
-		var TwoEightZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("281")
 		@:optional
-		var TwoEightOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("282")
 		@:optional
-		var TwoEightTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("283")
 		@:optional
-		var TwoEightThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("284")
 		@:optional
-		var TwoEightFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("285")
 		@:optional
-		var TwoEightFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("286")
 		@:optional
-		var TwoEightSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("287")
 		@:optional
-		var TwoEightSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("288")
 		@:optional
-		var TwoEightEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("289")
 		@:optional
-		var TwoEightNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoEightNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("290")
 		@:optional
-		var TwoNineZero : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineZero : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("291")
 		@:optional
-		var TwoNineOne : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineOne : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("292")
 		@:optional
-		var TwoNineTwo : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineTwo : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("293")
 		@:optional
-		var TwoNineThree : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineThree : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("294")
 		@:optional
-		var TwoNineFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("295")
 		@:optional
-		var TwoNineFive : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineFive : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("296")
 		@:optional
-		var TwoNineSix : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineSix : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("297")
 		@:optional
-		var TwoNineSeven : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineSeven : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("298")
 		@:optional
-		var TwoNineEight : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineEight : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("299")
 		@:optional
-		var TwoNineNine : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var TwoNineNine : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("304")
 		@:optional
-		var ThreeZeroFour : (data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void;
+		var ThreeZeroFour : (data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void;
 		@:native("300")
 		@:optional
-		var ThreeZeroZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("301")
 		@:optional
-		var ThreeZeroOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("302")
 		@:optional
-		var ThreeZeroTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("303")
 		@:optional
-		var ThreeZeroThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("305")
 		@:optional
-		var ThreeZeroFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("306")
 		@:optional
-		var ThreeZeroSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("307")
 		@:optional
-		var ThreeZeroSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("308")
 		@:optional
-		var ThreeZeroEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("309")
 		@:optional
-		var ThreeZeroNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeZeroNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("310")
 		@:optional
-		var ThreeOneZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("311")
 		@:optional
-		var ThreeOneOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("312")
 		@:optional
-		var ThreeOneTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("313")
 		@:optional
-		var ThreeOneThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("314")
 		@:optional
-		var ThreeOneFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("315")
 		@:optional
-		var ThreeOneFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("316")
 		@:optional
-		var ThreeOneSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("317")
 		@:optional
-		var ThreeOneSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("318")
 		@:optional
-		var ThreeOneEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("319")
 		@:optional
-		var ThreeOneNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeOneNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("320")
 		@:optional
-		var ThreeTwoZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("321")
 		@:optional
-		var ThreeTwoOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("322")
 		@:optional
-		var ThreeTwoTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("323")
 		@:optional
-		var ThreeTwoThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("324")
 		@:optional
-		var ThreeTwoFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("325")
 		@:optional
-		var ThreeTwoFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("326")
 		@:optional
-		var ThreeTwoSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("327")
 		@:optional
-		var ThreeTwoSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("328")
 		@:optional
-		var ThreeTwoEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("329")
 		@:optional
-		var ThreeTwoNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeTwoNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("330")
 		@:optional
-		var ThreeThreeZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("331")
 		@:optional
-		var ThreeThreeOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("332")
 		@:optional
-		var ThreeThreeTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("333")
 		@:optional
-		var ThreeThreeThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("334")
 		@:optional
-		var ThreeThreeFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("335")
 		@:optional
-		var ThreeThreeFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("336")
 		@:optional
-		var ThreeThreeSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("337")
 		@:optional
-		var ThreeThreeSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("338")
 		@:optional
-		var ThreeThreeEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("339")
 		@:optional
-		var ThreeThreeNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeThreeNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("340")
 		@:optional
-		var ThreeFourZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("341")
 		@:optional
-		var ThreeFourOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("342")
 		@:optional
-		var ThreeFourTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("343")
 		@:optional
-		var ThreeFourThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("344")
 		@:optional
-		var ThreeFourFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("345")
 		@:optional
-		var ThreeFourFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("346")
 		@:optional
-		var ThreeFourSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("347")
 		@:optional
-		var ThreeFourSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("348")
 		@:optional
-		var ThreeFourEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("349")
 		@:optional
-		var ThreeFourNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFourNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("350")
 		@:optional
-		var ThreeFiveZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("351")
 		@:optional
-		var ThreeFiveOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("352")
 		@:optional
-		var ThreeFiveTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("353")
 		@:optional
-		var ThreeFiveThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("354")
 		@:optional
-		var ThreeFiveFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("355")
 		@:optional
-		var ThreeFiveFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("356")
 		@:optional
-		var ThreeFiveSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("357")
 		@:optional
-		var ThreeFiveSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("358")
 		@:optional
-		var ThreeFiveEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("359")
 		@:optional
-		var ThreeFiveNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeFiveNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("360")
 		@:optional
-		var ThreeSixZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("361")
 		@:optional
-		var ThreeSixOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("362")
 		@:optional
-		var ThreeSixTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("363")
 		@:optional
-		var ThreeSixThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("364")
 		@:optional
-		var ThreeSixFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("365")
 		@:optional
-		var ThreeSixFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("366")
 		@:optional
-		var ThreeSixSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("367")
 		@:optional
-		var ThreeSixSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("368")
 		@:optional
-		var ThreeSixEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("369")
 		@:optional
-		var ThreeSixNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSixNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("370")
 		@:optional
-		var ThreeSevenZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("371")
 		@:optional
-		var ThreeSevenOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("372")
 		@:optional
-		var ThreeSevenTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("373")
 		@:optional
-		var ThreeSevenThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("374")
 		@:optional
-		var ThreeSevenFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("375")
 		@:optional
-		var ThreeSevenFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("376")
 		@:optional
-		var ThreeSevenSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("377")
 		@:optional
-		var ThreeSevenSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("378")
 		@:optional
-		var ThreeSevenEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("379")
 		@:optional
-		var ThreeSevenNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeSevenNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("380")
 		@:optional
-		var ThreeEightZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("381")
 		@:optional
-		var ThreeEightOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("382")
 		@:optional
-		var ThreeEightTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("383")
 		@:optional
-		var ThreeEightThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("384")
 		@:optional
-		var ThreeEightFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("385")
 		@:optional
-		var ThreeEightFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("386")
 		@:optional
-		var ThreeEightSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("387")
 		@:optional
-		var ThreeEightSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("388")
 		@:optional
-		var ThreeEightEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("389")
 		@:optional
-		var ThreeEightNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeEightNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("390")
 		@:optional
-		var ThreeNineZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("391")
 		@:optional
-		var ThreeNineOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("392")
 		@:optional
-		var ThreeNineTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("393")
 		@:optional
-		var ThreeNineThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("394")
 		@:optional
-		var ThreeNineFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("395")
 		@:optional
-		var ThreeNineFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("396")
 		@:optional
-		var ThreeNineSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("397")
 		@:optional
-		var ThreeNineSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("398")
 		@:optional
-		var ThreeNineEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("399")
 		@:optional
-		var ThreeNineNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var ThreeNineNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("400")
 		@:optional
-		var FourZeroZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("401")
 		@:optional
-		var FourZeroOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("402")
 		@:optional
-		var FourZeroTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("403")
 		@:optional
-		var FourZeroThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("404")
 		@:optional
-		var FourZeroFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("405")
 		@:optional
-		var FourZeroFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("406")
 		@:optional
-		var FourZeroSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("407")
 		@:optional
-		var FourZeroSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("408")
 		@:optional
-		var FourZeroEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("409")
 		@:optional
-		var FourZeroNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourZeroNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("410")
 		@:optional
-		var FourOneZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("411")
 		@:optional
-		var FourOneOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("412")
 		@:optional
-		var FourOneTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("413")
 		@:optional
-		var FourOneThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("414")
 		@:optional
-		var FourOneFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("415")
 		@:optional
-		var FourOneFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("416")
 		@:optional
-		var FourOneSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("417")
 		@:optional
-		var FourOneSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("418")
 		@:optional
-		var FourOneEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("419")
 		@:optional
-		var FourOneNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourOneNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("420")
 		@:optional
-		var FourTwoZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("421")
 		@:optional
-		var FourTwoOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("422")
 		@:optional
-		var FourTwoTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("423")
 		@:optional
-		var FourTwoThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("424")
 		@:optional
-		var FourTwoFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("425")
 		@:optional
-		var FourTwoFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("426")
 		@:optional
-		var FourTwoSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("427")
 		@:optional
-		var FourTwoSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("428")
 		@:optional
-		var FourTwoEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("429")
 		@:optional
-		var FourTwoNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourTwoNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("430")
 		@:optional
-		var FourThreeZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("431")
 		@:optional
-		var FourThreeOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("432")
 		@:optional
-		var FourThreeTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("433")
 		@:optional
-		var FourThreeThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("434")
 		@:optional
-		var FourThreeFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("435")
 		@:optional
-		var FourThreeFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("436")
 		@:optional
-		var FourThreeSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("437")
 		@:optional
-		var FourThreeSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("438")
 		@:optional
-		var FourThreeEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("439")
 		@:optional
-		var FourThreeNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourThreeNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("440")
 		@:optional
-		var FourFourZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("441")
 		@:optional
-		var FourFourOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("442")
 		@:optional
-		var FourFourTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("443")
 		@:optional
-		var FourFourThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("444")
 		@:optional
-		var FourFourFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("445")
 		@:optional
-		var FourFourFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("446")
 		@:optional
-		var FourFourSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("447")
 		@:optional
-		var FourFourSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("448")
 		@:optional
-		var FourFourEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("449")
 		@:optional
-		var FourFourNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFourNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("450")
 		@:optional
-		var FourFiveZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("451")
 		@:optional
-		var FourFiveOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("452")
 		@:optional
-		var FourFiveTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("453")
 		@:optional
-		var FourFiveThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("454")
 		@:optional
-		var FourFiveFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("455")
 		@:optional
-		var FourFiveFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("456")
 		@:optional
-		var FourFiveSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("457")
 		@:optional
-		var FourFiveSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("458")
 		@:optional
-		var FourFiveEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("459")
 		@:optional
-		var FourFiveNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourFiveNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("460")
 		@:optional
-		var FourSixZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("461")
 		@:optional
-		var FourSixOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("462")
 		@:optional
-		var FourSixTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("463")
 		@:optional
-		var FourSixThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("464")
 		@:optional
-		var FourSixFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("465")
 		@:optional
-		var FourSixFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("466")
 		@:optional
-		var FourSixSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("467")
 		@:optional
-		var FourSixSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("468")
 		@:optional
-		var FourSixEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("469")
 		@:optional
-		var FourSixNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSixNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("470")
 		@:optional
-		var FourSevenZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("471")
 		@:optional
-		var FourSevenOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("472")
 		@:optional
-		var FourSevenTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("473")
 		@:optional
-		var FourSevenThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("474")
 		@:optional
-		var FourSevenFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("475")
 		@:optional
-		var FourSevenFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("476")
 		@:optional
-		var FourSevenSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("477")
 		@:optional
-		var FourSevenSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("478")
 		@:optional
-		var FourSevenEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("479")
 		@:optional
-		var FourSevenNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourSevenNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("480")
 		@:optional
-		var FourEightZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("481")
 		@:optional
-		var FourEightOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("482")
 		@:optional
-		var FourEightTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("483")
 		@:optional
-		var FourEightThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("484")
 		@:optional
-		var FourEightFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("485")
 		@:optional
-		var FourEightFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("486")
 		@:optional
-		var FourEightSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("487")
 		@:optional
-		var FourEightSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("488")
 		@:optional
-		var FourEightEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("489")
 		@:optional
-		var FourEightNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourEightNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("490")
 		@:optional
-		var FourNineZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("491")
 		@:optional
-		var FourNineOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("492")
 		@:optional
-		var FourNineTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("493")
 		@:optional
-		var FourNineThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("494")
 		@:optional
-		var FourNineFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("495")
 		@:optional
-		var FourNineFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("496")
 		@:optional
-		var FourNineSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("497")
 		@:optional
-		var FourNineSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("498")
 		@:optional
-		var FourNineEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("499")
 		@:optional
-		var FourNineNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FourNineNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("500")
 		@:optional
-		var FiveZeroZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("501")
 		@:optional
-		var FiveZeroOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("502")
 		@:optional
-		var FiveZeroTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("503")
 		@:optional
-		var FiveZeroThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("504")
 		@:optional
-		var FiveZeroFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("505")
 		@:optional
-		var FiveZeroFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("506")
 		@:optional
-		var FiveZeroSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("507")
 		@:optional
-		var FiveZeroSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("508")
 		@:optional
-		var FiveZeroEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("509")
 		@:optional
-		var FiveZeroNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveZeroNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("510")
 		@:optional
-		var FiveOneZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("511")
 		@:optional
-		var FiveOneOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("512")
 		@:optional
-		var FiveOneTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("513")
 		@:optional
-		var FiveOneThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("514")
 		@:optional
-		var FiveOneFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("515")
 		@:optional
-		var FiveOneFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("516")
 		@:optional
-		var FiveOneSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("517")
 		@:optional
-		var FiveOneSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("518")
 		@:optional
-		var FiveOneEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("519")
 		@:optional
-		var FiveOneNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveOneNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("520")
 		@:optional
-		var FiveTwoZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("521")
 		@:optional
-		var FiveTwoOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("522")
 		@:optional
-		var FiveTwoTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("523")
 		@:optional
-		var FiveTwoThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("524")
 		@:optional
-		var FiveTwoFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("525")
 		@:optional
-		var FiveTwoFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("526")
 		@:optional
-		var FiveTwoSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("527")
 		@:optional
-		var FiveTwoSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("528")
 		@:optional
-		var FiveTwoEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("529")
 		@:optional
-		var FiveTwoNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveTwoNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("530")
 		@:optional
-		var FiveThreeZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("531")
 		@:optional
-		var FiveThreeOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("532")
 		@:optional
-		var FiveThreeTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("533")
 		@:optional
-		var FiveThreeThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("534")
 		@:optional
-		var FiveThreeFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("535")
 		@:optional
-		var FiveThreeFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("536")
 		@:optional
-		var FiveThreeSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("537")
 		@:optional
-		var FiveThreeSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("538")
 		@:optional
-		var FiveThreeEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("539")
 		@:optional
-		var FiveThreeNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveThreeNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("540")
 		@:optional
-		var FiveFourZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("541")
 		@:optional
-		var FiveFourOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("542")
 		@:optional
-		var FiveFourTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("543")
 		@:optional
-		var FiveFourThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("544")
 		@:optional
-		var FiveFourFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("545")
 		@:optional
-		var FiveFourFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("546")
 		@:optional
-		var FiveFourSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("547")
 		@:optional
-		var FiveFourSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("548")
 		@:optional
-		var FiveFourEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("549")
 		@:optional
-		var FiveFourNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFourNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("550")
 		@:optional
-		var FiveFiveZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("551")
 		@:optional
-		var FiveFiveOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("552")
 		@:optional
-		var FiveFiveTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("553")
 		@:optional
-		var FiveFiveThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("554")
 		@:optional
-		var FiveFiveFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("555")
 		@:optional
-		var FiveFiveFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("556")
 		@:optional
-		var FiveFiveSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("557")
 		@:optional
-		var FiveFiveSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("558")
 		@:optional
-		var FiveFiveEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("559")
 		@:optional
-		var FiveFiveNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveFiveNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("560")
 		@:optional
-		var FiveSixZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("561")
 		@:optional
-		var FiveSixOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("562")
 		@:optional
-		var FiveSixTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("563")
 		@:optional
-		var FiveSixThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("564")
 		@:optional
-		var FiveSixFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("565")
 		@:optional
-		var FiveSixFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("566")
 		@:optional
-		var FiveSixSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("567")
 		@:optional
-		var FiveSixSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("568")
 		@:optional
-		var FiveSixEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("569")
 		@:optional
-		var FiveSixNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSixNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("570")
 		@:optional
-		var FiveSevenZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("571")
 		@:optional
-		var FiveSevenOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("572")
 		@:optional
-		var FiveSevenTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("573")
 		@:optional
-		var FiveSevenThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("574")
 		@:optional
-		var FiveSevenFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("575")
 		@:optional
-		var FiveSevenFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("576")
 		@:optional
-		var FiveSevenSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("577")
 		@:optional
-		var FiveSevenSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("578")
 		@:optional
-		var FiveSevenEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("579")
 		@:optional
-		var FiveSevenNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveSevenNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("580")
 		@:optional
-		var FiveEightZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("581")
 		@:optional
-		var FiveEightOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("582")
 		@:optional
-		var FiveEightTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("583")
 		@:optional
-		var FiveEightThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("584")
 		@:optional
-		var FiveEightFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("585")
 		@:optional
-		var FiveEightFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("586")
 		@:optional
-		var FiveEightSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("587")
 		@:optional
-		var FiveEightSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("588")
 		@:optional
-		var FiveEightEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("589")
 		@:optional
-		var FiveEightNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveEightNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("590")
 		@:optional
-		var FiveNineZero : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineZero : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("591")
 		@:optional
-		var FiveNineOne : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineOne : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("592")
 		@:optional
-		var FiveNineTwo : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineTwo : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("593")
 		@:optional
-		var FiveNineThree : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineThree : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("594")
 		@:optional
-		var FiveNineFour : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineFour : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("595")
 		@:optional
-		var FiveNineFive : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineFive : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("596")
 		@:optional
-		var FiveNineSix : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineSix : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("597")
 		@:optional
-		var FiveNineSeven : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineSeven : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("598")
 		@:optional
-		var FiveNineEight : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineEight : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 		@:native("599")
 		@:optional
-		var FiveNineNine : (jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void;
+		var FiveNineNine : (jqXHR:JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
 	} & { };
 	/**
 		A function to be called if the request succeeds. The function gets passed three arguments: The data returned from the server, formatted according to the dataType parameter or the dataFilter callback function, if specified; a string describing the status; and the jqXHR (in jQuery 1.4.x, XMLHttpRequest) object. As of jQuery 1.5, the success setting can accept an array of functions. Each function will be called in turn. This is an Ajax Event.
 	**/
 	@:optional
-	var success : ts.AnyOf2<(data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void, std.Array<(data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void>>;
+	var success : ts.AnyOf2<(data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void, std.Array<(data:Dynamic, textStatus:String, jqXHR:JqXHR<Dynamic>) -> Void>>;
 	/**
 		Set a timeout (in milliseconds) for the request. A value of 0 means there will be no timeout. This will override any global timeout set with $.ajaxSetup(). The timeout period starts at the point the $.ajax call is made; if several other requests are in progress and the browser has no connections available, it is possible for a request to time out before it can be sent. In jQuery 1.4.x and below, the XMLHttpRequest object will be in an invalid state if the request times out; accessing any object members may throw an exception. In Firefox 3.0+ only, script and JSONP requests cannot be cancelled by a timeout; the script will run even if it arrives after the timeout period.
 	**/

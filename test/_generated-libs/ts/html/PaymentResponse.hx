@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("PaymentResponse") extern class PaymentResponse {
 	function new();
-	final details : Any;
+	final details : Dynamic;
 	final methodName : String;
 	final payerEmail : Null<String>;
 	final payerName : Null<String>;
@@ -13,6 +13,6 @@ package ts.html;
 	final shippingAddress : Null<IPaymentAddress>;
 	final shippingOption : Null<String>;
 	function complete(?result:String):ts.lib.IPromise<Void>;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IPaymentResponse;
 }

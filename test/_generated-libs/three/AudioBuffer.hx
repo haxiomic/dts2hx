@@ -1,7 +1,7 @@
 package three;
 @:jsRequire("three", "AudioBuffer") extern class AudioBuffer {
-	function new(context:Any);
-	var context : Any;
+	function new(context:Dynamic);
+	var context : Dynamic;
 	var ready : Bool;
 	var readyCallbacks : std.Array<ts.lib.IFunction>;
 	function load(file:String):AudioBuffer;

@@ -13,7 +13,7 @@ extern typedef IPerformanceNavigationTiming = {
 	final type : String;
 	final unloadEventEnd : Float;
 	final unloadEventStart : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	final connectEnd : Float;
 	final connectStart : Float;
 	final decodedBodySize : Float;

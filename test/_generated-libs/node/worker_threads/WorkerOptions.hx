@@ -3,7 +3,7 @@ extern typedef WorkerOptions = {
 	@:optional
 	var eval : Bool;
 	@:optional
-	var workerData : Any;
+	var workerData : Dynamic;
 	@:optional
 	var stdin : Bool;
 	@:optional

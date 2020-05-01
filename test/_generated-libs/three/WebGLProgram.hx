@@ -4,12 +4,12 @@ package three;
 	var id : Float;
 	var code : String;
 	var usedTimes : Float;
-	var program : Any;
+	var program : Dynamic;
 	var vertexShader : WebGLShader;
 	var fragmentShader : WebGLShader;
-	var uniforms : Any;
-	var attributes : Any;
+	var uniforms : Dynamic;
+	var attributes : Dynamic;
 	function getUniforms():WebGLUniforms;
-	function getAttributes():Any;
+	function getAttributes():Dynamic;
 	function destroy():Void;
 }

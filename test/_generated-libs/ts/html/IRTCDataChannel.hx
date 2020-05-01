@@ -8,11 +8,11 @@ extern typedef IRTCDataChannel = {
 	final maxPacketLifeTime : Null<Float>;
 	final maxRetransmits : Null<Float>;
 	final negotiated : Bool;
-	var onbufferedamountlow : Null<(ev:IEvent) -> Any>;
-	var onclose : Null<(ev:IEvent) -> Any>;
-	var onerror : Null<(ev:IRTCErrorEvent) -> Any>;
-	var onmessage : Null<(ev:IMessageEvent) -> Any>;
-	var onopen : Null<(ev:IEvent) -> Any>;
+	var onbufferedamountlow : Null<(ev:IEvent) -> Dynamic>;
+	var onclose : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:IRTCErrorEvent) -> Dynamic>;
+	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
+	var onopen : Null<(ev:IEvent) -> Dynamic>;
 	final ordered : Bool;
 	final priority : String;
 	final protocol : String;
@@ -48,14 +48,14 @@ extern typedef IRTCDataChannel = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

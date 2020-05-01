@@ -69,6 +69,6 @@ extern typedef IRequest = {
 	function arrayBuffer():ts.lib.IPromise<ts.lib.IArrayBuffer>;
 	function blob():ts.lib.IPromise<IBlob>;
 	function formData():ts.lib.IPromise<ts.lib.IFormData>;
-	function json():ts.lib.IPromise<Any>;
+	function json():ts.lib.IPromise<Dynamic>;
 	function text():ts.lib.IPromise<String>;
 };

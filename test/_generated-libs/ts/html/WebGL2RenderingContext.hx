@@ -42,17 +42,17 @@ package ts.html;
 	function fenceSync(condition:Float, flags:Float):Null<IWebGLSync>;
 	function framebufferTextureLayer(target:Float, attachment:Float, texture:Null<IWebGLTexture>, level:Float, layer:Float):Void;
 	function getActiveUniformBlockName(program:IWebGLProgram, uniformBlockIndex:Float):Null<String>;
-	function getActiveUniformBlockParameter(program:IWebGLProgram, uniformBlockIndex:Float, pname:Float):Any;
-	@:overload(function(program:IWebGLProgram, uniformIndices:ts.lib.Iterable<Float>, pname:Float):Any { })
-	function getActiveUniforms(program:IWebGLProgram, uniformIndices:std.Array<Float>, pname:Float):Any;
+	function getActiveUniformBlockParameter(program:IWebGLProgram, uniformBlockIndex:Float, pname:Float):Dynamic;
+	@:overload(function(program:IWebGLProgram, uniformIndices:ts.lib.Iterable<Float>, pname:Float):Dynamic { })
+	function getActiveUniforms(program:IWebGLProgram, uniformIndices:std.Array<Float>, pname:Float):Dynamic;
 	function getBufferSubData(target:Float, srcByteOffset:Float, dstBuffer:ts.lib.ArrayBufferView, ?dstOffset:Float, ?length:Float):Void;
 	function getFragDataLocation(program:IWebGLProgram, name:String):Float;
-	function getIndexedParameter(target:Float, index:Float):Any;
-	function getInternalformatParameter(target:Float, internalformat:Float, pname:Float):Any;
+	function getIndexedParameter(target:Float, index:Float):Dynamic;
+	function getInternalformatParameter(target:Float, internalformat:Float, pname:Float):Dynamic;
 	function getQuery(target:Float, pname:Float):Null<IWebGLQuery>;
-	function getQueryParameter(query:IWebGLQuery, pname:Float):Any;
-	function getSamplerParameter(sampler:IWebGLSampler, pname:Float):Any;
-	function getSyncParameter(sync:IWebGLSync, pname:Float):Any;
+	function getQueryParameter(query:IWebGLQuery, pname:Float):Dynamic;
+	function getSamplerParameter(sampler:IWebGLSampler, pname:Float):Dynamic;
+	function getSyncParameter(sync:IWebGLSync, pname:Float):Dynamic;
 	function getTransformFeedbackVarying(program:IWebGLProgram, index:Float):Null<IWebGLActiveInfo>;
 	function getUniformBlockIndex(program:IWebGLProgram, uniformBlockName:String):Float;
 	@:overload(function(program:IWebGLProgram, uniformNames:ts.lib.Iterable<String>):Null<ts.lib.Iterable<Float>> { })
@@ -481,7 +481,7 @@ package ts.html;
 	function getActiveUniform(program:IWebGLProgram, index:Float):Null<IWebGLActiveInfo>;
 	function getAttachedShaders(program:IWebGLProgram):Null<std.Array<IWebGLShader>>;
 	function getAttribLocation(program:IWebGLProgram, name:String):Float;
-	function getBufferParameter(target:Float, pname:Float):Any;
+	function getBufferParameter(target:Float, pname:Float):Dynamic;
 	function getContextAttributes():Null<WebGLContextAttributes>;
 	function getError():Float;
 	@:overload(function(extensionName:String):Null<EXT_texture_filter_anisotropic> { })
@@ -505,22 +505,22 @@ package ts.html;
 	@:overload(function(extensionName:String):Null<OES_standard_derivatives> { })
 	@:overload(function(extensionName:String):Null<OES_element_index_uint> { })
 	@:overload(function(extensionName:String):Null<ANGLE_instanced_arrays> { })
-	@:overload(function(extensionName:String):Any { })
+	@:overload(function(extensionName:String):Dynamic { })
 	function getExtension(extensionName:String):Null<EXT_blend_minmax>;
-	function getFramebufferAttachmentParameter(target:Float, attachment:Float, pname:Float):Any;
-	function getParameter(pname:Float):Any;
+	function getFramebufferAttachmentParameter(target:Float, attachment:Float, pname:Float):Dynamic;
+	function getParameter(pname:Float):Dynamic;
 	function getProgramInfoLog(program:IWebGLProgram):Null<String>;
-	function getProgramParameter(program:IWebGLProgram, pname:Float):Any;
-	function getRenderbufferParameter(target:Float, pname:Float):Any;
+	function getProgramParameter(program:IWebGLProgram, pname:Float):Dynamic;
+	function getRenderbufferParameter(target:Float, pname:Float):Dynamic;
 	function getShaderInfoLog(shader:IWebGLShader):Null<String>;
-	function getShaderParameter(shader:IWebGLShader, pname:Float):Any;
+	function getShaderParameter(shader:IWebGLShader, pname:Float):Dynamic;
 	function getShaderPrecisionFormat(shadertype:Float, precisiontype:Float):Null<IWebGLShaderPrecisionFormat>;
 	function getShaderSource(shader:IWebGLShader):Null<String>;
 	function getSupportedExtensions():Null<std.Array<String>>;
-	function getTexParameter(target:Float, pname:Float):Any;
-	function getUniform(program:IWebGLProgram, location:IWebGLUniformLocation):Any;
+	function getTexParameter(target:Float, pname:Float):Dynamic;
+	function getUniform(program:IWebGLProgram, location:IWebGLUniformLocation):Dynamic;
 	function getUniformLocation(program:IWebGLProgram, name:String):Null<IWebGLUniformLocation>;
-	function getVertexAttrib(index:Float, pname:Float):Any;
+	function getVertexAttrib(index:Float, pname:Float):Dynamic;
 	function getVertexAttribOffset(index:Float, pname:Float):Float;
 	function hint(target:Float, mode:Float):Void;
 	function isBuffer(buffer:Null<IWebGLBuffer>):Bool;

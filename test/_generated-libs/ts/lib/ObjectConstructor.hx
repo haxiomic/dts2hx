@@ -1,8 +1,8 @@
 package ts.lib;
 extern typedef ObjectConstructor = {
-	@:overload(function(value:Any):Any { })
+	@:overload(function(value:Dynamic):Dynamic { })
 	@:selfCall
-	function call():Any;
+	function call():Dynamic;
 	/**
 		A reference to the prototype for a class of objects.
 	**/
@@ -10,32 +10,32 @@ extern typedef ObjectConstructor = {
 	/**
 		Returns the prototype of an object.
 	**/
-	function getPrototypeOf(o:Any):Any;
+	function getPrototypeOf(o:Dynamic):Dynamic;
 	/**
 		Gets the own property descriptor of the specified object.
 		An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
 	**/
-	function getOwnPropertyDescriptor(o:Any, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
+	function getOwnPropertyDescriptor(o:Dynamic, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
 	/**
 		Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 		on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
 	**/
-	function getOwnPropertyNames(o:Any):std.Array<String>;
+	function getOwnPropertyNames(o:Dynamic):std.Array<String>;
 	/**
 		Creates an object that has the specified prototype or that has null prototype.
 		
 		Creates an object that has the specified prototype, and that optionally contains specified properties.
 	**/
-	@:overload(function(o:Null<Any>, properties:PropertyDescriptorMap & ThisType<Any>):Any { })
-	function create(o:Null<Any>):Any;
+	@:overload(function(o:Null<Dynamic>, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic { })
+	function create(o:Null<Dynamic>):Dynamic;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	function defineProperty(o:Any, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor & ThisType<Any>):Any;
+	function defineProperty(o:Dynamic, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor & ThisType<Dynamic>):Dynamic;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	function defineProperties(o:Any, properties:PropertyDescriptorMap & ThisType<Any>):Any;
+	function defineProperties(o:Dynamic, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
@@ -48,7 +48,7 @@ extern typedef ObjectConstructor = {
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
 	@:overload(function<T>(f:T):T { })
-	@:overload(function<T>(o:T):Any { })
+	@:overload(function<T>(o:T):Dynamic { })
 	function freeze<T>(a:std.Array<T>):ReadonlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.
@@ -57,22 +57,22 @@ extern typedef ObjectConstructor = {
 	/**
 		Returns true if existing property attributes cannot be modified in an object and new properties cannot be added to the object.
 	**/
-	function isSealed(o:Any):Bool;
+	function isSealed(o:Dynamic):Bool;
 	/**
 		Returns true if existing property attributes and values cannot be modified in an object, and new properties cannot be added to the object.
 	**/
-	function isFrozen(o:Any):Bool;
+	function isFrozen(o:Dynamic):Bool;
 	/**
 		Returns a value that indicates whether new properties can be added to an object.
 	**/
-	function isExtensible(o:Any):Bool;
+	function isExtensible(o:Dynamic):Bool;
 	/**
 		Returns the names of the enumerable string properties and methods of an object.
 		
 		Returns the names of the enumerable string properties and methods of an object.
 	**/
 	@:overload(function(o:{ }):std.Array<String> { })
-	function keys(o:Any):std.Array<String>;
+	function keys(o:Dynamic):std.Array<String>;
 	/**
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
@@ -86,20 +86,20 @@ extern typedef ObjectConstructor = {
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Any { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Any { })
-	@:overload(function(target:Any, sources:haxe.extern.Rest<Any>):Any { })
-	function assign<T, U>(target:T, source:U):Any;
+	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Dynamic { })
+	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Dynamic { })
+	@:overload(function(target:Dynamic, sources:haxe.extern.Rest<Dynamic>):Dynamic { })
+	function assign<T, U>(target:T, source:U):Dynamic;
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
-	function getOwnPropertySymbols(o:Any):std.Array<js.lib.Symbol>;
+	function getOwnPropertySymbols(o:Dynamic):std.Array<js.lib.Symbol>;
 	/**
 		Returns true if the values are the same value, false otherwise.
 	**/
-	function is(value1:Any, value2:Any):Bool;
+	function is(value1:Dynamic, value2:Dynamic):Bool;
 	/**
 		Sets the prototype of a specified object o to object proto or null. Returns the object o.
 	**/
-	function setPrototypeOf(o:Any, proto:Null<Any>):Any;
+	function setPrototypeOf(o:Dynamic, proto:Null<Dynamic>):Dynamic;
 };

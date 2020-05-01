@@ -4,7 +4,7 @@ package ts.html;
 **/
 extern typedef IErrorEvent = {
 	final colno : Float;
-	final error : Any;
+	final error : Dynamic;
 	final filename : String;
 	final lineno : Float;
 	final message : String;

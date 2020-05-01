@@ -14,10 +14,10 @@ extern typedef IPerfWidgetExternal = {
 	function addEventListener(eventType:String, callback:ts.lib.IFunction):Void;
 	function getMemoryUsage():Float;
 	function getProcessCpuUsage():Float;
-	function getRecentCpuUsage(last:Null<Float>):Any;
-	function getRecentFrames(last:Null<Float>):Any;
-	function getRecentMemoryUsage(last:Null<Float>):Any;
-	function getRecentPaintRequests(last:Null<Float>):Any;
+	function getRecentCpuUsage(last:Null<Float>):Dynamic;
+	function getRecentFrames(last:Null<Float>):Dynamic;
+	function getRecentMemoryUsage(last:Null<Float>):Dynamic;
+	function getRecentPaintRequests(last:Null<Float>):Dynamic;
 	function removeEventListener(eventType:String, callback:ts.lib.IFunction):Void;
 	function repositionWindow(x:Float, y:Float):Void;
 	function resizeWindow(width:Float, height:Float):Void;

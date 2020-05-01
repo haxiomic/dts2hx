@@ -14,5 +14,5 @@ extern typedef IPaymentAddress = {
 	final recipient : String;
 	final region : String;
 	final sortingCode : String;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };

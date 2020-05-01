@@ -3,8 +3,8 @@ package ts.html;
 	This Channel Messaging API interface represents one of the two ports of a MessageChannel, allowing messages to be sent from one port and listening out for them arriving at the other.
 **/
 extern typedef IMessagePort = {
-	var onmessage : Null<(ev:IMessageEvent) -> Any>;
-	var onmessageerror : Null<(ev:IMessageEvent) -> Any>;
+	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
+	var onmessageerror : Null<(ev:IMessageEvent) -> Dynamic>;
 	/**
 		Disconnects the port, so that it is no longer active.
 	**/
@@ -14,8 +14,8 @@ extern typedef IMessagePort = {
 		
 		Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
 	**/
-	@:overload(function(message:Any, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Any, transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
+	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
+	function postMessage(message:Dynamic, transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
 	/**
 		Begins dispatching messages received on the port.
 	**/
@@ -46,14 +46,14 @@ extern typedef IMessagePort = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

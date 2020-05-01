@@ -13,5 +13,5 @@ extern typedef EventStatic = {
 		Check \`{@link https://api.jquery.com/trigger/ trigger}\`'s documentation to see how to combine it with your own event object.
 	**/
 	@:selfCall
-	function call<T>(event:String, ?properties:T):Any;
+	function call<T>(event:String, ?properties:T):Dynamic;
 };

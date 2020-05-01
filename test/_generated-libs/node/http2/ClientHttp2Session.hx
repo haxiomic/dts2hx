@@ -4,27 +4,27 @@ extern typedef ClientHttp2Session = {
 	@:overload(function(event:String, listener:(alt:String, origin:String, stream:Float) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(session:ClientHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ClientHttp2Stream, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Session { })
-	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
 	@:overload(function(event:String, alt:String, origin:String, stream:Float):Bool { })
 	@:overload(function(event:String, session:ClientHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>):Bool { })
 	@:overload(function(event:String, stream:ClientHttp2Stream, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
-	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:(alt:String, origin:String, stream:Float) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(session:ClientHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ClientHttp2Stream, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Session { })
-	function on(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
 	@:overload(function(event:String, listener:(alt:String, origin:String, stream:Float) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(session:ClientHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ClientHttp2Stream, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Session { })
-	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
 	@:overload(function(event:String, listener:(alt:String, origin:String, stream:Float) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(session:ClientHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ClientHttp2Stream, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Session { })
-	function prependListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
 	@:overload(function(event:String, listener:(alt:String, origin:String, stream:Float) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(session:ClientHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ClientHttp2Session { })
 	@:overload(function(event:String, listener:(stream:ClientHttp2Stream, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Session { })
-	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
 	@:optional
 	final alpnProtocol : String;
 	function close(?callback:() -> Void):Void;
@@ -51,8 +51,8 @@ extern typedef ClientHttp2Session = {
 	function settings(settings:Settings):Void;
 	final type : Float;
 	function unref():Void;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Session;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Session;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ClientHttp2Session;
 	function setMaxListeners(n:Float):ClientHttp2Session;
 	function getMaxListeners():Float;

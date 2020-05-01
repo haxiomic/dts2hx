@@ -1,6 +1,6 @@
 package ts.lib;
 @:native("Boolean") extern class Boolean {
-	function new(?value:Any);
+	function new(?value:Dynamic);
 	/**
 		Returns the primitive value of the specified object.
 	**/

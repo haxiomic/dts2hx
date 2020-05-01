@@ -6,5 +6,5 @@ package ts.lib;
 	function get(key:K):Null<V>;
 	function has(key:K):Bool;
 	function set(key:K, value:V):IWeakMap<K, V>;
-	static final prototype : IWeakMap<Any, Any>;
+	static final prototype : IWeakMap<Dynamic, Dynamic>;
 }

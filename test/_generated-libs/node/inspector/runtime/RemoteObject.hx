@@ -21,7 +21,7 @@ extern typedef RemoteObject = {
 		Remote object value in case of primitive values or JSON values (if it was requested).
 	**/
 	@:optional
-	var value : Any;
+	var value : Dynamic;
 	/**
 		Primitive value which can not be JSON-stringified does not have `value`, but gets this
 		property.

@@ -180,9 +180,9 @@ package three;
 	function getWorldScale(target:Vector3):Vector3;
 	function getWorldDirection(target:Vector3):Vector3;
 	function raycast(raycaster:Raycaster, intersects:std.Array<Intersection>):Void;
-	function traverse(callback:(object:Object3D) -> Any):Void;
-	function traverseVisible(callback:(object:Object3D) -> Any):Void;
-	function traverseAncestors(callback:(object:Object3D) -> Any):Void;
+	function traverse(callback:(object:Object3D) -> Dynamic):Void;
+	function traverseVisible(callback:(object:Object3D) -> Dynamic):Void;
+	function traverseAncestors(callback:(object:Object3D) -> Dynamic):Void;
 	/**
 		Updates local transform.
 	**/
@@ -192,7 +192,7 @@ package three;
 	**/
 	function updateMatrixWorld(?force:Bool):Void;
 	function updateWorldMatrix(updateParents:Bool, updateChildren:Bool):Void;
-	function toJSON(?meta:{ var geometries : Any; var materials : Any; var textures : Any; var images : Any; }):Any;
+	function toJSON(?meta:{ var geometries : Dynamic; var materials : Dynamic; var textures : Dynamic; var images : Dynamic; }):Dynamic;
 	function clone(?recursive:Bool):Object3D;
 	function copy(source:Object3D, ?recursive:Bool):Object3D;
 	static var DefaultUp : Vector3;

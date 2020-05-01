@@ -15,7 +15,7 @@ package three;
 		Will be called while load progresses.
 		The default is a function with empty body.
 	**/
-	var onProgress : (item:Any, loaded:Float, total:Float) -> Void;
+	var onProgress : (item:Dynamic, loaded:Float, total:Float) -> Void;
 	/**
 		Will be called when each element in the scene completes loading.
 		The default is a function with empty body.

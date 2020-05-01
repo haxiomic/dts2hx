@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("ServiceWorkerMessageEvent") extern class ServiceWorkerMessageEvent {
 	function new(type:String, ?eventInitDict:ServiceWorkerMessageEventInit);
-	final data : Any;
+	final data : Dynamic;
 	final lastEventId : String;
 	final origin : String;
 	final ports : Null<ts.lib.ReadonlyArray<IMessagePort>>;

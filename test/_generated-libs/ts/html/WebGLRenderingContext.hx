@@ -61,7 +61,7 @@ package ts.html;
 	function getActiveUniform(program:IWebGLProgram, index:Float):Null<IWebGLActiveInfo>;
 	function getAttachedShaders(program:IWebGLProgram):Null<std.Array<IWebGLShader>>;
 	function getAttribLocation(program:IWebGLProgram, name:String):Float;
-	function getBufferParameter(target:Float, pname:Float):Any;
+	function getBufferParameter(target:Float, pname:Float):Dynamic;
 	function getContextAttributes():Null<WebGLContextAttributes>;
 	function getError():Float;
 	@:overload(function(extensionName:String):Null<EXT_texture_filter_anisotropic> { })
@@ -85,22 +85,22 @@ package ts.html;
 	@:overload(function(extensionName:String):Null<OES_standard_derivatives> { })
 	@:overload(function(extensionName:String):Null<OES_element_index_uint> { })
 	@:overload(function(extensionName:String):Null<ANGLE_instanced_arrays> { })
-	@:overload(function(extensionName:String):Any { })
+	@:overload(function(extensionName:String):Dynamic { })
 	function getExtension(extensionName:String):Null<EXT_blend_minmax>;
-	function getFramebufferAttachmentParameter(target:Float, attachment:Float, pname:Float):Any;
-	function getParameter(pname:Float):Any;
+	function getFramebufferAttachmentParameter(target:Float, attachment:Float, pname:Float):Dynamic;
+	function getParameter(pname:Float):Dynamic;
 	function getProgramInfoLog(program:IWebGLProgram):Null<String>;
-	function getProgramParameter(program:IWebGLProgram, pname:Float):Any;
-	function getRenderbufferParameter(target:Float, pname:Float):Any;
+	function getProgramParameter(program:IWebGLProgram, pname:Float):Dynamic;
+	function getRenderbufferParameter(target:Float, pname:Float):Dynamic;
 	function getShaderInfoLog(shader:IWebGLShader):Null<String>;
-	function getShaderParameter(shader:IWebGLShader, pname:Float):Any;
+	function getShaderParameter(shader:IWebGLShader, pname:Float):Dynamic;
 	function getShaderPrecisionFormat(shadertype:Float, precisiontype:Float):Null<IWebGLShaderPrecisionFormat>;
 	function getShaderSource(shader:IWebGLShader):Null<String>;
 	function getSupportedExtensions():Null<std.Array<String>>;
-	function getTexParameter(target:Float, pname:Float):Any;
-	function getUniform(program:IWebGLProgram, location:IWebGLUniformLocation):Any;
+	function getTexParameter(target:Float, pname:Float):Dynamic;
+	function getUniform(program:IWebGLProgram, location:IWebGLUniformLocation):Dynamic;
 	function getUniformLocation(program:IWebGLProgram, name:String):Null<IWebGLUniformLocation>;
-	function getVertexAttrib(index:Float, pname:Float):Any;
+	function getVertexAttrib(index:Float, pname:Float):Dynamic;
 	function getVertexAttribOffset(index:Float, pname:Float):Float;
 	function hint(target:Float, mode:Float):Void;
 	function isBuffer(buffer:Null<IWebGLBuffer>):Bool;

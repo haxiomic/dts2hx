@@ -9,7 +9,7 @@ package ts.html;
 	final width : Float;
 	final x : Float;
 	final y : Float;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	static var prototype : IDOMRectReadOnly;
 	static function fromRect(?other:DOMRectInit):IDOMRectReadOnly;
 }

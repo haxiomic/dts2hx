@@ -5,11 +5,11 @@ extern typedef PropertyDescriptor = {
 	@:optional
 	var enumerable : Bool;
 	@:optional
-	var value : Any;
+	var value : Dynamic;
 	@:optional
 	var writable : Bool;
 	@:optional
-	function get():Any;
+	function get():Dynamic;
 	@:optional
-	function set(v:Any):Void;
+	function set(v:Dynamic):Void;
 };

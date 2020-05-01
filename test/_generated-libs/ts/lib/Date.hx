@@ -188,7 +188,7 @@ package ts.lib;
 	/**
 		Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization.
 	**/
-	function toJSON(?key:Any):String;
+	function toJSON(?key:Dynamic):String;
 	var getVarDate : () -> VarDate;
 	@:selfCall
 	static function call():String;

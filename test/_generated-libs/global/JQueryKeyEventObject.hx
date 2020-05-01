@@ -18,7 +18,7 @@ extern typedef JQueryKeyEventObject = {
 	/**
 		An optional object of data passed to an event method when the current executing handler is bound.
 	**/
-	var data : Any;
+	var data : Dynamic;
 	/**
 		The element where the currently-called jQuery event handler was attached.
 	**/
@@ -46,7 +46,7 @@ extern typedef JQueryKeyEventObject = {
 	/**
 		If this method is called, the default action of the event will not be triggered.
 	**/
-	function preventDefault():Any;
+	function preventDefault():Dynamic;
 	/**
 		The other DOM element involved in the event, if any.
 	**/
@@ -54,7 +54,7 @@ extern typedef JQueryKeyEventObject = {
 	/**
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
-	var result : Any;
+	var result : Dynamic;
 	/**
 		Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.
 	**/

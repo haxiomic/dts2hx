@@ -38,26 +38,26 @@ extern typedef ReadonlyArray<T> = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> U, ?thisArg:Any):std.Array<U>;
+	function map<U>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> U, ?thisArg:Dynamic):std.Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Any):std.Array<T> { })
-	function filter<S>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Any):std.Array<S>;
+	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):std.Array<T> { })
+	function filter<S>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
@@ -78,13 +78,13 @@ extern typedef ReadonlyArray<T> = {
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Any, ?thisArg:Any):Null<T> { })
-	function find<S>(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Bool, ?thisArg:Any):Null<S>;
+	@:overload(function(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):Null<T> { })
+	function find<S>(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Any, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:T, index:Float, obj:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):Float;
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/

@@ -43,7 +43,7 @@ package three;
 	/**
 		User-defined clipping planes specified as THREE.Plane objects in world space. These planes apply to the objects this material is attached to. Points in space whose signed distance to the plane is negative are clipped (not rendered). See the WebGL / clipping /intersection example. Default is null.
 	**/
-	var clippingPlanes : Any;
+	var clippingPlanes : Dynamic;
 	/**
 		Defines whether to clip shadows according to the clipping planes specified on this material. Default is false.
 	**/
@@ -189,7 +189,7 @@ package three;
 	/**
 		An object that can be used to store custom data about the Material. It should not hold references to functions as these will not be cloned.
 	**/
-	var userData : Any;
+	var userData : Dynamic;
 	/**
 		Return a new material with the same parameters as this material.
 	**/
@@ -213,7 +213,7 @@ package three;
 	/**
 		Convert the material to three.js JSON format.
 	**/
-	function toJSON(?meta:Any):Any;
+	function toJSON(?meta:Dynamic):Dynamic;
 	/**
 		Call .dispatchEvent ( { type: 'update' }) on the material.
 	**/

@@ -7,15 +7,15 @@ package ts.html;
 	final actions : ts.lib.ReadonlyArray<NotificationAction>;
 	final badge : String;
 	final body : String;
-	final data : Any;
+	final data : Dynamic;
 	final dir : String;
 	final icon : String;
 	final image : String;
 	final lang : String;
-	var onclick : Null<(ev:IEvent) -> Any>;
-	var onclose : Null<(ev:IEvent) -> Any>;
-	var onerror : Null<(ev:IEvent) -> Any>;
-	var onshow : Null<(ev:IEvent) -> Any>;
+	var onclick : Null<(ev:IEvent) -> Dynamic>;
+	var onclose : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:IEvent) -> Dynamic>;
+	var onshow : Null<(ev:IEvent) -> Dynamic>;
 	final renotify : Bool;
 	final requireInteraction : Bool;
 	final silent : Bool;
@@ -50,14 +50,14 @@ package ts.html;
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

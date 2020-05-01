@@ -1,2 +1,2 @@
 package global.nodejs;
-typedef MessageListener = (message:Any, sendHandle:Any) -> Void;
+typedef MessageListener = (message:Dynamic, sendHandle:Dynamic) -> Void;

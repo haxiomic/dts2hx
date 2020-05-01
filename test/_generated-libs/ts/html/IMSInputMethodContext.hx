@@ -2,9 +2,9 @@ package ts.html;
 extern typedef IMSInputMethodContext = {
 	final compositionEndOffset : Float;
 	final compositionStartOffset : Float;
-	var oncandidatewindowhide : Null<(ev:IEvent) -> Any>;
-	var oncandidatewindowshow : Null<(ev:IEvent) -> Any>;
-	var oncandidatewindowupdate : Null<(ev:IEvent) -> Any>;
+	var oncandidatewindowhide : Null<(ev:IEvent) -> Dynamic>;
+	var oncandidatewindowshow : Null<(ev:IEvent) -> Dynamic>;
+	var oncandidatewindowupdate : Null<(ev:IEvent) -> Dynamic>;
 	final target : IHTMLElement;
 	function getCandidateWindowClientRect():IClientRect;
 	function getCompositionAlternatives():std.Array<String>;
@@ -36,14 +36,14 @@ extern typedef IMSInputMethodContext = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

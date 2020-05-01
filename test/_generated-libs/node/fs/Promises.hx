@@ -31,7 +31,7 @@ package node.fs;
 		It is unsafe to call `fsPromises.write()` multiple times on the same file without waiting for the `Promise`
 		to be resolved (or rejected). For this scenario, `fs.createWriteStream` is strongly recommended.
 	**/
-	@:overload(function(handle:node.fs.promises.FileHandle, string:Any, ?position:Float, ?encoding:String):ts.lib.IPromise<{
+	@:overload(function(handle:node.fs.promises.FileHandle, string:Dynamic, ?position:Float, ?encoding:String):ts.lib.IPromise<{
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
@@ -170,11 +170,11 @@ package node.fs;
 		Asynchronously writes data to a file, replacing the file if it already exists.
 		It is unsafe to call `fsPromises.writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
 	**/
-	static function writeFile(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, data:Any, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
+	static function writeFile(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronously append data to a file, creating the file if it does not exist.
 	**/
-	static function appendFile(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, data:Any, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
+	static function appendFile(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronously reads the entire contents of a file.
 		
@@ -184,5 +184,5 @@ package node.fs;
 	**/
 	@:overload(function(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, options:ts.AnyOf2<String, { var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<String> { })
 	@:overload(function(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):ts.lib.IPromise<ts.AnyOf2<String, global.IBuffer>> { })
-	static function readFile(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):ts.lib.IPromise<global.IBuffer>;
+	static function readFile(path:ts.AnyOf4<String, global.IBuffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : Dynamic; @:optional var flag : ts.AnyOf2<String, Float>; }):ts.lib.IPromise<global.IBuffer>;
 }

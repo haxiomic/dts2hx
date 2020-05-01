@@ -7,7 +7,7 @@ package ts.html;
 	/**
 		Returns the cursor's current value.
 	**/
-	final value : Any;
+	final value : Dynamic;
 	/**
 		Returns the direction ("next", "nextunique", "prev" or "prevunique") of the cursor.
 	**/
@@ -42,7 +42,7 @@ package ts.html;
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete():IIDBRequest<Null<Any>>;
+	function delete():IIDBRequest<Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>>;
 	/**
 		Updated the record pointed at by the cursor with a new value.
 		
@@ -50,6 +50,6 @@ package ts.html;
 		
 		If successful, request's result will be the record's key.
 	**/
-	function update(value:Any):IIDBRequest<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function update(value:Dynamic):IIDBRequest<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
 	static var prototype : IIDBCursorWithValue;
 }

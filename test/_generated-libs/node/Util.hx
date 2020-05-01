@@ -1,33 +1,33 @@
 package node;
 @:jsRequire("util") @valueModuleOnly extern class Util {
-	static function format(format:Any, param:haxe.extern.Rest<Any>):String;
-	static function formatWithOptions(inspectOptions:node.util.InspectOptions, format:String, param:haxe.extern.Rest<Any>):String;
+	static function format(format:Dynamic, param:haxe.extern.Rest<Dynamic>):String;
+	static function formatWithOptions(inspectOptions:node.util.InspectOptions, format:String, param:haxe.extern.Rest<Dynamic>):String;
 	static function debug(string:String):Void;
-	static function error(param:haxe.extern.Rest<Any>):Void;
-	static function puts(param:haxe.extern.Rest<Any>):Void;
-	static function print(param:haxe.extern.Rest<Any>):Void;
+	static function error(param:haxe.extern.Rest<Dynamic>):Void;
+	static function puts(param:haxe.extern.Rest<Dynamic>):Void;
+	static function print(param:haxe.extern.Rest<Dynamic>):Void;
 	static function log(string:String):Void;
-	@:overload(function(object:Any, options:node.util.InspectOptions):String { })
-	static function inspect(object:Any, ?showHidden:Bool, ?depth:Float, ?color:Bool):String;
-	static function isArray(object:Any):Bool;
-	static function isRegExp(object:Any):Bool;
-	static function isDate(object:Any):Bool;
-	static function isError(object:Any):Bool;
-	static function inherits(constructor:Any, superConstructor:Any):Void;
-	static function debuglog(key:String):(msg:String, param:haxe.extern.Rest<Any>) -> Void;
-	static function isBoolean(object:Any):Bool;
-	static function isBuffer(object:Any):Bool;
-	static function isFunction(object:Any):Bool;
-	static function isNull(object:Any):Bool;
-	static function isNullOrUndefined(object:Any):Bool;
-	static function isNumber(object:Any):Bool;
-	static function isObject(object:Any):Bool;
-	static function isPrimitive(object:Any):Bool;
-	static function isString(object:Any):Bool;
-	static function isSymbol(object:Any):Bool;
-	static function isUndefined(object:Any):Bool;
+	@:overload(function(object:Dynamic, options:node.util.InspectOptions):String { })
+	static function inspect(object:Dynamic, ?showHidden:Bool, ?depth:Float, ?color:Bool):String;
+	static function isArray(object:Dynamic):Bool;
+	static function isRegExp(object:Dynamic):Bool;
+	static function isDate(object:Dynamic):Bool;
+	static function isError(object:Dynamic):Bool;
+	static function inherits(constructor:Dynamic, superConstructor:Dynamic):Void;
+	static function debuglog(key:String):(msg:String, param:haxe.extern.Rest<Dynamic>) -> Void;
+	static function isBoolean(object:Dynamic):Bool;
+	static function isBuffer(object:Dynamic):Bool;
+	static function isFunction(object:Dynamic):Bool;
+	static function isNull(object:Dynamic):Bool;
+	static function isNullOrUndefined(object:Dynamic):Bool;
+	static function isNumber(object:Dynamic):Bool;
+	static function isObject(object:Dynamic):Bool;
+	static function isPrimitive(object:Dynamic):Bool;
+	static function isString(object:Dynamic):Bool;
+	static function isSymbol(object:Dynamic):Bool;
+	static function isUndefined(object:Dynamic):Bool;
 	static function deprecate<T>(fn:T, message:String):T;
-	static function isDeepStrictEqual(val1:Any, val2:Any):Bool;
+	static function isDeepStrictEqual(val1:Dynamic, val2:Dynamic):Bool;
 	@:overload(function<TResult>(fn:() -> ts.lib.IPromise<TResult>):(callback:(err:global.nodejs.ErrnoException, result:TResult) -> Void) -> Void { })
 	@:overload(function<T1>(fn:(arg1:T1) -> ts.lib.IPromise<Void>):(arg1:T1, callback:(err:global.nodejs.ErrnoException) -> Void) -> Void { })
 	@:overload(function<T1, TResult>(fn:(arg1:T1) -> ts.lib.IPromise<TResult>):(arg1:T1, callback:(err:global.nodejs.ErrnoException, result:TResult) -> Void) -> Void { })

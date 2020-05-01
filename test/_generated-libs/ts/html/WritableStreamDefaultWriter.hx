@@ -6,7 +6,7 @@ extern typedef WritableStreamDefaultWriter<W> = {
 	final closed : ts.lib.IPromise<Void>;
 	final desiredSize : Null<Float>;
 	final ready : ts.lib.IPromise<Void>;
-	function abort(?reason:Any):ts.lib.IPromise<Void>;
+	function abort(?reason:Dynamic):ts.lib.IPromise<Void>;
 	function close():ts.lib.IPromise<Void>;
 	function releaseLock():Void;
 	function write(chunk:W):ts.lib.IPromise<Void>;

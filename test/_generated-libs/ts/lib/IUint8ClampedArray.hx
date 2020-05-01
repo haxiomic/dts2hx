@@ -28,7 +28,7 @@ extern typedef IUint8ClampedArray = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
@@ -36,21 +36,21 @@ extern typedef IUint8ClampedArray = {
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Any):IUint8ClampedArray;
+	function filter(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Dynamic, ?thisArg:Dynamic):IUint8ClampedArray;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:IUint8ClampedArray) -> Bool, ?thisArg:Any):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:IUint8ClampedArray) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:IUint8ClampedArray) -> Bool, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:IUint8ClampedArray) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -71,7 +71,7 @@ extern typedef IUint8ClampedArray = {
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Float, ?thisArg:Any):IUint8ClampedArray;
+	function map(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Float, ?thisArg:Dynamic):IUint8ClampedArray;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -111,7 +111,7 @@ extern typedef IUint8ClampedArray = {
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/

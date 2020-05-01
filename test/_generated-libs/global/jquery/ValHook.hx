@@ -1,6 +1,6 @@
 package global.jquery;
 typedef ValHook<TElement> = ts.AnyOf3<{
-	function get(elem:TElement):Any;
+	function get(elem:TElement):Dynamic;
 }, {
-	function set(elem:TElement, value:Any):Any;
+	function set(elem:TElement, value:Dynamic):Dynamic;
 }, { }>;

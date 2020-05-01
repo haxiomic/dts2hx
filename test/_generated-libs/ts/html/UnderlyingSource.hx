@@ -7,5 +7,5 @@ extern typedef UnderlyingSource<R> = {
 	@:optional
 	var start : ReadableStreamDefaultControllerCallback<R>;
 	@:optional
-	var type : Any;
+	var type : Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>;
 };

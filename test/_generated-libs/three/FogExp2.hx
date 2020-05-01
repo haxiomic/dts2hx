@@ -12,5 +12,5 @@ package three;
 	**/
 	var density : Float;
 	function clone():FogExp2;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 }

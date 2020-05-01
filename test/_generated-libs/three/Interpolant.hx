@@ -1,9 +1,9 @@
 package three;
 @:jsRequire("three", "Interpolant") extern class Interpolant {
-	function new(parameterPositions:Any, samplesValues:Any, sampleSize:Float, ?resultBuffer:Any);
-	var parameterPositions : Any;
-	var samplesValues : Any;
+	function new(parameterPositions:Dynamic, samplesValues:Dynamic, sampleSize:Float, ?resultBuffer:Dynamic);
+	var parameterPositions : Dynamic;
+	var samplesValues : Dynamic;
 	var valueSize : Float;
-	var resultBuffer : Any;
-	function evaluate(time:Float):Any;
+	var resultBuffer : Dynamic;
+	function evaluate(time:Float):Dynamic;
 }

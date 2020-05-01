@@ -5,5 +5,5 @@ extern typedef DeferredStatic = {
 	**/
 	@:selfCall
 	function call<TR, TJ, TN>(?beforeStart:(deferred:Deferred<TR, TJ, TN>) -> Void):Deferred<TR, TJ, TN>;
-	var exceptionHook : Any;
+	var exceptionHook : Dynamic;
 };

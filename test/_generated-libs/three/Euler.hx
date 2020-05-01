@@ -14,7 +14,7 @@ package three;
 	function setFromVector3(v:Vector3, ?order:String):Euler;
 	function reorder(newOrder:String):Euler;
 	function equals(euler:Euler):Bool;
-	function fromArray(xyzo:std.Array<Any>):Euler;
+	function fromArray(xyzo:std.Array<Dynamic>):Euler;
 	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
 	function toVector3(?optionalResult:Vector3):Vector3;
 	function _onChange(callback:ts.lib.IFunction):Euler;

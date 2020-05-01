@@ -32,13 +32,13 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function add(value:Any, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>;
+	function add(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>;
 	/**
 		Deletes all records in store.
 		
 		If successful, request's result will be undefined.
 	**/
-	function clear():ts.html.IIDBRequest<Null<Any>>;
+	function clear():ts.html.IIDBRequest<Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>>;
 	/**
 		Retrieves the number of records matching the given key or key range in query.
 		
@@ -61,7 +61,7 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete(key:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Null<Any>>;
+	function delete(key:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Null<(TPath({ pack : [], name : "Any", params : [] }) : haxe.macro.Expr.ComplexType)>>;
 	/**
 		Deletes the index in store with the given name.
 		
@@ -73,13 +73,13 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the value, or undefined if there was no matching record.
 	**/
-	function get(query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Any>;
+	function get(query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Dynamic>;
 	/**
 		Retrieves the values of the records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<Any>>;
+	function getAll(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<Dynamic>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		
@@ -114,5 +114,5 @@ extern typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function put(value:Any, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>;
+	function put(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>;
 };

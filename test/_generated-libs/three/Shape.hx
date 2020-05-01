@@ -5,8 +5,8 @@ package three;
 @:jsRequire("three", "Shape") extern class Shape extends Path {
 	function new(?points:std.Array<Vector2>);
 	var holes : std.Array<Path>;
-	function extrude(?options:Any):ExtrudeGeometry;
-	function makeGeometry(?options:Any):ShapeGeometry;
+	function extrude(?options:Dynamic):ExtrudeGeometry;
+	function makeGeometry(?options:Dynamic):ShapeGeometry;
 	function getPointsHoles(divisions:Float):std.Array<std.Array<Vector2>>;
 	function extractAllPoints(divisions:Float):{
 		var shape : std.Array<Vector2>;

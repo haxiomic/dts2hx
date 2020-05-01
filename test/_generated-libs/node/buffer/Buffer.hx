@@ -6,7 +6,7 @@ package node.buffer;
 	@:overload(function(size:Float):global.IBuffer { })
 	@:overload(function(array:ts.lib.IUint8Array):global.IBuffer { })
 	@:overload(function(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>):global.IBuffer { })
-	@:overload(function(array:std.Array<Any>):global.IBuffer { })
+	@:overload(function(array:std.Array<Dynamic>):global.IBuffer { })
 	@:overload(function(buffer:global.IBuffer):global.IBuffer { })
 	function new(str:String, ?encoding:String);
 	static var prototype : global.IBuffer;
@@ -33,7 +33,7 @@ package node.buffer;
 	/**
 		Returns true if {obj} is a Buffer
 	**/
-	static function isBuffer(obj:Any):Bool;
+	static function isBuffer(obj:Dynamic):Bool;
 	/**
 		Returns true if {encoding} is a valid encoding argument.
 		Valid string encodings in Node 0.12: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'

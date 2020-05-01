@@ -30,7 +30,7 @@ extern typedef TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> =
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
 	@:optional
-	var result : Any;
+	var result : Dynamic;
 	var bubbles : Null<Bool>;
 	var cancelable : Null<Bool>;
 	var eventPhase : Null<Float>;

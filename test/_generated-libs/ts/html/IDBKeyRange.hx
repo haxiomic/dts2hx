@@ -7,7 +7,7 @@ package ts.html;
 	/**
 		Returns lower bound, or undefined if none.
 	**/
-	final lower : Any;
+	final lower : Dynamic;
 	/**
 		Returns true if the lower open flag is set, and false otherwise.
 	**/
@@ -15,7 +15,7 @@ package ts.html;
 	/**
 		Returns upper bound, or undefined if none.
 	**/
-	final upper : Any;
+	final upper : Dynamic;
 	/**
 		Returns true if the upper open flag is set, and false otherwise.
 	**/
@@ -23,22 +23,22 @@ package ts.html;
 	/**
 		Returns true if key is included in the range, and false otherwise.
 	**/
-	function includes(key:Any):Bool;
+	function includes(key:Dynamic):Bool;
 	static var prototype : IIDBKeyRange;
 	/**
 		Returns a new IDBKeyRange spanning from lower to upper. If lowerOpen is true, lower is not included in the range. If upperOpen is true, upper is not included in the range.
 	**/
-	static function bound(lower:Any, upper:Any, ?lowerOpen:Bool, ?upperOpen:Bool):IIDBKeyRange;
+	static function bound(lower:Dynamic, upper:Dynamic, ?lowerOpen:Bool, ?upperOpen:Bool):IIDBKeyRange;
 	/**
 		Returns a new IDBKeyRange starting at key with no upper bound. If open is true, key is not included in the range.
 	**/
-	static function lowerBound(lower:Any, ?open:Bool):IIDBKeyRange;
+	static function lowerBound(lower:Dynamic, ?open:Bool):IIDBKeyRange;
 	/**
 		Returns a new IDBKeyRange spanning only key.
 	**/
-	static function only(value:Any):IIDBKeyRange;
+	static function only(value:Dynamic):IIDBKeyRange;
 	/**
 		Returns a new IDBKeyRange with no lower bound and ending at key. If open is true, key is not included in the range.
 	**/
-	static function upperBound(upper:Any, ?open:Bool):IIDBKeyRange;
+	static function upperBound(upper:Dynamic, ?open:Bool):IIDBKeyRange;
 }

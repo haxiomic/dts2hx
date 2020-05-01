@@ -39,7 +39,7 @@ package ts.html;
 	function skewY(?sy:Float):IDOMMatrix;
 	function toFloat32Array():ts.lib.IFloat32Array;
 	function toFloat64Array():ts.lib.IFloat64Array;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 	function transformPoint(?point:DOMPointInit):IDOMPoint;
 	function translate(?tx:Float, ?ty:Float, ?tz:Float):IDOMMatrix;
 	static var prototype : IDOMMatrixReadOnly;

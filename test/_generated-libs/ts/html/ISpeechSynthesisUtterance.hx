@@ -4,13 +4,13 @@ package ts.html;
 **/
 extern typedef ISpeechSynthesisUtterance = {
 	var lang : String;
-	var onboundary : Null<(ev:ISpeechSynthesisEvent) -> Any>;
-	var onend : Null<(ev:ISpeechSynthesisEvent) -> Any>;
-	var onerror : Null<(ev:ISpeechSynthesisErrorEvent) -> Any>;
-	var onmark : Null<(ev:ISpeechSynthesisEvent) -> Any>;
-	var onpause : Null<(ev:ISpeechSynthesisEvent) -> Any>;
-	var onresume : Null<(ev:ISpeechSynthesisEvent) -> Any>;
-	var onstart : Null<(ev:ISpeechSynthesisEvent) -> Any>;
+	var onboundary : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
+	var onend : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
+	var onerror : Null<(ev:ISpeechSynthesisErrorEvent) -> Dynamic>;
+	var onmark : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
+	var onpause : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
+	var onresume : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
+	var onstart : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
 	var pitch : Float;
 	var rate : Float;
 	var text : String;
@@ -42,14 +42,14 @@ extern typedef ISpeechSynthesisUtterance = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

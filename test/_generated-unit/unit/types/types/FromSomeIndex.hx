@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef FromSomeIndex<K> = Any;
+typedef FromSomeIndex<K> = Dynamic;

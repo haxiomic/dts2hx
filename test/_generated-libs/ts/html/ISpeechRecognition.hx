@@ -5,17 +5,17 @@ extern typedef ISpeechRecognition = {
 	var interimResults : Bool;
 	var lang : String;
 	var maxAlternatives : Float;
-	var onaudioend : Null<(ev:IEvent) -> Any>;
-	var onaudiostart : Null<(ev:IEvent) -> Any>;
-	var onend : Null<(ev:IEvent) -> Any>;
-	var onerror : Null<(ev:ISpeechRecognitionError) -> Any>;
-	var onnomatch : Null<(ev:ISpeechRecognitionEvent) -> Any>;
-	var onresult : Null<(ev:ISpeechRecognitionEvent) -> Any>;
-	var onsoundend : Null<(ev:IEvent) -> Any>;
-	var onsoundstart : Null<(ev:IEvent) -> Any>;
-	var onspeechend : Null<(ev:IEvent) -> Any>;
-	var onspeechstart : Null<(ev:IEvent) -> Any>;
-	var onstart : Null<(ev:IEvent) -> Any>;
+	var onaudioend : Null<(ev:IEvent) -> Dynamic>;
+	var onaudiostart : Null<(ev:IEvent) -> Dynamic>;
+	var onend : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:ISpeechRecognitionError) -> Dynamic>;
+	var onnomatch : Null<(ev:ISpeechRecognitionEvent) -> Dynamic>;
+	var onresult : Null<(ev:ISpeechRecognitionEvent) -> Dynamic>;
+	var onsoundend : Null<(ev:IEvent) -> Dynamic>;
+	var onsoundstart : Null<(ev:IEvent) -> Dynamic>;
+	var onspeechend : Null<(ev:IEvent) -> Dynamic>;
+	var onspeechstart : Null<(ev:IEvent) -> Dynamic>;
+	var onstart : Null<(ev:IEvent) -> Dynamic>;
 	var serviceURI : String;
 	function abort():Void;
 	function start():Void;
@@ -46,14 +46,14 @@ extern typedef ISpeechRecognition = {
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/

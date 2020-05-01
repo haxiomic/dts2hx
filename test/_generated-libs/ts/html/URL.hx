@@ -18,6 +18,6 @@ package ts.html;
 	var username : String;
 	function toJSON():String;
 	static var prototype : IURL;
-	static function createObjectURL(object:Any):String;
+	static function createObjectURL(object:Dynamic):String;
 	static function revokeObjectURL(url:String):Void;
 }

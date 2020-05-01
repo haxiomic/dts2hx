@@ -3,7 +3,7 @@ package ts.html;
 	PopStateEvent is an event handler for the popstate event on the window.
 **/
 extern typedef IPopStateEvent = {
-	final state : Any;
+	final state : Dynamic;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

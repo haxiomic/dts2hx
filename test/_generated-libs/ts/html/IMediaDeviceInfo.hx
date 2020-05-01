@@ -7,5 +7,5 @@ extern typedef IMediaDeviceInfo = {
 	final groupId : String;
 	final kind : String;
 	final label : String;
-	function toJSON():Any;
+	function toJSON():Dynamic;
 };
