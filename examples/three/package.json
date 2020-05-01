@@ -1,0 +1,19 @@
+{
+  "name": "three-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "dts2hx --all"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dts2hx": "^0.3.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.1.18",
+    "three": "^0.116.0"
+  }
+}

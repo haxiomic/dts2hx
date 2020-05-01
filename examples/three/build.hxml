@@ -1,0 +1,9 @@
+-main Main
+# include three externs
+--class-path externs/three
+
+-js dist/main.js
+-dce full
+
+# thee.js from npm uses require(), so we must run a bundler after building haxe code
+-cmd npx esbuild dist/main.js --bundle --outfile=dist/bundle.js
