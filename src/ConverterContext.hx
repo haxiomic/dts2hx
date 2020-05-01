@@ -1013,59 +1013,25 @@ class ConverterContext {
 	}
 
 	function complexTypeFromCallSignature(callSignature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// haxe doesn't support type-parameters on function types, e.g.
-		// `let fun: <T>(a: T) -> void`
-		// so we must replace instances of T with Any, but only when it's a local type parameter
 		var params = callSignature.getTypeParameters();
 		var tsTypeParams: Array<TypeParameter> = params != null ? params : [];
-		inline function isLocalTypeParam(type: TsType) {
-			return tsTypeParams.indexOf(type) != -1;
-		}
-
-		var hxParameters: Array<ComplexType> = if (callSignature.parameters != null) tc.getExpandedParameters(callSignature).map(s -> {
-			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
-			var isOptional = parameterDeclaration != null && tc.isOptionalParameter(parameterDeclaration);
-			var isRest = parameterDeclaration != null && parameterDeclaration.dotDotDotToken != null;
-			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
-			var tsType = parameterDeclaration != null ? tc.getTypeOfSymbolAtLocation(s, parameterDeclaration) : untyped s.type;
-
-			var hxType = if (isLocalTypeParam(tsType)) {
-				macro :Any;
-			} else {
-				complexTypeFromTsType(tsType, accessContext, parameterDeclaration);
-			}
-
-			// a rest parameter cannot be optional in ts
-			if (isRest) {
-				// hxType should be Array<T>, we want to unwrap this and change to Rest<T>
-				hxType = switch hxType {
-					case TPath({name: 'Array', params: [TPType(param)]}):
-						macro :haxe.extern.Rest<$param>;
-					default:
-						Log.error('Expected rest parameter type to be Array<T>', s);
-						hxType;
-				}
-			}
-
-			if (isOptional) {
-				hxType = HaxeTools.unwrapNull(hxType);
-			}
-
-			var hxParam = TNamed(s.name.toSafeIdent(), hxType);
-
-			return isOptional ? TOptional(hxParam) : hxParam;
-		}) else [];
-
-		var tsRet = tc.getReturnTypeOfSignature(callSignature);
-
-		var hxRet = if (isLocalTypeParam(tsRet)) {
-			macro :Any;
+		// haxe doesn't support type-parameters on function types, e.g.
+		// 	`let fun: <T>(a: T) -> void`
+		// so if a signature has type-parameters we wrap in a @:selfCall object
+		return if (tsTypeParams.length > 0) {
+			return TAnonymous([
+				functionFieldFromCallSignatures(selfCallFunctionName, [callSignature], accessContext, enclosingDeclaration)
+			]);
 		} else {
-			complexTypeFromTsType(tc.getReturnTypeOfSignature(callSignature), accessContext, callSignature.declaration);
+			var fun = functionFromSignature(callSignature, accessContext, enclosingDeclaration);
+			TFunction(
+				fun.args.map(arg -> {
+					var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
+					return arg.opt != null  && arg.opt ? TOptional(param) : param;
+				}),
+				fun.ret != null ? fun.ret : macro :Any
+			);
 		}
-
-		// callSignature.typeParameters
-		return TFunction(hxParameters, hxRet);
 	}
 
 	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
