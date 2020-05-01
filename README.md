@@ -25,7 +25,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
     }
     ```
 
-See examples/ for example projects using for popular libraries
+See [examples/](examples/) for example projects using for popular libraries
 
 # Roadmap
 - [x] Rewrite in haxe using generated TypeScript compiler externs
@@ -73,8 +73,8 @@ See examples/ for example projects using for popular libraries
     - [x] Information loss in function signatures
 - [x] Class extends
 - [x] Rest parameters
-- [ ] Docs: How-to-use + examples
-- [ ] :star: **Alpha Release** *_should_ work but please look for issues!*
+- [x] Docs: How-to-use + examples
+- [x] :star: **Alpha Release** *_should_ work but please look for issues!*
 
 **Road to Beta**
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
