@@ -774,7 +774,7 @@ class ConverterContext {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 
 		} else {
-			Log.error('Type not yet supported', type);
+			Log.warn('Type not yet supported', type);
 			// @! todo:
 			// EnumLiteral     = 1 << 10,  // Always combined with StringLiteral, NumberLiteral, or Union
 			// BigIntLiteral   = 1 << 11,
@@ -908,7 +908,7 @@ class ConverterContext {
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
 			complexTypeAnonFromTsType(objectType, accessContext, enclosingDeclaration);
 		} else {
-			Log.error('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
+			Log.warn('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
 			macro :Any;
 		}
@@ -1164,10 +1164,11 @@ class ConverterContext {
 			meta.push({name: ':optional', pos: pos});
 		}
 
+		// transient symbols (symbols generated as part of some process rather than in the source doe) don't have declarations
 		var baseDeclaration: Null<Declaration> = if (symbol.valueDeclaration != null) {
 			symbol.valueDeclaration;
 		} else {
-			Log.error('Missing valueDeclaration for field symbol', symbol);
+			Log.warn('Missing valueDeclaration for field symbol', symbol);
 			debug();
 			null;
 		}
@@ -1180,7 +1181,7 @@ class ConverterContext {
 		var docParts = userDoc != '' ? [userDoc] : [];
 
 		var tsType = if (baseDeclaration == null) {
-			tc.getDeclaredTypeOfSymbol(symbol);
+			Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
 		} else {
 			tc.getTypeOfSymbolAtLocation(symbol, baseDeclaration);
 		}
