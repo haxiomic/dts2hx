@@ -1,15 +1,15 @@
-import typescript.ts.ExpressionWithTypeArguments;
-import typescript.ts.HeritageClause;
-import typescript.ts.ClassDeclaration;
 import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import tool.TsSyntaxTools;
 import typescript.Ts;
+import typescript.ts.ClassDeclaration;
 import typescript.ts.CompilerHost;
 import typescript.ts.CompilerOptions;
 import typescript.ts.Declaration;
+import typescript.ts.ExpressionWithTypeArguments;
 import typescript.ts.GenericType;
+import typescript.ts.HeritageClause;
 import typescript.ts.InterfaceType;
 import typescript.ts.IntersectionType;
 import typescript.ts.Modifier;
@@ -1013,25 +1013,27 @@ class ConverterContext {
 	}
 
 	function complexTypeFromCallSignature(callSignature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var params = callSignature.getTypeParameters();
-		var tsTypeParams: Array<TypeParameter> = params != null ? params : [];
+		var fun = functionFromSignature(callSignature, accessContext, enclosingDeclaration);
 		// haxe doesn't support type-parameters on function types, e.g.
 		// 	`let fun: <T>(a: T) -> void`
-		// so if a signature has type-parameters we wrap in a @:selfCall object
-		return if (tsTypeParams.length > 0) {
-			return TAnonymous([
-				functionFieldFromCallSignatures(selfCallFunctionName, [callSignature], accessContext, enclosingDeclaration)
-			]);
-		} else {
-			var fun = functionFromSignature(callSignature, accessContext, enclosingDeclaration);
-			TFunction(
-				fun.args.map(arg -> {
-					var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
-					return arg.opt != null  && arg.opt ? TOptional(param) : param;
-				}),
-				fun.ret != null ? fun.ret : macro :Any
-			);
+		// to resolve this we replace type-parameters in fun with Any
+		if (fun.params != null && fun.params.length > 0) {
+			fun = tool.ComplexTypeTools.mapFunction(fun, t -> {
+				switch t {
+					case TPath({ pack: [], name: name }) if (fun.params.exists(tp -> tp.name == name)): macro :Any;
+					default: t;
+				}
+			});
+			fun.params = null;
 		}
+
+		return TFunction(
+			fun.args.map(arg -> {
+				var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
+				return arg.opt != null  && arg.opt ? TOptional(param) : param;
+			}),
+			fun.ret != null ? fun.ret : macro :Any
+		);
 	}
 
 	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -1286,8 +1288,8 @@ class ConverterContext {
 					case TPath({name: 'Array', params: [TPType(param)]}):
 						macro :haxe.extern.Rest<$param>;
 					default:
-						Log.error('Expected rest parameter type to be Array<T>', s);
-						hxType;
+						Log.warn('Unsupported rest type', s);
+						macro :haxe.extern.Rest<Any>;
 				}
 			}
 
