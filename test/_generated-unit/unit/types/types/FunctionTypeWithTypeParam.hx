@@ -4,4 +4,7 @@ package unit.types.types;
 	this should translate to: 
 	typedef FunctionTypeWithTypeParam<T> = (a: T, b: Any) -> Any;
 **/
-typedef FunctionTypeWithTypeParam<T> = (a:T, b:Any) -> Any;
+typedef FunctionTypeWithTypeParam<T> = {
+	@:selfCall
+	function call<K>(a:T, b:K):K;
+};
