@@ -1027,7 +1027,7 @@ class ConverterContext {
 		if (fun.params != null && fun.params.length > 0) {
 			fun = tool.ComplexTypeTools.mapFunction(fun, t -> {
 				switch t {
-					case TPath({ pack: [], name: name }) if (fun.params.exists(tp -> tp.name == name)): macro :Dynamic;
+					case TPath({ pack: [], name: name }) if (fun.params.exists(tp -> tp.name == name)): macro :Any;
 					default: t;
 				}
 			});
@@ -1036,7 +1036,7 @@ class ConverterContext {
 
 		return TFunction(
 			fun.args.map(arg -> {
-				var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Dynamic);
+				var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
 				return arg.opt != null  && arg.opt ? TOptional(param) : param;
 			}),
 			fun.ret != null ? fun.ret : macro :Dynamic
