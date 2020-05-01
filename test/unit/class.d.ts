@@ -76,3 +76,15 @@ export class ClassWithInterfaceStructure { classField: number }
 export class ClassExtendsClassWithInterfaceStructure extends ClassWithInterfaceStructure {
     extendsField: boolean;
 }
+
+interface BaseInterface {
+    (baseCallSig: string): BaseInterface;
+    baseInterfaceField: string;
+}
+export interface ClassInterfaceWithInterfaceExtends extends BaseInterface {
+    (extendCallSig: number): ClassInterfaceWithInterfaceExtends;
+    interfaceField: number;
+}
+export class ClassInterfaceWithInterfaceExtends {
+    classField: boolean;
+}
