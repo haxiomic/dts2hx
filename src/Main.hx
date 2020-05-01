@@ -36,7 +36,7 @@ class Main {
 			noOutput: false,
 			locationComments: false,
 			libWrapper: true,
-			logLevel: Warning,
+			logLevel: Error,
 		}
 
 		var help: Bool = false;
