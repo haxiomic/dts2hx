@@ -71,10 +71,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : {
-			@:selfCall
-			function call<T>(a:T):Void;
-		};
+		var methodProperty : (a:Any) -> Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
@@ -97,10 +94,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : {
-			@:selfCall
-			function call<T>(a:T):Void;
-		};
+		var methodProperty : (a:Any) -> Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
@@ -129,15 +123,12 @@ package unit.types;
 	static var mappedStringIndex : Any;
 	static var partial : Any;
 	static var arrowNumberStringVoid : (a:Float, noType:Any) -> Void;
-	static var arrowNumberTVoidTypeParam : {
-		@:selfCall
-		function call<T>(a:Float, tParam:T, arrayTParam:std.Array<T>):Void;
-	};
+	static var arrowNumberTVoidTypeParam : (a:Float, tParam:Any, arrayTParam:std.Array<Any>) -> Void;
 	static var arrowParamWithRest : (a:Float, b:Float, rest:haxe.extern.Rest<Float>) -> Void;
-	static var arrowParamWithRestOr : (a:Float, b:Float, rest:haxe.extern.EitherType<std.Array<Any>, ts.lib.Tuple1<Float>>) -> Void;
-	static var arrowParamWithRestUnion : (a:Float, b:Float, rest:haxe.extern.EitherType<std.Array<Float>, std.Array<Bool>>) -> Void;
+	static var arrowParamWithRestOr : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
+	static var arrowParamWithRestUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
 	static var arrowParamWithRestTuple : (a:Float, b:Float, rest_0:Float) -> Void;
-	static var arrowParamWithRestTupleUnion : (a:Float, b:Float, rest:haxe.extern.EitherType<ts.lib.Tuple1<Float>, ts.lib.Tuple1<Bool>>) -> Void;
+	static var arrowParamWithRestTupleUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
 	static var arrowParamObjectBindingPattern : (__0:{ var x : Any; var y : Any; }) -> Void;
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;
@@ -169,10 +160,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : {
-			@:selfCall
-			function call<T>(a:T):Void;
-		};
+		var methodProperty : (a:Any) -> Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
@@ -223,10 +211,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : {
-			@:selfCall
-			function call<T>(a:T):Void;
-		};
+		var methodProperty : (a:Any) -> Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
