@@ -92,3 +92,16 @@ interface Extends3 extends Base1, Base2 {
 interface Extends3 extends Base3 {
     y: number;
 }
+
+/**
+ * reproducing issue with react Component
+ */
+export interface InterfaceClassParamMismatch<P = {}, S = {}, SS = any> {
+    interfaceFieldP: P;
+    interfaceFieldS: S;
+    interfaceFieldSS: SS;
+}
+export class InterfaceClassParamMismatch<P, S> {
+    classFieldP: P;
+    classFieldS: S;
+}

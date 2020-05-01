@@ -1349,7 +1349,7 @@ class ConverterContext {
 				}
 			}
 
-			if (declarationTypeParameters.length > 0) {
+			if (declarationTypeParameters.length > 0 && declarationTypeParameters.length > tsTypeParameterDeclarations.length) {
 				tsTypeParameterDeclarations = declarationTypeParameters;
 			}
 		}
