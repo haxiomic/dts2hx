@@ -22,5 +22,12 @@ package ts.html;
 	function insertRule(rule:String, ?index:Float):Float;
 	function removeImport(lIndex:Float):Void;
 	function removeRule(lIndex:Float):Void;
+	var disabled : Bool;
+	final href : Null<String>;
+	final media : ts.lib.IMediaList;
+	final ownerNode : INode;
+	final parentStyleSheet : Null<IStyleSheet>;
+	final title : Null<String>;
+	final type : String;
 	static var prototype : ICSSStyleSheet;
 }

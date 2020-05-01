@@ -160,6 +160,17 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	var onabort : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onerror : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onload : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onloadstart : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	var ontimeout : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	/**
+		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+	**/
+	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IXMLHttpRequest;
 	@:native("DONE")
 	static final DONE_ : Float;

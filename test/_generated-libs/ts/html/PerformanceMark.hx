@@ -4,5 +4,10 @@ package ts.html;
 **/
 @:native("PerformanceMark") extern class PerformanceMark {
 	function new();
+	final duration : Float;
+	final entryType : String;
+	final name : String;
+	final startTime : Float;
+	function toJSON():Any;
 	static var prototype : IPerformanceMark;
 }

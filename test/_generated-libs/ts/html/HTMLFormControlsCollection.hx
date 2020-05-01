@@ -10,5 +10,13 @@ package ts.html;
 		If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
 	**/
 	function namedItem(name:String):Null<ts.AnyOf2<IElement, IRadioNodeList>>;
+	/**
+		Sets or retrieves the number of objects in a collection.
+	**/
+	final length : Float;
+	/**
+		Retrieves an object from various collections.
+	**/
+	function item(index:Float):Null<IElement>;
 	static var prototype : IHTMLFormControlsCollection;
 }

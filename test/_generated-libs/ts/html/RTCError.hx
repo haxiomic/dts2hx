@@ -9,5 +9,7 @@ package ts.html;
 	var sctpCauseCode : Float;
 	var sdpLineNumber : Float;
 	var sentAlert : Null<Float>;
+	@:optional
+	var stack : String;
 	static var prototype : IRTCError;
 }

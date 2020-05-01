@@ -68,5 +68,31 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	/**
+		When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
+	**/
+	final error : Null<IDOMException>;
+	var onerror : Null<(ev:IEvent) -> Any>;
+	var onsuccess : Null<(ev:IEvent) -> Any>;
+	/**
+		Returns "pending" until a request is complete, then returns "done".
+	**/
+	final readyState : String;
+	/**
+		When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
+	**/
+	final result : IIDBDatabase;
+	/**
+		Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
+	**/
+	final source : ts.AnyOf3<IIDBCursor, IIDBIndex, ts.lib.IIDBObjectStore>;
+	/**
+		Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
+	**/
+	final transaction : Null<IIDBTransaction>;
+	/**
+		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+	**/
+	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IIDBOpenDBRequest;
 }

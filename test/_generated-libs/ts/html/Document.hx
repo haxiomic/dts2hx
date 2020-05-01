@@ -440,5 +440,428 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	/**
+		Returns node's node document's document base URL.
+	**/
+	final baseURI : String;
+	/**
+		Returns the children.
+	**/
+	final childNodes : ts.lib.NodeListOf<ChildNode>;
+	/**
+		Returns the first child.
+	**/
+	final firstChild : Null<ChildNode>;
+	/**
+		Returns true if node is connected and false otherwise.
+	**/
+	final isConnected : Bool;
+	/**
+		Returns the last child.
+	**/
+	final lastChild : Null<ChildNode>;
+	final namespaceURI : Null<String>;
+	/**
+		Returns the next sibling.
+	**/
+	final nextSibling : Null<ChildNode>;
+	/**
+		Returns a string appropriate for the type of node.
+	**/
+	final nodeName : String;
+	/**
+		Returns the type of node.
+	**/
+	final nodeType : Float;
+	var nodeValue : Null<String>;
+	/**
+		Returns the node document. Returns null for documents.
+	**/
+	final ownerDocument : Null<IDocument>;
+	/**
+		Returns the parent element.
+	**/
+	final parentElement : Null<IHTMLElement>;
+	/**
+		Returns the parent.
+	**/
+	final parentNode : Null<INode & ParentNode>;
+	/**
+		Returns the previous sibling.
+	**/
+	final previousSibling : Null<INode>;
+	var textContent : Null<String>;
+	function appendChild<T>(newChild:T):T;
+	/**
+		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
+	**/
+	function cloneNode(?deep:Bool):INode;
+	/**
+		Returns a bitmask indicating the position of other relative to node.
+	**/
+	function compareDocumentPosition(other:INode):Float;
+	/**
+		Returns true if other is an inclusive descendant of node, and false otherwise.
+	**/
+	function contains(other:Null<INode>):Bool;
+	/**
+		Returns node's root.
+	**/
+	function getRootNode(?options:GetRootNodeOptions):INode;
+	/**
+		Returns whether node has children.
+	**/
+	function hasChildNodes():Bool;
+	function insertBefore<T>(newChild:T, refChild:Null<INode>):T;
+	function isDefaultNamespace(namespace:Null<String>):Bool;
+	/**
+		Returns whether node and otherNode have the same properties.
+	**/
+	function isEqualNode(otherNode:Null<INode>):Bool;
+	function isSameNode(otherNode:Null<INode>):Bool;
+	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
+	function lookupPrefix(namespace:Null<String>):Null<String>;
+	/**
+		Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
+	**/
+	function normalize():Void;
+	function removeChild<T>(oldChild:T):T;
+	function replaceChild<T>(newChild:INode, oldChild:T):T;
+	final ATTRIBUTE_NODE : Float;
+	/**
+		node is a CDATASection node.
+	**/
+	final CDATA_SECTION_NODE : Float;
+	/**
+		node is a Comment node.
+	**/
+	final COMMENT_NODE : Float;
+	/**
+		node is a DocumentFragment node.
+	**/
+	final DOCUMENT_FRAGMENT_NODE : Float;
+	/**
+		node is a document.
+	**/
+	final DOCUMENT_NODE : Float;
+	/**
+		Set when other is a descendant of node.
+	**/
+	final DOCUMENT_POSITION_CONTAINED_BY : Float;
+	/**
+		Set when other is an ancestor of node.
+	**/
+	final DOCUMENT_POSITION_CONTAINS : Float;
+	/**
+		Set when node and other are not in the same tree.
+	**/
+	final DOCUMENT_POSITION_DISCONNECTED : Float;
+	/**
+		Set when other is following node.
+	**/
+	final DOCUMENT_POSITION_FOLLOWING : Float;
+	final DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC : Float;
+	/**
+		Set when other is preceding node.
+	**/
+	final DOCUMENT_POSITION_PRECEDING : Float;
+	/**
+		node is a doctype.
+	**/
+	final DOCUMENT_TYPE_NODE : Float;
+	/**
+		node is an element.
+	**/
+	final ELEMENT_NODE : Float;
+	final ENTITY_NODE : Float;
+	final ENTITY_REFERENCE_NODE : Float;
+	final NOTATION_NODE : Float;
+	/**
+		node is a ProcessingInstruction node.
+	**/
+	final PROCESSING_INSTRUCTION_NODE : Float;
+	/**
+		node is a Text node.
+	**/
+	final TEXT_NODE : Float;
+	/**
+		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+	**/
+	function dispatchEvent(event:IEvent):Bool;
+	var oncopy : Null<(ev:IClipboardEvent) -> Any>;
+	var oncut : Null<(ev:IClipboardEvent) -> Any>;
+	var onpaste : Null<(ev:IClipboardEvent) -> Any>;
+	/**
+		Returns document's fullscreen element.
+	**/
+	final fullscreenElement : Null<IElement>;
+	final pointerLockElement : Null<IElement>;
+	/**
+		Retrieves a collection of styleSheet objects representing the style sheets that correspond to each instance of a link or style object in the document.
+	**/
+	final styleSheets : ts.lib.IStyleSheetList;
+	/**
+		Fires when the user aborts the download.
+	**/
+	var onabort : Null<(ev:IUIEvent) -> Any>;
+	var onanimationcancel : Null<(ev:IAnimationEvent) -> Any>;
+	var onanimationend : Null<(ev:IAnimationEvent) -> Any>;
+	var onanimationiteration : Null<(ev:IAnimationEvent) -> Any>;
+	var onanimationstart : Null<(ev:IAnimationEvent) -> Any>;
+	var onauxclick : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Fires when the object loses the input focus.
+	**/
+	var onblur : Null<(ev:IFocusEvent) -> Any>;
+	var oncancel : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when playback is possible, but would require further buffering.
+	**/
+	var oncanplay : Null<(ev:IEvent) -> Any>;
+	var oncanplaythrough : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the contents of the object or selection have changed.
+	**/
+	var onchange : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the user clicks the left mouse button on the object
+	**/
+	var onclick : Null<(ev:IMouseEvent) -> Any>;
+	var onclose : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the user clicks the right mouse button in the client area, opening the context menu.
+	**/
+	var oncontextmenu : Null<(ev:IMouseEvent) -> Any>;
+	var oncuechange : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the user double-clicks the object.
+	**/
+	var ondblclick : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Fires on the source object continuously during a drag operation.
+	**/
+	var ondrag : Null<(ev:IDragEvent) -> Any>;
+	/**
+		Fires on the source object when the user releases the mouse at the close of a drag operation.
+	**/
+	var ondragend : Null<(ev:IDragEvent) -> Any>;
+	/**
+		Fires on the target element when the user drags the object to a valid drop target.
+	**/
+	var ondragenter : Null<(ev:IDragEvent) -> Any>;
+	var ondragexit : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
+	**/
+	var ondragleave : Null<(ev:IDragEvent) -> Any>;
+	/**
+		Fires on the target element continuously while the user drags the object over a valid drop target.
+	**/
+	var ondragover : Null<(ev:IDragEvent) -> Any>;
+	/**
+		Fires on the source object when the user starts to drag a text selection or selected object.
+	**/
+	var ondragstart : Null<(ev:IDragEvent) -> Any>;
+	var ondrop : Null<(ev:IDragEvent) -> Any>;
+	/**
+		Occurs when the duration attribute is updated.
+	**/
+	var ondurationchange : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the media element is reset to its initial state.
+	**/
+	var onemptied : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the end of playback is reached.
+	**/
+	var onended : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when an error occurs during object loading.
+	**/
+	var onerror : Null<OnErrorEventHandlerNonNull>;
+	/**
+		Fires when the object receives focus.
+	**/
+	var onfocus : Null<(ev:IFocusEvent) -> Any>;
+	var ongotpointercapture : Null<(ev:IPointerEvent) -> Any>;
+	var oninput : Null<(ev:IEvent) -> Any>;
+	var oninvalid : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the user presses a key.
+	**/
+	var onkeydown : Null<(ev:IKeyboardEvent) -> Any>;
+	/**
+		Fires when the user presses an alphanumeric key.
+	**/
+	var onkeypress : Null<(ev:IKeyboardEvent) -> Any>;
+	/**
+		Fires when the user releases a key.
+	**/
+	var onkeyup : Null<(ev:IKeyboardEvent) -> Any>;
+	/**
+		Fires immediately after the browser loads the object.
+	**/
+	var onload : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when media data is loaded at the current playback position.
+	**/
+	var onloadeddata : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the duration and dimensions of the media have been determined.
+	**/
+	var onloadedmetadata : Null<(ev:IEvent) -> Any>;
+	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	/**
+		Occurs when Internet Explorer begins looking for media data.
+	**/
+	var onloadstart : Null<(ev:IEvent) -> Any>;
+	var onlostpointercapture : Null<(ev:IPointerEvent) -> Any>;
+	/**
+		Fires when the user clicks the object with either mouse button.
+	**/
+	var onmousedown : Null<(ev:IMouseEvent) -> Any>;
+	var onmouseenter : Null<(ev:IMouseEvent) -> Any>;
+	var onmouseleave : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Fires when the user moves the mouse over the object.
+	**/
+	var onmousemove : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Fires when the user moves the mouse pointer outside the boundaries of the object.
+	**/
+	var onmouseout : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Fires when the user moves the mouse pointer into the object.
+	**/
+	var onmouseover : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Fires when the user releases a mouse button while the mouse is over the object.
+	**/
+	var onmouseup : Null<(ev:IMouseEvent) -> Any>;
+	/**
+		Occurs when playback is paused.
+	**/
+	var onpause : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the play method is requested.
+	**/
+	var onplay : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the audio or video has started playing.
+	**/
+	var onplaying : Null<(ev:IEvent) -> Any>;
+	var onpointercancel : Null<(ev:IPointerEvent) -> Any>;
+	var onpointerdown : Null<(ev:IPointerEvent) -> Any>;
+	var onpointerenter : Null<(ev:IPointerEvent) -> Any>;
+	var onpointerleave : Null<(ev:IPointerEvent) -> Any>;
+	var onpointermove : Null<(ev:IPointerEvent) -> Any>;
+	var onpointerout : Null<(ev:IPointerEvent) -> Any>;
+	var onpointerover : Null<(ev:IPointerEvent) -> Any>;
+	var onpointerup : Null<(ev:IPointerEvent) -> Any>;
+	/**
+		Occurs to indicate progress while downloading media data.
+	**/
+	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Any>;
+	/**
+		Occurs when the playback rate is increased or decreased.
+	**/
+	var onratechange : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the user resets a form.
+	**/
+	var onreset : Null<(ev:IEvent) -> Any>;
+	var onresize : Null<(ev:IUIEvent) -> Any>;
+	/**
+		Fires when the user repositions the scroll box in the scroll bar on the object.
+	**/
+	var onscroll : Null<(ev:IEvent) -> Any>;
+	var onsecuritypolicyviolation : Null<(ev:ISecurityPolicyViolationEvent) -> Any>;
+	/**
+		Occurs when the seek operation ends.
+	**/
+	var onseeked : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the current playback position is moved.
+	**/
+	var onseeking : Null<(ev:IEvent) -> Any>;
+	/**
+		Fires when the current selection changes.
+	**/
+	var onselect : Null<(ev:IEvent) -> Any>;
+	var onselectionchange : Null<(ev:IEvent) -> Any>;
+	var onselectstart : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when the download has stopped.
+	**/
+	var onstalled : Null<(ev:IEvent) -> Any>;
+	var onsubmit : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs if the load operation has been intentionally halted.
+	**/
+	var onsuspend : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs to indicate the current playback position.
+	**/
+	var ontimeupdate : Null<(ev:IEvent) -> Any>;
+	var ontoggle : Null<(ev:IEvent) -> Any>;
+	var ontouchcancel : Null<(ev:ITouchEvent) -> Any>;
+	var ontouchend : Null<(ev:ITouchEvent) -> Any>;
+	var ontouchmove : Null<(ev:ITouchEvent) -> Any>;
+	var ontouchstart : Null<(ev:ITouchEvent) -> Any>;
+	var ontransitioncancel : Null<(ev:ITransitionEvent) -> Any>;
+	var ontransitionend : Null<(ev:ITransitionEvent) -> Any>;
+	var ontransitionrun : Null<(ev:ITransitionEvent) -> Any>;
+	var ontransitionstart : Null<(ev:ITransitionEvent) -> Any>;
+	/**
+		Occurs when the volume is changed, or playback is muted or unmuted.
+	**/
+	var onvolumechange : Null<(ev:IEvent) -> Any>;
+	/**
+		Occurs when playback stops because the next frame of a video resource is not available.
+	**/
+	var onwaiting : Null<(ev:IEvent) -> Any>;
+	var onwheel : Null<(ev:IWheelEvent) -> Any>;
+	final childElementCount : Float;
+	/**
+		Returns the child elements.
+	**/
+	final children : IHTMLCollection;
+	/**
+		Returns the first child that is an element, and null otherwise.
+	**/
+	final firstElementChild : Null<IElement>;
+	/**
+		Returns the last child that is an element, and null otherwise.
+	**/
+	final lastElementChild : Null<IElement>;
+	/**
+		Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
+		
+		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+	**/
+	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	/**
+		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
+		
+		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
+	**/
+	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	/**
+		Returns the first element that is a descendant of node that matches selectors.
+	**/
+	@:overload(function<K>(selectors:K):Null<Any> { })
+	@:overload(function<E>(selectors:String):Null<E> { })
+	function querySelector<K>(selectors:K):Null<Any>;
+	/**
+		Returns all element descendants of node that match selectors.
+	**/
+	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Any> { })
+	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
+	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Any>;
+	function createExpression(expression:String, ?resolver:ts.AnyOf2<(prefix:Null<String>) -> Null<String>, { function lookupNamespaceURI(prefix:Null<String>):Null<String>; }>):IXPathExpression;
+	function createNSResolver(nodeResolver:INode):ts.AnyOf2<(prefix:Null<String>) -> Null<String>, {
+		function lookupNamespaceURI(prefix:Null<String>):Null<String>;
+	}>;
+	function evaluate(expression:String, contextNode:INode, ?resolver:ts.AnyOf2<(prefix:Null<String>) -> Null<String>, { function lookupNamespaceURI(prefix:Null<String>):Null<String>; }>, ?type:Float, ?result:IXPathResult):IXPathResult;
 	static var prototype : IDocument;
 }

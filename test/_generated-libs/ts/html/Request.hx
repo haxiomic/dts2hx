@@ -65,5 +65,12 @@ package ts.html;
 	**/
 	final url : String;
 	function clone():IRequest;
+	final body : Null<IReadableStream<ts.lib.IUint8Array>>;
+	final bodyUsed : Bool;
+	function arrayBuffer():ts.lib.IPromise<ts.lib.IArrayBuffer>;
+	function blob():ts.lib.IPromise<IBlob>;
+	function formData():ts.lib.IPromise<ts.lib.IFormData>;
+	function json():ts.lib.IPromise<Any>;
+	function text():ts.lib.IPromise<String>;
 	static var prototype : IRequest;
 }

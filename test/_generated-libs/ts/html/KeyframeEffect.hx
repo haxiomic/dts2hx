@@ -7,5 +7,8 @@ package ts.html;
 	var target : Null<IElement>;
 	function getKeyframes():std.Array<ComputedKeyframe>;
 	function setKeyframes(keyframes:Null<ts.AnyOf2<std.Array<Keyframe>, PropertyIndexedKeyframes>>):Void;
+	function getComputedTiming():ComputedEffectTiming;
+	function getTiming():EffectTiming;
+	function updateTiming(?timing:OptionalEffectTiming):Void;
 	static var prototype : IKeyframeEffect;
 }

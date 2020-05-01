@@ -76,5 +76,37 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	final audioWorklet : IAudioWorklet;
+	final currentTime : Float;
+	final destination : IAudioDestinationNode;
+	final listener : IAudioListener;
+	var onstatechange : Null<(ev:IEvent) -> Any>;
+	final sampleRate : Float;
+	final state : String;
+	function createAnalyser():IAnalyserNode;
+	function createBiquadFilter():IBiquadFilterNode;
+	function createBuffer(numberOfChannels:Float, length:Float, sampleRate:Float):IAudioBuffer;
+	function createBufferSource():IAudioBufferSourceNode;
+	function createChannelMerger(?numberOfInputs:Float):IChannelMergerNode;
+	function createChannelSplitter(?numberOfOutputs:Float):IChannelSplitterNode;
+	function createConstantSource():IConstantSourceNode;
+	function createConvolver():IConvolverNode;
+	function createDelay(?maxDelayTime:Float):IDelayNode;
+	function createDynamicsCompressor():IDynamicsCompressorNode;
+	function createGain():IGainNode;
+	@:overload(function(feedforward:ts.lib.Iterable<Float>, feedback:ts.lib.Iterable<Float>):IIIRFilterNode { })
+	function createIIRFilter(feedforward:std.Array<Float>, feedback:std.Array<Float>):IIIRFilterNode;
+	function createOscillator():IOscillatorNode;
+	function createPanner():IPannerNode;
+	@:overload(function(real:ts.lib.Iterable<Float>, imag:ts.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):IPeriodicWave { })
+	function createPeriodicWave(real:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>, imag:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
+	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):IScriptProcessorNode;
+	function createStereoPanner():IStereoPannerNode;
+	function createWaveShaper():IWaveShaperNode;
+	function decodeAudioData(audioData:ts.lib.IArrayBuffer, ?successCallback:DecodeSuccessCallback, ?errorCallback:DecodeErrorCallback):ts.lib.IPromise<IAudioBuffer>;
+	/**
+		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+	**/
+	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IAudioContext;
 }

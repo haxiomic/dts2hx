@@ -6,5 +6,8 @@ package ts.html;
 	function new(fileBits:std.Array<ts.AnyOf4<String, ts.lib.IArrayBuffer, IBlob, ts.lib.ArrayBufferView>>, fileName:String, ?options:FilePropertyBag);
 	final lastModified : Float;
 	final name : String;
+	final size : Float;
+	final type : String;
+	function slice(?start:Float, ?end:Float, ?contentType:String):IBlob;
 	static var prototype : IFile;
 }

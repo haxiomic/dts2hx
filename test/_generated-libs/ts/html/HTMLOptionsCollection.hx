@@ -32,5 +32,10 @@ package ts.html;
 		Removes the item with index index from the collection.
 	**/
 	function remove(index:Float):Void;
+	/**
+		Retrieves an object from various collections.
+	**/
+	function item(index:Float):Null<IHTMLOptionElement>;
+	function namedItem(name:String):Null<IHTMLOptionElement>;
 	static var prototype : IHTMLOptionsCollection;
 }

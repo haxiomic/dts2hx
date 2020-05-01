@@ -41,6 +41,26 @@ package ts.html;
 	final END_TO_START : Float;
 	final START_TO_END : Float;
 	final START_TO_START : Float;
+	/**
+		Returns true if range is collapsed, and false otherwise.
+	**/
+	final collapsed : Bool;
+	/**
+		Returns range's end node.
+	**/
+	final endContainer : INode;
+	/**
+		Returns range's end offset.
+	**/
+	final endOffset : Float;
+	/**
+		Returns range's start node.
+	**/
+	final startContainer : INode;
+	/**
+		Returns range's start offset.
+	**/
+	final startOffset : Float;
 	static var prototype : IRange;
 	@:native("END_TO_END")
 	static final END_TO_END_ : Float;

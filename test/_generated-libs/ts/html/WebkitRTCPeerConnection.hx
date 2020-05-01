@@ -63,5 +63,52 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	final canTrickleIceCandidates : Null<Bool>;
+	final connectionState : String;
+	final currentLocalDescription : Null<IRTCSessionDescription>;
+	final currentRemoteDescription : Null<IRTCSessionDescription>;
+	final iceConnectionState : String;
+	final iceGatheringState : String;
+	final idpErrorInfo : Null<String>;
+	final idpLoginUrl : Null<String>;
+	final localDescription : Null<IRTCSessionDescription>;
+	var onconnectionstatechange : Null<(ev:IEvent) -> Any>;
+	var ondatachannel : Null<(ev:IRTCDataChannelEvent) -> Any>;
+	var onicecandidate : Null<(ev:IRTCPeerConnectionIceEvent) -> Any>;
+	var onicecandidateerror : Null<(ev:IRTCPeerConnectionIceErrorEvent) -> Any>;
+	var oniceconnectionstatechange : Null<(ev:IEvent) -> Any>;
+	var onicegatheringstatechange : Null<(ev:IEvent) -> Any>;
+	var onnegotiationneeded : Null<(ev:IEvent) -> Any>;
+	var onsignalingstatechange : Null<(ev:IEvent) -> Any>;
+	var onstatsended : Null<(ev:IRTCStatsEvent) -> Any>;
+	var ontrack : Null<(ev:IRTCTrackEvent) -> Any>;
+	final peerIdentity : ts.lib.IPromise<IRTCIdentityAssertion>;
+	final pendingLocalDescription : Null<IRTCSessionDescription>;
+	final pendingRemoteDescription : Null<IRTCSessionDescription>;
+	final remoteDescription : Null<IRTCSessionDescription>;
+	final sctp : Null<IRTCSctpTransport>;
+	final signalingState : String;
+	function addIceCandidate(candidate:ts.AnyOf2<IRTCIceCandidate, RTCIceCandidateInit>):ts.lib.IPromise<Void>;
+	function addTrack(track:IMediaStreamTrack, streams:haxe.extern.Rest<IMediaStream>):IRTCRtpSender;
+	function addTransceiver(trackOrKind:ts.AnyOf2<String, IMediaStreamTrack>, ?init:RTCRtpTransceiverInit):ts.lib.IRTCRtpTransceiver;
+	function close():Void;
+	function createAnswer(?options:RTCOfferOptions):ts.lib.IPromise<RTCSessionDescriptionInit>;
+	function createDataChannel(label:String, ?dataChannelDict:RTCDataChannelInit):IRTCDataChannel;
+	function createOffer(?options:RTCOfferOptions):ts.lib.IPromise<RTCSessionDescriptionInit>;
+	function getConfiguration():RTCConfiguration;
+	function getIdentityAssertion():ts.lib.IPromise<String>;
+	function getReceivers():std.Array<IRTCRtpReceiver>;
+	function getSenders():std.Array<IRTCRtpSender>;
+	function getStats(?selector:IMediaStreamTrack):ts.lib.IPromise<ts.lib.IRTCStatsReport>;
+	function getTransceivers():std.Array<ts.lib.IRTCRtpTransceiver>;
+	function removeTrack(sender:IRTCRtpSender):Void;
+	function setConfiguration(configuration:RTCConfiguration):Void;
+	function setIdentityProvider(provider:String, ?options:RTCIdentityProviderOptions):Void;
+	function setLocalDescription(description:RTCSessionDescriptionInit):ts.lib.IPromise<Void>;
+	function setRemoteDescription(description:RTCSessionDescriptionInit):ts.lib.IPromise<Void>;
+	/**
+		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+	**/
+	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IWebkitRTCPeerConnection;
 }
