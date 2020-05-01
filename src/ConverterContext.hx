@@ -376,7 +376,9 @@ class ConverterContext {
 				if (extendsClause != null) {
 					var superTypeNode = (cast extendsClause.types: Array<ExpressionWithTypeArguments>)[0];
 					var superType = tc.getTypeFromTypeNode(superTypeNode);
-					var hxSuperType = complexTypeFromTsType(superType, access, declaration);
+					// convert to haxe type reference, but don't prefer interface structures
+					var hxSuperType = complexTypeFromObjectType(cast superType, access, false, classDeclaration);
+
 					superClassPath = switch hxSuperType {
 						case TPath(p): p;
 						default:
@@ -752,17 +754,19 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.TypeParameter) != 0) {
 			complexTypeFromTypeParameter(cast type, accessContext, enclosingDeclaration);
 		} else if (type.flags & (TypeFlags.Object) != 0) {
-			complexTypeFromObjectType(cast type, accessContext, enclosingDeclaration);
+			complexTypeFromObjectType(cast type, accessContext, true, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
 		} else if (type.flags & TypeFlags.BigInt != 0) {
 			// we don't support BigInt at a language level, but we can convert the BigInt type itself instead
 			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+			
 
 		// these probably don't work properly:
 		// } else if (type.flags & TypeFlags.Index != 0) {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 		// } else if (type.flags & TypeFlags.Conditional != 0) {
+			// @! can map these to unions
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 		// } else if (type.flags & TypeFlags.Substitution != 0) {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
@@ -881,7 +885,7 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		// @! todo:
 		// Mapped           = 1 << 5,  // Mapped
 		// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
@@ -898,9 +902,9 @@ class ConverterContext {
 		// ObjectRestType   = 1 << 17, // Originates in object rest declaration
 
 		return if ((objectType.objectFlags & ObjectFlags.Reference) != 0) {
-			complexTypeFromTypeReference(cast objectType, accessContext, enclosingDeclaration);
+			complexTypeFromTypeReference(cast objectType, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
-			complexTypeFromInterfaceType(cast objectType, accessContext, enclosingDeclaration);
+			complexTypeFromInterfaceType(cast objectType, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
 			complexTypeAnonFromTsType(objectType, accessContext, enclosingDeclaration);
 		} else {
@@ -1036,10 +1040,10 @@ class ConverterContext {
 		);
 	}
 
-	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		// determine reference sub-type
 		return if ((typeReference.objectFlags & ObjectFlags.ClassOrInterface) != 0) {
-			complexTypeFromGenericType(cast typeReference, accessContext, enclosingDeclaration);
+			complexTypeFromGenericType(cast typeReference, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if ((typeReference.target.objectFlags & ObjectFlags.Tuple != 0)) {
 			// it's a TupleTypeReference if its target is a Tuple
 			complexTypeFromTupleTypeReference(cast typeReference, accessContext, enclosingDeclaration);
@@ -1079,12 +1083,12 @@ class ConverterContext {
 	/**
 		While a GenericType could include the full type definition because the return is ComplexType we just return a TPath()
 	**/
-	function complexTypeFromGenericType(genericType: GenericType & TypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromGenericType(genericType: GenericType & TypeReference, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		// sub-type of GenericType
 		return if (genericType.objectFlags & ObjectFlags.Tuple != 0) {
 			complexTypeFromTupleType(cast genericType, accessContext, enclosingDeclaration);
 		} else {
-			complexTypeFromInterfaceType(genericType, accessContext, enclosingDeclaration);
+			complexTypeFromInterfaceType(genericType, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		}
 	}
 
@@ -1095,9 +1099,9 @@ class ConverterContext {
 		return macro :std.Array<Any>;
 	}
 
-	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
-			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, accessContext, true);
+			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, accessContext, preferInterfaceStructure);
 			hxTypePath.params = if (classOrInterfaceType.typeParameters != null) {
 				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, accessContext, enclosingDeclaration)));
 			} else null;

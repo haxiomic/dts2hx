@@ -1,5 +1,7 @@
 package tool;
 
+import typescript.ts.ObjectFlags;
+import typescript.ts.TypeFlags;
 import typescript.ts.ObjectType;
 import typescript.ts.TupleTypeReference;
 import typescript.ts.TypeChecker;
@@ -47,6 +49,12 @@ class TsTypeTools {
 	**/
 	public static function isConstructorType(tc: TypeChecker, type: TsType): Bool {
 		return tc.getSignaturesOfType(type, Construct).length > 0;
+	}
+
+	public static function isReferenceType(tc: TypeChecker, type: TsType): Bool {
+		return if (type.flags & TypeFlags.Object != 0) {
+			return (cast type: ObjectType).objectFlags & ObjectFlags.Reference != 0;
+		} else false;
 	}
 
 	/** Translated from checker.ts (typescript 3.7.4) **/
