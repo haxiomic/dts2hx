@@ -541,6 +541,13 @@ class ConverterContext {
 			tc.getIndexSignaturesOfType(declaredType),
 			tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
 		);
+		// remove disallowed accessors, since this is a structure type in haxe, the only allowed accessor is `final`
+		for (field in fields) {
+			if (field.access != null) field.access = field.access.filter(a -> switch a {
+				case AFinal: true;
+				default: false;
+			});
+		};
 		fields.resolveNameCollisions();
 		return {
 			pack: typePath.pack,
