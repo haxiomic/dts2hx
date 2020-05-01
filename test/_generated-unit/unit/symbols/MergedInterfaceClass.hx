@@ -4,4 +4,5 @@ package unit.symbols;
 	var interfaceField1 : Float;
 	var interfaceField2 : Float;
 	var classField : String;
+	var baseInterfaceField : Float;
 }
