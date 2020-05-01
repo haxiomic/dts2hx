@@ -733,7 +733,7 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.Boolean) != 0) {
 			macro :Bool;
 		} else if (type.flags & (TypeFlags.Undefined) != 0) {
-			macro :Null<macro :Any>;
+			macro :Null<Any>;
 		} else if (type.flags & (TypeFlags.Void) != 0) {
 			macro :Void;
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
