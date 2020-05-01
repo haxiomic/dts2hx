@@ -1,6 +1,6 @@
 package ts.lib;
 @:native("URLSearchParams") extern class URLSearchParams {
-	function new(?init:haxe.extern.EitherType<String, haxe.extern.EitherType<IURLSearchParams, haxe.extern.EitherType<Any, std.Array<std.Array<String>>>>>);
+	function new(?init:ts.AnyOf4<String, IURLSearchParams, Any, std.Array<std.Array<String>>>);
 	/**
 		Appends a specified key/value pair as a new search parameter.
 	**/
@@ -30,7 +30,7 @@ package ts.lib;
 	/**
 		Returns an array of key, value pairs for every entry in the search params.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<String, String>>;
+	function entries():IterableIterator<ts.Tuple2<String, String>>;
 	/**
 		Returns a list of keys in the search params.
 	**/

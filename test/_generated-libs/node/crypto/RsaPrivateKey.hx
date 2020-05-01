@@ -1,6 +1,6 @@
 package node.crypto;
 extern typedef RsaPrivateKey = {
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, KeyObject>>;
+	var key : ts.AnyOf3<String, global.IBuffer, KeyObject>;
 	@:optional
 	var passphrase : String;
 	@:optional

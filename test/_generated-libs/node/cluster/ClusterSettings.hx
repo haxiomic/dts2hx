@@ -15,5 +15,5 @@ extern typedef ClusterSettings = {
 	@:optional
 	var gid : Float;
 	@:optional
-	var inspectPort : haxe.extern.EitherType<Float, () -> Float>;
+	var inspectPort : ts.AnyOf2<Float, () -> Float>;
 };

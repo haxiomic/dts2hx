@@ -12,7 +12,7 @@ package node.net;
 	@:overload(function(handle:Any, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
 	function close(?callback:(?err:ts.lib.IError) -> Void):Server;
-	function address():Null<haxe.extern.EitherType<String, AddressInfo>>;
+	function address():Null<ts.AnyOf2<String, AddressInfo>>;
 	function getConnections(cb:(error:Null<ts.lib.IError>, count:Float) -> Void):Void;
 	function ref():Server;
 	function unref():Server;

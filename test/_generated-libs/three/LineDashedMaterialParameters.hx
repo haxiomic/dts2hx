@@ -1,7 +1,7 @@
 package three;
 extern typedef LineDashedMaterialParameters = {
 	@:optional
-	var color : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional
 	var linewidth : Float;
 	@:optional
@@ -23,7 +23,7 @@ extern typedef LineDashedMaterialParameters = {
 	@:optional
 	var blending : Blending;
 	@:optional
-	var blendSrc : haxe.extern.EitherType<BlendingDstFactor, BlendingSrcFactor>;
+	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	@:optional
 	var blendSrcAlpha : Float;
 	@:optional

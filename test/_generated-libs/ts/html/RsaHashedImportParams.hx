@@ -1,5 +1,5 @@
 package ts.html;
 extern typedef RsaHashedImportParams = {
-	var hash : haxe.extern.EitherType<String, Algorithm>;
+	var hash : ts.AnyOf2<String, Algorithm>;
 	var name : String;
 };

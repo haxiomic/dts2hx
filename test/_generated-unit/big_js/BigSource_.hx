@@ -1,2 +1,2 @@
 package big_js;
-typedef BigSource_ = haxe.extern.EitherType<String, haxe.extern.EitherType<Float, IBig>>;
+typedef BigSource_ = ts.AnyOf3<String, Float, IBig>;

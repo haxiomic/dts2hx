@@ -27,5 +27,5 @@ extern typedef NotificationOptions = {
 	@:optional
 	var timestamp : Float;
 	@:optional
-	var vibrate : haxe.extern.EitherType<Float, std.Array<Float>>;
+	var vibrate : ts.AnyOf2<Float, std.Array<Float>>;
 };

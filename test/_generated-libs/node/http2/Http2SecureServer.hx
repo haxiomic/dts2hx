@@ -63,7 +63,7 @@ extern typedef Http2SecureServer = {
 	@:overload(function(event:String, stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, socket:node.tls.TLSSocket):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2SecureServer { })
@@ -103,20 +103,20 @@ extern typedef Http2SecureServer = {
 	@:overload(function(handle:Any, ?listeningListener:() -> Void):Http2SecureServer { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer;
 	function close(?callback:(?err:ts.lib.IError) -> Void):Http2SecureServer;
-	function address():Null<haxe.extern.EitherType<String, node.net.AddressInfo>>;
+	function address():Null<ts.AnyOf2<String, node.net.AddressInfo>>;
 	function getConnections(cb:(error:Null<ts.lib.IError>, count:Float) -> Void):Void;
 	function ref():Http2SecureServer;
 	function unref():Http2SecureServer;
 	var maxConnections : Float;
 	var connections : Float;
 	var listening : Bool;
-	function removeListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2SecureServer;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2SecureServer;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Http2SecureServer;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2SecureServer;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Http2SecureServer;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Http2SecureServer;
 	function setMaxListeners(n:Float):Http2SecureServer;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 };

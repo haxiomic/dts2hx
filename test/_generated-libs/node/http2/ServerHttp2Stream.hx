@@ -151,7 +151,7 @@ extern typedef ServerHttp2Stream = {
 	**/
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(chunk:ts.AnyOf2<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
@@ -166,7 +166,7 @@ extern typedef ServerHttp2Stream = {
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, chunk:haxe.extern.EitherType<String, global.IBuffer>):Bool { })
+	@:overload(function(event:String, chunk:ts.AnyOf2<String, global.IBuffer>):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
@@ -178,10 +178,10 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, trailers:IncomingHttpHeaders, flags:Float):Bool { })
 	@:overload(function(event:String):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(chunk:ts.AnyOf2<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
@@ -196,7 +196,7 @@ extern typedef ServerHttp2Stream = {
 	function on(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream;
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(chunk:ts.AnyOf2<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
@@ -211,7 +211,7 @@ extern typedef ServerHttp2Stream = {
 	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream;
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(chunk:ts.AnyOf2<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
@@ -226,7 +226,7 @@ extern typedef ServerHttp2Stream = {
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream;
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
-	@:overload(function(event:String, listener:(chunk:haxe.extern.EitherType<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:String, listener:(chunk:ts.AnyOf2<String, global.IBuffer>) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
@@ -274,15 +274,15 @@ extern typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ServerHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ServerHttp2Stream { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream { })
 	function removeListener(event:String, listener:() -> Void):ServerHttp2Stream;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ServerHttp2Stream;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ServerHttp2Stream;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ServerHttp2Stream;
 	function setMaxListeners(n:Float):ServerHttp2Stream;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 };

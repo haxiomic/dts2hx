@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef WaveShaperOptions = {
 	@:optional
-	var curve : haxe.extern.EitherType<ts.lib.IFloat32Array, std.Array<Float>>;
+	var curve : ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>;
 	@:optional
 	var oversample : String;
 	@:optional

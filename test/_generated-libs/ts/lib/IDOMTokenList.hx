@@ -64,7 +64,7 @@ extern typedef IDOMTokenList = {
 	**/
 	function toggle(token:String, ?force:Bool):Bool;
 	function forEach(callbackfn:(value:String, key:Float, parent:IDOMTokenList) -> Void, ?thisArg:Any):Void;
-	function entries():IterableIterator<ts.lib.Tuple2<Float, String>>;
+	function entries():IterableIterator<ts.Tuple2<Float, String>>;
 	function keys():IterableIterator<Float>;
 	function values():IterableIterator<String>;
 };

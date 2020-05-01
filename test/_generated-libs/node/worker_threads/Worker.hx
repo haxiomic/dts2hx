@@ -5,7 +5,7 @@ package node.worker_threads;
 	final stdout : node.stream.Readable;
 	final stderr : node.stream.Readable;
 	final threadId : Float;
-	function postMessage(value:Any, ?transferList:std.Array<haxe.extern.EitherType<MessagePort, ts.lib.IArrayBuffer>>):Void;
+	function postMessage(value:Any, ?transferList:std.Array<ts.AnyOf2<MessagePort, ts.lib.IArrayBuffer>>):Void;
 	function ref():Void;
 	function unref():Void;
 	function terminate(?callback:(err:ts.lib.IError, exitCode:Float) -> Void):Void;

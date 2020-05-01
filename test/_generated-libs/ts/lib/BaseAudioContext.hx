@@ -24,7 +24,7 @@ package ts.lib;
 	function createOscillator():ts.html.IOscillatorNode;
 	function createPanner():ts.html.IPannerNode;
 	@:overload(function(real:Iterable<Float>, imag:Iterable<Float>, ?constraints:ts.html.PeriodicWaveConstraints):ts.html.IPeriodicWave { })
-	function createPeriodicWave(real:haxe.extern.EitherType<IFloat32Array, std.Array<Float>>, imag:haxe.extern.EitherType<IFloat32Array, std.Array<Float>>, ?constraints:ts.html.PeriodicWaveConstraints):ts.html.IPeriodicWave;
+	function createPeriodicWave(real:ts.AnyOf2<IFloat32Array, std.Array<Float>>, imag:ts.AnyOf2<IFloat32Array, std.Array<Float>>, ?constraints:ts.html.PeriodicWaveConstraints):ts.html.IPeriodicWave;
 	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):ts.html.IScriptProcessorNode;
 	function createStereoPanner():ts.html.IStereoPannerNode;
 	function createWaveShaper():ts.html.IWaveShaperNode;
@@ -54,14 +54,14 @@ package ts.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
 	static var prototype : IBaseAudioContext;
 }

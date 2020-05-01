@@ -1,6 +1,6 @@
 package node.crypto;
 extern typedef PublicKeyInput = {
-	var key : haxe.extern.EitherType<String, global.IBuffer>;
+	var key : ts.AnyOf2<String, global.IBuffer>;
 	@:optional
 	var format : String;
 	@:optional

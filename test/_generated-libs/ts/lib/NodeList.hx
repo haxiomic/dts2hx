@@ -19,7 +19,7 @@ package ts.lib;
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, ts.html.INode>>;
+	function entries():IterableIterator<ts.Tuple2<Float, ts.html.INode>>;
 	/**
 		Returns an list of keys in the list.
 	**/

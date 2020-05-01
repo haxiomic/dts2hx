@@ -6,9 +6,9 @@ extern typedef MeshToonMaterialParameters = {
 		geometry color in hexadecimal. Default is 0xffffff.
 	**/
 	@:optional
-	var color : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional
-	var specular : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var specular : ts.AnyOf3<String, Float, Color>;
 	@:optional
 	var shininess : Float;
 	@:optional
@@ -24,7 +24,7 @@ extern typedef MeshToonMaterialParameters = {
 	@:optional
 	var aoMapIntensity : Float;
 	@:optional
-	var emissive : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var emissive : ts.AnyOf3<String, Float, Color>;
 	@:optional
 	var emissiveIntensity : Float;
 	@:optional
@@ -84,7 +84,7 @@ extern typedef MeshToonMaterialParameters = {
 	@:optional
 	var blending : Blending;
 	@:optional
-	var blendSrc : haxe.extern.EitherType<BlendingDstFactor, BlendingSrcFactor>;
+	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	@:optional
 	var blendSrcAlpha : Float;
 	@:optional

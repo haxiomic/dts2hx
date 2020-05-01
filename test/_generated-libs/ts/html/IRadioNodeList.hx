@@ -16,7 +16,7 @@ extern typedef IRadioNodeList = {
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/
-	function entries():ts.lib.IterableIterator<ts.lib.Tuple2<Float, INode>>;
+	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, INode>>;
 	/**
 		Returns an list of keys in the list.
 	**/

@@ -5,7 +5,7 @@ extern typedef EffectTiming = {
 	@:optional
 	var direction : String;
 	@:optional
-	var duration : haxe.extern.EitherType<String, Float>;
+	var duration : ts.AnyOf2<String, Float>;
 	@:optional
 	var easing : String;
 	@:optional

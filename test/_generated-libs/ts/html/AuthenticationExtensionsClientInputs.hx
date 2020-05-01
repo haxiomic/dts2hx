@@ -3,7 +3,7 @@ extern typedef AuthenticationExtensionsClientInputs = {
 	@:optional
 	var appid : String;
 	@:optional
-	var authnSel : std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>>;
+	var authnSel : std.Array<ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>>;
 	@:optional
 	var exts : Bool;
 	@:optional

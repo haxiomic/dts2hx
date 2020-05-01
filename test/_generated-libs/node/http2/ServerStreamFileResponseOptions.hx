@@ -1,7 +1,7 @@
 package node.http2;
 extern typedef ServerStreamFileResponseOptions = {
 	@:optional
-	var statCheck : (stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions) -> haxe.extern.EitherType<Bool, Void>;
+	var statCheck : (stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions) -> ts.AnyOf2<Bool, Void>;
 	@:optional
 	var getTrailers : (trailers:node.http.OutgoingHttpHeaders) -> Void;
 	@:optional

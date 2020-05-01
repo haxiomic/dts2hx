@@ -7,7 +7,7 @@ extern typedef IServiceWorkerMessageEvent = {
 	final lastEventId : String;
 	final origin : String;
 	final ports : Null<ts.lib.ReadonlyArray<IMessagePort>>;
-	final source : Null<haxe.extern.EitherType<IMessagePort, IServiceWorker>>;
+	final source : Null<ts.AnyOf2<IMessagePort, IServiceWorker>>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

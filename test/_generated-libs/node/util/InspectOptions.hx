@@ -8,7 +8,7 @@ extern typedef InspectOptions = {
 		the getter function.
 	**/
 	@:optional
-	var getters : haxe.extern.EitherType<Bool, String>;
+	var getters : ts.AnyOf2<Bool, String>;
 	@:optional
 	var showHidden : Bool;
 	@:optional
@@ -33,7 +33,7 @@ extern typedef InspectOptions = {
 		For more information, see the example below.
 	**/
 	@:optional
-	var compact : haxe.extern.EitherType<Float, Bool>;
+	var compact : ts.AnyOf2<Float, Bool>;
 	@:optional
-	var sorted : haxe.extern.EitherType<Bool, (a:String, b:String) -> Float>;
+	var sorted : ts.AnyOf2<Bool, (a:String, b:String) -> Float>;
 };

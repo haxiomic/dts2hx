@@ -64,7 +64,7 @@ package ts.lib;
 	/**
 		Adds an element to the areas, controlRange, or options collection.
 	**/
-	function add(element:haxe.extern.EitherType<ts.html.IHTMLOptGroupElement, ts.html.IHTMLOptionElement>, ?before:haxe.extern.EitherType<Float, ts.html.IHTMLElement>):Void;
+	function add(element:ts.AnyOf2<ts.html.IHTMLOptGroupElement, ts.html.IHTMLOptionElement>, ?before:ts.AnyOf2<Float, ts.html.IHTMLElement>):Void;
 	/**
 		Returns whether a form will validate when it is submitted, without having to submit it.
 	**/
@@ -184,8 +184,8 @@ package ts.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -203,7 +203,7 @@ package ts.lib;
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
 	static var prototype : IHTMLSelectElement;
 }

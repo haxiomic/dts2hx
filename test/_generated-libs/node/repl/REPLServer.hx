@@ -91,7 +91,7 @@ package node.repl;
 	/**
 		Specified in the REPL options, this is the function to use for custom Tab auto-completion.
 	**/
-	final completer : haxe.extern.EitherType<(line:String) -> ts.lib.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.lib.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
+	final completer : ts.AnyOf2<(line:String) -> ts.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.Tuple2<std.Array<String>, String>) -> Void) -> Any>;
 	/**
 		Specified in the REPL options, this is a flag that specifies whether the default `eval`
 		function should execute all JavaScript commands in strict mode or default (sloppy) mode.
@@ -105,7 +105,7 @@ package node.repl;
 		Used to add new `.`-prefixed commands to the REPL instance. Such commands are invoked
 		by typing a `.` followed by the `keyword`.
 	**/
-	function defineCommand(keyword:String, cmd:haxe.extern.EitherType<(text:String) -> Void, REPLCommand>):Void;
+	function defineCommand(keyword:String, cmd:ts.AnyOf2<(text:String) -> Void, REPLCommand>):Void;
 	/**
 		Readies the REPL instance for input from the user, printing the configured `prompt` to a
 		new line in the `output` and resuming the `input` to accept new input.

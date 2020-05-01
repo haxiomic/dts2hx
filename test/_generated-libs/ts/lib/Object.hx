@@ -23,7 +23,7 @@ package ts.lib;
 	/**
 		Determines whether an object has a property with the specified name.
 	**/
-	function hasOwnProperty(v:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Bool;
+	function hasOwnProperty(v:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	/**
 		Determines whether an object exists in another object's prototype chain.
 	**/
@@ -31,7 +31,7 @@ package ts.lib;
 	/**
 		Determines whether a specified property is enumerable.
 	**/
-	function propertyIsEnumerable(v:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Bool;
+	function propertyIsEnumerable(v:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	@:overload(function(value:Any):Any { })
 	@:selfCall
 	static function call():Any;
@@ -47,7 +47,7 @@ package ts.lib;
 		Gets the own property descriptor of the specified object.
 		An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
 	**/
-	static function getOwnPropertyDescriptor(o:Any, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Null<PropertyDescriptor>;
+	static function getOwnPropertyDescriptor(o:Any, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
 	/**
 		Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 		on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
@@ -63,7 +63,7 @@ package ts.lib;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	static function defineProperty(o:Any, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, attributes:PropertyDescriptor & ThisType<Any>):Any;
+	static function defineProperty(o:Any, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor & ThisType<Any>):Any;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/

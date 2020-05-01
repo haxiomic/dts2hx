@@ -7,7 +7,7 @@ extern typedef IHTMLAllCollection = {
 	/**
 		Returns the item with index index from the collection (determined by tree order).
 	**/
-	function item(?nameOrIndex:String):Null<haxe.extern.EitherType<ts.html.IElement, ts.html.IHTMLCollection>>;
+	function item(?nameOrIndex:String):Null<ts.AnyOf2<ts.html.IElement, ts.html.IHTMLCollection>>;
 	/**
 		Returns the item with ID or name name from the collection.
 		
@@ -15,5 +15,5 @@ extern typedef IHTMLAllCollection = {
 		
 		Only button, form, iframe, input, map, meta, object, select, and textarea elements can have a name for the purpose of this method; their name is given by the value of their name attribute.
 	**/
-	function namedItem(name:String):Null<haxe.extern.EitherType<ts.html.IElement, ts.html.IHTMLCollection>>;
+	function namedItem(name:String):Null<ts.AnyOf2<ts.html.IElement, ts.html.IHTMLCollection>>;
 };

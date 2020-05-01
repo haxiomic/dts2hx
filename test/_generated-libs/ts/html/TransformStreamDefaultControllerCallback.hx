@@ -1,5 +1,5 @@
 package ts.html;
 extern typedef TransformStreamDefaultControllerCallback<O> = {
 	@:selfCall
-	function call(controller:TransformStreamDefaultController<O>):haxe.extern.EitherType<Void, ts.lib.PromiseLike<Void>>;
+	function call(controller:TransformStreamDefaultController<O>):ts.AnyOf2<Void, ts.lib.PromiseLike<Void>>;
 };

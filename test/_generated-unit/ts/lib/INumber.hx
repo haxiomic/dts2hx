@@ -26,5 +26,5 @@ extern typedef INumber = {
 	/**
 		Converts a number to a string by using the current or specified locale.
 	**/
-	function toLocaleString(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):String;
+	function toLocaleString(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):String;
 };

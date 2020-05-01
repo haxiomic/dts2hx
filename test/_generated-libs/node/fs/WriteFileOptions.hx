@@ -1,9 +1,9 @@
 package node.fs;
-typedef WriteFileOptions = Null<haxe.extern.EitherType<String, {
+typedef WriteFileOptions = Null<ts.AnyOf2<String, {
 	@:optional
 	var encoding : String;
 	@:optional
-	var mode : haxe.extern.EitherType<String, Float>;
+	var mode : ts.AnyOf2<String, Float>;
 	@:optional
 	var flag : String;
 }>>;

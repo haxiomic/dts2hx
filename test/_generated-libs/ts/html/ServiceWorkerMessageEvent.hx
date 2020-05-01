@@ -8,6 +8,6 @@ package ts.html;
 	final lastEventId : String;
 	final origin : String;
 	final ports : Null<ts.lib.ReadonlyArray<IMessagePort>>;
-	final source : Null<haxe.extern.EitherType<IMessagePort, IServiceWorker>>;
+	final source : Null<ts.AnyOf2<IMessagePort, IServiceWorker>>;
 	static var prototype : IServiceWorkerMessageEvent;
 }

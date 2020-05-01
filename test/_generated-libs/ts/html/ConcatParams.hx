@@ -2,7 +2,7 @@ package ts.html;
 extern typedef ConcatParams = {
 	var algorithmId : ts.lib.IUint8Array;
 	@:optional
-	var hash : haxe.extern.EitherType<String, Algorithm>;
+	var hash : ts.AnyOf2<String, Algorithm>;
 	var partyUInfo : ts.lib.IUint8Array;
 	var partyVInfo : ts.lib.IUint8Array;
 	@:optional

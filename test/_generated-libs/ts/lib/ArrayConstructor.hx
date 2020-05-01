@@ -16,8 +16,8 @@ extern typedef ArrayConstructor = {
 		Creates an array from an iterable object.
 	**/
 	@:overload(function<T, U>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> U, ?thisArg:Any):std.Array<U> { })
-	@:overload(function<T>(iterable:haxe.extern.EitherType<Iterable<T>, ArrayLike<T>>):std.Array<T> { })
-	@:overload(function<T, U>(iterable:haxe.extern.EitherType<Iterable<T>, ArrayLike<T>>, mapfn:(v:T, k:Float) -> U, ?thisArg:Any):std.Array<U> { })
+	@:overload(function<T>(iterable:ts.AnyOf2<Iterable<T>, ArrayLike<T>>):std.Array<T> { })
+	@:overload(function<T, U>(iterable:ts.AnyOf2<Iterable<T>, ArrayLike<T>>, mapfn:(v:T, k:Float) -> U, ?thisArg:Any):std.Array<U> { })
 	function from<T>(arrayLike:ArrayLike<T>):std.Array<T>;
 	/**
 		Returns a new array from a set of elements.

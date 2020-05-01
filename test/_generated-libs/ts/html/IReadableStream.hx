@@ -9,5 +9,5 @@ extern typedef IReadableStream<R> = {
 	function getReader(options:{ var mode : String; }):ReadableStreamBYOBReader;
 	function pipeThrough<T>(__0:{ var writable : IWritableStream<R>; var readable : IReadableStream<T>; }, ?options:PipeOptions):IReadableStream<T>;
 	function pipeTo(dest:IWritableStream<R>, ?options:PipeOptions):ts.lib.IPromise<Void>;
-	function tee():ts.lib.Tuple2<IReadableStream<R>, IReadableStream<R>>;
+	function tee():ts.Tuple2<IReadableStream<R>, IReadableStream<R>>;
 };

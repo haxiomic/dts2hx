@@ -19,18 +19,18 @@ extern typedef KeyValuePair<K, V> = {
 	/**
 		Removes the last element from an array and returns it.
 	**/
-	function pop():Null<haxe.extern.EitherType<K, V>>;
+	function pop():Null<ts.AnyOf2<K, V>>;
 	/**
 		Appends new elements to an array, and returns the new length of the array.
 	**/
-	function push(items:haxe.extern.Rest<haxe.extern.EitherType<K, V>>):Float;
+	function push(items:haxe.extern.Rest<ts.AnyOf2<K, V>>):Float;
 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<K, haxe.extern.EitherType<V, ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>>>):std.Array<haxe.extern.EitherType<K, V>> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<haxe.extern.EitherType<K, V>>>):std.Array<haxe.extern.EitherType<K, V>>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<K, V, ts.lib.ConcatArray<ts.AnyOf2<K, V>>>>):std.Array<ts.AnyOf2<K, V>> { })
+	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<ts.AnyOf2<K, V>>>):std.Array<ts.AnyOf2<K, V>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -38,92 +38,92 @@ extern typedef KeyValuePair<K, V> = {
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():std.Array<haxe.extern.EitherType<K, V>>;
+	function reverse():std.Array<ts.AnyOf2<K, V>>;
 	/**
 		Removes the first element from an array and returns it.
 	**/
-	function shift():Null<haxe.extern.EitherType<K, V>>;
+	function shift():Null<ts.AnyOf2<K, V>>;
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):std.Array<haxe.extern.EitherType<K, V>>;
+	function slice(?start:Float, ?end:Float):std.Array<ts.AnyOf2<K, V>>;
 	/**
 		Sorts an array.
 	**/
-	function sort(?compareFn:(a:haxe.extern.EitherType<K, V>, b:haxe.extern.EitherType<K, V>) -> Float):KeyValuePair<K, V>;
+	function sort(?compareFn:(a:ts.AnyOf2<K, V>, b:ts.AnyOf2<K, V>) -> Float):KeyValuePair<K, V>;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<haxe.extern.EitherType<K, V>>):std.Array<haxe.extern.EitherType<K, V>> { })
-	function splice(start:Float, ?deleteCount:Float):std.Array<haxe.extern.EitherType<K, V>>;
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<ts.AnyOf2<K, V>>):std.Array<ts.AnyOf2<K, V>> { })
+	function splice(start:Float, ?deleteCount:Float):std.Array<ts.AnyOf2<K, V>>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
-	function unshift(items:haxe.extern.Rest<haxe.extern.EitherType<K, V>>):Float;
+	function unshift(items:haxe.extern.Rest<ts.AnyOf2<K, V>>):Float;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(searchElement:haxe.extern.EitherType<K, V>, ?fromIndex:Float):Float;
+	function indexOf(searchElement:ts.AnyOf2<K, V>, ?fromIndex:Float):Float;
 	/**
 		Returns the index of the last occurrence of a specified value in an array.
 	**/
-	function lastIndexOf(searchElement:haxe.extern.EitherType<K, V>, ?fromIndex:Float):Float;
+	function lastIndexOf(searchElement:ts.AnyOf2<K, V>, ?fromIndex:Float):Float;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):Bool;
+	function every(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Any):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):Bool;
+	function some(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Any):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Void, ?thisArg:Any):Void;
+	function forEach(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Void, ?thisArg:Any):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> U, ?thisArg:Any):std.Array<U>;
+	function map<U>(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> U, ?thisArg:Any):std.Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):std.Array<haxe.extern.EitherType<K, V>> { })
-	function filter<S>(callbackfn:(value:haxe.extern.EitherType<K, V>, index:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> Bool, ?thisArg:Any):std.Array<S>;
+	@:overload(function(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Any):std.Array<ts.AnyOf2<K, V>> { })
+	function filter<S>(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Bool, ?thisArg:Any):std.Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:haxe.extern.EitherType<K, V>, currentValue:haxe.extern.EitherType<K, V>, currentIndex:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> haxe.extern.EitherType<K, V>, initialValue:haxe.extern.EitherType<K, V>):haxe.extern.EitherType<K, V> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:haxe.extern.EitherType<K, V>, currentIndex:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:haxe.extern.EitherType<K, V>, currentValue:haxe.extern.EitherType<K, V>, currentIndex:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> haxe.extern.EitherType<K, V>):haxe.extern.EitherType<K, V>;
+	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>, initialValue:ts.AnyOf2<K, V>):ts.AnyOf2<K, V> { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>):ts.AnyOf2<K, V>;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:haxe.extern.EitherType<K, V>, currentValue:haxe.extern.EitherType<K, V>, currentIndex:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> haxe.extern.EitherType<K, V>, initialValue:haxe.extern.EitherType<K, V>):haxe.extern.EitherType<K, V> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:haxe.extern.EitherType<K, V>, currentIndex:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:haxe.extern.EitherType<K, V>, currentValue:haxe.extern.EitherType<K, V>, currentIndex:Float, array:std.Array<haxe.extern.EitherType<K, V>>) -> haxe.extern.EitherType<K, V>):haxe.extern.EitherType<K, V>;
+	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>, initialValue:ts.AnyOf2<K, V>):ts.AnyOf2<K, V> { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>):ts.AnyOf2<K, V>;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:haxe.extern.EitherType<K, V>, index:Float, obj:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):Null<haxe.extern.EitherType<K, V>> { })
-	function find<S>(predicate:(value:haxe.extern.EitherType<K, V>, index:Float, obj:std.Array<haxe.extern.EitherType<K, V>>) -> Bool, ?thisArg:Any):Null<S>;
+	@:overload(function(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Any):Null<ts.AnyOf2<K, V>> { })
+	function find<S>(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:std.Array<ts.AnyOf2<K, V>>) -> Bool, ?thisArg:Any):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:haxe.extern.EitherType<K, V>, index:Float, obj:std.Array<haxe.extern.EitherType<K, V>>) -> Any, ?thisArg:Any):Float;
+	function findIndex(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Any):Float;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
-	function fill(value:haxe.extern.EitherType<K, V>, ?start:Float, ?end:Float):KeyValuePair<K, V>;
+	function fill(value:ts.AnyOf2<K, V>, ?start:Float, ?end:Float):KeyValuePair<K, V>;
 	/**
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
@@ -132,7 +132,7 @@ extern typedef KeyValuePair<K, V> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.lib.Tuple2<Float, haxe.extern.EitherType<K, V>>>;
+	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, ts.AnyOf2<K, V>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
@@ -140,5 +140,5 @@ extern typedef KeyValuePair<K, V> = {
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():ts.lib.IterableIterator<haxe.extern.EitherType<K, V>>;
+	function values():ts.lib.IterableIterator<ts.AnyOf2<K, V>>;
 };

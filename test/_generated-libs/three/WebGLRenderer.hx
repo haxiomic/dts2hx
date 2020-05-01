@@ -102,7 +102,7 @@ package three;
 		Sets the viewport to render from (x, y) to (x + width, y + height).
 		(x, y) is the lower-left corner of the region.
 	**/
-	function setViewport(x:haxe.extern.EitherType<Float, Vector4>, ?y:Float, ?width:Float, ?height:Float):Void;
+	function setViewport(x:ts.AnyOf2<Float, Vector4>, ?y:Float, ?width:Float, ?height:Float):Void;
 	/**
 		Copies the scissor area into target.
 	**/
@@ -110,7 +110,7 @@ package three;
 	/**
 		Sets the scissor area from (x, y) to (x + width, y + height).
 	**/
-	function setScissor(x:haxe.extern.EitherType<Float, Vector4>, ?y:Float, ?width:Float, ?height:Float):Void;
+	function setScissor(x:ts.AnyOf2<Float, Vector4>, ?y:Float, ?width:Float, ?height:Float):Void;
 	/**
 		Returns true if scissor test is enabled; returns false otherwise.
 	**/
@@ -149,7 +149,7 @@ package three;
 		Tells the shadow map plugin to update using the passed scene and camera parameters.
 	**/
 	function renderBufferImmediate(object:Object3D, program:ts.lib.IObject, material:Material):Void;
-	function renderBufferDirect(camera:Camera, fog:Fog, geometry:haxe.extern.EitherType<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Any):Void;
+	function renderBufferDirect(camera:Camera, fog:Fog, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Any):Void;
 	/**
 		A build in function that can be used instead of requestAnimationFrame. For WebVR projects this function must be used.
 	**/

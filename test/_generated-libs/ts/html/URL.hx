@@ -3,7 +3,7 @@ package ts.html;
 	The URL interface represents an object providing static methods used for creating object URLs.
 **/
 @:native("URL") extern class URL {
-	function new(url:String, ?base:haxe.extern.EitherType<String, IURL>);
+	function new(url:String, ?base:ts.AnyOf2<String, IURL>);
 	var hash : String;
 	var host : String;
 	var hostname : String;

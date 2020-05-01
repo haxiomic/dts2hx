@@ -1,9 +1,9 @@
 package ts.lib;
 extern typedef RegExpConstructor = {
 	@:overload(function(pattern:String, ?flags:String):IRegExp { })
-	@:overload(function(pattern:haxe.extern.EitherType<String, IRegExp>, ?flags:String):IRegExp { })
+	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
 	@:selfCall
-	function call(pattern:haxe.extern.EitherType<String, IRegExp>):IRegExp;
+	function call(pattern:ts.AnyOf2<String, IRegExp>):IRegExp;
 	final prototype : IRegExp;
 	@:native("$1")
 	var Dollar1 : String;

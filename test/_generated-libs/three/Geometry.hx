@@ -140,7 +140,7 @@ package three;
 		Duplicated vertices are removed and faces' vertices are updated.
 	**/
 	function mergeVertices():Float;
-	function setFromPoints(points:haxe.extern.EitherType<std.Array<Vector3>, std.Array<Vector2>>):Geometry;
+	function setFromPoints(points:ts.AnyOf2<std.Array<Vector3>, std.Array<Vector2>>):Geometry;
 	function sortFacesByMaterialIndex():Void;
 	function toJSON():Any;
 	/**

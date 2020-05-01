@@ -1,7 +1,7 @@
 package ts.html;
 extern typedef ResponseInit = {
 	@:optional
-	var headers : haxe.extern.EitherType<ts.lib.IHeaders, haxe.extern.EitherType<std.Array<std.Array<String>>, Any>>;
+	var headers : ts.AnyOf3<ts.lib.IHeaders, std.Array<std.Array<String>>, Any>;
 	@:optional
 	var status : Float;
 	@:optional

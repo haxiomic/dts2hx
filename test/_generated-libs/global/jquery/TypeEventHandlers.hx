@@ -1,55 +1,55 @@
 package global.jquery;
 extern typedef TypeEventHandlers<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	@:optional
-	var change : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var change : ts.AnyOf3<Bool, Any, (t:ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var resize : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var resize : ts.AnyOf3<Bool, Any, (t:ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var scroll : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var scroll : ts.AnyOf3<Bool, Any, (t:ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var select : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var select : ts.AnyOf3<Bool, Any, (t:SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var submit : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var submit : ts.AnyOf3<Bool, Any, (t:SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var click : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:ClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var click : ts.AnyOf3<Bool, Any, (t:ClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var contextmenu : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var contextmenu : ts.AnyOf3<Bool, Any, (t:ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var dblclick : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:DoubleClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var dblclick : ts.AnyOf3<Bool, Any, (t:DoubleClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mousedown : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mousedown : ts.AnyOf3<Bool, Any, (t:MouseDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mouseenter : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mouseenter : ts.AnyOf3<Bool, Any, (t:MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mouseleave : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mouseleave : ts.AnyOf3<Bool, Any, (t:MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mousemove : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mousemove : ts.AnyOf3<Bool, Any, (t:MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mouseout : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mouseout : ts.AnyOf3<Bool, Any, (t:MouseOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mouseover : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mouseover : ts.AnyOf3<Bool, Any, (t:MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var mouseup : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:MouseUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var mouseup : ts.AnyOf3<Bool, Any, (t:MouseUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var keydown : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:KeyDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var keydown : ts.AnyOf3<Bool, Any, (t:KeyDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var keypress : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var keypress : ts.AnyOf3<Bool, Any, (t:KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var keyup : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var keyup : ts.AnyOf3<Bool, Any, (t:KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var touchcancel : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var touchcancel : ts.AnyOf3<Bool, Any, (t:TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var touchend : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:TouchEndEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var touchend : ts.AnyOf3<Bool, Any, (t:TouchEndEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var touchmove : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var touchmove : ts.AnyOf3<Bool, Any, (t:TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var touchstart : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var touchstart : ts.AnyOf3<Bool, Any, (t:TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var blur : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var blur : ts.AnyOf3<Bool, Any, (t:BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var focus : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var focus : ts.AnyOf3<Bool, Any, (t:FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var focusin : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var focusin : ts.AnyOf3<Bool, Any, (t:FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 	@:optional
-	var focusout : haxe.extern.EitherType<Bool, haxe.extern.EitherType<Any, (t:FocusOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>>;
+	var focusout : ts.AnyOf3<Bool, Any, (t:FocusOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Any>) -> Any>;
 };

@@ -29,7 +29,7 @@ package ts.html;
 	final msContentScript : IExtensionScriptApis;
 	var name : String;
 	final navigator : ts.lib.INavigator;
-	var offscreenBuffering : haxe.extern.EitherType<String, Bool>;
+	var offscreenBuffering : ts.AnyOf2<String, Bool>;
 	var oncompassneedscalibration : Null<(ev:IEvent) -> Any>;
 	var ondevicelight : Null<(ev:IDeviceLightEvent) -> Any>;
 	var ondevicemotion : Null<(ev:IDeviceMotionEvent) -> Any>;
@@ -63,7 +63,7 @@ package ts.html;
 	var onvrdisplaypointerunrestricted : Null<(ev:IEvent) -> Any>;
 	var onvrdisplaypresentchange : Null<(ev:IEvent) -> Any>;
 	var opener : Any;
-	final orientation : haxe.extern.EitherType<String, Float>;
+	final orientation : ts.AnyOf2<String, Float>;
 	final outerHeight : Float;
 	final outerWidth : Float;
 	final pageXOffset : Float;
@@ -102,7 +102,7 @@ package ts.html;
 	function moveTo(x:Float, y:Float):Void;
 	function msWriteProfilerMark(profilerMarkName:String):Void;
 	function open(?url:String, ?target:String, ?features:String, ?replace:Bool):Null<IWindow>;
-	function postMessage(message:Any, targetOrigin:String, ?transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IMessagePort, IImageBitmap>>>):Void;
+	function postMessage(message:Any, targetOrigin:String, ?transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
 	function print():Void;
 	function prompt(?message:String, ?_default:String):Null<String>;
 	function releaseEvents():Void;
@@ -144,14 +144,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IWindow;
 }

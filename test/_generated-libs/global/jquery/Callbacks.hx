@@ -3,7 +3,7 @@ extern typedef Callbacks<T> = {
 	/**
 		Add a callback or a collection of callbacks to a callback list.
 	**/
-	function add(callback:haxe.extern.EitherType<T, std.Array<T>>, callbacks:haxe.extern.Rest<haxe.extern.EitherType<T, std.Array<T>>>):Callbacks<T>;
+	function add(callback:ts.AnyOf2<T, std.Array<T>>, callbacks:haxe.extern.Rest<ts.AnyOf2<T, std.Array<T>>>):Callbacks<T>;
 	/**
 		Disable a callback list from doing anything more.
 	**/

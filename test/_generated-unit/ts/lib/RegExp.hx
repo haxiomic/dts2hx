@@ -1,8 +1,8 @@
 package ts.lib;
 @:native("RegExp") extern class RegExp {
 	@:overload(function(pattern:String, ?flags:String):IRegExp { })
-	@:overload(function(pattern:haxe.extern.EitherType<String, IRegExp>, ?flags:String):IRegExp { })
-	function new(pattern:haxe.extern.EitherType<String, IRegExp>);
+	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
+	function new(pattern:ts.AnyOf2<String, IRegExp>);
 	/**
 		Executes a search on a string using a regular expression pattern, and returns an array containing the results of that search.
 	**/
@@ -53,9 +53,9 @@ package ts.lib;
 	**/
 	final unicode : Bool;
 	@:overload(function(pattern:String, ?flags:String):IRegExp { })
-	@:overload(function(pattern:haxe.extern.EitherType<String, IRegExp>, ?flags:String):IRegExp { })
+	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
 	@:selfCall
-	static function call(pattern:haxe.extern.EitherType<String, IRegExp>):IRegExp;
+	static function call(pattern:ts.AnyOf2<String, IRegExp>):IRegExp;
 	static final prototype : IRegExp;
 	@:native("$1")
 	static var Dollar1 : String;

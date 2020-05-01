@@ -3,7 +3,7 @@ package ts.html;
 	This Fetch API interface represents a resource request.
 **/
 @:native("Request") extern class Request {
-	function new(input:haxe.extern.EitherType<String, IRequest>, ?init:RequestInit);
+	function new(input:ts.AnyOf2<String, IRequest>, ?init:RequestInit);
 	/**
 		Returns the cache mode associated with request, which is a string indicating how the request will interact with the browser's cache when fetching.
 	**/

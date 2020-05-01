@@ -35,7 +35,7 @@ extern typedef IVRDisplay = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	function addEventListener(type:String, listener:Null<haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void;
+	function addEventListener(type:String, listener:Null<ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>>, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
@@ -43,5 +43,5 @@ extern typedef IVRDisplay = {
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void;
+	function removeEventListener(type:String, callback:Null<ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>>, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
 };

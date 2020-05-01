@@ -19,7 +19,7 @@ extern typedef JQueryAnimationOptions = {
 		A string or number determining how long the animation will run.
 	**/
 	@:optional
-	var duration : haxe.extern.EitherType<Float, String>;
+	var duration : ts.AnyOf2<Float, String>;
 	/**
 		A string indicating which easing function to use for the transition.
 	**/
@@ -39,7 +39,7 @@ extern typedef JQueryAnimationOptions = {
 		A Boolean indicating whether to place the animation in the effects queue. If false, the animation will begin immediately. As of jQuery 1.7, the queue option can also accept a string, in which case the animation is added to the queue represented by that string. When a custom queue name is used the animation does not automatically start; you must call .dequeue("queuename") to start it.
 	**/
 	@:optional
-	var queue : haxe.extern.EitherType<String, Bool>;
+	var queue : ts.AnyOf2<String, Bool>;
 	/**
 		An object containing one or more of the CSS properties defined by the properties argument and their corresponding easing functions.
 	**/

@@ -1,5 +1,5 @@
 package global.jquery.deferred;
 extern typedef AlwaysCallback<TResolve, TReject> = {
 	@:selfCall
-	function call(args:haxe.extern.Rest<haxe.extern.EitherType<TResolve, TReject>>):Void;
+	function call(args:haxe.extern.Rest<ts.AnyOf2<TResolve, TReject>>):Void;
 };

@@ -1,9 +1,9 @@
 package three;
 extern typedef MeshLambertMaterialParameters = {
 	@:optional
-	var color : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional
-	var emissive : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var emissive : ts.AnyOf3<String, Float, Color>;
 	@:optional
 	var emissiveIntensity : Float;
 	@:optional
@@ -57,7 +57,7 @@ extern typedef MeshLambertMaterialParameters = {
 	@:optional
 	var blending : Blending;
 	@:optional
-	var blendSrc : haxe.extern.EitherType<BlendingDstFactor, BlendingSrcFactor>;
+	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	@:optional
 	var blendSrcAlpha : Float;
 	@:optional

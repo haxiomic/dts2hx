@@ -1,9 +1,9 @@
 package ts.html;
 extern typedef PropertyIndexedKeyframes = {
 	@:optional
-	var composite : haxe.extern.EitherType<String, std.Array<String>>;
+	var composite : ts.AnyOf2<String, std.Array<String>>;
 	@:optional
-	var easing : haxe.extern.EitherType<String, std.Array<String>>;
+	var easing : ts.AnyOf2<String, std.Array<String>>;
 	@:optional
-	var offset : haxe.extern.EitherType<Float, std.Array<Null<Float>>>;
+	var offset : ts.AnyOf2<Float, std.Array<Null<Float>>>;
 };

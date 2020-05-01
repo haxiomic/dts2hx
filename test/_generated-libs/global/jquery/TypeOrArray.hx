@@ -1,2 +1,2 @@
 package global.jquery;
-typedef TypeOrArray<T> = haxe.extern.EitherType<T, std.Array<T>>;
+typedef TypeOrArray<T> = ts.AnyOf2<T, std.Array<T>>;

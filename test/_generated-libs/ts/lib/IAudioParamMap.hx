@@ -7,7 +7,7 @@ extern typedef IAudioParamMap = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<String, IAudioParam>>;
+	function entries():IterableIterator<ts.Tuple2<String, IAudioParam>>;
 	/**
 		Returns an iterable of keys in the map
 	**/

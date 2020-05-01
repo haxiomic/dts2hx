@@ -157,8 +157,8 @@ extern typedef IHTMLFormElement = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -176,8 +176,8 @@ extern typedef IHTMLFormElement = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<ts.html.EventListener, ts.html.EventListenerObject>, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, ts.html.EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
 	var accessKey : String;
 	final accessKeyLabel : String;
 	var autocapitalize : String;
@@ -322,7 +322,7 @@ extern typedef IHTMLFormElement = {
 	function scroll(?options:ts.html.ScrollToOptions):Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scrollBy(?options:ts.html.ScrollToOptions):Void;
-	function scrollIntoView(?arg:haxe.extern.EitherType<Bool, ts.html.ScrollIntoViewOptions>):Void;
+	function scrollIntoView(?arg:ts.AnyOf2<Bool, ts.html.ScrollIntoViewOptions>):Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scrollTo(?options:ts.html.ScrollToOptions):Void;
 	/**
@@ -490,20 +490,20 @@ extern typedef IHTMLFormElement = {
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
 	function dispatchEvent(event:ts.html.IEvent):Bool;
-	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<ts.html.Keyframe>, ts.html.PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, ts.html.KeyframeAnimationOptions>):ts.html.IAnimation;
+	function animate(keyframes:Null<ts.AnyOf2<std.Array<ts.html.Keyframe>, ts.html.PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, ts.html.KeyframeAnimationOptions>):ts.html.IAnimation;
 	function getAnimations():std.Array<ts.html.IAnimation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, ts.html.INode>>):Void;
+	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, ts.html.INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, ts.html.INode>>):Void;
+	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, ts.html.INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -513,7 +513,7 @@ extern typedef IHTMLFormElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, ts.html.INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, ts.html.INode>>):Void;
 	var innerHTML : String;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
@@ -541,13 +541,13 @@ extern typedef IHTMLFormElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, ts.html.INode>>):Void;
+	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, ts.html.INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, ts.html.INode>>):Void;
+	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, ts.html.INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/

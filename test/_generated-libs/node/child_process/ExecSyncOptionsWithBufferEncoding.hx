@@ -2,13 +2,13 @@ package node.child_process;
 extern typedef ExecSyncOptionsWithBufferEncoding = {
 	var encoding : String;
 	@:optional
-	var input : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, ts.lib.IUint8Array>>;
+	var input : ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>;
 	@:optional
-	var stdio : haxe.extern.EitherType<String, std.Array<Null<haxe.extern.EitherType<Float, haxe.extern.EitherType<String, node.stream.Stream>>>>>;
+	var stdio : ts.AnyOf2<String, std.Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
 	@:optional
 	var shell : String;
 	@:optional
-	var killSignal : haxe.extern.EitherType<String, Float>;
+	var killSignal : ts.AnyOf2<String, Float>;
 	@:optional
 	var maxBuffer : Float;
 	@:optional

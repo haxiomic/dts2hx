@@ -22,7 +22,7 @@ extern typedef INavigator = {
 	function msLaunchUri(uri:String, ?successCallback:ts.html.MSLaunchUriCallback, ?noHandlerCallback:ts.html.MSLaunchUriCallback):Void;
 	@:overload(function(keySystem:String, supportedConfigurations:Iterable<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess> { })
 	function requestMediaKeySystemAccess(keySystem:String, supportedConfigurations:std.Array<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess>;
-	function vibrate(pattern:haxe.extern.EitherType<Float, std.Array<Float>>):Bool;
+	function vibrate(pattern:ts.AnyOf2<Float, std.Array<Float>>):Bool;
 	function msSaveBlob(blob:Any, ?defaultName:String):Bool;
 	function msSaveOrOpenBlob(blob:Any, ?defaultName:String):Bool;
 	function confirmSiteSpecificTrackingException(args:ts.html.ConfirmSiteSpecificExceptionsInformation):Bool;
@@ -32,7 +32,7 @@ extern typedef INavigator = {
 	function storeSiteSpecificTrackingException(args:ts.html.StoreSiteSpecificExceptionsInformation):Void;
 	function storeWebWideTrackingException(args:ts.html.StoreExceptionsInformation):Void;
 	final webdriver : Bool;
-	function sendBeacon(url:String, ?data:haxe.extern.EitherType<String, haxe.extern.EitherType<IArrayBuffer, haxe.extern.EitherType<ts.html.IBlob, haxe.extern.EitherType<IFloat32Array, haxe.extern.EitherType<IFloat64Array, haxe.extern.EitherType<IFormData, haxe.extern.EitherType<IUint8Array, haxe.extern.EitherType<IInt8Array, haxe.extern.EitherType<IInt16Array, haxe.extern.EitherType<IInt32Array, haxe.extern.EitherType<IUint16Array, haxe.extern.EitherType<IUint32Array, haxe.extern.EitherType<IUint8ClampedArray, IDataView>>>>>>>>>>>>>):Bool;
+	function sendBeacon(url:String, ?data:ts.AnyOf14<String, IArrayBuffer, ts.html.IBlob, IFloat32Array, IFloat64Array, IFormData, IUint8Array, IInt8Array, IInt16Array, IInt32Array, IUint16Array, IUint32Array, IUint8ClampedArray, IDataView>):Bool;
 	final hardwareConcurrency : Float;
 	function registerProtocolHandler(scheme:String, url:String, title:String):Void;
 	function unregisterProtocolHandler(scheme:String, url:String):Void;

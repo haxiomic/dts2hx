@@ -13,7 +13,7 @@ package three;
 	var Versioning : { };
 	var GetterByBindingType : std.Array<ts.lib.IFunction>;
 	var SetterByBindingTypeAndVersioning : std.Array<std.Array<ts.lib.IFunction>>;
-	static function create(root:Any, path:Any, ?parsedPath:Any):haxe.extern.EitherType<PropertyBinding, three.propertybinding.Composite>;
+	static function create(root:Any, path:Any, ?parsedPath:Any):ts.AnyOf2<PropertyBinding, three.propertybinding.Composite>;
 	static function parseTrackName(trackName:String):Any;
 	static function findNode(root:Any, nodeName:String):Any;
 }

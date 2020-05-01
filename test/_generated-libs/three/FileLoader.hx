@@ -6,7 +6,7 @@ package three;
 	var path : String;
 	var responseType : String;
 	var withCredentials : String;
-	function load(url:String, ?onLoad:(response:haxe.extern.EitherType<String, ts.lib.IArrayBuffer>) -> Void, ?onProgress:(request:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Any;
+	function load(url:String, ?onLoad:(response:ts.AnyOf2<String, ts.lib.IArrayBuffer>) -> Void, ?onProgress:(request:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Any;
 	function setMimeType(mimeType:ts.html.IMimeType):FileLoader;
 	function setPath(path:String):FileLoader;
 	function setResponseType(responseType:String):FileLoader;

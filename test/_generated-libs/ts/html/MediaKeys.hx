@@ -5,6 +5,6 @@ package ts.html;
 @:native("MediaKeys") extern class MediaKeys {
 	function new();
 	function createSession(?sessionType:String):IMediaKeySession;
-	function setServerCertificate(serverCertificate:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Bool>;
+	function setServerCertificate(serverCertificate:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Bool>;
 	static var prototype : IMediaKeys;
 }

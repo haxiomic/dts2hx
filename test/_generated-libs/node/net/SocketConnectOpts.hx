@@ -1,2 +1,2 @@
 package node.net;
-typedef SocketConnectOpts = haxe.extern.EitherType<TcpSocketConnectOpts, IpcSocketConnectOpts>;
+typedef SocketConnectOpts = ts.AnyOf2<TcpSocketConnectOpts, IpcSocketConnectOpts>;

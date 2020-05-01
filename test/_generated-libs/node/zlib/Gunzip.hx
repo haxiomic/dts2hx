@@ -45,57 +45,57 @@ extern typedef Gunzip = {
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Gunzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
 	function addListener(event:String, listener:() -> Void):Gunzip;
 	@:overload(function(event:String, chunk:Any):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.IError):Bool { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Gunzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
 	function on(event:String, listener:() -> Void):Gunzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Gunzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
 	function once(event:String, listener:() -> Void):Gunzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Gunzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
 	function prependListener(event:String, listener:() -> Void):Gunzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Gunzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
 	function prependOnceListener(event:String, listener:() -> Void):Gunzip;
 	@:overload(function(event:String, listener:(chunk:Any) -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:() -> Void):Gunzip { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Gunzip { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip { })
 	function removeListener(event:String, listener:() -> Void):Gunzip;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):Gunzip;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Gunzip;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Gunzip;
 	function setMaxListeners(n:Float):Gunzip;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	final bytesRead : Float;
 	final bytesWritten : Float;
 	@:optional
-	var shell : haxe.extern.EitherType<String, Bool>;
+	var shell : ts.AnyOf2<String, Bool>;
 	function close(?callback:() -> Void):Void;
-	function flush(?kind:haxe.extern.EitherType<Float, () -> Void>, ?callback:() -> Void):Void;
+	function flush(?kind:ts.AnyOf2<Float, () -> Void>, ?callback:() -> Void):Void;
 };

@@ -1,9 +1,9 @@
 package node.url;
 extern typedef UrlObject = {
 	@:optional
-	var port : haxe.extern.EitherType<String, Float>;
+	var port : ts.AnyOf2<String, Float>;
 	@:optional
-	var query : haxe.extern.EitherType<String, { }>;
+	var query : ts.AnyOf2<String, { }>;
 	@:optional
 	var auth : String;
 	@:optional

@@ -9,21 +9,21 @@ extern typedef ProxyHandler<T> = {
 	@:optional
 	function preventExtensions(target:T):Bool;
 	@:optional
-	function getOwnPropertyDescriptor(target:T, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Null<PropertyDescriptor>;
+	function getOwnPropertyDescriptor(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
 	@:optional
-	function has(target:T, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Bool;
+	function has(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	@:optional
-	function get(target:T, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, receiver:Any):Any;
+	function get(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, receiver:Any):Any;
 	@:optional
-	function set(target:T, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, value:Any, receiver:Any):Bool;
+	function set(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, value:Any, receiver:Any):Bool;
 	@:optional
-	function deleteProperty(target:T, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Bool;
+	function deleteProperty(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	@:optional
-	function defineProperty(target:T, p:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>, attributes:PropertyDescriptor):Bool;
+	function defineProperty(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor):Bool;
 	@:optional
-	function enumerate(target:T):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>>;
+	function enumerate(target:T):std.Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
 	@:optional
-	function ownKeys(target:T):std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>>;
+	function ownKeys(target:T):std.Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
 	@:optional
 	function apply(target:T, thisArg:Any, ?argArray:Any):Any;
 	@:optional

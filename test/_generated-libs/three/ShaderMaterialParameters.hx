@@ -37,7 +37,7 @@ extern typedef ShaderMaterialParameters = {
 	@:optional
 	var blending : Blending;
 	@:optional
-	var blendSrc : haxe.extern.EitherType<BlendingDstFactor, BlendingSrcFactor>;
+	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	@:optional
 	var blendSrcAlpha : Float;
 	@:optional

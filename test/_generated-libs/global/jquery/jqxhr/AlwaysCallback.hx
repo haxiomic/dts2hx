@@ -1,5 +1,5 @@
 package global.jquery.jqxhr;
 extern typedef AlwaysCallback<TResolve, TjqXHR> = {
 	@:selfCall
-	function call(t:haxe.extern.EitherType<TResolve, TjqXHR>, u:String, v:haxe.extern.EitherType<String, TjqXHR>, r:haxe.extern.Rest<Any>):Void;
+	function call(t:ts.AnyOf2<TResolve, TjqXHR>, u:String, v:ts.AnyOf2<String, TjqXHR>, r:haxe.extern.Rest<Any>):Void;
 };

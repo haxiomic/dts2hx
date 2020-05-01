@@ -69,7 +69,7 @@ package three;
 	/**
 		Sets the position component for this matrix from vector v.
 	**/
-	function setPosition(v:haxe.extern.EitherType<Float, Vector3>, ?y:Float, ?z:Float):Matrix4;
+	function setPosition(v:ts.AnyOf2<Float, Vector3>, ?y:Float, ?z:Float):Matrix4;
 	/**
 		Sets this matrix to the inverse of matrix m.
 		Based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm.

@@ -46,7 +46,7 @@ package unit.types;
 	static var symbolObject : js.lib.Symbol;
 	static var any : Any;
 	static var typeInParentheses : Float;
-	static var unionInParentheses : haxe.extern.EitherType<String, Float>;
+	static var unionInParentheses : ts.AnyOf2<String, Float>;
 	static var intLiteral : Int;
 	static var intLiteralAlt : Int;
 	static var floatLiteral : Float;
@@ -62,7 +62,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.lib.Tuple3<Float, String, ts.lib.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -85,7 +85,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.lib.Tuple3<Float, String, ts.lib.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -105,8 +105,8 @@ package unit.types;
 	static var arrayString : std.Array<String>;
 	static var arrayStringAlt : std.Array<String>;
 	static var stringObj : ts.lib.IString;
-	static var arrayNumberStringUnion : std.Array<haxe.extern.EitherType<String, Float>>;
-	static var tupleNumberString : ts.lib.Tuple2<Float, String>;
+	static var arrayNumberStringUnion : std.Array<ts.AnyOf2<String, Float>>;
+	static var tupleNumberString : ts.Tuple2<Float, String>;
 	static var stringNumberMap : { };
 	static var readonlyStringNumberMap : { };
 	static var stringNumberMapWithField : {
@@ -151,7 +151,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.lib.Tuple3<Float, String, ts.lib.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -179,7 +179,7 @@ package unit.types;
 	} & {
 		var z : Float;
 	};
-	static var intersectionWithUnion : haxe.extern.EitherType<{
+	static var intersectionWithUnion : ts.AnyOf2<{
 		var a : String;
 	} & {
 		var b : Bool;
@@ -202,7 +202,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.lib.Tuple3<Float, String, ts.lib.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;

@@ -50,7 +50,7 @@ package ts.html;
 		
 		Returns null if the Document is not currently executing a script or SVG script element (e.g., because the running script is an event handler, or a timeout), or if the currently executing script or SVG script element represents a module script.
 	**/
-	final currentScript : Null<haxe.extern.EitherType<IHTMLScriptElement, ISVGScriptElement>>;
+	final currentScript : Null<ts.AnyOf2<IHTMLScriptElement, ISVGScriptElement>>;
 	final defaultView : Null<IWindow>;
 	/**
 		Sets or gets a value that indicates whether the document can be edited.
@@ -115,7 +115,7 @@ package ts.html;
 	/**
 		Retrieves a collection of all a objects that specify the href property and all area objects in the document.
 	**/
-	final links : ts.lib.HTMLCollectionOf<haxe.extern.EitherType<IHTMLAnchorElement, IHTMLAreaElement>>;
+	final links : ts.lib.HTMLCollectionOf<ts.AnyOf2<IHTMLAnchorElement, IHTMLAreaElement>>;
 	/**
 		Contains information about the current URL.
 	**/
@@ -212,7 +212,7 @@ package ts.html;
 	@:overload(function<K>(namespaceURI:String, qualifiedName:K):Any { })
 	@:overload(function(namespaceURI:String, qualifiedName:String):ISVGElement { })
 	@:overload(function(namespaceURI:Null<String>, qualifiedName:String, ?options:ElementCreationOptions):IElement { })
-	@:overload(function(namespace:Null<String>, qualifiedName:String, ?options:haxe.extern.EitherType<String, ElementCreationOptions>):IElement { })
+	@:overload(function(namespace:Null<String>, qualifiedName:String, ?options:ts.AnyOf2<String, ElementCreationOptions>):IElement { })
 	function createElementNS(namespaceURI:String, qualifiedName:String):IHTMLElement;
 	@:overload(function(eventInterface:String):IAnimationPlaybackEvent { })
 	@:overload(function(eventInterface:String):IAudioProcessingEvent { })
@@ -431,14 +431,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IDocument;
 }

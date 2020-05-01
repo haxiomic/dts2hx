@@ -7,7 +7,7 @@ extern typedef IRTCStatsReport = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<String, Any>>;
+	function entries():IterableIterator<ts.Tuple2<String, Any>>;
 	/**
 		Returns an iterable of keys in the map
 	**/

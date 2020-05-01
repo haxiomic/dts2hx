@@ -6,7 +6,7 @@ extern typedef ConsoleConstructorOptions = {
 	@:optional
 	var ignoreErrors : Bool;
 	@:optional
-	var colorMode : haxe.extern.EitherType<Bool, String>;
+	var colorMode : ts.AnyOf2<Bool, String>;
 	@:optional
 	var inspectOptions : InspectOptions;
 };

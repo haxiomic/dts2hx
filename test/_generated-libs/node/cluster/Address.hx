@@ -2,5 +2,5 @@ package node.cluster;
 extern typedef Address = {
 	var address : String;
 	var port : Float;
-	var addressType : haxe.extern.EitherType<Float, String>;
+	var addressType : ts.AnyOf2<Float, String>;
 };

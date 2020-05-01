@@ -9,7 +9,7 @@ package node.async_hooks;
 		new AsyncResource() also triggers init. If triggerAsyncId is omitted then
 		async_hook.executionAsyncId() is used.
 	**/
-	function new(type:String, ?triggerAsyncId:haxe.extern.EitherType<Float, AsyncResourceOptions>);
+	function new(type:String, ?triggerAsyncId:ts.AnyOf2<Float, AsyncResourceOptions>);
 	/**
 		Call AsyncHooks before callbacks.
 	**/

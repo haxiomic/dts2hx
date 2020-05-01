@@ -18,7 +18,7 @@ package ts.html;
 	@:overload(function(contextId:String, ?options:ImageBitmapRenderingContextSettings):Null<IImageBitmapRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGLRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGL2RenderingContext> { })
-	@:overload(function(contextId:String, ?options:Any):Null<haxe.extern.EitherType<ICanvasRenderingContext2D, haxe.extern.EitherType<IImageBitmapRenderingContext, haxe.extern.EitherType<IWebGL2RenderingContext, IWebGLRenderingContext>>>> { })
+	@:overload(function(contextId:String, ?options:Any):Null<ts.AnyOf4<ICanvasRenderingContext2D, IImageBitmapRenderingContext, IWebGL2RenderingContext, IWebGLRenderingContext>> { })
 	function getContext(contextId:String, ?options:CanvasRenderingContext2DSettings):Null<ICanvasRenderingContext2D>;
 	function toBlob(callback:BlobCallback, ?type:String, ?quality:Any):Void;
 	/**
@@ -123,8 +123,8 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -142,7 +142,7 @@ package ts.html;
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IHTMLCanvasElement;
 }

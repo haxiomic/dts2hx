@@ -4,7 +4,7 @@ package three;
 **/
 @:jsRequire("three", "Color") extern class Color {
 	@:overload(function(r:Float, g:Float, b:Float):Color { })
-	function new(?color:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>);
+	function new(?color:ts.AnyOf3<String, Float, Color>);
 	var isColor : Bool;
 	/**
 		Red channel value between 0 and 1. Default is 1.

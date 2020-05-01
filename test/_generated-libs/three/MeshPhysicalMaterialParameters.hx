@@ -7,7 +7,7 @@ extern typedef MeshPhysicalMaterialParameters = {
 	@:optional
 	var clearCoatRoughness : Float;
 	@:optional
-	var color : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var color : ts.AnyOf3<String, Float, Color>;
 	@:optional
 	var roughness : Float;
 	@:optional
@@ -23,7 +23,7 @@ extern typedef MeshPhysicalMaterialParameters = {
 	@:optional
 	var aoMapIntensity : Float;
 	@:optional
-	var emissive : haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>;
+	var emissive : ts.AnyOf3<String, Float, Color>;
 	@:optional
 	var emissiveIntensity : Float;
 	@:optional
@@ -79,7 +79,7 @@ extern typedef MeshPhysicalMaterialParameters = {
 	@:optional
 	var blending : Blending;
 	@:optional
-	var blendSrc : haxe.extern.EitherType<BlendingDstFactor, BlendingSrcFactor>;
+	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	@:optional
 	var blendSrcAlpha : Float;
 	@:optional

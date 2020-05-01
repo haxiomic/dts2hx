@@ -488,7 +488,7 @@ extern typedef ClientHttp2Stream = {
 	@:overload(function(event:String, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
 	@:overload(function(event:String, headers:IncomingHttpHeaders, flags:Float):Bool { })
 	@:overload(function(event:String, headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float):Bool { })
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders, flags:Float) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(headers:IncomingHttpHeaders & IncomingHttpStatusHeader, flags:Float) -> Void):ClientHttp2Stream { })
@@ -560,15 +560,15 @@ extern typedef ClientHttp2Stream = {
 	@:overload(function(event:String, listener:() -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ClientHttp2Stream { })
-	@:overload(function(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream { })
 	function removeListener(event:String, listener:() -> Void):ClientHttp2Stream;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
-	function removeAllListeners(?event:haxe.extern.EitherType<String, js.lib.Symbol>):ClientHttp2Stream;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):ClientHttp2Stream;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ClientHttp2Stream;
 	function setMaxListeners(n:Float):ClientHttp2Stream;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 };

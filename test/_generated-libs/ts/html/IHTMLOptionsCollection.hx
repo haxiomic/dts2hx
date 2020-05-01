@@ -26,7 +26,7 @@ extern typedef IHTMLOptionsCollection = {
 		
 		This method will throw a "HierarchyRequestError" DOMException if element is an ancestor of the element into which it is to be inserted.
 	**/
-	function add(element:haxe.extern.EitherType<IHTMLOptGroupElement, IHTMLOptionElement>, ?before:haxe.extern.EitherType<Float, IHTMLElement>):Void;
+	function add(element:ts.AnyOf2<IHTMLOptGroupElement, IHTMLOptionElement>, ?before:ts.AnyOf2<Float, IHTMLElement>):Void;
 	/**
 		Removes the item with index index from the collection.
 	**/

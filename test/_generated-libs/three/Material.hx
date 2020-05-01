@@ -31,7 +31,7 @@ package three;
 	/**
 		Blending source. It's one of the blending mode constants defined in Three.js. Default is {@link SrcAlphaFactor}.
 	**/
-	var blendSrc : haxe.extern.EitherType<BlendingDstFactor, BlendingSrcFactor>;
+	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	/**
 		The tranparency of the .blendSrc. Default is null.
 	**/

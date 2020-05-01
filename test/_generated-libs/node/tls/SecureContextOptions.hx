@@ -1,15 +1,15 @@
 package node.tls;
 extern typedef SecureContextOptions = {
 	@:optional
-	var pfx : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IObject, global.IBuffer>>>>>;
+	var pfx : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
 	@:optional
-	var key : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<ts.lib.IObject, global.IBuffer>>>>;
+	var key : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<ts.lib.IObject, global.IBuffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional
-	var cert : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, global.IBuffer>>>>;
+	var cert : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
-	var ca : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, global.IBuffer>>>>;
+	var ca : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
 	var ciphers : String;
 	@:optional
@@ -19,9 +19,9 @@ extern typedef SecureContextOptions = {
 	@:optional
 	var clientCertEngine : String;
 	@:optional
-	var crl : haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, std.Array<haxe.extern.EitherType<String, global.IBuffer>>>>;
+	var crl : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
-	var dhparam : haxe.extern.EitherType<String, global.IBuffer>;
+	var dhparam : ts.AnyOf2<String, global.IBuffer>;
 	@:optional
 	var secureOptions : Float;
 	@:optional

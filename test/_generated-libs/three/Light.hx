@@ -3,7 +3,7 @@ package three;
 	Abstract base class for lights.
 **/
 @:jsRequire("three", "Light") extern class Light extends Object3D {
-	function new(?hex:haxe.extern.EitherType<String, Float>, ?intensity:Float);
+	function new(?hex:ts.AnyOf2<String, Float>, ?intensity:Float);
 	var color : Color;
 	var intensity : Float;
 	var isLight : Bool;

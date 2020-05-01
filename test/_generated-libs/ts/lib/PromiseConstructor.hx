@@ -34,17 +34,17 @@ extern typedef PromiseConstructor = {
 		Creates a Promise that is resolved with an array of results when all of the provided Promises
 		resolve, or rejected when any Promise is rejected.
 	**/
-	@:overload(function<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(values:ts.lib.Tuple10<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>, haxe.extern.EitherType<T5, PromiseLike<T5>>, haxe.extern.EitherType<T6, PromiseLike<T6>>, haxe.extern.EitherType<T7, PromiseLike<T7>>, haxe.extern.EitherType<T8, PromiseLike<T8>>, haxe.extern.EitherType<T9, PromiseLike<T9>>, haxe.extern.EitherType<T10, PromiseLike<T10>>>):IPromise<ts.lib.Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> { })
-	@:overload(function<T1, T2, T3, T4, T5, T6, T7, T8, T9>(values:ts.lib.Tuple9<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>, haxe.extern.EitherType<T5, PromiseLike<T5>>, haxe.extern.EitherType<T6, PromiseLike<T6>>, haxe.extern.EitherType<T7, PromiseLike<T7>>, haxe.extern.EitherType<T8, PromiseLike<T8>>, haxe.extern.EitherType<T9, PromiseLike<T9>>>):IPromise<ts.lib.Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> { })
-	@:overload(function<T1, T2, T3, T4, T5, T6, T7, T8>(values:ts.lib.Tuple8<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>, haxe.extern.EitherType<T5, PromiseLike<T5>>, haxe.extern.EitherType<T6, PromiseLike<T6>>, haxe.extern.EitherType<T7, PromiseLike<T7>>, haxe.extern.EitherType<T8, PromiseLike<T8>>>):IPromise<ts.lib.Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> { })
-	@:overload(function<T1, T2, T3, T4, T5, T6, T7>(values:ts.lib.Tuple7<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>, haxe.extern.EitherType<T5, PromiseLike<T5>>, haxe.extern.EitherType<T6, PromiseLike<T6>>, haxe.extern.EitherType<T7, PromiseLike<T7>>>):IPromise<ts.lib.Tuple7<T1, T2, T3, T4, T5, T6, T7>> { })
-	@:overload(function<T1, T2, T3, T4, T5, T6>(values:ts.lib.Tuple6<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>, haxe.extern.EitherType<T5, PromiseLike<T5>>, haxe.extern.EitherType<T6, PromiseLike<T6>>>):IPromise<ts.lib.Tuple6<T1, T2, T3, T4, T5, T6>> { })
-	@:overload(function<T1, T2, T3, T4, T5>(values:ts.lib.Tuple5<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>, haxe.extern.EitherType<T5, PromiseLike<T5>>>):IPromise<ts.lib.Tuple5<T1, T2, T3, T4, T5>> { })
-	@:overload(function<T1, T2, T3, T4>(values:ts.lib.Tuple4<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>, haxe.extern.EitherType<T4, PromiseLike<T4>>>):IPromise<ts.lib.Tuple4<T1, T2, T3, T4>> { })
-	@:overload(function<T1, T2, T3>(values:ts.lib.Tuple3<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>, haxe.extern.EitherType<T3, PromiseLike<T3>>>):IPromise<ts.lib.Tuple3<T1, T2, T3>> { })
-	@:overload(function<T1, T2>(values:ts.lib.Tuple2<haxe.extern.EitherType<T1, PromiseLike<T1>>, haxe.extern.EitherType<T2, PromiseLike<T2>>>):IPromise<ts.lib.Tuple2<T1, T2>> { })
-	@:overload(function<T>(values:ReadonlyArray<haxe.extern.EitherType<T, PromiseLike<T>>>):IPromise<std.Array<T>> { })
-	function all<TAll>(values:Iterable<haxe.extern.EitherType<TAll, PromiseLike<TAll>>>):IPromise<std.Array<TAll>>;
+	@:overload(function<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(values:ts.Tuple10<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>, ts.AnyOf2<T5, PromiseLike<T5>>, ts.AnyOf2<T6, PromiseLike<T6>>, ts.AnyOf2<T7, PromiseLike<T7>>, ts.AnyOf2<T8, PromiseLike<T8>>, ts.AnyOf2<T9, PromiseLike<T9>>, ts.AnyOf2<T10, PromiseLike<T10>>>):IPromise<ts.Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>> { })
+	@:overload(function<T1, T2, T3, T4, T5, T6, T7, T8, T9>(values:ts.Tuple9<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>, ts.AnyOf2<T5, PromiseLike<T5>>, ts.AnyOf2<T6, PromiseLike<T6>>, ts.AnyOf2<T7, PromiseLike<T7>>, ts.AnyOf2<T8, PromiseLike<T8>>, ts.AnyOf2<T9, PromiseLike<T9>>>):IPromise<ts.Tuple9<T1, T2, T3, T4, T5, T6, T7, T8, T9>> { })
+	@:overload(function<T1, T2, T3, T4, T5, T6, T7, T8>(values:ts.Tuple8<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>, ts.AnyOf2<T5, PromiseLike<T5>>, ts.AnyOf2<T6, PromiseLike<T6>>, ts.AnyOf2<T7, PromiseLike<T7>>, ts.AnyOf2<T8, PromiseLike<T8>>>):IPromise<ts.Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> { })
+	@:overload(function<T1, T2, T3, T4, T5, T6, T7>(values:ts.Tuple7<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>, ts.AnyOf2<T5, PromiseLike<T5>>, ts.AnyOf2<T6, PromiseLike<T6>>, ts.AnyOf2<T7, PromiseLike<T7>>>):IPromise<ts.Tuple7<T1, T2, T3, T4, T5, T6, T7>> { })
+	@:overload(function<T1, T2, T3, T4, T5, T6>(values:ts.Tuple6<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>, ts.AnyOf2<T5, PromiseLike<T5>>, ts.AnyOf2<T6, PromiseLike<T6>>>):IPromise<ts.Tuple6<T1, T2, T3, T4, T5, T6>> { })
+	@:overload(function<T1, T2, T3, T4, T5>(values:ts.Tuple5<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>, ts.AnyOf2<T5, PromiseLike<T5>>>):IPromise<ts.Tuple5<T1, T2, T3, T4, T5>> { })
+	@:overload(function<T1, T2, T3, T4>(values:ts.Tuple4<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>>):IPromise<ts.Tuple4<T1, T2, T3, T4>> { })
+	@:overload(function<T1, T2, T3>(values:ts.Tuple3<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>>):IPromise<ts.Tuple3<T1, T2, T3>> { })
+	@:overload(function<T1, T2>(values:ts.Tuple2<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>>):IPromise<ts.Tuple2<T1, T2>> { })
+	@:overload(function<T>(values:ReadonlyArray<ts.AnyOf2<T, PromiseLike<T>>>):IPromise<std.Array<T>> { })
+	function all<TAll>(values:Iterable<ts.AnyOf2<TAll, PromiseLike<TAll>>>):IPromise<std.Array<TAll>>;
 	/**
 		Creates a Promise that is resolved or rejected when any of the provided Promises are resolved
 		or rejected.
@@ -57,7 +57,7 @@ extern typedef PromiseConstructor = {
 	**/
 	@:overload(function<T>(values:ReadonlyArray<T>):IPromise<Any> { })
 	@:overload(function<T>(values:Iterable<T>):IPromise<Any> { })
-	function race<T>(values:Iterable<haxe.extern.EitherType<T, PromiseLike<T>>>):IPromise<T>;
+	function race<T>(values:Iterable<ts.AnyOf2<T, PromiseLike<T>>>):IPromise<T>;
 	/**
 		A reference to the prototype.
 	**/
@@ -72,5 +72,5 @@ extern typedef PromiseConstructor = {
 		Creates a new resolved promise .
 	**/
 	@:overload(function():IPromise<Void> { })
-	function resolve<T>(value:haxe.extern.EitherType<T, PromiseLike<T>>):IPromise<T>;
+	function resolve<T>(value:ts.AnyOf2<T, PromiseLike<T>>):IPromise<T>;
 };

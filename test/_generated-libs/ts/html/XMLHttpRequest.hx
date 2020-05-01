@@ -84,7 +84,7 @@ package ts.html;
 		
 		Throws an "InvalidStateError" DOMException if either state is not opened or the send() flag is set.
 	**/
-	function send(?body:haxe.extern.EitherType<String, haxe.extern.EitherType<IDocument, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IBlob, haxe.extern.EitherType<ts.lib.IFormData, haxe.extern.EitherType<ts.lib.IURLSearchParams, haxe.extern.EitherType<ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>>>>>>>):Void;
+	function send(?body:ts.AnyOf8<String, IDocument, ts.lib.IArrayBuffer, IBlob, ts.lib.IFormData, ts.lib.IURLSearchParams, ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>):Void;
 	/**
 		Combines a header in author request headers.
 		
@@ -147,8 +147,8 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -158,8 +158,8 @@ package ts.html;
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IXMLHttpRequest;
 	@:native("DONE")
 	static final DONE_ : Float;

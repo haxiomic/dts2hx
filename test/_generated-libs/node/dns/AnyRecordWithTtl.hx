@@ -1,2 +1,2 @@
 package node.dns;
-typedef AnyRecordWithTtl = haxe.extern.EitherType<AnyARecord, AnyAaaaRecord>;
+typedef AnyRecordWithTtl = ts.AnyOf2<AnyARecord, AnyAaaaRecord>;

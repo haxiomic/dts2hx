@@ -12,7 +12,7 @@ extern typedef IHeaders = {
 	/**
 		Returns an iterator allowing to go through all key/value pairs contained in this object.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<String, String>>;
+	function entries():IterableIterator<ts.Tuple2<String, String>>;
 	/**
 		Returns an iterator allowing to go through all keys of the key/value pairs contained in this object.
 	**/

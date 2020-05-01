@@ -9,7 +9,7 @@ extern typedef ServiceWorkerMessageEventInit = {
 	@:optional
 	var ports : std.Array<IMessagePort>;
 	@:optional
-	var source : haxe.extern.EitherType<IMessagePort, IServiceWorker>;
+	var source : ts.AnyOf2<IMessagePort, IServiceWorker>;
 	@:optional
 	var bubbles : Bool;
 	@:optional

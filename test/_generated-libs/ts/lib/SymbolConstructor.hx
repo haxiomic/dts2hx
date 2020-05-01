@@ -4,7 +4,7 @@ extern typedef SymbolConstructor = {
 		Returns a new unique Symbol value.
 	**/
 	@:selfCall
-	function call(?description:haxe.extern.EitherType<String, Float>):js.lib.Symbol;
+	function call(?description:ts.AnyOf2<String, Float>):js.lib.Symbol;
 	/**
 		A method that returns the default iterator for an object. Called by the semantics of the
 		for-of statement.

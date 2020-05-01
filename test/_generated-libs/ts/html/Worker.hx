@@ -3,10 +3,10 @@ package ts.html;
 	This Web Workers API interface represents a background task that can be easily created and can send messages back to its creator. Creating a worker is as simple as calling the Worker() constructor and specifying a script to be run in the worker thread.
 **/
 @:native("Worker") extern class Worker {
-	function new(stringUrl:haxe.extern.EitherType<String, IURL>, ?options:WorkerOptions);
+	function new(stringUrl:ts.AnyOf2<String, IURL>, ?options:WorkerOptions);
 	var onmessage : Null<(ev:IMessageEvent) -> Any>;
 	@:overload(function(message:Any, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Any, transfer:std.Array<haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IMessagePort, IImageBitmap>>>):Void;
+	function postMessage(message:Any, transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
 	function terminate():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -33,14 +33,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IWorker;
 }

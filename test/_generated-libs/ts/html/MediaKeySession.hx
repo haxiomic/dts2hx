@@ -11,10 +11,10 @@ package ts.html;
 	var onmessage : Null<(ev:IMessageEvent) -> Any>;
 	final sessionId : String;
 	function close():ts.lib.IPromise<Void>;
-	function generateRequest(initDataType:String, initData:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Void>;
+	function generateRequest(initDataType:String, initData:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Void>;
 	function load(sessionId:String):ts.lib.IPromise<Bool>;
 	function remove():ts.lib.IPromise<Void>;
-	function update(response:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Void>;
+	function update(response:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -40,14 +40,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IMediaKeySession;
 }

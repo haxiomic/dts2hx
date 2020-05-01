@@ -4,6 +4,6 @@ package ts.html;
 **/
 @:native("PaymentRequestUpdateEvent") extern class PaymentRequestUpdateEvent {
 	function new(type:String, ?eventInitDict:PaymentRequestUpdateEventInit);
-	function updateWith(detailsPromise:haxe.extern.EitherType<PaymentDetailsUpdate, ts.lib.IPromise<PaymentDetailsUpdate>>):Void;
+	function updateWith(detailsPromise:ts.AnyOf2<PaymentDetailsUpdate, ts.lib.IPromise<PaymentDetailsUpdate>>):Void;
 	static var prototype : IPaymentRequestUpdateEvent;
 }

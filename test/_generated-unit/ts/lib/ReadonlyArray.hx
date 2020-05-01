@@ -17,7 +17,7 @@ extern typedef ReadonlyArray<T> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<T, ConcatArray<T>>>):std.Array<T> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<T, ConcatArray<T>>>):std.Array<T> { })
 	function concat(items:haxe.extern.Rest<ConcatArray<T>>):std.Array<T>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
@@ -88,7 +88,7 @@ extern typedef ReadonlyArray<T> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, T>>;
+	function entries():IterableIterator<ts.Tuple2<Float, T>>;
 	/**
 		Returns an iterable of keys in the array
 	**/

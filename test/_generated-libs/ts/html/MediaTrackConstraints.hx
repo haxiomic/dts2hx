@@ -3,33 +3,33 @@ extern typedef MediaTrackConstraints = {
 	@:optional
 	var advanced : std.Array<MediaTrackConstraintSet>;
 	@:optional
-	var aspectRatio : haxe.extern.EitherType<Float, ConstrainDoubleRange>;
+	var aspectRatio : ts.AnyOf2<Float, ConstrainDoubleRange>;
 	@:optional
-	var autoGainControl : haxe.extern.EitherType<Bool, ConstrainBooleanParameters>;
+	var autoGainControl : ts.AnyOf2<Bool, ConstrainBooleanParameters>;
 	@:optional
-	var channelCount : haxe.extern.EitherType<Float, ConstrainULongRange>;
+	var channelCount : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional
-	var deviceId : haxe.extern.EitherType<String, haxe.extern.EitherType<std.Array<String>, ConstrainDOMStringParameters>>;
+	var deviceId : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
 	@:optional
-	var echoCancellation : haxe.extern.EitherType<Bool, ConstrainBooleanParameters>;
+	var echoCancellation : ts.AnyOf2<Bool, ConstrainBooleanParameters>;
 	@:optional
-	var facingMode : haxe.extern.EitherType<String, haxe.extern.EitherType<std.Array<String>, ConstrainDOMStringParameters>>;
+	var facingMode : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
 	@:optional
-	var frameRate : haxe.extern.EitherType<Float, ConstrainDoubleRange>;
+	var frameRate : ts.AnyOf2<Float, ConstrainDoubleRange>;
 	@:optional
-	var groupId : haxe.extern.EitherType<String, haxe.extern.EitherType<std.Array<String>, ConstrainDOMStringParameters>>;
+	var groupId : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
 	@:optional
-	var height : haxe.extern.EitherType<Float, ConstrainULongRange>;
+	var height : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional
-	var latency : haxe.extern.EitherType<Float, ConstrainDoubleRange>;
+	var latency : ts.AnyOf2<Float, ConstrainDoubleRange>;
 	@:optional
-	var noiseSuppression : haxe.extern.EitherType<Bool, ConstrainBooleanParameters>;
+	var noiseSuppression : ts.AnyOf2<Bool, ConstrainBooleanParameters>;
 	@:optional
-	var resizeMode : haxe.extern.EitherType<String, haxe.extern.EitherType<std.Array<String>, ConstrainDOMStringParameters>>;
+	var resizeMode : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
 	@:optional
-	var sampleRate : haxe.extern.EitherType<Float, ConstrainULongRange>;
+	var sampleRate : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional
-	var sampleSize : haxe.extern.EitherType<Float, ConstrainULongRange>;
+	var sampleSize : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional
-	var width : haxe.extern.EitherType<Float, ConstrainULongRange>;
+	var width : ts.AnyOf2<Float, ConstrainULongRange>;
 };

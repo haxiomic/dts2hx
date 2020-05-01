@@ -196,8 +196,8 @@ extern typedef ISVGFEFuncRElement = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -231,8 +231,8 @@ extern typedef ISVGFEFuncRElement = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final amplitude : ISVGAnimatedNumber;
 	final exponent : ISVGAnimatedNumber;
 	final intercept : ISVGAnimatedNumber;
@@ -375,7 +375,7 @@ extern typedef ISVGFEFuncRElement = {
 	function scroll(?options:ScrollToOptions):Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scrollBy(?options:ScrollToOptions):Void;
-	function scrollIntoView(?arg:haxe.extern.EitherType<Bool, ScrollIntoViewOptions>):Void;
+	function scrollIntoView(?arg:ts.AnyOf2<Bool, ScrollIntoViewOptions>):Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scrollTo(?options:ScrollToOptions):Void;
 	/**
@@ -543,20 +543,20 @@ extern typedef ISVGFEFuncRElement = {
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
 	function dispatchEvent(event:IEvent):Bool;
-	function animate(keyframes:Null<haxe.extern.EitherType<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:haxe.extern.EitherType<Float, KeyframeAnimationOptions>):IAnimation;
+	function animate(keyframes:Null<ts.AnyOf2<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeAnimationOptions>):IAnimation;
 	function getAnimations():std.Array<IAnimation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -566,7 +566,7 @@ extern typedef ISVGFEFuncRElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	var innerHTML : String;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
@@ -594,13 +594,13 @@ extern typedef ISVGFEFuncRElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/

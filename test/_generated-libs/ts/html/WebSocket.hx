@@ -3,7 +3,7 @@ package ts.html;
 	Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.
 **/
 @:native("WebSocket") extern class WebSocket {
-	function new(url:String, ?protocols:haxe.extern.EitherType<String, std.Array<String>>);
+	function new(url:String, ?protocols:ts.AnyOf2<String, std.Array<String>>);
 	var binaryType : String;
 	final bufferedAmount : Float;
 	final extensions : String;
@@ -15,7 +15,7 @@ package ts.html;
 	final readyState : Float;
 	final url : String;
 	function close(?code:Float, ?reason:String):Void;
-	function send(data:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<IBlob, ts.lib.ArrayBufferView>>>):Void;
+	function send(data:ts.AnyOf4<String, ts.lib.IArrayBuffer, IBlob, ts.lib.ArrayBufferView>):Void;
 	final CLOSED : Float;
 	final CLOSING : Float;
 	final CONNECTING : Float;
@@ -45,15 +45,15 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	static var prototype : IWebSocket;
 	@:native("CLOSED")
 	static final CLOSED_ : Float;

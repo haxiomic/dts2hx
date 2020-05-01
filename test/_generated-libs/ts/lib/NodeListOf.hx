@@ -15,7 +15,7 @@ extern typedef NodeListOf<TNode> = {
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, TNode>>;
+	function entries():IterableIterator<ts.Tuple2<Float, TNode>>;
 	/**
 		Returns an list of keys in the list.
 	**/

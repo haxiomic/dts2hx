@@ -3,7 +3,7 @@ extern typedef Zlib = {
 	final bytesRead : Float;
 	final bytesWritten : Float;
 	@:optional
-	var shell : haxe.extern.EitherType<String, Bool>;
+	var shell : ts.AnyOf2<String, Bool>;
 	function close(?callback:() -> Void):Void;
-	function flush(?kind:haxe.extern.EitherType<Float, () -> Void>, ?callback:() -> Void):Void;
+	function flush(?kind:ts.AnyOf2<Float, () -> Void>, ?callback:() -> Void):Void;
 };

@@ -132,7 +132,7 @@ extern typedef IUint32Array = {
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, Float>>;
+	function entries():IterableIterator<ts.Tuple2<Float, Float>>;
 	/**
 		Returns an list of keys in the array
 	**/

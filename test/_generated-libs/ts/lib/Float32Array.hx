@@ -4,7 +4,7 @@ package ts.lib;
 	of bytes could not be allocated an exception is raised.
 **/
 @:native("Float32Array") extern class Float32Array {
-	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<IArrayBuffer, ArrayLike<Float>>):IFloat32Array { })
+	@:overload(function(arrayOrArrayBuffer:ts.AnyOf2<IArrayBuffer, ArrayLike<Float>>):IFloat32Array { })
 	@:overload(function(buffer:IArrayBuffer, byteOffset:Float, ?length:Float):IFloat32Array { })
 	@:overload(function(elements:Iterable<Float>):IFloat32Array { })
 	function new(length:Float);
@@ -136,7 +136,7 @@ package ts.lib;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, Float>>;
+	function entries():IterableIterator<ts.Tuple2<Float, Float>>;
 	/**
 		Returns an list of keys in the array
 	**/

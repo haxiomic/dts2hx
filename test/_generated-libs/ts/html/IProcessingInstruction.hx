@@ -168,7 +168,7 @@ extern typedef IProcessingInstruction = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	function addEventListener(type:String, listener:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	function addEventListener(type:String, listener:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
@@ -176,19 +176,19 @@ extern typedef IProcessingInstruction = {
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	function removeEventListener(type:String, callback:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Removes node.
 	**/
@@ -198,7 +198,7 @@ extern typedef IProcessingInstruction = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
 	**/

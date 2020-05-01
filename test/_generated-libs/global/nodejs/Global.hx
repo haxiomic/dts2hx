@@ -20,7 +20,7 @@ extern typedef Global = {
 		@:overload(function(data:std.Array<Float>):global.IBuffer { })
 		@:overload(function(data:ts.lib.IUint8Array):global.IBuffer { })
 		@:overload(function(str:String, ?encoding:String):global.IBuffer { })
-		function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
+		function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -38,7 +38,7 @@ extern typedef Global = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, ts.lib.IUint8Array, ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -54,7 +54,7 @@ extern typedef Global = {
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
-		function alloc(size:Float, ?fill:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, global.IBuffer>>, ?encoding:String):global.IBuffer;
+		function alloc(size:Float, ?fill:ts.AnyOf3<String, Float, global.IBuffer>, ?encoding:String):global.IBuffer;
 		/**
 			Allocates a new buffer of {size} octets, leaving memory not initialized, so the contents
 			of the newly created Buffer are unknown and may contain sensitive data.
@@ -85,23 +85,23 @@ extern typedef Global = {
 	var Intl : {
 		var Collator : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):ts.lib.intl.ICollator;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):ts.lib.intl.ICollator;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):std.Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):ts.lib.intl.INumberFormat;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):ts.lib.intl.INumberFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):std.Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):ts.lib.intl.IDateTimeFormat;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):ts.lib.intl.IDateTimeFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):std.Array<String>;
 		};
 		var PluralRules : {
 			@:selfCall
-			function call(?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):ts.lib.intl.IPluralRules;
-			function supportedLocalesOf(locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):ts.lib.intl.IPluralRules;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):std.Array<String>;
 		};
 	};
 	var JSON : ts.lib.JSON;
@@ -133,7 +133,7 @@ extern typedef Global = {
 	var decodeURI : (encodedURI:String) -> String;
 	var decodeURIComponent : (encodedURIComponent:String) -> String;
 	var encodeURI : (uri:String) -> String;
-	var encodeURIComponent : (uriComponent:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Bool>>) -> String;
+	var encodeURIComponent : (uriComponent:ts.AnyOf3<String, Float, Bool>) -> String;
 	var escape : (str:String) -> String;
 	var eval : (x:String) -> Any;
 	var global : Global;

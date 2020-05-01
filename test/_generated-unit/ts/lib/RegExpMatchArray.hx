@@ -29,7 +29,7 @@ extern typedef RegExpMatchArray = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<haxe.extern.EitherType<String, ConcatArray<String>>>):std.Array<String> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<String, ConcatArray<String>>>):std.Array<String> { })
 	function concat(items:haxe.extern.Rest<ConcatArray<String>>):std.Array<String>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
@@ -132,7 +132,7 @@ extern typedef RegExpMatchArray = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, String>>;
+	function entries():IterableIterator<ts.Tuple2<Float, String>>;
 	/**
 		Returns an iterable of keys in the array
 	**/

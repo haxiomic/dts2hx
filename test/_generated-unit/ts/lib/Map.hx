@@ -1,7 +1,7 @@
 package ts.lib;
 @:native("Map") extern class Map<K, V> {
-	@:overload(function<K, V>(?entries:ReadonlyArray<ts.lib.Tuple2<K, V>>):IMap<K, V> { })
-	@:overload(function<K, V>(iterable:Iterable<ts.lib.Tuple2<K, V>>):IMap<K, V> { })
+	@:overload(function<K, V>(?entries:ReadonlyArray<ts.Tuple2<K, V>>):IMap<K, V> { })
+	@:overload(function<K, V>(iterable:Iterable<ts.Tuple2<K, V>>):IMap<K, V> { })
 	function new();
 	function clear():Void;
 	function delete(key:K):Bool;
@@ -13,7 +13,7 @@ package ts.lib;
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<K, V>>;
+	function entries():IterableIterator<ts.Tuple2<K, V>>;
 	/**
 		Returns an iterable of keys in the map
 	**/

@@ -1,2 +1,2 @@
 package node.crypto;
-typedef KeyLike = haxe.extern.EitherType<String, haxe.extern.EitherType<global.IBuffer, KeyObject>>;
+typedef KeyLike = ts.AnyOf3<String, global.IBuffer, KeyObject>;

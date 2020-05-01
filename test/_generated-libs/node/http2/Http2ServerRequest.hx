@@ -7,7 +7,7 @@ package node.http2;
 	var rawHeaders : std.Array<String>;
 	var rawTrailers : std.Array<String>;
 	function setTimeout(msecs:Float, ?callback:() -> Void):Void;
-	var socket : haxe.extern.EitherType<node.net.Socket, node.tls.TLSSocket>;
+	var socket : ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>;
 	var stream : ServerHttp2Stream;
 	var trailers : IncomingHttpHeaders;
 	var url : String;

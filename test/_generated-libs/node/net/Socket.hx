@@ -4,11 +4,11 @@ package node.net;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })
-	function connect(options:haxe.extern.EitherType<TcpSocketConnectOpts, IpcSocketConnectOpts>, ?connectionListener:() -> Void):Socket;
+	function connect(options:ts.AnyOf2<TcpSocketConnectOpts, IpcSocketConnectOpts>, ?connectionListener:() -> Void):Socket;
 	function setTimeout(timeout:Float, ?callback:() -> Void):Socket;
 	function setNoDelay(?noDelay:Bool):Socket;
 	function setKeepAlive(?enable:Bool, ?initialDelay:Float):Socket;
-	function address():haxe.extern.EitherType<String, AddressInfo>;
+	function address():ts.AnyOf2<String, AddressInfo>;
 	function unref():Void;
 	function ref():Void;
 	final bufferSize : Float;

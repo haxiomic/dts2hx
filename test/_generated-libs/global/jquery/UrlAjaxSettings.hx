@@ -18,7 +18,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A pre-request callback function that can be used to modify the jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object before it is sent. Use this to set custom headers, etc. The jqXHR and settings objects are passed as arguments. This is an Ajax Event. Returning false in the beforeSend function will cancel the request. As of jQuery 1.5, the beforeSend option will be called regardless of the type of request.
 	**/
 	@:optional
-	function beforeSend(jqXHR:JqXHR<Any>, settings:UrlAjaxSettings<TContext>):haxe.extern.EitherType<Bool, Void>;
+	function beforeSend(jqXHR:JqXHR<Any>, settings:UrlAjaxSettings<TContext>):ts.AnyOf2<Bool, Void>;
 	/**
 		If set to false, it will force requested pages not to be cached by the browser. Note: Setting cache to false will only work correctly with HEAD and GET requests. It works by appending "_={timestamp}" to the GET parameters. The parameter is not needed for other types of requests, except in IE8 when a POST is made to a URL that has already been requested by a GET.
 	**/
@@ -28,7 +28,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A function to be called when the request finishes (after success and error callbacks are executed). The function gets passed two arguments: The jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object and a string categorizing the status of the request ("success", "notmodified", "nocontent", "error", "timeout", "abort", or "parsererror"). As of jQuery 1.5, the complete setting can accept an array of functions. Each function will be called in turn. This is an Ajax Event.
 	**/
 	@:optional
-	var complete : haxe.extern.EitherType<(jqXHR:JqXHR<Any>, textStatus:String) -> Void, std.Array<(jqXHR:JqXHR<Any>, textStatus:String) -> Void>>;
+	var complete : ts.AnyOf2<(jqXHR:JqXHR<Any>, textStatus:String) -> Void, std.Array<(jqXHR:JqXHR<Any>, textStatus:String) -> Void>>;
 	/**
 		An object of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
 	**/
@@ -38,7 +38,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		When sending data to the server, use this content type. Default is "application/x-www-form-urlencoded; charset=UTF-8", which is fine for most cases. If you explicitly pass in a content-type to $.ajax(), then it is always sent to the server (even if no data is sent). As of jQuery 1.6 you can pass false to tell jQuery to not set any content type header. Note: The W3C XMLHttpRequest specification dictates that the charset is always UTF-8; specifying another charset will not force the browser to change the encoding. Note: For cross-domain requests, setting the content type to anything other than application/x-www-form-urlencoded, multipart/form-data, or text/plain will trigger the browser to send a preflight OPTIONS request to the server.
 	**/
 	@:optional
-	var contentType : haxe.extern.EitherType<String, Bool>;
+	var contentType : ts.AnyOf2<String, Bool>;
 	/**
 		This object will be the context of all Ajax-related callbacks. By default, the context is an object that represents the Ajax settings used in the call ($.ajaxSettings merged with the settings passed to $.ajax).
 	**/
@@ -48,7 +48,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		An object containing dataType-to-dataType converters. Each converter's value is a function that returns the transformed value of the response.
 	**/
 	@:optional
-	var converters : PlainObject<haxe.extern.EitherType<Bool, (value:Any) -> Any>>;
+	var converters : PlainObject<ts.AnyOf2<Bool, (value:Any) -> Any>>;
 	/**
 		If you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true. This allows, for example, server-side redirection to another domain.
 	**/
@@ -58,7 +58,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		Data to be sent to the server. It is converted to a query string, if not already a string. It's appended to the url for GET-requests. See processData option to prevent this automatic processing. Object must be Key/Value pairs. If value is an Array, jQuery serializes multiple values with same key based on the value of the traditional setting (described below).
 	**/
 	@:optional
-	var data : haxe.extern.EitherType<String, PlainObject<Any>>;
+	var data : ts.AnyOf2<String, PlainObject<Any>>;
 	/**
 		A function to be used to handle the raw response data of XMLHttpRequest. This is a pre-filtering function to sanitize the response. You should return the sanitized data. The function accepts two arguments: The raw data returned from the server and the 'dataType' parameter.
 	**/
@@ -87,7 +87,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A function to be called if the request fails. The function receives three arguments: The jqXHR (in jQuery 1.4.x, XMLHttpRequest) object, a string describing the type of error that occurred and an optional exception object, if one occurred. Possible values for the second argument (besides null) are "timeout", "error", "abort", and "parsererror". When an HTTP error occurs, errorThrown receives the textual portion of the HTTP status, such as "Not Found" or "Internal Server Error." As of jQuery 1.5, the error setting can accept an array of functions. Each function will be called in turn. Note: This handler is not called for cross-domain script and cross-domain JSONP requests. This is an Ajax Event.
 	**/
 	@:optional
-	var error : haxe.extern.EitherType<(jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void, std.Array<(jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void>>;
+	var error : ts.AnyOf2<(jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void, std.Array<(jqXHR:JqXHR<Any>, textStatus:String, errorThrown:String) -> Void>>;
 	/**
 		Whether to trigger global Ajax event handlers for this request. The default is true. Set to false to prevent the global handlers like ajaxStart or ajaxStop from being triggered. This can be used to control various Ajax Events.
 	**/
@@ -112,12 +112,12 @@ extern typedef UrlAjaxSettings<TContext> = {
 		Override the callback function name in a JSONP request. This value will be used instead of 'callback' in the 'callback=?' part of the query string in the url. So {jsonp:'onJSONPLoad'} would result in 'onJSONPLoad=?' passed to the server. As of jQuery 1.5, setting the jsonp option to false prevents jQuery from adding the "?callback" string to the URL or attempting to use "=?" for transformation. In this case, you should also explicitly set the jsonpCallback setting. For example, { jsonp: false, jsonpCallback: "callbackName" }. If you don't trust the target of your Ajax requests, consider setting the jsonp property to false for security reasons.
 	**/
 	@:optional
-	var jsonp : haxe.extern.EitherType<String, Bool>;
+	var jsonp : ts.AnyOf2<String, Bool>;
 	/**
 		Specify the callback function name for a JSONP request. This value will be used instead of the random name automatically generated by jQuery. It is preferable to let jQuery generate a unique name as it'll make it easier to manage the requests and provide callbacks and error handling. You may want to specify the callback when you want to enable better browser caching of GET requests. As of jQuery 1.5, you can also use a function for this setting, in which case the value of jsonpCallback is set to the return value of that function.
 	**/
 	@:optional
-	var jsonpCallback : haxe.extern.EitherType<String, () -> String>;
+	var jsonpCallback : ts.AnyOf2<String, () -> String>;
 	/**
 		The HTTP method to use for the request (e.g. "POST", "GET", "PUT").
 	**/
@@ -1355,7 +1355,7 @@ extern typedef UrlAjaxSettings<TContext> = {
 		A function to be called if the request succeeds. The function gets passed three arguments: The data returned from the server, formatted according to the dataType parameter or the dataFilter callback function, if specified; a string describing the status; and the jqXHR (in jQuery 1.4.x, XMLHttpRequest) object. As of jQuery 1.5, the success setting can accept an array of functions. Each function will be called in turn. This is an Ajax Event.
 	**/
 	@:optional
-	var success : haxe.extern.EitherType<(data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void, std.Array<(data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void>>;
+	var success : ts.AnyOf2<(data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void, std.Array<(data:Any, textStatus:String, jqXHR:JqXHR<Any>) -> Void>>;
 	/**
 		Set a timeout (in milliseconds) for the request. A value of 0 means there will be no timeout. This will override any global timeout set with $.ajaxSetup(). The timeout period starts at the point the $.ajax call is made; if several other requests are in progress and the browser has no connections available, it is possible for a request to time out before it can be sent. In jQuery 1.4.x and below, the XMLHttpRequest object will be in an invalid state if the request times out; accessing any object members may throw an exception. In Firefox 3.0+ only, script and JSONP requests cannot be cancelled by a timeout; the script will run even if it arrives after the timeout period.
 	**/

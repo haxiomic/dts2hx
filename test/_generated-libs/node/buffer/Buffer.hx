@@ -5,7 +5,7 @@ package node.buffer;
 	**/
 	@:overload(function(size:Float):global.IBuffer { })
 	@:overload(function(array:ts.lib.IUint8Array):global.IBuffer { })
-	@:overload(function(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>):global.IBuffer { })
+	@:overload(function(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>):global.IBuffer { })
 	@:overload(function(array:std.Array<Any>):global.IBuffer { })
 	@:overload(function(buffer:global.IBuffer):global.IBuffer { })
 	function new(str:String, ?encoding:String);
@@ -25,7 +25,7 @@ package node.buffer;
 	@:overload(function(data:std.Array<Float>):global.IBuffer { })
 	@:overload(function(data:ts.lib.IUint8Array):global.IBuffer { })
 	@:overload(function(str:String, ?encoding:String):global.IBuffer { })
-	static function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
+	static function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
@@ -43,7 +43,7 @@ package node.buffer;
 		Gives the actual byte length of a string. encoding defaults to 'utf8'.
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
-	static function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+	static function byteLength(string:ts.AnyOf13<String, ts.lib.IUint8Array, ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		
@@ -59,7 +59,7 @@ package node.buffer;
 	/**
 		Allocates a new buffer of {size} octets.
 	**/
-	static function alloc(size:Float, ?fill:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, global.IBuffer>>, ?encoding:String):global.IBuffer;
+	static function alloc(size:Float, ?fill:ts.AnyOf3<String, Float, global.IBuffer>, ?encoding:String):global.IBuffer;
 	/**
 		Allocates a new buffer of {size} octets, leaving memory not initialized, so the contents
 		of the newly created Buffer are unknown and may contain sensitive data.

@@ -1,6 +1,6 @@
 package ts.html;
 extern typedef IRTCIceGathererEvent = {
-	final candidate : haxe.extern.EitherType<RTCIceCandidateDictionary, RTCIceCandidateComplete>;
+	final candidate : ts.AnyOf2<RTCIceCandidateDictionary, RTCIceCandidateComplete>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

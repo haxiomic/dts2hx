@@ -1,17 +1,17 @@
 package global.jquery;
-typedef SpeedSettings<TElement> = haxe.extern.EitherType<{
+typedef SpeedSettings<TElement> = ts.AnyOf4<{
 	/**
 		A string or number determining how long the animation will run.
 	**/
-	var duration : haxe.extern.EitherType<Float, String>;
-}, haxe.extern.EitherType<{
+	var duration : ts.AnyOf2<Float, String>;
+}, {
 	/**
 		A string indicating which easing function to use for the transition.
 	**/
 	var easing : String;
-}, haxe.extern.EitherType<{
+}, {
 	/**
 		A function to call once the animation is complete.
 	**/
 	function complete():Void;
-}, { }>>>;
+}, { }>;

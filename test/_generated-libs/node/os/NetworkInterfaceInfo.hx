@@ -1,2 +1,2 @@
 package node.os;
-typedef NetworkInterfaceInfo = haxe.extern.EitherType<NetworkInterfaceInfoIPv4, NetworkInterfaceInfoIPv6>;
+typedef NetworkInterfaceInfo = ts.AnyOf2<NetworkInterfaceInfoIPv4, NetworkInterfaceInfoIPv6>;

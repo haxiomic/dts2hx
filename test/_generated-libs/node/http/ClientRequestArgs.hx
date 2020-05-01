@@ -9,9 +9,9 @@ extern typedef ClientRequestArgs = {
 	@:optional
 	var family : Float;
 	@:optional
-	var port : haxe.extern.EitherType<String, Float>;
+	var port : ts.AnyOf2<String, Float>;
 	@:optional
-	var defaultPort : haxe.extern.EitherType<String, Float>;
+	var defaultPort : ts.AnyOf2<String, Float>;
 	@:optional
 	var localAddress : String;
 	@:optional
@@ -25,7 +25,7 @@ extern typedef ClientRequestArgs = {
 	@:optional
 	var auth : String;
 	@:optional
-	var agent : haxe.extern.EitherType<Bool, Agent>;
+	var agent : ts.AnyOf2<Bool, Agent>;
 	@:optional
 	var _defaultAgent : Agent;
 	@:optional

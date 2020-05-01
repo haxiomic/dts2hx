@@ -1,2 +1,2 @@
 package node.dns;
-typedef AnyRecord = haxe.extern.EitherType<AnyARecord, haxe.extern.EitherType<AnyAaaaRecord, haxe.extern.EitherType<AnyCnameRecord, haxe.extern.EitherType<AnyMxRecord, haxe.extern.EitherType<AnyNaptrRecord, haxe.extern.EitherType<AnyNsRecord, haxe.extern.EitherType<AnyPtrRecord, haxe.extern.EitherType<AnySoaRecord, haxe.extern.EitherType<AnySrvRecord, AnyTxtRecord>>>>>>>>>;
+typedef AnyRecord = ts.AnyOf10<AnyARecord, AnyAaaaRecord, AnyCnameRecord, AnyMxRecord, AnyNaptrRecord, AnyNsRecord, AnyPtrRecord, AnySoaRecord, AnySrvRecord, AnyTxtRecord>;

@@ -3,7 +3,7 @@ package node;
 	/**
 		Creates and starts a `repl.REPLServer` instance.
 	**/
-	static function start(?options:haxe.extern.EitherType<String, node.repl.ReplOptions>):node.repl.REPLServer;
+	static function start(?options:ts.AnyOf2<String, node.repl.ReplOptions>):node.repl.REPLServer;
 	/**
 		This is the default "writer" value, if none is passed in the REPL options,
 		and it can be overridden by custom print functions.

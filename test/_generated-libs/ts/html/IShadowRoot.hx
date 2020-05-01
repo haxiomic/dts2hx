@@ -163,7 +163,7 @@ extern typedef IShadowRoot = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	function addEventListener(type:String, listener:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	function addEventListener(type:String, listener:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
@@ -171,7 +171,7 @@ extern typedef IShadowRoot = {
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	function removeEventListener(type:String, callback:Null<haxe.extern.EitherType<EventListener, EventListenerObject>>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	function removeEventListener(type:String, callback:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final childElementCount : Float;
 	/**
 		Returns the child elements.
@@ -190,13 +190,13 @@ extern typedef IShadowRoot = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:haxe.extern.Rest<haxe.extern.EitherType<String, INode>>):Void;
+	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/

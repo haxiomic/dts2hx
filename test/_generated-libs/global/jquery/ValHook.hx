@@ -1,6 +1,6 @@
 package global.jquery;
-typedef ValHook<TElement> = haxe.extern.EitherType<{
+typedef ValHook<TElement> = ts.AnyOf3<{
 	function get(elem:TElement):Any;
-}, haxe.extern.EitherType<{
+}, {
 	function set(elem:TElement, value:Any):Any;
-}, { }>>;
+}, { }>;

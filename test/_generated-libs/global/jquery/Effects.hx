@@ -8,7 +8,7 @@ extern typedef Effects = {
 		Globally disable all animations.
 	**/
 	var off : Bool;
-	var step : PlainObject<(fx:Tween<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>) -> Void>;
+	var step : PlainObject<(fx:Tween<ts.AnyOf4<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment>>) -> Void>;
 	/**
 		_overridable_ Clears up the `setInterval`
 	**/

@@ -1,8 +1,8 @@
 package global.nodejs;
 extern typedef Domain = {
 	function run<T>(fn:(args:haxe.extern.Rest<Any>) -> T, args:haxe.extern.Rest<Any>):T;
-	function add(emitter:haxe.extern.EitherType<EventEmitter, Timer>):Void;
-	function remove(emitter:haxe.extern.EitherType<EventEmitter, Timer>):Void;
+	function add(emitter:ts.AnyOf2<EventEmitter, Timer>):Void;
+	function remove(emitter:ts.AnyOf2<EventEmitter, Timer>):Void;
 	function bind<T>(cb:T):T;
 	function intercept<T>(cb:T):T;
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
@@ -10,14 +10,14 @@ extern typedef Domain = {
 	function once(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
 	function removeListener(event:String, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
 	function removeAllListeners(?event:String):Domain;
-	function off(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
 	function setMaxListeners(n:Float):Domain;
 	function getMaxListeners():Float;
-	function listeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:haxe.extern.EitherType<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function emit(event:haxe.extern.EitherType<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
-	function listenerCount(type:haxe.extern.EitherType<String, js.lib.Symbol>):Float;
-	function prependListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
-	function prependOnceListener(event:haxe.extern.EitherType<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
-	function eventNames():std.Array<haxe.extern.EitherType<String, js.lib.Symbol>>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Any>):Bool;
+	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
+	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
+	function prependOnceListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Any>) -> Void):Domain;
+	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
 };

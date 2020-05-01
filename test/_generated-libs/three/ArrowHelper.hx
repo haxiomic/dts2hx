@@ -5,5 +5,5 @@ package three;
 	var cone : Mesh;
 	function setDirection(dir:Vector3):Void;
 	function setLength(length:Float, ?headLength:Float, ?headWidth:Float):Void;
-	function setColor(color:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, Color>>):Void;
+	function setColor(color:ts.AnyOf3<String, Float, Color>):Void;
 }

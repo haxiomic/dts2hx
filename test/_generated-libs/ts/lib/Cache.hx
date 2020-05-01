@@ -4,13 +4,13 @@ package ts.lib;
 **/
 @:native("Cache") extern class Cache {
 	function new();
-	function add(request:haxe.extern.EitherType<String, ts.html.IRequest>):IPromise<Void>;
-	@:overload(function(requests:Iterable<haxe.extern.EitherType<String, ts.html.IRequest>>):IPromise<Void> { })
-	function addAll(requests:std.Array<haxe.extern.EitherType<String, ts.html.IRequest>>):IPromise<Void>;
-	function delete(request:haxe.extern.EitherType<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<Bool>;
-	function keys(?request:haxe.extern.EitherType<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<ReadonlyArray<ts.html.IRequest>>;
-	function match(request:haxe.extern.EitherType<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<Null<ts.html.IResponse>>;
-	function matchAll(?request:haxe.extern.EitherType<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<ReadonlyArray<ts.html.IResponse>>;
-	function put(request:haxe.extern.EitherType<String, ts.html.IRequest>, response:ts.html.IResponse):IPromise<Void>;
+	function add(request:ts.AnyOf2<String, ts.html.IRequest>):IPromise<Void>;
+	@:overload(function(requests:Iterable<ts.AnyOf2<String, ts.html.IRequest>>):IPromise<Void> { })
+	function addAll(requests:std.Array<ts.AnyOf2<String, ts.html.IRequest>>):IPromise<Void>;
+	function delete(request:ts.AnyOf2<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<Bool>;
+	function keys(?request:ts.AnyOf2<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<ReadonlyArray<ts.html.IRequest>>;
+	function match(request:ts.AnyOf2<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<Null<ts.html.IResponse>>;
+	function matchAll(?request:ts.AnyOf2<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<ReadonlyArray<ts.html.IResponse>>;
+	function put(request:ts.AnyOf2<String, ts.html.IRequest>, response:ts.html.IResponse):IPromise<Void>;
 	static var prototype : ICache;
 }

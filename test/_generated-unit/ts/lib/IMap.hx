@@ -10,7 +10,7 @@ extern typedef IMap<K, V> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<K, V>>;
+	function entries():IterableIterator<ts.Tuple2<K, V>>;
 	/**
 		Returns an iterable of keys in the map
 	**/

@@ -22,7 +22,7 @@ extern typedef IObject = {
 	/**
 		Determines whether an object has a property with the specified name.
 	**/
-	function hasOwnProperty(v:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Bool;
+	function hasOwnProperty(v:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 	/**
 		Determines whether an object exists in another object's prototype chain.
 	**/
@@ -30,5 +30,5 @@ extern typedef IObject = {
 	/**
 		Determines whether a specified property is enumerable.
 	**/
-	function propertyIsEnumerable(v:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, js.lib.Symbol>>):Bool;
+	function propertyIsEnumerable(v:ts.AnyOf3<String, Float, js.lib.Symbol>):Bool;
 };

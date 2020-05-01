@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef TupleReferenceHomogenous = ts.lib.Tuple3<Float, Float, Float>;
+typedef TupleReferenceHomogenous = ts.Tuple3<Float, Float, Float>;

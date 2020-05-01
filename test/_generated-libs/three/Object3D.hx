@@ -104,11 +104,11 @@ package three;
 	/**
 		Calls before rendering object
 	**/
-	var onBeforeRender : (renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:haxe.extern.EitherType<Geometry, BufferGeometry>, material:Material, group:Group) -> Void;
+	var onBeforeRender : (renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, group:Group) -> Void;
 	/**
 		Calls after rendering object
 	**/
-	var onAfterRender : (renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:haxe.extern.EitherType<Geometry, BufferGeometry>, material:Material, group:Group) -> Void;
+	var onAfterRender : (renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, group:Group) -> Void;
 	/**
 		This updates the position, rotation and scale with the matrix.
 	**/
@@ -153,7 +153,7 @@ package three;
 	/**
 		Rotates object to face point in space.
 	**/
-	function lookAt(vector:haxe.extern.EitherType<Float, Vector3>, ?y:Float, ?z:Float):Void;
+	function lookAt(vector:ts.AnyOf2<Float, Vector3>, ?y:Float, ?z:Float):Void;
 	/**
 		Adds object as child of this object.
 	**/

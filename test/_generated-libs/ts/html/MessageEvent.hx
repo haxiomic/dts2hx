@@ -23,6 +23,6 @@ package ts.html;
 	/**
 		Returns the WindowProxy of the source window, for cross-document messaging, and the MessagePort being attached, in the connect event fired at SharedWorkerGlobalScope objects.
 	**/
-	final source : Null<haxe.extern.EitherType<IWindow, haxe.extern.EitherType<IMessagePort, IServiceWorker>>>;
+	final source : Null<ts.AnyOf3<IWindow, IMessagePort, IServiceWorker>>;
 	static var prototype : IMessageEvent;
 }

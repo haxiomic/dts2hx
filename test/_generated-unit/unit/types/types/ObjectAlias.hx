@@ -7,7 +7,7 @@ typedef ObjectAlias = {
 	var fieldOptional : Float;
 	@:native("macro")
 	var macro_ : String;
-	var nestedTuple : ts.lib.Tuple3<Float, String, ts.lib.Tuple2<Bool, std.Array<Bool>>>;
+	var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
 	var computedFieldName : String;
 	var sub : {
 		var a : Float;

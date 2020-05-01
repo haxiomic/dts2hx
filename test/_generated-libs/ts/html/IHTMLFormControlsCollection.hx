@@ -8,7 +8,7 @@ extern typedef IHTMLFormControlsCollection = {
 		
 		If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
 	**/
-	function namedItem(name:String):Null<haxe.extern.EitherType<IElement, IRadioNodeList>>;
+	function namedItem(name:String):Null<ts.AnyOf2<IElement, IRadioNodeList>>;
 	/**
 		Sets or retrieves the number of objects in a collection.
 	**/

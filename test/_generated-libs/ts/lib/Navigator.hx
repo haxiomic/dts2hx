@@ -23,6 +23,6 @@ package ts.lib;
 	function msLaunchUri(uri:String, ?successCallback:ts.html.MSLaunchUriCallback, ?noHandlerCallback:ts.html.MSLaunchUriCallback):Void;
 	@:overload(function(keySystem:String, supportedConfigurations:Iterable<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess> { })
 	function requestMediaKeySystemAccess(keySystem:String, supportedConfigurations:std.Array<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess>;
-	function vibrate(pattern:haxe.extern.EitherType<Float, std.Array<Float>>):Bool;
+	function vibrate(pattern:ts.AnyOf2<Float, std.Array<Float>>):Bool;
 	static var prototype : INavigator;
 }

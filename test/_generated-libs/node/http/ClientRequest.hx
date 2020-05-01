@@ -1,6 +1,6 @@
 package node.http;
 @:jsRequire("http", "ClientRequest") extern class ClientRequest extends OutgoingMessage {
-	function new(url:haxe.extern.EitherType<String, haxe.extern.EitherType<node.url.URL, ClientRequestArgs>>, ?cb:(res:IncomingMessage) -> Void);
+	function new(url:ts.AnyOf3<String, node.url.URL, ClientRequestArgs>, ?cb:(res:IncomingMessage) -> Void);
 	var socket : node.net.Socket;
 	var aborted : Float;
 	final path : String;

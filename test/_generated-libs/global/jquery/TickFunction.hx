@@ -4,5 +4,5 @@ extern typedef TickFunction<TElement> = {
 	function call():Any;
 	var anim : Animation<TElement>;
 	var elem : TElement;
-	var queue : haxe.extern.EitherType<String, Bool>;
+	var queue : ts.AnyOf2<String, Bool>;
 };

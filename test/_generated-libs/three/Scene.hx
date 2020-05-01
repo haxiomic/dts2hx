@@ -13,6 +13,6 @@ package three;
 	**/
 	var overrideMaterial : Null<Material>;
 	var autoUpdate : Bool;
-	var background : Null<haxe.extern.EitherType<Texture, Color>>;
+	var background : Null<ts.AnyOf2<Texture, Color>>;
 	function dispose():Void;
 }

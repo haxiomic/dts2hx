@@ -29,7 +29,7 @@ extern typedef IURLSearchParams = {
 	/**
 		Returns an array of key, value pairs for every entry in the search params.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<String, String>>;
+	function entries():IterableIterator<ts.Tuple2<String, String>>;
 	/**
 		Returns a list of keys in the search params.
 	**/

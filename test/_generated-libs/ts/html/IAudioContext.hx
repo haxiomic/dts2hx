@@ -62,8 +62,8 @@ extern typedef IAudioContext = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void { })
-	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, AddEventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	function addEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
@@ -73,8 +73,8 @@ extern typedef IAudioContext = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:haxe.extern.EitherType<EventListener, EventListenerObject>, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void { })
-	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:haxe.extern.EitherType<Bool, EventListenerOptions>):Void;
+	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	function removeEventListener<K>(type:K, listener:(ev:Any) -> Any, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final audioWorklet : IAudioWorklet;
 	final currentTime : Float;
 	final destination : IAudioDestinationNode;
@@ -98,7 +98,7 @@ extern typedef IAudioContext = {
 	function createOscillator():IOscillatorNode;
 	function createPanner():IPannerNode;
 	@:overload(function(real:ts.lib.Iterable<Float>, imag:ts.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):IPeriodicWave { })
-	function createPeriodicWave(real:haxe.extern.EitherType<ts.lib.IFloat32Array, std.Array<Float>>, imag:haxe.extern.EitherType<ts.lib.IFloat32Array, std.Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
+	function createPeriodicWave(real:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>, imag:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
 	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):IScriptProcessorNode;
 	function createStereoPanner():IStereoPannerNode;
 	function createWaveShaper():IWaveShaperNode;

@@ -32,7 +32,7 @@ extern typedef IString = {
 		
 		Determines whether two strings are equivalent in the current or specified locale.
 	**/
-	@:overload(function(that:String, ?locales:haxe.extern.EitherType<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):Float { })
+	@:overload(function(that:String, ?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):Float { })
 	function localeCompare(that:String):Float;
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.
@@ -40,7 +40,7 @@ extern typedef IString = {
 		Matches a string an object that supports being matched against, and returns an array containing the results of that search.
 	**/
 	@:overload(function(matcher:{ }):Null<RegExpMatchArray> { })
-	function match(regexp:haxe.extern.EitherType<String, IRegExp>):Null<RegExpMatchArray>;
+	function match(regexp:ts.AnyOf2<String, IRegExp>):Null<RegExpMatchArray>;
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
@@ -50,17 +50,17 @@ extern typedef IString = {
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:haxe.extern.EitherType<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
+	@:overload(function(searchValue:ts.AnyOf2<String, IRegExp>, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
 	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Any>) -> String):String { })
-	function replace(searchValue:haxe.extern.EitherType<String, IRegExp>, replaceValue:String):String;
+	function replace(searchValue:ts.AnyOf2<String, IRegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
 		
 		Finds the first substring match in a regular expression search.
 	**/
 	@:overload(function(searcher:{ }):Float { })
-	function search(regexp:haxe.extern.EitherType<String, IRegExp>):Float;
+	function search(regexp:ts.AnyOf2<String, IRegExp>):Float;
 	/**
 		Returns a section of a string.
 	**/
@@ -71,7 +71,7 @@ extern typedef IString = {
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
 	@:overload(function(splitter:{ }, ?limit:Float):std.Array<String> { })
-	function split(separator:haxe.extern.EitherType<String, IRegExp>, ?limit:Float):std.Array<String>;
+	function split(separator:ts.AnyOf2<String, IRegExp>, ?limit:Float):std.Array<String>;
 	/**
 		Returns the substring at the specified location within a String object.
 	**/
@@ -83,7 +83,7 @@ extern typedef IString = {
 	/**
 		Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.
 	**/
-	function toLocaleLowerCase(?locales:haxe.extern.EitherType<String, std.Array<String>>):String;
+	function toLocaleLowerCase(?locales:ts.AnyOf2<String, std.Array<String>>):String;
 	/**
 		Converts all the alphabetic characters in a string to uppercase.
 	**/
@@ -91,7 +91,7 @@ extern typedef IString = {
 	/**
 		Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.
 	**/
-	function toLocaleUpperCase(?locales:haxe.extern.EitherType<String, std.Array<String>>):String;
+	function toLocaleUpperCase(?locales:ts.AnyOf2<String, std.Array<String>>):String;
 	/**
 		Removes the leading and trailing white space and line terminator characters from a string.
 	**/

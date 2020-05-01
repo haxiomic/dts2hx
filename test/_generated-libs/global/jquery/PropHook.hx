@@ -1,6 +1,6 @@
 package global.jquery;
-typedef PropHook<TElement> = haxe.extern.EitherType<{
+typedef PropHook<TElement> = ts.AnyOf3<{
 	function get(tween:Tween<TElement>):Any;
-}, haxe.extern.EitherType<{
+}, {
 	function set(tween:Tween<TElement>):Void;
-}, { }>>;
+}, { }>;

@@ -4,9 +4,9 @@ extern typedef IOffscreenCanvasRenderingContext2D = {
 	function commit():Void;
 	var globalAlpha : Float;
 	var globalCompositeOperation : String;
-	@:overload(function(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, IOffscreenCanvas>>>>>, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
-	@:overload(function(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, IOffscreenCanvas>>>>>, sx:Float, sy:Float, sw:Float, sh:Float, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
-	function drawImage(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, IOffscreenCanvas>>>>>, dx:Float, dy:Float):Void;
+	@:overload(function(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
+	@:overload(function(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, sx:Float, sy:Float, sw:Float, sh:Float, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
+	function drawImage(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, dx:Float, dy:Float):Void;
 	function beginPath():Void;
 	@:overload(function(path:IPath2D, ?fillRule:String):Void { })
 	function clip(?fillRule:String):Void;
@@ -18,10 +18,10 @@ extern typedef IOffscreenCanvasRenderingContext2D = {
 	function isPointInStroke(x:Float, y:Float):Bool;
 	@:overload(function(path:IPath2D):Void { })
 	function stroke():Void;
-	var fillStyle : haxe.extern.EitherType<String, haxe.extern.EitherType<ICanvasGradient, ICanvasPattern>>;
-	var strokeStyle : haxe.extern.EitherType<String, haxe.extern.EitherType<ICanvasGradient, ICanvasPattern>>;
+	var fillStyle : ts.AnyOf3<String, ICanvasGradient, ICanvasPattern>;
+	var strokeStyle : ts.AnyOf3<String, ICanvasGradient, ICanvasPattern>;
 	function createLinearGradient(x0:Float, y0:Float, x1:Float, y1:Float):ICanvasGradient;
-	function createPattern(image:haxe.extern.EitherType<IHTMLImageElement, haxe.extern.EitherType<IImageBitmap, haxe.extern.EitherType<ISVGImageElement, haxe.extern.EitherType<IHTMLVideoElement, haxe.extern.EitherType<IHTMLCanvasElement, IOffscreenCanvas>>>>>, repetition:String):Null<ICanvasPattern>;
+	function createPattern(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, repetition:String):Null<ICanvasPattern>;
 	function createRadialGradient(x0:Float, y0:Float, r0:Float, x1:Float, y1:Float, r1:Float):ICanvasGradient;
 	var filter : String;
 	@:overload(function(imagedata:IImageData):IImageData { })

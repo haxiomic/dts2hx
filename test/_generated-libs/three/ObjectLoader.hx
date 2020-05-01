@@ -4,7 +4,7 @@ package three;
 	var manager : LoadingManager;
 	var texturePass : String;
 	var crossOrigin : String;
-	function load(url:String, ?onLoad:(object:Any) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:haxe.extern.EitherType<ts.html.IErrorEvent, ts.lib.IError>) -> Void):Void;
+	function load(url:String, ?onLoad:(object:Any) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.AnyOf2<ts.html.IErrorEvent, ts.lib.IError>) -> Void):Void;
 	function setTexturePath(value:String):Void;
 	function setCrossOrigin(crossOrigin:String):Void;
 	function parse<T>(json:Any, ?onLoad:(object:Object3D) -> Void):T;

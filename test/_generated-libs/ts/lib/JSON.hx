@@ -12,6 +12,6 @@ extern typedef JSON = {
 		
 		Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
 	**/
-	@:overload(function(value:Any, ?replacer:std.Array<haxe.extern.EitherType<String, Float>>, ?space:haxe.extern.EitherType<String, Float>):String { })
-	function stringify(value:Any, ?replacer:(key:String, value:Any) -> Any, ?space:haxe.extern.EitherType<String, Float>):String;
+	@:overload(function(value:Any, ?replacer:std.Array<ts.AnyOf2<String, Float>>, ?space:ts.AnyOf2<String, Float>):String { })
+	function stringify(value:Any, ?replacer:(key:String, value:Any) -> Any, ?space:ts.AnyOf2<String, Float>):String;
 };

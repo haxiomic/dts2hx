@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef TypeUnion = haxe.extern.EitherType<String, Float>;
+typedef TypeUnion = ts.AnyOf2<String, Float>;

@@ -1,5 +1,5 @@
 package ts.html;
 extern typedef WritableStreamDefaultControllerCloseCallback = {
 	@:selfCall
-	function call():haxe.extern.EitherType<Void, ts.lib.PromiseLike<Void>>;
+	function call():ts.AnyOf2<Void, ts.lib.PromiseLike<Void>>;
 };

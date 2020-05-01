@@ -4,10 +4,10 @@ package ts.lib;
 **/
 extern typedef IMediaKeyStatusMap = {
 	final size : Float;
-	function get(keyId:haxe.extern.EitherType<IArrayBuffer, ArrayBufferView>):Any;
-	function has(keyId:haxe.extern.EitherType<IArrayBuffer, ArrayBufferView>):Bool;
-	function forEach(callbackfn:(value:String, key:haxe.extern.EitherType<IArrayBuffer, ArrayBufferView>, parent:IMediaKeyStatusMap) -> Void, ?thisArg:Any):Void;
-	function entries():IterableIterator<ts.lib.Tuple2<haxe.extern.EitherType<IArrayBuffer, ArrayBufferView>, String>>;
-	function keys():IterableIterator<haxe.extern.EitherType<IArrayBuffer, ArrayBufferView>>;
+	function get(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Any;
+	function has(keyId:ts.AnyOf2<IArrayBuffer, ArrayBufferView>):Bool;
+	function forEach(callbackfn:(value:String, key:ts.AnyOf2<IArrayBuffer, ArrayBufferView>, parent:IMediaKeyStatusMap) -> Void, ?thisArg:Any):Void;
+	function entries():IterableIterator<ts.Tuple2<ts.AnyOf2<IArrayBuffer, ArrayBufferView>, String>>;
+	function keys():IterableIterator<ts.AnyOf2<IArrayBuffer, ArrayBufferView>>;
 	function values():IterableIterator<String>;
 };

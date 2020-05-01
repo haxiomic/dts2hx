@@ -3,11 +3,11 @@ extern typedef SpawnOptions = {
 	@:optional
 	var argv0 : String;
 	@:optional
-	var stdio : haxe.extern.EitherType<String, std.Array<Null<haxe.extern.EitherType<Float, haxe.extern.EitherType<String, node.stream.Stream>>>>>;
+	var stdio : ts.AnyOf2<String, std.Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
 	@:optional
 	var detached : Bool;
 	@:optional
-	var shell : haxe.extern.EitherType<String, Bool>;
+	var shell : ts.AnyOf2<String, Bool>;
 	@:optional
 	var windowsVerbatimArguments : Bool;
 	@:optional

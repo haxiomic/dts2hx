@@ -16,7 +16,7 @@ extern typedef ITextDecoder = {
 		
 		If the error mode is "fatal" and encoding's decoder returns error, throws a TypeError.
 	**/
-	function decode(?input:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>, ?options:TextDecodeOptions):String;
+	function decode(?input:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>, ?options:TextDecodeOptions):String;
 	/**
 		Returns encoding's name, lowercased.
 	**/

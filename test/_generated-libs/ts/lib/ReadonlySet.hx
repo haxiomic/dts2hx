@@ -6,7 +6,7 @@ extern typedef ReadonlySet<T> = {
 	/**
 		Returns an iterable of [v,v] pairs for every value `v` in the set.
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<T, T>>;
+	function entries():IterableIterator<ts.Tuple2<T, T>>;
 	/**
 		Despite its name, returns an iterable of the values in the set,
 	**/

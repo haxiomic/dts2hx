@@ -1,9 +1,9 @@
 package ts.html;
 extern typedef MediaStreamConstraints = {
 	@:optional
-	var audio : haxe.extern.EitherType<Bool, MediaTrackConstraints>;
+	var audio : ts.AnyOf2<Bool, MediaTrackConstraints>;
 	@:optional
 	var peerIdentity : String;
 	@:optional
-	var video : haxe.extern.EitherType<Bool, MediaTrackConstraints>;
+	var video : ts.AnyOf2<Bool, MediaTrackConstraints>;
 };

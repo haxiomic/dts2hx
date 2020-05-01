@@ -4,6 +4,6 @@ package ts.html;
 **/
 @:native("TrackEvent") extern class TrackEvent {
 	function new(typeArg:String, ?eventInitDict:TrackEventInit);
-	final track : Null<haxe.extern.EitherType<IAudioTrack, haxe.extern.EitherType<ITextTrack, IVideoTrack>>>;
+	final track : Null<ts.AnyOf3<IAudioTrack, ITextTrack, IVideoTrack>>;
 	static var prototype : ITrackEvent;
 }

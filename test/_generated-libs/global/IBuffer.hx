@@ -25,7 +25,7 @@ extern typedef IBuffer = {
 		@:overload(function(data:std.Array<Float>):IBuffer { })
 		@:overload(function(data:ts.lib.IUint8Array):IBuffer { })
 		@:overload(function(str:String, ?encoding:String):IBuffer { })
-		function from(arrayBuffer:haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
+		function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -43,7 +43,7 @@ extern typedef IBuffer = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:haxe.extern.EitherType<String, haxe.extern.EitherType<ts.lib.IUint8Array, haxe.extern.EitherType<ts.lib.IArrayBuffer, haxe.extern.EitherType<ts.lib.ISharedArrayBuffer, haxe.extern.EitherType<ts.lib.IUint8ClampedArray, haxe.extern.EitherType<ts.lib.IUint16Array, haxe.extern.EitherType<ts.lib.IUint32Array, haxe.extern.EitherType<ts.lib.IInt8Array, haxe.extern.EitherType<ts.lib.IInt16Array, haxe.extern.EitherType<ts.lib.IInt32Array, haxe.extern.EitherType<ts.lib.IFloat32Array, haxe.extern.EitherType<ts.lib.IFloat64Array, ts.lib.IDataView>>>>>>>>>>>>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, ts.lib.IUint8Array, ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -59,7 +59,7 @@ extern typedef IBuffer = {
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
-		function alloc(size:Float, ?fill:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, IBuffer>>, ?encoding:String):IBuffer;
+		function alloc(size:Float, ?fill:ts.AnyOf3<String, Float, IBuffer>, ?encoding:String):IBuffer;
 		/**
 			Allocates a new buffer of {size} octets, leaving memory not initialized, so the contents
 			of the newly created Buffer are unknown and may contain sensitive data.
@@ -148,19 +148,19 @@ extern typedef IBuffer = {
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IUint8Array>>, ?byteOffset:Float, ?encoding:String):Float;
+	function indexOf(value:ts.AnyOf3<String, Float, ts.lib.IUint8Array>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns the index of the last occurrence of a value in an array.
 	**/
-	function lastIndexOf(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, ts.lib.IUint8Array>>, ?byteOffset:Float, ?encoding:String):Float;
+	function lastIndexOf(value:ts.AnyOf3<String, Float, ts.lib.IUint8Array>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.lib.Tuple2<Float, Float>>;
+	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, Float>>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
-	function includes(value:haxe.extern.EitherType<String, haxe.extern.EitherType<Float, IBuffer>>, ?byteOffset:Float, ?encoding:String):Bool;
+	function includes(value:ts.AnyOf3<String, Float, IBuffer>, ?byteOffset:Float, ?encoding:String):Bool;
 	/**
 		Returns an list of keys in the array
 	**/
@@ -176,7 +176,7 @@ extern typedef IBuffer = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : haxe.extern.EitherType<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>;
+	final buffer : ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>;
 	/**
 		The length in bytes of the array.
 	**/

@@ -3,7 +3,7 @@ extern typedef Url_ = {
 	@:optional
 	var port : String;
 	@:optional
-	var query : haxe.extern.EitherType<String, node.querystring.ParsedUrlQuery>;
+	var query : ts.AnyOf2<String, node.querystring.ParsedUrlQuery>;
 	@:optional
 	var auth : String;
 	@:optional

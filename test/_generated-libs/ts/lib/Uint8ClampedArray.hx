@@ -4,7 +4,7 @@ package ts.lib;
 	If the requested number of bytes could not be allocated an exception is raised.
 **/
 @:native("Uint8ClampedArray") extern class Uint8ClampedArray {
-	@:overload(function(arrayOrArrayBuffer:haxe.extern.EitherType<IArrayBuffer, ArrayLike<Float>>):IUint8ClampedArray { })
+	@:overload(function(arrayOrArrayBuffer:ts.AnyOf2<IArrayBuffer, ArrayLike<Float>>):IUint8ClampedArray { })
 	@:overload(function(buffer:IArrayBuffer, byteOffset:Float, ?length:Float):IUint8ClampedArray { })
 	@:overload(function(elements:Iterable<Float>):IUint8ClampedArray { })
 	function new(length:Float);
@@ -136,7 +136,7 @@ package ts.lib;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<ts.lib.Tuple2<Float, Float>>;
+	function entries():IterableIterator<ts.Tuple2<Float, Float>>;
 	/**
 		Returns an list of keys in the array
 	**/

@@ -1,9 +1,9 @@
 package global;
 extern typedef JQueryStatic = {
-	@:overload(function<TElement>(html:String, ?ownerDocument_attributes:haxe.extern.EitherType<ts.html.IDocument, global.jquery.PlainObject<Any>>):JQuery<TElement> { })
-	@:overload(function<TElement>(selector:String, ?context:haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, JQuery<ts.html.IHTMLElement>>>):JQuery<TElement> { })
+	@:overload(function<TElement>(html:String, ?ownerDocument_attributes:ts.AnyOf2<ts.html.IDocument, global.jquery.PlainObject<Any>>):JQuery<TElement> { })
+	@:overload(function<TElement>(selector:String, ?context:ts.AnyOf3<ts.html.IDocument, ts.html.IElement, JQuery<ts.html.IHTMLElement>>):JQuery<TElement> { })
 	@:overload(function(element:ts.lib.IHTMLSelectElement):JQuery<ts.lib.IHTMLSelectElement> { })
-	@:overload(function<T>(element_elementArray:haxe.extern.EitherType<T, ts.lib.ArrayLike<T>>):JQuery<T> { })
+	@:overload(function<T>(element_elementArray:ts.AnyOf2<T, ts.lib.ArrayLike<T>>):JQuery<T> { })
 	@:overload(function<T>(selection:JQuery<T>):JQuery<T> { })
 	@:overload(function<TElement>(callback:(Dollar:JQueryStatic) -> Void):JQuery<TElement> { })
 	@:overload(function<T>(object:T):JQuery<T> { })
@@ -51,8 +51,8 @@ extern typedef JQueryStatic = {
 		
 		Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
 	**/
-	@:overload(function(handler:(options:global.jquery.AjaxSettings<Any>, originalOptions:global.jquery.AjaxSettings<Any>, jqXHR:global.jquery.JqXHR<Any>) -> haxe.extern.EitherType<String, Void>):Void { })
-	function ajaxPrefilter(dataTypes:String, handler:(options:global.jquery.AjaxSettings<Any>, originalOptions:global.jquery.AjaxSettings<Any>, jqXHR:global.jquery.JqXHR<Any>) -> haxe.extern.EitherType<String, Void>):Void;
+	@:overload(function(handler:(options:global.jquery.AjaxSettings<Any>, originalOptions:global.jquery.AjaxSettings<Any>, jqXHR:global.jquery.JqXHR<Any>) -> ts.AnyOf2<String, Void>):Void { })
+	function ajaxPrefilter(dataTypes:String, handler:(options:global.jquery.AjaxSettings<Any>, originalOptions:global.jquery.AjaxSettings<Any>, jqXHR:global.jquery.JqXHR<Any>) -> ts.AnyOf2<String, Void>):Void;
 	/**
 		Set default values for future Ajax requests. Its use is not recommended.
 	**/
@@ -60,9 +60,9 @@ extern typedef JQueryStatic = {
 	/**
 		Creates an object that handles the actual transmission of Ajax data.
 	**/
-	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Any>, originalOptions:global.jquery.AjaxSettings<Any>, jqXHR:global.jquery.JqXHR<Any>) -> haxe.extern.EitherType<Void, global.jquery.Transport>):Void;
+	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Any>, originalOptions:global.jquery.AjaxSettings<Any>, jqXHR:global.jquery.JqXHR<Any>) -> ts.AnyOf2<Void, global.jquery.Transport>):Void;
 	function camelCase(value:String):String;
-	function cleanData(elems:ts.lib.ArrayLike<haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IWindow, global.jquery.PlainObject<Any>>>>>):Void;
+	function cleanData(elems:ts.lib.ArrayLike<ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Any>>>):Void;
 	/**
 		Check to see if a DOM element is a descendant of another DOM element.
 	**/
@@ -75,9 +75,9 @@ extern typedef JQueryStatic = {
 		
 		Returns value at named data store for the element, as set by `jQuery.data(element, name, value)`, or the full data store for the element.
 	**/
-	@:overload(function(element:haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IWindow, global.jquery.PlainObject<Any>>>>, key:String, value:Null<Any>):Any { })
-	@:overload(function(element:haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IWindow, global.jquery.PlainObject<Any>>>>, ?key:String):Any { })
-	function data<T>(element:haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IWindow, global.jquery.PlainObject<Any>>>>, key:String, value:T):T;
+	@:overload(function(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Any>>, key:String, value:Null<Any>):Any { })
+	@:overload(function(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Any>>, ?key:String):Any { })
+	function data<T>(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Any>>, key:String, value:T):T;
 	/**
 		Execute the next function on the queue for the matched element.
 	**/
@@ -156,16 +156,16 @@ extern typedef JQueryStatic = {
 		Load data from the server using a HTTP GET request.
 	**/
 	@:overload(function(url:String, success:Null<global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>, dataType:String):global.jquery.JqXHR<Any> { })
-	@:overload(function(url:String, success_data:haxe.extern.EitherType<String, haxe.extern.EitherType<global.jquery.PlainObject<Any>, global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>>):global.jquery.JqXHR<Any> { })
-	@:overload(function(?url_settings:haxe.extern.EitherType<String, global.jquery.UrlAjaxSettings<Any>>):global.jquery.JqXHR<Any> { })
-	function get(url:String, data:haxe.extern.EitherType<String, global.jquery.PlainObject<Any>>, success:Null<global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>, ?dataType:String):global.jquery.JqXHR<Any>;
+	@:overload(function(url:String, success_data:ts.AnyOf3<String, global.jquery.PlainObject<Any>, global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>):global.jquery.JqXHR<Any> { })
+	@:overload(function(?url_settings:ts.AnyOf2<String, global.jquery.UrlAjaxSettings<Any>>):global.jquery.JqXHR<Any> { })
+	function get(url:String, data:ts.AnyOf2<String, global.jquery.PlainObject<Any>>, success:Null<global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>, ?dataType:String):global.jquery.JqXHR<Any>;
 	/**
 		Load JSON-encoded data from the server using a GET HTTP request.
 		
 		Load JSON-encoded data from the server using a GET HTTP request.
 	**/
-	@:overload(function(url:String, ?success_data:haxe.extern.EitherType<String, haxe.extern.EitherType<global.jquery.PlainObject<Any>, global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>>):global.jquery.JqXHR<Any> { })
-	function getJSON(url:String, data:haxe.extern.EitherType<String, global.jquery.PlainObject<Any>>, success:global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>):global.jquery.JqXHR<Any>;
+	@:overload(function(url:String, ?success_data:ts.AnyOf3<String, global.jquery.PlainObject<Any>, global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>):global.jquery.JqXHR<Any> { })
+	function getJSON(url:String, data:ts.AnyOf2<String, global.jquery.PlainObject<Any>>, success:global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>):global.jquery.JqXHR<Any>;
 	/**
 		Load a JavaScript file from the server using a GET HTTP request, then execute it.
 		
@@ -184,7 +184,7 @@ extern typedef JQueryStatic = {
 	/**
 		Determine whether an element has any jQuery data associated with it.
 	**/
-	function hasData(element:haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IWindow, global.jquery.PlainObject<Any>>>>):Bool;
+	function hasData(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Any>>):Bool;
 	/**
 		Holds or releases the execution of jQuery's ready event.
 	**/
@@ -234,12 +234,12 @@ extern typedef JQueryStatic = {
 		
 		Translate all items in an array or object to new array of items.
 	**/
-	@:overload(function<T, K, TReturn>(obj:T, callback:(propertyOfObject:Any, key:K) -> Null<haxe.extern.EitherType<TReturn, std.Array<TReturn>>>):std.Array<TReturn> { })
-	function map<T, TReturn>(array:std.Array<T>, callback:(elementOfArray:T, indexInArray:Float) -> Null<haxe.extern.EitherType<TReturn, std.Array<TReturn>>>):std.Array<TReturn>;
+	@:overload(function<T, K, TReturn>(obj:T, callback:(propertyOfObject:Any, key:K) -> Null<ts.AnyOf2<TReturn, std.Array<TReturn>>>):std.Array<TReturn> { })
+	function map<T, TReturn>(array:std.Array<T>, callback:(elementOfArray:T, indexInArray:Float) -> Null<ts.AnyOf2<TReturn, std.Array<TReturn>>>):std.Array<TReturn>;
 	/**
 		Merge the contents of two arrays together into the first array.
 	**/
-	function merge<T, U>(first:ts.lib.ArrayLike<T>, second:ts.lib.ArrayLike<U>):std.Array<haxe.extern.EitherType<T, U>>;
+	function merge<T, U>(first:ts.lib.ArrayLike<T>, second:ts.lib.ArrayLike<U>):std.Array<ts.AnyOf2<T, U>>;
 	/**
 		Relinquish jQuery's control of the $ variable.
 	**/
@@ -256,14 +256,14 @@ extern typedef JQueryStatic = {
 	/**
 		Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.
 	**/
-	function param(obj:haxe.extern.EitherType<std.Array<Any>, haxe.extern.EitherType<global.jquery.PlainObject<Any>, JQuery<ts.html.IHTMLElement>>>, ?traditional:Bool):String;
+	function param(obj:ts.AnyOf3<std.Array<Any>, global.jquery.PlainObject<Any>, JQuery<ts.html.IHTMLElement>>, ?traditional:Bool):String;
 	/**
 		Parses a string into an array of DOM nodes.
 		
 		Parses a string into an array of DOM nodes.
 	**/
-	@:overload(function(data:String, ?context_keepScripts:haxe.extern.EitherType<Bool, ts.html.IDocument>):std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>> { })
-	function parseHTML(data:String, context:Null<ts.html.IDocument>, keepScripts:Bool):std.Array<haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IText, haxe.extern.EitherType<ts.html.IComment, ts.html.IDocumentFragment>>>>;
+	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, ts.html.IDocument>):std.Array<ts.AnyOf4<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment>> { })
+	function parseHTML(data:String, context:Null<ts.html.IDocument>, keepScripts:Bool):std.Array<ts.AnyOf4<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment>>;
 	/**
 		Takes a well-formed JSON string and returns the resulting JavaScript value.
 	**/
@@ -282,9 +282,9 @@ extern typedef JQueryStatic = {
 		Load data from the server using a HTTP POST request.
 	**/
 	@:overload(function(url:String, success:Null<global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>, dataType:String):global.jquery.JqXHR<Any> { })
-	@:overload(function(url:String, success_data:haxe.extern.EitherType<String, haxe.extern.EitherType<global.jquery.PlainObject<Any>, global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>>):global.jquery.JqXHR<Any> { })
-	@:overload(function(?url_settings:haxe.extern.EitherType<String, global.jquery.UrlAjaxSettings<Any>>):global.jquery.JqXHR<Any> { })
-	function post(url:String, data:haxe.extern.EitherType<String, global.jquery.PlainObject<Any>>, success:Null<global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>, ?dataType:String):global.jquery.JqXHR<Any>;
+	@:overload(function(url:String, success_data:ts.AnyOf3<String, global.jquery.PlainObject<Any>, global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>):global.jquery.JqXHR<Any> { })
+	@:overload(function(?url_settings:ts.AnyOf2<String, global.jquery.UrlAjaxSettings<Any>>):global.jquery.JqXHR<Any> { })
+	function post(url:String, data:ts.AnyOf2<String, global.jquery.PlainObject<Any>>, success:Null<global.jquery.jqxhr.DoneCallback<Any, global.jquery.JqXHR<Any>>>, ?dataType:String):global.jquery.JqXHR<Any>;
 	/**
 		Takes a function and returns a new one that will always have a particular context.
 		
@@ -682,7 +682,7 @@ extern typedef JQueryStatic = {
 	/**
 		Manipulate the queue of functions to be executed on the matched element.
 	**/
-	function queue<T>(element:T, ?queueName:String, ?newQueue:haxe.extern.EitherType<(next:() -> Void) -> Void, std.Array<(next:() -> Void) -> Void>>):{
+	function queue<T>(element:T, ?queueName:String, ?newQueue:ts.AnyOf2<(next:() -> Void) -> Void, std.Array<(next:() -> Void) -> Void>>):{
 		@:native("0")
 		var Zero : String;
 	} & std.Array<(next:() -> Void) -> Void>;
@@ -693,7 +693,7 @@ extern typedef JQueryStatic = {
 	/**
 		Remove a previously-stored piece of data.
 	**/
-	function removeData(element:haxe.extern.EitherType<ts.html.IDocument, haxe.extern.EitherType<ts.html.IElement, haxe.extern.EitherType<ts.html.IWindow, global.jquery.PlainObject<Any>>>>, ?name:String):Void;
+	function removeData(element:ts.AnyOf4<ts.html.IDocument, ts.html.IElement, ts.html.IWindow, global.jquery.PlainObject<Any>>, ?name:String):Void;
 	/**
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 		
@@ -701,9 +701,9 @@ extern typedef JQueryStatic = {
 		
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 	**/
-	@:overload(function<TElement>(duration:haxe.extern.EitherType<Float, String>, easing_complete:haxe.extern.EitherType<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
-	@:overload(function<TElement>(?duration_complete_settings:haxe.extern.EitherType<Float, haxe.extern.EitherType<String, haxe.extern.EitherType<{ /** A string or number determining how long the animation will run. **/ var duration : haxe.extern.EitherType<Float, String>; }, haxe.extern.EitherType<{ /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.extern.EitherType<{ }, haxe.extern.EitherType<() -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>>>>>>):global.jquery.EffectsOptions<TElement> { })
-	function speed<TElement>(duration:haxe.extern.EitherType<Float, String>, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
+	@:overload(function<TElement>(duration:ts.AnyOf2<Float, String>, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
+	@:overload(function<TElement>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : ts.AnyOf2<Float, String>; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, { }, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
+	function speed<TElement>(duration:ts.AnyOf2<Float, String>, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
 	/**
 		Remove the whitespace from the beginning and end of a string.
 	**/
@@ -733,10 +733,10 @@ extern typedef JQueryStatic = {
 		
 		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
 	**/
-	@:overload(function<TR1, UR1, TJ1, UJ1>(deferredT:haxe.extern.EitherType<TR1, haxe.extern.EitherType<global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>>, deferredU:haxe.extern.EitherType<UR1, haxe.extern.EitherType<global.jquery.Promise<UR1, UJ1, Any>, global.jquery.Thenable<UR1>>>):global.jquery.Promise2<TR1, TJ1, Any, UR1, UJ1, Any> { })
-	@:overload(function<TR1, TJ1, TR2, TJ2, TR3, TJ3>(deferredT:haxe.extern.EitherType<global.jquery.Promise3<TR1, TJ1, Any, TR2, TJ2, Any, TR3, TJ3, Any>, global.jquery.Promise2<TR1, TJ1, Any, TR2, TJ2, Any>>):global.jquery.Promise3<TR1, TJ1, Any, TR2, TJ2, Any, TR3, TJ3, Any> { })
-	@:overload(function<TR1, TJ1>(deferred:haxe.extern.EitherType<TR1, haxe.extern.EitherType<global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>>):global.jquery.Promise<TR1, TJ1, Any> { })
-	@:overload(function<TR1, TJ1>(deferreds:haxe.extern.Rest<haxe.extern.EitherType<TR1, haxe.extern.EitherType<global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>>>):global.jquery.Promise<TR1, TJ1, Any> { })
+	@:overload(function<TR1, UR1, TJ1, UJ1>(deferredT:ts.AnyOf3<TR1, global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>, deferredU:ts.AnyOf3<UR1, global.jquery.Promise<UR1, UJ1, Any>, global.jquery.Thenable<UR1>>):global.jquery.Promise2<TR1, TJ1, Any, UR1, UJ1, Any> { })
+	@:overload(function<TR1, TJ1, TR2, TJ2, TR3, TJ3>(deferredT:ts.AnyOf2<global.jquery.Promise3<TR1, TJ1, Any, TR2, TJ2, Any, TR3, TJ3, Any>, global.jquery.Promise2<TR1, TJ1, Any, TR2, TJ2, Any>>):global.jquery.Promise3<TR1, TJ1, Any, TR2, TJ2, Any, TR3, TJ3, Any> { })
+	@:overload(function<TR1, TJ1>(deferred:ts.AnyOf3<TR1, global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>):global.jquery.Promise<TR1, TJ1, Any> { })
+	@:overload(function<TR1, TJ1>(deferreds:haxe.extern.Rest<ts.AnyOf3<TR1, global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>>):global.jquery.Promise<TR1, TJ1, Any> { })
 	@:overload(function(deferreds:haxe.extern.Rest<Any>):global.jquery.Promise<Any, Any, Any> { })
-	function when<TR1, UR1, VR1, TJ1, UJ1, VJ1>(deferredT:haxe.extern.EitherType<TR1, haxe.extern.EitherType<global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>>, deferredU:haxe.extern.EitherType<UR1, haxe.extern.EitherType<global.jquery.Promise<UR1, UJ1, Any>, global.jquery.Thenable<UR1>>>, deferredV:haxe.extern.EitherType<VR1, haxe.extern.EitherType<global.jquery.Promise<VR1, VJ1, Any>, global.jquery.Thenable<VR1>>>):global.jquery.Promise3<TR1, TJ1, Any, UR1, UJ1, Any, VR1, VJ1, Any>;
+	function when<TR1, UR1, VR1, TJ1, UJ1, VJ1>(deferredT:ts.AnyOf3<TR1, global.jquery.Promise<TR1, TJ1, Any>, global.jquery.Thenable<TR1>>, deferredU:ts.AnyOf3<UR1, global.jquery.Promise<UR1, UJ1, Any>, global.jquery.Thenable<UR1>>, deferredV:ts.AnyOf3<VR1, global.jquery.Promise<VR1, VJ1, Any>, global.jquery.Thenable<VR1>>):global.jquery.Promise3<TR1, TJ1, Any, UR1, UJ1, Any, VR1, VJ1, Any>;
 };
