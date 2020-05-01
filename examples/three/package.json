@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "esbuild": "^0.1.18",
     "dts2hx": "^0.3.0"
   },
   "dependencies": {
-    "esbuild": "^0.1.18",
-    "three": "^0.116.0"
+    "three": "0.116.0"
   }
 }

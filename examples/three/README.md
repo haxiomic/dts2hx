@@ -7,7 +7,7 @@ Reproducing the [three.js introduction example](https://threejs.org/docs/#manual
 
 	`npm install`
 
-	A `postinstall` script will run `dts2hx` which generates **externs/three/**
+	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **externs/three/**
 - Build example with
 
 	`haxe build.hxml`
