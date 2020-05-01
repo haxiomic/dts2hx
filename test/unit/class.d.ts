@@ -68,3 +68,11 @@ export class ClassWithValueModule {
 export namespace ClassWithValueModule {
     const valueModuleField: string;
 }
+
+// make sure class extends ClassWithInterfaceStructure not generated IClassWithInterfaceStructure
+export interface ClassWithInterfaceStructure { interfaceField: string }
+export class ClassWithInterfaceStructure { classField: number }
+
+export class ClassExtendsClassWithInterfaceStructure extends ClassWithInterfaceStructure {
+    extendsField: boolean;
+}
