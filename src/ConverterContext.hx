@@ -1022,11 +1022,12 @@ class ConverterContext {
 			return tsTypeParams.indexOf(type) != -1;
 		}
 
-		var hxParameters: Array<ComplexType> = callSignature.parameters.map(s -> {
-			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var tsType = tc.getTypeOfSymbolAtLocation(s, parameterDeclaration);
-			var isOptional = tc.isOptionalParameter(parameterDeclaration);
-			var isRest = parameterDeclaration.dotDotDotToken != null;
+		var hxParameters: Array<ComplexType> = if (callSignature.parameters != null) tc.getExpandedParameters(callSignature).map(s -> {
+			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
+			var isOptional = parameterDeclaration != null && tc.isOptionalParameter(parameterDeclaration);
+			var isRest = parameterDeclaration != null && parameterDeclaration.dotDotDotToken != null;
+			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
+			var tsType = parameterDeclaration != null ? tc.getTypeOfSymbolAtLocation(s, parameterDeclaration) : untyped s.type;
 
 			var hxType = if (isLocalTypeParam(tsType)) {
 				macro :Any;
@@ -1045,6 +1046,7 @@ class ConverterContext {
 						hxType;
 				}
 			}
+
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
 			}
@@ -1052,7 +1054,7 @@ class ConverterContext {
 			var hxParam = TNamed(s.name.toSafeIdent(), hxType);
 
 			return isOptional ? TOptional(hxParam) : hxParam;
-		});
+		}) else [];
 
 		var tsRet = tc.getReturnTypeOfSignature(callSignature);
 
@@ -1302,11 +1304,15 @@ class ConverterContext {
 	function functionFromSignature(signature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Function {
 		var hxTypeParams = if (signature.typeParameters != null) signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, accessContext, enclosingDeclaration)) else [];
 
-		var hxParameters = if (signature.parameters != null ) signature.parameters.map(s -> {
-			var parameterDeclaration: ParameterDeclaration = cast s.valueDeclaration;
-			var hxType = complexTypeFromTsType(tc.getTypeOfSymbolAtLocation(s, parameterDeclaration), accessContext, enclosingDeclaration);
-			var isOptional = tc.isOptionalParameter(parameterDeclaration);
-			var isRest = parameterDeclaration.dotDotDotToken != null;
+		var hxParameters = if (signature.parameters != null ) tc.getExpandedParameters(signature).map(s -> {
+			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
+			var isOptional = parameterDeclaration != null && tc.isOptionalParameter(parameterDeclaration);
+			var isRest = parameterDeclaration != null && parameterDeclaration.dotDotDotToken != null;
+			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
+			var tsType = parameterDeclaration != null ? tc.getTypeOfSymbolAtLocation(s, parameterDeclaration) : untyped s.type;
+
+			var hxType = complexTypeFromTsType(tsType, accessContext, parameterDeclaration);
+
 			// a rest parameter cannot be optional in ts
 			if (isRest) {
 				// hxType should be Array<T>, we want to unwrap this and change to Rest<T>
@@ -1318,11 +1324,14 @@ class ConverterContext {
 						hxType;
 				}
 			}
+
 			if (isOptional) {
 				hxType = HaxeTools.unwrapNull(hxType);
 			}
+
 			// I don't think d.ts files allow default values for parameters but we'll keep this here anyway
-			var value = HaxeTools.primitiveValueToExpr(tc.getConstantValue(parameterDeclaration));
+			var value = parameterDeclaration != null ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(parameterDeclaration)) : null;
+
 			return ({
 				name: s.name.toSafeIdent(),
 				type: hxType,

@@ -1,8 +1,10 @@
 package tool;
 
+import typescript.ts.ObjectType;
+import typescript.ts.TupleTypeReference;
 import typescript.ts.TypeChecker;
 
-using tool.HaxeTools;
+using TsInternal;
 
 private typedef TsType = typescript.ts.Type;
 
@@ -45,6 +47,27 @@ class TsTypeTools {
 	**/
 	public static function isConstructorType(tc: TypeChecker, type: TsType): Bool {
 		return tc.getSignaturesOfType(type, Construct).length > 0;
+	}
+
+	/** Translated from checker.ts (typescript 3.7.4) **/
+	public static function getEffectiveRestType(tc: TypeChecker, restType: TsType): Null<TsType> {
+		return tc.isTupleType(restType) ? getRestArrayTypeOfTupleType(tc, cast restType) : restType;
+	}
+
+	/** Translated from checker.ts (typescript 3.7.4) **/
+	public static function getRestArrayTypeOfTupleType(tc: TypeChecker, type: TupleTypeReference): Null<TsType> {
+		// const restType = getRestTypeOfTupleType(type);
+		// return restType && createArrayType(restType);
+		var restType = getRestTypeOfTupleType(tc, type);
+		return if (restType != null) {
+			tc.createArrayType(restType);
+		} else null;
+	}
+	
+	/** Translated from checker.ts (typescript 3.7.4) **/
+	public static function getRestTypeOfTupleType(tc: TypeChecker, type: TupleTypeReference): Null<TsType> {
+		// return type.target.hasRestElement ? getTypeArguments(type)[type.target.typeParameters!.length - 1] : undefined;
+		return type.target.hasRestElement() ? tc.getTypeArguments(type)[type.target.typeParameters.length - 1] : null;
 	}
 
 	public static function getIndexSignaturesOfType(tc: TypeChecker, type: TsType) {
