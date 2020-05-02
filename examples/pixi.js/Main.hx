@@ -2,10 +2,11 @@
 	pixi.js offers both modular and global declarations. If we use modular, `require('pixi.js')` will be emitted in the javascript, whereas if we use global, it assumes pixi.js is already available in the global scope
 
 	In this example we use the global type declarations so we don't need a bundler after haxe generates the javascript file
+
+	To use the modular version we can change the import to:
+		`import pixi_js.*;`
 **/
-import global.pixi.Application;
-import global.pixi.Text;
-import global.pixi.TextStyle;
+import global.pixi.*;
 
 import js.Browser.*;
 

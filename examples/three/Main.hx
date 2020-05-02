@@ -21,17 +21,17 @@ class Main {
 		canvas.height = std.Math.round(displayHeightPx * pixelRatio);
 		document.body.appendChild(canvas);
 
-		var scene = new three.Scene();
-		var camera = new three.PerspectiveCamera(75, canvas.width/canvas.height, 0.1, 1000);
+		var scene = new Scene();
+		var camera = new PerspectiveCamera(75, canvas.width/canvas.height, 0.1, 1000);
 
-		var renderer = new three.WebGLRenderer({
+		var renderer = new WebGLRenderer({
 			canvas: cast canvas,
 			antialias: true,
 		});
 
-		var geometry = new three.BoxGeometry();
-		var material = new three.MeshBasicMaterial({color: 0x00FF00});
-		var cube = new three.Mesh(geometry, material);
+		var geometry = new BoxGeometry();
+		var material = new MeshBasicMaterial({color: 0x00FF00});
+		var cube = new Mesh(geometry, material);
 
 		scene.add(cube);
 

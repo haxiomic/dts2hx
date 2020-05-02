@@ -4,7 +4,6 @@
   "description": "Reproducing the [three.js introduction example](https://threejs.org/docs/#manual/en/introduction/Creating-a-scene)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "dts2hx --all"
   },
   "author": "",
@@ -13,6 +12,6 @@
     "pixi.js": "5.2.3"
   },
   "devDependencies": {
-    "dts2hx": "^0.3.1"
+    "dts2hx": "^0.3.3"
   }
 }
