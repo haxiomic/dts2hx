@@ -123,3 +123,15 @@ A generic build version of this would work
 - haxe lib directory set to node_modules/@haxe
 - install haxe libraries with the @haxe namespace prefix
 - `npm install @haxe/openfl`
+
+-> For this we just need two changes to the existing npm-haxe
+	- download the haxe version that matches the package version by default
+	- set the haxelib directory to node_modules/@haxe
+
+- Then establish a convention of naming modules @haxe/$name.
+- Should also have 0 dependencies, npm-haxe installs *168*
+
+! Biggest problem is the haxelib .current convention, so maybe we can't use @haxe?
+! Also making @haxe org access public might be hard.
+
+- How do you install haxe 4.0.5 with npm-haxe? Not clear so far

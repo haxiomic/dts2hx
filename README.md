@@ -87,7 +87,7 @@ See [examples/](examples/) for example projects using for popular libraries
 - [ ] Other missing types
 - [ ] Callable classes type II
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
-- [ ] Support complex Rest parameters like unions and tuples
+- [ ] Support union Rest parameters
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
@@ -109,6 +109,7 @@ See [examples/](examples/) for example projects using for popular libraries
         - bake into the externs
         - include a macro that bundles at compile-time
 - [ ] Copy printer improvements to haxe standard library
+- [ ] Integrate [dts-gen](https://github.com/microsoft/dts-gen) so we can generate haxe externs for js libraries with no type definitions
 - [ ] :star2: **1.0 Release**
 
 # FAQ
