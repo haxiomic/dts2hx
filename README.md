@@ -25,7 +25,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
     }
     ```
 
-See [examples/](examples/) for example projects using for popular libraries
+See [examples/](examples/) for example projects using popular typescript libraries
 
 # Roadmap
 - [x] Rewrite in haxe using generated TypeScript compiler externs
