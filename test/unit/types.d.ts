@@ -56,7 +56,7 @@ export namespace Types {
         t: T;
     }
 
-    interface ThisUnion {
+    class ThisUnion {
         thisOrString: this | string;
     }
 
