@@ -43,6 +43,10 @@ class TsTypeTools {
 		return activeFlags;
 	}
 
+	public static function isThisType(type: TsType): Bool {
+		return untyped !!type.isThisType;
+	}
+
 	/**
 		Returns true if type has Construct signatures.
 		See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#335-constructor-types

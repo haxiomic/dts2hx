@@ -703,6 +703,10 @@ class ConverterContext {
 	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true): ComplexType {
+		if (type.isThisType()) {
+			type = tc.getApparentType(type);
+		}
+
 		if (allowAlias && type.aliasSymbol != null) {
 			_currentTypeStack.push(type);
 			var hxType = if (type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0) {
@@ -838,15 +842,17 @@ class ConverterContext {
 	}
 
 	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		var types = intersectionType.types.map(t -> t.isThisType() ? tc.getApparentType(t) : t);
+
 		// in haxe we can only intersect structures, ensure all types will be represented as structures in haxe
-		var hasNonStructureType = intersectionType.types.exists(t -> !isTypeStructureInHaxe(t, accessContext, enclosingDeclaration));
+		var hasNonStructureType = types.exists(t -> !isTypeStructureInHaxe(t, accessContext, enclosingDeclaration));
 
 		var nativelyIntersectable = !hasNonStructureType;
 
 		// in haxe, structure intersections must all have unique field names
 		// convert all types to haxe anons and compare fields to determine if there are any name clashes
 		if (nativelyIntersectable) {
-			var hxAnonTypes = intersectionType.types.map(t -> complexTypeAnonFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+			var hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 			var seenFieldNames = new Map<String, Bool>();
 			var selfCallFields = 0;
 			for (hxAnonType in hxAnonTypes) {
@@ -880,12 +886,12 @@ class ConverterContext {
 
 		// if all types are natively intersectable in haxe return TIntersection, if any are not, rasterize to a single anon
 		return if (nativelyIntersectable) {
-			var hxTypes = intersectionType.types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+			var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 			TIntersection(hxTypes);
 		} else {
-			macro :Dynamic;
+			// macro :Dynamic;
 			// @! todo: avoid recursive type conversion (see jquery)
-			// complexTypeAnonFromTsType(cast tc.getApparentType(intersectionType), accessContext, enclosingDeclaration);
+			complexTypeAnonFromTsType(intersectionType, accessContext, enclosingDeclaration);
 		}
 	}
 
@@ -893,9 +899,8 @@ class ConverterContext {
 		return if (typeParameter.symbol != null) {
 			// there's also a variation `IndexedAccessType` that's not currently handled
 			// `: this` seems to need special handling
-			var isThisType: Bool = untyped typeParameter.isThisType;
 			var constraint: Null<TsType> = untyped typeParameter.constraint;
-			if (isThisType && constraint != null) {
+			if (typeParameter.isThisType() && constraint != null) {
 				complexTypeFromTsType(constraint, accessContext, enclosingDeclaration);
 			} else {
 				TPath({
@@ -942,6 +947,11 @@ class ConverterContext {
 		Generates a haxe anonymous object from the type, type does not have to be a native typescript anon
 	**/
 	function complexTypeAnonFromTsType(tsType: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+		if (tsType.flags & TypeFlags.TypeParameter != 0) {
+			Log.warn('Cannot get anon type from type parameter', tsType);
+			return macro :Dynamic;
+		}
+
 		/** 
 			In typescript, function types have the object flag 'Anonymous' because they're actually represented as the call signatures of anons
 			```typescript

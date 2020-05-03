@@ -55,6 +55,19 @@ export namespace Types {
         structureType: StructureType;
         t: T;
     }
+
+    interface ThisUnion {
+        thisOrString: this | string;
+    }
+
+    // from JQueryStatic
+    class ThisIntersection {
+        _this: this;
+        thisAndAnon: this & {field: string};
+        thisAndAnon2: this & {};
+        thisAndString: this & string;
+        thisAndTp<T>(): this & T;
+    }
     
     /**
      * haxe doesn't support function-types with type parameters
