@@ -49,7 +49,7 @@ export namespace Types {
 
     type Recursive<T> = {
         recursive: Recursive<T>;
-        recursiveRecursive: Recursive<Recursive<number>>;
+        recursiveRecursive: Recursive<Recursive<T>>;
         recursiveString: Recursive<string>;
         recursiveArray: Recursive<T>[];
         structureType: StructureType;
