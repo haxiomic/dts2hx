@@ -78,7 +78,7 @@ See [examples/](examples/) for example projects using popular typescript librari
 
 **Road to Beta**
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
-- [ ] Refined class and interface fields should be renamed rather than removed
+- [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
 - [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Index signatures
@@ -86,19 +86,16 @@ See [examples/](examples/) for example projects using popular typescript librari
 - [ ] Intersection types
 - [ ] Other missing types
 - [ ] Callable classes type II
-- [ ] Review situation with constraints (currently disabled), can issues be resolved?
-- [ ] Support union Rest parameters
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 **Road to 1.0**
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
+- [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
-    - [ ] Support native iteration (by handling `iterator` symbol)
     - [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
         - [ ] enum subset example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
-    - [ ] Support constructor signature in types, maybe with something like `: { function construct(): X }` + magic
-        - Requires [`@:newCall`](https://github.com/HaxeFoundation/haxe/issues/9335) feature
+    - [ ] Support constructor signature in types with `@:genericBuild` abstract
         - If a constructor type is used as a type parameter we can use haxe's `Constructible` type
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
@@ -110,6 +107,8 @@ See [examples/](examples/) for example projects using popular typescript librari
         - include a macro that bundles at compile-time
 - [ ] Copy printer improvements to haxe standard library
 - [ ] Integrate [dts-gen](https://github.com/microsoft/dts-gen) so we can generate haxe externs for js libraries with no type definitions
+- [ ] Review situation with constraints (currently disabled), can issues be resolved?
+- [ ] Support union Rest parameters
 - [ ] :star2: **1.0 Release**
 
 # FAQ
