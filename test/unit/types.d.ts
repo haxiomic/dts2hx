@@ -39,6 +39,22 @@ export namespace Types {
     type UndefinedNumberUnion = number | undefined; // translates to Null<Float>
     type Intersection = number & string;
     type NullOrUndefined = null | undefined;
+
+    type StructureType = {
+        field: number;
+        sub: {
+            subField: string;
+        }
+    }
+
+    type Recursive<T> = {
+        recursive: Recursive<T>;
+        recursiveRecursive: Recursive<Recursive<number>>;
+        recursiveString: Recursive<string>;
+        recursiveArray: Recursive<T>[];
+        structureType: StructureType;
+        t: T;
+    }
     
     /**
      * haxe doesn't support function-types with type parameters
