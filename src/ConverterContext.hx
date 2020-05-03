@@ -703,8 +703,12 @@ class ConverterContext {
 	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true): ComplexType {
+		// alias : this -> real type
 		if (type.isThisType()) {
-			type = tc.getApparentType(type);
+			var thisTarget = type.getThisTypeTarget();
+			if (thisTarget != null) {
+				type = thisTarget;
+			}
 		}
 
 		if (allowAlias && type.aliasSymbol != null) {
@@ -729,8 +733,8 @@ class ConverterContext {
 
 		if (_currentTypeStack.has(type)) {
 			Log.log('Breaking recursive type conversion', type);
+			// debug();
 			_currentTypeStack.pop();
-			debug();
 			return macro :Dynamic;
 		}
 
@@ -842,7 +846,7 @@ class ConverterContext {
 	}
 
 	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var types = intersectionType.types.map(t -> t.isThisType() ? tc.getApparentType(t) : t);
+		var types = intersectionType.types;
 
 		// in haxe we can only intersect structures, ensure all types will be represented as structures in haxe
 		var hasNonStructureType = types.exists(t -> !isTypeStructureInHaxe(t, accessContext, enclosingDeclaration));
@@ -889,9 +893,9 @@ class ConverterContext {
 			var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
 			TIntersection(hxTypes);
 		} else {
-			// macro :Dynamic;
+			macro :Dynamic;
 			// @! todo: avoid recursive type conversion (see jquery)
-			complexTypeAnonFromTsType(intersectionType, accessContext, enclosingDeclaration);
+			// complexTypeAnonFromTsType(intersectionType, accessContext, enclosingDeclaration);
 		}
 	}
 
@@ -899,9 +903,9 @@ class ConverterContext {
 		return if (typeParameter.symbol != null) {
 			// there's also a variation `IndexedAccessType` that's not currently handled
 			// `: this` seems to need special handling
-			var constraint: Null<TsType> = untyped typeParameter.constraint;
-			if (typeParameter.isThisType() && constraint != null) {
-				complexTypeFromTsType(constraint, accessContext, enclosingDeclaration);
+			var thisTarget: Null<TsType> = typeParameter.getThisTypeTarget();
+			if (typeParameter.isThisType() && thisTarget != null) {
+				complexTypeFromTsType(thisTarget, accessContext, enclosingDeclaration);
 			} else {
 				TPath({
 					name: typeParameter.symbol.name.toSafeTypeName(),
@@ -967,7 +971,7 @@ class ConverterContext {
 
 		if (tsType.getConstructSignatures().length > 0) {
 			Log.warn('Type has construct signature but this is currently unhandled', tsType);
-			debug();
+			// debug();
 		}
 
 		// for the special case of a single call signature and no props we can return a function type
@@ -1203,7 +1207,7 @@ class ConverterContext {
 			symbol.valueDeclaration;
 		} else {
 			Log.warn('Missing valueDeclaration for field symbol', symbol);
-			debug();
+			// debug();
 			null;
 		}
 		

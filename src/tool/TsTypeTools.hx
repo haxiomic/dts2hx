@@ -47,6 +47,10 @@ class TsTypeTools {
 		return untyped !!type.isThisType;
 	}
 
+	public static function getThisTypeTarget(type: TsType): Null<TsType> {
+		return untyped type.constraint; // don't use getConstraint()
+	}
+
 	/**
 		Returns true if type has Construct signatures.
 		See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#335-constructor-types
