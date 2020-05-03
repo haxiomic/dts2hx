@@ -65,7 +65,7 @@ package node.repl;
 		given line of input. If not specified in the REPL options, this is an async wrapper
 		for the JavaScript `eval()` function.
 	**/
-	final eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<ts.lib.IError>, result:Dynamic) -> Void) -> Void;
+	final eval : REPLEval;
 	/**
 		Specified in the REPL options, this is a value indicating whether the default
 		`writer` function should include ANSI color styling to REPL output.
@@ -87,11 +87,11 @@ package node.repl;
 		each command before writing to `outputStream`. If not specified in the REPL options,
 		this will be a wrapper for `util.inspect`.
 	**/
-	final writer : (obj:Dynamic) -> String;
+	final writer : REPLWriter;
 	/**
 		Specified in the REPL options, this is the function to use for custom Tab auto-completion.
 	**/
-	final completer : ts.AnyOf2<(line:String) -> ts.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.Tuple2<std.Array<String>, String>) -> Void) -> Dynamic>;
+	final completer : ts.AnyOf2<node.readline.Completer, node.readline.AsyncCompleter>;
 	/**
 		Specified in the REPL options, this is a flag that specifies whether the default `eval`
 		function should execute all JavaScript commands in strict mode or default (sloppy) mode.
@@ -105,7 +105,7 @@ package node.repl;
 		Used to add new `.`-prefixed commands to the REPL instance. Such commands are invoked
 		by typing a `.` followed by the `keyword`.
 	**/
-	function defineCommand(keyword:String, cmd:ts.AnyOf2<(text:String) -> Void, REPLCommand>):Void;
+	function defineCommand(keyword:String, cmd:ts.AnyOf2<REPLCommandAction, REPLCommand>):Void;
 	/**
 		Readies the REPL instance for input from the user, printing the configured `prompt` to a
 		new line in the `output` and resuming the `input` to accept new input.

@@ -1,15 +1,15 @@
 package ts.html;
 typedef IVTTCue = {
-	var align : String;
-	var line : ts.AnyOf2<Float, String>;
-	var lineAlign : String;
-	var position : ts.AnyOf2<Float, String>;
-	var positionAlign : String;
+	var align : CanvasTextAlign;
+	var line : LineAndPositionSetting;
+	var lineAlign : LineAlignSetting;
+	var position : LineAndPositionSetting;
+	var positionAlign : PositionAlignSetting;
 	var region : Null<IVTTRegion>;
 	var size : Float;
 	var snapToLines : Bool;
 	var text : String;
-	var vertical : String;
+	var vertical : DirectionSetting;
 	function getCueAsHTML():IDocumentFragment;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -60,7 +60,7 @@ typedef IVTTCue = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -71,7 +71,7 @@ typedef IVTTCue = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	var endTime : Float;
 	var id : String;

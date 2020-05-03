@@ -1,5 +1,5 @@
 package ts.lib.intl;
 typedef DateTimeFormatPart = {
-	var type : String;
+	var type : DateTimeFormatPartTypes;
 	var value : String;
 };

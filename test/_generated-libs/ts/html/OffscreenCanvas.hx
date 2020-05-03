@@ -29,7 +29,7 @@ package ts.html;
 	@:overload(function(contextId:String, ?options:ImageBitmapRenderingContextSettings):Null<IImageBitmapRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGLRenderingContext> { })
 	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGL2RenderingContext> { })
-	@:overload(function(contextId:String, ?options:Dynamic):Null<ts.AnyOf4<IImageBitmapRenderingContext, IOffscreenCanvasRenderingContext2D, IWebGL2RenderingContext, IWebGLRenderingContext>> { })
+	@:overload(function(contextId:OffscreenRenderingContextId, ?options:Dynamic):Null<ts.AnyOf4<IImageBitmapRenderingContext, IOffscreenCanvasRenderingContext2D, IWebGL2RenderingContext, IWebGLRenderingContext>> { })
 	function getContext(contextId:String, ?options:CanvasRenderingContext2DSettings):Null<IOffscreenCanvasRenderingContext2D>;
 	/**
 		Returns a newly created ImageBitmap object with the image in the OffscreenCanvas object. The image in the OffscreenCanvas object is replaced with a new blank image.

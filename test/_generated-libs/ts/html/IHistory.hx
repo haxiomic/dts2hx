@@ -4,7 +4,7 @@ package ts.html;
 **/
 typedef IHistory = {
 	final length : Float;
-	var scrollRestoration : String;
+	var scrollRestoration : ScrollRestoration;
 	final state : Dynamic;
 	function back():Void;
 	function forward():Void;

@@ -1,9 +1,9 @@
 package ts.html;
 typedef IPermissionRequest = {
-	final state : String;
+	final state : MSWebViewPermissionState;
 	function defer():Void;
 	final id : Float;
-	final type : String;
+	final type : MSWebViewPermissionType;
 	final uri : String;
 	function allow():Void;
 	function deny():Void;

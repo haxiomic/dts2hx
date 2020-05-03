@@ -50,7 +50,7 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -61,14 +61,14 @@ package ts.html;
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final canTrickleIceCandidates : Null<Bool>;
-	final connectionState : String;
+	final connectionState : RTCPeerConnectionState;
 	final currentLocalDescription : Null<IRTCSessionDescription>;
 	final currentRemoteDescription : Null<IRTCSessionDescription>;
-	final iceConnectionState : String;
-	final iceGatheringState : String;
+	final iceConnectionState : RTCIceTransportState;
+	final iceGatheringState : RTCIceGathererState;
 	final idpErrorInfo : Null<String>;
 	final idpLoginUrl : Null<String>;
 	final localDescription : Null<IRTCSessionDescription>;
@@ -87,7 +87,7 @@ package ts.html;
 	final pendingRemoteDescription : Null<IRTCSessionDescription>;
 	final remoteDescription : Null<IRTCSessionDescription>;
 	final sctp : Null<IRTCSctpTransport>;
-	final signalingState : String;
+	final signalingState : RTCSignalingState;
 	function addIceCandidate(candidate:ts.AnyOf2<IRTCIceCandidate, RTCIceCandidateInit>):ts.lib.IPromise<Void>;
 	function addTrack(track:IMediaStreamTrack, streams:haxe.extern.Rest<IMediaStream>):IRTCRtpSender;
 	function addTransceiver(trackOrKind:ts.AnyOf2<String, IMediaStreamTrack>, ?init:RTCRtpTransceiverInit):ts.lib.IRTCRtpTransceiver;

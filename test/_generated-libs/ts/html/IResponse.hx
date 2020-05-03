@@ -9,7 +9,7 @@ typedef IResponse = {
 	final status : Float;
 	final statusText : String;
 	final trailer : ts.lib.IPromise<ts.lib.IHeaders>;
-	final type : String;
+	final type : ResponseType;
 	final url : String;
 	function clone():IResponse;
 	final body : Null<IReadableStream<ts.lib.IUint8Array>>;

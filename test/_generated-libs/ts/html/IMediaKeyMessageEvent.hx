@@ -4,7 +4,7 @@ package ts.html;
 **/
 typedef IMediaKeyMessageEvent = {
 	final message : ts.lib.IArrayBuffer;
-	final messageType : String;
+	final messageType : MediaKeyMessageType;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

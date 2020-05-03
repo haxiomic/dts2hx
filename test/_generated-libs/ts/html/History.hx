@@ -5,7 +5,7 @@ package ts.html;
 @:native("History") extern class History {
 	function new();
 	final length : Float;
-	var scrollRestoration : String;
+	var scrollRestoration : ScrollRestoration;
 	final state : Dynamic;
 	function back():Void;
 	function forward():Void;

@@ -6,7 +6,7 @@ package ts.html;
 	function new();
 	final algorithm : KeyAlgorithm;
 	final extractable : Bool;
-	final type : String;
-	final usages : std.Array<String>;
+	final type : KeyType;
+	final usages : std.Array<KeyUsage>;
 	static var prototype : ICryptoKey;
 }

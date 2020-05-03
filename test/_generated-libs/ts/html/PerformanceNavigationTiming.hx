@@ -11,7 +11,7 @@ package ts.html;
 	final loadEventEnd : Float;
 	final loadEventStart : Float;
 	final redirectCount : Float;
-	final type : String;
+	final type : NavigationType;
 	final unloadEventEnd : Float;
 	final unloadEventStart : Float;
 	function toJSON():Dynamic;

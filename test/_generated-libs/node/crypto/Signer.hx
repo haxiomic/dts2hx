@@ -1,8 +1,8 @@
 package node.crypto;
 typedef Signer = {
-	@:overload(function(data:String, input_encoding:String):Signer { })
+	@:overload(function(data:String, input_encoding:Utf8AsciiLatin1Encoding):Signer { })
 	function update(data:ts.AnyOf12<String, global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>):Signer;
-	@:overload(function(private_key:ts.AnyOf4<String, global.IBuffer, KeyObject, SignPrivateKeyInput>, output_format:String):String { })
+	@:overload(function(private_key:ts.AnyOf4<String, global.IBuffer, KeyObject, SignPrivateKeyInput>, output_format:HexBase64Latin1Encoding):String { })
 	function sign(private_key:ts.AnyOf4<String, global.IBuffer, KeyObject, SignPrivateKeyInput>):global.IBuffer;
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:(?err:ts.lib.IError) -> Void):Bool { })

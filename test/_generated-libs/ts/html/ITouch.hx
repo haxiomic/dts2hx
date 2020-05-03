@@ -17,5 +17,5 @@ typedef ITouch = {
 	final screenX : Float;
 	final screenY : Float;
 	final target : IEventTarget;
-	final touchType : String;
+	final touchType : TouchType;
 };

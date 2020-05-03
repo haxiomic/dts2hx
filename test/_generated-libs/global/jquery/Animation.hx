@@ -43,19 +43,19 @@ typedef Animation<TElement> = {
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/
-	function always(alwaysCallback:ts.AnyOf2<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void>>, alwaysCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void>>>):Animation<TElement>;
+	function always(alwaysCallback:TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Null<Bool>, Any, Any>>, alwaysCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Null<Bool>, Any, Any>>>):Animation<TElement>;
 	/**
 		Add handlers to be called when the Deferred object is resolved.
 	**/
-	function done(doneCallback:ts.AnyOf2<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void>>, doneCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Null<Bool>, v:Any, r:haxe.extern.Rest<Any>) -> Void>>>):Animation<TElement>;
+	function done(doneCallback:TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Null<Bool>, Any, Any>>, doneCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Null<Bool>, Any, Any>>>):Animation<TElement>;
 	/**
 		Add handlers to be called when the Deferred object is rejected.
 	**/
-	function fail(failCallback:ts.AnyOf2<(t:Animation<TElement>, u:Bool, v:Any, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Bool, v:Any, r:haxe.extern.Rest<Any>) -> Void>>, failCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Animation<TElement>, u:Bool, v:Any, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Bool, v:Any, r:haxe.extern.Rest<Any>) -> Void>>>):Animation<TElement>;
+	function fail(failCallback:TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Bool, Any, Any>>, failCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Bool, Any, Any>>>):Animation<TElement>;
 	/**
 		Add handlers to be called when the Deferred object generates progress notifications.
 	**/
-	function progress(progressCallback:ts.AnyOf2<(t:Animation<TElement>, u:Float, v:Float, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Float, v:Float, r:haxe.extern.Rest<Any>) -> Void>>, progressCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Animation<TElement>, u:Float, v:Float, r:haxe.extern.Rest<Any>) -> Void, std.Array<(t:Animation<TElement>, u:Float, v:Float, r:haxe.extern.Rest<Any>) -> Void>>>):Animation<TElement>;
+	function progress(progressCallback:TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Float, Float, Any>>, progressCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<Animation<TElement>, Float, Float, Any>>>):Animation<TElement>;
 	/**
 		Return a Deferred's Promise object.
 		

@@ -1,7 +1,7 @@
 package ts.html;
 @:native("RTCIceGatherer") extern class RTCIceGatherer {
 	function new(options:RTCIceGatherOptions);
-	final component : String;
+	final component : RTCIceComponent;
 	var onerror : Null<(ev:IEvent) -> Dynamic>;
 	var onlocalcandidate : Null<(ev:IRTCIceGathererEvent) -> Dynamic>;
 	function createAssociatedGatherer():IRTCIceGatherer;
@@ -32,14 +32,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
 	function msGetStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;

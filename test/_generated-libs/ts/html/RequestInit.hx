@@ -19,7 +19,7 @@ typedef RequestInit = {
 		A Headers object, an object literal, or an array of two-item arrays to set request's headers.
 	**/
 	@:optional
-	var headers : ts.AnyOf3<ts.lib.IHeaders, std.Array<std.Array<String>>, Dynamic>;
+	var headers : ts.AnyOf3<ts.lib.IHeaders, std.Array<std.Array<String>>, { }>;
 	/**
 		A cryptographic hash of the resource to be fetched by request. Sets request's integrity.
 	**/

@@ -10,15 +10,15 @@ typedef IIDBCursorWithValue = {
 	/**
 		Returns the direction ("next", "nextunique", "prev" or "prevunique") of the cursor.
 	**/
-	final direction : String;
+	final direction : IDBCursorDirection;
 	/**
 		Returns the key of the cursor. Throws a "InvalidStateError" DOMException if the cursor is advancing or is finished.
 	**/
-	final key : ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>;
+	final key : IDBValidKey;
 	/**
 		Returns the effective key of the cursor. Throws a "InvalidStateError" DOMException if the cursor is advancing or is finished.
 	**/
-	final primaryKey : ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>;
+	final primaryKey : IDBValidKey;
 	/**
 		Returns the IDBObjectStore or IDBIndex the cursor was opened from.
 	**/
@@ -35,7 +35,7 @@ typedef IIDBCursorWithValue = {
 	/**
 		Advances the cursor to the next record in range matching or after key and primaryKey. Throws an "InvalidAccessError" DOMException if the source is not an index.
 	**/
-	function continuePrimaryKey(key:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, primaryKey:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):Void;
+	function continuePrimaryKey(key:IDBValidKey, primaryKey:IDBValidKey):Void;
 	/**
 		Delete the record pointed at by the cursor with a new value.
 		
@@ -49,5 +49,5 @@ typedef IIDBCursorWithValue = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function update(value:Dynamic):IIDBRequest<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function update(value:Dynamic):IIDBRequest<IDBValidKey>;
 };

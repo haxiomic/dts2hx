@@ -13,8 +13,8 @@ typedef IAnalyserNode = {
 	function getFloatFrequencyData(array:ts.lib.IFloat32Array):Void;
 	function getFloatTimeDomainData(array:ts.lib.IFloat32Array):Void;
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

@@ -128,11 +128,11 @@ package ts.html;
 		Gets or sets the volume level for audio portions of the media element.
 	**/
 	var volume : Float;
-	function addTextTrack(kind:String, ?label:String, ?language:String):ITextTrack;
+	function addTextTrack(kind:TextTrackKind, ?label:String, ?language:String):ITextTrack;
 	/**
 		Returns a string that specifies whether the client can play a given media resource type.
 	**/
-	function canPlayType(type:String):String;
+	function canPlayType(type:String):CanPlayTypeResult;
 	/**
 		Resets the audio or video object and loads a new media resource.
 	**/
@@ -266,7 +266,7 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -285,7 +285,7 @@ package ts.html;
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	var accessKey : String;
 	final accessKeyLabel : String;
@@ -402,9 +402,9 @@ package ts.html;
 	**/
 	function hasAttributes():Bool;
 	function hasPointerCapture(pointerId:Float):Bool;
-	function insertAdjacentElement(position:String, insertedElement:IElement):Null<IElement>;
-	function insertAdjacentHTML(where:String, html:String):Void;
-	function insertAdjacentText(where:String, text:String):Void;
+	function insertAdjacentElement(position:InsertPosition, insertedElement:IElement):Null<IElement>;
+	function insertAdjacentHTML(where:InsertPosition, html:String):Void;
+	function insertAdjacentText(where:InsertPosition, text:String):Void;
 	/**
 		Returns true if matching selectors against element's root yields element, and false otherwise.
 	**/
@@ -754,7 +754,7 @@ package ts.html;
 	/**
 		Fires when an error occurs during object loading.
 	**/
-	var onerror : Null<OnErrorEventHandlerNonNull>;
+	var onerror : OnErrorEventHandler;
 	/**
 		Fires when the object receives focus.
 	**/

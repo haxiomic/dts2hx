@@ -1,7 +1,7 @@
 package node.http;
 @:jsRequire("http", "Server") extern class Server extends node.net.Server {
-	@:overload(function(options:ServerOptions, ?requestListener:(req:IncomingMessage, res:ServerResponse) -> Void):Server { })
-	function new(?requestListener:(req:IncomingMessage, res:ServerResponse) -> Void);
+	@:overload(function(options:ServerOptions, ?requestListener:RequestListener):Server { })
+	function new(?requestListener:RequestListener);
 	@:overload(function(callback:() -> Void):Server { })
 	function setTimeout(?msecs:Float, ?callback:() -> Void):Server;
 	/**

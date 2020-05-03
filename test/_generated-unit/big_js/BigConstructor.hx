@@ -10,7 +10,7 @@ typedef BigConstructor = {
 	**/
 	@:overload(function():BigConstructor { })
 	@:selfCall
-	function call(value:ts.AnyOf3<String, Float, IBig>):IBig;
+	function call(value:BigSource):IBig;
 	/**
 		The maximum number of decimal places of the results of operations involving division.
 		It is relevant only to the div and sqrt methods, and the pow method when the exponent is negative.

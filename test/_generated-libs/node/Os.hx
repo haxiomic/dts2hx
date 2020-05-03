@@ -13,7 +13,7 @@ package node;
 	@:overload(function(?options:{ var encoding : String; }):node.os.UserInfo<String> { })
 	static function userInfo(options:{ var encoding : String; }):node.os.UserInfo<global.IBuffer>;
 	static function arch():String;
-	static function platform():String;
+	static function platform():global.nodejs.Platform;
 	static function tmpdir():String;
 	static function endianness():String;
 	/**

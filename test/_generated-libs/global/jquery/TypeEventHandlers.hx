@@ -1,55 +1,55 @@
 package global.jquery;
 typedef TypeEventHandlers<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	@:optional
-	var change : ts.AnyOf3<Bool, Dynamic, (t:ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var change : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var resize : ts.AnyOf3<Bool, Dynamic, (t:ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var resize : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var scroll : ts.AnyOf3<Bool, Dynamic, (t:ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var scroll : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var select : ts.AnyOf3<Bool, Dynamic, (t:SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var select : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var submit : ts.AnyOf3<Bool, Dynamic, (t:SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var submit : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var click : ts.AnyOf3<Bool, Dynamic, (t:ClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var click : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var contextmenu : ts.AnyOf3<Bool, Dynamic, (t:ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var contextmenu : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var dblclick : ts.AnyOf3<Bool, Dynamic, (t:DoubleClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var dblclick : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, DoubleClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mousedown : ts.AnyOf3<Bool, Dynamic, (t:MouseDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mousedown : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mouseenter : ts.AnyOf3<Bool, Dynamic, (t:MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mouseenter : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mouseleave : ts.AnyOf3<Bool, Dynamic, (t:MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mouseleave : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mousemove : ts.AnyOf3<Bool, Dynamic, (t:MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mousemove : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mouseout : ts.AnyOf3<Bool, Dynamic, (t:MouseOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mouseout : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mouseover : ts.AnyOf3<Bool, Dynamic, (t:MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mouseover : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var mouseup : ts.AnyOf3<Bool, Dynamic, (t:MouseUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var mouseup : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var keydown : ts.AnyOf3<Bool, Dynamic, (t:KeyDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var keydown : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, KeyDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var keypress : ts.AnyOf3<Bool, Dynamic, (t:KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var keypress : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var keyup : ts.AnyOf3<Bool, Dynamic, (t:KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var keyup : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var touchcancel : ts.AnyOf3<Bool, Dynamic, (t:TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var touchcancel : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var touchend : ts.AnyOf3<Bool, Dynamic, (t:TouchEndEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var touchend : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchEndEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var touchmove : ts.AnyOf3<Bool, Dynamic, (t:TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var touchmove : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var touchstart : ts.AnyOf3<Bool, Dynamic, (t:TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var touchstart : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var blur : ts.AnyOf3<Bool, Dynamic, (t:BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var blur : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var focus : ts.AnyOf3<Bool, Dynamic, (t:FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var focus : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var focusin : ts.AnyOf3<Bool, Dynamic, (t:FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var focusin : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 	@:optional
-	var focusout : ts.AnyOf3<Bool, Dynamic, (t:FocusOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>, args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	var focusout : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, FocusOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
 };

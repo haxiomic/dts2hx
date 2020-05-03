@@ -12,5 +12,5 @@ typedef TcpSocketConnectOpts = {
 	@:optional
 	var family : Float;
 	@:optional
-	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void) -> Void;
+	var lookup : LookupFunction;
 };

@@ -6,8 +6,8 @@ typedef IConvolverNode = {
 	var buffer : Null<IAudioBuffer>;
 	var normalize : Bool;
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

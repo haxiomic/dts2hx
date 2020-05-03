@@ -5,5 +5,5 @@ typedef PushSubscriptionJSON = {
 	@:optional
 	var expirationTime : Float;
 	@:optional
-	var keys : Dynamic;
+	var keys : { };
 };

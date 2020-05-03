@@ -1,9 +1,9 @@
 package ts.html;
 typedef IMSFIDOCredentialAssertion = {
-	final algorithm : ts.AnyOf2<String, Algorithm>;
+	final algorithm : AlgorithmIdentifier;
 	final attestation : Dynamic;
 	final publicKey : String;
-	final transportHints : std.Array<String>;
+	final transportHints : std.Array<MSTransportType>;
 	final id : String;
 	final type : String;
 };

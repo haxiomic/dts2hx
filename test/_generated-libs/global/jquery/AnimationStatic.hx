@@ -11,5 +11,5 @@ typedef AnimationStatic = {
 		
 		You can override the default process for creating a tween in order to provide your own tween object by using `jQuery.Animation.tweener( props, callback( prop, value ) )`.
 	**/
-	function tweener(props:String, callback:(propName:String, finalValue:Float) -> Tween<Dynamic>):Void;
+	function tweener(props:String, callback:Tweener<Dynamic>):Void;
 };

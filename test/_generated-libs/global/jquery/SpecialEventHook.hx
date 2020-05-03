@@ -25,7 +25,7 @@ typedef SpecialEventHook<TTarget, TData> = ts.AnyOf13<{
 		
 		This hook can perform whatever processing it desires, including attaching its own event handlers to the element or to other elements and recording setup information on the element using the `jQuery.data()` method. If the setup hook wants jQuery to add a browser event (via `addEventListener` or `attachEvent`, depending on browser) it should return `false`. In all other cases, jQuery will not add the browser event, but will continue all its other bookkeeping for the event. This would be appropriate, for example, if the event was never fired by the browser but invoked by `.trigger()`. To attach the jQuery event handler in the setup hook, use the `eventHandle` argument.
 	**/
-	function setup(data:TData, namespaces:String, eventHandle:(t:TriggeredEvent<TTarget, TData, Dynamic, Dynamic>, args:haxe.extern.Rest<Dynamic>) -> Dynamic):ts.AnyOf2<Bool, Void>;
+	function setup(data:TData, namespaces:String, eventHandle:EventHandlerBase<TTarget, TriggeredEvent<TTarget, TData, Dynamic, Dynamic>>):ts.AnyOf2<Bool, Void>;
 }, {
 	/**
 		The teardown hook is called when the final event of a particular type is removed from an element. The `this` keyword will be a reference to the element where the event is being cleaned up. This hook should return `false` if it wants jQuery to remove the event from the browser's event system (via `removeEventListener` or `detachEvent`). In most cases, the setup and teardown hooks should return the same value.

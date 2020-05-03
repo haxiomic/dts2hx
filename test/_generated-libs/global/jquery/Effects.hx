@@ -8,7 +8,7 @@ typedef Effects = {
 		Globally disable all animations.
 	**/
 	var off : Bool;
-	var step : PlainObject<(fx:Tween<ts.AnyOf4<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment>>) -> Void>;
+	var step : PlainObject<AnimationHook<Node>>;
 	/**
 		_overridable_ Clears up the `setInterval`
 	**/

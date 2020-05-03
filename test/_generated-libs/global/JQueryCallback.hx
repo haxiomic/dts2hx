@@ -3,7 +3,7 @@ typedef JQueryCallback = {
 	/**
 		Add a callback or a collection of callbacks to a callback list.
 	**/
-	function add(callback:ts.AnyOf2<ts.lib.IFunction, std.Array<ts.lib.IFunction>>, callbacks:haxe.extern.Rest<ts.AnyOf2<ts.lib.IFunction, std.Array<ts.lib.IFunction>>>):JQueryCallback;
+	function add(callback:global.jquery.TypeOrArray<ts.lib.IFunction>, callbacks:haxe.extern.Rest<global.jquery.TypeOrArray<ts.lib.IFunction>>):JQueryCallback;
 	/**
 		Disable a callback list from doing anything more.
 	**/

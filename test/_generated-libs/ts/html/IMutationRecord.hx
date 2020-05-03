@@ -38,5 +38,5 @@ typedef IMutationRecord = {
 	/**
 		Returns "attributes" if it was an attribute mutation. "characterData" if it was a mutation to a CharacterData node. And "childList" if it was a mutation to the tree of nodes.
 	**/
-	final type : String;
+	final type : MutationRecordType;
 };

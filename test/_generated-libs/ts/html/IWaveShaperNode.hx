@@ -4,10 +4,10 @@ package ts.html;
 **/
 typedef IWaveShaperNode = {
 	var curve : Null<ts.lib.IFloat32Array>;
-	var oversample : String;
+	var oversample : OverSampleType;
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

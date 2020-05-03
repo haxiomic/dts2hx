@@ -1,6 +1,6 @@
 package node.child_process;
 typedef ExecSyncOptionsWithStringEncoding = {
-	var encoding : String;
+	var encoding : global.BufferEncoding;
 	@:optional
 	var input : ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>;
 	@:optional

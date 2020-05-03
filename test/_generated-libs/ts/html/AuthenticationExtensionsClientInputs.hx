@@ -3,7 +3,7 @@ typedef AuthenticationExtensionsClientInputs = {
 	@:optional
 	var appid : String;
 	@:optional
-	var authnSel : std.Array<ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>>;
+	var authnSel : AuthenticatorSelectionList;
 	@:optional
 	var exts : Bool;
 	@:optional

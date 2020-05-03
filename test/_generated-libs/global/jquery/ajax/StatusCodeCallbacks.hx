@@ -2,1202 +2,1202 @@ package global.jquery.ajax;
 typedef StatusCodeCallbacks<TContext> = {
 	@:native("200")
 	@:optional
-	var TwoZeroZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroZero : SuccessCallback<TContext>;
 	@:native("201")
 	@:optional
-	var TwoZeroOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroOne : SuccessCallback<TContext>;
 	@:native("202")
 	@:optional
-	var TwoZeroTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroTwo : SuccessCallback<TContext>;
 	@:native("203")
 	@:optional
-	var TwoZeroThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroThree : SuccessCallback<TContext>;
 	@:native("204")
 	@:optional
-	var TwoZeroFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroFour : SuccessCallback<TContext>;
 	@:native("205")
 	@:optional
-	var TwoZeroFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroFive : SuccessCallback<TContext>;
 	@:native("206")
 	@:optional
-	var TwoZeroSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroSix : SuccessCallback<TContext>;
 	@:native("207")
 	@:optional
-	var TwoZeroSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroSeven : SuccessCallback<TContext>;
 	@:native("208")
 	@:optional
-	var TwoZeroEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroEight : SuccessCallback<TContext>;
 	@:native("209")
 	@:optional
-	var TwoZeroNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoZeroNine : SuccessCallback<TContext>;
 	@:native("210")
 	@:optional
-	var TwoOneZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneZero : SuccessCallback<TContext>;
 	@:native("211")
 	@:optional
-	var TwoOneOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneOne : SuccessCallback<TContext>;
 	@:native("212")
 	@:optional
-	var TwoOneTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneTwo : SuccessCallback<TContext>;
 	@:native("213")
 	@:optional
-	var TwoOneThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneThree : SuccessCallback<TContext>;
 	@:native("214")
 	@:optional
-	var TwoOneFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneFour : SuccessCallback<TContext>;
 	@:native("215")
 	@:optional
-	var TwoOneFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneFive : SuccessCallback<TContext>;
 	@:native("216")
 	@:optional
-	var TwoOneSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneSix : SuccessCallback<TContext>;
 	@:native("217")
 	@:optional
-	var TwoOneSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneSeven : SuccessCallback<TContext>;
 	@:native("218")
 	@:optional
-	var TwoOneEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneEight : SuccessCallback<TContext>;
 	@:native("219")
 	@:optional
-	var TwoOneNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoOneNine : SuccessCallback<TContext>;
 	@:native("220")
 	@:optional
-	var TwoTwoZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoZero : SuccessCallback<TContext>;
 	@:native("221")
 	@:optional
-	var TwoTwoOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoOne : SuccessCallback<TContext>;
 	@:native("222")
 	@:optional
-	var TwoTwoTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoTwo : SuccessCallback<TContext>;
 	@:native("223")
 	@:optional
-	var TwoTwoThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoThree : SuccessCallback<TContext>;
 	@:native("224")
 	@:optional
-	var TwoTwoFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoFour : SuccessCallback<TContext>;
 	@:native("225")
 	@:optional
-	var TwoTwoFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoFive : SuccessCallback<TContext>;
 	@:native("226")
 	@:optional
-	var TwoTwoSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoSix : SuccessCallback<TContext>;
 	@:native("227")
 	@:optional
-	var TwoTwoSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoSeven : SuccessCallback<TContext>;
 	@:native("228")
 	@:optional
-	var TwoTwoEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoEight : SuccessCallback<TContext>;
 	@:native("229")
 	@:optional
-	var TwoTwoNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoTwoNine : SuccessCallback<TContext>;
 	@:native("230")
 	@:optional
-	var TwoThreeZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeZero : SuccessCallback<TContext>;
 	@:native("231")
 	@:optional
-	var TwoThreeOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeOne : SuccessCallback<TContext>;
 	@:native("232")
 	@:optional
-	var TwoThreeTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeTwo : SuccessCallback<TContext>;
 	@:native("233")
 	@:optional
-	var TwoThreeThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeThree : SuccessCallback<TContext>;
 	@:native("234")
 	@:optional
-	var TwoThreeFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeFour : SuccessCallback<TContext>;
 	@:native("235")
 	@:optional
-	var TwoThreeFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeFive : SuccessCallback<TContext>;
 	@:native("236")
 	@:optional
-	var TwoThreeSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeSix : SuccessCallback<TContext>;
 	@:native("237")
 	@:optional
-	var TwoThreeSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeSeven : SuccessCallback<TContext>;
 	@:native("238")
 	@:optional
-	var TwoThreeEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeEight : SuccessCallback<TContext>;
 	@:native("239")
 	@:optional
-	var TwoThreeNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoThreeNine : SuccessCallback<TContext>;
 	@:native("240")
 	@:optional
-	var TwoFourZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourZero : SuccessCallback<TContext>;
 	@:native("241")
 	@:optional
-	var TwoFourOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourOne : SuccessCallback<TContext>;
 	@:native("242")
 	@:optional
-	var TwoFourTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourTwo : SuccessCallback<TContext>;
 	@:native("243")
 	@:optional
-	var TwoFourThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourThree : SuccessCallback<TContext>;
 	@:native("244")
 	@:optional
-	var TwoFourFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourFour : SuccessCallback<TContext>;
 	@:native("245")
 	@:optional
-	var TwoFourFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourFive : SuccessCallback<TContext>;
 	@:native("246")
 	@:optional
-	var TwoFourSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourSix : SuccessCallback<TContext>;
 	@:native("247")
 	@:optional
-	var TwoFourSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourSeven : SuccessCallback<TContext>;
 	@:native("248")
 	@:optional
-	var TwoFourEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourEight : SuccessCallback<TContext>;
 	@:native("249")
 	@:optional
-	var TwoFourNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFourNine : SuccessCallback<TContext>;
 	@:native("250")
 	@:optional
-	var TwoFiveZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveZero : SuccessCallback<TContext>;
 	@:native("251")
 	@:optional
-	var TwoFiveOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveOne : SuccessCallback<TContext>;
 	@:native("252")
 	@:optional
-	var TwoFiveTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveTwo : SuccessCallback<TContext>;
 	@:native("253")
 	@:optional
-	var TwoFiveThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveThree : SuccessCallback<TContext>;
 	@:native("254")
 	@:optional
-	var TwoFiveFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveFour : SuccessCallback<TContext>;
 	@:native("255")
 	@:optional
-	var TwoFiveFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveFive : SuccessCallback<TContext>;
 	@:native("256")
 	@:optional
-	var TwoFiveSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveSix : SuccessCallback<TContext>;
 	@:native("257")
 	@:optional
-	var TwoFiveSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveSeven : SuccessCallback<TContext>;
 	@:native("258")
 	@:optional
-	var TwoFiveEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveEight : SuccessCallback<TContext>;
 	@:native("259")
 	@:optional
-	var TwoFiveNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoFiveNine : SuccessCallback<TContext>;
 	@:native("260")
 	@:optional
-	var TwoSixZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixZero : SuccessCallback<TContext>;
 	@:native("261")
 	@:optional
-	var TwoSixOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixOne : SuccessCallback<TContext>;
 	@:native("262")
 	@:optional
-	var TwoSixTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixTwo : SuccessCallback<TContext>;
 	@:native("263")
 	@:optional
-	var TwoSixThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixThree : SuccessCallback<TContext>;
 	@:native("264")
 	@:optional
-	var TwoSixFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixFour : SuccessCallback<TContext>;
 	@:native("265")
 	@:optional
-	var TwoSixFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixFive : SuccessCallback<TContext>;
 	@:native("266")
 	@:optional
-	var TwoSixSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixSix : SuccessCallback<TContext>;
 	@:native("267")
 	@:optional
-	var TwoSixSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixSeven : SuccessCallback<TContext>;
 	@:native("268")
 	@:optional
-	var TwoSixEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixEight : SuccessCallback<TContext>;
 	@:native("269")
 	@:optional
-	var TwoSixNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSixNine : SuccessCallback<TContext>;
 	@:native("270")
 	@:optional
-	var TwoSevenZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenZero : SuccessCallback<TContext>;
 	@:native("271")
 	@:optional
-	var TwoSevenOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenOne : SuccessCallback<TContext>;
 	@:native("272")
 	@:optional
-	var TwoSevenTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenTwo : SuccessCallback<TContext>;
 	@:native("273")
 	@:optional
-	var TwoSevenThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenThree : SuccessCallback<TContext>;
 	@:native("274")
 	@:optional
-	var TwoSevenFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenFour : SuccessCallback<TContext>;
 	@:native("275")
 	@:optional
-	var TwoSevenFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenFive : SuccessCallback<TContext>;
 	@:native("276")
 	@:optional
-	var TwoSevenSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenSix : SuccessCallback<TContext>;
 	@:native("277")
 	@:optional
-	var TwoSevenSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenSeven : SuccessCallback<TContext>;
 	@:native("278")
 	@:optional
-	var TwoSevenEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenEight : SuccessCallback<TContext>;
 	@:native("279")
 	@:optional
-	var TwoSevenNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoSevenNine : SuccessCallback<TContext>;
 	@:native("280")
 	@:optional
-	var TwoEightZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightZero : SuccessCallback<TContext>;
 	@:native("281")
 	@:optional
-	var TwoEightOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightOne : SuccessCallback<TContext>;
 	@:native("282")
 	@:optional
-	var TwoEightTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightTwo : SuccessCallback<TContext>;
 	@:native("283")
 	@:optional
-	var TwoEightThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightThree : SuccessCallback<TContext>;
 	@:native("284")
 	@:optional
-	var TwoEightFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightFour : SuccessCallback<TContext>;
 	@:native("285")
 	@:optional
-	var TwoEightFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightFive : SuccessCallback<TContext>;
 	@:native("286")
 	@:optional
-	var TwoEightSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightSix : SuccessCallback<TContext>;
 	@:native("287")
 	@:optional
-	var TwoEightSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightSeven : SuccessCallback<TContext>;
 	@:native("288")
 	@:optional
-	var TwoEightEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightEight : SuccessCallback<TContext>;
 	@:native("289")
 	@:optional
-	var TwoEightNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoEightNine : SuccessCallback<TContext>;
 	@:native("290")
 	@:optional
-	var TwoNineZero : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineZero : SuccessCallback<TContext>;
 	@:native("291")
 	@:optional
-	var TwoNineOne : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineOne : SuccessCallback<TContext>;
 	@:native("292")
 	@:optional
-	var TwoNineTwo : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineTwo : SuccessCallback<TContext>;
 	@:native("293")
 	@:optional
-	var TwoNineThree : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineThree : SuccessCallback<TContext>;
 	@:native("294")
 	@:optional
-	var TwoNineFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineFour : SuccessCallback<TContext>;
 	@:native("295")
 	@:optional
-	var TwoNineFive : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineFive : SuccessCallback<TContext>;
 	@:native("296")
 	@:optional
-	var TwoNineSix : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineSix : SuccessCallback<TContext>;
 	@:native("297")
 	@:optional
-	var TwoNineSeven : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineSeven : SuccessCallback<TContext>;
 	@:native("298")
 	@:optional
-	var TwoNineEight : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineEight : SuccessCallback<TContext>;
 	@:native("299")
 	@:optional
-	var TwoNineNine : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var TwoNineNine : SuccessCallback<TContext>;
 	@:native("304")
 	@:optional
-	var ThreeZeroFour : (data:Dynamic, textStatus:String, jqXHR:global.jquery.JqXHR<Dynamic>) -> Void;
+	var ThreeZeroFour : SuccessCallback<TContext>;
 	@:native("300")
 	@:optional
-	var ThreeZeroZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroZero : ErrorCallback<TContext>;
 	@:native("301")
 	@:optional
-	var ThreeZeroOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroOne : ErrorCallback<TContext>;
 	@:native("302")
 	@:optional
-	var ThreeZeroTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroTwo : ErrorCallback<TContext>;
 	@:native("303")
 	@:optional
-	var ThreeZeroThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroThree : ErrorCallback<TContext>;
 	@:native("305")
 	@:optional
-	var ThreeZeroFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroFive : ErrorCallback<TContext>;
 	@:native("306")
 	@:optional
-	var ThreeZeroSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroSix : ErrorCallback<TContext>;
 	@:native("307")
 	@:optional
-	var ThreeZeroSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroSeven : ErrorCallback<TContext>;
 	@:native("308")
 	@:optional
-	var ThreeZeroEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroEight : ErrorCallback<TContext>;
 	@:native("309")
 	@:optional
-	var ThreeZeroNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeZeroNine : ErrorCallback<TContext>;
 	@:native("310")
 	@:optional
-	var ThreeOneZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneZero : ErrorCallback<TContext>;
 	@:native("311")
 	@:optional
-	var ThreeOneOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneOne : ErrorCallback<TContext>;
 	@:native("312")
 	@:optional
-	var ThreeOneTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneTwo : ErrorCallback<TContext>;
 	@:native("313")
 	@:optional
-	var ThreeOneThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneThree : ErrorCallback<TContext>;
 	@:native("314")
 	@:optional
-	var ThreeOneFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneFour : ErrorCallback<TContext>;
 	@:native("315")
 	@:optional
-	var ThreeOneFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneFive : ErrorCallback<TContext>;
 	@:native("316")
 	@:optional
-	var ThreeOneSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneSix : ErrorCallback<TContext>;
 	@:native("317")
 	@:optional
-	var ThreeOneSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneSeven : ErrorCallback<TContext>;
 	@:native("318")
 	@:optional
-	var ThreeOneEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneEight : ErrorCallback<TContext>;
 	@:native("319")
 	@:optional
-	var ThreeOneNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeOneNine : ErrorCallback<TContext>;
 	@:native("320")
 	@:optional
-	var ThreeTwoZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoZero : ErrorCallback<TContext>;
 	@:native("321")
 	@:optional
-	var ThreeTwoOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoOne : ErrorCallback<TContext>;
 	@:native("322")
 	@:optional
-	var ThreeTwoTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoTwo : ErrorCallback<TContext>;
 	@:native("323")
 	@:optional
-	var ThreeTwoThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoThree : ErrorCallback<TContext>;
 	@:native("324")
 	@:optional
-	var ThreeTwoFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoFour : ErrorCallback<TContext>;
 	@:native("325")
 	@:optional
-	var ThreeTwoFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoFive : ErrorCallback<TContext>;
 	@:native("326")
 	@:optional
-	var ThreeTwoSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoSix : ErrorCallback<TContext>;
 	@:native("327")
 	@:optional
-	var ThreeTwoSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoSeven : ErrorCallback<TContext>;
 	@:native("328")
 	@:optional
-	var ThreeTwoEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoEight : ErrorCallback<TContext>;
 	@:native("329")
 	@:optional
-	var ThreeTwoNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeTwoNine : ErrorCallback<TContext>;
 	@:native("330")
 	@:optional
-	var ThreeThreeZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeZero : ErrorCallback<TContext>;
 	@:native("331")
 	@:optional
-	var ThreeThreeOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeOne : ErrorCallback<TContext>;
 	@:native("332")
 	@:optional
-	var ThreeThreeTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeTwo : ErrorCallback<TContext>;
 	@:native("333")
 	@:optional
-	var ThreeThreeThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeThree : ErrorCallback<TContext>;
 	@:native("334")
 	@:optional
-	var ThreeThreeFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeFour : ErrorCallback<TContext>;
 	@:native("335")
 	@:optional
-	var ThreeThreeFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeFive : ErrorCallback<TContext>;
 	@:native("336")
 	@:optional
-	var ThreeThreeSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeSix : ErrorCallback<TContext>;
 	@:native("337")
 	@:optional
-	var ThreeThreeSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeSeven : ErrorCallback<TContext>;
 	@:native("338")
 	@:optional
-	var ThreeThreeEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeEight : ErrorCallback<TContext>;
 	@:native("339")
 	@:optional
-	var ThreeThreeNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeThreeNine : ErrorCallback<TContext>;
 	@:native("340")
 	@:optional
-	var ThreeFourZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourZero : ErrorCallback<TContext>;
 	@:native("341")
 	@:optional
-	var ThreeFourOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourOne : ErrorCallback<TContext>;
 	@:native("342")
 	@:optional
-	var ThreeFourTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourTwo : ErrorCallback<TContext>;
 	@:native("343")
 	@:optional
-	var ThreeFourThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourThree : ErrorCallback<TContext>;
 	@:native("344")
 	@:optional
-	var ThreeFourFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourFour : ErrorCallback<TContext>;
 	@:native("345")
 	@:optional
-	var ThreeFourFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourFive : ErrorCallback<TContext>;
 	@:native("346")
 	@:optional
-	var ThreeFourSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourSix : ErrorCallback<TContext>;
 	@:native("347")
 	@:optional
-	var ThreeFourSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourSeven : ErrorCallback<TContext>;
 	@:native("348")
 	@:optional
-	var ThreeFourEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourEight : ErrorCallback<TContext>;
 	@:native("349")
 	@:optional
-	var ThreeFourNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFourNine : ErrorCallback<TContext>;
 	@:native("350")
 	@:optional
-	var ThreeFiveZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveZero : ErrorCallback<TContext>;
 	@:native("351")
 	@:optional
-	var ThreeFiveOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveOne : ErrorCallback<TContext>;
 	@:native("352")
 	@:optional
-	var ThreeFiveTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveTwo : ErrorCallback<TContext>;
 	@:native("353")
 	@:optional
-	var ThreeFiveThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveThree : ErrorCallback<TContext>;
 	@:native("354")
 	@:optional
-	var ThreeFiveFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveFour : ErrorCallback<TContext>;
 	@:native("355")
 	@:optional
-	var ThreeFiveFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveFive : ErrorCallback<TContext>;
 	@:native("356")
 	@:optional
-	var ThreeFiveSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveSix : ErrorCallback<TContext>;
 	@:native("357")
 	@:optional
-	var ThreeFiveSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveSeven : ErrorCallback<TContext>;
 	@:native("358")
 	@:optional
-	var ThreeFiveEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveEight : ErrorCallback<TContext>;
 	@:native("359")
 	@:optional
-	var ThreeFiveNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeFiveNine : ErrorCallback<TContext>;
 	@:native("360")
 	@:optional
-	var ThreeSixZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixZero : ErrorCallback<TContext>;
 	@:native("361")
 	@:optional
-	var ThreeSixOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixOne : ErrorCallback<TContext>;
 	@:native("362")
 	@:optional
-	var ThreeSixTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixTwo : ErrorCallback<TContext>;
 	@:native("363")
 	@:optional
-	var ThreeSixThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixThree : ErrorCallback<TContext>;
 	@:native("364")
 	@:optional
-	var ThreeSixFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixFour : ErrorCallback<TContext>;
 	@:native("365")
 	@:optional
-	var ThreeSixFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixFive : ErrorCallback<TContext>;
 	@:native("366")
 	@:optional
-	var ThreeSixSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixSix : ErrorCallback<TContext>;
 	@:native("367")
 	@:optional
-	var ThreeSixSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixSeven : ErrorCallback<TContext>;
 	@:native("368")
 	@:optional
-	var ThreeSixEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixEight : ErrorCallback<TContext>;
 	@:native("369")
 	@:optional
-	var ThreeSixNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSixNine : ErrorCallback<TContext>;
 	@:native("370")
 	@:optional
-	var ThreeSevenZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenZero : ErrorCallback<TContext>;
 	@:native("371")
 	@:optional
-	var ThreeSevenOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenOne : ErrorCallback<TContext>;
 	@:native("372")
 	@:optional
-	var ThreeSevenTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenTwo : ErrorCallback<TContext>;
 	@:native("373")
 	@:optional
-	var ThreeSevenThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenThree : ErrorCallback<TContext>;
 	@:native("374")
 	@:optional
-	var ThreeSevenFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenFour : ErrorCallback<TContext>;
 	@:native("375")
 	@:optional
-	var ThreeSevenFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenFive : ErrorCallback<TContext>;
 	@:native("376")
 	@:optional
-	var ThreeSevenSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenSix : ErrorCallback<TContext>;
 	@:native("377")
 	@:optional
-	var ThreeSevenSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenSeven : ErrorCallback<TContext>;
 	@:native("378")
 	@:optional
-	var ThreeSevenEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenEight : ErrorCallback<TContext>;
 	@:native("379")
 	@:optional
-	var ThreeSevenNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeSevenNine : ErrorCallback<TContext>;
 	@:native("380")
 	@:optional
-	var ThreeEightZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightZero : ErrorCallback<TContext>;
 	@:native("381")
 	@:optional
-	var ThreeEightOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightOne : ErrorCallback<TContext>;
 	@:native("382")
 	@:optional
-	var ThreeEightTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightTwo : ErrorCallback<TContext>;
 	@:native("383")
 	@:optional
-	var ThreeEightThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightThree : ErrorCallback<TContext>;
 	@:native("384")
 	@:optional
-	var ThreeEightFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightFour : ErrorCallback<TContext>;
 	@:native("385")
 	@:optional
-	var ThreeEightFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightFive : ErrorCallback<TContext>;
 	@:native("386")
 	@:optional
-	var ThreeEightSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightSix : ErrorCallback<TContext>;
 	@:native("387")
 	@:optional
-	var ThreeEightSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightSeven : ErrorCallback<TContext>;
 	@:native("388")
 	@:optional
-	var ThreeEightEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightEight : ErrorCallback<TContext>;
 	@:native("389")
 	@:optional
-	var ThreeEightNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeEightNine : ErrorCallback<TContext>;
 	@:native("390")
 	@:optional
-	var ThreeNineZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineZero : ErrorCallback<TContext>;
 	@:native("391")
 	@:optional
-	var ThreeNineOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineOne : ErrorCallback<TContext>;
 	@:native("392")
 	@:optional
-	var ThreeNineTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineTwo : ErrorCallback<TContext>;
 	@:native("393")
 	@:optional
-	var ThreeNineThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineThree : ErrorCallback<TContext>;
 	@:native("394")
 	@:optional
-	var ThreeNineFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineFour : ErrorCallback<TContext>;
 	@:native("395")
 	@:optional
-	var ThreeNineFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineFive : ErrorCallback<TContext>;
 	@:native("396")
 	@:optional
-	var ThreeNineSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineSix : ErrorCallback<TContext>;
 	@:native("397")
 	@:optional
-	var ThreeNineSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineSeven : ErrorCallback<TContext>;
 	@:native("398")
 	@:optional
-	var ThreeNineEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineEight : ErrorCallback<TContext>;
 	@:native("399")
 	@:optional
-	var ThreeNineNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var ThreeNineNine : ErrorCallback<TContext>;
 	@:native("400")
 	@:optional
-	var FourZeroZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroZero : ErrorCallback<TContext>;
 	@:native("401")
 	@:optional
-	var FourZeroOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroOne : ErrorCallback<TContext>;
 	@:native("402")
 	@:optional
-	var FourZeroTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroTwo : ErrorCallback<TContext>;
 	@:native("403")
 	@:optional
-	var FourZeroThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroThree : ErrorCallback<TContext>;
 	@:native("404")
 	@:optional
-	var FourZeroFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroFour : ErrorCallback<TContext>;
 	@:native("405")
 	@:optional
-	var FourZeroFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroFive : ErrorCallback<TContext>;
 	@:native("406")
 	@:optional
-	var FourZeroSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroSix : ErrorCallback<TContext>;
 	@:native("407")
 	@:optional
-	var FourZeroSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroSeven : ErrorCallback<TContext>;
 	@:native("408")
 	@:optional
-	var FourZeroEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroEight : ErrorCallback<TContext>;
 	@:native("409")
 	@:optional
-	var FourZeroNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourZeroNine : ErrorCallback<TContext>;
 	@:native("410")
 	@:optional
-	var FourOneZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneZero : ErrorCallback<TContext>;
 	@:native("411")
 	@:optional
-	var FourOneOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneOne : ErrorCallback<TContext>;
 	@:native("412")
 	@:optional
-	var FourOneTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneTwo : ErrorCallback<TContext>;
 	@:native("413")
 	@:optional
-	var FourOneThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneThree : ErrorCallback<TContext>;
 	@:native("414")
 	@:optional
-	var FourOneFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneFour : ErrorCallback<TContext>;
 	@:native("415")
 	@:optional
-	var FourOneFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneFive : ErrorCallback<TContext>;
 	@:native("416")
 	@:optional
-	var FourOneSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneSix : ErrorCallback<TContext>;
 	@:native("417")
 	@:optional
-	var FourOneSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneSeven : ErrorCallback<TContext>;
 	@:native("418")
 	@:optional
-	var FourOneEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneEight : ErrorCallback<TContext>;
 	@:native("419")
 	@:optional
-	var FourOneNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourOneNine : ErrorCallback<TContext>;
 	@:native("420")
 	@:optional
-	var FourTwoZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoZero : ErrorCallback<TContext>;
 	@:native("421")
 	@:optional
-	var FourTwoOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoOne : ErrorCallback<TContext>;
 	@:native("422")
 	@:optional
-	var FourTwoTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoTwo : ErrorCallback<TContext>;
 	@:native("423")
 	@:optional
-	var FourTwoThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoThree : ErrorCallback<TContext>;
 	@:native("424")
 	@:optional
-	var FourTwoFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoFour : ErrorCallback<TContext>;
 	@:native("425")
 	@:optional
-	var FourTwoFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoFive : ErrorCallback<TContext>;
 	@:native("426")
 	@:optional
-	var FourTwoSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoSix : ErrorCallback<TContext>;
 	@:native("427")
 	@:optional
-	var FourTwoSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoSeven : ErrorCallback<TContext>;
 	@:native("428")
 	@:optional
-	var FourTwoEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoEight : ErrorCallback<TContext>;
 	@:native("429")
 	@:optional
-	var FourTwoNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourTwoNine : ErrorCallback<TContext>;
 	@:native("430")
 	@:optional
-	var FourThreeZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeZero : ErrorCallback<TContext>;
 	@:native("431")
 	@:optional
-	var FourThreeOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeOne : ErrorCallback<TContext>;
 	@:native("432")
 	@:optional
-	var FourThreeTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeTwo : ErrorCallback<TContext>;
 	@:native("433")
 	@:optional
-	var FourThreeThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeThree : ErrorCallback<TContext>;
 	@:native("434")
 	@:optional
-	var FourThreeFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeFour : ErrorCallback<TContext>;
 	@:native("435")
 	@:optional
-	var FourThreeFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeFive : ErrorCallback<TContext>;
 	@:native("436")
 	@:optional
-	var FourThreeSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeSix : ErrorCallback<TContext>;
 	@:native("437")
 	@:optional
-	var FourThreeSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeSeven : ErrorCallback<TContext>;
 	@:native("438")
 	@:optional
-	var FourThreeEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeEight : ErrorCallback<TContext>;
 	@:native("439")
 	@:optional
-	var FourThreeNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourThreeNine : ErrorCallback<TContext>;
 	@:native("440")
 	@:optional
-	var FourFourZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourZero : ErrorCallback<TContext>;
 	@:native("441")
 	@:optional
-	var FourFourOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourOne : ErrorCallback<TContext>;
 	@:native("442")
 	@:optional
-	var FourFourTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourTwo : ErrorCallback<TContext>;
 	@:native("443")
 	@:optional
-	var FourFourThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourThree : ErrorCallback<TContext>;
 	@:native("444")
 	@:optional
-	var FourFourFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourFour : ErrorCallback<TContext>;
 	@:native("445")
 	@:optional
-	var FourFourFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourFive : ErrorCallback<TContext>;
 	@:native("446")
 	@:optional
-	var FourFourSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourSix : ErrorCallback<TContext>;
 	@:native("447")
 	@:optional
-	var FourFourSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourSeven : ErrorCallback<TContext>;
 	@:native("448")
 	@:optional
-	var FourFourEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourEight : ErrorCallback<TContext>;
 	@:native("449")
 	@:optional
-	var FourFourNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFourNine : ErrorCallback<TContext>;
 	@:native("450")
 	@:optional
-	var FourFiveZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveZero : ErrorCallback<TContext>;
 	@:native("451")
 	@:optional
-	var FourFiveOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveOne : ErrorCallback<TContext>;
 	@:native("452")
 	@:optional
-	var FourFiveTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveTwo : ErrorCallback<TContext>;
 	@:native("453")
 	@:optional
-	var FourFiveThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveThree : ErrorCallback<TContext>;
 	@:native("454")
 	@:optional
-	var FourFiveFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveFour : ErrorCallback<TContext>;
 	@:native("455")
 	@:optional
-	var FourFiveFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveFive : ErrorCallback<TContext>;
 	@:native("456")
 	@:optional
-	var FourFiveSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveSix : ErrorCallback<TContext>;
 	@:native("457")
 	@:optional
-	var FourFiveSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveSeven : ErrorCallback<TContext>;
 	@:native("458")
 	@:optional
-	var FourFiveEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveEight : ErrorCallback<TContext>;
 	@:native("459")
 	@:optional
-	var FourFiveNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourFiveNine : ErrorCallback<TContext>;
 	@:native("460")
 	@:optional
-	var FourSixZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixZero : ErrorCallback<TContext>;
 	@:native("461")
 	@:optional
-	var FourSixOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixOne : ErrorCallback<TContext>;
 	@:native("462")
 	@:optional
-	var FourSixTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixTwo : ErrorCallback<TContext>;
 	@:native("463")
 	@:optional
-	var FourSixThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixThree : ErrorCallback<TContext>;
 	@:native("464")
 	@:optional
-	var FourSixFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixFour : ErrorCallback<TContext>;
 	@:native("465")
 	@:optional
-	var FourSixFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixFive : ErrorCallback<TContext>;
 	@:native("466")
 	@:optional
-	var FourSixSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixSix : ErrorCallback<TContext>;
 	@:native("467")
 	@:optional
-	var FourSixSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixSeven : ErrorCallback<TContext>;
 	@:native("468")
 	@:optional
-	var FourSixEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixEight : ErrorCallback<TContext>;
 	@:native("469")
 	@:optional
-	var FourSixNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSixNine : ErrorCallback<TContext>;
 	@:native("470")
 	@:optional
-	var FourSevenZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenZero : ErrorCallback<TContext>;
 	@:native("471")
 	@:optional
-	var FourSevenOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenOne : ErrorCallback<TContext>;
 	@:native("472")
 	@:optional
-	var FourSevenTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenTwo : ErrorCallback<TContext>;
 	@:native("473")
 	@:optional
-	var FourSevenThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenThree : ErrorCallback<TContext>;
 	@:native("474")
 	@:optional
-	var FourSevenFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenFour : ErrorCallback<TContext>;
 	@:native("475")
 	@:optional
-	var FourSevenFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenFive : ErrorCallback<TContext>;
 	@:native("476")
 	@:optional
-	var FourSevenSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenSix : ErrorCallback<TContext>;
 	@:native("477")
 	@:optional
-	var FourSevenSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenSeven : ErrorCallback<TContext>;
 	@:native("478")
 	@:optional
-	var FourSevenEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenEight : ErrorCallback<TContext>;
 	@:native("479")
 	@:optional
-	var FourSevenNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourSevenNine : ErrorCallback<TContext>;
 	@:native("480")
 	@:optional
-	var FourEightZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightZero : ErrorCallback<TContext>;
 	@:native("481")
 	@:optional
-	var FourEightOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightOne : ErrorCallback<TContext>;
 	@:native("482")
 	@:optional
-	var FourEightTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightTwo : ErrorCallback<TContext>;
 	@:native("483")
 	@:optional
-	var FourEightThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightThree : ErrorCallback<TContext>;
 	@:native("484")
 	@:optional
-	var FourEightFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightFour : ErrorCallback<TContext>;
 	@:native("485")
 	@:optional
-	var FourEightFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightFive : ErrorCallback<TContext>;
 	@:native("486")
 	@:optional
-	var FourEightSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightSix : ErrorCallback<TContext>;
 	@:native("487")
 	@:optional
-	var FourEightSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightSeven : ErrorCallback<TContext>;
 	@:native("488")
 	@:optional
-	var FourEightEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightEight : ErrorCallback<TContext>;
 	@:native("489")
 	@:optional
-	var FourEightNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourEightNine : ErrorCallback<TContext>;
 	@:native("490")
 	@:optional
-	var FourNineZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineZero : ErrorCallback<TContext>;
 	@:native("491")
 	@:optional
-	var FourNineOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineOne : ErrorCallback<TContext>;
 	@:native("492")
 	@:optional
-	var FourNineTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineTwo : ErrorCallback<TContext>;
 	@:native("493")
 	@:optional
-	var FourNineThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineThree : ErrorCallback<TContext>;
 	@:native("494")
 	@:optional
-	var FourNineFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineFour : ErrorCallback<TContext>;
 	@:native("495")
 	@:optional
-	var FourNineFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineFive : ErrorCallback<TContext>;
 	@:native("496")
 	@:optional
-	var FourNineSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineSix : ErrorCallback<TContext>;
 	@:native("497")
 	@:optional
-	var FourNineSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineSeven : ErrorCallback<TContext>;
 	@:native("498")
 	@:optional
-	var FourNineEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineEight : ErrorCallback<TContext>;
 	@:native("499")
 	@:optional
-	var FourNineNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FourNineNine : ErrorCallback<TContext>;
 	@:native("500")
 	@:optional
-	var FiveZeroZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroZero : ErrorCallback<TContext>;
 	@:native("501")
 	@:optional
-	var FiveZeroOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroOne : ErrorCallback<TContext>;
 	@:native("502")
 	@:optional
-	var FiveZeroTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroTwo : ErrorCallback<TContext>;
 	@:native("503")
 	@:optional
-	var FiveZeroThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroThree : ErrorCallback<TContext>;
 	@:native("504")
 	@:optional
-	var FiveZeroFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroFour : ErrorCallback<TContext>;
 	@:native("505")
 	@:optional
-	var FiveZeroFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroFive : ErrorCallback<TContext>;
 	@:native("506")
 	@:optional
-	var FiveZeroSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroSix : ErrorCallback<TContext>;
 	@:native("507")
 	@:optional
-	var FiveZeroSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroSeven : ErrorCallback<TContext>;
 	@:native("508")
 	@:optional
-	var FiveZeroEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroEight : ErrorCallback<TContext>;
 	@:native("509")
 	@:optional
-	var FiveZeroNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveZeroNine : ErrorCallback<TContext>;
 	@:native("510")
 	@:optional
-	var FiveOneZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneZero : ErrorCallback<TContext>;
 	@:native("511")
 	@:optional
-	var FiveOneOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneOne : ErrorCallback<TContext>;
 	@:native("512")
 	@:optional
-	var FiveOneTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneTwo : ErrorCallback<TContext>;
 	@:native("513")
 	@:optional
-	var FiveOneThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneThree : ErrorCallback<TContext>;
 	@:native("514")
 	@:optional
-	var FiveOneFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneFour : ErrorCallback<TContext>;
 	@:native("515")
 	@:optional
-	var FiveOneFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneFive : ErrorCallback<TContext>;
 	@:native("516")
 	@:optional
-	var FiveOneSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneSix : ErrorCallback<TContext>;
 	@:native("517")
 	@:optional
-	var FiveOneSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneSeven : ErrorCallback<TContext>;
 	@:native("518")
 	@:optional
-	var FiveOneEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneEight : ErrorCallback<TContext>;
 	@:native("519")
 	@:optional
-	var FiveOneNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveOneNine : ErrorCallback<TContext>;
 	@:native("520")
 	@:optional
-	var FiveTwoZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoZero : ErrorCallback<TContext>;
 	@:native("521")
 	@:optional
-	var FiveTwoOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoOne : ErrorCallback<TContext>;
 	@:native("522")
 	@:optional
-	var FiveTwoTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoTwo : ErrorCallback<TContext>;
 	@:native("523")
 	@:optional
-	var FiveTwoThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoThree : ErrorCallback<TContext>;
 	@:native("524")
 	@:optional
-	var FiveTwoFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoFour : ErrorCallback<TContext>;
 	@:native("525")
 	@:optional
-	var FiveTwoFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoFive : ErrorCallback<TContext>;
 	@:native("526")
 	@:optional
-	var FiveTwoSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoSix : ErrorCallback<TContext>;
 	@:native("527")
 	@:optional
-	var FiveTwoSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoSeven : ErrorCallback<TContext>;
 	@:native("528")
 	@:optional
-	var FiveTwoEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoEight : ErrorCallback<TContext>;
 	@:native("529")
 	@:optional
-	var FiveTwoNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveTwoNine : ErrorCallback<TContext>;
 	@:native("530")
 	@:optional
-	var FiveThreeZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeZero : ErrorCallback<TContext>;
 	@:native("531")
 	@:optional
-	var FiveThreeOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeOne : ErrorCallback<TContext>;
 	@:native("532")
 	@:optional
-	var FiveThreeTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeTwo : ErrorCallback<TContext>;
 	@:native("533")
 	@:optional
-	var FiveThreeThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeThree : ErrorCallback<TContext>;
 	@:native("534")
 	@:optional
-	var FiveThreeFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeFour : ErrorCallback<TContext>;
 	@:native("535")
 	@:optional
-	var FiveThreeFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeFive : ErrorCallback<TContext>;
 	@:native("536")
 	@:optional
-	var FiveThreeSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeSix : ErrorCallback<TContext>;
 	@:native("537")
 	@:optional
-	var FiveThreeSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeSeven : ErrorCallback<TContext>;
 	@:native("538")
 	@:optional
-	var FiveThreeEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeEight : ErrorCallback<TContext>;
 	@:native("539")
 	@:optional
-	var FiveThreeNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveThreeNine : ErrorCallback<TContext>;
 	@:native("540")
 	@:optional
-	var FiveFourZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourZero : ErrorCallback<TContext>;
 	@:native("541")
 	@:optional
-	var FiveFourOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourOne : ErrorCallback<TContext>;
 	@:native("542")
 	@:optional
-	var FiveFourTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourTwo : ErrorCallback<TContext>;
 	@:native("543")
 	@:optional
-	var FiveFourThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourThree : ErrorCallback<TContext>;
 	@:native("544")
 	@:optional
-	var FiveFourFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourFour : ErrorCallback<TContext>;
 	@:native("545")
 	@:optional
-	var FiveFourFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourFive : ErrorCallback<TContext>;
 	@:native("546")
 	@:optional
-	var FiveFourSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourSix : ErrorCallback<TContext>;
 	@:native("547")
 	@:optional
-	var FiveFourSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourSeven : ErrorCallback<TContext>;
 	@:native("548")
 	@:optional
-	var FiveFourEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourEight : ErrorCallback<TContext>;
 	@:native("549")
 	@:optional
-	var FiveFourNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFourNine : ErrorCallback<TContext>;
 	@:native("550")
 	@:optional
-	var FiveFiveZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveZero : ErrorCallback<TContext>;
 	@:native("551")
 	@:optional
-	var FiveFiveOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveOne : ErrorCallback<TContext>;
 	@:native("552")
 	@:optional
-	var FiveFiveTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveTwo : ErrorCallback<TContext>;
 	@:native("553")
 	@:optional
-	var FiveFiveThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveThree : ErrorCallback<TContext>;
 	@:native("554")
 	@:optional
-	var FiveFiveFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveFour : ErrorCallback<TContext>;
 	@:native("555")
 	@:optional
-	var FiveFiveFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveFive : ErrorCallback<TContext>;
 	@:native("556")
 	@:optional
-	var FiveFiveSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveSix : ErrorCallback<TContext>;
 	@:native("557")
 	@:optional
-	var FiveFiveSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveSeven : ErrorCallback<TContext>;
 	@:native("558")
 	@:optional
-	var FiveFiveEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveEight : ErrorCallback<TContext>;
 	@:native("559")
 	@:optional
-	var FiveFiveNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveFiveNine : ErrorCallback<TContext>;
 	@:native("560")
 	@:optional
-	var FiveSixZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixZero : ErrorCallback<TContext>;
 	@:native("561")
 	@:optional
-	var FiveSixOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixOne : ErrorCallback<TContext>;
 	@:native("562")
 	@:optional
-	var FiveSixTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixTwo : ErrorCallback<TContext>;
 	@:native("563")
 	@:optional
-	var FiveSixThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixThree : ErrorCallback<TContext>;
 	@:native("564")
 	@:optional
-	var FiveSixFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixFour : ErrorCallback<TContext>;
 	@:native("565")
 	@:optional
-	var FiveSixFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixFive : ErrorCallback<TContext>;
 	@:native("566")
 	@:optional
-	var FiveSixSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixSix : ErrorCallback<TContext>;
 	@:native("567")
 	@:optional
-	var FiveSixSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixSeven : ErrorCallback<TContext>;
 	@:native("568")
 	@:optional
-	var FiveSixEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixEight : ErrorCallback<TContext>;
 	@:native("569")
 	@:optional
-	var FiveSixNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSixNine : ErrorCallback<TContext>;
 	@:native("570")
 	@:optional
-	var FiveSevenZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenZero : ErrorCallback<TContext>;
 	@:native("571")
 	@:optional
-	var FiveSevenOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenOne : ErrorCallback<TContext>;
 	@:native("572")
 	@:optional
-	var FiveSevenTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenTwo : ErrorCallback<TContext>;
 	@:native("573")
 	@:optional
-	var FiveSevenThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenThree : ErrorCallback<TContext>;
 	@:native("574")
 	@:optional
-	var FiveSevenFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenFour : ErrorCallback<TContext>;
 	@:native("575")
 	@:optional
-	var FiveSevenFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenFive : ErrorCallback<TContext>;
 	@:native("576")
 	@:optional
-	var FiveSevenSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenSix : ErrorCallback<TContext>;
 	@:native("577")
 	@:optional
-	var FiveSevenSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenSeven : ErrorCallback<TContext>;
 	@:native("578")
 	@:optional
-	var FiveSevenEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenEight : ErrorCallback<TContext>;
 	@:native("579")
 	@:optional
-	var FiveSevenNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveSevenNine : ErrorCallback<TContext>;
 	@:native("580")
 	@:optional
-	var FiveEightZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightZero : ErrorCallback<TContext>;
 	@:native("581")
 	@:optional
-	var FiveEightOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightOne : ErrorCallback<TContext>;
 	@:native("582")
 	@:optional
-	var FiveEightTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightTwo : ErrorCallback<TContext>;
 	@:native("583")
 	@:optional
-	var FiveEightThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightThree : ErrorCallback<TContext>;
 	@:native("584")
 	@:optional
-	var FiveEightFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightFour : ErrorCallback<TContext>;
 	@:native("585")
 	@:optional
-	var FiveEightFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightFive : ErrorCallback<TContext>;
 	@:native("586")
 	@:optional
-	var FiveEightSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightSix : ErrorCallback<TContext>;
 	@:native("587")
 	@:optional
-	var FiveEightSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightSeven : ErrorCallback<TContext>;
 	@:native("588")
 	@:optional
-	var FiveEightEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightEight : ErrorCallback<TContext>;
 	@:native("589")
 	@:optional
-	var FiveEightNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveEightNine : ErrorCallback<TContext>;
 	@:native("590")
 	@:optional
-	var FiveNineZero : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineZero : ErrorCallback<TContext>;
 	@:native("591")
 	@:optional
-	var FiveNineOne : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineOne : ErrorCallback<TContext>;
 	@:native("592")
 	@:optional
-	var FiveNineTwo : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineTwo : ErrorCallback<TContext>;
 	@:native("593")
 	@:optional
-	var FiveNineThree : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineThree : ErrorCallback<TContext>;
 	@:native("594")
 	@:optional
-	var FiveNineFour : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineFour : ErrorCallback<TContext>;
 	@:native("595")
 	@:optional
-	var FiveNineFive : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineFive : ErrorCallback<TContext>;
 	@:native("596")
 	@:optional
-	var FiveNineSix : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineSix : ErrorCallback<TContext>;
 	@:native("597")
 	@:optional
-	var FiveNineSeven : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineSeven : ErrorCallback<TContext>;
 	@:native("598")
 	@:optional
-	var FiveNineEight : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineEight : ErrorCallback<TContext>;
 	@:native("599")
 	@:optional
-	var FiveNineNine : (jqXHR:global.jquery.JqXHR<Dynamic>, textStatus:String, errorThrown:String) -> Void;
+	var FiveNineNine : ErrorCallback<TContext>;
 } & { };

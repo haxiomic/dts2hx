@@ -1,6 +1,6 @@
 package node.perf_hooks;
 @:jsRequire("perf_hooks", "PerformanceObserver") extern class PerformanceObserver extends node.async_hooks.AsyncResource {
-	function new(callback:(list:PerformanceObserverEntryList, observer:PerformanceObserver) -> Void);
+	function new(callback:PerformanceObserverCallback);
 	/**
 		Disconnects the PerformanceObserver instance from all notifications.
 	**/

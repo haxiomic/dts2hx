@@ -1,4 +1,4 @@
 package ts.html;
 typedef PermissionDescriptor = {
-	var name : String;
+	var name : PermissionName;
 };

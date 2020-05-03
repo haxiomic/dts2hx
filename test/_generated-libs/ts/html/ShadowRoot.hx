@@ -2,7 +2,7 @@ package ts.html;
 @:native("ShadowRoot") extern class ShadowRoot {
 	function new();
 	final host : IElement;
-	final mode : String;
+	final mode : ShadowRootMode;
 	/**
 		Returns the first element within node's descendants whose ID is elementId.
 	**/

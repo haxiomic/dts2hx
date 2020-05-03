@@ -52,7 +52,7 @@ typedef IXMLDocument = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -63,7 +63,7 @@ typedef IXMLDocument = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Sets or gets the URL for the current document.
@@ -201,7 +201,7 @@ typedef IXMLDocument = {
 	/**
 		Retrieves a value that indicates the current state of the object.
 	**/
-	final readyState : String;
+	final readyState : DocumentReadyState;
 	/**
 		Gets the URL of the location that referred the user to the current page.
 	**/
@@ -216,7 +216,7 @@ typedef IXMLDocument = {
 		Contains the title of the document.
 	**/
 	var title : String;
-	final visibilityState : String;
+	final visibilityState : VisibilityState;
 	var vlinkColor : String;
 	/**
 		Moves node from another document and returns it.
@@ -705,7 +705,7 @@ typedef IXMLDocument = {
 	/**
 		Fires when an error occurs during object loading.
 	**/
-	var onerror : Null<OnErrorEventHandlerNonNull>;
+	var onerror : OnErrorEventHandler;
 	/**
 		Fires when the object receives focus.
 	**/
@@ -886,8 +886,6 @@ typedef IXMLDocument = {
 	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
 	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Dynamic>;
 	function createExpression(expression:String, ?resolver:ts.AnyOf2<(prefix:Null<String>) -> Null<String>, { function lookupNamespaceURI(prefix:Null<String>):Null<String>; }>):IXPathExpression;
-	function createNSResolver(nodeResolver:INode):ts.AnyOf2<(prefix:Null<String>) -> Null<String>, {
-		function lookupNamespaceURI(prefix:Null<String>):Null<String>;
-	}>;
+	function createNSResolver(nodeResolver:INode):XPathNSResolver;
 	function evaluate(expression:String, contextNode:INode, ?resolver:ts.AnyOf2<(prefix:Null<String>) -> Null<String>, { function lookupNamespaceURI(prefix:Null<String>):Null<String>; }>, ?type:Float, ?result:IXPathResult):IXPathResult;
 };

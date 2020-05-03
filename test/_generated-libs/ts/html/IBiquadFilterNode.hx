@@ -7,11 +7,11 @@ typedef IBiquadFilterNode = {
 	final detune : ts.lib.IAudioParam;
 	final frequency : ts.lib.IAudioParam;
 	final gain : ts.lib.IAudioParam;
-	var type : String;
+	var type : BiquadFilterType;
 	function getFrequencyResponse(frequencyHz:ts.lib.IFloat32Array, magResponse:ts.lib.IFloat32Array, phaseResponse:ts.lib.IFloat32Array):Void;
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

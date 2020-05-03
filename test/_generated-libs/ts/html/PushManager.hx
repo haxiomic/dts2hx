@@ -5,7 +5,7 @@ package ts.html;
 @:native("PushManager") extern class PushManager {
 	function new();
 	function getSubscription():ts.lib.IPromise<Null<IPushSubscription>>;
-	function permissionState(?options:PushSubscriptionOptionsInit):ts.lib.IPromise<String>;
+	function permissionState(?options:PushSubscriptionOptionsInit):ts.lib.IPromise<PermissionState>;
 	function subscribe(?options:PushSubscriptionOptionsInit):ts.lib.IPromise<IPushSubscription>;
 	static var prototype : IPushManager;
 	static final supportedContentEncodings : ts.lib.ReadonlyArray<String>;

@@ -5,6 +5,6 @@ package ts.html;
 typedef ICryptoKey = {
 	final algorithm : KeyAlgorithm;
 	final extractable : Bool;
-	final type : String;
-	final usages : std.Array<String>;
+	final type : KeyType;
+	final usages : std.Array<KeyUsage>;
 };

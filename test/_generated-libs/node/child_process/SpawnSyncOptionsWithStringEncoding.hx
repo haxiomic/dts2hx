@@ -1,6 +1,6 @@
 package node.child_process;
 typedef SpawnSyncOptionsWithStringEncoding = {
-	var encoding : String;
+	var encoding : global.BufferEncoding;
 	@:optional
 	var argv0 : String;
 	@:optional

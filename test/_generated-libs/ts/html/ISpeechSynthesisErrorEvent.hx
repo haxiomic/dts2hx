@@ -1,6 +1,6 @@
 package ts.html;
 typedef ISpeechSynthesisErrorEvent = {
-	final error : String;
+	final error : SpeechSynthesisErrorCode;
 	final charIndex : Float;
 	final elapsedTime : Float;
 	final name : String;

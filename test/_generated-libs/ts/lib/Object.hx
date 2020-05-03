@@ -80,7 +80,7 @@ package ts.lib;
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
 	@:overload(function<T>(f:T):T { })
-	@:overload(function<T>(o:T):Dynamic { })
+	@:overload(function<T>(o:T):{ } { })
 	static function freeze<T>(a:std.Array<T>):ReadonlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.

@@ -1,5 +1,5 @@
 package ts.html;
 typedef ScopedCredentialParameters = {
-	var algorithm : ts.AnyOf2<String, Algorithm>;
+	var algorithm : AlgorithmIdentifier;
 	var type : String;
 };

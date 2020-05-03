@@ -18,6 +18,6 @@ package ts.html;
 	final screenX : Float;
 	final screenY : Float;
 	final target : IEventTarget;
-	final touchType : String;
+	final touchType : TouchType;
 	static var prototype : ITouch;
 }

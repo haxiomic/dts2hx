@@ -10,8 +10,8 @@ typedef IDynamicsCompressorNode = {
 	final release : ts.lib.IAudioParam;
 	final threshold : ts.lib.IAudioParam;
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

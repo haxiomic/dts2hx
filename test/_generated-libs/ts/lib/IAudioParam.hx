@@ -3,7 +3,7 @@ package ts.lib;
 	The Web Audio API's AudioParam interface represents an audio-related parameter, usually a parameter of an AudioNode (such as GainNode.gain).
 **/
 typedef IAudioParam = {
-	var automationRate : String;
+	var automationRate : ts.html.AutomationRate;
 	final defaultValue : Float;
 	final maxValue : Float;
 	final minValue : Float;

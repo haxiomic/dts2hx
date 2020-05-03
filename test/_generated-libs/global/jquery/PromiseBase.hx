@@ -6,19 +6,19 @@ typedef PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN> = {
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/
-	function always(alwaysCallback:ts.AnyOf2<(t:ts.AnyOf2<TR, TJ>, u:ts.AnyOf2<UR, UJ>, v:ts.AnyOf2<VR, VJ>, r:haxe.extern.Rest<ts.AnyOf2<SR, SJ>>) -> Void, std.Array<(t:ts.AnyOf2<TR, TJ>, u:ts.AnyOf2<UR, UJ>, v:ts.AnyOf2<VR, VJ>, r:haxe.extern.Rest<ts.AnyOf2<SR, SJ>>) -> Void>>, alwaysCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:ts.AnyOf2<TR, TJ>, u:ts.AnyOf2<UR, UJ>, v:ts.AnyOf2<VR, VJ>, r:haxe.extern.Rest<ts.AnyOf2<SR, SJ>>) -> Void, std.Array<(t:ts.AnyOf2<TR, TJ>, u:ts.AnyOf2<UR, UJ>, v:ts.AnyOf2<VR, VJ>, r:haxe.extern.Rest<ts.AnyOf2<SR, SJ>>) -> Void>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
+	function always(alwaysCallback:TypeOrArray<global.jquery.deferred.CallbackBase<ts.AnyOf2<TR, TJ>, ts.AnyOf2<UR, UJ>, ts.AnyOf2<VR, VJ>, ts.AnyOf2<SR, SJ>>>, alwaysCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<ts.AnyOf2<TR, TJ>, ts.AnyOf2<UR, UJ>, ts.AnyOf2<VR, VJ>, ts.AnyOf2<SR, SJ>>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
 	/**
 		Add handlers to be called when the Deferred object is resolved.
 	**/
-	function done(doneCallback:ts.AnyOf2<(t:TR, u:UR, v:VR, r:haxe.extern.Rest<SR>) -> Void, std.Array<(t:TR, u:UR, v:VR, r:haxe.extern.Rest<SR>) -> Void>>, doneCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:TR, u:UR, v:VR, r:haxe.extern.Rest<SR>) -> Void, std.Array<(t:TR, u:UR, v:VR, r:haxe.extern.Rest<SR>) -> Void>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
+	function done(doneCallback:TypeOrArray<global.jquery.deferred.CallbackBase<TR, UR, VR, SR>>, doneCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<TR, UR, VR, SR>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
 	/**
 		Add handlers to be called when the Deferred object is rejected.
 	**/
-	function fail(failCallback:ts.AnyOf2<(t:TJ, u:UJ, v:VJ, r:haxe.extern.Rest<SJ>) -> Void, std.Array<(t:TJ, u:UJ, v:VJ, r:haxe.extern.Rest<SJ>) -> Void>>, failCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:TJ, u:UJ, v:VJ, r:haxe.extern.Rest<SJ>) -> Void, std.Array<(t:TJ, u:UJ, v:VJ, r:haxe.extern.Rest<SJ>) -> Void>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
+	function fail(failCallback:TypeOrArray<global.jquery.deferred.CallbackBase<TJ, UJ, VJ, SJ>>, failCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<TJ, UJ, VJ, SJ>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
 	/**
 		Add handlers to be called when the Deferred object generates progress notifications.
 	**/
-	function progress(progressCallback:ts.AnyOf2<(t:TN, u:UN, v:VN, r:haxe.extern.Rest<SN>) -> Void, std.Array<(t:TN, u:UN, v:VN, r:haxe.extern.Rest<SN>) -> Void>>, progressCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:TN, u:UN, v:VN, r:haxe.extern.Rest<SN>) -> Void, std.Array<(t:TN, u:UN, v:VN, r:haxe.extern.Rest<SN>) -> Void>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
+	function progress(progressCallback:TypeOrArray<global.jquery.deferred.CallbackBase<TN, UN, VN, SN>>, progressCallbacks:haxe.extern.Rest<TypeOrArray<global.jquery.deferred.CallbackBase<TN, UN, VN, SN>>>):PromiseBase<TR, TJ, TN, UR, UJ, UN, VR, VJ, VN, SR, SJ, SN>;
 	/**
 		Return a Deferred's Promise object.
 		

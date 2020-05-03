@@ -2,7 +2,7 @@ package unit.types.types;
 typedef ObjectAlias = {
 	var fieldA : Float;
 	var fieldB : Float;
-	var fieldArrayAlias : std.Array<String>;
+	var fieldArrayAlias : ArrayAlias;
 	@:optional
 	var fieldOptional : Float;
 	@:native("macro")

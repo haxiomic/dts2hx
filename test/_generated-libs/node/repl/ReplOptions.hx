@@ -33,7 +33,7 @@ typedef ReplOptions = {
 		additional lines.
 	**/
 	@:optional
-	var eval : (evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<ts.lib.IError>, result:Dynamic) -> Void) -> Void;
+	var eval : REPLEval;
 	/**
 		If `true`, specifies that the default `writer` function should include ANSI color
 		styling to REPL output. If a custom `writer` function is provided then this has no
@@ -62,12 +62,12 @@ typedef ReplOptions = {
 		Default: a wrapper for `util.inspect`.
 	**/
 	@:optional
-	var writer : (obj:Dynamic) -> String;
+	var writer : REPLWriter;
 	/**
 		An optional function used for custom Tab auto completion.
 	**/
 	@:optional
-	var completer : ts.AnyOf2<(line:String) -> ts.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.Tuple2<std.Array<String>, String>) -> Void) -> Dynamic>;
+	var completer : ts.AnyOf2<node.readline.Completer, node.readline.AsyncCompleter>;
 	/**
 		A flag that specifies whether the default evaluator executes all JavaScript commands in
 		strict mode or default (sloppy) mode.

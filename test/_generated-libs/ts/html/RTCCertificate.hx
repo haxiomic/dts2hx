@@ -4,5 +4,5 @@ package ts.html;
 	final expires : Float;
 	function getFingerprints():std.Array<RTCDtlsFingerprint>;
 	static var prototype : IRTCCertificate;
-	static function getSupportedAlgorithms():std.Array<ts.AnyOf2<String, Algorithm>>;
+	static function getSupportedAlgorithms():std.Array<AlgorithmIdentifier>;
 }

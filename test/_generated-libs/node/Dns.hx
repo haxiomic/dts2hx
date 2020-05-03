@@ -8,7 +8,7 @@ package node;
 	static function lookupService(address:String, port:Float, callback:(err:global.nodejs.ErrnoException, hostname:String, service:String) -> Void):Void;
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<String>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<String>) -> Void):Void { })
-	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<ts.AnyOf10<node.dns.AnyARecord, node.dns.AnyAaaaRecord, node.dns.AnyCnameRecord, node.dns.AnyMxRecord, node.dns.AnyNaptrRecord, node.dns.AnyNsRecord, node.dns.AnyPtrRecord, node.dns.AnySoaRecord, node.dns.AnySrvRecord, node.dns.AnyTxtRecord>>) -> Void):Void { })
+	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.AnyRecord>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<String>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.MxRecord>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.NaptrRecord>) -> Void):Void { })
@@ -17,7 +17,7 @@ package node;
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:node.dns.SoaRecord) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.SrvRecord>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<std.Array<String>>) -> Void):Void { })
-	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:ts.AnyOf7<std.Array<String>, node.dns.SoaRecord, std.Array<ts.AnyOf10<node.dns.AnyARecord, node.dns.AnyAaaaRecord, node.dns.AnyCnameRecord, node.dns.AnyMxRecord, node.dns.AnyNaptrRecord, node.dns.AnyNsRecord, node.dns.AnyPtrRecord, node.dns.AnySoaRecord, node.dns.AnySrvRecord, node.dns.AnyTxtRecord>>, std.Array<node.dns.MxRecord>, std.Array<node.dns.NaptrRecord>, std.Array<node.dns.SrvRecord>, std.Array<std.Array<String>>>) -> Void):Void { })
+	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:ts.AnyOf7<std.Array<String>, node.dns.SoaRecord, std.Array<node.dns.AnyRecord>, std.Array<node.dns.MxRecord>, std.Array<node.dns.NaptrRecord>, std.Array<node.dns.SrvRecord>, std.Array<std.Array<String>>>) -> Void):Void { })
 	static function resolve(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<String>) -> Void):Void;
 	@:overload(function(hostname:String, options:node.dns.ResolveWithTtlOptions, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.RecordWithTtl>) -> Void):Void { })
 	@:overload(function(hostname:String, options:node.dns.ResolveOptions, callback:(err:global.nodejs.ErrnoException, addresses:ts.AnyOf2<std.Array<String>, std.Array<node.dns.RecordWithTtl>>) -> Void):Void { })
@@ -33,7 +33,7 @@ package node;
 	static function resolveSoa(hostname:String, callback:(err:global.nodejs.ErrnoException, address:node.dns.SoaRecord) -> Void):Void;
 	static function resolveSrv(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.SrvRecord>) -> Void):Void;
 	static function resolveTxt(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<std.Array<String>>) -> Void):Void;
-	static function resolveAny(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<ts.AnyOf10<node.dns.AnyARecord, node.dns.AnyAaaaRecord, node.dns.AnyCnameRecord, node.dns.AnyMxRecord, node.dns.AnyNaptrRecord, node.dns.AnyNsRecord, node.dns.AnyPtrRecord, node.dns.AnySoaRecord, node.dns.AnySrvRecord, node.dns.AnyTxtRecord>>) -> Void):Void;
+	static function resolveAny(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:std.Array<node.dns.AnyRecord>) -> Void):Void;
 	static function reverse(ip:String, callback:(err:global.nodejs.ErrnoException, hostnames:std.Array<String>) -> Void):Void;
 	static function setServers(servers:std.Array<String>):Void;
 	static function getServers():std.Array<String>;

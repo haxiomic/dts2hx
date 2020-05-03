@@ -7,7 +7,7 @@ package node.readline;
 		> `readline.createInterface()` method.
 	**/
 	@:overload(function(options:ReadLineOptions):Interface { })
-	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:ts.AnyOf2<(line:String) -> ts.Tuple2<std.Array<String>, String>, (line:String, callback:(?err:ts.lib.IError, ?result:ts.Tuple2<std.Array<String>, String>) -> Void) -> Dynamic>, ?terminal:Bool);
+	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:ts.AnyOf2<Completer, AsyncCompleter>, ?terminal:Bool);
 	final terminal : Bool;
 	function setPrompt(prompt:String):Void;
 	function prompt(?preserveCursor:Bool):Void;

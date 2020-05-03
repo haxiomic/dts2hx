@@ -4,7 +4,7 @@ typedef PublicKeyCredentialCreationOptions = {
 	var attestation : String;
 	@:optional
 	var authenticatorSelection : AuthenticatorSelectionCriteria;
-	var challenge : ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>;
+	var challenge : BufferSource;
 	@:optional
 	var excludeCredentials : std.Array<PublicKeyCredentialDescriptor>;
 	@:optional

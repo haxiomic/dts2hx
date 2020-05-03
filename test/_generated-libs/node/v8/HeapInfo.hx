@@ -8,5 +8,5 @@ typedef HeapInfo = {
 	var heap_size_limit : Float;
 	var malloced_memory : Float;
 	var peak_malloced_memory : Float;
-	var does_zap_garbage : Int;
+	var does_zap_garbage : DoesZapCodeSpaceFlag;
 };

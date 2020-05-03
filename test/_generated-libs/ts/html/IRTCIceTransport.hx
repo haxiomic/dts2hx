@@ -3,13 +3,13 @@ package ts.html;
 	Provides access to information about the ICE transport layer over which the data is being sent and received.
 **/
 typedef IRTCIceTransport = {
-	final component : String;
-	final gatheringState : String;
+	final component : RTCIceComponent;
+	final gatheringState : RTCIceGathererState;
 	var ongatheringstatechange : Null<(ev:IEvent) -> Dynamic>;
 	var onselectedcandidatepairchange : Null<(ev:IEvent) -> Dynamic>;
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
-	final role : String;
-	final state : String;
+	final role : RTCIceRole;
+	final state : RTCIceTransportState;
 	function getLocalCandidates():std.Array<IRTCIceCandidate>;
 	function getLocalParameters():Null<RTCIceParameters>;
 	function getRemoteCandidates():std.Array<IRTCIceCandidate>;
@@ -40,14 +40,14 @@ typedef IRTCIceTransport = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.

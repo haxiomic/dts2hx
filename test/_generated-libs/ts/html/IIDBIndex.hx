@@ -37,7 +37,7 @@ typedef IIDBIndex = {
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>>;
+	function getAllKeys(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<std.Array<IDBValidKey>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		

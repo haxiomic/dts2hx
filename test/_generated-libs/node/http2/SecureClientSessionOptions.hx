@@ -41,7 +41,7 @@ typedef SecureClientSessionOptions = {
 	@:optional
 	var secureContext : node.tls.SecureContext;
 	@:optional
-	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void) -> Void;
+	var lookup : node.net.LookupFunction;
 	@:optional
 	var timeout : Float;
 	@:optional

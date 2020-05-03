@@ -6,11 +6,11 @@ typedef IGamepad = {
 	final axes : ts.lib.ReadonlyArray<Float>;
 	final buttons : ts.lib.ReadonlyArray<IGamepadButton>;
 	final connected : Bool;
-	final hand : String;
+	final hand : GamepadHand;
 	final hapticActuators : ts.lib.ReadonlyArray<IGamepadHapticActuator>;
 	final id : String;
 	final index : Float;
-	final mapping : String;
+	final mapping : GamepadMappingType;
 	final pose : Null<IGamepadPose>;
 	final timestamp : Float;
 };

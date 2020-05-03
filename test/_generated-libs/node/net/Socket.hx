@@ -4,7 +4,7 @@ package node.net;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })
-	function connect(options:ts.AnyOf2<TcpSocketConnectOpts, IpcSocketConnectOpts>, ?connectionListener:() -> Void):Socket;
+	function connect(options:SocketConnectOpts, ?connectionListener:() -> Void):Socket;
 	function setTimeout(timeout:Float, ?callback:() -> Void):Socket;
 	function setNoDelay(?noDelay:Bool):Socket;
 	function setKeepAlive(?enable:Bool, ?initialDelay:Float):Socket;

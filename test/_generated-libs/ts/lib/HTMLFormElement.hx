@@ -158,7 +158,7 @@ package ts.lib;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:ts.html.EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, ts.html.AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -177,7 +177,7 @@ package ts.lib;
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<ts.html.EventListener, ts.html.EventListenerObject>, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:ts.html.EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, ts.html.EventListenerOptions>):Void;
 	var accessKey : String;
 	final accessKeyLabel : String;
@@ -294,9 +294,9 @@ package ts.lib;
 	**/
 	function hasAttributes():Bool;
 	function hasPointerCapture(pointerId:Float):Bool;
-	function insertAdjacentElement(position:String, insertedElement:ts.html.IElement):Null<ts.html.IElement>;
-	function insertAdjacentHTML(where:String, html:String):Void;
-	function insertAdjacentText(where:String, text:String):Void;
+	function insertAdjacentElement(position:ts.html.InsertPosition, insertedElement:ts.html.IElement):Null<ts.html.IElement>;
+	function insertAdjacentHTML(where:ts.html.InsertPosition, html:String):Void;
+	function insertAdjacentText(where:ts.html.InsertPosition, text:String):Void;
 	/**
 		Returns true if matching selectors against element's root yields element, and false otherwise.
 	**/
@@ -646,7 +646,7 @@ package ts.lib;
 	/**
 		Fires when an error occurs during object loading.
 	**/
-	var onerror : Null<ts.html.OnErrorEventHandlerNonNull>;
+	var onerror : ts.html.OnErrorEventHandler;
 	/**
 		Fires when the object receives focus.
 	**/

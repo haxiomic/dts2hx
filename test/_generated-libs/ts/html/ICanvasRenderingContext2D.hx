@@ -6,9 +6,9 @@ typedef ICanvasRenderingContext2D = {
 	final canvas : IHTMLCanvasElement;
 	var globalAlpha : Float;
 	var globalCompositeOperation : String;
-	@:overload(function(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
-	@:overload(function(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, sx:Float, sy:Float, sw:Float, sh:Float, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
-	function drawImage(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, dx:Float, dy:Float):Void;
+	@:overload(function(image:CanvasImageSource, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
+	@:overload(function(image:CanvasImageSource, sx:Float, sy:Float, sw:Float, sh:Float, dx:Float, dy:Float, dw:Float, dh:Float):Void { })
+	function drawImage(image:CanvasImageSource, dx:Float, dy:Float):Void;
 	function beginPath():Void;
 	@:overload(function(path:IPath2D, ?fillRule:String):Void { })
 	function clip(?fillRule:String):Void;
@@ -23,7 +23,7 @@ typedef ICanvasRenderingContext2D = {
 	var fillStyle : ts.AnyOf3<String, ICanvasGradient, ICanvasPattern>;
 	var strokeStyle : ts.AnyOf3<String, ICanvasGradient, ICanvasPattern>;
 	function createLinearGradient(x0:Float, y0:Float, x1:Float, y1:Float):ICanvasGradient;
-	function createPattern(image:ts.AnyOf6<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas>, repetition:String):Null<ICanvasPattern>;
+	function createPattern(image:CanvasImageSource, repetition:String):Null<ICanvasPattern>;
 	function createRadialGradient(x0:Float, y0:Float, r0:Float, x1:Float, y1:Float, r1:Float):ICanvasGradient;
 	var filter : String;
 	@:overload(function(imagedata:IImageData):IImageData { })
@@ -32,7 +32,7 @@ typedef ICanvasRenderingContext2D = {
 	@:overload(function(imagedata:IImageData, dx:Float, dy:Float, dirtyX:Float, dirtyY:Float, dirtyWidth:Float, dirtyHeight:Float):Void { })
 	function putImageData(imagedata:IImageData, dx:Float, dy:Float):Void;
 	var imageSmoothingEnabled : Bool;
-	var imageSmoothingQuality : String;
+	var imageSmoothingQuality : ImageSmoothingQuality;
 	function arc(x:Float, y:Float, radius:Float, startAngle:Float, endAngle:Float, ?anticlockwise:Bool):Void;
 	function arcTo(x1:Float, y1:Float, x2:Float, y2:Float, radius:Float):Void;
 	function bezierCurveTo(cp1x:Float, cp1y:Float, cp2x:Float, cp2y:Float, x:Float, y:Float):Void;
@@ -42,9 +42,9 @@ typedef ICanvasRenderingContext2D = {
 	function moveTo(x:Float, y:Float):Void;
 	function quadraticCurveTo(cpx:Float, cpy:Float, x:Float, y:Float):Void;
 	function rect(x:Float, y:Float, w:Float, h:Float):Void;
-	var lineCap : String;
+	var lineCap : CanvasLineCap;
 	var lineDashOffset : Float;
-	var lineJoin : String;
+	var lineJoin : CanvasLineJoin;
 	var lineWidth : Float;
 	var miterLimit : Float;
 	function getLineDash():std.Array<Float>;
@@ -62,10 +62,10 @@ typedef ICanvasRenderingContext2D = {
 	function fillText(text:String, x:Float, y:Float, ?maxWidth:Float):Void;
 	function measureText(text:String):ITextMetrics;
 	function strokeText(text:String, x:Float, y:Float, ?maxWidth:Float):Void;
-	var direction : String;
+	var direction : CanvasDirection;
 	var font : String;
-	var textAlign : String;
-	var textBaseline : String;
+	var textAlign : CanvasTextAlign;
+	var textBaseline : CanvasTextBaseline;
 	function getTransform():IDOMMatrix;
 	function resetTransform():Void;
 	function rotate(angle:Float):Void;

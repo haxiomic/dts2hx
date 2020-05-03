@@ -19,14 +19,14 @@ typedef IDBArrayKey = {
 	/**
 		Appends new elements to an array, and returns the new length of the array.
 	**/
-	function push(items:haxe.extern.Rest<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>):Float;
+	function push(items:haxe.extern.Rest<IDBValidKey>):Float;
 	/**
 		Combines two or more arrays.
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey, ts.lib.ConcatArray<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>>>):std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>>):std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey, ts.lib.ConcatArray<IDBValidKey>>>):std.Array<IDBValidKey> { })
+	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<IDBValidKey>>):std.Array<IDBValidKey>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -34,7 +34,7 @@ typedef IDBArrayKey = {
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function reverse():std.Array<IDBValidKey>;
 	/**
 		Removes the first element from an array and returns it.
 	**/
@@ -42,84 +42,84 @@ typedef IDBArrayKey = {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function slice(?start:Float, ?end:Float):std.Array<IDBValidKey>;
 	/**
 		Sorts an array.
 	**/
-	function sort(?compareFn:(a:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, b:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>) -> Float):IDBArrayKey;
+	function sort(?compareFn:(a:IDBValidKey, b:IDBValidKey) -> Float):IDBArrayKey;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>):std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>> { })
-	function splice(start:Float, ?deleteCount:Float):std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<IDBValidKey>):std.Array<IDBValidKey> { })
+	function splice(start:Float, ?deleteCount:Float):std.Array<IDBValidKey>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
-	function unshift(items:haxe.extern.Rest<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>):Float;
+	function unshift(items:haxe.extern.Rest<IDBValidKey>):Float;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(searchElement:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?fromIndex:Float):Float;
+	function indexOf(searchElement:IDBValidKey, ?fromIndex:Float):Float;
 	/**
 		Returns the index of the last occurrence of a specified value in an array.
 	**/
-	function lastIndexOf(searchElement:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?fromIndex:Float):Float;
+	function lastIndexOf(searchElement:IDBValidKey, ?fromIndex:Float):Float;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> U, ?thisArg:Dynamic):std.Array<U>;
+	function map<U>(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> U, ?thisArg:Dynamic):std.Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Any, ?thisArg:Dynamic):std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>> { })
-	function filter<S>(callbackfn:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
+	@:overload(function(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):std.Array<IDBValidKey> { })
+	function filter<S>(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentIndex:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, initialValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentIndex:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentIndex:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>;
+	@:overload(function(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey, initialValue:IDBValidKey):IDBValidKey { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey):IDBValidKey;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentIndex:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, initialValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentIndex:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentValue:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, currentIndex:Float, array:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>;
+	@:overload(function(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey, initialValue:IDBValidKey):IDBValidKey { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey):IDBValidKey;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, obj:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>> { })
-	function find<S>(predicate:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, obj:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	@:overload(function(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>> { })
+	function find<S>(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, index:Float, obj:std.Array<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>) -> Any, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Float;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
-	function fill(value:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>, ?start:Float, ?end:Float):IDBArrayKey;
+	function fill(value:IDBValidKey, ?start:Float, ?end:Float):IDBArrayKey;
 	/**
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
@@ -128,7 +128,7 @@ typedef IDBArrayKey = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>>;
+	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, IDBValidKey>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
@@ -136,5 +136,5 @@ typedef IDBArrayKey = {
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():ts.lib.IterableIterator<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function values():ts.lib.IterableIterator<IDBValidKey>;
 };

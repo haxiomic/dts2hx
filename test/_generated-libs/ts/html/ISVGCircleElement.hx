@@ -391,7 +391,7 @@ typedef ISVGCircleElement = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -458,7 +458,7 @@ typedef ISVGCircleElement = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final pathLength : ISVGAnimatedNumber;
 	function getPointAtLength(distance:Float):IDOMPoint;
@@ -569,9 +569,9 @@ typedef ISVGCircleElement = {
 	**/
 	function hasAttributes():Bool;
 	function hasPointerCapture(pointerId:Float):Bool;
-	function insertAdjacentElement(position:String, insertedElement:IElement):Null<IElement>;
-	function insertAdjacentHTML(where:String, html:String):Void;
-	function insertAdjacentText(where:String, text:String):Void;
+	function insertAdjacentElement(position:InsertPosition, insertedElement:IElement):Null<IElement>;
+	function insertAdjacentHTML(where:InsertPosition, html:String):Void;
+	function insertAdjacentText(where:InsertPosition, text:String):Void;
 	/**
 		Returns true if matching selectors against element's root yields element, and false otherwise.
 	**/
@@ -918,7 +918,7 @@ typedef ISVGCircleElement = {
 	/**
 		Fires when an error occurs during object loading.
 	**/
-	var onerror : Null<OnErrorEventHandlerNonNull>;
+	var onerror : OnErrorEventHandler;
 	/**
 		Fires when the object receives focus.
 	**/

@@ -262,8 +262,8 @@ typedef JQueryStatic = {
 		
 		Parses a string into an array of DOM nodes.
 	**/
-	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, ts.html.IDocument>):std.Array<ts.AnyOf4<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment>> { })
-	function parseHTML(data:String, context:Null<ts.html.IDocument>, keepScripts:Bool):std.Array<ts.AnyOf4<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment>>;
+	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, ts.html.IDocument>):std.Array<global.jquery.Node> { })
+	function parseHTML(data:String, context:Null<ts.html.IDocument>, keepScripts:Bool):std.Array<global.jquery.Node>;
 	/**
 		Takes a well-formed JSON string and returns the resulting JavaScript value.
 	**/
@@ -682,10 +682,7 @@ typedef JQueryStatic = {
 	/**
 		Manipulate the queue of functions to be executed on the matched element.
 	**/
-	function queue<T>(element:T, ?queueName:String, ?newQueue:ts.AnyOf2<(next:() -> Void) -> Void, std.Array<(next:() -> Void) -> Void>>):{
-		@:native("0")
-		var Zero : String;
-	} & std.Array<(next:() -> Void) -> Void>;
+	function queue<T>(element:T, ?queueName:String, ?newQueue:ts.AnyOf2<global.jquery.QueueFunction<T>, std.Array<global.jquery.QueueFunction<T>>>):global.jquery.Queue<T>;
 	/**
 		Handles errors thrown synchronously in functions wrapped in jQuery().
 	**/
@@ -701,9 +698,9 @@ typedef JQueryStatic = {
 		
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 	**/
-	@:overload(function<TElement>(duration:ts.AnyOf2<Float, String>, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
-	@:overload(function<TElement>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : ts.AnyOf2<Float, String>; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, { }, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
-	function speed<TElement>(duration:ts.AnyOf2<Float, String>, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
+	@:overload(function<TElement>(duration:global.jquery.Duration, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
+	@:overload(function<TElement>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, { }, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
+	function speed<TElement>(duration:global.jquery.Duration, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
 	/**
 		Remove the whitespace from the beginning and end of a string.
 	**/

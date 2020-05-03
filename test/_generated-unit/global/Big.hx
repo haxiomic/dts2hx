@@ -8,7 +8,7 @@ package global;
 		Infinity, NaN and hexadecimal literal strings, e.g. '0xff', are not valid.
 		String values in octal literal form will be interpreted as decimals, e.g. '011' is 11, not 9.
 	**/
-	function new(value:ts.AnyOf3<String, Float, big_js.IBig>);
+	function new(value:big_js.BigSource);
 	/**
 		Returns a new instance of a Big number object
 		
@@ -19,7 +19,7 @@ package global;
 	**/
 	@:overload(function():big_js.BigConstructor { })
 	@:selfCall
-	static function call(value:ts.AnyOf3<String, Float, big_js.IBig>):big_js.IBig;
+	static function call(value:big_js.BigSource):big_js.IBig;
 	/**
 		The maximum number of decimal places of the results of operations involving division.
 		It is relevant only to the div and sqrt methods, and the pow method when the exponent is negative.

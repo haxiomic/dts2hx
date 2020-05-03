@@ -1,5 +1,5 @@
 package ts.html;
 typedef RsaHashedImportParams = {
-	var hash : ts.AnyOf2<String, Algorithm>;
+	var hash : AlgorithmIdentifier;
 	var name : String;
 };

@@ -3,7 +3,7 @@ typedef SpeedSettings<TElement> = ts.AnyOf4<{
 	/**
 		A string or number determining how long the animation will run.
 	**/
-	var duration : ts.AnyOf2<Float, String>;
+	var duration : Duration;
 }, {
 	/**
 		A string indicating which easing function to use for the transition.

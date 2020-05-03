@@ -12,9 +12,9 @@ typedef TransformOptions = {
 	@:optional
 	function destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
 	@:optional
-	function transform(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
+	function transform(chunk:Dynamic, encoding:String, callback:TransformCallback):Void;
 	@:optional
-	function flush(callback:(?error:ts.lib.IError, ?data:Dynamic) -> Void):Void;
+	function flush(callback:TransformCallback):Void;
 	@:optional
 	var allowHalfOpen : Bool;
 	@:optional

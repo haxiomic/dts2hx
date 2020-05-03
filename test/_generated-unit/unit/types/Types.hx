@@ -20,7 +20,7 @@ package unit.types;
 **/
 @:jsRequire("./unit/types", "Types") @valueModuleOnly extern class Types {
 	static function functionWithOptional(a:String, ?b:Bool):Float;
-	static function partialTypeParam<T>(x:Dynamic):Void;
+	static function partialTypeParam<T>(x:{ }):Void;
 	static function functionImplicit(x:Dynamic, y:Dynamic):Dynamic;
 	static function functionNumberStringVoidAlt(a:Float, b:String):Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a:Float, tparam:T):Void;
@@ -53,11 +53,11 @@ package unit.types;
 	static var booleanLiteral : Bool;
 	static var stringLiteral : String;
 	static var typeReferenceStringAlias : String;
-	static var typeReferenceArrayAlias : std.Array<String>;
+	static var typeReferenceArrayAlias : unit.types.types.ArrayAlias;
 	static var typeReferenceObjectAlias : {
 		var fieldA : Float;
 		var fieldB : Float;
-		var fieldArrayAlias : std.Array<String>;
+		var fieldArrayAlias : unit.types.types.ArrayAlias;
 		@:optional
 		var fieldOptional : Float;
 		@:native("macro")
@@ -76,11 +76,11 @@ package unit.types;
 		function methodSignatureOptional():String;
 		final readonlyField : String;
 	};
-	static var typeReferenceAliasWithTypeParam : ts.lib.IMap<String, Float>;
+	static var typeReferenceAliasWithTypeParam : unit.types.types.AliasWithTypeParam<String, Float>;
 	static var object : {
 		var fieldA : Float;
 		var fieldB : Float;
-		var fieldArrayAlias : std.Array<String>;
+		var fieldArrayAlias : unit.types.types.ArrayAlias;
 		@:optional
 		var fieldOptional : Float;
 		@:native("macro")
@@ -121,7 +121,12 @@ package unit.types;
 		var length : String;
 	};
 	static var mappedStringIndex : Dynamic;
-	static var partial : Dynamic;
+	static var partial : {
+		@:optional
+		var a : Float;
+		@:optional
+		var b : String;
+	};
 	static var arrowNumberStringVoid : (a:Float, noType:Dynamic) -> Void;
 	static var arrowNumberTVoidTypeParam : (a:Float, tParam:Any, arrayTParam:std.Array<Any>) -> Void;
 	static var arrowParamWithRest : (a:Float, b:Float, rest:haxe.extern.Rest<Float>) -> Void;
@@ -146,7 +151,7 @@ package unit.types;
 	static var intersectionWithTypeof : {
 		var fieldA : Float;
 		var fieldB : Float;
-		var fieldArrayAlias : std.Array<String>;
+		var fieldArrayAlias : unit.types.types.ArrayAlias;
 		@:optional
 		var fieldOptional : Float;
 		@:native("macro")
@@ -187,9 +192,7 @@ package unit.types;
 		var c : Float;
 	}>;
 	static var intersectionWithCallSignatures : Dynamic;
-	static var intersectionAnonAlias : {
-		var a : String;
-	} & {
+	static var intersectionAnonAlias : unit.types.types.Anon & {
 		var b : Bool;
 	};
 	static var intersectionBetweenClasses : Dynamic;
@@ -197,7 +200,7 @@ package unit.types;
 	static var typeQueryObject : {
 		var fieldA : Float;
 		var fieldB : Float;
-		var fieldArrayAlias : std.Array<String>;
+		var fieldArrayAlias : unit.types.types.ArrayAlias;
 		@:optional
 		var fieldOptional : Float;
 		@:native("macro")

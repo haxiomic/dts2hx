@@ -5,7 +5,7 @@ package ts.html;
 @:native("RTCSessionDescription") extern class RTCSessionDescription {
 	function new(descriptionInitDict:RTCSessionDescriptionInit);
 	final sdp : String;
-	final type : String;
+	final type : RTCSdpType;
 	function toJSON():Dynamic;
 	static var prototype : IRTCSessionDescription;
 }

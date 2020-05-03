@@ -3,7 +3,7 @@ package ts.html;
 	Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.
 **/
 typedef IWebSocket = {
-	var binaryType : String;
+	var binaryType : BinaryType;
 	final bufferedAmount : Float;
 	final extensions : String;
 	var onclose : Null<(ev:ICloseEvent) -> Dynamic>;
@@ -14,7 +14,7 @@ typedef IWebSocket = {
 	final readyState : Float;
 	final url : String;
 	function close(?code:Float, ?reason:String):Void;
-	function send(data:ts.AnyOf4<String, ts.lib.IArrayBuffer, IBlob, ts.lib.ArrayBufferView>):Void;
+	function send(data:BlobPart):Void;
 	final CLOSED : Float;
 	final CLOSING : Float;
 	final CONNECTING : Float;
@@ -44,14 +44,14 @@ typedef IWebSocket = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.

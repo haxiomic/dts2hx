@@ -1,6 +1,6 @@
 package ts.html;
 typedef HmacKeyGenParams = {
-	var hash : ts.AnyOf2<String, Algorithm>;
+	var hash : AlgorithmIdentifier;
 	@:optional
 	var length : Float;
 	var name : String;

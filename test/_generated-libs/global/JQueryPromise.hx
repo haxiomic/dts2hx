@@ -3,19 +3,19 @@ typedef JQueryPromise<T> = {
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/
-	function always(alwaysCallback:ts.AnyOf2<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void, std.Array<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void>>, alwaysCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void, std.Array<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void>>>):JQueryPromise<T>;
+	function always(alwaysCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>, alwaysCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>>):JQueryPromise<T>;
 	/**
 		Add handlers to be called when the Deferred object is resolved.
 	**/
-	function done(doneCallback:ts.AnyOf2<(t:T, u:T, v:T, r:haxe.extern.Rest<T>) -> Void, std.Array<(t:T, u:T, v:T, r:haxe.extern.Rest<T>) -> Void>>, doneCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:T, u:T, v:T, r:haxe.extern.Rest<T>) -> Void, std.Array<(t:T, u:T, v:T, r:haxe.extern.Rest<T>) -> Void>>>):JQueryPromise<T>;
+	function done(doneCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<T, T, T, T>>, doneCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<T, T, T, T>>>):JQueryPromise<T>;
 	/**
 		Add handlers to be called when the Deferred object is rejected.
 	**/
-	function fail(failCallback:ts.AnyOf2<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void, std.Array<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void>>, failCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void, std.Array<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void>>>):JQueryPromise<T>;
+	function fail(failCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>, failCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>>):JQueryPromise<T>;
 	/**
 		Add handlers to be called when the Deferred object generates progress notifications.
 	**/
-	function progress(progressCallback:ts.AnyOf2<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void, std.Array<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void>>, progressCallbacks:haxe.extern.Rest<ts.AnyOf2<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void, std.Array<(t:Dynamic, u:Dynamic, v:Dynamic, r:haxe.extern.Rest<Dynamic>) -> Void>>>):JQueryPromise<T>;
+	function progress(progressCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>, progressCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>>):JQueryPromise<T>;
 	/**
 		Return a Deferred's Promise object.
 		

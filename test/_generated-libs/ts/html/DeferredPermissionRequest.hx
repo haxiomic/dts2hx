@@ -2,7 +2,7 @@ package ts.html;
 @:native("DeferredPermissionRequest") extern class DeferredPermissionRequest {
 	function new();
 	final id : Float;
-	final type : String;
+	final type : MSWebViewPermissionType;
 	final uri : String;
 	function allow():Void;
 	function deny():Void;

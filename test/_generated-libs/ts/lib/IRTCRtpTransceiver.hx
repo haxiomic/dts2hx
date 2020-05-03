@@ -1,7 +1,7 @@
 package ts.lib;
 typedef IRTCRtpTransceiver = {
 	final currentDirection : Null<String>;
-	var direction : String;
+	var direction : ts.html.RTCRtpTransceiverDirection;
 	final mid : Null<String>;
 	final receiver : ts.html.IRTCRtpReceiver;
 	final sender : ts.html.IRTCRtpSender;

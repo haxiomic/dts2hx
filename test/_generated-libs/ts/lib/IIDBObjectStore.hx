@@ -32,7 +32,7 @@ typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function add(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>;
+	function add(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.html.IDBValidKey>;
 	/**
 		Deletes all records in store.
 		
@@ -85,7 +85,7 @@ typedef IIDBObjectStore = {
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>>;
+	function getAllKeys(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<ts.html.IDBValidKey>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		
@@ -114,5 +114,5 @@ typedef IIDBObjectStore = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function put(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>;
+	function put(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.html.IDBValidKey>;
 };

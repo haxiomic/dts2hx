@@ -1,2 +1,2 @@
 package global.nodejs;
-typedef SignalsListener = (signal:String) -> Void;
+typedef SignalsListener = (signal:Signals) -> Void;

@@ -1,2 +1,2 @@
 package global.nodejs;
-typedef MultipleResolveListener = (type:String, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void;
+typedef MultipleResolveListener = (type:MultipleResolveType, promise:ts.lib.IPromise<Dynamic>, value:Dynamic) -> Void;

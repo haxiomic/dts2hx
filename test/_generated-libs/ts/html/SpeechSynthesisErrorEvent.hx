@@ -1,7 +1,7 @@
 package ts.html;
 @:native("SpeechSynthesisErrorEvent") extern class SpeechSynthesisErrorEvent {
 	function new();
-	final error : String;
+	final error : SpeechSynthesisErrorCode;
 	final charIndex : Float;
 	final elapsedTime : Float;
 	final name : String;

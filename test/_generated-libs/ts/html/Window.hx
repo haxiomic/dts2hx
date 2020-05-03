@@ -92,7 +92,7 @@ package ts.html;
 	function captureEvents():Void;
 	function close():Void;
 	function confirm(?message:String):Bool;
-	function departFocus(navigationReason:String, origin:FocusNavigationOrigin):Void;
+	function departFocus(navigationReason:NavigationReason, origin:FocusNavigationOrigin):Void;
 	function focus():Void;
 	function getComputedStyle(elt:IElement, ?pseudoElt:String):ts.lib.ICSSStyleDeclaration;
 	function getMatchedCSSRules(elt:IElement, ?pseudoElt:String):ts.lib.ICSSRuleList;
@@ -102,7 +102,7 @@ package ts.html;
 	function moveTo(x:Float, y:Float):Void;
 	function msWriteProfilerMark(profilerMarkName:String):Void;
 	function open(?url:String, ?target:String, ?features:String, ?replace:Bool):Null<IWindow>;
-	function postMessage(message:Dynamic, targetOrigin:String, ?transfer:std.Array<ts.AnyOf3<ts.lib.IArrayBuffer, IMessagePort, IImageBitmap>>):Void;
+	function postMessage(message:Dynamic, targetOrigin:String, ?transfer:std.Array<Transferable>):Void;
 	function print():Void;
 	function prompt(?message:String, ?_default:String):Null<String>;
 	function releaseEvents():Void;
@@ -144,14 +144,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
@@ -237,7 +237,7 @@ package ts.html;
 	/**
 		Fires when an error occurs during object loading.
 	**/
-	var onerror : Null<OnErrorEventHandlerNonNull>;
+	var onerror : OnErrorEventHandler;
 	/**
 		Fires when the object receives focus.
 	**/
@@ -404,12 +404,12 @@ package ts.html;
 	final origin : String;
 	function clearInterval(?handle:Float):Void;
 	function clearTimeout(?handle:Float):Void;
-	@:overload(function(image:ts.AnyOf8<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas, IBlob, IImageData>, sx:Float, sy:Float, sw:Float, sh:Float):ts.lib.IPromise<IImageBitmap> { })
-	function createImageBitmap(image:ts.AnyOf8<IHTMLImageElement, IImageBitmap, ISVGImageElement, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas, IBlob, IImageData>):ts.lib.IPromise<IImageBitmap>;
-	function fetch(input:ts.AnyOf2<String, IRequest>, ?init:RequestInit):ts.lib.IPromise<IResponse>;
+	@:overload(function(image:ImageBitmapSource, sx:Float, sy:Float, sw:Float, sh:Float):ts.lib.IPromise<IImageBitmap> { })
+	function createImageBitmap(image:ImageBitmapSource):ts.lib.IPromise<IImageBitmap>;
+	function fetch(input:RequestInfo, ?init:RequestInit):ts.lib.IPromise<IResponse>;
 	function queueMicrotask(callback:ts.lib.IFunction):Void;
-	function setInterval(handler:ts.AnyOf2<String, ts.lib.IFunction>, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
-	function setTimeout(handler:ts.AnyOf2<String, ts.lib.IFunction>, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
+	function setInterval(handler:TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
+	function setTimeout(handler:TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
 	final sessionStorage : IStorage;
 	static var prototype : IWindow;
 }

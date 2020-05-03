@@ -4,7 +4,7 @@ package ts.lib;
 **/
 @:native("AudioParam") extern class AudioParam {
 	function new();
-	var automationRate : String;
+	var automationRate : ts.html.AutomationRate;
 	final defaultValue : Float;
 	final maxValue : Float;
 	final minValue : Float;

@@ -8,5 +8,5 @@ typedef REPLCommand = {
 	/**
 		The function to execute, optionally accepting a single string argument.
 	**/
-	var action : (text:String) -> Void;
+	var action : REPLCommandAction;
 };

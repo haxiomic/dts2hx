@@ -2,7 +2,7 @@ package ts.html;
 @:native("ListeningStateChangedEvent") extern class ListeningStateChangedEvent {
 	function new();
 	final label : String;
-	final state : String;
+	final state : ListeningState;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/

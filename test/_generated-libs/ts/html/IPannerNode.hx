@@ -6,12 +6,12 @@ typedef IPannerNode = {
 	var coneInnerAngle : Float;
 	var coneOuterAngle : Float;
 	var coneOuterGain : Float;
-	var distanceModel : String;
+	var distanceModel : DistanceModelType;
 	var maxDistance : Float;
 	final orientationX : ts.lib.IAudioParam;
 	final orientationY : ts.lib.IAudioParam;
 	final orientationZ : ts.lib.IAudioParam;
-	var panningModel : String;
+	var panningModel : PanningModelType;
 	final positionX : ts.lib.IAudioParam;
 	final positionY : ts.lib.IAudioParam;
 	final positionZ : ts.lib.IAudioParam;
@@ -20,8 +20,8 @@ typedef IPannerNode = {
 	function setOrientation(x:Float, y:Float, z:Float):Void;
 	function setPosition(x:Float, y:Float, z:Float):Void;
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

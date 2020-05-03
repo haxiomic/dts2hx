@@ -138,16 +138,16 @@ typedef IWebGLRenderingContext = {
 	function validateProgram(program:IWebGLProgram):Void;
 	function vertexAttrib1f(index:Float, x:Float):Void;
 	@:overload(function(index:Float, values:ts.lib.Iterable<Float>):Void { })
-	function vertexAttrib1fv(index:Float, values:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function vertexAttrib1fv(index:Float, values:Float32List):Void;
 	function vertexAttrib2f(index:Float, x:Float, y:Float):Void;
 	@:overload(function(index:Float, values:ts.lib.Iterable<Float>):Void { })
-	function vertexAttrib2fv(index:Float, values:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function vertexAttrib2fv(index:Float, values:Float32List):Void;
 	function vertexAttrib3f(index:Float, x:Float, y:Float, z:Float):Void;
 	@:overload(function(index:Float, values:ts.lib.Iterable<Float>):Void { })
-	function vertexAttrib3fv(index:Float, values:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function vertexAttrib3fv(index:Float, values:Float32List):Void;
 	function vertexAttrib4f(index:Float, x:Float, y:Float, z:Float, w:Float):Void;
 	@:overload(function(index:Float, values:ts.lib.Iterable<Float>):Void { })
-	function vertexAttrib4fv(index:Float, values:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function vertexAttrib4fv(index:Float, values:Float32List):Void;
 	function vertexAttribPointer(index:Float, size:Float, type:Float, normalized:Bool, stride:Float, offset:Float):Void;
 	function viewport(x:Float, y:Float, width:Float, height:Float):Void;
 	final ACTIVE_ATTRIBUTES : Float;
@@ -448,34 +448,34 @@ typedef IWebGLRenderingContext = {
 	final ZERO : Float;
 	@:overload(function(target:Float, data:Null<ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>>, usage:Float):Void { })
 	function bufferData(target:Float, size:Float, usage:Float):Void;
-	function bufferSubData(target:Float, offset:Float, data:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):Void;
+	function bufferSubData(target:Float, offset:Float, data:BufferSource):Void;
 	function compressedTexImage2D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, border:Float, data:ts.lib.ArrayBufferView):Void;
 	function compressedTexSubImage2D(target:Float, level:Float, xoffset:Float, yoffset:Float, width:Float, height:Float, format:Float, data:ts.lib.ArrayBufferView):Void;
 	function readPixels(x:Float, y:Float, width:Float, height:Float, format:Float, type:Float, pixels:Null<ts.lib.ArrayBufferView>):Void;
-	@:overload(function(target:Float, level:Float, internalformat:Float, format:Float, type:Float, source:ts.AnyOf6<IHTMLImageElement, IImageBitmap, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas, IImageData>):Void { })
+	@:overload(function(target:Float, level:Float, internalformat:Float, format:Float, type:Float, source:TexImageSource):Void { })
 	function texImage2D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, border:Float, format:Float, type:Float, pixels:Null<ts.lib.ArrayBufferView>):Void;
-	@:overload(function(target:Float, level:Float, xoffset:Float, yoffset:Float, format:Float, type:Float, source:ts.AnyOf6<IHTMLImageElement, IImageBitmap, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas, IImageData>):Void { })
+	@:overload(function(target:Float, level:Float, xoffset:Float, yoffset:Float, format:Float, type:Float, source:TexImageSource):Void { })
 	function texSubImage2D(target:Float, level:Float, xoffset:Float, yoffset:Float, width:Float, height:Float, format:Float, type:Float, pixels:Null<ts.lib.ArrayBufferView>):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform1fv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniform1fv(location:Null<IWebGLUniformLocation>, v:Float32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform1iv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IInt32Array, std.Array<Float>>):Void;
+	function uniform1iv(location:Null<IWebGLUniformLocation>, v:Int32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform2fv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniform2fv(location:Null<IWebGLUniformLocation>, v:Float32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform2iv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IInt32Array, std.Array<Float>>):Void;
+	function uniform2iv(location:Null<IWebGLUniformLocation>, v:Int32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform3fv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniform3fv(location:Null<IWebGLUniformLocation>, v:Float32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform3iv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IInt32Array, std.Array<Float>>):Void;
+	function uniform3iv(location:Null<IWebGLUniformLocation>, v:Int32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform4fv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniform4fv(location:Null<IWebGLUniformLocation>, v:Float32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, v:ts.lib.Iterable<Float>):Void { })
-	function uniform4iv(location:Null<IWebGLUniformLocation>, v:ts.AnyOf2<ts.lib.IInt32Array, std.Array<Float>>):Void;
+	function uniform4iv(location:Null<IWebGLUniformLocation>, v:Int32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, transpose:Bool, value:ts.lib.Iterable<Float>):Void { })
-	function uniformMatrix2fv(location:Null<IWebGLUniformLocation>, transpose:Bool, value:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniformMatrix2fv(location:Null<IWebGLUniformLocation>, transpose:Bool, value:Float32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, transpose:Bool, value:ts.lib.Iterable<Float>):Void { })
-	function uniformMatrix3fv(location:Null<IWebGLUniformLocation>, transpose:Bool, value:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniformMatrix3fv(location:Null<IWebGLUniformLocation>, transpose:Bool, value:Float32List):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, transpose:Bool, value:ts.lib.Iterable<Float>):Void { })
-	function uniformMatrix4fv(location:Null<IWebGLUniformLocation>, transpose:Bool, value:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>):Void;
+	function uniformMatrix4fv(location:Null<IWebGLUniformLocation>, transpose:Bool, value:Float32List):Void;
 };

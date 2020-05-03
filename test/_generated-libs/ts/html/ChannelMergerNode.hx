@@ -5,8 +5,8 @@ package ts.html;
 @:native("ChannelMergerNode") extern class ChannelMergerNode {
 	function new(context:ts.lib.IBaseAudioContext, ?options:ChannelMergerOptions);
 	var channelCount : Float;
-	var channelCountMode : String;
-	var channelInterpretation : String;
+	var channelCountMode : ChannelCountMode;
+	var channelInterpretation : ChannelInterpretation;
 	final context : ts.lib.IBaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;

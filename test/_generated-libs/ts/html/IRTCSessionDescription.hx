@@ -4,6 +4,6 @@ package ts.html;
 **/
 typedef IRTCSessionDescription = {
 	final sdp : String;
-	final type : String;
+	final type : RTCSdpType;
 	function toJSON():Dynamic;
 };

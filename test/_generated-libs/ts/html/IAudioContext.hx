@@ -62,7 +62,7 @@ typedef IAudioContext = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -73,7 +73,7 @@ typedef IAudioContext = {
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	final audioWorklet : IAudioWorklet;
 	final currentTime : Float;
@@ -81,7 +81,7 @@ typedef IAudioContext = {
 	final listener : IAudioListener;
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
 	final sampleRate : Float;
-	final state : String;
+	final state : AudioContextState;
 	function createAnalyser():IAnalyserNode;
 	function createBiquadFilter():IBiquadFilterNode;
 	function createBuffer(numberOfChannels:Float, length:Float, sampleRate:Float):IAudioBuffer;

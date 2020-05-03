@@ -11,10 +11,10 @@ package ts.html;
 	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
 	final sessionId : String;
 	function close():ts.lib.IPromise<Void>;
-	function generateRequest(initDataType:String, initData:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Void>;
+	function generateRequest(initDataType:String, initData:BufferSource):ts.lib.IPromise<Void>;
 	function load(sessionId:String):ts.lib.IPromise<Bool>;
 	function remove():ts.lib.IPromise<Void>;
-	function update(response:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>):ts.lib.IPromise<Void>;
+	function update(response:BufferSource):ts.lib.IPromise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -40,14 +40,14 @@ package ts.html;
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 		
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	@:overload(function(type:String, listener:ts.AnyOf2<EventListener, EventListenerObject>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
+	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.

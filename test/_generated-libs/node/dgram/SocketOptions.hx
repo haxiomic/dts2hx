@@ -1,6 +1,6 @@
 package node.dgram;
 typedef SocketOptions = {
-	var type : String;
+	var type : SocketType;
 	@:optional
 	var reuseAddr : Bool;
 	@:optional

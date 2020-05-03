@@ -1,5 +1,5 @@
 package global;
 typedef JQueryPromiseOperator<T, U> = {
 	@:selfCall
-	function call(callback1:ts.AnyOf2<JQueryPromiseCallback<T>, std.Array<JQueryPromiseCallback<T>>>, callbacksN:haxe.extern.Rest<ts.AnyOf2<JQueryPromiseCallback<Dynamic>, std.Array<JQueryPromiseCallback<Dynamic>>>>):JQueryPromise<U>;
+	function call(callback1:global.jquery.TypeOrArray<JQueryPromiseCallback<T>>, callbacksN:haxe.extern.Rest<global.jquery.TypeOrArray<JQueryPromiseCallback<Dynamic>>>):JQueryPromise<U>;
 };

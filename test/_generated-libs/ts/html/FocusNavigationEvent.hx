@@ -1,7 +1,7 @@
 package ts.html;
 @:native("FocusNavigationEvent") extern class FocusNavigationEvent {
 	function new(type:String, ?eventInitDict:FocusNavigationEventInit);
-	final navigationReason : String;
+	final navigationReason : NavigationReason;
 	final originHeight : Float;
 	final originLeft : Float;
 	final originTop : Float;

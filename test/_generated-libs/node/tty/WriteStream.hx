@@ -1,6 +1,6 @@
 package node.tty;
 @:jsRequire("tty", "WriteStream") extern class WriteStream extends node.net.Socket {
-	function clearLine(dir:Int):Void;
+	function clearLine(dir:Direction):Void;
 	function clearScreenDown():Void;
 	function cursorTo(x:Float, y:Float):Void;
 	function getColorDepth(?env:{ }):Float;

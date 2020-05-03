@@ -1,11 +1,11 @@
 package node.crypto;
 typedef DecipherCCM = {
-	function setAuthTag(buffer:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>):DecipherCCM;
-	function setAAD(buffer:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, options:{ var plaintextLength : Float; }):DecipherCCM;
-	@:overload(function(data:String, input_encoding:String):global.IBuffer { })
-	@:overload(function(data:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, input_encoding:Null<Any>, output_encoding:String):String { })
-	@:overload(function(data:String, input_encoding:Null<String>, output_encoding:String):String { })
-	function update(data:ts.AnyOf11<global.IBuffer, ts.lib.IUint8Array, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>):global.IBuffer;
+	function setAuthTag(buffer:Binary):DecipherCCM;
+	function setAAD(buffer:Binary, options:{ var plaintextLength : Float; }):DecipherCCM;
+	@:overload(function(data:String, input_encoding:HexBase64BinaryEncoding):global.IBuffer { })
+	@:overload(function(data:Binary, input_encoding:Null<Any>, output_encoding:Utf8AsciiBinaryEncoding):String { })
+	@:overload(function(data:String, input_encoding:Null<String>, output_encoding:Utf8AsciiBinaryEncoding):String { })
+	function update(data:Binary):global.IBuffer;
 	@:native("final")
 	@:overload(function(output_encoding:String):String { })
 	function final_():global.IBuffer;

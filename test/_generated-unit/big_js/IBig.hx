@@ -7,55 +7,55 @@ typedef IBig = {
 	/**
 		Returns a Big number whose value is the value of this Big number plus n - alias for .plus().
 	**/
-	function add(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function add(n:BigSource):IBig;
 	/**
 		Compare the values.
 	**/
-	function cmp(n:ts.AnyOf3<String, Float, IBig>):Int;
+	function cmp(n:BigSource):Comparison;
 	/**
 		Returns a Big number whose value is the value of this Big number divided by n.
 		
 		If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.
 	**/
-	function div(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function div(n:BigSource):IBig;
 	/**
 		Returns true if the value of this Big equals the value of n, otherwise returns false.
 	**/
-	function eq(n:ts.AnyOf3<String, Float, IBig>):Bool;
+	function eq(n:BigSource):Bool;
 	/**
 		Returns true if the value of this Big is greater than the value of n, otherwise returns false.
 	**/
-	function gt(n:ts.AnyOf3<String, Float, IBig>):Bool;
+	function gt(n:BigSource):Bool;
 	/**
 		Returns true if the value of this Big is greater than or equal to the value of n, otherwise returns false.
 	**/
-	function gte(n:ts.AnyOf3<String, Float, IBig>):Bool;
+	function gte(n:BigSource):Bool;
 	/**
 		Returns true if the value of this Big is less than the value of n, otherwise returns false.
 	**/
-	function lt(n:ts.AnyOf3<String, Float, IBig>):Bool;
+	function lt(n:BigSource):Bool;
 	/**
 		Returns true if the value of this Big is less than or equal to the value of n, otherwise returns false.
 	**/
-	function lte(n:ts.AnyOf3<String, Float, IBig>):Bool;
+	function lte(n:BigSource):Bool;
 	/**
 		Returns a Big number whose value is the value of this Big number minus n.
 	**/
-	function minus(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function minus(n:BigSource):IBig;
 	/**
 		Returns a Big number whose value is the value of this Big number modulo n, i.e. the integer remainder of dividing this Big number by n.
 		
 		The result will have the same sign as this Big number, and it will match that of Javascript's % operator (within the limits of its precision) and BigDecimal's remainder method.
 	**/
-	function mod(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function mod(n:BigSource):IBig;
 	/**
 		Returns a Big number whose value is the value of this Big number times n - alias for .times().
 	**/
-	function mul(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function mul(n:BigSource):IBig;
 	/**
 		Returns a Big number whose value is the value of this Big number plus n.
 	**/
-	function plus(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function plus(n:BigSource):IBig;
 	/**
 		Returns a Big number whose value is the value of this Big number raised to the power exp.
 		
@@ -75,11 +75,11 @@ typedef IBig = {
 	/**
 		Returns a Big number whose value is the value of this Big number minus n - alias for .minus().
 	**/
-	function sub(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function sub(n:BigSource):IBig;
 	/**
 		Returns a Big number whose value is the value of this Big number times n.
 	**/
-	function times(n:ts.AnyOf3<String, Float, IBig>):IBig;
+	function times(n:BigSource):IBig;
 	/**
 		Returns a string representing the value of this Big number in exponential notation to a fixed number of decimal places dp.
 		

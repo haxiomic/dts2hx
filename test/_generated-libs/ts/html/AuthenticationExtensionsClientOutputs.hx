@@ -5,7 +5,7 @@ typedef AuthenticationExtensionsClientOutputs = {
 	@:optional
 	var authnSel : Bool;
 	@:optional
-	var exts : std.Array<String>;
+	var exts : AuthenticationExtensionsSupported;
 	@:optional
 	var loc : Coordinates;
 	@:optional
@@ -15,5 +15,5 @@ typedef AuthenticationExtensionsClientOutputs = {
 	@:optional
 	var uvi : ts.lib.IArrayBuffer;
 	@:optional
-	var uvm : std.Array<std.Array<Float>>;
+	var uvm : UvmEntries;
 };

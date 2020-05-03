@@ -6,7 +6,7 @@ package ts.html;
 	function new();
 	final deviceId : String;
 	final groupId : String;
-	final kind : String;
+	final kind : MediaDeviceKind;
 	final label : String;
 	function toJSON():Dynamic;
 	static var prototype : IMediaDeviceInfo;

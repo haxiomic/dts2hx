@@ -1,7 +1,7 @@
 package ts.html;
 typedef PublicKeyCredentialDescriptor = {
-	var id : ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>;
+	var id : BufferSource;
 	@:optional
-	var transports : std.Array<String>;
+	var transports : std.Array<AuthenticatorTransport>;
 	var type : String;
 };
