@@ -308,7 +308,7 @@ class ConverterContext {
 			}
 
 			var tsType = tc.getDeclaredTypeOfSymbol(symbol);
-			var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration);
+			var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration, false);
 			var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
 
 			// if this symbol is also a ValueModule then it needs to have fields
@@ -702,15 +702,36 @@ class ConverterContext {
 	
 	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
-	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		if (_currentTypeStack.has(type)) {
-			Log.log('Breaking recursive type conversion with :Any', type);
+	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true): ComplexType {
+		if (allowAlias && type.aliasSymbol != null) {
+			_currentTypeStack.push(type);
+			var hxType = if (type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0) {
+				// special handling of mapped types
+				// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
+				complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+			} else {
+				// haxe type alias
+				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, true);
+				var params = type.aliasTypeArguments != null ? type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration))) : [];
+				TPath({
+					pack: haxeTypePath.pack,
+					name: haxeTypePath.name,
+					params: params
+				});
+			}
 			_currentTypeStack.pop();
+			return hxType;
+		}
+
+		if (_currentTypeStack.has(type)) {
+			Log.log('Breaking recursive type conversion', type);
+			_currentTypeStack.pop();
+			debug();
 			return macro :Dynamic;
 		}
 
 		if (_currentTypeStack.length >= 50) {
-			Log.error('Internal error: Reached type-depth limit, stopping further type conversions with :Any. This indicates unbound recursive type conversion');
+			Log.error('Internal error: Reached type-depth limit, stopping further type conversions. This indicates unbound recursive type conversion');
 			debug();
 			_currentTypeStack.pop();
 			return macro :Dynamic;
