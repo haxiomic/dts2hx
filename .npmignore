@@ -11,3 +11,4 @@ ROADMAP.md
 tsconfig.json
 scratch.*
 .vscode/
+*.tgz
