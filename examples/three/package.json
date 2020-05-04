@@ -2,7 +2,7 @@
   "name": "three-example",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "postinstall": "dts2hx --all"
   },
@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "esbuild": "^0.1.18",
-    "dts2hx": "^0.3.3"
+    "dts2hx": "^0.4.1"
   },
   "dependencies": {
     "three": "0.116.0"

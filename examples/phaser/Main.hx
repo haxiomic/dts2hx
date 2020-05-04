@@ -135,20 +135,20 @@ class Main {
 
 		//  Finally some random dynamic bodies
 		for (i in 0...12) {
-			var x = Math.Between(100, 700);
-			var y = Math.Between(100, 500);
+			var x = Math_.Between(100, 700);
+			var y = Math_.Between(100, 500);
 
-			if (std.Math.random() < 0.5)
+			if (Math.random() < 0.5)
 			{
-				var sides = Math.Between(3, 14);
-				var radius = Math.Between(8, 50);
+				var sides = Math_.Between(3, 14);
+				var radius = Math_.Between(8, 50);
 
 				scene.matter.add.polygon(x, y, sides, radius, { restitution: 0.5 });
 			}
 			else
 			{
-				var width = Math.Between(16, 128);
-				var height = Math.Between(8, 64);
+				var width = Math_.Between(16, 128);
+				var height = Math_.Between(8, 64);
 
 				scene.matter.add.rectangle(x, y, width, height, { restitution: 0.5 });
 			}

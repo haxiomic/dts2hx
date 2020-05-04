@@ -17,8 +17,8 @@ class Main {
 		var canvas = document.createCanvasElement();
 		canvas.style.width = displayWidthPx + 'px';
 		canvas.style.height = displayHeightPx + 'px';
-		canvas.width = std.Math.round(displayWidthPx * pixelRatio);
-		canvas.height = std.Math.round(displayHeightPx * pixelRatio);
+		canvas.width = Math.round(displayWidthPx * pixelRatio);
+		canvas.height = Math.round(displayHeightPx * pixelRatio);
 		document.body.appendChild(canvas);
 
 		var scene = new Scene();
