@@ -255,7 +255,6 @@ class HaxeTypePathMap {
 		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
 		if (defaultLibOnlyDeclarations) {
 			final specialTypeMap = [
-				'Array' => {name: 'Array', pack: ['std']},
 				'Symbol' => {name: 'Symbol', pack: ['js', 'lib']},
 			];
 			switch access {
@@ -367,6 +366,38 @@ class HaxeTypePathMap {
 				symbol.name;
 		}
 		var name = typeIdentifier.toSafeTypeName();
+
+		// rename if name that conflict with std.* types
+		// @! we should generate this list automatically in the future
+		var disallowedNames = [
+			'Any',
+			'Array',
+			'Class',
+			'Date',
+			'DateTools',
+			'Enum',
+			'EnumValue',
+			'EReg',
+			'IntIterator',
+			'Lambda',
+			'List',
+			'Map',
+			'Math',
+			'Reflect',
+			'Std',
+			'StdTypes',
+			'String',
+			'StringBuf',
+			'StringTools',
+			'Sys',
+			'Type',
+			'UInt',
+			'UnicodeString',
+			'Xml',
+		];
+		if (disallowedNames.indexOf(name) != -1) {
+			name = name + '_';
+		}
 
 		// handle short aliases
 		return {
