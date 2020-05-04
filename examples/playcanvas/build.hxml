@@ -1,0 +1,6 @@
+-main Main
+# include playcanvas externs
+--class-path externs/playcanvas
+
+-js dist/main.js
+-dce full
