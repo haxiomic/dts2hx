@@ -257,7 +257,8 @@ class HaxeTypePathMap {
 			final specialTypeMap = [
 				// we want to avoid generating the following types into ts.lib.* 
 				// preferring to map them to haxe types instead
-				'Array' => {name: 'Array', pack: ['std']},
+				'Array' => {name: 'Array', pack: []},
+				'String' => {name: 'String', pack: []},
 				'Symbol' => {name: 'Symbol', pack: ['js', 'lib']},
 			];
 			switch access {
