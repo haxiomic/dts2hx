@@ -145,7 +145,7 @@ package ts.html;
 	/**
 		Returns a Date object representing the form control's value, if applicable; otherwise, returns null. Can be set, to change the value. Throws an "InvalidStateError" DOMException if the control isn't date- or time-based.
 	**/
-	var valueAsDate : Null<ts.lib.IDate>;
+	var valueAsDate : Null<ts.lib.IDate_>;
 	/**
 		Returns the input field value as a number.
 	**/

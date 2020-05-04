@@ -106,7 +106,7 @@ typedef Global = {
 	};
 	var JSON : ts.lib.JSON;
 	var Map : ts.lib.MapConstructor;
-	var Math : ts.lib.Math;
+	var Math : ts.lib.Math_;
 	var NaN : Float;
 	var Number : ts.lib.NumberConstructor;
 	var Object : ts.lib.ObjectConstructor;

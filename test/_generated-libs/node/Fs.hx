@@ -275,19 +275,19 @@ package node;
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied path.
 	**/
-	static function utimes(path:node.fs.PathLike, atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function utimes(path:node.fs.PathLike, atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously change file timestamps of the file referenced by the supplied path.
 	**/
-	static function utimesSync(path:node.fs.PathLike, atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>):Void;
+	static function utimesSync(path:node.fs.PathLike, atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>):Void;
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied file descriptor.
 	**/
-	static function futimes(fd:Float, atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function futimes(fd:Float, atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronously change file timestamps of the file referenced by the supplied file descriptor.
 	**/
-	static function futimesSync(fd:Float, atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>):Void;
+	static function futimesSync(fd:Float, atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>):Void;
 	/**
 		Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
 	**/

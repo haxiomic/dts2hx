@@ -1,5 +1,5 @@
 package three;
-@:jsRequire("three", "Math") @valueModuleOnly extern class Math {
+@:jsRequire("three", "Math") @valueModuleOnly extern class Math_ {
 	static function generateUUID():String;
 	/**
 		Clamps the x to be between a and b.

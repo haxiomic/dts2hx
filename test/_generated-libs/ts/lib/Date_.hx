@@ -2,7 +2,12 @@ package ts.lib;
 /**
 	Enables basic storage and retrieval of dates and times.
 **/
-typedef IDate = {
+@:native("Date") extern class Date_ {
+	@:overload(function(value:ts.AnyOf2<String, Float>):IDate_ { })
+	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):IDate_ { })
+	@:overload(function(vd:VarDate):IDate_ { })
+	@:overload(function(value:ts.AnyOf3<String, Float, IDate_>):IDate_ { })
+	function new();
 	/**
 		Returns a string representation of a date. The format of the string depends on the locale.
 	**/
@@ -185,4 +190,16 @@ typedef IDate = {
 	**/
 	function toJSON(?key:Dynamic):String;
 	var getVarDate : () -> VarDate;
-};
+	@:selfCall
+	static function call():String;
+	static final prototype : IDate_;
+	/**
+		Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.
+	**/
+	static function parse(s:String):Float;
+	/**
+		Returns the number of milliseconds between midnight, January 1, 1970 Universal Coordinated Time (UTC) (or GMT) and the specified date.
+	**/
+	static function UTC(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Float;
+	static function now():Float;
+}

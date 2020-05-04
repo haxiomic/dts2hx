@@ -21,8 +21,8 @@ package node.fs;
 	var mtimeMs : Float;
 	var ctimeMs : Float;
 	var birthtimeMs : Float;
-	var atime : ts.lib.IDate;
-	var mtime : ts.lib.IDate;
-	var ctime : ts.lib.IDate;
-	var birthtime : ts.lib.IDate;
+	var atime : ts.lib.IDate_;
+	var mtime : ts.lib.IDate_;
+	var ctime : ts.lib.IDate_;
+	var birthtime : ts.lib.IDate_;
 }

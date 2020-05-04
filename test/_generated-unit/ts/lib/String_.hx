@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/
-@:native("String") extern class String {
+@:native("String") extern class String_ {
 	function new(?value:Dynamic);
 	/**
 		Returns a string representation of a string.
@@ -206,7 +206,7 @@ package ts.lib;
 	function sup():String;
 	@:selfCall
 	static function call(?value:Dynamic):String;
-	static final prototype : IString;
+	static final prototype : IString_;
 	static function fromCharCode(codes:haxe.extern.Rest<Float>):String;
 	/**
 		Return the String value whose elements are, in order, the elements in the List elements.

@@ -138,11 +138,11 @@ package node.fs;
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied path.
 	**/
-	static function utimes(path:PathLike, atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>):ts.lib.IPromise<Void>;
+	static function utimes(path:PathLike, atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronously change file timestamps of the file referenced by the supplied `FileHandle`.
 	**/
-	static function futimes(handle:node.fs.promises.FileHandle, atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>):ts.lib.IPromise<Void>;
+	static function futimes(handle:node.fs.promises.FileHandle, atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronous realpath(3) - return the canonicalized absolute pathname.
 		

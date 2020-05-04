@@ -15,7 +15,7 @@ typedef IDBArrayKey = {
 	/**
 		Removes the last element from an array and returns it.
 	**/
-	function pop():Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function pop():Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>>;
 	/**
 		Appends new elements to an array, and returns the new length of the array.
 	**/
@@ -25,7 +25,7 @@ typedef IDBArrayKey = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey, ts.lib.ConcatArray<IDBValidKey>>>):std.Array<IDBValidKey> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey, ts.lib.ConcatArray<IDBValidKey>>>):std.Array<IDBValidKey> { })
 	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<IDBValidKey>>):std.Array<IDBValidKey>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
@@ -38,7 +38,7 @@ typedef IDBArrayKey = {
 	/**
 		Removes the first element from an array and returns it.
 	**/
-	function shift():Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>>;
+	function shift():Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>>;
 	/**
 		Returns a section of an array.
 	**/
@@ -109,7 +109,7 @@ typedef IDBArrayKey = {
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>> { })
+	@:overload(function(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>> { })
 	function find<S>(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1

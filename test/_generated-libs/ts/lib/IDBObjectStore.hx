@@ -33,7 +33,7 @@ package ts.lib;
 		
 		If successful, request's result will be the record's key.
 	**/
-	function add(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.html.IDBValidKey>;
+	function add(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate_, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.html.IDBValidKey>;
 	/**
 		Deletes all records in store.
 		
@@ -45,7 +45,7 @@ package ts.lib;
 		
 		If successful, request's result will be the count.
 	**/
-	function count(?key:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Float>;
+	function count(?key:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Float>;
 	/**
 		Creates a new index in store with the given name, keyPath and options and returns a new IDBIndex. If the keyPath and options define constraints that cannot be satisfied with the data already in store the upgrade transaction will abort with a "ConstraintError" DOMException.
 		
@@ -62,7 +62,7 @@ package ts.lib;
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete(key:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Null<Any>>;
+	function delete(key:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Null<Any>>;
 	/**
 		Deletes the index in store with the given name.
 		
@@ -74,38 +74,38 @@ package ts.lib;
 		
 		If successful, request's result will be the value, or undefined if there was no matching record.
 	**/
-	function get(query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Dynamic>;
+	function get(query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Dynamic>;
 	/**
 		Retrieves the values of the records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<Dynamic>>;
+	function getAll(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<Dynamic>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<ts.html.IDBValidKey>>;
+	function getAllKeys(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<ts.html.IDBValidKey>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		
 		If successful, request's result will be the key, or undefined if there was no matching record.
 	**/
-	function getKey(query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Null<ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>>>;
+	function getKey(query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<Null<ts.AnyOf6<String, Float, IArrayBuffer, IDate_, ArrayBufferView, ts.html.IDBArrayKey>>>;
 	function index(name:String):ts.html.IIDBIndex;
 	/**
 		Opens a cursor over the records matching query, ordered by direction. If query is null, all records in store are matched.
 		
 		If successful, request's result will be an IDBCursorWithValue pointing at the first matching record, or null if there were no matching records.
 	**/
-	function openCursor(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursorWithValue>>;
+	function openCursor(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursorWithValue>>;
 	/**
 		Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in store are matched.
 		
 		If successful, request's result will be an IDBCursor pointing at the first matching record, or null if there were no matching records.
 	**/
-	function openKeyCursor(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate, ArrayBufferView, ts.html.IDBArrayKey>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursor>>;
+	function openKeyCursor(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?direction:String):ts.html.IIDBRequest<Null<ts.html.IIDBCursor>>;
 	/**
 		Adds or updates a record in store with the given value and key.
 		
@@ -115,6 +115,6 @@ package ts.lib;
 		
 		If successful, request's result will be the record's key.
 	**/
-	function put(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.html.IDBValidKey>;
+	function put(value:Dynamic, ?key:ts.AnyOf6<String, Float, IArrayBuffer, IDate_, ArrayBufferView, ts.html.IDBArrayKey>):ts.html.IIDBRequest<ts.html.IDBValidKey>;
 	static var prototype : IIDBObjectStore;
 }

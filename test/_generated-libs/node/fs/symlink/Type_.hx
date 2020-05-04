@@ -1,2 +1,2 @@
 package node.fs.symlink;
-typedef Type = String;
+typedef Type_ = String;

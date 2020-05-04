@@ -57,7 +57,7 @@ typedef FileHandle = {
 	/**
 		Asynchronously change file timestamps of the file.
 	**/
-	function utimes(atime:ts.AnyOf3<String, Float, ts.lib.IDate>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate>):ts.lib.IPromise<Void>;
+	function utimes(atime:ts.AnyOf3<String, Float, ts.lib.IDate_>, mtime:ts.AnyOf3<String, Float, ts.lib.IDate_>):ts.lib.IPromise<Void>;
 	/**
 		Asynchronously writes `buffer` to the file.
 		The `FileHandle` must have been opened for writing.

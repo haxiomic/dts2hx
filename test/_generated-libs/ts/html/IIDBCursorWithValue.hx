@@ -31,7 +31,7 @@ typedef IIDBCursorWithValue = {
 		Advances the cursor to the next record in range.
 	**/
 	@:native("continue")
-	function continue_(?key:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate, ts.lib.ArrayBufferView, IDBArrayKey>):Void;
+	function continue_(?key:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>):Void;
 	/**
 		Advances the cursor to the next record in range matching or after key and primaryKey. Throws an "InvalidAccessError" DOMException if the source is not an index.
 	**/

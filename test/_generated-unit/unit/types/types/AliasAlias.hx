@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef AliasAlias<X> = ts.lib.IMap<String, X>;
+typedef AliasAlias<X> = ts.lib.IMap_<String, X>;

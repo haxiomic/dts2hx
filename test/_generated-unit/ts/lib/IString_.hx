@@ -2,7 +2,7 @@ package ts.lib;
 /**
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/
-typedef IString = {
+typedef IString_ = {
 	/**
 		Returns a string representation of a string.
 	**/
