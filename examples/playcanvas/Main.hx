@@ -28,7 +28,7 @@ class Main {
 		// create camera entity
 		final camera = new Entity('camera');
 		camera.addComponent('camera', {
-						clearColor: new Color(0.1, 0.1, 0.1)
+			clearColor: new Color(0.1, 0.1, 0.1)
 		});
 		app.root.addChild(camera);
 		camera.setPosition(0, 0, 3);
