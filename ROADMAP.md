@@ -81,6 +81,17 @@ A generic build version of this would work
 	}
 ```
 
+- Better function type support with optional arguments
+	- If you have `(?arg, ?arg2) => X` in typescript
+	- This should be:
+	```haxe
+		AnyOf3<
+			() -> X,
+			(arg) -> X,
+			(arg, arg2) -> X
+		>
+	```
+
 - Special types
 	- ts.lib.IFunction should map to haxe.constrains.Function I think
 
