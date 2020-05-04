@@ -30,6 +30,7 @@
 - Handle callable classes
 	- symbol.flags & SymbolFlags.Function != 0
 	- play well with other call signatures (also from construct type)
+	-> `@:selfCall` on new() https://github.com/HaxeFoundation/haxe/issues/3441 
 
 - Lots of array extensions, can we do better here?
 
@@ -78,6 +79,23 @@ A generic build version of this would work
 		}
 
 	}
+```
+
+- Special types
+	- ts.lib.IFunction should map to haxe.constrains.Function I think
+
+- Haxe issue? Outgoing `@:native`
+```haxe
+extern function setup(options: {
+	@:native('default')
+	var default_: String;
+}): Void;
+
+setup({ default_: 'hi' })
+// generates
+setup( { default_: 'hi' })
+// rather than
+setup( { default: 'hi' })
 ```
 
 - Understand
@@ -133,5 +151,13 @@ A generic build version of this would work
 
 ! Biggest problem is the haxelib .current convention, so maybe we can't use @haxe?
 ! Also making @haxe org access public might be hard.
+- Use a shim, so that when haxe or haxelib are called, we first setup the haxelib directory with symlinks to dependencies in package.json
+	- What happens when a dependency requires others via package.json?
+		-> we need to symlink these too
+		-> So basically symlink everything in `node_modules`
+			! this is expeennsiiiiive, probably only a small minority will be haxe modules
+			? check for haxelib.json...? ehhh
+	=> What if we scan the dependencies for hx files, then cache the results in a text file so we know if we need to re-run this process
+	
 
 - How do you install haxe 4.0.5 with npm-haxe? Not clear so far
