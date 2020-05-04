@@ -1,0 +1,17 @@
+{
+  "name": "phaser-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "postinstall": "dts2hx --all"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dts2hx": "^0.4.0"
+  },
+  "dependencies": {
+    "phaser": "3.23.0"
+  }
+}
