@@ -3,12 +3,12 @@ typedef TransformOptions = {
 	@:optional
 	function read(size:Float):Void;
 	@:optional
-	function write(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
+	function write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	@:optional
-	function writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	@:native("final")
 	@:optional
-	function final_(callback:(?error:ts.lib.IError) -> Void):Void;
+	function final_(callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	@:optional
 	function destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
 	@:optional

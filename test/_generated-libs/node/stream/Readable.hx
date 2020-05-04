@@ -14,6 +14,6 @@ package node.stream;
 	function unshift(chunk:Dynamic):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):Readable;
 	function push(chunk:Dynamic, ?encoding:String):Bool;
-	function _destroy(error:Null<ts.lib.IError>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	function destroy(?error:ts.lib.IError):Void;
 }

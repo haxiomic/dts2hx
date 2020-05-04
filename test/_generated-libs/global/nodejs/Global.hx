@@ -140,7 +140,7 @@ typedef Global = {
 	var isFinite : (number:Float) -> Bool;
 	var isNaN : (number:Float) -> Bool;
 	var parseFloat : (string:String) -> Float;
-	var parseInt : (s:String, ?radix:Float) -> Float;
+	var parseInt : ts.AnyOf2<(s:String) -> Float, (s:String, radix:Float) -> Float>;
 	var process : Process;
 	var root : Global;
 	var setImmediate : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, args:haxe.extern.Rest<Dynamic>) -> Immediate;

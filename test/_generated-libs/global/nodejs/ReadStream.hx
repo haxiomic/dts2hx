@@ -7,7 +7,7 @@ typedef ReadStream = {
 	@:optional
 	function setRawMode(mode:Bool):Void;
 	function _read(size:Float):Void;
-	function _destroy(err:Null<ts.lib.IError>, callback:(?err:ts.lib.IError) -> Void):Void;
+	function _destroy(err:Null<ts.lib.IError>, callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>):Void;
 	function push(chunk:Dynamic, ?encoding:String):Bool;
 	function destroy(?error:ts.lib.IError):Void;
 	@:optional
@@ -39,8 +39,8 @@ typedef ReadStream = {
 	function prependOnceListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	var writable : Bool;
-	@:overload(function(str:String, ?encoding:String, ?cb:(?err:ts.lib.IError) -> Void):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:(?err:ts.lib.IError) -> Void):Bool;
+	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>):Bool { })
+	function write(buffer:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>):Bool;
 	@:overload(function(data:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:() -> Void):Void { })
 	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;

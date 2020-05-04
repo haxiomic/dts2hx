@@ -6,7 +6,7 @@ package ts.lib;
 	/**
 		Creates a new Promise.
 	**/
-	function new(executor:(resolve:(?value:ts.AnyOf2<T, PromiseLike<T>>) -> Void, reject:(?reason:Dynamic) -> Void) -> Void);
+	function new(executor:(resolve:ts.AnyOf2<() -> Void, (value:ts.AnyOf2<T, PromiseLike<T>>) -> Void>, reject:ts.AnyOf2<() -> Void, (reason:Dynamic) -> Void>) -> Void);
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.
 	**/

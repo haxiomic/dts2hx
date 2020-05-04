@@ -43,17 +43,17 @@ package node;
 	@:overload(function<T1, T2, T3, T4, T5, T6, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, arg6:T6) -> ts.lib.IPromise<TResult>):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, arg6:T6, callback:(err:global.nodejs.ErrnoException, result:TResult) -> Void) -> Void { })
 	static function callbackify(fn:() -> ts.lib.IPromise<Void>):(callback:(err:global.nodejs.ErrnoException) -> Void) -> Void;
 	@:overload(function<TResult>(fn:(callback:(err:Null<ts.lib.IError>, result:TResult) -> Void) -> Void):() -> ts.lib.IPromise<TResult> { })
-	@:overload(function(fn:(callback:(?err:ts.lib.IError) -> Void) -> Void):() -> ts.lib.IPromise<Void> { })
+	@:overload(function(fn:(callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>) -> Void):() -> ts.lib.IPromise<Void> { })
 	@:overload(function<T1, TResult>(fn:(arg1:T1, callback:(err:Null<ts.lib.IError>, result:TResult) -> Void) -> Void):(arg1:T1) -> ts.lib.IPromise<TResult> { })
-	@:overload(function<T1>(fn:(arg1:T1, callback:(?err:ts.lib.IError) -> Void) -> Void):(arg1:T1) -> ts.lib.IPromise<Void> { })
+	@:overload(function<T1>(fn:(arg1:T1, callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>) -> Void):(arg1:T1) -> ts.lib.IPromise<Void> { })
 	@:overload(function<T1, T2, TResult>(fn:(arg1:T1, arg2:T2, callback:(err:Null<ts.lib.IError>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2) -> ts.lib.IPromise<TResult> { })
-	@:overload(function<T1, T2>(fn:(arg1:T1, arg2:T2, callback:(?err:ts.lib.IError) -> Void) -> Void):(arg1:T1, arg2:T2) -> ts.lib.IPromise<Void> { })
+	@:overload(function<T1, T2>(fn:(arg1:T1, arg2:T2, callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>) -> Void):(arg1:T1, arg2:T2) -> ts.lib.IPromise<Void> { })
 	@:overload(function<T1, T2, T3, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, callback:(err:Null<ts.lib.IError>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3) -> ts.lib.IPromise<TResult> { })
-	@:overload(function<T1, T2, T3>(fn:(arg1:T1, arg2:T2, arg3:T3, callback:(?err:ts.lib.IError) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3) -> ts.lib.IPromise<Void> { })
+	@:overload(function<T1, T2, T3>(fn:(arg1:T1, arg2:T2, arg3:T3, callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>) -> Void):(arg1:T1, arg2:T2, arg3:T3) -> ts.lib.IPromise<Void> { })
 	@:overload(function<T1, T2, T3, T4, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, callback:(err:Null<ts.lib.IError>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4) -> ts.lib.IPromise<TResult> { })
-	@:overload(function<T1, T2, T3, T4>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, callback:(?err:ts.lib.IError) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4) -> ts.lib.IPromise<Void> { })
+	@:overload(function<T1, T2, T3, T4>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4) -> ts.lib.IPromise<Void> { })
 	@:overload(function<T1, T2, T3, T4, T5, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:(err:Null<ts.lib.IError>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> ts.lib.IPromise<TResult> { })
-	@:overload(function<T1, T2, T3, T4, T5>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:(?err:ts.lib.IError) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> ts.lib.IPromise<Void> { })
+	@:overload(function<T1, T2, T3, T4, T5>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> ts.lib.IPromise<Void> { })
 	@:overload(function(fn:ts.lib.IFunction):ts.lib.IFunction { })
 	static function promisify<TCustom>(fn:node.util.CustomPromisify<TCustom>):TCustom;
 }

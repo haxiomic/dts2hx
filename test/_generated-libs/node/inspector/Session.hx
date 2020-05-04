@@ -182,7 +182,7 @@ package node.inspector;
 		
 		Detaches from all running workers and disables attaching to new workers as they are started.
 	**/
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, ?params:{ }) -> Void):Void { })
+	@:overload(function(method:String, ?callback:ts.AnyOf2<(err:Null<ts.lib.IError>) -> Void, (err:Null<ts.lib.IError>, params:{ }) -> Void>):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
@@ -309,5 +309,5 @@ package node.inspector;
 	@:overload(function(method:String, ?params:node.inspector.nodeworker.EnableParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	function post(method:String, ?params:{ }, ?callback:(err:Null<ts.lib.IError>, ?params:{ }) -> Void):Void;
+	function post(method:String, ?params:{ }, ?callback:ts.AnyOf2<(err:Null<ts.lib.IError>) -> Void, (err:Null<ts.lib.IError>, params:{ }) -> Void>):Void;
 }

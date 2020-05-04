@@ -82,7 +82,7 @@ typedef Http2Server = {
 	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Http2Server { })
 	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Http2Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Http2Server;
-	function close(?callback:(?err:ts.lib.IError) -> Void):Http2Server;
+	function close(?callback:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>):Http2Server;
 	function address():Null<ts.AnyOf2<String, node.net.AddressInfo>>;
 	function getConnections(cb:(error:Null<ts.lib.IError>, count:Float) -> Void):Void;
 	function ref():Http2Server;

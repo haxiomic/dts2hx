@@ -5,8 +5,8 @@ typedef Signer = {
 	@:overload(function(private_key:ts.AnyOf4<String, global.IBuffer, KeyObject, SignPrivateKeyInput>, output_format:HexBase64Latin1Encoding):String { })
 	function sign(private_key:ts.AnyOf4<String, global.IBuffer, KeyObject, SignPrivateKeyInput>):global.IBuffer;
 	var writable : Bool;
-	@:overload(function(str:String, ?encoding:String, ?cb:(?err:ts.lib.IError) -> Void):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:(?err:ts.lib.IError) -> Void):Bool;
+	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>):Bool { })
+	function write(buffer:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.IError) -> Void>):Bool;
 	@:overload(function(data:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, ?cb:() -> Void):Void { })
 	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
