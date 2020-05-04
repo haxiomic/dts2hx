@@ -1,10 +1,29 @@
-import js.Browser.*;
+/**
+	playcanvas offers both modular and global declarations. If we use modular, `require('playcanvas')` will be emitted in the javascript, whereas if we use global, it assumes playcanvas is already available in the global scope
+
+	In this example we use the global type declarations so we don't need a bundler after haxe generates the javascript file
+
+	To use the modular version we can change the import to:
+		```haxe
+		import Playcanvas;
+		import playcanvas.*;
+		typedef Pc = Playcanvas;
+		```
+**/
 import global.Pc;
 import global.pc.*;
+
+import js.Browser.*;
+
 
 class Main {
 
 	static function main() {
+		/**
+			playcanvas hello world example
+			https://github.com/playcanvas/engine
+		**/
+
 		final canvas = document.createCanvasElement();
 		document.body.appendChild(canvas);
 
