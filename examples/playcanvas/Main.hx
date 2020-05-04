@@ -40,7 +40,7 @@ class Main {
 		light.setEulerAngles(45, 0, 0);
 
 		// rotate the box according to the delta time since the last frame
-		app.on('update', cast dt -> box.rotate(10 * dt, 20 * dt, 30 * dt));
+		app.on('update', dt -> box.rotate(10 * dt, 20 * dt, 30 * dt));
 
 		app.start();
 	}

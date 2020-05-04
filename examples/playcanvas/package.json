@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dts2hx": "^0.4.1",
+    "dts2hx": "^0.4.2",
     "playcanvas": "1.27.0"
   }
 }
