@@ -6,7 +6,7 @@ package three;
 	var name : String;
 	var sourceFile : String;
 	var image : Dynamic;
-	var mipmaps : std.Array<ts.html.IImageData>;
+	var mipmaps : Array<ts.html.IImageData>;
 	var mapping : Mapping;
 	var wrapS : Wrapping;
 	var wrapT : Wrapping;

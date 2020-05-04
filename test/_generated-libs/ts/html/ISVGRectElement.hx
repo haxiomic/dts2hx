@@ -544,7 +544,7 @@ typedef ISVGRectElement = {
 	/**
 		Returns the qualified names of all element's attributes. Can contain duplicates.
 	**/
-	function getAttributeNames():std.Array<String>;
+	function getAttributeNames():Array<String>;
 	function getAttributeNode(name:String):Null<IAttr>;
 	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<IAttr>;
 	function getBoundingClientRect():IDOMRect;
@@ -769,8 +769,8 @@ typedef ISVGRectElement = {
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
 	function dispatchEvent(event:IEvent):Bool;
-	function animate(keyframes:Null<ts.AnyOf2<std.Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeAnimationOptions>):IAnimation;
-	function getAnimations():std.Array<IAnimation>;
+	function animate(keyframes:Null<ts.AnyOf2<Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeAnimationOptions>):IAnimation;
+	function getAnimations():Array<IAnimation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		

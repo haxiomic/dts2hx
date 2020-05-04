@@ -10,7 +10,7 @@ package three;
 	/**
 		Array with matrix values.
 	**/
-	var elements : std.Array<Float>;
+	var elements : Array<Float>;
 	function set(n11:Float, n12:Float, n13:Float, n21:Float, n22:Float, n23:Float, n31:Float, n32:Float, n33:Float):Matrix3;
 	/**
 		identity():T;
@@ -47,14 +47,14 @@ package three;
 	/**
 		Transposes this matrix into the supplied array r, and returns itself.
 	**/
-	function transposeIntoArray(r:std.Array<Float>):std.Array<Float>;
+	function transposeIntoArray(r:Array<Float>):Array<Float>;
 	function setUvTransform(tx:Float, ty:Float, sx:Float, sy:Float, rotation:Float, cx:Float, cy:Float):Matrix3;
 	function scale(sx:Float, sy:Float):Matrix3;
 	function rotate(theta:Float):Matrix3;
 	function translate(tx:Float, ty:Float):Matrix3;
 	function equals(matrix:Matrix3):Bool;
-	function fromArray(array:std.Array<Float>, ?offset:Float):Matrix3;
-	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
+	function fromArray(array:Array<Float>, ?offset:Float):Matrix3;
+	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 	/**
 		Multiplies this matrix by m.
 	**/
@@ -66,5 +66,5 @@ package three;
 	function multiplyMatrices(a:Matrix3, b:Matrix3):Matrix3;
 	function multiplyVector3(vector:Vector3):Dynamic;
 	function multiplyVector3Array(a:Dynamic):Dynamic;
-	function flattenToArrayOffset(array:std.Array<Float>, offset:Float):std.Array<Float>;
+	function flattenToArrayOffset(array:Array<Float>, offset:Float):Array<Float>;
 }

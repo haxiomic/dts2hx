@@ -100,7 +100,7 @@ package three;
 	function lerp(color:Color, alpha:Float):Color;
 	function lerpHSL(color:Color, alpha:Float):Color;
 	function equals(color:Color):Bool;
-	function fromArray(rgb:std.Array<Float>, ?offset:Float):Color;
+	function fromArray(rgb:Array<Float>, ?offset:Float):Color;
 	@:overload(function(xyz:ts.lib.ArrayLike<Float>, ?offset:Float):ts.lib.ArrayLike<Float> { })
-	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
+	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 }

@@ -1,4 +1,4 @@
 package unit.class_;
-@:jsRequire("./unit/class", "ClassExtends") extern class ClassExtends<K> extends ClassBase<std.Array<K>, Bool> {
+@:jsRequire("./unit/class", "ClassExtends") extern class ClassExtends<K> extends ClassBase<Array<K>, Bool> {
 	var additionalField : Float;
 }

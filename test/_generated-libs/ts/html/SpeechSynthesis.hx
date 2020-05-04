@@ -9,7 +9,7 @@ package ts.html;
 	final pending : Bool;
 	final speaking : Bool;
 	function cancel():Void;
-	function getVoices():std.Array<ISpeechSynthesisVoice>;
+	function getVoices():Array<ISpeechSynthesisVoice>;
 	function pause():Void;
 	function resume():Void;
 	function speak(utterance:ISpeechSynthesisUtterance):Void;

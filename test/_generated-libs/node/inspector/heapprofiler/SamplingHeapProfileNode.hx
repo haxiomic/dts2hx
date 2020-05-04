@@ -14,5 +14,5 @@ typedef SamplingHeapProfileNode = {
 	/**
 		Child nodes.
 	**/
-	var children : std.Array<SamplingHeapProfileNode>;
+	var children : Array<SamplingHeapProfileNode>;
 };

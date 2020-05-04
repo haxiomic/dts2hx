@@ -3,11 +3,11 @@ typedef ForkOptions = {
 	@:optional
 	var execPath : String;
 	@:optional
-	var execArgv : std.Array<String>;
+	var execArgv : Array<String>;
 	@:optional
 	var silent : Bool;
 	@:optional
-	var stdio : ts.AnyOf2<String, std.Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
+	var stdio : ts.AnyOf2<String, Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
 	@:optional
 	var detached : Bool;
 	@:optional

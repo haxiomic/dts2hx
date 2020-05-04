@@ -1,2 +1,2 @@
 package ts.html;
-typedef AuthenticatorSelectionList = std.Array<BufferSource>;
+typedef AuthenticatorSelectionList = Array<BufferSource>;

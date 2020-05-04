@@ -3,7 +3,7 @@ typedef PerformanceObserverInit = {
 	@:optional
 	var buffered : Bool;
 	@:optional
-	var entryTypes : std.Array<String>;
+	var entryTypes : Array<String>;
 	@:optional
 	var type : String;
 };

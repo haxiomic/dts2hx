@@ -1,2 +1,2 @@
 package ts.html;
-typedef PerformanceEntryList = std.Array<IPerformanceEntry>;
+typedef PerformanceEntryList = Array<IPerformanceEntry>;

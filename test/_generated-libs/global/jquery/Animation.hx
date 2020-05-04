@@ -34,7 +34,7 @@ typedef Animation<TElement> = {
 	/**
 		The animations tweens.
 	**/
-	var tweens : std.Array<Tween<TElement>>;
+	var tweens : Array<Tween<TElement>>;
 	function createTween(propName:String, finalValue:Float):Tween<TElement>;
 	/**
 		Stops the animation early, optionally going to the end.

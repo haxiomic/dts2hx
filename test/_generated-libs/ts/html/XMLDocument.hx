@@ -380,7 +380,7 @@ package ts.html;
 		Returns the element for the specified x coordinate and the specified y coordinate.
 	**/
 	function elementFromPoint(x:Float, y:Float):Null<IElement>;
-	function elementsFromPoint(x:Float, y:Float):std.Array<IElement>;
+	function elementsFromPoint(x:Float, y:Float):Array<IElement>;
 	/**
 		Executes a command on the current document, current selection, or the given range.
 	**/
@@ -390,7 +390,7 @@ package ts.html;
 	**/
 	function exitFullscreen():ts.lib.IPromise<Void>;
 	function exitPointerLock():Void;
-	function getAnimations():std.Array<IAnimation>;
+	function getAnimations():Array<IAnimation>;
 	/**
 		Returns a reference to the first object with the specified value of the ID or NAME attribute.
 	**/

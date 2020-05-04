@@ -20,7 +20,7 @@ typedef ObjectConstructor = {
 		Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 		on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
 	**/
-	function getOwnPropertyNames(o:Dynamic):std.Array<String>;
+	function getOwnPropertyNames(o:Dynamic):Array<String>;
 	/**
 		Creates an object that has the specified prototype or that has null prototype.
 		
@@ -49,7 +49,7 @@ typedef ObjectConstructor = {
 	**/
 	@:overload(function<T>(f:T):T { })
 	@:overload(function<T>(o:T):{ } { })
-	function freeze<T>(a:std.Array<T>):ReadonlyArray<T>;
+	function freeze<T>(a:Array<T>):ReadonlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.
 	**/
@@ -71,8 +71,8 @@ typedef ObjectConstructor = {
 		
 		Returns the names of the enumerable string properties and methods of an object.
 	**/
-	@:overload(function(o:{ }):std.Array<String> { })
-	function keys(o:Dynamic):std.Array<String>;
+	@:overload(function(o:{ }):Array<String> { })
+	function keys(o:Dynamic):Array<String>;
 	/**
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
@@ -93,7 +93,7 @@ typedef ObjectConstructor = {
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
-	function getOwnPropertySymbols(o:Dynamic):std.Array<js.lib.Symbol>;
+	function getOwnPropertySymbols(o:Dynamic):Array<js.lib.Symbol>;
 	/**
 		Returns true if the values are the same value, false otherwise.
 	**/

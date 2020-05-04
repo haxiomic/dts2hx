@@ -25,8 +25,8 @@ typedef IDBArrayKey = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey, ts.lib.ConcatArray<IDBValidKey>>>):std.Array<IDBValidKey> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<IDBValidKey>>):std.Array<IDBValidKey>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey, ts.lib.ConcatArray<IDBValidKey>>>):Array<IDBValidKey> { })
+	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<IDBValidKey>>):Array<IDBValidKey>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -34,7 +34,7 @@ typedef IDBArrayKey = {
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():std.Array<IDBValidKey>;
+	function reverse():Array<IDBValidKey>;
 	/**
 		Removes the first element from an array and returns it.
 	**/
@@ -42,7 +42,7 @@ typedef IDBArrayKey = {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):std.Array<IDBValidKey>;
+	function slice(?start:Float, ?end:Float):Array<IDBValidKey>;
 	/**
 		Sorts an array.
 	**/
@@ -52,8 +52,8 @@ typedef IDBArrayKey = {
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<IDBValidKey>):std.Array<IDBValidKey> { })
-	function splice(start:Float, ?deleteCount:Float):std.Array<IDBValidKey>;
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<IDBValidKey>):Array<IDBValidKey> { })
+	function splice(start:Float, ?deleteCount:Float):Array<IDBValidKey>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
@@ -69,53 +69,53 @@ typedef IDBArrayKey = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:IDBValidKey, index:Float, array:Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:IDBValidKey, index:Float, array:Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:IDBValidKey, index:Float, array:Array<IDBValidKey>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> U, ?thisArg:Dynamic):std.Array<U>;
+	function map<U>(callbackfn:(value:IDBValidKey, index:Float, array:Array<IDBValidKey>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):std.Array<IDBValidKey> { })
-	function filter<S>(callbackfn:(value:IDBValidKey, index:Float, array:std.Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
+	@:overload(function(callbackfn:(value:IDBValidKey, index:Float, array:Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Array<IDBValidKey> { })
+	function filter<S>(callbackfn:(value:IDBValidKey, index:Float, array:Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey, initialValue:IDBValidKey):IDBValidKey { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey):IDBValidKey;
+	@:overload(function(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:Array<IDBValidKey>) -> IDBValidKey, initialValue:IDBValidKey):IDBValidKey { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:IDBValidKey, currentIndex:Float, array:Array<IDBValidKey>) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:Array<IDBValidKey>) -> IDBValidKey):IDBValidKey;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey, initialValue:IDBValidKey):IDBValidKey { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:std.Array<IDBValidKey>) -> IDBValidKey):IDBValidKey;
+	@:overload(function(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:Array<IDBValidKey>) -> IDBValidKey, initialValue:IDBValidKey):IDBValidKey { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:IDBValidKey, currentIndex:Float, array:Array<IDBValidKey>) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:IDBValidKey, currentValue:IDBValidKey, currentIndex:Float, array:Array<IDBValidKey>) -> IDBValidKey):IDBValidKey;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>> { })
-	function find<S>(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	@:overload(function(predicate:(value:IDBValidKey, index:Float, obj:Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>> { })
+	function find<S>(predicate:(value:IDBValidKey, index:Float, obj:Array<IDBValidKey>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:IDBValidKey, index:Float, obj:std.Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:IDBValidKey, index:Float, obj:Array<IDBValidKey>) -> Any, ?thisArg:Dynamic):Float;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/

@@ -80,7 +80,7 @@
 		var lights : {
 			var ambientLightColor : three.IUniform;
 			var directionalLights : {
-				var value : std.Array<Dynamic>;
+				var value : Array<Dynamic>;
 				var properties : {
 					var direction : { };
 					var color : { };
@@ -93,7 +93,7 @@
 			var directionalShadowMap : three.IUniform;
 			var directionalShadowMatrix : three.IUniform;
 			var spotLights : {
-				var value : std.Array<Dynamic>;
+				var value : Array<Dynamic>;
 				var properties : {
 					var color : { };
 					var position : { };
@@ -111,7 +111,7 @@
 			var spotShadowMap : three.IUniform;
 			var spotShadowMatrix : three.IUniform;
 			var pointLights : {
-				var value : std.Array<Dynamic>;
+				var value : Array<Dynamic>;
 				var properties : {
 					var color : { };
 					var position : { };
@@ -126,7 +126,7 @@
 			var pointShadowMap : three.IUniform;
 			var pointShadowMatrix : three.IUniform;
 			var hemisphereLights : {
-				var value : std.Array<Dynamic>;
+				var value : Array<Dynamic>;
 				var properties : {
 					var direction : { };
 					var skycolor : { };
@@ -134,7 +134,7 @@
 				};
 			};
 			var rectAreaLights : {
-				var value : std.Array<Dynamic>;
+				var value : Array<Dynamic>;
 				var properties : {
 					var color : { };
 					var position : { };

@@ -1,5 +1,5 @@
 package ts.html;
 typedef PostMessageOptions = {
 	@:optional
-	var transfer : std.Array<Dynamic>;
+	var transfer : Array<Dynamic>;
 };

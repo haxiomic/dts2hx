@@ -5,7 +5,7 @@ package ts.html;
 	var onerror : Null<(ev:IEvent) -> Dynamic>;
 	var onlocalcandidate : Null<(ev:IRTCIceGathererEvent) -> Dynamic>;
 	function createAssociatedGatherer():IRTCIceGatherer;
-	function getLocalCandidates():std.Array<RTCIceCandidateDictionary>;
+	function getLocalCandidates():Array<RTCIceCandidateDictionary>;
 	function getLocalParameters():RTCIceParameters;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

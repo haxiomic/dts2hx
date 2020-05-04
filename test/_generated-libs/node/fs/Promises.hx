@@ -74,9 +74,9 @@ package node.fs;
 		
 		Asynchronous readdir(3) - read a directory.
 	**/
-	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):ts.lib.IPromise<std.Array<global.IBuffer>> { })
-	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):ts.lib.IPromise<ts.AnyOf2<std.Array<String>, std.Array<global.IBuffer>>> { })
-	static function readdir(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):ts.lib.IPromise<std.Array<String>>;
+	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):ts.lib.IPromise<Array<global.IBuffer>> { })
+	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):ts.lib.IPromise<ts.AnyOf2<Array<String>, Array<global.IBuffer>>> { })
+	static function readdir(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):ts.lib.IPromise<Array<String>>;
 	/**
 		Asynchronous readlink(2) - read value of a symbolic link.
 		

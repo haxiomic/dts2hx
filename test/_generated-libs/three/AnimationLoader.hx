@@ -3,6 +3,6 @@ package three;
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;
 	function load(url:String, ?onLoad:(response:ts.AnyOf2<String, ts.lib.IArrayBuffer>) -> Void, ?onProgress:(request:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Dynamic;
-	function parse(json:Dynamic):std.Array<AnimationClip>;
+	function parse(json:Dynamic):Array<AnimationClip>;
 	function setPath(path:String):AnimationLoader;
 }

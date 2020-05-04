@@ -6,7 +6,7 @@ typedef Profile = {
 	/**
 		The list of profile nodes. First item is the root node.
 	**/
-	var nodes : std.Array<ProfileNode>;
+	var nodes : Array<ProfileNode>;
 	/**
 		Profiling start timestamp in microseconds.
 	**/
@@ -19,11 +19,11 @@ typedef Profile = {
 		Ids of samples top nodes.
 	**/
 	@:optional
-	var samples : std.Array<Float>;
+	var samples : Array<Float>;
 	/**
 		Time intervals between adjacent samples in microseconds. The first delta is relative to the
 		profile startTime.
 	**/
 	@:optional
-	var timeDeltas : std.Array<Float>;
+	var timeDeltas : Array<Float>;
 };

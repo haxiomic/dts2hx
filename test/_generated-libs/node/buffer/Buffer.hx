@@ -6,7 +6,7 @@ package node.buffer;
 	@:overload(function(size:Float):global.IBuffer { })
 	@:overload(function(array:ts.lib.IUint8Array):global.IBuffer { })
 	@:overload(function(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>):global.IBuffer { })
-	@:overload(function(array:std.Array<Dynamic>):global.IBuffer { })
+	@:overload(function(array:Array<Dynamic>):global.IBuffer { })
 	@:overload(function(buffer:global.IBuffer):global.IBuffer { })
 	function new(str:String, ?encoding:String);
 	static var prototype : global.IBuffer;
@@ -22,7 +22,7 @@ package node.buffer;
 		If provided, the {encoding} parameter identifies the character encoding.
 		If not provided, {encoding} defaults to 'utf8'.
 	**/
-	@:overload(function(data:std.Array<Float>):global.IBuffer { })
+	@:overload(function(data:Array<Float>):global.IBuffer { })
 	@:overload(function(data:ts.lib.IUint8Array):global.IBuffer { })
 	@:overload(function(str:String, ?encoding:String):global.IBuffer { })
 	static function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
@@ -51,7 +51,7 @@ package node.buffer;
 		If the list has exactly one item, then the first item of the list is returned.
 		If the list has more than one item, then a new Buffer is created.
 	**/
-	static function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
+	static function concat(list:Array<ts.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
 	/**
 		The same as buf1.compare(buf2).
 	**/

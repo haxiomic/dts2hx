@@ -35,7 +35,7 @@ package three;
 	**/
 	var crossOrigin : String;
 	function extractUrlBase(url:String):String;
-	function initMaterials(materials:std.Array<Material>, texturePath:String):std.Array<Material>;
+	function initMaterials(materials:Array<Material>, texturePath:String):Array<Material>;
 	function createMaterial(m:Material, texturePath:String, ?crossOrigin:String):Bool;
 	static var Handlers : LoaderHandler;
 }

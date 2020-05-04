@@ -10,5 +10,5 @@ package node.perf_hooks;
 		When options.buffered is false, the callback will be invoked once for every PerformanceEntry instance.
 		Property buffered defaults to false.
 	**/
-	function observe(options:{ var entryTypes : std.Array<String>; @:optional var buffered : Bool; }):Void;
+	function observe(options:{ var entryTypes : Array<String>; @:optional var buffered : Bool; }):Void;
 }

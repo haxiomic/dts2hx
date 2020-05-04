@@ -24,10 +24,10 @@ typedef ObjectPreview = {
 	/**
 		List of the properties.
 	**/
-	var properties : std.Array<PropertyPreview>;
+	var properties : Array<PropertyPreview>;
 	/**
 		List of the entries. Specified for `map` and `set` subtype values only.
 	**/
 	@:optional
-	var entries : std.Array<EntryPreview>;
+	var entries : Array<EntryPreview>;
 };

@@ -13,7 +13,7 @@ typedef JQuery<TElement> = {
 		
 		Create a new jQuery object with elements added to the set of matched elements.
 	**/
-	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, std.Array<ts.html.IElement>>):JQuery<TElement> { })
+	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, Array<ts.html.IElement>>):JQuery<TElement> { })
 	function add(selector:String, context:ts.html.IElement):JQuery<TElement>;
 	/**
 		Add the previous set of elements on the stack to the current set, optionally filtered by a selector.
@@ -22,14 +22,14 @@ typedef JQuery<TElement> = {
 	/**
 		Adds the specified class(es) to each element in the set of matched elements.
 	**/
-	function addClass(className_function:ts.AnyOf3<String, std.Array<String>, (index:Float, currentClassName:String) -> String>):JQuery<TElement>;
+	function addClass(className_function:ts.AnyOf3<String, Array<String>, (index:Float, currentClassName:String) -> String>):JQuery<TElement>;
 	/**
 		Insert content, specified by the parameter, after each element in the set of matched elements.
 		
 		Insert content, specified by the parameter, after each element in the set of matched elements.
 	**/
-	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function after(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function after(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete. This is an AjaxEvent.
 	**/
@@ -72,12 +72,12 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, to the end of each element in the set of matched elements.
 	**/
-	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function append(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function append(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the end of the target.
 	**/
-	function appendTo(target:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, ts.html.IDocumentFragment, std.Array<ts.AnyOf2<ts.html.IElement, ts.html.IDocumentFragment>>>):JQuery<TElement>;
+	function appendTo(target:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, ts.html.IDocumentFragment, Array<ts.AnyOf2<ts.html.IElement, ts.html.IDocumentFragment>>>):JQuery<TElement>;
 	/**
 		Set one or more attributes for the set of matched elements.
 		
@@ -93,8 +93,8 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, before each element in the set of matched elements.
 	**/
-	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function before(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function before(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements.
 		
@@ -167,7 +167,7 @@ typedef JQuery<TElement> = {
 	**/
 	@:overload(function(properties:global.jquery.PlainObject<ts.AnyOf3<String, Float, (index:Float, value:String) -> Null<ts.AnyOf3<String, Float, Void>>>>):JQuery<TElement> { })
 	@:overload(function(propertyName:String):String { })
-	@:overload(function(propertyNames:std.Array<String>):global.jquery.PlainObject<String> { })
+	@:overload(function(propertyNames:Array<String>):global.jquery.PlainObject<String> { })
 	function css(propertyName:String, value_function:ts.AnyOf3<String, Float, (index:Float, value:String) -> Null<ts.AnyOf3<String, Float, Void>>>):JQuery<TElement>;
 	/**
 		Store arbitrary data associated with the matched elements.
@@ -274,7 +274,7 @@ typedef JQuery<TElement> = {
 	/**
 		Reduce the set of matched elements to those that match the selector or pass the function's test.
 	**/
-	function filter(selector_elements_selection_function:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, std.Array<ts.html.IElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
+	function filter(selector_elements_selection_function:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, Array<ts.html.IElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
 	/**
 		Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
 	**/
@@ -313,7 +313,7 @@ typedef JQuery<TElement> = {
 		
 		Retrieve the elements matched by the jQuery object.
 	**/
-	@:overload(function():std.Array<TElement> { })
+	@:overload(function():Array<TElement> { })
 	function get(index:Float):TElement;
 	/**
 		Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.
@@ -375,15 +375,15 @@ typedef JQuery<TElement> = {
 	/**
 		Insert every element in the set of matched elements after the target.
 	**/
-	function insertAfter(target:ts.AnyOf4<String, ts.html.INode, std.Array<ts.html.INode>, JQuery<ts.html.INode>>):JQuery<TElement>;
+	function insertAfter(target:ts.AnyOf4<String, ts.html.INode, Array<ts.html.INode>, JQuery<ts.html.INode>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements before the target.
 	**/
-	function insertBefore(target:ts.AnyOf4<String, ts.html.INode, std.Array<ts.html.INode>, JQuery<ts.html.INode>>):JQuery<TElement>;
+	function insertBefore(target:ts.AnyOf4<String, ts.html.INode, Array<ts.html.INode>, JQuery<ts.html.INode>>):JQuery<TElement>;
 	/**
 		Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.
 	**/
-	function is(selector_function_selection_elements:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, std.Array<ts.html.IElement>, (index:Float, element:TElement) -> Bool>):Bool;
+	function is(selector_function_selection_elements:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, Array<ts.html.IElement>, (index:Float, element:TElement) -> Bool>):Bool;
 	/**
 		Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.
 		
@@ -419,7 +419,7 @@ typedef JQuery<TElement> = {
 	/**
 		Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.
 	**/
-	function map<TReturn>(callback:(index:Float, domElement:TElement) -> Null<ts.AnyOf2<TReturn, std.Array<TReturn>>>):JQuery<TReturn>;
+	function map<TReturn>(callback:(index:Float, domElement:TElement) -> Null<ts.AnyOf2<TReturn, Array<TReturn>>>):JQuery<TReturn>;
 	/**
 		Bind an event handler to the "mousedown" JavaScript event, or trigger that event on an element.
 		
@@ -484,7 +484,7 @@ typedef JQuery<TElement> = {
 	/**
 		Remove elements from the set of matched elements.
 	**/
-	function not(selector_function_selection:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, std.Array<ts.html.IElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
+	function not(selector_function_selection:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, Array<ts.html.IElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
 	/**
 		Remove an event handler.
 		
@@ -615,12 +615,12 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
 	**/
-	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function prepend(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, std.Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function prepend(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the beginning of the target.
 	**/
-	function prependTo(target:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, ts.html.IDocumentFragment, std.Array<ts.AnyOf2<ts.html.IElement, ts.html.IDocumentFragment>>>):JQuery<TElement>;
+	function prependTo(target:ts.AnyOf5<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, ts.html.IDocumentFragment, Array<ts.AnyOf2<ts.html.IElement, ts.html.IDocumentFragment>>>):JQuery<TElement>;
 	/**
 		Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.
 	**/
@@ -659,7 +659,7 @@ typedef JQuery<TElement> = {
 		Add a collection of DOM elements onto the jQuery stack.
 	**/
 	@:overload(function(elements:ts.lib.ArrayLike<ts.html.IElement>):JQuery<TElement> { })
-	function pushStack(elements:ts.lib.ArrayLike<ts.html.IElement>, name:String, args:std.Array<Dynamic>):JQuery<TElement>;
+	function pushStack(elements:ts.lib.ArrayLike<ts.html.IElement>, name:String, args:Array<Dynamic>):JQuery<TElement>;
 	/**
 		Manipulate the queue of functions to be executed, once for each matched element.
 		
@@ -685,11 +685,11 @@ typedef JQuery<TElement> = {
 	/**
 		Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
 	**/
-	function removeClass(?className_function:ts.AnyOf3<String, std.Array<String>, (index:Float, className:String) -> String>):JQuery<TElement>;
+	function removeClass(?className_function:ts.AnyOf3<String, Array<String>, (index:Float, className:String) -> String>):JQuery<TElement>;
 	/**
 		Remove a previously-stored piece of data.
 	**/
-	function removeData(?name:ts.AnyOf2<String, std.Array<String>>):JQuery<TElement>;
+	function removeData(?name:ts.AnyOf2<String, Array<String>>):JQuery<TElement>;
 	/**
 		Remove a property for the set of matched elements.
 	**/
@@ -697,11 +697,11 @@ typedef JQuery<TElement> = {
 	/**
 		Replace each target element with the set of matched elements.
 	**/
-	function replaceAll(target:ts.AnyOf4<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, std.Array<ts.html.IElement>>):JQuery<TElement>;
+	function replaceAll(target:ts.AnyOf4<String, ts.html.IElement, JQuery<ts.html.IHTMLElement>, Array<ts.html.IElement>>):JQuery<TElement>;
 	/**
 		Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.
 	**/
-	function replaceWith(newContent_function:ts.AnyOf8<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, std.Array<ts.html.IElement>, JQuery<global.jquery.Node>, (index:Float, oldhtml:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, std.Array<ts.html.IElement>, JQuery<global.jquery.Node>>>):JQuery<TElement>;
+	function replaceWith(newContent_function:ts.AnyOf8<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, Array<ts.html.IElement>, JQuery<global.jquery.Node>, (index:Float, oldhtml:String) -> ts.AnyOf7<String, ts.html.IElement, ts.html.IText, ts.html.IComment, ts.html.IDocumentFragment, Array<ts.html.IElement>, JQuery<global.jquery.Node>>>):JQuery<TElement>;
 	/**
 		Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.
 		
@@ -744,7 +744,7 @@ typedef JQuery<TElement> = {
 	/**
 		Encode a set of form elements as an array of names and values.
 	**/
-	function serializeArray():std.Array<global.jquery.NameValuePair>;
+	function serializeArray():Array<global.jquery.NameValuePair>;
 	/**
 		Display the matched elements.
 		
@@ -817,7 +817,7 @@ typedef JQuery<TElement> = {
 	/**
 		Retrieve all the elements contained in the jQuery set, as an array.
 	**/
-	function toArray():std.Array<TElement>;
+	function toArray():Array<TElement>;
 	/**
 		Display or hide the matched elements.
 		
@@ -834,15 +834,15 @@ typedef JQuery<TElement> = {
 		Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.
 	**/
 	@:overload(function(?state:Bool):JQuery<TElement> { })
-	function toggleClass<TState>(className_function:ts.AnyOf3<String, std.Array<String>, (index:Float, className:String, state:TState) -> String>, ?state:TState):JQuery<TElement>;
+	function toggleClass<TState>(className_function:ts.AnyOf3<String, Array<String>, (index:Float, className:String, state:TState) -> String>, ?state:TState):JQuery<TElement>;
 	/**
 		Execute all handlers and behaviors attached to the matched elements for the given event type.
 	**/
-	function trigger(eventType_event:ts.AnyOf2<String, global.jquery.Event>, ?extraParameters:ts.AnyOf5<String, Float, Bool, std.Array<Dynamic>, global.jquery.PlainObject<Dynamic>>):JQuery<TElement>;
+	function trigger(eventType_event:ts.AnyOf2<String, global.jquery.Event>, ?extraParameters:ts.AnyOf5<String, Float, Bool, Array<Dynamic>, global.jquery.PlainObject<Dynamic>>):JQuery<TElement>;
 	/**
 		Execute all handlers attached to an element for an event.
 	**/
-	function triggerHandler(eventType_event:ts.AnyOf2<String, global.jquery.Event>, ?extraParameters:ts.AnyOf5<String, Float, Bool, std.Array<Dynamic>, global.jquery.PlainObject<Dynamic>>):Dynamic;
+	function triggerHandler(eventType_event:ts.AnyOf2<String, global.jquery.Event>, ?extraParameters:ts.AnyOf5<String, Float, Bool, Array<Dynamic>, global.jquery.PlainObject<Dynamic>>):Dynamic;
 	/**
 		Remove a previously-attached event handler from the elements.
 		
@@ -869,8 +869,8 @@ typedef JQuery<TElement> = {
 		
 		Get the current value of the first element in the set of matched elements.
 	**/
-	@:overload(function():Null<ts.AnyOf3<String, Float, std.Array<String>>> { })
-	function val(value_function:ts.AnyOf4<String, Float, std.Array<String>, (index:Float, value:String) -> String>):JQuery<TElement>;
+	@:overload(function():Null<ts.AnyOf3<String, Float, Array<String>>> { })
+	function val(value_function:ts.AnyOf4<String, Float, Array<String>, (index:Float, value:String) -> String>):JQuery<TElement>;
 	/**
 		Set the CSS width of each element in the set of matched elements.
 		

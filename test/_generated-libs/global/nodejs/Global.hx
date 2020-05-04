@@ -17,7 +17,7 @@ typedef Global = {
 			If provided, the {encoding} parameter identifies the character encoding.
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
-		@:overload(function(data:std.Array<Float>):global.IBuffer { })
+		@:overload(function(data:Array<Float>):global.IBuffer { })
 		@:overload(function(data:ts.lib.IUint8Array):global.IBuffer { })
 		@:overload(function(str:String, ?encoding:String):global.IBuffer { })
 		function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.IBuffer;
@@ -46,7 +46,7 @@ typedef Global = {
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
+		function concat(list:Array<ts.lib.IUint8Array>, ?totalLength:Float):global.IBuffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
@@ -85,23 +85,23 @@ typedef Global = {
 	var Intl : {
 		var Collator : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):ts.lib.intl.ICollator;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):ts.lib.intl.ICollator;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):ts.lib.intl.INumberFormat;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):ts.lib.intl.INumberFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):ts.lib.intl.IDateTimeFormat;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):ts.lib.intl.IDateTimeFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):Array<String>;
 		};
 		var PluralRules : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):ts.lib.intl.IPluralRules;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):std.Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):ts.lib.intl.IPluralRules;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):Array<String>;
 		};
 	};
 	var JSON : ts.lib.JSON;

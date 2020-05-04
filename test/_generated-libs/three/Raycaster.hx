@@ -34,9 +34,9 @@ package three;
 	/**
 		Checks all intersection between the ray and the object with or without the descendants. Intersections are returned sorted by distance, closest first.
 	**/
-	function intersectObject(object:Object3D, ?recursive:Bool, ?optionalTarget:std.Array<Intersection>):std.Array<Intersection>;
+	function intersectObject(object:Object3D, ?recursive:Bool, ?optionalTarget:Array<Intersection>):Array<Intersection>;
 	/**
 		Checks all intersection between the ray and the objects with or without the descendants. Intersections are returned sorted by distance, closest first. Intersections are of the same form as those returned by .intersectObject.
 	**/
-	function intersectObjects(objects:std.Array<Object3D>, ?recursive:Bool, ?optionalTarget:std.Array<Intersection>):std.Array<Intersection>;
+	function intersectObjects(objects:Array<Object3D>, ?recursive:Bool, ?optionalTarget:Array<Intersection>):Array<Intersection>;
 }

@@ -7,7 +7,7 @@ typedef CipherGCMOptions = {
 	@:optional
 	function write(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function writev(chunks:std.Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:native("final")
 	@:optional
 	function final_(callback:(?error:ts.lib.IError) -> Void):Void;

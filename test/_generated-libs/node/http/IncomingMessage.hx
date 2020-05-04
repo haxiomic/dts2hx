@@ -6,9 +6,9 @@ package node.http;
 	var httpVersionMinor : Float;
 	var connection : node.net.Socket;
 	var headers : IncomingHttpHeaders;
-	var rawHeaders : std.Array<String>;
+	var rawHeaders : Array<String>;
 	var trailers : { };
-	var rawTrailers : std.Array<String>;
+	var rawTrailers : Array<String>;
 	function setTimeout(msecs:Float, callback:() -> Void):IncomingMessage;
 	/**
 		Only valid for request obtained from http.Server.

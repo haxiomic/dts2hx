@@ -18,8 +18,8 @@ typedef TemplateStringsArray = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<String, ConcatArray<String>>>):std.Array<String> { })
-	function concat(items:haxe.extern.Rest<ConcatArray<String>>):std.Array<String>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<String, ConcatArray<String>>>):Array<String> { })
+	function concat(items:haxe.extern.Rest<ConcatArray<String>>):Array<String>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -27,7 +27,7 @@ typedef TemplateStringsArray = {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):std.Array<String>;
+	function slice(?start:Float, ?end:Float):Array<String>;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -51,14 +51,14 @@ typedef TemplateStringsArray = {
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> U, ?thisArg:Dynamic):std.Array<U>;
+	function map<U>(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):std.Array<String> { })
-	function filter<S>(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
+	@:overload(function(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):Array<String> { })
+	function filter<S>(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		

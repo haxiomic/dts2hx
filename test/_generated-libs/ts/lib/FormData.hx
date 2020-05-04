@@ -7,7 +7,7 @@ package ts.lib;
 	function append(name:String, value:ts.AnyOf2<String, ts.html.IBlob>, ?fileName:String):Void;
 	function delete(name:String):Void;
 	function get(name:String):Null<ts.AnyOf2<String, ts.html.IFile>>;
-	function getAll(name:String):std.Array<ts.html.FormDataEntryValue>;
+	function getAll(name:String):Array<ts.html.FormDataEntryValue>;
 	function has(name:String):Bool;
 	function set(name:String, value:ts.AnyOf2<String, ts.html.IBlob>, ?fileName:String):Void;
 	function forEach(callbackfn:(value:ts.html.FormDataEntryValue, key:String, parent:IFormData) -> Void, ?thisArg:Dynamic):Void;

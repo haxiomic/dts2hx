@@ -11,9 +11,9 @@ package ts.html;
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
 	final role : RTCIceRole;
 	final state : RTCIceTransportState;
-	function getLocalCandidates():std.Array<IRTCIceCandidate>;
+	function getLocalCandidates():Array<IRTCIceCandidate>;
 	function getLocalParameters():Null<RTCIceParameters>;
-	function getRemoteCandidates():std.Array<IRTCIceCandidate>;
+	function getRemoteCandidates():Array<IRTCIceCandidate>;
 	function getRemoteParameters():Null<RTCIceParameters>;
 	function getSelectedCandidatePair():Null<RTCIceCandidatePair>;
 	/**

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("MediaStream") extern class MediaStream {
 	@:overload(function(stream:IMediaStream):IMediaStream { })
-	@:overload(function(tracks:std.Array<IMediaStreamTrack>):IMediaStream { })
+	@:overload(function(tracks:Array<IMediaStreamTrack>):IMediaStream { })
 	function new();
 	final active : Bool;
 	final id : String;
@@ -12,10 +12,10 @@ package ts.html;
 	var onremovetrack : Null<(ev:IMediaStreamTrackEvent) -> Dynamic>;
 	function addTrack(track:IMediaStreamTrack):Void;
 	function clone():IMediaStream;
-	function getAudioTracks():std.Array<IMediaStreamTrack>;
+	function getAudioTracks():Array<IMediaStreamTrack>;
 	function getTrackById(trackId:String):Null<IMediaStreamTrack>;
-	function getTracks():std.Array<IMediaStreamTrack>;
-	function getVideoTracks():std.Array<IMediaStreamTrack>;
+	function getTracks():Array<IMediaStreamTrack>;
+	function getVideoTracks():Array<IMediaStreamTrack>;
 	function removeTrack(track:IMediaStreamTrack):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

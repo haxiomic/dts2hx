@@ -1,6 +1,6 @@
 package ts.html;
 @:native("DOMMatrix") extern class DOMMatrix {
-	function new(?init:ts.AnyOf2<String, std.Array<Float>>);
+	function new(?init:ts.AnyOf2<String, Array<Float>>);
 	var a : Float;
 	var b : Float;
 	var c : Float;

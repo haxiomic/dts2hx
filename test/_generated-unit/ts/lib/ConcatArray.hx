@@ -2,5 +2,5 @@ package ts.lib;
 typedef ConcatArray<T> = {
 	final length : Float;
 	function join(?separator:String):String;
-	function slice(?start:Float, ?end:Float):std.Array<T>;
+	function slice(?start:Float, ?end:Float):Array<T>;
 };

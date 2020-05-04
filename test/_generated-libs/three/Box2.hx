@@ -4,7 +4,7 @@ package three;
 	var max : Vector2;
 	var min : Vector2;
 	function set(min:Vector2, max:Vector2):Box2;
-	function setFromPoints(points:std.Array<Vector2>):Box2;
+	function setFromPoints(points:Array<Vector2>):Box2;
 	function setFromCenterAndSize(center:Vector2, size:Vector2):Box2;
 	function clone():Box2;
 	function copy(box:Box2):Box2;

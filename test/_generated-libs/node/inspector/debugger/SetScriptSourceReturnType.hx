@@ -4,7 +4,7 @@ typedef SetScriptSourceReturnType = {
 		New stack trace in case editing has happened while VM was stopped.
 	**/
 	@:optional
-	var callFrames : std.Array<CallFrame>;
+	var callFrames : Array<CallFrame>;
 	/**
 		Whether current call stack  was modified after applying the changes.
 	**/

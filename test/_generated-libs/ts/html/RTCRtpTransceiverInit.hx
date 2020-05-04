@@ -3,7 +3,7 @@ typedef RTCRtpTransceiverInit = {
 	@:optional
 	var direction : String;
 	@:optional
-	var sendEncodings : std.Array<RTCRtpEncodingParameters>;
+	var sendEncodings : Array<RTCRtpEncodingParameters>;
 	@:optional
-	var streams : std.Array<IMediaStream>;
+	var streams : Array<IMediaStream>;
 };

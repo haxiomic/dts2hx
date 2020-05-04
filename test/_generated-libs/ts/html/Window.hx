@@ -102,7 +102,7 @@ package ts.html;
 	function moveTo(x:Float, y:Float):Void;
 	function msWriteProfilerMark(profilerMarkName:String):Void;
 	function open(?url:String, ?target:String, ?features:String, ?replace:Bool):Null<IWindow>;
-	function postMessage(message:Dynamic, targetOrigin:String, ?transfer:std.Array<Transferable>):Void;
+	function postMessage(message:Dynamic, targetOrigin:String, ?transfer:Array<Transferable>):Void;
 	function print():Void;
 	function prompt(?message:String, ?_default:String):Null<String>;
 	function releaseEvents():Void;

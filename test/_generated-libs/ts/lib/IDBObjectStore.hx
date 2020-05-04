@@ -15,7 +15,7 @@ package ts.lib;
 	/**
 		Returns the key path of the store, or null if none.
 	**/
-	final keyPath : ts.AnyOf2<String, std.Array<String>>;
+	final keyPath : ts.AnyOf2<String, Array<String>>;
 	/**
 		Returns the name of the store.
 	**/
@@ -56,7 +56,7 @@ package ts.lib;
 		Throws an "InvalidStateError" DOMException if not called within an upgrade transaction.
 	**/
 	@:overload(function(name:String, keyPath:ts.AnyOf2<String, Iterable<String>>, ?options:ts.html.IDBIndexParameters):ts.html.IIDBIndex { })
-	function createIndex(name:String, keyPath:ts.AnyOf2<String, std.Array<String>>, ?options:ts.html.IDBIndexParameters):ts.html.IIDBIndex;
+	function createIndex(name:String, keyPath:ts.AnyOf2<String, Array<String>>, ?options:ts.html.IDBIndexParameters):ts.html.IIDBIndex;
 	/**
 		Deletes records in store with the given key or in the given key range in query.
 		
@@ -80,13 +80,13 @@ package ts.lib;
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<Dynamic>>;
+	function getAll(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<Array<Dynamic>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<std.Array<ts.html.IDBValidKey>>;
+	function getAllKeys(?query:ts.AnyOf7<String, Float, IArrayBuffer, ts.html.IIDBKeyRange, IDate_, ArrayBufferView, ts.html.IDBArrayKey>, ?count:Float):ts.html.IIDBRequest<Array<ts.html.IDBValidKey>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		

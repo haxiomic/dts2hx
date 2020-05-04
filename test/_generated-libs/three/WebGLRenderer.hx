@@ -41,7 +41,7 @@ package three;
 		Defines whether the renderer should sort objects. Default is true.
 	**/
 	var sortObjects : Bool;
-	var clippingPlanes : std.Array<Dynamic>;
+	var clippingPlanes : Array<Dynamic>;
 	var localClippingEnabled : Bool;
 	var extensions : WebGLExtensions;
 	/**

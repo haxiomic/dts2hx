@@ -5,7 +5,7 @@ package node.domain;
 	function remove(emitter:ts.AnyOf2<node.events.EventEmitter, global.nodejs.Timer>):Void;
 	function bind<T>(cb:T):T;
 	function intercept<T>(cb:T):T;
-	var members : std.Array<ts.AnyOf2<node.events.EventEmitter, global.nodejs.Timer>>;
+	var members : Array<ts.AnyOf2<node.events.EventEmitter, global.nodejs.Timer>>;
 	function enter():Void;
 	function exit():Void;
 }

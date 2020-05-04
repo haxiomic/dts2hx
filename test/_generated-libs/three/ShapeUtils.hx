@@ -1,7 +1,7 @@
 package three;
 @:jsRequire("three", "ShapeUtils") @valueModuleOnly extern class ShapeUtils {
-	static function area(contour:std.Array<Vec2>):Float;
-	static function triangulate(contour:std.Array<Vec2>, indices:Bool):std.Array<Float>;
-	static function triangulateShape(contour:std.Array<Vec2>, holes:std.Array<Vec2>):std.Array<std.Array<Float>>;
-	static function isClockWise(pts:std.Array<Vec2>):Bool;
+	static function area(contour:Array<Vec2>):Float;
+	static function triangulate(contour:Array<Vec2>, indices:Bool):Array<Float>;
+	static function triangulateShape(contour:Array<Vec2>, holes:Array<Vec2>):Array<Array<Float>>;
+	static function isClockWise(pts:Array<Vec2>):Bool;
 }

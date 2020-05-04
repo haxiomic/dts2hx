@@ -266,7 +266,7 @@ package ts.lib;
 	/**
 		Returns the qualified names of all element's attributes. Can contain duplicates.
 	**/
-	function getAttributeNames():std.Array<String>;
+	function getAttributeNames():Array<String>;
 	function getAttributeNode(name:String):Null<ts.html.IAttr>;
 	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<ts.html.IAttr>;
 	function getBoundingClientRect():ts.html.IDOMRect;
@@ -491,8 +491,8 @@ package ts.lib;
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
 	function dispatchEvent(event:ts.html.IEvent):Bool;
-	function animate(keyframes:Null<ts.AnyOf2<std.Array<ts.html.Keyframe>, ts.html.PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, ts.html.KeyframeAnimationOptions>):ts.html.IAnimation;
-	function getAnimations():std.Array<ts.html.IAnimation>;
+	function animate(keyframes:Null<ts.AnyOf2<Array<ts.html.Keyframe>, ts.html.PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, ts.html.KeyframeAnimationOptions>):ts.html.IAnimation;
+	function getAnimations():Array<ts.html.IAnimation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		

@@ -7,7 +7,7 @@ package node;
 	static function connect(options:node.tls.ConnectionOptions, ?secureConnectListener:() -> Void):node.tls.TLSSocket;
 	static function createSecurePair(?credentials:node.tls.SecureContext, ?isServer:Bool, ?requestCert:Bool, ?rejectUnauthorized:Bool):node.tls.SecurePair;
 	static function createSecureContext(details:node.tls.SecureContextOptions):node.tls.SecureContext;
-	static function getCiphers():std.Array<String>;
+	static function getCiphers():Array<String>;
 	static var CLIENT_RENEG_LIMIT : Float;
 	static var CLIENT_RENEG_WINDOW : Float;
 	static var DEFAULT_ECDH_CURVE : String;

@@ -43,8 +43,8 @@ typedef PromiseConstructor = {
 	@:overload(function<T1, T2, T3, T4>(values:ts.Tuple4<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>, ts.AnyOf2<T4, PromiseLike<T4>>>):IPromise<ts.Tuple4<T1, T2, T3, T4>> { })
 	@:overload(function<T1, T2, T3>(values:ts.Tuple3<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>, ts.AnyOf2<T3, PromiseLike<T3>>>):IPromise<ts.Tuple3<T1, T2, T3>> { })
 	@:overload(function<T1, T2>(values:ts.Tuple2<ts.AnyOf2<T1, PromiseLike<T1>>, ts.AnyOf2<T2, PromiseLike<T2>>>):IPromise<ts.Tuple2<T1, T2>> { })
-	@:overload(function<T>(values:ReadonlyArray<ts.AnyOf2<T, PromiseLike<T>>>):IPromise<std.Array<T>> { })
-	function all<TAll>(values:Iterable<ts.AnyOf2<TAll, PromiseLike<TAll>>>):IPromise<std.Array<TAll>>;
+	@:overload(function<T>(values:ReadonlyArray<ts.AnyOf2<T, PromiseLike<T>>>):IPromise<Array<T>> { })
+	function all<TAll>(values:Iterable<ts.AnyOf2<TAll, PromiseLike<TAll>>>):IPromise<Array<TAll>>;
 	/**
 		Creates a Promise that is resolved or rejected when any of the provided Promises are resolved
 		or rejected.

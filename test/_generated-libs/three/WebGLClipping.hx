@@ -5,8 +5,8 @@ package three;
 		var needsUpdate : Bool;
 	};
 	var numPlanes : Float;
-	function init(planes:std.Array<Dynamic>, enableLocalClipping:Bool, camera:Camera):Bool;
+	function init(planes:Array<Dynamic>, enableLocalClipping:Bool, camera:Camera):Bool;
 	function beginShadows():Void;
 	function endShadows():Void;
-	function setState(planes:std.Array<Dynamic>, clipShadows:Bool, camera:Camera, cache:Bool, fromCache:Bool):Void;
+	function setState(planes:Array<Dynamic>, clipShadows:Bool, camera:Camera, cache:Bool, fromCache:Bool):Void;
 }

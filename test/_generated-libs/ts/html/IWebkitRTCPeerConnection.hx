@@ -96,10 +96,10 @@ typedef IWebkitRTCPeerConnection = {
 	function createOffer(?options:RTCOfferOptions):ts.lib.IPromise<RTCSessionDescriptionInit>;
 	function getConfiguration():RTCConfiguration;
 	function getIdentityAssertion():ts.lib.IPromise<String>;
-	function getReceivers():std.Array<IRTCRtpReceiver>;
-	function getSenders():std.Array<IRTCRtpSender>;
+	function getReceivers():Array<IRTCRtpReceiver>;
+	function getSenders():Array<IRTCRtpSender>;
 	function getStats(?selector:IMediaStreamTrack):ts.lib.IPromise<ts.lib.IRTCStatsReport>;
-	function getTransceivers():std.Array<ts.lib.IRTCRtpTransceiver>;
+	function getTransceivers():Array<ts.lib.IRTCRtpTransceiver>;
 	function removeTrack(sender:IRTCRtpSender):Void;
 	function setConfiguration(configuration:RTCConfiguration):Void;
 	function setIdentityProvider(provider:String, ?options:RTCIdentityProviderOptions):Void;

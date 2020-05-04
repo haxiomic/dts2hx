@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("PaymentAddress") extern class PaymentAddress {
 	function new();
-	final addressLine : std.Array<String>;
+	final addressLine : Array<String>;
 	final city : String;
 	final country : String;
 	final dependentLocality : String;

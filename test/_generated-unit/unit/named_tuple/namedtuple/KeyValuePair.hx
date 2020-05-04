@@ -29,8 +29,8 @@ typedef KeyValuePair<K, V> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<K, V, ts.lib.ConcatArray<ts.AnyOf2<K, V>>>>):std.Array<ts.AnyOf2<K, V>> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<ts.AnyOf2<K, V>>>):std.Array<ts.AnyOf2<K, V>>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<K, V, ts.lib.ConcatArray<ts.AnyOf2<K, V>>>>):Array<ts.AnyOf2<K, V>> { })
+	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<ts.AnyOf2<K, V>>>):Array<ts.AnyOf2<K, V>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -38,7 +38,7 @@ typedef KeyValuePair<K, V> = {
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():std.Array<ts.AnyOf2<K, V>>;
+	function reverse():Array<ts.AnyOf2<K, V>>;
 	/**
 		Removes the first element from an array and returns it.
 	**/
@@ -46,7 +46,7 @@ typedef KeyValuePair<K, V> = {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):std.Array<ts.AnyOf2<K, V>>;
+	function slice(?start:Float, ?end:Float):Array<ts.AnyOf2<K, V>>;
 	/**
 		Sorts an array.
 	**/
@@ -56,8 +56,8 @@ typedef KeyValuePair<K, V> = {
 		
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
-	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<ts.AnyOf2<K, V>>):std.Array<ts.AnyOf2<K, V>> { })
-	function splice(start:Float, ?deleteCount:Float):std.Array<ts.AnyOf2<K, V>>;
+	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<ts.AnyOf2<K, V>>):Array<ts.AnyOf2<K, V>> { })
+	function splice(start:Float, ?deleteCount:Float):Array<ts.AnyOf2<K, V>>;
 	/**
 		Inserts new elements at the start of an array.
 	**/
@@ -73,53 +73,53 @@ typedef KeyValuePair<K, V> = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:Array<ts.AnyOf2<K, V>>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> U, ?thisArg:Dynamic):std.Array<U>;
+	function map<U>(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:Array<ts.AnyOf2<K, V>>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):std.Array<ts.AnyOf2<K, V>> { })
-	function filter<S>(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:std.Array<ts.AnyOf2<K, V>>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
+	@:overload(function(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Array<ts.AnyOf2<K, V>> { })
+	function filter<S>(callbackfn:(value:ts.AnyOf2<K, V>, index:Float, array:Array<ts.AnyOf2<K, V>>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>, initialValue:ts.AnyOf2<K, V>):ts.AnyOf2<K, V> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>):ts.AnyOf2<K, V>;
+	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>, initialValue:ts.AnyOf2<K, V>):ts.AnyOf2<K, V> { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:Array<ts.AnyOf2<K, V>>) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>):ts.AnyOf2<K, V>;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>, initialValue:ts.AnyOf2<K, V>):ts.AnyOf2<K, V> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:std.Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>):ts.AnyOf2<K, V>;
+	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>, initialValue:ts.AnyOf2<K, V>):ts.AnyOf2<K, V> { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:Array<ts.AnyOf2<K, V>>) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:ts.AnyOf2<K, V>, currentValue:ts.AnyOf2<K, V>, currentIndex:Float, array:Array<ts.AnyOf2<K, V>>) -> ts.AnyOf2<K, V>):ts.AnyOf2<K, V>;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf2<K, V>> { })
-	function find<S>(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:std.Array<ts.AnyOf2<K, V>>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	@:overload(function(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Null<ts.AnyOf2<K, V>> { })
+	function find<S>(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:Array<ts.AnyOf2<K, V>>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:std.Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Float;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/

@@ -6,10 +6,10 @@ typedef PublicKeyCredentialCreationOptions = {
 	var authenticatorSelection : AuthenticatorSelectionCriteria;
 	var challenge : BufferSource;
 	@:optional
-	var excludeCredentials : std.Array<PublicKeyCredentialDescriptor>;
+	var excludeCredentials : Array<PublicKeyCredentialDescriptor>;
 	@:optional
 	var extensions : AuthenticationExtensionsClientInputs;
-	var pubKeyCredParams : std.Array<PublicKeyCredentialParameters>;
+	var pubKeyCredParams : Array<PublicKeyCredentialParameters>;
 	var rp : PublicKeyCredentialRpEntity;
 	@:optional
 	var timeout : Float;

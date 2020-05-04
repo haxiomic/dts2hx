@@ -33,7 +33,7 @@ package ts.lib;
 		
 		Determines whether two strings are equivalent in the current or specified locale.
 	**/
-	@:overload(function(that:String, ?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.CollatorOptions):Float { })
+	@:overload(function(that:String, ?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):Float { })
 	function localeCompare(that:String):Float;
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.
@@ -71,8 +71,8 @@ package ts.lib;
 		
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
-	@:overload(function(splitter:{ }, ?limit:Float):std.Array<String> { })
-	function split(separator:ts.AnyOf2<String, IRegExp>, ?limit:Float):std.Array<String>;
+	@:overload(function(splitter:{ }, ?limit:Float):Array<String> { })
+	function split(separator:ts.AnyOf2<String, IRegExp>, ?limit:Float):Array<String>;
 	/**
 		Returns the substring at the specified location within a String object.
 	**/
@@ -84,7 +84,7 @@ package ts.lib;
 	/**
 		Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.
 	**/
-	function toLocaleLowerCase(?locales:ts.AnyOf2<String, std.Array<String>>):String;
+	function toLocaleLowerCase(?locales:ts.AnyOf2<String, Array<String>>):String;
 	/**
 		Converts all the alphabetic characters in a string to uppercase.
 	**/
@@ -92,7 +92,7 @@ package ts.lib;
 	/**
 		Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.
 	**/
-	function toLocaleUpperCase(?locales:ts.AnyOf2<String, std.Array<String>>):String;
+	function toLocaleUpperCase(?locales:ts.AnyOf2<String, Array<String>>):String;
 	/**
 		Removes the leading and trailing white space and line terminator characters from a string.
 	**/
@@ -204,6 +204,24 @@ package ts.lib;
 		Returns a <sup> HTML element
 	**/
 	function sup():String;
+	/**
+		Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.
+		The padding is applied from the start (left) of the current string.
+	**/
+	function padStart(maxLength:Float, ?fillString:String):String;
+	/**
+		Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.
+		The padding is applied from the end (right) of the current string.
+	**/
+	function padEnd(maxLength:Float, ?fillString:String):String;
+	/**
+		Removes whitespace from the left end of a string.
+	**/
+	function trimLeft():String;
+	/**
+		Removes whitespace from the right end of a string.
+	**/
+	function trimRight():String;
 	@:selfCall
 	static function call(?value:Dynamic):String;
 	static final prototype : IString_;

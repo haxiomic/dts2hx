@@ -46,9 +46,9 @@ package ts.html;
 	var lineJoin : CanvasLineJoin;
 	var lineWidth : Float;
 	var miterLimit : Float;
-	function getLineDash():std.Array<Float>;
+	function getLineDash():Array<Float>;
 	@:overload(function(segments:ts.lib.Iterable<Float>):Void { })
-	function setLineDash(segments:std.Array<Float>):Void;
+	function setLineDash(segments:Array<Float>):Void;
 	function clearRect(x:Float, y:Float, w:Float, h:Float):Void;
 	function fillRect(x:Float, y:Float, w:Float, h:Float):Void;
 	function strokeRect(x:Float, y:Float, w:Float, h:Float):Void;

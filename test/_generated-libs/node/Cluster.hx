@@ -49,7 +49,7 @@ package node;
 	static function removeAllListeners(?event:String):node.cluster.Cluster;
 	static function setMaxListeners(n:Float):node.cluster.Cluster;
 	static function getMaxListeners():Float;
-	static function listeners(event:String):std.Array<ts.lib.IFunction>;
+	static function listeners(event:String):Array<ts.lib.IFunction>;
 	static function listenerCount(type:String):Float;
 	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
 	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })
@@ -67,7 +67,7 @@ package node;
 	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
 	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
 	static function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	static function eventNames():std.Array<String>;
+	static function eventNames():Array<String>;
 	static var isMaster : Bool;
 	static var isWorker : Bool;
 	static var settings : node.cluster.ClusterSettings;

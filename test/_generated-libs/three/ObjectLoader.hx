@@ -8,10 +8,10 @@ package three;
 	function setTexturePath(value:String):Void;
 	function setCrossOrigin(crossOrigin:String):Void;
 	function parse<T>(json:Dynamic, ?onLoad:(object:Object3D) -> Void):T;
-	function parseGeometries(json:Dynamic):std.Array<Dynamic>;
-	function parseMaterials(json:Dynamic, textures:std.Array<Texture>):std.Array<Material>;
-	function parseAnimations(json:Dynamic):std.Array<AnimationClip>;
+	function parseGeometries(json:Dynamic):Array<Dynamic>;
+	function parseMaterials(json:Dynamic, textures:Array<Texture>):Array<Material>;
+	function parseAnimations(json:Dynamic):Array<AnimationClip>;
 	function parseImages(json:Dynamic, onLoad:() -> Void):{ };
-	function parseTextures(json:Dynamic, images:Dynamic):std.Array<Texture>;
-	function parseObject<T>(data:Dynamic, geometries:std.Array<Dynamic>, materials:std.Array<Material>):T;
+	function parseTextures(json:Dynamic, images:Dynamic):Array<Texture>;
+	function parseObject<T>(data:Dynamic, geometries:Array<Dynamic>, materials:Array<Material>):T;
 }

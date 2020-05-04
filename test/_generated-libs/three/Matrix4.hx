@@ -7,7 +7,7 @@ package three;
 	/**
 		Array with matrix values.
 	**/
-	var elements : std.Array<Float>;
+	var elements : Array<Float>;
 	/**
 		Sets all fields of this matrix.
 	**/
@@ -50,7 +50,7 @@ package three;
 		Sets this matrix to a x b and stores the result into the flat array r.
 		r can be either a regular Array or a TypedArray.
 	**/
-	function multiplyToArray(a:Matrix4, b:Matrix4, r:std.Array<Float>):Matrix4;
+	function multiplyToArray(a:Matrix4, b:Matrix4, r:Array<Float>):Matrix4;
 	/**
 		Multiplies this matrix by s.
 	**/
@@ -113,7 +113,7 @@ package three;
 		Decomposes this matrix into the translation, rotation and scale components.
 		If parameters are not passed, new instances will be created.
 	**/
-	function decompose(?translation:Vector3, ?rotation:Quaternion, ?scale:Vector3):std.Array<ts.lib.IObject>;
+	function decompose(?translation:Vector3, ?rotation:Quaternion, ?scale:Vector3):Array<ts.lib.IObject>;
 	/**
 		Creates a frustum matrix.
 		
@@ -126,14 +126,14 @@ package three;
 	**/
 	function makeOrthographic(left:Float, right:Float, top:Float, bottom:Float, near:Float, far:Float):Matrix4;
 	function equals(matrix:Matrix4):Bool;
-	function fromArray(array:std.Array<Float>, ?offset:Float):Matrix4;
-	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
+	function fromArray(array:Array<Float>, ?offset:Float):Matrix4;
+	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 	function extractPosition(m:Matrix4):Matrix4;
 	function setRotationFromQuaternion(q:Quaternion):Matrix4;
 	function multiplyVector3(v:Dynamic):Dynamic;
 	function multiplyVector4(v:Dynamic):Dynamic;
-	function multiplyVector3Array(array:std.Array<Float>):std.Array<Float>;
+	function multiplyVector3Array(array:Array<Float>):Array<Float>;
 	function rotateAxis(v:Dynamic):Void;
 	function crossVector(v:Dynamic):Void;
-	function flattenToArrayOffset(array:std.Array<Float>, offset:Float):std.Array<Float>;
+	function flattenToArrayOffset(array:Array<Float>, offset:Float):Array<Float>;
 }

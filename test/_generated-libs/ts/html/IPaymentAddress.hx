@@ -3,7 +3,7 @@ package ts.html;
 	This Payment Request API interface is used to store shipping or payment address information.
 **/
 typedef IPaymentAddress = {
-	final addressLine : std.Array<String>;
+	final addressLine : Array<String>;
 	final city : String;
 	final country : String;
 	final dependentLocality : String;

@@ -15,7 +15,7 @@ typedef ServerHttp2Stream = {
 	final rstCode : Float;
 	final sentHeaders : node.http.OutgoingHttpHeaders;
 	@:optional
-	final sentInfoHeaders : std.Array<node.http.OutgoingHttpHeaders>;
+	final sentInfoHeaders : Array<node.http.OutgoingHttpHeaders>;
 	@:optional
 	final sentTrailers : node.http.OutgoingHttpHeaders;
 	final session : Http2Session;
@@ -245,7 +245,7 @@ typedef ServerHttp2Stream = {
 	final writableLength : Float;
 	function _write(chunk:Dynamic, encoding:String, callback:(?error:ts.lib.IError) -> Void):Void;
 	@:optional
-	function _writev(chunks:std.Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
+	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:(?error:ts.lib.IError) -> Void):Void;
 	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
 	function _final(callback:(?error:ts.lib.IError) -> Void):Void;
 	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
@@ -281,8 +281,8 @@ typedef ServerHttp2Stream = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ServerHttp2Stream;
 	function setMaxListeners(n:Float):ServerHttp2Stream;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
-	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.IFunction>;
+	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 };

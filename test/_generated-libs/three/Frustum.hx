@@ -7,7 +7,7 @@ package three;
 	/**
 		Array of 6 vectors.
 	**/
-	var planes : std.Array<Plane>;
+	var planes : Array<Plane>;
 	function set(?p0:Float, ?p1:Float, ?p2:Float, ?p3:Float, ?p4:Float, ?p5:Float):Frustum;
 	function clone():Frustum;
 	function copy(frustum:Frustum):Frustum;

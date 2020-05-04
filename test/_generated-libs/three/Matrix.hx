@@ -6,7 +6,7 @@ typedef Matrix = {
 	/**
 		Array with matrix values.
 	**/
-	var elements : std.Array<Float>;
+	var elements : Array<Float>;
 	/**
 		identity():T;
 	**/

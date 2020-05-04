@@ -1,6 +1,6 @@
 package ts.html;
 @:native("DOMMatrixReadOnly") extern class DOMMatrixReadOnly {
-	function new(?init:ts.AnyOf2<String, std.Array<Float>>);
+	function new(?init:ts.AnyOf2<String, Array<Float>>);
 	final a : Float;
 	final b : Float;
 	final c : Float;

@@ -1,11 +1,11 @@
 package ts.html;
 typedef TouchEventInit = {
 	@:optional
-	var changedTouches : std.Array<ITouch>;
+	var changedTouches : Array<ITouch>;
 	@:optional
-	var targetTouches : std.Array<ITouch>;
+	var targetTouches : Array<ITouch>;
 	@:optional
-	var touches : std.Array<ITouch>;
+	var touches : Array<ITouch>;
 	@:optional
 	var altKey : Bool;
 	@:optional

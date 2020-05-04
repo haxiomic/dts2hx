@@ -42,5 +42,5 @@ package ts.html;
 	**/
 	function dispatchEvent(event:IEvent):Bool;
 	static var prototype : IRTCSrtpSdesTransport;
-	static function getLocalParameters():std.Array<RTCSrtpSdesParameters>;
+	static function getLocalParameters():Array<RTCSrtpSdesParameters>;
 }

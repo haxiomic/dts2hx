@@ -33,7 +33,7 @@ typedef IWebGL2RenderingContext = {
 	function deleteVertexArray(vertexArray:Null<IWebGLVertexArrayObject>):Void;
 	function drawArraysInstanced(mode:Float, first:Float, count:Float, instanceCount:Float):Void;
 	@:overload(function(buffers:ts.lib.Iterable<Float>):Void { })
-	function drawBuffers(buffers:std.Array<Float>):Void;
+	function drawBuffers(buffers:Array<Float>):Void;
 	function drawElementsInstanced(mode:Float, count:Float, type:Float, offset:Float, instanceCount:Float):Void;
 	function drawRangeElements(mode:Float, start:Float, end:Float, count:Float, type:Float, offset:Float):Void;
 	function endQuery(target:Float):Void;
@@ -43,7 +43,7 @@ typedef IWebGL2RenderingContext = {
 	function getActiveUniformBlockName(program:IWebGLProgram, uniformBlockIndex:Float):Null<String>;
 	function getActiveUniformBlockParameter(program:IWebGLProgram, uniformBlockIndex:Float, pname:Float):Dynamic;
 	@:overload(function(program:IWebGLProgram, uniformIndices:ts.lib.Iterable<Float>, pname:Float):Dynamic { })
-	function getActiveUniforms(program:IWebGLProgram, uniformIndices:std.Array<Float>, pname:Float):Dynamic;
+	function getActiveUniforms(program:IWebGLProgram, uniformIndices:Array<Float>, pname:Float):Dynamic;
 	function getBufferSubData(target:Float, srcByteOffset:Float, dstBuffer:ts.lib.ArrayBufferView, ?dstOffset:Float, ?length:Float):Void;
 	function getFragDataLocation(program:IWebGLProgram, name:String):Float;
 	function getIndexedParameter(target:Float, index:Float):Dynamic;
@@ -55,11 +55,11 @@ typedef IWebGL2RenderingContext = {
 	function getTransformFeedbackVarying(program:IWebGLProgram, index:Float):Null<IWebGLActiveInfo>;
 	function getUniformBlockIndex(program:IWebGLProgram, uniformBlockName:String):Float;
 	@:overload(function(program:IWebGLProgram, uniformNames:ts.lib.Iterable<String>):Null<ts.lib.Iterable<Float>> { })
-	function getUniformIndices(program:IWebGLProgram, uniformNames:std.Array<String>):Null<std.Array<Float>>;
+	function getUniformIndices(program:IWebGLProgram, uniformNames:Array<String>):Null<Array<Float>>;
 	@:overload(function(target:Float, attachments:ts.lib.Iterable<Float>):Void { })
-	function invalidateFramebuffer(target:Float, attachments:std.Array<Float>):Void;
+	function invalidateFramebuffer(target:Float, attachments:Array<Float>):Void;
 	@:overload(function(target:Float, attachments:ts.lib.Iterable<Float>, x:Float, y:Float, width:Float, height:Float):Void { })
-	function invalidateSubFramebuffer(target:Float, attachments:std.Array<Float>, x:Float, y:Float, width:Float, height:Float):Void;
+	function invalidateSubFramebuffer(target:Float, attachments:Array<Float>, x:Float, y:Float, width:Float, height:Float):Void;
 	function isQuery(query:Null<IWebGLQuery>):Bool;
 	function isSampler(sampler:Null<IWebGLSampler>):Bool;
 	function isSync(sync:Null<IWebGLSync>):Bool;
@@ -81,7 +81,7 @@ typedef IWebGL2RenderingContext = {
 	@:overload(function(target:Float, level:Float, xoffset:Float, yoffset:Float, zoffset:Float, width:Float, height:Float, depth:Float, format:Float, type:Float, srcData:Null<ts.lib.ArrayBufferView>, ?srcOffset:Float):Void { })
 	function texSubImage3D(target:Float, level:Float, xoffset:Float, yoffset:Float, zoffset:Float, width:Float, height:Float, depth:Float, format:Float, type:Float, pboOffset:Float):Void;
 	@:overload(function(program:IWebGLProgram, varyings:ts.lib.Iterable<String>, bufferMode:Float):Void { })
-	function transformFeedbackVaryings(program:IWebGLProgram, varyings:std.Array<String>, bufferMode:Float):Void;
+	function transformFeedbackVaryings(program:IWebGLProgram, varyings:Array<String>, bufferMode:Float):Void;
 	function uniform1ui(location:Null<IWebGLUniformLocation>, v0:Float):Void;
 	@:overload(function(location:Null<IWebGLUniformLocation>, data:ts.lib.Iterable<Float>, ?srcOffset:Float, ?srcLength:Float):Void { })
 	function uniform1uiv(location:Null<IWebGLUniformLocation>, data:Uint32List, ?srcOffset:Float, ?srcLength:Float):Void;
@@ -478,7 +478,7 @@ typedef IWebGL2RenderingContext = {
 	function generateMipmap(target:Float):Void;
 	function getActiveAttrib(program:IWebGLProgram, index:Float):Null<IWebGLActiveInfo>;
 	function getActiveUniform(program:IWebGLProgram, index:Float):Null<IWebGLActiveInfo>;
-	function getAttachedShaders(program:IWebGLProgram):Null<std.Array<IWebGLShader>>;
+	function getAttachedShaders(program:IWebGLProgram):Null<Array<IWebGLShader>>;
 	function getAttribLocation(program:IWebGLProgram, name:String):Float;
 	function getBufferParameter(target:Float, pname:Float):Dynamic;
 	function getContextAttributes():Null<WebGLContextAttributes>;
@@ -515,7 +515,7 @@ typedef IWebGL2RenderingContext = {
 	function getShaderParameter(shader:IWebGLShader, pname:Float):Dynamic;
 	function getShaderPrecisionFormat(shadertype:Float, precisiontype:Float):Null<IWebGLShaderPrecisionFormat>;
 	function getShaderSource(shader:IWebGLShader):Null<String>;
-	function getSupportedExtensions():Null<std.Array<String>>;
+	function getSupportedExtensions():Null<Array<String>>;
 	function getTexParameter(target:Float, pname:Float):Dynamic;
 	function getUniform(program:IWebGLProgram, location:IWebGLUniformLocation):Dynamic;
 	function getUniformLocation(program:IWebGLProgram, name:String):Null<IWebGLUniformLocation>;

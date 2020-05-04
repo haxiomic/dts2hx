@@ -25,8 +25,8 @@ package unit.types;
 	static function functionNumberStringVoidAlt(a:Float, b:String):Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a:Float, tparam:T):Void;
 	@:overload(function(a:String):Dynamic { })
-	@:overload(function(a:std.Array<js.lib.Symbol>):Dynamic { })
-	@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
+	@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
+	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Dynamic;
 	static function typeParameterWithConstraint<T>(x:T):Dynamic;
 	static function intersectionBetweenTypeParams<A, B>(p:Dynamic):Void;
@@ -39,7 +39,7 @@ package unit.types;
 	static var numberPrimitive : Float;
 	static var booleanPrimitive : Bool;
 	static var stringPrimitive : String;
-	static var stringObject : ts.lib.IString_;
+	static var stringObject : String;
 	static var numberObject : ts.lib.INumber;
 	static var booleanObject : ts.lib.IBoolean;
 	static var symbolPrimitive : js.lib.Symbol;
@@ -62,7 +62,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -85,7 +85,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -102,10 +102,10 @@ package unit.types;
 	static var objectSingleField : {
 		var a : Dynamic;
 	};
-	static var arrayString : std.Array<String>;
-	static var arrayStringAlt : std.Array<String>;
-	static var stringObj : ts.lib.IString_;
-	static var arrayNumberStringUnion : std.Array<ts.AnyOf2<String, Float>>;
+	static var arrayString : Array<String>;
+	static var arrayStringAlt : Array<String>;
+	static var stringObj : String;
+	static var arrayNumberStringUnion : Array<ts.AnyOf2<String, Float>>;
 	static var tupleNumberString : ts.Tuple2<Float, String>;
 	static var stringNumberMap : { };
 	static var readonlyStringNumberMap : { };
@@ -128,7 +128,7 @@ package unit.types;
 		var b : String;
 	};
 	static var arrowNumberStringVoid : (a:Float, noType:Dynamic) -> Void;
-	static var arrowNumberTVoidTypeParam : (a:Float, tParam:Any, arrayTParam:std.Array<Any>) -> Void;
+	static var arrowNumberTVoidTypeParam : (a:Float, tParam:Any, arrayTParam:Array<Any>) -> Void;
 	static var arrowParamWithRest : (a:Float, b:Float, rest:haxe.extern.Rest<Float>) -> Void;
 	static var arrowParamWithRestOr : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
 	static var arrowParamWithRestUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
@@ -156,7 +156,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -175,7 +175,7 @@ package unit.types;
 	static var intersectionWithAny : Dynamic;
 	static var intersectionWithArray : {
 		var x : Float;
-	} & std.Array<Float>;
+	} & Array<Float>;
 	static var intersectionStringNumber : Any;
 	static var intersectionTripleAnon : {
 		var x : Float;
@@ -205,7 +205,7 @@ package unit.types;
 		var fieldOptional : Float;
 		@:native("macro")
 		var macro_ : String;
-		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, std.Array<Bool>>>;
+		var nestedTuple : ts.Tuple3<Float, String, ts.Tuple2<Bool, Array<Bool>>>;
 		var computedFieldName : String;
 		var sub : {
 			var a : Float;
@@ -223,8 +223,8 @@ package unit.types;
 	static var typeQueryFunction : (x:Dynamic, y:Dynamic) -> Dynamic;
 	static var typeQueryFunctionWithOverloads : {
 		@:overload(function(a:String):Dynamic { })
-		@:overload(function(a:std.Array<js.lib.Symbol>):Dynamic { })
-		@:overload(function<T, U>(a:std.Array<js.lib.Symbol>, u:U):T { })
+		@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
+		@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 		@:selfCall
 		function call(a:Float):Dynamic;
 	};

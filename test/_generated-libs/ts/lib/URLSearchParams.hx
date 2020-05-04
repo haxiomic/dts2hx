@@ -1,6 +1,6 @@
 package ts.lib;
 @:native("URLSearchParams") extern class URLSearchParams {
-	function new(?init:ts.AnyOf4<String, IURLSearchParams, { }, std.Array<std.Array<String>>>);
+	function new(?init:ts.AnyOf4<String, IURLSearchParams, { }, Array<Array<String>>>);
 	/**
 		Appends a specified key/value pair as a new search parameter.
 	**/
@@ -16,7 +16,7 @@ package ts.lib;
 	/**
 		Returns all the values association with a given search parameter.
 	**/
-	function getAll(name:String):std.Array<String>;
+	function getAll(name:String):Array<String>;
 	/**
 		Returns a Boolean indicating if such a search parameter exists.
 	**/

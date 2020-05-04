@@ -6,8 +6,8 @@ typedef IRTCRtpReceiver = {
 	final rtcpTransport : Null<IRTCDtlsTransport>;
 	final track : IMediaStreamTrack;
 	final transport : Null<IRTCDtlsTransport>;
-	function getContributingSources():std.Array<RTCRtpContributingSource>;
+	function getContributingSources():Array<RTCRtpContributingSource>;
 	function getParameters():RTCRtpReceiveParameters;
 	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
-	function getSynchronizationSources():std.Array<RTCRtpSynchronizationSource>;
+	function getSynchronizationSources():Array<RTCRtpSynchronizationSource>;
 };

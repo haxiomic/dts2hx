@@ -3,7 +3,7 @@ typedef PausedEventDataType = {
 	/**
 		Call stack the virtual machine stopped on.
 	**/
-	var callFrames : std.Array<CallFrame>;
+	var callFrames : Array<CallFrame>;
 	/**
 		Pause reason.
 	**/
@@ -17,7 +17,7 @@ typedef PausedEventDataType = {
 		Hit breakpoints IDs
 	**/
 	@:optional
-	var hitBreakpoints : std.Array<String>;
+	var hitBreakpoints : Array<String>;
 	/**
 		Async stack trace, if any.
 	**/

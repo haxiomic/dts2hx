@@ -7,7 +7,7 @@ typedef MessageEventInit = {
 	@:optional
 	var origin : String;
 	@:optional
-	var ports : std.Array<IMessagePort>;
+	var ports : Array<IMessagePort>;
 	@:optional
 	var source : ts.AnyOf3<IWindow, IMessagePort, IServiceWorker>;
 	@:optional

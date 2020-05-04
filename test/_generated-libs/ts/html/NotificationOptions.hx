@@ -1,7 +1,7 @@
 package ts.html;
 typedef NotificationOptions = {
 	@:optional
-	var actions : std.Array<NotificationAction>;
+	var actions : Array<NotificationAction>;
 	@:optional
 	var badge : String;
 	@:optional
@@ -27,5 +27,5 @@ typedef NotificationOptions = {
 	@:optional
 	var timestamp : Float;
 	@:optional
-	var vibrate : ts.AnyOf2<Float, std.Array<Float>>;
+	var vibrate : ts.AnyOf2<Float, Array<Float>>;
 };

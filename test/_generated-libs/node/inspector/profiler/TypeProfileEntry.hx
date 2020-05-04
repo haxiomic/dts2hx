@@ -10,5 +10,5 @@ typedef TypeProfileEntry = {
 	/**
 		The types for this parameter or return value.
 	**/
-	var types : std.Array<TypeObject>;
+	var types : Array<TypeObject>;
 };

@@ -10,9 +10,9 @@ typedef Process = {
 	var stderr : WriteStream;
 	var stdin : ReadStream;
 	function openStdin():Socket;
-	var argv : std.Array<String>;
+	var argv : Array<String>;
 	var argv0 : String;
-	var execArgv : std.Array<String>;
+	var execArgv : Array<String>;
 	var execPath : String;
 	function abort():Void;
 	function chdir(directory:String):Void;
@@ -30,19 +30,19 @@ typedef Process = {
 	function seteuid(id:ts.AnyOf2<String, Float>):Void;
 	function getegid():Float;
 	function setegid(id:ts.AnyOf2<String, Float>):Void;
-	function getgroups():std.Array<Float>;
-	function setgroups(groups:std.Array<ts.AnyOf2<String, Float>>):Void;
+	function getgroups():Array<Float>;
+	function setgroups(groups:Array<ts.AnyOf2<String, Float>>):Void;
 	function setUncaughtExceptionCaptureCallback(cb:Null<(err:ts.lib.IError) -> Void>):Void;
 	function hasUncaughtExceptionCaptureCallback():Bool;
 	var version : String;
 	var versions : ProcessVersions;
 	var config : {
 		var target_defaults : {
-			var cflags : std.Array<Dynamic>;
+			var cflags : Array<Dynamic>;
 			var default_configuration : String;
-			var defines : std.Array<String>;
-			var include_dirs : std.Array<String>;
-			var libraries : std.Array<String>;
+			var defines : Array<String>;
+			var include_dirs : Array<String>;
+			var libraries : Array<String>;
 		};
 		var variables : {
 			var clang : Float;
@@ -187,24 +187,24 @@ typedef Process = {
 	@:overload(function(event:String, listener:RemoveListenerListener):Process { })
 	@:overload(function(event:String, listener:MultipleResolveListener):Process { })
 	function prependOnceListener(event:String, listener:BeforeExitListener):Process;
-	@:overload(function(event:String):std.Array<DisconnectListener> { })
-	@:overload(function(event:String):std.Array<ExitListener> { })
-	@:overload(function(event:String):std.Array<RejectionHandledListener> { })
-	@:overload(function(event:String):std.Array<UncaughtExceptionListener> { })
-	@:overload(function(event:String):std.Array<UnhandledRejectionListener> { })
-	@:overload(function(event:String):std.Array<WarningListener> { })
-	@:overload(function(event:String):std.Array<MessageListener> { })
-	@:overload(function(event:Signals):std.Array<SignalsListener> { })
-	@:overload(function(event:String):std.Array<NewListenerListener> { })
-	@:overload(function(event:String):std.Array<RemoveListenerListener> { })
-	@:overload(function(event:String):std.Array<MultipleResolveListener> { })
-	function listeners(event:String):std.Array<BeforeExitListener>;
+	@:overload(function(event:String):Array<DisconnectListener> { })
+	@:overload(function(event:String):Array<ExitListener> { })
+	@:overload(function(event:String):Array<RejectionHandledListener> { })
+	@:overload(function(event:String):Array<UncaughtExceptionListener> { })
+	@:overload(function(event:String):Array<UnhandledRejectionListener> { })
+	@:overload(function(event:String):Array<WarningListener> { })
+	@:overload(function(event:String):Array<MessageListener> { })
+	@:overload(function(event:Signals):Array<SignalsListener> { })
+	@:overload(function(event:String):Array<NewListenerListener> { })
+	@:overload(function(event:String):Array<RemoveListenerListener> { })
+	@:overload(function(event:String):Array<MultipleResolveListener> { })
+	function listeners(event:String):Array<BeforeExitListener>;
 	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Process;
 	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):std.Array<ts.lib.IFunction>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.IFunction>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
-	function eventNames():std.Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 };

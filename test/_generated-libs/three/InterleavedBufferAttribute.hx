@@ -7,7 +7,7 @@ package three;
 	var offset : Float;
 	var count : Float;
 	var normalized : Bool;
-	var array : std.Array<Dynamic>;
+	var array : Array<Dynamic>;
 	function getX(index:Float):Float;
 	function setX(index:Float, x:Float):InterleavedBufferAttribute;
 	function getY(index:Float):Float;

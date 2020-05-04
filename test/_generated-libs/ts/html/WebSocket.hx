@@ -3,7 +3,7 @@ package ts.html;
 	Provides the API for creating and managing a WebSocket connection to a server, as well as for sending and receiving data on the connection.
 **/
 @:native("WebSocket") extern class WebSocket {
-	function new(url:String, ?protocols:ts.AnyOf2<String, std.Array<String>>);
+	function new(url:String, ?protocols:ts.AnyOf2<String, Array<String>>);
 	var binaryType : BinaryType;
 	final bufferedAmount : Float;
 	final extensions : String;

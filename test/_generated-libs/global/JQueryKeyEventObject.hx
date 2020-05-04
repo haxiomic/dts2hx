@@ -117,7 +117,7 @@ typedef JQueryKeyEventObject = {
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():std.Array<ts.html.IEventTarget>;
+	function composedPath():Array<ts.html.IEventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	final AT_TARGET : Float;
 	final BUBBLING_PHASE : Float;

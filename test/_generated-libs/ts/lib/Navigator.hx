@@ -17,13 +17,13 @@ package ts.lib;
 	final permissions : ts.html.IPermissions;
 	final pointerEnabled : Bool;
 	final serviceWorker : ts.html.IServiceWorkerContainer;
-	function getGamepads():std.Array<Null<ts.html.IGamepad>>;
+	function getGamepads():Array<Null<ts.html.IGamepad>>;
 	function getUserMedia(constraints:ts.html.MediaStreamConstraints, successCallback:ts.html.NavigatorUserMediaSuccessCallback, errorCallback:ts.html.NavigatorUserMediaErrorCallback):Void;
-	function getVRDisplays():IPromise<std.Array<IVRDisplay>>;
+	function getVRDisplays():IPromise<Array<IVRDisplay>>;
 	function msLaunchUri(uri:String, ?successCallback:ts.html.MSLaunchUriCallback, ?noHandlerCallback:ts.html.MSLaunchUriCallback):Void;
 	@:overload(function(keySystem:String, supportedConfigurations:Iterable<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess> { })
-	function requestMediaKeySystemAccess(keySystem:String, supportedConfigurations:std.Array<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess>;
-	function vibrate(pattern:ts.AnyOf2<Float, std.Array<Float>>):Bool;
+	function requestMediaKeySystemAccess(keySystem:String, supportedConfigurations:Array<ts.html.MediaKeySystemConfiguration>):IPromise<ts.html.IMediaKeySystemAccess>;
+	function vibrate(pattern:ts.AnyOf2<Float, Array<Float>>):Bool;
 	function msSaveBlob(blob:Dynamic, ?defaultName:String):Bool;
 	function msSaveOrOpenBlob(blob:Dynamic, ?defaultName:String):Bool;
 	function confirmSiteSpecificTrackingException(args:ts.html.ConfirmSiteSpecificExceptionsInformation):Bool;

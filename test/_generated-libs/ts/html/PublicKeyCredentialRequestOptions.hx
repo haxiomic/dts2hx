@@ -1,7 +1,7 @@
 package ts.html;
 typedef PublicKeyCredentialRequestOptions = {
 	@:optional
-	var allowCredentials : std.Array<PublicKeyCredentialDescriptor>;
+	var allowCredentials : Array<PublicKeyCredentialDescriptor>;
 	var challenge : BufferSource;
 	@:optional
 	var extensions : AuthenticationExtensionsClientInputs;

@@ -4,7 +4,7 @@ typedef IRTCDtlsTransport = {
 	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
 	final state : RTCDtlsTransportState;
 	final transport : IRTCIceTransport;
-	function getRemoteCertificates():std.Array<ts.lib.IArrayBuffer>;
+	function getRemoteCertificates():Array<ts.lib.IArrayBuffer>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		

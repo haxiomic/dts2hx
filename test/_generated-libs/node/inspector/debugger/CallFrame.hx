@@ -27,7 +27,7 @@ typedef CallFrame = {
 	/**
 		Scope chain for this call frame.
 	**/
-	var scopeChain : std.Array<Scope>;
+	var scopeChain : Array<Scope>;
 	/**
 		`this` object for this call frame.
 	**/

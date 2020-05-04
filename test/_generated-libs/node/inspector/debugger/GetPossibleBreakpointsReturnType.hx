@@ -3,5 +3,5 @@ typedef GetPossibleBreakpointsReturnType = {
 	/**
 		List of the possible breakpoint locations.
 	**/
-	var locations : std.Array<BreakLocation>;
+	var locations : Array<BreakLocation>;
 };

@@ -1,15 +1,15 @@
 package node.cluster;
 typedef ClusterSettings = {
 	@:optional
-	var execArgv : std.Array<String>;
+	var execArgv : Array<String>;
 	@:optional
 	var exec : String;
 	@:optional
-	var args : std.Array<String>;
+	var args : Array<String>;
 	@:optional
 	var silent : Bool;
 	@:optional
-	var stdio : std.Array<Dynamic>;
+	var stdio : Array<Dynamic>;
 	@:optional
 	var uid : Float;
 	@:optional

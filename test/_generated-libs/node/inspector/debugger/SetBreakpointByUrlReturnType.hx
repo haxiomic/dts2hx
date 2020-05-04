@@ -7,5 +7,5 @@ typedef SetBreakpointByUrlReturnType = {
 	/**
 		List of the locations this breakpoint resolved into upon addition.
 	**/
-	var locations : std.Array<Location>;
+	var locations : Array<Location>;
 };

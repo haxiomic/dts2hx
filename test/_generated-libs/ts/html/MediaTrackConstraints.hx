@@ -1,7 +1,7 @@
 package ts.html;
 typedef MediaTrackConstraints = {
 	@:optional
-	var advanced : std.Array<MediaTrackConstraintSet>;
+	var advanced : Array<MediaTrackConstraintSet>;
 	@:optional
 	var aspectRatio : ts.AnyOf2<Float, ConstrainDoubleRange>;
 	@:optional
@@ -9,15 +9,15 @@ typedef MediaTrackConstraints = {
 	@:optional
 	var channelCount : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional
-	var deviceId : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
+	var deviceId : ts.AnyOf3<String, Array<String>, ConstrainDOMStringParameters>;
 	@:optional
 	var echoCancellation : ts.AnyOf2<Bool, ConstrainBooleanParameters>;
 	@:optional
-	var facingMode : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
+	var facingMode : ts.AnyOf3<String, Array<String>, ConstrainDOMStringParameters>;
 	@:optional
 	var frameRate : ts.AnyOf2<Float, ConstrainDoubleRange>;
 	@:optional
-	var groupId : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
+	var groupId : ts.AnyOf3<String, Array<String>, ConstrainDOMStringParameters>;
 	@:optional
 	var height : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional
@@ -25,7 +25,7 @@ typedef MediaTrackConstraints = {
 	@:optional
 	var noiseSuppression : ts.AnyOf2<Bool, ConstrainBooleanParameters>;
 	@:optional
-	var resizeMode : ts.AnyOf3<String, std.Array<String>, ConstrainDOMStringParameters>;
+	var resizeMode : ts.AnyOf3<String, Array<String>, ConstrainDOMStringParameters>;
 	@:optional
 	var sampleRate : ts.AnyOf2<Float, ConstrainULongRange>;
 	@:optional

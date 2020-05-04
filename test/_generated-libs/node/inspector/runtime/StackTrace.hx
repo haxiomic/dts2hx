@@ -12,7 +12,7 @@ typedef StackTrace = {
 	/**
 		JavaScript function name.
 	**/
-	var callFrames : std.Array<CallFrame>;
+	var callFrames : Array<CallFrame>;
 	/**
 		Asynchronous JavaScript stack trace that preceded this stack, if available.
 	**/

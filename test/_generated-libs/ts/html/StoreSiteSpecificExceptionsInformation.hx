@@ -1,7 +1,7 @@
 package ts.html;
 typedef StoreSiteSpecificExceptionsInformation = {
 	@:optional
-	var arrayOfDomainStrings : std.Array<String>;
+	var arrayOfDomainStrings : Array<String>;
 	@:optional
 	var detailURI : String;
 	@:optional

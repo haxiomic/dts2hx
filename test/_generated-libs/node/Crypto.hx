@@ -42,9 +42,9 @@ package node;
 	static function privateDecrypt(private_key:ts.AnyOf4<String, global.IBuffer, node.crypto.KeyObject, node.crypto.RsaPrivateKey>, buffer:node.crypto.Binary):global.IBuffer;
 	static function privateEncrypt(private_key:ts.AnyOf4<String, global.IBuffer, node.crypto.KeyObject, node.crypto.RsaPrivateKey>, buffer:node.crypto.Binary):global.IBuffer;
 	static function publicDecrypt(public_key:ts.AnyOf4<String, global.IBuffer, node.crypto.KeyObject, node.crypto.RsaPublicKey>, buffer:node.crypto.Binary):global.IBuffer;
-	static function getCiphers():std.Array<String>;
-	static function getCurves():std.Array<String>;
-	static function getHashes():std.Array<String>;
+	static function getCiphers():Array<String>;
+	static function getCurves():Array<String>;
+	static function getHashes():Array<String>;
 	static function createECDH(curve_name:String):node.crypto.ECDH;
 	static function timingSafeEqual(a:node.crypto.Binary, b:node.crypto.Binary):Bool;
 	@:overload(function(type:String, options:node.crypto.RSAKeyPairOptions<String, String>):node.crypto.KeyPairSyncResult<String, global.IBuffer> { })

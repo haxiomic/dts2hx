@@ -1,9 +1,9 @@
 package three;
 @:jsRequire("three", "KeyframeTrack") extern class KeyframeTrack {
-	function new(name:String, times:std.Array<Dynamic>, values:std.Array<Dynamic>, ?interpolation:InterpolationModes);
+	function new(name:String, times:Array<Dynamic>, values:Array<Dynamic>, ?interpolation:InterpolationModes);
 	var name : String;
-	var times : std.Array<Dynamic>;
-	var values : std.Array<Dynamic>;
+	var times : Array<Dynamic>;
+	var values : Array<Dynamic>;
 	var ValueTypeName : String;
 	var TimeBufferType : ts.lib.IFloat32Array;
 	var ValueBufferType : ts.lib.IFloat32Array;

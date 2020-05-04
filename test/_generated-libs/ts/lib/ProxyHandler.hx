@@ -21,9 +21,9 @@ typedef ProxyHandler<T> = {
 	@:optional
 	function defineProperty(target:T, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor):Bool;
 	@:optional
-	function enumerate(target:T):std.Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
+	function enumerate(target:T):Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
 	@:optional
-	function ownKeys(target:T):std.Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
+	function ownKeys(target:T):Array<ts.AnyOf3<String, Float, js.lib.Symbol>>;
 	@:optional
 	function apply(target:T, thisArg:Dynamic, ?argArray:Dynamic):Dynamic;
 	@:optional

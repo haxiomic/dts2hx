@@ -5,9 +5,9 @@ typedef PaymentDetailsUpdate = {
 	@:optional
 	var total : PaymentItem;
 	@:optional
-	var displayItems : std.Array<PaymentItem>;
+	var displayItems : Array<PaymentItem>;
 	@:optional
-	var modifiers : std.Array<PaymentDetailsModifier>;
+	var modifiers : Array<PaymentDetailsModifier>;
 	@:optional
-	var shippingOptions : std.Array<PaymentShippingOption>;
+	var shippingOptions : Array<PaymentShippingOption>;
 };

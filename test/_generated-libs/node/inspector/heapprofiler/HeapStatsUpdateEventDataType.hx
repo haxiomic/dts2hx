@@ -5,5 +5,5 @@ typedef HeapStatsUpdateEventDataType = {
 		index, the second integer is a total count of objects for the fragment, the third integer is
 		a total size of the objects for the fragment.
 	**/
-	var statsUpdate : std.Array<Float>;
+	var statsUpdate : Array<Float>;
 };

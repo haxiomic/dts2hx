@@ -89,11 +89,11 @@ typedef IOfflineAudioContext = {
 	function createDynamicsCompressor():IDynamicsCompressorNode;
 	function createGain():IGainNode;
 	@:overload(function(feedforward:ts.lib.Iterable<Float>, feedback:ts.lib.Iterable<Float>):IIIRFilterNode { })
-	function createIIRFilter(feedforward:std.Array<Float>, feedback:std.Array<Float>):IIIRFilterNode;
+	function createIIRFilter(feedforward:Array<Float>, feedback:Array<Float>):IIIRFilterNode;
 	function createOscillator():IOscillatorNode;
 	function createPanner():IPannerNode;
 	@:overload(function(real:ts.lib.Iterable<Float>, imag:ts.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):IPeriodicWave { })
-	function createPeriodicWave(real:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>, imag:ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
+	function createPeriodicWave(real:ts.AnyOf2<ts.lib.IFloat32Array, Array<Float>>, imag:ts.AnyOf2<ts.lib.IFloat32Array, Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
 	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):IScriptProcessorNode;
 	function createStereoPanner():IStereoPannerNode;
 	function createWaveShaper():IWaveShaperNode;

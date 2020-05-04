@@ -5,7 +5,7 @@ package ts.html;
 typedef IWorker = {
 	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
 	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Dynamic, transfer:std.Array<Transferable>):Void;
+	function postMessage(message:Dynamic, transfer:Array<Transferable>):Void;
 	function terminate():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.

@@ -222,7 +222,7 @@ typedef IShadowRoot = {
 	function caretPositionFromPoint(x:Float, y:Float):Null<ICaretPosition>;
 	function caretRangeFromPoint(x:Float, y:Float):IRange;
 	function elementFromPoint(x:Float, y:Float):Null<IElement>;
-	function elementsFromPoint(x:Float, y:Float):std.Array<IElement>;
+	function elementsFromPoint(x:Float, y:Float):Array<IElement>;
 	function getSelection():Null<ISelection>;
 	var innerHTML : String;
 };

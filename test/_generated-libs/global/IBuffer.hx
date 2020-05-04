@@ -22,7 +22,7 @@ typedef IBuffer = {
 			If provided, the {encoding} parameter identifies the character encoding.
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
-		@:overload(function(data:std.Array<Float>):IBuffer { })
+		@:overload(function(data:Array<Float>):IBuffer { })
 		@:overload(function(data:ts.lib.IUint8Array):IBuffer { })
 		@:overload(function(str:String, ?encoding:String):IBuffer { })
 		function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
@@ -51,7 +51,7 @@ typedef IBuffer = {
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:std.Array<ts.lib.IUint8Array>, ?totalLength:Float):IBuffer;
+		function concat(list:Array<ts.lib.IUint8Array>, ?totalLength:Float):IBuffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
@@ -84,7 +84,7 @@ typedef IBuffer = {
 	function toString(?encoding:String, ?start:Float, ?end:Float):String;
 	function toJSON():{
 		var type : String;
-		var data : std.Array<Float>;
+		var data : Array<Float>;
 	};
 	function equals(otherBuffer:ts.lib.IUint8Array):Bool;
 	function compare(otherBuffer:ts.lib.IUint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;

@@ -4,7 +4,7 @@ package three;
 	var center : Vector3;
 	var radius : Float;
 	function set(center:Vector3, radius:Float):Sphere;
-	function setFromPoints(points:std.Array<Vector3>, ?optionalCenter:Vector3):Sphere;
+	function setFromPoints(points:Array<Vector3>, ?optionalCenter:Vector3):Sphere;
 	function clone():Sphere;
 	function copy(sphere:Sphere):Sphere;
 	function empty():Bool;

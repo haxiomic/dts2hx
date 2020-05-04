@@ -8,7 +8,7 @@ package three;
 		var geometries : Float;
 		var textures : Float;
 	};
-	var programs : Null<std.Array<WebGLProgram>>;
+	var programs : Null<Array<WebGLProgram>>;
 	var render : {
 		var calls : Float;
 		var frame : Float;

@@ -15,5 +15,5 @@ typedef IAudioParam = {
 	function setTargetAtTime(target:Float, startTime:Float, timeConstant:Float):IAudioParam;
 	function setValueAtTime(value:Float, startTime:Float):IAudioParam;
 	@:overload(function(values:Iterable<Float>, startTime:Float, duration:Float):IAudioParam { })
-	function setValueCurveAtTime(values:ts.AnyOf2<IFloat32Array, std.Array<Float>>, startTime:Float, duration:Float):IAudioParam;
+	function setValueCurveAtTime(values:ts.AnyOf2<IFloat32Array, Array<Float>>, startTime:Float, duration:Float):IAudioParam;
 };

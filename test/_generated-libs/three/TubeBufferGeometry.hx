@@ -8,7 +8,7 @@ package three;
 		var radialSegments : Float;
 		var closed : Bool;
 	};
-	var tangents : std.Array<Vector3>;
-	var normals : std.Array<Vector3>;
-	var binormals : std.Array<Vector3>;
+	var tangents : Array<Vector3>;
+	var normals : Array<Vector3>;
+	var binormals : Array<Vector3>;
 }

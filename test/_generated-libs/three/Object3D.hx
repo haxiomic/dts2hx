@@ -21,7 +21,7 @@ package three;
 	/**
 		Array with object's children.
 	**/
-	var children : std.Array<Object3D>;
+	var children : Array<Object3D>;
 	/**
 		Up direction.
 	**/
@@ -179,7 +179,7 @@ package three;
 	function getWorldQuaternion(target:Quaternion):Quaternion;
 	function getWorldScale(target:Vector3):Vector3;
 	function getWorldDirection(target:Vector3):Vector3;
-	function raycast(raycaster:Raycaster, intersects:std.Array<Intersection>):Void;
+	function raycast(raycaster:Raycaster, intersects:Array<Intersection>):Void;
 	function traverse(callback:(object:Object3D) -> Dynamic):Void;
 	function traverseVisible(callback:(object:Object3D) -> Dynamic):Void;
 	function traverseAncestors(callback:(object:Object3D) -> Dynamic):Void;

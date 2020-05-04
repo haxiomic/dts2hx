@@ -15,7 +15,7 @@ typedef CallFunctionOnParameterType = {
 		object.
 	**/
 	@:optional
-	var arguments : std.Array<CallArgument>;
+	var arguments : Array<CallArgument>;
 	/**
 		In silent mode exceptions thrown during evaluation are not reported and do not pause
 		execution. Overrides `setPauseOnException` state.

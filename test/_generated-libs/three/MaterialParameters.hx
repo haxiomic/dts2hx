@@ -19,7 +19,7 @@ typedef MaterialParameters = {
 	@:optional
 	var clipIntersection : Bool;
 	@:optional
-	var clippingPlanes : std.Array<Plane>;
+	var clippingPlanes : Array<Plane>;
 	@:optional
 	var clipShadows : Bool;
 	@:optional

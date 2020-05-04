@@ -14,5 +14,5 @@ typedef ScriptCoverage = {
 	/**
 		Functions contained in the script that has coverage data.
 	**/
-	var functions : std.Array<FunctionCoverage>;
+	var functions : Array<FunctionCoverage>;
 };

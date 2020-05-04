@@ -3,11 +3,11 @@ typedef RTCConfiguration = {
 	@:optional
 	var bundlePolicy : String;
 	@:optional
-	var certificates : std.Array<IRTCCertificate>;
+	var certificates : Array<IRTCCertificate>;
 	@:optional
 	var iceCandidatePoolSize : Float;
 	@:optional
-	var iceServers : std.Array<RTCIceServer>;
+	var iceServers : Array<RTCIceServer>;
 	@:optional
 	var iceTransportPolicy : String;
 	@:optional

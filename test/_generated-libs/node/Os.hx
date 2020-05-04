@@ -1,11 +1,11 @@
 package node;
 @:jsRequire("os") @valueModuleOnly extern class Os {
 	static function hostname():String;
-	static function loadavg():std.Array<Float>;
+	static function loadavg():Array<Float>;
 	static function uptime():Float;
 	static function freemem():Float;
 	static function totalmem():Float;
-	static function cpus():std.Array<node.os.CpuInfo>;
+	static function cpus():Array<node.os.CpuInfo>;
 	static function type():String;
 	static function release():String;
 	static function networkInterfaces():{ };

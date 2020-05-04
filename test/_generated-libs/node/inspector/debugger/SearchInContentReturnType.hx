@@ -3,5 +3,5 @@ typedef SearchInContentReturnType = {
 	/**
 		List of search matches.
 	**/
-	var result : std.Array<SearchMatch>;
+	var result : Array<SearchMatch>;
 };

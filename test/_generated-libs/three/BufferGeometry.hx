@@ -19,7 +19,7 @@ package three;
 	var index : BufferAttribute;
 	var attributes : { };
 	var morphAttributes : Dynamic;
-	var groups : std.Array<{
+	var groups : Array<{
 		var start : Float;
 		var count : Float;
 		@:optional
@@ -33,7 +33,7 @@ package three;
 	};
 	var userData : { };
 	function getIndex():BufferAttribute;
-	function setIndex(index:ts.AnyOf2<std.Array<Float>, BufferAttribute>):Void;
+	function setIndex(index:ts.AnyOf2<Array<Float>, BufferAttribute>):Void;
 	@:overload(function(name:Dynamic, array:Dynamic, itemSize:Dynamic):Dynamic { })
 	function addAttribute(name:String, attribute:ts.AnyOf2<BufferAttribute, InterleavedBufferAttribute>):BufferGeometry;
 	function getAttribute(name:String):ts.AnyOf2<BufferAttribute, InterleavedBufferAttribute>;
@@ -53,7 +53,7 @@ package three;
 	function lookAt(v:Vector3):Void;
 	function center():BufferGeometry;
 	function setFromObject(object:Object3D):BufferGeometry;
-	function setFromPoints(points:ts.AnyOf2<std.Array<Vector3>, std.Array<Vector2>>):BufferGeometry;
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):BufferGeometry;
 	function updateFromObject(object:Object3D):Void;
 	function fromGeometry(geometry:Geometry, ?settings:Dynamic):BufferGeometry;
 	function fromDirectGeometry(geometry:DirectGeometry):BufferGeometry;

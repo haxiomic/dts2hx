@@ -3,12 +3,12 @@ typedef GetPropertiesReturnType = {
 	/**
 		Object properties.
 	**/
-	var result : std.Array<PropertyDescriptor>;
+	var result : Array<PropertyDescriptor>;
 	/**
 		Internal object properties (only of the element itself).
 	**/
 	@:optional
-	var internalProperties : std.Array<InternalPropertyDescriptor>;
+	var internalProperties : Array<InternalPropertyDescriptor>;
 	/**
 		Exception details.
 	**/

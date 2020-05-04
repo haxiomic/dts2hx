@@ -161,13 +161,13 @@ package three;
 		Checks for strict equality of this vector and v.
 	**/
 	function equals(v:Vector3):Bool;
-	function fromArray(xyz:std.Array<Float>, ?offset:Float):Vector3;
+	function fromArray(xyz:Array<Float>, ?offset:Float):Vector3;
 	/**
 		Returns an array [x, y, z], or copies x, y and z into the provided array.
 		
 		Copies x, y and z into the provided array-like.
 	**/
 	@:overload(function(xyz:ts.lib.ArrayLike<Float>, ?offset:Float):ts.lib.ArrayLike<Float> { })
-	function toArray(?xyz:std.Array<Float>, ?offset:Float):std.Array<Float>;
+	function toArray(?xyz:Array<Float>, ?offset:Float):Array<Float>;
 	function fromBufferAttribute(attribute:BufferAttribute, index:Float, ?offset:Float):Vector3;
 }

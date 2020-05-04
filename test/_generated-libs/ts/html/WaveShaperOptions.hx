@@ -1,7 +1,7 @@
 package ts.html;
 typedef WaveShaperOptions = {
 	@:optional
-	var curve : ts.AnyOf2<ts.lib.IFloat32Array, std.Array<Float>>;
+	var curve : ts.AnyOf2<ts.lib.IFloat32Array, Array<Float>>;
 	@:optional
 	var oversample : String;
 	@:optional

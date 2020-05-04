@@ -20,7 +20,7 @@ typedef ProfileNode = {
 		Child node ids.
 	**/
 	@:optional
-	var children : std.Array<Float>;
+	var children : Array<Float>;
 	/**
 		The reason of being not optimized. The function may be deoptimized or marked as don't
 		optimize.
@@ -31,5 +31,5 @@ typedef ProfileNode = {
 		An array of source position ticks.
 	**/
 	@:optional
-	var positionTicks : std.Array<PositionTickInfo>;
+	var positionTicks : Array<PositionTickInfo>;
 };

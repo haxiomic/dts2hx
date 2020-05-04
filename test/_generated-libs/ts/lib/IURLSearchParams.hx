@@ -15,7 +15,7 @@ typedef IURLSearchParams = {
 	/**
 		Returns all the values association with a given search parameter.
 	**/
-	function getAll(name:String):std.Array<String>;
+	function getAll(name:String):Array<String>;
 	/**
 		Returns a Boolean indicating if such a search parameter exists.
 	**/

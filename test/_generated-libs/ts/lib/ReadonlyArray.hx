@@ -17,8 +17,8 @@ typedef ReadonlyArray<T> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<T, ConcatArray<T>>>):std.Array<T> { })
-	function concat(items:haxe.extern.Rest<ConcatArray<T>>):std.Array<T>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<T, ConcatArray<T>>>):Array<T> { })
+	function concat(items:haxe.extern.Rest<ConcatArray<T>>):Array<T>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -26,7 +26,7 @@ typedef ReadonlyArray<T> = {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):std.Array<T>;
+	function slice(?start:Float, ?end:Float):Array<T>;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -50,14 +50,14 @@ typedef ReadonlyArray<T> = {
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> U, ?thisArg:Dynamic):std.Array<U>;
+	function map<U>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):std.Array<T> { })
-	function filter<S>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Dynamic):std.Array<S>;
+	@:overload(function(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Any, ?thisArg:Dynamic):Array<T> { })
+	function filter<S>(callbackfn:(value:T, index:Float, array:ReadonlyArray<T>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		

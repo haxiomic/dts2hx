@@ -14,5 +14,5 @@ typedef ScriptTypeProfile = {
 	/**
 		Type profile entries for parameters and return values of the functions in the script.
 	**/
-	var entries : std.Array<TypeProfileEntry>;
+	var entries : Array<TypeProfileEntry>;
 };

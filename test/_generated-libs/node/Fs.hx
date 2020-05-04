@@ -235,11 +235,11 @@ package node;
 		
 		Asynchronous readdir(3) - read a directory.
 	**/
-	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; @:optional var withFileTypes : Bool; }>, callback:(err:global.nodejs.ErrnoException, files:std.Array<global.IBuffer>) -> Void):Void { })
-	@:overload(function(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:ts.AnyOf2<std.Array<String>, std.Array<global.IBuffer>>) -> Void):Void { })
-	@:overload(function(path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException, files:std.Array<String>) -> Void):Void { })
-	@:overload(function(path:node.fs.PathLike, options:{ var withFileTypes : Bool; }, callback:(err:global.nodejs.ErrnoException, files:std.Array<node.fs.Dirent>) -> Void):Void { })
-	static function readdir(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { var encoding : Null<String>; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:std.Array<String>) -> Void):Void;
+	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; @:optional var withFileTypes : Bool; }>, callback:(err:global.nodejs.ErrnoException, files:Array<global.IBuffer>) -> Void):Void { })
+	@:overload(function(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:ts.AnyOf2<Array<String>, Array<global.IBuffer>>) -> Void):Void { })
+	@:overload(function(path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException, files:Array<String>) -> Void):Void { })
+	@:overload(function(path:node.fs.PathLike, options:{ var withFileTypes : Bool; }, callback:(err:global.nodejs.ErrnoException, files:Array<node.fs.Dirent>) -> Void):Void { })
+	static function readdir(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { var encoding : Null<String>; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:Array<String>) -> Void):Void;
 	/**
 		Synchronous readdir(3) - read a directory.
 		
@@ -249,10 +249,10 @@ package node;
 		
 		Asynchronous readdir(3) - read a directory.
 	**/
-	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; @:optional var withFileTypes : Bool; }>):std.Array<global.IBuffer> { })
-	@:overload(function(path:node.fs.PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var withFileTypes : Bool; }>):ts.AnyOf2<std.Array<String>, std.Array<global.IBuffer>> { })
-	@:overload(function(path:node.fs.PathLike, options:{ var withFileTypes : Bool; }):std.Array<node.fs.Dirent> { })
-	static function readdirSync(path:node.fs.PathLike, ?options:ts.AnyOf2<String, { var encoding : Null<String>; @:optional var withFileTypes : Bool; }>):std.Array<String>;
+	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; @:optional var withFileTypes : Bool; }>):Array<global.IBuffer> { })
+	@:overload(function(path:node.fs.PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var withFileTypes : Bool; }>):ts.AnyOf2<Array<String>, Array<global.IBuffer>> { })
+	@:overload(function(path:node.fs.PathLike, options:{ var withFileTypes : Bool; }):Array<node.fs.Dirent> { })
+	static function readdirSync(path:node.fs.PathLike, ?options:ts.AnyOf2<String, { var encoding : Null<String>; @:optional var withFileTypes : Bool; }>):Array<String>;
 	/**
 		Asynchronous close(2) - close a file descriptor.
 	**/

@@ -15,11 +15,11 @@ typedef IVRDisplay = {
 	function exitPresent():IPromise<Void>;
 	function getEyeParameters(whichEye:String):ts.html.IVREyeParameters;
 	function getFrameData(frameData:ts.html.IVRFrameData):Bool;
-	function getLayers():std.Array<ts.html.VRLayer>;
+	function getLayers():Array<ts.html.VRLayer>;
 	function getPose():ts.html.IVRPose;
 	function requestAnimationFrame(callback:ts.html.FrameRequestCallback):Float;
 	@:overload(function(layers:Iterable<ts.html.VRLayer>):IPromise<Void> { })
-	function requestPresent(layers:std.Array<ts.html.VRLayer>):IPromise<Void>;
+	function requestPresent(layers:Array<ts.html.VRLayer>):IPromise<Void>;
 	function resetPose():Void;
 	function submitFrame(?pose:ts.html.IVRPose):Void;
 	/**

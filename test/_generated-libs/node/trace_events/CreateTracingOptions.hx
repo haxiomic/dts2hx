@@ -5,5 +5,5 @@ typedef CreateTracingOptions = {
 		coerced to a string when possible. An error will be thrown if the
 		value cannot be coerced.
 	**/
-	var categories : std.Array<String>;
+	var categories : Array<String>;
 };

@@ -3,7 +3,7 @@ typedef ExecSyncOptions = {
 	@:optional
 	var input : ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>;
 	@:optional
-	var stdio : ts.AnyOf2<String, std.Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
+	var stdio : ts.AnyOf2<String, Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
 	@:optional
 	var shell : String;
 	@:optional

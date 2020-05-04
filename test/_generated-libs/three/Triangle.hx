@@ -5,7 +5,7 @@ package three;
 	var b : Vector3;
 	var c : Vector3;
 	function set(a:Vector3, b:Vector3, c:Vector3):Triangle;
-	function setFromPointsAndIndices(points:std.Array<Vector3>, i0:Float, i1:Float, i2:Float):Triangle;
+	function setFromPointsAndIndices(points:Array<Vector3>, i0:Float, i1:Float, i2:Float):Triangle;
 	function clone():Triangle;
 	function copy(triangle:Triangle):Triangle;
 	function getArea():Float;

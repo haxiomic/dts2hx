@@ -1,7 +1,7 @@
 package ts.html;
 typedef ScopedCredentialOptions = {
 	@:optional
-	var excludeList : std.Array<ScopedCredentialDescriptor>;
+	var excludeList : Array<ScopedCredentialDescriptor>;
 	@:optional
 	var extensions : WebAuthnExtensions;
 	@:optional

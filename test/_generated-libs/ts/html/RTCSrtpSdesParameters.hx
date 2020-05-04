@@ -3,9 +3,9 @@ typedef RTCSrtpSdesParameters = {
 	@:optional
 	var cryptoSuite : String;
 	@:optional
-	var keyParams : std.Array<RTCSrtpKeyParam>;
+	var keyParams : Array<RTCSrtpKeyParam>;
 	@:optional
-	var sessionParams : std.Array<String>;
+	var sessionParams : Array<String>;
 	@:optional
 	var tag : Float;
 };

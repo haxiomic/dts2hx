@@ -1,2 +1,2 @@
 package ts.html;
-typedef UvmEntries = std.Array<UvmEntry>;
+typedef UvmEntries = Array<UvmEntry>;

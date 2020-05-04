@@ -3,7 +3,7 @@ package three;
 	static function arraySlice(array:Dynamic, from:Float, to:Float):Dynamic;
 	static function convertArray(array:Dynamic, type:Dynamic, forceClone:Bool):Dynamic;
 	static function isTypedArray(object:Dynamic):Bool;
-	static function getKeyFrameOrder(times:Float):std.Array<Float>;
-	static function sortedArray(values:std.Array<Dynamic>, stride:Float, order:std.Array<Float>):std.Array<Dynamic>;
-	static function flattenJSON(jsonKeys:std.Array<String>, times:std.Array<Dynamic>, values:std.Array<Dynamic>, valuePropertyName:String):Void;
+	static function getKeyFrameOrder(times:Float):Array<Float>;
+	static function sortedArray(values:Array<Dynamic>, stride:Float, order:Array<Float>):Array<Dynamic>;
+	static function flattenJSON(jsonKeys:Array<String>, times:Array<Dynamic>, values:Array<Dynamic>, valuePropertyName:String):Void;
 }

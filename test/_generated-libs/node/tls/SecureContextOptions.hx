@@ -1,15 +1,15 @@
 package node.tls;
 typedef SecureContextOptions = {
 	@:optional
-	var pfx : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
+	var pfx : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<ts.lib.IObject, global.IBuffer>>>;
+	var key : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<ts.lib.IObject, global.IBuffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional
-	var cert : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var cert : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
-	var ca : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var ca : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
 	var ciphers : String;
 	@:optional
@@ -19,7 +19,7 @@ typedef SecureContextOptions = {
 	@:optional
 	var clientCertEngine : String;
 	@:optional
-	var crl : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var crl : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
 	var dhparam : ts.AnyOf2<String, global.IBuffer>;
 	@:optional

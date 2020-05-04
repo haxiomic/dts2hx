@@ -132,7 +132,7 @@ package three;
 		Checks for strict equality of this vector and v.
 	**/
 	function equals(v:Vector4):Bool;
-	function fromArray(xyzw:std.Array<Float>, ?offset:Float):Vector4;
-	function toArray(?xyzw:std.Array<Float>, ?offset:Float):std.Array<Float>;
+	function fromArray(xyzw:Array<Float>, ?offset:Float):Vector4;
+	function toArray(?xyzw:Array<Float>, ?offset:Float):Array<Float>;
 	function fromBufferAttribute(attribute:BufferAttribute, index:Float, ?offset:Float):Vector4;
 }

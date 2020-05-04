@@ -19,11 +19,11 @@ typedef IBaseAudioContext = {
 	function createDynamicsCompressor():ts.html.IDynamicsCompressorNode;
 	function createGain():ts.html.IGainNode;
 	@:overload(function(feedforward:Iterable<Float>, feedback:Iterable<Float>):ts.html.IIIRFilterNode { })
-	function createIIRFilter(feedforward:std.Array<Float>, feedback:std.Array<Float>):ts.html.IIIRFilterNode;
+	function createIIRFilter(feedforward:Array<Float>, feedback:Array<Float>):ts.html.IIIRFilterNode;
 	function createOscillator():ts.html.IOscillatorNode;
 	function createPanner():ts.html.IPannerNode;
 	@:overload(function(real:Iterable<Float>, imag:Iterable<Float>, ?constraints:ts.html.PeriodicWaveConstraints):ts.html.IPeriodicWave { })
-	function createPeriodicWave(real:ts.AnyOf2<IFloat32Array, std.Array<Float>>, imag:ts.AnyOf2<IFloat32Array, std.Array<Float>>, ?constraints:ts.html.PeriodicWaveConstraints):ts.html.IPeriodicWave;
+	function createPeriodicWave(real:ts.AnyOf2<IFloat32Array, Array<Float>>, imag:ts.AnyOf2<IFloat32Array, Array<Float>>, ?constraints:ts.html.PeriodicWaveConstraints):ts.html.IPeriodicWave;
 	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):ts.html.IScriptProcessorNode;
 	function createStereoPanner():ts.html.IStereoPannerNode;
 	function createWaveShaper():ts.html.IWaveShaperNode;

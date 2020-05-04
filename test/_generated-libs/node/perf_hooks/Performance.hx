@@ -18,17 +18,17 @@ typedef Performance = {
 	/**
 		Returns a list of all PerformanceEntry objects in chronological order with respect to performanceEntry.startTime.
 	**/
-	function getEntries():std.Array<PerformanceEntry>;
+	function getEntries():Array<PerformanceEntry>;
 	/**
 		Returns a list of all PerformanceEntry objects in chronological order with respect to performanceEntry.startTime
 		whose performanceEntry.name is equal to name, and optionally, whose performanceEntry.entryType is equal to type.
 	**/
-	function getEntriesByName(name:String, ?type:String):std.Array<PerformanceEntry>;
+	function getEntriesByName(name:String, ?type:String):Array<PerformanceEntry>;
 	/**
 		Returns a list of all PerformanceEntry objects in chronological order with respect to performanceEntry.startTime
 		whose performanceEntry.entryType is equal to type.
 	**/
-	function getEntriesByType(type:String):std.Array<PerformanceEntry>;
+	function getEntriesByType(type:String):Array<PerformanceEntry>;
 	/**
 		Creates a new PerformanceMark entry in the Performance Timeline.
 		A PerformanceMark is a subclass of PerformanceEntry whose performanceEntry.entryType is always 'mark',

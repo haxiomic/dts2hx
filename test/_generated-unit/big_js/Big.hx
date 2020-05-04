@@ -156,7 +156,7 @@ package big_js;
 	/**
 		Returns an array of single digits
 	**/
-	var c : std.Array<Float>;
+	var c : Array<Float>;
 	/**
 		Returns the exponent, Integer, -1e+6 to 1e+6 inclusive
 	**/

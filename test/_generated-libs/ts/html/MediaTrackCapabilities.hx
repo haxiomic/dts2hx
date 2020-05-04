@@ -3,15 +3,15 @@ typedef MediaTrackCapabilities = {
 	@:optional
 	var aspectRatio : DoubleRange;
 	@:optional
-	var autoGainControl : std.Array<Bool>;
+	var autoGainControl : Array<Bool>;
 	@:optional
 	var channelCount : ULongRange;
 	@:optional
 	var deviceId : String;
 	@:optional
-	var echoCancellation : std.Array<Bool>;
+	var echoCancellation : Array<Bool>;
 	@:optional
-	var facingMode : std.Array<String>;
+	var facingMode : Array<String>;
 	@:optional
 	var frameRate : DoubleRange;
 	@:optional
@@ -21,9 +21,9 @@ typedef MediaTrackCapabilities = {
 	@:optional
 	var latency : DoubleRange;
 	@:optional
-	var noiseSuppression : std.Array<Bool>;
+	var noiseSuppression : Array<Bool>;
 	@:optional
-	var resizeMode : std.Array<String>;
+	var resizeMode : Array<String>;
 	@:optional
 	var sampleRate : ULongRange;
 	@:optional

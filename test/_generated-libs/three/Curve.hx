@@ -24,12 +24,12 @@ package three;
 		Get sequence of points using getPoint( t )
 		getPoints(divisions?: number): T[];
 	**/
-	function getPoints(?divisions:Float):std.Array<T>;
+	function getPoints(?divisions:Float):Array<T>;
 	/**
 		Get sequence of equi-spaced points using getPointAt( u )
 		getSpacedPoints(divisions?: number): T[];
 	**/
-	function getSpacedPoints(?divisions:Float):std.Array<T>;
+	function getSpacedPoints(?divisions:Float):Array<T>;
 	/**
 		Get total curve arc length
 	**/
@@ -37,7 +37,7 @@ package three;
 	/**
 		Get list of cumulative segment lengths
 	**/
-	function getLengths(?divisions:Float):std.Array<Float>;
+	function getLengths(?divisions:Float):Array<Float>;
 	/**
 		Update the cumlative segment distance cache
 	**/

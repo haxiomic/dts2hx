@@ -2,8 +2,8 @@ package unit.interface_;
 typedef Interface = {
 	@:overload(function<T>(a:T, b:String):Interface { })
 	@:selfCall
-	function call_(array:std.Array<Interface>):Dynamic;
-	var field : std.Array<Dynamic>;
+	function call_(array:Array<Interface>):Dynamic;
+	var field : Array<Dynamic>;
 	function exampleMethod(a:Float):Void;
 	@:optional
 	function exampleOptionalMethod(a:Float):Void;

@@ -1,7 +1,7 @@
 package ts.html;
 typedef RTCRtpReceiveParameters = {
-	var encodings : std.Array<RTCRtpDecodingParameters>;
-	var codecs : std.Array<RTCRtpCodecParameters>;
-	var headerExtensions : std.Array<RTCRtpHeaderExtensionParameters>;
+	var encodings : Array<RTCRtpDecodingParameters>;
+	var codecs : Array<RTCRtpCodecParameters>;
+	var headerExtensions : Array<RTCRtpHeaderExtensionParameters>;
 	var rtcp : RTCRtcpParameters;
 };

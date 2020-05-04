@@ -16,5 +16,5 @@ typedef IMutationObserver = {
 	/**
 		Empties the record queue and returns what was in there.
 	**/
-	function takeRecords():std.Array<IMutationRecord>;
+	function takeRecords():Array<IMutationRecord>;
 };

@@ -8,7 +8,7 @@ package ts.html;
 	var oncandidatewindowupdate : Null<(ev:IEvent) -> Dynamic>;
 	final target : IHTMLElement;
 	function getCandidateWindowClientRect():IClientRect;
-	function getCompositionAlternatives():std.Array<String>;
+	function getCompositionAlternatives():Array<String>;
 	function hasComposition():Bool;
 	function isCandidateWindowVisible():Bool;
 	/**

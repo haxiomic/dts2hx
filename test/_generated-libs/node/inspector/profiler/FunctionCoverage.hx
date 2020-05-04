@@ -10,7 +10,7 @@ typedef FunctionCoverage = {
 	/**
 		Source ranges inside the function with coverage data.
 	**/
-	var ranges : std.Array<CoverageRange>;
+	var ranges : Array<CoverageRange>;
 	/**
 		Whether coverage data for this function has block granularity.
 	**/

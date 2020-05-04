@@ -112,7 +112,7 @@ typedef IncomingHttpHeaders = {
 	var retry_after : String;
 	@:native("set-cookie")
 	@:optional
-	var set_cookie : std.Array<String>;
+	var set_cookie : Array<String>;
 	@:native("strict-transport-security")
 	@:optional
 	var strict_transport_security : String;

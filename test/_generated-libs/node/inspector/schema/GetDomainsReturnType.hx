@@ -3,5 +3,5 @@ typedef GetDomainsReturnType = {
 	/**
 		List of supported domains.
 	**/
-	var domains : std.Array<Domain>;
+	var domains : Array<Domain>;
 };

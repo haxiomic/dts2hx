@@ -4,7 +4,7 @@ package ts.html;
 **/
 typedef IMediaDevices = {
 	var ondevicechange : Null<(ev:IEvent) -> Dynamic>;
-	function enumerateDevices():ts.lib.IPromise<std.Array<IMediaDeviceInfo>>;
+	function enumerateDevices():ts.lib.IPromise<Array<IMediaDeviceInfo>>;
 	function getSupportedConstraints():MediaTrackSupportedConstraints;
 	function getUserMedia(?constraints:MediaStreamConstraints):ts.lib.IPromise<IMediaStream>;
 	/**

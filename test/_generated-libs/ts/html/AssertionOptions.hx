@@ -1,7 +1,7 @@
 package ts.html;
 typedef AssertionOptions = {
 	@:optional
-	var allowList : std.Array<ScopedCredentialDescriptor>;
+	var allowList : Array<ScopedCredentialDescriptor>;
 	@:optional
 	var extensions : WebAuthnExtensions;
 	@:optional

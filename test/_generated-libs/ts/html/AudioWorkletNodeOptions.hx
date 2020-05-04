@@ -5,7 +5,7 @@ typedef AudioWorkletNodeOptions = {
 	@:optional
 	var numberOfOutputs : Float;
 	@:optional
-	var outputChannelCount : std.Array<Float>;
+	var outputChannelCount : Array<Float>;
 	@:optional
 	var parameterData : { };
 	@:optional

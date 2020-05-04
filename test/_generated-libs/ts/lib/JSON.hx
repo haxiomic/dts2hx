@@ -12,6 +12,6 @@ typedef JSON = {
 		
 		Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
 	**/
-	@:overload(function(value:Dynamic, ?replacer:std.Array<ts.AnyOf2<String, Float>>, ?space:ts.AnyOf2<String, Float>):String { })
+	@:overload(function(value:Dynamic, ?replacer:Array<ts.AnyOf2<String, Float>>, ?space:ts.AnyOf2<String, Float>):String { })
 	function stringify(value:Dynamic, ?replacer:(key:String, value:Dynamic) -> Dynamic, ?space:ts.AnyOf2<String, Float>):String;
 };

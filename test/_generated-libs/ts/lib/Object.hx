@@ -52,7 +52,7 @@ package ts.lib;
 		Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 		on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
 	**/
-	static function getOwnPropertyNames(o:Dynamic):std.Array<String>;
+	static function getOwnPropertyNames(o:Dynamic):Array<String>;
 	/**
 		Creates an object that has the specified prototype or that has null prototype.
 		
@@ -81,7 +81,7 @@ package ts.lib;
 	**/
 	@:overload(function<T>(f:T):T { })
 	@:overload(function<T>(o:T):{ } { })
-	static function freeze<T>(a:std.Array<T>):ReadonlyArray<T>;
+	static function freeze<T>(a:Array<T>):ReadonlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.
 	**/
@@ -103,8 +103,8 @@ package ts.lib;
 		
 		Returns the names of the enumerable string properties and methods of an object.
 	**/
-	@:overload(function(o:{ }):std.Array<String> { })
-	static function keys(o:Dynamic):std.Array<String>;
+	@:overload(function(o:{ }):Array<String> { })
+	static function keys(o:Dynamic):Array<String>;
 	/**
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
@@ -125,7 +125,7 @@ package ts.lib;
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
-	static function getOwnPropertySymbols(o:Dynamic):std.Array<js.lib.Symbol>;
+	static function getOwnPropertySymbols(o:Dynamic):Array<js.lib.Symbol>;
 	/**
 		Returns true if the values are the same value, false otherwise.
 	**/

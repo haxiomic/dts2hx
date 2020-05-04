@@ -7,7 +7,7 @@ typedef ConsoleAPICalledEventDataType = {
 	/**
 		Call arguments.
 	**/
-	var args : std.Array<RemoteObject>;
+	var args : Array<RemoteObject>;
 	/**
 		Identifier of the context where the call was made.
 	**/

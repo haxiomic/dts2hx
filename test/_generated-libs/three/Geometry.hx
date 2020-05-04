@@ -18,26 +18,26 @@ package three;
 		The array of vertices hold every position of points of the model.
 		To signal an update in this array, Geometry.verticesNeedUpdate needs to be set to true.
 	**/
-	var vertices : std.Array<Vector3>;
+	var vertices : Array<Vector3>;
 	/**
 		Array of vertex colors, matching number and order of vertices.
 		Used in ParticleSystem, Line and Ribbon.
 		Meshes use per-face-use-of-vertex colors embedded directly in faces.
 		To signal an update in this array, Geometry.colorsNeedUpdate needs to be set to true.
 	**/
-	var colors : std.Array<Color>;
+	var colors : Array<Color>;
 	/**
 		Array of triangles or/and quads.
 		The array of faces describe how each vertex in the model is connected with each other.
 		To signal an update in this array, Geometry.elementsNeedUpdate needs to be set to true.
 	**/
-	var faces : std.Array<Face3>;
+	var faces : Array<Face3>;
 	/**
 		Array of face UV layers.
 		Each UV layer is an array of UV matching order and number of vertices in faces.
 		To signal an update in this array, Geometry.uvsNeedUpdate needs to be set to true.
 	**/
-	var faceVertexUvs : std.Array<std.Array<std.Array<Vector2>>>;
+	var faceVertexUvs : Array<Array<Array<Vector2>>>;
 	/**
 		Array of morph targets. Each morph target is a Javascript object:
 		
@@ -45,22 +45,22 @@ package three;
 		
 		Morph vertices match number and order of primary vertices.
 	**/
-	var morphTargets : std.Array<MorphTarget>;
+	var morphTargets : Array<MorphTarget>;
 	/**
 		Array of morph normals. Morph normals have similar structure as morph targets, each normal set is a Javascript object:
 		
 				 morphNormal = { name: "NormalName", normals: [ new THREE.Vector3(), ... ] }
 	**/
-	var morphNormals : std.Array<MorphNormals>;
+	var morphNormals : Array<MorphNormals>;
 	/**
 		Array of skinning weights, matching number and order of vertices.
 	**/
-	var skinWeights : std.Array<Vector4>;
+	var skinWeights : Array<Vector4>;
 	/**
 		Array of skinning indices, matching number and order of vertices.
 	**/
-	var skinIndices : std.Array<Vector4>;
-	var lineDistances : std.Array<Float>;
+	var skinIndices : Array<Vector4>;
+	var lineDistances : Array<Float>;
 	/**
 		Bounding box.
 	**/
@@ -140,7 +140,7 @@ package three;
 		Duplicated vertices are removed and faces' vertices are updated.
 	**/
 	function mergeVertices():Float;
-	function setFromPoints(points:ts.AnyOf2<std.Array<Vector3>, std.Array<Vector2>>):Geometry;
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):Geometry;
 	function sortFacesByMaterialIndex():Void;
 	function toJSON():Dynamic;
 	/**
@@ -153,7 +153,7 @@ package three;
 		Don't forget to call this method when you remove an geometry because it can cuase meomory leaks.
 	**/
 	function dispose():Void;
-	var bones : std.Array<Bone>;
+	var bones : Array<Bone>;
 	var animation : AnimationClip;
-	var animations : std.Array<AnimationClip>;
+	var animations : Array<AnimationClip>;
 }

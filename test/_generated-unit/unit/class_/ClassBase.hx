@@ -3,7 +3,7 @@ package unit.class_;
 	@:overload(function<T, DefaultBool>(a:Float):ClassBase<T, DefaultBool> { })
 	function new(overloadParam:T);
 	var intField : Float;
-	var arrayField : std.Array<String>;
+	var arrayField : Array<String>;
 	var thisClassType : ClassBase<T, DefaultBool>;
 	var typeParamField : T;
 	var defaultBoolField : DefaultBool;
@@ -23,7 +23,7 @@ package unit.class_;
 		
 		multi-parameter signature
 	**/
-	@:overload(function(a:String, b:std.Array<{ }>):Dynamic { })
+	@:overload(function(a:String, b:Array<{ }>):Dynamic { })
 	function methodOverloaded(a:Float):Dynamic;
 	var accessor : Bool;
 	/**

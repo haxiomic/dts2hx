@@ -8,5 +8,5 @@ typedef TraceConfig = {
 	/**
 		Included category filters.
 	**/
-	var includedCategories : std.Array<String>;
+	var includedCategories : Array<String>;
 };

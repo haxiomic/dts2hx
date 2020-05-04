@@ -16,7 +16,7 @@ package ts.html;
 		Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
 	**/
 	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
-	function postMessage(message:Dynamic, transfer:std.Array<Transferable>):Void;
+	function postMessage(message:Dynamic, transfer:Array<Transferable>):Void;
 	/**
 		Begins dispatching messages received on the port.
 	**/

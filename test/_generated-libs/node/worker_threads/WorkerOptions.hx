@@ -11,5 +11,5 @@ typedef WorkerOptions = {
 	@:optional
 	var stderr : Bool;
 	@:optional
-	var execArgv : std.Array<String>;
+	var execArgv : Array<String>;
 };

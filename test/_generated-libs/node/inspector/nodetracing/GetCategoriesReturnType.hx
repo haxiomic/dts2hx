@@ -3,5 +3,5 @@ typedef GetCategoriesReturnType = {
 	/**
 		A list of supported tracing categories.
 	**/
-	var categories : std.Array<String>;
+	var categories : Array<String>;
 };

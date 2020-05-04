@@ -202,14 +202,14 @@ package three;
 	/**
 		Sets this vector's x value to be array[offset] and y value to be array[offset + 1].
 	**/
-	function fromArray(array:std.Array<Float>, ?offset:Float):Vector2;
+	function fromArray(array:Array<Float>, ?offset:Float):Vector2;
 	/**
 		Returns an array [x, y], or copies x and y into the provided array.
 		
 		Copies x and y into the provided array-like.
 	**/
 	@:overload(function(array:ts.lib.ArrayLike<Float>, ?offset:Float):ts.lib.ArrayLike<Float> { })
-	function toArray(?array:std.Array<Float>, ?offset:Float):std.Array<Float>;
+	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 	/**
 		Sets this vector's x and y values from the attribute.
 	**/

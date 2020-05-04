@@ -39,7 +39,7 @@ package ts.html;
 	/**
 		Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
 	**/
-	function transaction(storeNames:ts.AnyOf2<String, std.Array<String>>, ?mode:String):IIDBTransaction;
+	function transaction(storeNames:ts.AnyOf2<String, Array<String>>, ?mode:String):IIDBTransaction;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		

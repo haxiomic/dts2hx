@@ -10,7 +10,7 @@ typedef DetailedPeerCertificate = {
 	var valid_from : String;
 	var valid_to : String;
 	var fingerprint : String;
-	var ext_key_usage : std.Array<String>;
+	var ext_key_usage : Array<String>;
 	var serialNumber : String;
 	var raw : global.IBuffer;
 };

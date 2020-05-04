@@ -12,7 +12,7 @@ package three;
 	function disableUnusedAttributes():Void;
 	function enable(id:Float):Void;
 	function disable(id:Float):Void;
-	function getCompressedTextureFormats():std.Array<Float>;
+	function getCompressedTextureFormats():Array<Float>;
 	function useProgram(program:Dynamic):Bool;
 	function setBlending(blending:Blending, ?blendEquation:BlendingEquation, ?blendSrc:BlendingSrcFactor, ?blendDst:BlendingDstFactor, ?blendEquationAlpha:BlendingEquation, ?blendSrcAlpha:BlendingSrcFactor, ?blendDstAlpha:BlendingDstFactor, ?premultiplyAlpha:Bool):Void;
 	function setMaterial(material:Material, frontFaceCW:Bool):Void;

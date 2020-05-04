@@ -1,17 +1,17 @@
 package ts.html;
 typedef MediaKeySystemConfiguration = {
 	@:optional
-	var audioCapabilities : std.Array<MediaKeySystemMediaCapability>;
+	var audioCapabilities : Array<MediaKeySystemMediaCapability>;
 	@:optional
 	var distinctiveIdentifier : String;
 	@:optional
-	var initDataTypes : std.Array<String>;
+	var initDataTypes : Array<String>;
 	@:optional
 	var label : String;
 	@:optional
 	var persistentState : String;
 	@:optional
-	var sessionTypes : std.Array<String>;
+	var sessionTypes : Array<String>;
 	@:optional
-	var videoCapabilities : std.Array<MediaKeySystemMediaCapability>;
+	var videoCapabilities : Array<MediaKeySystemMediaCapability>;
 };

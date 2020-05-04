@@ -36,7 +36,7 @@ typedef JQueryStatic = {
 		A collection of properties that represent the presence of different browser features or bugs. Intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance. For your own project's feature-detection needs, we strongly recommend the use of an external library such as Modernizr instead of dependency on properties in jQuery.support.
 	**/
 	var support : global.jquery.PlainObject<Dynamic>;
-	var timers : std.Array<global.jquery.TickFunction<Dynamic>>;
+	var timers : Array<global.jquery.TickFunction<Dynamic>>;
 	var Tween : global.jquery.TweenStatic;
 	var valHooks : global.jquery.ValHooks;
 	/**
@@ -180,7 +180,7 @@ typedef JQueryStatic = {
 	/**
 		Finds the elements of an array which satisfy a filter function. The original array is not affected.
 	**/
-	function grep<T>(array:ts.lib.ArrayLike<T>, fun_Tion:(elementOfArray:T, indexInArray:Float) -> Bool, ?invert:Bool):std.Array<T>;
+	function grep<T>(array:ts.lib.ArrayLike<T>, fun_Tion:(elementOfArray:T, indexInArray:Float) -> Bool, ?invert:Bool):Array<T>;
 	/**
 		Determine whether an element has any jQuery data associated with it.
 	**/
@@ -196,7 +196,7 @@ typedef JQueryStatic = {
 	/**
 		Search for a specified value within an array and return its index (or -1 if not found).
 	**/
-	function inArray<T>(value:T, array:std.Array<T>, ?fromIndex:Float):Float;
+	function inArray<T>(value:T, array:Array<T>, ?fromIndex:Float):Float;
 	/**
 		Determine whether the argument is an array.
 	**/
@@ -228,18 +228,18 @@ typedef JQueryStatic = {
 	/**
 		Convert an array-like object into a true JavaScript array.
 	**/
-	function makeArray<T>(obj:ts.lib.ArrayLike<T>):std.Array<T>;
+	function makeArray<T>(obj:ts.lib.ArrayLike<T>):Array<T>;
 	/**
 		Translate all items in an array or object to new array of items.
 		
 		Translate all items in an array or object to new array of items.
 	**/
-	@:overload(function<T, K, TReturn>(obj:T, callback:(propertyOfObject:Dynamic, key:K) -> Null<ts.AnyOf2<TReturn, std.Array<TReturn>>>):std.Array<TReturn> { })
-	function map<T, TReturn>(array:std.Array<T>, callback:(elementOfArray:T, indexInArray:Float) -> Null<ts.AnyOf2<TReturn, std.Array<TReturn>>>):std.Array<TReturn>;
+	@:overload(function<T, K, TReturn>(obj:T, callback:(propertyOfObject:Dynamic, key:K) -> Null<ts.AnyOf2<TReturn, Array<TReturn>>>):Array<TReturn> { })
+	function map<T, TReturn>(array:Array<T>, callback:(elementOfArray:T, indexInArray:Float) -> Null<ts.AnyOf2<TReturn, Array<TReturn>>>):Array<TReturn>;
 	/**
 		Merge the contents of two arrays together into the first array.
 	**/
-	function merge<T, U>(first:ts.lib.ArrayLike<T>, second:ts.lib.ArrayLike<U>):std.Array<ts.AnyOf2<T, U>>;
+	function merge<T, U>(first:ts.lib.ArrayLike<T>, second:ts.lib.ArrayLike<U>):Array<ts.AnyOf2<T, U>>;
 	/**
 		Relinquish jQuery's control of the $ variable.
 	**/
@@ -256,14 +256,14 @@ typedef JQueryStatic = {
 	/**
 		Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.
 	**/
-	function param(obj:ts.AnyOf3<std.Array<Dynamic>, global.jquery.PlainObject<Dynamic>, JQuery<ts.html.IHTMLElement>>, ?traditional:Bool):String;
+	function param(obj:ts.AnyOf3<Array<Dynamic>, global.jquery.PlainObject<Dynamic>, JQuery<ts.html.IHTMLElement>>, ?traditional:Bool):String;
 	/**
 		Parses a string into an array of DOM nodes.
 		
 		Parses a string into an array of DOM nodes.
 	**/
-	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, ts.html.IDocument>):std.Array<global.jquery.Node> { })
-	function parseHTML(data:String, context:Null<ts.html.IDocument>, keepScripts:Bool):std.Array<global.jquery.Node>;
+	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, ts.html.IDocument>):Array<global.jquery.Node> { })
+	function parseHTML(data:String, context:Null<ts.html.IDocument>, keepScripts:Bool):Array<global.jquery.Node>;
 	/**
 		Takes a well-formed JSON string and returns the resulting JavaScript value.
 	**/
@@ -682,7 +682,7 @@ typedef JQueryStatic = {
 	/**
 		Manipulate the queue of functions to be executed on the matched element.
 	**/
-	function queue<T>(element:T, ?queueName:String, ?newQueue:ts.AnyOf2<global.jquery.QueueFunction<T>, std.Array<global.jquery.QueueFunction<T>>>):global.jquery.Queue<T>;
+	function queue<T>(element:T, ?queueName:String, ?newQueue:ts.AnyOf2<global.jquery.QueueFunction<T>, Array<global.jquery.QueueFunction<T>>>):global.jquery.Queue<T>;
 	/**
 		Handles errors thrown synchronously in functions wrapped in jQuery().
 	**/
@@ -712,11 +712,11 @@ typedef JQueryStatic = {
 	/**
 		Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.
 	**/
-	function unique<T>(array:std.Array<T>):std.Array<T>;
+	function unique<T>(array:Array<T>):Array<T>;
 	/**
 		Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.
 	**/
-	function uniqueSort<T>(array:std.Array<T>):std.Array<T>;
+	function uniqueSort<T>(array:Array<T>):Array<T>;
 	/**
 		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
 		

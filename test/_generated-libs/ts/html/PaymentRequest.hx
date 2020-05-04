@@ -3,7 +3,7 @@ package ts.html;
 	This Payment Request API interface is the primary access point into the API, and lets web content and apps accept payments from the end user.
 **/
 @:native("PaymentRequest") extern class PaymentRequest {
-	function new(methodData:std.Array<PaymentMethodData>, details:PaymentDetailsInit, ?options:PaymentOptions);
+	function new(methodData:Array<PaymentMethodData>, details:PaymentDetailsInit, ?options:PaymentOptions);
 	final id : String;
 	var onshippingaddresschange : Null<(ev:IEvent) -> Dynamic>;
 	var onshippingoptionchange : Null<(ev:IEvent) -> Dynamic>;

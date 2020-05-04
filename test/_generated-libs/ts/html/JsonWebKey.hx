@@ -17,13 +17,13 @@ typedef JsonWebKey = {
 	@:optional
 	var k : String;
 	@:optional
-	var key_ops : std.Array<String>;
+	var key_ops : Array<String>;
 	@:optional
 	var kty : String;
 	@:optional
 	var n : String;
 	@:optional
-	var oth : std.Array<RsaOtherPrimesInfo>;
+	var oth : Array<RsaOtherPrimesInfo>;
 	@:optional
 	var p : String;
 	@:optional

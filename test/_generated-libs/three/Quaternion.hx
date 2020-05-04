@@ -64,10 +64,10 @@ package three;
 	function multiplyQuaternions(a:Quaternion, b:Quaternion):Quaternion;
 	function slerp(qb:Quaternion, t:Float):Quaternion;
 	function equals(v:Quaternion):Bool;
-	@:overload(function(xyzw:std.Array<Float>, ?offset:Float):Quaternion { })
-	function fromArray(n:std.Array<Float>):Quaternion;
-	@:overload(function(?xyzw:std.Array<Float>, ?offset:Float):std.Array<Float> { })
-	function toArray():std.Array<Float>;
+	@:overload(function(xyzw:Array<Float>, ?offset:Float):Quaternion { })
+	function fromArray(n:Array<Float>):Quaternion;
+	@:overload(function(?xyzw:Array<Float>, ?offset:Float):Array<Float> { })
+	function toArray():Array<Float>;
 	function _onChange(callback:ts.lib.IFunction):Quaternion;
 	var _onChangeCallback : ts.lib.IFunction;
 	function multiplyVector3(v:Dynamic):Dynamic;
@@ -76,5 +76,5 @@ package three;
 	**/
 	@:native("slerp")
 	static function slerp_(qa:Quaternion, qb:Quaternion, qm:Quaternion, t:Float):Quaternion;
-	static function slerpFlat(dst:std.Array<Float>, dstOffset:Float, src0:std.Array<Float>, srcOffset:Float, src1:std.Array<Float>, stcOffset1:Float, t:Float):Quaternion;
+	static function slerpFlat(dst:Array<Float>, dstOffset:Float, src0:Array<Float>, srcOffset:Float, src1:Array<Float>, stcOffset1:Float, t:Float):Quaternion;
 }

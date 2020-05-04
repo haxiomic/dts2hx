@@ -11,9 +11,9 @@ typedef ConnectionOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : ts.AnyOf5<std.Array<String>, global.IBuffer, ts.lib.IUint8Array, std.Array<ts.lib.IUint8Array>, std.Array<global.IBuffer>>;
+	var NPNProtocols : ts.AnyOf5<Array<String>, global.IBuffer, ts.lib.IUint8Array, Array<ts.lib.IUint8Array>, Array<global.IBuffer>>;
 	@:optional
-	var ALPNProtocols : ts.AnyOf5<std.Array<String>, global.IBuffer, ts.lib.IUint8Array, std.Array<ts.lib.IUint8Array>, std.Array<global.IBuffer>>;
+	var ALPNProtocols : ts.AnyOf5<Array<String>, global.IBuffer, ts.lib.IUint8Array, Array<ts.lib.IUint8Array>, Array<global.IBuffer>>;
 	@:optional
 	var checkServerIdentity : (host:String, cert:PeerCertificate) -> Null<ts.lib.IError>;
 	@:optional
@@ -29,15 +29,15 @@ typedef ConnectionOptions = {
 	@:optional
 	var timeout : Float;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
+	var pfx : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<ts.lib.IObject, global.IBuffer>>>;
+	var key : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<ts.lib.IObject, global.IBuffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional
-	var cert : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var cert : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
-	var ca : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var ca : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
 	var ciphers : String;
 	@:optional
@@ -47,7 +47,7 @@ typedef ConnectionOptions = {
 	@:optional
 	var clientCertEngine : String;
 	@:optional
-	var crl : ts.AnyOf3<String, global.IBuffer, std.Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var crl : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
 	@:optional
 	var dhparam : ts.AnyOf2<String, global.IBuffer>;
 	@:optional

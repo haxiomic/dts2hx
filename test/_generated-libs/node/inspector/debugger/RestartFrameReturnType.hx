@@ -3,7 +3,7 @@ typedef RestartFrameReturnType = {
 	/**
 		New stack trace.
 	**/
-	var callFrames : std.Array<CallFrame>;
+	var callFrames : Array<CallFrame>;
 	/**
 		Async stack trace, if any.
 	**/

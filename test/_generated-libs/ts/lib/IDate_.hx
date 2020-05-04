@@ -20,21 +20,21 @@ typedef IDate_ = {
 		
 		Converts a date and time to a string by using the current or specified locale.
 	**/
-	@:overload(function(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):String { })
+	@:overload(function(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):String { })
 	function toLocaleString():String;
 	/**
 		Returns a date as a string value appropriate to the host environment's current locale.
 		
 		Converts a date to a string by using the current or specified locale.
 	**/
-	@:overload(function(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):String { })
+	@:overload(function(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):String { })
 	function toLocaleDateString():String;
 	/**
 		Returns a time as a string value appropriate to the host environment's current locale.
 		
 		Converts a time to a string by using the current or specified locale.
 	**/
-	@:overload(function(?locales:ts.AnyOf2<String, std.Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):String { })
+	@:overload(function(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):String { })
 	function toLocaleTimeString():String;
 	/**
 		Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.

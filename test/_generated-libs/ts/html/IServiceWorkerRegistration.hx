@@ -12,7 +12,7 @@ typedef IServiceWorkerRegistration = {
 	final sync : ISyncManager;
 	final updateViaCache : ServiceWorkerUpdateViaCache;
 	final waiting : Null<IServiceWorker>;
-	function getNotifications(?filter:GetNotificationOptions):ts.lib.IPromise<std.Array<INotification>>;
+	function getNotifications(?filter:GetNotificationOptions):ts.lib.IPromise<Array<INotification>>;
 	function showNotification(title:String, ?options:NotificationOptions):ts.lib.IPromise<Void>;
 	function unregister():ts.lib.IPromise<Bool>;
 	function update():ts.lib.IPromise<Void>;

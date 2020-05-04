@@ -5,7 +5,7 @@ package ts.lib;
 typedef ICache = {
 	function add(request:ts.html.RequestInfo):IPromise<Void>;
 	@:overload(function(requests:Iterable<ts.html.RequestInfo>):IPromise<Void> { })
-	function addAll(requests:std.Array<ts.html.RequestInfo>):IPromise<Void>;
+	function addAll(requests:Array<ts.html.RequestInfo>):IPromise<Void>;
 	function delete(request:ts.html.RequestInfo, ?options:ts.html.CacheQueryOptions):IPromise<Bool>;
 	function keys(?request:ts.AnyOf2<String, ts.html.IRequest>, ?options:ts.html.CacheQueryOptions):IPromise<ReadonlyArray<ts.html.IRequest>>;
 	function match(request:ts.html.RequestInfo, ?options:ts.html.CacheQueryOptions):IPromise<Null<ts.html.IResponse>>;

@@ -9,7 +9,7 @@ package ts.html;
 	final thresholds : ts.lib.ReadonlyArray<Float>;
 	function disconnect():Void;
 	function observe(target:IElement):Void;
-	function takeRecords():std.Array<IIntersectionObserverEntry>;
+	function takeRecords():Array<IIntersectionObserverEntry>;
 	function unobserve(target:IElement):Void;
 	static var prototype : IIntersectionObserver;
 }

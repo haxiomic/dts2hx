@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("IDBIndex") extern class IDBIndex {
 	function new();
-	final keyPath : ts.AnyOf2<String, std.Array<String>>;
+	final keyPath : ts.AnyOf2<String, Array<String>>;
 	final multiEntry : Bool;
 	/**
 		Returns the name of the index.
@@ -32,13 +32,13 @@ package ts.html;
 		
 		If successful, request's result will be an Array of the values.
 	**/
-	function getAll(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<std.Array<Dynamic>>;
+	function getAll(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<Array<Dynamic>>;
 	/**
 		Retrieves the keys of records matching the given key or key range in query (up to count if given).
 		
 		If successful, request's result will be an Array of the keys.
 	**/
-	function getAllKeys(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<std.Array<IDBValidKey>>;
+	function getAllKeys(?query:ts.AnyOf7<String, Float, ts.lib.IArrayBuffer, IIDBKeyRange, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>, ?count:Float):IIDBRequest<Array<IDBValidKey>>;
 	/**
 		Retrieves the key of the first record matching the given key or key range in query.
 		
