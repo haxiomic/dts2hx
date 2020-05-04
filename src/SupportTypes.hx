@@ -84,6 +84,11 @@ class SupportTypes {
 			return macro :Any;
 		}
 
+		// no need for a union
+		if (types.length == 1) {
+			return types[0];
+		}
+
 		var typePath = {
 			pack: ['ts'],
 			name: 'AnyOf${types.length}',

@@ -1069,13 +1069,58 @@ class ConverterContext {
 			fun.params = null;
 		}
 
-		return TFunction(
-			fun.args.map(arg -> {
-				var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
-				return arg.opt != null  && arg.opt ? TOptional(param) : param;
-			}),
-			fun.ret != null ? fun.ret : macro :Dynamic
-		);
+
+		/**
+			In typescript `:() => R` can unify with `:(?opt) -> R`
+
+			In haxe, the signature must match
+
+			To achieve the same type flexibility in the haxe externs we can create a new function signature for each optional parameter
+
+			`(x, ?opt) -> R`
+				becomes `(x) -> R  |  (x, opt) -> R`
+
+			`(x, ?opt, ?opt2) -> R`
+				becomes `(x) -> R  |  (x, opt) -> R  |  (x, opt, opt2) -> R`
+		**/
+		// we don't use TOptional() because optionals are handled by alternate signatures instead
+		var hxArgs = fun.args.map(arg -> TNamed(arg.name, arg.type != null ? arg.type : macro :Any));
+		var hxReturnType = fun.ret != null ? fun.ret : macro :Dynamic;
+		var functionSignatures = new Array<ComplexType>();
+
+		var hxNonOptionalArgs = new Array<ComplexType>();
+		for (i in 0...fun.args.length) {
+			var arg = fun.args[i];
+			if (arg.opt == true) break;
+			hxNonOptionalArgs.push(hxArgs[i]);
+		}
+
+		// base function signature
+		functionSignatures.push(TFunction(hxNonOptionalArgs, hxReturnType));
+
+		for (i in 0...fun.args.length) {
+			var arg = fun.args[i];
+			if (arg.opt == true) {
+				functionSignatures.push(
+					TFunction(hxArgs.slice(0, i + 1), hxReturnType)
+				);
+			}
+		}
+
+		/**
+			The simpler variation of this is to have a single function signature with optional parameters (but this has stricter unification as mentioned)
+			```haxe
+			return TFunction(
+				fun.args.map(arg -> {
+					var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
+					return arg.opt != null  && arg.opt ? TOptional(param) : param;
+				}),
+				fun.ret != null ? fun.ret : macro :Dynamic
+			);
+			```
+		**/
+
+		return this.getUnionType(functionSignatures);
 	}
 
 	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
