@@ -75,7 +75,11 @@ class Printer extends haxe.macro.Printer {
 				}
 				
 				var argStr = args.map(printComplexType).join(", ");
-				(wrapArgumentsInParentheses ? '($argStr)' : argStr) + " -> " + printComplexType(ret);
+				(wrapArgumentsInParentheses ? '($argStr)' : argStr) + " -> " + switch ret {
+					// wrap return type in parentheses if it's also a function
+					case TFunction(_): '(${printComplexType(ret)})';
+					default: printComplexType(ret);
+				}
 			});
 
 		case TAnonymous(fields): printExtension([], fields);
