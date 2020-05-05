@@ -68,6 +68,23 @@ export namespace Types {
         thisAndString: this & string;
         thisAndTp<T>(): this & T;
     }
+
+    // Mapped type recursion from babylon.js
+    type Primitive = undefined | null | boolean | string | number | Function;
+    export type Immutable<T> = T extends Primitive ? T : T extends Array<infer U> ? ReadonlyArray<U> : DeepImmutable<T>;
+    export type DeepImmutable<T> = T extends Primitive ? T : T extends Array<infer U> ? DeepImmutableArray<U> : DeepImmutableObject<T>;
+    interface DeepImmutableArray<T> extends ReadonlyArray<DeepImmutable<T>> { }
+    type DeepImmutableObject<T> = {
+        readonly [K in keyof T]: DeepImmutable<T[K]>;
+    };
+    class Color3 {
+        equals(otherColor: DeepImmutable<Color3>): boolean;
+        toColor4(alpha?: number): DeepImmutable<Color4>;
+    }
+    class Color4 {
+        equals(otherColor: DeepImmutable<Color4>): boolean;
+        toColor3(alpha?: number): DeepImmutable<Color3>;
+    }
     
     /**
      * haxe doesn't support function-types with type parameters
