@@ -8,6 +8,7 @@ using Lambda;
 	Changes:
 	- Fixed bug #9353 (merged, haxe 4.1)
 	- Fixed bug #9349 (merged, haxe 4.1)
+	- Fixed bug #9385 (merged, haxe 4.1)
 	- Switch between printing structures on a single line or over multiple lines depending on context (no PR)
 	- Don't use separate code for enum field printing
 **/
