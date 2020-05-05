@@ -70,20 +70,41 @@ class SymbolAccessMap {
 			symbolAccessMap.set(symbol.getId(), accessArray);
 		}
 
-		var shouldAdd = switch access {
-			case AmbientModule(_), ExportModule(_):
-				// only worth adding an ambient module if there isn't already an module path
-				accessArray.filter(a -> a.match(AmbientModule(_) | ExportModule(_))).length == 0;
+		switch access {
+			case AmbientModule(path, _), ExportModule(path, _):
+				// while multiple access paths to a single symbol are valid  it _often_ indicates an issue with the externs (as is the case with babylonjs)
+				// in this case, we limit the modular access to the one with the shortest path
+				// this means `require('babylonjs').Engine` will be preferred over `require('babylonjs/engines').Engine`
+				var existingAccess = accessArray.filter(a -> a.match(AmbientModule(_) | ExportModule(_)));
+
+				if (existingAccess.length == 0) {
+					accessArray.push(access);
+				} else {
+					var removed = false;
+					for (a in existingAccess) {
+						var existingPath = switch a {
+							case AmbientModule(p, _), ExportModule(p, _): p;
+							default: throw 'Internal error';
+						}
+						if (path.length < existingPath.length) {
+							accessArray.remove(a);
+							removed = true;
+						}
+					}
+
+					if (removed) {
+						accessArray.push(access);
+					}
+				}
+		
 			case Global(_):
 				// we can have a global and modular access, but we don't want more than global access
-				accessArray.filter(a -> a.match(Global(_))).length == 0;
+				if (accessArray.filter(a -> a.match(Global(_))).length == 0) {
+					accessArray.push(access);
+				}
 			case Inaccessible:
 				// no need to add Inaccessible, symbols with no values in symbolAccessMap are considered Inaccessible
 				false;
-		}
-
-		if (shouldAdd) {
-			accessArray.push(access);
 		}
 	}
 
