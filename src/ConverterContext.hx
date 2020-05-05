@@ -648,7 +648,7 @@ class ConverterContext {
 
 		var existingModule = generatedModules.get(path);
 		if (existingModule != null) {
-			Log.warn('<b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten');
+			Log.warn('<red><b>saveHaxeModule():</> Module <b>"$path"</> has already been generated once and will be overwritten</>');
 		}
 
 		if (generatedModules.exists(path)) {
