@@ -28,55 +28,10 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 See [examples/](examples/) for example projects using popular typescript libraries
 
 # Roadmap
-- [x] Rewrite in haxe using generated TypeScript compiler externs
-    - [x] Resolve how we handle modules vs ambient declarations in terms import metadata like `@:jsRequire`
-        - three.js uses only module `export`s, but is often used as ambient – maybe we #if guard the @:jsRequire to allow disabling
-        - babylon.js and many other project use both, do we merge or just parse as-is?
-            -> Babylon.js duplicates class definitions between ambient and export, so we could do a string comparison for equality but it's generally a design issue of their definitions
-            -> However, this would generate two sets of externs, one ambient and the other module-based, which is a good result
-    - [x] Support referencing module name like `dts2hx three`
-    - [x] The most common use case will be converting _all_ dependencies. So support `dts2hx --all` or similar
-    - [x] Basic module structure
-        - [x] Class & Interface
-        - [x] Typedef
-        - [x] Enum
-    - [x] ValueModules
-    - [x] Type references
-        - [x] Resolve name collisions, for example, `URL` and `Url` in node.js will be both be mapped to `url.hx`
-        - [x] Generate externs for built-in types that aren't in the haxe standard library yet
-        - [x] Type-node references
-    - [x] Basic conversion of fundamental types
-        - [x] Enums
-        - [x] Primitives
-        - [x] Type references
-        - [x] TypeLiteral types (objects literals)
-        - [x] Unions with EitherType
-        - [x] Function types
-        - [x] Type parameters
-        - [x] Tuple types
-        - [x] This type
-        - [x] Overloads
-        - [x] ESSymbol fields
-    - [x] Handle `export default` better
-    - [x] Global fields
-    - [x] Detect constructable fields, promote to classes and merge with existing interfaces
-    - [x] Resolve typescript interface vs haxe interface (use anons instead?)
-    - [x] Classes and interfaces
-        - [x] Constructors
-    - [x] Generate readme with dtshx version, typescript version, commit and input commands for reproducibility
-    - [x] Generate a haxelib.json file
-    - [x] Determine dependencies (like jquery -> sizzle) and add to haxelib.json
-    - [x] Remove type-path prefix if referencing type within the same module
-- [x] Command-line interface
-    - [x] Convert local `.d.ts` files
-- [x] Handle type parameters when rasterizing types
-    - [x] Information loss in function signatures
-- [x] Class extends
-- [x] Rest parameters
-- [x] Docs: How-to-use + examples
-- [x] :star: **Alpha Release** *_should_ work but please look for issues!*
 
-**Road to Beta**
+dts2hx is currently in alpha release, everything _should_ work but please look for issues!
+
+## Road to Beta
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
 - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
@@ -89,7 +44,7 @@ See [examples/](examples/) for example projects using popular typescript librari
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
-**Road to 1.0**
+## Road to 1.0
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
