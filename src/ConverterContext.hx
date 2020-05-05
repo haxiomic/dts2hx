@@ -99,6 +99,7 @@ class ConverterContext {
 	// settings
 	final shortenTypePaths = true;
 	final enableTypeParameterConstraints = false;
+	final typeStackLimit = 25;
 
 	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool) {
 		// this will be used as the argument to require()
@@ -702,6 +703,7 @@ class ConverterContext {
 	
 	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
+	var _rasterizeMappedTypes = true;
 	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true): ComplexType {
 		// alias : this -> real type
 		if (type.isThisType()) {
@@ -711,16 +713,36 @@ class ConverterContext {
 			}
 		}
 
+		// print current type stack
+		// Log.log('typestack: [${_currentTypeStack.map(t -> t.getId()).join(',')}] + ${type.getId()}', type);
+
+		if (_currentTypeStack.length >= typeStackLimit) {
+			Log.error('Internal error: Reached type-depth limit, stopping further type conversions. This indicates unbound recursive type conversion');
+			debug();
+			return macro :Dynamic;
+		}
+
+		var stackHasType = _currentTypeStack.has(type);
+
+		// handle direct type aliases
+		// we deliberately break out of type-stack recursion checking here
 		if (allowAlias && type.aliasSymbol != null) {
 			_currentTypeStack.push(type);
-			var hxType = if (type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0) {
+			var isAliasToMappedType = type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0;
+			var hxType = if (isAliasToMappedType && _rasterizeMappedTypes && !stackHasType) {
+				// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
+				_rasterizeMappedTypes = false;
 				// special handling of mapped types
 				// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
-				complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+				var t = complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+				_rasterizeMappedTypes = true;
+				t;
 			} else {
 				// haxe type alias
 				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, true);
-				var params = type.aliasTypeArguments != null ? type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration))) : [];
+				var params = if (type.aliasTypeArguments != null) {
+					type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration)));
+				} else [];
 				TPath({
 					pack: haxeTypePath.pack,
 					name: haxeTypePath.name,
@@ -731,23 +753,13 @@ class ConverterContext {
 			return hxType;
 		}
 
-		if (_currentTypeStack.has(type)) {
+		if (stackHasType) {
 			Log.log('Breaking recursive type conversion', type);
 			// debug();
-			_currentTypeStack.pop();
-			return macro :Dynamic;
-		}
-
-		if (_currentTypeStack.length >= 50) {
-			Log.error('Internal error: Reached type-depth limit, stopping further type conversions. This indicates unbound recursive type conversion');
-			debug();
-			_currentTypeStack.pop();
 			return macro :Dynamic;
 		}
 
 		_currentTypeStack.push(type);
-
-		// Log.log('${untyped type.id} [${_currentTypeStack.length}]', type);
 
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {

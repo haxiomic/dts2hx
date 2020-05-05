@@ -12,6 +12,10 @@ private typedef TsType = typescript.ts.Type;
 
 class TsTypeTools {
 
+	public static function getId(type: TsType): Int {
+		return untyped type.id;
+	}
+
 	/**
 		An array of matched TypeFlags
 		If `compositeFlags` is true, TypeFlags that are unions of other flags are included, for example:
