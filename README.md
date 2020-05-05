@@ -29,7 +29,7 @@ See [examples/](examples/) for example projects using popular typescript librari
 
 # Roadmap
 
-dts2hx is currently in alpha release, everything _should_ work but please look for issues!
+dts2hx is currently in alpha release, everything _should_ work but please report any issues!
 
 ## Road to Beta
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
