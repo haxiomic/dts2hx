@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.ExpressionWithTypeArguments;
 import haxe.DynamicAccess;
 import haxe.ds.ReadOnlyArray;
 import typescript.Ts;
@@ -16,6 +17,8 @@ import typescript.ts.TypeChecker;
 using Lambda;
 using TsInternal;
 using tool.HaxeTools;
+
+typedef TsType = typescript.ts.Type;
 
 @:nullSafety
 class TsSymbolTools {
@@ -145,6 +148,26 @@ class TsSymbolTools {
 		var members = [];
 		if (symbol.members != null) symbol.members.forEach((s, _) -> members.push(s));
 		return members;
+	}
+
+	/**
+		Return TsType of super class (`extends T`) if there is one
+	**/
+	public static function getClassExtendsType(tc: TypeChecker, symbol: Symbol): Null<TsType> {
+		// determine super type (if class declaration)
+		var classDeclaration: Null<ClassDeclaration> = symbol.valueDeclaration != null && Ts.isClassDeclaration(symbol.valueDeclaration) ? cast symbol.valueDeclaration : null;
+
+		if (classDeclaration != null && classDeclaration.heritageClauses != null) {
+			// classes can only extend one class in TypeScript
+			var extendsClause = (cast classDeclaration.heritageClauses: Array<HeritageClause>).find(h -> h.token == ExtendsKeyword);
+			if (extendsClause != null) {
+				var superTypeNode = (cast extendsClause.types: Array<ExpressionWithTypeArguments>)[0];
+				var superType = tc.getTypeFromTypeNode(superTypeNode);
+				return superType;
+			}
+		}
+
+		return null;
 	}
 
 	/**

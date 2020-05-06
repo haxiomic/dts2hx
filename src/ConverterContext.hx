@@ -198,6 +198,9 @@ class ConverterContext {
 		}
 	}
 
+	/**
+		Returns true if the symbol corresponds to a module in haxe
+	**/
 	static public function isHaxeModuleSource(tc: TypeChecker, symbol: Symbol) {
 		return symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
 			tc.isConstructorTypeVariableSymbol(symbol);
@@ -367,32 +370,23 @@ class ConverterContext {
 			// var indexSignatures = symbol.getIndexSignatures(tc);
 			// var classMembers = symbol.getClassMembers();
 
-			// determine super type (if class declaration)
-			var classDeclaration: Null<ClassDeclaration> = declaration != null && Ts.isClassDeclaration(declaration) ? cast declaration : null;
+			var classSuperType = tc.getClassExtendsType(symbol);
+			if (classSuperType != null) {
+				var hxSuperType = complexTypeFromObjectType(cast classSuperType, access, false, declaration);
 
-			if (classDeclaration != null && classDeclaration.heritageClauses != null) {
-				// classes can only extend one class in TypeScript
-				var extendsClause = (cast classDeclaration.heritageClauses: Array<HeritageClause>).find(h -> h.token == ExtendsKeyword);
-				if (extendsClause != null) {
-					var superTypeNode = (cast extendsClause.types: Array<ExpressionWithTypeArguments>)[0];
-					var superType = tc.getTypeFromTypeNode(superTypeNode);
-					// convert to haxe type reference, but don't prefer interface structures
-					var hxSuperType = complexTypeFromObjectType(cast superType, access, false, classDeclaration);
-
-					superClassPath = switch hxSuperType {
-						case TPath(p): p;
-						default:
-							Log.error('Class super-type did not translate to a class-path');
-							null;
-					}
-					var superClassMembers = tc.getPropertiesOfType(superType).filter(s -> s.isAccessibleField());
-
-					// remove redefined class members
-					classMembers = classMembers.filter(m -> {
-						// filter out field if it has the same name as a super-type field
-						return !superClassMembers.exists(sm -> sm.name == m.name);
-					});
+				superClassPath = switch hxSuperType {
+					case TPath(p): p;
+					default:
+						Log.error('Class super-type did not translate to a class-path');
+						null;
 				}
+
+				// remove redefined class members
+				var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
+				classMembers = classMembers.filter(m -> {
+					// filter out field if it has the same name as a super-type field
+					return !classSuperMembers.exists(sm -> sm.name == m.name);
+				});
 			}
 
 			var fields = generateTypeFields(
@@ -404,6 +398,10 @@ class ConverterContext {
 				indexSignatures,
 				classMembers
 			);
+
+			// although we do a final pass resolving name collisions, we do it manually here so that if the fields are cloned into an interface structure
+			// they have the same collision resolution applied
+			fields.resolveNameCollisions();
 
 			{
 				pack: typePath.pack,
@@ -531,6 +529,21 @@ class ConverterContext {
 		// the declaration is used to help guide type conversion, but it's not critical
 		var declaration = symbol.declarations.find(d -> d.kind == SyntaxKind.InterfaceDeclaration);
 		var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
+		var declaredMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
+		
+		var classSuperType = tc.getClassExtendsType(symbol);
+
+		if (classSuperType != null) {
+			// replace redefined class members with their super-type members
+			var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
+			// when extending a class, because we cannot redefine fields in haxe, we use the super-class's field type instead
+			declaredMembers = declaredMembers.map(m -> {
+				var matchingClassSuperMember = classSuperMembers.find(sm -> sm.name == m.name);
+				var ret:Symbol = (matchingClassSuperMember != null ? matchingClassSuperMember : m);
+				return ret;
+			});
+		}
+
 		var fields = generateTypeFields(
 			symbol,
 			access,
@@ -538,7 +551,7 @@ class ConverterContext {
 			[],
 			tc.getSignaturesOfType(declaredType, Call),
 			tc.getIndexSignaturesOfType(declaredType),
-			tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField())
+			declaredMembers
 		);
 		// remove disallowed accessors, since this is a structure type in haxe, the only allowed accessor is `final`
 		for (field in fields) {
@@ -547,6 +560,7 @@ class ConverterContext {
 				default: false;
 			});
 		};
+		// (we resolve field collisions here because the later pass doesn't alias to anon fields)
 		fields.resolveNameCollisions();
 		return {
 			pack: typePath.pack,
