@@ -4,5 +4,9 @@ package unit.symbols;
 	var interfaceField1 : Float;
 	var interfaceField2 : Float;
 	var classField : String;
+	/**
+		Redefine a base interface field
+	**/
+	function baseInterfaceMethod():Float;
 	var baseInterfaceField : Float;
 }
