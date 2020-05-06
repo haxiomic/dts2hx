@@ -1,3 +1,5 @@
+import typescript.ts.TypeFormatFlags;
+import typescript.ts.SymbolFormatFlags;
 import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
@@ -365,10 +367,6 @@ class ConverterContext {
 			var callSignatures = tc.getSignaturesOfType(declaredType, Call);
 			var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
 			var classMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
-			// alternatively get just this symbols members with:
-			// var callSignatures = symbol.getCallSignatures(tc);
-			// var indexSignatures = symbol.getIndexSignatures(tc);
-			// var classMembers = symbol.getClassMembers();
 
 			var classSuperType = tc.getClassExtendsType(symbol);
 			if (classSuperType != null) {
@@ -381,11 +379,24 @@ class ConverterContext {
 						null;
 				}
 
-				// remove redefined class members
+				// remove redefined class **variable** fields (function redefinitions are allowed in haxe)
 				var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
 				classMembers = classMembers.filter(m -> {
-					// filter out field if it has the same name as a super-type field
-					return !classSuperMembers.exists(sm -> sm.name == m.name);
+					var classSuperMatch = classSuperMembers.find(sm -> sm.name == m.name);
+					return if (classSuperMatch != null) {
+						if (m.flags & SymbolFlags.Method != 0) {
+							// methods _can_ be defined, although we should only redefine if the type changed
+							// compare types by comparing strings
+							var format: TypeFormatFlags = TypeFormatFlags.NoTruncation;
+							tc.typeToString(getTsTypeOfField(m), m.valueDeclaration, format) != tc.typeToString(getTsTypeOfField(classSuperMatch), classSuperMatch.valueDeclaration, format);
+						} else {
+							// variable fields cannot be redefined in haxe
+							false;
+						}
+					} else {
+						// field is not redefined from super
+						true;
+					}
 				});
 			}
 
@@ -530,19 +541,23 @@ class ConverterContext {
 		var declaration = symbol.declarations.find(d -> d.kind == SyntaxKind.InterfaceDeclaration);
 		var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
 		var declaredMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
-		
-		var classSuperType = tc.getClassExtendsType(symbol);
 
+		/*		
+		// replace redefined class **variable** members with their super-type members
+		var classSuperType = tc.getClassExtendsType(symbol);
 		if (classSuperType != null) {
-			// replace redefined class members with their super-type members
 			var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
 			// when extending a class, because we cannot redefine fields in haxe, we use the super-class's field type instead
 			declaredMembers = declaredMembers.map(m -> {
-				var matchingClassSuperMember = classSuperMembers.find(sm -> sm.name == m.name);
-				var ret:Symbol = (matchingClassSuperMember != null ? matchingClassSuperMember : m);
-				return ret;
+				return if (m.flags & SymbolFlags.PropertyOrAccessor != 0) {
+					// @! we should find the first definition
+					var matchingClassSuperMember = classSuperMembers.find(sm -> sm.name == m.name);
+					var ret:Symbol = (matchingClassSuperMember != null ? matchingClassSuperMember : m);
+					ret;
+				} else m;
 			});
 		}
+		*/
 
 		var fields = generateTypeFields(
 			symbol,
@@ -1257,6 +1272,14 @@ class ConverterContext {
 		}
 	}
 
+	function getTsTypeOfField(symbol: Symbol) {
+		return if (symbol.valueDeclaration == null) {
+			Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
+		} else {
+			tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+		}
+	}
+
 	function fieldFromSymbol(nativeFieldName: String, symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
@@ -1289,11 +1312,7 @@ class ConverterContext {
 		var userDoc = getDoc(symbol);
 		var docParts = userDoc != '' ? [userDoc] : [];
 
-		var tsType = if (baseDeclaration == null) {
-			Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
-		} else {
-			tc.getTypeOfSymbolAtLocation(symbol, baseDeclaration);
-		}
+		var tsType = getTsTypeOfField(symbol);
 
 		// add errors to field docs
 		function onError(message) {
@@ -1307,7 +1326,7 @@ class ConverterContext {
 			debug();
 			FVar(macro :Any, null);
 
-		} else if (symbol.flags & (SymbolFlags.Property | SymbolFlags.Variable | SymbolFlags.GetAccessor | SymbolFlags.SetAccessor) != 0) {
+		} else if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
 			// variable field
 			if (baseDeclaration != null) switch baseDeclaration.kind {
 				case VariableDeclaration, PropertySignature, PropertyDeclaration:
