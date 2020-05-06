@@ -21,4 +21,45 @@ package node.dgram;
 	function setSendBufferSize(size:Float):Void;
 	function getRecvBufferSize():Float;
 	function getSendBufferSize():Float;
+	/**
+		events.EventEmitter
+		1. close
+		2. error
+		3. listening
+		4. message
+	**/
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, msg:global.IBuffer, rinfo:RemoteInfo):Bool { })
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:() -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Socket;
+	function setMaxListeners(n:Float):Socket;
 }

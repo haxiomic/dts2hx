@@ -18,4 +18,43 @@ package three;
 	**/
 	var material : ts.AnyOf2<Material, Array<Material>>;
 	function updateMorphTargets():Void;
+	function applyQuaternion(quaternion:Quaternion):Points;
+	/**
+		Rotate an object along an axis in object space. The axis is assumed to be normalized.
+	**/
+	function rotateOnAxis(axis:Vector3, angle:Float):Points;
+	/**
+		Rotate an object along an axis in world space. The axis is assumed to be normalized. Method Assumes no rotated parent.
+	**/
+	function rotateOnWorldAxis(axis:Vector3, angle:Float):Points;
+	function rotateX(angle:Float):Points;
+	function rotateY(angle:Float):Points;
+	function rotateZ(angle:Float):Points;
+	function translateOnAxis(axis:Vector3, distance:Float):Points;
+	/**
+		Translates object along x axis by distance.
+	**/
+	function translateX(distance:Float):Points;
+	/**
+		Translates object along y axis by distance.
+	**/
+	function translateY(distance:Float):Points;
+	/**
+		Translates object along z axis by distance.
+	**/
+	function translateZ(distance:Float):Points;
+	/**
+		Adds object as child of this object.
+	**/
+	function add(object:haxe.extern.Rest<Object3D>):Points;
+	/**
+		Removes object as child of this object.
+	**/
+	function remove(object:haxe.extern.Rest<Object3D>):Points;
+	/**
+		Adds object as a child of this, while maintaining the object's world transform.
+	**/
+	function attach(object:Object3D):Points;
+	function clone(?recursive:Bool):Points;
+	function copy(source:Points, ?recursive:Bool):Points;
 }

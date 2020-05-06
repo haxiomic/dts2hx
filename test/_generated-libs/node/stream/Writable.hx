@@ -18,4 +18,66 @@ package node.stream;
 	function cork():Void;
 	function uncork():Void;
 	function destroy(?error:ts.lib.IError):Void;
+	/**
+		Event emitter
+		The defined events on documents including:
+		1. close
+		2. drain
+		3. error
+		4. finish
+		5. pipe
+		6. unpipe
+	**/
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Writable { })
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
+	function addListener(event:String, listener:() -> Void):Writable;
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, src:Readable):Bool { })
+	@:overload(function(event:String, src:Readable):Bool { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool { })
+	function emit(event:String):Bool;
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Writable { })
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
+	function on(event:String, listener:() -> Void):Writable;
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Writable { })
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
+	function once(event:String, listener:() -> Void):Writable;
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Writable { })
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
+	function prependListener(event:String, listener:() -> Void):Writable;
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Writable { })
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
+	function prependOnceListener(event:String, listener:() -> Void):Writable;
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Writable { })
+	@:overload(function(event:String, listener:() -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
+	function removeListener(event:String, listener:() -> Void):Writable;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Writable;
+	function setMaxListeners(n:Float):Writable;
 }

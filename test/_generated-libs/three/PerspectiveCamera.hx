@@ -75,5 +75,45 @@ package three;
 		Updates the camera projection matrix. Must be called after change of parameters.
 	**/
 	function updateProjectionMatrix():Void;
+	function toJSON(?meta:Dynamic):Dynamic;
 	function setLens(focalLength:Float, ?frameHeight:Float):Void;
+	function applyQuaternion(quaternion:Quaternion):PerspectiveCamera;
+	/**
+		Rotate an object along an axis in object space. The axis is assumed to be normalized.
+	**/
+	function rotateOnAxis(axis:Vector3, angle:Float):PerspectiveCamera;
+	/**
+		Rotate an object along an axis in world space. The axis is assumed to be normalized. Method Assumes no rotated parent.
+	**/
+	function rotateOnWorldAxis(axis:Vector3, angle:Float):PerspectiveCamera;
+	function rotateX(angle:Float):PerspectiveCamera;
+	function rotateY(angle:Float):PerspectiveCamera;
+	function rotateZ(angle:Float):PerspectiveCamera;
+	function translateOnAxis(axis:Vector3, distance:Float):PerspectiveCamera;
+	/**
+		Translates object along x axis by distance.
+	**/
+	function translateX(distance:Float):PerspectiveCamera;
+	/**
+		Translates object along y axis by distance.
+	**/
+	function translateY(distance:Float):PerspectiveCamera;
+	/**
+		Translates object along z axis by distance.
+	**/
+	function translateZ(distance:Float):PerspectiveCamera;
+	/**
+		Adds object as child of this object.
+	**/
+	function add(object:haxe.extern.Rest<Object3D>):PerspectiveCamera;
+	/**
+		Removes object as child of this object.
+	**/
+	function remove(object:haxe.extern.Rest<Object3D>):PerspectiveCamera;
+	/**
+		Adds object as a child of this, while maintaining the object's world transform.
+	**/
+	function attach(object:Object3D):PerspectiveCamera;
+	function clone(?recursive:Bool):PerspectiveCamera;
+	function copy(source:PerspectiveCamera, ?recursive:Bool):PerspectiveCamera;
 }

@@ -16,4 +16,10 @@ package three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):SphereGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():SphereGeometry;
+	function copy(source:Geometry):SphereGeometry;
 }

@@ -7,6 +7,7 @@ package node.stream;
 	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	@:optional
 	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
+	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
 	function _final(callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
 	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool;
@@ -16,4 +17,57 @@ package node.stream;
 	function end(?cb:() -> Void):Void;
 	function cork():Void;
 	function uncork():Void;
+	function setEncoding(encoding:String):Duplex;
+	function pause():Duplex;
+	function resume():Duplex;
+	function unpipe(?destination:global.nodejs.WritableStream):Duplex;
+	function wrap(oldStream:global.nodejs.ReadableStream):Duplex;
+	/**
+		Event emitter
+		The defined events on documents including:
+		1. close
+		2. data
+		3. end
+		4. readable
+		5. error
+	**/
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
+	function addListener(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
+	function on(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
+	function once(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
+	function prependListener(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
+	function prependOnceListener(event:String, listener:() -> Void):Duplex;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:() -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
+	function removeListener(event:String, listener:() -> Void):Duplex;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Duplex;
+	function setMaxListeners(n:Float):Duplex;
 }

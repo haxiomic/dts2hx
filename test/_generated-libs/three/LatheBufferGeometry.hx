@@ -7,4 +7,6 @@ package three;
 		var phiStart : Float;
 		var phiLength : Float;
 	};
+	function clone():LatheBufferGeometry;
+	function copy(source:BufferGeometry):LatheBufferGeometry;
 }

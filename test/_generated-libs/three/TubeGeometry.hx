@@ -11,4 +11,10 @@ package three;
 	var tangents : Array<Vector3>;
 	var normals : Array<Vector3>;
 	var binormals : Array<Vector3>;
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):TubeGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():TubeGeometry;
+	function copy(source:Geometry):TubeGeometry;
 }

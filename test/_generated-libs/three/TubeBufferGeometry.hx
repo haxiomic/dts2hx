@@ -11,4 +11,6 @@ package three;
 	var tangents : Array<Vector3>;
 	var normals : Array<Vector3>;
 	var binormals : Array<Vector3>;
+	function clone():TubeBufferGeometry;
+	function copy(source:BufferGeometry):TubeBufferGeometry;
 }

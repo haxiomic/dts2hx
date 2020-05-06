@@ -5,4 +5,16 @@ package three;
 	var dashSize : Float;
 	var gapSize : Float;
 	var isLineDashedMaterial : Bool;
+	/**
+		Sets the properties based on the values.
+	**/
+	function setValues(parameters:LineDashedMaterialParameters):Void;
+	/**
+		Return a new material with the same parameters as this material.
+	**/
+	function clone():LineDashedMaterial;
+	/**
+		Copy the parameters from the passed material into this material.
+	**/
+	function copy(material:Material):LineDashedMaterial;
 }

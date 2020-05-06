@@ -12,4 +12,10 @@ package three;
 		var heightSegments : Float;
 		var depthSegments : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):BoxGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():BoxGeometry;
+	function copy(source:Geometry):BoxGeometry;
 }

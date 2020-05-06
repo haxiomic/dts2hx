@@ -70,4 +70,55 @@ package node.tls;
 		which may decrease overall server throughput.
 	**/
 	function setMaxSendFragment(size:Float):Bool;
+	/**
+		events.EventEmitter
+		1. OCSPResponse
+		2. secureConnect
+	**/
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
+	@:overload(function(event:String, response:global.IBuffer):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, session:global.IBuffer):Bool { })
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
+	@:overload(function(event:String, listener:(response:global.IBuffer) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(session:global.IBuffer) -> Void):TLSSocket { })
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
+	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):TLSSocket { })
+	@:overload(function(port:Float, ?connectionListener:() -> Void):TLSSocket { })
+	@:overload(function(path:String, ?connectionListener:() -> Void):TLSSocket { })
+	function connect(options:node.net.SocketConnectOpts, ?connectionListener:() -> Void):TLSSocket;
+	function setEncoding(?encoding:String):TLSSocket;
+	function pause():TLSSocket;
+	function resume():TLSSocket;
+	function setTimeout(timeout:Float, ?callback:() -> Void):TLSSocket;
+	function setNoDelay(?noDelay:Bool):TLSSocket;
+	function setKeepAlive(?enable:Bool, ?initialDelay:Float):TLSSocket;
+	function setDefaultEncoding(encoding:String):TLSSocket;
+	function unpipe(?destination:global.nodejs.WritableStream):TLSSocket;
+	function wrap(oldStream:global.nodejs.ReadableStream):TLSSocket;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):TLSSocket { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket { })
+	function removeListener(event:String, listener:() -> Void):TLSSocket;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):TLSSocket;
+	function setMaxListeners(n:Float):TLSSocket;
 }

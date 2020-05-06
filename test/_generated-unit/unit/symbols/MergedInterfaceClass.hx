@@ -8,5 +8,9 @@ package unit.symbols;
 		Redefine a base interface field
 	**/
 	function baseInterfaceMethod():Float;
+	/**
+		Redefine a base class field
+	**/
+	function baseClassMethod():Float;
 	var baseInterfaceField : Float;
 }

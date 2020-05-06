@@ -14,4 +14,16 @@ package three;
 	var skinning : Bool;
 	var morphTargets : Bool;
 	var morphNormals : Bool;
+	/**
+		Sets the properties based on the values.
+	**/
+	function setValues(parameters:MeshNormalMaterialParameters):Void;
+	/**
+		Return a new material with the same parameters as this material.
+	**/
+	function clone():MeshNormalMaterial;
+	/**
+		Copy the parameters from the passed material into this material.
+	**/
+	function copy(material:Material):MeshNormalMaterial;
 }

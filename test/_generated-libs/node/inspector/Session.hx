@@ -310,4 +310,425 @@ package node.inspector;
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
 	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
 	function post(method:String, ?params:{ }, ?callback:ts.AnyOf2<(err:Null<ts.lib.IError>) -> Void, (err:Null<ts.lib.IError>, params:{ }) -> Void>):Void;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	@:overload(function(event:String, message:InspectorNotification<{ }>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.PausedEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>):Bool { })
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Session;
+	function setMaxListeners(n:Float):Session;
 }

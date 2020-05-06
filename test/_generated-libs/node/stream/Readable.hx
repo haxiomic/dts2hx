@@ -16,4 +16,58 @@ package node.stream;
 	function push(chunk:Dynamic, ?encoding:String):Bool;
 	function _destroy(error:Null<ts.lib.IError>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
 	function destroy(?error:ts.lib.IError):Void;
+	/**
+		Event emitter
+		The defined events on documents including:
+		1. close
+		2. data
+		3. end
+		4. readable
+		5. error
+	**/
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Readable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable { })
+	function addListener(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, chunk:Dynamic):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, err:ts.lib.IError):Bool { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool { })
+	function emit(event:String):Bool;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Readable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable { })
+	function on(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Readable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable { })
+	function once(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Readable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable { })
+	function prependListener(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Readable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable { })
+	function prependOnceListener(event:String, listener:() -> Void):Readable;
+	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:() -> Void):Readable { })
+	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Readable { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable { })
+	function removeListener(event:String, listener:() -> Void):Readable;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Readable;
+	function setMaxListeners(n:Float):Readable;
 }
