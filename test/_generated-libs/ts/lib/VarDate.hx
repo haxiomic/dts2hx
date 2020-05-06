@@ -4,5 +4,6 @@ package ts.lib;
 **/
 @:native("VarDate") extern class VarDate {
 	function new();
-	private var VarDate_typekey : VarDate;
+	@:noCompletion
+	var VarDate_typekey : VarDate;
 }
