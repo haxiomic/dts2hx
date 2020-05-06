@@ -51,6 +51,7 @@ export class ClassExtends<K> extends ClassBase<Array<K>> {
 
 export class ClassExtendsWithRedefine extends ClassBase<number> {
     defaultBoolField: true;
+    method(): string[];
 }
 
 export class ClassWithIndexSignature {
