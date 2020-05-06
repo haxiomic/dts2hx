@@ -14,20 +14,6 @@ class HaxeTools {
 		max: -1,
 	}
 
-	/**
-		Adds an Access modifier to a field, avoiding duplicates
-	**/
-	static public function enableAccess(field: Field, access: Access) {
-		var accessArray = if (field.access != null) {
-			field.access;
-		} else {
-			field.access = [];
-		}
-		if (accessArray.indexOf(access) == -1) {
-			accessArray.push(access);
-		}
-	}
-
 	static public function setMeta(field: Field, metaName: String, ?params: Array<Expr>) {
 		var metas = field.meta;
 		if (metas == null) {
@@ -69,6 +55,29 @@ class HaxeTools {
 		return if (field.access != null) {
 			field.access.has(access);
 		} else false;
+	}
+
+	/**
+		Adds an Access modifier to a field, avoiding duplicates
+	**/
+	static public function enableAccess(field: Field, access: Access) {
+		var accessArray = if (field.access != null) {
+			field.access;
+		} else {
+			field.access = [];
+		}
+		if (accessArray.indexOf(access) == -1) {
+			accessArray.push(access);
+		}
+	}
+
+	/**
+		Removes an access modifier from a field (if duplicated, remove all instances)
+	**/
+	static public function disableAccess(field: Field, access: Access) {
+		if (field.access != null) {
+			field.access = field.access.filter(a -> a != access);
+		}
 	}
 
 	/**

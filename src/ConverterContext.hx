@@ -1268,7 +1268,7 @@ class ConverterContext {
 			null;
 		}
 		
-		var access = if (baseDeclaration != null && baseDeclaration.modifiers != null) {
+		var hxAccessModifiers = if (baseDeclaration != null && baseDeclaration.modifiers != null) {
 			accessFromModifiers(baseDeclaration.modifiers, symbol);
 		} else [];
 
@@ -1310,7 +1310,7 @@ class ConverterContext {
 
 			// get-only accessors are readonly
 			if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
-				if (!access.has(AFinal)) access.push(AFinal);
+				if (!hxAccessModifiers.has(AFinal)) hxAccessModifiers.push(AFinal);
 			}
 
 			FVar(hxType, null);
@@ -1359,14 +1359,23 @@ class ConverterContext {
 
 		}
 
-		return {
+		var field: Field = {
 			name: safeName,
 			meta: meta,
 			pos: pos,
 			kind: kind,
 			doc: docParts.join('\n\n'),
-			access: access,
+			access: hxAccessModifiers,
 		};
+
+		// All extern fields are supposed to be public, if a field is marked private we can instead replace the private modifier with @:noComplete
+		var hasPrivateAccess = field.hasAccess(APrivate);
+		if (hasPrivateAccess) {
+			field.setMeta(':noCompletion');
+		}
+		field.disableAccess(APrivate);
+
+		return field;
 	}
 
 	function functionFromSignature(signature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Function {
