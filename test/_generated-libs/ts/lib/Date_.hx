@@ -3,10 +3,10 @@ package ts.lib;
 	Enables basic storage and retrieval of dates and times.
 **/
 @:native("Date") extern class Date_ {
-	@:overload(function(value:ts.AnyOf2<String, Float>):IDate_ { })
-	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):IDate_ { })
-	@:overload(function(vd:VarDate):IDate_ { })
-	@:overload(function(value:ts.AnyOf3<String, Float, IDate_>):IDate_ { })
+	@:overload(function(value:ts.AnyOf2<String, Float>):Date_ { })
+	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Date_ { })
+	@:overload(function(vd:VarDate):Date_ { })
+	@:overload(function(value:ts.AnyOf3<String, Float, Date_>):Date_ { })
 	function new();
 	/**
 		Returns a string representation of a date. The format of the string depends on the locale.
@@ -192,7 +192,7 @@ package ts.lib;
 	var getVarDate : () -> VarDate;
 	@:selfCall
 	static function call():String;
-	static final prototype : IDate_;
+	static final prototype : Date_;
 	/**
 		Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.
 	**/

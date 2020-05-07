@@ -21,7 +21,7 @@ package ts.html;
 	final SVG_LENGTHTYPE_PT : Float;
 	final SVG_LENGTHTYPE_PX : Float;
 	final SVG_LENGTHTYPE_UNKNOWN : Float;
-	static var prototype : ISVGLength;
+	static var prototype : SVGLength;
 	@:native("SVG_LENGTHTYPE_CM")
 	static final SVG_LENGTHTYPE_CM_ : Float;
 	@:native("SVG_LENGTHTYPE_EMS")

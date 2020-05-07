@@ -1,7 +1,7 @@
 package ts.html;
 typedef RTCPeerConnectionIceEventInit = {
 	@:optional
-	var candidate : IRTCIceCandidate;
+	var candidate : RTCIceCandidate;
 	@:optional
 	var url : String;
 	@:optional

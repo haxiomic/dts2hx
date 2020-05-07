@@ -1,7 +1,7 @@
 package node.dgram;
 @:jsRequire("dgram", "Socket") extern class Socket extends node.events.EventEmitter {
-	@:overload(function(msg:ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>, offset:Float, length:Float, port:Float, ?address:String, ?callback:(error:Null<ts.lib.IError>, bytes:Float) -> Void):Void { })
-	function send(msg:ts.AnyOf4<String, Array<Dynamic>, global.IBuffer, ts.lib.IUint8Array>, port:Float, ?address:String, ?callback:(error:Null<ts.lib.IError>, bytes:Float) -> Void):Void;
+	@:overload(function(msg:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, offset:Float, length:Float, port:Float, ?address:String, ?callback:(error:Null<ts.lib.Error>, bytes:Float) -> Void):Void { })
+	function send(msg:ts.AnyOf4<String, Array<Dynamic>, global.Buffer, ts.lib.Uint8Array>, port:Float, ?address:String, ?callback:(error:Null<ts.lib.Error>, bytes:Float) -> Void):Void;
 	@:overload(function(?port:Float, ?callback:() -> Void):Void { })
 	@:overload(function(?callback:() -> Void):Void { })
 	@:overload(function(options:BindOptions, ?callback:() -> Void):Void { })
@@ -29,34 +29,34 @@ package node.dgram;
 		4. message
 	**/
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.Buffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:ts.lib.IError):Bool { })
+	@:overload(function(event:String, err:ts.lib.Error):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, msg:global.IBuffer, rinfo:RemoteInfo):Bool { })
+	@:overload(function(event:String, msg:global.Buffer, rinfo:RemoteInfo):Bool { })
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.Buffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.Buffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.Buffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(msg:global.IBuffer, rinfo:RemoteInfo) -> Void):Socket { })
+	@:overload(function(event:String, listener:(msg:global.Buffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;

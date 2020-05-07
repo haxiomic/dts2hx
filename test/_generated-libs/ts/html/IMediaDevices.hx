@@ -3,10 +3,10 @@ package ts.html;
 	Provides access to connected media input devices like cameras and microphones, as well as screen sharing. In essence, it lets you obtain access to any hardware source of media data.
 **/
 typedef IMediaDevices = {
-	var ondevicechange : Null<(ev:IEvent) -> Dynamic>;
-	function enumerateDevices():ts.lib.IPromise<Array<IMediaDeviceInfo>>;
+	var ondevicechange : Null<(ev:Event) -> Dynamic>;
+	function enumerateDevices():ts.lib.Promise<Array<MediaDeviceInfo>>;
 	function getSupportedConstraints():MediaTrackSupportedConstraints;
-	function getUserMedia(?constraints:MediaStreamConstraints):ts.lib.IPromise<IMediaStream>;
+	function getUserMedia(?constraints:MediaStreamConstraints):ts.lib.Promise<MediaStream>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -44,5 +44,5 @@ typedef IMediaDevices = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

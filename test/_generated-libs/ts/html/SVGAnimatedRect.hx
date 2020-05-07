@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SVGAnimatedRect") extern class SVGAnimatedRect {
 	function new();
-	final animVal : IDOMRectReadOnly;
-	final baseVal : IDOMRect;
-	static var prototype : ISVGAnimatedRect;
+	final animVal : DOMRectReadOnly;
+	final baseVal : DOMRect;
+	static var prototype : SVGAnimatedRect;
 }

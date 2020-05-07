@@ -20,7 +20,7 @@ package ts.html;
 	final SVG_PRESERVEASPECTRATIO_XMINYMAX : Float;
 	final SVG_PRESERVEASPECTRATIO_XMINYMID : Float;
 	final SVG_PRESERVEASPECTRATIO_XMINYMIN : Float;
-	static var prototype : ISVGPreserveAspectRatio;
+	static var prototype : SVGPreserveAspectRatio;
 	@:native("SVG_MEETORSLICE_MEET")
 	static final SVG_MEETORSLICE_MEET_ : Float;
 	@:native("SVG_MEETORSLICE_SLICE")

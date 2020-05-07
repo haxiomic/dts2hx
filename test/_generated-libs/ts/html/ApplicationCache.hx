@@ -1,14 +1,14 @@
 package ts.html;
 @:native("ApplicationCache") extern class ApplicationCache {
 	function new();
-	var oncached : Null<(ev:IEvent) -> Dynamic>;
-	var onchecking : Null<(ev:IEvent) -> Dynamic>;
-	var ondownloading : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onnoupdate : Null<(ev:IEvent) -> Dynamic>;
-	var onobsolete : Null<(ev:IEvent) -> Dynamic>;
-	var onprogress : Null<(ev:IProgressEvent<IApplicationCache>) -> Dynamic>;
-	var onupdateready : Null<(ev:IEvent) -> Dynamic>;
+	var oncached : Null<(ev:Event) -> Dynamic>;
+	var onchecking : Null<(ev:Event) -> Dynamic>;
+	var ondownloading : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onnoupdate : Null<(ev:Event) -> Dynamic>;
+	var onobsolete : Null<(ev:Event) -> Dynamic>;
+	var onprogress : Null<(ev:ProgressEvent<ApplicationCache>) -> Dynamic>;
+	var onupdateready : Null<(ev:Event) -> Dynamic>;
 	final status : Float;
 	function abort():Void;
 	function swapCache():Void;
@@ -56,8 +56,8 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IApplicationCache;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : ApplicationCache;
 	@:native("CHECKING")
 	static final CHECKING_ : Float;
 	@:native("DOWNLOADING")

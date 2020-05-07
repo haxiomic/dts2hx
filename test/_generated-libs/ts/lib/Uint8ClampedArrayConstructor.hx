@@ -1,6 +1,6 @@
 package ts.lib;
 typedef Uint8ClampedArrayConstructor = {
-	final prototype : IUint8ClampedArray;
+	final prototype : Uint8ClampedArray;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -8,7 +8,7 @@ typedef Uint8ClampedArrayConstructor = {
 	/**
 		Returns a new array from a set of elements.
 	**/
-	function of(items:haxe.extern.Rest<Float>):IUint8ClampedArray;
+	function of(items:haxe.extern.Rest<Float>):Uint8ClampedArray;
 	/**
 		Creates an array from an array-like or iterable object.
 		
@@ -16,7 +16,7 @@ typedef Uint8ClampedArrayConstructor = {
 		
 		Creates an array from an array-like or iterable object.
 	**/
-	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):IUint8ClampedArray { })
-	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):IUint8ClampedArray { })
-	function from(arrayLike:ArrayLike<Float>):IUint8ClampedArray;
+	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):Uint8ClampedArray { })
+	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):Uint8ClampedArray { })
+	function from(arrayLike:ArrayLike<Float>):Uint8ClampedArray;
 };

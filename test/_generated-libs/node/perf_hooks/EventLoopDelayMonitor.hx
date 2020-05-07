@@ -19,7 +19,7 @@ typedef EventLoopDelayMonitor = {
 	/**
 		A `Map` object detailing the accumulated percentile distribution.
 	**/
-	final percentiles : ts.lib.IMap_<Float, Float>;
+	final percentiles : ts.lib.Map_<Float, Float>;
 	/**
 		The number of times the event loop delay exceeded the maximum 1 hour eventloop delay threshold.
 	**/

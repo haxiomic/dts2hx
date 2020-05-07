@@ -8,5 +8,5 @@ package ts.html;
 		Sets the transformation matrix that will be used when rendering the pattern during a fill or stroke painting operation.
 	**/
 	function setTransform(?transform:DOMMatrix2DInit):Void;
-	static var prototype : ICanvasPattern;
+	static var prototype : CanvasPattern;
 }

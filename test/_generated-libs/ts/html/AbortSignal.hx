@@ -8,7 +8,7 @@ package ts.html;
 		Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
 	**/
 	final aborted : Bool;
-	var onabort : Null<(ev:IEvent) -> Dynamic>;
+	var onabort : Null<(ev:Event) -> Dynamic>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -46,6 +46,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IAbortSignal;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : AbortSignal;
 }

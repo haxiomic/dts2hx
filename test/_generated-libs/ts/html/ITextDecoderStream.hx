@@ -3,7 +3,7 @@ typedef ITextDecoderStream = {
 	/**
 		Returns a readable stream whose chunks are strings resulting from running encoding's decoder on the chunks written to writable.
 	**/
-	final readable : IReadableStream<Dynamic>;
+	final readable : ReadableStream<Dynamic>;
 	/**
 		Returns a writable stream which accepts BufferSource chunks and runs them through encoding's decoder before making them available to readable.
 		
@@ -18,7 +18,7 @@ typedef ITextDecoderStream = {
 		
 		If the error mode is "fatal" and encoding's decoder returns error, both readable and writable will be errored with a TypeError.
 	**/
-	final writable : IWritableStream<Dynamic>;
+	final writable : WritableStream<Dynamic>;
 	/**
 		Returns encoding's name, lowercased.
 	**/

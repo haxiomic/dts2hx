@@ -30,7 +30,7 @@ package ts.lib;
 	function toLocaleString(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):String;
 	@:selfCall
 	static function call(?value:Dynamic):Float;
-	static final prototype : INumber;
+	static final prototype : Number;
 	/**
 		The largest number that can be represented in JavaScript. Equal to approximately 1.79E+308.
 	**/

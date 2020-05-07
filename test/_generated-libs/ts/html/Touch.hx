@@ -17,7 +17,7 @@ package ts.html;
 	final rotationAngle : Float;
 	final screenX : Float;
 	final screenY : Float;
-	final target : IEventTarget;
+	final target : EventTarget;
 	final touchType : TouchType;
-	static var prototype : ITouch;
+	static var prototype : Touch;
 }

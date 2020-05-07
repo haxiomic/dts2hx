@@ -4,10 +4,10 @@ package ts.html;
 **/
 @:native("MediaDevices") extern class MediaDevices {
 	function new();
-	var ondevicechange : Null<(ev:IEvent) -> Dynamic>;
-	function enumerateDevices():ts.lib.IPromise<Array<IMediaDeviceInfo>>;
+	var ondevicechange : Null<(ev:Event) -> Dynamic>;
+	function enumerateDevices():ts.lib.Promise<Array<MediaDeviceInfo>>;
 	function getSupportedConstraints():MediaTrackSupportedConstraints;
-	function getUserMedia(?constraints:MediaStreamConstraints):ts.lib.IPromise<IMediaStream>;
+	function getUserMedia(?constraints:MediaStreamConstraints):ts.lib.Promise<MediaStream>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -45,6 +45,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IMediaDevices;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : MediaDevices;
 }

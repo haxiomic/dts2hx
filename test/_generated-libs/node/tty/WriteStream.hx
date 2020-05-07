@@ -57,7 +57,7 @@ package node.tty;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):WriteStream { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):WriteStream { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream { })
 	function removeListener(event:String, listener:() -> Void):WriteStream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream;

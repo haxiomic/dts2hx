@@ -8,5 +8,5 @@ package ts.html;
 	final leftDegrees : Float;
 	final rightDegrees : Float;
 	final upDegrees : Float;
-	static var prototype : IVRFieldOfView;
+	static var prototype : VRFieldOfView;
 }

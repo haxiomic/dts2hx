@@ -1,6 +1,6 @@
 package three;
 @:jsRequire("three", "WebGLState") extern class WebGLState {
-	function new(gl:ts.html.IWebGLRenderingContext, extensions:WebGLExtensions, utils:Dynamic, capabilities:WebGLCapabilities);
+	function new(gl:ts.html.WebGLRenderingContext, extensions:WebGLExtensions, utils:Dynamic, capabilities:WebGLCapabilities);
 	var buffers : {
 		var color : WebGLColorBuffer;
 		var depth : WebGLDepthBuffer;

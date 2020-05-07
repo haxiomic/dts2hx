@@ -26,5 +26,5 @@ package ts.html;
 	final entryType : String;
 	final name : String;
 	final startTime : Float;
-	static var prototype : IPerformanceResourceTiming;
+	static var prototype : PerformanceResourceTiming;
 }

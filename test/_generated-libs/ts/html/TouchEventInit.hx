@@ -1,11 +1,11 @@
 package ts.html;
 typedef TouchEventInit = {
 	@:optional
-	var changedTouches : Array<ITouch>;
+	var changedTouches : Array<Touch>;
 	@:optional
-	var targetTouches : Array<ITouch>;
+	var targetTouches : Array<Touch>;
 	@:optional
-	var touches : Array<ITouch>;
+	var touches : Array<Touch>;
 	@:optional
 	var altKey : Bool;
 	@:optional
@@ -37,7 +37,7 @@ typedef TouchEventInit = {
 	@:optional
 	var detail : Float;
 	@:optional
-	var view : IWindow;
+	var view : Window;
 	@:optional
 	var bubbles : Bool;
 	@:optional

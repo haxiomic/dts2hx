@@ -9,7 +9,7 @@ package ts.html;
 	final MS_MEDIA_KEYERR_OUTPUT : Float;
 	final MS_MEDIA_KEYERR_SERVICE : Float;
 	final MS_MEDIA_KEYERR_UNKNOWN : Float;
-	static var prototype : IMSMediaKeyError;
+	static var prototype : MSMediaKeyError;
 	@:native("MS_MEDIA_KEYERR_CLIENT")
 	static final MS_MEDIA_KEYERR_CLIENT_ : Float;
 	@:native("MS_MEDIA_KEYERR_DOMAIN")

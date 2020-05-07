@@ -8,5 +8,5 @@ package ts.html;
 	final extractable : Bool;
 	final type : KeyType;
 	final usages : Array<KeyUsage>;
-	static var prototype : ICryptoKey;
+	static var prototype : CryptoKey;
 }

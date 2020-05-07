@@ -7,5 +7,5 @@ package ts.html;
 	final pressed : Bool;
 	final touched : Bool;
 	final value : Float;
-	static var prototype : IGamepadButton;
+	static var prototype : GamepadButton;
 }

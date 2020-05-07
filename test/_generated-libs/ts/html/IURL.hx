@@ -13,7 +13,7 @@ typedef IURL = {
 	var port : String;
 	var protocol : String;
 	var search : String;
-	final searchParams : ts.lib.IURLSearchParams;
+	final searchParams : URLSearchParams;
 	var username : String;
 	function toJSON():String;
 };

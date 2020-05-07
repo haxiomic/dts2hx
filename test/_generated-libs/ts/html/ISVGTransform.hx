@@ -4,9 +4,9 @@ package ts.html;
 **/
 typedef ISVGTransform = {
 	final angle : Float;
-	final matrix : IDOMMatrix;
+	final matrix : DOMMatrix;
 	final type : Float;
-	function setMatrix(matrix:IDOMMatrix):Void;
+	function setMatrix(matrix:DOMMatrix):Void;
 	function setRotate(angle:Float, cx:Float, cy:Float):Void;
 	function setScale(sx:Float, sy:Float):Void;
 	function setSkewX(angle:Float):Void;

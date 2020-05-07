@@ -132,19 +132,19 @@ typedef IHTMLParagraphElement = {
 	var lang : String;
 	final offsetHeight : Float;
 	final offsetLeft : Float;
-	final offsetParent : Null<IElement>;
+	final offsetParent : Null<Element>;
 	final offsetTop : Float;
 	final offsetWidth : Float;
 	var spellcheck : Bool;
 	var title : String;
 	var translate : Bool;
 	function click():Void;
-	final assignedSlot : Null<IHTMLSlotElement>;
-	final attributes : ts.lib.INamedNodeMap;
+	final assignedSlot : Null<HTMLSlotElement>;
+	final attributes : NamedNodeMap;
 	/**
 		Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
 	**/
-	final classList : ts.lib.IDOMTokenList;
+	final classList : DOMTokenList;
 	/**
 		Returns the value of element's class content attribute. Can be set to change it.
 	**/
@@ -165,8 +165,8 @@ typedef IHTMLParagraphElement = {
 		Returns the namespace.
 	**/
 	final namespaceURI : Null<String>;
-	var onfullscreenchange : Null<(ev:IEvent) -> Dynamic>;
-	var onfullscreenerror : Null<(ev:IEvent) -> Dynamic>;
+	var onfullscreenchange : Null<(ev:Event) -> Dynamic>;
+	var onfullscreenerror : Null<(ev:Event) -> Dynamic>;
 	var outerHTML : String;
 	/**
 		Returns the namespace prefix.
@@ -179,7 +179,7 @@ typedef IHTMLParagraphElement = {
 	/**
 		Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
 	**/
-	final shadowRoot : Null<IShadowRoot>;
+	final shadowRoot : Null<ShadowRoot>;
 	/**
 		Returns the value of element's slot content attribute. Can be set to change it.
 	**/
@@ -191,7 +191,7 @@ typedef IHTMLParagraphElement = {
 	/**
 		Creates a shadow root for element and returns it.
 	**/
-	function attachShadow(init:ShadowRootInit):IShadowRoot;
+	function attachShadow(init:ShadowRootInit):ShadowRoot;
 	/**
 		Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 	**/
@@ -210,20 +210,20 @@ typedef IHTMLParagraphElement = {
 		Returns the qualified names of all element's attributes. Can contain duplicates.
 	**/
 	function getAttributeNames():Array<String>;
-	function getAttributeNode(name:String):Null<IAttr>;
-	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<IAttr>;
-	function getBoundingClientRect():IDOMRect;
-	function getClientRects():ts.lib.IDOMRectList;
+	function getAttributeNode(name:String):Null<Attr>;
+	function getAttributeNodeNS(namespaceURI:String, localName:String):Null<Attr>;
+	function getBoundingClientRect():DOMRect;
+	function getClientRects():DOMRectList;
 	/**
 		Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 	**/
-	function getElementsByClassName(classNames:String):ts.lib.HTMLCollectionOf<IElement>;
-	@:overload(function<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Dynamic> { })
-	@:overload(function(qualifiedName:String):ts.lib.HTMLCollectionOf<IElement> { })
-	function getElementsByTagName<K>(qualifiedName:K):ts.lib.HTMLCollectionOf<Dynamic>;
-	@:overload(function(namespaceURI:String, localName:String):ts.lib.HTMLCollectionOf<ISVGElement> { })
-	@:overload(function(namespaceURI:String, localName:String):ts.lib.HTMLCollectionOf<IElement> { })
-	function getElementsByTagNameNS(namespaceURI:String, localName:String):ts.lib.HTMLCollectionOf<IHTMLElement>;
+	function getElementsByClassName(classNames:String):HTMLCollectionOf<Element>;
+	@:overload(function<K>(qualifiedName:K):HTMLCollectionOf<Dynamic> { })
+	@:overload(function(qualifiedName:String):HTMLCollectionOf<Element> { })
+	function getElementsByTagName<K>(qualifiedName:K):HTMLCollectionOf<Dynamic>;
+	@:overload(function(namespaceURI:String, localName:String):HTMLCollectionOf<SVGElement> { })
+	@:overload(function(namespaceURI:String, localName:String):HTMLCollectionOf<Element> { })
+	function getElementsByTagNameNS(namespaceURI:String, localName:String):HTMLCollectionOf<HTMLElement>;
 	/**
 		Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
 	**/
@@ -237,7 +237,7 @@ typedef IHTMLParagraphElement = {
 	**/
 	function hasAttributes():Bool;
 	function hasPointerCapture(pointerId:Float):Bool;
-	function insertAdjacentElement(position:InsertPosition, insertedElement:IElement):Null<IElement>;
+	function insertAdjacentElement(position:InsertPosition, insertedElement:Element):Null<Element>;
 	function insertAdjacentHTML(where:InsertPosition, html:String):Void;
 	function insertAdjacentText(where:InsertPosition, text:String):Void;
 	/**
@@ -254,13 +254,13 @@ typedef IHTMLParagraphElement = {
 		Removes element's attribute whose namespace is namespace and local name is localName.
 	**/
 	function removeAttributeNS(namespace:Null<String>, localName:String):Void;
-	function removeAttributeNode(attr:IAttr):IAttr;
+	function removeAttributeNode(attr:Attr):Attr;
 	/**
 		Displays element fullscreen and resolves promise when done.
 		
 		When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to "show", navigation simplicity is preferred over screen space, and if set to "hide", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value "auto" indicates no application preference.
 	**/
-	function requestFullscreen(?options:FullscreenOptions):ts.lib.IPromise<Void>;
+	function requestFullscreen(?options:FullscreenOptions):ts.lib.Promise<Void>;
 	function requestPointerLock():Void;
 	@:overload(function(x:Float, y:Float):Void { })
 	function scroll(?options:ScrollToOptions):Void;
@@ -277,8 +277,8 @@ typedef IHTMLParagraphElement = {
 		Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 	**/
 	function setAttributeNS(namespace:Null<String>, qualifiedName:String, value:String):Void;
-	function setAttributeNode(attr:IAttr):Null<IAttr>;
-	function setAttributeNodeNS(attr:IAttr):Null<IAttr>;
+	function setAttributeNode(attr:Attr):Null<Attr>;
+	function setAttributeNodeNS(attr:Attr):Null<Attr>;
 	function setPointerCapture(pointerId:Float):Void;
 	/**
 		If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -294,7 +294,7 @@ typedef IHTMLParagraphElement = {
 	/**
 		Returns the children.
 	**/
-	final childNodes : ts.lib.NodeListOf<ChildNode>;
+	final childNodes : NodeListOf<ChildNode>;
 	/**
 		Returns the first child.
 	**/
@@ -323,11 +323,11 @@ typedef IHTMLParagraphElement = {
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<IDocument>;
+	final ownerDocument : Null<Document>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<IHTMLElement>;
+	final parentElement : Null<HTMLElement>;
 	/**
 		Returns the parent.
 	**/
@@ -335,36 +335,36 @@ typedef IHTMLParagraphElement = {
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<INode>;
+	final previousSibling : Null<Node>;
 	var textContent : Null<String>;
 	function appendChild<T>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):INode;
+	function cloneNode(?deep:Bool):Node;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:INode):Float;
+	function compareDocumentPosition(other:Node):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<INode>):Bool;
+	function contains(other:Null<Node>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):INode;
+	function getRootNode(?options:GetRootNodeOptions):Node;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T>(newChild:T, refChild:Null<INode>):T;
+	function insertBefore<T>(newChild:T, refChild:Null<Node>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<INode>):Bool;
-	function isSameNode(otherNode:Null<INode>):Bool;
+	function isEqualNode(otherNode:Null<Node>):Bool;
+	function isSameNode(otherNode:Null<Node>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
@@ -372,7 +372,7 @@ typedef IHTMLParagraphElement = {
 	**/
 	function normalize():Void;
 	function removeChild<T>(oldChild:T):T;
-	function replaceChild<T>(newChild:INode, oldChild:T):T;
+	function replaceChild<T>(newChild:Node, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -433,21 +433,21 @@ typedef IHTMLParagraphElement = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	function animate(keyframes:Null<ts.AnyOf2<Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeAnimationOptions>):IAnimation;
-	function getAnimations():Array<IAnimation>;
+	function dispatchEvent(event:Event):Bool;
+	function animate(keyframes:Null<ts.AnyOf2<Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeAnimationOptions>):Animation;
+	function getAnimations():Array<Animation>;
 	/**
 		Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Removes node.
 	**/
@@ -457,41 +457,41 @@ typedef IHTMLParagraphElement = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	var innerHTML : String;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
 	**/
-	final nextElementSibling : Null<IElement>;
+	final nextElementSibling : Null<Element>;
 	/**
 		Returns the first preceding sibling that is an element, and null otherwise.
 	**/
-	final previousElementSibling : Null<IElement>;
+	final previousElementSibling : Null<Element>;
 	final childElementCount : Float;
 	/**
 		Returns the child elements.
 	**/
-	final children : IHTMLCollection;
+	final children : HTMLCollection;
 	/**
 		Returns the first child that is an element, and null otherwise.
 	**/
-	final firstElementChild : Null<IElement>;
+	final firstElementChild : Null<Element>;
 	/**
 		Returns the last child that is an element, and null otherwise.
 	**/
-	final lastElementChild : Null<IElement>;
+	final lastElementChild : Null<Element>;
 	/**
 		Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
@@ -501,91 +501,91 @@ typedef IHTMLParagraphElement = {
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
-	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Dynamic> { })
-	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
-	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Dynamic>;
-	var oncopy : Null<(ev:IClipboardEvent) -> Dynamic>;
-	var oncut : Null<(ev:IClipboardEvent) -> Dynamic>;
-	var onpaste : Null<(ev:IClipboardEvent) -> Dynamic>;
-	final style : ts.lib.ICSSStyleDeclaration;
+	@:overload(function<K>(selectors:K):NodeListOf<Dynamic> { })
+	@:overload(function<E>(selectors:String):NodeListOf<E> { })
+	function querySelectorAll<K>(selectors:K):NodeListOf<Dynamic>;
+	var oncopy : Null<(ev:ClipboardEvent) -> Dynamic>;
+	var oncut : Null<(ev:ClipboardEvent) -> Dynamic>;
+	var onpaste : Null<(ev:ClipboardEvent) -> Dynamic>;
+	final style : CSSStyleDeclaration;
 	var contentEditable : String;
 	var inputMode : String;
 	final isContentEditable : Bool;
 	/**
 		Fires when the user aborts the download.
 	**/
-	var onabort : Null<(ev:IUIEvent) -> Dynamic>;
-	var onanimationcancel : Null<(ev:IAnimationEvent) -> Dynamic>;
-	var onanimationend : Null<(ev:IAnimationEvent) -> Dynamic>;
-	var onanimationiteration : Null<(ev:IAnimationEvent) -> Dynamic>;
-	var onanimationstart : Null<(ev:IAnimationEvent) -> Dynamic>;
-	var onauxclick : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onabort : Null<(ev:UIEvent) -> Dynamic>;
+	var onanimationcancel : Null<(ev:AnimationEvent) -> Dynamic>;
+	var onanimationend : Null<(ev:AnimationEvent) -> Dynamic>;
+	var onanimationiteration : Null<(ev:AnimationEvent) -> Dynamic>;
+	var onanimationstart : Null<(ev:AnimationEvent) -> Dynamic>;
+	var onauxclick : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Fires when the object loses the input focus.
 	**/
-	var onblur : Null<(ev:IFocusEvent) -> Dynamic>;
-	var oncancel : Null<(ev:IEvent) -> Dynamic>;
+	var onblur : Null<(ev:FocusEvent) -> Dynamic>;
+	var oncancel : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when playback is possible, but would require further buffering.
 	**/
-	var oncanplay : Null<(ev:IEvent) -> Dynamic>;
-	var oncanplaythrough : Null<(ev:IEvent) -> Dynamic>;
+	var oncanplay : Null<(ev:Event) -> Dynamic>;
+	var oncanplaythrough : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the contents of the object or selection have changed.
 	**/
-	var onchange : Null<(ev:IEvent) -> Dynamic>;
+	var onchange : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the user clicks the left mouse button on the object
 	**/
-	var onclick : Null<(ev:IMouseEvent) -> Dynamic>;
-	var onclose : Null<(ev:IEvent) -> Dynamic>;
+	var onclick : Null<(ev:MouseEvent) -> Dynamic>;
+	var onclose : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the user clicks the right mouse button in the client area, opening the context menu.
 	**/
-	var oncontextmenu : Null<(ev:IMouseEvent) -> Dynamic>;
-	var oncuechange : Null<(ev:IEvent) -> Dynamic>;
+	var oncontextmenu : Null<(ev:MouseEvent) -> Dynamic>;
+	var oncuechange : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the user double-clicks the object.
 	**/
-	var ondblclick : Null<(ev:IMouseEvent) -> Dynamic>;
+	var ondblclick : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Fires on the source object continuously during a drag operation.
 	**/
-	var ondrag : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondrag : Null<(ev:DragEvent) -> Dynamic>;
 	/**
 		Fires on the source object when the user releases the mouse at the close of a drag operation.
 	**/
-	var ondragend : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondragend : Null<(ev:DragEvent) -> Dynamic>;
 	/**
 		Fires on the target element when the user drags the object to a valid drop target.
 	**/
-	var ondragenter : Null<(ev:IDragEvent) -> Dynamic>;
-	var ondragexit : Null<(ev:IEvent) -> Dynamic>;
+	var ondragenter : Null<(ev:DragEvent) -> Dynamic>;
+	var ondragexit : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
 	**/
-	var ondragleave : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondragleave : Null<(ev:DragEvent) -> Dynamic>;
 	/**
 		Fires on the target element continuously while the user drags the object over a valid drop target.
 	**/
-	var ondragover : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondragover : Null<(ev:DragEvent) -> Dynamic>;
 	/**
 		Fires on the source object when the user starts to drag a text selection or selected object.
 	**/
-	var ondragstart : Null<(ev:IDragEvent) -> Dynamic>;
-	var ondrop : Null<(ev:IDragEvent) -> Dynamic>;
+	var ondragstart : Null<(ev:DragEvent) -> Dynamic>;
+	var ondrop : Null<(ev:DragEvent) -> Dynamic>;
 	/**
 		Occurs when the duration attribute is updated.
 	**/
-	var ondurationchange : Null<(ev:IEvent) -> Dynamic>;
+	var ondurationchange : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the media element is reset to its initial state.
 	**/
-	var onemptied : Null<(ev:IEvent) -> Dynamic>;
+	var onemptied : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the end of playback is reached.
 	**/
-	var onended : Null<(ev:IEvent) -> Dynamic>;
+	var onended : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when an error occurs during object loading.
 	**/
@@ -593,146 +593,146 @@ typedef IHTMLParagraphElement = {
 	/**
 		Fires when the object receives focus.
 	**/
-	var onfocus : Null<(ev:IFocusEvent) -> Dynamic>;
-	var ongotpointercapture : Null<(ev:IPointerEvent) -> Dynamic>;
-	var oninput : Null<(ev:IEvent) -> Dynamic>;
-	var oninvalid : Null<(ev:IEvent) -> Dynamic>;
+	var onfocus : Null<(ev:FocusEvent) -> Dynamic>;
+	var ongotpointercapture : Null<(ev:PointerEvent) -> Dynamic>;
+	var oninput : Null<(ev:Event) -> Dynamic>;
+	var oninvalid : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the user presses a key.
 	**/
-	var onkeydown : Null<(ev:IKeyboardEvent) -> Dynamic>;
+	var onkeydown : Null<(ev:KeyboardEvent) -> Dynamic>;
 	/**
 		Fires when the user presses an alphanumeric key.
 	**/
-	var onkeypress : Null<(ev:IKeyboardEvent) -> Dynamic>;
+	var onkeypress : Null<(ev:KeyboardEvent) -> Dynamic>;
 	/**
 		Fires when the user releases a key.
 	**/
-	var onkeyup : Null<(ev:IKeyboardEvent) -> Dynamic>;
+	var onkeyup : Null<(ev:KeyboardEvent) -> Dynamic>;
 	/**
 		Fires immediately after the browser loads the object.
 	**/
-	var onload : Null<(ev:IEvent) -> Dynamic>;
+	var onload : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when media data is loaded at the current playback position.
 	**/
-	var onloadeddata : Null<(ev:IEvent) -> Dynamic>;
+	var onloadeddata : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the duration and dimensions of the media have been determined.
 	**/
-	var onloadedmetadata : Null<(ev:IEvent) -> Dynamic>;
-	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onloadedmetadata : Null<(ev:Event) -> Dynamic>;
+	var onloadend : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
 	/**
 		Occurs when Internet Explorer begins looking for media data.
 	**/
-	var onloadstart : Null<(ev:IEvent) -> Dynamic>;
-	var onlostpointercapture : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onloadstart : Null<(ev:Event) -> Dynamic>;
+	var onlostpointercapture : Null<(ev:PointerEvent) -> Dynamic>;
 	/**
 		Fires when the user clicks the object with either mouse button.
 	**/
-	var onmousedown : Null<(ev:IMouseEvent) -> Dynamic>;
-	var onmouseenter : Null<(ev:IMouseEvent) -> Dynamic>;
-	var onmouseleave : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmousedown : Null<(ev:MouseEvent) -> Dynamic>;
+	var onmouseenter : Null<(ev:MouseEvent) -> Dynamic>;
+	var onmouseleave : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Fires when the user moves the mouse over the object.
 	**/
-	var onmousemove : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmousemove : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Fires when the user moves the mouse pointer outside the boundaries of the object.
 	**/
-	var onmouseout : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmouseout : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Fires when the user moves the mouse pointer into the object.
 	**/
-	var onmouseover : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmouseover : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Fires when the user releases a mouse button while the mouse is over the object.
 	**/
-	var onmouseup : Null<(ev:IMouseEvent) -> Dynamic>;
+	var onmouseup : Null<(ev:MouseEvent) -> Dynamic>;
 	/**
 		Occurs when playback is paused.
 	**/
-	var onpause : Null<(ev:IEvent) -> Dynamic>;
+	var onpause : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the play method is requested.
 	**/
-	var onplay : Null<(ev:IEvent) -> Dynamic>;
+	var onplay : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the audio or video has started playing.
 	**/
-	var onplaying : Null<(ev:IEvent) -> Dynamic>;
-	var onpointercancel : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointerdown : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointerenter : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointerleave : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointermove : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointerout : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointerover : Null<(ev:IPointerEvent) -> Dynamic>;
-	var onpointerup : Null<(ev:IPointerEvent) -> Dynamic>;
+	var onplaying : Null<(ev:Event) -> Dynamic>;
+	var onpointercancel : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointerdown : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointerenter : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointerleave : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointermove : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointerout : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointerover : Null<(ev:PointerEvent) -> Dynamic>;
+	var onpointerup : Null<(ev:PointerEvent) -> Dynamic>;
 	/**
 		Occurs to indicate progress while downloading media data.
 	**/
-	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onprogress : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
 	/**
 		Occurs when the playback rate is increased or decreased.
 	**/
-	var onratechange : Null<(ev:IEvent) -> Dynamic>;
+	var onratechange : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the user resets a form.
 	**/
-	var onreset : Null<(ev:IEvent) -> Dynamic>;
-	var onresize : Null<(ev:IUIEvent) -> Dynamic>;
+	var onreset : Null<(ev:Event) -> Dynamic>;
+	var onresize : Null<(ev:UIEvent) -> Dynamic>;
 	/**
 		Fires when the user repositions the scroll box in the scroll bar on the object.
 	**/
-	var onscroll : Null<(ev:IEvent) -> Dynamic>;
-	var onsecuritypolicyviolation : Null<(ev:ISecurityPolicyViolationEvent) -> Dynamic>;
+	var onscroll : Null<(ev:Event) -> Dynamic>;
+	var onsecuritypolicyviolation : Null<(ev:SecurityPolicyViolationEvent) -> Dynamic>;
 	/**
 		Occurs when the seek operation ends.
 	**/
-	var onseeked : Null<(ev:IEvent) -> Dynamic>;
+	var onseeked : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the current playback position is moved.
 	**/
-	var onseeking : Null<(ev:IEvent) -> Dynamic>;
+	var onseeking : Null<(ev:Event) -> Dynamic>;
 	/**
 		Fires when the current selection changes.
 	**/
-	var onselect : Null<(ev:IEvent) -> Dynamic>;
-	var onselectionchange : Null<(ev:IEvent) -> Dynamic>;
-	var onselectstart : Null<(ev:IEvent) -> Dynamic>;
+	var onselect : Null<(ev:Event) -> Dynamic>;
+	var onselectionchange : Null<(ev:Event) -> Dynamic>;
+	var onselectstart : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when the download has stopped.
 	**/
-	var onstalled : Null<(ev:IEvent) -> Dynamic>;
-	var onsubmit : Null<(ev:IEvent) -> Dynamic>;
+	var onstalled : Null<(ev:Event) -> Dynamic>;
+	var onsubmit : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs if the load operation has been intentionally halted.
 	**/
-	var onsuspend : Null<(ev:IEvent) -> Dynamic>;
+	var onsuspend : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs to indicate the current playback position.
 	**/
-	var ontimeupdate : Null<(ev:IEvent) -> Dynamic>;
-	var ontoggle : Null<(ev:IEvent) -> Dynamic>;
-	var ontouchcancel : Null<(ev:ITouchEvent) -> Dynamic>;
-	var ontouchend : Null<(ev:ITouchEvent) -> Dynamic>;
-	var ontouchmove : Null<(ev:ITouchEvent) -> Dynamic>;
-	var ontouchstart : Null<(ev:ITouchEvent) -> Dynamic>;
-	var ontransitioncancel : Null<(ev:ITransitionEvent) -> Dynamic>;
-	var ontransitionend : Null<(ev:ITransitionEvent) -> Dynamic>;
-	var ontransitionrun : Null<(ev:ITransitionEvent) -> Dynamic>;
-	var ontransitionstart : Null<(ev:ITransitionEvent) -> Dynamic>;
+	var ontimeupdate : Null<(ev:Event) -> Dynamic>;
+	var ontoggle : Null<(ev:Event) -> Dynamic>;
+	var ontouchcancel : Null<(ev:TouchEvent) -> Dynamic>;
+	var ontouchend : Null<(ev:TouchEvent) -> Dynamic>;
+	var ontouchmove : Null<(ev:TouchEvent) -> Dynamic>;
+	var ontouchstart : Null<(ev:TouchEvent) -> Dynamic>;
+	var ontransitioncancel : Null<(ev:TransitionEvent) -> Dynamic>;
+	var ontransitionend : Null<(ev:TransitionEvent) -> Dynamic>;
+	var ontransitionrun : Null<(ev:TransitionEvent) -> Dynamic>;
+	var ontransitionstart : Null<(ev:TransitionEvent) -> Dynamic>;
 	/**
 		Occurs when the volume is changed, or playback is muted or unmuted.
 	**/
-	var onvolumechange : Null<(ev:IEvent) -> Dynamic>;
+	var onvolumechange : Null<(ev:Event) -> Dynamic>;
 	/**
 		Occurs when playback stops because the next frame of a video resource is not available.
 	**/
-	var onwaiting : Null<(ev:IEvent) -> Dynamic>;
-	var onwheel : Null<(ev:IWheelEvent) -> Dynamic>;
-	final dataset : IDOMStringMap;
+	var onwaiting : Null<(ev:Event) -> Dynamic>;
+	var onwheel : Null<(ev:WheelEvent) -> Dynamic>;
+	final dataset : DOMStringMap;
 	@:optional
 	var nonce : String;
 	var tabIndex : Float;

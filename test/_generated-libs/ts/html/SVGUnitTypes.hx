@@ -7,7 +7,7 @@ package ts.html;
 	final SVG_UNIT_TYPE_OBJECTBOUNDINGBOX : Float;
 	final SVG_UNIT_TYPE_UNKNOWN : Float;
 	final SVG_UNIT_TYPE_USERSPACEONUSE : Float;
-	static var prototype : ISVGUnitTypes;
+	static var prototype : SVGUnitTypes;
 	@:native("SVG_UNIT_TYPE_OBJECTBOUNDINGBOX")
 	static final SVG_UNIT_TYPE_OBJECTBOUNDINGBOX_ : Float;
 	@:native("SVG_UNIT_TYPE_UNKNOWN")

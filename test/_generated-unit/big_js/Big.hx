@@ -12,11 +12,11 @@ package big_js;
 	/**
 		Returns a Big number whose value is the absolute value, i.e. the magnitude, of this Big number.
 	**/
-	function abs():IBig;
+	function abs():Big;
 	/**
 		Returns a Big number whose value is the value of this Big number plus n - alias for .plus().
 	**/
-	function add(n:BigSource):IBig;
+	function add(n:BigSource):Big;
 	/**
 		Compare the values.
 	**/
@@ -26,7 +26,7 @@ package big_js;
 		
 		If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.
 	**/
-	function div(n:BigSource):IBig;
+	function div(n:BigSource):Big;
 	/**
 		Returns true if the value of this Big equals the value of n, otherwise returns false.
 	**/
@@ -50,45 +50,45 @@ package big_js;
 	/**
 		Returns a Big number whose value is the value of this Big number minus n.
 	**/
-	function minus(n:BigSource):IBig;
+	function minus(n:BigSource):Big;
 	/**
 		Returns a Big number whose value is the value of this Big number modulo n, i.e. the integer remainder of dividing this Big number by n.
 		
 		The result will have the same sign as this Big number, and it will match that of Javascript's % operator (within the limits of its precision) and BigDecimal's remainder method.
 	**/
-	function mod(n:BigSource):IBig;
+	function mod(n:BigSource):Big;
 	/**
 		Returns a Big number whose value is the value of this Big number times n - alias for .times().
 	**/
-	function mul(n:BigSource):IBig;
+	function mul(n:BigSource):Big;
 	/**
 		Returns a Big number whose value is the value of this Big number plus n.
 	**/
-	function plus(n:BigSource):IBig;
+	function plus(n:BigSource):Big;
 	/**
 		Returns a Big number whose value is the value of this Big number raised to the power exp.
 		
 		If exp is negative and the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.
 	**/
-	function pow(exp:Float):IBig;
+	function pow(exp:Float):Big;
 	/**
 		Returns a Big number whose value is the value of this Big number rounded using rounding mode rm to a maximum of dp decimal places.
 	**/
-	function round(?dp:Float, ?rm:Int):IBig;
+	function round(?dp:Float, ?rm:Int):Big;
 	/**
 		Returns a Big number whose value is the square root of this Big number.
 		
 		If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.
 	**/
-	function sqrt():IBig;
+	function sqrt():Big;
 	/**
 		Returns a Big number whose value is the value of this Big number minus n - alias for .minus().
 	**/
-	function sub(n:BigSource):IBig;
+	function sub(n:BigSource):Big;
 	/**
 		Returns a Big number whose value is the value of this Big number times n.
 	**/
-	function times(n:BigSource):IBig;
+	function times(n:BigSource):Big;
 	/**
 		Returns a string representing the value of this Big number in exponential notation to a fixed number of decimal places dp.
 		
@@ -175,7 +175,7 @@ package big_js;
 	**/
 	@:overload(function():BigConstructor { })
 	@:selfCall
-	static function call(value:BigSource):IBig;
+	static function call(value:BigSource):Big;
 	/**
 		The maximum number of decimal places of the results of operations involving division.
 		It is relevant only to the div and sqrt methods, and the pow method when the exponent is negative.

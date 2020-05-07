@@ -1,5 +1,5 @@
 package ts.html;
 typedef IScopedCredentialInfo = {
-	final credential : IScopedCredential;
-	final publicKey : ICryptoKey;
+	final credential : ScopedCredential;
+	final publicKey : CryptoKey;
 };

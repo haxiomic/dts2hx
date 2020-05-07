@@ -8,7 +8,7 @@ typedef FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : ts.html.IEventTarget;
+	var relatedTarget : ts.html.EventTarget;
 	var button : Null<Any>;
 	var buttons : Null<Any>;
 	var clientX : Null<Any>;
@@ -47,12 +47,12 @@ typedef FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Null<Any>;
 	var shiftKey : Null<Any>;
 	@:optional
-	var originalEvent : ts.html.IFocusEvent;
+	var originalEvent : ts.html.FocusEvent;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.IWindow;
+	var view : ts.html.Window;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

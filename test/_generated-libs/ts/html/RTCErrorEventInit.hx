@@ -1,7 +1,7 @@
 package ts.html;
 typedef RTCErrorEventInit = {
 	@:optional
-	var error : IRTCError;
+	var error : RTCError;
 	@:optional
 	var bubbles : Bool;
 	@:optional

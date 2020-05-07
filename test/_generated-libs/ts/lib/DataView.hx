@@ -1,7 +1,7 @@
 package ts.lib;
 @:native("DataView") extern class DataView {
-	function new(buffer:IArrayBuffer, ?byteOffset:Float, ?byteLength:Float);
-	final buffer : IArrayBuffer;
+	function new(buffer:ArrayBuffer, ?byteOffset:Float, ?byteLength:Float);
+	final buffer : ArrayBuffer;
 	final byteLength : Float;
 	final byteOffset : Float;
 	/**

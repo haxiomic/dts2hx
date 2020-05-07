@@ -5,5 +5,5 @@ package ts.html;
 typedef IBlob = {
 	final size : Float;
 	final type : String;
-	function slice(?start:Float, ?end:Float, ?contentType:String):IBlob;
+	function slice(?start:Float, ?end:Float, ?contentType:String):Blob;
 };

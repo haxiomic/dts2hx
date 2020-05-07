@@ -6,5 +6,5 @@ package ts.html;
 	function new();
 	final animVal : Float;
 	var baseVal : Float;
-	static var prototype : ISVGAnimatedInteger;
+	static var prototype : SVGAnimatedInteger;
 }

@@ -4,20 +4,20 @@ package ts.html;
 **/
 @:native("TextTrack") extern class TextTrack {
 	function new();
-	final activeCues : ts.lib.ITextTrackCueList;
-	final cues : ts.lib.ITextTrackCueList;
+	final activeCues : TextTrackCueList;
+	final cues : TextTrackCueList;
 	final inBandMetadataTrackDispatchType : String;
 	final kind : String;
 	final label : String;
 	final language : String;
 	var mode : ts.AnyOf2<Float, String>;
-	var oncuechange : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onload : Null<(ev:IEvent) -> Dynamic>;
+	var oncuechange : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onload : Null<(ev:Event) -> Dynamic>;
 	final readyState : Float;
-	final sourceBuffer : Null<ISourceBuffer>;
-	function addCue(cue:ITextTrackCue):Void;
-	function removeCue(cue:ITextTrackCue):Void;
+	final sourceBuffer : Null<SourceBuffer>;
+	function addCue(cue:TextTrackCue):Void;
+	function removeCue(cue:TextTrackCue):Void;
 	final DISABLED : Float;
 	final ERROR : Float;
 	final HIDDEN : Float;
@@ -62,8 +62,8 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : ITextTrack;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : TextTrack;
 	@:native("DISABLED")
 	static final DISABLED_ : Float;
 	@:native("ERROR")

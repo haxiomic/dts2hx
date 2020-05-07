@@ -1,7 +1,7 @@
 package ts.html;
 @:native("TransformStream") extern class TransformStream<I, O> {
 	function new(?transformer:Transformer<I, O>, ?writableStrategy:QueuingStrategy<I>, ?readableStrategy:QueuingStrategy<O>);
-	final readable : IReadableStream<O>;
-	final writable : IWritableStream<I>;
-	static var prototype : ITransformStream<Dynamic, Dynamic>;
+	final readable : ReadableStream<O>;
+	final writable : WritableStream<I>;
+	static var prototype : TransformStream<Dynamic, Dynamic>;
 }

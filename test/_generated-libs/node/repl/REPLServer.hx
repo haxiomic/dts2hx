@@ -130,7 +130,7 @@ package node.repl;
 		programmatically. Use this method to initialize a history log file when working
 		with REPL instances programmatically.
 	**/
-	function setupHistory(path:String, cb:(err:Null<ts.lib.IError>, repl:REPLServer) -> Void):Void;
+	function setupHistory(path:String, cb:(err:Null<ts.lib.Error>, repl:REPLServer) -> Void):Void;
 	/**
 		events.EventEmitter
 		1. close - inherited from `readline.Interface`

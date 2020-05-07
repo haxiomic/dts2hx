@@ -3,20 +3,20 @@ package ts.html;
 	This Web Speech API interface represents a speech request. It contains the content the speech service should read and information about how to read it (e.g. language, pitch and volume.)
 **/
 @:native("SpeechSynthesisUtterance") extern class SpeechSynthesisUtterance {
-	@:overload(function(text:String):ISpeechSynthesisUtterance { })
+	@:overload(function(text:String):SpeechSynthesisUtterance { })
 	function new();
 	var lang : String;
-	var onboundary : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
-	var onend : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
-	var onerror : Null<(ev:ISpeechSynthesisErrorEvent) -> Dynamic>;
-	var onmark : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
-	var onpause : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
-	var onresume : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
-	var onstart : Null<(ev:ISpeechSynthesisEvent) -> Dynamic>;
+	var onboundary : Null<(ev:SpeechSynthesisEvent) -> Dynamic>;
+	var onend : Null<(ev:SpeechSynthesisEvent) -> Dynamic>;
+	var onerror : Null<(ev:SpeechSynthesisErrorEvent) -> Dynamic>;
+	var onmark : Null<(ev:SpeechSynthesisEvent) -> Dynamic>;
+	var onpause : Null<(ev:SpeechSynthesisEvent) -> Dynamic>;
+	var onresume : Null<(ev:SpeechSynthesisEvent) -> Dynamic>;
+	var onstart : Null<(ev:SpeechSynthesisEvent) -> Dynamic>;
 	var pitch : Float;
 	var rate : Float;
 	var text : String;
-	var voice : ISpeechSynthesisVoice;
+	var voice : SpeechSynthesisVoice;
 	var volume : Float;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -55,6 +55,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : ISpeechSynthesisUtterance;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : SpeechSynthesisUtterance;
 }

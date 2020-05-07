@@ -5,10 +5,10 @@ package ts.html;
 @:native("CSSStyleRule") extern class CSSStyleRule {
 	function new();
 	var selectorText : String;
-	final style : ts.lib.ICSSStyleDeclaration;
+	final style : CSSStyleDeclaration;
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -22,5 +22,5 @@ package ts.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : ICSSStyleRule;
+	static var prototype : CSSStyleRule;
 }

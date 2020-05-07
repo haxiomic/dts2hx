@@ -12,7 +12,7 @@ package ts.html;
 	final MEDIA_ERR_NETWORK : Float;
 	final MEDIA_ERR_SRC_NOT_SUPPORTED : Float;
 	final MS_MEDIA_ERR_ENCRYPTED : Float;
-	static var prototype : IMediaError;
+	static var prototype : MediaError;
 	@:native("MEDIA_ERR_ABORTED")
 	static final MEDIA_ERR_ABORTED_ : Float;
 	@:native("MEDIA_ERR_DECODE")

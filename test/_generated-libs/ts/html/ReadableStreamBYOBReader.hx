@@ -1,7 +1,7 @@
 package ts.html;
 typedef ReadableStreamBYOBReader = {
-	final closed : ts.lib.IPromise<Void>;
-	function cancel(?reason:Dynamic):ts.lib.IPromise<Void>;
-	function read<T>(view:T):ts.lib.IPromise<ReadableStreamReadResult<T>>;
+	final closed : ts.lib.Promise<Void>;
+	function cancel(?reason:Dynamic):ts.lib.Promise<Void>;
+	function read<T>(view:T):ts.lib.Promise<ReadableStreamReadResult<T>>;
 	function releaseLock():Void;
 };

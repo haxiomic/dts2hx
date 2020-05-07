@@ -3,7 +3,7 @@ package ts.html;
 	This ServiceWorker API interface provides a reference to a service worker. Multiple browsing contexts (e.g. pages, workers, etc.) can be associated with the same service worker, each through a unique ServiceWorker object.
 **/
 typedef IServiceWorker = {
-	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onstatechange : Null<(ev:Event) -> Dynamic>;
 	final scriptURL : String;
 	final state : ServiceWorkerState;
 	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
@@ -45,6 +45,6 @@ typedef IServiceWorker = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	var onerror : Null<(ev:IErrorEvent) -> Dynamic>;
+	function dispatchEvent(event:Event):Bool;
+	var onerror : Null<(ev:ErrorEvent) -> Dynamic>;
 };

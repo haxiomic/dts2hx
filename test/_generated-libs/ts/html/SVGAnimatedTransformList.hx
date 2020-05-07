@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SVGAnimatedTransformList") extern class SVGAnimatedTransformList {
 	function new();
-	final animVal : ISVGTransformList;
-	final baseVal : ISVGTransformList;
-	static var prototype : ISVGAnimatedTransformList;
+	final animVal : SVGTransformList;
+	final baseVal : SVGTransformList;
+	static var prototype : SVGAnimatedTransformList;
 }

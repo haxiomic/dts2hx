@@ -1,6 +1,6 @@
 package ts.html;
 typedef IBhxBrowser = {
-	final lastError : IDOMException;
+	final lastError : DOMException;
 	function checkMatchesGlobExpression(pattern:String, value:String):Bool;
 	function checkMatchesUriExpression(pattern:String, value:String):Bool;
 	function clearLastError():Void;
@@ -10,8 +10,8 @@ typedef IBhxBrowser = {
 	function genericSynchronousFunction(functionId:Float, ?parameters:String):String;
 	function getExtensionId():String;
 	function getThisAddress():Dynamic;
-	function registerGenericFunctionCallbackHandler(callbackHandler:ts.lib.IFunction):Void;
-	function registerGenericListenerHandler(eventHandler:ts.lib.IFunction):Void;
+	function registerGenericFunctionCallbackHandler(callbackHandler:ts.lib.Function):Void;
+	function registerGenericListenerHandler(eventHandler:ts.lib.Function):Void;
 	function setLastError(parameters:String):Void;
 	function webPlatformGenericFunction(destination:Dynamic, ?parameters:String, ?callbackId:Float):Void;
 };

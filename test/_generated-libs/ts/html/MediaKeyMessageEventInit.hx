@@ -1,6 +1,6 @@
 package ts.html;
 typedef MediaKeyMessageEventInit = {
-	var message : ts.lib.IArrayBuffer;
+	var message : ts.lib.ArrayBuffer;
 	var messageType : MediaKeyMessageType;
 	@:optional
 	var bubbles : Bool;

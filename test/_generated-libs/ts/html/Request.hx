@@ -19,7 +19,7 @@ package ts.html;
 	/**
 		Returns a Headers object consisting of the headers associated with request. Note that headers added in the network layer by the user agent will not be accounted for in this object, e.g., the "Host" header.
 	**/
-	final headers : ts.lib.IHeaders;
+	final headers : Headers;
 	/**
 		Returns request's subresource integrity metadata, which is a cryptographic hash of the resource being fetched. Its value consists of multiple hashes separated by whitespace. [SRI]
 	**/
@@ -59,18 +59,18 @@ package ts.html;
 	/**
 		Returns the signal associated with request, which is an AbortSignal object indicating whether or not request has been aborted, and its abort event handler.
 	**/
-	final signal : IAbortSignal;
+	final signal : AbortSignal;
 	/**
 		Returns the URL of request as a string.
 	**/
 	final url : String;
-	function clone():IRequest;
-	final body : Null<IReadableStream<ts.lib.IUint8Array>>;
+	function clone():Request;
+	final body : Null<ReadableStream<ts.lib.Uint8Array>>;
 	final bodyUsed : Bool;
-	function arrayBuffer():ts.lib.IPromise<ts.lib.IArrayBuffer>;
-	function blob():ts.lib.IPromise<IBlob>;
-	function formData():ts.lib.IPromise<ts.lib.IFormData>;
-	function json():ts.lib.IPromise<Dynamic>;
-	function text():ts.lib.IPromise<String>;
-	static var prototype : IRequest;
+	function arrayBuffer():ts.lib.Promise<ts.lib.ArrayBuffer>;
+	function blob():ts.lib.Promise<Blob>;
+	function formData():ts.lib.Promise<FormData>;
+	function json():ts.lib.Promise<Dynamic>;
+	function text():ts.lib.Promise<String>;
+	static var prototype : Request;
 }

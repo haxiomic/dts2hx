@@ -5,6 +5,6 @@ package ts.html;
 @:native("GamepadHapticActuator") extern class GamepadHapticActuator {
 	function new();
 	final type : String;
-	function pulse(value:Float, duration:Float):ts.lib.IPromise<Bool>;
-	static var prototype : IGamepadHapticActuator;
+	function pulse(value:Float, duration:Float):ts.lib.Promise<Bool>;
+	static var prototype : GamepadHapticActuator;
 }

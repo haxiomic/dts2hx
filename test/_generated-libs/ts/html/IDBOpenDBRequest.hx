@@ -4,8 +4,8 @@ package ts.html;
 **/
 @:native("IDBOpenDBRequest") extern class IDBOpenDBRequest {
 	function new();
-	var onblocked : Null<(ev:IEvent) -> Dynamic>;
-	var onupgradeneeded : Null<(ev:IIDBVersionChangeEvent) -> Dynamic>;
+	var onblocked : Null<(ev:Event) -> Dynamic>;
+	var onupgradeneeded : Null<(ev:IDBVersionChangeEvent) -> Dynamic>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -71,9 +71,9 @@ package ts.html;
 	/**
 		When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
 	**/
-	final error : Null<IDOMException>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onsuccess : Null<(ev:IEvent) -> Dynamic>;
+	final error : Null<DOMException>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onsuccess : Null<(ev:Event) -> Dynamic>;
 	/**
 		Returns "pending" until a request is complete, then returns "done".
 	**/
@@ -81,18 +81,18 @@ package ts.html;
 	/**
 		When a request is completed, returns the result, or undefined if the request failed. Throws a "InvalidStateError" DOMException if the request is still pending.
 	**/
-	final result : IIDBDatabase;
+	final result : IDBDatabase;
 	/**
 		Returns the IDBObjectStore, IDBIndex, or IDBCursor the request was made against, or null if is was an open request.
 	**/
-	final source : ts.AnyOf3<IIDBCursor, IIDBIndex, ts.lib.IIDBObjectStore>;
+	final source : ts.AnyOf3<IDBCursor, IDBIndex, IDBObjectStore>;
 	/**
 		Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
 	**/
-	final transaction : Null<IIDBTransaction>;
+	final transaction : Null<IDBTransaction>;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IIDBOpenDBRequest;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : IDBOpenDBRequest;
 }

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SVGAnimatedLengthList") extern class SVGAnimatedLengthList {
 	function new();
-	final animVal : ts.lib.ISVGLengthList;
-	final baseVal : ts.lib.ISVGLengthList;
-	static var prototype : ISVGAnimatedLengthList;
+	final animVal : SVGLengthList;
+	final baseVal : SVGLengthList;
+	static var prototype : SVGAnimatedLengthList;
 }

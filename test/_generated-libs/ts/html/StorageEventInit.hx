@@ -7,7 +7,7 @@ typedef StorageEventInit = {
 	@:optional
 	var oldValue : String;
 	@:optional
-	var storageArea : IStorage;
+	var storageArea : Storage;
 	@:optional
 	var url : String;
 	@:optional

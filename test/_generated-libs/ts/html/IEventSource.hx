@@ -1,8 +1,8 @@
 package ts.html;
 typedef IEventSource = {
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
-	var onopen : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
+	var onopen : Null<(ev:Event) -> Dynamic>;
 	/**
 		Returns the state of this EventSource object's connection. It can have the values described below.
 	**/
@@ -59,5 +59,5 @@ typedef IEventSource = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

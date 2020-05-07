@@ -2,11 +2,11 @@ package ts.html;
 @:native("CSSImportRule") extern class CSSImportRule {
 	function new();
 	final href : String;
-	final media : ts.lib.IMediaList;
-	final styleSheet : ICSSStyleSheet;
+	final media : MediaList;
+	final styleSheet : CSSStyleSheet;
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -20,5 +20,5 @@ package ts.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : ICSSImportRule;
+	static var prototype : CSSImportRule;
 }

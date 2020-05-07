@@ -1,7 +1,7 @@
 package ts.html;
 typedef ICredentialsContainer = {
-	function create(?options:CredentialCreationOptions):ts.lib.IPromise<Null<ICredential>>;
-	function get(?options:CredentialRequestOptions):ts.lib.IPromise<Null<ICredential>>;
-	function preventSilentAccess():ts.lib.IPromise<Void>;
-	function store(credential:ICredential):ts.lib.IPromise<ICredential>;
+	function create(?options:CredentialCreationOptions):ts.lib.Promise<Null<Credential>>;
+	function get(?options:CredentialRequestOptions):ts.lib.Promise<Null<Credential>>;
+	function preventSilentAccess():ts.lib.Promise<Void>;
+	function store(credential:Credential):ts.lib.Promise<Credential>;
 };

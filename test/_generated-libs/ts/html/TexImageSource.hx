@@ -1,2 +1,2 @@
 package ts.html;
-typedef TexImageSource = ts.AnyOf6<IHTMLImageElement, IImageBitmap, IHTMLVideoElement, IHTMLCanvasElement, IOffscreenCanvas, IImageData>;
+typedef TexImageSource = ts.AnyOf6<HTMLImageElement, ImageBitmap, HTMLVideoElement, HTMLCanvasElement, OffscreenCanvas, ImageData>;

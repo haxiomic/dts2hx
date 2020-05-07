@@ -4,5 +4,5 @@ package ts.html;
 **/
 @:native("DOMStringMap") extern class DOMStringMap {
 	function new();
-	static var prototype : IDOMStringMap;
+	static var prototype : DOMStringMap;
 }

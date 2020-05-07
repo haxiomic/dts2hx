@@ -8,18 +8,18 @@ typedef IRTCDataChannel = {
 	final maxPacketLifeTime : Null<Float>;
 	final maxRetransmits : Null<Float>;
 	final negotiated : Bool;
-	var onbufferedamountlow : Null<(ev:IEvent) -> Dynamic>;
-	var onclose : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IRTCErrorEvent) -> Dynamic>;
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
-	var onopen : Null<(ev:IEvent) -> Dynamic>;
+	var onbufferedamountlow : Null<(ev:Event) -> Dynamic>;
+	var onclose : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:RTCErrorEvent) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
+	var onopen : Null<(ev:Event) -> Dynamic>;
 	final ordered : Bool;
 	final priority : RTCPriorityType;
 	final protocol : String;
 	final readyState : RTCDataChannelState;
 	function close():Void;
-	@:overload(function(data:IBlob):Void { })
-	@:overload(function(data:ts.lib.IArrayBuffer):Void { })
+	@:overload(function(data:Blob):Void { })
+	@:overload(function(data:ts.lib.ArrayBuffer):Void { })
 	@:overload(function(data:ts.lib.ArrayBufferView):Void { })
 	function send(data:String):Void;
 	/**
@@ -59,5 +59,5 @@ typedef IRTCDataChannel = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

@@ -6,6 +6,6 @@ package ts.html;
 	function new(?blobParts:Array<BlobPart>, ?options:BlobPropertyBag);
 	final size : Float;
 	final type : String;
-	function slice(?start:Float, ?end:Float, ?contentType:String):IBlob;
-	static var prototype : IBlob;
+	function slice(?start:Float, ?end:Float, ?contentType:String):Blob;
+	static var prototype : Blob;
 }

@@ -5,18 +5,18 @@ package ts.html;
 typedef ISourceBuffer = {
 	var appendWindowEnd : Float;
 	var appendWindowStart : Float;
-	final audioTracks : ts.lib.IAudioTrackList;
-	final buffered : ITimeRanges;
+	final audioTracks : AudioTrackList;
+	final buffered : TimeRanges;
 	var mode : AppendMode;
-	var onabort : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onupdate : Null<(ev:IEvent) -> Dynamic>;
-	var onupdateend : Null<(ev:IEvent) -> Dynamic>;
-	var onupdatestart : Null<(ev:IEvent) -> Dynamic>;
-	final textTracks : ts.lib.ITextTrackList;
+	var onabort : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onupdate : Null<(ev:Event) -> Dynamic>;
+	var onupdateend : Null<(ev:Event) -> Dynamic>;
+	var onupdatestart : Null<(ev:Event) -> Dynamic>;
+	final textTracks : TextTrackList;
 	var timestampOffset : Float;
 	final updating : Bool;
-	final videoTracks : ts.lib.IVideoTrackList;
+	final videoTracks : VideoTrackList;
 	function abort():Void;
 	function appendBuffer(data:BufferSource):Void;
 	function remove(start:Float, end:Float):Void;
@@ -57,5 +57,5 @@ typedef ISourceBuffer = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

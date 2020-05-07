@@ -1,6 +1,6 @@
 package ts.html;
 typedef RTCStatsEventInit = {
-	var report : ts.lib.IRTCStatsReport;
+	var report : RTCStatsReport;
 	@:optional
 	var bubbles : Bool;
 	@:optional

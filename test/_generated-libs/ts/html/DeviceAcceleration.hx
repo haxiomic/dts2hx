@@ -7,5 +7,5 @@ package ts.html;
 	final x : Null<Float>;
 	final y : Null<Float>;
 	final z : Null<Float>;
-	static var prototype : IDeviceAcceleration;
+	static var prototype : DeviceAcceleration;
 }

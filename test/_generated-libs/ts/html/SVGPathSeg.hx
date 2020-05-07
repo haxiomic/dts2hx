@@ -23,7 +23,7 @@ package ts.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : ISVGPathSeg;
+	static var prototype : SVGPathSeg;
 	@:native("PATHSEG_ARC_ABS")
 	static final PATHSEG_ARC_ABS_ : Float;
 	@:native("PATHSEG_ARC_REL")

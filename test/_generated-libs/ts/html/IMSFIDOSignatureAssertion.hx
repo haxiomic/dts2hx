@@ -1,6 +1,6 @@
 package ts.html;
 typedef IMSFIDOSignatureAssertion = {
-	final signature : IMSFIDOSignature;
+	final signature : MSFIDOSignature;
 	final id : String;
 	final type : String;
 };

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SVGAnimatedNumberList") extern class SVGAnimatedNumberList {
 	function new();
-	final animVal : ts.lib.ISVGNumberList;
-	final baseVal : ts.lib.ISVGNumberList;
-	static var prototype : ISVGAnimatedNumberList;
+	final animVal : SVGNumberList;
+	final baseVal : SVGNumberList;
+	static var prototype : SVGAnimatedNumberList;
 }

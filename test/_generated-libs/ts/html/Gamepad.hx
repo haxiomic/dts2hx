@@ -5,14 +5,14 @@ package ts.html;
 @:native("Gamepad") extern class Gamepad {
 	function new();
 	final axes : ts.lib.ReadonlyArray<Float>;
-	final buttons : ts.lib.ReadonlyArray<IGamepadButton>;
+	final buttons : ts.lib.ReadonlyArray<GamepadButton>;
 	final connected : Bool;
 	final hand : GamepadHand;
-	final hapticActuators : ts.lib.ReadonlyArray<IGamepadHapticActuator>;
+	final hapticActuators : ts.lib.ReadonlyArray<GamepadHapticActuator>;
 	final id : String;
 	final index : Float;
 	final mapping : GamepadMappingType;
-	final pose : Null<IGamepadPose>;
+	final pose : Null<GamepadPose>;
 	final timestamp : Float;
-	static var prototype : IGamepad;
+	static var prototype : Gamepad;
 }

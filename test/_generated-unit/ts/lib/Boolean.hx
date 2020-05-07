@@ -7,5 +7,5 @@ package ts.lib;
 	function valueOf():Bool;
 	@:selfCall
 	static function call<T>(?value:T):Bool;
-	static final prototype : IBoolean;
+	static final prototype : Boolean;
 }

@@ -7,8 +7,8 @@ package ts.html;
 	final namespaceURI : String;
 	final prefix : String;
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -22,5 +22,5 @@ package ts.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : ICSSNamespaceRule;
+	static var prototype : CSSNamespaceRule;
 }

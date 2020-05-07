@@ -7,7 +7,7 @@ typedef IAbstractRange = {
 	/**
 		Returns range's end node.
 	**/
-	final endContainer : INode;
+	final endContainer : Node;
 	/**
 		Returns range's end offset.
 	**/
@@ -15,7 +15,7 @@ typedef IAbstractRange = {
 	/**
 		Returns range's start node.
 	**/
-	final startContainer : INode;
+	final startContainer : Node;
 	/**
 		Returns range's start offset.
 	**/

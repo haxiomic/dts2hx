@@ -10,6 +10,6 @@ package ts.html;
 	final x : Float;
 	final y : Float;
 	function toJSON():Dynamic;
-	static var prototype : IDOMRectReadOnly;
-	static function fromRect(?other:DOMRectInit):IDOMRectReadOnly;
+	static var prototype : DOMRectReadOnly;
+	static function fromRect(?other:DOMRectInit):DOMRectReadOnly;
 }

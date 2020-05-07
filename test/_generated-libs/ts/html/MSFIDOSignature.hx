@@ -4,5 +4,5 @@ package ts.html;
 	final authnrData : String;
 	final clientData : String;
 	final signature : String;
-	static var prototype : IMSFIDOSignature;
+	static var prototype : MSFIDOSignature;
 }

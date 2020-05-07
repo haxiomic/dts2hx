@@ -13,10 +13,10 @@ package ts.html;
 		
 		The options argument allows for setting mutation observation options via object members.
 	**/
-	function observe(target:INode, ?options:MutationObserverInit):Void;
+	function observe(target:Node, ?options:MutationObserverInit):Void;
 	/**
 		Empties the record queue and returns what was in there.
 	**/
-	function takeRecords():Array<IMutationRecord>;
-	static var prototype : IMutationObserver;
+	function takeRecords():Array<MutationRecord>;
+	static var prototype : MutationObserver;
 }

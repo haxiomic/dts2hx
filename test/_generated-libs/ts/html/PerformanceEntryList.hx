@@ -1,2 +1,2 @@
 package ts.html;
-typedef PerformanceEntryList = Array<IPerformanceEntry>;
+typedef PerformanceEntryList = Array<PerformanceEntry>;

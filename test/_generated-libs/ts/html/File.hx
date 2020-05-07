@@ -8,6 +8,6 @@ package ts.html;
 	final name : String;
 	final size : Float;
 	final type : String;
-	function slice(?start:Float, ?end:Float, ?contentType:String):IBlob;
-	static var prototype : IFile;
+	function slice(?start:Float, ?end:Float, ?contentType:String):Blob;
+	static var prototype : File;
 }

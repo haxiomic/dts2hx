@@ -19,5 +19,5 @@ package ts.html;
 	final type : Null<String>;
 	final usernameFragment : Null<String>;
 	function toJSON():RTCIceCandidateInit;
-	static var prototype : IRTCIceCandidate;
+	static var prototype : RTCIceCandidate;
 }

@@ -4,26 +4,26 @@ package ts.html;
 **/
 @:native("Selection") extern class Selection {
 	function new();
-	final anchorNode : Null<INode>;
+	final anchorNode : Null<Node>;
 	final anchorOffset : Float;
-	final focusNode : Null<INode>;
+	final focusNode : Null<Node>;
 	final focusOffset : Float;
 	final isCollapsed : Bool;
 	final rangeCount : Float;
 	final type : String;
-	function addRange(range:IRange):Void;
-	function collapse(node:Null<INode>, ?offset:Float):Void;
+	function addRange(range:Range):Void;
+	function collapse(node:Null<Node>, ?offset:Float):Void;
 	function collapseToEnd():Void;
 	function collapseToStart():Void;
-	function containsNode(node:INode, ?allowPartialContainment:Bool):Bool;
+	function containsNode(node:Node, ?allowPartialContainment:Bool):Bool;
 	function deleteFromDocument():Void;
 	function empty():Void;
-	function extend(node:INode, ?offset:Float):Void;
-	function getRangeAt(index:Float):IRange;
+	function extend(node:Node, ?offset:Float):Void;
+	function getRangeAt(index:Float):Range;
 	function removeAllRanges():Void;
-	function removeRange(range:IRange):Void;
-	function selectAllChildren(node:INode):Void;
-	function setBaseAndExtent(anchorNode:INode, anchorOffset:Float, focusNode:INode, focusOffset:Float):Void;
-	function setPosition(node:Null<INode>, ?offset:Float):Void;
-	static var prototype : ISelection;
+	function removeRange(range:Range):Void;
+	function selectAllChildren(node:Node):Void;
+	function setBaseAndExtent(anchorNode:Node, anchorOffset:Float, focusNode:Node, focusOffset:Float):Void;
+	function setPosition(node:Null<Node>, ?offset:Float):Void;
+	static var prototype : Selection;
 }

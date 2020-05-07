@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("MediaKeys") extern class MediaKeys {
 	function new();
-	function createSession(?sessionType:String):IMediaKeySession;
-	function setServerCertificate(serverCertificate:BufferSource):ts.lib.IPromise<Bool>;
-	static var prototype : IMediaKeys;
+	function createSession(?sessionType:String):MediaKeySession;
+	function setServerCertificate(serverCertificate:BufferSource):ts.lib.Promise<Bool>;
+	static var prototype : MediaKeys;
 }

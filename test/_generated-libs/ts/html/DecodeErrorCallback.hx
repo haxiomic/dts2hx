@@ -1,5 +1,5 @@
 package ts.html;
 typedef DecodeErrorCallback = {
 	@:selfCall
-	function call(error:IDOMException):Void;
+	function call(error:DOMException):Void;
 };

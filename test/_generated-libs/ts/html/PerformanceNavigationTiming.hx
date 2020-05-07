@@ -36,5 +36,5 @@ package ts.html;
 	final entryType : String;
 	final name : String;
 	final startTime : Float;
-	static var prototype : IPerformanceNavigationTiming;
+	static var prototype : PerformanceNavigationTiming;
 }

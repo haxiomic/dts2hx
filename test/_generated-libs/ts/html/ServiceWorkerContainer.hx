@@ -4,14 +4,14 @@ package ts.html;
 **/
 @:native("ServiceWorkerContainer") extern class ServiceWorkerContainer {
 	function new();
-	final controller : Null<IServiceWorker>;
-	var oncontrollerchange : Null<(ev:IEvent) -> Dynamic>;
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
-	var onmessageerror : Null<(ev:IMessageEvent) -> Dynamic>;
-	final ready : ts.lib.IPromise<IServiceWorkerRegistration>;
-	function getRegistration(?clientURL:String):ts.lib.IPromise<Null<IServiceWorkerRegistration>>;
-	function getRegistrations():ts.lib.IPromise<ts.lib.ReadonlyArray<IServiceWorkerRegistration>>;
-	function register(scriptURL:String, ?options:RegistrationOptions):ts.lib.IPromise<IServiceWorkerRegistration>;
+	final controller : Null<ServiceWorker>;
+	var oncontrollerchange : Null<(ev:Event) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
+	var onmessageerror : Null<(ev:MessageEvent) -> Dynamic>;
+	final ready : ts.lib.Promise<ServiceWorkerRegistration>;
+	function getRegistration(?clientURL:String):ts.lib.Promise<Null<ServiceWorkerRegistration>>;
+	function getRegistrations():ts.lib.Promise<ts.lib.ReadonlyArray<ServiceWorkerRegistration>>;
+	function register(scriptURL:String, ?options:RegistrationOptions):ts.lib.Promise<ServiceWorkerRegistration>;
 	function startMessages():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -50,6 +50,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IServiceWorkerContainer;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : ServiceWorkerContainer;
 }

@@ -9,6 +9,6 @@ package ts.html;
 	final label : String;
 	var language : String;
 	var selected : Bool;
-	final sourceBuffer : Null<ISourceBuffer>;
-	static var prototype : IVideoTrack;
+	final sourceBuffer : Null<SourceBuffer>;
+	static var prototype : VideoTrack;
 }

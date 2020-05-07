@@ -3,20 +3,20 @@ package ts.html;
 	This Fetch API interface represents the response to a request.
 **/
 typedef IResponse = {
-	final headers : ts.lib.IHeaders;
+	final headers : Headers;
 	final ok : Bool;
 	final redirected : Bool;
 	final status : Float;
 	final statusText : String;
-	final trailer : ts.lib.IPromise<ts.lib.IHeaders>;
+	final trailer : ts.lib.Promise<Headers>;
 	final type : ResponseType;
 	final url : String;
-	function clone():IResponse;
-	final body : Null<IReadableStream<ts.lib.IUint8Array>>;
+	function clone():Response;
+	final body : Null<ReadableStream<ts.lib.Uint8Array>>;
 	final bodyUsed : Bool;
-	function arrayBuffer():ts.lib.IPromise<ts.lib.IArrayBuffer>;
-	function blob():ts.lib.IPromise<IBlob>;
-	function formData():ts.lib.IPromise<ts.lib.IFormData>;
-	function json():ts.lib.IPromise<Dynamic>;
-	function text():ts.lib.IPromise<String>;
+	function arrayBuffer():ts.lib.Promise<ts.lib.ArrayBuffer>;
+	function blob():ts.lib.Promise<Blob>;
+	function formData():ts.lib.Promise<FormData>;
+	function json():ts.lib.Promise<Dynamic>;
+	function text():ts.lib.Promise<String>;
 };

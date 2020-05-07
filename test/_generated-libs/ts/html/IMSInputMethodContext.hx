@@ -2,11 +2,11 @@ package ts.html;
 typedef IMSInputMethodContext = {
 	final compositionEndOffset : Float;
 	final compositionStartOffset : Float;
-	var oncandidatewindowhide : Null<(ev:IEvent) -> Dynamic>;
-	var oncandidatewindowshow : Null<(ev:IEvent) -> Dynamic>;
-	var oncandidatewindowupdate : Null<(ev:IEvent) -> Dynamic>;
-	final target : IHTMLElement;
-	function getCandidateWindowClientRect():IClientRect;
+	var oncandidatewindowhide : Null<(ev:Event) -> Dynamic>;
+	var oncandidatewindowshow : Null<(ev:Event) -> Dynamic>;
+	var oncandidatewindowupdate : Null<(ev:Event) -> Dynamic>;
+	final target : HTMLElement;
+	function getCandidateWindowClientRect():ClientRect;
 	function getCompositionAlternatives():Array<String>;
 	function hasComposition():Bool;
 	function isCandidateWindowVisible():Bool;
@@ -47,5 +47,5 @@ typedef IMSInputMethodContext = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

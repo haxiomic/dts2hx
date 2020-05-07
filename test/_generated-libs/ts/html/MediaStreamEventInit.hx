@@ -1,7 +1,7 @@
 package ts.html;
 typedef MediaStreamEventInit = {
 	@:optional
-	var stream : IMediaStream;
+	var stream : MediaStream;
 	@:optional
 	var bubbles : Bool;
 	@:optional

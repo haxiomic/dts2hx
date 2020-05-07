@@ -11,5 +11,5 @@ package ts.html;
 	var sentAlert : Null<Float>;
 	@:optional
 	var stack : String;
-	static var prototype : IRTCError;
+	static var prototype : RTCError;
 }

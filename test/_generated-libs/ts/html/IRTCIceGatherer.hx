@@ -1,9 +1,9 @@
 package ts.html;
 typedef IRTCIceGatherer = {
 	final component : RTCIceComponent;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onlocalcandidate : Null<(ev:IRTCIceGathererEvent) -> Dynamic>;
-	function createAssociatedGatherer():IRTCIceGatherer;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onlocalcandidate : Null<(ev:RTCIceGathererEvent) -> Dynamic>;
+	function createAssociatedGatherer():RTCIceGatherer;
 	function getLocalCandidates():Array<RTCIceCandidateDictionary>;
 	function getLocalParameters():RTCIceParameters;
 	/**
@@ -40,10 +40,10 @@ typedef IRTCIceGatherer = {
 	**/
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
-	function msGetStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
+	function getStats():ts.lib.Promise<RTCStatsReport>;
+	function msGetStats():ts.lib.Promise<RTCStatsReport>;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

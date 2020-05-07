@@ -7,7 +7,7 @@ package ts.html;
 	/**
 		Returns the first element within node's descendants whose ID is elementId.
 	**/
-	function getElementById(elementId:String):Null<IHTMLElement>;
+	function getElementById(elementId:String):Null<HTMLElement>;
 	/**
 		Returns node's node document's document base URL.
 	**/
@@ -15,7 +15,7 @@ package ts.html;
 	/**
 		Returns the children.
 	**/
-	final childNodes : ts.lib.NodeListOf<ChildNode>;
+	final childNodes : NodeListOf<ChildNode>;
 	/**
 		Returns the first child.
 	**/
@@ -45,11 +45,11 @@ package ts.html;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<IDocument>;
+	final ownerDocument : Null<Document>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<IHTMLElement>;
+	final parentElement : Null<HTMLElement>;
 	/**
 		Returns the parent.
 	**/
@@ -57,36 +57,36 @@ package ts.html;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<INode>;
+	final previousSibling : Null<Node>;
 	var textContent : Null<String>;
 	function appendChild<T>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):INode;
+	function cloneNode(?deep:Bool):Node;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:INode):Float;
+	function compareDocumentPosition(other:Node):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<INode>):Bool;
+	function contains(other:Null<Node>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):INode;
+	function getRootNode(?options:GetRootNodeOptions):Node;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T>(newChild:T, refChild:Null<INode>):T;
+	function insertBefore<T>(newChild:T, refChild:Null<Node>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<INode>):Bool;
-	function isSameNode(otherNode:Null<INode>):Bool;
+	function isEqualNode(otherNode:Null<Node>):Bool;
+	function isSameNode(otherNode:Null<Node>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
@@ -94,7 +94,7 @@ package ts.html;
 	**/
 	function normalize():Void;
 	function removeChild<T>(oldChild:T):T;
-	function replaceChild<T>(newChild:INode, oldChild:T):T;
+	function replaceChild<T>(newChild:Node, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -169,7 +169,7 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
@@ -178,27 +178,27 @@ package ts.html;
 	/**
 		Returns the child elements.
 	**/
-	final children : IHTMLCollection;
+	final children : HTMLCollection;
 	/**
 		Returns the first child that is an element, and null otherwise.
 	**/
-	final firstElementChild : Null<IElement>;
+	final firstElementChild : Null<Element>;
 	/**
 		Returns the last child that is an element, and null otherwise.
 	**/
-	final lastElementChild : Null<IElement>;
+	final lastElementChild : Null<Element>;
 	/**
 		Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function append(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function prepend(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Returns the first element that is a descendant of node that matches selectors.
 	**/
@@ -208,8 +208,8 @@ package ts.html;
 	/**
 		Returns all element descendants of node that match selectors.
 	**/
-	@:overload(function<K>(selectors:K):ts.lib.NodeListOf<Dynamic> { })
-	@:overload(function<E>(selectors:String):ts.lib.NodeListOf<E> { })
-	function querySelectorAll<K>(selectors:K):ts.lib.NodeListOf<Dynamic>;
-	static var prototype : IDocumentFragment;
+	@:overload(function<K>(selectors:K):NodeListOf<Dynamic> { })
+	@:overload(function<E>(selectors:String):NodeListOf<E> { })
+	function querySelectorAll<K>(selectors:K):NodeListOf<Dynamic>;
+	static var prototype : DocumentFragment;
 }

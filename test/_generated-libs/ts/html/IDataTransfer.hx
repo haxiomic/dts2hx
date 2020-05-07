@@ -22,11 +22,11 @@ typedef IDataTransfer = {
 	/**
 		Returns a FileList of the files being dragged, if any.
 	**/
-	final files : ts.lib.IFileList;
+	final files : FileList;
 	/**
 		Returns a DataTransferItemList object, with the drag data.
 	**/
-	final items : ts.lib.IDataTransferItemList;
+	final items : DataTransferItemList;
 	/**
 		Returns a frozen array listing the formats that were set in the dragstart event. In addition, if any files are being dragged, then one of the types will be the string "Files".
 	**/
@@ -46,5 +46,5 @@ typedef IDataTransfer = {
 	/**
 		Uses the given element to update the drag feedback, replacing any previously specified feedback.
 	**/
-	function setDragImage(image:IElement, x:Float, y:Float):Void;
+	function setDragImage(image:Element, x:Float, y:Float):Void;
 };

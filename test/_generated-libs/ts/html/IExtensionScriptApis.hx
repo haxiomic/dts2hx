@@ -6,7 +6,7 @@ typedef IExtensionScriptApis = {
 	function genericSynchronousFunction(functionId:Float, ?parameters:String):String;
 	function genericWebRuntimeCallout(to:Dynamic, from:Dynamic, payload:String):Void;
 	function getExtensionId():String;
-	function registerGenericFunctionCallbackHandler(callbackHandler:ts.lib.IFunction):Void;
-	function registerGenericPersistentCallbackHandler(callbackHandler:ts.lib.IFunction):Void;
-	function registerWebRuntimeCallbackHandler(handler:ts.lib.IFunction):Dynamic;
+	function registerGenericFunctionCallbackHandler(callbackHandler:ts.lib.Function):Void;
+	function registerGenericPersistentCallbackHandler(callbackHandler:ts.lib.Function):Void;
+	function registerWebRuntimeCallbackHandler(handler:ts.lib.Function):Dynamic;
 };

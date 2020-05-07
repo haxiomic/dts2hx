@@ -8,7 +8,7 @@ package ts.html;
 	/**
 		Returns range's end node.
 	**/
-	final endContainer : INode;
+	final endContainer : Node;
 	/**
 		Returns range's end offset.
 	**/
@@ -16,10 +16,10 @@ package ts.html;
 	/**
 		Returns range's start node.
 	**/
-	final startContainer : INode;
+	final startContainer : Node;
 	/**
 		Returns range's start offset.
 	**/
 	final startOffset : Float;
-	static var prototype : IAbstractRange;
+	static var prototype : AbstractRange;
 }

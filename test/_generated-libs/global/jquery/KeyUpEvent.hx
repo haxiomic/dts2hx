@@ -47,12 +47,12 @@ typedef KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Bool;
 	var shiftKey : Bool;
 	@:optional
-	var originalEvent : ts.html.IKeyboardEvent;
+	var originalEvent : ts.html.KeyboardEvent;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.IWindow;
+	var view : ts.html.Window;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

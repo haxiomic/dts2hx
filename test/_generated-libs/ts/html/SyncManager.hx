@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SyncManager") extern class SyncManager {
 	function new();
-	function getTags():ts.lib.IPromise<Array<String>>;
-	function register(tag:String):ts.lib.IPromise<Void>;
-	static var prototype : ISyncManager;
+	function getTags():ts.lib.Promise<Array<String>>;
+	function register(tag:String):ts.lib.Promise<Void>;
+	static var prototype : SyncManager;
 }

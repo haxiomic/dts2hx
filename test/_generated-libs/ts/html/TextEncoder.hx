@@ -7,14 +7,14 @@ package ts.html;
 	/**
 		Returns the result of running UTF-8's encoder.
 	**/
-	function encode(?input:String):ts.lib.IUint8Array;
+	function encode(?input:String):ts.lib.Uint8Array;
 	/**
 		Runs the UTF-8 encoder on source, stores the result of that operation into destination, and returns the progress made as a dictionary whereby read is the number of converted code units of source and written is the number of bytes modified in destination.
 	**/
-	function encodeInto(source:String, destination:ts.lib.IUint8Array):TextEncoderEncodeIntoResult;
+	function encodeInto(source:String, destination:ts.lib.Uint8Array):TextEncoderEncodeIntoResult;
 	/**
 		Returns "utf-8".
 	**/
 	final encoding : String;
-	static var prototype : ITextEncoder;
+	static var prototype : TextEncoder;
 }

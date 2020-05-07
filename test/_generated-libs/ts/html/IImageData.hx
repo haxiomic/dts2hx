@@ -6,7 +6,7 @@ typedef IImageData = {
 	/**
 		Returns the one-dimensional array containing the data in RGBA order, as integers in the range 0 to 255.
 	**/
-	final data : ts.lib.IUint8ClampedArray;
+	final data : ts.lib.Uint8ClampedArray;
 	/**
 		Returns the actual dimensions of the data in the ImageData object, in pixels.
 	**/

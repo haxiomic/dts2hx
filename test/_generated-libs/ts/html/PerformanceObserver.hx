@@ -4,6 +4,6 @@ package ts.html;
 	function disconnect():Void;
 	function observe(?options:PerformanceObserverInit):Void;
 	function takeRecords():PerformanceEntryList;
-	static var prototype : IPerformanceObserver;
+	static var prototype : PerformanceObserver;
 	static final supportedEntryTypes : ts.lib.ReadonlyArray<String>;
 }

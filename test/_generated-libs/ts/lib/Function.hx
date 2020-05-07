@@ -27,13 +27,13 @@ package ts.lib;
 	var prototype : Dynamic;
 	final length : Float;
 	var arguments : Dynamic;
-	var caller : IFunction;
+	var caller : Function;
 	/**
 		Returns the name of the function. Function names are read-only and can not be changed.
 	**/
 	final name : String;
 	@:selfCall
-	static function call_(args:haxe.extern.Rest<String>):IFunction;
+	static function call_(args:haxe.extern.Rest<String>):Function;
 	@:native("prototype")
-	static final prototype_ : IFunction;
+	static final prototype_ : Function;
 }

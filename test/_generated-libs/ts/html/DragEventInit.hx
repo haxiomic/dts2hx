@@ -1,7 +1,7 @@
 package ts.html;
 typedef DragEventInit = {
 	@:optional
-	var dataTransfer : IDataTransfer;
+	var dataTransfer : DataTransfer;
 	@:optional
 	var button : Float;
 	@:optional
@@ -15,7 +15,7 @@ typedef DragEventInit = {
 	@:optional
 	var movementY : Float;
 	@:optional
-	var relatedTarget : IEventTarget;
+	var relatedTarget : EventTarget;
 	@:optional
 	var screenX : Float;
 	@:optional
@@ -51,7 +51,7 @@ typedef DragEventInit = {
 	@:optional
 	var detail : Float;
 	@:optional
-	var view : IWindow;
+	var view : Window;
 	@:optional
 	var bubbles : Bool;
 	@:optional

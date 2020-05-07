@@ -2,7 +2,7 @@ package ts.html;
 @:native("RTCDTMFSender") extern class RTCDTMFSender {
 	function new();
 	final canInsertDTMF : Bool;
-	var ontonechange : Null<(ev:IRTCDTMFToneChangeEvent) -> Dynamic>;
+	var ontonechange : Null<(ev:RTCDTMFToneChangeEvent) -> Dynamic>;
 	final toneBuffer : String;
 	function insertDTMF(tones:String, ?duration:Float, ?interToneGap:Float):Void;
 	/**
@@ -42,6 +42,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IRTCDTMFSender;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : RTCDTMFSender;
 }

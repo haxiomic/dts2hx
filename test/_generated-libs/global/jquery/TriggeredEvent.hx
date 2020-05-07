@@ -25,7 +25,7 @@ typedef TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	@:optional
 	var namespace : String;
 	@:optional
-	var originalEvent : ts.html.IEvent;
+	var originalEvent : ts.html.Event;
 	/**
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
@@ -35,7 +35,7 @@ typedef TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var cancelable : Null<Bool>;
 	var eventPhase : Null<Float>;
 	var detail : Null<Float>;
-	var view : Null<ts.html.IWindow>;
+	var view : Null<ts.html.Window>;
 	var button : Null<Float>;
 	var buttons : Null<Float>;
 	var clientX : Null<Float>;
@@ -52,16 +52,16 @@ typedef TriggeredEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var pageY : Null<Float>;
 	var screenX : Null<Float>;
 	var screenY : Null<Float>;
-	var toElement : Null<ts.html.IElement>;
+	var toElement : Null<ts.html.Element>;
 	var pointerId : Null<Float>;
 	var pointerType : Null<String>;
 	var char : Null<String>;
 	var charCode : Null<Float>;
 	var key : Null<String>;
 	var keyCode : Null<Float>;
-	var changedTouches : Null<ts.lib.ITouchList>;
-	var targetTouches : Null<ts.lib.ITouchList>;
-	var touches : Null<ts.lib.ITouchList>;
+	var changedTouches : Null<ts.html.TouchList>;
+	var targetTouches : Null<ts.html.TouchList>;
+	var touches : Null<ts.html.TouchList>;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/

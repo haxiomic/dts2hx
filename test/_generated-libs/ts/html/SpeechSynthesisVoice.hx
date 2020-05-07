@@ -10,5 +10,5 @@ package ts.html;
 	final localService : Bool;
 	final name : String;
 	final voiceURI : String;
-	static var prototype : ISpeechSynthesisVoice;
+	static var prototype : SpeechSynthesisVoice;
 }

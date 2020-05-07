@@ -1,7 +1,7 @@
 package ts.html;
 typedef TrackEventInit = {
 	@:optional
-	var track : ts.AnyOf3<IAudioTrack, ITextTrack, IVideoTrack>;
+	var track : ts.AnyOf3<AudioTrack, TextTrack, VideoTrack>;
 	@:optional
 	var bubbles : Bool;
 	@:optional

@@ -8,5 +8,5 @@ typedef IAudioTrack = {
 	var kind : String;
 	final label : String;
 	var language : String;
-	final sourceBuffer : Null<ISourceBuffer>;
+	final sourceBuffer : Null<SourceBuffer>;
 };

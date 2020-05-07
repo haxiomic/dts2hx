@@ -1,2 +1,2 @@
 package big_js;
-typedef Big_ = IBig;
+typedef Big_ = Big;

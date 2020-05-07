@@ -14,7 +14,7 @@ package three;
 	var normalized : Bool;
 	var needsUpdate : Bool;
 	var count : Float;
-	var onUpload : ts.lib.IFunction;
+	var onUpload : ts.lib.Function;
 	function setArray(?array:ts.lib.ArrayBufferView):Void;
 	function setDynamic(dynamic_:Bool):BufferAttribute;
 	function clone():BufferAttribute;

@@ -4,9 +4,9 @@ package ts.html;
 **/
 @:native("DOMImplementation") extern class DOMImplementation {
 	function new();
-	function createDocument(namespaceURI:Null<String>, qualifiedName:Null<String>, doctype:Null<IDocumentType>):IDocument;
-	function createDocumentType(qualifiedName:String, publicId:String, systemId:String):IDocumentType;
-	function createHTMLDocument(?title:String):IDocument;
+	function createDocument(namespaceURI:Null<String>, qualifiedName:Null<String>, doctype:Null<DocumentType>):Document;
+	function createDocumentType(qualifiedName:String, publicId:String, systemId:String):DocumentType;
+	function createHTMLDocument(?title:String):Document;
 	function hasFeature(args:haxe.extern.Rest<Dynamic>):Bool;
-	static var prototype : IDOMImplementation;
+	static var prototype : DOMImplementation;
 }

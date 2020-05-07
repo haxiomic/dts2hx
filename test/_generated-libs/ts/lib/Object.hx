@@ -7,7 +7,7 @@ package ts.lib;
 	/**
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/
-	var constructor : IFunction;
+	var constructor : Function;
 	/**
 		Returns a string representation of an object.
 	**/
@@ -19,7 +19,7 @@ package ts.lib;
 	/**
 		Returns the primitive value of the specified object.
 	**/
-	function valueOf():IObject;
+	function valueOf():Object;
 	/**
 		Determines whether an object has a property with the specified name.
 	**/
@@ -27,7 +27,7 @@ package ts.lib;
 	/**
 		Determines whether an object exists in another object's prototype chain.
 	**/
-	function isPrototypeOf(v:IObject):Bool;
+	function isPrototypeOf(v:Object):Bool;
 	/**
 		Determines whether a specified property is enumerable.
 	**/
@@ -38,7 +38,7 @@ package ts.lib;
 	/**
 		A reference to the prototype for a class of objects.
 	**/
-	static final prototype : IObject;
+	static final prototype : Object;
 	/**
 		Returns the prototype of an object.
 	**/

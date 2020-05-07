@@ -9,5 +9,5 @@ package ts.html;
 	final name : String;
 	final startTime : Float;
 	function toJSON():Dynamic;
-	static var prototype : IPerformanceEntry;
+	static var prototype : PerformanceEntry;
 }

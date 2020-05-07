@@ -7,7 +7,7 @@ typedef IAudioBuffer = {
 	final length : Float;
 	final numberOfChannels : Float;
 	final sampleRate : Float;
-	function copyFromChannel(destination:ts.lib.IFloat32Array, channelNumber:Float, ?startInChannel:Float):Void;
-	function copyToChannel(source:ts.lib.IFloat32Array, channelNumber:Float, ?startInChannel:Float):Void;
-	function getChannelData(channel:Float):ts.lib.IFloat32Array;
+	function copyFromChannel(destination:ts.lib.Float32Array, channelNumber:Float, ?startInChannel:Float):Void;
+	function copyToChannel(source:ts.lib.Float32Array, channelNumber:Float, ?startInChannel:Float):Void;
+	function getChannelData(channel:Float):ts.lib.Float32Array;
 };

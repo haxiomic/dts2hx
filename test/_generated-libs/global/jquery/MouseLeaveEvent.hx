@@ -8,7 +8,7 @@ typedef MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : ts.html.IEventTarget;
+	var relatedTarget : ts.html.EventTarget;
 	var button : Float;
 	var buttons : Float;
 	var clientX : Float;
@@ -25,7 +25,7 @@ typedef MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var pageY : Float;
 	var screenX : Float;
 	var screenY : Float;
-	var toElement : ts.html.IElement;
+	var toElement : ts.html.Element;
 	var pointerId : Null<Any>;
 	var pointerType : Null<Any>;
 	var char : Null<Any>;
@@ -47,12 +47,12 @@ typedef MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Bool;
 	var shiftKey : Bool;
 	@:optional
-	var originalEvent : ts.html.IMouseEvent;
+	var originalEvent : ts.html.MouseEvent;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.IWindow;
+	var view : ts.html.Window;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

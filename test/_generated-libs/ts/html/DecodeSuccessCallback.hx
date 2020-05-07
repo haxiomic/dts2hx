@@ -1,5 +1,5 @@
 package ts.html;
 typedef DecodeSuccessCallback = {
 	@:selfCall
-	function call(decodedData:IAudioBuffer):Void;
+	function call(decodedData:AudioBuffer):Void;
 };

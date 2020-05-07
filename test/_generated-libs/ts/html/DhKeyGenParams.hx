@@ -1,6 +1,6 @@
 package ts.html;
 typedef DhKeyGenParams = {
-	var generator : ts.lib.IUint8Array;
-	var prime : ts.lib.IUint8Array;
+	var generator : ts.lib.Uint8Array;
+	var prime : ts.lib.Uint8Array;
 	var name : String;
 };

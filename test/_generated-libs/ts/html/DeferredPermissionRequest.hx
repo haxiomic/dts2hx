@@ -6,5 +6,5 @@ package ts.html;
 	final uri : String;
 	function allow():Void;
 	function deny():Void;
-	static var prototype : IDeferredPermissionRequest;
+	static var prototype : DeferredPermissionRequest;
 }

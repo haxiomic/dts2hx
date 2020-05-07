@@ -11,7 +11,7 @@ package node;
 	static function networkInterfaces():{ };
 	static function homedir():String;
 	@:overload(function(?options:{ var encoding : String; }):node.os.UserInfo<String> { })
-	static function userInfo(options:{ var encoding : String; }):node.os.UserInfo<global.IBuffer>;
+	static function userInfo(options:{ var encoding : String; }):node.os.UserInfo<global.Buffer>;
 	static function arch():String;
 	static function platform():global.nodejs.Platform;
 	static function tmpdir():String;

@@ -5,6 +5,6 @@ typedef IntersectionObserverEntryInit = {
 	var intersectionRect : DOMRectInit;
 	var isIntersecting : Bool;
 	var rootBounds : Null<DOMRectInit>;
-	var target : IElement;
+	var target : Element;
 	var time : Float;
 };

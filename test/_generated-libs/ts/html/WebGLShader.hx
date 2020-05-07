@@ -4,5 +4,5 @@ package ts.html;
 **/
 @:native("WebGLShader") extern class WebGLShader {
 	function new();
-	static var prototype : IWebGLShader;
+	static var prototype : WebGLShader;
 }

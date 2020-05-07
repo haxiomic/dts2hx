@@ -2,7 +2,7 @@ package three;
 @:jsRequire("three", "ImmediateRenderObject") extern class ImmediateRenderObject extends Object3D {
 	function new(material:Material);
 	var material : Material;
-	function render(renderCallback:ts.lib.IFunction):Void;
+	function render(renderCallback:ts.lib.Function):Void;
 	function applyQuaternion(quaternion:Quaternion):ImmediateRenderObject;
 	/**
 		Rotate an object along an axis in object space. The axis is assumed to be normalized.

@@ -1,7 +1,7 @@
 package ts.html;
 typedef IMSMediaKeyMessageEvent = {
 	final destinationURL : Null<String>;
-	final message : ts.lib.IUint8Array;
+	final message : ts.lib.Uint8Array;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
 	**/
@@ -18,7 +18,7 @@ typedef IMSMediaKeyMessageEvent = {
 	/**
 		Returns the object whose event listener's callback is currently being invoked.
 	**/
-	final currentTarget : Null<IEventTarget>;
+	final currentTarget : Null<EventTarget>;
 	/**
 		Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
 	**/
@@ -32,11 +32,11 @@ typedef IMSMediaKeyMessageEvent = {
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<IEventTarget>;
+	final srcElement : Null<EventTarget>;
 	/**
 		Returns the object to which event is dispatched (its target).
 	**/
-	final target : Null<IEventTarget>;
+	final target : Null<EventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -48,7 +48,7 @@ typedef IMSMediaKeyMessageEvent = {
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():Array<IEventTarget>;
+	function composedPath():Array<EventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	/**
 		If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.

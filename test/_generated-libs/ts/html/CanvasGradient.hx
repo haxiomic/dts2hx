@@ -10,5 +10,5 @@ package ts.html;
 		Throws an "IndexSizeError" DOMException if the offset is out of range. Throws a "SyntaxError" DOMException if the color cannot be parsed.
 	**/
 	function addColorStop(offset:Float, color:String):Void;
-	static var prototype : ICanvasGradient;
+	static var prototype : CanvasGradient;
 }

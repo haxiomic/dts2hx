@@ -17,7 +17,7 @@ typedef IOffscreenCanvas = {
 		
 		The argument, if provided, is a dictionary that controls the encoding options of the image file to be created. The type field specifies the file format and has a default value of "image/png"; that type is also used if the requested type isn't supported. If the image format supports variable quality (such as "image/jpeg"), then the quality field is a number in the range 0.0 to 1.0 inclusive indicating the desired quality level for the resulting image.
 	**/
-	function convertToBlob(?options:ImageEncodeOptions):ts.lib.IPromise<IBlob>;
+	function convertToBlob(?options:ImageEncodeOptions):ts.lib.Promise<Blob>;
 	/**
 		Returns an object that exposes an API for drawing on the OffscreenCanvas object. contextId specifies the desired API: "2d", "bitmaprenderer", "webgl", or "webgl2". options is handled by that API.
 		
@@ -25,15 +25,15 @@ typedef IOffscreenCanvas = {
 		
 		Returns null if the canvas has already been initialized with another context type (e.g., trying to get a "2d" context after getting a "webgl" context).
 	**/
-	@:overload(function(contextId:String, ?options:ImageBitmapRenderingContextSettings):Null<IImageBitmapRenderingContext> { })
-	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGLRenderingContext> { })
-	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<IWebGL2RenderingContext> { })
-	@:overload(function(contextId:OffscreenRenderingContextId, ?options:Dynamic):Null<ts.AnyOf4<IImageBitmapRenderingContext, IOffscreenCanvasRenderingContext2D, IWebGL2RenderingContext, IWebGLRenderingContext>> { })
-	function getContext(contextId:String, ?options:CanvasRenderingContext2DSettings):Null<IOffscreenCanvasRenderingContext2D>;
+	@:overload(function(contextId:String, ?options:ImageBitmapRenderingContextSettings):Null<ImageBitmapRenderingContext> { })
+	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<WebGLRenderingContext> { })
+	@:overload(function(contextId:String, ?options:WebGLContextAttributes):Null<WebGL2RenderingContext> { })
+	@:overload(function(contextId:OffscreenRenderingContextId, ?options:Dynamic):Null<ts.AnyOf4<ImageBitmapRenderingContext, OffscreenCanvasRenderingContext2D, WebGL2RenderingContext, WebGLRenderingContext>> { })
+	function getContext(contextId:String, ?options:CanvasRenderingContext2DSettings):Null<OffscreenCanvasRenderingContext2D>;
 	/**
 		Returns a newly created ImageBitmap object with the image in the OffscreenCanvas object. The image in the OffscreenCanvas object is replaced with a new blank image.
 	**/
-	function transferToImageBitmap():IImageBitmap;
+	function transferToImageBitmap():ImageBitmap;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -51,7 +51,7 @@ typedef IOffscreenCanvas = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/

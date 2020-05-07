@@ -3,5 +3,5 @@ typedef CredentialCreationOptions = {
 	@:optional
 	var publicKey : PublicKeyCredentialCreationOptions;
 	@:optional
-	var signal : IAbortSignal;
+	var signal : AbortSignal;
 };

@@ -5,7 +5,7 @@ typedef OscillatorOptions = {
 	@:optional
 	var frequency : Float;
 	@:optional
-	var periodicWave : IPeriodicWave;
+	var periodicWave : PeriodicWave;
 	@:optional
 	var type : String;
 	@:optional

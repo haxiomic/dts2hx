@@ -30,5 +30,5 @@ package ts.html;
 		Throws a "QuotaExceededError" DOMException exception if the new value couldn't be set. (Setting could fail if, e.g., the user has disabled storage for the site, or if the quota has been exceeded.)
 	**/
 	function setItem(key:String, value:String):Void;
-	static var prototype : IStorage;
+	static var prototype : Storage;
 }

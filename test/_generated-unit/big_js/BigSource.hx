@@ -1,2 +1,2 @@
 package big_js;
-typedef BigSource = ts.AnyOf3<String, Float, IBig>;
+typedef BigSource = ts.AnyOf3<String, Float, Big>;

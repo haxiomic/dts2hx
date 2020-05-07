@@ -3,7 +3,7 @@ typedef ArrayBufferView = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	var buffer : IArrayBuffer;
+	var buffer : ArrayBuffer;
 	/**
 		The length in bytes of the array.
 	**/

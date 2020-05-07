@@ -4,13 +4,13 @@ package ts.html;
 **/
 @:native("GamepadPose") extern class GamepadPose {
 	function new();
-	final angularAcceleration : Null<ts.lib.IFloat32Array>;
-	final angularVelocity : Null<ts.lib.IFloat32Array>;
+	final angularAcceleration : Null<ts.lib.Float32Array>;
+	final angularVelocity : Null<ts.lib.Float32Array>;
 	final hasOrientation : Bool;
 	final hasPosition : Bool;
-	final linearAcceleration : Null<ts.lib.IFloat32Array>;
-	final linearVelocity : Null<ts.lib.IFloat32Array>;
-	final orientation : Null<ts.lib.IFloat32Array>;
-	final position : Null<ts.lib.IFloat32Array>;
-	static var prototype : IGamepadPose;
+	final linearAcceleration : Null<ts.lib.Float32Array>;
+	final linearVelocity : Null<ts.lib.Float32Array>;
+	final orientation : Null<ts.lib.Float32Array>;
+	final position : Null<ts.lib.Float32Array>;
+	static var prototype : GamepadPose;
 }

@@ -63,16 +63,16 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	var onabort : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onerror : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onload : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onloadstart : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var ontimeout : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onabort : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onerror : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onload : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onloadend : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onloadstart : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onprogress : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var ontimeout : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IXMLHttpRequestUpload;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : XMLHttpRequestUpload;
 }

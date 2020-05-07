@@ -3,15 +3,15 @@ package ts.html;
 	This Web Speech API interface is the controller interface for the speech service; this can be used to retrieve information about the synthesis voices available on the device, start and pause speech, and other commands besides.
 **/
 typedef ISpeechSynthesis = {
-	var onvoiceschanged : Null<(ev:IEvent) -> Dynamic>;
+	var onvoiceschanged : Null<(ev:Event) -> Dynamic>;
 	final paused : Bool;
 	final pending : Bool;
 	final speaking : Bool;
 	function cancel():Void;
-	function getVoices():Array<ISpeechSynthesisVoice>;
+	function getVoices():Array<SpeechSynthesisVoice>;
 	function pause():Void;
 	function resume():Void;
-	function speak(utterance:ISpeechSynthesisUtterance):Void;
+	function speak(utterance:SpeechSynthesisUtterance):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -49,5 +49,5 @@ typedef ISpeechSynthesis = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

@@ -3,5 +3,5 @@ package ts.html;
 	function new(?x:Float, ?y:Float);
 	var x : Float;
 	var y : Float;
-	static var prototype : IWebKitPoint;
+	static var prototype : WebKitPoint;
 }

@@ -4,13 +4,13 @@ package node.stream;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
+	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
 	@:optional
-	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
-	function _destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
-	function _final(callback:ts.AnyOf2<() -> Void, (error:ts.lib.IError) -> Void>):Void;
-	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool { })
-	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<ts.lib.IError>) -> Void):Bool;
+	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
+	function _destroy(error:Null<ts.lib.Error>, callback:(error:Null<ts.lib.Error>) -> Void):Void;
+	function _final(callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
+	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.Error>) -> Void):Bool { })
+	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<ts.lib.Error>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):Duplex;
 	@:overload(function(chunk:Dynamic, ?cb:() -> Void):Void { })
 	@:overload(function(chunk:Dynamic, ?encoding:String, ?cb:() -> Void):Void { })
@@ -34,37 +34,37 @@ package node.stream;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function addListener(event:String, listener:() -> Void):Duplex;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function on(event:String, listener:() -> Void):Duplex;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function once(event:String, listener:() -> Void):Duplex;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function prependListener(event:String, listener:() -> Void):Duplex;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function prependOnceListener(event:String, listener:() -> Void):Duplex;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
 	@:overload(function(event:String, listener:() -> Void):Duplex { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Duplex { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function removeListener(event:String, listener:() -> Void):Duplex;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex;

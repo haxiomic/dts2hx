@@ -4,5 +4,5 @@ package ts.html;
 **/
 typedef IGamepadHapticActuator = {
 	final type : String;
-	function pulse(value:Float, duration:Float):ts.lib.IPromise<Bool>;
+	function pulse(value:Float, duration:Float):ts.lib.Promise<Bool>;
 };

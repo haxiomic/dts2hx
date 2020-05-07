@@ -5,8 +5,8 @@ package ts.html;
 @:native("CSSRule") extern class CSSRule {
 	function new();
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -20,7 +20,7 @@ package ts.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : ICSSRule;
+	static var prototype : CSSRule;
 	@:native("CHARSET_RULE")
 	static final CHARSET_RULE_ : Float;
 	@:native("FONT_FACE_RULE")

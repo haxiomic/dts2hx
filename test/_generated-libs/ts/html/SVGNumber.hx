@@ -5,5 +5,5 @@ package ts.html;
 @:native("SVGNumber") extern class SVGNumber {
 	function new();
 	var value : Float;
-	static var prototype : ISVGNumber;
+	static var prototype : SVGNumber;
 }

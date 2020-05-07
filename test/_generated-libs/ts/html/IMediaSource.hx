@@ -3,17 +3,17 @@ package ts.html;
 	This Media Source Extensions API interface represents a source of media data for an HTMLMediaElement object. A MediaSource object can be attached to a HTMLMediaElement to be played in the user agent.
 **/
 typedef IMediaSource = {
-	final activeSourceBuffers : ts.lib.ISourceBufferList;
+	final activeSourceBuffers : SourceBufferList;
 	var duration : Float;
-	var onsourceclose : Null<(ev:IEvent) -> Dynamic>;
-	var onsourceended : Null<(ev:IEvent) -> Dynamic>;
-	var onsourceopen : Null<(ev:IEvent) -> Dynamic>;
+	var onsourceclose : Null<(ev:Event) -> Dynamic>;
+	var onsourceended : Null<(ev:Event) -> Dynamic>;
+	var onsourceopen : Null<(ev:Event) -> Dynamic>;
 	final readyState : ReadyState;
-	final sourceBuffers : ts.lib.ISourceBufferList;
-	function addSourceBuffer(type:String):ISourceBuffer;
+	final sourceBuffers : SourceBufferList;
+	function addSourceBuffer(type:String):SourceBuffer;
 	function clearLiveSeekableRange():Void;
 	function endOfStream(?error:String):Void;
-	function removeSourceBuffer(sourceBuffer:ISourceBuffer):Void;
+	function removeSourceBuffer(sourceBuffer:SourceBuffer):Void;
 	function setLiveSeekableRange(start:Float, end:Float):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -52,5 +52,5 @@ typedef IMediaSource = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

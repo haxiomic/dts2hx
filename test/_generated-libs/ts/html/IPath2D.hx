@@ -6,7 +6,7 @@ typedef IPath2D = {
 	/**
 		Adds to the path the path given by the argument.
 	**/
-	function addPath(path:IPath2D, ?transform:DOMMatrix2DInit):Void;
+	function addPath(path:Path2D, ?transform:DOMMatrix2DInit):Void;
 	function arc(x:Float, y:Float, radius:Float, startAngle:Float, endAngle:Float, ?anticlockwise:Bool):Void;
 	function arcTo(x1:Float, y1:Float, x2:Float, y2:Float, radius:Float):Void;
 	function bezierCurveTo(cp1x:Float, cp1y:Float, cp2x:Float, cp2y:Float, x:Float, y:Float):Void;

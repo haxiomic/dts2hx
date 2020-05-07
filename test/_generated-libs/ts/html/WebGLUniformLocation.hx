@@ -4,5 +4,5 @@ package ts.html;
 **/
 @:native("WebGLUniformLocation") extern class WebGLUniformLocation {
 	function new();
-	static var prototype : IWebGLUniformLocation;
+	static var prototype : WebGLUniformLocation;
 }

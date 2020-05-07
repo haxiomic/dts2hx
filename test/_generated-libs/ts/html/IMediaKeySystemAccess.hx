@@ -4,6 +4,6 @@ package ts.html;
 **/
 typedef IMediaKeySystemAccess = {
 	final keySystem : String;
-	function createMediaKeys():ts.lib.IPromise<IMediaKeys>;
+	function createMediaKeys():ts.lib.Promise<MediaKeys>;
 	function getConfiguration():MediaKeySystemConfiguration;
 };

@@ -4,5 +4,5 @@ package ts.html;
 **/
 @:native("WebGLBuffer") extern class WebGLBuffer {
 	function new();
-	static var prototype : IWebGLBuffer;
+	static var prototype : WebGLBuffer;
 }

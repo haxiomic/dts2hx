@@ -7,5 +7,5 @@ package ts.html;
 	final sdp : String;
 	final type : RTCSdpType;
 	function toJSON():Dynamic;
-	static var prototype : IRTCSessionDescription;
+	static var prototype : RTCSessionDescription;
 }

@@ -4,13 +4,13 @@ package ts.html;
 **/
 typedef ISVGTransformList = {
 	final numberOfItems : Float;
-	function appendItem(newItem:ISVGTransform):ISVGTransform;
+	function appendItem(newItem:SVGTransform):SVGTransform;
 	function clear():Void;
-	function consolidate():ISVGTransform;
-	function createSVGTransformFromMatrix(matrix:IDOMMatrix):ISVGTransform;
-	function getItem(index:Float):ISVGTransform;
-	function initialize(newItem:ISVGTransform):ISVGTransform;
-	function insertItemBefore(newItem:ISVGTransform, index:Float):ISVGTransform;
-	function removeItem(index:Float):ISVGTransform;
-	function replaceItem(newItem:ISVGTransform, index:Float):ISVGTransform;
+	function consolidate():SVGTransform;
+	function createSVGTransformFromMatrix(matrix:DOMMatrix):SVGTransform;
+	function getItem(index:Float):SVGTransform;
+	function initialize(newItem:SVGTransform):SVGTransform;
+	function insertItemBefore(newItem:SVGTransform, index:Float):SVGTransform;
+	function removeItem(index:Float):SVGTransform;
+	function replaceItem(newItem:SVGTransform, index:Float):SVGTransform;
 };

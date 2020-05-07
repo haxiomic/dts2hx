@@ -4,17 +4,17 @@ package ts.html;
 **/
 @:native("MediaKeySession") extern class MediaKeySession {
 	function new();
-	final closed : ts.lib.IPromise<Void>;
+	final closed : ts.lib.Promise<Void>;
 	final expiration : Float;
-	final keyStatuses : ts.lib.IMediaKeyStatusMap;
-	var onkeystatuseschange : Null<(ev:IEvent) -> Dynamic>;
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
+	final keyStatuses : MediaKeyStatusMap;
+	var onkeystatuseschange : Null<(ev:Event) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
 	final sessionId : String;
-	function close():ts.lib.IPromise<Void>;
-	function generateRequest(initDataType:String, initData:BufferSource):ts.lib.IPromise<Void>;
-	function load(sessionId:String):ts.lib.IPromise<Bool>;
-	function remove():ts.lib.IPromise<Void>;
-	function update(response:BufferSource):ts.lib.IPromise<Void>;
+	function close():ts.lib.Promise<Void>;
+	function generateRequest(initDataType:String, initData:BufferSource):ts.lib.Promise<Void>;
+	function load(sessionId:String):ts.lib.Promise<Bool>;
+	function remove():ts.lib.Promise<Void>;
+	function update(response:BufferSource):ts.lib.Promise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -52,6 +52,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IMediaKeySession;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : MediaKeySession;
 }

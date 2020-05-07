@@ -1,6 +1,6 @@
 package ts.lib;
 typedef Int16ArrayConstructor = {
-	final prototype : IInt16Array;
+	final prototype : Int16Array;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -8,7 +8,7 @@ typedef Int16ArrayConstructor = {
 	/**
 		Returns a new array from a set of elements.
 	**/
-	function of(items:haxe.extern.Rest<Float>):IInt16Array;
+	function of(items:haxe.extern.Rest<Float>):Int16Array;
 	/**
 		Creates an array from an array-like or iterable object.
 		
@@ -16,7 +16,7 @@ typedef Int16ArrayConstructor = {
 		
 		Creates an array from an array-like or iterable object.
 	**/
-	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):IInt16Array { })
-	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):IInt16Array { })
-	function from(arrayLike:ArrayLike<Float>):IInt16Array;
+	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):Int16Array { })
+	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):Int16Array { })
+	function from(arrayLike:ArrayLike<Float>):Int16Array;
 };

@@ -1,4 +1,4 @@
 package ts.lib;
 typedef MapConstructor = {
-	final prototype : IMap_<Dynamic, Dynamic>;
+	final prototype : Map_<Dynamic, Dynamic>;
 };

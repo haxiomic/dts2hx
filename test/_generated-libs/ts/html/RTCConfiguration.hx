@@ -3,7 +3,7 @@ typedef RTCConfiguration = {
 	@:optional
 	var bundlePolicy : String;
 	@:optional
-	var certificates : Array<IRTCCertificate>;
+	var certificates : Array<RTCCertificate>;
 	@:optional
 	var iceCandidatePoolSize : Float;
 	@:optional

@@ -4,5 +4,5 @@ package ts.html;
 	final type : String;
 	function msClose():Void;
 	function msDetachStream():Dynamic;
-	static var prototype : IMSStream;
+	static var prototype : MSStream;
 }

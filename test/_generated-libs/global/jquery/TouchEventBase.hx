@@ -28,9 +28,9 @@ typedef TouchEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var charCode : Null<Any>;
 	var key : Null<Any>;
 	var keyCode : Null<Any>;
-	var changedTouches : ts.lib.ITouchList;
-	var targetTouches : ts.lib.ITouchList;
-	var touches : ts.lib.ITouchList;
+	var changedTouches : ts.html.TouchList;
+	var targetTouches : ts.html.TouchList;
+	var touches : ts.html.TouchList;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/
@@ -43,12 +43,12 @@ typedef TouchEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Bool;
 	var shiftKey : Bool;
 	@:optional
-	var originalEvent : ts.html.ITouchEvent;
+	var originalEvent : ts.html.TouchEvent;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.IWindow;
+	var view : ts.html.Window;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

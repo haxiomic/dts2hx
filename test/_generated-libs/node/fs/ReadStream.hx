@@ -2,7 +2,7 @@ package node.fs;
 @:jsRequire("fs", "ReadStream") extern class ReadStream extends node.stream.Readable {
 	function close():Void;
 	var bytesRead : Float;
-	var path : ts.AnyOf2<String, global.IBuffer>;
+	var path : ts.AnyOf2<String, global.Buffer>;
 	/**
 		events.EventEmitter
 		   1. open
@@ -31,7 +31,7 @@ package node.fs;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream { })
 	function removeListener(event:String, listener:() -> Void):ReadStream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;

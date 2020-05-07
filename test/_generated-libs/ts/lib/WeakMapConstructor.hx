@@ -1,4 +1,4 @@
 package ts.lib;
 typedef WeakMapConstructor = {
-	final prototype : IWeakMap<Dynamic, Dynamic>;
+	final prototype : WeakMap<Dynamic, Dynamic>;
 };

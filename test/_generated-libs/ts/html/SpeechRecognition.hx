@@ -2,21 +2,21 @@ package ts.html;
 @:native("SpeechRecognition") extern class SpeechRecognition {
 	function new();
 	var continuous : Bool;
-	var grammars : ts.lib.ISpeechGrammarList;
+	var grammars : SpeechGrammarList;
 	var interimResults : Bool;
 	var lang : String;
 	var maxAlternatives : Float;
-	var onaudioend : Null<(ev:IEvent) -> Dynamic>;
-	var onaudiostart : Null<(ev:IEvent) -> Dynamic>;
-	var onend : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:ISpeechRecognitionError) -> Dynamic>;
-	var onnomatch : Null<(ev:ISpeechRecognitionEvent) -> Dynamic>;
-	var onresult : Null<(ev:ISpeechRecognitionEvent) -> Dynamic>;
-	var onsoundend : Null<(ev:IEvent) -> Dynamic>;
-	var onsoundstart : Null<(ev:IEvent) -> Dynamic>;
-	var onspeechend : Null<(ev:IEvent) -> Dynamic>;
-	var onspeechstart : Null<(ev:IEvent) -> Dynamic>;
-	var onstart : Null<(ev:IEvent) -> Dynamic>;
+	var onaudioend : Null<(ev:Event) -> Dynamic>;
+	var onaudiostart : Null<(ev:Event) -> Dynamic>;
+	var onend : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:SpeechRecognitionError) -> Dynamic>;
+	var onnomatch : Null<(ev:SpeechRecognitionEvent) -> Dynamic>;
+	var onresult : Null<(ev:SpeechRecognitionEvent) -> Dynamic>;
+	var onsoundend : Null<(ev:Event) -> Dynamic>;
+	var onsoundstart : Null<(ev:Event) -> Dynamic>;
+	var onspeechend : Null<(ev:Event) -> Dynamic>;
+	var onspeechstart : Null<(ev:Event) -> Dynamic>;
+	var onstart : Null<(ev:Event) -> Dynamic>;
 	var serviceURI : String;
 	function abort():Void;
 	function start():Void;
@@ -58,6 +58,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : ISpeechRecognition;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : SpeechRecognition;
 }

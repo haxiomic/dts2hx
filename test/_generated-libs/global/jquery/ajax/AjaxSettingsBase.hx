@@ -29,7 +29,7 @@ typedef AjaxSettingsBase<TContext> = {
 		An object of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.
 	**/
 	@:optional
-	var contents : global.jquery.PlainObject<ts.lib.IRegExp>;
+	var contents : global.jquery.PlainObject<ts.lib.RegExp>;
 	/**
 		When sending data to the server, use this content type. Default is "application/x-www-form-urlencoded; charset=UTF-8", which is fine for most cases. If you explicitly pass in a content-type to $.ajax(), then it is always sent to the server (even if no data is sent). As of jQuery 1.6 you can pass false to tell jQuery to not set any content type header. Note: The W3C XMLHttpRequest specification dictates that the charset is always UTF-8; specifying another charset will not force the browser to change the encoding. Note: For cross-domain requests, setting the content type to anything other than application/x-www-form-urlencoded, multipart/form-data, or text/plain will trigger the browser to send a preflight OPTIONS request to the server.
 	**/
@@ -175,7 +175,7 @@ typedef AjaxSettingsBase<TContext> = {
 		Callback for creating the XMLHttpRequest object. Defaults to the ActiveXObject when available (IE), the XMLHttpRequest otherwise. Override to provide your own implementation for XMLHttpRequest or enhancements to the factory.
 	**/
 	@:optional
-	function xhr():ts.html.IXMLHttpRequest;
+	function xhr():ts.html.XMLHttpRequest;
 	/**
 		An object of fieldName-fieldValue pairs to set on the native XHR object.
 		

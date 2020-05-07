@@ -5,12 +5,12 @@ typedef IVTTCue = {
 	var lineAlign : LineAlignSetting;
 	var position : LineAndPositionSetting;
 	var positionAlign : PositionAlignSetting;
-	var region : Null<IVTTRegion>;
+	var region : Null<VTTRegion>;
 	var size : Float;
 	var snapToLines : Bool;
 	var text : String;
 	var vertical : DirectionSetting;
-	function getCueAsHTML():IDocumentFragment;
+	function getCueAsHTML():DocumentFragment;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -75,13 +75,13 @@ typedef IVTTCue = {
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	var endTime : Float;
 	var id : String;
-	var onenter : Null<(ev:IEvent) -> Dynamic>;
-	var onexit : Null<(ev:IEvent) -> Dynamic>;
+	var onenter : Null<(ev:Event) -> Dynamic>;
+	var onexit : Null<(ev:Event) -> Dynamic>;
 	var pauseOnExit : Bool;
 	var startTime : Float;
-	final track : ITextTrack;
+	final track : TextTrack;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

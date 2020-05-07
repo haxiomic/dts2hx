@@ -6,5 +6,5 @@ package ts.html;
 	function new(options:{ var highWaterMark : Float; });
 	var highWaterMark : Float;
 	function size(chunk:Dynamic):Int;
-	static var prototype : ICountQueuingStrategy;
+	static var prototype : CountQueuingStrategy;
 }

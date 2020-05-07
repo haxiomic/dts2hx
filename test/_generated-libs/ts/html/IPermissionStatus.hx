@@ -1,6 +1,6 @@
 package ts.html;
 typedef IPermissionStatus = {
-	var onchange : Null<(ev:IEvent) -> Dynamic>;
+	var onchange : Null<(ev:Event) -> Dynamic>;
 	final state : PermissionState;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -39,5 +39,5 @@ typedef IPermissionStatus = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

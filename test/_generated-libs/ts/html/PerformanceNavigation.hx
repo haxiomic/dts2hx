@@ -11,7 +11,7 @@ package ts.html;
 	final TYPE_NAVIGATE : Float;
 	final TYPE_RELOAD : Float;
 	final TYPE_RESERVED : Float;
-	static var prototype : IPerformanceNavigation;
+	static var prototype : PerformanceNavigation;
 	@:native("TYPE_BACK_FORWARD")
 	static final TYPE_BACK_FORWARD_ : Float;
 	@:native("TYPE_NAVIGATE")

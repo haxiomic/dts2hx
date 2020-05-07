@@ -48,7 +48,7 @@ package node.http2;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerRequest { })
-	@:overload(function(event:String, listener:(err:ts.lib.IError) -> Void):Http2ServerRequest { })
+	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2ServerRequest { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest { })
 	function removeListener(event:String, listener:() -> Void):Http2ServerRequest;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest;

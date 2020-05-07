@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("Crypto") extern class Crypto {
 	function new();
-	final subtle : ISubtleCrypto;
+	final subtle : SubtleCrypto;
 	function getRandomValues<T>(array:T):T;
-	static var prototype : ICrypto;
+	static var prototype : Crypto;
 }

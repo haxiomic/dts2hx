@@ -15,7 +15,7 @@ package node.readline;
 	function pause():Interface;
 	function resume():Interface;
 	function close():Void;
-	function write(data:ts.AnyOf2<String, global.IBuffer>, ?key:Key):Void;
+	function write(data:ts.AnyOf2<String, global.Buffer>, ?key:Key):Void;
 	/**
 		events.EventEmitter
 		1. close

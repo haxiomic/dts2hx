@@ -4,7 +4,7 @@ package ts.html;
 	/**
 		Retrieves a select object or an object from an options collection.
 	**/
-	function namedItem(name:String):Null<IElement>;
+	function namedItem(name:String):Null<Element>;
 	/**
 		Sets or retrieves the number of objects in a collection.
 	**/
@@ -12,6 +12,6 @@ package ts.html;
 	/**
 		Retrieves an object from various collections.
 	**/
-	function item(index:Float):Null<IElement>;
-	static var prototype : IHTMLCollection;
+	function item(index:Float):Null<Element>;
+	static var prototype : HTMLCollection;
 }

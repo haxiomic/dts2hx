@@ -6,9 +6,9 @@ package ts.html;
 	function new();
 	final matches : Bool;
 	final media : String;
-	var onchange : Null<(ev:IMediaQueryListEvent) -> Dynamic>;
-	function addListener(listener:Null<(ev:IMediaQueryListEvent) -> Dynamic>):Void;
-	function removeListener(listener:Null<(ev:IMediaQueryListEvent) -> Dynamic>):Void;
+	var onchange : Null<(ev:MediaQueryListEvent) -> Dynamic>;
+	function addListener(listener:Null<(ev:MediaQueryListEvent) -> Dynamic>):Void;
+	function removeListener(listener:Null<(ev:MediaQueryListEvent) -> Dynamic>):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -46,6 +46,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IMediaQueryList;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : MediaQueryList;
 }

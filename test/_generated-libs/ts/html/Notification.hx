@@ -12,10 +12,10 @@ package ts.html;
 	final icon : String;
 	final image : String;
 	final lang : String;
-	var onclick : Null<(ev:IEvent) -> Dynamic>;
-	var onclose : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onshow : Null<(ev:IEvent) -> Dynamic>;
+	var onclick : Null<(ev:Event) -> Dynamic>;
+	var onclose : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onshow : Null<(ev:Event) -> Dynamic>;
 	final renotify : Bool;
 	final requireInteraction : Bool;
 	final silent : Bool;
@@ -61,9 +61,9 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : INotification;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : Notification;
 	static final maxActions : Float;
 	static final permission : NotificationPermission;
-	static function requestPermission(?deprecatedCallback:NotificationPermissionCallback):ts.lib.IPromise<NotificationPermission>;
+	static function requestPermission(?deprecatedCallback:NotificationPermissionCallback):ts.lib.Promise<NotificationPermission>;
 }

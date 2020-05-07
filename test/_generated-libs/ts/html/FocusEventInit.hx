@@ -1,11 +1,11 @@
 package ts.html;
 typedef FocusEventInit = {
 	@:optional
-	var relatedTarget : IEventTarget;
+	var relatedTarget : EventTarget;
 	@:optional
 	var detail : Float;
 	@:optional
-	var view : IWindow;
+	var view : Window;
 	@:optional
 	var bubbles : Bool;
 	@:optional

@@ -12,7 +12,7 @@ package three;
 	/**
 		Begin loading from url
 	**/
-	function load(url:String, ?onLoad:(texture:Texture) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):Texture;
+	function load(url:String, ?onLoad:(texture:Texture) -> Void, ?onProgress:(event:ts.html.ProgressEvent<ts.html.EventTarget>) -> Void, ?onError:(event:ts.html.ErrorEvent) -> Void):Texture;
 	function setCrossOrigin(crossOrigin:String):TextureLoader;
 	function setWithCredentials(value:String):TextureLoader;
 	function setPath(path:String):TextureLoader;

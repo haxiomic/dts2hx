@@ -1,7 +1,7 @@
 package ts.html;
 typedef AudioProcessingEventInit = {
-	var inputBuffer : IAudioBuffer;
-	var outputBuffer : IAudioBuffer;
+	var inputBuffer : AudioBuffer;
+	var outputBuffer : AudioBuffer;
 	var playbackTime : Float;
 	@:optional
 	var bubbles : Bool;

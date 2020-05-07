@@ -1,4 +1,4 @@
 package ts.html;
 typedef MediaStreamAudioSourceOptions = {
-	var mediaStream : IMediaStream;
+	var mediaStream : MediaStream;
 };

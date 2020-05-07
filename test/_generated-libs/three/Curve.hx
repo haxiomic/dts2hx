@@ -56,5 +56,5 @@ package three;
 		getTangentAt(u: number): T;
 	**/
 	function getTangentAt(u:Float):T;
-	static function create(constructorFunc:ts.lib.IFunction, getPointFunc:ts.lib.IFunction):ts.lib.IFunction;
+	static function create(constructorFunc:ts.lib.Function, getPointFunc:ts.lib.Function):ts.lib.Function;
 }

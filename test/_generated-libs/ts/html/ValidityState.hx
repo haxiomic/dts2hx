@@ -15,5 +15,5 @@ package ts.html;
 	final typeMismatch : Bool;
 	final valid : Bool;
 	final valueMissing : Bool;
-	static var prototype : IValidityState;
+	static var prototype : ValidityState;
 }

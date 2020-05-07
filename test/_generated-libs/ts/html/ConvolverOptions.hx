@@ -1,7 +1,7 @@
 package ts.html;
 typedef ConvolverOptions = {
 	@:optional
-	var buffer : IAudioBuffer;
+	var buffer : AudioBuffer;
 	@:optional
 	var disableNormalization : Bool;
 	@:optional

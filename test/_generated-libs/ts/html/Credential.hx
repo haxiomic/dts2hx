@@ -3,5 +3,5 @@ package ts.html;
 	function new();
 	final id : String;
 	final type : String;
-	static var prototype : ICredential;
+	static var prototype : Credential;
 }

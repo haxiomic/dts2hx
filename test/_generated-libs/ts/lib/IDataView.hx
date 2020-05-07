@@ -1,6 +1,6 @@
 package ts.lib;
 typedef IDataView = {
-	final buffer : IArrayBuffer;
+	final buffer : ArrayBuffer;
 	final byteLength : Float;
 	final byteOffset : Float;
 	/**

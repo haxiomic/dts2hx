@@ -13,5 +13,5 @@ package ts.html;
 		Releases imageBitmap's underlying bitmap data.
 	**/
 	function close():Void;
-	static var prototype : IImageBitmap;
+	static var prototype : ImageBitmap;
 }

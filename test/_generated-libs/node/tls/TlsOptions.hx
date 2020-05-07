@@ -7,25 +7,25 @@ typedef TlsOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : ts.AnyOf5<Array<String>, global.IBuffer, ts.lib.IUint8Array, Array<ts.lib.IUint8Array>, Array<global.IBuffer>>;
+	var NPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, ts.lib.Uint8Array, Array<ts.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var ALPNProtocols : ts.AnyOf5<Array<String>, global.IBuffer, ts.lib.IUint8Array, Array<ts.lib.IUint8Array>, Array<global.IBuffer>>;
+	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, ts.lib.Uint8Array, Array<ts.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var SNICallback : (servername:String, cb:(err:Null<ts.lib.IError>, ctx:SecureContext) -> Void) -> Void;
+	var SNICallback : (servername:String, cb:(err:Null<ts.lib.Error>, ctx:SecureContext) -> Void) -> Void;
 	@:optional
 	var sessionTimeout : Float;
 	@:optional
-	var ticketKeys : global.IBuffer;
+	var ticketKeys : global.Buffer;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf3<String, ts.lib.IObject, global.IBuffer>>>;
+	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, ts.lib.Object, global.Buffer>>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<ts.lib.IObject, global.IBuffer>>>;
+	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<ts.lib.Object, global.Buffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional
-	var cert : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var cert : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<String, global.Buffer>>>;
 	@:optional
-	var ca : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var ca : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<String, global.Buffer>>>;
 	@:optional
 	var ciphers : String;
 	@:optional
@@ -35,9 +35,9 @@ typedef TlsOptions = {
 	@:optional
 	var clientCertEngine : String;
 	@:optional
-	var crl : ts.AnyOf3<String, global.IBuffer, Array<ts.AnyOf2<String, global.IBuffer>>>;
+	var crl : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<String, global.Buffer>>>;
 	@:optional
-	var dhparam : ts.AnyOf2<String, global.IBuffer>;
+	var dhparam : ts.AnyOf2<String, global.Buffer>;
 	@:optional
 	var secureOptions : Float;
 	@:optional

@@ -5,9 +5,9 @@ package ts.html;
 @:native("SVGTransform") extern class SVGTransform {
 	function new();
 	final angle : Float;
-	final matrix : IDOMMatrix;
+	final matrix : DOMMatrix;
 	final type : Float;
-	function setMatrix(matrix:IDOMMatrix):Void;
+	function setMatrix(matrix:DOMMatrix):Void;
 	function setRotate(angle:Float, cx:Float, cy:Float):Void;
 	function setScale(sx:Float, sy:Float):Void;
 	function setSkewX(angle:Float):Void;
@@ -20,7 +20,7 @@ package ts.html;
 	final SVG_TRANSFORM_SKEWY : Float;
 	final SVG_TRANSFORM_TRANSLATE : Float;
 	final SVG_TRANSFORM_UNKNOWN : Float;
-	static var prototype : ISVGTransform;
+	static var prototype : SVGTransform;
 	@:native("SVG_TRANSFORM_MATRIX")
 	static final SVG_TRANSFORM_MATRIX_ : Float;
 	@:native("SVG_TRANSFORM_ROTATE")

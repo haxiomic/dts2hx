@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SVGAnimatedLength") extern class SVGAnimatedLength {
 	function new();
-	final animVal : ISVGLength;
-	final baseVal : ISVGLength;
-	static var prototype : ISVGAnimatedLength;
+	final animVal : SVGLength;
+	final baseVal : SVGLength;
+	static var prototype : SVGAnimatedLength;
 }

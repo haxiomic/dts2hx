@@ -16,6 +16,6 @@ typedef ITouch = {
 	final rotationAngle : Float;
 	final screenX : Float;
 	final screenY : Float;
-	final target : IEventTarget;
+	final target : EventTarget;
 	final touchType : TouchType;
 };

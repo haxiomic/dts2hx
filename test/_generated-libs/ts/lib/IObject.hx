@@ -6,7 +6,7 @@ typedef IObject = {
 	/**
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/
-	var constructor : IFunction;
+	var constructor : Function;
 	/**
 		Returns a string representation of an object.
 	**/
@@ -18,7 +18,7 @@ typedef IObject = {
 	/**
 		Returns the primitive value of the specified object.
 	**/
-	function valueOf():IObject;
+	function valueOf():Object;
 	/**
 		Determines whether an object has a property with the specified name.
 	**/
@@ -26,7 +26,7 @@ typedef IObject = {
 	/**
 		Determines whether an object exists in another object's prototype chain.
 	**/
-	function isPrototypeOf(v:IObject):Bool;
+	function isPrototypeOf(v:Object):Bool;
 	/**
 		Determines whether a specified property is enumerable.
 	**/

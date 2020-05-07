@@ -3,5 +3,5 @@ package ts.html;
 	function new(idp:String, name:String);
 	var idp : String;
 	var name : String;
-	static var prototype : IRTCIdentityAssertion;
+	static var prototype : RTCIdentityAssertion;
 }

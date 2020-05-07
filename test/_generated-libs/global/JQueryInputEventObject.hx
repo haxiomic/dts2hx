@@ -10,7 +10,7 @@ typedef JQueryInputEventObject = {
 	/**
 		The current DOM element within the event bubbling phase.
 	**/
-	var currentTarget : ts.html.IElement;
+	var currentTarget : ts.html.Element;
 	/**
 		An optional object of data passed to an event method when the current executing handler is bound.
 	**/
@@ -18,7 +18,7 @@ typedef JQueryInputEventObject = {
 	/**
 		The element where the currently-called jQuery event handler was attached.
 	**/
-	var delegateTarget : ts.html.IElement;
+	var delegateTarget : ts.html.Element;
 	/**
 		Returns whether event.preventDefault() was ever called on this event object.
 	**/
@@ -38,7 +38,7 @@ typedef JQueryInputEventObject = {
 	/**
 		The browser's original Event object.
 	**/
-	var originalEvent : ts.html.IEvent;
+	var originalEvent : ts.html.Event;
 	/**
 		If this method is called, the default action of the event will not be triggered.
 	**/
@@ -46,7 +46,7 @@ typedef JQueryInputEventObject = {
 	/**
 		The other DOM element involved in the event, if any.
 	**/
-	var relatedTarget : ts.html.IElement;
+	var relatedTarget : ts.html.Element;
 	/**
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
@@ -62,7 +62,7 @@ typedef JQueryInputEventObject = {
 	/**
 		The DOM element that initiated the event.
 	**/
-	var target : ts.html.IElement;
+	var target : ts.html.Element;
 	/**
 		The mouse position relative to the left edge of the document.
 	**/
@@ -101,7 +101,7 @@ typedef JQueryInputEventObject = {
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<ts.html.IEventTarget>;
+	final srcElement : Null<ts.html.EventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -113,7 +113,7 @@ typedef JQueryInputEventObject = {
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():Array<ts.html.IEventTarget>;
+	function composedPath():Array<ts.html.EventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	final AT_TARGET : Float;
 	final BUBBLING_PHASE : Float;

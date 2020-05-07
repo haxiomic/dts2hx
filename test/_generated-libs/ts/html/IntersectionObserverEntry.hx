@@ -4,12 +4,12 @@ package ts.html;
 **/
 @:native("IntersectionObserverEntry") extern class IntersectionObserverEntry {
 	function new(intersectionObserverEntryInit:IntersectionObserverEntryInit);
-	final boundingClientRect : IDOMRectReadOnly;
+	final boundingClientRect : DOMRectReadOnly;
 	final intersectionRatio : Float;
-	final intersectionRect : IDOMRectReadOnly;
+	final intersectionRect : DOMRectReadOnly;
 	final isIntersecting : Bool;
-	final rootBounds : Null<IDOMRectReadOnly>;
-	final target : IElement;
+	final rootBounds : Null<DOMRectReadOnly>;
+	final target : Element;
 	final time : Float;
-	static var prototype : IIntersectionObserverEntry;
+	static var prototype : IntersectionObserverEntry;
 }

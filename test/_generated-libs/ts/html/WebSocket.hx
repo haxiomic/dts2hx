@@ -7,10 +7,10 @@ package ts.html;
 	var binaryType : BinaryType;
 	final bufferedAmount : Float;
 	final extensions : String;
-	var onclose : Null<(ev:ICloseEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
-	var onopen : Null<(ev:IEvent) -> Dynamic>;
+	var onclose : Null<(ev:CloseEvent) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
+	var onopen : Null<(ev:Event) -> Dynamic>;
 	final protocol : String;
 	final readyState : Float;
 	final url : String;
@@ -57,8 +57,8 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IWebSocket;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : WebSocket;
 	@:native("CLOSED")
 	static final CLOSED_ : Float;
 	@:native("CLOSING")

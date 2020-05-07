@@ -6,6 +6,6 @@ package ts.lib;
 	@:optional
 	var stack : String;
 	@:selfCall
-	static function call(?message:String):ISyntaxError;
-	static final prototype : ISyntaxError;
+	static function call(?message:String):SyntaxError;
+	static final prototype : SyntaxError;
 }

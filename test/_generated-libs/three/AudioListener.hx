@@ -1,10 +1,10 @@
 package three;
 @:jsRequire("three", "AudioListener") extern class AudioListener extends Object3D {
 	function new();
-	var context : ts.html.IAudioContext;
-	var gain : ts.html.IGainNode;
+	var context : ts.html.AudioContext;
+	var gain : ts.html.GainNode;
 	var filter : Dynamic;
-	function getInput():ts.html.IGainNode;
+	function getInput():ts.html.GainNode;
 	function removeFilter():Void;
 	function setFilter(value:Dynamic):Void;
 	function getFilter():Dynamic;

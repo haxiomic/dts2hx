@@ -8,15 +8,15 @@ typedef IRadioNodeList = {
 	/**
 		Returns the node with index index from the collection. The nodes are sorted in tree order.
 	**/
-	function item(index:Float):Null<INode>;
+	function item(index:Float):Null<Node>;
 	/**
 		Performs the specified action for each node in an list.
 	**/
-	function forEach(callbackfn:(value:INode, key:Float, parent:ts.lib.INodeList) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:Node, key:Float, parent:NodeList) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns an array of key, value pairs for every entry in the list.
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, INode>>;
+	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, Node>>;
 	/**
 		Returns an list of keys in the list.
 	**/
@@ -24,5 +24,5 @@ typedef IRadioNodeList = {
 	/**
 		Returns an list of values in the list.
 	**/
-	function values():ts.lib.IterableIterator<INode>;
+	function values():ts.lib.IterableIterator<Node>;
 };

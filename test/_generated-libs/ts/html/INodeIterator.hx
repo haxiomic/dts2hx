@@ -5,10 +5,10 @@ package ts.html;
 typedef INodeIterator = {
 	final filter : Null<NodeFilter>;
 	final pointerBeforeReferenceNode : Bool;
-	final referenceNode : INode;
-	final root : INode;
+	final referenceNode : Node;
+	final root : Node;
 	final whatToShow : Float;
 	function detach():Void;
-	function nextNode():Null<INode>;
-	function previousNode():Null<INode>;
+	function nextNode():Null<Node>;
+	function previousNode():Null<Node>;
 };

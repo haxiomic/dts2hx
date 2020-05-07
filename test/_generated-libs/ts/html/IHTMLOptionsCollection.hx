@@ -26,7 +26,7 @@ typedef IHTMLOptionsCollection = {
 		
 		This method will throw a "HierarchyRequestError" DOMException if element is an ancestor of the element into which it is to be inserted.
 	**/
-	function add(element:ts.AnyOf2<IHTMLOptGroupElement, IHTMLOptionElement>, ?before:ts.AnyOf2<Float, IHTMLElement>):Void;
+	function add(element:ts.AnyOf2<HTMLOptGroupElement, HTMLOptionElement>, ?before:ts.AnyOf2<Float, HTMLElement>):Void;
 	/**
 		Removes the item with index index from the collection.
 	**/
@@ -34,6 +34,6 @@ typedef IHTMLOptionsCollection = {
 	/**
 		Retrieves an object from various collections.
 	**/
-	function item(index:Float):Null<IHTMLOptionElement>;
-	function namedItem(name:String):Null<IHTMLOptionElement>;
+	function item(index:Float):Null<HTMLOptionElement>;
+	function namedItem(name:String):Null<HTMLOptionElement>;
 };

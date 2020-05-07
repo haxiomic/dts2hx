@@ -1,8 +1,8 @@
 package ts.html;
 @:native("RTCSrtpSdesTransport") extern class RTCSrtpSdesTransport {
-	function new(transport:IRTCIceTransport, encryptParameters:RTCSrtpSdesParameters, decryptParameters:RTCSrtpSdesParameters);
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	final transport : IRTCIceTransport;
+	function new(transport:RTCIceTransport, encryptParameters:RTCSrtpSdesParameters, decryptParameters:RTCSrtpSdesParameters);
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	final transport : RTCIceTransport;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -40,7 +40,7 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IRTCSrtpSdesTransport;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : RTCSrtpSdesTransport;
 	static function getLocalParameters():Array<RTCSrtpSdesParameters>;
 }

@@ -3,5 +3,5 @@ package ts.html;
 	function new();
 	final id : String;
 	final type : String;
-	static var prototype : IMSAssertion;
+	static var prototype : MSAssertion;
 }
