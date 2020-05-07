@@ -53,7 +53,9 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] Support constructor signature in types with `@:genericBuild` abstract
         - If a constructor type is used as a type parameter we can use haxe's `Constructible` type
     - [x] Abstracts to implement Tuples (named fields for array indexes)
-    - [ ] Extract hints from JSDoc like @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
+    - [ ] Extract hints from JSDoc
+        - @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
+        - @deprecated
 - [ ] CLI: Add `--install` option
     - [ ] Automatically try `install @types/{name}` if no types found in main module
 - [ ] CLI: Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
