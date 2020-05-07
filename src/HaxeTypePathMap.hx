@@ -238,12 +238,12 @@ class HaxeTypePathMap {
 
 	function generateTypePath(symbol: Symbol, access: SymbolAccess, asInterfaceStructure: Bool) {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
-		var defaultLibName: Null<String> = null;
-		var defaultLibOnlyDeclarations = true;
+		var isBuiltIn = false; // symbol is declared in a built-in lib file (but may be extended in user-code)
+		var defaultLibOnlyDeclarations = true; // symbol is declared in a built-in lib file and **is not** extended in user-code
 		for (declaration in symbol.getDeclarationsArray()) {
 			var sourceFile = declaration.getSourceFile();
 			if (sourceFile.hasNoDefaultLib) {
-				defaultLibName = Path.withoutDirectory(sourceFile.fileName);
+				isBuiltIn = true;
 			} else {
 				defaultLibOnlyDeclarations = false;
 			}
@@ -273,16 +273,23 @@ class HaxeTypePathMap {
 			}
 		}
 
+		function hasDeclarationInLib(symbol: Symbol, filename: String) {
+			for (declaration in symbol.getDeclarationsArray()) {
+				var sourceFile = declaration.getSourceFile();
+				if (sourceFile.hasNoDefaultLib && Path.withoutDirectory(sourceFile.fileName).toLowerCase() == filename) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		// if the symbol derives from a built-in, prefix js.lib or js.html
 		// otherwise prefix the module name (if it's a path, add a pack for each directory)
-		var pack = if (defaultLibName != null) {
-			switch defaultLibName.toLowerCase() {
-				case 'lib.dom.d.ts': ['ts', 'html'];
-				default: ['ts', 'lib'];
-			}
+		var pack = if (isBuiltIn) {
+			if (hasDeclarationInLib(symbol, 'lib.dom.d.ts')) ['ts', 'html']
+			else ['ts', 'lib'];
 		} else {
 			[];
-			//TsProgramTools.isDirectPathReferenceModule(entryPointModuleId) ? [] : splitModulePath(entryPointModuleId);
 		}
 
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
@@ -309,7 +316,7 @@ class HaxeTypePathMap {
 			case Global(_):
 				// only prefix global package if it's not a built-in
 				// global types are _not_ prefixed with the module name, this might change in the future
-				pack = pack.concat((defaultLibName != null) ? [] : ['global']).concat(identifierChain);
+				pack = pack.concat(isBuiltIn ? [] : ['global']).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
 				var entryPointPack = splitModulePath(entryPointModuleId);
