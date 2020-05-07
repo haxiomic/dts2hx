@@ -281,251 +281,251 @@ class ConverterContext {
 		var isConstructorTypeVariable = tc.isConstructorTypeVariableSymbol(symbol);
 		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !isConstructorTypeVariable; // (allowed to be a variable symbol)
 
-		var hxModule: HaxeModule = if (symbol.flags & SymbolFlags.Enum != 0) {
-			var typePath = haxeTypePathMap.getTypePath(symbol, access, false);
+		// the fundamental module of a symbol is the main representatation of it in haxe
+		// some symbols haxe _two_ representations in haxe, for example a class + interface symbol will have a class and interface structure in haxe
+		var fundamentalTypePath = haxeTypePathMap.getTypePath(symbol, access, false);
 
-			// a ConstEnum does not exist at runtime
-			var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
+		// do not generate a module for std-lib types (some std-lib types might have an interface-structure however)
+		if (!fundamentalTypePath.isExistingStdLibType) {
+			var hxModule: HaxeModule = if (symbol.flags & SymbolFlags.Enum != 0) {
+				// a ConstEnum does not exist at runtime
+				var isCompileTimeEnum = symbol.flags & SymbolFlags.ConstEnum != 0;
 
-			var hxEnumType = complexTypeBaseOfEnumSymbol(symbol);
+				var hxEnumType = complexTypeBaseOfEnumSymbol(symbol);
 
-			var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-			var hxEnumFields = [for (enumMember in enumMembers) fieldFromSymbol(enumMember.name, enumMember, access, null)];
+				var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
+				var hxEnumFields = [for (enumMember in enumMembers) fieldFromSymbol(enumMember.name, enumMember, access, null)];
 
-			{
-				pack: typePath.pack,
-				name: typePath.name,
-				kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
-				params: [],
-				isExtern: true,
-				fields: hxEnumFields,
-				doc: getDoc(symbol),
-				meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
-				pos: pos,
-				tsSymbol: symbol,
-				tsSymbolAccess: access,
-			}
-		} else if (symbol.flags & SymbolFlags.TypeAlias != 0) {
-			var typePath = haxeTypePathMap.getTypePath(symbol, access, false);
-
-			var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
-			if (typeAliasDeclaration == null) {
-				Log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
-			}
-
-			var tsType = tc.getDeclaredTypeOfSymbol(symbol);
-			var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration, false);
-			var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
-
-			// if this symbol is also a ValueModule then it needs to have fields
-			// to enable this, we create a pseudo typedef with an abstract
-			var hxTypeDef: HaxeModule = if (forceAbstractKind) {
-				pack: typePath.pack,
-				name: typePath.name,
-				fields: [],
-				kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
-				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
-				doc: getDoc(symbol),
-				isExtern: true,
-				meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
-				pos: pos,
-				tsSymbol: symbol,
-				tsSymbolAccess: access,
-			} else {
-				pack: typePath.pack,
-				name: typePath.name,
-				fields: [],
-				kind: TDAlias(hxAliasType),
-				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
-				doc: getDoc(symbol),
-				pos: pos,
-				tsSymbol: symbol,
-				tsSymbolAccess: access,
-			}
-			hxTypeDef;
-		} else if (requiresHxClass(tc, symbol)) {
-			// Class | ValueModule | ConstructorTypeVariable
-
-			var typePath = haxeTypePathMap.getTypePath(symbol, access, false);
-
-			var declaration = if (symbol.valueDeclaration != null) {
-				symbol.valueDeclaration;
-			} else {
-				Log.error('Expected valueDeclaration for a symbol that requires a class in haxe', symbol);
-				null;
-			}
-
-			var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
-			var meta = [access.toAccessMetadata()];
-			var superClassPath: Null<TypePath> = null;
-
-			if (isValueModuleOnlySymbol) {
-				meta.push({name: 'valueModuleOnly', pos: pos});
-			}
-
-
-			var callSignatures = tc.getSignaturesOfType(declaredType, Call);
-			var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
-			var classMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
-
-			var classSuperType = tc.getClassExtendsType(symbol);
-			if (classSuperType != null) {
-				var hxSuperType = complexTypeFromObjectType(cast classSuperType, access, false, declaration);
-
-				superClassPath = switch hxSuperType {
-					case TPath(p): p;
-					default:
-						Log.error('Class super-type did not translate to a class-path');
-						null;
+				{
+					pack: fundamentalTypePath.pack,
+					name: fundamentalTypePath.name,
+					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+					params: [],
+					isExtern: true,
+					fields: hxEnumFields,
+					doc: getDoc(symbol),
+					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
+					pos: pos,
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
+				}
+			} else if (symbol.flags & SymbolFlags.TypeAlias != 0) {
+				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
+				if (typeAliasDeclaration == null) {
+					Log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 				}
 
-				// remove redefined class **variable** fields (function redefinitions are allowed in haxe)
-				var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
-				classMembers = classMembers.filter(m -> {
-					var classSuperMatch = classSuperMembers.find(sm -> sm.name == m.name);
-					return if (classSuperMatch != null) {
-						if (m.flags & SymbolFlags.Method != 0) {
-							// methods _can_ be defined, although we should only redefine if the type changed
-							// compare types by comparing strings
-							var format: TypeFormatFlags = TypeFormatFlags.NoTruncation;
-							tc.typeToString(getTsTypeOfField(m), m.valueDeclaration, format) != tc.typeToString(getTsTypeOfField(classSuperMatch), classSuperMatch.valueDeclaration, format);
-						} else {
-							// variable fields cannot be redefined in haxe
-							false;
-						}
-					} else {
-						// field is not redefined from super
-						true;
+				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
+				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration, false);
+				var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
+
+				// if this symbol is also a ValueModule then it needs to have fields
+				// to enable this, we create a pseudo typedef with an abstract
+				var hxTypeDef: HaxeModule = if (forceAbstractKind) {
+					pack: fundamentalTypePath.pack,
+					name: fundamentalTypePath.name,
+					fields: [],
+					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
+					doc: getDoc(symbol),
+					isExtern: true,
+					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+					pos: pos,
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
+				} else {
+					pack: fundamentalTypePath.pack,
+					name: fundamentalTypePath.name,
+					fields: [],
+					kind: TDAlias(hxAliasType),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
+					doc: getDoc(symbol),
+					pos: pos,
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
+				}
+				hxTypeDef;
+			} else if (requiresHxClass(tc, symbol)) {
+				// Class | ValueModule | ConstructorTypeVariable
+
+				var declaration = if (symbol.valueDeclaration != null) {
+					symbol.valueDeclaration;
+				} else {
+					Log.error('Expected valueDeclaration for a symbol that requires a class in haxe', symbol);
+					null;
+				}
+
+				var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
+				var meta = [access.toAccessMetadata()];
+				var superClassPath: Null<TypePath> = null;
+
+				if (isValueModuleOnlySymbol) {
+					meta.push({name: 'valueModuleOnly', pos: pos});
+				}
+
+
+				var callSignatures = tc.getSignaturesOfType(declaredType, Call);
+				var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
+				var classMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
+
+				var classSuperType = tc.getClassExtendsType(symbol);
+				if (classSuperType != null) {
+					var hxSuperType = complexTypeFromObjectType(cast classSuperType, access, false, declaration);
+
+					superClassPath = switch hxSuperType {
+						case TPath(p): p;
+						default:
+							Log.error('Class super-type did not translate to a class-path');
+							null;
 					}
-				});
-			}
 
-			var fields = generateTypeFields(
-				symbol,
-				access,
-				declaration,
-				symbol.getConstructorSignatures(tc),
-				callSignatures,
-				indexSignatures,
-				classMembers
-			);
-
-			// although we do a final pass resolving name collisions, we do it manually here so that if the fields are cloned into an interface structure
-			// they have the same collision resolution applied
-			fields.resolveNameCollisions();
-
-			{
-				pack: typePath.pack,
-				name: typePath.name,
-				fields: fields,
-				kind: TDClass(superClassPath, [], false, false),
-				params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, symbol.valueDeclaration),
-				isExtern: true,
-				doc: getDoc(symbol),
-				meta: meta,
-				pos: pos,
-				tsSymbol: symbol,
-				tsSymbolAccess: access,
-			}
-		} else if (symbol.flags & SymbolFlags.Interface != 0) {
-			// interface-only symbol
-			createInterfaceModule(symbol, access, false);
-		} else {
-			Log.error('generateHaxeModulesFromSymbol(): Unhandled symbol, no flags were recognized', symbol);
-			var typePath = haxeTypePathMap.getTypePath(symbol, access, false);
-			{
-				pack: typePath.pack,
-				name: typePath.name,
-				fields: [],
-				kind: TDAbstract(macro :Dynamic, [macro :Dynamic], [macro :Dynamic]),
-				doc: getDoc(symbol),
-				isExtern: true,
-				pos: pos,
-				tsSymbol: symbol,
-				tsSymbolAccess: access,
-			}
-		}
-
-		/**
-			**Add ConstructType fields**
-
-			ConstructorType + Interface
-				-> Separate interface-structure, use class for constructor type, add static fields and new
-			ConstructorType + Type-Alias
-				-> Convert to abstract, add static fields and new
-			ConstructorType + ValueModule
-				-> add static fields and new
-
-			ConstructorType + Class => Not allowed
-			ConstructorType + Enum => Not allowed
-		**/
-		if (isConstructorTypeVariable) {
-			var constructorTypeDeclaration = symbol.valueDeclaration;
-			if (constructorTypeDeclaration != null) {
-				var constructorType = tc.getTypeOfSymbolAtLocation(symbol, constructorTypeDeclaration);
-
-				var constructSignatures = tc.getSignaturesOfType(constructorType, Construct);
-				var callSignatures = tc.getSignaturesOfType(constructorType, Call);
-				var indexSignatures = tc.getIndexSignaturesOfType(constructorType);
-				var fields = tc.getPropertiesOfType(constructorType).filter(s -> s.isAccessibleField());
-
-				if (indexSignatures.length > 0) {
-					Log.warn('Index signatures are not yet supported', symbol);
+					// remove redefined class **variable** fields (function redefinitions are allowed in haxe)
+					var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
+					classMembers = classMembers.filter(m -> {
+						var classSuperMatch = classSuperMembers.find(sm -> sm.name == m.name);
+						return if (classSuperMatch != null) {
+							if (m.flags & SymbolFlags.Method != 0) {
+								// methods _can_ be defined, although we should only redefine if the type changed
+								// compare types by comparing strings
+								var format: TypeFormatFlags = TypeFormatFlags.NoTruncation;
+								tc.typeToString(getTsTypeOfField(m), m.valueDeclaration, format) != tc.typeToString(getTsTypeOfField(classSuperMatch), classSuperMatch.valueDeclaration, format);
+							} else {
+								// variable fields cannot be redefined in haxe
+								false;
+							}
+						} else {
+							// field is not redefined from super
+							true;
+						}
+					});
 				}
 
-				// given constructor type cannot merge with class, we don't expect an existing new signature
-				// (and constructor type new signature takes precedence, not overload, over a class new signature if merged with a type-alias to class)
-				var newField = newFieldFromSignatures(constructSignatures, access, constructorTypeDeclaration);
-				hxModule.fields.unshift(newField);
+				var fields = generateTypeFields(
+					symbol,
+					access,
+					declaration,
+					symbol.getConstructorSignatures(tc),
+					callSignatures,
+					indexSignatures,
+					classMembers
+				);
 
-				if (callSignatures.length > 0) {
-					var callField = functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, constructorTypeDeclaration);
-					callField.enableAccess(AStatic);
-					hxModule.fields.push(callField);
-				}
+				// although we do a final pass resolving name collisions, we do it manually here so that if the fields are cloned into an interface structure
+				// they have the same collision resolution applied
+				fields.resolveNameCollisions();
 
-				// constructor type fields become class statics
-				for (field in fields) {
-					var hxField = fieldFromSymbol(field.name, field, access, constructorTypeDeclaration);
-					hxField.enableAccess(AStatic);
-					hxModule.fields.push(hxField);
+				{
+					pack: fundamentalTypePath.pack,
+					name: fundamentalTypePath.name,
+					fields: fields,
+					kind: TDClass(superClassPath, [], false, false),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, symbol.valueDeclaration),
+					isExtern: true,
+					doc: getDoc(symbol),
+					meta: meta,
+					pos: pos,
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
 				}
+			} else if (symbol.flags & SymbolFlags.Interface != 0) {
+				// interface-only symbol
+				createInterfaceModule(symbol, access, false);
 			} else {
-				Log.error('A symbol with a constructor type variable declaration should have a valueDeclaration', symbol);
-			}
-		}
-
-		// add static class members
-		for (staticClassMember in symbol.getExports().filter(s -> s.flags & SymbolFlags.ClassMember != 0 && s.isAccessibleField())) {
-			var field = fieldFromSymbol(staticClassMember.name, staticClassMember, access, null);
-			field.enableAccess(AStatic);
-			hxModule.fields.push(field);
-		}
-
-		// add module fields
-		if (symbol.flags & SymbolFlags.Module != 0) {
-			var moduleMemberFields = tc.getExportsOfModule(symbol).filter(s ->
-				s.flags & SymbolFlags.ModuleMember != 0 && (s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)
-			);
-			for (moduleMember in moduleMemberFields) {
-				// field name before alias resolution (e.g. `default`)
-				var nativeFieldName = moduleMember.name;
-
-				if (moduleMember.flags & SymbolFlags.Alias != 0) {
-					moduleMember = tc.getAliasedSymbol(moduleMember);
-					if (!moduleMember.isAccessibleField()) continue;
+				Log.error('generateHaxeModulesFromSymbol(): Unhandled symbol, no flags were recognized', symbol);
+				{
+					pack: fundamentalTypePath.pack,
+					name: fundamentalTypePath.name,
+					fields: [],
+					kind: TDAbstract(macro :Dynamic, [macro :Dynamic], [macro :Dynamic]),
+					doc: getDoc(symbol),
+					isExtern: true,
+					pos: pos,
+					tsSymbol: symbol,
+					tsSymbolAccess: access,
 				}
+			}
 
-				// skip constructor type variables because these have been converted into classes
-				if (tc.isConstructorTypeVariableSymbol(moduleMember)) continue;
+			/**
+				**Add ConstructType fields**
 
-				var field = fieldFromSymbol(nativeFieldName, moduleMember, access, null);
+				ConstructorType + Interface
+					-> Separate interface-structure, use class for constructor type, add static fields and new
+				ConstructorType + Type-Alias
+					-> Convert to abstract, add static fields and new
+				ConstructorType + ValueModule
+					-> add static fields and new
+
+				ConstructorType + Class => Not allowed
+				ConstructorType + Enum => Not allowed
+			**/
+			if (isConstructorTypeVariable) {
+				var constructorTypeDeclaration = symbol.valueDeclaration;
+				if (constructorTypeDeclaration != null) {
+					var constructorType = tc.getTypeOfSymbolAtLocation(symbol, constructorTypeDeclaration);
+
+					var constructSignatures = tc.getSignaturesOfType(constructorType, Construct);
+					var callSignatures = tc.getSignaturesOfType(constructorType, Call);
+					var indexSignatures = tc.getIndexSignaturesOfType(constructorType);
+					var fields = tc.getPropertiesOfType(constructorType).filter(s -> s.isAccessibleField());
+
+					if (indexSignatures.length > 0) {
+						Log.warn('Index signatures are not yet supported', symbol);
+					}
+
+					// given constructor type cannot merge with class, we don't expect an existing new signature
+					// (and constructor type new signature takes precedence, not overload, over a class new signature if merged with a type-alias to class)
+					var newField = newFieldFromSignatures(constructSignatures, access, constructorTypeDeclaration);
+					hxModule.fields.unshift(newField);
+
+					if (callSignatures.length > 0) {
+						var callField = functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, constructorTypeDeclaration);
+						callField.enableAccess(AStatic);
+						hxModule.fields.push(callField);
+					}
+
+					// constructor type fields become class statics
+					for (field in fields) {
+						var hxField = fieldFromSymbol(field.name, field, access, constructorTypeDeclaration);
+						hxField.enableAccess(AStatic);
+						hxModule.fields.push(hxField);
+					}
+				} else {
+					Log.error('A symbol with a constructor type variable declaration should have a valueDeclaration', symbol);
+				}
+			}
+
+			// add static class members
+			for (staticClassMember in symbol.getExports().filter(s -> s.flags & SymbolFlags.ClassMember != 0 && s.isAccessibleField())) {
+				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, access, null);
 				field.enableAccess(AStatic);
 				hxModule.fields.push(field);
 			}
-		}
 
-		saveHaxeModule(hxModule);
+			// add module fields
+			if (symbol.flags & SymbolFlags.Module != 0) {
+				var moduleMemberFields = tc.getExportsOfModule(symbol).filter(s ->
+					s.flags & SymbolFlags.ModuleMember != 0 && (s.isAccessibleField() || s.flags & SymbolFlags.Alias != 0)
+				);
+				for (moduleMember in moduleMemberFields) {
+					// field name before alias resolution (e.g. `default`)
+					var nativeFieldName = moduleMember.name;
+
+					if (moduleMember.flags & SymbolFlags.Alias != 0) {
+						moduleMember = tc.getAliasedSymbol(moduleMember);
+						if (!moduleMember.isAccessibleField()) continue;
+					}
+
+					// skip constructor type variables because these have been converted into classes
+					if (tc.isConstructorTypeVariableSymbol(moduleMember)) continue;
+
+					var field = fieldFromSymbol(nativeFieldName, moduleMember, access, null);
+					field.enableAccess(AStatic);
+					hxModule.fields.push(field);
+				}
+			}
+
+			saveHaxeModule(hxModule);
+		}
 
 		// add special interface-structure module for the symbol if required
 		if (requiresAdditionalStructureType(tc, symbol)) {
