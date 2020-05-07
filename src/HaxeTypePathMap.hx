@@ -48,13 +48,11 @@ class HaxeTypePathMap {
 		var modules = symbolTypePathMap.get(symbol.getId());
 
 		if (modules != null) {
-			// filter modules for just those with `isInterfaceStructure`
-			if (preferInterfaceStructure) {
-				var interfaceStructureModules = modules.filter(m -> m.isInterfaceStructure == true);
-				// if we don't have any, that's ok, but if we do, we should select from those
-				if (interfaceStructureModules.length > 0) {
-					modules = interfaceStructureModules;
-				}
+			// filter modules for just those with, or without `isInterfaceStructure` (depending on `preferInterfaceStructure`)
+			var interfaceStructureFilteredModules = modules.filter(m -> m.isInterfaceStructure == preferInterfaceStructure);
+			// if we don't have any, that's ok, but if we do, we should select from those
+			if (interfaceStructureFilteredModules.length > 0) {
+				modules = interfaceStructureFilteredModules;
 			}
 			// find one with a matching access context if possible
 			var matchingModule = modules.find(m -> m.access.getIndex() == accessContext.getIndex());
@@ -253,7 +251,7 @@ class HaxeTypePathMap {
 
 		// handle built-ins and types available in the haxe standard library
 		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
-		if (defaultLibOnlyDeclarations) {
+		if (defaultLibOnlyDeclarations && !asInterfaceStructure) {
 			final specialTypeMap = [
 				// we want to avoid generating the following types into ts.lib.* 
 				// preferring to map them to haxe types instead
@@ -370,6 +368,8 @@ class HaxeTypePathMap {
 				symbol.name;
 		}
 		var name = typeIdentifier.toSafeTypeName();
+		// prefix I if interface-structure version of a type
+		name = asInterfaceStructure ? 'I' + name : name;
 
 		// rename if name that conflict with std.* types
 		// @! we should generate this list automatically in the future
@@ -399,13 +399,14 @@ class HaxeTypePathMap {
 			'UnicodeString',
 			'Xml',
 		];
+		// add '_' to avoid disallowed names
 		if (disallowedNames.indexOf(name) != -1) {
 			name = name + '_';
 		}
 
 		// handle short aliases
 		return {
-			name: asInterfaceStructure ? 'I' + name : name,
+			name: name,
 			pack: pack,
 			isExistingStdLibType: false,
 		}
@@ -426,7 +427,8 @@ class HaxeTypePathMap {
 	**/
 	inline function renameability(m: InternalModule) {
 		return 
-			m.renameable ? 1 : 0                                     << 5 | // prefer renameable, with highest priority
+			m.renameable ? 1 : 0                                     << 6 | // prefer renameable, with highest priority
+			(!m.isExistingStdLibType ? 1 : 0)                        << 5 | // prefer non-existing std lib types
 			(m.access.match(Inaccessible) ? 1 : 0)                   << 4 | // prefer inaccessible
 			(m.symbol.flags & SymbolFlags.ValueModule == 0 ? 1 : 0)  << 3 | // prefer **not** ValueModule
 			(m.symbol.flags & SymbolFlags.Class == 0 ? 1 : 0)        << 2 | // prefer **not** class

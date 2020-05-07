@@ -715,25 +715,15 @@ class ConverterContext {
 			.join('\n');
 	}
 
-	/**
-		`accessContext` is the symbol access path for the symbol that contains this type reference
-		This is required because if we're in a Global access context, type references should prefer global access (and modular context should prefer modular access).
-		For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`)
-		If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
-	**/
-	function complexTypeFromTypeNode(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var type = tc.getTypeFromTypeNode(node);
-		if (untyped type.intrinsicName == 'error') {
-			debug();
-			Log.error('Internal error: Error getting type from type node', node);
-		}
-		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
-	}
-	
 	// the type-stack is used to detect loops in recursive type conversions
 	var _currentTypeStack: Array<TsType> = [];
 	var _rasterizeMappedTypes = true;
-	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true): ComplexType {
+	/**
+		- `accessContext` is the symbol access path for the symbol that contains this type reference. This is required because if we're in a Global access context, type references should prefer global access (and modular context should prefer modular access). For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`). If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
+		- `allowAlias` - set to false to disable referring to types via an alias (i.e. `type = X`)
+		- `preferInterfaceStructure` - set to true return the interface-structure version of a type in haxe. This is not handled recursively, so only the top-level reference will prefer-interface-structure
+	**/
+	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true, preferInterfaceStructure: Bool = false): ComplexType {
 		// alias : this -> real type
 		if (type.isThisType()) {
 			var thisTarget = type.getThisTypeTarget();
@@ -768,7 +758,7 @@ class ConverterContext {
 				t;
 			} else {
 				// haxe type alias
-				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, true);
+				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, preferInterfaceStructure);
 				var params = if (type.aliasTypeArguments != null) {
 					type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration)));
 				} else [];
@@ -827,7 +817,7 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.TypeParameter) != 0) {
 			complexTypeFromTypeParameter(cast type, accessContext, enclosingDeclaration);
 		} else if (type.flags & (TypeFlags.Object) != 0) {
-			complexTypeFromObjectType(cast type, accessContext, true, enclosingDeclaration);
+			complexTypeFromObjectType(cast type, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
 		} else if (type.flags & TypeFlags.BigInt != 0) {
@@ -931,7 +921,8 @@ class ConverterContext {
 
 		// if all types are natively intersectable in haxe return TIntersection, if any are not, rasterize to a single anon
 		return if (nativelyIntersectable) {
-			var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+			// convert intersections, preferring interface structure references where possible
+			var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration, null, true)).deduplicateTypes();
 			TIntersection(hxTypes);
 		} else {
 			macro :Dynamic;
@@ -1178,7 +1169,7 @@ class ConverterContext {
 				return macro :Dynamic;
 			}
 			
-			var hxTarget = complexTypeFromTsType(cast typeReference.target, accessContext, enclosingDeclaration);
+			var hxTarget = complexTypeFromTsType(cast typeReference.target, accessContext, enclosingDeclaration, null, preferInterfaceStructure);
 
 			var hxTypeArguments = if (typeReference.typeArguments != null) {
 				typeReference.typeArguments.map(arg -> TPType(complexTypeFromTsType(arg, accessContext, enclosingDeclaration)));
@@ -1270,6 +1261,15 @@ class ConverterContext {
 		} else {
 			macro :Any;
 		}
+	}
+
+	function complexTypeFromTypeNode(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		var type = tc.getTypeFromTypeNode(node);
+		if (untyped type.intrinsicName == 'error') {
+			debug();
+			Log.error('Internal error: Error getting type from type node', node);
+		}
+		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 	}
 
 	function getTsTypeOfField(symbol: Symbol) {
