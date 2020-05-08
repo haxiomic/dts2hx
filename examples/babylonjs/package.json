@@ -1,0 +1,17 @@
+{
+  "name": "babylonjs-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "dts2hx --all"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babylonjs": "4.1.0"
+  },
+  "devDependencies": {
+    "dts2hx": "^0.5.0"
+  }
+}
