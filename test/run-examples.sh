@@ -27,3 +27,10 @@ npm install --ignore-scripts
 ../../cli.js --all
 haxe build.hxml
 cd ../
+
+cd babylonjs
+rm -rf externs
+npm install --ignore-scripts
+../../cli.js --all
+haxe build.hxml
+cd ../
