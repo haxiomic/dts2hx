@@ -49,7 +49,7 @@ package ts.html;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<INode & ParentNode>;
+	final parentNode : Null<Node>;
 	/**
 		Returns the previous sibling.
 	**/
