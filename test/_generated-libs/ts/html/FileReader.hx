@@ -4,20 +4,20 @@ package ts.html;
 **/
 @:native("FileReader") extern class FileReader {
 	function new();
-	final error : Null<IDOMException>;
-	var onabort : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
-	var onerror : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
-	var onload : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
-	var onloadend : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
-	var onloadstart : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
-	var onprogress : Null<(ev:IProgressEvent<IFileReader>) -> Dynamic>;
+	final error : Null<DOMException>;
+	var onabort : Null<(ev:ProgressEvent<FileReader>) -> Dynamic>;
+	var onerror : Null<(ev:ProgressEvent<FileReader>) -> Dynamic>;
+	var onload : Null<(ev:ProgressEvent<FileReader>) -> Dynamic>;
+	var onloadend : Null<(ev:ProgressEvent<FileReader>) -> Dynamic>;
+	var onloadstart : Null<(ev:ProgressEvent<FileReader>) -> Dynamic>;
+	var onprogress : Null<(ev:ProgressEvent<FileReader>) -> Dynamic>;
 	final readyState : Float;
-	final result : Null<ts.AnyOf2<String, ts.lib.IArrayBuffer>>;
+	final result : Null<ts.AnyOf2<String, ts.lib.ArrayBuffer>>;
 	function abort():Void;
-	function readAsArrayBuffer(blob:IBlob):Void;
-	function readAsBinaryString(blob:IBlob):Void;
-	function readAsDataURL(blob:IBlob):Void;
-	function readAsText(blob:IBlob, ?encoding:String):Void;
+	function readAsArrayBuffer(blob:Blob):Void;
+	function readAsBinaryString(blob:Blob):Void;
+	function readAsDataURL(blob:Blob):Void;
+	function readAsText(blob:Blob, ?encoding:String):Void;
 	final DONE : Float;
 	final EMPTY : Float;
 	final LOADING : Float;
@@ -58,8 +58,8 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IFileReader;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : FileReader;
 	@:native("DONE")
 	static final DONE_ : Float;
 	@:native("EMPTY")

@@ -5,15 +5,15 @@ package ts.html;
 typedef IMediaStream = {
 	final active : Bool;
 	final id : String;
-	var onaddtrack : Null<(ev:IMediaStreamTrackEvent) -> Dynamic>;
-	var onremovetrack : Null<(ev:IMediaStreamTrackEvent) -> Dynamic>;
-	function addTrack(track:IMediaStreamTrack):Void;
-	function clone():IMediaStream;
-	function getAudioTracks():Array<IMediaStreamTrack>;
-	function getTrackById(trackId:String):Null<IMediaStreamTrack>;
-	function getTracks():Array<IMediaStreamTrack>;
-	function getVideoTracks():Array<IMediaStreamTrack>;
-	function removeTrack(track:IMediaStreamTrack):Void;
+	var onaddtrack : Null<(ev:MediaStreamTrackEvent) -> Dynamic>;
+	var onremovetrack : Null<(ev:MediaStreamTrackEvent) -> Dynamic>;
+	function addTrack(track:MediaStreamTrack):Void;
+	function clone():MediaStream;
+	function getAudioTracks():Array<MediaStreamTrack>;
+	function getTrackById(trackId:String):Null<MediaStreamTrack>;
+	function getTracks():Array<MediaStreamTrack>;
+	function getVideoTracks():Array<MediaStreamTrack>;
+	function removeTrack(track:MediaStreamTrack):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -51,5 +51,5 @@ typedef IMediaStream = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

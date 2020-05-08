@@ -4,8 +4,8 @@ package ts.html;
 **/
 @:native("MessagePort") extern class MessagePort {
 	function new();
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
-	var onmessageerror : Null<(ev:IMessageEvent) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
+	var onmessageerror : Null<(ev:MessageEvent) -> Dynamic>;
 	/**
 		Disconnects the port, so that it is no longer active.
 	**/
@@ -58,6 +58,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IMessagePort;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : MessagePort;
 }

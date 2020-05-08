@@ -7,5 +7,5 @@ package ts.html;
 	final precision : Float;
 	final rangeMax : Float;
 	final rangeMin : Float;
-	static var prototype : IWebGLShaderPrecisionFormat;
+	static var prototype : WebGLShaderPrecisionFormat;
 }

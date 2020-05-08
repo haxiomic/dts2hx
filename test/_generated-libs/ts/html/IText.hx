@@ -3,7 +3,7 @@ package ts.html;
 	The textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.
 **/
 typedef IText = {
-	final assignedSlot : Null<IHTMLSlotElement>;
+	final assignedSlot : Null<HTMLSlotElement>;
 	/**
 		Returns the combined data of all direct Text node siblings.
 	**/
@@ -11,7 +11,7 @@ typedef IText = {
 	/**
 		Splits data at the given offset and returns the remainder as Text node.
 	**/
-	function splitText(offset:Float):IText;
+	function splitText(offset:Float):Text;
 	var data : String;
 	final length : Float;
 	function appendData(data:String):Void;
@@ -26,7 +26,7 @@ typedef IText = {
 	/**
 		Returns the children.
 	**/
-	final childNodes : ts.lib.NodeListOf<ChildNode>;
+	final childNodes : NodeListOf<ChildNode>;
 	/**
 		Returns the first child.
 	**/
@@ -56,11 +56,11 @@ typedef IText = {
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<IDocument>;
+	final ownerDocument : Null<Document>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<IHTMLElement>;
+	final parentElement : Null<HTMLElement>;
 	/**
 		Returns the parent.
 	**/
@@ -68,36 +68,36 @@ typedef IText = {
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<INode>;
+	final previousSibling : Null<Node>;
 	var textContent : Null<String>;
 	function appendChild<T>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):INode;
+	function cloneNode(?deep:Bool):Node;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:INode):Float;
+	function compareDocumentPosition(other:Node):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<INode>):Bool;
+	function contains(other:Null<Node>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):INode;
+	function getRootNode(?options:GetRootNodeOptions):Node;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T>(newChild:T, refChild:Null<INode>):T;
+	function insertBefore<T>(newChild:T, refChild:Null<Node>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<INode>):Bool;
-	function isSameNode(otherNode:Null<INode>):Bool;
+	function isEqualNode(otherNode:Null<Node>):Bool;
+	function isSameNode(otherNode:Null<Node>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
@@ -105,7 +105,7 @@ typedef IText = {
 	**/
 	function normalize():Void;
 	function removeChild<T>(oldChild:T):T;
-	function replaceChild<T>(newChild:INode, oldChild:T):T;
+	function replaceChild<T>(newChild:Node, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -180,7 +180,7 @@ typedef IText = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
@@ -190,13 +190,13 @@ typedef IText = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function after(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function before(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Removes node.
 	**/
@@ -206,13 +206,13 @@ typedef IText = {
 		
 		Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 	**/
-	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, INode>>):Void;
+	function replaceWith(nodes:haxe.extern.Rest<ts.AnyOf2<String, Node>>):Void;
 	/**
 		Returns the first following sibling that is an element, and null otherwise.
 	**/
-	final nextElementSibling : Null<IElement>;
+	final nextElementSibling : Null<Element>;
 	/**
 		Returns the first preceding sibling that is an element, and null otherwise.
 	**/
-	final previousElementSibling : Null<IElement>;
+	final previousElementSibling : Null<Element>;
 };

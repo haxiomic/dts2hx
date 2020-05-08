@@ -6,7 +6,7 @@ typedef ILocation = {
 	/**
 		Returns a DOMStringList object listing the origins of the ancestor browsing contexts, from the parent browsing context to the top-level browsing context.
 	**/
-	final ancestorOrigins : ts.lib.IDOMStringList;
+	final ancestorOrigins : DOMStringList;
 	/**
 		Returns the Location object's URL's fragment (includes leading "#" if non-empty).
 		

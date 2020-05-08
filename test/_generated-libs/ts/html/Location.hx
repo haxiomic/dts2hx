@@ -7,7 +7,7 @@ package ts.html;
 	/**
 		Returns a DOMStringList object listing the origins of the ancestor browsing contexts, from the parent browsing context to the top-level browsing context.
 	**/
-	final ancestorOrigins : ts.lib.IDOMStringList;
+	final ancestorOrigins : DOMStringList;
 	/**
 		Returns the Location object's URL's fragment (includes leading "#" if non-empty).
 		
@@ -73,5 +73,5 @@ package ts.html;
 		Removes the current page from the session history and navigates to the given URL.
 	**/
 	function replace(url:String):Void;
-	static var prototype : ILocation;
+	static var prototype : Location;
 }

@@ -7,4 +7,6 @@ package three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
+	function clone():CircleBufferGeometry;
+	function copy(source:BufferGeometry):CircleBufferGeometry;
 }

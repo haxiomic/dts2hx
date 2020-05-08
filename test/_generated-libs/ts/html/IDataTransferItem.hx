@@ -14,7 +14,7 @@ typedef IDataTransferItem = {
 	/**
 		Returns a File object, if the drag data item kind is File.
 	**/
-	function getAsFile():Null<IFile>;
+	function getAsFile():Null<File>;
 	/**
 		Invokes the callback with the string data as the argument, if the drag data item kind is Plain Unicode string.
 	**/

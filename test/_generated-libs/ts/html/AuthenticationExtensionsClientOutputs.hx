@@ -9,11 +9,11 @@ typedef AuthenticationExtensionsClientOutputs = {
 	@:optional
 	var loc : Coordinates;
 	@:optional
-	var txAuthGeneric : ts.lib.IArrayBuffer;
+	var txAuthGeneric : ts.lib.ArrayBuffer;
 	@:optional
 	var txAuthSimple : String;
 	@:optional
-	var uvi : ts.lib.IArrayBuffer;
+	var uvi : ts.lib.ArrayBuffer;
 	@:optional
 	var uvm : UvmEntries;
 };

@@ -5,9 +5,9 @@ package ts.html;
 typedef IStyleSheet = {
 	var disabled : Bool;
 	final href : Null<String>;
-	final media : ts.lib.IMediaList;
-	final ownerNode : INode;
-	final parentStyleSheet : Null<IStyleSheet>;
+	final media : MediaList;
+	final ownerNode : Node;
+	final parentStyleSheet : Null<StyleSheet>;
 	final title : Null<String>;
 	final type : String;
 };

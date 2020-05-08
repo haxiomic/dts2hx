@@ -1,7 +1,7 @@
 package ts.html;
 typedef MediaStreamErrorEventInit = {
 	@:optional
-	var error : IMediaStreamError;
+	var error : MediaStreamError;
 	@:optional
 	var bubbles : Bool;
 	@:optional

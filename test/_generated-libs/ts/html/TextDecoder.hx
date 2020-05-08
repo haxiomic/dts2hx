@@ -17,7 +17,7 @@ package ts.html;
 		
 		If the error mode is "fatal" and encoding's decoder returns error, throws a TypeError.
 	**/
-	function decode(?input:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ArrayBufferView>, ?options:TextDecodeOptions):String;
+	function decode(?input:ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.ArrayBufferView>, ?options:TextDecodeOptions):String;
 	/**
 		Returns encoding's name, lowercased.
 	**/
@@ -30,5 +30,5 @@ package ts.html;
 		Returns true if ignore BOM flag is set, and false otherwise.
 	**/
 	final ignoreBOM : Bool;
-	static var prototype : ITextDecoder;
+	static var prototype : TextDecoder;
 }

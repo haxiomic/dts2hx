@@ -11,7 +11,7 @@ package ts.html;
 	/**
 		Returns the children.
 	**/
-	final childNodes : ts.lib.NodeListOf<ChildNode>;
+	final childNodes : NodeListOf<ChildNode>;
 	/**
 		Returns the first child.
 	**/
@@ -41,48 +41,48 @@ package ts.html;
 	/**
 		Returns the node document. Returns null for documents.
 	**/
-	final ownerDocument : Null<IDocument>;
+	final ownerDocument : Null<Document>;
 	/**
 		Returns the parent element.
 	**/
-	final parentElement : Null<IHTMLElement>;
+	final parentElement : Null<HTMLElement>;
 	/**
 		Returns the parent.
 	**/
-	final parentNode : Null<INode & ParentNode>;
+	final parentNode : Null<Node>;
 	/**
 		Returns the previous sibling.
 	**/
-	final previousSibling : Null<INode>;
+	final previousSibling : Null<Node>;
 	var textContent : Null<String>;
 	function appendChild<T>(newChild:T):T;
 	/**
 		Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 	**/
-	function cloneNode(?deep:Bool):INode;
+	function cloneNode(?deep:Bool):Node;
 	/**
 		Returns a bitmask indicating the position of other relative to node.
 	**/
-	function compareDocumentPosition(other:INode):Float;
+	function compareDocumentPosition(other:Node):Float;
 	/**
 		Returns true if other is an inclusive descendant of node, and false otherwise.
 	**/
-	function contains(other:Null<INode>):Bool;
+	function contains(other:Null<Node>):Bool;
 	/**
 		Returns node's root.
 	**/
-	function getRootNode(?options:GetRootNodeOptions):INode;
+	function getRootNode(?options:GetRootNodeOptions):Node;
 	/**
 		Returns whether node has children.
 	**/
 	function hasChildNodes():Bool;
-	function insertBefore<T>(newChild:T, refChild:Null<INode>):T;
+	function insertBefore<T>(newChild:T, refChild:Null<Node>):T;
 	function isDefaultNamespace(namespace:Null<String>):Bool;
 	/**
 		Returns whether node and otherNode have the same properties.
 	**/
-	function isEqualNode(otherNode:Null<INode>):Bool;
-	function isSameNode(otherNode:Null<INode>):Bool;
+	function isEqualNode(otherNode:Null<Node>):Bool;
+	function isSameNode(otherNode:Null<Node>):Bool;
 	function lookupNamespaceURI(prefix:Null<String>):Null<String>;
 	function lookupPrefix(namespace:Null<String>):Null<String>;
 	/**
@@ -90,7 +90,7 @@ package ts.html;
 	**/
 	function normalize():Void;
 	function removeChild<T>(oldChild:T):T;
-	function replaceChild<T>(newChild:INode, oldChild:T):T;
+	function replaceChild<T>(newChild:Node, oldChild:T):T;
 	final ATTRIBUTE_NODE : Float;
 	/**
 		node is a CDATASection node.
@@ -165,12 +165,12 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	static var prototype : INode;
+	static var prototype : Node;
 	@:native("ATTRIBUTE_NODE")
 	static final ATTRIBUTE_NODE_ : Float;
 	/**

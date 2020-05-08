@@ -5,7 +5,7 @@ package ts.html;
 @:native("WritableStream") extern class WritableStream<W> {
 	function new(?underlyingSink:UnderlyingSink<W>, ?strategy:QueuingStrategy<W>);
 	final locked : Bool;
-	function abort(?reason:Dynamic):ts.lib.IPromise<Void>;
+	function abort(?reason:Dynamic):ts.lib.Promise<Void>;
 	function getWriter():WritableStreamDefaultWriter<W>;
-	static var prototype : IWritableStream<Dynamic>;
+	static var prototype : WritableStream<Dynamic>;
 }

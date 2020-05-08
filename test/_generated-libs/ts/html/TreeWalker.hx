@@ -4,16 +4,16 @@ package ts.html;
 **/
 @:native("TreeWalker") extern class TreeWalker {
 	function new();
-	var currentNode : INode;
+	var currentNode : Node;
 	final filter : Null<NodeFilter>;
-	final root : INode;
+	final root : Node;
 	final whatToShow : Float;
-	function firstChild():Null<INode>;
-	function lastChild():Null<INode>;
-	function nextNode():Null<INode>;
-	function nextSibling():Null<INode>;
-	function parentNode():Null<INode>;
-	function previousNode():Null<INode>;
-	function previousSibling():Null<INode>;
-	static var prototype : ITreeWalker;
+	function firstChild():Null<Node>;
+	function lastChild():Null<Node>;
+	function nextNode():Null<Node>;
+	function nextSibling():Null<Node>;
+	function parentNode():Null<Node>;
+	function previousNode():Null<Node>;
+	function previousSibling():Null<Node>;
+	static var prototype : TreeWalker;
 }

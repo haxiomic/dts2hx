@@ -10,7 +10,7 @@ typedef IMimeType = {
 	/**
 		Returns the Plugin object that implements this MIME type.
 	**/
-	final enabledPlugin : ts.lib.IPlugin;
+	final enabledPlugin : Plugin;
 	/**
 		Returns the MIME type's typical file extensions, in a comma-separated list.
 	**/

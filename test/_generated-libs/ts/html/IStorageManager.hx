@@ -1,6 +1,6 @@
 package ts.html;
 typedef IStorageManager = {
-	function estimate():ts.lib.IPromise<StorageEstimate>;
-	function persist():ts.lib.IPromise<Bool>;
-	function persisted():ts.lib.IPromise<Bool>;
+	function estimate():ts.lib.Promise<StorageEstimate>;
+	function persist():ts.lib.Promise<Bool>;
+	function persisted():ts.lib.Promise<Bool>;
 };

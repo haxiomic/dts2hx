@@ -4,7 +4,7 @@ typedef CompileFunctionOptions = {
 		Provides an optional data with V8's code cache data for the supplied source.
 	**/
 	@:optional
-	var cachedData : global.IBuffer;
+	var cachedData : global.Buffer;
 	/**
 		Specifies whether to produce new cache data.
 		Default: `false`,
@@ -20,7 +20,7 @@ typedef CompileFunctionOptions = {
 		An array containing a collection of context extensions (objects wrapping the current scope) to be applied while compiling
 	**/
 	@:optional
-	var contextExtensions : Array<ts.lib.IObject>;
+	var contextExtensions : Array<ts.lib.Object>;
 	/**
 		Specifies the filename used in stack traces produced by this script.
 		Default: `''`.

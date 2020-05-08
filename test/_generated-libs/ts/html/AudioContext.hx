@@ -6,14 +6,14 @@ package ts.html;
 	function new(?contextOptions:AudioContextOptions);
 	final baseLatency : Float;
 	final outputLatency : Float;
-	function close():ts.lib.IPromise<Void>;
-	function createMediaElementSource(mediaElement:IHTMLMediaElement):IMediaElementAudioSourceNode;
-	function createMediaStreamDestination():IMediaStreamAudioDestinationNode;
-	function createMediaStreamSource(mediaStream:IMediaStream):IMediaStreamAudioSourceNode;
-	function createMediaStreamTrackSource(mediaStreamTrack:IMediaStreamTrack):IMediaStreamTrackAudioSourceNode;
+	function close():ts.lib.Promise<Void>;
+	function createMediaElementSource(mediaElement:HTMLMediaElement):MediaElementAudioSourceNode;
+	function createMediaStreamDestination():MediaStreamAudioDestinationNode;
+	function createMediaStreamSource(mediaStream:MediaStream):MediaStreamAudioSourceNode;
+	function createMediaStreamTrackSource(mediaStreamTrack:MediaStreamTrack):MediaStreamTrackAudioSourceNode;
 	function getOutputTimestamp():AudioTimestamp;
-	function resume():ts.lib.IPromise<Void>;
-	function suspend():ts.lib.IPromise<Void>;
+	function resume():ts.lib.Promise<Void>;
+	function suspend():ts.lib.Promise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -76,37 +76,37 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	final audioWorklet : IAudioWorklet;
+	final audioWorklet : AudioWorklet;
 	final currentTime : Float;
-	final destination : IAudioDestinationNode;
-	final listener : IAudioListener;
-	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
+	final destination : AudioDestinationNode;
+	final listener : AudioListener;
+	var onstatechange : Null<(ev:Event) -> Dynamic>;
 	final sampleRate : Float;
 	final state : AudioContextState;
-	function createAnalyser():IAnalyserNode;
-	function createBiquadFilter():IBiquadFilterNode;
-	function createBuffer(numberOfChannels:Float, length:Float, sampleRate:Float):IAudioBuffer;
-	function createBufferSource():IAudioBufferSourceNode;
-	function createChannelMerger(?numberOfInputs:Float):IChannelMergerNode;
-	function createChannelSplitter(?numberOfOutputs:Float):IChannelSplitterNode;
-	function createConstantSource():IConstantSourceNode;
-	function createConvolver():IConvolverNode;
-	function createDelay(?maxDelayTime:Float):IDelayNode;
-	function createDynamicsCompressor():IDynamicsCompressorNode;
-	function createGain():IGainNode;
-	@:overload(function(feedforward:ts.lib.Iterable<Float>, feedback:ts.lib.Iterable<Float>):IIIRFilterNode { })
-	function createIIRFilter(feedforward:Array<Float>, feedback:Array<Float>):IIIRFilterNode;
-	function createOscillator():IOscillatorNode;
-	function createPanner():IPannerNode;
-	@:overload(function(real:ts.lib.Iterable<Float>, imag:ts.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):IPeriodicWave { })
-	function createPeriodicWave(real:ts.AnyOf2<ts.lib.IFloat32Array, Array<Float>>, imag:ts.AnyOf2<ts.lib.IFloat32Array, Array<Float>>, ?constraints:PeriodicWaveConstraints):IPeriodicWave;
-	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):IScriptProcessorNode;
-	function createStereoPanner():IStereoPannerNode;
-	function createWaveShaper():IWaveShaperNode;
-	function decodeAudioData(audioData:ts.lib.IArrayBuffer, ?successCallback:DecodeSuccessCallback, ?errorCallback:DecodeErrorCallback):ts.lib.IPromise<IAudioBuffer>;
+	function createAnalyser():AnalyserNode;
+	function createBiquadFilter():BiquadFilterNode;
+	function createBuffer(numberOfChannels:Float, length:Float, sampleRate:Float):AudioBuffer;
+	function createBufferSource():AudioBufferSourceNode;
+	function createChannelMerger(?numberOfInputs:Float):ChannelMergerNode;
+	function createChannelSplitter(?numberOfOutputs:Float):ChannelSplitterNode;
+	function createConstantSource():ConstantSourceNode;
+	function createConvolver():ConvolverNode;
+	function createDelay(?maxDelayTime:Float):DelayNode;
+	function createDynamicsCompressor():DynamicsCompressorNode;
+	function createGain():GainNode;
+	@:overload(function(feedforward:ts.lib.Iterable<Float>, feedback:ts.lib.Iterable<Float>):IIRFilterNode { })
+	function createIIRFilter(feedforward:Array<Float>, feedback:Array<Float>):IIRFilterNode;
+	function createOscillator():OscillatorNode;
+	function createPanner():PannerNode;
+	@:overload(function(real:ts.lib.Iterable<Float>, imag:ts.lib.Iterable<Float>, ?constraints:PeriodicWaveConstraints):PeriodicWave { })
+	function createPeriodicWave(real:ts.AnyOf2<ts.lib.Float32Array, Array<Float>>, imag:ts.AnyOf2<ts.lib.Float32Array, Array<Float>>, ?constraints:PeriodicWaveConstraints):PeriodicWave;
+	function createScriptProcessor(?bufferSize:Float, ?numberOfInputChannels:Float, ?numberOfOutputChannels:Float):ScriptProcessorNode;
+	function createStereoPanner():StereoPannerNode;
+	function createWaveShaper():WaveShaperNode;
+	function decodeAudioData(audioData:ts.lib.ArrayBuffer, ?successCallback:DecodeSuccessCallback, ?errorCallback:DecodeErrorCallback):ts.lib.Promise<AudioBuffer>;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IAudioContext;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : AudioContext;
 }

@@ -5,7 +5,7 @@ package three;
 	var crossOrigin : String;
 	@:optional
 	var path : String;
-	function load(urls:Array<String>, ?onLoad:(texture:CubeTexture) -> Void, ?onProgress:(event:ts.html.IProgressEvent<ts.html.IEventTarget>) -> Void, ?onError:(event:ts.html.IErrorEvent) -> Void):CubeTexture;
+	function load(urls:Array<String>, ?onLoad:(texture:CubeTexture) -> Void, ?onProgress:(event:ts.html.ProgressEvent<ts.html.EventTarget>) -> Void, ?onError:(event:ts.html.ErrorEvent) -> Void):CubeTexture;
 	function setCrossOrigin(crossOrigin:String):CubeTextureLoader;
 	function setPath(path:String):CubeTextureLoader;
 }

@@ -20,4 +20,43 @@ package three;
 	**/
 	var projectionMatrixInverse : Matrix4;
 	var isCamera : Bool;
+	function applyQuaternion(quaternion:Quaternion):Camera;
+	/**
+		Rotate an object along an axis in object space. The axis is assumed to be normalized.
+	**/
+	function rotateOnAxis(axis:Vector3, angle:Float):Camera;
+	/**
+		Rotate an object along an axis in world space. The axis is assumed to be normalized. Method Assumes no rotated parent.
+	**/
+	function rotateOnWorldAxis(axis:Vector3, angle:Float):Camera;
+	function rotateX(angle:Float):Camera;
+	function rotateY(angle:Float):Camera;
+	function rotateZ(angle:Float):Camera;
+	function translateOnAxis(axis:Vector3, distance:Float):Camera;
+	/**
+		Translates object along x axis by distance.
+	**/
+	function translateX(distance:Float):Camera;
+	/**
+		Translates object along y axis by distance.
+	**/
+	function translateY(distance:Float):Camera;
+	/**
+		Translates object along z axis by distance.
+	**/
+	function translateZ(distance:Float):Camera;
+	/**
+		Adds object as child of this object.
+	**/
+	function add(object:haxe.extern.Rest<Object3D>):Camera;
+	/**
+		Removes object as child of this object.
+	**/
+	function remove(object:haxe.extern.Rest<Object3D>):Camera;
+	/**
+		Adds object as a child of this, while maintaining the object's world transform.
+	**/
+	function attach(object:Object3D):Camera;
+	function clone(?recursive:Bool):Camera;
+	function copy(source:Camera, ?recursive:Bool):Camera;
 }

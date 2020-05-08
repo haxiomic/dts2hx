@@ -25,7 +25,7 @@ typedef TouchInit = {
 	var screenX : Float;
 	@:optional
 	var screenY : Float;
-	var target : IEventTarget;
+	var target : EventTarget;
 	@:optional
 	var touchType : String;
 };

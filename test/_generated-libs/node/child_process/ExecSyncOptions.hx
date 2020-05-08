@@ -1,7 +1,7 @@
 package node.child_process;
 typedef ExecSyncOptions = {
 	@:optional
-	var input : ts.AnyOf3<String, global.IBuffer, ts.lib.IUint8Array>;
+	var input : ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>;
 	@:optional
 	var stdio : ts.AnyOf2<String, Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
 	@:optional

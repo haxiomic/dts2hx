@@ -1,8 +1,8 @@
 package three;
 @:jsRequire("three", "Audio") extern class Audio extends Object3D {
 	function new(listener:AudioListener);
-	var context : ts.html.IAudioContext;
-	var gain : ts.html.IGainNode;
+	var context : ts.html.AudioContext;
+	var gain : ts.html.GainNode;
 	var autoplay : Bool;
 	var buffer : Null<Audio>;
 	var detune : Float;
@@ -13,11 +13,11 @@ package three;
 	var isPlaying : Bool;
 	var hasPlaybackControl : Bool;
 	var sourceType : String;
-	var source : ts.html.IAudioBufferSourceNode;
+	var source : ts.html.AudioBufferSourceNode;
 	var filters : Array<Dynamic>;
-	function getOutput():ts.html.IGainNode;
-	function setNodeSource(audioNode:ts.html.IAudioBufferSourceNode):Audio;
-	function setMediaElementSource(mediaElement:ts.html.IMediaElementAudioSourceNode):Audio;
+	function getOutput():ts.html.GainNode;
+	function setNodeSource(audioNode:ts.html.AudioBufferSourceNode):Audio;
+	function setMediaElementSource(mediaElement:ts.html.MediaElementAudioSourceNode):Audio;
 	function setBuffer(audioBuffer:AudioBuffer):Audio;
 	function play():Audio;
 	function onEnded():Void;
@@ -38,4 +38,43 @@ package three;
 	function getVolume():Float;
 	function setVolume(value:Float):Audio;
 	function load(file:String):Audio;
+	function applyQuaternion(quaternion:Quaternion):Audio;
+	/**
+		Rotate an object along an axis in object space. The axis is assumed to be normalized.
+	**/
+	function rotateOnAxis(axis:Vector3, angle:Float):Audio;
+	/**
+		Rotate an object along an axis in world space. The axis is assumed to be normalized. Method Assumes no rotated parent.
+	**/
+	function rotateOnWorldAxis(axis:Vector3, angle:Float):Audio;
+	function rotateX(angle:Float):Audio;
+	function rotateY(angle:Float):Audio;
+	function rotateZ(angle:Float):Audio;
+	function translateOnAxis(axis:Vector3, distance:Float):Audio;
+	/**
+		Translates object along x axis by distance.
+	**/
+	function translateX(distance:Float):Audio;
+	/**
+		Translates object along y axis by distance.
+	**/
+	function translateY(distance:Float):Audio;
+	/**
+		Translates object along z axis by distance.
+	**/
+	function translateZ(distance:Float):Audio;
+	/**
+		Adds object as child of this object.
+	**/
+	function add(object:haxe.extern.Rest<Object3D>):Audio;
+	/**
+		Removes object as child of this object.
+	**/
+	function remove(object:haxe.extern.Rest<Object3D>):Audio;
+	/**
+		Adds object as a child of this, while maintaining the object's world transform.
+	**/
+	function attach(object:Object3D):Audio;
+	function clone(?recursive:Bool):Audio;
+	function copy(source:Audio, ?recursive:Bool):Audio;
 }

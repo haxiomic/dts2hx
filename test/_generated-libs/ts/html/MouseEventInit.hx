@@ -13,7 +13,7 @@ typedef MouseEventInit = {
 	@:optional
 	var movementY : Float;
 	@:optional
-	var relatedTarget : IEventTarget;
+	var relatedTarget : EventTarget;
 	@:optional
 	var screenX : Float;
 	@:optional
@@ -49,7 +49,7 @@ typedef MouseEventInit = {
 	@:optional
 	var detail : Float;
 	@:optional
-	var view : IWindow;
+	var view : Window;
 	@:optional
 	var bubbles : Bool;
 	@:optional

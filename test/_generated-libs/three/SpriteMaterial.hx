@@ -6,4 +6,16 @@ package three;
 	var rotation : Float;
 	var sizeAttenuation : Bool;
 	var isSpriteMaterial : Bool;
+	/**
+		Sets the properties based on the values.
+	**/
+	function setValues(parameters:SpriteMaterialParameters):Void;
+	/**
+		Copy the parameters from the passed material into this material.
+	**/
+	function copy(source:SpriteMaterial):SpriteMaterial;
+	/**
+		Return a new material with the same parameters as this material.
+	**/
+	function clone():SpriteMaterial;
 }

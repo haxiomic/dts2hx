@@ -1,7 +1,7 @@
 package ts.html;
 @:native("DataCue") extern class DataCue {
 	function new();
-	var data : ts.lib.IArrayBuffer;
+	var data : ts.lib.ArrayBuffer;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -66,16 +66,16 @@ package ts.html;
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
 	var endTime : Float;
 	var id : String;
-	var onenter : Null<(ev:IEvent) -> Dynamic>;
-	var onexit : Null<(ev:IEvent) -> Dynamic>;
+	var onenter : Null<(ev:Event) -> Dynamic>;
+	var onexit : Null<(ev:Event) -> Dynamic>;
 	var pauseOnExit : Bool;
 	var startTime : Float;
 	var text : String;
-	final track : ITextTrack;
-	function getCueAsHTML():IDocumentFragment;
+	final track : TextTrack;
+	function getCueAsHTML():DocumentFragment;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IDataCue;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : DataCue;
 }

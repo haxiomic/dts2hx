@@ -5,8 +5,8 @@ package ts.html;
 	var x : Float;
 	var y : Float;
 	var z : Float;
-	function matrixTransform(?matrix:DOMMatrixInit):IDOMPoint;
+	function matrixTransform(?matrix:DOMMatrixInit):DOMPoint;
 	function toJSON():Dynamic;
-	static var prototype : IDOMPoint;
-	static function fromPoint(?other:DOMPointInit):IDOMPoint;
+	static var prototype : DOMPoint;
+	static function fromPoint(?other:DOMPointInit):DOMPoint;
 }

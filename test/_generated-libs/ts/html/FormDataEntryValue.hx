@@ -1,2 +1,2 @@
 package ts.html;
-typedef FormDataEntryValue = ts.AnyOf2<String, IFile>;
+typedef FormDataEntryValue = ts.AnyOf2<String, File>;

@@ -18,7 +18,7 @@ typedef IIDBCursor = {
 	/**
 		Returns the IDBObjectStore or IDBIndex the cursor was opened from.
 	**/
-	final source : ts.AnyOf2<IIDBIndex, ts.lib.IIDBObjectStore>;
+	final source : ts.AnyOf2<IDBIndex, IDBObjectStore>;
 	/**
 		Advances the cursor through the next count records in range.
 	**/
@@ -27,7 +27,7 @@ typedef IIDBCursor = {
 		Advances the cursor to the next record in range.
 	**/
 	@:native("continue")
-	function continue_(?key:ts.AnyOf6<String, Float, ts.lib.IArrayBuffer, ts.lib.IDate_, ts.lib.ArrayBufferView, IDBArrayKey>):Void;
+	function continue_(?key:ts.AnyOf6<String, Float, ts.lib.ArrayBuffer, ts.lib.Date_, ts.lib.ArrayBufferView, IDBArrayKey>):Void;
 	/**
 		Advances the cursor to the next record in range matching or after key and primaryKey. Throws an "InvalidAccessError" DOMException if the source is not an index.
 	**/
@@ -37,7 +37,7 @@ typedef IIDBCursor = {
 		
 		If successful, request's result will be undefined.
 	**/
-	function delete():IIDBRequest<Null<Any>>;
+	function delete():IDBRequest<Null<Any>>;
 	/**
 		Updated the record pointed at by the cursor with a new value.
 		
@@ -45,5 +45,5 @@ typedef IIDBCursor = {
 		
 		If successful, request's result will be the record's key.
 	**/
-	function update(value:Dynamic):IIDBRequest<IDBValidKey>;
+	function update(value:Dynamic):IDBRequest<IDBValidKey>;
 };

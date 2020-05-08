@@ -13,5 +13,5 @@ typedef IArrayBuffer = {
 	/**
 		Returns a section of an ArrayBuffer.
 	**/
-	function slice(begin:Float, ?end:Float):IArrayBuffer;
+	function slice(begin:Float, ?end:Float):ArrayBuffer;
 };

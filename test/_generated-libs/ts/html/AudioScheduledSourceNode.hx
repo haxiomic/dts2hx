@@ -1,7 +1,7 @@
 package ts.html;
 @:native("AudioScheduledSourceNode") extern class AudioScheduledSourceNode {
 	function new();
-	var onended : Null<(ev:IEvent) -> Dynamic>;
+	var onended : Null<(ev:Event) -> Dynamic>;
 	function start(?when:Float):Void;
 	function stop(?when:Float):Void;
 	/**
@@ -41,21 +41,21 @@ package ts.html;
 	var channelCount : Float;
 	var channelCountMode : ChannelCountMode;
 	var channelInterpretation : ChannelInterpretation;
-	final context : ts.lib.IBaseAudioContext;
+	final context : BaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:ts.lib.IAudioParam, ?output:Float):Void { })
-	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
+	@:overload(function(destinationParam:AudioParam, ?output:Float):Void { })
+	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:AudioParam):Void { })
+	@:overload(function(destinationParam:AudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IAudioScheduledSourceNode;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : AudioScheduledSourceNode;
 }

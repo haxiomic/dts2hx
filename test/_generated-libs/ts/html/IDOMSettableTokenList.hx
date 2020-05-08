@@ -60,7 +60,7 @@ typedef IDOMSettableTokenList = {
 		Throws an "InvalidCharacterError" DOMException if token contains any spaces.
 	**/
 	function toggle(token:String, ?force:Bool):Bool;
-	function forEach(callbackfn:(value:String, key:Float, parent:ts.lib.IDOMTokenList) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:String, key:Float, parent:DOMTokenList) -> Void, ?thisArg:Dynamic):Void;
 	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, String>>;
 	function keys():ts.lib.IterableIterator<Float>;
 	function values():ts.lib.IterableIterator<String>;

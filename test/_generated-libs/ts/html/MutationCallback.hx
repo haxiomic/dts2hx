@@ -1,5 +1,5 @@
 package ts.html;
 typedef MutationCallback = {
 	@:selfCall
-	function call(mutations:Array<IMutationRecord>, observer:IMutationObserver):Void;
+	function call(mutations:Array<MutationRecord>, observer:MutationObserver):Void;
 };

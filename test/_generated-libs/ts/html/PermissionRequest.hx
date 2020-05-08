@@ -8,5 +8,5 @@ package ts.html;
 	final uri : String;
 	function allow():Void;
 	function deny():Void;
-	static var prototype : IPermissionRequest;
+	static var prototype : PermissionRequest;
 }

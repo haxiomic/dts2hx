@@ -32,7 +32,7 @@ package ts.html;
 	final URL_MISMATCH_ERR : Float;
 	final VALIDATION_ERR : Float;
 	final WRONG_DOCUMENT_ERR : Float;
-	static var prototype : IDOMException;
+	static var prototype : DOMException;
 	@:native("ABORT_ERR")
 	static final ABORT_ERR_ : Float;
 	@:native("DATA_CLONE_ERR")

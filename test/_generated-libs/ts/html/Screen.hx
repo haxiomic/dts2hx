@@ -8,8 +8,8 @@ package ts.html;
 	final availWidth : Float;
 	final colorDepth : Float;
 	final height : Float;
-	final orientation : IScreenOrientation;
+	final orientation : ScreenOrientation;
 	final pixelDepth : Float;
 	final width : Float;
-	static var prototype : IScreen;
+	static var prototype : Screen;
 }

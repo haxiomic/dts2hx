@@ -4,14 +4,14 @@ package ts.html;
 **/
 @:native("CSSKeyframesRule") extern class CSSKeyframesRule {
 	function new();
-	final cssRules : ts.lib.ICSSRuleList;
+	final cssRules : CSSRuleList;
 	var name : String;
 	function appendRule(rule:String):Void;
 	function deleteRule(select:String):Void;
-	function findRule(select:String):Null<ICSSKeyframeRule>;
+	function findRule(select:String):Null<CSSKeyframeRule>;
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -25,5 +25,5 @@ package ts.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : ICSSKeyframesRule;
+	static var prototype : CSSKeyframesRule;
 }

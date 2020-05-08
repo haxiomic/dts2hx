@@ -7,4 +7,10 @@ package three;
 		var phiStart : Float;
 		var phiLength : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):LatheGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():LatheGeometry;
+	function copy(source:Geometry):LatheGeometry;
 }

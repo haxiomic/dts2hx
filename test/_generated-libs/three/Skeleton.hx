@@ -6,7 +6,7 @@ package three;
 	var bones : Array<Bone>;
 	var boneTextureWidth : Float;
 	var boneTextureHeight : Float;
-	var boneMatrices : ts.lib.IFloat32Array;
+	var boneMatrices : ts.lib.Float32Array;
 	var boneTexture : DataTexture;
 	var boneInverses : Array<Matrix4>;
 	function calculateInverses(bone:Bone):Void;

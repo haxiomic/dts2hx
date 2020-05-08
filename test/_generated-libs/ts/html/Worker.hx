@@ -3,8 +3,8 @@ package ts.html;
 	This Web Workers API interface represents a background task that can be easily created and can send messages back to its creator. Creating a worker is as simple as calling the Worker() constructor and specifying a script to be run in the worker thread.
 **/
 @:native("Worker") extern class Worker {
-	function new(stringUrl:ts.AnyOf2<String, IURL>, ?options:WorkerOptions);
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
+	function new(stringUrl:ts.AnyOf2<String, URL>, ?options:WorkerOptions);
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
 	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
 	function postMessage(message:Dynamic, transfer:Array<Transferable>):Void;
 	function terminate():Void;
@@ -45,7 +45,7 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	var onerror : Null<(ev:IErrorEvent) -> Dynamic>;
-	static var prototype : IWorker;
+	function dispatchEvent(event:Event):Bool;
+	var onerror : Null<(ev:ErrorEvent) -> Dynamic>;
+	static var prototype : Worker;
 }

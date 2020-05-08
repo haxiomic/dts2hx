@@ -3,17 +3,17 @@ package ts.html;
 	A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
 **/
 typedef ICSSStyleSheet = {
-	final cssRules : ts.lib.ICSSRuleList;
+	final cssRules : CSSRuleList;
 	var cssText : String;
 	final id : String;
-	final imports : ts.lib.IStyleSheetList;
+	final imports : StyleSheetList;
 	final isAlternate : Bool;
 	final isPrefAlternate : Bool;
-	final ownerRule : Null<ICSSRule>;
-	final owningElement : IElement;
+	final ownerRule : Null<CSSRule>;
+	final owningElement : Element;
 	final pages : Dynamic;
 	final readOnly : Bool;
-	final rules : ts.lib.ICSSRuleList;
+	final rules : CSSRuleList;
 	function addImport(bstrURL:String, ?lIndex:Float):Float;
 	function addPageRule(bstrSelector:String, bstrStyle:String, ?lIndex:Float):Float;
 	function addRule(bstrSelector:String, ?bstrStyle:String, ?lIndex:Float):Float;
@@ -23,9 +23,9 @@ typedef ICSSStyleSheet = {
 	function removeRule(lIndex:Float):Void;
 	var disabled : Bool;
 	final href : Null<String>;
-	final media : ts.lib.IMediaList;
-	final ownerNode : INode;
-	final parentStyleSheet : Null<IStyleSheet>;
+	final media : MediaList;
+	final ownerNode : Node;
+	final parentStyleSheet : Null<StyleSheet>;
 	final title : Null<String>;
 	final type : String;
 };

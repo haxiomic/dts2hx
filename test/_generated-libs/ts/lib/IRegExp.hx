@@ -25,7 +25,7 @@ typedef IRegExp = {
 	**/
 	final multiline : Bool;
 	var lastIndex : Float;
-	function compile():IRegExp;
+	function compile():RegExp;
 	/**
 		Returns a string indicating the flags of the regular expression in question. This field is read-only.
 		The characters in this string are sequenced and concatenated in the following order:

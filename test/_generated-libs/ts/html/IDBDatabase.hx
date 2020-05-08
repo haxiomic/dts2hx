@@ -11,11 +11,11 @@ package ts.html;
 	/**
 		Returns a list of the names of object stores in the database.
 	**/
-	final objectStoreNames : ts.lib.IDOMStringList;
-	var onabort : Null<(ev:IEvent) -> Dynamic>;
-	var onclose : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	var onversionchange : Null<(ev:IIDBVersionChangeEvent) -> Dynamic>;
+	final objectStoreNames : DOMStringList;
+	var onabort : Null<(ev:Event) -> Dynamic>;
+	var onclose : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	var onversionchange : Null<(ev:IDBVersionChangeEvent) -> Dynamic>;
 	/**
 		Returns the version of the database.
 	**/
@@ -29,7 +29,7 @@ package ts.html;
 		
 		Throws a "InvalidStateError" DOMException if not called within an upgrade transaction.
 	**/
-	function createObjectStore(name:String, ?optionalParameters:IDBObjectStoreParameters):ts.lib.IIDBObjectStore;
+	function createObjectStore(name:String, ?optionalParameters:IDBObjectStoreParameters):IDBObjectStore;
 	/**
 		Deletes the object store with the given name.
 		
@@ -39,7 +39,7 @@ package ts.html;
 	/**
 		Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
 	**/
-	function transaction(storeNames:ts.AnyOf2<String, Array<String>>, ?mode:String):IIDBTransaction;
+	function transaction(storeNames:ts.AnyOf2<String, Array<String>>, ?mode:String):IDBTransaction;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -77,6 +77,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IIDBDatabase;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : IDBDatabase;
 }

@@ -4,5 +4,5 @@ package ts.html;
 	final constraintName : Null<String>;
 	final message : Null<String>;
 	final name : String;
-	static var prototype : IMediaStreamError;
+	static var prototype : MediaStreamError;
 }

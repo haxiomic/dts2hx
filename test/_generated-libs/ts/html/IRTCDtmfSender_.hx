@@ -3,8 +3,8 @@ typedef IRTCDtmfSender_ = {
 	final canInsertDTMF : Bool;
 	final duration : Float;
 	final interToneGap : Float;
-	var ontonechange : Null<(ev:IRTCDTMFToneChangeEvent) -> Dynamic>;
-	final sender : IRTCRtpSender;
+	var ontonechange : Null<(ev:RTCDTMFToneChangeEvent) -> Dynamic>;
+	final sender : RTCRtpSender;
 	final toneBuffer : String;
 	function insertDTMF(tones:String, ?duration:Float, ?interToneGap:Float):Void;
 	/**
@@ -44,5 +44,5 @@ typedef IRTCDtmfSender_ = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

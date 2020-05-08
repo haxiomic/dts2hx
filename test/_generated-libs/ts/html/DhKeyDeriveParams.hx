@@ -1,6 +1,6 @@
 package ts.html;
 typedef DhKeyDeriveParams = {
 	@:native("public")
-	var public_ : ICryptoKey;
+	var public_ : CryptoKey;
 	var name : String;
 };

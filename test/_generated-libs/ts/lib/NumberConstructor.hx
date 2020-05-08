@@ -2,7 +2,7 @@ package ts.lib;
 typedef NumberConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):Float;
-	final prototype : INumber;
+	final prototype : Number;
 	/**
 		The largest number that can be represented in JavaScript. Equal to approximately 1.79E+308.
 	**/

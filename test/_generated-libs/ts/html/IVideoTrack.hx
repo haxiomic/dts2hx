@@ -8,5 +8,5 @@ typedef IVideoTrack = {
 	final label : String;
 	var language : String;
 	var selected : Bool;
-	final sourceBuffer : Null<ISourceBuffer>;
+	final sourceBuffer : Null<SourceBuffer>;
 };

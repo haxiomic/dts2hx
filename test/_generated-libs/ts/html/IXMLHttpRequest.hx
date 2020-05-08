@@ -3,7 +3,7 @@ package ts.html;
 	Use XMLHttpRequest (XHR) objects to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing.
 **/
 typedef IXMLHttpRequest = {
-	var onreadystatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onreadystatechange : Null<(ev:Event) -> Dynamic>;
 	/**
 		Returns client's state.
 	**/
@@ -36,7 +36,7 @@ typedef IXMLHttpRequest = {
 		
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "document".
 	**/
-	final responseXML : Null<IDocument>;
+	final responseXML : Null<Document>;
 	final status : Float;
 	final statusText : String;
 	/**
@@ -48,7 +48,7 @@ typedef IXMLHttpRequest = {
 	/**
 		Returns the associated XMLHttpRequestUpload object. It can be used to gather transmission information when data is transferred to a server.
 	**/
-	final upload : IXMLHttpRequestUpload;
+	final upload : XMLHttpRequestUpload;
 	/**
 		True when credentials are to be included in a cross-origin request. False when they are to be excluded in a cross-origin request and when cookies are to be ignored in its response. Initially false.
 		
@@ -83,7 +83,7 @@ typedef IXMLHttpRequest = {
 		
 		Throws an "InvalidStateError" DOMException if either state is not opened or the send() flag is set.
 	**/
-	function send(?body:ts.AnyOf8<String, IDocument, ts.lib.IArrayBuffer, IBlob, ts.lib.IFormData, ts.lib.IURLSearchParams, ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>):Void;
+	function send(?body:ts.AnyOf8<String, Document, ts.lib.ArrayBuffer, Blob, FormData, URLSearchParams, ts.lib.ArrayBufferView, ReadableStream<ts.lib.Uint8Array>>):Void;
 	/**
 		Combines a header in author request headers.
 		
@@ -159,15 +159,15 @@ typedef IXMLHttpRequest = {
 	**/
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	var onabort : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onerror : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onload : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onloadend : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onloadstart : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var onprogress : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
-	var ontimeout : Null<(ev:IProgressEvent<IEventTarget>) -> Dynamic>;
+	var onabort : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onerror : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onload : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onloadend : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onloadstart : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var onprogress : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
+	var ontimeout : Null<(ev:ProgressEvent<EventTarget>) -> Dynamic>;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

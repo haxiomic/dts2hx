@@ -9,5 +9,5 @@ package ts.html;
 	var viewportAnchorX : Float;
 	var viewportAnchorY : Float;
 	var width : Float;
-	static var prototype : IVTTRegion;
+	static var prototype : VTTRegion;
 }

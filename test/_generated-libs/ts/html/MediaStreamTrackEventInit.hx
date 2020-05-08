@@ -1,6 +1,6 @@
 package ts.html;
 typedef MediaStreamTrackEventInit = {
-	var track : IMediaStreamTrack;
+	var track : MediaStreamTrack;
 	@:optional
 	var bubbles : Bool;
 	@:optional

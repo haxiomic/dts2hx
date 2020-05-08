@@ -7,5 +7,5 @@ typedef PipeOptions = {
 	@:optional
 	var preventClose : Bool;
 	@:optional
-	var signal : IAbortSignal;
+	var signal : AbortSignal;
 };

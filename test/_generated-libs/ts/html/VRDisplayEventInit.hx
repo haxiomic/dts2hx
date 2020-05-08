@@ -1,6 +1,6 @@
 package ts.html;
 typedef VRDisplayEventInit = {
-	var display : ts.lib.IVRDisplay;
+	var display : VRDisplay;
 	@:optional
 	var reason : String;
 	@:optional

@@ -4,14 +4,14 @@ package ts.html;
 **/
 @:native("CSSMediaRule") extern class CSSMediaRule {
 	function new();
-	final media : ts.lib.IMediaList;
+	final media : MediaList;
 	var conditionText : String;
-	final cssRules : ts.lib.ICSSRuleList;
+	final cssRules : CSSRuleList;
 	function deleteRule(index:Float):Void;
 	function insertRule(rule:String, index:Float):Float;
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;
@@ -25,5 +25,5 @@ package ts.html;
 	final SUPPORTS_RULE : Float;
 	final UNKNOWN_RULE : Float;
 	final VIEWPORT_RULE : Float;
-	static var prototype : ICSSMediaRule;
+	static var prototype : CSSMediaRule;
 }

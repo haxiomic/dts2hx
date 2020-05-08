@@ -10,9 +10,9 @@ package ts.html;
 	final payerName : Null<String>;
 	final payerPhone : Null<String>;
 	final requestId : String;
-	final shippingAddress : Null<IPaymentAddress>;
+	final shippingAddress : Null<PaymentAddress>;
 	final shippingOption : Null<String>;
-	function complete(?result:String):ts.lib.IPromise<Void>;
+	function complete(?result:String):ts.lib.Promise<Void>;
 	function toJSON():Dynamic;
-	static var prototype : IPaymentResponse;
+	static var prototype : PaymentResponse;
 }

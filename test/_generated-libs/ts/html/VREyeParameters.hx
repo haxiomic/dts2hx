@@ -4,9 +4,9 @@ package ts.html;
 **/
 @:native("VREyeParameters") extern class VREyeParameters {
 	function new();
-	final fieldOfView : IVRFieldOfView;
-	final offset : ts.lib.IFloat32Array;
+	final fieldOfView : VRFieldOfView;
+	final offset : ts.lib.Float32Array;
 	final renderHeight : Float;
 	final renderWidth : Float;
-	static var prototype : IVREyeParameters;
+	static var prototype : VREyeParameters;
 }

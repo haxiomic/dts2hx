@@ -7,5 +7,5 @@ package ts.html;
 	final transportHints : Array<MSTransportType>;
 	final id : String;
 	final type : String;
-	static var prototype : IMSFIDOCredentialAssertion;
+	static var prototype : MSFIDOCredentialAssertion;
 }

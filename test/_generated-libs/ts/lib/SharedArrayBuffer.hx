@@ -9,6 +9,6 @@ package ts.lib;
 	/**
 		Returns a section of an SharedArrayBuffer.
 	**/
-	function slice(begin:Float, ?end:Float):ISharedArrayBuffer;
-	static final prototype : ISharedArrayBuffer;
+	function slice(begin:Float, ?end:Float):SharedArrayBuffer;
+	static final prototype : SharedArrayBuffer;
 }

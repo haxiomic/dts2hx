@@ -3,30 +3,30 @@ package ts.html;
 	A node able to provide real-time frequency and time-domain analysis information. It is an AudioNode that passes the audio stream unchanged from the input to the output, but allows you to take the generated data, process it, and create audio visualizations.
 **/
 @:native("AnalyserNode") extern class AnalyserNode {
-	function new(context:ts.lib.IBaseAudioContext, ?options:AnalyserOptions);
+	function new(context:BaseAudioContext, ?options:AnalyserOptions);
 	var fftSize : Float;
 	final frequencyBinCount : Float;
 	var maxDecibels : Float;
 	var minDecibels : Float;
 	var smoothingTimeConstant : Float;
-	function getByteFrequencyData(array:ts.lib.IUint8Array):Void;
-	function getByteTimeDomainData(array:ts.lib.IUint8Array):Void;
-	function getFloatFrequencyData(array:ts.lib.IFloat32Array):Void;
-	function getFloatTimeDomainData(array:ts.lib.IFloat32Array):Void;
+	function getByteFrequencyData(array:ts.lib.Uint8Array):Void;
+	function getByteTimeDomainData(array:ts.lib.Uint8Array):Void;
+	function getFloatFrequencyData(array:ts.lib.Float32Array):Void;
+	function getFloatTimeDomainData(array:ts.lib.Float32Array):Void;
 	var channelCount : Float;
 	var channelCountMode : ChannelCountMode;
 	var channelInterpretation : ChannelInterpretation;
-	final context : ts.lib.IBaseAudioContext;
+	final context : BaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:ts.lib.IAudioParam, ?output:Float):Void { })
-	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
+	@:overload(function(destinationParam:AudioParam, ?output:Float):Void { })
+	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:AudioParam):Void { })
+	@:overload(function(destinationParam:AudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
@@ -45,10 +45,10 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
 	function removeEventListener(type:String, callback:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	static var prototype : IAnalyserNode;
+	static var prototype : AnalyserNode;
 }

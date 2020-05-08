@@ -8,7 +8,7 @@ typedef IHTMLFormControlsCollection = {
 		
 		If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
 	**/
-	function namedItem(name:String):Null<ts.AnyOf2<IElement, IRadioNodeList>>;
+	function namedItem(name:String):Null<ts.AnyOf2<Element, RadioNodeList>>;
 	/**
 		Sets or retrieves the number of objects in a collection.
 	**/
@@ -16,5 +16,5 @@ typedef IHTMLFormControlsCollection = {
 	/**
 		Retrieves an object from various collections.
 	**/
-	function item(index:Float):Null<IElement>;
+	function item(index:Float):Null<Element>;
 };

@@ -1,7 +1,7 @@
 package ts.html;
 typedef IRTCStatsProvider = {
-	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
-	function msGetStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
+	function getStats():ts.lib.Promise<RTCStatsReport>;
+	function msGetStats():ts.lib.Promise<RTCStatsReport>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -19,7 +19,7 @@ typedef IRTCStatsProvider = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/

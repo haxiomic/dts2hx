@@ -1,14 +1,14 @@
 package ts.html;
 @:native("KeyframeEffect") extern class KeyframeEffect {
-	@:overload(function(source:IKeyframeEffect):IKeyframeEffect { })
-	function new(target:Null<IElement>, keyframes:Null<ts.AnyOf2<Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeEffectOptions>);
+	@:overload(function(source:KeyframeEffect):KeyframeEffect { })
+	function new(target:Null<Element>, keyframes:Null<ts.AnyOf2<Array<Keyframe>, PropertyIndexedKeyframes>>, ?options:ts.AnyOf2<Float, KeyframeEffectOptions>);
 	var composite : CompositeOperation;
 	var iterationComposite : IterationCompositeOperation;
-	var target : Null<IElement>;
+	var target : Null<Element>;
 	function getKeyframes():Array<ComputedKeyframe>;
 	function setKeyframes(keyframes:Null<ts.AnyOf2<Array<Keyframe>, PropertyIndexedKeyframes>>):Void;
 	function getComputedTiming():ComputedEffectTiming;
 	function getTiming():EffectTiming;
 	function updateTiming(?timing:OptionalEffectTiming):Void;
-	static var prototype : IKeyframeEffect;
+	static var prototype : KeyframeEffect;
 }

@@ -26,5 +26,5 @@ package ts.html;
 	final unloadEventEnd : Float;
 	final unloadEventStart : Float;
 	function toJSON():Dynamic;
-	static var prototype : IPerformanceTiming;
+	static var prototype : PerformanceTiming;
 }

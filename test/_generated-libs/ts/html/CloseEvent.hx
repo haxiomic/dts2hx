@@ -24,7 +24,7 @@ package ts.html;
 	/**
 		Returns the object whose event listener's callback is currently being invoked.
 	**/
-	final currentTarget : Null<IEventTarget>;
+	final currentTarget : Null<EventTarget>;
 	/**
 		Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
 	**/
@@ -38,11 +38,11 @@ package ts.html;
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<IEventTarget>;
+	final srcElement : Null<EventTarget>;
 	/**
 		Returns the object to which event is dispatched (its target).
 	**/
-	final target : Null<IEventTarget>;
+	final target : Null<EventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -54,7 +54,7 @@ package ts.html;
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():Array<IEventTarget>;
+	function composedPath():Array<EventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	/**
 		If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.
@@ -72,5 +72,5 @@ package ts.html;
 	final BUBBLING_PHASE : Float;
 	final CAPTURING_PHASE : Float;
 	final NONE : Float;
-	static var prototype : ICloseEvent;
+	static var prototype : CloseEvent;
 }

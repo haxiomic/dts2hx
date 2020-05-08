@@ -1,7 +1,7 @@
 package ts.html;
 typedef MediaEncryptedEventInit = {
 	@:optional
-	var initData : ts.lib.IArrayBuffer;
+	var initData : ts.lib.ArrayBuffer;
 	@:optional
 	var initDataType : String;
 	@:optional

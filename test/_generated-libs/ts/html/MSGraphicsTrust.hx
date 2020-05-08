@@ -6,5 +6,5 @@ package ts.html;
 	function new();
 	final constrictionActive : Bool;
 	final status : String;
-	static var prototype : IMSGraphicsTrust;
+	static var prototype : MSGraphicsTrust;
 }

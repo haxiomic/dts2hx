@@ -9,5 +9,5 @@ package ts.html;
 	final droppedVideoFrames : Float;
 	final totalFrameDelay : Float;
 	final totalVideoFrames : Float;
-	static var prototype : IVideoPlaybackQuality;
+	static var prototype : VideoPlaybackQuality;
 }

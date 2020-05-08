@@ -8,5 +8,5 @@ typedef ISharedArrayBuffer = {
 	/**
 		Returns a section of an SharedArrayBuffer.
 	**/
-	function slice(begin:Float, ?end:Float):ISharedArrayBuffer;
+	function slice(begin:Float, ?end:Float):SharedArrayBuffer;
 };

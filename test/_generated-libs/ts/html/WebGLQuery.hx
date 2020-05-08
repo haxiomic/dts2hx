@@ -1,5 +1,5 @@
 package ts.html;
 @:native("WebGLQuery") extern class WebGLQuery {
 	function new();
-	static var prototype : IWebGLQuery;
+	static var prototype : WebGLQuery;
 }

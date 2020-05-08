@@ -1,7 +1,7 @@
 package ts.html;
 typedef IRTCSrtpSdesTransport = {
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
-	final transport : IRTCIceTransport;
+	var onerror : Null<(ev:Event) -> Dynamic>;
+	final transport : RTCIceTransport;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -39,5 +39,5 @@ typedef IRTCSrtpSdesTransport = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

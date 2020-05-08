@@ -3,5 +3,5 @@ package ts.html;
 	function new();
 	var src : String;
 	var weight : Float;
-	static var prototype : ISpeechGrammar;
+	static var prototype : SpeechGrammar;
 }

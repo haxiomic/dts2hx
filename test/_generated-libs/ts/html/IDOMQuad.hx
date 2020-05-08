@@ -1,9 +1,9 @@
 package ts.html;
 typedef IDOMQuad = {
-	final p1 : IDOMPoint;
-	final p2 : IDOMPoint;
-	final p3 : IDOMPoint;
-	final p4 : IDOMPoint;
-	function getBounds():IDOMRect;
+	final p1 : DOMPoint;
+	final p2 : DOMPoint;
+	final p3 : DOMPoint;
+	final p4 : DOMPoint;
+	function getBounds():DOMRect;
 	function toJSON():Dynamic;
 };

@@ -7,11 +7,11 @@ typedef IXPathResult = {
 	final invalidIteratorState : Bool;
 	final numberValue : Float;
 	final resultType : Float;
-	final singleNodeValue : Null<INode>;
+	final singleNodeValue : Null<Node>;
 	final snapshotLength : Float;
 	final stringValue : String;
-	function iterateNext():Null<INode>;
-	function snapshotItem(index:Float):Null<INode>;
+	function iterateNext():Null<Node>;
+	function snapshotItem(index:Float):Null<Node>;
 	final ANY_TYPE : Float;
 	final ANY_UNORDERED_NODE_TYPE : Float;
 	final BOOLEAN_TYPE : Float;

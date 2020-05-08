@@ -6,10 +6,10 @@ typedef ICSSPageRule = {
 	final pseudoClass : String;
 	final selector : String;
 	var selectorText : String;
-	final style : ts.lib.ICSSStyleDeclaration;
+	final style : CSSStyleDeclaration;
 	var cssText : String;
-	final parentRule : Null<ICSSRule>;
-	final parentStyleSheet : Null<ICSSStyleSheet>;
+	final parentRule : Null<CSSRule>;
+	final parentStyleSheet : Null<CSSStyleSheet>;
 	final type : Float;
 	final CHARSET_RULE : Float;
 	final FONT_FACE_RULE : Float;

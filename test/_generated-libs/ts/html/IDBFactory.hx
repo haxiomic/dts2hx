@@ -13,10 +13,10 @@ package ts.html;
 	/**
 		Attempts to delete the named database. If the database already exists and there are open connections that don't close in response to a versionchange event, the request will be blocked until all they close. If the request is successful request's result will be null.
 	**/
-	function deleteDatabase(name:String):IIDBOpenDBRequest;
+	function deleteDatabase(name:String):IDBOpenDBRequest;
 	/**
 		Attempts to open a connection to the named database with the current version, or 1 if it does not already exist. If the request is successful request's result will be the connection.
 	**/
-	function open(name:String, ?version:Float):IIDBOpenDBRequest;
-	static var prototype : IIDBFactory;
+	function open(name:String, ?version:Float):IDBOpenDBRequest;
+	static var prototype : IDBFactory;
 }

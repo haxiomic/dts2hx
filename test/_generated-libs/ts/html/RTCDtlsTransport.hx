@@ -1,11 +1,11 @@
 package ts.html;
 @:native("RTCDtlsTransport") extern class RTCDtlsTransport {
 	function new();
-	var onerror : Null<(ev:IRTCErrorEvent) -> Dynamic>;
-	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onerror : Null<(ev:RTCErrorEvent) -> Dynamic>;
+	var onstatechange : Null<(ev:Event) -> Dynamic>;
 	final state : RTCDtlsTransportState;
-	final transport : IRTCIceTransport;
-	function getRemoteCertificates():Array<ts.lib.IArrayBuffer>;
+	final transport : RTCIceTransport;
+	function getRemoteCertificates():Array<ts.lib.ArrayBuffer>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -43,6 +43,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IRTCDtlsTransport;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : RTCDtlsTransport;
 }

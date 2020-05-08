@@ -23,5 +23,5 @@ package ts.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : ISVGPathSegClosePath;
+	static var prototype : SVGPathSegClosePath;
 }

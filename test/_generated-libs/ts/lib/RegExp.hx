@@ -1,8 +1,8 @@
 package ts.lib;
 @:native("RegExp") extern class RegExp {
-	@:overload(function(pattern:String, ?flags:String):IRegExp { })
-	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
-	function new(pattern:ts.AnyOf2<String, IRegExp>);
+	@:overload(function(pattern:String, ?flags:String):RegExp { })
+	@:overload(function(pattern:ts.AnyOf2<String, RegExp>, ?flags:String):RegExp { })
+	function new(pattern:ts.AnyOf2<String, RegExp>);
 	/**
 		Executes a search on a string using a regular expression pattern, and returns an array containing the results of that search.
 	**/
@@ -28,7 +28,7 @@ package ts.lib;
 	**/
 	final multiline : Bool;
 	var lastIndex : Float;
-	function compile():IRegExp;
+	function compile():RegExp;
 	/**
 		Returns a string indicating the flags of the regular expression in question. This field is read-only.
 		The characters in this string are sequenced and concatenated in the following order:
@@ -52,11 +52,11 @@ package ts.lib;
 		expression. Default is false. Read-only.
 	**/
 	final unicode : Bool;
-	@:overload(function(pattern:String, ?flags:String):IRegExp { })
-	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
+	@:overload(function(pattern:String, ?flags:String):RegExp { })
+	@:overload(function(pattern:ts.AnyOf2<String, RegExp>, ?flags:String):RegExp { })
 	@:selfCall
-	static function call(pattern:ts.AnyOf2<String, IRegExp>):IRegExp;
-	static final prototype : IRegExp;
+	static function call(pattern:ts.AnyOf2<String, RegExp>):RegExp;
+	static final prototype : RegExp;
 	@:native("$1")
 	static var Dollar1 : String;
 	@:native("$2")

@@ -6,9 +6,9 @@ typedef IMessageChannel = {
 	/**
 		Returns the first MessagePort object.
 	**/
-	final port1 : IMessagePort;
+	final port1 : MessagePort;
 	/**
 		Returns the second MessagePort object.
 	**/
-	final port2 : IMessagePort;
+	final port2 : MessagePort;
 };

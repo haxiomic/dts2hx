@@ -4,11 +4,11 @@ package ts.html;
 **/
 @:native("VRFrameData") extern class VRFrameData {
 	function new();
-	final leftProjectionMatrix : ts.lib.IFloat32Array;
-	final leftViewMatrix : ts.lib.IFloat32Array;
-	final pose : IVRPose;
-	final rightProjectionMatrix : ts.lib.IFloat32Array;
-	final rightViewMatrix : ts.lib.IFloat32Array;
+	final leftProjectionMatrix : ts.lib.Float32Array;
+	final leftViewMatrix : ts.lib.Float32Array;
+	final pose : VRPose;
+	final rightProjectionMatrix : ts.lib.Float32Array;
+	final rightViewMatrix : ts.lib.Float32Array;
 	final timestamp : Float;
-	static var prototype : IVRFrameData;
+	static var prototype : VRFrameData;
 }

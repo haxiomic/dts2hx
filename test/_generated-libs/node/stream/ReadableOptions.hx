@@ -9,5 +9,5 @@ typedef ReadableOptions = {
 	@:optional
 	function read(size:Float):Void;
 	@:optional
-	function destroy(error:Null<ts.lib.IError>, callback:(error:Null<ts.lib.IError>) -> Void):Void;
+	function destroy(error:Null<ts.lib.Error>, callback:(error:Null<ts.lib.Error>) -> Void):Void;
 };

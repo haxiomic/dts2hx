@@ -4,6 +4,6 @@ typedef IDOMPointReadOnly = {
 	final x : Float;
 	final y : Float;
 	final z : Float;
-	function matrixTransform(?matrix:DOMMatrixInit):IDOMPoint;
+	function matrixTransform(?matrix:DOMMatrixInit):DOMPoint;
 	function toJSON():Dynamic;
 };

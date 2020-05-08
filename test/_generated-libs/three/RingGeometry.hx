@@ -9,4 +9,10 @@ package three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):RingGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():RingGeometry;
+	function copy(source:Geometry):RingGeometry;
 }

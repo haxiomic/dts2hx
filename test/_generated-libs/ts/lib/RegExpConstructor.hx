@@ -1,10 +1,10 @@
 package ts.lib;
 typedef RegExpConstructor = {
-	@:overload(function(pattern:String, ?flags:String):IRegExp { })
-	@:overload(function(pattern:ts.AnyOf2<String, IRegExp>, ?flags:String):IRegExp { })
+	@:overload(function(pattern:String, ?flags:String):RegExp { })
+	@:overload(function(pattern:ts.AnyOf2<String, RegExp>, ?flags:String):RegExp { })
 	@:selfCall
-	function call(pattern:ts.AnyOf2<String, IRegExp>):IRegExp;
-	final prototype : IRegExp;
+	function call(pattern:ts.AnyOf2<String, RegExp>):RegExp;
+	final prototype : RegExp;
 	@:native("$1")
 	var Dollar1 : String;
 	@:native("$2")

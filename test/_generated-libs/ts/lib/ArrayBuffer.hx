@@ -14,7 +14,7 @@ package ts.lib;
 	/**
 		Returns a section of an ArrayBuffer.
 	**/
-	function slice(begin:Float, ?end:Float):IArrayBuffer;
-	static final prototype : IArrayBuffer;
+	function slice(begin:Float, ?end:Float):ArrayBuffer;
+	static final prototype : ArrayBuffer;
 	static function isView(arg:Dynamic):Bool;
 }

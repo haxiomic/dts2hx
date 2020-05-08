@@ -1,18 +1,18 @@
 package ts.html;
 @:native("Animation") extern class Animation {
-	function new(?effect:IAnimationEffect, ?timeline:IAnimationTimeline);
+	function new(?effect:AnimationEffect, ?timeline:AnimationTimeline);
 	var currentTime : Null<Float>;
-	var effect : Null<IAnimationEffect>;
-	final finished : ts.lib.IPromise<IAnimation>;
+	var effect : Null<AnimationEffect>;
+	final finished : ts.lib.Promise<Animation>;
 	var id : String;
-	var oncancel : Null<(ev:IAnimationPlaybackEvent) -> Dynamic>;
-	var onfinish : Null<(ev:IAnimationPlaybackEvent) -> Dynamic>;
+	var oncancel : Null<(ev:AnimationPlaybackEvent) -> Dynamic>;
+	var onfinish : Null<(ev:AnimationPlaybackEvent) -> Dynamic>;
 	final pending : Bool;
 	final playState : AnimationPlayState;
 	var playbackRate : Float;
-	final ready : ts.lib.IPromise<IAnimation>;
+	final ready : ts.lib.Promise<Animation>;
 	var startTime : Null<Float>;
-	var timeline : Null<IAnimationTimeline>;
+	var timeline : Null<AnimationTimeline>;
 	function cancel():Void;
 	function finish():Void;
 	function pause():Void;
@@ -56,6 +56,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IAnimation;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : Animation;
 }

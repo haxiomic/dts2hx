@@ -9,7 +9,7 @@ package ts.html;
 		
 		If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
 	**/
-	function namedItem(name:String):Null<ts.AnyOf2<IElement, IRadioNodeList>>;
+	function namedItem(name:String):Null<ts.AnyOf2<Element, RadioNodeList>>;
 	/**
 		Sets or retrieves the number of objects in a collection.
 	**/
@@ -17,6 +17,6 @@ package ts.html;
 	/**
 		Retrieves an object from various collections.
 	**/
-	function item(index:Float):Null<IElement>;
-	static var prototype : IHTMLFormControlsCollection;
+	function item(index:Float):Null<Element>;
+	static var prototype : HTMLFormControlsCollection;
 }

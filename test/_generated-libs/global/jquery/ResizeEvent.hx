@@ -52,7 +52,7 @@ typedef ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Null<Any>;
 	var shiftKey : Null<Any>;
 	@:optional
-	var originalEvent : ts.html.IEvent;
+	var originalEvent : ts.html.Event;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

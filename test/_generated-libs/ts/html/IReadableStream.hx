@@ -4,10 +4,10 @@ package ts.html;
 **/
 typedef IReadableStream<R> = {
 	final locked : Bool;
-	function cancel(?reason:Dynamic):ts.lib.IPromise<Void>;
+	function cancel(?reason:Dynamic):ts.lib.Promise<Void>;
 	@:overload(function():ReadableStreamDefaultReader<R> { })
 	function getReader(options:{ var mode : String; }):ReadableStreamBYOBReader;
-	function pipeThrough<T>(__0:{ var writable : IWritableStream<R>; var readable : IReadableStream<T>; }, ?options:PipeOptions):IReadableStream<T>;
-	function pipeTo(dest:IWritableStream<R>, ?options:PipeOptions):ts.lib.IPromise<Void>;
-	function tee():ts.Tuple2<IReadableStream<R>, IReadableStream<R>>;
+	function pipeThrough<T>(__0:{ var writable : WritableStream<R>; var readable : ReadableStream<T>; }, ?options:PipeOptions):ReadableStream<T>;
+	function pipeTo(dest:WritableStream<R>, ?options:PipeOptions):ts.lib.Promise<Void>;
+	function tee():ts.Tuple2<ReadableStream<R>, ReadableStream<R>>;
 };

@@ -130,5 +130,83 @@ package node.repl;
 		programmatically. Use this method to initialize a history log file when working
 		with REPL instances programmatically.
 	**/
-	function setupHistory(path:String, cb:(err:Null<ts.lib.IError>, repl:REPLServer) -> Void):Void;
+	function setupHistory(path:String, cb:(err:Null<ts.lib.Error>, repl:REPLServer) -> Void):Void;
+	/**
+		events.EventEmitter
+		1. close - inherited from `readline.Interface`
+		2. line - inherited from `readline.Interface`
+		3. pause - inherited from `readline.Interface`
+		4. resume - inherited from `readline.Interface`
+		5. SIGCONT - inherited from `readline.Interface`
+		6. SIGINT - inherited from `readline.Interface`
+		7. SIGTSTP - inherited from `readline.Interface`
+		8. exit
+		9. reset
+	**/
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, input:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, context:node.vm.Context):Bool { })
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(input:String) -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:() -> Void):REPLServer { })
+	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	function pause():REPLServer;
+	function resume():REPLServer;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):REPLServer;
+	function setMaxListeners(n:Float):REPLServer;
 }

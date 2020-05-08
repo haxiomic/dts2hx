@@ -1,14 +1,14 @@
 package global.nodejs;
 typedef ReadableStream = {
 	var readable : Bool;
-	function read(?size:Float):ts.AnyOf2<String, global.IBuffer>;
+	function read(?size:Float):ts.AnyOf2<String, global.Buffer>;
 	function setEncoding(encoding:String):ReadableStream;
 	function pause():ReadableStream;
 	function resume():ReadableStream;
 	function isPaused():Bool;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:WritableStream):ReadableStream;
-	@:overload(function(chunk:global.IBuffer):Void { })
+	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;
 	function wrap(oldStream:ReadableStream):ReadableStream;
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadableStream;
@@ -19,8 +19,8 @@ typedef ReadableStream = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ReadableStream;
 	function setMaxListeners(n:Float):ReadableStream;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.IFunction>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.IFunction>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadableStream;

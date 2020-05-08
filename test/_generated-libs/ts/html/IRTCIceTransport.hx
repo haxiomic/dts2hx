@@ -5,14 +5,14 @@ package ts.html;
 typedef IRTCIceTransport = {
 	final component : RTCIceComponent;
 	final gatheringState : RTCIceGathererState;
-	var ongatheringstatechange : Null<(ev:IEvent) -> Dynamic>;
-	var onselectedcandidatepairchange : Null<(ev:IEvent) -> Dynamic>;
-	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var ongatheringstatechange : Null<(ev:Event) -> Dynamic>;
+	var onselectedcandidatepairchange : Null<(ev:Event) -> Dynamic>;
+	var onstatechange : Null<(ev:Event) -> Dynamic>;
 	final role : RTCIceRole;
 	final state : RTCIceTransportState;
-	function getLocalCandidates():Array<IRTCIceCandidate>;
+	function getLocalCandidates():Array<RTCIceCandidate>;
 	function getLocalParameters():Null<RTCIceParameters>;
-	function getRemoteCandidates():Array<IRTCIceCandidate>;
+	function getRemoteCandidates():Array<RTCIceCandidate>;
 	function getRemoteParameters():Null<RTCIceParameters>;
 	function getSelectedCandidatePair():Null<RTCIceCandidatePair>;
 	/**
@@ -52,5 +52,5 @@ typedef IRTCIceTransport = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

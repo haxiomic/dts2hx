@@ -5,7 +5,7 @@ typedef CompositionEventInit = {
 	@:optional
 	var detail : Float;
 	@:optional
-	var view : IWindow;
+	var view : Window;
 	@:optional
 	var bubbles : Bool;
 	@:optional

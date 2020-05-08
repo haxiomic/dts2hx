@@ -4,10 +4,10 @@ package ts.html;
 **/
 @:native("Performance") extern class Performance {
 	function new();
-	final navigation : IPerformanceNavigation;
-	var onresourcetimingbufferfull : Null<(ev:IEvent) -> Dynamic>;
+	final navigation : PerformanceNavigation;
+	var onresourcetimingbufferfull : Null<(ev:Event) -> Dynamic>;
 	final timeOrigin : Float;
-	final timing : IPerformanceTiming;
+	final timing : PerformanceTiming;
 	function clearMarks(?markName:String):Void;
 	function clearMeasures(?measureName:String):Void;
 	function clearResourceTimings():Void;
@@ -56,6 +56,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IPerformance;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : Performance;
 }

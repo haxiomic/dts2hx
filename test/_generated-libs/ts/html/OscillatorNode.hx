@@ -3,11 +3,11 @@ package ts.html;
 	The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone.
 **/
 @:native("OscillatorNode") extern class OscillatorNode {
-	function new(context:ts.lib.IBaseAudioContext, ?options:OscillatorOptions);
-	final detune : ts.lib.IAudioParam;
-	final frequency : ts.lib.IAudioParam;
+	function new(context:BaseAudioContext, ?options:OscillatorOptions);
+	final detune : AudioParam;
+	final frequency : AudioParam;
 	var type : OscillatorType;
-	function setPeriodicWave(periodicWave:IPeriodicWave):Void;
+	function setPeriodicWave(periodicWave:PeriodicWave):Void;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -70,27 +70,27 @@ package ts.html;
 	**/
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })
 	function removeEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
-	var onended : Null<(ev:IEvent) -> Dynamic>;
+	var onended : Null<(ev:Event) -> Dynamic>;
 	function start(?when:Float):Void;
 	function stop(?when:Float):Void;
 	var channelCount : Float;
 	var channelCountMode : ChannelCountMode;
 	var channelInterpretation : ChannelInterpretation;
-	final context : ts.lib.IBaseAudioContext;
+	final context : BaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:ts.lib.IAudioParam, ?output:Float):Void { })
-	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
+	@:overload(function(destinationParam:AudioParam, ?output:Float):Void { })
+	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:AudioParam):Void { })
+	@:overload(function(destinationParam:AudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IOscillatorNode;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : OscillatorNode;
 }

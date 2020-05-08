@@ -4,7 +4,7 @@ typedef RequestInit = {
 		A BodyInit object or null to set request's body.
 	**/
 	@:optional
-	var body : ts.AnyOf7<String, ts.lib.IArrayBuffer, IBlob, ts.lib.IFormData, ts.lib.IURLSearchParams, ts.lib.ArrayBufferView, IReadableStream<ts.lib.IUint8Array>>;
+	var body : ts.AnyOf7<String, ts.lib.ArrayBuffer, Blob, FormData, URLSearchParams, ts.lib.ArrayBufferView, ReadableStream<ts.lib.Uint8Array>>;
 	/**
 		A string indicating how the request will interact with the browser's cache to set request's cache.
 	**/
@@ -19,7 +19,7 @@ typedef RequestInit = {
 		A Headers object, an object literal, or an array of two-item arrays to set request's headers.
 	**/
 	@:optional
-	var headers : ts.AnyOf3<ts.lib.IHeaders, Array<Array<String>>, { }>;
+	var headers : ts.AnyOf3<Headers, Array<Array<String>>, { }>;
 	/**
 		A cryptographic hash of the resource to be fetched by request. Sets request's integrity.
 	**/
@@ -59,7 +59,7 @@ typedef RequestInit = {
 		An AbortSignal to set request's signal.
 	**/
 	@:optional
-	var signal : IAbortSignal;
+	var signal : AbortSignal;
 	/**
 		Can only be null. Used to disassociate request from any Window.
 	**/

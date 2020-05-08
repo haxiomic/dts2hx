@@ -9,6 +9,6 @@ package ts.html;
 	var kind : String;
 	final label : String;
 	var language : String;
-	final sourceBuffer : Null<ISourceBuffer>;
-	static var prototype : IAudioTrack;
+	final sourceBuffer : Null<SourceBuffer>;
+	static var prototype : AudioTrack;
 }

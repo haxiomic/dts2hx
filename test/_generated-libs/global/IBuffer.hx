@@ -9,7 +9,7 @@ typedef IBuffer = {
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/
 	var constructor : {
-		var prototype : IBuffer;
+		var prototype : Buffer;
 		/**
 			When passed a reference to the .buffer property of a TypedArray instance,
 			the newly created Buffer will share the same allocated memory as the TypedArray.
@@ -22,14 +22,14 @@ typedef IBuffer = {
 			If provided, the {encoding} parameter identifies the character encoding.
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
-		@:overload(function(data:Array<Float>):IBuffer { })
-		@:overload(function(data:ts.lib.IUint8Array):IBuffer { })
-		@:overload(function(str:String, ?encoding:String):IBuffer { })
-		function from(arrayBuffer:ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>, ?byteOffset:Float, ?length:Float):IBuffer;
+		@:overload(function(data:Array<Float>):Buffer { })
+		@:overload(function(data:ts.lib.Uint8Array):Buffer { })
+		@:overload(function(str:String, ?encoding:String):Buffer { })
+		function from(arrayBuffer:ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
-		function of(items:haxe.extern.Rest<Float>):IBuffer;
+		function of(items:haxe.extern.Rest<Float>):Buffer;
 		/**
 			Returns true if {obj} is a Buffer
 		**/
@@ -43,7 +43,7 @@ typedef IBuffer = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, ts.lib.IUint8Array, ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, ts.lib.Uint8Array, ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -51,25 +51,25 @@ typedef IBuffer = {
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:Array<ts.lib.IUint8Array>, ?totalLength:Float):IBuffer;
+		function concat(list:Array<ts.lib.Uint8Array>, ?totalLength:Float):Buffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
-		function compare(buf1:ts.lib.IUint8Array, buf2:ts.lib.IUint8Array):Float;
+		function compare(buf1:ts.lib.Uint8Array, buf2:ts.lib.Uint8Array):Float;
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
-		function alloc(size:Float, ?fill:ts.AnyOf3<String, Float, IBuffer>, ?encoding:String):IBuffer;
+		function alloc(size:Float, ?fill:ts.AnyOf3<String, Float, Buffer>, ?encoding:String):Buffer;
 		/**
 			Allocates a new buffer of {size} octets, leaving memory not initialized, so the contents
 			of the newly created Buffer are unknown and may contain sensitive data.
 		**/
-		function allocUnsafe(size:Float):IBuffer;
+		function allocUnsafe(size:Float):Buffer;
 		/**
 			Allocates a new non-pooled buffer of {size} octets, leaving memory not initialized, so the contents
 			of the newly created Buffer are unknown and may contain sensitive data.
 		**/
-		function allocUnsafeSlow(size:Float):IBuffer;
+		function allocUnsafeSlow(size:Float):Buffer;
 		/**
 			This is the number of bytes used to determine the size of pre-allocated, internal Buffer instances used for pooling. This value may be modified.
 		**/
@@ -86,18 +86,18 @@ typedef IBuffer = {
 		var type : String;
 		var data : Array<Float>;
 	};
-	function equals(otherBuffer:ts.lib.IUint8Array):Bool;
-	function compare(otherBuffer:ts.lib.IUint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
-	function copy(targetBuffer:ts.lib.IUint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function equals(otherBuffer:ts.lib.Uint8Array):Bool;
+	function compare(otherBuffer:ts.lib.Uint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function copy(targetBuffer:ts.lib.Uint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):IBuffer;
+	function slice(?start:Float, ?end:Float):Buffer;
 	/**
 		Gets a new Uint8Array view of the ArrayBuffer store for this array, referencing the elements
 		at begin, inclusive, up to end, exclusive.
 	**/
-	function subarray(begin:Float, ?end:Float):IBuffer;
+	function subarray(begin:Float, ?end:Float):Buffer;
 	function writeUIntLE(value:Float, offset:Float, byteLength:Float):Float;
 	function writeUIntBE(value:Float, offset:Float, byteLength:Float):Float;
 	function writeIntLE(value:Float, offset:Float, byteLength:Float):Float;
@@ -123,10 +123,10 @@ typedef IBuffer = {
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():IBuffer;
-	function swap16():IBuffer;
-	function swap32():IBuffer;
-	function swap64():IBuffer;
+	function reverse():Buffer;
+	function swap16():Buffer;
+	function swap32():Buffer;
+	function swap64():Buffer;
 	function writeUInt8(value:Float, offset:Float):Float;
 	function writeUInt16LE(value:Float, offset:Float):Float;
 	function writeUInt16BE(value:Float, offset:Float):Float;
@@ -144,15 +144,15 @@ typedef IBuffer = {
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
-	function fill(value:Dynamic, ?offset:Float, ?end:Float):IBuffer;
+	function fill(value:Dynamic, ?offset:Float, ?end:Float):Buffer;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(value:ts.AnyOf3<String, Float, ts.lib.IUint8Array>, ?byteOffset:Float, ?encoding:String):Float;
+	function indexOf(value:ts.AnyOf3<String, Float, ts.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns the index of the last occurrence of a value in an array.
 	**/
-	function lastIndexOf(value:ts.AnyOf3<String, Float, ts.lib.IUint8Array>, ?byteOffset:Float, ?encoding:String):Float;
+	function lastIndexOf(value:ts.AnyOf3<String, Float, ts.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
@@ -160,7 +160,7 @@ typedef IBuffer = {
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
-	function includes(value:ts.AnyOf3<String, Float, IBuffer>, ?byteOffset:Float, ?encoding:String):Bool;
+	function includes(value:ts.AnyOf3<String, Float, Buffer>, ?byteOffset:Float, ?encoding:String):Bool;
 	/**
 		Returns an list of keys in the array
 	**/
@@ -176,7 +176,7 @@ typedef IBuffer = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : ts.AnyOf2<ts.lib.IArrayBuffer, ts.lib.ISharedArrayBuffer>;
+	final buffer : ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>;
 	/**
 		The length in bytes of the array.
 	**/
@@ -189,29 +189,29 @@ typedef IBuffer = {
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 	**/
-	function copyWithin(target:Float, start:Float, ?end:Float):IBuffer;
+	function copyWithin(target:Float, start:Float, ?end:Float):Buffer;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Dynamic, ?thisArg:Dynamic):ts.lib.IUint8Array;
+	function filter(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Dynamic, ?thisArg:Dynamic):ts.lib.Uint8Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:ts.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:ts.lib.IUint8Array) -> Bool, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:ts.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -224,7 +224,7 @@ typedef IBuffer = {
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Float, ?thisArg:Dynamic):ts.lib.IUint8Array;
+	function map(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Float, ?thisArg:Dynamic):ts.lib.Uint8Array;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -234,9 +234,9 @@ typedef IBuffer = {
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float):Float;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
@@ -246,9 +246,9 @@ typedef IBuffer = {
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.IUint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float):Float;
 	/**
 		Sets a value or an array of values.
 	**/
@@ -256,11 +256,11 @@ typedef IBuffer = {
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:ts.lib.IUint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/
-	function sort(?compareFn:(a:Float, b:Float) -> Float):IBuffer;
+	function sort(?compareFn:(a:Float, b:Float) -> Float):Buffer;
 	/**
 		Converts a number to a string by using the current locale.
 	**/

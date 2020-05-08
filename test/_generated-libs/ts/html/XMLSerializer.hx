@@ -4,6 +4,6 @@ package ts.html;
 **/
 @:native("XMLSerializer") extern class XMLSerializer {
 	function new();
-	function serializeToString(root:INode):String;
-	static var prototype : IXMLSerializer;
+	function serializeToString(root:Node):String;
+	static var prototype : XMLSerializer;
 }

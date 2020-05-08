@@ -4,12 +4,12 @@ package ts.html;
 **/
 @:native("IntersectionObserver") extern class IntersectionObserver {
 	function new(callback:IntersectionObserverCallback, ?options:IntersectionObserverInit);
-	final root : Null<IElement>;
+	final root : Null<Element>;
 	final rootMargin : String;
 	final thresholds : ts.lib.ReadonlyArray<Float>;
 	function disconnect():Void;
-	function observe(target:IElement):Void;
-	function takeRecords():Array<IIntersectionObserverEntry>;
-	function unobserve(target:IElement):Void;
-	static var prototype : IIntersectionObserver;
+	function observe(target:Element):Void;
+	function takeRecords():Array<IntersectionObserverEntry>;
+	function unobserve(target:Element):Void;
+	static var prototype : IntersectionObserver;
 }

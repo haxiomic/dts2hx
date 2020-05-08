@@ -1,9 +1,9 @@
 package ts.html;
 @:native("AudioWorkletNode") extern class AudioWorkletNode {
-	function new(context:ts.lib.IBaseAudioContext, name:String, ?options:AudioWorkletNodeOptions);
-	var onprocessorerror : Null<(ev:IEvent) -> Dynamic>;
-	final parameters : ts.lib.IAudioParamMap;
-	final port : IMessagePort;
+	function new(context:BaseAudioContext, name:String, ?options:AudioWorkletNodeOptions);
+	var onprocessorerror : Null<(ev:Event) -> Dynamic>;
+	final parameters : AudioParamMap;
+	final port : MessagePort;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -41,21 +41,21 @@ package ts.html;
 	var channelCount : Float;
 	var channelCountMode : ChannelCountMode;
 	var channelInterpretation : ChannelInterpretation;
-	final context : ts.lib.IBaseAudioContext;
+	final context : BaseAudioContext;
 	final numberOfInputs : Float;
 	final numberOfOutputs : Float;
-	@:overload(function(destinationParam:ts.lib.IAudioParam, ?output:Float):Void { })
-	function connect(destinationNode:IAudioNode, ?output:Float, ?input:Float):IAudioNode;
+	@:overload(function(destinationParam:AudioParam, ?output:Float):Void { })
+	function connect(destinationNode:AudioNode, ?output:Float, ?input:Float):AudioNode;
 	@:overload(function(output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float):Void { })
-	@:overload(function(destinationNode:IAudioNode, output:Float, input:Float):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam):Void { })
-	@:overload(function(destinationParam:ts.lib.IAudioParam, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float):Void { })
+	@:overload(function(destinationNode:AudioNode, output:Float, input:Float):Void { })
+	@:overload(function(destinationParam:AudioParam):Void { })
+	@:overload(function(destinationParam:AudioParam, output:Float):Void { })
 	function disconnect():Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IAudioWorkletNode;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : AudioWorkletNode;
 }

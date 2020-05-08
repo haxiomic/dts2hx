@@ -1,2 +1,2 @@
 package node.stream;
-typedef TransformCallback = ts.AnyOf3<() -> Void, (error:ts.lib.IError) -> Void, (error:ts.lib.IError, data:Dynamic) -> Void>;
+typedef TransformCallback = ts.AnyOf3<() -> Void, (error:ts.lib.Error) -> Void, (error:ts.lib.Error, data:Dynamic) -> Void>;

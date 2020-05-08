@@ -1,2 +1,2 @@
 package global.bigjs;
-typedef Big = big_js.IBig;
+typedef Big = big_js.Big;

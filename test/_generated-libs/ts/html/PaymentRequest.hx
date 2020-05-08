@@ -5,14 +5,14 @@ package ts.html;
 @:native("PaymentRequest") extern class PaymentRequest {
 	function new(methodData:Array<PaymentMethodData>, details:PaymentDetailsInit, ?options:PaymentOptions);
 	final id : String;
-	var onshippingaddresschange : Null<(ev:IEvent) -> Dynamic>;
-	var onshippingoptionchange : Null<(ev:IEvent) -> Dynamic>;
-	final shippingAddress : Null<IPaymentAddress>;
+	var onshippingaddresschange : Null<(ev:Event) -> Dynamic>;
+	var onshippingoptionchange : Null<(ev:Event) -> Dynamic>;
+	final shippingAddress : Null<PaymentAddress>;
 	final shippingOption : Null<String>;
 	final shippingType : Null<String>;
-	function abort():ts.lib.IPromise<Void>;
-	function canMakePayment():ts.lib.IPromise<Bool>;
-	function show():ts.lib.IPromise<IPaymentResponse>;
+	function abort():ts.lib.Promise<Void>;
+	function canMakePayment():ts.lib.Promise<Bool>;
+	function show():ts.lib.Promise<PaymentResponse>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -50,6 +50,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IPaymentRequest;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : PaymentRequest;
 }

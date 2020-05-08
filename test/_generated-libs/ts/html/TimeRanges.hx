@@ -7,5 +7,5 @@ package ts.html;
 	final length : Float;
 	function end(index:Float):Float;
 	function start(index:Float):Float;
-	static var prototype : ITimeRanges;
+	static var prototype : TimeRanges;
 }

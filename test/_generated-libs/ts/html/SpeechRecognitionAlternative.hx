@@ -3,5 +3,5 @@ package ts.html;
 	function new();
 	final confidence : Float;
 	final transcript : String;
-	static var prototype : ISpeechRecognitionAlternative;
+	static var prototype : SpeechRecognitionAlternative;
 }

@@ -7,5 +7,5 @@ package ts.html;
 	final name : String;
 	final size : Float;
 	final type : Float;
-	static var prototype : IWebGLActiveInfo;
+	static var prototype : WebGLActiveInfo;
 }

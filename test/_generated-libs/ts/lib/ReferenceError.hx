@@ -6,6 +6,6 @@ package ts.lib;
 	@:optional
 	var stack : String;
 	@:selfCall
-	static function call(?message:String):IReferenceError;
-	static final prototype : IReferenceError;
+	static function call(?message:String):ReferenceError;
+	static final prototype : ReferenceError;
 }

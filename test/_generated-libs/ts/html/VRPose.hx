@@ -4,12 +4,12 @@ package ts.html;
 **/
 @:native("VRPose") extern class VRPose {
 	function new();
-	final angularAcceleration : Null<ts.lib.IFloat32Array>;
-	final angularVelocity : Null<ts.lib.IFloat32Array>;
-	final linearAcceleration : Null<ts.lib.IFloat32Array>;
-	final linearVelocity : Null<ts.lib.IFloat32Array>;
-	final orientation : Null<ts.lib.IFloat32Array>;
-	final position : Null<ts.lib.IFloat32Array>;
+	final angularAcceleration : Null<ts.lib.Float32Array>;
+	final angularVelocity : Null<ts.lib.Float32Array>;
+	final linearAcceleration : Null<ts.lib.Float32Array>;
+	final linearVelocity : Null<ts.lib.Float32Array>;
+	final orientation : Null<ts.lib.Float32Array>;
+	final position : Null<ts.lib.Float32Array>;
 	final timestamp : Float;
-	static var prototype : IVRPose;
+	static var prototype : VRPose;
 }

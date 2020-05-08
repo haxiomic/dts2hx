@@ -4,5 +4,5 @@ package ts.html;
 **/
 @:native("WebGLTexture") extern class WebGLTexture {
 	function new();
-	static var prototype : IWebGLTexture;
+	static var prototype : WebGLTexture;
 }

@@ -6,5 +6,5 @@ package ts.html;
 	function new();
 	final name : String;
 	function toString():String;
-	static var prototype : IDOMError;
+	static var prototype : DOMError;
 }

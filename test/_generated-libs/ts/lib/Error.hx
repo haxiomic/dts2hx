@@ -6,6 +6,6 @@ package ts.lib;
 	@:optional
 	var stack : String;
 	@:selfCall
-	static function call(?message:String):IError;
-	static final prototype : IError;
+	static function call(?message:String):Error;
+	static final prototype : Error;
 }

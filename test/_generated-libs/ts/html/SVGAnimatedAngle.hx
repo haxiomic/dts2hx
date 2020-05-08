@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("SVGAnimatedAngle") extern class SVGAnimatedAngle {
 	function new();
-	final animVal : ISVGAngle;
-	final baseVal : ISVGAngle;
-	static var prototype : ISVGAnimatedAngle;
+	final animVal : SVGAngle;
+	final baseVal : SVGAngle;
+	static var prototype : SVGAnimatedAngle;
 }

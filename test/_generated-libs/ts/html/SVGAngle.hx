@@ -15,7 +15,7 @@ package ts.html;
 	final SVG_ANGLETYPE_RAD : Float;
 	final SVG_ANGLETYPE_UNKNOWN : Float;
 	final SVG_ANGLETYPE_UNSPECIFIED : Float;
-	static var prototype : ISVGAngle;
+	static var prototype : SVGAngle;
 	@:native("SVG_ANGLETYPE_DEG")
 	static final SVG_ANGLETYPE_DEG_ : Float;
 	@:native("SVG_ANGLETYPE_GRAD")

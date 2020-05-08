@@ -29,5 +29,5 @@ package ts.html;
 	function timelineEnd(?label:String):Void;
 	function trace(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void;
 	function warn(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void;
-	static var prototype : IConsole;
+	static var prototype : Console;
 }

@@ -1,6 +1,6 @@
 package ts.html;
 typedef RTCDataChannelEventInit = {
-	var channel : IRTCDataChannel;
+	var channel : RTCDataChannel;
 	@:optional
 	var bubbles : Bool;
 	@:optional

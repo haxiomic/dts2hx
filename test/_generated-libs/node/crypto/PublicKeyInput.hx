@@ -1,6 +1,6 @@
 package node.crypto;
 typedef PublicKeyInput = {
-	var key : ts.AnyOf2<String, global.IBuffer>;
+	var key : ts.AnyOf2<String, global.Buffer>;
 	@:optional
 	var format : String;
 	@:optional

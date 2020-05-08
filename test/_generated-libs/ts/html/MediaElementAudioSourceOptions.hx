@@ -1,4 +1,4 @@
 package ts.html;
 typedef MediaElementAudioSourceOptions = {
-	var mediaElement : IHTMLMediaElement;
+	var mediaElement : HTMLMediaElement;
 };

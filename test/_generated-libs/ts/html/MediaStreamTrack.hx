@@ -10,13 +10,13 @@ package ts.html;
 	final kind : String;
 	final label : String;
 	final muted : Bool;
-	var onended : Null<(ev:IEvent) -> Dynamic>;
-	var onisolationchange : Null<(ev:IEvent) -> Dynamic>;
-	var onmute : Null<(ev:IEvent) -> Dynamic>;
-	var onunmute : Null<(ev:IEvent) -> Dynamic>;
+	var onended : Null<(ev:Event) -> Dynamic>;
+	var onisolationchange : Null<(ev:Event) -> Dynamic>;
+	var onmute : Null<(ev:Event) -> Dynamic>;
+	var onunmute : Null<(ev:Event) -> Dynamic>;
 	final readyState : MediaStreamTrackState;
-	function applyConstraints(?constraints:MediaTrackConstraints):ts.lib.IPromise<Void>;
-	function clone():IMediaStreamTrack;
+	function applyConstraints(?constraints:MediaTrackConstraints):ts.lib.Promise<Void>;
+	function clone():MediaStreamTrack;
 	function getCapabilities():MediaTrackCapabilities;
 	function getConstraints():MediaTrackConstraints;
 	function getSettings():MediaTrackSettings;
@@ -58,6 +58,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IMediaStreamTrack;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : MediaStreamTrack;
 }

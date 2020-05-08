@@ -8,11 +8,11 @@ package ts.html;
 	final invalidIteratorState : Bool;
 	final numberValue : Float;
 	final resultType : Float;
-	final singleNodeValue : Null<INode>;
+	final singleNodeValue : Null<Node>;
 	final snapshotLength : Float;
 	final stringValue : String;
-	function iterateNext():Null<INode>;
-	function snapshotItem(index:Float):Null<INode>;
+	function iterateNext():Null<Node>;
+	function snapshotItem(index:Float):Null<Node>;
 	final ANY_TYPE : Float;
 	final ANY_UNORDERED_NODE_TYPE : Float;
 	final BOOLEAN_TYPE : Float;
@@ -23,7 +23,7 @@ package ts.html;
 	final STRING_TYPE : Float;
 	final UNORDERED_NODE_ITERATOR_TYPE : Float;
 	final UNORDERED_NODE_SNAPSHOT_TYPE : Float;
-	static var prototype : IXPathResult;
+	static var prototype : XPathResult;
 	@:native("ANY_TYPE")
 	static final ANY_TYPE_ : Float;
 	@:native("ANY_UNORDERED_NODE_TYPE")

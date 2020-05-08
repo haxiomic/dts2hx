@@ -12,9 +12,9 @@ typedef IMutationObserver = {
 		
 		The options argument allows for setting mutation observation options via object members.
 	**/
-	function observe(target:INode, ?options:MutationObserverInit):Void;
+	function observe(target:Node, ?options:MutationObserverInit):Void;
 	/**
 		Empties the record queue and returns what was in there.
 	**/
-	function takeRecords():Array<IMutationRecord>;
+	function takeRecords():Array<MutationRecord>;
 };

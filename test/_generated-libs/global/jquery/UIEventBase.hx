@@ -4,9 +4,9 @@ typedef UIEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.IWindow;
+	var view : ts.html.Window;
 	@:optional
-	var originalEvent : ts.html.IUIEvent;
+	var originalEvent : ts.html.UIEvent;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/
@@ -49,16 +49,16 @@ typedef UIEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var pageY : Null<Float>;
 	var screenX : Null<Float>;
 	var screenY : Null<Float>;
-	var toElement : Null<ts.html.IElement>;
+	var toElement : Null<ts.html.Element>;
 	var pointerId : Null<Float>;
 	var pointerType : Null<String>;
 	var char : Null<String>;
 	var charCode : Null<Float>;
 	var key : Null<String>;
 	var keyCode : Null<Float>;
-	var changedTouches : Null<ts.lib.ITouchList>;
-	var targetTouches : Null<ts.lib.ITouchList>;
-	var touches : Null<ts.lib.ITouchList>;
+	var changedTouches : Null<ts.html.TouchList>;
+	var targetTouches : Null<ts.html.TouchList>;
+	var touches : Null<ts.html.TouchList>;
 	/**
 		For key or mouse events, this property indicates the specific key or button that was pressed.
 	**/

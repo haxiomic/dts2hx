@@ -1,7 +1,7 @@
 package ts.html;
 typedef IntersectionObserverInit = {
 	@:optional
-	var root : IElement;
+	var root : Element;
 	@:optional
 	var rootMargin : String;
 	@:optional

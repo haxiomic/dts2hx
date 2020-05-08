@@ -4,6 +4,6 @@ package ts.html;
 **/
 @:native("XPathExpression") extern class XPathExpression {
 	function new();
-	function evaluate(contextNode:INode, ?type:Float, ?result:IXPathResult):IXPathResult;
-	static var prototype : IXPathExpression;
+	function evaluate(contextNode:Node, ?type:Float, ?result:XPathResult):XPathResult;
+	static var prototype : XPathExpression;
 }

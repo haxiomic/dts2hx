@@ -11,5 +11,5 @@ typedef PeerCertificate = {
 	var fingerprint : String;
 	var ext_key_usage : Array<String>;
 	var serialNumber : String;
-	var raw : global.IBuffer;
+	var raw : global.Buffer;
 };

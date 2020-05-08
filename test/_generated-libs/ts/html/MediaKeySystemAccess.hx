@@ -5,7 +5,7 @@ package ts.html;
 @:native("MediaKeySystemAccess") extern class MediaKeySystemAccess {
 	function new();
 	final keySystem : String;
-	function createMediaKeys():ts.lib.IPromise<IMediaKeys>;
+	function createMediaKeys():ts.lib.Promise<MediaKeys>;
 	function getConfiguration():MediaKeySystemConfiguration;
-	static var prototype : IMediaKeySystemAccess;
+	static var prototype : MediaKeySystemAccess;
 }

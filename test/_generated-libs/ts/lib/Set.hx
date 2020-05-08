@@ -1,11 +1,11 @@
 package ts.lib;
 @:native("Set") extern class Set<T> {
-	@:overload(function<T>(?iterable:Iterable<T>):ISet<T> { })
+	@:overload(function<T>(?iterable:Iterable<T>):Set<T> { })
 	function new(?values:ReadonlyArray<T>);
-	function add(value:T):ISet<T>;
+	function add(value:T):Set<T>;
 	function clear():Void;
 	function delete(value:T):Bool;
-	function forEach(callbackfn:(value:T, value2:T, set:ISet<T>) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:T, value2:T, set:Set<T>) -> Void, ?thisArg:Dynamic):Void;
 	function has(value:T):Bool;
 	final size : Float;
 	/**
@@ -20,5 +20,5 @@ package ts.lib;
 		Returns an iterable of values in the set.
 	**/
 	function values():IterableIterator<T>;
-	static final prototype : ISet<Dynamic>;
+	static final prototype : Set<Dynamic>;
 }

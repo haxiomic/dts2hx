@@ -117,5 +117,5 @@ typedef JQueryXHR = {
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "document".
 	**/
 	@:optional
-	var responseXML : ts.html.IDocument;
+	var responseXML : ts.html.Document;
 };

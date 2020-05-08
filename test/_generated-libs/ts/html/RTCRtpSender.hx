@@ -4,15 +4,15 @@ package ts.html;
 **/
 @:native("RTCRtpSender") extern class RTCRtpSender {
 	function new();
-	final dtmf : Null<IRTCDTMFSender>;
-	final rtcpTransport : Null<IRTCDtlsTransport>;
-	final track : Null<IMediaStreamTrack>;
-	final transport : Null<IRTCDtlsTransport>;
+	final dtmf : Null<RTCDTMFSender>;
+	final rtcpTransport : Null<RTCDtlsTransport>;
+	final track : Null<MediaStreamTrack>;
+	final transport : Null<RTCDtlsTransport>;
 	function getParameters():RTCRtpSendParameters;
-	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
-	function replaceTrack(withTrack:Null<IMediaStreamTrack>):ts.lib.IPromise<Void>;
-	function setParameters(parameters:RTCRtpSendParameters):ts.lib.IPromise<Void>;
-	function setStreams(streams:haxe.extern.Rest<IMediaStream>):Void;
-	static var prototype : IRTCRtpSender;
+	function getStats():ts.lib.Promise<RTCStatsReport>;
+	function replaceTrack(withTrack:Null<MediaStreamTrack>):ts.lib.Promise<Void>;
+	function setParameters(parameters:RTCRtpSendParameters):ts.lib.Promise<Void>;
+	function setStreams(streams:haxe.extern.Rest<MediaStream>):Void;
+	static var prototype : RTCRtpSender;
 	static function getCapabilities(kind:String):Null<RTCRtpCapabilities>;
 }

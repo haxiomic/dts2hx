@@ -1,7 +1,7 @@
 package ts.html;
 typedef AudioBufferSourceOptions = {
 	@:optional
-	var buffer : IAudioBuffer;
+	var buffer : AudioBuffer;
 	@:optional
 	var detune : Float;
 	@:optional

@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("CryptoKeyPair") extern class CryptoKeyPair {
 	function new();
-	var privateKey : ICryptoKey;
-	var publicKey : ICryptoKey;
-	static var prototype : ICryptoKeyPair;
+	var privateKey : CryptoKey;
+	var publicKey : CryptoKey;
+	static var prototype : CryptoKeyPair;
 }

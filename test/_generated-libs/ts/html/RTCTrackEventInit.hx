@@ -1,10 +1,10 @@
 package ts.html;
 typedef RTCTrackEventInit = {
-	var receiver : IRTCRtpReceiver;
+	var receiver : RTCRtpReceiver;
 	@:optional
-	var streams : Array<IMediaStream>;
-	var track : IMediaStreamTrack;
-	var transceiver : ts.lib.IRTCRtpTransceiver;
+	var streams : Array<MediaStream>;
+	var track : MediaStreamTrack;
+	var transceiver : RTCRtpTransceiver;
 	@:optional
 	var bubbles : Bool;
 	@:optional

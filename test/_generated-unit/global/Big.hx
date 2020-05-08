@@ -19,7 +19,7 @@ package global;
 	**/
 	@:overload(function():big_js.BigConstructor { })
 	@:selfCall
-	static function call(value:big_js.BigSource):big_js.IBig;
+	static function call(value:big_js.BigSource):big_js.Big;
 	/**
 		The maximum number of decimal places of the results of operations involving division.
 		It is relevant only to the div and sqrt methods, and the pow method when the exponent is negative.

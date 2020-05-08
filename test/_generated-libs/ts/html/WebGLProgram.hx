@@ -4,5 +4,5 @@ package ts.html;
 **/
 @:native("WebGLProgram") extern class WebGLProgram {
 	function new();
-	static var prototype : IWebGLProgram;
+	static var prototype : WebGLProgram;
 }

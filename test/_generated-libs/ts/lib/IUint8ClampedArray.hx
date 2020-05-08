@@ -11,7 +11,7 @@ typedef IUint8ClampedArray = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : IArrayBuffer;
+	final buffer : ArrayBuffer;
 	/**
 		The length in bytes of the array.
 	**/
@@ -24,33 +24,33 @@ typedef IUint8ClampedArray = {
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 	**/
-	function copyWithin(target:Float, start:Float, ?end:Float):IUint8ClampedArray;
+	function copyWithin(target:Float, start:Float, ?end:Float):Uint8ClampedArray;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:Uint8ClampedArray) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the this object after filling the section identified by start and end with value
 	**/
-	function fill(value:Float, ?start:Float, ?end:Float):IUint8ClampedArray;
+	function fill(value:Float, ?start:Float, ?end:Float):Uint8ClampedArray;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Dynamic, ?thisArg:Dynamic):IUint8ClampedArray;
+	function filter(callbackfn:(value:Float, index:Float, array:Uint8ClampedArray) -> Dynamic, ?thisArg:Dynamic):Uint8ClampedArray;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:IUint8ClampedArray) -> Bool, ?thisArg:Dynamic):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:Uint8ClampedArray) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:IUint8ClampedArray) -> Bool, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:Uint8ClampedArray) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:Uint8ClampedArray) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
@@ -71,7 +71,7 @@ typedef IUint8ClampedArray = {
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Float, ?thisArg:Dynamic):IUint8ClampedArray;
+	function map(callbackfn:(value:Float, index:Float, array:Uint8ClampedArray) -> Float, ?thisArg:Dynamic):Uint8ClampedArray;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -81,9 +81,9 @@ typedef IUint8ClampedArray = {
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint8ClampedArray) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:IUint8ClampedArray) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint8ClampedArray) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint8ClampedArray) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:Uint8ClampedArray) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint8ClampedArray) -> Float):Float;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
@@ -93,13 +93,13 @@ typedef IUint8ClampedArray = {
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint8ClampedArray) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:IUint8ClampedArray) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:IUint8ClampedArray) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint8ClampedArray) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:Uint8ClampedArray) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Uint8ClampedArray) -> Float):Float;
 	/**
 		Reverses the elements in an Array.
 	**/
-	function reverse():IUint8ClampedArray;
+	function reverse():Uint8ClampedArray;
 	/**
 		Sets a value or an array of values.
 	**/
@@ -107,20 +107,20 @@ typedef IUint8ClampedArray = {
 	/**
 		Returns a section of an array.
 	**/
-	function slice(?start:Float, ?end:Float):IUint8ClampedArray;
+	function slice(?start:Float, ?end:Float):Uint8ClampedArray;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:IUint8ClampedArray) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:Uint8ClampedArray) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/
-	function sort(?compareFn:(a:Float, b:Float) -> Float):IUint8ClampedArray;
+	function sort(?compareFn:(a:Float, b:Float) -> Float):Uint8ClampedArray;
 	/**
 		Gets a new Uint8ClampedArray view of the ArrayBuffer store for this array, referencing the elements
 		at begin, inclusive, up to end, exclusive.
 	**/
-	function subarray(?begin:Float, ?end:Float):IUint8ClampedArray;
+	function subarray(?begin:Float, ?end:Float):Uint8ClampedArray;
 	/**
 		Converts a number to a string by using the current locale.
 	**/

@@ -6,5 +6,5 @@ package ts.html;
 	function new(options:{ var highWaterMark : Float; });
 	var highWaterMark : Float;
 	function size(chunk:ts.lib.ArrayBufferView):Float;
-	static var prototype : IByteLengthQueuingStrategy;
+	static var prototype : ByteLengthQueuingStrategy;
 }

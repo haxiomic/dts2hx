@@ -3,5 +3,5 @@ package ts.html;
 	function new();
 	final type : String;
 	function matchMedium(mediaquery:String):Bool;
-	static var prototype : IStyleMedia;
+	static var prototype : StyleMedia;
 }

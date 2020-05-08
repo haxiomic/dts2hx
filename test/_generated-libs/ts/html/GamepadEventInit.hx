@@ -1,6 +1,6 @@
 package ts.html;
 typedef GamepadEventInit = {
-	var gamepad : IGamepad;
+	var gamepad : Gamepad;
 	@:optional
 	var bubbles : Bool;
 	@:optional

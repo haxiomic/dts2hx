@@ -5,8 +5,8 @@ package ts.html;
 typedef IPushSubscription = {
 	final endpoint : String;
 	final expirationTime : Null<Float>;
-	final options : IPushSubscriptionOptions;
-	function getKey(name:PushEncryptionKeyName):Null<ts.lib.IArrayBuffer>;
+	final options : PushSubscriptionOptions;
+	function getKey(name:PushEncryptionKeyName):Null<ts.lib.ArrayBuffer>;
 	function toJSON():PushSubscriptionJSON;
-	function unsubscribe():ts.lib.IPromise<Bool>;
+	function unsubscribe():ts.lib.Promise<Bool>;
 };

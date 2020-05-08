@@ -5,7 +5,7 @@ typedef ScriptOptions = {
 	@:optional
 	var timeout : Float;
 	@:optional
-	var cachedData : global.IBuffer;
+	var cachedData : global.Buffer;
 	@:optional
 	var produceCachedData : Bool;
 	/**

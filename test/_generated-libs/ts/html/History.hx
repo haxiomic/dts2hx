@@ -12,5 +12,5 @@ package ts.html;
 	function go(?delta:Float):Void;
 	function pushState(data:Dynamic, title:String, ?url:String):Void;
 	function replaceState(data:Dynamic, title:String, ?url:String):Void;
-	static var prototype : IHistory;
+	static var prototype : History;
 }

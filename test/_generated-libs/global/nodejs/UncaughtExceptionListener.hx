@@ -1,2 +1,2 @@
 package global.nodejs;
-typedef UncaughtExceptionListener = (error:ts.lib.IError) -> Void;
+typedef UncaughtExceptionListener = (error:ts.lib.Error) -> Void;

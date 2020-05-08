@@ -1,2 +1,2 @@
 package global;
-typedef _MouseEvent = ts.html.IMouseEvent;
+typedef _MouseEvent = ts.html.MouseEvent;

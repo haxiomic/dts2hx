@@ -2,9 +2,9 @@ package ts.html;
 typedef IRTCSctpTransport = {
 	final maxChannels : Null<Float>;
 	final maxMessageSize : Float;
-	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onstatechange : Null<(ev:Event) -> Dynamic>;
 	final state : RTCSctpTransportState;
-	final transport : IRTCDtlsTransport;
+	final transport : RTCDtlsTransport;
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void { })
 	function addEventListener<K>(type:K, listener:(ev:Dynamic) -> Dynamic, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
 	@:overload(function(type:String, listener:EventListenerOrEventListenerObject, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void { })

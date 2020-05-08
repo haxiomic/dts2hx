@@ -4,13 +4,13 @@ package ts.html;
 **/
 @:native("RTCRtpReceiver") extern class RTCRtpReceiver {
 	function new();
-	final rtcpTransport : Null<IRTCDtlsTransport>;
-	final track : IMediaStreamTrack;
-	final transport : Null<IRTCDtlsTransport>;
+	final rtcpTransport : Null<RTCDtlsTransport>;
+	final track : MediaStreamTrack;
+	final transport : Null<RTCDtlsTransport>;
 	function getContributingSources():Array<RTCRtpContributingSource>;
 	function getParameters():RTCRtpReceiveParameters;
-	function getStats():ts.lib.IPromise<ts.lib.IRTCStatsReport>;
+	function getStats():ts.lib.Promise<RTCStatsReport>;
 	function getSynchronizationSources():Array<RTCRtpSynchronizationSource>;
-	static var prototype : IRTCRtpReceiver;
+	static var prototype : RTCRtpReceiver;
 	static function getCapabilities(kind:String):Null<RTCRtpCapabilities>;
 }

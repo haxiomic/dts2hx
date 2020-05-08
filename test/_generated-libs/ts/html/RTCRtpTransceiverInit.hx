@@ -5,5 +5,5 @@ typedef RTCRtpTransceiverInit = {
 	@:optional
 	var sendEncodings : Array<RTCRtpEncodingParameters>;
 	@:optional
-	var streams : Array<IMediaStream>;
+	var streams : Array<MediaStream>;
 };

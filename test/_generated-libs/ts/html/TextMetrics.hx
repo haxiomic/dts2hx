@@ -52,5 +52,5 @@ package ts.html;
 		Returns the measurement described below.
 	**/
 	final width : Float;
-	static var prototype : ITextMetrics;
+	static var prototype : TextMetrics;
 }

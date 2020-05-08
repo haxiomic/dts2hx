@@ -6,5 +6,5 @@ package ts.html;
 	function new();
 	final animVal : String;
 	var baseVal : String;
-	static var prototype : ISVGAnimatedString;
+	static var prototype : SVGAnimatedString;
 }

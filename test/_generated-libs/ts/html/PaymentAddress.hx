@@ -16,5 +16,5 @@ package ts.html;
 	final region : String;
 	final sortingCode : String;
 	function toJSON():Dynamic;
-	static var prototype : IPaymentAddress;
+	static var prototype : PaymentAddress;
 }

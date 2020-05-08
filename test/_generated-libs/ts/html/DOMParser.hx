@@ -4,6 +4,6 @@ package ts.html;
 **/
 @:native("DOMParser") extern class DOMParser {
 	function new();
-	function parseFromString(str:String, type:SupportedType):IDocument;
-	static var prototype : IDOMParser;
+	function parseFromString(str:String, type:SupportedType):Document;
+	static var prototype : DOMParser;
 }

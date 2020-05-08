@@ -24,21 +24,21 @@ package ts.html;
 		Returns true if key is included in the range, and false otherwise.
 	**/
 	function includes(key:Dynamic):Bool;
-	static var prototype : IIDBKeyRange;
+	static var prototype : IDBKeyRange;
 	/**
 		Returns a new IDBKeyRange spanning from lower to upper. If lowerOpen is true, lower is not included in the range. If upperOpen is true, upper is not included in the range.
 	**/
-	static function bound(lower:Dynamic, upper:Dynamic, ?lowerOpen:Bool, ?upperOpen:Bool):IIDBKeyRange;
+	static function bound(lower:Dynamic, upper:Dynamic, ?lowerOpen:Bool, ?upperOpen:Bool):IDBKeyRange;
 	/**
 		Returns a new IDBKeyRange starting at key with no upper bound. If open is true, key is not included in the range.
 	**/
-	static function lowerBound(lower:Dynamic, ?open:Bool):IIDBKeyRange;
+	static function lowerBound(lower:Dynamic, ?open:Bool):IDBKeyRange;
 	/**
 		Returns a new IDBKeyRange spanning only key.
 	**/
-	static function only(value:Dynamic):IIDBKeyRange;
+	static function only(value:Dynamic):IDBKeyRange;
 	/**
 		Returns a new IDBKeyRange with no lower bound and ending at key. If open is true, key is not included in the range.
 	**/
-	static function upperBound(upper:Dynamic, ?open:Bool):IIDBKeyRange;
+	static function upperBound(upper:Dynamic, ?open:Bool):IDBKeyRange;
 }

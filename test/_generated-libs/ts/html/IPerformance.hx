@@ -3,10 +3,10 @@ package ts.html;
 	Provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
 **/
 typedef IPerformance = {
-	final navigation : IPerformanceNavigation;
-	var onresourcetimingbufferfull : Null<(ev:IEvent) -> Dynamic>;
+	final navigation : PerformanceNavigation;
+	var onresourcetimingbufferfull : Null<(ev:Event) -> Dynamic>;
 	final timeOrigin : Float;
-	final timing : IPerformanceTiming;
+	final timing : PerformanceTiming;
 	function clearMarks(?markName:String):Void;
 	function clearMeasures(?measureName:String):Void;
 	function clearResourceTimings():Void;
@@ -55,5 +55,5 @@ typedef IPerformance = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

@@ -3,7 +3,7 @@ package ts.html;
 	This WebVR API interface represents represents the event object of WebVR-related events (see the list of WebVR window extensions).
 **/
 typedef IVRDisplayEvent = {
-	final display : ts.lib.IVRDisplay;
+	final display : VRDisplay;
 	final reason : Null<String>;
 	/**
 		Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
@@ -21,7 +21,7 @@ typedef IVRDisplayEvent = {
 	/**
 		Returns the object whose event listener's callback is currently being invoked.
 	**/
-	final currentTarget : Null<IEventTarget>;
+	final currentTarget : Null<EventTarget>;
 	/**
 		Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
 	**/
@@ -35,11 +35,11 @@ typedef IVRDisplayEvent = {
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<IEventTarget>;
+	final srcElement : Null<EventTarget>;
 	/**
 		Returns the object to which event is dispatched (its target).
 	**/
-	final target : Null<IEventTarget>;
+	final target : Null<EventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -51,7 +51,7 @@ typedef IVRDisplayEvent = {
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():Array<IEventTarget>;
+	function composedPath():Array<EventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	/**
 		If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.

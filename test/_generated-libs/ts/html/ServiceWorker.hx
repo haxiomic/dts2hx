@@ -4,7 +4,7 @@ package ts.html;
 **/
 @:native("ServiceWorker") extern class ServiceWorker {
 	function new();
-	var onstatechange : Null<(ev:IEvent) -> Dynamic>;
+	var onstatechange : Null<(ev:Event) -> Dynamic>;
 	final scriptURL : String;
 	final state : ServiceWorkerState;
 	@:overload(function(message:Dynamic, ?options:PostMessageOptions):Void { })
@@ -46,7 +46,7 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	var onerror : Null<(ev:IErrorEvent) -> Dynamic>;
-	static var prototype : IServiceWorker;
+	function dispatchEvent(event:Event):Bool;
+	var onerror : Null<(ev:ErrorEvent) -> Dynamic>;
+	static var prototype : ServiceWorker;
 }

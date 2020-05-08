@@ -1,6 +1,6 @@
 package ts.html;
 typedef OfflineAudioCompletionEventInit = {
-	var renderedBuffer : IAudioBuffer;
+	var renderedBuffer : AudioBuffer;
 	@:optional
 	var bubbles : Bool;
 	@:optional

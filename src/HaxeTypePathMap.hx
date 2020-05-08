@@ -48,13 +48,11 @@ class HaxeTypePathMap {
 		var modules = symbolTypePathMap.get(symbol.getId());
 
 		if (modules != null) {
-			// filter modules for just those with `isInterfaceStructure`
-			if (preferInterfaceStructure) {
-				var interfaceStructureModules = modules.filter(m -> m.isInterfaceStructure == true);
-				// if we don't have any, that's ok, but if we do, we should select from those
-				if (interfaceStructureModules.length > 0) {
-					modules = interfaceStructureModules;
-				}
+			// filter modules for just those with, or without `isInterfaceStructure` (depending on `preferInterfaceStructure`)
+			var interfaceStructureFilteredModules = modules.filter(m -> m.isInterfaceStructure == preferInterfaceStructure);
+			// if we don't have any, that's ok, but if we do, we should select from those
+			if (interfaceStructureFilteredModules.length > 0) {
+				modules = interfaceStructureFilteredModules;
 			}
 			// find one with a matching access context if possible
 			var matchingModule = modules.find(m -> m.access.getIndex() == accessContext.getIndex());
@@ -240,12 +238,12 @@ class HaxeTypePathMap {
 
 	function generateTypePath(symbol: Symbol, access: SymbolAccess, asInterfaceStructure: Bool) {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
-		var defaultLibName: Null<String> = null;
-		var defaultLibOnlyDeclarations = true;
+		var isBuiltIn = false; // symbol is declared in a built-in lib file (but may be extended in user-code)
+		var defaultLibOnlyDeclarations = true; // symbol is declared in a built-in lib file and **is not** extended in user-code
 		for (declaration in symbol.getDeclarationsArray()) {
 			var sourceFile = declaration.getSourceFile();
 			if (sourceFile.hasNoDefaultLib) {
-				defaultLibName = Path.withoutDirectory(sourceFile.fileName);
+				isBuiltIn = true;
 			} else {
 				defaultLibOnlyDeclarations = false;
 			}
@@ -253,7 +251,7 @@ class HaxeTypePathMap {
 
 		// handle built-ins and types available in the haxe standard library
 		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
-		if (defaultLibOnlyDeclarations) {
+		if (defaultLibOnlyDeclarations && !asInterfaceStructure) {
 			final specialTypeMap = [
 				// we want to avoid generating the following types into ts.lib.* 
 				// preferring to map them to haxe types instead
@@ -275,16 +273,23 @@ class HaxeTypePathMap {
 			}
 		}
 
+		function hasDeclarationInLib(symbol: Symbol, filename: String) {
+			for (declaration in symbol.getDeclarationsArray()) {
+				var sourceFile = declaration.getSourceFile();
+				if (sourceFile.hasNoDefaultLib && Path.withoutDirectory(sourceFile.fileName).toLowerCase() == filename) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		// if the symbol derives from a built-in, prefix js.lib or js.html
 		// otherwise prefix the module name (if it's a path, add a pack for each directory)
-		var pack = if (defaultLibName != null) {
-			switch defaultLibName.toLowerCase() {
-				case 'lib.dom.d.ts': ['ts', 'html'];
-				default: ['ts', 'lib'];
-			}
+		var pack = if (isBuiltIn) {
+			if (hasDeclarationInLib(symbol, 'lib.dom.d.ts')) ['ts', 'html']
+			else ['ts', 'lib'];
 		} else {
 			[];
-			//TsProgramTools.isDirectPathReferenceModule(entryPointModuleId) ? [] : splitModulePath(entryPointModuleId);
 		}
 
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
@@ -311,7 +316,7 @@ class HaxeTypePathMap {
 			case Global(_):
 				// only prefix global package if it's not a built-in
 				// global types are _not_ prefixed with the module name, this might change in the future
-				pack = pack.concat((defaultLibName != null) ? [] : ['global']).concat(identifierChain);
+				pack = pack.concat(isBuiltIn ? [] : ['global']).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
 				var entryPointPack = splitModulePath(entryPointModuleId);
@@ -370,6 +375,8 @@ class HaxeTypePathMap {
 				symbol.name;
 		}
 		var name = typeIdentifier.toSafeTypeName();
+		// prefix I if interface-structure version of a type
+		name = asInterfaceStructure ? 'I' + name : name;
 
 		// rename if name that conflict with std.* types
 		// @! we should generate this list automatically in the future
@@ -399,13 +406,14 @@ class HaxeTypePathMap {
 			'UnicodeString',
 			'Xml',
 		];
+		// add '_' to avoid disallowed names
 		if (disallowedNames.indexOf(name) != -1) {
 			name = name + '_';
 		}
 
 		// handle short aliases
 		return {
-			name: asInterfaceStructure ? 'I' + name : name,
+			name: name,
 			pack: pack,
 			isExistingStdLibType: false,
 		}
@@ -426,7 +434,8 @@ class HaxeTypePathMap {
 	**/
 	inline function renameability(m: InternalModule) {
 		return 
-			m.renameable ? 1 : 0                                     << 5 | // prefer renameable, with highest priority
+			m.renameable ? 1 : 0                                     << 6 | // prefer renameable, with highest priority
+			(!m.isExistingStdLibType ? 1 : 0)                        << 5 | // prefer non-existing std lib types
 			(m.access.match(Inaccessible) ? 1 : 0)                   << 4 | // prefer inaccessible
 			(m.symbol.flags & SymbolFlags.ValueModule == 0 ? 1 : 0)  << 3 | // prefer **not** ValueModule
 			(m.symbol.flags & SymbolFlags.Class == 0 ? 1 : 0)        << 2 | // prefer **not** class

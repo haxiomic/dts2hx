@@ -15,11 +15,11 @@ package ts.html;
 	/**
 		Returns a File object, if the drag data item kind is File.
 	**/
-	function getAsFile():Null<IFile>;
+	function getAsFile():Null<File>;
 	/**
 		Invokes the callback with the string data as the argument, if the drag data item kind is Plain Unicode string.
 	**/
 	function getAsString(callback:Null<FunctionStringCallback>):Void;
 	function webkitGetAsEntry():Dynamic;
-	static var prototype : IDataTransferItem;
+	static var prototype : DataTransferItem;
 }

@@ -7,4 +7,10 @@ package three;
 		var radius : Float;
 		var detail : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):PolyhedronGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():PolyhedronGeometry;
+	function copy(source:Geometry):PolyhedronGeometry;
 }

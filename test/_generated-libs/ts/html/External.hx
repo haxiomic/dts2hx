@@ -3,5 +3,5 @@ package ts.html;
 	function new();
 	function AddSearchProvider():Void;
 	function IsSearchProviderInstalled():Void;
-	static var prototype : IExternal;
+	static var prototype : External;
 }

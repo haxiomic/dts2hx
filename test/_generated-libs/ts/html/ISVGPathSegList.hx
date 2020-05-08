@@ -1,11 +1,11 @@
 package ts.html;
 typedef ISVGPathSegList = {
 	final numberOfItems : Float;
-	function appendItem(newItem:ISVGPathSeg):ISVGPathSeg;
+	function appendItem(newItem:SVGPathSeg):SVGPathSeg;
 	function clear():Void;
-	function getItem(index:Float):ISVGPathSeg;
-	function initialize(newItem:ISVGPathSeg):ISVGPathSeg;
-	function insertItemBefore(newItem:ISVGPathSeg, index:Float):ISVGPathSeg;
-	function removeItem(index:Float):ISVGPathSeg;
-	function replaceItem(newItem:ISVGPathSeg, index:Float):ISVGPathSeg;
+	function getItem(index:Float):SVGPathSeg;
+	function initialize(newItem:SVGPathSeg):SVGPathSeg;
+	function insertItemBefore(newItem:SVGPathSeg, index:Float):SVGPathSeg;
+	function removeItem(index:Float):SVGPathSeg;
+	function replaceItem(newItem:SVGPathSeg, index:Float):SVGPathSeg;
 };

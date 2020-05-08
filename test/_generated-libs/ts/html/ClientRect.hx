@@ -7,5 +7,5 @@ package ts.html;
 	var right : Float;
 	var top : Float;
 	final width : Float;
-	static var prototype : IClientRect;
+	static var prototype : ClientRect;
 }

@@ -3,8 +3,8 @@ package ts.html;
 	This Channel Messaging API interface represents one of the two ports of a MessageChannel, allowing messages to be sent from one port and listening out for them arriving at the other.
 **/
 typedef IMessagePort = {
-	var onmessage : Null<(ev:IMessageEvent) -> Dynamic>;
-	var onmessageerror : Null<(ev:IMessageEvent) -> Dynamic>;
+	var onmessage : Null<(ev:MessageEvent) -> Dynamic>;
+	var onmessageerror : Null<(ev:MessageEvent) -> Dynamic>;
 	/**
 		Disconnects the port, so that it is no longer active.
 	**/
@@ -57,5 +57,5 @@ typedef IMessagePort = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

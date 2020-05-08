@@ -182,132 +182,553 @@ package node.inspector;
 		
 		Detaches from all running workers and disables attaching to new workers as they are started.
 	**/
-	@:overload(function(method:String, ?callback:ts.AnyOf2<(err:Null<ts.lib.IError>) -> Void, (err:Null<ts.lib.IError>, params:{ }) -> Void>):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.ContinueToLocationParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.EnableReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.EvaluateOnCallFrameParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.EvaluateOnCallFrameReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.EvaluateOnCallFrameReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.GetPossibleBreakpointsParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.GetPossibleBreakpointsReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.GetPossibleBreakpointsReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.GetScriptSourceParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.GetScriptSourceReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.GetScriptSourceReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.GetStackTraceParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.GetStackTraceReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.GetStackTraceReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.PauseOnAsyncCallParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.RemoveBreakpointParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.RestartFrameParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.RestartFrameReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.RestartFrameReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SearchInContentParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SearchInContentReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SearchInContentReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetAsyncCallStackDepthParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetBlackboxPatternsParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetBlackboxedRangesParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetBreakpointReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetBreakpointReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointByUrlParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetBreakpointByUrlReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetBreakpointByUrlReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointOnFunctionCallParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetBreakpointOnFunctionCallReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetBreakpointOnFunctionCallReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointsActiveParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetPauseOnExceptionsParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetReturnValueParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetScriptSourceParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetScriptSourceReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.debugger.SetScriptSourceReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetSkipAllPausesParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.SetVariableValueParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.debugger.StepIntoParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.AddInspectedHeapObjectParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.GetHeapObjectIdParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.heapprofiler.GetHeapObjectIdReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.heapprofiler.GetHeapObjectIdReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.GetObjectByHeapObjectIdParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.heapprofiler.GetObjectByHeapObjectIdReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.heapprofiler.GetObjectByHeapObjectIdReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.heapprofiler.GetSamplingProfileReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.StartSamplingParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.StartTrackingHeapObjectsParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.heapprofiler.StopSamplingReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.StopTrackingHeapObjectsParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.heapprofiler.TakeHeapSnapshotParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.profiler.GetBestEffortCoverageReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.profiler.SetSamplingIntervalParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.profiler.StartPreciseCoverageParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.profiler.StopReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.profiler.TakePreciseCoverageReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.profiler.TakeTypeProfileReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.AwaitPromiseParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.AwaitPromiseReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.AwaitPromiseReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.CallFunctionOnParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.CallFunctionOnReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.CallFunctionOnReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.CompileScriptParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.CompileScriptReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.CompileScriptReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.EvaluateParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.EvaluateReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.EvaluateReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.GetIsolateIdReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.GetHeapUsageReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.GetPropertiesParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.GetPropertiesReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.GetPropertiesReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.GlobalLexicalScopeNamesParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.GlobalLexicalScopeNamesReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.GlobalLexicalScopeNamesReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.QueryObjectsParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.QueryObjectsReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.QueryObjectsReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.ReleaseObjectParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.ReleaseObjectGroupParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.RunScriptParameterType, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.RunScriptReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.runtime.RunScriptReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.runtime.SetCustomObjectFormatterEnabledParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.schema.GetDomainsReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>, params:node.inspector.nodetracing.GetCategoriesReturnType) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.nodetracing.StartParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.nodeworker.SendMessageToWorkerParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?params:node.inspector.nodeworker.EnableParameterType, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	@:overload(function(method:String, ?callback:(err:Null<ts.lib.IError>) -> Void):Void { })
-	function post(method:String, ?params:{ }, ?callback:ts.AnyOf2<(err:Null<ts.lib.IError>) -> Void, (err:Null<ts.lib.IError>, params:{ }) -> Void>):Void;
+	@:overload(function(method:String, ?callback:ts.AnyOf2<(err:Null<ts.lib.Error>) -> Void, (err:Null<ts.lib.Error>, params:{ }) -> Void>):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.ContinueToLocationParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.EnableReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.EvaluateOnCallFrameParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.EvaluateOnCallFrameReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.EvaluateOnCallFrameReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.GetPossibleBreakpointsParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.GetPossibleBreakpointsReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.GetPossibleBreakpointsReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.GetScriptSourceParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.GetScriptSourceReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.GetScriptSourceReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.GetStackTraceParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.GetStackTraceReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.GetStackTraceReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.PauseOnAsyncCallParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.RemoveBreakpointParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.RestartFrameParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.RestartFrameReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.RestartFrameReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SearchInContentParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SearchInContentReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SearchInContentReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetAsyncCallStackDepthParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetBlackboxPatternsParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetBlackboxedRangesParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetBreakpointReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetBreakpointReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointByUrlParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetBreakpointByUrlReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetBreakpointByUrlReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointOnFunctionCallParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetBreakpointOnFunctionCallReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetBreakpointOnFunctionCallReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetBreakpointsActiveParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetPauseOnExceptionsParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetReturnValueParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetScriptSourceParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetScriptSourceReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.debugger.SetScriptSourceReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetSkipAllPausesParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.SetVariableValueParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.debugger.StepIntoParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.AddInspectedHeapObjectParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.GetHeapObjectIdParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.heapprofiler.GetHeapObjectIdReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.heapprofiler.GetHeapObjectIdReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.GetObjectByHeapObjectIdParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.heapprofiler.GetObjectByHeapObjectIdReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.heapprofiler.GetObjectByHeapObjectIdReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.heapprofiler.GetSamplingProfileReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.StartSamplingParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.StartTrackingHeapObjectsParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.heapprofiler.StopSamplingReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.StopTrackingHeapObjectsParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.heapprofiler.TakeHeapSnapshotParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.profiler.GetBestEffortCoverageReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.profiler.SetSamplingIntervalParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.profiler.StartPreciseCoverageParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.profiler.StopReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.profiler.TakePreciseCoverageReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.profiler.TakeTypeProfileReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.AwaitPromiseParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.AwaitPromiseReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.AwaitPromiseReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.CallFunctionOnParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.CallFunctionOnReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.CallFunctionOnReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.CompileScriptParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.CompileScriptReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.CompileScriptReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.EvaluateParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.EvaluateReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.EvaluateReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.GetIsolateIdReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.GetHeapUsageReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.GetPropertiesParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.GetPropertiesReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.GetPropertiesReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.GlobalLexicalScopeNamesParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.GlobalLexicalScopeNamesReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.GlobalLexicalScopeNamesReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.QueryObjectsParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.QueryObjectsReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.QueryObjectsReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.ReleaseObjectParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.ReleaseObjectGroupParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.RunScriptParameterType, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.RunScriptReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.runtime.RunScriptReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.runtime.SetCustomObjectFormatterEnabledParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.schema.GetDomainsReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>, params:node.inspector.nodetracing.GetCategoriesReturnType) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.nodetracing.StartParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.nodeworker.SendMessageToWorkerParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?params:node.inspector.nodeworker.EnableParameterType, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	@:overload(function(method:String, ?callback:(err:Null<ts.lib.Error>) -> Void):Void { })
+	function post(method:String, ?params:{ }, ?callback:ts.AnyOf2<(err:Null<ts.lib.Error>) -> Void, (err:Null<ts.lib.Error>, params:{ }) -> Void>):Void;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	@:overload(function(event:String, message:InspectorNotification<{ }>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.PausedEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>):Bool { })
+	@:overload(function(event:String):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>):Bool { })
+	@:overload(function(event:String, message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>):Bool { })
+	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	/**
+		Emitted when any notification from the V8 Inspector is received.
+		
+		Issued when new console message is added.
+		
+		Fired when breakpoint is resolved to an actual script and location.
+		
+		Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+		
+		Fired when the virtual machine resumed execution.
+		
+		Fired when virtual machine fails to parse the script.
+		
+		Fired when virtual machine parses script. This event is also fired for all known and uncollected
+		scripts upon enabling debugger.
+		
+		If heap objects tracking has been started then backend may send update for one or more fragments
+		
+		If heap objects tracking has been started then backend regularly sends a current value for last
+		seen object id and corresponding timestamp. If the were changes in the heap since last event
+		then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+		
+		Sent when new profile recording is started using console.profile() call.
+		
+		Issued when console API was called.
+		
+		Issued when unhandled exception was revoked.
+		
+		Issued when exception was thrown and unhandled.
+		
+		Issued when new execution context is created.
+		
+		Issued when execution context is destroyed.
+		
+		Issued when all executionContexts were cleared in browser
+		
+		Issued when object should be inspected (for example, as a result of inspect() command line API
+		call).
+		
+		Contains an bucket of collected trace events.
+		
+		Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+		delivered via dataCollected events.
+		
+		Issued when attached to a worker.
+		
+		Issued when detached from the worker.
+		
+		Notifies about a new protocol message received from the session
+		(session ID is provided in attachedToWorker notification).
+	**/
+	@:overload(function(event:String, listener:(message:InspectorNotification<{ }>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.console.MessageAddedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.BreakpointResolvedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.PausedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptFailedToParseEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.debugger.ScriptParsedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.AddHeapSnapshotChunkEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.HeapStatsUpdateEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.LastSeenObjectIdEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.heapprofiler.ReportHeapSnapshotProgressEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileFinishedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.profiler.ConsoleProfileStartedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ConsoleAPICalledEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionRevokedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExceptionThrownEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextCreatedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.ExecutionContextDestroyedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.runtime.InspectRequestedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodetracing.DataCollectedEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:() -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.AttachedToWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
+	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
+	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Session;
+	function setMaxListeners(n:Float):Session;
 }

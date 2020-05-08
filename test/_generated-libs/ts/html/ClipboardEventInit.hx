@@ -1,7 +1,7 @@
 package ts.html;
 typedef ClipboardEventInit = {
 	@:optional
-	var clipboardData : IDataTransfer;
+	var clipboardData : DataTransfer;
 	@:optional
 	var bubbles : Bool;
 	@:optional

@@ -3,11 +3,11 @@ typedef IIDBTransaction = {
 	/**
 		Returns the transaction's connection.
 	**/
-	final db : IIDBDatabase;
+	final db : IDBDatabase;
 	/**
 		If the transaction was aborted, returns the error (a DOMException) providing the reason.
 	**/
-	final error : IDOMException;
+	final error : DOMException;
 	/**
 		Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
 	**/
@@ -15,10 +15,10 @@ typedef IIDBTransaction = {
 	/**
 		Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
 	**/
-	final objectStoreNames : ts.lib.IDOMStringList;
-	var onabort : Null<(ev:IEvent) -> Dynamic>;
-	var oncomplete : Null<(ev:IEvent) -> Dynamic>;
-	var onerror : Null<(ev:IEvent) -> Dynamic>;
+	final objectStoreNames : DOMStringList;
+	var onabort : Null<(ev:Event) -> Dynamic>;
+	var oncomplete : Null<(ev:Event) -> Dynamic>;
+	var onerror : Null<(ev:Event) -> Dynamic>;
 	/**
 		Aborts the transaction. All pending requests will fail with a "AbortError" DOMException and all changes made to the database will be reverted.
 	**/
@@ -26,7 +26,7 @@ typedef IIDBTransaction = {
 	/**
 		Returns an IDBObjectStore in the transaction's scope.
 	**/
-	function objectStore(name:String):ts.lib.IIDBObjectStore;
+	function objectStore(name:String):IDBObjectStore;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -64,5 +64,5 @@ typedef IIDBTransaction = {
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
+	function dispatchEvent(event:Event):Bool;
 };

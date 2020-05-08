@@ -25,5 +25,5 @@ package ts.html;
 	final PATHSEG_MOVETO_ABS : Float;
 	final PATHSEG_MOVETO_REL : Float;
 	final PATHSEG_UNKNOWN : Float;
-	static var prototype : ISVGPathSegCurvetoQuadraticSmoothRel;
+	static var prototype : SVGPathSegCurvetoQuadraticSmoothRel;
 }

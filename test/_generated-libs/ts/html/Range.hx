@@ -7,36 +7,36 @@ package ts.html;
 	/**
 		Returns the node, furthest away from the document, that is an ancestor of both range's start node and end node.
 	**/
-	final commonAncestorContainer : INode;
-	function cloneContents():IDocumentFragment;
-	function cloneRange():IRange;
+	final commonAncestorContainer : Node;
+	function cloneContents():DocumentFragment;
+	function cloneRange():Range;
 	function collapse(?toStart:Bool):Void;
-	function compareBoundaryPoints(how:Float, sourceRange:IRange):Float;
+	function compareBoundaryPoints(how:Float, sourceRange:Range):Float;
 	/**
 		Returns −1 if the point is before the range, 0 if the point is in the range, and 1 if the point is after the range.
 	**/
-	function comparePoint(node:INode, offset:Float):Float;
-	function createContextualFragment(fragment:String):IDocumentFragment;
+	function comparePoint(node:Node, offset:Float):Float;
+	function createContextualFragment(fragment:String):DocumentFragment;
 	function deleteContents():Void;
 	function detach():Void;
-	function extractContents():IDocumentFragment;
-	function getBoundingClientRect():IDOMRect;
-	function getClientRects():ts.lib.IDOMRectList;
-	function insertNode(node:INode):Void;
+	function extractContents():DocumentFragment;
+	function getBoundingClientRect():DOMRect;
+	function getClientRects():DOMRectList;
+	function insertNode(node:Node):Void;
 	/**
 		Returns whether range intersects node.
 	**/
-	function intersectsNode(node:INode):Bool;
-	function isPointInRange(node:INode, offset:Float):Bool;
-	function selectNode(node:INode):Void;
-	function selectNodeContents(node:INode):Void;
-	function setEnd(node:INode, offset:Float):Void;
-	function setEndAfter(node:INode):Void;
-	function setEndBefore(node:INode):Void;
-	function setStart(node:INode, offset:Float):Void;
-	function setStartAfter(node:INode):Void;
-	function setStartBefore(node:INode):Void;
-	function surroundContents(newParent:INode):Void;
+	function intersectsNode(node:Node):Bool;
+	function isPointInRange(node:Node, offset:Float):Bool;
+	function selectNode(node:Node):Void;
+	function selectNodeContents(node:Node):Void;
+	function setEnd(node:Node, offset:Float):Void;
+	function setEndAfter(node:Node):Void;
+	function setEndBefore(node:Node):Void;
+	function setStart(node:Node, offset:Float):Void;
+	function setStartAfter(node:Node):Void;
+	function setStartBefore(node:Node):Void;
+	function surroundContents(newParent:Node):Void;
 	final END_TO_END : Float;
 	final END_TO_START : Float;
 	final START_TO_END : Float;
@@ -48,7 +48,7 @@ package ts.html;
 	/**
 		Returns range's end node.
 	**/
-	final endContainer : INode;
+	final endContainer : Node;
 	/**
 		Returns range's end offset.
 	**/
@@ -56,12 +56,12 @@ package ts.html;
 	/**
 		Returns range's start node.
 	**/
-	final startContainer : INode;
+	final startContainer : Node;
 	/**
 		Returns range's start offset.
 	**/
 	final startOffset : Float;
-	static var prototype : IRange;
+	static var prototype : Range;
 	@:native("END_TO_END")
 	static final END_TO_END_ : Float;
 	@:native("END_TO_START")

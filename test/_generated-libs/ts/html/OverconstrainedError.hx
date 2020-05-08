@@ -6,5 +6,5 @@ package ts.html;
 	var message : String;
 	@:optional
 	var stack : String;
-	static var prototype : IOverconstrainedError;
+	static var prototype : OverconstrainedError;
 }

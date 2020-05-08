@@ -6,7 +6,7 @@ typedef ObjectConstructor = {
 	/**
 		A reference to the prototype for a class of objects.
 	**/
-	final prototype : IObject;
+	final prototype : Object;
 	/**
 		Returns the prototype of an object.
 	**/

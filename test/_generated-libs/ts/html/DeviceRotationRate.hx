@@ -7,5 +7,5 @@ package ts.html;
 	final alpha : Null<Float>;
 	final beta : Null<Float>;
 	final gamma : Null<Float>;
-	static var prototype : IDeviceRotationRate;
+	static var prototype : DeviceRotationRate;
 }

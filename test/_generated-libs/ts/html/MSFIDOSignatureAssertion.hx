@@ -1,8 +1,8 @@
 package ts.html;
 @:native("MSFIDOSignatureAssertion") extern class MSFIDOSignatureAssertion {
 	function new();
-	final signature : IMSFIDOSignature;
+	final signature : MSFIDOSignature;
 	final id : String;
 	final type : String;
-	static var prototype : IMSFIDOSignatureAssertion;
+	static var prototype : MSFIDOSignatureAssertion;
 }

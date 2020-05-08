@@ -23,4 +23,16 @@ package three;
 	var skinning : Bool;
 	var morphTargets : Bool;
 	var morphNormals : Bool;
+	/**
+		Sets the properties based on the values.
+	**/
+	function setValues(parameters:MeshLambertMaterialParameters):Void;
+	/**
+		Return a new material with the same parameters as this material.
+	**/
+	function clone():MeshLambertMaterial;
+	/**
+		Copy the parameters from the passed material into this material.
+	**/
+	function copy(material:Material):MeshLambertMaterial;
 }

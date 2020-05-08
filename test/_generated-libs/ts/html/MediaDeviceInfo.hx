@@ -9,5 +9,5 @@ package ts.html;
 	final kind : MediaDeviceKind;
 	final label : String;
 	function toJSON():Dynamic;
-	static var prototype : IMediaDeviceInfo;
+	static var prototype : MediaDeviceInfo;
 }

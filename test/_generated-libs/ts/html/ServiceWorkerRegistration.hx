@@ -4,19 +4,19 @@ package ts.html;
 **/
 @:native("ServiceWorkerRegistration") extern class ServiceWorkerRegistration {
 	function new();
-	final active : Null<IServiceWorker>;
-	final installing : Null<IServiceWorker>;
-	final navigationPreload : INavigationPreloadManager;
-	var onupdatefound : Null<(ev:IEvent) -> Dynamic>;
-	final pushManager : IPushManager;
+	final active : Null<ServiceWorker>;
+	final installing : Null<ServiceWorker>;
+	final navigationPreload : NavigationPreloadManager;
+	var onupdatefound : Null<(ev:Event) -> Dynamic>;
+	final pushManager : PushManager;
 	final scope : String;
-	final sync : ISyncManager;
+	final sync : SyncManager;
 	final updateViaCache : ServiceWorkerUpdateViaCache;
-	final waiting : Null<IServiceWorker>;
-	function getNotifications(?filter:GetNotificationOptions):ts.lib.IPromise<Array<INotification>>;
-	function showNotification(title:String, ?options:NotificationOptions):ts.lib.IPromise<Void>;
-	function unregister():ts.lib.IPromise<Bool>;
-	function update():ts.lib.IPromise<Void>;
+	final waiting : Null<ServiceWorker>;
+	function getNotifications(?filter:GetNotificationOptions):ts.lib.Promise<Array<Notification>>;
+	function showNotification(title:String, ?options:NotificationOptions):ts.lib.Promise<Void>;
+	function unregister():ts.lib.Promise<Bool>;
+	function update():ts.lib.Promise<Void>;
 	/**
 		Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 		
@@ -54,6 +54,6 @@ package ts.html;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:IEvent):Bool;
-	static var prototype : IServiceWorkerRegistration;
+	function dispatchEvent(event:Event):Bool;
+	static var prototype : ServiceWorkerRegistration;
 }

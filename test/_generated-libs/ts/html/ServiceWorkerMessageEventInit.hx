@@ -7,9 +7,9 @@ typedef ServiceWorkerMessageEventInit = {
 	@:optional
 	var origin : String;
 	@:optional
-	var ports : Array<IMessagePort>;
+	var ports : Array<MessagePort>;
 	@:optional
-	var source : ts.AnyOf2<IMessagePort, IServiceWorker>;
+	var source : ts.AnyOf2<MessagePort, ServiceWorker>;
 	@:optional
 	var bubbles : Bool;
 	@:optional

@@ -3,6 +3,6 @@ package ts.html;
 	function new();
 	final expires : Float;
 	function getFingerprints():Array<RTCDtlsFingerprint>;
-	static var prototype : IRTCCertificate;
+	static var prototype : RTCCertificate;
 	static function getSupportedAlgorithms():Array<AlgorithmIdentifier>;
 }

@@ -6,5 +6,5 @@ package ts.html;
 	function new();
 	final animVal : Bool;
 	var baseVal : Bool;
-	static var prototype : ISVGAnimatedBoolean;
+	static var prototype : SVGAnimatedBoolean;
 }

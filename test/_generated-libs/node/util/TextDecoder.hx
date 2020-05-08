@@ -4,5 +4,5 @@ package node.util;
 	final encoding : String;
 	final fatal : Bool;
 	final ignoreBOM : Bool;
-	function decode(?input:ts.AnyOf11<ts.lib.IUint8Array, ts.lib.IArrayBuffer, ts.lib.IUint8ClampedArray, ts.lib.IUint16Array, ts.lib.IUint32Array, ts.lib.IInt8Array, ts.lib.IInt16Array, ts.lib.IInt32Array, ts.lib.IFloat32Array, ts.lib.IFloat64Array, ts.lib.IDataView>, ?options:{ @:optional var stream : Bool; }):String;
+	function decode(?input:ts.AnyOf11<ts.lib.Uint8Array, ts.lib.ArrayBuffer, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>, ?options:{ @:optional var stream : Bool; }):String;
 }
