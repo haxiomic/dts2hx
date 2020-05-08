@@ -921,9 +921,27 @@ class ConverterContext {
 
 		// if all types are natively intersectable in haxe return TIntersection, if any are not, rasterize to a single anon
 		return if (nativelyIntersectable) {
-			// convert intersections, preferring interface structure references where possible
-			var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration, null, true)).deduplicateTypes();
-			TIntersection(hxTypes);
+			/**
+				Hack to work around a haxe compiler bug #9397, stack-overflow with recursive intersections.
+				This work around does not resolve the general case, but resolves the common case where we have
+				```typescript
+				type T = {
+					field: T & OtherTypes
+				}
+				```
+			**/
+			var accessSymbolChain = accessContext.extractSymbolChain();
+			var accessModuleSymbol = accessSymbolChain[accessSymbolChain.length - 1];
+			var selfReferencedType = accessModuleSymbol != null ? types.find(t -> t.symbol == accessModuleSymbol || t.aliasSymbol == accessModuleSymbol) : null;
+			if (selfReferencedType != null) {
+				Log.warn('Recursive intersections are not supported (haxe issue #9397); some type information will be lost', intersectionType);
+				complexTypeFromTsType(selfReferencedType, accessContext, enclosingDeclaration);
+			} else {
+				// native haxe intersection
+				// convert intersections, preferring interface structure references where possible
+				var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration, null, true)).deduplicateTypes();
+				TIntersection(hxTypes);
+			}
 		} else {
 			macro :Dynamic;
 			// @! todo: avoid recursive type conversion (see jquery)
