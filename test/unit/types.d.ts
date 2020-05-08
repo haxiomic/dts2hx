@@ -281,4 +281,17 @@ export namespace Types {
     // FirstTypeNode
     function firstTypeFunction(node: {}): node is string;
 
+    // Testing work around for haxe compiler bug https://github.com/HaxeFoundation/haxe/issues/9397
+    // simplified from lib.dom.d.ts
+    type ParentNode = {
+        exampleField: number;
+    }
+
+    type INode<T> = {
+        /**
+         * To work around #9397, parent type should just be INode<T>
+         */
+        parent: INode<T> & ParentNode;
+    }
+
 }
