@@ -2,13 +2,26 @@
 
 - Complete validation
 
+- Haxe issue? Outgoing `@:native`
+```haxe
+extern function setup(options: {
+	@:native('default')
+	var default_: String;
+}): Void;
+
+setup({ default_: 'hi' })
+// generates
+setup( { default_: 'hi' })
+// rather than
+setup( { default: 'hi' })
+```
+
 ---- Tests should compile
 
 - Constructor comments missing from pixi.js
 
 - Class and interface extend handling, add override etc
 	- Need to check where extending / intersection is allowed
-	- Class extends should not `preferInterfaceStructure`, what else?
 
 - Interface splitting
 	- Classes **must** unify with interfaces, so interface must have all the same fields as the class
@@ -16,8 +29,7 @@
 
 - Intersection Types
 	- `function intersectionBetweenTypeParams<A, B>(p: A & B): void;` -> `p: { }` ??
-	- If type is in the haxe standard library, it is not intersectable.
-	- If a type has index signatures, rasterize
+	- If a type has index signatures, rasterize?
 
 - Index signatures
 	- Haxe compiler feature requests
@@ -94,20 +106,6 @@ A generic build version of this would work
 
 - Special types
 	- ts.lib.IFunction should map to haxe.constrains.Function I think
-
-- Haxe issue? Outgoing `@:native`
-```haxe
-extern function setup(options: {
-	@:native('default')
-	var default_: String;
-}): Void;
-
-setup({ default_: 'hi' })
-// generates
-setup( { default_: 'hi' })
-// rather than
-setup( { default: 'hi' })
-```
 
 - Understand
 ? `tc.getBaseTypeOfLiteralType()` for literals?
