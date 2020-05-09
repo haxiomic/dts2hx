@@ -27,6 +27,7 @@
     "playcanvas": "1.26.0",
     "react": "^16.13.1",
     "three": "0.107.0",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "vue": "2.6.11"
   }
 }
