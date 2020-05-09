@@ -1,6 +1,6 @@
 package ts.html;
 @:native("CustomEvent") extern class CustomEvent<T> {
-	function new(typeArg:String, ?eventInitDict:CustomEventInit<T>);
+	function new<T>(typeArg:String, ?eventInitDict:CustomEventInit<T>);
 	/**
 		Returns any custom data event was created with. Typically used for synthetic events.
 	**/

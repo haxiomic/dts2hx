@@ -1,7 +1,7 @@
 package ts.lib;
 @:native("Set") extern class Set<T> {
 	@:overload(function<T>(?iterable:Iterable<T>):Set<T> { })
-	function new(?values:ReadonlyArray<T>);
+	function new<T>(?values:ReadonlyArray<T>);
 	function add(value:T):Set<T>;
 	function clear():Void;
 	function delete(value:T):Bool;

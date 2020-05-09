@@ -1,7 +1,7 @@
 package unit.class_;
 @:jsRequire("./unit/class", "ClassBase") extern class ClassBase<T, DefaultBool> {
 	@:overload(function<T, DefaultBool>(a:Float):ClassBase<T, DefaultBool> { })
-	function new(overloadParam:T);
+	function new<T, DefaultBool>(overloadParam:T);
 	var intField : Float;
 	var arrayField : Array<String>;
 	var thisClassType : ClassBase<T, DefaultBool>;
