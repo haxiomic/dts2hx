@@ -1094,11 +1094,10 @@ class ConverterContext {
 
 	function newFieldFromSignatures(signatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
 		var field = functionFieldFromSignatures('new', signatures, accessContext, enclosingDeclaration);
-		// remove return type and type parameters?
 		switch field.kind {
 			case FFun(fun):
+				// remove return type form `function new` (disallowed in haxe)
 				fun.ret = null;
-				fun.params = null;
 			default:
 		}
 		return field;
