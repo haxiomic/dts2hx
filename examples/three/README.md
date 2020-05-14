@@ -7,7 +7,19 @@ Reproducing the [three.js introduction example](https://threejs.org/docs/#manual
 
 	`npm install`
 
-	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **externs/three/**
+	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will automatically run `dts2hx` which generates **externs/three/**
+
+- This example uses a three.js submodule [`OrbitControls`](https://threejs.org/docs/#examples/en/controls/OrbitControls) which is available in the examples directory within the three module. Normally, to use this module in JavaScript you will need to import it with
+	```javascript
+	require('three/examples/jsm/controls/OrbitControls')
+	```
+
+	To generate haxe externs for OrbitControls, you pass the same module name module name to `dts2hx`:
+	```bash
+	dts2hx three/examples/jsm/controls/OrbitControls
+	```
+	[(See "postinstall" in package.json)](./package.json#L7)
+
 - Build example with
 
 	`haxe build.hxml`

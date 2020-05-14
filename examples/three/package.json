@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
-    "postinstall": "dts2hx --all"
+    "postinstall": "dts2hx three three/examples/jsm/controls/OrbitControls"
   },
   "author": "",
   "license": "ISC",

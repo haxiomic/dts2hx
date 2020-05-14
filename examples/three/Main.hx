@@ -1,3 +1,4 @@
+import three.examples.jsm.controls.orbitcontrols.OrbitControls;
 import js.Browser.*;
 import three.*;
 
@@ -30,17 +31,19 @@ class Main {
 		var camera = new PerspectiveCamera(75, canvas.width/canvas.height, 0.1, 1000);
 		camera.position.z = 5;
 
+		var controls = new OrbitControls(camera, cast canvas);
+
 		var geometry = new TorusKnotGeometry(1, 0.2, 100, 50);
 		var material = new MeshPhysicalMaterial({color: 0x6600AA, roughness: 0.4, metalness: 0.5});
 		var mesh = new Mesh(geometry, material);
 		scene.add(mesh);
 
-		var light = new PointLight(0xFF0022, 1.2);
+		var light = new PointLight(0xFF0022, 1.3);
 		light.position.y = 2;
 		light.position.z = 2;
 		scene.add(light);
 
-		var ambient = new AmbientLight(0xFFFFFF, 0.4);
+		var ambient = new AmbientLight(0xFFFFFF, 0.6);
 		ambient.position.y = 2;
 		ambient.position.z = 2;
 		scene.add(ambient);
@@ -54,6 +57,8 @@ class Main {
 
 			light.position.x = Math.cos(t_s);
 			light.position.z = Math.sin(t_s) + 2;
+
+			controls.update();
 
 			renderer.render(scene, camera);
 		}
