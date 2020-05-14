@@ -24,7 +24,7 @@ cd ../
 cd three
 rm -rf externs
 npm install --ignore-scripts
-../../cli.js --all
+../../cli.js three three/examples/jsm/controls/OrbitControls
 haxe build.hxml
 cd ../
 
