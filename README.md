@@ -40,7 +40,6 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] Classes and interfaces
 - [ ] Intersection types
 - [ ] Other missing types
-- [ ] Callable classes type II
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
