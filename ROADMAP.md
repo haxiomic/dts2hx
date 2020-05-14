@@ -1,9 +1,3 @@
-- three.js
-	- Converting orbit controls with
-	`dts2hx three/examples/jsm/controls/OrbitControls`
-	- Has problems:
-		- duplicate files
-		- double nested path
 
 - Create alternative field for redefined class and interface fields (if type is not same)
 
