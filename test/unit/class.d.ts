@@ -58,10 +58,14 @@ export class ClassWithIndexSignature {
     [key: string]: number,
 }
 
-export class CallbleClass {
-    field: number;
+export interface CallableClass<T, J = string> {
+    interfaceField: J;
 }
-export function CallbleClass(arg: number);
+export class CallableClass<T> {
+    field: number;
+    t: T;
+}
+export function CallableClass<A, B>(arg: A, b: B);
 
 export class ClassWithValueModule {
     field: number;
