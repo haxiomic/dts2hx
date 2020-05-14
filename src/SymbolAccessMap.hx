@@ -23,7 +23,7 @@ class SymbolAccessMap {
 	final tc: TypeChecker;
 	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
 
-	public function new(entryPointModuleId: String, program: Program, moduleRootSourceFiles: Array<SourceFile>) {
+	public function new(program: Program, moduleRootSourceFiles: Array<SourceFile>) {
 		// this.program = ctx.program;
 		this.tc = program.getTypeChecker();
 

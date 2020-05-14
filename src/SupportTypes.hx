@@ -124,24 +124,6 @@ class SupportTypes {
 		}
 
 		return TPath(typePath);
-
-		/*
-		// here we could generate an advanced union type like we do for tuple but let's save that for another day
-		// instead, generate an EitherType stack
-		function getEitherUnion(types: Array<ComplexType>): ComplexType {
-			return if (types.length == 1) {
-				types[0];
-			} else {
-				TPath({
-					name: 'EitherType',
-					pack: ['haxe', 'extern'],
-					params: [TPType(types[0]), TPType(getEitherUnion(types.slice(1)))],
-				});
-			}
-		}
-
-		return getEitherUnion(types);
-		*/
 	}
 
 	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol, access: SymbolAccess): HaxeModule {
