@@ -250,7 +250,10 @@ class Main {
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
-		var converter = new ConverterContext(moduleName, moduleSearchPath, compilerOptions, locationComments);
+		var converter = try new ConverterContext(moduleName, moduleSearchPath, compilerOptions, locationComments) catch (e: Any) {
+			Log.error(e);
+			return null;
+		}
 
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
 		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (converter.packageName == null));
