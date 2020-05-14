@@ -664,9 +664,17 @@ class ConverterContext {
 			fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, declaration));
 		}
 
+		/*
+		Rather than adding another call() to the class, users can use the equivalent function available from the enclosing value-module
 		if (symbol.flags & SymbolFlags.Function != 0) {
 			Log.warn('todo: handle callable class type 2', symbol);
+			var tsType = getTsTypeOfField(symbol);
+			var signatures = tc.getSignaturesOfType(tsType, Call);
+			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, access, declaration);
+			selfCallStatic.enableAccess(AStatic);
+			fields.push(selfCallStatic);
 		}
+		*/
 
 		if (indexSignatures.length > 0) {
 			// this is different from a _constructor_ declaration
