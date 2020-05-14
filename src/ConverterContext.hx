@@ -1536,7 +1536,26 @@ class ConverterContext {
 	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		var tsTypeParameterDeclarations = new Array<TypeParameterDeclaration>();
 
-		for (declaration in symbol.declarations) {
+		// filter type-declarations
+		var typeDeclarations = symbol.declarations.filter(d -> {
+			switch d.kind {
+				case SyntaxKind.ClassDeclaration |
+					SyntaxKind.InterfaceDeclaration |
+					SyntaxKind.TypeAliasDeclaration |
+					SyntaxKind.ModuleDeclaration |
+					SyntaxKind.SourceFile |
+					SyntaxKind.VariableDeclaration
+					: true;
+				default: false;
+			}
+		});
+
+		if (typeDeclarations.length == 0) {
+			Log.warn('Internal error: typeParamDeclFromTypeDeclarationSymbol() expected symbol to have at least one recognized type declaration', symbol);
+			Log.warn('\tdeclarations: <b>${symbol.declarations.map(d -> TsSyntaxTools.getSyntaxKindName(d.kind))}</>');
+		}
+
+		for (declaration in typeDeclarations) {
 			// find the first declaration with more than 0 type parameters
 			// here we make the assumption that all declarations have the same type parameters
 			var declarationTypeParameters = Ts.getEffectiveTypeParameterDeclarations(cast declaration);
