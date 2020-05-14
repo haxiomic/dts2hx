@@ -276,6 +276,18 @@ class HaxeTools {
 		}
 	}
 
+	/**
+		Sometimes we want a deterministic order for an array of complex types. You can use this comparison to sort an array of complex types deterministically
+	**/
+	static public function compareComplexTypes(a: ComplexType, b: ComplexType) {
+		return if (a.getIndex() == b.getIndex()) {
+			var p = new Printer();
+			p.printComplexType(a) < p.printComplexType(b) ? -1 : 1;
+		} else {
+			a.getIndex() - b.getIndex();
+		}
+	}
+
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
 		// see core/ast.ml
 		"public", "private", "static", "override", "dynamic", "inline", "macro",
