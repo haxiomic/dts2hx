@@ -250,27 +250,18 @@ class Main {
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
-		var host = Ts.createCompilerHost(compilerOptions);
-		
-		var resolvedModule: ResolvedModuleFull;
-		var result = Ts.resolveModuleName(moduleName, moduleSearchPath + '/.', compilerOptions, host);
-		if (result.resolvedModule == null) {
-			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
-			Log.error('Failed to find typescript for module <b>"${moduleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
-			return null;
-		}
-		resolvedModule = result.resolvedModule;
+		var converter = new ConverterContext(moduleName, moduleSearchPath, compilerOptions, locationComments);
 
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
-		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (resolvedModule.packageId == null));
-
-		var converter = new ConverterContext(moduleName, resolvedModule.resolvedFileName, compilerOptions, locationComments);
+		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (converter.packageName == null));
 
 		if (!noOutput) {
 			// save modules to files
 			var printer = new Printer();
 
-			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, generateLibraryName(converter.entryPointModuleId)]) : outputPath;
+			// var outputDirectoryName = resolvedModule.pac
+			var libraryName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
+			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, libraryName]) : outputPath;
 
 			for (_ => haxeModule in converter.generatedModules) {
 
@@ -293,23 +284,24 @@ class Main {
 			touchDirectoryPath(outputLibraryPath);
 
 			if (generateLibraryWrapper) {
-				var packageJson = getModulePackageJson(moduleName, moduleSearchPath, resolvedModule);
+				var packageJson = getModulePackageJson(moduleName, moduleSearchPath, converter.entryPointModule);
 				// write a readme
-				var readmeStr = generateReadme(moduleName, moduleSearchPath, converter, resolvedModule, packageJson);
+				var readmeStr = generateReadme(moduleName, moduleSearchPath, converter, packageJson);
 				Fs.writeFileSync(Path.join([outputLibraryPath, 'README.md']), readmeStr);
 
 				// write haxelib.json
-				var haxelibJsonStr = generateHaxelibJson(moduleName, moduleSearchPath, converter, resolvedModule, packageJson);
+				var haxelibJsonStr = generateHaxelibJson(moduleName, moduleSearchPath, converter, packageJson);
 				Fs.writeFileSync(Path.join([outputLibraryPath, 'haxelib.json']), haxelibJsonStr);
 			}
 
-			Console.success('<green>Generated externs for <b>$moduleName</> in <b>$outputLibraryPath</></>');
+			Console.success('<green>Saved externs for <b>$moduleName</> into <b>$outputLibraryPath/</></>');
 		}
 
 		return converter;
 	}
 
-	static function generateReadme(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, resolvedModule: ResolvedModuleFull, modulePackageJson: Null<Dynamic<Dynamic>>): String {
+	static function generateReadme(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
+		var resolvedModule: ResolvedModuleFull = converter.entryPointModule;
 		var dts2hxRepoUrl = dts2hxPackageJson.repository.url;
 		var dts2hxRef = dts2hxRepoUrl != null ? '[dts2hx]($dts2hxRepoUrl)' : 'dts2hx';
 		var typesModuleVersion: Null<String> = resolvedModule.packageId != null ? resolvedModule.packageId.version : null;
@@ -326,7 +318,7 @@ class Main {
 		}
 
 		var sections = new Array<String>();
-		sections.push('# Haxe Externs for ${converter.entryPointModuleId}');
+		sections.push('# Haxe Externs for ${converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName}');
 
 		sections.push('
 			Generated from **$typesModuleIdMarkdown** by **$dts2hxRef ${dts2hxPackageJson.version}** using **TypeScript ${typescript.Ts.version}** with arguments:
@@ -359,12 +351,14 @@ class Main {
 		return sections.map(s -> s.removeIndentation().trim()).join('\n\n');
 	}
 
-	static function generateHaxelibJson(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, resolvedModule: ResolvedModuleFull, modulePackageJson: Null<Dynamic<Dynamic>>): String {
+	static function generateHaxelibJson(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
+		var resolvedModule: ResolvedModuleFull = converter.entryPointModule;
+		var moduleName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
 		var moduleVersion: Null<String> = resolvedModule.packageId != null ? resolvedModule.packageId.version : null;
 		var haxelib: Dynamic = {
-			name: generateLibraryName(converter.entryPointModuleId),
-			tags: [converter.entryPointModuleId, "externs", "typescript", "javascript", "dts2hx"],
-			description: 'Externs for ${converter.entryPointModuleId}${moduleVersion != null ? ' v$moduleVersion' : ''} automatically generated by dts2hx',
+			name: moduleName,
+			tags: [moduleName, "externs", "typescript", "javascript", "dts2hx"],
+			description: 'Externs for ${moduleName}${moduleVersion != null ? ' v$moduleVersion' : ''} automatically generated by dts2hx',
 			contributors: ["haxiomic"],
 			dependencies: { }
 		}
@@ -373,14 +367,9 @@ class Main {
 		}
 		// add dependencies
 		for (moduleDependency in converter.moduleDependencies) {
-			Reflect.setField(haxelib.dependencies, generateLibraryName(moduleDependency), "");
+			Reflect.setField(haxelib.dependencies, moduleDependency, "");
 		}
 		return haxe.Json.stringify(haxelib, null, '\t');
-	}
-
-	static function generateLibraryName(moduleName: String) {
-		// could add '-externs' maybe
-		return moduleName;
 	}
 
 	static function getModulePackageJson(moduleName: String, moduleSearchPath: String, resolvedModule: ResolvedModuleFull): Null<Dynamic<Dynamic>> {

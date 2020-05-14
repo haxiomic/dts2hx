@@ -1,17 +1,12 @@
-import typescript.ts.TypeFormatFlags;
-import typescript.ts.SymbolFormatFlags;
 import ds.OnlyOnceSymbolQueue;
 import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import tool.TsSyntaxTools;
 import typescript.Ts;
-import typescript.ts.ClassDeclaration;
 import typescript.ts.CompilerHost;
 import typescript.ts.CompilerOptions;
 import typescript.ts.Declaration;
-import typescript.ts.ExpressionWithTypeArguments;
 import typescript.ts.GenericType;
-import typescript.ts.HeritageClause;
 import typescript.ts.InterfaceType;
 import typescript.ts.IntersectionType;
 import typescript.ts.Modifier;
@@ -23,6 +18,7 @@ import typescript.ts.ObjectFlags;
 import typescript.ts.ObjectType;
 import typescript.ts.ParameterDeclaration;
 import typescript.ts.Program;
+import typescript.ts.ResolvedModuleFull;
 import typescript.ts.Signature;
 import typescript.ts.SourceFile;
 import typescript.ts.Symbol;
@@ -33,6 +29,7 @@ import typescript.ts.TupleTypeReference;
 import typescript.ts.TypeAliasDeclaration;
 import typescript.ts.TypeChecker;
 import typescript.ts.TypeFlags;
+import typescript.ts.TypeFormatFlags;
 import typescript.ts.TypeNode;
 import typescript.ts.TypeParameter;
 import typescript.ts.TypeParameterDeclaration;
@@ -54,13 +51,22 @@ private typedef TsType = typescript.ts.Type;
 @:expose
 @:nullSafety
 class ConverterContext {
-	
+
 	/**
-		Normalized entry-point module id (without prefix @types/).
+		Normalized input module id (without prefix @types/).
 		This is the value to use in `require()` to load the module at runtime.
 		It may be a path, for example `./modules/example`
 	**/
-	public final entryPointModuleId: String;
+	public final normalizedInputModuleName: String;
+	
+	public final entryPointModule: ResolvedModuleFull;
+
+	/**
+		If the entryPointModule is part of a node package, this will be set to the packageId.
+		For example, in three.js, there are a number of types that are not accessible from `require('three')`:
+		If entryPointModule is `three/examples/jsm/controls/OrbitControls`, packageId will be `three`
+	**/
+	public final packageName: Null<String>;
 	
 	/**
 		Map of package-paths to HaxeModules
@@ -103,20 +109,50 @@ class ConverterContext {
 	final enableTypeParameterConstraints = false;
 	final typeStackLimit = 25;
 
-	public function new(moduleName: String, entryPointFilePath: String, compilerOptions: CompilerOptions, locationComments: Bool) {
-		// this will be used as the argument to require()
+	public function new(inputModuleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, locationComments: Bool) {
+		Console.log('Converting module <b>$inputModuleName</b>');
+		this.host = Ts.createCompilerHost(compilerOptions);
 		this.locationComments = locationComments;
 
-		this.host = Ts.createCompilerHost(compilerOptions);
-		this.program = Ts.createProgram([entryPointFilePath], compilerOptions, host);
-		this.tc = program.getTypeChecker();
+		// this will be used as the argument to require()
+		this.normalizedInputModuleName = inline normalizeModuleName(inputModuleName);
 
-		this.entryPointModuleId = inline normalizeModuleName(moduleName);
-		Log.log('<green>Converting module: <b>$entryPointModuleId</b>');
+		// resolve input module (as entry-point)
+		var result = Ts.resolveModuleName(inputModuleName, moduleSearchPath + '/.', compilerOptions, host);
+		if (result.resolvedModule == null) {
+			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
+			throw 'Failed to find typescript for module <b>"${inputModuleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>';
+		}
+		entryPointModule = result.resolvedModule;
+
+		// if the input module is part of a package, resolve the package
+		var packageRootModule = if (entryPointModule.packageId != null) {
+			this.packageName = inline normalizeModuleName(entryPointModule.packageId.name);
+
+			if (entryPointModule.packageId.name != inputModuleName) {
+				var result = Ts.resolveModuleName(this.packageName, moduleSearchPath + '/.', compilerOptions, host);
+				if (result.resolvedModule == null) {
+					var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
+					Log.error('Root package for <b>$inputModuleName</> was <b>${this.packageName}</> but this module could not be resolved. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
+				}
+				result.resolvedModule;
+			} else {
+				entryPointModule;
+			}
+		} else null;
+		
+		// create program
+		var inputSourcePaths = [entryPointModule.resolvedFileName];
+		if (packageRootModule != null) {
+			inputSourcePaths.unshift(packageRootModule.resolvedFileName);
+		}
+		this.program = Ts.createProgram(inputSourcePaths, compilerOptions, host);
+		this.tc = program.getTypeChecker();
 
 		Log.diagnostics(program.getAllDiagnostics());
 
-		var entryPointSourceFile = program.getSourceFile(entryPointFilePath);
+		var entryPointSourceFile = program.getSourceFile(entryPointModule.resolvedFileName);
+		var packageRootSourceFile = packageRootModule != null ? program.getSourceFile(packageRootModule.resolvedFileName) : null;
 
 		if (entryPointSourceFile == null) {
 			throw 'Failed to get entry-point source file';
@@ -131,7 +167,10 @@ class ConverterContext {
 
 		// set `moduleName` on source files with a known module
 		// `sourceFile.moduleName` is not populated after binding, so let's populate it to help aliasing
-		entryPointSourceFile.moduleName = this.entryPointModuleId;
+		entryPointSourceFile.moduleName = normalizedInputModuleName; // this will be used as input to require()
+		if (packageRootSourceFile != null) {
+			packageRootSourceFile.moduleName = packageName;
+		}
 		var moduleReferences = program.resolveAllTypeReferenceDirectives(host);
 		for (moduleReference in moduleReferences) {
 			if (moduleReference.resolvedTypeReferenceDirective != null) {
@@ -157,13 +196,19 @@ class ConverterContext {
 		}
 
 		// populate symbol access map
-		var accessRoots = [cast entryPointSourceFile].concat(defaultLibSourceFiles).concat(dependencyRootSourceFiles);
-		symbolAccessMap = new SymbolAccessMap(entryPointModuleId, program, accessRoots);
+		var accessRoots = new Array<SourceFile>();
+		// make package-root the first access root source file (because entryPoint might be a submodule and the package-root should be the primary source of access paths)
+		if (packageRootSourceFile != null) {
+			accessRoots.push(packageRootSourceFile);
+		}
+		accessRoots.push(entryPointSourceFile);
+		accessRoots = accessRoots.concat(defaultLibSourceFiles).concat(dependencyRootSourceFiles);
+		symbolAccessMap = new SymbolAccessMap(program, accessRoots);
 
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
-		haxeTypePathMap = new HaxeTypePathMap(entryPointModuleId, program, symbolAccessMap);
+		haxeTypePathMap = new HaxeTypePathMap(this.packageName != null ? this.packageName : normalizedInputModuleName, program, symbolAccessMap);
 
-		// convert symbols for just this module
+		// convert symbols, starting from input module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 				TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, access) -> {
