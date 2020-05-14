@@ -13,7 +13,7 @@ package three;
 	**/
 	var overrideMaterial : Null<Material>;
 	var autoUpdate : Bool;
-	var background : Null<ts.AnyOf2<Texture, Color>>;
+	var background : Null<ts.AnyOf2<Color, Texture>>;
 	function toJSON(?meta:Dynamic):Dynamic;
 	function dispose():Void;
 	function applyQuaternion(quaternion:Quaternion):Scene;

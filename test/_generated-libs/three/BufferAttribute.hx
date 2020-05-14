@@ -25,7 +25,7 @@ package three;
 	function copyVector2sArray(vectors:Array<{ var x : Float; var y : Float; }>):BufferAttribute;
 	function copyVector3sArray(vectors:Array<{ var x : Float; var y : Float; var z : Float; }>):BufferAttribute;
 	function copyVector4sArray(vectors:Array<{ var x : Float; var y : Float; var z : Float; var w : Float; }>):BufferAttribute;
-	function set(value:ts.AnyOf2<ts.lib.ArrayBufferView, ts.lib.ArrayLike<Float>>, ?offset:Float):BufferAttribute;
+	function set(value:ts.AnyOf2<ts.lib.ArrayLike<Float>, ts.lib.ArrayBufferView>, ?offset:Float):BufferAttribute;
 	function getX(index:Float):Float;
 	function setX(index:Float, x:Float):BufferAttribute;
 	function getY(index:Float):Float;
