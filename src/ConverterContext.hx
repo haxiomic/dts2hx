@@ -121,7 +121,8 @@ class ConverterContext {
 		var result = Ts.resolveModuleName(inputModuleName, moduleSearchPath + '/.', compilerOptions, host);
 		if (result.resolvedModule == null) {
 			var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
-			throw 'Failed to find typescript for module <b>"${inputModuleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>';
+			Log.error('Failed to find typescript for module <b>"${inputModuleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
+			throw 'Input module not resolved';
 		}
 		entryPointModule = result.resolvedModule;
 
@@ -393,7 +394,13 @@ class ConverterContext {
 			} else if (requiresHxClass(tc, symbol)) {
 				// Class | ValueModule | ConstructorTypeVariable
 
-				var declaration = if (symbol.valueDeclaration != null) {
+				// (null if not a class symbol)
+				// if class + function, symbol.valueDeclaration is the function declaration
+				var classDeclaration = symbol.declarations.find(d -> d.kind == SyntaxKind.ClassDeclaration);
+
+				var declaration = if (classDeclaration != null) {
+					classDeclaration;
+				} else if (symbol.valueDeclaration != null) {
 					symbol.valueDeclaration;
 				} else {
 					Log.error('Expected valueDeclaration for a symbol that requires a class in haxe', symbol);
@@ -464,7 +471,7 @@ class ConverterContext {
 					name: fundamentalTypePath.name,
 					fields: fields,
 					kind: TDClass(superClassPath, [], false, false),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, symbol.valueDeclaration),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, declaration),
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: meta,
