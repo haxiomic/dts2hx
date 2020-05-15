@@ -12,6 +12,6 @@
     "babylonjs": "4.1.0"
   },
   "devDependencies": {
-    "dts2hx": "^0.5.0"
+    "dts2hx": "^0.6.0"
   }
 }

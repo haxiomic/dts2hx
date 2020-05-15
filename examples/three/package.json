@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "esbuild": "^0.1.18",
-    "dts2hx": "^0.4.2"
+    "dts2hx": "^0.6.0"
   },
   "dependencies": {
     "three": "0.116.0"
