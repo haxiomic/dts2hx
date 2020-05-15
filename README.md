@@ -35,7 +35,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
 - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
-- [ ] Automatically handle remapping of js built-in and DOM types to haxe std js externs
+- [x] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Index signatures
     - [ ] Classes and interfaces
 - [ ] Intersection types
