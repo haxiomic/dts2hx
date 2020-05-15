@@ -185,7 +185,7 @@ class ConverterContext {
 				if (sourceFile != null) {
 					sourceFile.moduleName = moduleName != null ? inline normalizeModuleName(moduleName) : null;
 					dependencyRootSourceFiles.push(sourceFile);
-					if (moduleName != null) {
+					if (moduleName != null && dependencyModuleNames.indexOf(moduleName) == -1) {
 						dependencyModuleNames.push(moduleName);
 					}
 				} else {
