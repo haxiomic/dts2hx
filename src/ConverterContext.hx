@@ -996,6 +996,8 @@ class ConverterContext {
 					field: T & OtherTypes
 				}
 				```
+
+				This is fixed in haxe 4.2
 			**/
 			var accessSymbolChain = accessContext.extractSymbolChain();
 			var accessModuleSymbol = accessSymbolChain[accessSymbolChain.length - 1];
