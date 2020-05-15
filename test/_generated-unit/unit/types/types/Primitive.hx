@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef Primitive = Null<ts.AnyOf4<String, Float, Bool, ts.lib.Function>>;
+typedef Primitive = Null<ts.AnyOf4<String, Float, Bool, js.lib.Function>>;

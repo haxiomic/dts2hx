@@ -1,2 +1,2 @@
 package unit.types.types;
-typedef AliasAlias<X> = ts.lib.Map_<String, X>;
+typedef AliasAlias<X> = js.lib.Map<String, X>;
