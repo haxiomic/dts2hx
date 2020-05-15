@@ -5,8 +5,8 @@ examples/
 /test/
 /test-definitions/
 /lib
-/src.old
 build.hxml
+stdlib.hxml
 ROADMAP.md
 tsconfig.json
 scratch.*
