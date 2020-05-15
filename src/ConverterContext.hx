@@ -304,7 +304,8 @@ class ConverterContext {
 			declarationSymbolQueue.tryEnqueue(symbol);
 		}
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
-		var noPack = if (shortenTypePaths) {
+		// we don't shorten std lib types because they are not generated
+		var noPack = if (shortenTypePaths && !hxTypePath.isExistingStdLibType) {
 			var accessSymbolChain = accessContext.extractSymbolChain();
 			var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
 			if (lastAccessSymbol != null) {
