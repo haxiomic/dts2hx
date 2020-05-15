@@ -10,14 +10,17 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 - Install dts2hx in your local project as a development dependency:
 
     `npm install dts2hx --save-dev`
-- Install a node module with types, e.g. `npm install three` 
+
+- Install a module with types, for example `npm install three` 
+
 - Run dts2hx on the node module
 
     `npx dts2hx three`
-- Alternatively, generate externs for all local node dependencies with
+
+- Alternatively, generate externs for all local package.json dependencies with
 
     `npx dts2hx --all`
-- (The generated externs use haxe 4+ syntax)
+
 - For bonus points, add dts2hx as a postinstall script in your package.json so that externs are generated automatically after `npm install`
     ```json
     "scripts": {
@@ -27,18 +30,20 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 
 See [examples/](examples/) for example projects using popular typescript libraries
 
+The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete list of options
+
 # Roadmap
 
 dts2hx is currently in alpha release, everything _should_ work but please report any issues!
 
 ## Road to Beta
+- [x] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
 - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
-- [x] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Index signatures
     - [ ] Classes and interfaces
-- [ ] Intersection types
+- [ ] Intersection types: handle more cases
 - [ ] Other missing types
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
@@ -65,6 +70,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] Integrate [dts-gen](https://github.com/microsoft/dts-gen) so we can generate haxe externs for js libraries with no type definitions
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
 - [ ] Support union Rest parameters
+- [ ] Haxe-issue: when passing anon objects with `@:native()` fields to externs, `@:native` information is lost
 - [ ] :star2: **1.0 Release**
 
 # FAQ
