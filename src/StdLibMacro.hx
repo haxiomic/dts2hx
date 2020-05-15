@@ -7,6 +7,7 @@ typedef TypeInfo = {
 	pack: Array<String>,
 	name: String,
 	moduleName: String,
+	typeParameters: Array<String>,
 	isExtern: Bool,
 	moduleType: ModuleType
 };
@@ -56,6 +57,10 @@ class StdLibMacro {
 				pack: t.pack,
 				name: t.name,
 				moduleName: moduleName,
+				typeParameters: params.map(p -> switch p {
+					case TInst(_.get() => c, _): c.name;
+					default: throw 'Unhandled type parameter for ${t.module}.${t.name} - $p';
+				}),
 				isExtern: t.isExtern == true,
 				moduleType: switch type {
 					case TInst(_): ClassType;

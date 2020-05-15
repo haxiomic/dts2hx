@@ -1,5 +1,7 @@
 package tool;
 
+import typescript.ts.SyntaxKind;
+import typescript.ts.TypeParameterDeclaration;
 import typescript.ts.ExpressionWithTypeArguments;
 import haxe.DynamicAccess;
 import haxe.ds.ReadOnlyArray;
@@ -307,6 +309,44 @@ class TsSymbolTools {
 
 	static public function getClassMembers(symbol: Symbol): Array<Symbol> {
 		return getMembers(symbol).filter(s -> isAccessibleField(s) && s.flags & SymbolFlags.ClassMember != 0);
+	}
+
+	/**
+		Symbol must declare a `Class`, `Interface` or `TypeAlias`
+	**/
+	static public function getDeclarationTypeParameters(symbol: Symbol): Array<TypeParameterDeclaration> {
+		var tsTypeParameterDeclarations = new Array<TypeParameterDeclaration>();
+
+		// filter type-declarations
+		var typeDeclarations = getDeclarationsArray(symbol).filter(d -> {
+			switch d.kind {
+				// declarations with type parameters
+				case SyntaxKind.ClassDeclaration |
+					SyntaxKind.InterfaceDeclaration |
+					SyntaxKind.TypeAliasDeclaration
+					: true;
+				default: false;
+			}
+		});
+
+		for (declaration in typeDeclarations) {
+			// find the first declaration with more than 0 type parameters
+			// here we make the assumption that all declarations have the same type parameters
+			var declarationTypeParameters = Ts.getEffectiveTypeParameterDeclarations(cast declaration);
+
+			// validate the assumption that all declarations have the same type-parameters
+			if (tsTypeParameterDeclarations.length > 0 && declarationTypeParameters.length > 0) {
+				if (tsTypeParameterDeclarations.length != declarationTypeParameters.length) {
+					Log.warn('Symbol declarations have varying number of type-parameters; this is not expected', symbol);
+				}
+			}
+
+			if (declarationTypeParameters.length > 0 && declarationTypeParameters.length > tsTypeParameterDeclarations.length) {
+				tsTypeParameterDeclarations = declarationTypeParameters;
+			}
+
+		}
+		return tsTypeParameterDeclarations;
 	}
 
 	static public function isInternalSymbol(symbol: Symbol) {

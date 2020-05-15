@@ -278,19 +278,26 @@ class HaxeTypePathMap {
 					if (stdLibMap != null) {
 						var nativeAccessPath = access.getIdentifierChain().join('.');
 						var stdLibType = stdLibMap.js.get(nativeAccessPath);
+						
 						if (js.Syntax.typeof(stdLibType) == 'object') { // can sometimes be function if `nativeAccessPath` is something like 'toString'
-							return {
-								name: stdLibType.name,
-								moduleName: stdLibType.moduleName,
-								pack: stdLibType.pack,
-								isExistingStdLibType: true,
+							// check type-parameters match and generate externs for this built-in if they don't
+							var tsTypeParamDeclarations = symbol.getDeclarationTypeParameters();
+							if (stdLibType.typeParameters.length == tsTypeParamDeclarations.length) {
+								return {
+									name: stdLibType.name,
+									moduleName: stdLibType.moduleName,
+									pack: stdLibType.pack,
+									isExistingStdLibType: true,
+								}
+							} else {
+								// Log.warn('Type parameter mismatch between haxe standard lib type (<b>${stdLibType.typeParameters.length}</>) and ts default type (<b>${tsTypeParamDeclarations.length}</>)', symbol);	
 							}
 						} else {
 							// Log.warn('Default lib type not found in the haxe standard library (externs will be generated for this type)', symbol);
 						}
 					}
 				default:
-					Log.warn('Default lib types are always expected to be global', symbol);
+					// Log.warn('Default lib types are always expected to be global', symbol);
 					// @! do a lookup in the haxe standard library
 			}
 		}

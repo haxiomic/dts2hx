@@ -1548,45 +1548,7 @@ class ConverterContext {
 		Symbol must declare a `Class`, `Interface` or `TypeAlias`
 	**/
 	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
-		var tsTypeParameterDeclarations = new Array<TypeParameterDeclaration>();
-
-		// filter type-declarations
-		var typeDeclarations = symbol.declarations.filter(d -> {
-			switch d.kind {
-				case SyntaxKind.ClassDeclaration |
-					SyntaxKind.InterfaceDeclaration |
-					SyntaxKind.TypeAliasDeclaration |
-					SyntaxKind.ModuleDeclaration |
-					SyntaxKind.SourceFile |
-					SyntaxKind.VariableDeclaration
-					: true;
-				default: false;
-			}
-		});
-
-		if (typeDeclarations.length == 0) {
-			Log.warn('Internal error: typeParamDeclFromTypeDeclarationSymbol() expected symbol to have at least one recognized type declaration', symbol);
-			Log.warn('\tdeclarations: <b>${symbol.declarations.map(d -> TsSyntaxTools.getSyntaxKindName(d.kind))}</>');
-		}
-
-		for (declaration in typeDeclarations) {
-			// find the first declaration with more than 0 type parameters
-			// here we make the assumption that all declarations have the same type parameters
-			var declarationTypeParameters = Ts.getEffectiveTypeParameterDeclarations(cast declaration);
-
-			// validate the assumption that all declarations have the same type-parameters
-			if (tsTypeParameterDeclarations.length > 0 && declarationTypeParameters.length > 0) {
-				if (tsTypeParameterDeclarations.length != declarationTypeParameters.length) {
-					Log.warn('Symbol declarations have varying number of type-parameters; this is not expected', symbol);
-				}
-			}
-
-			if (declarationTypeParameters.length > 0 && declarationTypeParameters.length > tsTypeParameterDeclarations.length) {
-				tsTypeParameterDeclarations = declarationTypeParameters;
-			}
-		}
-
-		return [for (t in tsTypeParameterDeclarations) {
+		return [for (t in symbol.getDeclarationTypeParameters()) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
 			constraints: enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : null
 		}];
