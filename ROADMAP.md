@@ -1,6 +1,5 @@
 - Filter out Void `AnyOf2<Void, T>`?
 	https://github.com/francescoagati/haxe-ts-repository/blob/master/externs/use-immer/use_immer/Reducer.hx
-- Double depnendencies https://github.com/francescoagati/haxe-ts-repository/tree/master/externs/node-fetch-plus
 
 - Create alternative field for redefined class and interface fields (if type is not same)
 
