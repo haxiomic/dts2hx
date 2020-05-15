@@ -1,3 +1,4 @@
+import js.node.ChildProcess;
 import Log.LogLevel;
 import StdLibMacro.TypeMap;
 import haxe.DynamicAccess;
@@ -5,6 +6,7 @@ import haxe.io.Path;
 import hxargs.Args.ArgHandler;
 import js.Node;
 import js.node.Fs;
+import tool.FileTools;
 import tool.TsProgramTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
@@ -39,6 +41,7 @@ class Main {
 			locationComments: false,
 			libWrapper: true,
 			logLevel: Error,
+			stdLibMode: StdLibMode.DefaultTypeMap,
 		}
 
 		var help: Bool = false;
@@ -83,6 +86,16 @@ class Main {
 			@doc('Enables printing the corresponding source file and line number for each declaration')
 			'--sourceLocation' => () -> {
 				cliOptions.locationComments = true;
+			},
+
+			@doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
+			'--useSystemHaxe' => () -> {
+				cliOptions.stdLibMode = SystemHaxe;
+			},
+
+			@doc('Disables mapping types to the haxe standard library – this means externs will be generated for built-in types')
+			'--noStdLib' => () -> {
+				cliOptions.stdLibMode = None;
 			},
 
 			@doc('Disables wrapping the generated externs in a haxelib-style library. Use this option if you intend to use the externs via a class-path rather than as a library')
@@ -234,11 +247,36 @@ class Main {
 			moduleQueue.tryEnqueue(moduleName);
 		}
 
+		// get std lib type map
+		var stdLibTypeMap = switch cliOptions.stdLibMode {
+			case None: null;
+			case DefaultTypeMap: defaultStdLibTypeMap;
+			case SystemHaxe:
+				// generate standard library type map using the system version of haxe
+				try {
+					var str = ChildProcess.execSync('haxe --version');
+					Console.log('Using standard library of system haxe version <b>$str</>');
+					var haxeSrcPath = Path.join([Node.__dirname, '../', 'src']);
+					var stdLibJsonStr = ChildProcess.execSync('haxe --macro "StdLibMacro.getMap(true)" --js not-real.js --no-output', {
+						cwd: haxeSrcPath
+					});
+					haxe.Json.parse(stdLibJsonStr);
+				} catch (e: Any) {
+					// error code
+					Log.error('Failed to generate standard library type map (using <b>${defaultStdLibTypeMap.haxeVersion}</> instead): $e');
+					defaultStdLibTypeMap;
+				}
+		}
+
+		if (moduleQueue.empty()) {
+			Log.error('No modules queued');
+		}
+
 		while (true) {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, cliOptions.libWrapper, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput);
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions.libWrapper, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput);
 			if (converterContext == null) continue;
 			
 			var moduleDependencies = converterContext.moduleDependencies;
@@ -251,9 +289,9 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
 		var converter = try {
-			new ConverterContext(moduleName, moduleSearchPath, compilerOptions, defaultStdLibTypeMap, locationComments);
+			new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, locationComments);
 		} catch (e: Any) {
 			Log.error(e);
 			return null;
@@ -284,16 +322,16 @@ class Main {
 				var printPackage = true;
 				var moduleHaxeStr = printer.printTypeDefinition(haxeModule, printPackage);
 
-				touchDirectoryPath(Path.directory(filePath));
+				FileTools.touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
 			}
 
-			touchDirectoryPath(outputLibraryPath);
+			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			if (generateLibraryWrapper) {
 				var packageJson = getModulePackageJson(moduleName, moduleSearchPath, converter.entryPointModule);
 				// write a readme
-				var readmeStr = generateReadme(moduleName, moduleSearchPath, converter, packageJson);
+				var readmeStr = generateReadme(moduleName, moduleSearchPath, converter, packageJson, stdLibTypeMap);
 				Fs.writeFileSync(Path.join([outputLibraryPath, 'README.md']), readmeStr);
 
 				// write haxelib.json
@@ -307,7 +345,7 @@ class Main {
 		return converter;
 	}
 
-	static function generateReadme(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
+	static function generateReadme(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>, stdLibTypeMap: Null<TypeMap>): String {
 		var resolvedModule: ResolvedModuleFull = converter.entryPointModule;
 		var dts2hxRepoUrl = dts2hxPackageJson.repository.url;
 		var dts2hxRef = dts2hxRepoUrl != null ? '[dts2hx]($dts2hxRepoUrl)' : 'dts2hx';
@@ -446,25 +484,10 @@ class Main {
 		Console.printFormatted(lines.join('\n') + '\n');
 	}
 
-	/**
-		Ensures directory structure exists for a given path
-		(Same behavior as mkdir -p)
-		@throws Any
-	**/
-	static public function touchDirectoryPath(path: String) {
-		var directories = Path.normalize(path).split('/');
-		var currentDirectories = [];
-		for (directory in directories) {
-			currentDirectories.push(directory);
-			var currentPath = currentDirectories.join('/');
-			if (currentPath == '/') continue;
-			if (Fs.existsSync(currentPath) && Fs.statSync(currentPath).isDirectory()) continue;
-			if (!Fs.existsSync(currentPath)) {
-				Fs.mkdirSync(currentPath);
-			} else {
-				throw 'Could not create directory $currentPath because a file already exists at this path';
-			}
-		}
-	}
+}
 
+enum StdLibMode {
+	None;
+	DefaultTypeMap;
+	SystemHaxe;
 }
