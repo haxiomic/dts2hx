@@ -1,0 +1,4 @@
+-cp src
+--macro StdLibMacro.getMap(true)
+--js not-real.js
+--no-output
