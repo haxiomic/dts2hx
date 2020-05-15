@@ -3,7 +3,7 @@ typedef BaseJQueryEventObject = {
 	/**
 		The current DOM element within the event bubbling phase.
 	**/
-	var currentTarget : ts.html.Element;
+	var currentTarget : js.html.DOMElement;
 	/**
 		An optional object of data passed to an event method when the current executing handler is bound.
 	**/
@@ -11,7 +11,7 @@ typedef BaseJQueryEventObject = {
 	/**
 		The element where the currently-called jQuery event handler was attached.
 	**/
-	var delegateTarget : ts.html.Element;
+	var delegateTarget : js.html.DOMElement;
 	/**
 		Returns whether event.preventDefault() was ever called on this event object.
 	**/
@@ -31,7 +31,7 @@ typedef BaseJQueryEventObject = {
 	/**
 		The browser's original Event object.
 	**/
-	var originalEvent : ts.html.Event;
+	var originalEvent : js.html.Event;
 	/**
 		If this method is called, the default action of the event will not be triggered.
 	**/
@@ -39,7 +39,7 @@ typedef BaseJQueryEventObject = {
 	/**
 		The other DOM element involved in the event, if any.
 	**/
-	var relatedTarget : ts.html.Element;
+	var relatedTarget : js.html.DOMElement;
 	/**
 		The last value returned by an event handler that was triggered by this event, unless the value was undefined.
 	**/
@@ -55,7 +55,7 @@ typedef BaseJQueryEventObject = {
 	/**
 		The DOM element that initiated the event.
 	**/
-	var target : ts.html.Element;
+	var target : js.html.DOMElement;
 	/**
 		The mouse position relative to the left edge of the document.
 	**/
@@ -98,7 +98,7 @@ typedef BaseJQueryEventObject = {
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<ts.html.EventTarget>;
+	final srcElement : Null<js.html.EventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -110,7 +110,7 @@ typedef BaseJQueryEventObject = {
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():Array<ts.html.EventTarget>;
+	function composedPath():Array<js.html.EventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	final AT_TARGET : Float;
 	final BUBBLING_PHASE : Float;

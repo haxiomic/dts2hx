@@ -98,4 +98,8 @@ typedef TemplateStringsArray = {
 		Returns an iterable of values in the array
 	**/
 	function values():IterableIterator<String>;
+	/**
+		Determines whether an array includes a certain element, returning true or false as appropriate.
+	**/
+	function includes(searchElement:String, ?fromIndex:Float):Bool;
 };

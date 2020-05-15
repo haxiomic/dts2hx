@@ -1,13 +1,13 @@
 package node.crypto;
 typedef Verify = {
 	@:overload(function(data:String, input_encoding:Utf8AsciiLatin1Encoding):Verify { })
-	function update(data:ts.AnyOf12<String, global.Buffer, ts.lib.Uint8Array, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>):Verify;
-	@:overload(function(object:ts.AnyOf4<String, ts.lib.Object, global.Buffer, KeyObject>, signature:String, signature_format:HexBase64Latin1Encoding):Bool { })
-	function verify(object:ts.AnyOf4<String, ts.lib.Object, global.Buffer, KeyObject>, signature:Binary):Bool;
+	function update(data:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):Verify;
+	@:overload(function(object:ts.AnyOf4<String, js.lib.Object, global.Buffer, KeyObject>, signature:String, signature_format:HexBase64Latin1Encoding):Bool { })
+	function verify(object:ts.AnyOf4<String, js.lib.Object, global.Buffer, KeyObject>, signature:Binary):Bool;
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool;
-	@:overload(function(data:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, ?cb:() -> Void):Void { })
+	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool;
+	@:overload(function(data:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:() -> Void):Void { })
 	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Verify;
@@ -18,8 +18,8 @@ typedef Verify = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Verify;
 	function setMaxListeners(n:Float):Verify;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Verify;

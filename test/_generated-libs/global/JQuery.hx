@@ -13,8 +13,8 @@ typedef JQuery<TElement> = {
 		
 		Create a new jQuery object with elements added to the set of matched elements.
 	**/
-	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, ts.html.Element, JQuery<ts.html.HTMLElement>, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, Array<ts.html.Element>>):JQuery<TElement> { })
-	function add(selector:String, context:ts.html.Element):JQuery<TElement>;
+	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, js.html.DOMElement, JQuery<js.html.Element>, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>>):JQuery<TElement> { })
+	function add(selector:String, context:js.html.DOMElement):JQuery<TElement>;
 	/**
 		Add the previous set of elements on the stack to the current set, optionally filtered by a selector.
 	**/
@@ -28,20 +28,20 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, after each element in the set of matched elements.
 	**/
-	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function after(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function after(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete. This is an AjaxEvent.
 	**/
-	function ajaxComplete(handler:(event:global.jquery.TriggeredEvent<ts.html.Document, Null<Any>, ts.html.Document, ts.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxComplete(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.
 	**/
-	function ajaxError(handler:(event:global.jquery.TriggeredEvent<ts.html.Document, Null<Any>, ts.html.Document, ts.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxSettings:global.jquery.AjaxSettings<Dynamic>, thrownError:String) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxError(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxSettings:global.jquery.AjaxSettings<Dynamic>, thrownError:String) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.
 	**/
-	function ajaxSend(handler:(event:global.jquery.TriggeredEvent<ts.html.Document, Null<Any>, ts.html.Document, ts.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxSend(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Register a handler to be called when the first Ajax request begins. This is an Ajax Event.
 	**/
@@ -53,7 +53,7 @@ typedef JQuery<TElement> = {
 	/**
 		Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.
 	**/
-	function ajaxSuccess(handler:(event:global.jquery.TriggeredEvent<ts.html.Document, Null<Any>, ts.html.Document, ts.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>, data:global.jquery.PlainObject<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxSuccess(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>, data:global.jquery.PlainObject<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
 	/**
 		Perform a custom animation of a set of CSS properties.
 		
@@ -72,12 +72,12 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, to the end of each element in the set of matched elements.
 	**/
-	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function append(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function append(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the end of the target.
 	**/
-	function appendTo(target:ts.AnyOf5<String, ts.html.Element, JQuery<ts.html.HTMLElement>, ts.html.DocumentFragment, Array<ts.AnyOf2<ts.html.Element, ts.html.DocumentFragment>>>):JQuery<TElement>;
+	function appendTo(target:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, js.html.DocumentFragment, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
 	/**
 		Set one or more attributes for the set of matched elements.
 		
@@ -93,8 +93,8 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, before each element in the set of matched elements.
 	**/
-	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function before(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function before(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements.
 		
@@ -143,12 +143,12 @@ typedef JQuery<TElement> = {
 		
 		For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
 	**/
-	@:overload(function(selector_selection_element:ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>):JQuery<TElement> { })
-	function closest(selector:String, context:ts.html.Element):JQuery<TElement>;
+	@:overload(function(selector_selection_element:ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>):JQuery<TElement> { })
+	function closest(selector:String, context:js.html.DOMElement):JQuery<TElement>;
 	/**
 		Get the children of each element in the set of matched elements, including text and comment nodes.
 	**/
-	function contents():JQuery<ts.AnyOf4<ts.html.Document, TElement, ts.html.Text, ts.html.Comment>>;
+	function contents():JQuery<ts.AnyOf4<js.html.Document, TElement, js.html.Text, js.html.Comment>>;
 	/**
 		Bind an event handler to the "contextmenu" JavaScript event, or trigger that event on an element.
 		
@@ -274,11 +274,11 @@ typedef JQuery<TElement> = {
 	/**
 		Reduce the set of matched elements to those that match the selector or pass the function's test.
 	**/
-	function filter(selector_elements_selection_function:ts.AnyOf5<String, ts.html.Element, JQuery<ts.html.HTMLElement>, Array<ts.html.Element>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
+	function filter(selector_elements_selection_function:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
 	/**
 		Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
 	**/
-	function find(selector_element:ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>):JQuery<TElement>;
+	function find(selector_element:ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>):JQuery<TElement>;
 	/**
 		Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements.
 	**/
@@ -318,7 +318,7 @@ typedef JQuery<TElement> = {
 	/**
 		Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.
 	**/
-	function has(selector_contained:ts.AnyOf2<String, ts.html.Element>):JQuery<TElement>;
+	function has(selector_contained:ts.AnyOf2<String, js.html.DOMElement>):JQuery<TElement>;
 	/**
 		Determine whether any of the matched elements are assigned the given class.
 	**/
@@ -353,11 +353,11 @@ typedef JQuery<TElement> = {
 		Get the HTML contents of the first element in the set of matched elements.
 	**/
 	@:overload(function():String { })
-	function html(htmlString_function:ts.AnyOf6<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, (index:Float, oldhtml:String) -> ts.AnyOf5<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment>>):JQuery<TElement>;
+	function html(htmlString_function:ts.AnyOf6<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, (index:Float, oldhtml:String) -> ts.AnyOf5<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment>>):JQuery<TElement>;
 	/**
 		Search for a given element from among the matched elements.
 	**/
-	function index(?selector_element:ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>):Float;
+	function index(?selector_element:ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>):Float;
 	/**
 		Set the CSS inner height of each element in the set of matched elements.
 		
@@ -375,15 +375,15 @@ typedef JQuery<TElement> = {
 	/**
 		Insert every element in the set of matched elements after the target.
 	**/
-	function insertAfter(target:ts.AnyOf4<String, ts.html.Node, Array<ts.html.Node>, JQuery<ts.html.Node>>):JQuery<TElement>;
+	function insertAfter(target:ts.AnyOf4<String, js.html.Node, Array<js.html.Node>, JQuery<js.html.Node>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements before the target.
 	**/
-	function insertBefore(target:ts.AnyOf4<String, ts.html.Node, Array<ts.html.Node>, JQuery<ts.html.Node>>):JQuery<TElement>;
+	function insertBefore(target:ts.AnyOf4<String, js.html.Node, Array<js.html.Node>, JQuery<js.html.Node>>):JQuery<TElement>;
 	/**
 		Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.
 	**/
-	function is(selector_function_selection_elements:ts.AnyOf5<String, ts.html.Element, JQuery<ts.html.HTMLElement>, Array<ts.html.Element>, (index:Float, element:TElement) -> Bool>):Bool;
+	function is(selector_function_selection_elements:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>, (index:Float, element:TElement) -> Bool>):Bool;
 	/**
 		Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.
 		
@@ -480,11 +480,11 @@ typedef JQuery<TElement> = {
 	/**
 		Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.
 	**/
-	function nextUntil(?selector_element:ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>, ?filter:String):JQuery<TElement>;
+	function nextUntil(?selector_element:ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>, ?filter:String):JQuery<TElement>;
 	/**
 		Remove elements from the set of matched elements.
 	**/
-	function not(selector_function_selection:ts.AnyOf5<String, ts.html.Element, JQuery<ts.html.HTMLElement>, Array<ts.html.Element>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
+	function not(selector_function_selection:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
 	/**
 		Remove an event handler.
 		
@@ -605,7 +605,7 @@ typedef JQuery<TElement> = {
 	/**
 		Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.
 	**/
-	function parentsUntil(?selector_element:ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>, ?filter:String):JQuery<TElement>;
+	function parentsUntil(?selector_element:ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>, ?filter:String):JQuery<TElement>;
 	/**
 		Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.
 	**/
@@ -615,12 +615,12 @@ typedef JQuery<TElement> = {
 		
 		Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
 	**/
-	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function prepend(contents:haxe.extern.Rest<ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function prepend(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the beginning of the target.
 	**/
-	function prependTo(target:ts.AnyOf5<String, ts.html.Element, JQuery<ts.html.HTMLElement>, ts.html.DocumentFragment, Array<ts.AnyOf2<ts.html.Element, ts.html.DocumentFragment>>>):JQuery<TElement>;
+	function prependTo(target:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, js.html.DocumentFragment, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
 	/**
 		Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.
 	**/
@@ -632,7 +632,7 @@ typedef JQuery<TElement> = {
 	/**
 		Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.
 	**/
-	function prevUntil(?selector_element:ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>, ?filter:String):JQuery<TElement>;
+	function prevUntil(?selector_element:ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>, ?filter:String):JQuery<TElement>;
 	/**
 		Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.
 		
@@ -658,8 +658,8 @@ typedef JQuery<TElement> = {
 		
 		Add a collection of DOM elements onto the jQuery stack.
 	**/
-	@:overload(function(elements:ts.lib.ArrayLike<ts.html.Element>):JQuery<TElement> { })
-	function pushStack(elements:ts.lib.ArrayLike<ts.html.Element>, name:String, args:Array<Dynamic>):JQuery<TElement>;
+	@:overload(function(elements:ts.lib.ArrayLike<js.html.DOMElement>):JQuery<TElement> { })
+	function pushStack(elements:ts.lib.ArrayLike<js.html.DOMElement>, name:String, args:Array<Dynamic>):JQuery<TElement>;
 	/**
 		Manipulate the queue of functions to be executed, once for each matched element.
 		
@@ -668,7 +668,7 @@ typedef JQuery<TElement> = {
 		Show the queue of functions to be executed on the matched elements.
 	**/
 	@:overload(function(newQueue:global.jquery.TypeOrArray<global.jquery.QueueFunction<TElement>>):JQuery<TElement> { })
-	@:overload(function(?queueName:String):global.jquery.Queue<ts.html.Node> { })
+	@:overload(function(?queueName:String):global.jquery.Queue<js.html.Node> { })
 	function queue(queueName:String, newQueue:global.jquery.TypeOrArray<global.jquery.QueueFunction<TElement>>):JQuery<TElement>;
 	/**
 		Specify a function to execute when the DOM is fully loaded.
@@ -697,11 +697,11 @@ typedef JQuery<TElement> = {
 	/**
 		Replace each target element with the set of matched elements.
 	**/
-	function replaceAll(target:ts.AnyOf4<String, ts.html.Element, JQuery<ts.html.HTMLElement>, Array<ts.html.Element>>):JQuery<TElement>;
+	function replaceAll(target:ts.AnyOf4<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>>):JQuery<TElement>;
 	/**
 		Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.
 	**/
-	function replaceWith(newContent_function:ts.AnyOf8<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, Array<ts.html.Element>, JQuery<global.jquery.Node>, (index:Float, oldhtml:String) -> ts.AnyOf7<String, ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment, Array<ts.html.Element>, JQuery<global.jquery.Node>>>):JQuery<TElement>;
+	function replaceWith(newContent_function:ts.AnyOf8<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>, JQuery<global.jquery.Node>, (index:Float, oldhtml:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>, JQuery<global.jquery.Node>>>):JQuery<TElement>;
 	/**
 		Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.
 		
@@ -881,13 +881,13 @@ typedef JQuery<TElement> = {
 	/**
 		Wrap an HTML structure around each element in the set of matched elements.
 	**/
-	function wrap(wrappingElement_function:ts.AnyOf4<String, ts.html.Element, JQuery<ts.html.HTMLElement>, (index:Float) -> ts.AnyOf2<String, JQuery<ts.html.HTMLElement>>>):JQuery<TElement>;
+	function wrap(wrappingElement_function:ts.AnyOf4<String, js.html.DOMElement, JQuery<js.html.Element>, (index:Float) -> ts.AnyOf2<String, JQuery<js.html.Element>>>):JQuery<TElement>;
 	/**
 		Wrap an HTML structure around all elements in the set of matched elements.
 	**/
-	function wrapAll(wrappingElement_function:ts.AnyOf4<String, ts.html.Element, JQuery<ts.html.HTMLElement>, () -> ts.AnyOf2<String, JQuery<ts.html.HTMLElement>>>):JQuery<TElement>;
+	function wrapAll(wrappingElement_function:ts.AnyOf4<String, js.html.DOMElement, JQuery<js.html.Element>, () -> ts.AnyOf2<String, JQuery<js.html.Element>>>):JQuery<TElement>;
 	/**
 		Wrap an HTML structure around the content of each element in the set of matched elements.
 	**/
-	function wrapInner(wrappingElement_function:ts.AnyOf4<String, ts.html.Element, JQuery<ts.html.HTMLElement>, (index:Float) -> ts.AnyOf3<String, ts.html.Element, JQuery<ts.html.HTMLElement>>>):JQuery<TElement>;
+	function wrapInner(wrappingElement_function:ts.AnyOf4<String, js.html.DOMElement, JQuery<js.html.Element>, (index:Float) -> ts.AnyOf3<String, js.html.DOMElement, JQuery<js.html.Element>>>):JQuery<TElement>;
 };

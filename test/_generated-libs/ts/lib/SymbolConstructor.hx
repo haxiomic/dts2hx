@@ -13,7 +13,7 @@ typedef SymbolConstructor = {
 	/**
 		A reference to the prototype.
 	**/
-	final prototype : js.lib.Symbol;
+	final prototype : Symbol;
 	/**
 		Returns a Symbol object from the global symbol registry matching the given key if found.
 		Otherwise, returns a new symbol with this key.
@@ -66,6 +66,9 @@ typedef SymbolConstructor = {
 	**/
 	final toPrimitive : js.lib.Symbol;
 	/**
+		A String value that is used in the creation of the default string description of an object.
+		Called by the built-in method Object.prototype.toString.
+		
 		A String value that is used in the creation of the default string description of an object.
 		Called by the built-in method Object.prototype.toString.
 	**/

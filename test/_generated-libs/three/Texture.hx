@@ -1,12 +1,12 @@
 package three;
 @:jsRequire("three", "Texture") extern class Texture extends EventDispatcher {
-	function new(?image:ts.AnyOf3<ts.html.HTMLImageElement, ts.html.HTMLVideoElement, ts.html.HTMLCanvasElement>, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float, ?encoding:TextureEncoding);
+	function new(?image:ts.AnyOf3<js.html.CanvasElement, js.html.ImageElement, js.html.VideoElement>, ?mapping:Mapping, ?wrapS:Wrapping, ?wrapT:Wrapping, ?magFilter:TextureFilter, ?minFilter:TextureFilter, ?format:PixelFormat, ?type:TextureDataType, ?anisotropy:Float, ?encoding:TextureEncoding);
 	var id : Float;
 	var uuid : String;
 	var name : String;
 	var sourceFile : String;
 	var image : Dynamic;
-	var mipmaps : Array<ts.html.ImageData>;
+	var mipmaps : Array<js.html.ImageData>;
 	var mapping : Mapping;
 	var wrapS : Wrapping;
 	var wrapT : Wrapping;

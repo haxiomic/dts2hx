@@ -1,29 +1,14 @@
 package ts.html;
 @:native("") extern class Global {
-	/**
-		An object used to filter the nodes in a NodeIterator or TreeWalker. They don't know anything about the DOM or how to traverse nodes; they just know how to evaluate a single node against the provided filter.
-	**/
-	static var NodeFilter : {
-		final FILTER_ACCEPT : Float;
-		final FILTER_REJECT : Float;
-		final FILTER_SKIP : Float;
-		final SHOW_ALL : Float;
-		final SHOW_ATTRIBUTE : Float;
-		final SHOW_CDATA_SECTION : Float;
-		final SHOW_COMMENT : Float;
-		final SHOW_DOCUMENT : Float;
-		final SHOW_DOCUMENT_FRAGMENT : Float;
-		final SHOW_DOCUMENT_TYPE : Float;
-		final SHOW_ELEMENT : Float;
-		final SHOW_ENTITY : Float;
-		final SHOW_ENTITY_REFERENCE : Float;
-		final SHOW_NOTATION : Float;
-		final SHOW_PROCESSING_INSTRUCTION : Float;
-		final SHOW_TEXT : Float;
-	};
-	/**
-		Holds useful CSS-related methods. No object with this interface are implemented: it contains only static methods and therefore is a utilitarian interface.
-	**/
-	static var CSS : ts.html.CSS;
-	static var ServiceUIFrameContext : ts.html.ServiceUIFrameContext;
+	@:overload(function(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout { })
+	static function setTimeout(handler:ts.html.TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
+	@:overload(function(timeoutId:global.nodejs.Timeout):Void { })
+	static function clearTimeout(?handle:Float):Void;
+	@:overload(function(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout { })
+	static function setInterval(handler:ts.html.TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
+	@:overload(function(intervalId:global.nodejs.Timeout):Void { })
+	static function clearInterval(?handle:Float):Void;
+	@:overload(function(callback:() -> Void):Void { })
+	static function queueMicrotask(callback:js.lib.Function):Void;
+	static var console : ts.html.Console;
 }

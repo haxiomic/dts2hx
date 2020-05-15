@@ -1,6 +1,6 @@
 package ts.lib;
 typedef SyntaxErrorConstructor = {
 	@:selfCall
-	function call(?message:String):SyntaxError;
-	final prototype : SyntaxError;
+	function call(?message:String):js.lib.Error.SyntaxError;
+	final prototype : js.lib.Error.SyntaxError;
 };

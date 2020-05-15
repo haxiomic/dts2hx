@@ -1,15 +1,15 @@
 package global;
 typedef JQueryStatic = {
-	@:overload(function<TElement>(html:String, ?ownerDocument_attributes:ts.AnyOf2<ts.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
-	@:overload(function<TElement>(selector:String, ?context:ts.AnyOf3<ts.html.Document, ts.html.Element, JQuery<ts.html.HTMLElement>>):JQuery<TElement> { })
-	@:overload(function(element:ts.html.HTMLSelectElement):JQuery<ts.html.HTMLSelectElement> { })
+	@:overload(function<TElement>(html:String, ?ownerDocument_attributes:ts.AnyOf2<js.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
+	@:overload(function<TElement>(selector:String, ?context:ts.AnyOf3<js.html.Document, js.html.DOMElement, JQuery<js.html.Element>>):JQuery<TElement> { })
+	@:overload(function(element:js.html.SelectElement):JQuery<js.html.SelectElement> { })
 	@:overload(function<T>(element_elementArray:ts.AnyOf2<T, ts.lib.ArrayLike<T>>):JQuery<T> { })
 	@:overload(function<T>(selection:JQuery<T>):JQuery<T> { })
 	@:overload(function<TElement>(callback:(Dollar:JQueryStatic) -> Void):JQuery<TElement> { })
 	@:overload(function<T>(object:T):JQuery<T> { })
 	@:overload(function<TElement>():JQuery<TElement> { })
 	@:selfCall
-	function call(window:ts.html.Window, discriminator:Bool):JQueryStatic;
+	function call(window:js.html.Window, discriminator:Bool):JQueryStatic;
 	var ajaxSettings : global.jquery.AjaxSettings<Dynamic>;
 	var Animation : global.jquery.AnimationStatic;
 	var Callbacks : global.jquery.CallbacksStatic;
@@ -26,7 +26,7 @@ typedef JQueryStatic = {
 	var Event : global.jquery.EventStatic;
 	var event : global.jquery.EventExtensions;
 	var expr : global.jquery.Selectors;
-	final fn : JQuery<ts.html.HTMLElement>;
+	final fn : JQuery<js.html.Element>;
 	var fx : global.jquery.Effects;
 	/**
 		A Promise-like object (or "thenable") that resolves when the document is ready.
@@ -62,12 +62,12 @@ typedef JQueryStatic = {
 	**/
 	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<Void, global.jquery.Transport>):Void;
 	function camelCase(value:String):String;
-	function cleanData(elems:ts.lib.ArrayLike<ts.AnyOf4<ts.html.Document, ts.html.Element, ts.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
+	function cleanData(elems:ts.lib.ArrayLike<ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
 	/**
 		Check to see if a DOM element is a descendant of another DOM element.
 	**/
-	function contains(container:ts.html.Element, contained:ts.html.Element):Bool;
-	function css(elem:ts.html.Element, name:String):Dynamic;
+	function contains(container:js.html.DOMElement, contained:js.html.DOMElement):Bool;
+	function css(elem:js.html.DOMElement, name:String):Dynamic;
 	/**
 		Store arbitrary data associated with the specified element. Returns the value that was set.
 		
@@ -75,13 +75,13 @@ typedef JQueryStatic = {
 		
 		Returns value at named data store for the element, as set by `jQuery.data(element, name, value)`, or the full data store for the element.
 	**/
-	@:overload(function(element:ts.AnyOf4<ts.html.Document, ts.html.Element, ts.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<Any>):Dynamic { })
-	@:overload(function(element:ts.AnyOf4<ts.html.Document, ts.html.Element, ts.html.Window, global.jquery.PlainObject<Dynamic>>, ?key:String):Dynamic { })
-	function data<T>(element:ts.AnyOf4<ts.html.Document, ts.html.Element, ts.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:T):T;
+	@:overload(function(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<Any>):Dynamic { })
+	@:overload(function(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?key:String):Dynamic { })
+	function data<T>(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:T):T;
 	/**
 		Execute the next function on the queue for the matched element.
 	**/
-	function dequeue(element:ts.html.Element, ?queueName:String):Void;
+	function dequeue(element:js.html.DOMElement, ?queueName:String):Void;
 	/**
 		A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.
 		
@@ -184,7 +184,7 @@ typedef JQueryStatic = {
 	/**
 		Determine whether an element has any jQuery data associated with it.
 	**/
-	function hasData(element:ts.AnyOf4<ts.html.Document, ts.html.Element, ts.html.Window, global.jquery.PlainObject<Dynamic>>):Bool;
+	function hasData(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>):Bool;
 	/**
 		Holds or releases the execution of jQuery's ready event.
 	**/
@@ -224,7 +224,7 @@ typedef JQueryStatic = {
 	/**
 		Check to see if a DOM node is within an XML document (or is an XML document).
 	**/
-	function isXMLDoc(node:ts.html.Node):Bool;
+	function isXMLDoc(node:js.html.Node):Bool;
 	/**
 		Convert an array-like object into a true JavaScript array.
 	**/
@@ -244,7 +244,7 @@ typedef JQueryStatic = {
 		Relinquish jQuery's control of the $ variable.
 	**/
 	function noConflict(?removeAll:Bool):JQueryStatic;
-	function nodeName(elem:ts.html.Node, name:String):Bool;
+	function nodeName(elem:js.html.Node, name:String):Bool;
 	/**
 		An empty function.
 	**/
@@ -256,14 +256,14 @@ typedef JQueryStatic = {
 	/**
 		Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.
 	**/
-	function param(obj:ts.AnyOf3<Array<Dynamic>, global.jquery.PlainObject<Dynamic>, JQuery<ts.html.HTMLElement>>, ?traditional:Bool):String;
+	function param(obj:ts.AnyOf3<Array<Dynamic>, global.jquery.PlainObject<Dynamic>, JQuery<js.html.Element>>, ?traditional:Bool):String;
 	/**
 		Parses a string into an array of DOM nodes.
 		
 		Parses a string into an array of DOM nodes.
 	**/
-	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, ts.html.Document>):Array<global.jquery.Node> { })
-	function parseHTML(data:String, context:Null<ts.html.Document>, keepScripts:Bool):Array<global.jquery.Node>;
+	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, js.html.Document>):Array<global.jquery.Node> { })
+	function parseHTML(data:String, context:Null<js.html.Document>, keepScripts:Bool):Array<global.jquery.Node>;
 	/**
 		Takes a well-formed JSON string and returns the resulting JavaScript value.
 	**/
@@ -271,7 +271,7 @@ typedef JQueryStatic = {
 	/**
 		Parses a string into an XML document.
 	**/
-	function parseXML(data:String):ts.html.XMLDocument;
+	function parseXML(data:String):js.html.XMLDocument;
 	/**
 		Load data from the server using a HTTP POST request.
 		
@@ -686,11 +686,11 @@ typedef JQueryStatic = {
 	/**
 		Handles errors thrown synchronously in functions wrapped in jQuery().
 	**/
-	function readyException(error:ts.lib.Error):Dynamic;
+	function readyException(error:js.lib.Error):Dynamic;
 	/**
 		Remove a previously-stored piece of data.
 	**/
-	function removeData(element:ts.AnyOf4<ts.html.Document, ts.html.Element, ts.html.Window, global.jquery.PlainObject<Dynamic>>, ?name:String):Void;
+	function removeData(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?name:String):Void;
 	/**
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 		

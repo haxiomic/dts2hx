@@ -1,4 +1,4 @@
 package ts.lib;
 typedef MapConstructor = {
-	final prototype : Map_<Dynamic, Dynamic>;
+	final prototype : js.lib.Map<Dynamic, Dynamic>;
 };

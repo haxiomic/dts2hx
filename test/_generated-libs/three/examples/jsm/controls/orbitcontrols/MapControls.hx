@@ -1,8 +1,8 @@
 package three.examples.jsm.controls.orbitcontrols;
 @:jsRequire("three/examples/jsm/controls/OrbitControls", "MapControls") extern class MapControls {
-	function new(object:three.Camera, ?domElement:ts.html.HTMLElement);
+	function new(object:three.Camera, ?domElement:js.html.Element);
 	var object : three.Camera;
-	var domElement : ts.AnyOf2<ts.html.HTMLElement, ts.html.HTMLDocument>;
+	var domElement : ts.AnyOf2<js.html.Element, js.html.HTMLDocument>;
 	var enabled : Bool;
 	var target : three.Vector3;
 	var center : three.Vector3;

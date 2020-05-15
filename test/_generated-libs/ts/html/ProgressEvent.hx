@@ -3,7 +3,7 @@ package ts.html;
 	Events measuring progress of an underlying process, like an HTTP request (for an XMLHttpRequest, or the loading of the underlying resource of an <img>, <audio>, <video>, <style> or <link>).
 **/
 @:native("ProgressEvent") extern class ProgressEvent<T> {
-	function new(type:String, ?eventInitDict:ProgressEventInit);
+	function new(type:String, ?eventInitDict:js.html.ProgressEventInit);
 	final lengthComputable : Bool;
 	final loaded : Float;
 	/**
@@ -27,7 +27,7 @@ package ts.html;
 	/**
 		Returns the object whose event listener's callback is currently being invoked.
 	**/
-	final currentTarget : Null<EventTarget>;
+	final currentTarget : Null<js.html.EventTarget>;
 	/**
 		Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
 	**/
@@ -41,7 +41,7 @@ package ts.html;
 	**/
 	final isTrusted : Bool;
 	var returnValue : Bool;
-	final srcElement : Null<EventTarget>;
+	final srcElement : Null<js.html.EventTarget>;
 	/**
 		Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
 	**/
@@ -53,7 +53,7 @@ package ts.html;
 	/**
 		Returns the invocation target objects of event's path (objects on which listeners will be invoked), except for any nodes in shadow trees of which the shadow root's mode is "closed" that are not reachable from event's currentTarget.
 	**/
-	function composedPath():Array<EventTarget>;
+	function composedPath():Array<js.html.EventTarget>;
 	function initEvent(type:String, ?bubbles:Bool, ?cancelable:Bool):Void;
 	/**
 		If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.
@@ -71,5 +71,5 @@ package ts.html;
 	final BUBBLING_PHASE : Float;
 	final CAPTURING_PHASE : Float;
 	final NONE : Float;
-	static var prototype : ProgressEvent<EventTarget>;
+	static var prototype : ProgressEvent<js.html.EventTarget>;
 }

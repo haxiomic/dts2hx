@@ -1,2 +1,2 @@
 package global;
-typedef _TouchEvent = ts.html.TouchEvent;
+typedef _TouchEvent = js.html.TouchEvent;

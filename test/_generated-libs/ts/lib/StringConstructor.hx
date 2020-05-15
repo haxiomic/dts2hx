@@ -2,7 +2,7 @@ package ts.lib;
 typedef StringConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):String;
-	final prototype : String;
+	final prototype : String_;
 	function fromCharCode(codes:haxe.extern.Rest<Float>):String;
 	/**
 		Return the String value whose elements are, in order, the elements in the List elements.

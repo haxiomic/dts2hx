@@ -1,2 +1,2 @@
 package global.jquery;
-typedef Node = ts.AnyOf4<ts.html.Element, ts.html.Text, ts.html.Comment, ts.html.DocumentFragment>;
+typedef Node = ts.AnyOf4<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment>;

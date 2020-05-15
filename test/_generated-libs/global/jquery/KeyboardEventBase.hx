@@ -43,12 +43,12 @@ typedef KeyboardEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Bool;
 	var shiftKey : Bool;
 	@:optional
-	var originalEvent : ts.html.KeyboardEvent;
+	var originalEvent : js.html.KeyboardEvent;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.Window;
+	var view : js.html.Window;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

@@ -1,2 +1,2 @@
 package global;
-typedef _KeyboardEvent = ts.html.KeyboardEvent;
+typedef _KeyboardEvent = js.html.KeyboardEvent;

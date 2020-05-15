@@ -1,5 +1,5 @@
 package ts.lib;
 typedef ArrayBufferConstructor = {
-	final prototype : ArrayBuffer;
+	final prototype : js.lib.ArrayBuffer;
 	function isView(arg:Dynamic):Bool;
 };

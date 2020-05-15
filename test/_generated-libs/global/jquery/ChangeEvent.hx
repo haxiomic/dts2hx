@@ -52,7 +52,7 @@ typedef ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Null<Any>;
 	var shiftKey : Null<Any>;
 	@:optional
-	var originalEvent : ts.html.Event;
+	var originalEvent : js.html.Event;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

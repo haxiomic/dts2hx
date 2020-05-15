@@ -1,6 +1,6 @@
 package ts.lib;
 typedef URIErrorConstructor = {
 	@:selfCall
-	function call(?message:String):URIError;
-	final prototype : URIError;
+	function call(?message:String):js.lib.Error.URIError;
+	final prototype : js.lib.Error.URIError;
 };

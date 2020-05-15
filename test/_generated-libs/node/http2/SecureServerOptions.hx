@@ -25,9 +25,9 @@ typedef SecureServerOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, ts.lib.Uint8Array, Array<ts.lib.Uint8Array>, Array<global.Buffer>>;
+	var NPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, ts.lib.Uint8Array, Array<ts.lib.Uint8Array>, Array<global.Buffer>>;
+	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
 	var SNICallback : (servername:String, cb:(err:Null<ts.lib.Error>, ctx:node.tls.SecureContext) -> Void) -> Void;
 	@:optional
@@ -35,9 +35,9 @@ typedef SecureServerOptions = {
 	@:optional
 	var ticketKeys : global.Buffer;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, ts.lib.Object, global.Buffer>>>;
+	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, js.lib.Object, global.Buffer>>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<ts.lib.Object, global.Buffer>>>;
+	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<js.lib.Object, global.Buffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional

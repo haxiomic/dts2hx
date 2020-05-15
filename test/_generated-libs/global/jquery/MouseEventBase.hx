@@ -4,7 +4,7 @@ typedef MouseEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : ts.html.EventTarget;
+	var relatedTarget : js.html.EventTarget;
 	var button : Float;
 	var buttons : Float;
 	var clientX : Float;
@@ -21,7 +21,7 @@ typedef MouseEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var pageY : Float;
 	var screenX : Float;
 	var screenY : Float;
-	var toElement : ts.html.Element;
+	var toElement : js.html.DOMElement;
 	var pointerId : Null<Any>;
 	var pointerType : Null<Any>;
 	var char : Null<Any>;
@@ -43,12 +43,12 @@ typedef MouseEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var metaKey : Bool;
 	var shiftKey : Bool;
 	@:optional
-	var originalEvent : ts.html.MouseEvent;
+	var originalEvent : js.html.MouseEvent;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
 	var detail : Float;
-	var view : ts.html.Window;
+	var view : js.html.Window;
 	/**
 		The current DOM element within the event bubbling phase.
 	**/

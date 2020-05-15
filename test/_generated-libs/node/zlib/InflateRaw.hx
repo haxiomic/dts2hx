@@ -88,8 +88,8 @@ typedef InflateRaw = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):InflateRaw;
 	function setMaxListeners(n:Float):InflateRaw;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	final bytesRead : Float;

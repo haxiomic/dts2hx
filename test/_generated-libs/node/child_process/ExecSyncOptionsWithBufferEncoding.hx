@@ -2,7 +2,7 @@ package node.child_process;
 typedef ExecSyncOptionsWithBufferEncoding = {
 	var encoding : String;
 	@:optional
-	var input : ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>;
+	var input : ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>;
 	@:optional
 	var stdio : ts.AnyOf2<String, Array<Null<ts.AnyOf3<Float, String, node.stream.Stream>>>>;
 	@:optional

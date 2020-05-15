@@ -20,7 +20,7 @@ typedef CustomPromisify<TCustom> = {
 	var prototype : Dynamic;
 	final length : Float;
 	var arguments : Dynamic;
-	var caller : ts.lib.Function;
+	var caller : js.lib.Function;
 	/**
 		Returns the name of the function. Function names are read-only and can not be changed.
 	**/

@@ -4,14 +4,14 @@ typedef WebGLRendererParameters = {
 		A Canvas where the renderer draws its output.
 	**/
 	@:optional
-	var canvas : ts.html.HTMLCanvasElement;
+	var canvas : js.html.CanvasElement;
 	/**
 		A WebGL Rendering Context.
 		(https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext)
 		Default is null
 	**/
 	@:optional
-	var context : ts.html.WebGLRenderingContext;
+	var context : js.html.webgl.RenderingContext;
 	/**
 		shader precision. Can be "highp", "mediump" or "lowp".
 	**/

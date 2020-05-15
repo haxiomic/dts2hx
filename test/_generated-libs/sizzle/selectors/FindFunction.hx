@@ -1,5 +1,5 @@
 package sizzle.selectors;
 typedef FindFunction = {
 	@:selfCall
-	function call(match:ts.lib.RegExpMatchArray, context:ts.AnyOf2<ts.html.Document, ts.html.Element>, isXML:Bool):ts.AnyOf2<Void, Array<ts.html.Element>>;
+	function call(match:ts.lib.RegExpMatchArray, context:ts.AnyOf2<js.html.Document, js.html.DOMElement>, isXML:Bool):ts.AnyOf2<Void, Array<js.html.DOMElement>>;
 };

@@ -18,9 +18,9 @@ typedef Global = {
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
 		@:overload(function(data:Array<Float>):global.Buffer { })
-		@:overload(function(data:ts.lib.Uint8Array):global.Buffer { })
+		@:overload(function(data:js.lib.Uint8Array):global.Buffer { })
 		@:overload(function(str:String, ?encoding:String):global.Buffer { })
-		function from(arrayBuffer:ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
+		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -38,7 +38,7 @@ typedef Global = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, ts.lib.Uint8Array, ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -46,11 +46,11 @@ typedef Global = {
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:Array<ts.lib.Uint8Array>, ?totalLength:Float):global.Buffer;
+		function concat(list:Array<js.lib.Uint8Array>, ?totalLength:Float):global.Buffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
-		function compare(buf1:ts.lib.Uint8Array, buf2:ts.lib.Uint8Array):Float;
+		function compare(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
@@ -85,45 +85,45 @@ typedef Global = {
 	var Intl : {
 		var Collator : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):ts.lib.intl.Collator;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):js.lib.intl.Collator;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):ts.lib.intl.NumberFormat;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):js.lib.intl.NumberFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):ts.lib.intl.DateTimeFormat;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):Array<String>;
 		};
 		var PluralRules : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):ts.lib.intl.PluralRules;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):js.lib.intl.PluralRules;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):Array<String>;
 		};
 	};
 	var JSON : ts.lib.JSON;
 	var Map : ts.lib.MapConstructor;
-	var Math : ts.lib.Math_;
+	var Math : js.lib.Math;
 	var NaN : Float;
 	var Number : ts.lib.NumberConstructor;
 	var Object : ts.lib.ObjectConstructor;
-	var Promise : ts.lib.Function;
+	var Promise : js.lib.Function;
 	var RangeError : ts.lib.RangeErrorConstructor;
 	var ReferenceError : ts.lib.ReferenceErrorConstructor;
 	var RegExp : ts.lib.RegExpConstructor;
 	var Set : ts.lib.SetConstructor;
 	var String : ts.lib.StringConstructor;
-	var Symbol : ts.lib.Function;
+	var Symbol : js.lib.Function;
 	var SyntaxError : ts.lib.SyntaxErrorConstructor;
 	var TypeError : ts.lib.TypeErrorConstructor;
 	var URIError : ts.lib.URIErrorConstructor;
 	var Uint16Array : ts.lib.Uint16ArrayConstructor;
 	var Uint32Array : ts.lib.Uint32ArrayConstructor;
 	var Uint8Array : ts.lib.Uint8ArrayConstructor;
-	var Uint8ClampedArray : ts.lib.Function;
+	var Uint8ClampedArray : js.lib.Function;
 	var WeakMap : ts.lib.WeakMapConstructor;
 	var WeakSet : ts.lib.WeakSetConstructor;
 	var clearImmediate : (immediateId:Immediate) -> Void;
@@ -149,7 +149,7 @@ typedef Global = {
 	var queueMicrotask : {
 		@:overload(function(callback:() -> Void):Void { })
 		@:selfCall
-		function call(callback:ts.lib.Function):Void;
+		function call(callback:js.lib.Function):Void;
 	};
 	var undefined : Null<Any>;
 	var unescape : (str:String) -> String;

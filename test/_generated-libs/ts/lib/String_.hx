@@ -41,7 +41,7 @@ package ts.lib;
 		Matches a string an object that supports being matched against, and returns an array containing the results of that search.
 	**/
 	@:overload(function(matcher:{ }):Null<RegExpMatchArray> { })
-	function match(regexp:ts.AnyOf2<String, RegExp>):Null<RegExpMatchArray>;
+	function match(regexp:ts.AnyOf2<String, js.lib.RegExp>):Null<RegExpMatchArray>;
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
@@ -51,17 +51,17 @@ package ts.lib;
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
-	@:overload(function(searchValue:ts.AnyOf2<String, RegExp>, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
+	@:overload(function(searchValue:ts.AnyOf2<String, js.lib.RegExp>, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
 	@:overload(function(searchValue:{ }, replaceValue:String):String { })
 	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
-	function replace(searchValue:ts.AnyOf2<String, RegExp>, replaceValue:String):String;
+	function replace(searchValue:ts.AnyOf2<String, js.lib.RegExp>, replaceValue:String):String;
 	/**
 		Finds the first substring match in a regular expression search.
 		
 		Finds the first substring match in a regular expression search.
 	**/
 	@:overload(function(searcher:{ }):Float { })
-	function search(regexp:ts.AnyOf2<String, RegExp>):Float;
+	function search(regexp:ts.AnyOf2<String, js.lib.RegExp>):Float;
 	/**
 		Returns a section of a string.
 	**/
@@ -72,7 +72,7 @@ package ts.lib;
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
 	@:overload(function(splitter:{ }, ?limit:Float):Array<String> { })
-	function split(separator:ts.AnyOf2<String, RegExp>, ?limit:Float):Array<String>;
+	function split(separator:ts.AnyOf2<String, js.lib.RegExp>, ?limit:Float):Array<String>;
 	/**
 		Returns the substring at the specified location within a String object.
 	**/

@@ -97,4 +97,8 @@ typedef ReadonlyArray<T> = {
 		Returns an iterable of values in the array
 	**/
 	function values():IterableIterator<T>;
+	/**
+		Determines whether an array includes a certain element, returning true or false as appropriate.
+	**/
+	function includes(searchElement:T, ?fromIndex:Float):Bool;
 };

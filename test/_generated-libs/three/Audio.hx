@@ -1,8 +1,8 @@
 package three;
 @:jsRequire("three", "Audio") extern class Audio extends Object3D {
 	function new(listener:AudioListener);
-	var context : ts.html.AudioContext;
-	var gain : ts.html.GainNode;
+	var context : js.html.audio.AudioContext;
+	var gain : js.html.audio.GainNode;
 	var autoplay : Bool;
 	var buffer : Null<Audio>;
 	var detune : Float;
@@ -13,11 +13,11 @@ package three;
 	var isPlaying : Bool;
 	var hasPlaybackControl : Bool;
 	var sourceType : String;
-	var source : ts.html.AudioBufferSourceNode;
+	var source : js.html.audio.AudioBufferSourceNode;
 	var filters : Array<Dynamic>;
-	function getOutput():ts.html.GainNode;
-	function setNodeSource(audioNode:ts.html.AudioBufferSourceNode):Audio;
-	function setMediaElementSource(mediaElement:ts.html.MediaElementAudioSourceNode):Audio;
+	function getOutput():js.html.audio.GainNode;
+	function setNodeSource(audioNode:js.html.audio.AudioBufferSourceNode):Audio;
+	function setMediaElementSource(mediaElement:js.html.audio.MediaElementAudioSourceNode):Audio;
 	function setBuffer(audioBuffer:AudioBuffer):Audio;
 	function play():Audio;
 	function onEnded():Void;

@@ -1,8 +1,8 @@
 package node.net;
 @:jsRequire("net", "Socket") extern class Socket extends node.stream.Duplex {
 	function new(?options:SocketConstructorOpts);
-	@:overload(function(str:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool;
+	@:overload(function(str:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })
+	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })
@@ -29,8 +29,8 @@ package node.net;
 	final remoteFamily : String;
 	@:optional
 	final remotePort : Float;
-	@:overload(function(buffer:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, ?cb:() -> Void):Void { })
-	@:overload(function(str:ts.AnyOf3<String, global.Buffer, ts.lib.Uint8Array>, ?encoding:String, ?cb:() -> Void):Void { })
+	@:overload(function(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:() -> Void):Void { })
+	@:overload(function(str:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	/**
 		events.EventEmitter

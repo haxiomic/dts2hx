@@ -2,7 +2,7 @@ package ts.lib;
 typedef DateConstructor = {
 	@:selfCall
 	function call():String;
-	final prototype : Date_;
+	final prototype : js.lib.Date;
 	/**
 		Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.
 	**/

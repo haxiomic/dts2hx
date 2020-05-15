@@ -3,7 +3,7 @@ package three;
 	function new(context:Dynamic);
 	var context : Dynamic;
 	var ready : Bool;
-	var readyCallbacks : Array<ts.lib.Function>;
+	var readyCallbacks : Array<js.lib.Function>;
 	function load(file:String):AudioBuffer;
-	function onReady(callback:ts.lib.Function):Void;
+	function onReady(callback:js.lib.Function):Void;
 }

@@ -117,5 +117,5 @@ typedef JqXHR<TResolve> = {
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "document".
 	**/
 	@:optional
-	var responseXML : ts.html.Document;
+	var responseXML : js.html.Document;
 };

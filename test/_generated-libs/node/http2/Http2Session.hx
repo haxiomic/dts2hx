@@ -9,7 +9,7 @@ typedef Http2Session = {
 	final destroyed : Bool;
 	@:optional
 	final encrypted : Bool;
-	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:ts.AnyOf11<global.Buffer, ts.lib.Uint8Array, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>):Void;
+	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:ts.AnyOf11<global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):Void;
 	final localSettings : Settings;
 	@:optional
 	final originSet : Array<String>;
@@ -85,8 +85,8 @@ typedef Http2Session = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Http2Session;
 	function setMaxListeners(n:Float):Http2Session;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 };

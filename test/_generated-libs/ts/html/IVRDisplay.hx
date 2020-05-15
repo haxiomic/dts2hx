@@ -12,14 +12,14 @@ typedef IVRDisplay = {
 	final isPresenting : Bool;
 	final stageParameters : Null<VRStageParameters>;
 	function cancelAnimationFrame(handle:Float):Void;
-	function exitPresent():ts.lib.Promise<Void>;
+	function exitPresent():js.lib.Promise<Void>;
 	function getEyeParameters(whichEye:String):VREyeParameters;
 	function getFrameData(frameData:VRFrameData):Bool;
 	function getLayers():Array<VRLayer>;
 	function getPose():VRPose;
 	function requestAnimationFrame(callback:FrameRequestCallback):Float;
-	@:overload(function(layers:ts.lib.Iterable<VRLayer>):ts.lib.Promise<Void> { })
-	function requestPresent(layers:Array<VRLayer>):ts.lib.Promise<Void>;
+	@:overload(function(layers:ts.lib.Iterable<VRLayer>):js.lib.Promise<Void> { })
+	function requestPresent(layers:Array<VRLayer>):js.lib.Promise<Void>;
 	function resetPose():Void;
 	function submitFrame(?pose:VRPose):Void;
 	/**
@@ -35,13 +35,13 @@ typedef IVRDisplay = {
 		
 		The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
 	**/
-	function addEventListener(type:String, listener:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, AddEventListenerOptions>):Void;
+	function addEventListener(type:String, listener:Null<ts.AnyOf2<js.html.EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, js.html.AddEventListenerOptions>):Void;
 	/**
 		Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 	**/
-	function dispatchEvent(event:Event):Bool;
+	function dispatchEvent(event:js.html.Event):Bool;
 	/**
 		Removes the event listener in target's event listener list with the same type, callback, and options.
 	**/
-	function removeEventListener(type:String, callback:Null<ts.AnyOf2<EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, EventListenerOptions>):Void;
+	function removeEventListener(type:String, callback:Null<ts.AnyOf2<js.html.EventListener, EventListenerObject>>, ?options:ts.AnyOf2<Bool, js.html.EventListenerOptions>):Void;
 };

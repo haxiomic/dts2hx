@@ -11,9 +11,9 @@ typedef ConnectionOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, ts.lib.Uint8Array, Array<ts.lib.Uint8Array>, Array<global.Buffer>>;
+	var NPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, ts.lib.Uint8Array, Array<ts.lib.Uint8Array>, Array<global.Buffer>>;
+	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
 	var checkServerIdentity : (host:String, cert:PeerCertificate) -> Null<ts.lib.Error>;
 	@:optional
@@ -29,9 +29,9 @@ typedef ConnectionOptions = {
 	@:optional
 	var timeout : Float;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, ts.lib.Object, global.Buffer>>>;
+	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, js.lib.Object, global.Buffer>>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<ts.lib.Object, global.Buffer>>>;
+	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<js.lib.Object, global.Buffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional

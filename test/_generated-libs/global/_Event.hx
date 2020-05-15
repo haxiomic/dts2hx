@@ -1,2 +1,2 @@
 package global;
-typedef _Event = ts.html.Event;
+typedef _Event = js.html.Event;

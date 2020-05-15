@@ -1,2 +1,2 @@
 package global;
-typedef _FocusEvent = ts.html.FocusEvent;
+typedef _FocusEvent = js.html.FocusEvent;

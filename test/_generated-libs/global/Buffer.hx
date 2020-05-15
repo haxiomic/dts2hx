@@ -9,8 +9,8 @@ package global;
 		Allocates a new buffer containing the given {str}.
 	**/
 	@:overload(function(size:Float):Buffer { })
-	@:overload(function(array:ts.lib.Uint8Array):Buffer { })
-	@:overload(function(arrayBuffer:ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>):Buffer { })
+	@:overload(function(array:js.lib.Uint8Array):Buffer { })
+	@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>):Buffer { })
 	@:overload(function(array:Array<Dynamic>):Buffer { })
 	@:overload(function(buffer:Buffer):Buffer { })
 	function new(str:String, ?encoding:String);
@@ -32,9 +32,9 @@ package global;
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
 		@:overload(function(data:Array<Float>):Buffer { })
-		@:overload(function(data:ts.lib.Uint8Array):Buffer { })
+		@:overload(function(data:js.lib.Uint8Array):Buffer { })
 		@:overload(function(str:String, ?encoding:String):Buffer { })
-		function from(arrayBuffer:ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
+		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -52,7 +52,7 @@ package global;
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, ts.lib.Uint8Array, ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -60,11 +60,11 @@ package global;
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:Array<ts.lib.Uint8Array>, ?totalLength:Float):Buffer;
+		function concat(list:Array<js.lib.Uint8Array>, ?totalLength:Float):Buffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
-		function compare(buf1:ts.lib.Uint8Array, buf2:ts.lib.Uint8Array):Float;
+		function compare(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
@@ -95,9 +95,9 @@ package global;
 		var type : String;
 		var data : Array<Float>;
 	};
-	function equals(otherBuffer:ts.lib.Uint8Array):Bool;
-	function compare(otherBuffer:ts.lib.Uint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
-	function copy(targetBuffer:ts.lib.Uint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function equals(otherBuffer:js.lib.Uint8Array):Bool;
+	function compare(otherBuffer:js.lib.Uint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function copy(targetBuffer:js.lib.Uint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
 	/**
 		Returns a section of an array.
 	**/
@@ -157,11 +157,11 @@ package global;
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(value:ts.AnyOf3<String, Float, ts.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
+	function indexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns the index of the last occurrence of a value in an array.
 	**/
-	function lastIndexOf(value:ts.AnyOf3<String, Float, ts.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
+	function lastIndexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
@@ -185,7 +185,7 @@ package global;
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>;
+	final buffer : ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>;
 	/**
 		The length in bytes of the array.
 	**/
@@ -202,25 +202,25 @@ package global;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Dynamic, ?thisArg:Dynamic):ts.lib.Uint8Array;
+	function filter(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Dynamic, ?thisArg:Dynamic):js.lib.Uint8Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:ts.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:js.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:ts.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:js.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -233,7 +233,7 @@ package global;
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Float, ?thisArg:Dynamic):ts.lib.Uint8Array;
+	function map(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Float, ?thisArg:Dynamic):js.lib.Uint8Array;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
@@ -243,9 +243,9 @@ package global;
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float):Float;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
@@ -255,9 +255,9 @@ package global;
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:ts.lib.Uint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float):Float;
 	/**
 		Sets a value or an array of values.
 	**/
@@ -265,7 +265,7 @@ package global;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:ts.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/
@@ -288,9 +288,9 @@ package global;
 		If not provided, {encoding} defaults to 'utf8'.
 	**/
 	@:overload(function(data:Array<Float>):Buffer { })
-	@:overload(function(data:ts.lib.Uint8Array):Buffer { })
+	@:overload(function(data:js.lib.Uint8Array):Buffer { })
 	@:overload(function(str:String, ?encoding:String):Buffer { })
-	static function from(arrayBuffer:ts.AnyOf2<ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
+	static function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
@@ -309,7 +309,7 @@ package global;
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
 	@:native("byteLength")
-	static function byteLength_(string:ts.AnyOf13<String, ts.lib.Uint8Array, ts.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, ts.lib.Uint8ClampedArray, ts.lib.Uint16Array, ts.lib.Uint32Array, ts.lib.Int8Array, ts.lib.Int16Array, ts.lib.Int32Array, ts.lib.Float32Array, ts.lib.Float64Array, ts.lib.DataView>, ?encoding:String):Float;
+	static function byteLength_(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		
@@ -317,12 +317,12 @@ package global;
 		If the list has exactly one item, then the first item of the list is returned.
 		If the list has more than one item, then a new Buffer is created.
 	**/
-	static function concat(list:Array<ts.lib.Uint8Array>, ?totalLength:Float):Buffer;
+	static function concat(list:Array<js.lib.Uint8Array>, ?totalLength:Float):Buffer;
 	/**
 		The same as buf1.compare(buf2).
 	**/
 	@:native("compare")
-	static function compare_(buf1:ts.lib.Uint8Array, buf2:ts.lib.Uint8Array):Float;
+	static function compare_(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
 	/**
 		Allocates a new buffer of {size} octets.
 	**/

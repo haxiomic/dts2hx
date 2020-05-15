@@ -1,6 +1,6 @@
 package three;
 @:jsRequire("three", "WebGLCapabilities") extern class WebGLCapabilities {
-	function new(gl:ts.html.WebGLRenderingContext, extensions:Dynamic, parameters:WebGLCapabilitiesParameters);
+	function new(gl:js.html.webgl.RenderingContext, extensions:Dynamic, parameters:WebGLCapabilitiesParameters);
 	var precision : Dynamic;
 	var logarithmicDepthBuffer : Dynamic;
 	var maxTextures : Dynamic;

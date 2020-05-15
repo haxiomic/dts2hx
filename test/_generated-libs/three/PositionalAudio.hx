@@ -1,7 +1,7 @@
 package three;
 @:jsRequire("three", "PositionalAudio") extern class PositionalAudio extends Audio {
 	function new(listener:AudioListener);
-	var panner : ts.html.PannerNode;
+	var panner : js.html.audio.PannerNode;
 	function setRefDistance(value:Float):PositionalAudio;
 	function getRefDistance():Float;
 	function setRolloffFactor(value:Float):PositionalAudio;
@@ -11,8 +11,8 @@ package three;
 	function setMaxDistance(value:Float):PositionalAudio;
 	function getMaxDistance():Float;
 	function setDirectionalCone(coneInnerAngle:Float, coneOuterAngle:Float, coneOuterGain:Float):PositionalAudio;
-	function setNodeSource(audioNode:ts.html.AudioBufferSourceNode):PositionalAudio;
-	function setMediaElementSource(mediaElement:ts.html.MediaElementAudioSourceNode):PositionalAudio;
+	function setNodeSource(audioNode:js.html.audio.AudioBufferSourceNode):PositionalAudio;
+	function setMediaElementSource(mediaElement:js.html.audio.MediaElementAudioSourceNode):PositionalAudio;
 	function setBuffer(audioBuffer:AudioBuffer):PositionalAudio;
 	function play():PositionalAudio;
 	function pause():PositionalAudio;

@@ -1,2 +1,2 @@
 package three;
-typedef TypedArray = ts.AnyOf9<ts.lib.Int8Array, ts.lib.Uint8Array, ts.lib.Uint8ClampedArray, ts.lib.Int16Array, ts.lib.Uint16Array, ts.lib.Int32Array, ts.lib.Uint32Array, ts.lib.Float32Array, ts.lib.Float64Array>;
+typedef TypedArray = ts.AnyOf9<js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array>;

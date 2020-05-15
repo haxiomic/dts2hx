@@ -2,7 +2,7 @@ package node;
 @:jsRequire("http2") @valueModuleOnly extern class Http2 {
 	static function getDefaultSettings():node.http2.Settings;
 	static function getPackedSettings(settings:node.http2.Settings):node.http2.Settings;
-	static function getUnpackedSettings(buf:ts.AnyOf2<global.Buffer, ts.lib.Uint8Array>):node.http2.Settings;
+	static function getUnpackedSettings(buf:ts.AnyOf2<global.Buffer, js.lib.Uint8Array>):node.http2.Settings;
 	@:overload(function(options:node.http2.ServerOptions, ?onRequestHandler:(request:node.http2.Http2ServerRequest, response:node.http2.Http2ServerResponse) -> Void):node.http2.Http2Server { })
 	static function createServer(?onRequestHandler:(request:node.http2.Http2ServerRequest, response:node.http2.Http2ServerResponse) -> Void):node.http2.Http2Server;
 	@:overload(function(options:node.http2.SecureServerOptions, ?onRequestHandler:(request:node.http2.Http2ServerRequest, response:node.http2.Http2ServerResponse) -> Void):node.http2.Http2SecureServer { })

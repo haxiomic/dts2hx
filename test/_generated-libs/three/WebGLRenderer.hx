@@ -12,11 +12,11 @@ package three;
 		A Canvas where the renderer draws its output.
 		This is automatically created by the renderer in the constructor (if not provided already); you just need to add it to your page.
 	**/
-	var domElement : ts.html.HTMLCanvasElement;
+	var domElement : js.html.CanvasElement;
 	/**
 		The HTML5 Canvas's 'webgl' context obtained from the canvas where the renderer will draw.
 	**/
-	var context : ts.html.WebGLRenderingContext;
+	var context : js.html.webgl.RenderingContext;
 	/**
 		Defines whether the renderer should automatically clear its output before rendering.
 	**/
@@ -79,7 +79,7 @@ package three;
 	/**
 		Return the WebGL context.
 	**/
-	function getContext():ts.html.WebGLRenderingContext;
+	function getContext():js.html.webgl.RenderingContext;
 	function getContextAttributes():Dynamic;
 	function forceContextLoss():Void;
 	function getMaxAnisotropy():Float;
@@ -148,13 +148,13 @@ package three;
 	/**
 		Tells the shadow map plugin to update using the passed scene and camera parameters.
 	**/
-	function renderBufferImmediate(object:Object3D, program:ts.lib.Object, material:Material):Void;
+	function renderBufferImmediate(object:Object3D, program:js.lib.Object, material:Material):Void;
 	function renderBufferDirect(camera:Camera, fog:Fog, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Dynamic):Void;
 	/**
 		A build in function that can be used instead of requestAnimationFrame. For WebVR projects this function must be used.
 	**/
-	function setAnimationLoop(callback:ts.lib.Function):Void;
-	function animate(callback:ts.lib.Function):Void;
+	function setAnimationLoop(callback:js.lib.Function):Void;
+	function animate(callback:js.lib.Function):Void;
 	/**
 		Compiles all materials in the scene with the camera. This is useful to precompile shaders before the first rendering.
 	**/

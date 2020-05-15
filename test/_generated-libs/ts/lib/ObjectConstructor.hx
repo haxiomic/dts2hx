@@ -6,7 +6,7 @@ typedef ObjectConstructor = {
 	/**
 		A reference to the prototype for a class of objects.
 	**/
-	final prototype : Object;
+	final prototype : js.lib.Object;
 	/**
 		Returns the prototype of an object.
 	**/
@@ -102,4 +102,22 @@ typedef ObjectConstructor = {
 		Sets the prototype of a specified object o to object proto or null. Returns the object o.
 	**/
 	function setPrototypeOf(o:Dynamic, proto:Null<Dynamic>):Dynamic;
+	/**
+		Returns an array of values of the enumerable properties of an object
+		
+		Returns an array of values of the enumerable properties of an object
+	**/
+	@:overload(function(o:{ }):Array<Dynamic> { })
+	function values<T>(o:ts.AnyOf2<{ }, ArrayLike<T>>):Array<T>;
+	/**
+		Returns an array of key/values of the enumerable properties of an object
+		
+		Returns an array of key/values of the enumerable properties of an object
+	**/
+	@:overload(function(o:{ }):Array<ts.Tuple2<String, Dynamic>> { })
+	function entries<T>(o:ts.AnyOf2<{ }, ArrayLike<T>>):Array<ts.Tuple2<String, T>>;
+	/**
+		Returns an object containing all own property descriptors of an object
+	**/
+	function getOwnPropertyDescriptors<T>(o:T):Dynamic;
 };

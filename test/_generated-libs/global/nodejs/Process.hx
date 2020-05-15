@@ -18,7 +18,7 @@ typedef Process = {
 	function chdir(directory:String):Void;
 	function cwd():String;
 	var debugPort : Float;
-	function emitWarning(warning:ts.AnyOf2<String, ts.lib.Error>, ?name:String, ?ctor:ts.lib.Function):Void;
+	function emitWarning(warning:ts.AnyOf2<String, ts.lib.Error>, ?name:String, ?ctor:js.lib.Function):Void;
 	var env : ProcessEnv;
 	function exit(?code:Float):Any;
 	var exitCode : Float;
@@ -72,7 +72,7 @@ typedef Process = {
 	var mainModule : global.NodeModule;
 	function memoryUsage():MemoryUsage;
 	function cpuUsage(?previousValue:CpuUsage):CpuUsage;
-	function nextTick(callback:ts.lib.Function, args:haxe.extern.Rest<Dynamic>):Void;
+	function nextTick(callback:js.lib.Function, args:haxe.extern.Rest<Dynamic>):Void;
 	var release : ProcessRelease;
 	var features : {
 		var inspector : Bool;
@@ -129,9 +129,9 @@ typedef Process = {
 	function addListener(event:String, listener:BeforeExitListener):Process;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, code:Float):Bool { })
-	@:overload(function(event:String, promise:ts.lib.Promise<Dynamic>):Bool { })
+	@:overload(function(event:String, promise:js.lib.Promise<Dynamic>):Bool { })
 	@:overload(function(event:String, error:ts.lib.Error):Bool { })
-	@:overload(function(event:String, reason:Dynamic, promise:ts.lib.Promise<Dynamic>):Bool { })
+	@:overload(function(event:String, reason:Dynamic, promise:js.lib.Promise<Dynamic>):Bool { })
 	@:overload(function(event:String, warning:ts.lib.Error):Bool { })
 	@:overload(function(event:String, message:Dynamic, sendHandle:Dynamic):Process { })
 	@:overload(function(event:Signals, signal:Signals):Bool { })
@@ -204,7 +204,7 @@ typedef Process = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Process;
 	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<ts.lib.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 };
