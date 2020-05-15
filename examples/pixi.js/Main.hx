@@ -18,7 +18,7 @@ class Main {
 			https://pixijs.io/examples/#/text/text.js
 		**/
 		final app = new Application({ backgroundColor: 0x1099bb });
-		document.body.appendChild(cast app.view);
+		document.body.appendChild(app.view);
 
 		final basicText = new Text('Hello from haxe!');
 		basicText.x = 50;

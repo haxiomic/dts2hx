@@ -28,7 +28,7 @@ class Main {
 		document.body.appendChild(canvas);
 
 		// create a PlayCanvas application
-		final app = new Application(cast canvas, {});
+		final app = new Application(canvas, {});
 
 		// fill the available space at full resolution
 		app.setCanvasFillMode(Pc.FILLMODE_FILL_WINDOW);

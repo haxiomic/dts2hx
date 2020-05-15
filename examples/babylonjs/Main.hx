@@ -17,11 +17,14 @@ class Main {
 		canvas.width = 800;
 		canvas.height = 600;
 		document.body.appendChild(canvas);
-
-		var engine = new Engine(cast canvas, true, {
-			alpha: false,
-			powerPreference: 'high-performance',
-		});
+		
+		var engine = new Engine(
+			cast canvas, true, // babylon.js uses a custom HTMLCanvasElement type so we must cast
+			{
+				alpha: false,
+				powerPreference: 'high-performance',
+			}
+		);
 
 		var scene = new Scene(engine, {});
 		scene.clearColor.set(1, 0, 0, 1);scene.createDefaultEnvironment({

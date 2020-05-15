@@ -23,7 +23,7 @@ class Main {
 		document.body.appendChild(canvas);
 
 		var renderer = new WebGLRenderer({
-			canvas: cast canvas,
+			canvas: canvas,
 			antialias: true,
 		});
 
@@ -31,7 +31,7 @@ class Main {
 		var camera = new PerspectiveCamera(75, canvas.width/canvas.height, 0.1, 1000);
 		camera.position.z = 5;
 
-		var controls = new OrbitControls(camera, cast canvas);
+		var controls = new OrbitControls(camera, canvas);
 
 		var geometry = new TorusKnotGeometry(1, 0.2, 100, 50);
 		var material = new MeshPhysicalMaterial({color: 0x6600AA, roughness: 0.4, metalness: 0.5});
