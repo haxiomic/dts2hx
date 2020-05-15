@@ -1,23 +1,25 @@
-import tool.TsProgramTools;
 import Log.LogLevel;
+import StdLibMacro.TypeMap;
 import haxe.DynamicAccess;
 import haxe.io.Path;
 import hxargs.Args.ArgHandler;
 import js.Node;
 import js.node.Fs;
+import tool.TsProgramTools;
 import typescript.Ts;
 import typescript.ts.CompilerOptions;
 import typescript.ts.ModuleResolutionKind;
 import typescript.ts.ResolvedModuleFull;
 
+using Lambda;
 using StringTools;
 using tool.StringTools;
-using Lambda;
 
 @:nullSafety
 class Main {
 
-	static public final dts2hxPackageJson = Macro.getLocalPackageJson();
+	static public final dts2hxPackageJson = Macro.getJson('package.json');
+	static final defaultStdLibTypeMap: TypeMap = Macro.getJson('src/typemap/4.0.5-stdlib.json');
 
 	static function main() {
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';
@@ -250,7 +252,9 @@ class Main {
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
-		var converter = try new ConverterContext(moduleName, moduleSearchPath, compilerOptions, locationComments) catch (e: Any) {
+		var converter = try {
+			new ConverterContext(moduleName, moduleSearchPath, compilerOptions, defaultStdLibTypeMap, locationComments);
+		} catch (e: Any) {
 			Log.error(e);
 			return null;
 		}

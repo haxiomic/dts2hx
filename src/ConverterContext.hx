@@ -109,7 +109,7 @@ class ConverterContext {
 	final enableTypeParameterConstraints = false;
 	final typeStackLimit = 25;
 
-	public function new(inputModuleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, locationComments: Bool) {
+	public function new(inputModuleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibMap: Null<StdLibMacro.TypeMap>, locationComments: Bool = false) {
 		Console.log('Converting module <b>$inputModuleName</b>');
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.locationComments = locationComments;
@@ -207,7 +207,12 @@ class ConverterContext {
 		symbolAccessMap = new SymbolAccessMap(program, accessRoots);
 
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
-		haxeTypePathMap = new HaxeTypePathMap(this.packageName != null ? this.packageName : normalizedInputModuleName, program, symbolAccessMap);
+		haxeTypePathMap = new HaxeTypePathMap(
+			this.packageName != null ? this.packageName : normalizedInputModuleName,
+			program,
+			symbolAccessMap,
+			stdLibMap
+		);
 
 		// convert symbols, starting from input module
 		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
@@ -308,7 +313,8 @@ class ConverterContext {
 			} else false;
 		} else false;
 		return {
-			name: hxTypePath.name,
+			name: hxTypePath.moduleName,
+			sub: hxTypePath.moduleName != hxTypePath.name ? hxTypePath.name : null,
 			pack: noPack ? [] : hxTypePath.pack,
 		}
 	}

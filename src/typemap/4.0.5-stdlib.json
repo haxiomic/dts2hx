@@ -1,0 +1,10512 @@
+{
+	"js": {
+		"XMLHttpRequestUpload": {
+			"name": "XMLHttpRequestUpload",
+			"moduleType": 0,
+			"moduleName": "XMLHttpRequestUpload",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileMetadataParameters": {
+			"name": "FileMetadataParameters",
+			"moduleType": 2,
+			"moduleName": "FileMetadataParameters",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"LocaleMatcher": {
+			"name": "LocaleMatcher",
+			"moduleType": 3,
+			"moduleName": "LocaleMatcher",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"WorkerGlobalScope": {
+			"name": "WorkerGlobalScope",
+			"moduleType": 0,
+			"moduleName": "WorkerGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SdpType": {
+			"name": "SdpType",
+			"moduleType": 3,
+			"moduleName": "SdpType",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"GamepadButton": {
+			"name": "GamepadButton",
+			"moduleType": 0,
+			"moduleName": "GamepadButton",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PaintRequestList": {
+			"name": "PaintRequestList",
+			"moduleType": 0,
+			"moduleName": "PaintRequestList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaKeyMessageType": {
+			"name": "MediaKeyMessageType",
+			"moduleType": 3,
+			"moduleName": "MediaKeyMessageType",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"WEBGL_compressed_texture_s3tc": {
+			"name": "WEBGLCompressedTextureS3tc",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTextureS3tc",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"RTCCertificate": {
+			"name": "Certificate",
+			"moduleType": 0,
+			"moduleName": "Certificate",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"SessionDescriptionInit": {
+			"name": "SessionDescriptionInit",
+			"moduleType": 2,
+			"moduleName": "SessionDescriptionInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"WEBGL_draw_buffers": {
+			"name": "WEBGLDrawBuffers",
+			"moduleType": 0,
+			"moduleName": "WEBGLDrawBuffers",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"MonthRepresentation": {
+			"name": "MonthRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"HTMLScriptElement": {
+			"name": "ScriptElement",
+			"moduleType": 0,
+			"moduleName": "ScriptElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OESTextureFloatLinear": {
+			"name": "OESTextureFloatLinear",
+			"moduleType": 2,
+			"moduleName": "OESTextureFloatLinear",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"EventModifierInit": {
+			"name": "EventModifierInit",
+			"moduleType": 2,
+			"moduleName": "EventModifierInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"TextDecoder": {
+			"name": "TextDecoder",
+			"moduleType": 0,
+			"moduleName": "TextDecoder",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"GL2": {
+			"name": "GL2",
+			"moduleType": 2,
+			"moduleName": "GL2",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": false
+		},
+		"Headers": {
+			"name": "Headers",
+			"moduleType": 0,
+			"moduleName": "Headers",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TreeWalker": {
+			"name": "TreeWalker",
+			"moduleType": 0,
+			"moduleName": "TreeWalker",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLInputElement": {
+			"name": "InputElement",
+			"moduleType": 0,
+			"moduleName": "InputElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IceGatheringState": {
+			"name": "IceGatheringState",
+			"moduleType": 3,
+			"moduleName": "IceGatheringState",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"RelativeTimeFormatPartType": {
+			"name": "RelativeTimeFormatPartType",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"XMLSerializer": {
+			"name": "XMLSerializer",
+			"moduleType": 0,
+			"moduleName": "XMLSerializer",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLVideoElement": {
+			"name": "VideoElement",
+			"moduleType": 0,
+			"moduleName": "VideoElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFETileElement": {
+			"name": "FETileElement",
+			"moduleType": 0,
+			"moduleName": "FETileElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLPictureElement": {
+			"name": "PictureElement",
+			"moduleType": 0,
+			"moduleName": "PictureElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMException": {
+			"name": "DOMException",
+			"moduleType": 0,
+			"moduleName": "DOMException",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLImageElement": {
+			"name": "ImageElement",
+			"moduleType": 0,
+			"moduleName": "ImageElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"StereoPannerOptions": {
+			"name": "StereoPannerOptions",
+			"moduleType": 2,
+			"moduleName": "StereoPannerOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"MediaStreamTrackEvent": {
+			"name": "MediaStreamTrackEvent",
+			"moduleType": 0,
+			"moduleName": "MediaStreamTrackEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RequestInit": {
+			"name": "RequestInit",
+			"moduleType": 2,
+			"moduleName": "RequestInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Path2D": {
+			"name": "Path2D",
+			"moduleType": 0,
+			"moduleName": "Path2D",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Event": {
+			"name": "Event",
+			"moduleType": 0,
+			"moduleName": "Event",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegLinetoHorizontalRel": {
+			"name": "PathSegLinetoHorizontalRel",
+			"moduleType": 2,
+			"moduleName": "PathSegLinetoHorizontalRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"AnswerOptions": {
+			"name": "AnswerOptions",
+			"moduleType": 2,
+			"moduleName": "AnswerOptions",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"PaintRequest": {
+			"name": "PaintRequest",
+			"moduleType": 0,
+			"moduleName": "PaintRequest",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaRecorderErrorEventInit": {
+			"name": "MediaRecorderErrorEventInit",
+			"moduleType": 2,
+			"moduleName": "MediaRecorderErrorEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WeakMap": {
+			"name": "WeakMap",
+			"moduleType": 0,
+			"moduleName": "WeakMap",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"Uint16Array": {
+			"name": "Uint16Array",
+			"moduleType": 0,
+			"moduleName": "Uint16Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"PathSegCurvetoCubicSmoothAbs": {
+			"name": "PathSegCurvetoCubicSmoothAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoCubicSmoothAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"DeviceOrientationEvent": {
+			"name": "DeviceOrientationEvent",
+			"moduleType": 0,
+			"moduleName": "DeviceOrientationEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebAssembly": {
+			"name": "WebAssembly",
+			"moduleType": 0,
+			"moduleName": "WebAssembly",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"DelayNode": {
+			"name": "DelayNode",
+			"moduleType": 0,
+			"moduleName": "DelayNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"NodeFilter": {
+			"name": "NodeFilter",
+			"moduleType": 0,
+			"moduleName": "NodeFilter",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMRectList": {
+			"name": "DOMRectList",
+			"moduleType": 0,
+			"moduleName": "DOMRectList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLTableSectionElement": {
+			"name": "TableSectionElement",
+			"moduleType": 0,
+			"moduleName": "TableSectionElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegLinetoVerticalRel": {
+			"name": "PathSegLinetoVerticalRel",
+			"moduleType": 2,
+			"moduleName": "PathSegLinetoVerticalRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"DOMRequestReadyState": {
+			"name": "DOMRequestReadyState",
+			"moduleType": 3,
+			"moduleName": "DOMRequestReadyState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PermissionState": {
+			"name": "PermissionState",
+			"moduleType": 3,
+			"moduleName": "PermissionState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"URLSearchParams": {
+			"name": "URLSearchParams",
+			"moduleType": 0,
+			"moduleName": "URLSearchParams",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaSource": {
+			"name": "MediaSource",
+			"moduleType": 0,
+			"moduleName": "MediaSource",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"KeyframeAnimationOptions": {
+			"name": "KeyframeAnimationOptions",
+			"moduleType": 2,
+			"moduleName": "KeyframeAnimationOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MessageChannel": {
+			"name": "MessageChannel",
+			"moduleType": 0,
+			"moduleName": "MessageChannel",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ProcessingInstruction": {
+			"name": "ProcessingInstruction",
+			"moduleType": 0,
+			"moduleName": "ProcessingInstruction",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaStreamAudioSourceNode": {
+			"name": "MediaStreamAudioSourceNode",
+			"moduleType": 0,
+			"moduleName": "MediaStreamAudioSourceNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"VideoTrack": {
+			"name": "VideoTrack",
+			"moduleType": 0,
+			"moduleName": "VideoTrack",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLFormControlsCollection": {
+			"name": "HTMLFormControlsCollection",
+			"moduleType": 0,
+			"moduleName": "HTMLFormControlsCollection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"EXTColorBufferFloat": {
+			"name": "EXTColorBufferFloat",
+			"moduleType": 2,
+			"moduleName": "EXTColorBufferFloat",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"ImageCapture": {
+			"name": "ImageCapture",
+			"moduleType": 0,
+			"moduleName": "ImageCapture",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TransactionMode": {
+			"name": "TransactionMode",
+			"moduleType": 3,
+			"moduleName": "TransactionMode",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"MediaRecorder": {
+			"name": "MediaRecorder",
+			"moduleType": 0,
+			"moduleName": "MediaRecorder",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLAllCollection": {
+			"name": "HTMLAllCollection",
+			"moduleType": 0,
+			"moduleName": "HTMLAllCollection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"NotificationEvent": {
+			"name": "NotificationEvent",
+			"moduleType": 0,
+			"moduleName": "NotificationEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Window": {
+			"name": "Window",
+			"moduleType": 0,
+			"moduleName": "Window",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegCurvetoCubicRel": {
+			"name": "PathSegCurvetoCubicRel",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoCubicRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"MouseScrollEvent": {
+			"name": "MouseScrollEvent",
+			"moduleType": 0,
+			"moduleName": "MouseScrollEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IceConnectionState": {
+			"name": "IceConnectionState",
+			"moduleType": 3,
+			"moduleName": "IceConnectionState",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"ContextAttributes": {
+			"name": "ContextAttributes",
+			"moduleType": 2,
+			"moduleName": "ContextAttributes",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": false
+		},
+		"ImportExportKind": {
+			"name": "ImportExportKind",
+			"moduleType": 3,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"AbortSignal": {
+			"name": "AbortSignal",
+			"moduleType": 0,
+			"moduleName": "AbortSignal",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TextTrackCueList": {
+			"name": "TextTrackCueList",
+			"moduleType": 0,
+			"moduleName": "TextTrackCueList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MessageEventInit": {
+			"name": "MessageEventInit",
+			"moduleType": 2,
+			"moduleName": "MessageEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLSourceElement": {
+			"name": "SourceElement",
+			"moduleType": 0,
+			"moduleName": "SourceElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebAssembly.Module": {
+			"name": "Module",
+			"moduleType": 0,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"BaseAudioContext": {
+			"name": "BaseAudioContext",
+			"moduleType": 0,
+			"moduleName": "BaseAudioContext",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"OES_standard_derivatives": {
+			"name": "OESStandardDerivatives",
+			"moduleType": 0,
+			"moduleName": "OESStandardDerivatives",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"FileReaderSync": {
+			"name": "FileReaderSync",
+			"moduleType": 0,
+			"moduleName": "FileReaderSync",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BoundingBoxOptions": {
+			"name": "BoundingBoxOptions",
+			"moduleType": 2,
+			"moduleName": "BoundingBoxOptions",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"CloseEvent": {
+			"name": "CloseEvent",
+			"moduleType": 0,
+			"moduleName": "CloseEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TrackEvent": {
+			"name": "TrackEvent",
+			"moduleType": 0,
+			"moduleName": "TrackEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BeforeUnloadEvent": {
+			"name": "BeforeUnloadEvent",
+			"moduleType": 0,
+			"moduleName": "BeforeUnloadEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PushPermissionState": {
+			"name": "PushPermissionState",
+			"moduleType": 3,
+			"moduleName": "PushPermissionState",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"Clipboard": {
+			"name": "Clipboard",
+			"moduleType": 0,
+			"moduleName": "Clipboard",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaKeyMessageEvent": {
+			"name": "MediaKeyMessageEvent",
+			"moduleType": 0,
+			"moduleName": "MediaKeyMessageEvent",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"SVGTransformList": {
+			"name": "TransformList",
+			"moduleType": 0,
+			"moduleName": "TransformList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLParagraphElement": {
+			"name": "ParagraphElement",
+			"moduleType": 0,
+			"moduleName": "ParagraphElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OrientationType": {
+			"name": "OrientationType",
+			"moduleType": 3,
+			"moduleName": "OrientationType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PushSubscriptionJSON": {
+			"name": "PushSubscriptionJSON",
+			"moduleType": 2,
+			"moduleName": "PushSubscriptionJSON",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"WebGLTransformFeedback": {
+			"name": "TransformFeedback",
+			"moduleType": 0,
+			"moduleName": "TransformFeedback",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"HTMLDListElement": {
+			"name": "DListElement",
+			"moduleType": 0,
+			"moduleName": "DListElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSCounterStyleRule": {
+			"name": "CSSCounterStyleRule",
+			"moduleType": 0,
+			"moduleName": "CSSCounterStyleRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IdentityProviderRegistrar": {
+			"name": "IdentityProviderRegistrar",
+			"moduleType": 2,
+			"moduleName": "IdentityProviderRegistrar",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"Worker": {
+			"name": "Worker",
+			"moduleType": 0,
+			"moduleName": "Worker",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MIDIPortConnectionState": {
+			"name": "MIDIPortConnectionState",
+			"moduleType": 3,
+			"moduleName": "MIDIPortConnectionState",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": false
+		},
+		"MediaStreamTrack": {
+			"name": "MediaStreamTrack",
+			"moduleType": 0,
+			"moduleName": "MediaStreamTrack",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SignalingState": {
+			"name": "SignalingState",
+			"moduleType": 3,
+			"moduleName": "SignalingState",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"GlobalDescriptor": {
+			"name": "GlobalDescriptor",
+			"moduleType": 2,
+			"moduleName": "Global",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"RtpEncodingParameters": {
+			"name": "RtpEncodingParameters",
+			"moduleType": 2,
+			"moduleName": "RtpEncodingParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"Range": {
+			"name": "Range",
+			"moduleType": 0,
+			"moduleName": "Range",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Uint8ClampedArray": {
+			"name": "Uint8ClampedArray",
+			"moduleType": 0,
+			"moduleName": "Uint8ClampedArray",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"HTMLDataListElement": {
+			"name": "DataListElement",
+			"moduleType": 0,
+			"moduleName": "DataListElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MIDIMessageEventInit": {
+			"name": "MIDIMessageEventInit",
+			"moduleType": 2,
+			"moduleName": "MIDIMessageEventInit",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": false
+		},
+		"AutoKeyword": {
+			"name": "AutoKeyword",
+			"moduleType": 3,
+			"moduleName": "AutoKeyword",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"NavigationType": {
+			"name": "NavigationType",
+			"moduleType": 3,
+			"moduleName": "NavigationType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ChannelCountMode": {
+			"name": "ChannelCountMode",
+			"moduleType": 3,
+			"moduleName": "ChannelCountMode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"Extension": {
+			"name": "Extension",
+			"moduleType": 3,
+			"moduleName": "Extension",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": false
+		},
+		"TextTrackCue": {
+			"name": "TextTrackCue",
+			"moduleType": 0,
+			"moduleName": "TextTrackCue",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AddEventListenerOptions": {
+			"name": "AddEventListenerOptions",
+			"moduleType": 2,
+			"moduleName": "AddEventListenerOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGFEFloodElement": {
+			"name": "FEFloodElement",
+			"moduleType": 0,
+			"moduleName": "FEFloodElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Selection": {
+			"name": "Selection",
+			"moduleType": 0,
+			"moduleName": "Selection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGTextPathElement": {
+			"name": "TextPathElement",
+			"moduleType": 0,
+			"moduleName": "TextPathElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"MediaStreamTrackEventInit": {
+			"name": "MediaStreamTrackEventInit",
+			"moduleType": 2,
+			"moduleName": "MediaStreamTrackEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaEncryptedEvent": {
+			"name": "MediaEncryptedEvent",
+			"moduleType": 0,
+			"moduleName": "MediaEncryptedEvent",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedNumberList": {
+			"name": "AnimatedNumberList",
+			"moduleType": 0,
+			"moduleName": "AnimatedNumberList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RtpSynchronizationSource": {
+			"name": "RtpSynchronizationSource",
+			"moduleType": 2,
+			"moduleName": "RtpSynchronizationSource",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"ImageBitmapFormat": {
+			"name": "ImageBitmapFormat",
+			"moduleType": 3,
+			"moduleName": "ImageBitmapFormat",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Crypto": {
+			"name": "Crypto",
+			"moduleType": 0,
+			"moduleName": "Crypto",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PeriodicWaveConstraints": {
+			"name": "PeriodicWaveConstraints",
+			"moduleType": 2,
+			"moduleName": "PeriodicWaveConstraints",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"FileSystem": {
+			"name": "FileSystem",
+			"moduleType": 0,
+			"moduleName": "FileSystem",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PerformanceNavigationTiming": {
+			"name": "PerformanceNavigationTiming",
+			"moduleType": 0,
+			"moduleName": "PerformanceNavigationTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSKeyframeRule": {
+			"name": "CSSKeyframeRule",
+			"moduleType": 0,
+			"moduleName": "CSSKeyframeRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGCircleElement": {
+			"name": "CircleElement",
+			"moduleType": 0,
+			"moduleName": "CircleElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Option": {
+			"name": "Option",
+			"moduleType": 0,
+			"moduleName": "Option",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OverSampleType": {
+			"name": "OverSampleType",
+			"moduleType": 3,
+			"moduleName": "OverSampleType",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"HTMLPropertiesCollection": {
+			"name": "HTMLPropertiesCollection",
+			"moduleType": 0,
+			"moduleName": "HTMLPropertiesCollection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"VTTCue": {
+			"name": "VTTCue",
+			"moduleType": 0,
+			"moduleName": "VTTCue",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RTCTrackEvent": {
+			"name": "TrackEvent",
+			"moduleType": 0,
+			"moduleName": "TrackEvent",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"IndexParameters": {
+			"name": "IndexParameters",
+			"moduleType": 2,
+			"moduleName": "IndexParameters",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"PushEncryptionKeyName": {
+			"name": "PushEncryptionKeyName",
+			"moduleType": 3,
+			"moduleName": "PushEncryptionKeyName",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"ScrollIntoViewOptions": {
+			"name": "ScrollIntoViewOptions",
+			"moduleType": 2,
+			"moduleName": "ScrollIntoViewOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PushSubscriptionInit": {
+			"name": "PushSubscriptionInit",
+			"moduleType": 2,
+			"moduleName": "PushSubscriptionInit",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"Permissions": {
+			"name": "Permissions",
+			"moduleType": 0,
+			"moduleName": "Permissions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OES_vertex_array_object": {
+			"name": "OESVertexArrayObject",
+			"moduleType": 0,
+			"moduleName": "OESVertexArrayObject",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"CanvasCaptureMediaStream": {
+			"name": "CanvasCaptureMediaStream",
+			"moduleType": 0,
+			"moduleName": "CanvasCaptureMediaStream",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DTMFToneChangeEventInit": {
+			"name": "DTMFToneChangeEventInit",
+			"moduleType": 2,
+			"moduleName": "DTMFToneChangeEventInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"HTMLTableCaptionElement": {
+			"name": "TableCaptionElement",
+			"moduleType": 0,
+			"moduleName": "TableCaptionElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RTCDTMFSender": {
+			"name": "DTMFSender",
+			"moduleType": 0,
+			"moduleName": "DTMFSender",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"SVGForeignObjectElement": {
+			"name": "ForeignObjectElement",
+			"moduleType": 0,
+			"moduleName": "ForeignObjectElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"WaveShaperOptions": {
+			"name": "WaveShaperOptions",
+			"moduleType": 2,
+			"moduleName": "WaveShaperOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"Float64Array": {
+			"name": "Float64Array",
+			"moduleType": 0,
+			"moduleName": "Float64Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"IDBFileHandle": {
+			"name": "FileHandle",
+			"moduleType": 0,
+			"moduleName": "FileHandle",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"EXT_disjoint_timer_query": {
+			"name": "EXTDisjointTimerQuery",
+			"moduleType": 0,
+			"moduleName": "EXTDisjointTimerQuery",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"DataChannelType": {
+			"name": "DataChannelType",
+			"moduleType": 3,
+			"moduleName": "DataChannelType",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"Element": {
+			"name": "DOMElement",
+			"moduleType": 0,
+			"moduleName": "DOMElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Cache": {
+			"name": "Cache",
+			"moduleType": 0,
+			"moduleName": "Cache",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SourceBufferAppendMode": {
+			"name": "SourceBufferAppendMode",
+			"moduleType": 3,
+			"moduleName": "SourceBufferAppendMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PerformanceServerTiming": {
+			"name": "PerformanceServerTiming",
+			"moduleType": 0,
+			"moduleName": "PerformanceServerTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGSwitchElement": {
+			"name": "SwitchElement",
+			"moduleType": 0,
+			"moduleName": "SwitchElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"MIDIPort": {
+			"name": "MIDIPort",
+			"moduleType": 0,
+			"moduleName": "MIDIPort",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"SVGZoomAndPan": {
+			"name": "ZoomAndPan",
+			"moduleType": 0,
+			"moduleName": "ZoomAndPan",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"XMLHttpRequestEventTarget": {
+			"name": "XMLHttpRequestEventTarget",
+			"moduleType": 0,
+			"moduleName": "XMLHttpRequestEventTarget",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Function": {
+			"name": "Function",
+			"moduleType": 0,
+			"moduleName": "Function",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognitionErrorCode": {
+			"name": "SpeechRecognitionErrorCode",
+			"moduleType": 3,
+			"moduleName": "SpeechRecognitionErrorCode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"RTCDataChannel": {
+			"name": "DataChannel",
+			"moduleType": 0,
+			"moduleName": "DataChannel",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"IdentityAssertionResult": {
+			"name": "IdentityAssertionResult",
+			"moduleType": 2,
+			"moduleName": "IdentityAssertionResult",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"DeviceOrientationEventInit": {
+			"name": "DeviceOrientationEventInit",
+			"moduleType": 2,
+			"moduleName": "DeviceOrientationEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"TimeRanges": {
+			"name": "TimeRanges",
+			"moduleType": 0,
+			"moduleName": "TimeRanges",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ScrollToOptions": {
+			"name": "ScrollToOptions",
+			"moduleType": 2,
+			"moduleName": "ScrollToOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"OfflineAudioContextOptions": {
+			"name": "OfflineAudioContextOptions",
+			"moduleType": 2,
+			"moduleName": "OfflineAudioContextOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"XMLHttpRequestResponseType": {
+			"name": "XMLHttpRequestResponseType",
+			"moduleType": 3,
+			"moduleName": "XMLHttpRequestResponseType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SubtleCrypto": {
+			"name": "SubtleCrypto",
+			"moduleType": 0,
+			"moduleName": "SubtleCrypto",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLSpanElement": {
+			"name": "SpanElement",
+			"moduleType": 0,
+			"moduleName": "SpanElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RtpTransceiverInit": {
+			"name": "RtpTransceiverInit",
+			"moduleType": 2,
+			"moduleName": "RtpTransceiverInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"PathSegCurvetoQuadraticRel": {
+			"name": "PathSegCurvetoQuadraticRel",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoQuadraticRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"DeviceAccelerationInit": {
+			"name": "DeviceAccelerationInit",
+			"moduleType": 2,
+			"moduleName": "DeviceAccelerationInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"DateTimeFormatResolvedOptions": {
+			"name": "DateTimeFormatResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"ExtendableMessageEvent": {
+			"name": "ExtendableMessageEvent",
+			"moduleType": 0,
+			"moduleName": "ExtendableMessageEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLFrameSetElement": {
+			"name": "FrameSetElement",
+			"moduleType": 0,
+			"moduleName": "FrameSetElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BiquadFilterOptions": {
+			"name": "BiquadFilterOptions",
+			"moduleType": 2,
+			"moduleName": "BiquadFilterOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"SVGImageElement": {
+			"name": "ImageElement",
+			"moduleType": 0,
+			"moduleName": "ImageElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"MediaStreamEventInit": {
+			"name": "MediaStreamEventInit",
+			"moduleType": 2,
+			"moduleName": "MediaStreamEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"GainNode": {
+			"name": "GainNode",
+			"moduleType": 0,
+			"moduleName": "GainNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"ConvolverOptions": {
+			"name": "ConvolverOptions",
+			"moduleType": 2,
+			"moduleName": "ConvolverOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"SVGPolygonElement": {
+			"name": "PolygonElement",
+			"moduleType": 0,
+			"moduleName": "PolygonElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognitionAlternative": {
+			"name": "SpeechRecognitionAlternative",
+			"moduleType": 0,
+			"moduleName": "SpeechRecognitionAlternative",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"UIEventInit": {
+			"name": "UIEventInit",
+			"moduleType": 2,
+			"moduleName": "UIEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PathSegArcRel": {
+			"name": "PathSegArcRel",
+			"moduleType": 2,
+			"moduleName": "PathSegArcRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"WebSocket": {
+			"name": "WebSocket",
+			"moduleType": 0,
+			"moduleName": "WebSocket",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLLegendElement": {
+			"name": "LegendElement",
+			"moduleType": 0,
+			"moduleName": "LegendElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ErrorEvent": {
+			"name": "ErrorEvent",
+			"moduleType": 0,
+			"moduleName": "ErrorEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognitionEvent": {
+			"name": "SpeechRecognitionEvent",
+			"moduleType": 0,
+			"moduleName": "SpeechRecognitionEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TouchEventInit": {
+			"name": "TouchEventInit",
+			"moduleType": 2,
+			"moduleName": "TouchEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"IceCredentialType": {
+			"name": "IceCredentialType",
+			"moduleType": 3,
+			"moduleName": "IceCredentialType",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"SVGRadialGradientElement": {
+			"name": "RadialGradientElement",
+			"moduleType": 0,
+			"moduleName": "RadialGradientElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Thenable": {
+			"name": "Thenable",
+			"moduleType": 3,
+			"moduleName": "Promise",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"ShadowRootMode": {
+			"name": "ShadowRootMode",
+			"moduleType": 3,
+			"moduleName": "ShadowRootMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CanvasWindingRule": {
+			"name": "CanvasWindingRule",
+			"moduleType": 3,
+			"moduleName": "CanvasWindingRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGFEFuncRElement": {
+			"name": "FEFuncRElement",
+			"moduleType": 0,
+			"moduleName": "FEFuncRElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RequestCredentials": {
+			"name": "RequestCredentials",
+			"moduleType": 3,
+			"moduleName": "RequestCredentials",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CryptoKey": {
+			"name": "CryptoKey",
+			"moduleType": 0,
+			"moduleName": "CryptoKey",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFEFuncAElement": {
+			"name": "FEFuncAElement",
+			"moduleType": 0,
+			"moduleName": "FEFuncAElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SourceBuffer": {
+			"name": "SourceBuffer",
+			"moduleType": 0,
+			"moduleName": "SourceBuffer",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognitionEventInit": {
+			"name": "SpeechRecognitionEventInit",
+			"moduleType": 2,
+			"moduleName": "SpeechRecognitionEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Int32Array": {
+			"name": "Int32Array",
+			"moduleType": 0,
+			"moduleName": "Int32Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"Uint32Array": {
+			"name": "Uint32Array",
+			"moduleType": 0,
+			"moduleName": "Uint32Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"WebGLSync": {
+			"name": "Sync",
+			"moduleType": 0,
+			"moduleName": "Sync",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"ResponseType": {
+			"name": "ResponseType",
+			"moduleType": 3,
+			"moduleName": "ResponseType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"AlignSetting": {
+			"name": "AlignSetting",
+			"moduleType": 3,
+			"moduleName": "AlignSetting",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"DirectionSetting": {
+			"name": "DirectionSetting",
+			"moduleType": 3,
+			"moduleName": "DirectionSetting",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLOListElement": {
+			"name": "OListElement",
+			"moduleType": 0,
+			"moduleName": "OListElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PaintWorkletGlobalScope": {
+			"name": "PaintWorkletGlobalScope",
+			"moduleType": 0,
+			"moduleName": "PaintWorkletGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PushEvent": {
+			"name": "PushEvent",
+			"moduleType": 0,
+			"moduleName": "PushEvent",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": true
+		},
+		"PerformanceResourceTiming": {
+			"name": "PerformanceResourceTiming",
+			"moduleType": 0,
+			"moduleName": "PerformanceResourceTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CustomEvent": {
+			"name": "CustomEvent",
+			"moduleType": 0,
+			"moduleName": "CustomEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PannerOptions": {
+			"name": "PannerOptions",
+			"moduleType": 2,
+			"moduleName": "PannerOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"MediaTrackConstraints": {
+			"name": "MediaTrackConstraints",
+			"moduleType": 2,
+			"moduleName": "MediaTrackConstraints",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"IntlUtils": {
+			"name": "IntlUtils",
+			"moduleType": 2,
+			"moduleName": "IntlUtils",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"LocalMediaStream": {
+			"name": "LocalMediaStream",
+			"moduleType": 0,
+			"moduleName": "LocalMediaStream",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ScrollSetting": {
+			"name": "ScrollSetting",
+			"moduleType": 3,
+			"moduleName": "ScrollSetting",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"IdentityProviderOptions": {
+			"name": "IdentityProviderOptions",
+			"moduleType": 2,
+			"moduleName": "IdentityProviderOptions",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"ExtendableMessageEventInit": {
+			"name": "ExtendableMessageEventInit",
+			"moduleType": 2,
+			"moduleName": "ExtendableMessageEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLBodyElement": {
+			"name": "BodyElement",
+			"moduleType": 0,
+			"moduleName": "BodyElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HashChangeEventInit": {
+			"name": "HashChangeEventInit",
+			"moduleType": 2,
+			"moduleName": "HashChangeEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ServiceWorkerContainer": {
+			"name": "ServiceWorkerContainer",
+			"moduleType": 0,
+			"moduleName": "ServiceWorkerContainer",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"EXT_color_buffer_half_float": {
+			"name": "EXTColorBufferHalfFloat",
+			"moduleType": 0,
+			"moduleName": "EXTColorBufferHalfFloat",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"TextTrackMode": {
+			"name": "TextTrackMode",
+			"moduleType": 3,
+			"moduleName": "TextTrackMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ErrorEventInit": {
+			"name": "ErrorEventInit",
+			"moduleType": 2,
+			"moduleName": "ErrorEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ClientType": {
+			"name": "ClientType",
+			"moduleType": 3,
+			"moduleName": "ClientType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaSourceReadyState": {
+			"name": "MediaSourceReadyState",
+			"moduleType": 3,
+			"moduleName": "MediaSourceReadyState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"DynamicsCompressorOptions": {
+			"name": "DynamicsCompressorOptions",
+			"moduleType": 2,
+			"moduleName": "DynamicsCompressorOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"HTMLDetailsElement": {
+			"name": "DetailsElement",
+			"moduleType": 0,
+			"moduleName": "DetailsElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegArcAbs": {
+			"name": "PathSegArcAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegArcAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"MIDIPortType": {
+			"name": "MIDIPortType",
+			"moduleType": 3,
+			"moduleName": "MIDIPortType",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": false
+		},
+		"MediaKeyStatusMapIterator": {
+			"name": "MediaKeyStatusMapIterator",
+			"moduleType": 2,
+			"moduleName": "MediaKeyStatusMapIterator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"AnimationPlaybackEvent": {
+			"name": "AnimationPlaybackEvent",
+			"moduleType": 0,
+			"moduleName": "AnimationPlaybackEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"NamedNodeMap": {
+			"name": "NamedNodeMap",
+			"moduleType": 0,
+			"moduleName": "NamedNodeMap",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegClosePath": {
+			"name": "PathSegClosePath",
+			"moduleType": 2,
+			"moduleName": "PathSegClosePath",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"TransitionEventInit": {
+			"name": "TransitionEventInit",
+			"moduleType": 2,
+			"moduleName": "TransitionEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"XMLDocument": {
+			"name": "XMLDocument",
+			"moduleType": 0,
+			"moduleName": "XMLDocument",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SyntaxError": {
+			"name": "SyntaxError",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"HTMLLIElement": {
+			"name": "LIElement",
+			"moduleType": 0,
+			"moduleName": "LIElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PerformanceNavigation": {
+			"name": "PerformanceNavigation",
+			"moduleType": 0,
+			"moduleName": "PerformanceNavigation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BarProp": {
+			"name": "BarProp",
+			"moduleType": 0,
+			"moduleName": "BarProp",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFESpotLightElement": {
+			"name": "FESpotLightElement",
+			"moduleType": 0,
+			"moduleName": "FESpotLightElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"AnimationPlaybackEventInit": {
+			"name": "AnimationPlaybackEventInit",
+			"moduleType": 2,
+			"moduleName": "AnimationPlaybackEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ChannelMergerOptions": {
+			"name": "ChannelMergerOptions",
+			"moduleType": 2,
+			"moduleName": "ChannelMergerOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"EventListenerOptions": {
+			"name": "EventListenerOptions",
+			"moduleType": 2,
+			"moduleName": "EventListenerOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ClientQueryOptions": {
+			"name": "ClientQueryOptions",
+			"moduleType": 2,
+			"moduleName": "ClientQueryOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"GamepadEvent": {
+			"name": "GamepadEvent",
+			"moduleType": 0,
+			"moduleName": "GamepadEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TextTrackKind": {
+			"name": "TextTrackKind",
+			"moduleType": 3,
+			"moduleName": "TextTrackKind",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaKeySystemMediaCapability": {
+			"name": "MediaKeySystemMediaCapability",
+			"moduleType": 2,
+			"moduleName": "MediaKeySystemMediaCapability",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"RtpHeaderExtensionParameters": {
+			"name": "RtpHeaderExtensionParameters",
+			"moduleType": 2,
+			"moduleName": "RtpHeaderExtensionParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"MediaStream": {
+			"name": "MediaStream",
+			"moduleType": 0,
+			"moduleName": "MediaStream",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TextDecodeOptions": {
+			"name": "TextDecodeOptions",
+			"moduleType": 2,
+			"moduleName": "TextDecodeOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"IceServer": {
+			"name": "IceServer",
+			"moduleType": 2,
+			"moduleName": "IceServer",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"CSSFontFeatureValuesRule": {
+			"name": "CSSFontFeatureValuesRule",
+			"moduleType": 0,
+			"moduleName": "CSSFontFeatureValuesRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileSystemDirectoryReader": {
+			"name": "FileSystemDirectoryReader",
+			"moduleType": 0,
+			"moduleName": "FileSystemDirectoryReader",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLAreaElement": {
+			"name": "AreaElement",
+			"moduleType": 0,
+			"moduleName": "AreaElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"VersionChangeEventInit": {
+			"name": "VersionChangeEventInit",
+			"moduleType": 2,
+			"moduleName": "VersionChangeEventInit",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"HTMLPreElement": {
+			"name": "PreElement",
+			"moduleType": 0,
+			"moduleName": "PreElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"NotificationEventInit": {
+			"name": "NotificationEventInit",
+			"moduleType": 2,
+			"moduleName": "NotificationEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SpeechSynthesisUtterance": {
+			"name": "SpeechSynthesisUtterance",
+			"moduleType": 0,
+			"moduleName": "SpeechSynthesisUtterance",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSStyleSheet": {
+			"name": "CSSStyleSheet",
+			"moduleType": 0,
+			"moduleName": "CSSStyleSheet",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RequestCache": {
+			"name": "RequestCache",
+			"moduleType": 3,
+			"moduleName": "RequestCache",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"DOMQuadJSON": {
+			"name": "DOMQuadJSON",
+			"moduleType": 2,
+			"moduleName": "DOMQuadJSON",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SecurityPolicyViolationEventInit": {
+			"name": "SecurityPolicyViolationEventInit",
+			"moduleType": 2,
+			"moduleName": "SecurityPolicyViolationEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"OfflineAudioCompletionEvent": {
+			"name": "OfflineAudioCompletionEvent",
+			"moduleType": 0,
+			"moduleName": "OfflineAudioCompletionEvent",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"HTMLTableColElement": {
+			"name": "TableColElement",
+			"moduleType": 0,
+			"moduleName": "TableColElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaKeyError": {
+			"name": "MediaKeyError",
+			"moduleType": 0,
+			"moduleName": "MediaKeyError",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"MediaElementAudioSourceOptions": {
+			"name": "MediaElementAudioSourceOptions",
+			"moduleType": 2,
+			"moduleName": "MediaElementAudioSourceOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"SVGPreserveAspectRatio": {
+			"name": "PreserveAspectRatio",
+			"moduleType": 0,
+			"moduleName": "PreserveAspectRatio",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"DOMRequest": {
+			"name": "DOMRequest",
+			"moduleType": 0,
+			"moduleName": "DOMRequest",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"VideoPlaybackQuality": {
+			"name": "VideoPlaybackQuality",
+			"moduleType": 0,
+			"moduleName": "VideoPlaybackQuality",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ModuleImportDescriptor": {
+			"name": "ModuleImportDescriptor",
+			"moduleType": 2,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"SVGUnitTypes": {
+			"name": "UnitTypes",
+			"moduleType": 0,
+			"moduleName": "UnitTypes",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RtpParameters": {
+			"name": "RtpParameters",
+			"moduleType": 2,
+			"moduleName": "RtpParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"EXT_blend_minmax": {
+			"name": "EXTBlendMinmax",
+			"moduleType": 0,
+			"moduleName": "EXTBlendMinmax",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"ReferrerPolicy": {
+			"name": "ReferrerPolicy",
+			"moduleType": 3,
+			"moduleName": "ReferrerPolicy",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaKeySessionType": {
+			"name": "MediaKeySessionType",
+			"moduleType": 3,
+			"moduleName": "MediaKeySessionType",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"MediaTrackSettings": {
+			"name": "MediaTrackSettings",
+			"moduleType": 2,
+			"moduleName": "MediaTrackSettings",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ReferenceError": {
+			"name": "ReferenceError",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"WebAssembly.LinkError": {
+			"name": "LinkError",
+			"moduleType": 0,
+			"moduleName": "LinkError",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"PopStateEventInit": {
+			"name": "PopStateEventInit",
+			"moduleType": 2,
+			"moduleName": "PopStateEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MinuteRepresentation": {
+			"name": "MinuteRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"DataChannelState": {
+			"name": "DataChannelState",
+			"moduleType": 3,
+			"moduleName": "DataChannelState",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"DataChannelEventInit": {
+			"name": "DataChannelEventInit",
+			"moduleType": 2,
+			"moduleName": "DataChannelEventInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"ValueType": {
+			"name": "ValueType",
+			"moduleType": 3,
+			"moduleName": "Global",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"SVGFEMorphologyElement": {
+			"name": "FEMorphologyElement",
+			"moduleType": 0,
+			"moduleName": "FEMorphologyElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RTCDataChannelEvent": {
+			"name": "DataChannelEvent",
+			"moduleType": 0,
+			"moduleName": "DataChannelEvent",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"RecordingState": {
+			"name": "RecordingState",
+			"moduleType": 3,
+			"moduleName": "RecordingState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Map": {
+			"name": "Map",
+			"moduleType": 0,
+			"moduleName": "Map",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"DataView": {
+			"name": "DataView",
+			"moduleType": 0,
+			"moduleName": "DataView",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"EndingTypes": {
+			"name": "EndingTypes",
+			"moduleType": 3,
+			"moduleName": "EndingTypes",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MIDIOutput": {
+			"name": "MIDIOutput",
+			"moduleType": 0,
+			"moduleName": "MIDIOutput",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"HTMLTableCellElement": {
+			"name": "TableCellElement",
+			"moduleType": 0,
+			"moduleName": "TableCellElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSTransition": {
+			"name": "CSSTransition",
+			"moduleType": 0,
+			"moduleName": "CSSTransition",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"XPathExpression": {
+			"name": "XPathExpression",
+			"moduleType": 0,
+			"moduleName": "XPathExpression",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGClipPathElement": {
+			"name": "ClipPathElement",
+			"moduleType": 0,
+			"moduleName": "ClipPathElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"CSSImportRule": {
+			"name": "CSSImportRule",
+			"moduleType": 0,
+			"moduleName": "CSSImportRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGEllipseElement": {
+			"name": "EllipseElement",
+			"moduleType": 0,
+			"moduleName": "EllipseElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"DegradationPreference": {
+			"name": "DegradationPreference",
+			"moduleType": 3,
+			"moduleName": "DegradationPreference",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"HTMLUnknownElement": {
+			"name": "UnknownElement",
+			"moduleType": 0,
+			"moduleName": "UnknownElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGMaskElement": {
+			"name": "MaskElement",
+			"moduleType": 0,
+			"moduleName": "MaskElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"OfferOptions": {
+			"name": "OfferOptions",
+			"moduleType": 2,
+			"moduleName": "OfferOptions",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"DynamicsCompressorNode": {
+			"name": "DynamicsCompressorNode",
+			"moduleType": 0,
+			"moduleName": "DynamicsCompressorNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"IterationCompositeOperation": {
+			"name": "IterationCompositeOperation",
+			"moduleType": 3,
+			"moduleName": "IterationCompositeOperation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CompositionEvent": {
+			"name": "CompositionEvent",
+			"moduleType": 0,
+			"moduleName": "CompositionEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AnimationEvent": {
+			"name": "AnimationEvent",
+			"moduleType": 0,
+			"moduleName": "AnimationEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ConvertCoordinateOptions": {
+			"name": "ConvertCoordinateOptions",
+			"moduleType": 2,
+			"moduleName": "ConvertCoordinateOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaKeySystemAccess": {
+			"name": "MediaKeySystemAccess",
+			"moduleType": 0,
+			"moduleName": "MediaKeySystemAccess",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"HTMLObjectElement": {
+			"name": "ObjectElement",
+			"moduleType": 0,
+			"moduleName": "ObjectElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WEBGL_depth_texture": {
+			"name": "WEBGLDepthTexture",
+			"moduleType": 0,
+			"moduleName": "WEBGLDepthTexture",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"IDBFactory": {
+			"name": "Factory",
+			"moduleType": 0,
+			"moduleName": "Factory",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedAngle": {
+			"name": "AnimatedAngle",
+			"moduleType": 0,
+			"moduleName": "AnimatedAngle",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IntersectionObserverEntry": {
+			"name": "IntersectionObserverEntry",
+			"moduleType": 0,
+			"moduleName": "IntersectionObserverEntry",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLDataElement": {
+			"name": "DataElement",
+			"moduleType": 0,
+			"moduleName": "DataElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLMediaElement": {
+			"name": "MediaElement",
+			"moduleType": 0,
+			"moduleName": "MediaElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ImageBitmap": {
+			"name": "ImageBitmap",
+			"moduleType": 0,
+			"moduleName": "ImageBitmap",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CompositionEventInit": {
+			"name": "CompositionEventInit",
+			"moduleType": 2,
+			"moduleName": "CompositionEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ImageData": {
+			"name": "ImageData",
+			"moduleType": 0,
+			"moduleName": "ImageData",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RTCIceCandidate": {
+			"name": "IceCandidate",
+			"moduleType": 0,
+			"moduleName": "IceCandidate",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"SVGAnimationElement": {
+			"name": "AnimationElement",
+			"moduleType": 0,
+			"moduleName": "AnimationElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Set": {
+			"name": "Set",
+			"moduleType": 0,
+			"moduleName": "Set",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"PriorityType": {
+			"name": "PriorityType",
+			"moduleType": 3,
+			"moduleName": "PriorityType",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"MediaSourceEndOfStreamError": {
+			"name": "MediaSourceEndOfStreamError",
+			"moduleType": 3,
+			"moduleName": "MediaSourceEndOfStreamError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FileSystemFlags": {
+			"name": "FileSystemFlags",
+			"moduleType": 2,
+			"moduleName": "FileSystemFlags",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WeekdayRepresentation": {
+			"name": "WeekdayRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"RequestDestination": {
+			"name": "RequestDestination",
+			"moduleType": 3,
+			"moduleName": "RequestDestination",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CSSStyleDeclaration": {
+			"name": "CSSStyleDeclaration",
+			"moduleType": 0,
+			"moduleName": "CSSStyleDeclaration",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Blob": {
+			"name": "Blob",
+			"moduleType": 0,
+			"moduleName": "Blob",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BlobPropertyBag": {
+			"name": "BlobPropertyBag",
+			"moduleType": 2,
+			"moduleName": "BlobPropertyBag",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PathSegLinetoAbs": {
+			"name": "PathSegLinetoAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegLinetoAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"AnalyserOptions": {
+			"name": "AnalyserOptions",
+			"moduleType": 2,
+			"moduleName": "AnalyserOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"ContextEventInit": {
+			"name": "ContextEventInit",
+			"moduleType": 2,
+			"moduleName": "ContextEventInit",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": false
+		},
+		"CSSMozDocumentRule": {
+			"name": "CSSMozDocumentRule",
+			"moduleType": 0,
+			"moduleName": "CSSMozDocumentRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGStringList": {
+			"name": "StringList",
+			"moduleType": 0,
+			"moduleName": "StringList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGFEMergeNodeElement": {
+			"name": "FEMergeNodeElement",
+			"moduleType": 0,
+			"moduleName": "FEMergeNodeElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"DOMPoint": {
+			"name": "DOMPoint",
+			"moduleType": 0,
+			"moduleName": "DOMPoint",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Promise": {
+			"name": "Promise",
+			"moduleType": 0,
+			"moduleName": "Promise",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"ConstrainDOMStringParameters": {
+			"name": "ConstrainDOMStringParameters",
+			"moduleType": 2,
+			"moduleName": "ConstrainDOMStringParameters",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ImageCaptureErrorEventInit": {
+			"name": "ImageCaptureErrorEventInit",
+			"moduleType": 2,
+			"moduleName": "ImageCaptureErrorEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PathSegCurvetoCubicAbs": {
+			"name": "PathSegCurvetoCubicAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoCubicAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"AudioNodeOptions": {
+			"name": "AudioNodeOptions",
+			"moduleType": 2,
+			"moduleName": "AudioNodeOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"ObjectStoreParameters": {
+			"name": "ObjectStoreParameters",
+			"moduleType": 2,
+			"moduleName": "ObjectStoreParameters",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"DateTimeFormatPartType": {
+			"name": "DateTimeFormatPartType",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"SVGFEDiffuseLightingElement": {
+			"name": "FEDiffuseLightingElement",
+			"moduleType": 0,
+			"moduleName": "FEDiffuseLightingElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HourRepresentation": {
+			"name": "HourRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"PopupBlockedEvent": {
+			"name": "PopupBlockedEvent",
+			"moduleType": 0,
+			"moduleName": "PopupBlockedEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ImageCaptureErrorEvent": {
+			"name": "ImageCaptureErrorEvent",
+			"moduleType": 0,
+			"moduleName": "ImageCaptureErrorEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLButtonElement": {
+			"name": "ButtonElement",
+			"moduleType": 0,
+			"moduleName": "ButtonElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGLineElement": {
+			"name": "LineElement",
+			"moduleType": 0,
+			"moduleName": "LineElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Node": {
+			"name": "Node",
+			"moduleType": 0,
+			"moduleName": "Node",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TouchEvent": {
+			"name": "TouchEvent",
+			"moduleType": 0,
+			"moduleName": "TouchEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IDBKeyRange": {
+			"name": "KeyRange",
+			"moduleType": 0,
+			"moduleName": "KeyRange",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"CSSRule": {
+			"name": "CSSRule",
+			"moduleType": 0,
+			"moduleName": "CSSRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AnimationPlayState": {
+			"name": "AnimationPlayState",
+			"moduleType": 3,
+			"moduleName": "AnimationPlayState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGFECompositeElement": {
+			"name": "FECompositeElement",
+			"moduleType": 0,
+			"moduleName": "FECompositeElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"OpenDBOptions": {
+			"name": "OpenDBOptions",
+			"moduleType": 2,
+			"moduleName": "OpenDBOptions",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"Math": {
+			"name": "Math",
+			"moduleType": 0,
+			"moduleName": "Math",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedLength": {
+			"name": "AnimatedLength",
+			"moduleType": 0,
+			"moduleName": "AnimatedLength",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"XPathEvaluator": {
+			"name": "XPathEvaluator",
+			"moduleType": 0,
+			"moduleName": "XPathEvaluator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ScrollRestoration": {
+			"name": "ScrollRestoration",
+			"moduleType": 3,
+			"moduleName": "ScrollRestoration",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SpeechSynthesisEvent": {
+			"name": "SpeechSynthesisEvent",
+			"moduleType": 0,
+			"moduleName": "SpeechSynthesisEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CustomEventInit": {
+			"name": "CustomEventInit",
+			"moduleType": 2,
+			"moduleName": "CustomEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WebGLRenderingContext": {
+			"name": "RenderingContext",
+			"moduleType": 0,
+			"moduleName": "RenderingContext",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"VisibilityState": {
+			"name": "VisibilityState",
+			"moduleType": 3,
+			"moduleName": "VisibilityState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"AudioBufferSourceNode": {
+			"name": "AudioBufferSourceNode",
+			"moduleType": 0,
+			"moduleName": "AudioBufferSourceNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"DeviceMotionEventInit": {
+			"name": "DeviceMotionEventInit",
+			"moduleType": 2,
+			"moduleName": "DeviceMotionEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaQueryListEventInit": {
+			"name": "MediaQueryListEventInit",
+			"moduleType": 2,
+			"moduleName": "MediaQueryListEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PannerNode": {
+			"name": "PannerNode",
+			"moduleType": 0,
+			"moduleName": "PannerNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"NotificationPermission": {
+			"name": "NotificationPermission",
+			"moduleType": 3,
+			"moduleName": "NotificationPermission",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGElement": {
+			"name": "Element",
+			"moduleType": 0,
+			"moduleName": "Element",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"FontFaceSet": {
+			"name": "FontFaceSet",
+			"moduleType": 0,
+			"moduleName": "FontFaceSet",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ExtendableEventInit": {
+			"name": "ExtendableEventInit",
+			"moduleType": 2,
+			"moduleName": "ExtendableEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Int8Array": {
+			"name": "Int8Array",
+			"moduleType": 0,
+			"moduleName": "Int8Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"Collation": {
+			"name": "Collation",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"ShadowRootInit": {
+			"name": "ShadowRootInit",
+			"moduleType": 2,
+			"moduleName": "ShadowRootInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WorkletGlobalScope": {
+			"name": "WorkletGlobalScope",
+			"moduleType": 0,
+			"moduleName": "WorkletGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DisplayNameResult": {
+			"name": "DisplayNameResult",
+			"moduleType": 2,
+			"moduleName": "DisplayNameResult",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PathSegCurvetoQuadraticSmoothAbs": {
+			"name": "PathSegCurvetoQuadraticSmoothAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoQuadraticSmoothAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"PathSegLinetoVerticalAbs": {
+			"name": "PathSegLinetoVerticalAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegLinetoVerticalAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"DocumentFragment": {
+			"name": "DocumentFragment",
+			"moduleType": 0,
+			"moduleName": "DocumentFragment",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ConstrainBooleanParameters": {
+			"name": "ConstrainBooleanParameters",
+			"moduleType": 2,
+			"moduleName": "ConstrainBooleanParameters",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"NumberFormatResolvedOption": {
+			"name": "NumberFormatResolvedOption",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"MapEntry": {
+			"name": "MapEntry",
+			"moduleType": 3,
+			"moduleName": "Map",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"FileMode": {
+			"name": "FileMode",
+			"moduleType": 3,
+			"moduleName": "FileMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SecondRepresentation": {
+			"name": "SecondRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"HTMLFrameElement": {
+			"name": "FrameElement",
+			"moduleType": 0,
+			"moduleName": "FrameElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IIRFilterOptions": {
+			"name": "IIRFilterOptions",
+			"moduleType": 2,
+			"moduleName": "IIRFilterOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"Error": {
+			"name": "Error",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"PushSubscriptionKeys": {
+			"name": "PushSubscriptionKeys",
+			"moduleType": 2,
+			"moduleName": "PushSubscriptionKeys",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"Attr": {
+			"name": "Attr",
+			"moduleType": 0,
+			"moduleName": "Attr",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMParser": {
+			"name": "DOMParser",
+			"moduleType": 0,
+			"moduleName": "DOMParser",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AudioDestinationNode": {
+			"name": "AudioDestinationNode",
+			"moduleType": 0,
+			"moduleName": "AudioDestinationNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"HTMLDirectoryElement": {
+			"name": "DirectoryElement",
+			"moduleType": 0,
+			"moduleName": "DirectoryElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMStringList": {
+			"name": "DOMStringList",
+			"moduleType": 0,
+			"moduleName": "DOMStringList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGNumberList": {
+			"name": "NumberList",
+			"moduleType": 0,
+			"moduleName": "NumberList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGGElement": {
+			"name": "GElement",
+			"moduleType": 0,
+			"moduleName": "GElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"TextMetrics": {
+			"name": "TextMetrics",
+			"moduleType": 0,
+			"moduleName": "TextMetrics",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaKeySession": {
+			"name": "MediaKeySession",
+			"moduleType": 0,
+			"moduleName": "MediaKeySession",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"AudioWorkletProcessor": {
+			"name": "AudioWorkletProcessor",
+			"moduleType": 0,
+			"moduleName": "AudioWorkletProcessor",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"MediaKeys": {
+			"name": "MediaKeys",
+			"moduleType": 0,
+			"moduleName": "MediaKeys",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"Audio": {
+			"name": "Audio",
+			"moduleType": 0,
+			"moduleName": "Audio",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileCallback": {
+			"name": "FileCallback",
+			"moduleType": 2,
+			"moduleName": "FileCallback",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"VideoTrackList": {
+			"name": "VideoTrackList",
+			"moduleType": 0,
+			"moduleName": "VideoTrackList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLMeterElement": {
+			"name": "MeterElement",
+			"moduleType": 0,
+			"moduleName": "MeterElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HitRegionOptions": {
+			"name": "HitRegionOptions",
+			"moduleType": 2,
+			"moduleName": "HitRegionOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"BlobEvent": {
+			"name": "BlobEvent",
+			"moduleType": 0,
+			"moduleName": "BlobEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGAnimateTransformElement": {
+			"name": "AnimateTransformElement",
+			"moduleType": 0,
+			"moduleName": "AnimateTransformElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGPathSeg": {
+			"name": "PathSeg",
+			"moduleType": 0,
+			"moduleName": "PathSeg",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"WheelEventInit": {
+			"name": "WheelEventInit",
+			"moduleType": 2,
+			"moduleName": "WheelEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaError": {
+			"name": "MediaError",
+			"moduleType": 0,
+			"moduleName": "MediaError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGComponentTransferFunctionElement": {
+			"name": "ComponentTransferFunctionElement",
+			"moduleType": 0,
+			"moduleName": "ComponentTransferFunctionElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PluginArray": {
+			"name": "PluginArray",
+			"moduleType": 0,
+			"moduleName": "PluginArray",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMPointReadOnly": {
+			"name": "DOMPointReadOnly",
+			"moduleType": 0,
+			"moduleName": "DOMPointReadOnly",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OES_texture_half_float": {
+			"name": "OESTextureHalfFloat",
+			"moduleType": 0,
+			"moduleName": "OESTextureHalfFloat",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"HTMLFormElement": {
+			"name": "FormElement",
+			"moduleType": 0,
+			"moduleName": "FormElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Object": {
+			"name": "Object",
+			"moduleType": 0,
+			"moduleName": "Object",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"ElementCreationOptions": {
+			"name": "ElementCreationOptions",
+			"moduleType": 2,
+			"moduleName": "ElementCreationOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Document": {
+			"name": "Document",
+			"moduleType": 0,
+			"moduleName": "Document",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLHRElement": {
+			"name": "HRElement",
+			"moduleType": 0,
+			"moduleName": "HRElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGDescElement": {
+			"name": "DescElement",
+			"moduleType": 0,
+			"moduleName": "DescElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RelativeTimeFormatPart": {
+			"name": "RelativeTimeFormatPart",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"DateTimeFormatOptions": {
+			"name": "DateTimeFormatOptions",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"CacheStorageNamespace": {
+			"name": "CacheStorageNamespace",
+			"moduleType": 3,
+			"moduleName": "CacheStorageNamespace",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CSSAnimation": {
+			"name": "CSSAnimation",
+			"moduleType": 0,
+			"moduleName": "CSSAnimation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ServiceWorkerRegistration": {
+			"name": "ServiceWorkerRegistration",
+			"moduleType": 0,
+			"moduleName": "ServiceWorkerRegistration",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CaretPosition": {
+			"name": "CaretPosition",
+			"moduleType": 0,
+			"moduleName": "CaretPosition",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PluralRulesOptions": {
+			"name": "PluralRulesOptions",
+			"moduleType": 2,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"WEBGL_compressed_texture_atc": {
+			"name": "WEBGLCompressedTextureAtc",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTextureAtc",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"HTMLQuoteElement": {
+			"name": "QuoteElement",
+			"moduleType": 0,
+			"moduleName": "QuoteElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebGLRenderbuffer": {
+			"name": "Renderbuffer",
+			"moduleType": 0,
+			"moduleName": "Renderbuffer",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"DocumentTimeline": {
+			"name": "DocumentTimeline",
+			"moduleType": 0,
+			"moduleName": "DocumentTimeline",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"URIError": {
+			"name": "URIError",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"CSSGroupingRule": {
+			"name": "CSSGroupingRule",
+			"moduleType": 0,
+			"moduleName": "CSSGroupingRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BundlePolicy": {
+			"name": "BundlePolicy",
+			"moduleType": 3,
+			"moduleName": "BundlePolicy",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"CanvasPattern": {
+			"name": "CanvasPattern",
+			"moduleType": 0,
+			"moduleName": "CanvasPattern",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SharedWorkerGlobalScope": {
+			"name": "SharedWorkerGlobalScope",
+			"moduleType": 0,
+			"moduleName": "SharedWorkerGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"NotificationOptions": {
+			"name": "NotificationOptions",
+			"moduleType": 2,
+			"moduleName": "NotificationOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ScrollBehavior": {
+			"name": "ScrollBehavior",
+			"moduleType": 3,
+			"moduleName": "ScrollBehavior",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PathSegLinetoRel": {
+			"name": "PathSegLinetoRel",
+			"moduleType": 2,
+			"moduleName": "PathSegLinetoRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"HTMLBaseElement": {
+			"name": "BaseElement",
+			"moduleType": 0,
+			"moduleName": "BaseElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AudioScheduledSourceNode": {
+			"name": "AudioScheduledSourceNode",
+			"moduleType": 0,
+			"moduleName": "AudioScheduledSourceNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"SecurityPolicyViolationEventDisposition": {
+			"name": "SecurityPolicyViolationEventDisposition",
+			"moduleType": 3,
+			"moduleName": "SecurityPolicyViolationEventDisposition",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGAnimatedPreserveAspectRatio": {
+			"name": "AnimatedPreserveAspectRatio",
+			"moduleType": 0,
+			"moduleName": "AnimatedPreserveAspectRatio",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IIRFilterNode": {
+			"name": "IIRFilterNode",
+			"moduleType": 0,
+			"moduleName": "IIRFilterNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"OfflineAudioCompletionEventInit": {
+			"name": "OfflineAudioCompletionEventInit",
+			"moduleType": 2,
+			"moduleName": "OfflineAudioCompletionEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"IDBObjectStore": {
+			"name": "ObjectStore",
+			"moduleType": 0,
+			"moduleName": "ObjectStore",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"WebAssembly.Instance": {
+			"name": "Instance",
+			"moduleType": 0,
+			"moduleName": "Instance",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"RelativeTimeFormatSupportedLocalesOfOptions": {
+			"name": "RelativeTimeFormatSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"MediaQueryList": {
+			"name": "MediaQueryList",
+			"moduleType": 0,
+			"moduleName": "MediaQueryList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLParamElement": {
+			"name": "ParamElement",
+			"moduleType": 0,
+			"moduleName": "ParamElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DeviceRotationRateInit": {
+			"name": "DeviceRotationRateInit",
+			"moduleType": 2,
+			"moduleName": "DeviceRotationRateInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"EvalError": {
+			"name": "EvalError",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"PerformanceEntryFilterOptions": {
+			"name": "PerformanceEntryFilterOptions",
+			"moduleType": 2,
+			"moduleName": "PerformanceEntryFilterOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ServiceWorkerState": {
+			"name": "ServiceWorkerState",
+			"moduleType": 3,
+			"moduleName": "ServiceWorkerState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PerformanceTiming": {
+			"name": "PerformanceTiming",
+			"moduleType": 0,
+			"moduleName": "PerformanceTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLHeadingElement": {
+			"name": "HeadingElement",
+			"moduleType": 0,
+			"moduleName": "HeadingElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebGLFramebuffer": {
+			"name": "Framebuffer",
+			"moduleType": 0,
+			"moduleName": "Framebuffer",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"MIDIConnectionEvent": {
+			"name": "MIDIConnectionEvent",
+			"moduleType": 0,
+			"moduleName": "MIDIConnectionEvent",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"SVGTransform": {
+			"name": "Transform",
+			"moduleType": 0,
+			"moduleName": "Transform",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"WorkerNavigator": {
+			"name": "WorkerNavigator",
+			"moduleType": 0,
+			"moduleName": "WorkerNavigator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ChannelMergerNode": {
+			"name": "ChannelMergerNode",
+			"moduleType": 0,
+			"moduleName": "ChannelMergerNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"WindowClient": {
+			"name": "WindowClient",
+			"moduleType": 0,
+			"moduleName": "WindowClient",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"StorageManager": {
+			"name": "StorageManager",
+			"moduleType": 0,
+			"moduleName": "StorageManager",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Client": {
+			"name": "Client",
+			"moduleType": 0,
+			"moduleName": "Client",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGRect": {
+			"name": "Rect",
+			"moduleType": 0,
+			"moduleName": "Rect",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"ServiceWorker": {
+			"name": "ServiceWorker",
+			"moduleType": 0,
+			"moduleName": "ServiceWorker",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IDBMutableFile": {
+			"name": "MutableFile",
+			"moduleType": 0,
+			"moduleName": "MutableFile",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"MediaRecorderOptions": {
+			"name": "MediaRecorderOptions",
+			"moduleType": 2,
+			"moduleName": "MediaRecorderOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"TextTrack": {
+			"name": "TextTrack",
+			"moduleType": 0,
+			"moduleName": "TextTrack",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGStyleElement": {
+			"name": "StyleElement",
+			"moduleType": 0,
+			"moduleName": "StyleElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PromiseHandler": {
+			"name": "PromiseHandler",
+			"moduleType": 3,
+			"moduleName": "Promise",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"SVGFEOffsetElement": {
+			"name": "FEOffsetElement",
+			"moduleType": 0,
+			"moduleName": "FEOffsetElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"StyleSheet": {
+			"name": "StyleSheet",
+			"moduleType": 0,
+			"moduleName": "StyleSheet",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"console": {
+			"name": "Console",
+			"moduleType": 0,
+			"moduleName": "Console",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechSynthesis": {
+			"name": "SpeechSynthesis",
+			"moduleType": 0,
+			"moduleName": "SpeechSynthesis",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CurrencyDisplay": {
+			"name": "CurrencyDisplay",
+			"moduleType": 3,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"HTMLTrackElement": {
+			"name": "TrackElement",
+			"moduleType": 0,
+			"moduleName": "TrackElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"EXTShaderTextureLod": {
+			"name": "EXTShaderTextureLod",
+			"moduleType": 2,
+			"moduleName": "EXTShaderTextureLod",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"NodeIterator": {
+			"name": "NodeIterator",
+			"moduleType": 0,
+			"moduleName": "NodeIterator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Request": {
+			"name": "Request",
+			"moduleType": 0,
+			"moduleName": "Request",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ConstrainLongRange": {
+			"name": "ConstrainLongRange",
+			"moduleType": 2,
+			"moduleName": "ConstrainLongRange",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"VisualViewport": {
+			"name": "VisualViewport",
+			"moduleType": 0,
+			"moduleName": "VisualViewport",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AnimationEffect": {
+			"name": "AnimationEffect",
+			"moduleType": 0,
+			"moduleName": "AnimationEffect",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WheelEvent": {
+			"name": "WheelEvent",
+			"moduleType": 0,
+			"moduleName": "WheelEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PerformanceMeasure": {
+			"name": "PerformanceMeasure",
+			"moduleType": 0,
+			"moduleName": "PerformanceMeasure",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMMatrixReadOnly": {
+			"name": "DOMMatrixReadOnly",
+			"moduleType": 0,
+			"moduleName": "DOMMatrixReadOnly",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FontFaceSetLoadEvent": {
+			"name": "FontFaceSetLoadEvent",
+			"moduleType": 0,
+			"moduleName": "FontFaceSetLoadEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaRecorderErrorEvent": {
+			"name": "MediaRecorderErrorEvent",
+			"moduleType": 0,
+			"moduleName": "MediaRecorderErrorEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Date": {
+			"name": "Date",
+			"moduleType": 0,
+			"moduleName": "Date",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"WorkerOptions": {
+			"name": "WorkerOptions",
+			"moduleType": 2,
+			"moduleName": "WorkerOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"EventSource": {
+			"name": "EventSource",
+			"moduleType": 0,
+			"moduleName": "EventSource",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ConsoleInstance": {
+			"name": "ConsoleInstance",
+			"moduleType": 0,
+			"moduleName": "ConsoleInstance",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLDocument": {
+			"name": "HTMLDocument",
+			"moduleType": 0,
+			"moduleName": "HTMLDocument",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGPatternElement": {
+			"name": "PatternElement",
+			"moduleType": 0,
+			"moduleName": "PatternElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"ProgressEventInit": {
+			"name": "ProgressEventInit",
+			"moduleType": 2,
+			"moduleName": "ProgressEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaStreamTrackState": {
+			"name": "MediaStreamTrackState",
+			"moduleType": 3,
+			"moduleName": "MediaStreamTrackState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ServiceWorkerUpdateViaCache": {
+			"name": "ServiceWorkerUpdateViaCache",
+			"moduleType": 3,
+			"moduleName": "ServiceWorkerUpdateViaCache",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGFEFuncBElement": {
+			"name": "FEFuncBElement",
+			"moduleType": 0,
+			"moduleName": "FEFuncBElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLMenuItemElement": {
+			"name": "MenuItemElement",
+			"moduleType": 0,
+			"moduleName": "MenuItemElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedBoolean": {
+			"name": "AnimatedBoolean",
+			"moduleType": 0,
+			"moduleName": "AnimatedBoolean",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"AudioWorkletGlobalScope": {
+			"name": "AudioWorkletGlobalScope",
+			"moduleType": 0,
+			"moduleName": "AudioWorkletGlobalScope",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"Touch": {
+			"name": "Touch",
+			"moduleType": 0,
+			"moduleName": "Touch",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RtcpParameters": {
+			"name": "RtcpParameters",
+			"moduleType": 2,
+			"moduleName": "RtcpParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"WebGLActiveInfo": {
+			"name": "ActiveInfo",
+			"moduleType": 0,
+			"moduleName": "ActiveInfo",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"HTMLMetaElement": {
+			"name": "MetaElement",
+			"moduleType": 0,
+			"moduleName": "MetaElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PushEventInit": {
+			"name": "PushEventInit",
+			"moduleType": 2,
+			"moduleName": "PushEventInit",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"SVGMatrix": {
+			"name": "Matrix",
+			"moduleType": 0,
+			"moduleName": "Matrix",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedInteger": {
+			"name": "AnimatedInteger",
+			"moduleType": 0,
+			"moduleName": "AnimatedInteger",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGFEImageElement": {
+			"name": "FEImageElement",
+			"moduleType": 0,
+			"moduleName": "FEImageElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"CacheQueryOptions": {
+			"name": "CacheQueryOptions",
+			"moduleType": 2,
+			"moduleName": "CacheQueryOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ClipboardEvent": {
+			"name": "ClipboardEvent",
+			"moduleType": 0,
+			"moduleName": "ClipboardEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RTCStatsReport": {
+			"name": "StatsReport",
+			"moduleType": 0,
+			"moduleName": "StatsReport",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"GainOptions": {
+			"name": "GainOptions",
+			"moduleType": 2,
+			"moduleName": "GainOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"DedicatedWorkerGlobalScope": {
+			"name": "DedicatedWorkerGlobalScope",
+			"moduleType": 0,
+			"moduleName": "DedicatedWorkerGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMTokenList": {
+			"name": "DOMTokenList",
+			"moduleType": 0,
+			"moduleName": "DOMTokenList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMPointInit": {
+			"name": "DOMPointInit",
+			"moduleType": 2,
+			"moduleName": "DOMPointInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGLengthList": {
+			"name": "LengthList",
+			"moduleType": 0,
+			"moduleName": "LengthList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGSetElement": {
+			"name": "SetElement",
+			"moduleType": 0,
+			"moduleName": "SetElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"WebAssemblyInstantiatedSource": {
+			"name": "WebAssemblyInstantiatedSource",
+			"moduleType": 2,
+			"moduleName": "WebAssembly",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"Float32Array": {
+			"name": "Float32Array",
+			"moduleType": 0,
+			"moduleName": "Float32Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"PageTransitionEventInit": {
+			"name": "PageTransitionEventInit",
+			"moduleType": 2,
+			"moduleName": "PageTransitionEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FileSystemEntryCallback": {
+			"name": "FileSystemEntryCallback",
+			"moduleType": 2,
+			"moduleName": "FileSystemEntryCallback",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"DataTransfer": {
+			"name": "DataTransfer",
+			"moduleType": 0,
+			"moduleName": "DataTransfer",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGPathSegList": {
+			"name": "PathSegList",
+			"moduleType": 0,
+			"moduleName": "PathSegList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RTCDTMFToneChangeEvent": {
+			"name": "DTMFToneChangeEvent",
+			"moduleType": 0,
+			"moduleName": "DTMFToneChangeEvent",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"Intl.PluralRules": {
+			"name": "PluralRules",
+			"moduleType": 0,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": true
+		},
+		"HTMLCanvasElement": {
+			"name": "CanvasElement",
+			"moduleType": 0,
+			"moduleName": "CanvasElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WEBGL_compressed_texture_etc1": {
+			"name": "WEBGLCompressedTextureEtc1",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTextureEtc1",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"HTMLUListElement": {
+			"name": "UListElement",
+			"moduleType": 0,
+			"moduleName": "UListElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSBoxType": {
+			"name": "CSSBoxType",
+			"moduleType": 3,
+			"moduleName": "CSSBoxType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLAudioElement": {
+			"name": "AudioElement",
+			"moduleType": 0,
+			"moduleName": "AudioElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PanningModelType": {
+			"name": "PanningModelType",
+			"moduleType": 3,
+			"moduleName": "PanningModelType",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"MediaStreamAudioSourceOptions": {
+			"name": "MediaStreamAudioSourceOptions",
+			"moduleType": 2,
+			"moduleName": "MediaStreamAudioSourceOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"RangeError": {
+			"name": "RangeError",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"HTMLFontElement": {
+			"name": "FontElement",
+			"moduleType": 0,
+			"moduleName": "FontElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebAssembly.Memory": {
+			"name": "Memory",
+			"moduleType": 0,
+			"moduleName": "Memory",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"VTTRegion": {
+			"name": "VTTRegion",
+			"moduleType": 0,
+			"moduleName": "VTTRegion",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"GetUserMediaRequest": {
+			"name": "GetUserMediaRequest",
+			"moduleType": 2,
+			"moduleName": "GetUserMediaRequest",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MIDIPortDeviceState": {
+			"name": "MIDIPortDeviceState",
+			"moduleType": 3,
+			"moduleName": "MIDIPortDeviceState",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": false
+		},
+		"OscillatorType": {
+			"name": "OscillatorType",
+			"moduleType": 3,
+			"moduleName": "OscillatorType",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"HTMLTimeElement": {
+			"name": "TimeElement",
+			"moduleType": 0,
+			"moduleName": "TimeElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaTrackConstraintSet": {
+			"name": "MediaTrackConstraintSet",
+			"moduleType": 2,
+			"moduleName": "MediaTrackConstraintSet",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGLinearGradientElement": {
+			"name": "LinearGradientElement",
+			"moduleType": 0,
+			"moduleName": "LinearGradientElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"WEBGL_debug_renderer_info": {
+			"name": "WEBGLDebugRendererInfo",
+			"moduleType": 0,
+			"moduleName": "WEBGLDebugRendererInfo",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"DistanceModelType": {
+			"name": "DistanceModelType",
+			"moduleType": 3,
+			"moduleName": "DistanceModelType",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"MemoryDescriptor": {
+			"name": "MemoryDescriptor",
+			"moduleType": 2,
+			"moduleName": "Memory",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"MediaKeySystemConfiguration": {
+			"name": "MediaKeySystemConfiguration",
+			"moduleType": 2,
+			"moduleName": "MediaKeySystemConfiguration",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"MediaElementAudioSourceNode": {
+			"name": "MediaElementAudioSourceNode",
+			"moduleType": 0,
+			"moduleName": "MediaElementAudioSourceNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"RtpCodecParameters": {
+			"name": "RtpCodecParameters",
+			"moduleType": 2,
+			"moduleName": "RtpCodecParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"Proxy": {
+			"name": "Proxy",
+			"moduleType": 0,
+			"moduleName": "Proxy",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"SVGMarkerElement": {
+			"name": "MarkerElement",
+			"moduleType": 0,
+			"moduleName": "MarkerElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IceTransportPolicy": {
+			"name": "IceTransportPolicy",
+			"moduleType": 3,
+			"moduleName": "IceTransportPolicy",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"SVGViewElement": {
+			"name": "ViewElement",
+			"moduleType": 0,
+			"moduleName": "ViewElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGFEDisplacementMapElement": {
+			"name": "FEDisplacementMapElement",
+			"moduleType": 0,
+			"moduleName": "FEDisplacementMapElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLModElement": {
+			"name": "ModElement",
+			"moduleType": 0,
+			"moduleName": "ModElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FetchEventInit": {
+			"name": "FetchEventInit",
+			"moduleType": 2,
+			"moduleName": "FetchEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"LineAlignSetting": {
+			"name": "LineAlignSetting",
+			"moduleType": 3,
+			"moduleName": "LineAlignSetting",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"StyleSheetList": {
+			"name": "StyleSheetList",
+			"moduleType": 0,
+			"moduleName": "StyleSheetList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Storage": {
+			"name": "Storage",
+			"moduleType": 0,
+			"moduleName": "Storage",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RTCPeerConnectionIceEvent": {
+			"name": "PeerConnectionIceEvent",
+			"moduleType": 0,
+			"moduleName": "PeerConnectionIceEvent",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"AssignedNodesOptions": {
+			"name": "AssignedNodesOptions",
+			"moduleType": 2,
+			"moduleName": "AssignedNodesOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGFEPointLightElement": {
+			"name": "FEPointLightElement",
+			"moduleType": 0,
+			"moduleName": "FEPointLightElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"CursorDirection": {
+			"name": "CursorDirection",
+			"moduleType": 3,
+			"moduleName": "CursorDirection",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"RelativeTimeFormatResolvedOptions": {
+			"name": "RelativeTimeFormatResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"SVGScriptElement": {
+			"name": "ScriptElement",
+			"moduleType": 0,
+			"moduleName": "ScriptElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognitionResultList": {
+			"name": "SpeechRecognitionResultList",
+			"moduleType": 0,
+			"moduleName": "SpeechRecognitionResultList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedString": {
+			"name": "AnimatedString",
+			"moduleType": 0,
+			"moduleName": "AnimatedString",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Response": {
+			"name": "Response",
+			"moduleType": 0,
+			"moduleName": "Response",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PointerEventInit": {
+			"name": "PointerEventInit",
+			"moduleType": 2,
+			"moduleName": "PointerEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLFieldSetElement": {
+			"name": "FieldSetElement",
+			"moduleType": 0,
+			"moduleName": "FieldSetElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaDeviceKind": {
+			"name": "MediaDeviceKind",
+			"moduleType": 3,
+			"moduleName": "MediaDeviceKind",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PerformanceObserverInit": {
+			"name": "PerformanceObserverInit",
+			"moduleType": 2,
+			"moduleName": "PerformanceObserverInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"YearRepresentation": {
+			"name": "YearRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"AudioContext": {
+			"name": "AudioContext",
+			"moduleType": 0,
+			"moduleName": "AudioContext",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"SVGAngle": {
+			"name": "Angle",
+			"moduleType": 0,
+			"moduleName": "Angle",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"RequestReadyState": {
+			"name": "RequestReadyState",
+			"moduleType": 3,
+			"moduleName": "RequestReadyState",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": false
+		},
+		"HTMLSelectElement": {
+			"name": "SelectElement",
+			"moduleType": 0,
+			"moduleName": "SelectElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SharedWorker": {
+			"name": "SharedWorker",
+			"moduleType": 0,
+			"moduleName": "SharedWorker",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RelativeTimeNumeric": {
+			"name": "RelativeTimeNumeric",
+			"moduleType": 3,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"IDBVersionChangeEvent": {
+			"name": "VersionChangeEvent",
+			"moduleType": 0,
+			"moduleName": "VersionChangeEvent",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"SVGAnimateElement": {
+			"name": "AnimateElement",
+			"moduleType": 0,
+			"moduleName": "AnimateElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"FontFace": {
+			"name": "FontFace",
+			"moduleType": 0,
+			"moduleName": "FontFace",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"URLSearchParamsIterator": {
+			"name": "URLSearchParamsIterator",
+			"moduleType": 2,
+			"moduleName": "URLSearchParamsIterator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MIDIInputMap": {
+			"name": "MIDIInputMap",
+			"moduleType": 0,
+			"moduleName": "MIDIInputMap",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"Symbol": {
+			"name": "Symbol",
+			"moduleType": 0,
+			"moduleName": "Symbol",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"MIDIMessageEvent": {
+			"name": "MIDIMessageEvent",
+			"moduleType": 0,
+			"moduleName": "MIDIMessageEvent",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"HTMLOutputElement": {
+			"name": "OutputElement",
+			"moduleType": 0,
+			"moduleName": "OutputElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Intl.RelativeTimeFormat": {
+			"name": "RelativeTimeFormat",
+			"moduleType": 0,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": true
+		},
+		"CollatorSupportedLocalesOfOptions": {
+			"name": "CollatorSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"CSSFontFaceRule": {
+			"name": "CSSFontFaceRule",
+			"moduleType": 0,
+			"moduleName": "CSSFontFaceRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileSystemEntry": {
+			"name": "FileSystemEntry",
+			"moduleType": 0,
+			"moduleName": "FileSystemEntry",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OscillatorNode": {
+			"name": "OscillatorNode",
+			"moduleType": 0,
+			"moduleName": "OscillatorNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"HTMLTemplateElement": {
+			"name": "TemplateElement",
+			"moduleType": 0,
+			"moduleName": "TemplateElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebGLShaderPrecisionFormat": {
+			"name": "ShaderPrecisionFormat",
+			"moduleType": 0,
+			"moduleName": "ShaderPrecisionFormat",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"OrientationLockType": {
+			"name": "OrientationLockType",
+			"moduleType": 3,
+			"moduleName": "OrientationLockType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"XPathResult": {
+			"name": "XPathResult",
+			"moduleType": 0,
+			"moduleName": "XPathResult",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGGradientElement": {
+			"name": "GradientElement",
+			"moduleType": 0,
+			"moduleName": "GradientElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"ShadowRoot": {
+			"name": "ShadowRoot",
+			"moduleType": 0,
+			"moduleName": "ShadowRoot",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MimeType": {
+			"name": "MimeType",
+			"moduleType": 0,
+			"moduleName": "MimeType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TableDescriptor": {
+			"name": "TableDescriptor",
+			"moduleType": 2,
+			"moduleName": "Table",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"SVGAElement": {
+			"name": "AElement",
+			"moduleType": 0,
+			"moduleName": "AElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"MIDIOutputMap": {
+			"name": "MIDIOutputMap",
+			"moduleType": 0,
+			"moduleName": "MIDIOutputMap",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"PopStateEvent": {
+			"name": "PopStateEvent",
+			"moduleType": 0,
+			"moduleName": "PopStateEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DocumentType": {
+			"name": "DocumentType",
+			"moduleType": 0,
+			"moduleName": "DocumentType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedTransformList": {
+			"name": "AnimatedTransformList",
+			"moduleType": 0,
+			"moduleName": "AnimatedTransformList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"AudioTrack": {
+			"name": "AudioTrack",
+			"moduleType": 0,
+			"moduleName": "AudioTrack",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FecParameters": {
+			"name": "FecParameters",
+			"moduleType": 2,
+			"moduleName": "FecParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"SVGAnimateMotionElement": {
+			"name": "AnimateMotionElement",
+			"moduleType": 0,
+			"moduleName": "AnimateMotionElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"CompositeOperation": {
+			"name": "CompositeOperation",
+			"moduleType": 3,
+			"moduleName": "CompositeOperation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FetchEvent": {
+			"name": "FetchEvent",
+			"moduleType": 0,
+			"moduleName": "FetchEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ThenableStruct": {
+			"name": "ThenableStruct",
+			"moduleType": 2,
+			"moduleName": "Promise",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"PeerConnectionIceEventInit": {
+			"name": "PeerConnectionIceEventInit",
+			"moduleType": 2,
+			"moduleName": "PeerConnectionIceEventInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"SVGTextContentElement": {
+			"name": "TextContentElement",
+			"moduleType": 0,
+			"moduleName": "TextContentElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PathSegMovetoAbs": {
+			"name": "PathSegMovetoAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegMovetoAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"AudioWorkletNodeOptions": {
+			"name": "AudioWorkletNodeOptions",
+			"moduleType": 2,
+			"moduleName": "AudioWorkletNodeOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"IDBRequest": {
+			"name": "Request",
+			"moduleType": 0,
+			"moduleName": "Request",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"MediaDevices": {
+			"name": "MediaDevices",
+			"moduleType": 0,
+			"moduleName": "MediaDevices",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TimeEvent": {
+			"name": "TimeEvent",
+			"moduleType": 0,
+			"moduleName": "TimeEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGRectElement": {
+			"name": "RectElement",
+			"moduleType": 0,
+			"moduleName": "RectElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLTableRowElement": {
+			"name": "TableRowElement",
+			"moduleType": 0,
+			"moduleName": "TableRowElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PushManager": {
+			"name": "PushManager",
+			"moduleType": 0,
+			"moduleName": "PushManager",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": true
+		},
+		"Navigator": {
+			"name": "Navigator",
+			"moduleType": 0,
+			"moduleName": "Navigator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMQuad": {
+			"name": "DOMQuad",
+			"moduleType": 0,
+			"moduleName": "DOMQuad",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RelativeTimeFormatOptions": {
+			"name": "RelativeTimeFormatOptions",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"DataTransferItem": {
+			"name": "DataTransferItem",
+			"moduleType": 0,
+			"moduleName": "DataTransferItem",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PopupBlockedEventInit": {
+			"name": "PopupBlockedEventInit",
+			"moduleType": 2,
+			"moduleName": "PopupBlockedEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HashChangeEvent": {
+			"name": "HashChangeEvent",
+			"moduleType": 0,
+			"moduleName": "HashChangeEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AudioContextState": {
+			"name": "AudioContextState",
+			"moduleType": 3,
+			"moduleName": "AudioContextState",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"TimeZoneName": {
+			"name": "TimeZoneName",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"WebGLQuery": {
+			"name": "Query",
+			"moduleType": 0,
+			"moduleName": "Query",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"RTCRtpReceiver": {
+			"name": "RtpReceiver",
+			"moduleType": 0,
+			"moduleName": "RtpReceiver",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"Comment": {
+			"name": "Comment",
+			"moduleType": 0,
+			"moduleName": "Comment",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegCurvetoQuadraticAbs": {
+			"name": "PathSegCurvetoQuadraticAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoQuadraticAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"SVGFETurbulenceElement": {
+			"name": "FETurbulenceElement",
+			"moduleType": 0,
+			"moduleName": "FETurbulenceElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"KeyboardEventInit": {
+			"name": "KeyboardEventInit",
+			"moduleType": 2,
+			"moduleName": "KeyboardEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"External": {
+			"name": "External",
+			"moduleType": 2,
+			"moduleName": "External",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGMPathElement": {
+			"name": "MPathElement",
+			"moduleType": 0,
+			"moduleName": "MPathElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"AudioBufferOptions": {
+			"name": "AudioBufferOptions",
+			"moduleType": 2,
+			"moduleName": "AudioBufferOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"KeyframeEffect": {
+			"name": "KeyframeEffect",
+			"moduleType": 0,
+			"moduleName": "KeyframeEffect",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Intl.Collator": {
+			"name": "Collator",
+			"moduleType": 0,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": true
+		},
+		"MediaQueryListEvent": {
+			"name": "MediaQueryListEvent",
+			"moduleType": 0,
+			"moduleName": "MediaQueryListEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFEBlendElement": {
+			"name": "FEBlendElement",
+			"moduleType": 0,
+			"moduleName": "FEBlendElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IdentityAssertion": {
+			"name": "IdentityAssertion",
+			"moduleType": 2,
+			"moduleName": "IdentityAssertion",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"RegistrationOptions": {
+			"name": "RegistrationOptions",
+			"moduleType": 2,
+			"moduleName": "RegistrationOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"EventTarget": {
+			"name": "EventTarget",
+			"moduleType": 0,
+			"moduleName": "EventTarget",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PluralRulesResolvedOptions": {
+			"name": "PluralRulesResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"DocumentTimelineOptions": {
+			"name": "DocumentTimelineOptions",
+			"moduleType": 2,
+			"moduleName": "DocumentTimelineOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FontFaceLoadStatus": {
+			"name": "FontFaceLoadStatus",
+			"moduleType": 3,
+			"moduleName": "FontFaceLoadStatus",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CharacterData": {
+			"name": "CharacterData",
+			"moduleType": 0,
+			"moduleName": "CharacterData",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BiquadFilterNode": {
+			"name": "BiquadFilterNode",
+			"moduleType": 0,
+			"moduleName": "BiquadFilterNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"SelectionMode": {
+			"name": "SelectionMode",
+			"moduleType": 3,
+			"moduleName": "SelectionMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGFEConvolveMatrixElement": {
+			"name": "FEConvolveMatrixElement",
+			"moduleType": 0,
+			"moduleName": "FEConvolveMatrixElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"BroadcastChannel": {
+			"name": "BroadcastChannel",
+			"moduleType": 0,
+			"moduleName": "BroadcastChannel",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RegExpMatch": {
+			"name": "RegExpMatch",
+			"moduleType": 0,
+			"moduleName": "RegExp",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"ScrollOptions": {
+			"name": "ScrollOptions",
+			"moduleType": 2,
+			"moduleName": "ScrollOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PositionError": {
+			"name": "PositionError",
+			"moduleType": 0,
+			"moduleName": "PositionError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaKeysRequirement": {
+			"name": "MediaKeysRequirement",
+			"moduleType": 3,
+			"moduleName": "MediaKeysRequirement",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"FocusEvent": {
+			"name": "FocusEvent",
+			"moduleType": 0,
+			"moduleName": "FocusEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGUseElement": {
+			"name": "UseElement",
+			"moduleType": 0,
+			"moduleName": "UseElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"WebGLUniformLocation": {
+			"name": "UniformLocation",
+			"moduleType": 0,
+			"moduleName": "UniformLocation",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"Directory": {
+			"name": "Directory",
+			"moduleType": 0,
+			"moduleName": "Directory",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DataTransferItemList": {
+			"name": "DataTransferItemList",
+			"moduleType": 0,
+			"moduleName": "DataTransferItemList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileSystemFileEntry": {
+			"name": "FileSystemFileEntry",
+			"moduleType": 0,
+			"moduleName": "FileSystemFileEntry",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMRectReadOnly": {
+			"name": "DOMRectReadOnly",
+			"moduleType": 0,
+			"moduleName": "DOMRectReadOnly",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PluralRulesSupportedLocalesOfOptions": {
+			"name": "PluralRulesSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"SpeechRecognitionError": {
+			"name": "SpeechRecognitionError",
+			"moduleType": 0,
+			"moduleName": "SpeechRecognitionError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGGeometryElement": {
+			"name": "GeometryElement",
+			"moduleType": 0,
+			"moduleName": "GeometryElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"ModuleExportDescriptor": {
+			"name": "ModuleExportDescriptor",
+			"moduleType": 2,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"Configuration": {
+			"name": "Configuration",
+			"moduleType": 2,
+			"moduleName": "Configuration",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"OptionalEffectTiming": {
+			"name": "OptionalEffectTiming",
+			"moduleType": 2,
+			"moduleName": "OptionalEffectTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLStyleElement": {
+			"name": "StyleElement",
+			"moduleType": 0,
+			"moduleName": "StyleElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSRuleList": {
+			"name": "CSSRuleList",
+			"moduleType": 0,
+			"moduleName": "CSSRuleList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGPathElement": {
+			"name": "PathElement",
+			"moduleType": 0,
+			"moduleName": "PathElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"AudioParam": {
+			"name": "AudioParam",
+			"moduleType": 0,
+			"moduleName": "AudioParam",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"DOMImplementation": {
+			"name": "DOMImplementation",
+			"moduleType": 0,
+			"moduleName": "DOMImplementation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMRect": {
+			"name": "DOMRect",
+			"moduleType": 0,
+			"moduleName": "DOMRect",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileReader": {
+			"name": "FileReader",
+			"moduleType": 0,
+			"moduleName": "FileReader",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RegExp": {
+			"name": "RegExp",
+			"moduleType": 0,
+			"moduleName": "RegExp",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"SVGLength": {
+			"name": "Length",
+			"moduleType": 0,
+			"moduleName": "Length",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IDBCursorWithValue": {
+			"name": "CursorWithValue",
+			"moduleType": 0,
+			"moduleName": "CursorWithValue",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"SVGFEMergeElement": {
+			"name": "FEMergeElement",
+			"moduleType": 0,
+			"moduleName": "FEMergeElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"AbortController": {
+			"name": "AbortController",
+			"moduleType": 0,
+			"moduleName": "AbortController",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGTSpanElement": {
+			"name": "TSpanElement",
+			"moduleType": 0,
+			"moduleName": "TSpanElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"TextEncoder": {
+			"name": "TextEncoder",
+			"moduleType": 0,
+			"moduleName": "TextEncoder",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PowerPreference": {
+			"name": "PowerPreference",
+			"moduleType": 3,
+			"moduleName": "PowerPreference",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": false
+		},
+		"RevocableProxy": {
+			"name": "RevocableProxy",
+			"moduleType": 2,
+			"moduleName": "Proxy",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"SVGFEFuncGElement": {
+			"name": "FEFuncGElement",
+			"moduleType": 0,
+			"moduleName": "FEFuncGElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedEnumeration": {
+			"name": "AnimatedEnumeration",
+			"moduleType": 0,
+			"moduleName": "AnimatedEnumeration",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"MutationEvent": {
+			"name": "MutationEvent",
+			"moduleType": 0,
+			"moduleName": "MutationEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PositionOptions": {
+			"name": "PositionOptions",
+			"moduleType": 2,
+			"moduleName": "PositionOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PlaybackDirection": {
+			"name": "PlaybackDirection",
+			"moduleType": 3,
+			"moduleName": "PlaybackDirection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"EXT_sRGB": {
+			"name": "EXTSrgb",
+			"moduleType": 0,
+			"moduleName": "EXTSrgb",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"InputEvent": {
+			"name": "InputEvent",
+			"moduleType": 0,
+			"moduleName": "InputEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLCollection": {
+			"name": "HTMLCollection",
+			"moduleType": 0,
+			"moduleName": "HTMLCollection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TypeError": {
+			"name": "TypeError",
+			"moduleType": 0,
+			"moduleName": "Error",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"WebGLProgram": {
+			"name": "Program",
+			"moduleType": 0,
+			"moduleName": "Program",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"FontFaceSetIterator": {
+			"name": "FontFaceSetIterator",
+			"moduleType": 2,
+			"moduleName": "FontFaceSetIterator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ClipboardEventInit": {
+			"name": "ClipboardEventInit",
+			"moduleType": 2,
+			"moduleName": "ClipboardEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"NotificationDirection": {
+			"name": "NotificationDirection",
+			"moduleType": 3,
+			"moduleName": "NotificationDirection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ObjectEntry": {
+			"name": "ObjectEntry",
+			"moduleType": 3,
+			"moduleName": "Object",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"MediaList": {
+			"name": "MediaList",
+			"moduleType": 0,
+			"moduleName": "MediaList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"History": {
+			"name": "History",
+			"moduleType": 0,
+			"moduleName": "History",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PeriodicWave": {
+			"name": "PeriodicWave",
+			"moduleType": 0,
+			"moduleName": "PeriodicWave",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"ProgressEvent": {
+			"name": "ProgressEvent",
+			"moduleType": 0,
+			"moduleName": "ProgressEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TouchInit": {
+			"name": "TouchInit",
+			"moduleType": 2,
+			"moduleName": "TouchInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CSSSupportsRule": {
+			"name": "CSSSupportsRule",
+			"moduleType": 0,
+			"moduleName": "CSSSupportsRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMStringMap": {
+			"name": "DOMStringMap",
+			"moduleType": 0,
+			"moduleName": "DOMStringMap",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognition": {
+			"name": "SpeechRecognition",
+			"moduleType": 0,
+			"moduleName": "SpeechRecognition",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AudioTrackList": {
+			"name": "AudioTrackList",
+			"moduleType": 0,
+			"moduleName": "AudioTrackList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FontFaceDescriptors": {
+			"name": "FontFaceDescriptors",
+			"moduleType": 2,
+			"moduleName": "FontFaceDescriptors",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"XMLHttpRequest": {
+			"name": "XMLHttpRequest",
+			"moduleType": 0,
+			"moduleName": "XMLHttpRequest",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLOptionsCollection": {
+			"name": "HTMLOptionsCollection",
+			"moduleType": 0,
+			"moduleName": "HTMLOptionsCollection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FillMode": {
+			"name": "FillMode",
+			"moduleType": 3,
+			"moduleName": "FillMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"IdentityValidationResult": {
+			"name": "IdentityValidationResult",
+			"moduleType": 2,
+			"moduleName": "IdentityValidationResult",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"SpeechSynthesisErrorEvent": {
+			"name": "SpeechSynthesisErrorEvent",
+			"moduleType": 0,
+			"moduleName": "SpeechSynthesisErrorEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechRecognitionErrorInit": {
+			"name": "SpeechRecognitionErrorInit",
+			"moduleType": 2,
+			"moduleName": "SpeechRecognitionErrorInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLTableElement": {
+			"name": "TableElement",
+			"moduleType": 0,
+			"moduleName": "TableElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ANGLE_instanced_arrays": {
+			"name": "ANGLEInstancedArrays",
+			"moduleType": 0,
+			"moduleName": "ANGLEInstancedArrays",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"AnimationTimeline": {
+			"name": "AnimationTimeline",
+			"moduleType": 0,
+			"moduleName": "AnimationTimeline",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RelativeTimeUnit": {
+			"name": "RelativeTimeUnit",
+			"moduleType": 3,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"TouchList": {
+			"name": "TouchList",
+			"moduleType": 0,
+			"moduleName": "TouchList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WaveShaperNode": {
+			"name": "WaveShaperNode",
+			"moduleType": 0,
+			"moduleName": "WaveShaperNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"StorageEvent": {
+			"name": "StorageEvent",
+			"moduleType": 0,
+			"moduleName": "StorageEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ArrayBuffer": {
+			"name": "ArrayBuffer",
+			"moduleType": 0,
+			"moduleName": "ArrayBuffer",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"EXT_texture_filter_anisotropic": {
+			"name": "EXTTextureFilterAnisotropic",
+			"moduleType": 0,
+			"moduleName": "EXTTextureFilterAnisotropic",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"Animation": {
+			"name": "Animation",
+			"moduleType": 0,
+			"moduleName": "Animation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSS": {
+			"name": "CSS",
+			"moduleType": 0,
+			"moduleName": "CSS",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"InputEventInit": {
+			"name": "InputEventInit",
+			"moduleType": 2,
+			"moduleName": "InputEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CacheStorage": {
+			"name": "CacheStorage",
+			"moduleType": 0,
+			"moduleName": "CacheStorage",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IDBOpenDBRequest": {
+			"name": "OpenDBRequest",
+			"moduleType": 0,
+			"moduleName": "OpenDBRequest",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"ScrollAreaEvent": {
+			"name": "ScrollAreaEvent",
+			"moduleType": 0,
+			"moduleName": "ScrollAreaEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Clients": {
+			"name": "Clients",
+			"moduleType": 0,
+			"moduleName": "Clients",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechSynthesisErrorEventInit": {
+			"name": "SpeechSynthesisErrorEventInit",
+			"moduleType": 2,
+			"moduleName": "SpeechSynthesisErrorEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"PermissionStatus": {
+			"name": "PermissionStatus",
+			"moduleType": 0,
+			"moduleName": "PermissionStatus",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DateTimeFormatSupportedLocalesOfOptions": {
+			"name": "DateTimeFormatSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"PropertyNodeList": {
+			"name": "PropertyNodeList",
+			"moduleType": 0,
+			"moduleName": "PropertyNodeList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PushSubscription": {
+			"name": "PushSubscription",
+			"moduleType": 0,
+			"moduleName": "PushSubscription",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": true
+		},
+		"FileList": {
+			"name": "FileList",
+			"moduleType": 0,
+			"moduleName": "FileList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedRect": {
+			"name": "AnimatedRect",
+			"moduleType": 0,
+			"moduleName": "AnimatedRect",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PathSegCurvetoCubicSmoothRel": {
+			"name": "PathSegCurvetoCubicSmoothRel",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoCubicSmoothRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"VideoStreamTrack": {
+			"name": "VideoStreamTrack",
+			"moduleType": 0,
+			"moduleName": "VideoStreamTrack",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechGrammarList": {
+			"name": "SpeechGrammarList",
+			"moduleType": 0,
+			"moduleName": "SpeechGrammarList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RadioNodeList": {
+			"name": "RadioNodeList",
+			"moduleType": 0,
+			"moduleName": "RadioNodeList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AnalyserNode": {
+			"name": "AnalyserNode",
+			"moduleType": 0,
+			"moduleName": "AnalyserNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"ObserverCallback": {
+			"name": "ObserverCallback",
+			"moduleType": 2,
+			"moduleName": "ObserverCallback",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SpeechRecognitionResult": {
+			"name": "SpeechRecognitionResult",
+			"moduleType": 0,
+			"moduleName": "SpeechRecognitionResult",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"AudioNode": {
+			"name": "AudioNode",
+			"moduleType": 0,
+			"moduleName": "AudioNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"HTMLMapElement": {
+			"name": "MapElement",
+			"moduleType": 0,
+			"moduleName": "MapElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGStopElement": {
+			"name": "StopElement",
+			"moduleType": 0,
+			"moduleName": "StopElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IntersectionObserverInit": {
+			"name": "IntersectionObserverInit",
+			"moduleType": 2,
+			"moduleName": "IntersectionObserverInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGTextPositioningElement": {
+			"name": "TextPositioningElement",
+			"moduleType": 0,
+			"moduleName": "TextPositioningElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"DayRepresentation": {
+			"name": "DayRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"UIEvent": {
+			"name": "UIEvent",
+			"moduleType": 0,
+			"moduleName": "UIEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PageTransitionEvent": {
+			"name": "PageTransitionEvent",
+			"moduleType": 0,
+			"moduleName": "PageTransitionEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGTitleElement": {
+			"name": "TitleElement",
+			"moduleType": 0,
+			"moduleName": "TitleElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"CollatorResolvedOptions": {
+			"name": "CollatorResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"PositionAlignSetting": {
+			"name": "PositionAlignSetting",
+			"moduleType": 3,
+			"moduleName": "PositionAlignSetting",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Geolocation": {
+			"name": "Geolocation",
+			"moduleType": 2,
+			"moduleName": "Geolocation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Intl": {
+			"name": "Intl",
+			"moduleType": 0,
+			"moduleName": "Intl",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"HTMLElement": {
+			"name": "Element",
+			"moduleType": 0,
+			"moduleName": "Element",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechSynthesisErrorCode": {
+			"name": "SpeechSynthesisErrorCode",
+			"moduleType": 3,
+			"moduleName": "SpeechSynthesisErrorCode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WebAssembly.Table": {
+			"name": "Table",
+			"moduleType": 0,
+			"moduleName": "Table",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"GamepadEventInit": {
+			"name": "GamepadEventInit",
+			"moduleType": 2,
+			"moduleName": "GamepadEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WebGLVertexArrayObject": {
+			"name": "VertexArrayObject",
+			"moduleType": 0,
+			"moduleName": "VertexArrayObject",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"PerformanceEntry": {
+			"name": "PerformanceEntry",
+			"moduleType": 0,
+			"moduleName": "PerformanceEntry",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TextDecoderOptions": {
+			"name": "TextDecoderOptions",
+			"moduleType": 2,
+			"moduleName": "TextDecoderOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLAnchorElement": {
+			"name": "AnchorElement",
+			"moduleType": 0,
+			"moduleName": "AnchorElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HeadersIterator": {
+			"name": "HeadersIterator",
+			"moduleType": 2,
+			"moduleName": "HeadersIterator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ServiceWorkerGlobalScope": {
+			"name": "ServiceWorkerGlobalScope",
+			"moduleType": 0,
+			"moduleName": "ServiceWorkerGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PushSubscriptionOptionsInit": {
+			"name": "PushSubscriptionOptionsInit",
+			"moduleType": 2,
+			"moduleName": "PushSubscriptionOptionsInit",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": false
+		},
+		"ErrorCallback": {
+			"name": "ErrorCallback",
+			"moduleType": 2,
+			"moduleName": "ErrorCallback",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FocusEventInit": {
+			"name": "FocusEventInit",
+			"moduleType": 2,
+			"moduleName": "FocusEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ScrollLogicalPosition": {
+			"name": "ScrollLogicalPosition",
+			"moduleType": 3,
+			"moduleName": "ScrollLogicalPosition",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SpeechSynthesisVoice": {
+			"name": "SpeechSynthesisVoice",
+			"moduleType": 0,
+			"moduleName": "SpeechSynthesisVoice",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CDATASection": {
+			"name": "CDATASection",
+			"moduleType": 0,
+			"moduleName": "CDATASection",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PerformanceMark": {
+			"name": "PerformanceMark",
+			"moduleType": 0,
+			"moduleName": "PerformanceMark",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MIDIAccess": {
+			"name": "MIDIAccess",
+			"moduleType": 0,
+			"moduleName": "MIDIAccess",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"FetchState": {
+			"name": "FetchState",
+			"moduleType": 3,
+			"moduleName": "FetchState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLHeadElement": {
+			"name": "HeadElement",
+			"moduleType": 0,
+			"moduleName": "HeadElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DOMError": {
+			"name": "DOMError",
+			"moduleType": 0,
+			"moduleName": "DOMError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLTextAreaElement": {
+			"name": "TextAreaElement",
+			"moduleType": 0,
+			"moduleName": "TextAreaElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGPoint": {
+			"name": "Point",
+			"moduleType": 0,
+			"moduleName": "Point",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"MutationObserverInit": {
+			"name": "MutationObserverInit",
+			"moduleType": 2,
+			"moduleName": "MutationObserverInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Iterator": {
+			"name": "Iterator",
+			"moduleType": 2,
+			"moduleName": "Iterator",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"ConstrainDoubleRange": {
+			"name": "ConstrainDoubleRange",
+			"moduleType": 2,
+			"moduleName": "ConstrainDoubleRange",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CloseEventInit": {
+			"name": "CloseEventInit",
+			"moduleType": 2,
+			"moduleName": "CloseEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLIFrameElement": {
+			"name": "IFrameElement",
+			"moduleType": 0,
+			"moduleName": "IFrameElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IdentityProviderDetails": {
+			"name": "IdentityProviderDetails",
+			"moduleType": 2,
+			"moduleName": "IdentityProviderDetails",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"XSLTProcessor": {
+			"name": "XSLTProcessor",
+			"moduleType": 0,
+			"moduleName": "XSLTProcessor",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"URL": {
+			"name": "URL",
+			"moduleType": 0,
+			"moduleName": "URL",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFilterElement": {
+			"name": "FilterElement",
+			"moduleType": 0,
+			"moduleName": "FilterElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SpeechGrammar": {
+			"name": "SpeechGrammar",
+			"moduleType": 0,
+			"moduleName": "SpeechGrammar",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OESTextureHalfFloatLinear": {
+			"name": "OESTextureHalfFloatLinear",
+			"moduleType": 2,
+			"moduleName": "OESTextureHalfFloatLinear",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"WEBGL_compressed_texture_pvrtc": {
+			"name": "WEBGLCompressedTexturePvrtc",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTexturePvrtc",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"WeakSet": {
+			"name": "WeakSet",
+			"moduleType": 0,
+			"moduleName": "WeakSet",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"NumberFormatStyle": {
+			"name": "NumberFormatStyle",
+			"moduleType": 3,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"AudioBufferSourceOptions": {
+			"name": "AudioBufferSourceOptions",
+			"moduleType": 2,
+			"moduleName": "AudioBufferSourceOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"RTCRtpSender": {
+			"name": "RtpSender",
+			"moduleType": 0,
+			"moduleName": "RtpSender",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"DOMMatrix": {
+			"name": "DOMMatrix",
+			"moduleType": 0,
+			"moduleName": "DOMMatrix",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Intl.NumberFormat": {
+			"name": "NumberFormat",
+			"moduleType": 0,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": true
+		},
+		"IDBCursor": {
+			"name": "Cursor",
+			"moduleType": 0,
+			"moduleName": "Cursor",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"KeyboardEvent": {
+			"name": "KeyboardEvent",
+			"moduleType": 0,
+			"moduleName": "KeyboardEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ScriptProcessorNode": {
+			"name": "ScriptProcessorNode",
+			"moduleType": 0,
+			"moduleName": "ScriptProcessorNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"MediaKeyStatusMap": {
+			"name": "MediaKeyStatusMap",
+			"moduleType": 0,
+			"moduleName": "MediaKeyStatusMap",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": true
+		},
+		"WorkerDebuggerGlobalScope": {
+			"name": "WorkerDebuggerGlobalScope",
+			"moduleType": 0,
+			"moduleName": "WorkerDebuggerGlobalScope",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"KeyEvent": {
+			"name": "KeyEvent",
+			"moduleType": 0,
+			"moduleName": "KeyEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PointerEvent": {
+			"name": "PointerEvent",
+			"moduleType": 0,
+			"moduleName": "PointerEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WEBGL_compressed_texture_etc": {
+			"name": "WEBGLCompressedTextureEtc",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTextureEtc",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"HTMLOptionElement": {
+			"name": "OptionElement",
+			"moduleType": 0,
+			"moduleName": "OptionElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ExtendableEvent": {
+			"name": "ExtendableEvent",
+			"moduleType": 0,
+			"moduleName": "ExtendableEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Intl.DateTimeFormat": {
+			"name": "DateTimeFormat",
+			"moduleType": 0,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": true
+		},
+		"Coordinates": {
+			"name": "Coordinates",
+			"moduleType": 2,
+			"moduleName": "Coordinates",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGDefsElement": {
+			"name": "DefsElement",
+			"moduleType": 0,
+			"moduleName": "DefsElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"DelayOptions": {
+			"name": "DelayOptions",
+			"moduleType": 2,
+			"moduleName": "DelayOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"MessagePort": {
+			"name": "MessagePort",
+			"moduleType": 0,
+			"moduleName": "MessagePort",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Text": {
+			"name": "Text",
+			"moduleType": 0,
+			"moduleName": "Text",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaStreamConstraints": {
+			"name": "MediaStreamConstraints",
+			"moduleType": 2,
+			"moduleName": "MediaStreamConstraints",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WebAssembly.RuntimeError": {
+			"name": "RuntimeError",
+			"moduleType": 0,
+			"moduleName": "RuntimeError",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"RtxParameters": {
+			"name": "RtxParameters",
+			"moduleType": 2,
+			"moduleName": "RtxParameters",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"ChannelPixelLayoutDataType": {
+			"name": "ChannelPixelLayoutDataType",
+			"moduleType": 3,
+			"moduleName": "ChannelPixelLayoutDataType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"StorageEstimate": {
+			"name": "StorageEstimate",
+			"moduleType": 2,
+			"moduleName": "StorageEstimate",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ImageCaptureError": {
+			"name": "ImageCaptureError",
+			"moduleType": 0,
+			"moduleName": "ImageCaptureError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFEDropShadowElement": {
+			"name": "FEDropShadowElement",
+			"moduleType": 0,
+			"moduleName": "FEDropShadowElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PromiseNativeHandler": {
+			"name": "PromiseNativeHandler",
+			"moduleType": 2,
+			"moduleName": "PromiseNativeHandler",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"OfferAnswerOptions": {
+			"name": "OfferAnswerOptions",
+			"moduleType": 2,
+			"moduleName": "OfferAnswerOptions",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"ConvolverNode": {
+			"name": "ConvolverNode",
+			"moduleType": 0,
+			"moduleName": "ConvolverNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"SVGTextElement": {
+			"name": "TextElement",
+			"moduleType": 0,
+			"moduleName": "TextElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IDBDatabase": {
+			"name": "Database",
+			"moduleType": 0,
+			"moduleName": "Database",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"WebGLShader": {
+			"name": "Shader",
+			"moduleType": 0,
+			"moduleName": "Shader",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"AudioStreamTrack": {
+			"name": "AudioStreamTrack",
+			"moduleType": 0,
+			"moduleName": "AudioStreamTrack",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ObjectPropertyDescriptor": {
+			"name": "ObjectPropertyDescriptor",
+			"moduleType": 2,
+			"moduleName": "Object",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"AnimationEventInit": {
+			"name": "AnimationEventInit",
+			"moduleType": 2,
+			"moduleName": "AnimationEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WorkerLocation": {
+			"name": "WorkerLocation",
+			"moduleType": 0,
+			"moduleName": "WorkerLocation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSConditionRule": {
+			"name": "CSSConditionRule",
+			"moduleType": 0,
+			"moduleName": "CSSConditionRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ArrayBufferView": {
+			"name": "ArrayBufferView",
+			"moduleType": 0,
+			"moduleName": "ArrayBufferView",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"IntersectionObserver": {
+			"name": "IntersectionObserver",
+			"moduleType": 0,
+			"moduleName": "IntersectionObserver",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebGLTexture": {
+			"name": "Texture",
+			"moduleType": 0,
+			"moduleName": "Texture",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"SVGPolylineElement": {
+			"name": "PolylineElement",
+			"moduleType": 0,
+			"moduleName": "PolylineElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLEmbedElement": {
+			"name": "EmbedElement",
+			"moduleType": 0,
+			"moduleName": "EmbedElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLLabelElement": {
+			"name": "LabelElement",
+			"moduleType": 0,
+			"moduleName": "LabelElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BlobEventInit": {
+			"name": "BlobEventInit",
+			"moduleType": 2,
+			"moduleName": "BlobEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGNumber": {
+			"name": "Number",
+			"moduleType": 0,
+			"moduleName": "Number",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PathSegMovetoRel": {
+			"name": "PathSegMovetoRel",
+			"moduleType": 2,
+			"moduleName": "PathSegMovetoRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"Gamepad": {
+			"name": "Gamepad",
+			"moduleType": 0,
+			"moduleName": "Gamepad",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Reflect": {
+			"name": "Reflect",
+			"moduleType": 0,
+			"moduleName": "Reflect",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"ResponseInit": {
+			"name": "ResponseInit",
+			"moduleType": 2,
+			"moduleName": "ResponseInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ObjectPrototype": {
+			"name": "ObjectPrototype",
+			"moduleType": 2,
+			"moduleName": "Object",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"FormatMatcher": {
+			"name": "FormatMatcher",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"CSSPseudoElement": {
+			"name": "CSSPseudoElement",
+			"moduleType": 0,
+			"moduleName": "CSSPseudoElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BiquadFilterType": {
+			"name": "BiquadFilterType",
+			"moduleType": 3,
+			"moduleName": "BiquadFilterType",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"HTMLSlotElement": {
+			"name": "SlotElement",
+			"moduleType": 0,
+			"moduleName": "SlotElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ValidityState": {
+			"name": "ValidityState",
+			"moduleType": 0,
+			"moduleName": "ValidityState",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PathSegCurvetoQuadraticSmoothRel": {
+			"name": "PathSegCurvetoQuadraticSmoothRel",
+			"moduleType": 2,
+			"moduleName": "PathSegCurvetoQuadraticSmoothRel",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"EventSourceInit": {
+			"name": "EventSourceInit",
+			"moduleType": 2,
+			"moduleName": "EventSourceInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"EffectTiming": {
+			"name": "EffectTiming",
+			"moduleType": 2,
+			"moduleName": "EffectTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"RTCRtpTransceiver": {
+			"name": "RtpTransceiver",
+			"moduleType": 0,
+			"moduleName": "RtpTransceiver",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"AudioProcessingEvent": {
+			"name": "AudioProcessingEvent",
+			"moduleType": 0,
+			"moduleName": "AudioProcessingEvent",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"HourCycle": {
+			"name": "HourCycle",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"WebGLBuffer": {
+			"name": "Buffer",
+			"moduleType": 0,
+			"moduleName": "Buffer",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"WebGLContextEvent": {
+			"name": "ContextEvent",
+			"moduleType": 0,
+			"moduleName": "ContextEvent",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"MediaStreamError": {
+			"name": "MediaStreamError",
+			"moduleType": 2,
+			"moduleName": "MediaStreamError",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLDivElement": {
+			"name": "DivElement",
+			"moduleType": 0,
+			"moduleName": "DivElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CaseFirst": {
+			"name": "CaseFirst",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"PluralRulesType": {
+			"name": "PluralRulesType",
+			"moduleType": 3,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"RTCSessionDescription": {
+			"name": "SessionDescription",
+			"moduleType": 0,
+			"moduleName": "SessionDescription",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"BufferSource": {
+			"name": "BufferSource",
+			"moduleType": 3,
+			"moduleName": "BufferSource",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"SecurityPolicyViolationEvent": {
+			"name": "SecurityPolicyViolationEvent",
+			"moduleType": 0,
+			"moduleName": "SecurityPolicyViolationEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"StorageEventInit": {
+			"name": "StorageEventInit",
+			"moduleType": 2,
+			"moduleName": "StorageEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"NumberFormatSupportedLocalesOfOptions": {
+			"name": "NumberFormatSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"OfflineAudioContext": {
+			"name": "OfflineAudioContext",
+			"moduleType": 0,
+			"moduleName": "OfflineAudioContext",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"MessageEvent": {
+			"name": "MessageEvent",
+			"moduleType": 0,
+			"moduleName": "MessageEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SupportedType": {
+			"name": "SupportedType",
+			"moduleType": 3,
+			"moduleName": "SupportedType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Image": {
+			"name": "Image",
+			"moduleType": 0,
+			"moduleName": "Image",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CanvasRenderingContext2D": {
+			"name": "CanvasRenderingContext2D",
+			"moduleType": 0,
+			"moduleName": "CanvasRenderingContext2D",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DisplayNameOptions": {
+			"name": "DisplayNameOptions",
+			"moduleType": 2,
+			"moduleName": "DisplayNameOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLTitleElement": {
+			"name": "TitleElement",
+			"moduleType": 0,
+			"moduleName": "TitleElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Uint8Array": {
+			"name": "Uint8Array",
+			"moduleType": 0,
+			"moduleName": "Uint8Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"LocaleInfo": {
+			"name": "LocaleInfo",
+			"moduleType": 2,
+			"moduleName": "LocaleInfo",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"ChannelSplitterOptions": {
+			"name": "ChannelSplitterOptions",
+			"moduleType": 2,
+			"moduleName": "ChannelSplitterOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"ScreenOrientation": {
+			"name": "ScreenOrientation",
+			"moduleType": 0,
+			"moduleName": "ScreenOrientation",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SVGFESpecularLightingElement": {
+			"name": "FESpecularLightingElement",
+			"moduleType": 0,
+			"moduleName": "FESpecularLightingElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"DateTimeFormatPart": {
+			"name": "DateTimeFormatPart",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"CSSNamespaceRule": {
+			"name": "CSSNamespaceRule",
+			"moduleType": 0,
+			"moduleName": "CSSNamespaceRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DataChannelInit": {
+			"name": "DataChannelInit",
+			"moduleType": 2,
+			"moduleName": "DataChannelInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"Sensitivity": {
+			"name": "Sensitivity",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"EraRepresentation": {
+			"name": "EraRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"PeriodicWaveOptions": {
+			"name": "PeriodicWaveOptions",
+			"moduleType": 2,
+			"moduleName": "PeriodicWaveOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"AudioListener": {
+			"name": "AudioListener",
+			"moduleType": 0,
+			"moduleName": "AudioListener",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedLengthList": {
+			"name": "AnimatedLengthList",
+			"moduleType": 0,
+			"moduleName": "AnimatedLengthList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"PushSubscriptionOptions": {
+			"name": "PushSubscriptionOptions",
+			"moduleType": 0,
+			"moduleName": "PushSubscriptionOptions",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": true
+		},
+		"WEBGL_compressed_texture_s3tc_srgb": {
+			"name": "WEBGLCompressedTextureS3tcSrgb",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTextureS3tcSrgb",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"SVGFEColorMatrixElement": {
+			"name": "FEColorMatrixElement",
+			"moduleType": 0,
+			"moduleName": "FEColorMatrixElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGFEDistantLightElement": {
+			"name": "FEDistantLightElement",
+			"moduleType": 0,
+			"moduleName": "FEDistantLightElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"StorageType": {
+			"name": "StorageType",
+			"moduleType": 3,
+			"moduleName": "StorageType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGMetadataElement": {
+			"name": "MetadataElement",
+			"moduleType": 0,
+			"moduleName": "MetadataElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"CSSPageRule": {
+			"name": "CSSPageRule",
+			"moduleType": 0,
+			"moduleName": "CSSPageRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IDBTransaction": {
+			"name": "Transaction",
+			"moduleType": 0,
+			"moduleName": "Transaction",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"OESTextureFloat": {
+			"name": "OESTextureFloat",
+			"moduleType": 2,
+			"moduleName": "OESTextureFloat",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"PerformanceObserver": {
+			"name": "PerformanceObserver",
+			"moduleType": 0,
+			"moduleName": "PerformanceObserver",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"NumberFormatPartType": {
+			"name": "NumberFormatPartType",
+			"moduleType": 3,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"EXTFragDepth": {
+			"name": "EXTFragDepth",
+			"moduleType": 2,
+			"moduleName": "EXTFragDepth",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"WebAssembly.CompileError": {
+			"name": "CompileError",
+			"moduleType": 0,
+			"moduleName": "CompileError",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"MediaKeyNeededEventInit": {
+			"name": "MediaKeyNeededEventInit",
+			"moduleType": 2,
+			"moduleName": "MediaKeyNeededEventInit",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"ComputedEffectTiming": {
+			"name": "ComputedEffectTiming",
+			"moduleType": 2,
+			"moduleName": "ComputedEffectTiming",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"BinaryType": {
+			"name": "BinaryType",
+			"moduleType": 3,
+			"moduleName": "BinaryType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"AnimationFilter": {
+			"name": "AnimationFilter",
+			"moduleType": 2,
+			"moduleName": "AnimationFilter",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"CSSStyleRule": {
+			"name": "CSSStyleRule",
+			"moduleType": 0,
+			"moduleName": "CSSStyleRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FrameType": {
+			"name": "FrameType",
+			"moduleType": 3,
+			"moduleName": "FrameType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FetchObserver": {
+			"name": "FetchObserver",
+			"moduleType": 0,
+			"moduleName": "FetchObserver",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IdentityProvider": {
+			"name": "IdentityProvider",
+			"moduleType": 2,
+			"moduleName": "IdentityProvider",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"CollatorOptions": {
+			"name": "CollatorOptions",
+			"moduleType": 2,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"Exception": {
+			"name": "Exception",
+			"moduleType": 2,
+			"moduleName": "Exception",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"DeviceMotionEvent": {
+			"name": "DeviceMotionEvent",
+			"moduleType": 0,
+			"moduleName": "DeviceMotionEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DeviceRotationRate": {
+			"name": "DeviceRotationRate",
+			"moduleType": 2,
+			"moduleName": "DeviceRotationRate",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"AudioContextOptions": {
+			"name": "AudioContextOptions",
+			"moduleType": 2,
+			"moduleName": "AudioContextOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"SVGGraphicsElement": {
+			"name": "GraphicsElement",
+			"moduleType": 0,
+			"moduleName": "GraphicsElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"TrackEventInit": {
+			"name": "TrackEventInit",
+			"moduleType": 2,
+			"moduleName": "TrackEventInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"SVGFEGaussianBlurElement": {
+			"name": "FEGaussianBlurElement",
+			"moduleType": 0,
+			"moduleName": "FEGaussianBlurElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"TransitionEvent": {
+			"name": "TransitionEvent",
+			"moduleType": 0,
+			"moduleName": "TransitionEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RtpTransceiverDirection": {
+			"name": "RtpTransceiverDirection",
+			"moduleType": 3,
+			"moduleName": "RtpTransceiverDirection",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"IteratorStep": {
+			"name": "IteratorStep",
+			"moduleType": 2,
+			"moduleName": "Iterator",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"NodeList": {
+			"name": "NodeList",
+			"moduleType": 0,
+			"moduleName": "NodeList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"IDBIndex": {
+			"name": "Index",
+			"moduleType": 0,
+			"moduleName": "Index",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"DragEventInit": {
+			"name": "DragEventInit",
+			"moduleType": 2,
+			"moduleName": "DragEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGPointList": {
+			"name": "PointList",
+			"moduleType": 0,
+			"moduleName": "PointList",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"ChannelPixelLayout": {
+			"name": "ChannelPixelLayout",
+			"moduleType": 2,
+			"moduleName": "ChannelPixelLayout",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WebAssembly.Global": {
+			"name": "Global",
+			"moduleType": 0,
+			"moduleName": "Global",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": true
+		},
+		"CanvasGradient": {
+			"name": "CanvasGradient",
+			"moduleType": 0,
+			"moduleName": "CanvasGradient",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLOptGroupElement": {
+			"name": "OptGroupElement",
+			"moduleType": 0,
+			"moduleName": "OptGroupElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"GetNotificationOptions": {
+			"name": "GetNotificationOptions",
+			"moduleType": 2,
+			"moduleName": "GetNotificationOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Notification": {
+			"name": "Notification",
+			"moduleType": 0,
+			"moduleName": "Notification",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FileSystemDirectoryEntry": {
+			"name": "FileSystemDirectoryEntry",
+			"moduleType": 0,
+			"moduleName": "FileSystemDirectoryEntry",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"TableKind": {
+			"name": "TableKind",
+			"moduleType": 3,
+			"moduleName": "Table",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"isExtern": false
+		},
+		"ProxyHandler": {
+			"name": "ProxyHandler",
+			"moduleType": 2,
+			"moduleName": "Proxy",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": false
+		},
+		"MutationRecord": {
+			"name": "MutationRecord",
+			"moduleType": 0,
+			"moduleName": "MutationRecord",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"HTMLLinkElement": {
+			"name": "LinkElement",
+			"moduleType": 0,
+			"moduleName": "LinkElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MimeTypeArray": {
+			"name": "MimeTypeArray",
+			"moduleType": 0,
+			"moduleName": "MimeTypeArray",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"KeyframeEffectOptions": {
+			"name": "KeyframeEffectOptions",
+			"moduleType": 2,
+			"moduleName": "KeyframeEffectOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"HTMLHtmlElement": {
+			"name": "HtmlElement",
+			"moduleType": 0,
+			"moduleName": "HtmlElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"CSSMediaRule": {
+			"name": "CSSMediaRule",
+			"moduleType": 0,
+			"moduleName": "CSSMediaRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MediaKeyMessageEventInit": {
+			"name": "MediaKeyMessageEventInit",
+			"moduleType": 2,
+			"moduleName": "MediaKeyMessageEventInit",
+			"pack": [
+				"js",
+				"html",
+				"eme"
+			],
+			"isExtern": false
+		},
+		"MIDIOptions": {
+			"name": "MIDIOptions",
+			"moduleType": 2,
+			"moduleName": "MIDIOptions",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": false
+		},
+		"HTMLMenuElement": {
+			"name": "MenuElement",
+			"moduleType": 0,
+			"moduleName": "MenuElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Performance": {
+			"name": "Performance",
+			"moduleType": 0,
+			"moduleName": "Performance",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"OESElementIndexUint": {
+			"name": "OESElementIndexUint",
+			"moduleType": 2,
+			"moduleName": "OESElementIndexUint",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"MouseEventInit": {
+			"name": "MouseEventInit",
+			"moduleType": 2,
+			"moduleName": "MouseEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"WEBGLLoseContext": {
+			"name": "WEBGLLoseContext",
+			"moduleType": 2,
+			"moduleName": "WEBGLLoseContext",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"TextTrackList": {
+			"name": "TextTrackList",
+			"moduleType": 0,
+			"moduleName": "TextTrackList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RequestRedirect": {
+			"name": "RequestRedirect",
+			"moduleType": 3,
+			"moduleName": "RequestRedirect",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"StereoPannerNode": {
+			"name": "StereoPannerNode",
+			"moduleType": 0,
+			"moduleName": "StereoPannerNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"EventInit": {
+			"name": "EventInit",
+			"moduleType": 2,
+			"moduleName": "EventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MIDIConnectionEventInit": {
+			"name": "MIDIConnectionEventInit",
+			"moduleType": 2,
+			"moduleName": "MIDIConnectionEventInit",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": false
+		},
+		"HTMLBRElement": {
+			"name": "BRElement",
+			"moduleType": 0,
+			"moduleName": "BRElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"PerformanceObserverEntryList": {
+			"name": "PerformanceObserverEntryList",
+			"moduleType": 0,
+			"moduleName": "PerformanceObserverEntryList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FormDataIterator": {
+			"name": "FormDataIterator",
+			"moduleType": 2,
+			"moduleName": "FormDataIterator",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaStreamAudioDestinationNode": {
+			"name": "MediaStreamAudioDestinationNode",
+			"moduleType": 0,
+			"moduleName": "MediaStreamAudioDestinationNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"WEBGLDebugShaders": {
+			"name": "WEBGLDebugShaders",
+			"moduleType": 2,
+			"moduleName": "WEBGLDebugShaders",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": false
+		},
+		"ConstantSourceNode": {
+			"name": "ConstantSourceNode",
+			"moduleType": 0,
+			"moduleName": "ConstantSourceNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"PathSegLinetoHorizontalAbs": {
+			"name": "PathSegLinetoHorizontalAbs",
+			"moduleType": 2,
+			"moduleName": "PathSegLinetoHorizontalAbs",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": false
+		},
+		"RtpContributingSource": {
+			"name": "RtpContributingSource",
+			"moduleType": 2,
+			"moduleName": "RtpContributingSource",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"GamepadMappingType": {
+			"name": "GamepadMappingType",
+			"moduleType": 3,
+			"moduleName": "GamepadMappingType",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"SVGSymbolElement": {
+			"name": "SymbolElement",
+			"moduleType": 0,
+			"moduleName": "SymbolElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"Screen": {
+			"name": "Screen",
+			"moduleType": 0,
+			"moduleName": "Screen",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RequestMode": {
+			"name": "RequestMode",
+			"moduleType": 3,
+			"moduleName": "RequestMode",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"NumberFormatPart": {
+			"name": "NumberFormatPart",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"IDBFileRequest": {
+			"name": "FileRequest",
+			"moduleType": 0,
+			"moduleName": "FileRequest",
+			"pack": [
+				"js",
+				"html",
+				"idb"
+			],
+			"isExtern": true
+		},
+		"WEBGL_color_buffer_float": {
+			"name": "WEBGLColorBufferFloat",
+			"moduleType": 0,
+			"moduleName": "WEBGLColorBufferFloat",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"XPathNSResolver": {
+			"name": "XPathNSResolver",
+			"moduleType": 2,
+			"moduleName": "XPathNSResolver",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"GL": {
+			"name": "GL",
+			"moduleType": 2,
+			"moduleName": "GL",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": false
+		},
+		"WebGL2RenderingContext": {
+			"name": "WebGL2RenderingContext",
+			"moduleType": 0,
+			"moduleName": "WebGL2RenderingContext",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"ConstantSourceOptions": {
+			"name": "ConstantSourceOptions",
+			"moduleType": 2,
+			"moduleName": "ConstantSourceOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"SVGSVGElement": {
+			"name": "SVGElement",
+			"moduleType": 0,
+			"moduleName": "SVGElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"HTMLProgressElement": {
+			"name": "ProgressElement",
+			"moduleType": 0,
+			"moduleName": "ProgressElement",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"Usage": {
+			"name": "Usage",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"SourceBufferList": {
+			"name": "SourceBufferList",
+			"moduleType": 0,
+			"moduleName": "SourceBufferList",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"DeviceAcceleration": {
+			"name": "DeviceAcceleration",
+			"moduleType": 2,
+			"moduleName": "DeviceAcceleration",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"File": {
+			"name": "File",
+			"moduleType": 0,
+			"moduleName": "File",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"RTCPeerConnection": {
+			"name": "PeerConnection",
+			"moduleType": 0,
+			"moduleName": "PeerConnection",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": true
+		},
+		"RelativeTimeFormatStyle": {
+			"name": "RelativeTimeFormatStyle",
+			"moduleType": 3,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		},
+		"MediaTrackSupportedConstraints": {
+			"name": "MediaTrackSupportedConstraints",
+			"moduleType": 2,
+			"moduleName": "MediaTrackSupportedConstraints",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FontFaceSetIteratorResult": {
+			"name": "FontFaceSetIteratorResult",
+			"moduleType": 2,
+			"moduleName": "FontFaceSetIteratorResult",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"EventListener": {
+			"name": "EventListener",
+			"moduleType": 2,
+			"moduleName": "EventListener",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"AudioBuffer": {
+			"name": "AudioBuffer",
+			"moduleType": 0,
+			"moduleName": "AudioBuffer",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"GetRootNodeOptions": {
+			"name": "GetRootNodeOptions",
+			"moduleType": 2,
+			"moduleName": "GetRootNodeOptions",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Position": {
+			"name": "Position",
+			"moduleType": 2,
+			"moduleName": "Position",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Int16Array": {
+			"name": "Int16Array",
+			"moduleType": 0,
+			"moduleName": "Int16Array",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"isExtern": true
+		},
+		"SVGAnimatedNumber": {
+			"name": "AnimatedNumber",
+			"moduleType": 0,
+			"moduleName": "AnimatedNumber",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"SVGFEComponentTransferElement": {
+			"name": "FEComponentTransferElement",
+			"moduleType": 0,
+			"moduleName": "FEComponentTransferElement",
+			"pack": [
+				"js",
+				"html",
+				"svg"
+			],
+			"isExtern": true
+		},
+		"IceCandidateInit": {
+			"name": "IceCandidateInit",
+			"moduleType": 2,
+			"moduleName": "IceCandidateInit",
+			"pack": [
+				"js",
+				"html",
+				"rtc"
+			],
+			"isExtern": false
+		},
+		"CSSKeyframesRule": {
+			"name": "CSSKeyframesRule",
+			"moduleType": 0,
+			"moduleName": "CSSKeyframesRule",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ImageBitmapRenderingContext": {
+			"name": "ImageBitmapRenderingContext",
+			"moduleType": 0,
+			"moduleName": "ImageBitmapRenderingContext",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"SpeechSynthesisEventInit": {
+			"name": "SpeechSynthesisEventInit",
+			"moduleType": 2,
+			"moduleName": "SpeechSynthesisEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"OscillatorOptions": {
+			"name": "OscillatorOptions",
+			"moduleType": 2,
+			"moduleName": "OscillatorOptions",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"DragEvent": {
+			"name": "DragEvent",
+			"moduleType": 0,
+			"moduleName": "DragEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MutationObserver": {
+			"name": "MutationObserver",
+			"moduleType": 0,
+			"moduleName": "MutationObserver",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MIDIInput": {
+			"name": "MIDIInput",
+			"moduleType": 0,
+			"moduleName": "MIDIInput",
+			"pack": [
+				"js",
+				"html",
+				"midi"
+			],
+			"isExtern": true
+		},
+		"WEBGL_compressed_texture_astc": {
+			"name": "WEBGLCompressedTextureAstc",
+			"moduleType": 0,
+			"moduleName": "WEBGLCompressedTextureAstc",
+			"pack": [
+				"js",
+				"html",
+				"webgl",
+				"extension"
+			],
+			"isExtern": true
+		},
+		"MediaStreamEvent": {
+			"name": "MediaStreamEvent",
+			"moduleType": 0,
+			"moduleName": "MediaStreamEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"MouseEvent": {
+			"name": "MouseEvent",
+			"moduleType": 0,
+			"moduleName": "MouseEvent",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ChannelInterpretation": {
+			"name": "ChannelInterpretation",
+			"moduleType": 3,
+			"moduleName": "ChannelInterpretation",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": false
+		},
+		"FileSystemEntriesCallback": {
+			"name": "FileSystemEntriesCallback",
+			"moduleType": 2,
+			"moduleName": "FileSystemEntriesCallback",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FilePropertyBag": {
+			"name": "FilePropertyBag",
+			"moduleType": 2,
+			"moduleName": "FilePropertyBag",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"Plugin": {
+			"name": "Plugin",
+			"moduleType": 0,
+			"moduleName": "Plugin",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"BatteryManager": {
+			"name": "BatteryManager",
+			"moduleType": 0,
+			"moduleName": "BatteryManager",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"FormData": {
+			"name": "FormData",
+			"moduleType": 0,
+			"moduleName": "FormData",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"WebGLSampler": {
+			"name": "Sampler",
+			"moduleType": 0,
+			"moduleName": "Sampler",
+			"pack": [
+				"js",
+				"html",
+				"webgl"
+			],
+			"isExtern": true
+		},
+		"Location": {
+			"name": "Location",
+			"moduleType": 0,
+			"moduleName": "Location",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"ChannelSplitterNode": {
+			"name": "ChannelSplitterNode",
+			"moduleType": 0,
+			"moduleName": "ChannelSplitterNode",
+			"pack": [
+				"js",
+				"html",
+				"audio"
+			],
+			"isExtern": true
+		},
+		"PushMessageData": {
+			"name": "PushMessageData",
+			"moduleType": 0,
+			"moduleName": "PushMessageData",
+			"pack": [
+				"js",
+				"html",
+				"push"
+			],
+			"isExtern": true
+		},
+		"FontFaceSetLoadEventInit": {
+			"name": "FontFaceSetLoadEventInit",
+			"moduleType": 2,
+			"moduleName": "FontFaceSetLoadEventInit",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"FontFaceSetLoadStatus": {
+			"name": "FontFaceSetLoadStatus",
+			"moduleType": 3,
+			"moduleName": "FontFaceSetLoadStatus",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": false
+		},
+		"MediaDeviceInfo": {
+			"name": "MediaDeviceInfo",
+			"moduleType": 0,
+			"moduleName": "MediaDeviceInfo",
+			"pack": [
+				"js",
+				"html"
+			],
+			"isExtern": true
+		},
+		"NumberFormatOptions": {
+			"name": "NumberFormatOptions",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"isExtern": false
+		}
+	},
+	"haxeVersion": "4.0.5"
+}

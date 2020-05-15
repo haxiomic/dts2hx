@@ -23,11 +23,13 @@ class HaxeTypePathMap {
 	final tc: TypeChecker;
 	// the same symbol may have multiple type paths if it has multiple SymbolAccess
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
+	final stdLibMap: Null<StdLibMacro.TypeMap>;
 
-	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap) {
+	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap, stdLibMap: Null<StdLibMacro.TypeMap>) {
 		this.entryPointModuleId = entryPointModuleId;
 		this.program = program;
 		this.symbolAccessMap = symbolAccessMap;
+		this.stdLibMap = stdLibMap;
 		this.tc = program.getTypeChecker();
 		symbolTypePathMap = buildHaxeTypePathMap();
 	}
@@ -120,6 +122,7 @@ class HaxeTypePathMap {
 							modules.push({
 								name: typePath.name,
 								pack: typePath.pack,
+								moduleName: typePath.moduleName,
 								isExistingStdLibType: typePath.isExistingStdLibType,
 								symbol: symbol,
 								access: access,
@@ -139,6 +142,7 @@ class HaxeTypePathMap {
 								modules.push({
 									name: typePath.name,
 									pack: typePath.pack,
+									moduleName: typePath.moduleName,
 									isExistingStdLibType: typePath.isExistingStdLibType,
 									symbol: symbol,
 									access: access,
@@ -158,6 +162,7 @@ class HaxeTypePathMap {
 							modules.push({
 								name: 'Global',
 								pack: typePath.pack,
+								moduleName: 'Global',
 								isExistingStdLibType: false,
 								symbol: null,
 								access: Global([]),
@@ -236,7 +241,7 @@ class HaxeTypePathMap {
 		return typePathMap;
 	}
 
-	function generateTypePath(symbol: Symbol, access: SymbolAccess, asInterfaceStructure: Bool) {
+	function generateTypePath(symbol: Symbol, access: SymbolAccess, asInterfaceStructure: Bool): TypePath {
 		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
 		var isBuiltIn = false; // symbol is declared in a built-in lib file (but may be extended in user-code)
 		var defaultLibOnlyDeclarations = true; // symbol is declared in a built-in lib file and **is not** extended in user-code
@@ -265,10 +270,27 @@ class HaxeTypePathMap {
 					var tp = specialTypeMap.get(name);
 					return {
 						name: tp.name,
+						moduleName: tp.name,
 						pack: tp.pack,
 						isExistingStdLibType: true,
 					}
+				case Global(_):
+					if (stdLibMap != null) {
+						var nativeAccessPath = access.getIdentifierChain().join('.');
+						var stdLibType = stdLibMap.js.get(nativeAccessPath);
+						if (js.Syntax.typeof(stdLibType) == 'object') { // can sometimes be function if `nativeAccessPath` is something like 'toString'
+							return {
+								name: stdLibType.name,
+								moduleName: stdLibType.moduleName,
+								pack: stdLibType.pack,
+								isExistingStdLibType: true,
+							}
+						} else {
+							// Log.warn('Default lib type not found in the haxe standard library (externs will be generated for this type)', symbol);
+						}
+					}
 				default:
+					Log.warn('Default lib types are always expected to be global', symbol);
 					// @! do a lookup in the haxe standard library
 			}
 		}
@@ -413,6 +435,7 @@ class HaxeTypePathMap {
 
 		// handle short aliases
 		return {
+			moduleName: name,
 			name: name,
 			pack: pack,
 			isExistingStdLibType: false,
@@ -449,6 +472,7 @@ class HaxeTypePathMap {
 typedef TypePath = {
 	name: String,
 	pack: Array<String>,
+	moduleName: String,
 	isExistingStdLibType: Bool,
 }
 
