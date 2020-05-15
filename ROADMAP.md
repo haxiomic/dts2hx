@@ -1,4 +1,3 @@
-
 - Create alternative field for redefined class and interface fields (if type is not same)
 
 - Complete validation
@@ -16,15 +15,6 @@ setup( { default_: 'hi' })
 // rather than
 setup( { default: 'hi' })
 ```
-
-=> Maybe we should just support quote wrapped fields better instead
-```haxe
-{
-	"default": String
-}
-`options."default" = 'example';
-```
-
 
 ---- Tests should compile
 
