@@ -27,7 +27,7 @@ class Console {
 	static public var printIntercept: Null<String -> ConsoleOutputStream -> Bool> = null;
 
 	static var argSeparator = ' ';
-	static var unicodeCompatibilityMode:UnicodeCompatibilityMode = #if ((sys || nodejs) && !macro) Sys.systemName() == 'Windows' ? Windows : #end None;
+	static var unicodeCompatibilityMode:UnicodeCompatibilityMode = #if ((sys || nodejs)) Sys.systemName() == 'Windows' ? Windows : #end None;
 	static var unicodeCompatibilityEnabled = false;
 
 	macro static public function log(rest:Array<Expr>){
@@ -509,7 +509,7 @@ class Console {
 	}
 
 	static function determineConsoleFormatMode():Console.ConsoleFormatMode {
-		#if (!macro && !no_console)
+		#if (!no_console)
 
 		// browser console test
 		#if js
@@ -578,7 +578,7 @@ class Console {
 		}
 		#end // (sys || nodejs)
 
-		#end // (!macro && !no_console)
+		#end // (!no_console)
 
 		return Disabled;
 	}
@@ -599,7 +599,7 @@ class Console {
 
 	#if (sys || nodejs)
 	static function exec(cmd: String, ?args:Array<String>) {
-		#if (nodejs && !macro)
+		#if (nodejs)
 		//hxnodejs doesn't support sys.io.Process yet
 		var p = js.node.ChildProcess.spawnSync(cmd, args != null ? args : [], {});
 		var stdout = (p.stdout:js.node.Buffer) == null ? '' : (p.stdout:js.node.Buffer).toString();
