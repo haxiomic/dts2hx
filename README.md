@@ -39,6 +39,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 ## Road to Beta
 - [x] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
+- [ ] Explore converting _all_ typescript definitions in a package, whether or not they're connected to the package's root types
 - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
 - [ ] Index signatures
