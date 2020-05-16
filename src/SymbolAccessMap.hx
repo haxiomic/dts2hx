@@ -1,3 +1,4 @@
+import typescript.ts.CompilerHost;
 import SymbolAccess;
 import typescript.ts.InternalSymbolName;
 import typescript.ts.Program;
@@ -23,38 +24,38 @@ class SymbolAccessMap {
 	final tc: TypeChecker;
 	final symbolAccessMap = new Map<Int, Array<SymbolAccess>>();
 
-	public function new(program: Program, moduleRootSourceFiles: Array<SourceFile>) {
+	public function new(program: Program) {
 		// this.program = ctx.program;
 		this.tc = program.getTypeChecker();
+		
+		// determine a symbol path for all symbols in all source files
+		// if a symbol is accessible through multiple paths, the shortest will be used
+		for (sourceFile in program.getSourceFiles()) {
+			var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
 
-		for (moduleSourceFile in moduleRootSourceFiles) {
-			program.walkReferencedSourceFiles(moduleSourceFile, (sourceFile) -> {
-				var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+			// Log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>', sourceFile);
 
-				// Log.log('Building symbol access map for source file, module <b>${moduleSourceFile.moduleName}</>', sourceFile);
+			// global-scope symbols
+			for (symbol in program.getGlobalScopeSymbolsInSourceFile(sourceFile)) {
+				TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, accessChain) -> {
+					var currentAccess: SymbolAccess = Global([]);
+					for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
+					setAccess(symbol, currentAccess);
+				});
+			}
 
-				// global-scope symbols
-				for (symbol in program.getGlobalScopeSymbolsInSourceFile(sourceFile)) {
-					TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, accessChain) -> {
-						var currentAccess: SymbolAccess = Global([]);
-						for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
-						setAccess(symbol, currentAccess);
-					});
+			// source-file module symbols
+			if (sourceFileSymbol != null) {
+				var moduleName = sourceFile.moduleName;
+				if (moduleName == null) {
+					Log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
 				}
-				
-				// source-file module symbols
-				if (sourceFileSymbol != null) {
-					TsSymbolTools.walkDeclarationSymbols(tc, sourceFileSymbol, (symbol, accessChain) -> {
-						var moduleName = sourceFile.moduleName;
-						if (moduleName == null) {
-							Log.error('Internal error: SourceFile.moduleName was null, this should have been set when ConverterContext initialized', sourceFile);
-						}
-						var currentAccess: SymbolAccess = ExportModule(moduleName, sourceFileSymbol, []);
-						for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
-						setAccess(symbol, currentAccess);
-					});
-				}
-			});
+				TsSymbolTools.walkDeclarationSymbols(tc, sourceFileSymbol, (symbol, accessChain) -> {
+					var currentAccess: SymbolAccess = ExportModule(moduleName, sourceFileSymbol, []);
+					for (s in accessChain) currentAccess = symbolAccessAppendSymbol(currentAccess, s);
+					setAccess(symbol, currentAccess);
+				});
+			}
 		}
 	}
 

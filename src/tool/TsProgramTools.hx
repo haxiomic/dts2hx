@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.PackageId;
 import typescript.ts.Identifier;
 import typescript.ts.Statement;
 import typescript.ts.InternalSymbolName;
@@ -11,6 +12,8 @@ import typescript.ts.Program;
 import typescript.ts.Symbol;
 using TsInternal;
 using tool.TsSymbolTools;
+using StringTools;
+using Lambda;
 
 class TsProgramTools {
 
@@ -23,16 +26,56 @@ class TsProgramTools {
 			.concat(program.getConfigFileParsingDiagnostics());
 	}
 
-	static public function resolveAllTypeReferenceDirectives(program: Program, host: CompilerHost) {
-		var sourceFiles = program.getSourceFiles().filter(s -> !program.isSourceFileDefaultLibrary(s));
-		var typeReferences = [];
-		for (s in sourceFiles) {
-			for (t in s.typeReferenceDirectives) {
-				var resolved = Ts.resolveTypeReferenceDirective(t.fileName, s.fileName, program.getCompilerOptions(), host);
-				typeReferences.push(resolved);
+	static public function isAmbientModule(program: Program, moduleName: String) {
+		var tc = program.getTypeChecker();
+		return tc.getAmbientModules().exists(s -> tool.StringTools.unwrapQuotes(s.name) == normalizeModuleName(moduleName));
+	}
+
+	static public function getDependencies(program: Program, sourceFiles: Array<SourceFile>, normalizedInputModuleName: String, host: CompilerHost) {
+		var moduleDependencies = new Array<{ normalizedModuleName: String, packageInfo: PackageId }>();
+
+		var compilerOptions = program.getCompilerOptions();
+
+		inline function recordDependency(packageInfo: PackageId) {
+			var normalizedModuleName = normalizeModuleName(packageInfo.name);
+			// check dependency hasn't already been recorded
+			if (
+				!moduleDependencies.exists(m -> m.normalizedModuleName == normalizedModuleName) &&
+				normalizedModuleName != normalizedInputModuleName
+			) {
+				moduleDependencies.push({
+					normalizedModuleName: normalizedModuleName,
+					packageInfo: packageInfo
+				});
 			}
 		}
-		return typeReferences;
+
+		for (sourceFile in sourceFiles) {
+			walkReferencedSourceFiles(program, sourceFile, host, false, (sourceFile) -> {
+				var referenceInfo = Ts.preProcessFile(sourceFile.text);
+
+				var externalTypeReferences =
+					referenceInfo.typeReferenceDirectives
+					.concat(referenceInfo.importedFiles)
+					.filter(fileRef ->
+						!TsProgramTools.isDirectPathReferenceModule(fileRef.fileName) &&
+						!TsProgramTools.isAmbientModule(program, fileRef.fileName)
+					);
+
+				for (typeReference in externalTypeReferences) {
+					var result = Ts.resolveTypeReferenceDirective(typeReference.fileName, sourceFile.fileName, compilerOptions, host);
+					if (result.resolvedTypeReferenceDirective != null) {
+						if (result.resolvedTypeReferenceDirective.packageId != null) {
+							recordDependency(result.resolvedTypeReferenceDirective.packageId);
+						}
+					} else {
+						Log.error('Module not found <b>${typeReference.fileName}</>', sourceFile);
+					}
+				}
+			});
+		}
+
+		return moduleDependencies;
 	}
 
 	public static function getGlobalScopeSymbolsInSourceFile(program: Program, sourceFile: SourceFile) {
@@ -106,16 +149,133 @@ class TsProgramTools {
 		return result;
 	}
 
-	public static function walkReferencedSourceFiles(program: Program, sourceFile: SourceFile, onSourceFile: (SourceFile) -> Void) {
-		onSourceFile(sourceFile);
+	public static function walkReferencedSourceFiles(program: Program, sourceFile: SourceFile, host: CompilerHost, includeLocalModuleReferences: Bool, onSourceFile: (SourceFile) -> Void, ?visitedSourceFileStack: Array<SourceFile>) {
+		if (visitedSourceFileStack == null) {
+			visitedSourceFileStack = [];
+		}
 
-		// include tripple-slash referenced sourceFiles
-		for (fileRef in sourceFile.referencedFiles) {
+		if (visitedSourceFileStack.indexOf(sourceFile) == -1) {
+			onSourceFile(sourceFile);
+			visitedSourceFileStack.push(sourceFile);
+		} else {
+			// already visited, exit to prevent import recursion
+			return;
+		}
+
+		var referenceInfo = Ts.preProcessFile(sourceFile.text);
+		
+		var localFileReferences = referenceInfo.referencedFiles;
+
+		// include **relative** module references
+		if (includeLocalModuleReferences) {
+			var relativeModuleReferences =
+				/// <reference type="./example" />
+				referenceInfo.typeReferenceDirectives
+				// `import * from './example'
+				.concat(referenceInfo.importedFiles)
+				.filter(fileRef -> isDirectPathReferenceModule(fileRef.fileName));
+				
+			localFileReferences = localFileReferences.concat(relativeModuleReferences);
+		}
+
+
+		// include triple-slash path referenced sourceFiles
+		/// <reference path="example.d.ts" />
+		for (fileRef in localFileReferences) {
 			var referenceSourceFile = program.getSourceFileFromReference(sourceFile, fileRef);
 			if (referenceSourceFile != null) {
-				walkReferencedSourceFiles(program, referenceSourceFile, onSourceFile);
+				walkReferencedSourceFiles(program, referenceSourceFile, host, includeLocalModuleReferences, onSourceFile, visitedSourceFileStack);
 			}
 		}
+	}
+
+	static public function assignModuleNames(program: Program, moduleSearchPath: String, host: CompilerHost) {
+		var compilerOptions = program.getCompilerOptions();
+		var tc = program.getTypeChecker();
+
+		var packageNames = new Array<String>();
+
+		for (sourceFile in program.getSourceFiles()) {
+			var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
+			if (sourceFileSymbol == null) {
+				// this sourceFile is not a module file (it may declare global or ambient symbols instead)
+				// therefore it does not need a moduleName
+				continue;
+			}
+		
+			var lookupName = FileTools.withRelativePrefix(removeTsExtension(sourceFile.fileName));
+			
+
+			if (!sourceFile.hasNoDefaultLib) {
+				var result = Ts.resolveModuleName(lookupName, moduleSearchPath + '/.', compilerOptions, host);
+				if (result.resolvedModule != null) {
+					sourceFile.moduleName = if (result.resolvedModule.packageId != null) {
+						normalizeModuleName(result.resolvedModule.packageId.name) + '/' + removeTsExtension(result.resolvedModule.packageId.subModuleName);
+					} else {
+						normalizeModuleName(FileTools.withRelativePrefix(FileTools.cwdRelativeFilePath(lookupName)));
+					}
+
+					if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
+						packageNames.push(result.resolvedModule.packageId.name);
+					}
+				} else {
+					Log.warn('Internal error: Failed to resolve module <b>$lookupName</>');
+				}
+			}
+		}
+		
+		// now replace .moduleName for the default source file of packages
+		// for example, a package.json might define the types to be "index.d.ts", this source file should have .moduleName set to the package-name, not package/index.d.ts
+		for (packageName in packageNames) {
+			var result = Ts.resolveModuleName(packageName, moduleSearchPath + '/.', compilerOptions, host);
+			if (result.resolvedModule != null) {
+				var defaultTypesSourceFile = program.getSourceFile(result.resolvedModule.resolvedFileName);
+				if (defaultTypesSourceFile != null) {
+					defaultTypesSourceFile.moduleName = normalizeModuleName(packageName);
+				} else throw 'Failed to get sourceFile';
+			} else throw 'Failed to resolve module';
+		}
+	}
+
+	static public function removeTsExtension(fileName: String) {
+		var extPattern = ~/(\.d\.ts|\.ts|\.tsx|\.js|\.jsx|\.json)$/i;
+		return if (extPattern.match(fileName)) {
+			extPattern.matchedLeft();
+		} else {
+			fileName;
+		}
+	}
+
+	/**
+		Remove @types prefix, convert backslashes to forward slashes and make path relative to cwd.
+		Examples:
+		- `@types/lib` -> `lib` 
+		- `.\modules\example` -> `./modules/example`
+		- `/Users/X/modules/example/` -> `./modules/example`
+	**/
+	public static function normalizeModuleName(moduleName: String) {
+		var isRelativePath = moduleName.charAt(0) == '.';
+		
+		// make absolute paths into paths relative to the cwd
+		if (TsProgramTools.isDirectPathReferenceModule(moduleName)) {
+			moduleName = FileTools.cwdRelativeFilePath(moduleName);
+		}
+
+		// normalize relative path strings like example/./test -> example/test
+		// replace backslashes with forward slashes to normalize for windows paths
+		moduleName = haxe.io.Path.normalize(moduleName);
+
+		var moduleNameParts = moduleName.split('/');
+
+		// remove @types prefix
+		if (moduleNameParts[0] == '@types' && moduleNameParts.length > 1) {
+			moduleNameParts.shift();
+		}
+
+		var normalized = moduleNameParts.join('/');
+
+		// we lose the ./ in normalization, so add it back afterwards
+		return isRelativePath ? './' + normalized : normalized; 
 	}
 
 	/**

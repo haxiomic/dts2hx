@@ -1,5 +1,6 @@
 import ds.OnlyOnceSymbolQueue;
 import haxe.macro.Expr;
+import tool.FileTools;
 import tool.TsSyntaxTools;
 import typescript.Ts;
 import typescript.ts.CompilerHost;
@@ -20,7 +21,6 @@ import typescript.ts.ParameterDeclaration;
 import typescript.ts.Program;
 import typescript.ts.ResolvedModuleFull;
 import typescript.ts.Signature;
-import typescript.ts.SourceFile;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
 import typescript.ts.SyntaxKind;
@@ -59,12 +59,12 @@ class ConverterContext {
 	**/
 	public final normalizedInputModuleName: String;
 	
-	public final entryPointModule: ResolvedModuleFull;
+	public final inputModule: ResolvedModuleFull;
 
 	/**
-		If the entryPointModule is part of a node package, this will be set to the packageId.
+		If the inputModule is part of a node package, this will be set to the packageId.
 		For example, in three.js, there are a number of types that are not accessible from `require('three')`:
-		If entryPointModule is `three/examples/jsm/controls/OrbitControls`, packageId will be `three`
+		If inputModule is `three/examples/jsm/controls/OrbitControls`, packageId will be `three`
 	**/
 	public final packageName: Null<String>;
 	
@@ -77,7 +77,7 @@ class ConverterContext {
 		An array of normalized module ids (paths or names) that this module depends on.
 		These dependencies will also need to be converted
 	**/
-	public final moduleDependencies = new Array<{ normalizedModuleName: String, packageInfo: PackageId }>();
+	public final moduleDependencies: haxe.ds.ReadOnlyArray<{ normalizedModuleName: String, packageInfo: PackageId }>;
 
 	public final tc: TypeChecker;
 	public final host: CompilerHost;
@@ -115,7 +115,7 @@ class ConverterContext {
 		this.locationComments = locationComments;
 
 		// this will be used as the argument to require()
-		this.normalizedInputModuleName = inline normalizeModuleName(inputModuleName);
+		this.normalizedInputModuleName = inline inputModuleName.normalizeModuleName();
 
 		// resolve input module (as entry-point)
 		var result = Ts.resolveModuleName(inputModuleName, moduleSearchPath + '/.', compilerOptions, host);
@@ -124,13 +124,13 @@ class ConverterContext {
 			Log.error('Failed to find typescript for module <b>"${inputModuleName}"</b>. Searched the following paths:<dim>\n\t${failedLookupLocations.join('\n\t')}</>');
 			throw 'Input module not resolved';
 		}
-		entryPointModule = result.resolvedModule;
+		inputModule = result.resolvedModule;
 
 		// if the input module is part of a package, resolve the package
-		var packageRootModule = if (entryPointModule.packageId != null) {
-			this.packageName = inline normalizeModuleName(entryPointModule.packageId.name);
+		var packageRootModule = if (inputModule.packageId != null) {
+			this.packageName = inline inputModule.packageId.name.normalizeModuleName();
 
-			if (entryPointModule.packageId.name != inputModuleName) {
+			if (inputModule.packageId.name != inputModuleName) {
 				var result = Ts.resolveModuleName(this.packageName, moduleSearchPath + '/.', compilerOptions, host);
 				if (result.resolvedModule == null) {
 					var failedLookupLocations: Array<String> = Reflect.field(result, 'failedLookupLocations'); // @internal field
@@ -138,12 +138,12 @@ class ConverterContext {
 				}
 				result.resolvedModule;
 			} else {
-				entryPointModule;
+				inputModule;
 			}
 		} else null;
 		
 		// create program
-		var inputSourcePaths = [entryPointModule.resolvedFileName];
+		var inputSourcePaths = [inputModule.resolvedFileName];
 		if (packageRootModule != null) {
 			inputSourcePaths.unshift(packageRootModule.resolvedFileName);
 		}
@@ -152,60 +152,23 @@ class ConverterContext {
 
 		Log.diagnostics(program.getAllDiagnostics());
 
-		var entryPointSourceFile = program.getSourceFile(entryPointModule.resolvedFileName);
-		var packageRootSourceFile = packageRootModule != null ? program.getSourceFile(packageRootModule.resolvedFileName) : null;
+		var entryPointSourceFile = program.getSourceFile(inputModule.resolvedFileName);
+		if (entryPointSourceFile == null) throw 'Failed to get entry-point source file';
 
-		if (entryPointSourceFile == null) {
-			throw 'Failed to get entry-point source file';
-		}
+		// these are source files that belong directly to this module
+		// maybe we could search the package directory and add all discovered typescript files here
+		var inputModuleSourceFiles = new Array();
+		program.walkReferencedSourceFiles(entryPointSourceFile, host, true, s -> inputModuleSourceFiles.push(s));
 
-		var defaultLibSourceFiles = program.getSourceFiles().filter(s -> s.hasNoDefaultLib);
+		// by default, the .moduleName field of source files is not assigned
+		// this method explores each source file and gives it a .moduleName field that would (if the source file exports symbols) be used in require()
+		program.assignModuleNames(moduleSearchPath, host);
 
-		// list of the module entry points source files, for the currently module and its referenced modules
-		var dependencyRootSourceFiles: Array<SourceFile> = [];
-
-		// set `moduleName` on source files with a known module
-		// `sourceFile.moduleName` is not populated after binding, so let's populate it to help aliasing
-		entryPointSourceFile.moduleName = normalizedInputModuleName; // this will be used as input to require()
-		if (packageRootSourceFile != null) {
-			packageRootSourceFile.moduleName = packageName;
-		}
-		var moduleReferences = program.resolveAllTypeReferenceDirectives(host);
-		for (moduleReference in moduleReferences) {
-			if (moduleReference.resolvedTypeReferenceDirective != null) {
-				var resolvedFileName = moduleReference.resolvedTypeReferenceDirective.resolvedFileName;
-				var packageInfo = moduleReference.resolvedTypeReferenceDirective.packageId;
-				if (packageInfo != null) {
-					moduleDependencies.push({
-						normalizedModuleName: inline normalizeModuleName(packageInfo.name),
-						packageInfo: packageInfo,
-					});
-				}
-				var moduleName = packageInfo != null ? inline normalizeModuleName(packageInfo.name) : null;
-				if (moduleName == null) {
-					Log.warn('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
-				}
-				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
-				if (sourceFile != null) {
-					sourceFile.moduleName = moduleName;
-					dependencyRootSourceFiles.push(sourceFile);
-				} else {
-					Log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
-				}
-			} else {
-				Log.error('Failed to find referenced module <b>${moduleReference.failedLookupLocations[0]}</b>');
-			}
-		}
+		// determine external dependencies:
+		moduleDependencies = program.getDependencies(inputModuleSourceFiles, normalizedInputModuleName, host);
 
 		// populate symbol access map
-		var accessRoots = new Array<SourceFile>();
-		// make package-root the first access root source file (because entryPoint might be a submodule and the package-root should be the primary source of access paths)
-		if (packageRootSourceFile != null) {
-			accessRoots.push(packageRootSourceFile);
-		}
-		accessRoots.push(entryPointSourceFile);
-		accessRoots = accessRoots.concat(defaultLibSourceFiles).concat(dependencyRootSourceFiles);
-		symbolAccessMap = new SymbolAccessMap(program, accessRoots);
+		symbolAccessMap = new SymbolAccessMap(program);
 
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
 		haxeTypePathMap = new HaxeTypePathMap(
@@ -216,7 +179,7 @@ class ConverterContext {
 		);
 
 		// convert symbols, starting from input module
-		program.walkReferencedSourceFiles(entryPointSourceFile, (sourceFile) -> {
+		program.walkReferencedSourceFiles(entryPointSourceFile, host, true, (sourceFile) -> {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 				TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, access) -> {
 					declarationSymbolQueue.tryEnqueue(symbol);
@@ -302,7 +265,23 @@ class ConverterContext {
 	public function getReferencedHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool): TypePath {
 		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext, preferInterfaceStructure);
 		if (!hxTypePath.isExistingStdLibType) {
-			declarationSymbolQueue.tryEnqueue(symbol);
+			if (symbol.getDeclarationsArray().exists(d -> d.getSourceFile().hasNoDefaultLib)) {
+				declarationSymbolQueue.tryEnqueue(symbol);
+			} else {
+				// if (!declarationSymbolQueue.has(symbol)) {
+					// var access = symbolAccessMap.getAccess(symbol).map(a -> a.toString());
+					// var accessSymbolChain = accessContext.extractSymbolChain();
+					// var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
+					// if (lastAccessSymbol == null) debug();
+					// Console.log(
+					// 	'Discovered symbol'  + 
+					// 	'<magenta>${symbol.getDeclarationsArray().map(d -> d.getSourceFile().moduleName)}</>',
+					// 	'<yellow>${access}</>',
+					// 	Log.symbolInfo(symbol)
+					// );
+				// }
+				declarationSymbolQueue.tryEnqueue(symbol);
+			}
 		}
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
 		// we don't shorten std lib types because they are not generated
@@ -772,7 +751,7 @@ class ConverterContext {
 					var lineAndCharacter = sourceFile.getLineAndCharacterOfPosition(start);
 					var line = lineAndCharacter.line;
 					var character = lineAndCharacter.character;
-					sourceLocationInfo.push('${cwdRelativeFilePath(sourceFile.fileName)}:${line + 1}${character > 0 ? ':${character + 1}' : ''}');
+					sourceLocationInfo.push('${FileTools.cwdRelativeFilePath(sourceFile.fileName)}:${line + 1}${character > 0 ? ':${character + 1}' : ''}');
 				}
 			}
 		}
@@ -1606,33 +1585,6 @@ class ConverterContext {
 			case TPath({name: 'Any' | 'Dynamic', pack: ['std'] | []}): true;
 			default: false;
 		}
-	}
-
-	/**
-		Remove @types prefix, convert backslashes to forward slashes and make path relative to cwd.
-		Examples:
-		- `@types/lib` -> `lib` 
-		- `.\modules\example` -> `./modules/example`
-		- `/Users/X/modules/example/` -> `./modules/example`
-	**/
-	function normalizeModuleName(moduleName: String) {
-		// make absolute paths into paths relative to the cwd
-		if (TsProgramTools.isDirectPathReferenceModule(moduleName)) {
-			moduleName = cwdRelativeFilePath(moduleName);
-		}
-
-		// replace backslashes with forward slashes to normalize for windows paths
-		moduleName.replace('\\', '/');
-		var moduleNameParts = moduleName.split('/');
-		// remove @types prefix
-		if (moduleNameParts[0] == '@types' && moduleNameParts.length > 1) {
-			moduleNameParts.shift();
-		}
-		return moduleNameParts.join('/');
-	}
-
-	inline function cwdRelativeFilePath(path: String): String {
-		return TsInternal.convertToRelativePath(path, host.getCurrentDirectory(), host.getCanonicalFileName);
 	}
 
 	/**

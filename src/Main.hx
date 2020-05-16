@@ -290,12 +290,13 @@ class Main {
 	}
 
 	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
-		var converter = try {
-			new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, locationComments);
-		} catch (e: Any) {
-			Log.error(e);
-			return null;
-		}
+		var converter =
+			try {
+				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, locationComments);
+			} catch (e: Any) {
+				Log.error(e);
+				return null;
+			}
 
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
 		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (converter.packageName == null));
@@ -329,7 +330,7 @@ class Main {
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			if (generateLibraryWrapper) {
-				var packageJson = getModulePackageJson(moduleName, moduleSearchPath, converter.entryPointModule);
+				var packageJson = getModulePackageJson(moduleName, moduleSearchPath, converter.inputModule);
 				// write a readme
 				var readmeStr = generateReadme(moduleName, moduleSearchPath, converter, packageJson, stdLibTypeMap);
 				Fs.writeFileSync(Path.join([outputLibraryPath, 'README.md']), readmeStr);
@@ -346,7 +347,7 @@ class Main {
 	}
 
 	static function generateReadme(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>, stdLibTypeMap: Null<TypeMap>): String {
-		var resolvedModule: ResolvedModuleFull = converter.entryPointModule;
+		var resolvedModule: ResolvedModuleFull = converter.inputModule;
 		var dts2hxRepoUrl = dts2hxPackageJson.repository.url;
 		var dts2hxRef = dts2hxRepoUrl != null ? '[dts2hx]($dts2hxRepoUrl)' : 'dts2hx';
 		var typesModuleVersion: Null<String> = resolvedModule.packageId != null ? resolvedModule.packageId.version : null;
@@ -376,7 +377,7 @@ class Main {
 				[
 					'## Dependencies'
 				].concat(
-					converter.moduleDependencies.map(s -> '- ${s}')
+					converter.moduleDependencies.map(s -> '- ${s.normalizedModuleName}')
 				).join('\n')
 			);
 		}
@@ -397,7 +398,7 @@ class Main {
 	}
 
 	static function generateHaxelibJson(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
-		var resolvedModule: ResolvedModuleFull = converter.entryPointModule;
+		var resolvedModule: ResolvedModuleFull = converter.inputModule;
 		var moduleName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
 		var moduleVersion: Null<String> = resolvedModule.packageId != null ? resolvedModule.packageId.version : null;
 		var haxelib: Dynamic = {
