@@ -51,6 +51,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 
 ## Road to 1.0
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
+- [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+
 - [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
     - [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
