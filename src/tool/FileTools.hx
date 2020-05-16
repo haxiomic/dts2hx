@@ -1,9 +1,57 @@
 package tool;
 
+import sys.FileSystem;
 import js.node.Fs;
 import haxe.io.Path;
 
+using StringTools;
+
 class FileTools {
+
+	static public function cwdRelativeFilePath(path: String) {
+		return relativePath(Sys.getCwd(), path);
+	}
+
+	/**
+		Prefix './' if the path is relative
+
+		- `.example` -> `./.example`
+		- `./example` -> `./example`
+		- `/example` -> `/example`
+		- `example` -> `./example`
+	**/
+	static public function withRelativePrefix(path: String) {
+		// prefix a ./ when looking up relative paths
+		return if (!haxe.io.Path.isAbsolute(path) && !path.startsWith('./') && !path.startsWith('.\\')) {
+			'./' + path;
+		} else {
+			path;
+		}
+	}
+
+	static public function relativePath(relativeTo: String, path: String) {
+		// make both absolute
+		path = Path.removeTrailingSlashes(FileSystem.absolutePath(path));
+		relativeTo = Path.removeTrailingSlashes(FileSystem.absolutePath(relativeTo));
+
+		var aPath = path.split('/');
+		var aRelativeTo = relativeTo.split('/');
+
+		// find shared part of path
+		var matchesUpToIndex = 0;
+		for (i in 0...aRelativeTo.length) {
+			if (aPath[i] == aRelativeTo[i]) {
+				matchesUpToIndex = i;
+			} else {
+				break;
+			}
+		}
+
+		return [for (_ in 0...(aRelativeTo.length - 1) - matchesUpToIndex) '..']
+			.concat(aPath.slice(matchesUpToIndex + 1))
+			.join('/');
+	}
+
 
 	/**
 		Ensures directory structure exists for a given path
