@@ -412,7 +412,8 @@ class Main {
 		}
 		// add dependencies
 		for (moduleDependency in converter.moduleDependencies) {
-			Reflect.setField(haxelib.dependencies, moduleDependency.normalizedModuleName, "");
+			var dependencyVersion = moduleDependency.packageInfo.version;
+			Reflect.setField(haxelib.dependencies, moduleDependency.normalizedModuleName, dependencyVersion != null ? dependencyVersion : '');
 		}
 		return haxe.Json.stringify(haxelib, null, '\t');
 	}
