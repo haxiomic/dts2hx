@@ -11,6 +11,11 @@ class OnceOnlySymbolQueue {
 
 	public function new() {}
 
+	public function has(item: Symbol) {
+		var id = item.getId();
+		return allItemsSeen.exists(id);
+	}
+
 	/**
 		Returns `true` if the item has not been seen before (and therefore added to the queue), and `false` if it has been seen before (and therefore ignored)
 	**/

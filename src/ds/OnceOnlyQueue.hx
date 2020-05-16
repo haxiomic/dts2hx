@@ -14,6 +14,10 @@ class OnceOnlyQueue<T> {
 
 	public function new() {}
 
+	public function has(item: T) {
+		return allItemsSeen.indexOf(item) != -1;
+	}
+
 	/**
 		Returns `true` if the item has not been seen before (and therefore added to the queue), and `false` if it has been seen before (and therefore ignored)
 	**/
