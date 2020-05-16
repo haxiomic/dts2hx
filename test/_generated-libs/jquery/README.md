@@ -1,11 +1,11 @@
 # Haxe Externs for jquery
 
-Generated from **[@types/jquery v3.3.29](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.6.0** using **TypeScript 3.7.4** with arguments:
+Generated from **[@types/jquery v3.3.29](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.7.1** using **TypeScript 3.7.4** with arguments:
 
 	dts2hx jquery --output _generated-libs
 
 ## Dependencies
-- @types/sizzle
+- sizzle
 
 ## Contributors to @types/jquery
 - [Leonard Thieu](https://github.com/leonard-thieu)

@@ -1,6 +1,6 @@
 # Haxe Externs for node
 
-Generated from **[@types/node v11.11.3](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.6.0** using **TypeScript 3.7.4** with arguments:
+Generated from **[@types/node v11.11.3](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.7.1** using **TypeScript 3.7.4** with arguments:
 
 	dts2hx node --output _generated-libs
 

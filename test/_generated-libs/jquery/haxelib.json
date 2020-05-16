@@ -12,7 +12,7 @@
 		"haxiomic"
 	],
 	"dependencies": {
-		"@types/sizzle": ""
+		"sizzle": "2.3.2"
 	},
 	"version": "3.3.29"
 }
