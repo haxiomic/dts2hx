@@ -94,6 +94,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js express",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["express", "--verbose"],
+            "cwd": "${workspaceFolder}/test",
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "dts2hx.js typescript",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["typescript", "--verbose"],
