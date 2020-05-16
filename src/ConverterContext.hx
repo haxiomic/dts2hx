@@ -82,6 +82,7 @@ class ConverterContext {
 	public final tc: TypeChecker;
 	public final host: CompilerHost;
 	public final program: Program;
+	public final moduleSearchPath: String;
 
 	/**
 		Symbol access map is filled during an initial pass over the program.
@@ -111,6 +112,7 @@ class ConverterContext {
 
 	public function new(inputModuleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibMap: Null<StdLibMacro.TypeMap>, locationComments: Bool = false) {
 		Console.log('Converting module <b>$inputModuleName</b>');
+		this.moduleSearchPath = moduleSearchPath;
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.locationComments = locationComments;
 
@@ -268,19 +270,29 @@ class ConverterContext {
 			if (symbol.getDeclarationsArray().exists(d -> d.getSourceFile().hasNoDefaultLib)) {
 				declarationSymbolQueue.tryEnqueue(symbol);
 			} else {
-				// if (!declarationSymbolQueue.has(symbol)) {
-					// var access = symbolAccessMap.getAccess(symbol).map(a -> a.toString());
-					// var accessSymbolChain = accessContext.extractSymbolChain();
-					// var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
-					// if (lastAccessSymbol == null) debug();
-					// Console.log(
-					// 	'Discovered symbol'  + 
-					// 	'<magenta>${symbol.getDeclarationsArray().map(d -> d.getSourceFile().moduleName)}</>',
-					// 	'<yellow>${access}</>',
-					// 	Log.symbolInfo(symbol)
-					// );
-				// }
-				declarationSymbolQueue.tryEnqueue(symbol);
+				if (!declarationSymbolQueue.has(symbol)) {
+					/**
+						Here we're referencing a symbol that's not currently included in the conversion queue
+						this might be:
+							- A symbol of an external library (in which case, we don't need to convert it)
+							- An undiscovered symbol declared within the input module. I'm undecided on whether or not this is an error yet.
+					**/
+
+					// check if symbol is declared within this module
+					var declaredInModules = symbol.getDeclarationsArray().map(d -> program.resolveSourceFilesModule(d.getSourceFile(), moduleSearchPath, host));
+
+					var declaredWithinInputModule = declaredInModules.exists(m -> if (m != null && m.packageId != null) {
+						m.packageId.name == normalizedInputModuleName;
+					} else {
+						// within an unresolved module, we just assume it's declared within this one so that the symbol is queued
+						true;
+					});
+					
+					if (declaredWithinInputModule) {
+						Log.log('Discovered symbol through reference', Log.symbolInfo(symbol));
+						declarationSymbolQueue.tryEnqueue(symbol);
+					}
+				}
 			}
 		}
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack

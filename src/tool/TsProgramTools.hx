@@ -189,6 +189,13 @@ class TsProgramTools {
 		}
 	}
 
+	static public function resolveSourceFilesModule(program: Program, sourceFile: SourceFile, moduleSearchPath: String, host: CompilerHost) {
+		var compilerOptions = program.getCompilerOptions();
+		var lookupName = FileTools.withRelativePrefix(removeTsExtension(sourceFile.fileName));
+		var result = Ts.resolveModuleName(lookupName, moduleSearchPath + '/.', compilerOptions, host);
+		return result.resolvedModule;
+	}
+
 	static public function assignModuleNames(program: Program, moduleSearchPath: String, host: CompilerHost) {
 		var compilerOptions = program.getCompilerOptions();
 		var tc = program.getTypeChecker();
@@ -202,25 +209,25 @@ class TsProgramTools {
 				// therefore it does not need a moduleName
 				continue;
 			}
+			if (sourceFile.hasNoDefaultLib) {
+				// don't assign moduleName for default libs
+				continue;
+			}
 		
 			var lookupName = FileTools.withRelativePrefix(removeTsExtension(sourceFile.fileName));
-			
-
-			if (!sourceFile.hasNoDefaultLib) {
-				var result = Ts.resolveModuleName(lookupName, moduleSearchPath + '/.', compilerOptions, host);
-				if (result.resolvedModule != null) {
-					sourceFile.moduleName = if (result.resolvedModule.packageId != null) {
-						normalizeModuleName(result.resolvedModule.packageId.name) + '/' + removeTsExtension(result.resolvedModule.packageId.subModuleName);
-					} else {
-						normalizeModuleName(FileTools.withRelativePrefix(FileTools.cwdRelativeFilePath(lookupName)));
-					}
-
-					if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
-						packageNames.push(result.resolvedModule.packageId.name);
-					}
+			var result = Ts.resolveModuleName(lookupName, moduleSearchPath + '/.', compilerOptions, host);
+			if (result.resolvedModule != null) {
+				sourceFile.moduleName = if (result.resolvedModule.packageId != null) {
+					normalizeModuleName(result.resolvedModule.packageId.name) + '/' + removeTsExtension(result.resolvedModule.packageId.subModuleName);
 				} else {
-					Log.warn('Internal error: Failed to resolve module <b>$lookupName</>');
+					normalizeModuleName(FileTools.withRelativePrefix(FileTools.cwdRelativeFilePath(lookupName)));
 				}
+
+				if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
+					packageNames.push(result.resolvedModule.packageId.name);
+				}
+			} else {
+				Log.warn('Internal error: Failed to resolve module <b>$lookupName</>');
 			}
 		}
 		
