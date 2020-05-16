@@ -284,7 +284,7 @@ class Main {
 				Log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 			}
 			for (moduleDependency in moduleDependencies) {
-				moduleQueue.tryEnqueue(moduleDependency);
+				moduleQueue.tryEnqueue(moduleDependency.normalizedModuleName);
 			}
 		}
 	}
@@ -412,7 +412,7 @@ class Main {
 		}
 		// add dependencies
 		for (moduleDependency in converter.moduleDependencies) {
-			Reflect.setField(haxelib.dependencies, moduleDependency, "");
+			Reflect.setField(haxelib.dependencies, moduleDependency.normalizedModuleName, "");
 		}
 		return haxe.Json.stringify(haxelib, null, '\t');
 	}

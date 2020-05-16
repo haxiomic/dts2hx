@@ -1,5 +1,4 @@
 import ds.OnlyOnceSymbolQueue;
-import haxe.ds.ReadOnlyArray;
 import haxe.macro.Expr;
 import tool.TsSyntaxTools;
 import typescript.Ts;
@@ -16,6 +15,7 @@ import typescript.ts.NodeBuilderFlags;
 import typescript.ts.NumberLiteralType;
 import typescript.ts.ObjectFlags;
 import typescript.ts.ObjectType;
+import typescript.ts.PackageId;
 import typescript.ts.ParameterDeclaration;
 import typescript.ts.Program;
 import typescript.ts.ResolvedModuleFull;
@@ -77,7 +77,7 @@ class ConverterContext {
 		An array of normalized module ids (paths or names) that this module depends on.
 		These dependencies will also need to be converted
 	**/
-	public final moduleDependencies: ReadOnlyArray<String>;
+	public final moduleDependencies = new Array<{ normalizedModuleName: String, packageInfo: PackageId }>();
 
 	public final tc: TypeChecker;
 	public final host: CompilerHost;
@@ -163,8 +163,6 @@ class ConverterContext {
 
 		// list of the module entry points source files, for the currently module and its referenced modules
 		var dependencyRootSourceFiles: Array<SourceFile> = [];
-		var dependencyModuleNames = new Array<String>();
-		moduleDependencies = dependencyModuleNames;
 
 		// set `moduleName` on source files with a known module
 		// `sourceFile.moduleName` is not populated after binding, so let's populate it to help aliasing
@@ -177,17 +175,20 @@ class ConverterContext {
 			if (moduleReference.resolvedTypeReferenceDirective != null) {
 				var resolvedFileName = moduleReference.resolvedTypeReferenceDirective.resolvedFileName;
 				var packageInfo = moduleReference.resolvedTypeReferenceDirective.packageId;
-				var moduleName = packageInfo != null ? packageInfo.name : null;
+				if (packageInfo != null) {
+					moduleDependencies.push({
+						normalizedModuleName: inline normalizeModuleName(packageInfo.name),
+						packageInfo: packageInfo,
+					});
+				}
+				var moduleName = packageInfo != null ? inline normalizeModuleName(packageInfo.name) : null;
 				if (moduleName == null) {
 					Log.warn('Referenced module does not have a moduleName in packageInfo <b>${resolvedFileName}</>');
 				}
 				var sourceFile = resolvedFileName != null ? program.getSourceFile(resolvedFileName) : null;
 				if (sourceFile != null) {
-					sourceFile.moduleName = moduleName != null ? inline normalizeModuleName(moduleName) : null;
+					sourceFile.moduleName = moduleName;
 					dependencyRootSourceFiles.push(sourceFile);
-					if (moduleName != null && dependencyModuleNames.indexOf(moduleName) == -1) {
-						dependencyModuleNames.push(moduleName);
-					}
 				} else {
 					Log.error('Internal error: failed get source file for file <b>"$resolvedFileName"</> (module: <b>"$moduleName"</>)');
 				}
