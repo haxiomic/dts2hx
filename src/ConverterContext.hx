@@ -289,7 +289,7 @@ class ConverterContext {
 					});
 					
 					if (declaredWithinInputModule) {
-						Log.log('Discovered symbol through reference', Log.symbolInfo(symbol));
+						Log.log('Discovered symbol through reference', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
 					}
 				}
