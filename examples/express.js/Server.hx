@@ -1,4 +1,4 @@
-class Main {
+class Server {
 
 	static function main() {
 		/**
