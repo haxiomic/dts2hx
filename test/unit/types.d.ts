@@ -47,6 +47,21 @@ export namespace Types {
         }
     }
 
+    type FunctionVarConversion = {
+        exampleWithOverload: {
+            (p: string): number;
+            (p: boolean): number;
+        },
+        nullableExampleWithOverload: {
+            (p: string): number;
+            (p: boolean): number;
+        } | null;
+        optionalExampleWithOverload?: {
+            (p: string): number;
+            (p: boolean): number;
+        }
+    }
+
     type Recursive<T> = {
         recursive: Recursive<T>;
         recursiveRecursive: Recursive<Recursive<T>>;
