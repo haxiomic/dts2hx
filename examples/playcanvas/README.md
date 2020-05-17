@@ -7,7 +7,7 @@ Reproducing [playcanvas hello world example](https://github.com/playcanvas/engin
 
 	`npm install`
 
-	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **externs/playcanvas/**
+	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **.haxelib/playcanvas/**
 - Build example with
 
 	`haxe build.hxml`

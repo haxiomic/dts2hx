@@ -5,7 +5,7 @@
 
 	`npm install`
 
-	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **externs/babylonjs/**
+	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **.haxelib/babylonjs/**
 - Build example with
 
 	`haxe build.hxml`

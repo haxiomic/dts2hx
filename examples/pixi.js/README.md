@@ -7,7 +7,7 @@ Reproducing the [pixi.js text example](https://pixijs.io/examples/#/text/text.js
 
 	`npm install`
 
-	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **externs/pixi.js/**
+	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **.haxelib/pixi.js/**
 - Build example with
 
 	`haxe build.hxml`

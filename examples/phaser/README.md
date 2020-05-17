@@ -7,7 +7,7 @@ Reproducing [Phaser v3 Physics Example: Debug-Options](https://phaser.io/example
 
 	`npm install`
 
-	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **externs/phaser/**
+	A [`postinstall`](https://docs.npmjs.com/misc/scripts#examples) script will run `dts2hx` which generates **.haxelib/phaser/**
 - Build example with
 
 	`haxe build.hxml`
