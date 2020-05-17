@@ -158,7 +158,7 @@ class ConverterContext {
 		if (entryPointSourceFile == null) throw 'Failed to get entry-point source file';
 
 		// these are source files that belong directly to this module
-		// maybe we could search the package directory and add all discovered typescript files here
+		// @! maybe we could search the package directory and add all discovered typescript files here
 		var inputModuleSourceFiles = new Array();
 		program.walkReferencedSourceFiles(entryPointSourceFile, host, true, s -> inputModuleSourceFiles.push(s));
 
@@ -180,7 +180,7 @@ class ConverterContext {
 			stdLibMap
 		);
 
-		// convert symbols, starting from input module
+		// convert symbols, starting from entry-point file
 		program.walkReferencedSourceFiles(entryPointSourceFile, host, true, (sourceFile) -> {
 			for (symbol in program.getExposedSymbolsOfSourceFile(sourceFile)) {
 				TsSymbolTools.walkDeclarationSymbols(tc, symbol, (symbol, access) -> {
@@ -211,7 +211,7 @@ class ConverterContext {
 			}
 		}
 
-		// iterate the generated types and resolve name collisions in fields
+		// iterate the generated types and resolve name collisions between fields
 		for (_ => hxModule in generatedModules) {
 			HaxeTools.resolveNameCollisions(hxModule.fields);
 		}
@@ -266,6 +266,8 @@ class ConverterContext {
 	**/
 	public function getReferencedHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool): TypePath {
 		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext, preferInterfaceStructure);
+
+		// should we queue this symbol for conversion?
 		if (!hxTypePath.isExistingStdLibType) {
 			if (symbol.getDeclarationsArray().exists(d -> d.getSourceFile().hasNoDefaultLib)) {
 				declarationSymbolQueue.tryEnqueue(symbol);
@@ -295,6 +297,7 @@ class ConverterContext {
 				}
 			}
 		}
+
 		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
 		// we don't shorten std lib types because they are not generated
 		var noPack = if (shortenTypePaths && !hxTypePath.isExistingStdLibType) {
@@ -663,17 +666,13 @@ class ConverterContext {
 			fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, declaration));
 		}
 
-		/*
-		Rather than adding another call() to the class, users can use the equivalent function available from the enclosing value-module
 		if (symbol.flags & SymbolFlags.Function != 0) {
-			Log.warn('todo: handle callable class type 2', symbol);
 			var tsType = getTsTypeOfField(symbol);
 			var signatures = tc.getSignaturesOfType(tsType, Call);
 			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, access, declaration);
 			selfCallStatic.enableAccess(AStatic);
 			fields.push(selfCallStatic);
 		}
-		*/
 
 		if (indexSignatures.length > 0) {
 			// this is different from a _constructor_ declaration
