@@ -53,7 +53,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 
 ## Road to 1.0
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
-- [ ] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required
+- [x] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required
 - [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+
 - [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
