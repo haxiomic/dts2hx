@@ -174,7 +174,7 @@ class ConverterContext {
 
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
 		haxeTypePathMap = new HaxeTypePathMap(
-			this.packageName != null ? this.packageName : normalizedInputModuleName,
+			packageName != null ? packageName : normalizedInputModuleName,
 			program,
 			symbolAccessMap,
 			stdLibMap
@@ -281,14 +281,9 @@ class ConverterContext {
 					**/
 
 					// check if symbol is declared within this module
-					var declaredInModules = symbol.getDeclarationsArray().map(d -> program.resolveSourceFilesModule(d.getSourceFile(), moduleSearchPath, host));
+					var declaredInModules = symbol.getParentModuleNames();
 
-					var declaredWithinInputModule = declaredInModules.exists(m -> if (m != null && m.packageId != null) {
-						m.packageId.name == normalizedInputModuleName;
-					} else {
-						// within an unresolved module, we just assume it's declared within this one so that the symbol is queued
-						true;
-					});
+					var declaredWithinInputModule = declaredInModules.exists(name -> name == normalizedInputModuleName);
 					
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);

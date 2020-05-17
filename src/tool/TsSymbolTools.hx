@@ -349,6 +349,17 @@ class TsSymbolTools {
 		return tsTypeParameterDeclarations;
 	}
 
+	static public function getParentModuleNames(symbol: Symbol): Array<String> {
+		var declaredInModules = new Array<String>();
+		for (d in getDeclarationsArray(symbol)) {
+			var declaredInParentModule = TsProgramTools.getParentModuleName(d.getSourceFile());
+			if (!declaredInModules.has(declaredInParentModule)) {
+				declaredInModules.push(declaredInParentModule);
+			}
+		}
+		return declaredInModules;
+	}
+
 	static public function isInternalSymbol(symbol: Symbol) {
 		return isInternalSymbolName(symbol.name);
 	}

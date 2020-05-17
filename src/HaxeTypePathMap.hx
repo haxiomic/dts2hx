@@ -17,7 +17,7 @@ using tool.TsSymbolTools;
 **/
 class HaxeTypePathMap {
 
-	final entryPointModuleId: String;
+	final inputParentModuleName: String;
 	final program: Program;
 	final symbolAccessMap: SymbolAccessMap;
 	final tc: TypeChecker;
@@ -25,8 +25,8 @@ class HaxeTypePathMap {
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
 	final stdLibMap: Null<StdLibMacro.TypeMap>;
 
-	public function new(entryPointModuleId: String, program: Program, symbolAccessMap: SymbolAccessMap, stdLibMap: Null<StdLibMacro.TypeMap>) {
-		this.entryPointModuleId = entryPointModuleId;
+	public function new(inputParentModuleName: String, program: Program, symbolAccessMap: SymbolAccessMap, stdLibMap: Null<StdLibMacro.TypeMap>) {
+		this.inputParentModuleName = inputParentModuleName;
 		this.program = program;
 		this.symbolAccessMap = symbolAccessMap;
 		this.stdLibMap = stdLibMap;
@@ -321,23 +321,37 @@ class HaxeTypePathMap {
 			[];
 		}
 
+		// if this symbol is declared in multiple modules, we need to pick a single module for the type path
+		var declaredInModules = symbol.getParentModuleNames();
+		var declaringModuleName = if (declaredInModules.has(inputParentModuleName) || declaredInModules.length == 0) {
+			inputParentModuleName;
+		} else {
+			inline function moduleNameScore(name: String) {
+				return
+					(std.StringTools.startsWith(name, '/') ? 1 : 0)  << 2 | // least preferred
+					(std.StringTools.startsWith(name, './') ? 1 : 0) << 1;
+			}
+			declaredInModules.sort((a, b) -> moduleNameScore(a) - moduleNameScore(b));
+			declaredInModules[0];
+		}
+
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
 		var identifierChain = access.getIdentifierChain();
 		switch access {
 			case AmbientModule(modulePath, _):
 				// prefix entry-point module for ambients
-				var entryPointPack = splitModulePath(entryPointModuleId);
+				var moduleNamePack = splitModulePath(declaringModuleName);
 				var modulePack = splitModulePath(modulePath);
 				// a common convention is to prefix the modulePath with the module name, for example
 				// declare module "babylonjs/assets" {}
 				// if the module name is also babylonjs, then the full path will be babylonjs.babylonjs.assets
 				// we can resolve the duplication by checking that the last part of the entryPointPack is the same as the first part of the module pack
-				if (entryPointPack[entryPointPack.length - 1].toSafePackageName() == modulePack[0].toSafePackageName()) {
+				if (moduleNamePack[moduleNamePack.length - 1].toSafePackageName() == modulePack[0].toSafePackageName()) {
 					// remove the first element from modulePack
 					modulePack.shift();
 				}
-				pack = pack.concat(entryPointPack).concat(modulePack).concat(identifierChain);
+				pack = pack.concat(moduleNamePack).concat(modulePack).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case ExportModule(moduleName, _):
 				pack = pack.concat(splitModulePath(moduleName)).concat(identifierChain);
@@ -348,8 +362,8 @@ class HaxeTypePathMap {
 				pack = pack.concat(isBuiltIn ? [] : ['global']).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
-				var entryPointPack = splitModulePath(entryPointModuleId);
-				pack = pack.concat(entryPointPack).concat(
+				var moduleNamePack = splitModulePath(declaringModuleName);
+				pack = pack.concat(moduleNamePack).concat(
 					symbol.getSymbolParents()
 					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
 					.filter(s -> !s.isSourceFileSymbol())

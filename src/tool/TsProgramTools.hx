@@ -1,5 +1,6 @@
 package tool;
 
+import ds.OnceOnlyQueue;
 import typescript.ts.PackageId;
 import typescript.ts.Identifier;
 import typescript.ts.Statement;
@@ -189,59 +190,65 @@ class TsProgramTools {
 		}
 	}
 
-	static public function resolveSourceFilesModule(program: Program, sourceFile: SourceFile, moduleSearchPath: String, host: CompilerHost) {
-		var compilerOptions = program.getCompilerOptions();
-		var lookupName = FileTools.withRelativePrefix(removeTsExtension(sourceFile.fileName));
-		var result = Ts.resolveModuleName(lookupName, moduleSearchPath + '/.', compilerOptions, host);
-		return result.resolvedModule;
-	}
 
 	static public function assignModuleNames(program: Program, moduleSearchPath: String, host: CompilerHost) {
 		var compilerOptions = program.getCompilerOptions();
 		var tc = program.getTypeChecker();
 
-		var packageNames = new Array<String>();
+		var packageNames = new OnceOnlyQueue();
 
 		for (sourceFile in program.getSourceFiles()) {
-			var sourceFileSymbol = tc.getSymbolAtLocation(sourceFile);
-			if (sourceFileSymbol == null) {
-				// this sourceFile is not a module file (it may declare global or ambient symbols instead)
-				// therefore it does not need a moduleName
-				continue;
-			}
-			if (sourceFile.hasNoDefaultLib) {
-				// don't assign moduleName for default libs
-				continue;
-			}
-		
 			var lookupName = FileTools.withRelativePrefix(removeTsExtension(sourceFile.fileName));
 			var result = Ts.resolveModuleName(lookupName, moduleSearchPath + '/.', compilerOptions, host);
 			if (result.resolvedModule != null) {
-				sourceFile.moduleName = if (result.resolvedModule.packageId != null) {
-					normalizeModuleName(result.resolvedModule.packageId.name) + '/' + removeTsExtension(result.resolvedModule.packageId.subModuleName);
+
+				if (result.resolvedModule.packageId != null) {
+					var packageModuleName = normalizeModuleName(result.resolvedModule.packageId.name);
+					sourceFile.moduleName = packageModuleName + '/' + removeTsExtension(result.resolvedModule.packageId.subModuleName);
+					setParentModuleName(sourceFile, packageModuleName);
 				} else {
-					normalizeModuleName(FileTools.withRelativePrefix(FileTools.cwdRelativeFilePath(lookupName)));
+					// not part of a package
+					sourceFile.moduleName = normalizeModuleName(FileTools.withRelativePrefix(FileTools.cwdRelativeFilePath(lookupName)));
+					setParentModuleName(sourceFile, sourceFile.moduleName);
 				}
 
-				if (result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
-					packageNames.push(result.resolvedModule.packageId.name);
+				if (!sourceFile.hasNoDefaultLib && result.resolvedModule.packageId != null && result.resolvedModule.packageId.name != null) {
+					packageNames.tryEnqueue(result.resolvedModule.packageId.name);
 				}
 			} else {
 				Log.warn('Internal error: Failed to resolve module <b>$lookupName</>');
 			}
 		}
-		
+
 		// now replace .moduleName for the default source file of packages
 		// for example, a package.json might define the types to be "index.d.ts", this source file should have .moduleName set to the package-name, not package/index.d.ts
-		for (packageName in packageNames) {
+		while (true) {
+			var packageName = packageNames.dequeue();
+			if (packageName == null) break;
 			var result = Ts.resolveModuleName(packageName, moduleSearchPath + '/.', compilerOptions, host);
 			if (result.resolvedModule != null) {
 				var defaultTypesSourceFile = program.getSourceFile(result.resolvedModule.resolvedFileName);
 				if (defaultTypesSourceFile != null) {
 					defaultTypesSourceFile.moduleName = normalizeModuleName(packageName);
-				} else throw 'Failed to get sourceFile';
+				} else throw 'Failed to get sourceFile "${result.resolvedModule.resolvedFileName}"';
 			} else throw 'Failed to resolve module';
 		}
+	}
+
+	/**
+		Make sure `assignModuleNames()` is executed before using this method
+	**/
+	static public function getParentModuleName(sourceFile: SourceFile): String {
+		// this is an extra property added to sourceFiles
+		var parentModuleName = Reflect.field(sourceFile, '_dts2hx_parentModuleName');
+		if (parentModuleName == null) {
+			throw 'Field _dts2hx_parentModuleName not set, this should have been assigned in assignModuleNames()';
+		}
+		return parentModuleName;
+	}
+
+	static function setParentModuleName(sourceFile: SourceFile, value: String) {
+		Reflect.setField(sourceFile, '_dts2hx_parentModuleName', value);
 	}
 
 	static public function removeTsExtension(fileName: String) {
