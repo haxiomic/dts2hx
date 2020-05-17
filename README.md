@@ -80,6 +80,12 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 
 # FAQ
 
+- Generating externs with `@:jsRequire()` or `@:native()`
+
+    TypeScript type definitions specify whether or not the symbols are accessible globally (`@:native()`) or via module resolution (`@:jsRequire()`). Many type definitions [include both globally available and modular symbols](https://github.com/haxiomic/dts2hx/blob/master/examples/pixi.js/Main.hx#L2). If a library has global symbols, they will be emitted in a package called `global`, all types in this package use `@:native()` metadata, whereas types elsewhere will use `@:jsRequire()`.
+
+    If your types only use `@:jsRequire` and you want to run in a browser (like the [three.js type definitions](https://github.com/haxiomic/dts2hx/tree/alpha-0.9.0/examples/three)), then you can use a bundler. I recommend [esbuild](https://github.com/evanw/esbuild) over webpack and others because it has by far the best performance (~100 milliseconds bundling time)
+
 - Should I publish generated types to haxelib?
 
     Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider opening an issue here noting the fixup required instead – it would be better if dts2hx converted more modules perfectly
