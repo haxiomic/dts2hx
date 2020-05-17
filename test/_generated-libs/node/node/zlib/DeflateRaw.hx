@@ -1,4 +1,5 @@
 package node.zlib;
+
 typedef DeflateRaw = {
 	function _transform(chunk:Dynamic, encoding:String, callback:node.stream.TransformCallback):Void;
 	function _flush(callback:node.stream.TransformCallback):Void;

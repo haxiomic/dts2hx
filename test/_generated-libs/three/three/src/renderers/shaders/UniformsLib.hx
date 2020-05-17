@@ -1,4 +1,5 @@
 package three.src.renderers.shaders;
+
 @:jsRequire("three/src/renderers/shaders/UniformsLib") @valueModuleOnly extern class UniformsLib {
 	static var UniformsLib : {
 		var common : {

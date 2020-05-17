@@ -1,2 +1,3 @@
 package qs;
+
 typedef ParsedQs = { };

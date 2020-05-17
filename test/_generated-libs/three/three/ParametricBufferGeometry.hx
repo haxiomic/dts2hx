@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ParametricBufferGeometry") extern class ParametricBufferGeometry extends BufferGeometry {
 	function new(func:(u:Float, v:Float, dest:Vector3) -> Void, slices:Float, stacks:Float);
 	var parameters : {

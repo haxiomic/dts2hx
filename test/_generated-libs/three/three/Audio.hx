@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Audio") extern class Audio extends Object3D {
 	function new(listener:AudioListener);
 	var context : js.html.audio.AudioContext;

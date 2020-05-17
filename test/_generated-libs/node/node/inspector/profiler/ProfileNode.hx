@@ -1,4 +1,5 @@
 package node.inspector.profiler;
+
 /**
 	Profile node. Holds callsite information, execution statistics and child nodes.
 **/

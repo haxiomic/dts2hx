@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef WritableStream = {
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })

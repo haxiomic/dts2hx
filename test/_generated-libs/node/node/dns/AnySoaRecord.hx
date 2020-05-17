@@ -1,4 +1,5 @@
 package node.dns;
+
 typedef AnySoaRecord = {
 	var type : String;
 	var nsname : String;

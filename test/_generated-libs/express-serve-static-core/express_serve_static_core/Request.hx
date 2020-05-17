@@ -1,4 +1,5 @@
 package express_serve_static_core;
+
 typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	/**
 		Return request header.

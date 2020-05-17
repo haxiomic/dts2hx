@@ -1,4 +1,5 @@
 package three;
+
 typedef MaterialParameters = {
 	@:optional
 	var alphaTest : Float;

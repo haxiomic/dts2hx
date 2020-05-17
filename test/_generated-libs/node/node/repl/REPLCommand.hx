@@ -1,4 +1,5 @@
 package node.repl;
+
 typedef REPLCommand = {
 	/**
 		Help text to be displayed when `.help` is entered.

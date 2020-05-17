@@ -1,4 +1,5 @@
 package ts.lib.intl;
+
 typedef NumberFormatOptions = {
 	@:optional
 	var localeMatcher : String;

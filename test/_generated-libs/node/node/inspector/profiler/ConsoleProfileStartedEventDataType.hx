@@ -1,4 +1,5 @@
 package node.inspector.profiler;
+
 typedef ConsoleProfileStartedEventDataType = {
 	var id : String;
 	/**

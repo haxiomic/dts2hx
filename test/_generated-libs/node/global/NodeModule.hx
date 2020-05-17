@@ -1,4 +1,5 @@
 package global;
+
 typedef NodeModule = {
 	var exports : Dynamic;
 	dynamic function require(id:String):Dynamic;

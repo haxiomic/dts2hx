@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ShapeUtils") @valueModuleOnly extern class ShapeUtils {
 	static function area(contour:Array<Vec2>):Float;
 	static function triangulate(contour:Array<Vec2>, indices:Bool):Array<Float>;

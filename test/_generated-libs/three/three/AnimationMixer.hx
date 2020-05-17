@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AnimationMixer") extern class AnimationMixer extends EventDispatcher {
 	function new(root:Dynamic);
 	var time : Float;

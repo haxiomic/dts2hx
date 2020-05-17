@@ -1,4 +1,5 @@
 package unit.types.types;
+
 typedef StructureType = {
 	var field : Float;
 	var sub : {

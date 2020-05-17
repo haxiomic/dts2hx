@@ -1,4 +1,5 @@
 package express_serve_static_core;
+
 typedef CookieOptions = {
 	@:optional
 	var maxAge : Float;

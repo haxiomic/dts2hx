@@ -1,4 +1,5 @@
 package node.tls;
+
 typedef PeerCertificate = {
 	var subject : Certificate;
 	var issuer : Certificate;

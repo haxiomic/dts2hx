@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef ErrnoException = {
 	@:optional
 	var errno : Float;

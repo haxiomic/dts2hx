@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef Effects = {
 	/**
 		The rate (in milliseconds) at which animations fire.

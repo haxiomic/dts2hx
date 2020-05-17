@@ -1,4 +1,5 @@
 package unit.types;
+
 /**
 	See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#3-types
 	

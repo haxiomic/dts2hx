@@ -1,4 +1,5 @@
 package unit.symbols;
+
 typedef CallableInterface = {
 	@:selfCall
 	function call_(anotherSignature:Dynamic):Float;

@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef DecipherCCM = {
 	function setAuthTag(buffer:Binary):DecipherCCM;
 	function setAAD(buffer:Binary, options:{ var plaintextLength : Float; }):DecipherCCM;

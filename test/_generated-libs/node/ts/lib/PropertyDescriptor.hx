@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef PropertyDescriptor = {
 	@:optional
 	var configurable : Bool;

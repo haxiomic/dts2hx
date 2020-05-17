@@ -1,4 +1,5 @@
 package big_js;
+
 typedef IBig = {
 	/**
 		Returns a Big number whose value is the absolute value, i.e. the magnitude, of this Big number.

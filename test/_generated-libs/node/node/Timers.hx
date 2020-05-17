@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("timers") @valueModuleOnly extern class Timers {
 	static function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout;
 	static function clearTimeout(timeoutId:global.nodejs.Timeout):Void;

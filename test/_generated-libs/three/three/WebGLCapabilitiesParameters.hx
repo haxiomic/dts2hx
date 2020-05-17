@@ -1,4 +1,5 @@
 package three;
+
 typedef WebGLCapabilitiesParameters = {
 	@:optional
 	var precision : Dynamic;

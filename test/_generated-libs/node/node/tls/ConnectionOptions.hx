@@ -1,4 +1,5 @@
 package node.tls;
+
 typedef ConnectionOptions = {
 	@:optional
 	var host : String;

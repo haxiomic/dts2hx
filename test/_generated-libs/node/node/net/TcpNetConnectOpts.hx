@@ -1,4 +1,5 @@
 package node.net;
+
 typedef TcpNetConnectOpts = {
 	@:optional
 	var timeout : Float;

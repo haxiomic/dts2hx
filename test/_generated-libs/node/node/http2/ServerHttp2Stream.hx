@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef ServerHttp2Stream = {
 	function additionalHeaders(headers:node.http.OutgoingHttpHeaders):Void;
 	final headersSent : Bool;

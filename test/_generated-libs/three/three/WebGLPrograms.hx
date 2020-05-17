@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLPrograms") extern class WebGLPrograms {
 	function new(renderer:WebGLRenderer, extensions:WebGLExtensions, capabilities:WebGLCapabilities);
 	var programs : Array<WebGLProgram>;

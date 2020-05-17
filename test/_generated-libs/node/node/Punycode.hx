@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("punycode") @valueModuleOnly extern class Punycode {
 	static function decode(string:String):String;
 	static function encode(string:String):String;

@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef WriteStream = {
 	final writableHighWaterMark : Float;
 	final writableLength : Float;

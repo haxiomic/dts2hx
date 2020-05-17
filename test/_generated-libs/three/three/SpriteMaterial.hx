@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "SpriteMaterial") extern class SpriteMaterial extends Material {
 	function new(?parameters:SpriteMaterialParameters);
 	var color : Color;

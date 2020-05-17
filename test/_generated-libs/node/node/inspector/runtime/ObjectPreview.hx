@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 /**
 	Object containing abbreviated remote object value.
 **/

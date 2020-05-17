@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef CoordinatesPartial = ts.AnyOf3<{
 	var left : Float;
 }, {

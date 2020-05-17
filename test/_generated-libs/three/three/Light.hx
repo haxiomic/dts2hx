@@ -1,4 +1,5 @@
 package three;
+
 /**
 	Abstract base class for lights.
 **/

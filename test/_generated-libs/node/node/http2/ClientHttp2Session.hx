@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef ClientHttp2Session = {
 	function request(?headers:node.http.OutgoingHttpHeaders, ?options:ClientSessionRequestOptions):ClientHttp2Stream;
 	@:overload(function(event:String, listener:(alt:String, origin:String, stream:Float) -> Void):ClientHttp2Session { })

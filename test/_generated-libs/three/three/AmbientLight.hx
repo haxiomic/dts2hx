@@ -1,4 +1,5 @@
 package three;
+
 /**
 	This light's color gets applied to all the objects in the scene globally.
 **/

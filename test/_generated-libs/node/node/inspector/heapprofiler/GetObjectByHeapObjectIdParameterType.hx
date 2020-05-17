@@ -1,4 +1,5 @@
 package node.inspector.heapprofiler;
+
 typedef GetObjectByHeapObjectIdParameterType = {
 	var objectId : String;
 	/**

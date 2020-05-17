@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef SetVariableValueParameterType = {
 	/**
 		0-based number of scope as was listed in scope chain. Only 'local', 'closure' and 'catch'

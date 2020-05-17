@@ -1,4 +1,5 @@
 package node.http;
+
 typedef ClientRequestArgs = {
 	@:optional
 	var protocol : String;

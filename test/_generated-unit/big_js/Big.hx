@@ -1,4 +1,5 @@
 package big_js;
+
 @:jsRequire("big.js", "Big") extern class Big {
 	/**
 		Returns a new instance of a Big number object

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "BufferAttribute") extern class BufferAttribute {
 	function new(array:ts.lib.ArrayLike<Float>, itemSize:Float, ?normalized:Bool);
 	var name : String;

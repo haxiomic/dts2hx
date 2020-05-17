@@ -1,4 +1,5 @@
 package node.zlib;
+
 typedef ZlibOptions = {
 	@:optional
 	var flush : Float;

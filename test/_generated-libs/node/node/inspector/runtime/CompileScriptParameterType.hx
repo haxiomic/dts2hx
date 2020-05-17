@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 typedef CompileScriptParameterType = {
 	/**
 		Expression to compile.

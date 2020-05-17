@@ -1,4 +1,5 @@
 package three;
+
 /**
 	A class for displaying particles in the form of variable size points. For example, if using the WebGLRenderer, the particles are displayed using GL_POINTS.
 **/

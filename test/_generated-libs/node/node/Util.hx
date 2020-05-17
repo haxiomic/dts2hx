@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("util") @valueModuleOnly extern class Util {
 	static function format(format:Dynamic, param:haxe.extern.Rest<Dynamic>):String;
 	static function formatWithOptions(inspectOptions:node.util.InspectOptions, format:String, param:haxe.extern.Rest<Dynamic>):String;

@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef NumberConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):Float;

@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef ScryptOptions = {
 	@:optional
 	var N : Float;

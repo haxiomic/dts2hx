@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronous open(2) - open and possibly create a file.
 	

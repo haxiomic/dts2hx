@@ -1,4 +1,5 @@
 package global.jquery.ajax;
+
 typedef StatusCodeCallbacks<TContext> = {
 	@:optional
 	@:native("200")

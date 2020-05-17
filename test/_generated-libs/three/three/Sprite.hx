@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Sprite") extern class Sprite extends Object3D {
 	function new(?material:SpriteMaterial);
 	var isSprite : Bool;

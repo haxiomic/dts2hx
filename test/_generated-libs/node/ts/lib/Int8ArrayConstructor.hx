@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef Int8ArrayConstructor = {
 	final prototype : js.lib.Int8Array;
 	/**

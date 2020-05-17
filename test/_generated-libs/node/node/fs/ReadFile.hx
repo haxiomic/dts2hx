@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronously reads the entire contents of a file.
 	

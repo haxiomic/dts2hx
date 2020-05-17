@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "TubeGeometry") extern class TubeGeometry extends Geometry {
 	function new(path:Curve<Vector3>, ?tubularSegments:Float, ?radius:Float, ?radiusSegments:Float, ?closed:Bool);
 	var parameters : {

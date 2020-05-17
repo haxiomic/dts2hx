@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef ExecSyncOptionsWithBufferEncoding = {
 	var encoding : String;
 	@:optional

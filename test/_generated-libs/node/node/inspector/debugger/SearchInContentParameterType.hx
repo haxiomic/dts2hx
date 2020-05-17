@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef SearchInContentParameterType = {
 	/**
 		Id of the script to search in.

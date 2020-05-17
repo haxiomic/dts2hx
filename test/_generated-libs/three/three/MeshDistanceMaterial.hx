@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MeshDistanceMaterial") extern class MeshDistanceMaterial extends Material {
 	function new(?parameters:MeshDistanceMaterialParameters);
 	var referencePosition : Vector3;

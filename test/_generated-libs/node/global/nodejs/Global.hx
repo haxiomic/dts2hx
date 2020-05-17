@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef Global = {
 	var Array : ts.lib.ArrayConstructor;
 	var ArrayBuffer : ts.lib.ArrayBufferConstructor;

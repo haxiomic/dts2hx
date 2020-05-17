@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 /**
 	Location in the source code.
 **/

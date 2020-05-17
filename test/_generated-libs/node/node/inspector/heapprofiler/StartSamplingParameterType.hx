@@ -1,4 +1,5 @@
 package node.inspector.heapprofiler;
+
 typedef StartSamplingParameterType = {
 	/**
 		Average sample interval in bytes. Poisson distribution is used for the intervals. The

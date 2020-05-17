@@ -1,4 +1,5 @@
 package node.http;
+
 @:jsRequire("http", "ClientRequest") extern class ClientRequest extends OutgoingMessage {
 	function new(url:ts.AnyOf3<String, node.url.URL, ClientRequestArgs>, ?cb:(res:IncomingMessage) -> Void);
 	var socket : node.net.Socket;

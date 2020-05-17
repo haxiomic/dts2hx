@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "LightShadow") extern class LightShadow {
 	function new(camera:Camera);
 	var camera : Camera;

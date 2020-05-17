@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef ChildProcess = {
 	var stdin : Null<node.stream.Writable>;
 	var stdout : Null<node.stream.Readable>;

@@ -1,4 +1,5 @@
 package node.stream;
+
 @:jsRequire("stream", "Readable") extern class Readable extends Stream {
 	function new(?opts:ReadableOptions);
 	var readable : Bool;

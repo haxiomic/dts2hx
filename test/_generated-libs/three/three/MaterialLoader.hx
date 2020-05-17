@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MaterialLoader") extern class MaterialLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

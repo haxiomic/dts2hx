@@ -1,4 +1,5 @@
 package node.vm;
+
 typedef CompileFunctionOptions = {
 	/**
 		Provides an optional data with V8's code cache data for the supplied source.

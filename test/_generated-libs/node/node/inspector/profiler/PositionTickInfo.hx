@@ -1,4 +1,5 @@
 package node.inspector.profiler;
+
 /**
 	Specifies a number of samples attributed to a certain source position.
 **/

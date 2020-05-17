@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AnimationClip") extern class AnimationClip {
 	function new(?name:String, ?duration:Float, ?tracks:Array<KeyframeTrack>);
 	var name : String;

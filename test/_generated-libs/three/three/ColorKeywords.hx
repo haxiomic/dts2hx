@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ColorKeywords") @valueModuleOnly extern class ColorKeywords {
 	static var aliceblue : Float;
 	static var antiquewhite : Float;

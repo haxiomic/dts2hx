@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLState") extern class WebGLState {
 	function new(gl:js.html.webgl.RenderingContext, extensions:WebGLExtensions, utils:Dynamic, capabilities:WebGLCapabilities);
 	var buffers : {

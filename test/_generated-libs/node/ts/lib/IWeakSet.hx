@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef IWeakSet<T> = {
 	function add(value:T):WeakSet<T>;
 	function delete(value:T):Bool;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "LOD") extern class LOD extends Object3D {
 	function new();
 	var levels : Array<{

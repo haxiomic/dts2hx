@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("repl") @valueModuleOnly extern class Repl {
 	/**
 		Creates and starts a `repl.REPLServer` instance.

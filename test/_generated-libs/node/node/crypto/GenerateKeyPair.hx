@@ -1,4 +1,5 @@
 package node.crypto;
+
 @:jsRequire("crypto", "generateKeyPair") @valueModuleOnly extern class GenerateKeyPair {
 	@:overload(function(type:String, options:RSAKeyPairOptions<String, String>, callback:(err:Null<ts.lib.Error>, publicKey:String, privateKey:global.Buffer) -> Void):Void { })
 	@:overload(function(type:String, options:RSAKeyPairOptions<String, String>, callback:(err:Null<ts.lib.Error>, publicKey:global.Buffer, privateKey:String) -> Void):Void { })

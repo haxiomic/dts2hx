@@ -1,4 +1,5 @@
 package node.http;
+
 typedef IncomingHttpHeaders = {
 	@:optional
 	var accept : String;

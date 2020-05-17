@@ -1,4 +1,5 @@
 package node.net;
+
 @:jsRequire("net", "Socket") extern class Socket extends node.stream.Duplex {
 	function new(?options:SocketConstructorOpts);
 	@:overload(function(str:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })

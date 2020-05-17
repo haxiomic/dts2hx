@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "RingBufferGeometry") extern class RingBufferGeometry extends BufferGeometry {
 	function new(?innerRadius:Float, ?outerRadius:Float, ?thetaSegments:Float, ?phiSegments:Float, ?thetaStart:Float, ?thetaLength:Float);
 	var parameters : {

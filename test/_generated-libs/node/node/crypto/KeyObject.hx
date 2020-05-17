@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef KeyObject = {
 	@:optional
 	var asymmetricKeyType : String;

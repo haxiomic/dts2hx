@@ -1,4 +1,5 @@
 package global.jquery.ajax;
+
 typedef XHRFields = {
 	@:optional
 	var msCaching : String;

@@ -1,4 +1,5 @@
 package node.net;
+
 typedef IpcNetConnectOpts = {
 	@:optional
 	var timeout : Float;

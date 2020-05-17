@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MeshStandardMaterial") extern class MeshStandardMaterial extends Material {
 	function new(?parameters:MeshStandardMaterialParameters);
 	var defines : Dynamic;

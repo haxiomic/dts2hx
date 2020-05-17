@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MeshLambertMaterial") extern class MeshLambertMaterial extends Material {
 	function new(?parameters:MeshLambertMaterialParameters);
 	var color : Color;

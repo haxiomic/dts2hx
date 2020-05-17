@@ -1,4 +1,5 @@
 package node.stream;
+
 typedef TransformOptions = {
 	@:optional
 	function read(size:Float):Void;

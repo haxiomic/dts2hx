@@ -1,4 +1,5 @@
 package node.https;
+
 typedef AgentOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;

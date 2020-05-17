@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("module") extern class Module {
 	function new(id:String, ?parent:node.Module);
 	var exports : Dynamic;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Skeleton") extern class Skeleton {
 	function new(bones:Array<Bone>, ?boneInverses:Array<Matrix4>);
 	var useVertexTexture : Bool;

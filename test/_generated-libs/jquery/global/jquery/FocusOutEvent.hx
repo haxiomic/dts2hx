@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef FocusOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.

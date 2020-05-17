@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AnimationObjectGroup") extern class AnimationObjectGroup {
 	function new(args:haxe.extern.Rest<Dynamic>);
 	var uuid : String;

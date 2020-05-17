@@ -1,4 +1,5 @@
 package unit.class_;
+
 typedef IClassInterfaceWithInterfaceExtends = {
 	@:overload(function(baseCallSig:String):BaseInterface { })
 	@:selfCall

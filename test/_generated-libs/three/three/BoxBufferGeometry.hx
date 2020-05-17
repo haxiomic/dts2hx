@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "BoxBufferGeometry") extern class BoxBufferGeometry extends BufferGeometry {
 	function new(?width:Float, ?height:Float, ?depth:Float, ?widthSegments:Float, ?heightSegments:Float, ?depthSegments:Float);
 	var parameters : {

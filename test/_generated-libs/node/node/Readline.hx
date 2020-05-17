@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("readline") @valueModuleOnly extern class Readline {
 	@:overload(function(options:node.readline.ReadLineOptions):node.readline.Interface { })
 	static function createInterface(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:ts.AnyOf2<node.readline.Completer, node.readline.AsyncCompleter>, ?terminal:Bool):node.readline.Interface;

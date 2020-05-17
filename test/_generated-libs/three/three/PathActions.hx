@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "PathActions") @:enum extern abstract PathActions(Int) from Int to Int {
 	var MOVE_TO;
 	var LINE_TO;

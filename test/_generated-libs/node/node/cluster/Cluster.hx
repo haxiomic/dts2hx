@@ -1,4 +1,5 @@
 package node.cluster;
+
 typedef Cluster = {
 	var Worker : Worker;
 	function disconnect(?callback:() -> Void):Void;

@@ -1,4 +1,5 @@
 package unit.symbols;
+
 /**
 	See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#23-declarations
 	

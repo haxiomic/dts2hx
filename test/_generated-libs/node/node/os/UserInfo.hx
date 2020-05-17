@@ -1,4 +1,5 @@
 package node.os;
+
 typedef UserInfo<T> = {
 	var username : T;
 	var uid : Float;

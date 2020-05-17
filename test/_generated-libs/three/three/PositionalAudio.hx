@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "PositionalAudio") extern class PositionalAudio extends Audio {
 	function new(listener:AudioListener);
 	var panner : js.html.audio.PannerNode;

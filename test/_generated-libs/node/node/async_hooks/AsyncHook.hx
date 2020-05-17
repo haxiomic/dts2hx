@@ -1,4 +1,5 @@
 package node.async_hooks;
+
 typedef AsyncHook = {
 	/**
 		Enable the callbacks for a given AsyncHook instance. If no callbacks are provided enabling is a noop.

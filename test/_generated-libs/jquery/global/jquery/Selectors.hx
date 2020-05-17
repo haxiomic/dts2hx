@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef Selectors = {
 	@:native(":")
 	var Colon : sizzle.selectors.PseudoFunctions;

@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 typedef GetHeapUsageReturnType = {
 	/**
 		Used heap size in bytes.

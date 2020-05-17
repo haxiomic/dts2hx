@@ -1,4 +1,5 @@
 package node.http;
+
 typedef RequestOptions = {
 	@:optional
 	var protocol : String;

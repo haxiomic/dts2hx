@@ -1,4 +1,5 @@
 package three;
+
 typedef WebGLRendererParameters = {
 	/**
 		A Canvas where the renderer draws its output.

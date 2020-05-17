@@ -1,4 +1,5 @@
 package node.util;
+
 @:jsRequire("util", "promisify") @valueModuleOnly extern class Promisify {
 	@:overload(function<TResult>(fn:(callback:(err:Null<ts.lib.Error>, result:TResult) -> Void) -> Void):() -> js.lib.Promise<TResult> { })
 	@:overload(function(fn:(callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>) -> Void):() -> js.lib.Promise<Void> { })

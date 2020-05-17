@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef SetBreakpointParameterType = {
 	/**
 		Location to set breakpoint in.

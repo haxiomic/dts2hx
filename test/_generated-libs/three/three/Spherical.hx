@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Spherical") extern class Spherical {
 	function new(?radius:Float, ?phi:Float, ?theta:Float);
 	var radius : Float;

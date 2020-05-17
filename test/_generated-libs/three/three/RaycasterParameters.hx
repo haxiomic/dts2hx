@@ -1,4 +1,5 @@
 package three;
+
 typedef RaycasterParameters = {
 	@:optional
 	var Mesh : Dynamic;

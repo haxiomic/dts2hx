@@ -1,4 +1,5 @@
 package node.readline;
+
 typedef ReadLineOptions = {
 	var input : global.nodejs.ReadableStream;
 	@:optional

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Triangle") extern class Triangle {
 	function new(?a:Vector3, ?b:Vector3, ?c:Vector3);
 	var a : Vector3;

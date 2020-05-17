@@ -1,4 +1,5 @@
 package global.jquery;
+
 /**
 	Any object that has a then method.
 **/

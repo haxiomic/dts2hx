@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 /**
 	Stack entry for runtime errors and assertions.
 **/

@@ -1,4 +1,5 @@
 package three;
+
 /**
 	This class contains the parameters that define linear fog, i.e., that grows exponentially denser with the distance.
 **/

@@ -1,4 +1,5 @@
 package three;
+
 typedef RenderItem = {
 	var id : Float;
 	var object : Object3D;

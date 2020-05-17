@@ -1,4 +1,5 @@
 package unit.class_;
+
 typedef ICallableClass<T, J> = {
 	@:selfCall
 	function call<A, B>(arg:A, b:B):Dynamic;

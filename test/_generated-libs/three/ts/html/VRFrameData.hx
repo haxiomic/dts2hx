@@ -1,4 +1,5 @@
 package ts.html;
+
 /**
 	This WebVR API interface represents all the information needed to render a single frame of a VR scene; constructed by VRDisplay.getFrameData().
 **/

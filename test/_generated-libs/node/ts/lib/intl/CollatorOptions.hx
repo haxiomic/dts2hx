@@ -1,4 +1,5 @@
 package ts.lib.intl;
+
 typedef CollatorOptions = {
 	@:optional
 	var usage : String;

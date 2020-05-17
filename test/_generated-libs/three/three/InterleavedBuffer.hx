@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "InterleavedBuffer") extern class InterleavedBuffer {
 	function new(array:ts.lib.ArrayLike<Float>, stride:Float);
 	var array : ts.lib.ArrayLike<Float>;

@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef Float32ArrayConstructor = {
 	final prototype : js.lib.Float32Array;
 	/**

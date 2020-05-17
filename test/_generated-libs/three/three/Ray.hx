@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Ray") extern class Ray {
 	function new(?origin:Vector3, ?direction:Vector3);
 	var origin : Vector3;

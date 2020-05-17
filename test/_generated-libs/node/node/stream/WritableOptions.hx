@@ -1,4 +1,5 @@
 package node.stream;
+
 typedef WritableOptions = {
 	@:optional
 	var highWaterMark : Float;

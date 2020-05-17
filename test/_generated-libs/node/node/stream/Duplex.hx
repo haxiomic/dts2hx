@@ -1,4 +1,5 @@
 package node.stream;
+
 @:jsRequire("stream", "Duplex") extern class Duplex extends Readable {
 	function new(?opts:DuplexOptions);
 	var writable : Bool;

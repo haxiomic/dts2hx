@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "CubeTextureLoader") extern class CubeTextureLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

@@ -1,4 +1,5 @@
 package node.dns;
+
 typedef AnyNaptrRecord = {
 	var type : String;
 	var flags : String;

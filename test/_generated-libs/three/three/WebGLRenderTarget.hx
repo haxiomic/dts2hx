@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLRenderTarget") extern class WebGLRenderTarget extends EventDispatcher {
 	function new(width:Float, height:Float, ?options:WebGLRenderTargetOptions);
 	var uuid : String;

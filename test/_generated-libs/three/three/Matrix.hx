@@ -1,4 +1,5 @@
 package three;
+
 /**
 	( interface Matrix&lt;T&gt; )
 **/

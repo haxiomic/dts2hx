@@ -1,4 +1,5 @@
 package global.jquery;
+
 /**
 	Base type for jQuery events that have been triggered (including events triggered on plain objects).
 **/

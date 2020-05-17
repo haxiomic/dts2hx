@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef ExecOptionsWithStringEncoding = {
 	var encoding : global.BufferEncoding;
 	@:optional

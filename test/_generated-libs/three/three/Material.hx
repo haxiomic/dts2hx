@@ -1,4 +1,5 @@
 package three;
+
 /**
 	Materials describe the appearance of objects. They are defined in a (mostly) renderer-independent way, so you don't have to rewrite materials if you decide to use a different renderer.
 **/

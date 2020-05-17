@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef ProcessRelease = {
 	var name : String;
 	@:optional

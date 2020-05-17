@@ -1,4 +1,5 @@
 package three;
+
 typedef MeshLambertMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;

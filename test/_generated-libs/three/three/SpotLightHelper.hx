@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "SpotLightHelper") extern class SpotLightHelper extends Object3D {
 	function new(light:Light, ?color:ts.AnyOf3<String, Float, Color>);
 	var light : Light;

@@ -1,4 +1,5 @@
 package body_parser;
+
 typedef Options = {
 	/**
 		When set to true, then deflated (compressed) bodies will be inflated; when false, deflated bodies are rejected. Defaults to true.

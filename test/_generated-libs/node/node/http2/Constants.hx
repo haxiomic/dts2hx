@@ -1,4 +1,5 @@
 package node.http2;
+
 @:jsRequire("http2", "constants") @valueModuleOnly extern class Constants {
 	static var NGHTTP2_SESSION_SERVER : Float;
 	static var NGHTTP2_SESSION_CLIENT : Float;

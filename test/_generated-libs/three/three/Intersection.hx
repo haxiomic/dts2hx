@@ -1,4 +1,5 @@
 package three;
+
 typedef Intersection = {
 	var distance : Float;
 	@:optional

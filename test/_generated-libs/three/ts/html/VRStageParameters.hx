@@ -1,4 +1,5 @@
 package ts.html;
+
 typedef VRStageParameters = {
 	@:optional
 	var sittingToStandingTransform : js.lib.Float32Array;

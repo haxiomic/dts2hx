@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLStencilBuffer") extern class WebGLStencilBuffer {
 	function new();
 	function setTest(stencilTest:Bool):Void;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ArrowHelper") extern class ArrowHelper extends Object3D {
 	function new(dir:Vector3, ?origin:Vector3, ?length:Float, ?hex:Float, ?headLength:Float, ?headWidth:Float);
 	var line : Line;

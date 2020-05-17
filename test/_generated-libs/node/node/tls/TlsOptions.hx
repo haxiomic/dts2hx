@@ -1,4 +1,5 @@
 package node.tls;
+
 typedef TlsOptions = {
 	@:optional
 	var handshakeTimeout : Float;

@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef KeyDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		Describes the nature of the event.

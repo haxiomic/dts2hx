@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "PolyhedronBufferGeometry") extern class PolyhedronBufferGeometry extends BufferGeometry {
 	function new(vertices:Array<Float>, indices:Array<Float>, ?radius:Float, ?detail:Float);
 	var parameters : {

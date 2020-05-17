@@ -1,4 +1,5 @@
 package node.fs;
+
 typedef FSWatcher = {
 	function close():Void;
 	/**

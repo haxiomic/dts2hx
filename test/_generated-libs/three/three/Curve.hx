@@ -1,4 +1,5 @@
 package three;
+
 /**
 	An extensible curve object which contains methods for interpolation
 	class Curve&lt;T extends Vector&gt;

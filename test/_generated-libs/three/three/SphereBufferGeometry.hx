@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "SphereBufferGeometry") extern class SphereBufferGeometry extends BufferGeometry {
 	function new(?radius:Float, ?widthSegments:Float, ?heightSegments:Float, ?phiStart:Float, ?phiLength:Float, ?thetaStart:Float, ?thetaLength:Float);
 	var parameters : {

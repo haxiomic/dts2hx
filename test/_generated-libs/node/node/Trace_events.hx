@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("trace_events") @valueModuleOnly extern class Trace_events {
 	/**
 		Creates and returns a Tracing object for the given set of categories.

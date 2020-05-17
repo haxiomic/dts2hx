@@ -1,4 +1,5 @@
 package ts.html;
+
 /**
 	This WebVR API interface describes the capabilities of a VRDisplay — its features can be used to perform VR device capability tests, for example can it return position information.
 **/

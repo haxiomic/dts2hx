@@ -1,4 +1,5 @@
 package three;
+
 typedef Event = {
 	var type : String;
 	@:optional

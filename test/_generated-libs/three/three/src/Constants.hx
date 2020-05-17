@@ -1,4 +1,5 @@
 package three.src;
+
 @:jsRequire("three/src/constants") @valueModuleOnly extern class Constants {
 	static var REVISION : String;
 	static var CullFaceNone : three.CullFace;

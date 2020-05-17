@@ -1,4 +1,5 @@
 package node.inspector.profiler;
+
 /**
 	Coverage data for a source range.
 **/

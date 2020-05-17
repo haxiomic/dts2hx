@@ -1,4 +1,5 @@
 package unit.interface_;
+
 typedef Interface = {
 	@:overload(function<T>(a:T, b:String):Interface { })
 	@:selfCall

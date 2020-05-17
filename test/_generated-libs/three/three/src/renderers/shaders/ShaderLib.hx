@@ -1,4 +1,5 @@
 package three.src.renderers.shaders;
+
 @:jsRequire("three/src/renderers/shaders/ShaderLib") @valueModuleOnly extern class ShaderLib {
 	static var ShaderLib : {
 		var basic : three.Shader;

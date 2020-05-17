@@ -1,4 +1,5 @@
 package express;
+
 typedef CookieOptions = {
 	@:optional
 	var maxAge : Float;

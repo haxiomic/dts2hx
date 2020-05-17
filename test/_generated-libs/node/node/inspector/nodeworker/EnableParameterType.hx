@@ -1,4 +1,5 @@
 package node.inspector.nodeworker;
+
 typedef EnableParameterType = {
 	/**
 		Whether to new workers should be paused until the frontend sends `Runtime.runIfWaitingForDebugger`

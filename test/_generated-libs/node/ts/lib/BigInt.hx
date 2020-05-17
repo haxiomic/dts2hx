@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef BigInt = {
 	/**
 		Returns a string representation of an object.

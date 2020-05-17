@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef RestartFrameReturnType = {
 	/**
 		New stack trace.

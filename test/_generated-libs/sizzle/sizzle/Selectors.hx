@@ -1,4 +1,5 @@
 package sizzle;
+
 typedef Selectors = {
 	var cacheLength : Float;
 	var match : sizzle.selectors.Matches;

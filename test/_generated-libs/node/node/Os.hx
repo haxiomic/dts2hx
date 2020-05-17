@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("os") @valueModuleOnly extern class Os {
 	static function hostname():String;
 	static function loadavg():Array<Float>;

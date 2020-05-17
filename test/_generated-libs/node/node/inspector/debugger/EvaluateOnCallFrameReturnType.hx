@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef EvaluateOnCallFrameReturnType = {
 	/**
 		Object wrapper for the evaluation result.

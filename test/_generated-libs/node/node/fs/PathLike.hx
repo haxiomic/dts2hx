@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Valid types for path values in "fs".
 **/

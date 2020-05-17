@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ShaderMaterial") extern class ShaderMaterial extends Material {
 	function new(?parameters:ShaderMaterialParameters);
 	var defines : Dynamic;

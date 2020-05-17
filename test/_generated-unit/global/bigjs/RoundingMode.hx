@@ -1,4 +1,5 @@
 package global.bigjs;
+
 @:enum extern abstract RoundingMode(Int) from Int to Int {
 	/**
 		Rounds towards zero.

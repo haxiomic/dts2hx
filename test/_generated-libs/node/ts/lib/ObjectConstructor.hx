@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef ObjectConstructor = {
 	@:overload(function(value:Dynamic):Dynamic { })
 	@:selfCall

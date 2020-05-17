@@ -1,4 +1,5 @@
 package qs;
+
 typedef IStringifyOptions = {
 	@:optional
 	var delimiter : String;

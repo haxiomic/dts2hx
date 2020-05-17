@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef UIEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	var bubbles : Bool;
 	var cancelable : Bool;

@@ -1,4 +1,5 @@
 package three;
+
 /**
 	( class Matrix3 implements Matrix&lt;Matrix3&gt; )
 **/

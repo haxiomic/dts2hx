@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef BasePrivateKeyEncodingOptions<T> = {
 	var format : T;
 	var cipher : String;

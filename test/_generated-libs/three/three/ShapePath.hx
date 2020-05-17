@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ShapePath") extern class ShapePath {
 	function new();
 	var subPaths : Array<Dynamic>;

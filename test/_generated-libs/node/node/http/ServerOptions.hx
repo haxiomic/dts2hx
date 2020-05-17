@@ -1,4 +1,5 @@
 package node.http;
+
 typedef ServerOptions = {
 	@:optional
 	var IncomingMessage : {

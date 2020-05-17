@@ -1,4 +1,5 @@
 package node.dns;
+
 @:jsRequire("dns", "lookup") @valueModuleOnly extern class Lookup {
 	@:overload(function(hostname:String, options:LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void):Void { })
 	@:overload(function(hostname:String, options:LookupAllOptions, callback:(err:global.nodejs.ErrnoException, addresses:Array<LookupAddress>) -> Void):Void { })

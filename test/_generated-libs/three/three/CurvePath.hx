@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "CurvePath") extern class CurvePath<T> extends Curve<T> {
 	function new<T>();
 	var curves : Array<Curve<T>>;

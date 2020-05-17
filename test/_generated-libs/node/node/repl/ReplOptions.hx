@@ -1,4 +1,5 @@
 package node.repl;
+
 typedef ReplOptions = {
 	/**
 		The input prompt to display.

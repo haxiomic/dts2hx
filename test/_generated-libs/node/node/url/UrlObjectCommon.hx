@@ -1,4 +1,5 @@
 package node.url;
+
 typedef UrlObjectCommon = {
 	@:optional
 	var auth : String;

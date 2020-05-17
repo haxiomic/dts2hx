@@ -1,4 +1,5 @@
 package range_parser;
+
 typedef Options = {
 	/**
 		The "combine" option can be set to `true` and overlapping & adjacent ranges

@@ -1,4 +1,5 @@
 package express;
+
 typedef MediaType = {
 	var value : String;
 	var quality : Float;

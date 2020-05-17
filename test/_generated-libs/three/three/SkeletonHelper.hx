@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "SkeletonHelper") extern class SkeletonHelper extends LineSegments {
 	function new(bone:Object3D);
 	var bones : Array<Bone>;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "DirectionalLightHelper") extern class DirectionalLightHelper extends Object3D {
 	function new(light:DirectionalLight, ?size:Float, ?color:ts.AnyOf3<String, Float, Color>);
 	var light : DirectionalLight;

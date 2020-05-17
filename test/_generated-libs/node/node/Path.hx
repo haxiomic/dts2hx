@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("path") @valueModuleOnly extern class Path {
 	/**
 		Normalize a string path, reducing '..' and '.' parts.

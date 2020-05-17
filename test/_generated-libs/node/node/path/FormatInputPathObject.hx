@@ -1,4 +1,5 @@
 package node.path;
+
 typedef FormatInputPathObject = {
 	/**
 		The root of the path such as '/' or 'c:\'

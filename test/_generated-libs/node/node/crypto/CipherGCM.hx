@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef CipherGCM = {
 	function setAAD(buffer:global.Buffer, ?options:{ var plaintextLength : Float; }):CipherGCM;
 	function getAuthTag():global.Buffer;

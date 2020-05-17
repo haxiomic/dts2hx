@@ -1,4 +1,5 @@
 package node.perf_hooks;
+
 typedef PerformanceEntry = {
 	/**
 		The total number of milliseconds elapsed for this entry.

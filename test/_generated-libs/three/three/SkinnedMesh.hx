@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "SkinnedMesh") extern class SkinnedMesh extends Mesh {
 	function new(?geometry:ts.AnyOf2<Geometry, BufferGeometry>, ?material:ts.AnyOf2<Material, Array<Material>>, ?useVertexTexture:Bool);
 	var bindMode : String;

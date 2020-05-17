@@ -1,4 +1,5 @@
 package node.net;
+
 typedef SocketConstructorOpts = {
 	@:optional
 	var fd : Float;

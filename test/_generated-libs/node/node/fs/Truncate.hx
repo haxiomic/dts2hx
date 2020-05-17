@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronous truncate(2) - Truncate a file to a specified length.
 	

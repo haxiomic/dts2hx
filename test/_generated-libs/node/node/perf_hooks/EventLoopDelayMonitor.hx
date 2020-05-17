@@ -1,4 +1,5 @@
 package node.perf_hooks;
+
 typedef EventLoopDelayMonitor = {
 	/**
 		Enables the event loop delay sample timer. Returns `true` if the timer was started, `false` if it was already started.

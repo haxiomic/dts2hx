@@ -1,4 +1,5 @@
 package global.nodejs;
+
 @:native("NodeJS.Module") extern class Module {
 	function new(id:String, ?parent:Module);
 	var exports : Dynamic;

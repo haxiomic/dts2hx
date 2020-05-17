@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "StereoCamera") extern class StereoCamera extends Camera {
 	function new();
 	var aspect : Float;

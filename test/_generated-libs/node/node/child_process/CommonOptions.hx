@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef CommonOptions = {
 	@:optional
 	var windowsHide : Bool;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "InterleavedBufferAttribute") extern class InterleavedBufferAttribute {
 	function new(interleavedBuffer:InterleavedBuffer, itemSize:Float, offset:Float, ?normalized:Bool);
 	var uuid : String;

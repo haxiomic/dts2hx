@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLObjects") extern class WebGLObjects {
 	function new(gl:js.html.webgl.RenderingContext, properties:Dynamic, info:Dynamic);
 	function getAttributeBuffer(attribute:Dynamic):Dynamic;

@@ -1,4 +1,5 @@
 package node.url;
+
 typedef Url_ = {
 	@:optional
 	var port : String;

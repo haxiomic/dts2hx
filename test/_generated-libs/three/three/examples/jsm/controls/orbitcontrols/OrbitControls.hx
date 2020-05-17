@@ -1,4 +1,5 @@
 package three.examples.jsm.controls.orbitcontrols;
+
 @:jsRequire("three/examples/jsm/controls/OrbitControls", "OrbitControls") extern class OrbitControls {
 	function new(object:three.Camera, ?domElement:js.html.Element);
 	var object : three.Camera;

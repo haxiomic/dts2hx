@@ -1,4 +1,5 @@
 package global;
+
 typedef NodeExtensions = {
 	@:native(".js")
 	dynamic function _js(m:NodeModule, filename:String):Dynamic;

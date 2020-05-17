@@ -1,4 +1,5 @@
 package connect;
+
 @:jsRequire("connect", "IncomingMessage") extern class IncomingMessage extends node.http.IncomingMessage {
 	@:optional
 	var originalUrl : String;

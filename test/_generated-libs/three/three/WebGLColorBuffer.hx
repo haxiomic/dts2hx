@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLColorBuffer") extern class WebGLColorBuffer {
 	function new();
 	function setMask(colorMask:Bool):Void;

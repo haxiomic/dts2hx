@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef Symbol = {
 	/**
 		Returns a string representation of an object.

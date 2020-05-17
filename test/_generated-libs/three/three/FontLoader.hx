@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "FontLoader") extern class FontLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

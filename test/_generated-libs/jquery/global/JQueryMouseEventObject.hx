@@ -1,4 +1,5 @@
 package global;
+
 typedef JQueryMouseEventObject = {
 	var button : Float;
 	var clientX : Float;

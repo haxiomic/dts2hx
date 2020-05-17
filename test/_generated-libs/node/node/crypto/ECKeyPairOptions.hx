@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef ECKeyPairOptions<PubF, PrivF> = {
 	/**
 		Name of the curve to use.

@@ -1,4 +1,5 @@
 package node.buffer;
+
 @:jsRequire("buffer", "Buffer") extern class Buffer {
 	/**
 		Allocates a new buffer containing the given {str}.

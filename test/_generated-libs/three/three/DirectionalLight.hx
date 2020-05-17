@@ -1,4 +1,5 @@
 package three;
+
 /**
 	Affects objects using MeshLambertMaterial or MeshPhongMaterial.
 **/

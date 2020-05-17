@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Mesh") extern class Mesh extends Object3D {
 	function new(?geometry:ts.AnyOf2<Geometry, BufferGeometry>, ?material:ts.AnyOf2<Material, Array<Material>>);
 	var geometry : ts.AnyOf2<Geometry, BufferGeometry>;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Raycaster") extern class Raycaster {
 	/**
 		This creates a new raycaster object.

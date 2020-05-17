@@ -1,4 +1,5 @@
 package connect;
+
 typedef Server = {
 	@:selfCall
 	function call(req:node.http.IncomingMessage, res:node.http.ServerResponse, ?next:js.lib.Function):Void;

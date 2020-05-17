@@ -1,4 +1,5 @@
 package ts.lib;
+
 /**
 	An object that represents a number of any kind. All JavaScript numbers are 64-bit floating-point numbers.
 **/

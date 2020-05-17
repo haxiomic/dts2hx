@@ -1,4 +1,5 @@
 package node.zlib;
+
 @:jsRequire("zlib", "constants") @valueModuleOnly extern class Constants {
 	static var BROTLI_DECODE : Float;
 	static var BROTLI_DECODER_ERROR_ALLOC_BLOCK_TYPE_TREES : Float;

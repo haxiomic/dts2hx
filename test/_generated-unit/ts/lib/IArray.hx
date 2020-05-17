@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef IArray<T> = {
 	/**
 		Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.

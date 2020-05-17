@@ -1,4 +1,5 @@
 package node.fs;
+
 typedef MakeDirectoryOptions = {
 	/**
 		Indicates whether parent folders should be created.

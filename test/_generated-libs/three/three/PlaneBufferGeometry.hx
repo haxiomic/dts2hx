@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "PlaneBufferGeometry") extern class PlaneBufferGeometry extends BufferGeometry {
 	function new(?width:Float, ?height:Float, ?widthSegments:Float, ?heightSegments:Float);
 	var parameters : {

@@ -1,4 +1,5 @@
 package express_serve_static_core;
+
 typedef Application = {
 	/**
 		Express instance itself is a request handler, which could be invoked without

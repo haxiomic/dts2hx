@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "TetrahedronGeometry") extern class TetrahedronGeometry extends PolyhedronGeometry {
 	function new(?radius:Float, ?detail:Float);
 	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):TetrahedronGeometry;

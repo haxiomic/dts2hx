@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "DataTextureLoader") extern class DataTextureLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

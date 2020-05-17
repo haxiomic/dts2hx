@@ -1,4 +1,5 @@
 package node.fs;
+
 typedef WriteFileOptions = Null<ts.AnyOf2<String, {
 	@:optional
 	var encoding : String;

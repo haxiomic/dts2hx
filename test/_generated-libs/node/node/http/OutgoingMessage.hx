@@ -1,4 +1,5 @@
 package node.http;
+
 @:jsRequire("http", "OutgoingMessage") extern class OutgoingMessage extends node.stream.Writable {
 	function new();
 	var upgrading : Bool;

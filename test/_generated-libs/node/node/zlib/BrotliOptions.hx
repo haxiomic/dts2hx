@@ -1,4 +1,5 @@
 package node.zlib;
+
 typedef BrotliOptions = {
 	@:optional
 	var flush : Float;

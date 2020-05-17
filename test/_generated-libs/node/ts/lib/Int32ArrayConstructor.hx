@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef Int32ArrayConstructor = {
 	final prototype : js.lib.Int32Array;
 	/**

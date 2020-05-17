@@ -1,4 +1,5 @@
 package node.http;
+
 @:jsRequire("http", "IncomingMessage") extern class IncomingMessage extends node.stream.Readable {
 	function new(socket:node.net.Socket);
 	var httpVersion : String;

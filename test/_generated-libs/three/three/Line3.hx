@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Line3") extern class Line3 {
 	function new(?start:Vector3, ?end:Vector3);
 	var start : Vector3;

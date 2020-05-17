@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AnimationUtils") @valueModuleOnly extern class AnimationUtils {
 	static function arraySlice(array:Dynamic, from:Float, to:Float):Dynamic;
 	static function convertArray(array:Dynamic, type:Dynamic, forceClone:Bool):Dynamic;

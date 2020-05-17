@@ -1,4 +1,5 @@
 package qs;
+
 typedef IParseOptions = {
 	@:optional
 	var comma : Bool;

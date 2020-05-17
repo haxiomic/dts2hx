@@ -1,4 +1,5 @@
 package node.v8;
+
 typedef HeapSpaceInfo = {
 	var space_name : String;
 	var space_size : Float;

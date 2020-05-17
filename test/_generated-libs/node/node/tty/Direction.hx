@@ -1,4 +1,5 @@
 package node.tty;
+
 /**
 	-1 - to the left from cursor
 	  0 - the entire line

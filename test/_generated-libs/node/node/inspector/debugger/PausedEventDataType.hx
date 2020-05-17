@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef PausedEventDataType = {
 	/**
 		Call stack the virtual machine stopped on.

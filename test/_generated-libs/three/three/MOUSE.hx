@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MOUSE") @:enum extern abstract MOUSE(Int) from Int to Int {
 	var LEFT;
 	var MIDDLE;

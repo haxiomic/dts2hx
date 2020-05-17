@@ -1,4 +1,5 @@
 package ts.lib;
+
 @:native("Boolean") extern class Boolean {
 	function new(?value:Dynamic);
 	/**

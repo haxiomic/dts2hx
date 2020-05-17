@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("zlib") @valueModuleOnly extern class Zlib {
 	static function createBrotliCompress(?options:node.zlib.BrotliOptions):node.zlib.BrotliCompress;
 	static function createBrotliDecompress(?options:node.zlib.BrotliOptions):node.zlib.BrotliDecompress;

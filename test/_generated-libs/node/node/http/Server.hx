@@ -1,4 +1,5 @@
 package node.http;
+
 @:jsRequire("http", "Server") extern class Server extends node.net.Server {
 	@:overload(function(options:ServerOptions, ?requestListener:RequestListener):Server { })
 	function new(?requestListener:RequestListener);

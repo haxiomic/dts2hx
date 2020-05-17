@@ -1,4 +1,5 @@
 package express_serve_static_core;
+
 typedef IRoute = {
 	var path : String;
 	var stack : Dynamic;

@@ -1,4 +1,5 @@
 package node.util;
+
 @:jsRequire("util", "types") @valueModuleOnly extern class Types {
 	static function isAnyArrayBuffer(object:Dynamic):Bool;
 	static function isArgumentsObject(object:Dynamic):Bool;

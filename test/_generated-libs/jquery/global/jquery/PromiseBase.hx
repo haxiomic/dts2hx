@@ -1,4 +1,5 @@
 package global.jquery;
+
 /**
 	This object provides a subset of the methods of the Deferred object (then, done, fail, always, pipe, progress, state and promise) to prevent users from changing the state of the Deferred.
 **/

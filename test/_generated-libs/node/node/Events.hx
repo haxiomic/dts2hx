@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("events") extern class Events extends global.nodejs.EventEmitter {
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.Events;
 	function on(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.Events;

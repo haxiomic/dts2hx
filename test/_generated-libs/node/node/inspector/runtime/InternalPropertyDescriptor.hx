@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 /**
 	Object internal property descriptor. This property isn't normally visible in JavaScript code.
 **/

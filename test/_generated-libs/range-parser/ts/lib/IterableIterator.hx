@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef IterableIterator<T> = {
 	function next(args:haxe.extern.Rest<Any>):IteratorResult<T, Dynamic>;
 	@:optional

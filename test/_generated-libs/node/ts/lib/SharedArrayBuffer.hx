@@ -1,4 +1,5 @@
 package ts.lib;
+
 @:native("SharedArrayBuffer") extern class SharedArrayBuffer {
 	function new(byteLength:Float);
 	/**

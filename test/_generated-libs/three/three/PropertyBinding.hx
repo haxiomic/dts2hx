@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "PropertyBinding") extern class PropertyBinding {
 	function new(rootNode:Dynamic, path:String, ?parsedPath:Dynamic);
 	var path : String;

@@ -1,4 +1,5 @@
 package node.tls;
+
 typedef SecureContextOptions = {
 	@:optional
 	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, js.lib.Object, global.Buffer>>>;

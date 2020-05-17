@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef Float64ArrayConstructor = {
 	final prototype : js.lib.Float64Array;
 	/**

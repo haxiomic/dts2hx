@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef SessionState = {
 	@:optional
 	var effectiveLocalWindowSize : Float;

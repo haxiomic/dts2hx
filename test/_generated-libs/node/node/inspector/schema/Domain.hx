@@ -1,4 +1,5 @@
 package node.inspector.schema;
+
 /**
 	Description of the protocol domain.
 **/

@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef ServerHttp2Session = {
 	function altsvc(alt:String, originOrStream:ts.AnyOf4<String, Float, node.url.URL, AlternativeServiceOptions>):Void;
 	final server : ts.AnyOf2<Http2Server, Http2SecureServer>;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "TextBufferGeometry") extern class TextBufferGeometry extends ExtrudeBufferGeometry {
 	function new(text:String, ?parameters:TextGeometryParameters);
 	var parameters : {

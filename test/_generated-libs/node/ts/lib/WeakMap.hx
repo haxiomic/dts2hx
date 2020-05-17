@@ -1,4 +1,5 @@
 package ts.lib;
+
 @:native("WeakMap") extern class WeakMap<K, V> {
 	@:overload(function<K, V>(iterable:Iterable<ts.Tuple2<K, V>>):WeakMap<K, V> { })
 	function new<K, V>(?entries:ReadonlyArray<ts.Tuple2<K, V>>);

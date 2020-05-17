@@ -1,4 +1,5 @@
 package global.jquery;
+
 /**
 	Represents the completion of an asynchronous operation
 **/

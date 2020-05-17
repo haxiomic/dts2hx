@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "LatheGeometry") extern class LatheGeometry extends Geometry {
 	function new(points:Array<Vector2>, ?segments:Float, ?phiStart:Float, ?phiLength:Float);
 	var parameters : {

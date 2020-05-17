@@ -1,4 +1,5 @@
 package three;
+
 /**
 	This is a superefficent class for geometries because it saves all data in buffers.
 	It reduces memory costs and cpu cycles. But it is not as easy to work with because of all the nessecary buffer calculations.

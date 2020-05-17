@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef DSAKeyPairOptions<PubF, PrivF> = {
 	/**
 		Key size in bits

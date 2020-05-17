@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef ClientHttp2Stream = {
 	/**
 		Event emitter

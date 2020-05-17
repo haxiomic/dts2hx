@@ -1,4 +1,5 @@
 package node.os;
+
 typedef NetworkInterfaceBase = {
 	var address : String;
 	var netmask : String;

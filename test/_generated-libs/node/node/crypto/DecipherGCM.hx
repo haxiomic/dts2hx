@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef DecipherGCM = {
 	function setAuthTag(buffer:Binary):DecipherGCM;
 	function setAAD(buffer:Binary, ?options:{ var plaintextLength : Float; }):DecipherGCM;

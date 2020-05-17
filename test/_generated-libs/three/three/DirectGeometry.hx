@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "DirectGeometry") extern class DirectGeometry extends EventDispatcher {
 	function new();
 	var id : Float;

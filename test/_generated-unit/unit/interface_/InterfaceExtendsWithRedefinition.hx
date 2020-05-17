@@ -1,4 +1,5 @@
 package unit.interface_;
+
 typedef InterfaceExtendsWithRedefinition = {
 	@:overload(function<T>(a:T, b:String):InterfaceExtendsWithRedefinition { })
 	@:selfCall

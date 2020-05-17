@@ -1,4 +1,5 @@
 package node.async_hooks;
+
 typedef HookCallbacks = {
 	/**
 		Called when a class is constructed that has the possibility to emit an asynchronous event.

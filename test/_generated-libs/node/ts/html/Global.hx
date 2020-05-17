@@ -1,4 +1,5 @@
 package ts.html;
+
 @:native("") extern class Global {
 	@:overload(function(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout { })
 	static function setTimeout(handler:ts.html.TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;

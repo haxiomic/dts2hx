@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef RsaPrivateKey = {
 	var key : KeyLike;
 	@:optional

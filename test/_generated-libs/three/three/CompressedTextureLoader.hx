@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "CompressedTextureLoader") extern class CompressedTextureLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef SignPrivateKeyInput = {
 	@:optional
 	var padding : Float;

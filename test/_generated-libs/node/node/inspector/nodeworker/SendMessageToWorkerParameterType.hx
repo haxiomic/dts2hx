@@ -1,4 +1,5 @@
 package node.inspector.nodeworker;
+
 typedef SendMessageToWorkerParameterType = {
 	var message : String;
 	/**

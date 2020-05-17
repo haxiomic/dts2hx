@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef DateConstructor = {
 	@:selfCall
 	function call():String;

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AudioAnalyser") extern class AudioAnalyser {
 	function new(audio:Dynamic, fftSize:Float);
 	var analyser : Dynamic;

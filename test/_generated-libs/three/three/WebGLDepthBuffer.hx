@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLDepthBuffer") extern class WebGLDepthBuffer {
 	function new();
 	function setTest(depthTest:Bool):Void;

@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef ReadStream = {
 	final readableHighWaterMark : Float;
 	final readableLength : Float;

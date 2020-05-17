@@ -1,4 +1,5 @@
 package global;
+
 @:native("Big") extern class Big {
 	/**
 		Returns a new instance of a Big number object

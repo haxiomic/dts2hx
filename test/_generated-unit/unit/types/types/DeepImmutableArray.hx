@@ -1,4 +1,5 @@
 package unit.types.types;
+
 typedef DeepImmutableArray<T> = {
 	/**
 		Gets the length of the array. This is a number one higher than the highest element defined in an array.

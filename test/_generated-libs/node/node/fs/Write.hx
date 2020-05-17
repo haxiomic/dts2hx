@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
 	

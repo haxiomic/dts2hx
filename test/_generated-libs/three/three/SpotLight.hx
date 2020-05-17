@@ -1,4 +1,5 @@
 package three;
+
 /**
 	A point light that can cast shadow in one direction.
 **/

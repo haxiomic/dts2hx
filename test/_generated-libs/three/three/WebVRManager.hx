@@ -1,4 +1,5 @@
 package three;
+
 typedef WebVRManager = {
 	var enabled : Bool;
 	function getDevice():Null<ts.html.VRDisplay>;

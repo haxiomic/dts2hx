@@ -1,4 +1,5 @@
 package express_serve_static_core;
+
 typedef Response<ResBody> = {
 	/**
 		Set status `code`.

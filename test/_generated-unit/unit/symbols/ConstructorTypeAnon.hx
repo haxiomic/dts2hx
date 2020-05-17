@@ -1,4 +1,5 @@
 package unit.symbols;
+
 @:jsRequire("./unit/symbols", "ConstructorTypeAnon") @:forward @:forwardStatics extern abstract ConstructorTypeAnon({ var anonTypeField : Float; }) from { var anonTypeField : Float; } to { var anonTypeField : Float; } {
 	function new();
 	@:selfCall

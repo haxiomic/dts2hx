@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 /**
 	Search match for resource.
 **/

@@ -1,4 +1,5 @@
 package node.stream;
+
 typedef ReadableOptions = {
 	@:optional
 	var highWaterMark : Float;

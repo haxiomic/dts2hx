@@ -1,4 +1,5 @@
 package express;
+
 typedef Application = {
 	/**
 		Express instance itself is a request handler, which could be invoked without

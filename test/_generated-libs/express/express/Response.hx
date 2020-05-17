@@ -1,4 +1,5 @@
 package express;
+
 typedef Response<ResBody> = {
 	/**
 		Set status `code`.

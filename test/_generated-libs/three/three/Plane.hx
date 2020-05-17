@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Plane") extern class Plane {
 	function new(?normal:Vector3, ?constant:Float);
 	var normal : Vector3;

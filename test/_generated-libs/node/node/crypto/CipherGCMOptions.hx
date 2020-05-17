@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef CipherGCMOptions = {
 	@:optional
 	var authTagLength : Float;

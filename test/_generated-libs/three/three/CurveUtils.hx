@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "CurveUtils") @valueModuleOnly extern class CurveUtils {
 	static function tangentQuadraticBezier(t:Float, p0:Float, p1:Float, p2:Float):Float;
 	static function tangentCubicBezier(t:Float, p0:Float, p1:Float, p2:Float, p3:Float):Float;

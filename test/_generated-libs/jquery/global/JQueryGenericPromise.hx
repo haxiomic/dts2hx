@@ -1,4 +1,5 @@
 package global;
+
 typedef JQueryGenericPromise<T> = {
 	/**
 		Attaches callbacks for the resolution and/or rejection of the Promise.

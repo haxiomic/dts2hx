@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef TypeEventHandlers<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	@:optional
 	var change : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;

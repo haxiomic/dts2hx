@@ -1,4 +1,5 @@
 package node.path;
+
 @:jsRequire("path", "posix") @valueModuleOnly extern class Posix {
 	static function normalize(p:String):String;
 	static function join(paths:haxe.extern.Rest<String>):String;

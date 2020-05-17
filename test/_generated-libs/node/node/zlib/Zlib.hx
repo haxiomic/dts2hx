@@ -1,4 +1,5 @@
 package node.zlib;
+
 typedef Zlib = {
 	final bytesRead : Float;
 	final bytesWritten : Float;

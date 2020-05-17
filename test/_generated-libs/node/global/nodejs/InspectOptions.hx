@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef InspectOptions = {
 	/**
 		If set to `true`, getters are going to be

@@ -1,4 +1,5 @@
 package node.url;
+
 @:jsRequire("url", "URL") extern class URL {
 	function new(input:String, ?base:ts.AnyOf2<String, URL>);
 	var hash : String;

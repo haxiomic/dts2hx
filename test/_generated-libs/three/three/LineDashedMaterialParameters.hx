@@ -1,4 +1,5 @@
 package three;
+
 typedef LineDashedMaterialParameters = {
 	@:optional
 	var color : ts.AnyOf3<String, Float, Color>;

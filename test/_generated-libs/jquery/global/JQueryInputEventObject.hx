@@ -1,4 +1,5 @@
 package global;
+
 typedef JQueryInputEventObject = {
 	var altKey : Bool;
 	var ctrlKey : Bool;

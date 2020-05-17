@@ -1,4 +1,5 @@
 package node.cluster;
+
 typedef ClusterSettings = {
 	@:optional
 	var execArgv : Array<String>;

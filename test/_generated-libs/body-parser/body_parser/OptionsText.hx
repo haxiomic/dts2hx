@@ -1,4 +1,5 @@
 package body_parser;
+
 typedef OptionsText = {
 	/**
 		Specify the default character set for the text content if the charset

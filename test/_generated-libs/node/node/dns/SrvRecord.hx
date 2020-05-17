@@ -1,4 +1,5 @@
 package node.dns;
+
 typedef SrvRecord = {
 	var priority : Float;
 	var weight : Float;

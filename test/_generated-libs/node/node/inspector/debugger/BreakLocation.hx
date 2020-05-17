@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef BreakLocation = {
 	/**
 		Script identifier as reported in the `Debugger.scriptParsed`.

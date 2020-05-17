@@ -1,4 +1,5 @@
 package node.stream;
+
 typedef DuplexOptions = {
 	@:optional
 	var allowHalfOpen : Bool;

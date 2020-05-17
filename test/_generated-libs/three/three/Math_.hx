@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Math") @valueModuleOnly extern class Math_ {
 	static function generateUUID():String;
 	/**

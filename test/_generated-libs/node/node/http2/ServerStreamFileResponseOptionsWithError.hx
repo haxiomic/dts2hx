@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef ServerStreamFileResponseOptionsWithError = {
 	@:optional
 	dynamic function onError(err:global.nodejs.ErrnoException):Void;

@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("assert") @valueModuleOnly extern class Assert {
 	@:selfCall
 	static function call(value:Dynamic, ?message:ts.AnyOf2<String, ts.lib.Error>):Void;

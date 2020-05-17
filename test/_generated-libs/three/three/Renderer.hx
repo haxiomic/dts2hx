@@ -1,4 +1,5 @@
 package three;
+
 typedef Renderer = {
 	var domElement : js.html.CanvasElement;
 	function render(scene:Scene, camera:Camera):Void;

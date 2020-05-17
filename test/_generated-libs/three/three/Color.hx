@@ -1,4 +1,5 @@
 package three;
+
 /**
 	Represents a color. See also {@link ColorUtils}.
 **/

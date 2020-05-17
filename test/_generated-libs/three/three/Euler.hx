@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Euler") extern class Euler {
 	function new(?x:Float, ?y:Float, ?z:Float, ?order:String);
 	var x : Float;

@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		The other DOM element involved in the event, if any.

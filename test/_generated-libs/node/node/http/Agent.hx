@@ -1,4 +1,5 @@
 package node.http;
+
 @:jsRequire("http", "Agent") extern class Agent {
 	function new(?opts:AgentOptions);
 	var maxFreeSockets : Float;

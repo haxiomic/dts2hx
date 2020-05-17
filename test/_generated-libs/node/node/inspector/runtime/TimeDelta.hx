@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 /**
 	Number of milliseconds.
 **/

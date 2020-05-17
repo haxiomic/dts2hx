@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Cylindrical") extern class Cylindrical {
 	function new(?radius:Float, ?theta:Float, ?y:Float);
 	var radius : Float;

@@ -1,4 +1,5 @@
 package node.dgram;
+
 typedef SocketOptions = {
 	var type : SocketType;
 	@:optional

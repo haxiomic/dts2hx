@@ -1,4 +1,5 @@
 package node.os;
+
 typedef NetworkInterfaceInfoIPv4 = {
 	var family : String;
 	var address : String;

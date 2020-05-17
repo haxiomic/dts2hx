@@ -1,4 +1,5 @@
 package node.crypto;
+
 @:jsRequire("crypto", "constants") @valueModuleOnly extern class Constants {
 	static var OPENSSL_VERSION_NUMBER : Float;
 	/**

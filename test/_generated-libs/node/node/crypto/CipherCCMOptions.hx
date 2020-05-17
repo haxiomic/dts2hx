@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef CipherCCMOptions = {
 	var authTagLength : Float;
 	@:optional

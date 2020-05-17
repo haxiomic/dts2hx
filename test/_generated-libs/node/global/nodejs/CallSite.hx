@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef CallSite = {
 	/**
 		Value of "this"

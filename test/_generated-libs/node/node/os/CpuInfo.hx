@@ -1,4 +1,5 @@
 package node.os;
+
 typedef CpuInfo = {
 	var model : String;
 	var speed : Float;

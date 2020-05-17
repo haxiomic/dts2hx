@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef IWeakMap<K, V> = {
 	function delete(key:K):Bool;
 	function get(key:K):Null<V>;

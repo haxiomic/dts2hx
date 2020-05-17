@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Sphere") extern class Sphere {
 	function new(?center:Vector3, ?radius:Float);
 	var center : Vector3;

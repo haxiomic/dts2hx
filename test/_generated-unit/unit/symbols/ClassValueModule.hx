@@ -1,4 +1,5 @@
 package unit.symbols;
+
 @:jsRequire("./unit/symbols", "ClassValueModule") extern class ClassValueModule {
 	function new(i:Float);
 	@:selfCall

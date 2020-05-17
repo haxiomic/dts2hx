@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef IError = {
 	var name : String;
 	var message : String;

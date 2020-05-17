@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "PositionalAudioHelper") extern class PositionalAudioHelper extends Line {
 	function new(audio:PositionalAudio, ?range:Float, ?divisionsInnerAngle:Float, ?divisionsOuterAngle:Float);
 	var audio : PositionalAudio;

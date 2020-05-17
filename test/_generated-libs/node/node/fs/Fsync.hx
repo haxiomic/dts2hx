@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
 **/

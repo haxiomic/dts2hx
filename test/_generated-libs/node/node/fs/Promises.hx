@@ -1,4 +1,5 @@
 package node.fs;
+
 @:jsRequire("fs", "promises") @valueModuleOnly extern class Promises {
 	/**
 		Asynchronously tests a user's permissions for the file specified by path.

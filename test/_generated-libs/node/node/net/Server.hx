@@ -1,4 +1,5 @@
 package node.net;
+
 @:jsRequire("net", "Server") extern class Server extends node.events.EventEmitter {
 	@:overload(function(?options:{ @:optional var allowHalfOpen : Bool; @:optional var pauseOnConnect : Bool; }, ?connectionListener:(socket:Socket) -> Void):Server { })
 	function new(?connectionListener:(socket:Socket) -> Void);

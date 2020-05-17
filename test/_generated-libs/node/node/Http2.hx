@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("http2") @valueModuleOnly extern class Http2 {
 	static function getDefaultSettings():node.http2.Settings;
 	static function getPackedSettings(settings:node.http2.Settings):node.http2.Settings;

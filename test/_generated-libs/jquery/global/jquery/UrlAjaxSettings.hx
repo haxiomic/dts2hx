@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef UrlAjaxSettings<TContext> = {
 	/**
 		A string containing the URL to which the request is sent.

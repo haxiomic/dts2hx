@@ -1,4 +1,5 @@
 package node.util;
+
 @:jsRequire("util", "inspect") @valueModuleOnly extern class Inspect {
 	@:overload(function(object:Dynamic, options:InspectOptions):String { })
 	@:selfCall

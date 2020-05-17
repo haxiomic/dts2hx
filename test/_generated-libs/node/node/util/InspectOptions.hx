@@ -1,4 +1,5 @@
 package node.util;
+
 typedef InspectOptions = {
 	/**
 		If set to `true`, getters are going to be

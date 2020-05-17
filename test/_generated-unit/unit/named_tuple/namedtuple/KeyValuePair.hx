@@ -1,4 +1,5 @@
 package unit.named_tuple.namedtuple;
+
 typedef KeyValuePair<K, V> = {
 	@:native("0")
 	var Zero : K;

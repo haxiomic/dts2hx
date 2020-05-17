@@ -1,4 +1,5 @@
 package unit.class_;
+
 @:jsRequire("./unit/class", "ClassBase") extern class ClassBase<T, DefaultBool> {
 	@:overload(function<T, DefaultBool>(a:Float):ClassBase<T, DefaultBool> { })
 	function new<T, DefaultBool>(overloadParam:T);

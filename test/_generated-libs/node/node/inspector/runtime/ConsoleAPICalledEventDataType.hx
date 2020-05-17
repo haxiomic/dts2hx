@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 typedef ConsoleAPICalledEventDataType = {
 	/**
 		Type of the call.

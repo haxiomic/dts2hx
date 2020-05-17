@@ -1,4 +1,5 @@
 package three;
+
 /**
 	Triangle face.
 **/

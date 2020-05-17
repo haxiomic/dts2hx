@@ -1,4 +1,5 @@
 package node.fs;
+
 @:jsRequire("fs", "constants") @valueModuleOnly extern class Constants {
 	/**
 		Constant for fs.access(). File is visible to the calling process.

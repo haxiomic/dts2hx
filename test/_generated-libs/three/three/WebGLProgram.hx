@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLProgram") extern class WebGLProgram {
 	function new(renderer:WebGLRenderer, extensions:WebGLExtensions, code:String, material:ShaderMaterial, shader:WebGLShader, parameters:WebGLRendererParameters, capabilities:WebGLCapabilities);
 	var id : Float;

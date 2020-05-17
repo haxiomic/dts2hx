@@ -1,4 +1,5 @@
 package node.url;
+
 typedef UrlWithParsedQuery = {
 	var query : node.querystring.ParsedUrlQuery;
 	@:optional

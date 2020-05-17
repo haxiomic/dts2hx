@@ -1,4 +1,5 @@
 package three;
+
 typedef MeshPhysicalMaterialParameters = {
 	@:optional
 	var reflectivity : Float;

@@ -1,4 +1,5 @@
 package unit.types.types;
+
 typedef Recursive<T> = {
 	var recursive : Recursive<T>;
 	var recursiveRecursive : Recursive<Recursive<T>>;

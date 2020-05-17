@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef ReadableStream = {
 	var readable : Bool;
 	function read(?size:Float):ts.AnyOf2<String, global.Buffer>;

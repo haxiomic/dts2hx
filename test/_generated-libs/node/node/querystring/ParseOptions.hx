@@ -1,4 +1,5 @@
 package node.querystring;
+
 typedef ParseOptions = {
 	@:optional
 	var maxKeys : Float;

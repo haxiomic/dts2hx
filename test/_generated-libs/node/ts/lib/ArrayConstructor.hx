@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef ArrayConstructor = {
 	@:overload(function<T>(arrayLength:Float):Array<T> { })
 	@:overload(function<T>(items:haxe.extern.Rest<T>):Array<T> { })

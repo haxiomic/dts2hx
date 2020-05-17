@@ -1,4 +1,5 @@
 package node.async_hooks;
+
 /**
 	The class AsyncResource was designed to be extended by the embedder's async resources.
 	Using this users can easily trigger the lifetime events of their own resources.

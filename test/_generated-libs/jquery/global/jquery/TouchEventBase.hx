@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef TouchEventBase<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	/**
 		The other DOM element involved in the event, if any.

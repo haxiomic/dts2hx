@@ -1,4 +1,5 @@
 package node.inspector.heapprofiler;
+
 typedef HeapStatsUpdateEventDataType = {
 	/**
 		An array of triplets. Each triplet describes a fragment. The first integer is the fragment

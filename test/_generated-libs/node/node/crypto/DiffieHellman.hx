@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef DiffieHellman = {
 	@:overload(function(encoding:HexBase64Latin1Encoding):String { })
 	function generateKeys():global.Buffer;

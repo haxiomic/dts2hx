@@ -1,4 +1,5 @@
 package three.src.renderers.shaders;
+
 @:jsRequire("three/src/renderers/shaders/ShaderChunk") @valueModuleOnly extern class ShaderChunk {
 	static var ShaderChunk : {
 		var alphamap_fragment : String;

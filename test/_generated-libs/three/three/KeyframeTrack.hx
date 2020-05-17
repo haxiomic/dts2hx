@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "KeyframeTrack") extern class KeyframeTrack {
 	function new(name:String, times:Array<Dynamic>, values:Array<Dynamic>, ?interpolation:InterpolationModes);
 	var name : String;

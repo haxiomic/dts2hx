@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLCapabilities") extern class WebGLCapabilities {
 	function new(gl:js.html.webgl.RenderingContext, extensions:Dynamic, parameters:WebGLCapabilitiesParameters);
 	var precision : Dynamic;

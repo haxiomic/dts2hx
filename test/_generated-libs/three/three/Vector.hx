@@ -1,4 +1,5 @@
 package three;
+
 /**
 	( interface Vector&lt;T&gt; )
 	

@@ -1,4 +1,5 @@
 package three;
+
 typedef SplineControlPoint = {
 	var x : Float;
 	var y : Float;

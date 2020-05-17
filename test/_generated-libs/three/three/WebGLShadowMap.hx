@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLShadowMap") extern class WebGLShadowMap {
 	function new(_renderer:WebGLRenderer, _lights:Array<Dynamic>, _objects:Array<Dynamic>, capabilities:Dynamic);
 	var enabled : Bool;

@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("constants") @valueModuleOnly extern class Constants {
 	static var E2BIG : Float;
 	static var EACCES : Float;

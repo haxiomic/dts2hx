@@ -1,4 +1,5 @@
 package serve_static;
+
 typedef ServeStaticOptions = {
 	/**
 		Enable or disable setting Cache-Control response header, defaults to true. 

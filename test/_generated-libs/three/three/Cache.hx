@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Cache") @valueModuleOnly extern class Cache {
 	static function add(key:String, file:Dynamic):Void;
 	static function get(key:String):Dynamic;

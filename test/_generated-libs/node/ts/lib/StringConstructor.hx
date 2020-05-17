@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef StringConstructor = {
 	@:selfCall
 	function call(?value:Dynamic):String;

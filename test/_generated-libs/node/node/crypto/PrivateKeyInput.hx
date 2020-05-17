@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef PrivateKeyInput = {
 	var key : ts.AnyOf2<String, global.Buffer>;
 	@:optional

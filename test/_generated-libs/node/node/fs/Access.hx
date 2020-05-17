@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronously tests a user's permissions for the file specified by path.
 	

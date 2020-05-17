@@ -1,4 +1,5 @@
 package global;
+
 typedef NodeRequire = {
 	@:selfCall
 	function call(id:String):Dynamic;

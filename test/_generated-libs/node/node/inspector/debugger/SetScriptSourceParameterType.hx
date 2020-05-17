@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef SetScriptSourceParameterType = {
 	/**
 		Id of the script to edit.

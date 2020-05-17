@@ -1,2 +1,3 @@
 package three;
+
 typedef RenderTarget = { };

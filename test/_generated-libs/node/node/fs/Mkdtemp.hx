@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronously creates a unique temporary directory.
 	Generates six random characters to be appended behind a required prefix to create a unique temporary directory.

@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef TweenStatic = {
 	@:selfCall
 	function call<TElement>(elem:TElement, options:EffectsOptions<TElement>, prop:String, end:Float, ?easing:String, ?unit:String):Tween<TElement>;

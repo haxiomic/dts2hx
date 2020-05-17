@@ -1,4 +1,5 @@
 package node.dns;
+
 typedef LookupOptions = {
 	@:optional
 	var family : Float;

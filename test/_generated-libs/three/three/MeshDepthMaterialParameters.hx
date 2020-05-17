@@ -1,4 +1,5 @@
 package three;
+
 typedef MeshDepthMaterialParameters = {
 	@:optional
 	var depthPacking : DepthPackingStrategies;

@@ -1,4 +1,5 @@
 package node.os;
+
 typedef NetworkInterfaceInfoIPv6 = {
 	var family : String;
 	var scopeid : Float;

@@ -1,4 +1,5 @@
 package node.inspector.console;
+
 /**
 	Console message.
 **/

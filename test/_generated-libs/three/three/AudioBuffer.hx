@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AudioBuffer") extern class AudioBuffer {
 	function new(context:Dynamic);
 	var context : Dynamic;

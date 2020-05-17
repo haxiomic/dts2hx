@@ -1,4 +1,5 @@
 package ts.lib;
+
 @:native("Error") extern class Error {
 	function new(?message:String);
 	var name : String;

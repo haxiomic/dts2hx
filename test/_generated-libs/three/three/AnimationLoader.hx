@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "AnimationLoader") extern class AnimationLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

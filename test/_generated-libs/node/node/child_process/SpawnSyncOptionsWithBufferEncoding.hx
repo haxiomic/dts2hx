@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef SpawnSyncOptionsWithBufferEncoding = {
 	var encoding : String;
 	@:optional

@@ -1,4 +1,5 @@
 package node.v8;
+
 typedef HeapInfo = {
 	var total_heap_size : Float;
 	var total_heap_size_executable : Float;

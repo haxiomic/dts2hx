@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLIndexedBufferRenderer") extern class WebGLIndexedBufferRenderer {
 	function new(gl:js.html.webgl.RenderingContext, properties:Dynamic, info:Dynamic);
 	function setMode(value:Dynamic):Void;

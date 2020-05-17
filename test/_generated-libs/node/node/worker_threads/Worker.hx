@@ -1,4 +1,5 @@
 package node.worker_threads;
+
 @:jsRequire("worker_threads", "Worker") extern class Worker extends node.events.EventEmitter {
 	function new(filename:String, ?options:WorkerOptions);
 	final stdin : Null<node.stream.Writable>;

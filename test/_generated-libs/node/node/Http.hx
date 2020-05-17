@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("http") @valueModuleOnly extern class Http {
 	@:overload(function(options:node.http.ServerOptions, ?requestListener:node.http.RequestListener):node.http.Server { })
 	static function createServer(?requestListener:node.http.RequestListener):node.http.Server;

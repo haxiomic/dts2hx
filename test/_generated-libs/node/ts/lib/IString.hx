@@ -1,4 +1,5 @@
 package ts.lib;
+
 /**
 	Allows manipulation and formatting of text strings and determination and location of substrings within strings.
 **/

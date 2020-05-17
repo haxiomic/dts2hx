@@ -1,4 +1,5 @@
 package node.https;
+
 @:jsRequire("https", "Server") extern class Server extends node.tls.Server {
 	function new(options:ServerOptions, ?requestListener:node.http.RequestListener);
 	@:overload(function(?msecs:Float, ?callback:() -> Void):Server { })

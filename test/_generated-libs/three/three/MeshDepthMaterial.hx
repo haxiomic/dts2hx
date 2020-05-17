@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MeshDepthMaterial") extern class MeshDepthMaterial extends Material {
 	function new(?parameters:MeshDepthMaterialParameters);
 	var depthPacking : DepthPackingStrategies;

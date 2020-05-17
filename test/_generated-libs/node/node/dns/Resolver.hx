@@ -1,4 +1,5 @@
 package node.dns;
+
 @:jsRequire("dns", "Resolver") extern class Resolver {
 	dynamic function getServers():Array<String>;
 	dynamic function setServers(servers:Array<String>):Void;

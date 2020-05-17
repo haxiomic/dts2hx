@@ -1,4 +1,5 @@
 package global;
+
 typedef JQueryEventObject = {
 	/**
 		The current DOM element within the event bubbling phase.

@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "BufferGeometryLoader") extern class BufferGeometryLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 typedef EvaluateParameterType = {
 	/**
 		Expression to evaluate.

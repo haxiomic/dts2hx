@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef ConcatArray<T> = {
 	final length : Float;
 	function join(?separator:String):String;

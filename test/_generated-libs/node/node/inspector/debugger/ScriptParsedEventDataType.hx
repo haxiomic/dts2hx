@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef ScriptParsedEventDataType = {
 	/**
 		Identifier of the script parsed.

@@ -1,4 +1,5 @@
 package node.trace_events;
+
 /**
 	The `Tracing` object is used to enable or disable tracing for sets of
 	categories. Instances are created using the

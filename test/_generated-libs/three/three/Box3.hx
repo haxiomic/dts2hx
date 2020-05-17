@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Box3") extern class Box3 {
 	function new(?min:Vector3, ?max:Vector3);
 	var max : Vector3;

@@ -1,4 +1,5 @@
 package three.propertybinding;
+
 @:jsRequire("three", "PropertyBinding.Composite") extern class Composite {
 	function new(targetGroup:Dynamic, path:Dynamic, ?parsedPath:Dynamic);
 	function getValue(array:Dynamic, offset:Float):Dynamic;

@@ -1,4 +1,5 @@
 package three;
+
 /**
 	3D vector.
 **/

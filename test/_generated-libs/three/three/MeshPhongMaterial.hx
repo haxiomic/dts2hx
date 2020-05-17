@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MeshPhongMaterial") extern class MeshPhongMaterial extends Material {
 	function new(?parameters:MeshPhongMaterialParameters);
 	var color : Color;

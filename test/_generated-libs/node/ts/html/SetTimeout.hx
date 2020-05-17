@@ -1,4 +1,5 @@
 package ts.html;
+
 @:native("setTimeout") @valueModuleOnly extern class SetTimeout {
 	@:overload(function(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout { })
 	@:selfCall

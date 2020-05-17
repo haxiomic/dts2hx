@@ -1,4 +1,5 @@
 package three;
+
 /**
 	a 2d path representation, comprising of points, lines, and cubes, similar to the html5 2d canvas api. It extends CurvePath.
 **/

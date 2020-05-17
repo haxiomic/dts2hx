@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 typedef CustomPreview = {
 	var header : String;
 	var hasBody : Bool;

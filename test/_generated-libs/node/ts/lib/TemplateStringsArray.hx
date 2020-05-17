@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef TemplateStringsArray = {
 	final raw : ReadonlyArray<String>;
 	/**

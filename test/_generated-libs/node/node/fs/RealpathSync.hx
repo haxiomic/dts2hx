@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Synchronous realpath(3) - return the canonicalized absolute pathname.
 	

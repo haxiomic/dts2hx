@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronous lstat(2) - Get file status. Does not dereference symbolic links.
 **/

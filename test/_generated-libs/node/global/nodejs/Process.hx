@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef Process = {
 	/**
 		Can also be a tty.WriteStream, not typed due to limitation.s

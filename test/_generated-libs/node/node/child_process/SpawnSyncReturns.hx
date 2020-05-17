@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef SpawnSyncReturns<T> = {
 	var pid : Float;
 	var output : Array<String>;

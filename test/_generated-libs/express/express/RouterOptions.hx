@@ -1,4 +1,5 @@
 package express;
+
 typedef RouterOptions = {
 	/**
 		Enable case sensitivity.

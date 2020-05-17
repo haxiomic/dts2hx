@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLUniforms") extern class WebGLUniforms {
 	function new(gl:Dynamic, program:WebGLProgram);
 	function setValue(gl:Dynamic, name:String, value:Dynamic, textures:WebGLTextures):Void;

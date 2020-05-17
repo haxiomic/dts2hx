@@ -1,4 +1,5 @@
 package node.inspector.debugger;
+
 typedef SetBreakpointReturnType = {
 	/**
 		Id of the created breakpoint for further reference.

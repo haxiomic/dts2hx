@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef TypeErrorConstructor = {
 	@:selfCall
 	function call(?message:String):js.lib.Error.TypeError;

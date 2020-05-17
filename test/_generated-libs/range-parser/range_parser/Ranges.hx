@@ -1,4 +1,5 @@
 package range_parser;
+
 typedef Ranges = {
 	var type : String;
 	/**

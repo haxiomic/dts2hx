@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 /**
 	Description of an isolated world.
 **/

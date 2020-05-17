@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef SymbolConstructor = {
 	/**
 		Returns a new unique Symbol value.

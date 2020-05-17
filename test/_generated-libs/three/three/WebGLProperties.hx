@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLProperties") extern class WebGLProperties {
 	function new();
 	function get(object:Dynamic):Dynamic;

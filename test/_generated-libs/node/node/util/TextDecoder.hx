@@ -1,4 +1,5 @@
 package node.util;
+
 @:jsRequire("util", "TextDecoder") extern class TextDecoder {
 	function new(?encoding:String, ?options:{ @:optional var fatal : Bool; @:optional var ignoreBOM : Bool; });
 	final encoding : String;

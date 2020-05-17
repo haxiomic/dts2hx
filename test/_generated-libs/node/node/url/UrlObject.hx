@@ -1,4 +1,5 @@
 package node.url;
+
 typedef UrlObject = {
 	@:optional
 	var port : ts.AnyOf2<String, Float>;

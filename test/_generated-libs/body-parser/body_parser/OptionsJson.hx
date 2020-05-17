@@ -1,4 +1,5 @@
 package body_parser;
+
 typedef OptionsJson = {
 	/**
 		The reviver option is passed directly to JSON.parse as the second argument.

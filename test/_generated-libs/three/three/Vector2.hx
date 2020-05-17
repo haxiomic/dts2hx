@@ -1,4 +1,5 @@
 package three;
+
 /**
 	2D vector.
 	

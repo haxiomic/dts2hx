@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef Int16ArrayConstructor = {
 	final prototype : js.lib.Int16Array;
 	/**

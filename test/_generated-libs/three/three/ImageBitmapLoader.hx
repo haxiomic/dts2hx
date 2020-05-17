@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "ImageBitmapLoader") extern class ImageBitmapLoader {
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;

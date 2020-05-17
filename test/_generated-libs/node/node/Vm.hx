@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("vm") @valueModuleOnly extern class Vm {
 	static function createContext(?sandbox:node.vm.Context):node.vm.Context;
 	static function isContext(sandbox:node.vm.Context):Bool;

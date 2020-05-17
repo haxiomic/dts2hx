@@ -1,4 +1,5 @@
 package node;
+
 @:jsRequire("tls") @valueModuleOnly extern class Tls {
 	static function checkServerIdentity(host:String, cert:node.tls.PeerCertificate):Null<ts.lib.Error>;
 	static function createServer(options:node.tls.TlsOptions, ?secureConnectionListener:(socket:node.tls.TLSSocket) -> Void):node.tls.Server;

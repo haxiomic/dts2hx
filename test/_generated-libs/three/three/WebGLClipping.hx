@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "WebGLClipping") extern class WebGLClipping {
 	var uniform : {
 		var value : Dynamic;

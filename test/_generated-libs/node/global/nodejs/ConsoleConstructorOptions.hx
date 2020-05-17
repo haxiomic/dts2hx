@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef ConsoleConstructorOptions = {
 	var stdout : WritableStream;
 	@:optional

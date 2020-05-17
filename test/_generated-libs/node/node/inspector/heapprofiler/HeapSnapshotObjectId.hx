@@ -1,4 +1,5 @@
 package node.inspector.heapprofiler;
+
 /**
 	Heap snapshot object id.
 **/

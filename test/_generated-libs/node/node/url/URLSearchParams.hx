@@ -1,4 +1,5 @@
 package node.url;
+
 @:jsRequire("url", "URLSearchParams") extern class URLSearchParams {
 	function new(?init:ts.AnyOf5<String, Array<ts.Tuple2<String, String>>, URLSearchParams, ts.lib.Iterable<ts.Tuple2<String, String>>, { }>);
 	function append(name:String, value:String):Void;

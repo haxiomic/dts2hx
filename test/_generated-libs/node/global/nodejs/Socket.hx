@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef Socket = {
 	@:optional
 	var isTTY : Bool;

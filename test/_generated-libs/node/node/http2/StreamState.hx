@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef StreamState = {
 	@:optional
 	var localWindowSize : Float;

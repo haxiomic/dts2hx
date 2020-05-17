@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "SphericalHarmonics3") extern class SphericalHarmonics3 {
 	function new();
 	var coefficients : Array<Vector3>;

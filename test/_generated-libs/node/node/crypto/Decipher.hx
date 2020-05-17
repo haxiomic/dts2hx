@@ -1,4 +1,5 @@
 package node.crypto;
+
 typedef Decipher = {
 	@:overload(function(data:String, input_encoding:HexBase64BinaryEncoding):global.Buffer { })
 	@:overload(function(data:Binary, input_encoding:Null<Any>, output_encoding:Utf8AsciiBinaryEncoding):String { })

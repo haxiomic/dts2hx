@@ -1,4 +1,5 @@
 package ts.lib;
+
 typedef ReadonlySet<T> = {
 	function forEach(callbackfn:(value:T, value2:T, set:ReadonlySet<T>) -> Void, ?thisArg:Dynamic):Void;
 	function has(value:T):Bool;

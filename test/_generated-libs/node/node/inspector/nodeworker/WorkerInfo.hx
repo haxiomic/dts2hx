@@ -1,4 +1,5 @@
 package node.inspector.nodeworker;
+
 typedef WorkerInfo = {
 	var workerId : String;
 	var type : String;

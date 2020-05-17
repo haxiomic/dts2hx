@@ -1,4 +1,5 @@
 package node.url;
+
 typedef UrlWithStringQuery = {
 	var query : Null<String>;
 	@:optional

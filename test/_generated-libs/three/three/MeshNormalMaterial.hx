@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "MeshNormalMaterial") extern class MeshNormalMaterial extends Material {
 	function new(?parameters:MeshNormalMaterialParameters);
 	var bumpMap : Null<Texture>;

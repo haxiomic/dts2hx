@@ -1,4 +1,5 @@
 package node.cluster;
+
 @:jsRequire("cluster", "Worker") extern class Worker extends node.events.EventEmitter {
 	var id : Float;
 	var process : node.child_process.ChildProcess;

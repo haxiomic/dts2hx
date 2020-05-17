@@ -1,4 +1,5 @@
 package node.child_process;
+
 typedef SpawnSyncOptions = {
 	@:optional
 	var argv0 : String;

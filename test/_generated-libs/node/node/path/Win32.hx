@@ -1,4 +1,5 @@
 package node.path;
+
 @:jsRequire("path", "win32") @valueModuleOnly extern class Win32 {
 	static function normalize(p:String):String;
 	static function join(paths:haxe.extern.Rest<String>):String;

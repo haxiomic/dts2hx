@@ -1,4 +1,5 @@
 package node.net;
+
 typedef ListenOptions = {
 	@:optional
 	var port : Float;

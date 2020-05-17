@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef PropHook<TElement> = ts.AnyOf3<{
 	function get(tween:Tween<TElement>):Dynamic;
 }, {

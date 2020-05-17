@@ -1,4 +1,5 @@
 package node.dns;
+
 @:jsRequire("dns", "resolve") @valueModuleOnly extern class Resolve {
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:Array<String>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:Array<String>) -> Void):Void { })

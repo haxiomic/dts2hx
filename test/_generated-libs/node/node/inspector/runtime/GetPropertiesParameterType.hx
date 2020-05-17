@@ -1,4 +1,5 @@
 package node.inspector.runtime;
+
 typedef GetPropertiesParameterType = {
 	/**
 		Identifier of the object to return properties for.

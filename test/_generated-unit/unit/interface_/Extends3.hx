@@ -1,4 +1,5 @@
 package unit.interface_;
+
 typedef Extends3 = {
 	var x : Float;
 	var y : Float;

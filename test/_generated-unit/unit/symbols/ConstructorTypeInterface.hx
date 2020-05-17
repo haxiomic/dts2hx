@@ -1,4 +1,5 @@
 package unit.symbols;
+
 @:jsRequire("./unit/symbols", "ConstructorTypeInterface") extern class ConstructorTypeInterface {
 	function new(constructorTypeParam:Array<Bool>);
 	@:selfCall

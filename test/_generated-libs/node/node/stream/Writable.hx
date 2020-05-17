@@ -1,4 +1,5 @@
 package node.stream;
+
 @:jsRequire("stream", "Writable") extern class Writable extends Stream {
 	function new(?opts:WritableOptions);
 	var writable : Bool;

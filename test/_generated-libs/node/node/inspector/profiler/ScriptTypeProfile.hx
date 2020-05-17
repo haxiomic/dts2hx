@@ -1,4 +1,5 @@
 package node.inspector.profiler;
+
 /**
 	Type profile data collected during runtime for a JavaScript script.
 **/

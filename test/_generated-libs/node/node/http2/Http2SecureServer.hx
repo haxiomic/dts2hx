@@ -1,4 +1,5 @@
 package node.http2;
+
 typedef Http2SecureServer = {
 	/**
 		events.EventEmitter

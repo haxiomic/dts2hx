@@ -1,4 +1,5 @@
 package global.jquery;
+
 typedef SpeedSettings<TElement> = ts.AnyOf4<{
 	/**
 		A string or number determining how long the animation will run.

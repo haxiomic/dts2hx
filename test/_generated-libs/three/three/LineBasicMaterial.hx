@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "LineBasicMaterial") extern class LineBasicMaterial extends Material {
 	function new(?parameters:LineBasicMaterialParameters);
 	var color : Color;

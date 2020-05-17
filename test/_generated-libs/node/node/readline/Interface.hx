@@ -1,4 +1,5 @@
 package node.readline;
+
 @:jsRequire("readline", "Interface") extern class Interface extends node.events.EventEmitter {
 	/**
 		NOTE: According to the documentation:

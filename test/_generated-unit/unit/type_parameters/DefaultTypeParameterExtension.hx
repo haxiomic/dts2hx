@@ -1,4 +1,5 @@
 package unit.type_parameters;
+
 typedef DefaultTypeParameterExtension = {
 	@:selfCall
 	function call(callSignatureArg:Bool):Bool;

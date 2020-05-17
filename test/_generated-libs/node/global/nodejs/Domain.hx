@@ -1,4 +1,5 @@
 package global.nodejs;
+
 typedef Domain = {
 	function run<T>(fn:(args:haxe.extern.Rest<Dynamic>) -> T, args:haxe.extern.Rest<Dynamic>):T;
 	function add(emitter:ts.AnyOf2<EventEmitter, Timer>):Void;

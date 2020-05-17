@@ -1,4 +1,5 @@
 package three;
+
 @:jsRequire("three", "Layers") extern class Layers {
 	function new();
 	var mask : Float;

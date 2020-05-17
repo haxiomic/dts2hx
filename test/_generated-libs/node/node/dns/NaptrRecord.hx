@@ -1,4 +1,5 @@
 package node.dns;
+
 typedef NaptrRecord = {
 	var flags : String;
 	var service : String;

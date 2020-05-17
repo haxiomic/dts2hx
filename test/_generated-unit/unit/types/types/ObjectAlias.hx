@@ -1,4 +1,5 @@
 package unit.types.types;
+
 typedef ObjectAlias = {
 	var fieldA : Float;
 	var fieldB : Float;

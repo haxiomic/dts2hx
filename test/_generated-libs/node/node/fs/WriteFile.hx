@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronously writes data to a file, replacing the file if it already exists.
 	

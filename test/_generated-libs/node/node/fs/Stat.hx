@@ -1,4 +1,5 @@
 package node.fs;
+
 /**
 	Asynchronous stat(2) - Get file status.
 **/

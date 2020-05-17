@@ -1,4 +1,5 @@
 package node.dns;
+
 typedef SoaRecord = {
 	var nsname : String;
 	var hostmaster : String;

@@ -1,4 +1,5 @@
 package node.http2;
+
 @:jsRequire("http2", "Http2ServerResponse") extern class Http2ServerResponse extends node.stream.Stream {
 	function new();
 	function addTrailers(trailers:node.http.OutgoingHttpHeaders):Void;
