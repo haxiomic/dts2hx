@@ -12,6 +12,6 @@
     "playcanvas": "1.27.0"
   },
   "devDependencies": {
-    "dts2hx": "^0.8.0"
+    "dts2hx": "^0.9.0"
   }
 }

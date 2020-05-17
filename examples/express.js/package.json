@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "dts2hx --all"
+    "postinstall": "dts2hx --all --allowIntersectionRasterization"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,6 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "dts2hx": "^0.8.1"
+    "dts2hx": "^0.9.0"
   }
 }

@@ -5,7 +5,7 @@ var Server = function() { };
 Server.main = function() {
 	var app = Express();
 	var port = 3000;
-	app.get("/",function(req,res) {
+	app.get("/",function(req,res,next) {
 		return res.send("Hello World!");
 	});
 	app.listen(port,function() {
