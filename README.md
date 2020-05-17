@@ -82,9 +82,9 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 
 - Generating externs with `@:jsRequire()` or `@:native()`
 
-    TypeScript type definitions specify whether or not the symbols are accessible globally (`@:native()`) or via module resolution (`@:jsRequire()`). Many type definitions [include both globally available and modular symbols](https://github.com/haxiomic/dts2hx/blob/master/examples/pixi.js/Main.hx#L2). If a library has global symbols, they will be emitted in a package called `global`, all types in this package use `@:native()` metadata, whereas types elsewhere will use `@:jsRequire()`.
+    TypeScript type definitions specify whether or not the symbols are accessible globally (`@:native()`) or via module resolution (`@:jsRequire()`). Many type definitions [include both globally available and modular symbols](https://github.com/haxiomic/dts2hx/blob/master/examples/pixi.js/Main.hx#L2). If a library has global symbols, they will be emitted in a package called `global`. all types in the `global` package use `@:native()` metadata, whereas types elsewhere will use `@:jsRequire()`.
 
-    If your types only use `@:jsRequire` and you want to run in a browser (like the [three.js type definitions](https://github.com/haxiomic/dts2hx/tree/alpha-0.9.0/examples/three)), then you can use a bundler. I recommend [esbuild](https://github.com/evanw/esbuild) over webpack and others because it has by far the best performance (~100 milliseconds bundling time)
+    If your types only use `@:jsRequire` and you want to run in a browser (like the [three.js type definitions](https://github.com/haxiomic/dts2hx/tree/alpha-0.9.0/examples/three)), then you can use a bundler. I recommend [esbuild](https://github.com/evanw/esbuild) over webpack and others because it has by far the best performance (~100 milliseconds bundling time). [Here's an example for three.js](https://github.com/haxiomic/dts2hx/blob/cb48748bbc8cc8f34a6768cee41acf13612a70a6/examples/three/build.hxml#L10)
 
 - Should I publish generated types to haxelib?
 
