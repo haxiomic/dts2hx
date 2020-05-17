@@ -5,22 +5,22 @@ package three;
 @:jsRequire("three", "LoadingManager") extern class LoadingManager {
 	function new(?onLoad:() -> Void, ?onProgress:(url:String, loaded:Float, total:Float) -> Void, ?onError:(url:String) -> Void);
 	@:optional
-	var onStart : (url:String, loaded:Float, total:Float) -> Void;
+	dynamic function onStart(url:String, loaded:Float, total:Float):Void;
 	/**
 		Will be called when load starts.
 		The default is a function with empty body.
 	**/
-	var onLoad : () -> Void;
+	dynamic function onLoad():Void;
 	/**
 		Will be called while load progresses.
 		The default is a function with empty body.
 	**/
-	var onProgress : (item:Dynamic, loaded:Float, total:Float) -> Void;
+	dynamic function onProgress(item:Dynamic, loaded:Float, total:Float):Void;
 	/**
 		Will be called when each element in the scene completes loading.
 		The default is a function with empty body.
 	**/
-	var onError : (url:String) -> Void;
+	dynamic function onError(url:String):Void;
 	/**
 		If provided, the callback will be passed each resource URL before a request is sent.
 		The callback may return the original URL, or a new URL to override loading behavior.

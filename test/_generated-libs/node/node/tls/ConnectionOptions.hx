@@ -15,7 +15,7 @@ typedef ConnectionOptions = {
 	@:optional
 	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var checkServerIdentity : (host:String, cert:PeerCertificate) -> Null<ts.lib.Error>;
+	dynamic function checkServerIdentity(host:String, cert:PeerCertificate):Null<ts.lib.Error>;
 	@:optional
 	var servername : String;
 	@:optional
@@ -25,7 +25,7 @@ typedef ConnectionOptions = {
 	@:optional
 	var secureContext : SecureContext;
 	@:optional
-	var lookup : node.net.LookupFunction;
+	dynamic function lookup(hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void):Void;
 	@:optional
 	var timeout : Float;
 	@:optional

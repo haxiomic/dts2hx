@@ -14,7 +14,7 @@ typedef TcpNetConnectOpts = {
 	@:optional
 	var family : Float;
 	@:optional
-	var lookup : LookupFunction;
+	dynamic function lookup(hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void):Void;
 	@:optional
 	var fd : Float;
 	@:optional

@@ -1,6 +1,6 @@
 # Haxe Externs for express-serve-static-core
 
-Generated from **[@types/express-serve-static-core v4.17.7](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.8.0** using **TypeScript 3.7.4** with arguments:
+Generated from **[@types/express-serve-static-core v4.17.7](https://github.com/DefinitelyTyped/DefinitelyTyped#readme)** by **[dts2hx](https://github.com/haxiomic/dts2hx) 0.9.0** using **TypeScript 3.7.4** with arguments:
 
 	dts2hx express --output _generated-libs
 

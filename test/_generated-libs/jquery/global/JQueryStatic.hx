@@ -12,7 +12,7 @@ typedef JQueryStatic = {
 	function call(window:js.html.Window, discriminator:Bool):JQueryStatic;
 	var ajaxSettings : global.jquery.AjaxSettings<Dynamic>;
 	var Animation : global.jquery.AnimationStatic;
-	var Callbacks : global.jquery.CallbacksStatic;
+	dynamic function Callbacks<T>(?flags:String):global.jquery.Callbacks<T>;
 	/**
 		Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.
 	**/

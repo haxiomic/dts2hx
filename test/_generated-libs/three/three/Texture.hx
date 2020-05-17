@@ -26,7 +26,7 @@ package three;
 	var encoding : TextureEncoding;
 	var version : Float;
 	var needsUpdate : Bool;
-	var onUpdate : () -> Void;
+	dynamic function onUpdate():Void;
 	function clone():Texture;
 	function copy(source:Texture):Texture;
 	function toJSON(meta:Dynamic):Dynamic;

@@ -104,11 +104,11 @@ package three;
 	/**
 		Calls before rendering object
 	**/
-	var onBeforeRender : (renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, group:Group) -> Void;
+	dynamic function onBeforeRender(renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, group:Group):Void;
 	/**
 		Calls after rendering object
 	**/
-	var onAfterRender : (renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, group:Group) -> Void;
+	dynamic function onAfterRender(renderer:WebGLRenderer, scene:Scene, camera:Camera, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, group:Group):Void;
 	/**
 		This updates the position, rotation and scale with the matrix.
 	**/

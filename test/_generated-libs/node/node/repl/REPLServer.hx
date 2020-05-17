@@ -65,7 +65,7 @@ package node.repl;
 		given line of input. If not specified in the REPL options, this is an async wrapper
 		for the JavaScript `eval()` function.
 	**/
-	final eval : REPLEval;
+	function eval(evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<ts.lib.Error>, result:Dynamic) -> Void):Void;
 	/**
 		Specified in the REPL options, this is a value indicating whether the default
 		`writer` function should include ANSI color styling to REPL output.
@@ -87,11 +87,11 @@ package node.repl;
 		each command before writing to `outputStream`. If not specified in the REPL options,
 		this will be a wrapper for `util.inspect`.
 	**/
-	final writer : REPLWriter;
+	function writer(obj:Dynamic):String;
 	/**
 		Specified in the REPL options, this is the function to use for custom Tab auto-completion.
 	**/
-	final completer : ts.AnyOf2<node.readline.Completer, node.readline.AsyncCompleter>;
+	function completer(line:String, callback:ts.AnyOf3<() -> Void, (err:ts.lib.Error) -> Void, (err:ts.lib.Error, result:node.readline.CompleterResult) -> Void>):Dynamic;
 	/**
 		Specified in the REPL options, this is a flag that specifies whether the default `eval`
 		function should execute all JavaScript commands in strict mode or default (sloppy) mode.

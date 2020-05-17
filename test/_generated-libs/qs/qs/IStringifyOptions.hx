@@ -9,7 +9,7 @@ typedef IStringifyOptions = {
 	@:optional
 	var encode : Bool;
 	@:optional
-	var encoder : (str:Dynamic, defaultEncoder:DefaultEncoder, charset:String, type:String) -> String;
+	dynamic function encoder(str:Dynamic, defaultEncoder:DefaultEncoder, charset:String, type:String):String;
 	@:optional
 	var filter : ts.AnyOf2<Array<ts.AnyOf2<String, Float>>, (prefix:String, value:Dynamic) -> Dynamic>;
 	@:optional
@@ -17,9 +17,9 @@ typedef IStringifyOptions = {
 	@:optional
 	var indices : Bool;
 	@:optional
-	var sort : (a:Dynamic, b:Dynamic) -> Float;
+	dynamic function sort(a:Dynamic, b:Dynamic):Float;
 	@:optional
-	var serializeDate : (d:js.lib.Date) -> String;
+	dynamic function serializeDate(d:js.lib.Date):String;
 	@:optional
 	var format : String;
 	@:optional

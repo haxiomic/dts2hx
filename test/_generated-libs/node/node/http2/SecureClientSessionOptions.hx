@@ -11,11 +11,11 @@ typedef SecureClientSessionOptions = {
 	@:optional
 	var peerMaxConcurrentStreams : Float;
 	@:optional
-	var selectPadding : (frameLen:Float, maxFrameLen:Float) -> Float;
+	dynamic function selectPadding(frameLen:Float, maxFrameLen:Float):Float;
 	@:optional
 	var settings : Settings;
 	@:optional
-	var createConnection : (option:SessionOptions) -> node.stream.Duplex;
+	dynamic function createConnection(option:SessionOptions):node.stream.Duplex;
 	@:optional
 	var host : String;
 	@:optional
@@ -31,7 +31,7 @@ typedef SecureClientSessionOptions = {
 	@:optional
 	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var checkServerIdentity : (host:String, cert:node.tls.PeerCertificate) -> Null<ts.lib.Error>;
+	dynamic function checkServerIdentity(host:String, cert:node.tls.PeerCertificate):Null<ts.lib.Error>;
 	@:optional
 	var servername : String;
 	@:optional
@@ -41,7 +41,7 @@ typedef SecureClientSessionOptions = {
 	@:optional
 	var secureContext : node.tls.SecureContext;
 	@:optional
-	var lookup : node.net.LookupFunction;
+	dynamic function lookup(hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void):Void;
 	@:optional
 	var timeout : Float;
 	@:optional

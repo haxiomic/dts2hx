@@ -11,9 +11,9 @@ typedef SessionOptions = {
 	@:optional
 	var peerMaxConcurrentStreams : Float;
 	@:optional
-	var selectPadding : (frameLen:Float, maxFrameLen:Float) -> Float;
+	dynamic function selectPadding(frameLen:Float, maxFrameLen:Float):Float;
 	@:optional
 	var settings : Settings;
 	@:optional
-	var createConnection : (option:SessionOptions) -> node.stream.Duplex;
+	dynamic function createConnection(option:SessionOptions):node.stream.Duplex;
 };

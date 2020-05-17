@@ -2,7 +2,7 @@ package node;
 @:jsRequire("module") extern class Module {
 	function new(id:String, ?parent:node.Module);
 	var exports : Dynamic;
-	var require : global.NodeRequireFunction;
+	dynamic function require(id:String):Dynamic;
 	var id : String;
 	var filename : String;
 	var loaded : Bool;

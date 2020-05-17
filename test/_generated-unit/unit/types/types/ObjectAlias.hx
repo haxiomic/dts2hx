@@ -16,7 +16,7 @@ typedef ObjectAlias = {
 	function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 	@:overload(function(a:Float):Void { })
 	function methodSignatureWithOverload<T>(a:T):Void;
-	var methodProperty : (a:Any) -> Void;
+	dynamic function methodProperty<T>(a:T):Void;
 	@:optional
 	function methodSignatureOptional():String;
 	final readonlyField : String;

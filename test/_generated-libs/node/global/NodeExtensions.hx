@@ -1,9 +1,9 @@
 package global;
 typedef NodeExtensions = {
 	@:native(".js")
-	var _js : (m:NodeModule, filename:String) -> Dynamic;
+	dynamic function _js(m:NodeModule, filename:String):Dynamic;
 	@:native(".json")
-	var _json : (m:NodeModule, filename:String) -> Dynamic;
+	dynamic function _json(m:NodeModule, filename:String):Dynamic;
 	@:native(".node")
-	var _node : (m:NodeModule, filename:String) -> Dynamic;
+	dynamic function _node(m:NodeModule, filename:String):Dynamic;
 };

@@ -229,7 +229,8 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	@:optional
 	var res : express_serve_static_core.Response<ResBody>;
 	@:optional
-	var next : express_serve_static_core.NextFunction;
+	@:overload(function(deferToNext:String):Void { })
+	dynamic function next(?err:Dynamic):Void;
 	var httpVersion : String;
 	var httpVersionMajor : Float;
 	var httpVersionMinor : Float;

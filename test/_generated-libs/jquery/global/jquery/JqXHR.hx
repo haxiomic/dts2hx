@@ -82,15 +82,15 @@ typedef JqXHR<TResolve> = {
 	/**
 		Cancels any network activity.
 	**/
-	var abort : () -> Void;
-	var getAllResponseHeaders : () -> String;
-	var getResponseHeader : (name:String) -> Null<String>;
+	dynamic function abort():Void;
+	dynamic function getAllResponseHeaders():String;
+	dynamic function getResponseHeader(name:String):Null<String>;
 	/**
 		Acts as if the `Content-Type` header value for response is mime. (It does not actually change the header though.)
 		
 		Throws an "InvalidStateError" DOMException if state is loading or done.
 	**/
-	var overrideMimeType : (mime:String) -> Void;
+	dynamic function overrideMimeType(mime:String):Void;
 	/**
 		Returns client's state.
 	**/
@@ -108,7 +108,7 @@ typedef JqXHR<TResolve> = {
 		
 		Throws a "SyntaxError" DOMException if name is not a header name or if value is not a header value.
 	**/
-	var setRequestHeader : (name:String, value:String) -> Void;
+	dynamic function setRequestHeader(name:String, value:String):Void;
 	var status : Float;
 	var statusText : String;
 	/**

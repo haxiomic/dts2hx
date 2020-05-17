@@ -16,6 +16,6 @@ package ts.lib;
 		Optional override for formatting stack traces
 	**/
 	@:optional
-	static var prepareStackTrace : (err:Error, stackTraces:Array<global.nodejs.CallSite>) -> Dynamic;
+	dynamic static function prepareStackTrace(err:Error, stackTraces:Array<global.nodejs.CallSite>):Dynamic;
 	static var stackTraceLimit : Float;
 }

@@ -1,7 +1,7 @@
 package global;
 typedef NodeModule = {
 	var exports : Dynamic;
-	var require : NodeRequireFunction;
+	dynamic function require(id:String):Dynamic;
 	var id : String;
 	var filename : String;
 	var loaded : Bool;

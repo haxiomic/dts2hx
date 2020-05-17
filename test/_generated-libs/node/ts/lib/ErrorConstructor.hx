@@ -11,6 +11,6 @@ typedef ErrorConstructor = {
 		Optional override for formatting stack traces
 	**/
 	@:optional
-	var prepareStackTrace : (err:Error, stackTraces:Array<global.nodejs.CallSite>) -> Dynamic;
+	dynamic function prepareStackTrace(err:Error, stackTraces:Array<global.nodejs.CallSite>):Dynamic;
 	var stackTraceLimit : Float;
 };

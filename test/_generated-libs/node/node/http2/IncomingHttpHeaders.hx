@@ -1,77 +1,77 @@
 package node.http2;
 typedef IncomingHttpHeaders = {
+	@:optional
 	@:native(":path")
-	@:optional
 	var ColonPath : String;
+	@:optional
 	@:native(":method")
-	@:optional
 	var ColonMethod : String;
+	@:optional
 	@:native(":authority")
-	@:optional
 	var ColonAuthority : String;
-	@:native(":scheme")
 	@:optional
+	@:native(":scheme")
 	var ColonScheme : String;
 	@:optional
 	var accept : String;
+	@:optional
 	@:native("accept-patch")
-	@:optional
 	var accept_patch : String;
+	@:optional
 	@:native("accept-ranges")
-	@:optional
 	var accept_ranges : String;
+	@:optional
 	@:native("access-control-allow-credentials")
-	@:optional
 	var access_control_allow_credentials : String;
+	@:optional
 	@:native("access-control-allow-headers")
-	@:optional
 	var access_control_allow_headers : String;
+	@:optional
 	@:native("access-control-allow-methods")
-	@:optional
 	var access_control_allow_methods : String;
+	@:optional
 	@:native("access-control-allow-origin")
-	@:optional
 	var access_control_allow_origin : String;
+	@:optional
 	@:native("access-control-expose-headers")
-	@:optional
 	var access_control_expose_headers : String;
-	@:native("access-control-max-age")
 	@:optional
+	@:native("access-control-max-age")
 	var access_control_max_age : String;
 	@:optional
 	var age : String;
 	@:optional
 	var allow : String;
-	@:native("alt-svc")
 	@:optional
+	@:native("alt-svc")
 	var alt_svc : String;
 	@:optional
 	var authorization : String;
-	@:native("cache-control")
 	@:optional
+	@:native("cache-control")
 	var cache_control : String;
 	@:optional
 	var connection : String;
+	@:optional
 	@:native("content-disposition")
-	@:optional
 	var content_disposition : String;
+	@:optional
 	@:native("content-encoding")
-	@:optional
 	var content_encoding : String;
+	@:optional
 	@:native("content-language")
-	@:optional
 	var content_language : String;
+	@:optional
 	@:native("content-length")
-	@:optional
 	var content_length : String;
+	@:optional
 	@:native("content-location")
-	@:optional
 	var content_location : String;
+	@:optional
 	@:native("content-range")
-	@:optional
 	var content_range : String;
-	@:native("content-type")
 	@:optional
+	@:native("content-type")
 	var content_type : String;
 	@:optional
 	var cookie : String;
@@ -87,58 +87,58 @@ typedef IncomingHttpHeaders = {
 	var from : String;
 	@:optional
 	var host : String;
+	@:optional
 	@:native("if-match")
-	@:optional
 	var if_match : String;
+	@:optional
 	@:native("if-modified-since")
-	@:optional
 	var if_modified_since : String;
+	@:optional
 	@:native("if-none-match")
-	@:optional
 	var if_none_match : String;
+	@:optional
 	@:native("if-unmodified-since")
-	@:optional
 	var if_unmodified_since : String;
-	@:native("last-modified")
 	@:optional
+	@:native("last-modified")
 	var last_modified : String;
 	@:optional
 	var location : String;
 	@:optional
 	var pragma : String;
+	@:optional
 	@:native("proxy-authenticate")
-	@:optional
 	var proxy_authenticate : String;
+	@:optional
 	@:native("proxy-authorization")
-	@:optional
 	var proxy_authorization : String;
-	@:native("public-key-pins")
 	@:optional
+	@:native("public-key-pins")
 	var public_key_pins : String;
 	@:optional
 	var range : String;
 	@:optional
 	var referer : String;
+	@:optional
 	@:native("retry-after")
-	@:optional
 	var retry_after : String;
+	@:optional
 	@:native("set-cookie")
-	@:optional
 	var set_cookie : Array<String>;
-	@:native("strict-transport-security")
 	@:optional
+	@:native("strict-transport-security")
 	var strict_transport_security : String;
 	@:optional
 	var tk : String;
 	@:optional
 	var trailer : String;
-	@:native("transfer-encoding")
 	@:optional
+	@:native("transfer-encoding")
 	var transfer_encoding : String;
 	@:optional
 	var upgrade : String;
-	@:native("user-agent")
 	@:optional
+	@:native("user-agent")
 	var user_agent : String;
 	@:optional
 	var vary : String;
@@ -146,7 +146,7 @@ typedef IncomingHttpHeaders = {
 	var via : String;
 	@:optional
 	var warning : String;
-	@:native("www-authenticate")
 	@:optional
+	@:native("www-authenticate")
 	var www_authenticate : String;
 };

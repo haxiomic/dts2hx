@@ -1,6 +1,6 @@
 package node.http2;
 typedef IncomingHttpStatusHeader = {
-	@:native(":status")
 	@:optional
+	@:native(":status")
 	var ColonStatus : Float;
 };

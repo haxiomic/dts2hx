@@ -29,7 +29,7 @@ typedef Response<ResBody> = {
 		     res.send('<p>some html</p>');
 		     res.status(404).send('Sorry, cant find that');
 	**/
-	var send : Send<ResBody, Response<ResBody>>;
+	dynamic function send(?body:ResBody):Response<ResBody>;
 	/**
 		Send JSON response.
 		
@@ -40,7 +40,7 @@ typedef Response<ResBody> = {
 		     res.status(500).json('oh noes!');
 		     res.status(404).json('I dont have that');
 	**/
-	var json : Send<ResBody, Response<ResBody>>;
+	dynamic function json(?body:ResBody):Response<ResBody>;
 	/**
 		Send JSON response with JSONP callback support.
 		
@@ -51,7 +51,7 @@ typedef Response<ResBody> = {
 		     res.status(500).jsonp('oh noes!');
 		     res.status(404).jsonp('I dont have that');
 	**/
-	var jsonp : Send<ResBody, Response<ResBody>>;
+	dynamic function jsonp(?body:ResBody):Response<ResBody>;
 	/**
 		Transfer the file at the given `path`.
 		

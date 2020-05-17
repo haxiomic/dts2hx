@@ -15,7 +15,7 @@ typedef CookieOptions = {
 	@:optional
 	var secure : Bool;
 	@:optional
-	var encode : (val:String) -> String;
+	dynamic function encode(val:String):String;
 	@:optional
 	var sameSite : ts.AnyOf2<Bool, String>;
 };

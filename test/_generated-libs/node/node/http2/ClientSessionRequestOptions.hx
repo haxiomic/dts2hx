@@ -9,5 +9,5 @@ typedef ClientSessionRequestOptions = {
 	@:optional
 	var weight : Float;
 	@:optional
-	var getTrailers : (trailers:node.http.OutgoingHttpHeaders, flags:Float) -> Void;
+	dynamic function getTrailers(trailers:node.http.OutgoingHttpHeaders, flags:Float):Void;
 };

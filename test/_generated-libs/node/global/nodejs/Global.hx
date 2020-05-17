@@ -126,34 +126,31 @@ typedef Global = {
 	var Uint8ClampedArray : js.lib.Function;
 	var WeakMap : ts.lib.WeakMapConstructor;
 	var WeakSet : ts.lib.WeakSetConstructor;
-	var clearImmediate : (immediateId:Immediate) -> Void;
-	var clearInterval : (intervalId:Timeout) -> Void;
-	var clearTimeout : (timeoutId:Timeout) -> Void;
+	dynamic function clearImmediate(immediateId:Immediate):Void;
+	dynamic function clearInterval(intervalId:Timeout):Void;
+	dynamic function clearTimeout(timeoutId:Timeout):Void;
 	var console : ts.html.Console;
-	var decodeURI : (encodedURI:String) -> String;
-	var decodeURIComponent : (encodedURIComponent:String) -> String;
-	var encodeURI : (uri:String) -> String;
-	var encodeURIComponent : (uriComponent:ts.AnyOf3<String, Float, Bool>) -> String;
-	var escape : (str:String) -> String;
-	var eval : (x:String) -> Dynamic;
+	dynamic function decodeURI(encodedURI:String):String;
+	dynamic function decodeURIComponent(encodedURIComponent:String):String;
+	dynamic function encodeURI(uri:String):String;
+	dynamic function encodeURIComponent(uriComponent:ts.AnyOf3<String, Float, Bool>):String;
+	dynamic function escape(str:String):String;
+	dynamic function eval(x:String):Dynamic;
 	var global : Global;
-	var isFinite : (number:Float) -> Bool;
-	var isNaN : (number:Float) -> Bool;
-	var parseFloat : (string:String) -> Float;
-	var parseInt : ts.AnyOf2<(s:String) -> Float, (s:String, radix:Float) -> Float>;
+	dynamic function isFinite(number:Float):Bool;
+	dynamic function isNaN(number:Float):Bool;
+	dynamic function parseFloat(string:String):Float;
+	dynamic function parseInt(s:String, ?radix:Float):Float;
 	var process : Process;
 	var root : Global;
-	var setImmediate : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, args:haxe.extern.Rest<Dynamic>) -> Immediate;
-	var setInterval : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>) -> Timeout;
-	var setTimeout : (callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>) -> Timeout;
-	var queueMicrotask : {
-		@:overload(function(callback:() -> Void):Void { })
-		@:selfCall
-		function call(callback:js.lib.Function):Void;
-	};
+	dynamic function setImmediate(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, args:haxe.extern.Rest<Dynamic>):Immediate;
+	dynamic function setInterval(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
+	dynamic function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
+	@:overload(function(callback:() -> Void):Void { })
+	dynamic function queueMicrotask(callback:js.lib.Function):Void;
 	var undefined : Null<Any>;
-	var unescape : (str:String) -> String;
-	var gc : () -> Void;
+	dynamic function unescape(str:String):String;
+	dynamic function gc():Void;
 	@:optional
 	var v8debug : Dynamic;
 };

@@ -15,15 +15,15 @@
 	/**
 		This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.
 	**/
-	static var json : ts.AnyOf2<() -> connect.NextHandleFunction, (options:body_parser.OptionsJson) -> connect.NextHandleFunction>;
+	dynamic static function json(?options:body_parser.OptionsJson):connect.NextHandleFunction;
 	/**
 		This is a built-in middleware function in Express. It parses incoming requests with Buffer payloads and is based on body-parser.
 	**/
-	static var raw : ts.AnyOf2<() -> connect.NextHandleFunction, (options:body_parser.Options) -> connect.NextHandleFunction>;
+	dynamic static function raw(?options:body_parser.Options):connect.NextHandleFunction;
 	/**
 		This is a built-in middleware function in Express. It parses incoming requests with text payloads and is based on body-parser.
 	**/
-	static var text : ts.AnyOf2<() -> connect.NextHandleFunction, (options:body_parser.OptionsText) -> connect.NextHandleFunction>;
+	dynamic static function text(?options:body_parser.OptionsText):connect.NextHandleFunction;
 	/**
 		These are the exposed prototypes.
 	**/
@@ -52,5 +52,5 @@
 	/**
 		This is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
 	**/
-	static var urlencoded : ts.AnyOf2<() -> connect.NextHandleFunction, (options:body_parser.OptionsUrlencoded) -> connect.NextHandleFunction>;
+	dynamic static function urlencoded(?options:body_parser.OptionsUrlencoded):connect.NextHandleFunction;
 }

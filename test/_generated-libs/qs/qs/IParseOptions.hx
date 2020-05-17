@@ -7,7 +7,7 @@ typedef IParseOptions = {
 	@:optional
 	var depth : ts.AnyOf2<Float, Bool>;
 	@:optional
-	var decoder : (str:String, defaultDecoder:DefaultDecoder, charset:String, type:String) -> Dynamic;
+	dynamic function decoder(str:String, defaultDecoder:DefaultDecoder, charset:String, type:String):Dynamic;
 	@:optional
 	var arrayLimit : Float;
 	@:optional

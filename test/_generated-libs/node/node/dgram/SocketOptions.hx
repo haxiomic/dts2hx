@@ -10,5 +10,5 @@ typedef SocketOptions = {
 	@:optional
 	var sendBufferSize : Float;
 	@:optional
-	var lookup : (hostname:String, options:node.dns.LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void) -> Void;
+	dynamic function lookup(hostname:String, options:node.dns.LookupOneOptions, callback:(err:global.nodejs.ErrnoException, address:String, family:Float) -> Void):Void;
 };

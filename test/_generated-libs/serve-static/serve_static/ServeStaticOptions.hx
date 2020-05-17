@@ -70,5 +70,5 @@ typedef ServeStaticOptions = {
 		stat the stat object of the file that is being sent
 	**/
 	@:optional
-	var setHeaders : (res:express_serve_static_core.Response<Dynamic>, path:String, stat:Dynamic) -> Dynamic;
+	dynamic function setHeaders(res:express_serve_static_core.Response<Dynamic>, path:String, stat:Dynamic):Dynamic;
 };

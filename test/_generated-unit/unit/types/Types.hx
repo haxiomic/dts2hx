@@ -71,7 +71,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : (a:Any) -> Void;
+		dynamic function methodProperty<T>(a:T):Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
@@ -94,7 +94,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : (a:Any) -> Void;
+		dynamic function methodProperty<T>(a:T):Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
@@ -127,14 +127,14 @@ package unit.types;
 		@:optional
 		var b : String;
 	};
-	static var arrowNumberStringVoid : (a:Float, noType:Dynamic) -> Void;
-	static var arrowNumberTVoidTypeParam : (a:Float, tParam:Any, arrayTParam:Array<Any>) -> Void;
-	static var arrowParamWithRest : (a:Float, b:Float, rest:haxe.extern.Rest<Float>) -> Void;
-	static var arrowParamWithRestOr : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
-	static var arrowParamWithRestUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
-	static var arrowParamWithRestTuple : (a:Float, b:Float, rest_0:Float) -> Void;
-	static var arrowParamWithRestTupleUnion : (a:Float, b:Float, rest:haxe.extern.Rest<Any>) -> Void;
-	static var arrowParamObjectBindingPattern : (__0:{ var x : Dynamic; var y : Dynamic; }) -> Void;
+	dynamic static function arrowNumberStringVoid(a:Float, noType:Dynamic):Void;
+	dynamic static function arrowNumberTVoidTypeParam<T>(a:Float, tParam:T, arrayTParam:Array<T>):Void;
+	dynamic static function arrowParamWithRest(a:Float, b:Float, rest:haxe.extern.Rest<Float>):Void;
+	dynamic static function arrowParamWithRestOr(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	dynamic static function arrowParamWithRestUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	dynamic static function arrowParamWithRestTuple(a:Float, b:Float, rest_0:Float):Void;
+	dynamic static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	dynamic static function arrowParamObjectBindingPattern(__0:{ var x : Dynamic; var y : Dynamic; }):Void;
 	static var nullableNumber : Null<Float>;
 	static var undefineableNumber : Null<Float>;
 	static var undefineableNullableNumber : Null<Float>;
@@ -165,7 +165,7 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : (a:Any) -> Void;
+		dynamic function methodProperty<T>(a:T):Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
@@ -214,20 +214,17 @@ package unit.types;
 		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
-		var methodProperty : (a:Any) -> Void;
+		dynamic function methodProperty<T>(a:T):Void;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
 	};
 	static var typeQueryNoType : Dynamic;
-	static var typeQueryFunction : (x:Dynamic, y:Dynamic) -> Dynamic;
-	static var typeQueryFunctionWithOverloads : {
-		@:overload(function(a:String):Dynamic { })
-		@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
-		@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
-		@:selfCall
-		function call(a:Float):Dynamic;
-	};
+	dynamic static function typeQueryFunction(x:Dynamic, y:Dynamic):Dynamic;
+	@:overload(function(a:String):Dynamic { })
+	@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
+	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
+	dynamic static function typeQueryFunctionWithOverloads(a:Float):Dynamic;
 	static var typeQueryClassLikeOrNull : Null<{
 		var field : String;
 	}>;

@@ -18,17 +18,17 @@ package three;
 		Will be called when load starts.
 		The default is a function with empty body.
 	**/
-	var onLoadStart : () -> Void;
+	dynamic function onLoadStart():Void;
 	/**
 		Will be called while load progresses.
 		The default is a function with empty body.
 	**/
-	var onLoadProgress : () -> Void;
+	dynamic function onLoadProgress():Void;
 	/**
 		Will be called when load completes.
 		The default is a function with empty body.
 	**/
-	var onLoadComplete : () -> Void;
+	dynamic function onLoadComplete():Void;
 	/**
 		default — null.
 		If set, assigns the crossOrigin attribute of the image to the value of crossOrigin, prior to starting the load.

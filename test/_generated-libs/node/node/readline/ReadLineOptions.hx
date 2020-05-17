@@ -4,7 +4,7 @@ typedef ReadLineOptions = {
 	@:optional
 	var output : global.nodejs.WritableStream;
 	@:optional
-	var completer : ts.AnyOf2<Completer, AsyncCompleter>;
+	dynamic function completer(line:String, callback:ts.AnyOf3<() -> Void, (err:ts.lib.Error) -> Void, (err:ts.lib.Error, result:CompleterResult) -> Void>):Dynamic;
 	@:optional
 	var terminal : Bool;
 	@:optional
