@@ -86,6 +86,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js react",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["react", "--verbose"],
+            "cwd": "${workspaceFolder}/test",
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "dts2hx.js vue",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["vue", "--verbose"],
