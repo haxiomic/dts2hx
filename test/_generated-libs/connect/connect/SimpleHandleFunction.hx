@@ -1,2 +1,2 @@
 package connect;
-typedef SimpleHandleFunction = (req:IncomingMessage, res:connect.http.ServerResponse) -> Void;
+typedef SimpleHandleFunction = (req:IncomingMessage, res:node.http.ServerResponse) -> Void;

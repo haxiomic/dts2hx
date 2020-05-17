@@ -233,8 +233,8 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	var httpVersion : String;
 	var httpVersionMajor : Float;
 	var httpVersionMinor : Float;
-	var connection : express_serve_static_core.net.Socket;
-	var headers : express_serve_static_core.http.IncomingHttpHeaders;
+	var connection : node.net.Socket;
+	var headers : node.http.IncomingHttpHeaders;
 	var rawHeaders : Array<String>;
 	var trailers : { };
 	var rawTrailers : Array<String>;
@@ -249,7 +249,7 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	**/
 	@:optional
 	var statusMessage : String;
-	var socket : express_serve_static_core.net.Socket;
+	var socket : node.net.Socket;
 	function destroy(?error:ts.lib.Error):Void;
 	var readable : Bool;
 	final readableHighWaterMark : Float;

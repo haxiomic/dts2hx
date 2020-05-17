@@ -27,11 +27,11 @@ typedef OptionsJson = {
 		The type option is used to determine what media type the middleware will parse
 	**/
 	@:optional
-	var type : ts.AnyOf3<String, Array<String>, (req:body_parser.http.IncomingMessage) -> Dynamic>;
+	var type : ts.AnyOf3<String, Array<String>, (req:node.http.IncomingMessage) -> Dynamic>;
 	/**
 		The verify option, if supplied, is called as verify(req, res, buf, encoding),
 		where buf is a Buffer of the raw request body and encoding is the encoding of the request.
 	**/
 	@:optional
-	function verify(req:body_parser.http.IncomingMessage, res:body_parser.http.ServerResponse, buf:global.Buffer, encoding:String):Void;
+	function verify(req:node.http.IncomingMessage, res:node.http.ServerResponse, buf:global.Buffer, encoding:String):Void;
 };

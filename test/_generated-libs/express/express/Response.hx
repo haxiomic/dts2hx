@@ -324,26 +324,26 @@ typedef Response<ResBody> = {
 	var req : express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>;
 	var statusCode : Float;
 	var statusMessage : String;
-	function assignSocket(socket:express.net.Socket):Void;
-	function detachSocket(socket:express.net.Socket):Void;
+	function assignSocket(socket:node.net.Socket):Void;
+	function detachSocket(socket:node.net.Socket):Void;
 	function writeContinue(?callback:() -> Void):Void;
-	@:overload(function(statusCode:Float, ?headers:express.http.OutgoingHttpHeaders):Response<ResBody> { })
-	function writeHead(statusCode:Float, ?reasonPhrase:String, ?headers:express.http.OutgoingHttpHeaders):Response<ResBody>;
+	@:overload(function(statusCode:Float, ?headers:node.http.OutgoingHttpHeaders):Response<ResBody> { })
+	function writeHead(statusCode:Float, ?reasonPhrase:String, ?headers:node.http.OutgoingHttpHeaders):Response<ResBody>;
 	var upgrading : Bool;
 	var chunkedEncoding : Bool;
 	var shouldKeepAlive : Bool;
 	var useChunkedEncodingByDefault : Bool;
 	var sendDate : Bool;
 	var finished : Bool;
-	var connection : express.net.Socket;
+	var connection : node.net.Socket;
 	function setTimeout(msecs:Float, ?callback:() -> Void):Response<ResBody>;
 	function setHeader(name:String, value:ts.AnyOf3<String, Float, Array<String>>):Void;
 	function getHeader(name:String):Null<ts.AnyOf3<String, Float, Array<String>>>;
-	function getHeaders():express.http.OutgoingHttpHeaders;
+	function getHeaders():node.http.OutgoingHttpHeaders;
 	function getHeaderNames():Array<String>;
 	function hasHeader(name:String):Bool;
 	function removeHeader(name:String):Void;
-	function addTrailers(headers:ts.AnyOf2<express.http.OutgoingHttpHeaders, Array<ts.Tuple2<String, String>>>):Void;
+	function addTrailers(headers:ts.AnyOf2<node.http.OutgoingHttpHeaders, Array<ts.Tuple2<String, String>>>):Void;
 	function flushHeaders():Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
@@ -375,50 +375,50 @@ typedef Response<ResBody> = {
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function addListener(event:String, listener:() -> Void):Response<ResBody>;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, err:ts.lib.Error):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, src:express.stream.Readable):Bool { })
-	@:overload(function(event:String, src:express.stream.Readable):Bool { })
+	@:overload(function(event:String, src:node.stream.Readable):Bool { })
+	@:overload(function(event:String, src:node.stream.Readable):Bool { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function on(event:String, listener:() -> Void):Response<ResBody>;
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function once(event:String, listener:() -> Void):Response<ResBody>;
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function prependListener(event:String, listener:() -> Void):Response<ResBody>;
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function prependOnceListener(event:String, listener:() -> Void):Response<ResBody>;
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Response<ResBody> { })
 	@:overload(function(event:String, listener:() -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
-	@:overload(function(event:String, listener:(src:express.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
+	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function removeListener(event:String, listener:() -> Void):Response<ResBody>;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;

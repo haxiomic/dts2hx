@@ -6,7 +6,7 @@ typedef Express = {
 	**/
 	@:overload(function(req:express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, res:express_serve_static_core.Response<Dynamic>, next:express_serve_static_core.NextFunction):Dynamic { })
 	@:selfCall
-	function call(req:ts.AnyOf2<express.http.IncomingMessage, express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>>, res:ts.AnyOf2<express.http.ServerResponse, express_serve_static_core.Response<Dynamic>>):Dynamic;
+	function call(req:ts.AnyOf2<node.http.IncomingMessage, express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>>, res:ts.AnyOf2<node.http.ServerResponse, express_serve_static_core.Response<Dynamic>>):Dynamic;
 	var request : express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>;
 	var response : express_serve_static_core.Response<Dynamic>;
 	/**
@@ -140,12 +140,12 @@ typedef Express = {
 		    http.createServer(app).listen(80);
 		    https.createServer({ ... }, app).listen(443);
 	**/
-	@:overload(function(port:Float, hostname:String, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):express.http.Server { })
-	@:overload(function(port:Float, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):express.http.Server { })
-	@:overload(function(?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):express.http.Server { })
-	@:overload(function(path:String, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):express.http.Server { })
-	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):express.http.Server { })
-	function listen(port:Float, hostname:String, backlog:Float, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):express.http.Server;
+	@:overload(function(port:Float, hostname:String, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server { })
+	@:overload(function(port:Float, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server { })
+	@:overload(function(?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server { })
+	@:overload(function(path:String, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server { })
+	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):node.http.Server { })
+	function listen(port:Float, hostname:String, backlog:Float, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server;
 	var router : String;
 	var settings : Dynamic;
 	var resource : Dynamic;

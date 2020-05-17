@@ -1,7 +1,7 @@
 package connect;
 typedef Server = {
 	@:selfCall
-	function call(req:connect.http.IncomingMessage, res:connect.http.ServerResponse, ?next:js.lib.Function):Void;
+	function call(req:node.http.IncomingMessage, res:node.http.ServerResponse, ?next:js.lib.Function):Void;
 	var route : String;
 	var stack : Array<ServerStackItem>;
 	/**
@@ -21,7 +21,7 @@ typedef Server = {
 		Handle server requests, punting them down
 		the middleware stack.
 	**/
-	function handle(req:connect.http.IncomingMessage, res:connect.http.ServerResponse, next:js.lib.Function):Void;
+	function handle(req:node.http.IncomingMessage, res:node.http.ServerResponse, next:js.lib.Function):Void;
 	/**
 		Listen for connections.
 		
@@ -44,10 +44,10 @@ typedef Server = {
 		      http.createServer(app).listen(80);
 		      https.createServer(options, app).listen(443);
 	**/
-	@:overload(function(port:Float, ?hostname:String, ?callback:js.lib.Function):connect.http.Server { })
-	@:overload(function(path:String, ?callback:js.lib.Function):connect.http.Server { })
-	@:overload(function(handle:Dynamic, ?listeningListener:js.lib.Function):connect.http.Server { })
-	function listen(port:Float, ?hostname:String, ?backlog:Float, ?callback:js.lib.Function):connect.http.Server;
+	@:overload(function(port:Float, ?hostname:String, ?callback:js.lib.Function):node.http.Server { })
+	@:overload(function(path:String, ?callback:js.lib.Function):node.http.Server { })
+	@:overload(function(handle:Dynamic, ?listeningListener:js.lib.Function):node.http.Server { })
+	function listen(port:Float, ?hostname:String, ?backlog:Float, ?callback:js.lib.Function):node.http.Server;
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	function on(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	function once(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
