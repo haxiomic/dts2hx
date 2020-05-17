@@ -31,7 +31,7 @@ class Main {
 
 		var cliOptions = {
 			cwd: null,
-			outputPath: 'externs',
+			outputPath: null,
 			tsConfigFilePath: null,
 			tsCompilerOptions: [],
 			moduleNames: new Array<String>(),
@@ -51,7 +51,7 @@ class Main {
 
 		var argHandler: ArgHandler;
 		argHandler = hxargs.Args.generate([
-			@doc('Set output directory for generated externs (default <$defaultValueFormatting>"${cliOptions.outputPath}"</>)')
+			@doc('Set output directory for generated externs (default <$defaultValueFormatting>".haxelib"</>)')
 			['--output', '-o'] => (path: String) -> {
 				cliOptions.outputPath = path;
 			},
@@ -289,7 +289,7 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, locationComments: Bool, outputPath: String, noOutput: Bool): Null<ConverterContext> {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, locationComments: Bool, outputPath: Null<String>, noOutput: Bool): Null<ConverterContext> {
 		var converter =
 			try {
 				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, locationComments);
@@ -298,16 +298,35 @@ class Main {
 				return null;
 			}
 
+
 		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
 		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (converter.packageName == null));
+
+		// if output path is unset, default to either .haxelib/ or externs/ depending on whether or not the input module is a package
+		var outputPath: String = if (outputPath != null) outputPath else {
+			generateLibraryWrapper ? '.haxelib' : 'externs';
+		}
+
+		// in haxelib mode, use .current files to specify versions
+		var haxelibMode = Path.withoutDirectory(Path.removeTrailingSlashes(outputPath.toLowerCase())) == '.haxelib';
 
 		if (!noOutput) {
 			// save modules to files
 			var printer = new Printer();
 
-			// var outputDirectoryName = resolvedModule.pac
 			var libraryName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
+			var libraryVersion = converter.inputModule.packageId != null && converter.inputModule.packageId.version != null ? converter.inputModule.packageId.version : 'default';
 			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, libraryName]) : outputPath;
+
+			if (haxelibMode && generateLibraryWrapper) {
+				FileTools.touchDirectoryPath(outputLibraryPath);
+				// write a .current file
+				Fs.writeFileSync(Path.join([outputLibraryPath, '.current']), libraryVersion);
+				// add /$version to library path
+				outputLibraryPath = Path.join([outputLibraryPath, libraryVersion.replace('.', ',')]);
+			}
+
+			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			for (_ => haxeModule in converter.generatedModules) {
 
@@ -326,8 +345,6 @@ class Main {
 				FileTools.touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
 			}
-
-			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			if (generateLibraryWrapper) {
 				var packageJson = getModulePackageJson(moduleName, moduleSearchPath, converter.inputModule);
