@@ -638,7 +638,7 @@ class ConverterContext {
 			// remove disallowed accessors, since this is a structure type in haxe, the only allowed accessor is `final`
 			for (field in fields) {
 				if (field.access != null) field.access = field.access.filter(a -> switch a {
-					case AFinal: true;
+					case AFinal, ADynamic: true;
 					default: false;
 				});
 			};
@@ -1133,7 +1133,7 @@ class ConverterContext {
 			// remove disallowed accessors (only `final` is allowed on anon object fields)
 			for (field in fields) {
 				if (field.access != null) field.access = field.access.filter(a -> switch a {
-					case AFinal: true;
+					case AFinal, ADynamic: true;
 					default: false;
 				});
 			};
@@ -1391,10 +1391,6 @@ class ConverterContext {
 
 		var isOptional = symbol.flags & SymbolFlags.Optional != 0;
 
-		if (isOptional) {
-			meta.push({name: ':optional', pos: pos});
-		}
-
 		// transient symbols (symbols generated as part of some process rather than in the source doe) don't have declarations
 		var baseDeclaration: Null<Declaration> = if (symbol.valueDeclaration != null) {
 			symbol.valueDeclaration;
@@ -1419,43 +1415,8 @@ class ConverterContext {
 			docParts.push('@DTS2HX-ERROR: ${Console.stripFormatting(message)}');
 		}
 		
-		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
-			// Prototype symbol should be filtered out of properties before converting to hx fields
-			Log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
-			debug();
-			FVar(macro :Any, null);
-
-		} else if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
-			// variable field
-			if (baseDeclaration != null) switch baseDeclaration.kind {
-				case VariableDeclaration, PropertySignature, PropertyDeclaration:
-				case GetAccessor, SetAccessor:
-				default: 
-					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
-			}
-
-			var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
-
-			if (isOptional) {
-				hxType = hxType.unwrapNull();
-			}
-
-			// get-only accessors are readonly
-			if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
-				if (!hxAccessModifiers.has(AFinal)) hxAccessModifiers.push(AFinal);
-			}
-
-			FVar(hxType, null);
-
-		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
-			if (baseDeclaration != null) switch baseDeclaration.kind {
-				case MethodSignature, MethodDeclaration, FunctionDeclaration:
-				default: 
-					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
-			}
-
-			var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
-			if (signatures.length > 0) {
+		function kindFromFunctionSignatures(signatures: Array<Signature>) {
+			return if (signatures.length > 0) {
 				var functionField = functionFieldFromSignatures(safeName, signatures, accessContext, enclosingDeclaration);
 				if (functionField.meta != null) {
 					meta = meta.concat(functionField.meta);
@@ -1470,6 +1431,60 @@ class ConverterContext {
 					expr: null,
 				});
 			}
+		}
+		
+		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
+			// Prototype symbol should be filtered out of properties before converting to hx fields
+			Log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
+			debug();
+			FVar(macro :Any, null);
+
+		} else if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
+			// handle special case where variable just a function type
+			var nonNullTsType = tc.getNonNullableType(tsType);
+			var callSignatures = tc.getSignaturesOfType(nonNullTsType, Call);
+			var constructSignatures = tc.getSignaturesOfType(nonNullTsType, Construct);
+			var typeFields = tc.getPropertiesOfType(nonNullTsType).filter(s -> s.isAccessibleField());
+			if (callSignatures.length > 0 && constructSignatures.length == 0 && typeFields.length == 0) {
+				// replace `var x: FnType` with `dynamic function x()`
+				hxAccessModifiers.push(ADynamic);
+				// if nullable, force optional (this isn't perfect but it's good enough)
+				var isNullable = nonNullTsType != tsType;//tsType.flags & TypeFlags.Null | TypeFlags.Undefined != 0;
+				if (isNullable) {
+					isOptional = true;
+				}
+				kindFromFunctionSignatures(callSignatures);
+			} else {
+				// variable field
+				if (baseDeclaration != null) switch baseDeclaration.kind {
+					case VariableDeclaration, PropertySignature, PropertyDeclaration:
+					case GetAccessor, SetAccessor:
+					default: 
+						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
+				}
+
+				var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
+
+				if (isOptional) {
+					hxType = hxType.unwrapNull();
+				}
+
+				// get-only accessors are readonly
+				if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
+					if (!hxAccessModifiers.has(AFinal)) hxAccessModifiers.push(AFinal);
+				}
+
+				FVar(hxType, null);
+			}
+		} else if (symbol.flags & (SymbolFlags.Method | SymbolFlags.Function) != 0) {
+			if (baseDeclaration != null) switch baseDeclaration.kind {
+				case MethodSignature, MethodDeclaration, FunctionDeclaration:
+				default: 
+					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
+			}
+
+			var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
+			kindFromFunctionSignatures(signatures);
 		} else if (symbol.flags & SymbolFlags.EnumMember != 0) {
 
 			var parent = symbol.getSymbolParent();
@@ -1489,6 +1504,10 @@ class ConverterContext {
 			debug();
 			FVar(complexTypeFromTsType(type, accessContext, enclosingDeclaration), null);
 
+		}
+
+		if (isOptional) {
+			meta.unshift({name: ':optional', pos: pos});
 		}
 
 		var field: Field = {
