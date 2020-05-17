@@ -316,14 +316,22 @@ class Main {
 
 			var libraryName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
 			var libraryVersion = converter.inputModule.packageId != null && converter.inputModule.packageId.version != null ? converter.inputModule.packageId.version : 'default';
-			var outputLibraryPath = generateLibraryWrapper ? Path.join([outputPath, libraryName]) : outputPath;
 
-			if (haxelibMode && generateLibraryWrapper) {
-				FileTools.touchDirectoryPath(outputLibraryPath);
+			var outputLibraryPath = if (generateLibraryWrapper) {
+				if (haxelibMode) {
+					Path.join([outputPath, libraryName.replace('.', ','), libraryVersion.replace('.', ',')]);
+				} else {
+					Path.join([outputPath, libraryName]);
+				}
+			} else {
+				outputPath;
+			}
+
+			if (haxelibMode) {
+				var libRoot = Path.directory(outputLibraryPath);
+				FileTools.touchDirectoryPath(libRoot);
 				// write a .current file
-				Fs.writeFileSync(Path.join([outputLibraryPath, '.current']), libraryVersion);
-				// add /$version to library path
-				outputLibraryPath = Path.join([outputLibraryPath, libraryVersion.replace('.', ',')]);
+				Fs.writeFileSync(Path.join([libRoot, '.current']), libraryVersion);
 			}
 
 			FileTools.touchDirectoryPath(outputLibraryPath);
