@@ -1447,9 +1447,12 @@ class ConverterContext {
 			var typeFields = tc.getPropertiesOfType(nonNullTsType).filter(s -> s.isAccessibleField());
 			if (callSignatures.length > 0 && constructSignatures.length == 0 && typeFields.length == 0) {
 				// replace `var x: FnType` with `dynamic function x()`
-				hxAccessModifiers.push(ADynamic);
+				if (!hxAccessModifiers.has(AFinal)) {
+					hxAccessModifiers.push(ADynamic);
+				}
+				hxAccessModifiers.remove(AFinal); // `final function` is now allow (and is the default behavior)
 				// if nullable, force optional (this isn't perfect but it's good enough)
-				var isNullable = nonNullTsType != tsType;//tsType.flags & TypeFlags.Null | TypeFlags.Undefined != 0;
+				var isNullable = nonNullTsType != tsType;
 				if (isNullable) {
 					isOptional = true;
 				}
