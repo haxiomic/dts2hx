@@ -42,6 +42,8 @@ class Main {
 			libWrapper: true,
 			logLevel: Error,
 			stdLibMode: StdLibMode.DefaultTypeMap,
+			// experimental
+			allowIntersectionRasterization: false,
 		}
 
 		var help: Bool = false;
@@ -127,6 +129,11 @@ class Main {
 			@doc('Print all logs')
 			'--verbose' => () -> {
 				cliOptions.logLevel = All;
+			},
+
+			// experimental options
+			'--allowIntersectionRasterization' => () -> {
+				cliOptions.allowIntersectionRasterization = true;
 			},
 
 			@doc('Module name')
@@ -276,7 +283,10 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions.libWrapper, cliOptions.locationComments, cliOptions.outputPath, cliOptions.noOutput);
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions.libWrapper, cliOptions.outputPath, cliOptions.noOutput, {
+				locationComments: cliOptions.locationComments,
+				allowIntersectionRasterization: cliOptions.allowIntersectionRasterization,
+			});
 			if (converterContext == null) continue;
 			
 			var moduleDependencies = converterContext.moduleDependencies;
@@ -289,10 +299,10 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, locationComments: Bool, outputPath: Null<String>, noOutput: Bool): Null<ConverterContext> {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, outputPath: Null<String>, noOutput: Bool, converterOptions): Null<ConverterContext> {
 		var converter =
 			try {
-				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, locationComments);
+				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, converterOptions);
 			} catch (e: Any) {
 				Log.error(e);
 				return null;

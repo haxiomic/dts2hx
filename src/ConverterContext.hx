@@ -106,15 +106,26 @@ class ConverterContext {
 	final locationComments: Bool;
 
 	// settings
+	final allowIntersectionRasterization: Bool;
 	final shortenTypePaths = true;
 	final enableTypeParameterConstraints = false;
 	final typeStackLimit = 25;
 
-	public function new(inputModuleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibMap: Null<StdLibMacro.TypeMap>, locationComments: Bool = false) {
+	public function new(
+		inputModuleName: String,
+		moduleSearchPath: String,
+		compilerOptions: CompilerOptions,
+		stdLibMap: Null<StdLibMacro.TypeMap>,
+		options: {
+			locationComments: Bool,
+			allowIntersectionRasterization: Bool,
+		}
+	) {
 		Console.log('Converting module <b>$inputModuleName</b>');
 		this.moduleSearchPath = moduleSearchPath;
 		this.host = Ts.createCompilerHost(compilerOptions);
-		this.locationComments = locationComments;
+		this.locationComments = options.locationComments;
+		this.allowIntersectionRasterization = options.allowIntersectionRasterization;
 
 		// this will be used as the argument to require()
 		this.normalizedInputModuleName = inline inputModuleName.normalizeModuleName();
@@ -591,46 +602,60 @@ class ConverterContext {
 		var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
 		var declaredMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
 
-		/*		
-		// replace redefined class **variable** members with their super-type members
-		var classSuperType = tc.getClassExtendsType(symbol);
-		if (classSuperType != null) {
-			var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
-			// when extending a class, because we cannot redefine fields in haxe, we use the super-class's field type instead
-			declaredMembers = declaredMembers.map(m -> {
-				return if (m.flags & SymbolFlags.PropertyOrAccessor != 0) {
-					// @! we should find the first definition
-					var matchingClassSuperMember = classSuperMembers.find(sm -> sm.name == m.name);
-					var ret:Symbol = (matchingClassSuperMember != null ? matchingClassSuperMember : m);
-					ret;
-				} else m;
-			});
-		}
-		*/
+		var callSignatures = tc.getSignaturesOfType(declaredType, Call);
 
-		var fields = generateTypeFields(
-			symbol,
-			access,
-			declaration,
-			[],
-			tc.getSignaturesOfType(declaredType, Call),
-			tc.getIndexSignaturesOfType(declaredType),
-			declaredMembers
-		);
-		// remove disallowed accessors, since this is a structure type in haxe, the only allowed accessor is `final`
-		for (field in fields) {
-			if (field.access != null) field.access = field.access.filter(a -> switch a {
-				case AFinal: true;
-				default: false;
-			});
-		};
-		// (we resolve field collisions here because the later pass doesn't alias to anon fields)
-		fields.resolveNameCollisions();
+		var kind = if (callSignatures.length == 1 && declaredMembers.length == 0 && preferInterfaceStructure == false) {
+			// handle special case of function type { (args): T }
+			TDAlias(complexTypeFromCallSignature(callSignatures[0], access, declaration));
+		} else {
+			/*		
+			// replace redefined class **variable** members with their super-type members
+			var classSuperType = tc.getClassExtendsType(symbol);
+			if (classSuperType != null) {
+				var classSuperMembers = tc.getPropertiesOfType(classSuperType).filter(s -> s.isAccessibleField());
+				// when extending a class, because we cannot redefine fields in haxe, we use the super-class's field type instead
+				declaredMembers = declaredMembers.map(m -> {
+					return if (m.flags & SymbolFlags.PropertyOrAccessor != 0) {
+						// @! we should find the first definition
+						var matchingClassSuperMember = classSuperMembers.find(sm -> sm.name == m.name);
+						var ret:Symbol = (matchingClassSuperMember != null ? matchingClassSuperMember : m);
+						ret;
+					} else m;
+				});
+			}
+			*/
+
+			var fields = generateTypeFields(
+				symbol,
+				access,
+				declaration,
+				[],
+				callSignatures,
+				tc.getIndexSignaturesOfType(declaredType),
+				declaredMembers
+			);
+
+			// remove disallowed accessors, since this is a structure type in haxe, the only allowed accessor is `final`
+			for (field in fields) {
+				if (field.access != null) field.access = field.access.filter(a -> switch a {
+					case AFinal: true;
+					default: false;
+				});
+			};
+
+			// (we resolve field collisions here because the later pass doesn't alias to anon fields)
+			fields.resolveNameCollisions();
+
+
+			TDAlias(TAnonymous(fields));
+		}
+
+
 		return {
 			pack: typePath.pack,
 			name: typePath.name,
 			fields: [],
-			kind: TDAlias(TAnonymous(fields)),
+			kind: kind,
 			params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, declaration),
 			isExtern: false,
 			doc: getDoc(symbol),
@@ -998,9 +1023,12 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			macro :Dynamic;
-			// @! todo: avoid recursive type conversion (see jquery)
-			// complexTypeAnonFromTsType(intersectionType, accessContext, enclosingDeclaration);
+			if (allowIntersectionRasterization) {
+				complexTypeAnonFromTsType(intersectionType, accessContext, enclosingDeclaration);
+			} else {
+				// @! todo: avoid recursive type conversion (see jquery)
+				macro :Dynamic;
+			}
 		}
 	}
 
@@ -1081,7 +1109,7 @@ class ConverterContext {
 
 		// for the special case of a single call signature and no props we can return a function type
 		return if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
-			complexTypeFromCallSignature(tsType.getCallSignatures()[0], accessContext, enclosingDeclaration);
+			complexTypeFromCallSignature(callSignatures[0], accessContext, enclosingDeclaration);
 		} else {
 			var fields = new Array<Field>();
 
@@ -1172,7 +1200,6 @@ class ConverterContext {
 			});
 			fun.params = null;
 		}
-
 
 		/**
 			In typescript `:() => R` can unify with `:(?opt) -> R`
