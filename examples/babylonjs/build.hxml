@@ -1,6 +1,7 @@
 -main Main
-# include phaser externs
---class-path externs/babylonjs
+
+# externs are written to local library path '.haxelib'
+-lib babylonjs
 
 -js dist/main.js
 -dce full

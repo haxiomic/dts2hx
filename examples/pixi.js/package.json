@@ -12,6 +12,6 @@
     "pixi.js": "5.2.3"
   },
   "devDependencies": {
-    "dts2hx": "^0.6.0"
+    "dts2hx": "^0.8.0"
   }
 }

@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dts2hx": "^0.6.0"
+    "dts2hx": "^0.8.0"
   },
   "dependencies": {
     "phaser": "3.23.0"

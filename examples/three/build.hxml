@@ -1,6 +1,7 @@
 -main Main
-# include three externs
---class-path externs/three
+
+# externs are written to local library path '.haxelib'
+-lib three
 
 -js dist/main.js
 -dce full

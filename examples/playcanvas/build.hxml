@@ -1,6 +1,7 @@
 -main Main
-# include playcanvas externs
---class-path externs/playcanvas
+
+# externs are written to local library path '.haxelib'
+-lib playcanvas
 
 -js dist/main.js
 -dce full
