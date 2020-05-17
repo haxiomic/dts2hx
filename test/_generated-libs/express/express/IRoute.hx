@@ -1,0 +1,30 @@
+package express;
+typedef IRoute = {
+	var path : String;
+	var stack : Dynamic;
+	var all : express_serve_static_core.IRouterHandler<IRoute>;
+	var get : express_serve_static_core.IRouterHandler<IRoute>;
+	var post : express_serve_static_core.IRouterHandler<IRoute>;
+	var put : express_serve_static_core.IRouterHandler<IRoute>;
+	var delete : express_serve_static_core.IRouterHandler<IRoute>;
+	var patch : express_serve_static_core.IRouterHandler<IRoute>;
+	var options : express_serve_static_core.IRouterHandler<IRoute>;
+	var head : express_serve_static_core.IRouterHandler<IRoute>;
+	var checkout : express_serve_static_core.IRouterHandler<IRoute>;
+	var copy : express_serve_static_core.IRouterHandler<IRoute>;
+	var lock : express_serve_static_core.IRouterHandler<IRoute>;
+	var merge : express_serve_static_core.IRouterHandler<IRoute>;
+	var mkactivity : express_serve_static_core.IRouterHandler<IRoute>;
+	var mkcol : express_serve_static_core.IRouterHandler<IRoute>;
+	var move : express_serve_static_core.IRouterHandler<IRoute>;
+	@:native("m-search")
+	var m_search : express_serve_static_core.IRouterHandler<IRoute>;
+	var notify : express_serve_static_core.IRouterHandler<IRoute>;
+	var purge : express_serve_static_core.IRouterHandler<IRoute>;
+	var report : express_serve_static_core.IRouterHandler<IRoute>;
+	var search : express_serve_static_core.IRouterHandler<IRoute>;
+	var subscribe : express_serve_static_core.IRouterHandler<IRoute>;
+	var trace : express_serve_static_core.IRouterHandler<IRoute>;
+	var unlock : express_serve_static_core.IRouterHandler<IRoute>;
+	var unsubscribe : express_serve_static_core.IRouterHandler<IRoute>;
+};
