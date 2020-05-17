@@ -7,7 +7,7 @@ class Server {
 		**/
 		var app = Express.call();
 		var port = 3000;
-		app.get('/', (req, res) -> res.send('Hello World!'));
+		app.get.call('/', (req, res) -> res.send('Hello World!'));
 		app.listen(port, () -> trace('Example app listening at http://localhost:${port}'));
 	}
 
