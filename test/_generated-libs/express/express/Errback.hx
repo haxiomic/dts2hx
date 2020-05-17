@@ -1,5 +1,2 @@
 package express;
-typedef Errback = {
-	@:selfCall
-	function call(err:ts.lib.Error):Void;
-};
+typedef Errback = (err:ts.lib.Error) -> Void;

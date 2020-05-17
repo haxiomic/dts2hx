@@ -1,5 +1,2 @@
 package global;
-typedef JQueryEasingFunction = {
-	@:selfCall
-	function call(percent:Float):Float;
-};
+typedef JQueryEasingFunction = (percent:Float) -> Float;

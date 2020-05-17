@@ -1,5 +1,2 @@
 package sizzle.selectors;
-typedef PseudoFunction = {
-	@:selfCall
-	function call(elem:js.html.DOMElement):Bool;
-};
+typedef PseudoFunction = (elem:js.html.DOMElement) -> Bool;
