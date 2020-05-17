@@ -1,5 +1,5 @@
 -lib express
 
 -main Server
--js server.js
+-js dist/server.js
 -dce full

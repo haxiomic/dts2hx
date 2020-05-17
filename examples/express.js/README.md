@@ -13,6 +13,6 @@
 
 	`haxe build.hxml`
 
-	This will generate a file called `server.js`
+	This will generate a file `dist/server.js`
 
-- Run the server with `node server.js`, open [http://localhost:3000](http://localhost:3000) to see it live
+- Run the server with `node dist/server.js`, open [http://localhost:3000](http://localhost:3000) to see it live
