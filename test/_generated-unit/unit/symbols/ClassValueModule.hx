@@ -1,6 +1,8 @@
 package unit.symbols;
 @:jsRequire("./unit/symbols", "ClassValueModule") extern class ClassValueModule {
 	function new(i:Float);
+	@:selfCall
+	static function call(arg:Float):Dynamic;
 	var field : String;
 	static var staticField : Float;
 	@:overload(function():Float { })
