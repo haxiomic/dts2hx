@@ -132,6 +132,7 @@ class Main {
 			},
 
 			// experimental options
+			@doc('Experimental flag to improve conversion intersection types. Currently can cause infinite loop on some packages')
 			'--allowIntersectionRasterization' => () -> {
 				cliOptions.allowIntersectionRasterization = true;
 			},
