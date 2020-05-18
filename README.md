@@ -40,21 +40,20 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 
 ## Road to Beta
 - [x] Automatically handle remapping of js built-in and DOM types to haxe std js externs
-- [ ] Validation system to confirm all test code compiles **← :star: currently working on this**
+- [ ] Index signatures
+    - [ ] Classes and interfaces
+- [ ] Validation system to confirm all test code compiles
 - [ ] Explore converting _all_ typescript definitions in a package, whether or not they're connected to the package's root types
 - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
-- [ ] Index signatures
-    - [ ] Classes and interfaces
-- [ ] Intersection types: handle more cases
 - [ ] Other missing types
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 ## Road to 1.0
+- [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+ and add #if guards to support older versions
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [x] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required
-- [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+
 - [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
     - [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
@@ -75,7 +74,9 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] Integrate [dts-gen](https://github.com/microsoft/dts-gen) so we can generate haxe externs for js libraries with no type definitions
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
 - [ ] Support union Rest parameters
-- [ ] Haxe-issue: when passing anon objects with `@:native()` fields to externs, `@:native` information is lost
+- [x] Haxe-issue: when passing anon objects with `@:native()` fields to externs, `@:native` information is lost
+    - [ ] [Hopefully quoted field names will arrive in 4.2](https://github.com/HaxeFoundation/haxe/pull/9433)
+- [ ] Intersection types: rasterize where possible
 - [ ] :star2: **1.0 Release**
 
 # FAQ
