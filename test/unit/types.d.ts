@@ -76,12 +76,14 @@ export namespace Types {
     }
 
     // from JQueryStatic
-    class ThisIntersection {
+    class ThisIntersection<T> {
         _this: this;
         thisAndAnon: this & {field: string};
         thisAndAnon2: this & {};
         thisAndString: this & string;
-        thisAndTp<T>(): this & T;
+        thisAndTp: this & T;
+        thisAndTpArg<T>(arg: this & T): void;
+        thisAndTpRet<T>(): this & T;
     }
 
     // Mapped type recursion from babylon.js
