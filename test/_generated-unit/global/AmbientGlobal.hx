@@ -1,6 +1,6 @@
 package global;
 
-@:native("") extern class Global {
+@:native("") extern class AmbientGlobal {
 	static function globalFunction():Float;
 	static var globalConst : Float;
 }
