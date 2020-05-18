@@ -142,18 +142,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"MonthRepresentation": {
-			"name": "MonthRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"HTMLScriptElement": {
 			"name": "ScriptElement",
 			"moduleType": 0,
@@ -257,18 +245,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"RelativeTimeFormatPartType": {
-			"name": "RelativeTimeFormatPartType",
-			"moduleType": 2,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"XMLSerializer": {
 			"name": "XMLSerializer",
 			"moduleType": 0,
@@ -290,6 +266,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.PluralRulesSupportedLocalesOfOptions": {
+			"name": "PluralRulesSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"SVGFETileElement": {
 			"name": "FETileElement",
@@ -722,6 +710,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.MonthRepresentation": {
+			"name": "MonthRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"NotificationEvent": {
 			"name": "NotificationEvent",
 			"moduleType": 0,
@@ -787,18 +787,6 @@
 				"js",
 				"html",
 				"webgl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"ImportExportKind": {
-			"name": "ImportExportKind",
-			"moduleType": 3,
-			"moduleName": "Module",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -883,6 +871,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.Collation": {
+			"name": "Collation",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"FileReaderSync": {
 			"name": "FileReaderSync",
@@ -1021,6 +1021,18 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"Intl.RelativeTimeNumeric": {
+			"name": "RelativeTimeNumeric",
+			"moduleType": 3,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"WebGLTransformFeedback": {
 			"name": "TransformFeedback",
 			"moduleType": 0,
@@ -1043,6 +1055,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.NumberFormatPart": {
+			"name": "NumberFormatPart",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"CSSCounterStyleRule": {
 			"name": "CSSCounterStyleRule",
@@ -1113,14 +1137,14 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"GlobalDescriptor": {
-			"name": "GlobalDescriptor",
+		"Intl.CollatorResolvedOptions": {
+			"name": "CollatorResolvedOptions",
 			"moduleType": 2,
-			"moduleName": "Global",
+			"moduleName": "Collator",
 			"pack": [
 				"js",
 				"lib",
-				"webassembly"
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -1436,6 +1460,18 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"Intl.CollatorSupportedLocalesOfOptions": {
+			"name": "CollatorSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"HTMLPropertiesCollection": {
 			"name": "HTMLPropertiesCollection",
 			"moduleType": 0,
@@ -1621,6 +1657,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.RelativeTimeUnit": {
+			"name": "RelativeTimeUnit",
+			"moduleType": 3,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"IDBFileHandle": {
 			"name": "FileHandle",
@@ -1905,18 +1953,6 @@
 			"pack": [
 				"js",
 				"html"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"DateTimeFormatResolvedOptions": {
-			"name": "DateTimeFormatResolvedOptions",
-			"moduleType": 2,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -2443,6 +2479,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"WebAssembly.TableKind": {
+			"name": "TableKind",
+			"moduleType": 3,
+			"moduleName": "Table",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"HashChangeEventInit": {
 			"name": "HashChangeEventInit",
 			"moduleType": 2,
@@ -2507,6 +2555,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.RelativeTimeFormatPart": {
+			"name": "RelativeTimeFormatPart",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -2794,6 +2854,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.HourCycle": {
+			"name": "HourCycle",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"TextDecodeOptions": {
 			"name": "TextDecodeOptions",
 			"moduleType": 2,
@@ -3020,18 +3092,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"ModuleImportDescriptor": {
-			"name": "ModuleImportDescriptor",
-			"moduleType": 2,
-			"moduleName": "Module",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"SVGUnitTypes": {
 			"name": "UnitTypes",
 			"moduleType": 0,
@@ -3137,18 +3197,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"MinuteRepresentation": {
-			"name": "MinuteRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"DataChannelState": {
 			"name": "DataChannelState",
 			"moduleType": 3,
@@ -3169,18 +3217,6 @@
 				"js",
 				"html",
 				"rtc"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"ValueType": {
-			"name": "ValueType",
-			"moduleType": 3,
-			"moduleName": "Global",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -3510,6 +3546,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.DateTimeFormatPartType": {
+			"name": "DateTimeFormatPartType",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"HTMLDataElement": {
 			"name": "DataElement",
 			"moduleType": 0,
@@ -3550,6 +3598,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.CaseFirst": {
+			"name": "CaseFirst",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -3602,6 +3662,18 @@
 			],
 			"isExtern": true
 		},
+		"Intl.CollatorOptions": {
+			"name": "CollatorOptions",
+			"moduleType": 2,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"PriorityType": {
 			"name": "PriorityType",
 			"moduleType": 3,
@@ -3632,18 +3704,6 @@
 			"pack": [
 				"js",
 				"html"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"WeekdayRepresentation": {
-			"name": "WeekdayRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -3845,18 +3905,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"DateTimeFormatPartType": {
-			"name": "DateTimeFormatPartType",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"SVGFEDiffuseLightingElement": {
 			"name": "FEDiffuseLightingElement",
 			"moduleType": 0,
@@ -3868,18 +3916,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"HourRepresentation": {
-			"name": "HourRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"PopupBlockedEvent": {
 			"name": "PopupBlockedEvent",
@@ -4006,6 +4042,18 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"Intl.RelativeTimeFormatStyle": {
+			"name": "RelativeTimeFormatStyle",
+			"moduleType": 3,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"Math": {
 			"name": "Math",
 			"moduleType": 0,
@@ -4039,6 +4087,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.DateTimeFormatSupportedLocalesOfOptions": {
+			"name": "DateTimeFormatSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"ScrollRestoration": {
 			"name": "ScrollRestoration",
@@ -4092,6 +4152,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.NumberFormatStyle": {
+			"name": "NumberFormatStyle",
+			"moduleType": 3,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -4198,18 +4270,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"Collation": {
-			"name": "Collation",
-			"moduleType": 3,
-			"moduleName": "Collator",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"ShadowRootInit": {
 			"name": "ShadowRootInit",
 			"moduleType": 2,
@@ -4289,18 +4349,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"NumberFormatResolvedOption": {
-			"name": "NumberFormatResolvedOption",
-			"moduleType": 2,
-			"moduleName": "NumberFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"MapEntry": {
 			"name": "MapEntry",
 			"moduleType": 3,
@@ -4322,18 +4370,6 @@
 			"pack": [
 				"js",
 				"html"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"SecondRepresentation": {
-			"name": "SecondRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -4612,6 +4648,18 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"Intl.RelativeTimeFormatResolvedOptions": {
+			"name": "RelativeTimeFormatResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"MediaError": {
 			"name": "MediaError",
 			"moduleType": 0,
@@ -4737,30 +4785,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"RelativeTimeFormatPart": {
-			"name": "RelativeTimeFormatPart",
-			"moduleType": 2,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"DateTimeFormatOptions": {
-			"name": "DateTimeFormatOptions",
-			"moduleType": 2,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"CacheStorageNamespace": {
 			"name": "CacheStorageNamespace",
 			"moduleType": 3,
@@ -4794,6 +4818,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"WebAssembly.TableDescriptor": {
+			"name": "TableDescriptor",
+			"moduleType": 2,
+			"moduleName": "Table",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"CaretPosition": {
 			"name": "CaretPosition",
 			"moduleType": 0,
@@ -4804,18 +4840,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"PluralRulesOptions": {
-			"name": "PluralRulesOptions",
-			"moduleType": 2,
-			"moduleName": "PluralRules",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"WEBGL_compressed_texture_atc": {
 			"name": "WEBGLCompressedTextureAtc",
@@ -4852,6 +4876,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.TimeZoneName": {
+			"name": "TimeZoneName",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"DocumentTimeline": {
 			"name": "DocumentTimeline",
@@ -5047,18 +5083,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"RelativeTimeFormatSupportedLocalesOfOptions": {
-			"name": "RelativeTimeFormatSupportedLocalesOfOptions",
-			"moduleType": 2,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"MediaQueryList": {
 			"name": "MediaQueryList",
 			"moduleType": 0,
@@ -5110,6 +5134,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.YearRepresentation": {
+			"name": "YearRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -5239,6 +5275,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.DayRepresentation": {
+			"name": "DayRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"SVGRect": {
 			"name": "Rect",
 			"moduleType": 0,
@@ -5281,6 +5329,30 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"WebAssembly.ModuleExportDescriptor": {
+			"name": "ModuleExportDescriptor",
+			"moduleType": 2,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.DateTimeFormatResolvedOptions": {
+			"name": "DateTimeFormatResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -5367,18 +5439,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"CurrencyDisplay": {
-			"name": "CurrencyDisplay",
-			"moduleType": 3,
-			"moduleName": "NumberFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"HTMLTrackElement": {
 			"name": "TrackElement",
 			"moduleType": 0,
@@ -5432,6 +5492,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.WeekdayRepresentation": {
+			"name": "WeekdayRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -5598,6 +5670,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"WebAssembly.ModuleImportDescriptor": {
+			"name": "ModuleImportDescriptor",
+			"moduleType": 2,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -5845,6 +5929,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.NumberFormatResolvedOption": {
+			"name": "NumberFormatResolvedOption",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"SVGSetElement": {
 			"name": "SetElement",
 			"moduleType": 0,
@@ -5972,6 +6068,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"WebAssembly.ImportExportKind": {
+			"name": "ImportExportKind",
+			"moduleType": 3,
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"HTMLUListElement": {
 			"name": "UListElement",
 			"moduleType": 0,
@@ -6004,6 +6112,30 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.DateTimeFormatPart": {
+			"name": "DateTimeFormatPart",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.FormatMatcher": {
+			"name": "FormatMatcher",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"PanningModelType": {
 			"name": "PanningModelType",
@@ -6074,6 +6206,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.RelativeTimeFormatPartType": {
+			"name": "RelativeTimeFormatPartType",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"GetUserMediaRequest": {
 			"name": "GetUserMediaRequest",
 			"moduleType": 2,
@@ -6120,6 +6264,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.NumberFormatOptions": {
+			"name": "NumberFormatOptions",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"MediaTrackConstraintSet": {
 			"name": "MediaTrackConstraintSet",
 			"moduleType": 2,
@@ -6164,18 +6320,6 @@
 				"js",
 				"html",
 				"audio"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"MemoryDescriptor": {
-			"name": "MemoryDescriptor",
-			"moduleType": 2,
-			"moduleName": "Memory",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -6379,10 +6523,10 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"RelativeTimeFormatResolvedOptions": {
-			"name": "RelativeTimeFormatResolvedOptions",
-			"moduleType": 2,
-			"moduleName": "RelativeTimeFormat",
+		"Intl.Sensitivity": {
+			"name": "Sensitivity",
+			"moduleType": 3,
+			"moduleName": "Collator",
 			"pack": [
 				"js",
 				"lib",
@@ -6481,18 +6625,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"YearRepresentation": {
-			"name": "YearRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"AudioContext": {
 			"name": "AudioContext",
 			"moduleType": 0,
@@ -6550,18 +6682,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"RelativeTimeNumeric": {
-			"name": "RelativeTimeNumeric",
-			"moduleType": 3,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"IDBVersionChangeEvent": {
 			"name": "VersionChangeEvent",
@@ -6667,10 +6787,10 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"CollatorSupportedLocalesOfOptions": {
-			"name": "CollatorSupportedLocalesOfOptions",
-			"moduleType": 2,
-			"moduleName": "Collator",
+		"Intl.PluralRulesType": {
+			"name": "PluralRulesType",
+			"moduleType": 3,
+			"moduleName": "PluralRules",
 			"pack": [
 				"js",
 				"lib",
@@ -6791,18 +6911,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"TableDescriptor": {
-			"name": "TableDescriptor",
-			"moduleType": 2,
-			"moduleName": "Table",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"SVGAElement": {
 			"name": "AElement",
@@ -7071,18 +7179,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"RelativeTimeFormatOptions": {
-			"name": "RelativeTimeFormatOptions",
-			"moduleType": 2,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"DataTransferItem": {
 			"name": "DataTransferItem",
 			"moduleType": 0,
@@ -7128,18 +7224,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"TimeZoneName": {
-			"name": "TimeZoneName",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"WebGLQuery": {
 			"name": "Query",
 			"moduleType": 0,
@@ -7163,6 +7247,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.PluralRulesOptions": {
+			"name": "PluralRulesOptions",
+			"moduleType": 2,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"Comment": {
 			"name": "Comment",
@@ -7241,6 +7337,18 @@
 				"js",
 				"html",
 				"audio"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.SecondRepresentation": {
+			"name": "SecondRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -7324,18 +7432,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"PluralRulesResolvedOptions": {
-			"name": "PluralRulesResolvedOptions",
-			"moduleType": 2,
-			"moduleName": "PluralRules",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"DocumentTimelineOptions": {
 			"name": "DocumentTimelineOptions",
@@ -7540,18 +7636,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"PluralRulesSupportedLocalesOfOptions": {
-			"name": "PluralRulesSupportedLocalesOfOptions",
-			"moduleType": 2,
-			"moduleName": "PluralRules",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"SpeechRecognitionError": {
 			"name": "SpeechRecognitionError",
 			"moduleType": 0,
@@ -7574,18 +7658,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"ModuleExportDescriptor": {
-			"name": "ModuleExportDescriptor",
-			"moduleType": 2,
-			"moduleName": "Module",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"Configuration": {
 			"name": "Configuration",
@@ -7965,6 +8037,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.CurrencyDisplay": {
+			"name": "CurrencyDisplay",
+			"moduleType": 3,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"History": {
 			"name": "History",
 			"moduleType": 0,
@@ -8167,18 +8251,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"RelativeTimeUnit": {
-			"name": "RelativeTimeUnit",
-			"moduleType": 3,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"TouchList": {
 			"name": "TouchList",
 			"moduleType": 0,
@@ -8336,18 +8408,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"DateTimeFormatSupportedLocalesOfOptions": {
-			"name": "DateTimeFormatSupportedLocalesOfOptions",
-			"moduleType": 2,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"PropertyNodeList": {
 			"name": "PropertyNodeList",
@@ -8532,18 +8592,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"DayRepresentation": {
-			"name": "DayRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"UIEvent": {
 			"name": "UIEvent",
 			"moduleType": 0,
@@ -8577,18 +8625,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"CollatorResolvedOptions": {
-			"name": "CollatorResolvedOptions",
-			"moduleType": 2,
-			"moduleName": "Collator",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"PositionAlignSetting": {
 			"name": "PositionAlignSetting",
@@ -8641,6 +8677,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.Usage": {
+			"name": "Usage",
+			"moduleType": 3,
+			"moduleName": "Collator",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -8776,6 +8824,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.NumberFormatSupportedLocalesOfOptions": {
+			"name": "NumberFormatSupportedLocalesOfOptions",
+			"moduleType": 2,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -9032,18 +9092,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"NumberFormatStyle": {
-			"name": "NumberFormatStyle",
-			"moduleType": 3,
-			"moduleName": "NumberFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"AudioBufferSourceOptions": {
 			"name": "AudioBufferSourceOptions",
 			"moduleType": 2,
@@ -9137,6 +9185,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.DateTimeFormatOptions": {
+			"name": "DateTimeFormatOptions",
+			"moduleType": 2,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"WorkerDebuggerGlobalScope": {
 			"name": "WorkerDebuggerGlobalScope",
@@ -9264,6 +9324,18 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"Intl.NumberFormatPartType": {
+			"name": "NumberFormatPartType",
+			"moduleType": 3,
+			"moduleName": "NumberFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"Text": {
 			"name": "Text",
 			"moduleType": 0,
@@ -9328,6 +9400,18 @@
 			"pack": [
 				"js",
 				"html"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"WebAssembly.MemoryDescriptor": {
+			"name": "MemoryDescriptor",
+			"moduleType": 2,
+			"moduleName": "Memory",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -9617,6 +9701,18 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"Intl.HourRepresentation": {
+			"name": "HourRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"ObjectPrototype": {
 			"name": "ObjectPrototype",
 			"moduleType": 2,
@@ -9624,18 +9720,6 @@
 			"pack": [
 				"js",
 				"lib"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"FormatMatcher": {
-			"name": "FormatMatcher",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -9743,18 +9827,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"HourCycle": {
-			"name": "HourCycle",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"WebGLBuffer": {
 			"name": "Buffer",
 			"moduleType": 0,
@@ -9801,30 +9873,6 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"CaseFirst": {
-			"name": "CaseFirst",
-			"moduleType": 3,
-			"moduleName": "Collator",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"PluralRulesType": {
-			"name": "PluralRulesType",
-			"moduleType": 3,
-			"moduleName": "PluralRules",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"RTCSessionDescription": {
 			"name": "SessionDescription",
 			"moduleType": 0,
@@ -9844,6 +9892,18 @@
 			"pack": [
 				"js",
 				"lib"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.EraRepresentation": {
+			"name": "EraRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -9870,18 +9930,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"NumberFormatSupportedLocalesOfOptions": {
-			"name": "NumberFormatSupportedLocalesOfOptions",
-			"moduleType": 2,
-			"moduleName": "NumberFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"OfflineAudioContext": {
 			"name": "OfflineAudioContext",
 			"moduleType": 0,
@@ -9893,6 +9941,18 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
+		},
+		"Intl.PluralRulesResolvedOptions": {
+			"name": "PluralRulesResolvedOptions",
+			"moduleType": 2,
+			"moduleName": "PluralRules",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
+			],
+			"typeParameters": [],
+			"isExtern": false
 		},
 		"MessageEvent": {
 			"name": "MessageEvent",
@@ -10017,10 +10077,10 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"DateTimeFormatPart": {
-			"name": "DateTimeFormatPart",
+		"Intl.RelativeTimeFormatSupportedLocalesOfOptions": {
+			"name": "RelativeTimeFormatSupportedLocalesOfOptions",
 			"moduleType": 2,
-			"moduleName": "DateTimeFormat",
+			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
 				"lib",
@@ -10052,30 +10112,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"Sensitivity": {
-			"name": "Sensitivity",
-			"moduleType": 3,
-			"moduleName": "Collator",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
-		"EraRepresentation": {
-			"name": "EraRepresentation",
-			"moduleType": 3,
-			"moduleName": "DateTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"PeriodicWaveOptions": {
 			"name": "PeriodicWaveOptions",
 			"moduleType": 2,
@@ -10084,6 +10120,18 @@
 				"js",
 				"html",
 				"audio"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
+		"Intl.RelativeTimeFormatOptions": {
+			"name": "RelativeTimeFormatOptions",
+			"moduleType": 2,
+			"moduleName": "RelativeTimeFormat",
+			"pack": [
+				"js",
+				"lib",
+				"intl"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -10231,14 +10279,14 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
-		"NumberFormatPartType": {
-			"name": "NumberFormatPartType",
+		"WebAssembly.ValueType": {
+			"name": "ValueType",
 			"moduleType": 3,
-			"moduleName": "NumberFormat",
+			"moduleName": "Global",
 			"pack": [
 				"js",
 				"lib",
-				"intl"
+				"webassembly"
 			],
 			"typeParameters": [],
 			"isExtern": false
@@ -10358,10 +10406,10 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"CollatorOptions": {
-			"name": "CollatorOptions",
-			"moduleType": 2,
-			"moduleName": "Collator",
+		"Intl.MinuteRepresentation": {
+			"name": "MinuteRepresentation",
+			"moduleType": 3,
+			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
 				"lib",
@@ -10610,18 +10658,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"TableKind": {
-			"name": "TableKind",
-			"moduleType": 3,
-			"moduleName": "Table",
-			"pack": [
-				"js",
-				"lib",
-				"webassembly"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"ProxyHandler": {
 			"name": "ProxyHandler",
@@ -10981,18 +11017,6 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"NumberFormatPart": {
-			"name": "NumberFormatPart",
-			"moduleType": 2,
-			"moduleName": "NumberFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
-		},
 		"IDBFileRequest": {
 			"name": "FileRequest",
 			"moduleType": 0,
@@ -11065,6 +11089,18 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"WebAssembly.GlobalDescriptor": {
+			"name": "GlobalDescriptor",
+			"moduleType": 2,
+			"moduleName": "Global",
+			"pack": [
+				"js",
+				"lib",
+				"webassembly"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"SVGSVGElement": {
 			"name": "SVGElement",
 			"moduleType": 0,
@@ -11087,18 +11123,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"Usage": {
-			"name": "Usage",
-			"moduleType": 3,
-			"moduleName": "Collator",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"SourceBufferList": {
 			"name": "SourceBufferList",
@@ -11144,18 +11168,6 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"RelativeTimeFormatStyle": {
-			"name": "RelativeTimeFormatStyle",
-			"moduleType": 3,
-			"moduleName": "RelativeTimeFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		},
 		"MediaTrackSupportedConstraints": {
 			"name": "MediaTrackSupportedConstraints",
@@ -11531,19 +11543,47 @@
 			],
 			"typeParameters": [],
 			"isExtern": true
-		},
-		"NumberFormatOptions": {
-			"name": "NumberFormatOptions",
-			"moduleType": 2,
-			"moduleName": "NumberFormat",
-			"pack": [
-				"js",
-				"lib",
-				"intl"
-			],
-			"typeParameters": [],
-			"isExtern": false
 		}
 	},
+	"topLevelNames": [
+		"Any",
+		"Array",
+		"Class",
+		"Date",
+		"DateTools",
+		"EReg",
+		"Enum",
+		"EnumValue",
+		"HxOverrides",
+		"IntIterator",
+		"Lambda",
+		"List",
+		"Map",
+		"IMap",
+		"Math",
+		"Reflect",
+		"String",
+		"Std",
+		"Void",
+		"Float",
+		"Int",
+		"Null",
+		"Bool",
+		"Dynamic",
+		"Iterator",
+		"Iterable",
+		"KeyValueIterator",
+		"KeyValueIterable",
+		"ArrayAccess",
+		"StringBuf",
+		"StringTools",
+		"Sys",
+		"ValueType",
+		"Type",
+		"UInt",
+		"UnicodeString",
+		"XmlType",
+		"Xml"
+	],
 	"haxeVersion": "4.0.5"
 }

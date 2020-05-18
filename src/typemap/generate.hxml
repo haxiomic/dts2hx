@@ -1,0 +1,4 @@
+-D StdLibMacro
+--macro StdLibMacro.getMap(false)
+--js not-real.js
+--no-output

@@ -1,6 +1,6 @@
 import js.node.ChildProcess;
 import Log.LogLevel;
-import StdLibMacro.TypeMap;
+import typemap.TypeMap;
 import haxe.DynamicAccess;
 import haxe.io.Path;
 import hxargs.Args.ArgHandler;
@@ -264,9 +264,9 @@ class Main {
 				try {
 					var str = ChildProcess.execSync('haxe --version');
 					Console.log('Using standard library of system haxe version <b>$str</>');
-					var haxeSrcPath = Path.join([Node.__dirname, '../', 'src']);
-					var stdLibJsonStr = ChildProcess.execSync('haxe --macro "StdLibMacro.getMap(true)" --js not-real.js --no-output', {
-						cwd: haxeSrcPath
+					var typemapPath = Path.join([Node.__dirname, '../', 'src/typemap']);
+					var stdLibJsonStr = ChildProcess.execSync('haxe -D StdLibMacro --macro "StdLibMacro.getMap(true)" --js not-real.js --no-output', {
+						cwd: typemapPath
 					});
 					haxe.Json.parse(stdLibJsonStr);
 				} catch (e: Any) {

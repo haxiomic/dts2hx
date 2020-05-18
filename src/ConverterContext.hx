@@ -115,7 +115,7 @@ class ConverterContext {
 		inputModuleName: String,
 		moduleSearchPath: String,
 		compilerOptions: CompilerOptions,
-		stdLibMap: Null<StdLibMacro.TypeMap>,
+		stdLibMap: Null<typemap.TypeMap>,
 		options: {
 			locationComments: Bool,
 			allowIntersectionRasterization: Bool,

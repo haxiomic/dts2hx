@@ -1,3 +1,4 @@
+import typemap.TypeMap;
 import haxe.io.Path;
 import typescript.ts.Program;
 import typescript.ts.Symbol;
@@ -23,9 +24,9 @@ class HaxeTypePathMap {
 	final tc: TypeChecker;
 	// the same symbol may have multiple type paths if it has multiple SymbolAccess
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
-	final stdLibMap: Null<StdLibMacro.TypeMap>;
+	final stdLibMap: Null<TypeMap>;
 
-	public function new(inputParentModuleName: String, program: Program, symbolAccessMap: SymbolAccessMap, stdLibMap: Null<StdLibMacro.TypeMap>) {
+	public function new(inputParentModuleName: String, program: Program, symbolAccessMap: SymbolAccessMap, stdLibMap: Null<TypeMap>) {
 		this.inputParentModuleName = inputParentModuleName;
 		this.program = program;
 		this.symbolAccessMap = symbolAccessMap;
@@ -264,6 +265,7 @@ class HaxeTypePathMap {
 				'Array' => {name: 'Array', pack: []},
 				'String' => {name: 'String', pack: []},
 				'Symbol' => {name: 'Symbol', pack: ['js', 'lib']},
+				'Iterable' => {name: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
 			];
 			switch access {
 				// match special-case built-ins
@@ -424,32 +426,7 @@ class HaxeTypePathMap {
 
 		// rename if name that conflict with std.* types
 		// @! we should generate this list automatically in the future
-		var disallowedNames = [
-			'Any',
-			'Array',
-			'Class',
-			'Date',
-			'DateTools',
-			'Enum',
-			'EnumValue',
-			'EReg',
-			'IntIterator',
-			'Lambda',
-			'List',
-			'Map',
-			'Math',
-			'Reflect',
-			'Std',
-			'StdTypes',
-			'String',
-			'StringBuf',
-			'StringTools',
-			'Sys',
-			'Type',
-			'UInt',
-			'UnicodeString',
-			'Xml',
-		];
+		var disallowedNames = stdLibMap.topLevelNames;
 		// add '_' to avoid disallowed names
 		if (disallowedNames.indexOf(name) != -1) {
 			name = name + '_';
