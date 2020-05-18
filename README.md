@@ -48,6 +48,8 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] Interface extends
 - [ ] Other missing types
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
+- [ ] CLI: Add `--install` option
+    - [ ] Automatically try `install @types/{name}` if no types found in main module
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 ## Road to 1.0
@@ -64,8 +66,6 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] Extract hints from JSDoc
         - @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
         - @deprecated
-- [ ] CLI: Add `--install` option
-    - [ ] Automatically try `install @types/{name}` if no types found in main module
 - [ ] CLI: Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
     - Either:
         - bake into the externs
