@@ -33,7 +33,7 @@ typedef IString = {
 		
 		Determines whether two strings are equivalent in the current or specified locale.
 	**/
-	@:overload(function(that:String, ?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.CollatorOptions):Float { })
+	@:overload(function(that:String, ?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.Collator.CollatorOptions):Float { })
 	function localeCompare(that:String):Float;
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.

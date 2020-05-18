@@ -86,23 +86,23 @@ typedef Global = {
 	var Intl : {
 		var Collator : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.CollatorOptions):js.lib.intl.Collator;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.CollatorOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.Collator.CollatorOptions):js.lib.intl.Collator;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.Collator.CollatorOptions):Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormatOptions):js.lib.intl.NumberFormat;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormatOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):js.lib.intl.NumberFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):Array<String>;
 		};
 		var PluralRules : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRulesOptions):js.lib.intl.PluralRules;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRulesOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):Array<String>;
 		};
 	};
 	var JSON : js.lib.JSON;

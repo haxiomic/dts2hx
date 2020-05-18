@@ -19,7 +19,7 @@ typedef IVRDisplay = {
 	function getLayers():Array<VRLayer>;
 	function getPose():VRPose;
 	function requestAnimationFrame(callback:FrameRequestCallback):Float;
-	@:overload(function(layers:js.lib.Iterable<VRLayer>):js.lib.Promise<Void> { })
+	@:overload(function(layers:Iterable<VRLayer>):js.lib.Promise<Void> { })
 	function requestPresent(layers:Array<VRLayer>):js.lib.Promise<Void>;
 	function resetPose():Void;
 	function submitFrame(?pose:VRPose):Void;

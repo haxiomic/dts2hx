@@ -27,5 +27,5 @@ typedef INumber = {
 	/**
 		Converts a number to a string by using the current or specified locale.
 	**/
-	function toLocaleString(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormatOptions):String;
+	function toLocaleString(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):String;
 };
