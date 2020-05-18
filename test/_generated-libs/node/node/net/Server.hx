@@ -12,9 +12,9 @@ package node.net;
 	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Server { })
 	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
-	function close(?callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Server;
+	function close(?callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Server;
 	function address():Null<ts.AnyOf2<String, AddressInfo>>;
-	function getConnections(cb:(error:Null<ts.lib.Error>, count:Float) -> Void):Void;
+	function getConnections(cb:(error:Null<js.lib.Error>, count:Float) -> Void):Void;
 	function ref():Server;
 	function unref():Server;
 	var maxConnections : Float;
@@ -29,32 +29,32 @@ package node.net;
 	**/
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:Socket) -> Void):Server { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, socket:Socket):Bool { })
-	@:overload(function(event:String, err:ts.lib.Error):Bool { })
+	@:overload(function(event:String, err:js.lib.Error):Bool { })
 	@:overload(function(event:String):Bool { })
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:Socket) -> Void):Server { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:Socket) -> Void):Server { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:Socket) -> Void):Server { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:Socket) -> Void):Server { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;

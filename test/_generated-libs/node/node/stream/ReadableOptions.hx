@@ -10,5 +10,5 @@ typedef ReadableOptions = {
 	@:optional
 	function read(size:Float):Void;
 	@:optional
-	function destroy(error:Null<ts.lib.Error>, callback:(error:Null<ts.lib.Error>) -> Void):Void;
+	function destroy(error:Null<js.lib.Error>, callback:(error:Null<js.lib.Error>) -> Void):Void;
 };

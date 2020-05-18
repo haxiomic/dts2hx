@@ -26,7 +26,7 @@ typedef IBuffer = {
 		@:overload(function(data:Array<Float>):Buffer { })
 		@:overload(function(data:js.lib.Uint8Array):Buffer { })
 		@:overload(function(str:String, ?encoding:String):Buffer { })
-		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
+		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -44,7 +44,7 @@ typedef IBuffer = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -157,7 +157,7 @@ typedef IBuffer = {
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, Float>>;
+	function entries():js.lib.IterableIterator<ts.Tuple2<Float, Float>>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
@@ -165,11 +165,11 @@ typedef IBuffer = {
 	/**
 		Returns an list of keys in the array
 	**/
-	function keys():ts.lib.IterableIterator<Float>;
+	function keys():js.lib.IterableIterator<Float>;
 	/**
 		Returns an list of values in the array
 	**/
-	function values():ts.lib.IterableIterator<Float>;
+	function values():js.lib.IterableIterator<Float>;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -177,7 +177,7 @@ typedef IBuffer = {
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>;
+	final buffer : ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>;
 	/**
 		The length in bytes of the array.
 	**/
@@ -253,7 +253,7 @@ typedef IBuffer = {
 	/**
 		Sets a value or an array of values.
 	**/
-	function set(array:ts.lib.ArrayLike<Float>, ?offset:Float):Void;
+	function set(array:js.lib.ArrayLike<Float>, ?offset:Float):Void;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/

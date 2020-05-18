@@ -1,3 +1,3 @@
 package express;
 
-typedef Errback = (err:ts.lib.Error) -> Void;
+typedef Errback = (err:js.lib.Error) -> Void;

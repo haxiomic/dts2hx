@@ -8,5 +8,5 @@ typedef SpawnSyncReturns<T> = {
 	var status : Float;
 	var signal : String;
 	@:optional
-	var error : ts.lib.Error;
+	var error : js.lib.Error;
 };

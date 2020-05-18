@@ -21,37 +21,37 @@ package connect;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):IncomingMessage { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage { })
 	function addListener(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):IncomingMessage { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage { })
 	function on(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):IncomingMessage { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage { })
 	function once(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):IncomingMessage { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage { })
 	function prependListener(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):IncomingMessage { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage { })
 	function prependOnceListener(event:String, listener:() -> Void):IncomingMessage;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
 	@:overload(function(event:String, listener:() -> Void):IncomingMessage { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):IncomingMessage { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):IncomingMessage { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage { })
 	function removeListener(event:String, listener:() -> Void):IncomingMessage;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage;

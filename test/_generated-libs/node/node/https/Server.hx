@@ -22,34 +22,34 @@ package node.https;
 		4. resumeSession
 		5. secureConnection
 	**/
-	@:overload(function(event:String, listener:(err:ts.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:ts.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<ts.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:ts.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:js.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<js.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:js.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
 	@:overload(function(event:String, listener:(tlsSocket:node.tls.TLSSocket) -> Void):Server { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	@:overload(function(event:String, listener:(err:ts.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:ts.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<ts.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:ts.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:js.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<js.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:js.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
 	@:overload(function(event:String, listener:(tlsSocket:node.tls.TLSSocket) -> Void):Server { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	@:overload(function(event:String, listener:(err:ts.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:ts.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<ts.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:ts.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:js.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<js.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:js.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
 	@:overload(function(event:String, listener:(tlsSocket:node.tls.TLSSocket) -> Void):Server { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	@:overload(function(event:String, listener:(err:ts.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:ts.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<ts.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:ts.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:js.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<js.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:js.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
 	@:overload(function(event:String, listener:(tlsSocket:node.tls.TLSSocket) -> Void):Server { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	@:overload(function(event:String, listener:(err:ts.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:ts.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<ts.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
-	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:ts.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, tlsSocket:node.tls.TLSSocket) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, sessionData:global.Buffer, callback:(err:js.lib.Error, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(certificate:global.Buffer, issuer:global.Buffer, callback:(err:Null<js.lib.Error>, resp:global.Buffer) -> Void) -> Void):Server { })
+	@:overload(function(event:String, listener:(sessionId:global.Buffer, callback:(err:js.lib.Error, sessionData:global.Buffer) -> Void) -> Void):Server { })
 	@:overload(function(event:String, listener:(tlsSocket:node.tls.TLSSocket) -> Void):Server { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	@:overload(function(?port:Float, ?hostname:String, ?listeningListener:() -> Void):Server { })
@@ -61,7 +61,7 @@ package node.https;
 	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Server { })
 	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
-	function close(?callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Server;
+	function close(?callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Server;
 	function ref():Server;
 	function unref():Server;
 	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;

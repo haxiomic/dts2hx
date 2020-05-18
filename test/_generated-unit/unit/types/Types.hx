@@ -41,8 +41,8 @@ package unit.types;
 	static var booleanPrimitive : Bool;
 	static var stringPrimitive : String;
 	static var stringObject : String;
-	static var numberObject : ts.lib.Number;
-	static var booleanObject : ts.lib.Boolean;
+	static var numberObject : js.lib.Number;
+	static var booleanObject : js.lib.Boolean;
 	static var symbolPrimitive : js.lib.Symbol;
 	static var symbolObject : js.lib.Symbol;
 	static var any : Dynamic;
@@ -176,7 +176,7 @@ package unit.types;
 	static var intersectionWithAny : Dynamic;
 	static var intersectionWithArray : {
 		var x : Float;
-	} & ts.lib.IArray<Float>;
+	} & js.lib.IArray<Float>;
 	static var intersectionStringNumber : Any;
 	static var intersectionTripleAnon : {
 		var x : Float;

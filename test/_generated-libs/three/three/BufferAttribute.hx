@@ -1,9 +1,9 @@
 package three;
 
 @:jsRequire("three", "BufferAttribute") extern class BufferAttribute {
-	function new(array:ts.lib.ArrayLike<Float>, itemSize:Float, ?normalized:Bool);
+	function new(array:js.lib.ArrayLike<Float>, itemSize:Float, ?normalized:Bool);
 	var name : String;
-	var array : ts.lib.ArrayLike<Float>;
+	var array : js.lib.ArrayLike<Float>;
 	var itemSize : Float;
 	@:native("dynamic")
 	var dynamic_ : Bool;
@@ -21,12 +21,12 @@ package three;
 	function clone():BufferAttribute;
 	function copy(source:BufferAttribute):BufferAttribute;
 	function copyAt(index1:Float, attribute:BufferAttribute, index2:Float):BufferAttribute;
-	function copyArray(array:ts.lib.ArrayLike<Float>):BufferAttribute;
+	function copyArray(array:js.lib.ArrayLike<Float>):BufferAttribute;
 	function copyColorsArray(colors:Array<{ var r : Float; var g : Float; var b : Float; }>):BufferAttribute;
 	function copyVector2sArray(vectors:Array<{ var x : Float; var y : Float; }>):BufferAttribute;
 	function copyVector3sArray(vectors:Array<{ var x : Float; var y : Float; var z : Float; }>):BufferAttribute;
 	function copyVector4sArray(vectors:Array<{ var x : Float; var y : Float; var z : Float; var w : Float; }>):BufferAttribute;
-	function set(value:ts.AnyOf2<js.lib.ArrayBufferView, ts.lib.ArrayLike<Float>>, ?offset:Float):BufferAttribute;
+	function set(value:ts.AnyOf2<js.lib.ArrayBufferView, js.lib.ArrayLike<Float>>, ?offset:Float):BufferAttribute;
 	function getX(index:Float):Float;
 	function setX(index:Float, x:Float):BufferAttribute;
 	function getY(index:Float):Float;

@@ -19,7 +19,7 @@ typedef Process = {
 	function chdir(directory:String):Void;
 	function cwd():String;
 	var debugPort : Float;
-	function emitWarning(warning:ts.AnyOf2<String, ts.lib.Error>, ?name:String, ?ctor:js.lib.Function):Void;
+	function emitWarning(warning:ts.AnyOf2<String, js.lib.Error>, ?name:String, ?ctor:js.lib.Function):Void;
 	var env : ProcessEnv;
 	function exit(?code:Float):Any;
 	var exitCode : Float;
@@ -33,7 +33,7 @@ typedef Process = {
 	function setegid(id:ts.AnyOf2<String, Float>):Void;
 	function getgroups():Array<Float>;
 	function setgroups(groups:Array<ts.AnyOf2<String, Float>>):Void;
-	function setUncaughtExceptionCaptureCallback(cb:Null<(err:ts.lib.Error) -> Void>):Void;
+	function setUncaughtExceptionCaptureCallback(cb:Null<(err:js.lib.Error) -> Void>):Void;
 	function hasUncaughtExceptionCaptureCallback():Bool;
 	var version : String;
 	var versions : ProcessVersions;
@@ -101,7 +101,7 @@ typedef Process = {
 		read-only `Set` of flags allowable within the [`NODE_OPTIONS`][]
 		environment variable.
 	**/
-	var allowedNodeEnvironmentFlags : ts.lib.ReadonlySet<String>;
+	var allowedNodeEnvironmentFlags : js.lib.ReadonlySet<String>;
 	/**
 		EventEmitter
 		   1. beforeExit
@@ -131,9 +131,9 @@ typedef Process = {
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, code:Float):Bool { })
 	@:overload(function(event:String, promise:js.lib.Promise<Dynamic>):Bool { })
-	@:overload(function(event:String, error:ts.lib.Error):Bool { })
+	@:overload(function(event:String, error:js.lib.Error):Bool { })
 	@:overload(function(event:String, reason:Dynamic, promise:js.lib.Promise<Dynamic>):Bool { })
-	@:overload(function(event:String, warning:ts.lib.Error):Bool { })
+	@:overload(function(event:String, warning:js.lib.Error):Bool { })
 	@:overload(function(event:String, message:Dynamic, sendHandle:Dynamic):Process { })
 	@:overload(function(event:Signals, signal:Signals):Bool { })
 	@:overload(function(event:String, eventName:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Process { })

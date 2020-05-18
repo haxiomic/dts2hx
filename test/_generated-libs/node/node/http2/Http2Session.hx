@@ -6,7 +6,7 @@ typedef Http2Session = {
 	function close(?callback:() -> Void):Void;
 	final closed : Bool;
 	final connecting : Bool;
-	function destroy(?error:ts.lib.Error, ?code:Float):Void;
+	function destroy(?error:js.lib.Error, ?code:Float):Void;
 	final destroyed : Bool;
 	@:optional
 	final encrypted : Bool;
@@ -15,8 +15,8 @@ typedef Http2Session = {
 	@:optional
 	final originSet : Array<String>;
 	final pendingSettingsAck : Bool;
-	@:overload(function(payload:node.crypto.Binary, callback:(err:Null<ts.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
-	function ping(callback:(err:Null<ts.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
+	@:overload(function(payload:node.crypto.Binary, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
+	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
 	function ref():Void;
 	final remoteSettings : Settings;
 	function rstStream(stream:Http2Stream, ?code:Float):Void;
@@ -28,7 +28,7 @@ typedef Http2Session = {
 	final type : Float;
 	function unref():Void;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2Session { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(errorCode:Float, lastStreamID:Float, opaqueData:global.Buffer) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
@@ -37,7 +37,7 @@ typedef Http2Session = {
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:ts.lib.Error):Bool { })
+	@:overload(function(event:String, err:js.lib.Error):Bool { })
 	@:overload(function(event:String, frameType:Float, errorCode:Float, streamID:Float):Bool { })
 	@:overload(function(event:String, errorCode:Float, lastStreamID:Float, opaqueData:global.Buffer):Bool { })
 	@:overload(function(event:String, settings:Settings):Bool { })
@@ -46,7 +46,7 @@ typedef Http2Session = {
 	@:overload(function(event:String):Bool { })
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2Session { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(errorCode:Float, lastStreamID:Float, opaqueData:global.Buffer) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
@@ -55,7 +55,7 @@ typedef Http2Session = {
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2Session { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(errorCode:Float, lastStreamID:Float, opaqueData:global.Buffer) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
@@ -64,7 +64,7 @@ typedef Http2Session = {
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2Session { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(errorCode:Float, lastStreamID:Float, opaqueData:global.Buffer) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })
@@ -73,7 +73,7 @@ typedef Http2Session = {
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2Session;
 	@:overload(function(event:String, listener:() -> Void):Http2Session { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2Session { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(frameType:Float, errorCode:Float, streamID:Float) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(errorCode:Float, lastStreamID:Float, opaqueData:global.Buffer) -> Void):Http2Session { })
 	@:overload(function(event:String, listener:(settings:Settings) -> Void):Http2Session { })

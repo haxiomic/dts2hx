@@ -26,7 +26,7 @@ package node.fs;
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream;
 	function setDefaultEncoding(encoding:String):WriteStream;
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):WriteStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):WriteStream { })
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):WriteStream { })

@@ -11,7 +11,7 @@ package global;
 	**/
 	@:overload(function(size:Float):Buffer { })
 	@:overload(function(array:js.lib.Uint8Array):Buffer { })
-	@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>):Buffer { })
+	@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):Buffer { })
 	@:overload(function(array:Array<Dynamic>):Buffer { })
 	@:overload(function(buffer:Buffer):Buffer { })
 	function new(str:String, ?encoding:String);
@@ -35,7 +35,7 @@ package global;
 		@:overload(function(data:Array<Float>):Buffer { })
 		@:overload(function(data:js.lib.Uint8Array):Buffer { })
 		@:overload(function(str:String, ?encoding:String):Buffer { })
-		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
+		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -53,7 +53,7 @@ package global;
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -166,7 +166,7 @@ package global;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, Float>>;
+	function entries():js.lib.IterableIterator<ts.Tuple2<Float, Float>>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
@@ -174,11 +174,11 @@ package global;
 	/**
 		Returns an list of keys in the array
 	**/
-	function keys():ts.lib.IterableIterator<Float>;
+	function keys():js.lib.IterableIterator<Float>;
 	/**
 		Returns an list of values in the array
 	**/
-	function values():ts.lib.IterableIterator<Float>;
+	function values():js.lib.IterableIterator<Float>;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -186,7 +186,7 @@ package global;
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>;
+	final buffer : ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>;
 	/**
 		The length in bytes of the array.
 	**/
@@ -262,7 +262,7 @@ package global;
 	/**
 		Sets a value or an array of values.
 	**/
-	function set(array:ts.lib.ArrayLike<Float>, ?offset:Float):Void;
+	function set(array:js.lib.ArrayLike<Float>, ?offset:Float):Void;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
@@ -291,7 +291,7 @@ package global;
 	@:overload(function(data:Array<Float>):Buffer { })
 	@:overload(function(data:js.lib.Uint8Array):Buffer { })
 	@:overload(function(str:String, ?encoding:String):Buffer { })
-	static function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
+	static function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
@@ -310,7 +310,7 @@ package global;
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
 	@:native("byteLength")
-	static function byteLength_(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+	static function byteLength_(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		

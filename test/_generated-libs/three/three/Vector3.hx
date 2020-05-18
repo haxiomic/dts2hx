@@ -168,7 +168,7 @@ package three;
 		
 		Copies x, y and z into the provided array-like.
 	**/
-	@:overload(function(xyz:ts.lib.ArrayLike<Float>, ?offset:Float):ts.lib.ArrayLike<Float> { })
+	@:overload(function(xyz:js.lib.ArrayLike<Float>, ?offset:Float):js.lib.ArrayLike<Float> { })
 	function toArray(?xyz:Array<Float>, ?offset:Float):Array<Float>;
 	function fromBufferAttribute(attribute:BufferAttribute, index:Float, ?offset:Float):Vector3;
 }

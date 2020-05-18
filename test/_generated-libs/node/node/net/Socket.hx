@@ -2,8 +2,8 @@ package node.net;
 
 @:jsRequire("net", "Socket") extern class Socket extends node.stream.Duplex {
 	function new(?options:SocketConstructorOpts);
-	@:overload(function(str:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool;
+	@:overload(function(str:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool { })
+	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool;
 	@:overload(function(port:Float, host:String, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(port:Float, ?connectionListener:() -> Void):Socket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })
@@ -49,8 +49,8 @@ package node.net;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, had_error:Bool):Bool { })
@@ -58,8 +58,8 @@ package node.net;
 	@:overload(function(event:String, data:global.Buffer):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:ts.lib.Error):Bool { })
-	@:overload(function(event:String, err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String):Bool { })
+	@:overload(function(event:String, err:js.lib.Error):Bool { })
+	@:overload(function(event:String, err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String):Bool { })
 	@:overload(function(event:String):Bool { })
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
@@ -67,8 +67,8 @@ package node.net;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
@@ -76,8 +76,8 @@ package node.net;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
@@ -85,8 +85,8 @@ package node.net;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
@@ -94,8 +94,8 @@ package node.net;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	function setDefaultEncoding(encoding:String):Socket;
@@ -104,7 +104,7 @@ package node.net;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Socket { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket { })
 	function removeListener(event:String, listener:() -> Void):Socket;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;

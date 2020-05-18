@@ -30,8 +30,8 @@ typedef KeyValuePair<K, V> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<K, V, ts.lib.ConcatArray<ts.AnyOf2<K, V>>>>):Array<ts.AnyOf2<K, V>> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<ts.AnyOf2<K, V>>>):Array<ts.AnyOf2<K, V>>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<K, V, js.lib.ConcatArray<ts.AnyOf2<K, V>>>>):Array<ts.AnyOf2<K, V>> { })
+	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<ts.AnyOf2<K, V>>>):Array<ts.AnyOf2<K, V>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -133,13 +133,13 @@ typedef KeyValuePair<K, V> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, ts.AnyOf2<K, V>>>;
+	function entries():js.lib.IterableIterator<ts.Tuple2<Float, ts.AnyOf2<K, V>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():ts.lib.IterableIterator<Float>;
+	function keys():js.lib.IterableIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():ts.lib.IterableIterator<ts.AnyOf2<K, V>>;
+	function values():js.lib.IterableIterator<ts.AnyOf2<K, V>>;
 };

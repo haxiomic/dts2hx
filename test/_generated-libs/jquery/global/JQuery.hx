@@ -659,8 +659,8 @@ typedef JQuery<TElement> = {
 		
 		Add a collection of DOM elements onto the jQuery stack.
 	**/
-	@:overload(function(elements:ts.lib.ArrayLike<js.html.DOMElement>):JQuery<TElement> { })
-	function pushStack(elements:ts.lib.ArrayLike<js.html.DOMElement>, name:String, args:Array<Dynamic>):JQuery<TElement>;
+	@:overload(function(elements:js.lib.ArrayLike<js.html.DOMElement>):JQuery<TElement> { })
+	function pushStack(elements:js.lib.ArrayLike<js.html.DOMElement>, name:String, args:Array<Dynamic>):JQuery<TElement>;
 	/**
 		Manipulate the queue of functions to be executed, once for each matched element.
 		

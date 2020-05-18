@@ -6,13 +6,13 @@ typedef Unzip = {
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
+	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
 	@:optional
-	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
-	function _destroy(error:Null<ts.lib.Error>, callback:(error:Null<ts.lib.Error>) -> Void):Void;
-	function _final(callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
-	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.Error>) -> Void):Bool { })
-	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<ts.lib.Error>) -> Void):Bool;
+	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
+	function _destroy(error:Null<js.lib.Error>, callback:(error:Null<js.lib.Error>) -> Void):Void;
+	function _final(callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
+	@:overload(function(chunk:Dynamic, ?cb:(error:Null<js.lib.Error>) -> Void):Bool { })
+	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<js.lib.Error>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):Unzip;
 	@:overload(function(chunk:Dynamic, ?cb:() -> Void):Void { })
 	@:overload(function(chunk:Dynamic, ?encoding:String, ?cb:() -> Void):Void { })
@@ -32,7 +32,7 @@ typedef Unzip = {
 	function unshift(chunk:Dynamic):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):Unzip;
 	function push(chunk:Dynamic, ?encoding:String):Bool;
-	function destroy(?error:ts.lib.Error):Void;
+	function destroy(?error:js.lib.Error):Void;
 	/**
 		Event emitter
 		The defined events on documents including:
@@ -45,43 +45,43 @@ typedef Unzip = {
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Unzip { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Unzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Unzip { })
 	function addListener(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, chunk:Dynamic):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, err:ts.lib.Error):Bool { })
+	@:overload(function(event:String, err:js.lib.Error):Bool { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool { })
 	function emit(event:String):Bool;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Unzip { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Unzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Unzip { })
 	function on(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Unzip { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Unzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Unzip { })
 	function once(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Unzip { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Unzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Unzip { })
 	function prependListener(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Unzip { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Unzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Unzip { })
 	function prependOnceListener(event:String, listener:() -> Void):Unzip;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
 	@:overload(function(event:String, listener:() -> Void):Unzip { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Unzip { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Unzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Unzip { })
 	function removeListener(event:String, listener:() -> Void):Unzip;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;

@@ -19,37 +19,37 @@ package node.stream;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):PassThrough { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):PassThrough { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough { })
 	function addListener(event:String, listener:() -> Void):PassThrough;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):PassThrough { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):PassThrough { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough { })
 	function on(event:String, listener:() -> Void):PassThrough;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):PassThrough { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):PassThrough { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough { })
 	function once(event:String, listener:() -> Void):PassThrough;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):PassThrough { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):PassThrough { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough { })
 	function prependListener(event:String, listener:() -> Void):PassThrough;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):PassThrough { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):PassThrough { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough { })
 	function prependOnceListener(event:String, listener:() -> Void):PassThrough;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
 	@:overload(function(event:String, listener:() -> Void):PassThrough { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):PassThrough { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):PassThrough { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough { })
 	function removeListener(event:String, listener:() -> Void):PassThrough;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough;

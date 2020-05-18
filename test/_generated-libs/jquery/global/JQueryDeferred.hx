@@ -8,7 +8,7 @@ typedef JQueryDeferred<T> = {
 	/**
 		Call the progressCallbacks on a Deferred object with the given context and args.
 	**/
-	function notifyWith(context:Dynamic, ?args:ts.lib.ArrayLike<Dynamic>):JQueryDeferred<T>;
+	function notifyWith(context:Dynamic, ?args:js.lib.ArrayLike<Dynamic>):JQueryDeferred<T>;
 	/**
 		Reject a Deferred object and call any failCallbacks with the given args.
 	**/
@@ -16,7 +16,7 @@ typedef JQueryDeferred<T> = {
 	/**
 		Reject a Deferred object and call any failCallbacks with the given context and args.
 	**/
-	function rejectWith(context:Dynamic, ?args:ts.lib.ArrayLike<Dynamic>):JQueryDeferred<T>;
+	function rejectWith(context:Dynamic, ?args:js.lib.ArrayLike<Dynamic>):JQueryDeferred<T>;
 	/**
 		Resolve a Deferred object and call any doneCallbacks with the given args.
 	**/
@@ -24,7 +24,7 @@ typedef JQueryDeferred<T> = {
 	/**
 		Resolve a Deferred object and call any doneCallbacks with the given context and args.
 	**/
-	function resolveWith(context:Dynamic, ?args:ts.lib.ArrayLike<T>):JQueryDeferred<T>;
+	function resolveWith(context:Dynamic, ?args:js.lib.ArrayLike<T>):JQueryDeferred<T>;
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/

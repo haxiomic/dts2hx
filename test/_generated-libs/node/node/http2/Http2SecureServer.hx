@@ -53,42 +53,42 @@ typedef Http2SecureServer = {
 	**/
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2SecureServer { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:() -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(socket:node.tls.TLSSocket) -> Void):Http2SecureServer { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2SecureServer;
 	@:overload(function(event:String, request:Http2ServerRequest, response:Http2ServerResponse):Bool { })
 	@:overload(function(event:String, request:Http2ServerRequest, response:Http2ServerResponse):Bool { })
-	@:overload(function(event:String, err:ts.lib.Error):Bool { })
+	@:overload(function(event:String, err:js.lib.Error):Bool { })
 	@:overload(function(event:String, stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float):Bool { })
 	@:overload(function(event:String):Bool { })
 	@:overload(function(event:String, socket:node.tls.TLSSocket):Bool { })
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2SecureServer { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:() -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(socket:node.tls.TLSSocket) -> Void):Http2SecureServer { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2SecureServer;
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2SecureServer { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:() -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(socket:node.tls.TLSSocket) -> Void):Http2SecureServer { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2SecureServer;
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2SecureServer { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:() -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(socket:node.tls.TLSSocket) -> Void):Http2SecureServer { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2SecureServer;
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):Http2SecureServer { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:() -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(socket:node.tls.TLSSocket) -> Void):Http2SecureServer { })
@@ -103,9 +103,9 @@ typedef Http2SecureServer = {
 	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer { })
 	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Http2SecureServer { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Http2SecureServer;
-	function close(?callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Http2SecureServer;
+	function close(?callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Http2SecureServer;
 	function address():Null<ts.AnyOf2<String, node.net.AddressInfo>>;
-	function getConnections(cb:(error:Null<ts.lib.Error>, count:Float) -> Void):Void;
+	function getConnections(cb:(error:Null<js.lib.Error>, count:Float) -> Void):Void;
 	function ref():Http2SecureServer;
 	function unref():Http2SecureServer;
 	var maxConnections : Float;

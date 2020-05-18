@@ -530,13 +530,13 @@ typedef ClientHttp2Stream = {
 	var writable : Bool;
 	final writableHighWaterMark : Float;
 	final writableLength : Float;
-	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
+	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
 	@:optional
-	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
-	function _destroy(error:Null<ts.lib.Error>, callback:(error:Null<ts.lib.Error>) -> Void):Void;
-	function _final(callback:ts.AnyOf2<() -> Void, (error:ts.lib.Error) -> Void>):Void;
-	@:overload(function(chunk:Dynamic, ?cb:(error:Null<ts.lib.Error>) -> Void):Bool { })
-	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<ts.lib.Error>) -> Void):Bool;
+	function _writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
+	function _destroy(error:Null<js.lib.Error>, callback:(error:Null<js.lib.Error>) -> Void):Void;
+	function _final(callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
+	@:overload(function(chunk:Dynamic, ?cb:(error:Null<js.lib.Error>) -> Void):Bool { })
+	function write(chunk:Dynamic, ?encoding:String, ?cb:(error:Null<js.lib.Error>) -> Void):Bool;
 	function setDefaultEncoding(encoding:String):ClientHttp2Stream;
 	@:overload(function(chunk:Dynamic, ?cb:() -> Void):Void { })
 	@:overload(function(chunk:Dynamic, ?encoding:String, ?cb:() -> Void):Void { })
@@ -556,11 +556,11 @@ typedef ClientHttp2Stream = {
 	function unshift(chunk:Dynamic):Void;
 	function wrap(oldStream:global.nodejs.ReadableStream):ClientHttp2Stream;
 	function push(chunk:Dynamic, ?encoding:String):Bool;
-	function destroy(?error:ts.lib.Error):Void;
+	function destroy(?error:js.lib.Error):Void;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ClientHttp2Stream { })
 	@:overload(function(event:String, listener:() -> Void):ClientHttp2Stream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ClientHttp2Stream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ClientHttp2Stream { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientHttp2Stream { })
 	function removeListener(event:String, listener:() -> Void):ClientHttp2Stream;
 	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;

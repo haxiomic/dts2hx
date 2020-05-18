@@ -30,8 +30,8 @@ package node.tty;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):ReadStream { })
@@ -39,8 +39,8 @@ package node.tty;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):ReadStream { })
@@ -48,8 +48,8 @@ package node.tty;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):ReadStream { })
@@ -57,8 +57,8 @@ package node.tty;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):ReadStream { })
@@ -66,8 +66,8 @@ package node.tty;
 	@:overload(function(event:String, listener:(data:global.Buffer) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	function setDefaultEncoding(encoding:String):ReadStream;
@@ -76,7 +76,7 @@ package node.tty;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })
-	@:overload(function(event:String, listener:(err:ts.lib.Error) -> Void):ReadStream { })
+	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ReadStream { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream { })
 	function removeListener(event:String, listener:() -> Void):ReadStream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;

@@ -5,7 +5,7 @@ package three;
 	var max : Vector3;
 	var min : Vector3;
 	function set(min:Vector3, max:Vector3):Box3;
-	function setFromArray(array:ts.lib.ArrayLike<Float>):Box3;
+	function setFromArray(array:js.lib.ArrayLike<Float>):Box3;
 	function setFromPoints(points:Array<Vector3>):Box3;
 	function setFromCenterAndSize(center:Vector3, size:Vector3):Box3;
 	function setFromObject(object:Object3D):Box3;

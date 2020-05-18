@@ -8,19 +8,19 @@ typedef FSWatcher = {
 		   2. error
 	**/
 	@:overload(function(event:String, listener:(eventType:String, filename:ts.AnyOf2<String, global.Buffer>) -> Void):FSWatcher { })
-	@:overload(function(event:String, listener:(error:ts.lib.Error) -> Void):FSWatcher { })
+	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):FSWatcher { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;
 	@:overload(function(event:String, listener:(eventType:String, filename:ts.AnyOf2<String, global.Buffer>) -> Void):FSWatcher { })
-	@:overload(function(event:String, listener:(error:ts.lib.Error) -> Void):FSWatcher { })
+	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):FSWatcher { })
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;
 	@:overload(function(event:String, listener:(eventType:String, filename:ts.AnyOf2<String, global.Buffer>) -> Void):FSWatcher { })
-	@:overload(function(event:String, listener:(error:ts.lib.Error) -> Void):FSWatcher { })
+	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):FSWatcher { })
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;
 	@:overload(function(event:String, listener:(eventType:String, filename:ts.AnyOf2<String, global.Buffer>) -> Void):FSWatcher { })
-	@:overload(function(event:String, listener:(error:ts.lib.Error) -> Void):FSWatcher { })
+	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):FSWatcher { })
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;
 	@:overload(function(event:String, listener:(eventType:String, filename:ts.AnyOf2<String, global.Buffer>) -> Void):FSWatcher { })
-	@:overload(function(event:String, listener:(error:ts.lib.Error) -> Void):FSWatcher { })
+	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):FSWatcher { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;
 	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):FSWatcher;

@@ -27,8 +27,8 @@ typedef RequestRanges = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<range_parser.Range, ts.lib.ConcatArray<range_parser.Range>>>):Array<range_parser.Range> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<range_parser.Range>>):Array<range_parser.Range>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<range_parser.Range, js.lib.ConcatArray<range_parser.Range>>>):Array<range_parser.Range> { })
+	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<range_parser.Range>>):Array<range_parser.Range>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -130,15 +130,15 @@ typedef RequestRanges = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, range_parser.Range>>;
+	function entries():js.lib.IterableIterator<ts.Tuple2<Float, range_parser.Range>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():ts.lib.IterableIterator<Float>;
+	function keys():js.lib.IterableIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():ts.lib.IterableIterator<range_parser.Range>;
+	function values():js.lib.IterableIterator<range_parser.Range>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/

@@ -6,7 +6,7 @@ package node.buffer;
 	**/
 	@:overload(function(size:Float):global.Buffer { })
 	@:overload(function(array:js.lib.Uint8Array):global.Buffer { })
-	@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>):global.Buffer { })
+	@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):global.Buffer { })
 	@:overload(function(array:Array<Dynamic>):global.Buffer { })
 	@:overload(function(buffer:global.Buffer):global.Buffer { })
 	function new(str:String, ?encoding:String);
@@ -26,7 +26,7 @@ package node.buffer;
 	@:overload(function(data:Array<Float>):global.Buffer { })
 	@:overload(function(data:js.lib.Uint8Array):global.Buffer { })
 	@:overload(function(str:String, ?encoding:String):global.Buffer { })
-	static function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
+	static function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
 	/**
 		Creates a new Buffer using the passed {data}
 	**/
@@ -44,7 +44,7 @@ package node.buffer;
 		Gives the actual byte length of a string. encoding defaults to 'utf8'.
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
-	static function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+	static function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		

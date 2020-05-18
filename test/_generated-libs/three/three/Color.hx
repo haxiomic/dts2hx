@@ -102,6 +102,6 @@ package three;
 	function lerpHSL(color:Color, alpha:Float):Color;
 	function equals(color:Color):Bool;
 	function fromArray(rgb:Array<Float>, ?offset:Float):Color;
-	@:overload(function(xyz:ts.lib.ArrayLike<Float>, ?offset:Float):ts.lib.ArrayLike<Float> { })
+	@:overload(function(xyz:js.lib.ArrayLike<Float>, ?offset:Float):js.lib.ArrayLike<Float> { })
 	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 }

@@ -31,7 +31,7 @@ typedef ClientHttp2Session = {
 	function close(?callback:() -> Void):Void;
 	final closed : Bool;
 	final connecting : Bool;
-	function destroy(?error:ts.lib.Error, ?code:Float):Void;
+	function destroy(?error:js.lib.Error, ?code:Float):Void;
 	final destroyed : Bool;
 	@:optional
 	final encrypted : Bool;
@@ -40,8 +40,8 @@ typedef ClientHttp2Session = {
 	@:optional
 	final originSet : Array<String>;
 	final pendingSettingsAck : Bool;
-	@:overload(function(payload:node.crypto.Binary, callback:(err:Null<ts.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
-	function ping(callback:(err:Null<ts.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
+	@:overload(function(payload:node.crypto.Binary, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
+	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
 	function ref():Void;
 	final remoteSettings : Settings;
 	function rstStream(stream:Http2Stream, ?code:Float):Void;

@@ -34,5 +34,5 @@ typedef ClientRequestArgs = {
 	@:optional
 	var setHost : Bool;
 	@:optional
-	dynamic function createConnection(options:ClientRequestArgs, oncreate:(err:ts.lib.Error, socket:node.net.Socket) -> Void):node.net.Socket;
+	dynamic function createConnection(options:ClientRequestArgs, oncreate:(err:js.lib.Error, socket:node.net.Socket) -> Void):node.net.Socket;
 };

@@ -125,8 +125,8 @@ typedef Express = {
 		      // ...
 		    })
 	**/
-	@:overload(function(name:String, callback:(err:ts.lib.Error, html:String) -> Void):Void { })
-	function render(name:String, ?options:Dynamic, ?callback:(err:ts.lib.Error, html:String) -> Void):Void;
+	@:overload(function(name:String, callback:(err:js.lib.Error, html:String) -> Void):Void { })
+	function render(name:String, ?options:Dynamic, ?callback:(err:js.lib.Error, html:String) -> Void):Void;
 	/**
 		Listen for connections.
 		

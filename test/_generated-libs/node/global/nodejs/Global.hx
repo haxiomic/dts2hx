@@ -1,9 +1,9 @@
 package global.nodejs;
 
 typedef Global = {
-	var Array : ts.lib.ArrayConstructor;
-	var ArrayBuffer : ts.lib.ArrayBufferConstructor;
-	var Boolean : ts.lib.BooleanConstructor;
+	var Array : js.lib.ArrayConstructor;
+	var ArrayBuffer : js.lib.ArrayBufferConstructor;
+	var Boolean : js.lib.BooleanConstructor;
 	var Buffer : {
 		var prototype : global.Buffer;
 		/**
@@ -21,7 +21,7 @@ typedef Global = {
 		@:overload(function(data:Array<Float>):global.Buffer { })
 		@:overload(function(data:js.lib.Uint8Array):global.Buffer { })
 		@:overload(function(str:String, ?encoding:String):global.Buffer { })
-		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
+		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
 		/**
 			Creates a new Buffer using the passed {data}
 		**/
@@ -39,7 +39,7 @@ typedef Global = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, ts.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -71,66 +71,66 @@ typedef Global = {
 		**/
 		var poolSize : Float;
 	};
-	var DataView : ts.lib.DataViewConstructor;
-	var Date : ts.lib.DateConstructor;
-	var Error : ts.lib.ErrorConstructor;
-	var EvalError : ts.lib.EvalErrorConstructor;
-	var Float32Array : ts.lib.Float32ArrayConstructor;
-	var Float64Array : ts.lib.Float64ArrayConstructor;
-	var Function : ts.lib.FunctionConstructor;
+	var DataView : js.lib.DataViewConstructor;
+	var Date : js.lib.DateConstructor;
+	var Error : js.lib.ErrorConstructor;
+	var EvalError : js.lib.EvalErrorConstructor;
+	var Float32Array : js.lib.Float32ArrayConstructor;
+	var Float64Array : js.lib.Float64ArrayConstructor;
+	var Function : js.lib.FunctionConstructor;
 	var GLOBAL : Global;
 	var Infinity : Float;
-	var Int16Array : ts.lib.Int16ArrayConstructor;
-	var Int32Array : ts.lib.Int32ArrayConstructor;
-	var Int8Array : ts.lib.Int8ArrayConstructor;
+	var Int16Array : js.lib.Int16ArrayConstructor;
+	var Int32Array : js.lib.Int32ArrayConstructor;
+	var Int8Array : js.lib.Int8ArrayConstructor;
 	var Intl : {
 		var Collator : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):js.lib.intl.Collator;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.CollatorOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.CollatorOptions):js.lib.intl.Collator;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.CollatorOptions):Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):js.lib.intl.NumberFormat;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.NumberFormatOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormatOptions):js.lib.intl.NumberFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormatOptions):Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.DateTimeFormatOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormatOptions):Array<String>;
 		};
 		var PluralRules : {
 			@:selfCall
-			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):js.lib.intl.PluralRules;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:ts.lib.intl.PluralRulesOptions):Array<String>;
+			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRulesOptions):js.lib.intl.PluralRules;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRulesOptions):Array<String>;
 		};
 	};
-	var JSON : ts.lib.JSON;
-	var Map : ts.lib.MapConstructor;
+	var JSON : js.lib.JSON;
+	var Map : js.lib.MapConstructor;
 	var Math : js.lib.Math;
 	var NaN : Float;
-	var Number : ts.lib.NumberConstructor;
-	var Object : ts.lib.ObjectConstructor;
+	var Number : js.lib.NumberConstructor;
+	var Object : js.lib.ObjectConstructor;
 	var Promise : js.lib.Function;
-	var RangeError : ts.lib.RangeErrorConstructor;
-	var ReferenceError : ts.lib.ReferenceErrorConstructor;
-	var RegExp : ts.lib.RegExpConstructor;
-	var Set : ts.lib.SetConstructor;
-	var String : ts.lib.StringConstructor;
+	var RangeError : js.lib.RangeErrorConstructor;
+	var ReferenceError : js.lib.ReferenceErrorConstructor;
+	var RegExp : js.lib.RegExpConstructor;
+	var Set : js.lib.SetConstructor;
+	var String : js.lib.StringConstructor;
 	var Symbol : js.lib.Function;
-	var SyntaxError : ts.lib.SyntaxErrorConstructor;
-	var TypeError : ts.lib.TypeErrorConstructor;
-	var URIError : ts.lib.URIErrorConstructor;
-	var Uint16Array : ts.lib.Uint16ArrayConstructor;
-	var Uint32Array : ts.lib.Uint32ArrayConstructor;
-	var Uint8Array : ts.lib.Uint8ArrayConstructor;
+	var SyntaxError : js.lib.SyntaxErrorConstructor;
+	var TypeError : js.lib.TypeErrorConstructor;
+	var URIError : js.lib.URIErrorConstructor;
+	var Uint16Array : js.lib.Uint16ArrayConstructor;
+	var Uint32Array : js.lib.Uint32ArrayConstructor;
+	var Uint8Array : js.lib.Uint8ArrayConstructor;
 	var Uint8ClampedArray : js.lib.Function;
-	var WeakMap : ts.lib.WeakMapConstructor;
-	var WeakSet : ts.lib.WeakSetConstructor;
+	var WeakMap : js.lib.WeakMapConstructor;
+	var WeakSet : js.lib.WeakSetConstructor;
 	dynamic function clearImmediate(immediateId:Immediate):Void;
 	dynamic function clearInterval(intervalId:Timeout):Void;
 	dynamic function clearTimeout(timeoutId:Timeout):Void;
-	var console : ts.html.Console;
+	var console : js.html.Console;
 	dynamic function decodeURI(encodedURI:String):String;
 	dynamic function decodeURIComponent(encodedURIComponent:String):String;
 	dynamic function encodeURI(uri:String):String;

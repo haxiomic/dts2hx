@@ -27,8 +27,8 @@ typedef Ranges = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<Range, ts.lib.ConcatArray<Range>>>):Array<Range> { })
-	function concat(items:haxe.extern.Rest<ts.lib.ConcatArray<Range>>):Array<Range>;
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<Range, js.lib.ConcatArray<Range>>>):Array<Range> { })
+	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<Range>>):Array<Range>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -130,13 +130,13 @@ typedef Ranges = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():ts.lib.IterableIterator<ts.Tuple2<Float, Range>>;
+	function entries():js.lib.IterableIterator<ts.Tuple2<Float, Range>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():ts.lib.IterableIterator<Float>;
+	function keys():js.lib.IterableIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():ts.lib.IterableIterator<Range>;
+	function values():js.lib.IterableIterator<Range>;
 };

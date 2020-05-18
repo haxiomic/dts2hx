@@ -8,7 +8,7 @@ typedef Deferred<TR, TJ, TN> = {
 	/**
 		Call the progressCallbacks on a Deferred object with the given context and args.
 	**/
-	function notifyWith(context:Dynamic, ?args:ts.lib.ArrayLike<TN>):Deferred<TR, TJ, TN>;
+	function notifyWith(context:Dynamic, ?args:js.lib.ArrayLike<TN>):Deferred<TR, TJ, TN>;
 	/**
 		Reject a Deferred object and call any failCallbacks with the given args.
 	**/
@@ -16,7 +16,7 @@ typedef Deferred<TR, TJ, TN> = {
 	/**
 		Reject a Deferred object and call any failCallbacks with the given context and args.
 	**/
-	function rejectWith(context:Dynamic, ?args:ts.lib.ArrayLike<TJ>):Deferred<TR, TJ, TN>;
+	function rejectWith(context:Dynamic, ?args:js.lib.ArrayLike<TJ>):Deferred<TR, TJ, TN>;
 	/**
 		Resolve a Deferred object and call any doneCallbacks with the given args.
 	**/
@@ -24,7 +24,7 @@ typedef Deferred<TR, TJ, TN> = {
 	/**
 		Resolve a Deferred object and call any doneCallbacks with the given context and args.
 	**/
-	function resolveWith(context:Dynamic, ?args:ts.lib.ArrayLike<TR>):Deferred<TR, TJ, TN>;
+	function resolveWith(context:Dynamic, ?args:js.lib.ArrayLike<TR>):Deferred<TR, TJ, TN>;
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/

@@ -7,13 +7,13 @@ typedef WriteStream = {
 	var columns : Float;
 	@:optional
 	var rows : Float;
-	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Void;
-	function _destroy(err:Null<ts.lib.Error>, callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Void;
-	function _final(callback:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Void;
+	function _write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Void;
+	function _destroy(err:Null<js.lib.Error>, callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Void;
+	function _final(callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Void;
 	function setDefaultEncoding(encoding:String):WriteStream;
 	function cork():Void;
 	function uncork():Void;
-	function destroy(?error:ts.lib.Error):Void;
+	function destroy(?error:js.lib.Error):Void;
 	@:optional
 	var isTTY : Bool;
 	var readable : Bool;
@@ -43,8 +43,8 @@ typedef WriteStream = {
 	function prependOnceListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	var writable : Bool;
-	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:ts.lib.Error) -> Void>):Bool;
+	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool { })
+	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool;
 	@:overload(function(data:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:() -> Void):Void { })
 	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;

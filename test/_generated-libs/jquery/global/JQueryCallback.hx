@@ -28,7 +28,7 @@ typedef JQueryCallback = {
 	/**
 		Call all callbacks in a list with the given context and arguments.
 	**/
-	function fireWith(context:Dynamic, ?args:ts.lib.ArrayLike<Dynamic>):JQueryCallback;
+	function fireWith(context:Dynamic, ?args:js.lib.ArrayLike<Dynamic>):JQueryCallback;
 	/**
 		Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.
 	**/

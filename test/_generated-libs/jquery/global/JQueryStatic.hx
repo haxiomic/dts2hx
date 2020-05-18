@@ -4,7 +4,7 @@ typedef JQueryStatic = {
 	@:overload(function<TElement>(html:String, ?ownerDocument_attributes:ts.AnyOf2<js.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
 	@:overload(function<TElement>(selector:String, ?context:ts.AnyOf3<js.html.Document, js.html.DOMElement, JQuery<js.html.Element>>):JQuery<TElement> { })
 	@:overload(function(element:js.html.SelectElement):JQuery<js.html.SelectElement> { })
-	@:overload(function<T>(element_elementArray:ts.AnyOf2<T, ts.lib.ArrayLike<T>>):JQuery<T> { })
+	@:overload(function<T>(element_elementArray:ts.AnyOf2<T, js.lib.ArrayLike<T>>):JQuery<T> { })
 	@:overload(function<T>(selection:JQuery<T>):JQuery<T> { })
 	@:overload(function<TElement>(callback:(Dollar:JQueryStatic) -> Void):JQuery<TElement> { })
 	@:overload(function<T>(object:T):JQuery<T> { })
@@ -63,7 +63,7 @@ typedef JQueryStatic = {
 	**/
 	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<Void, global.jquery.Transport>):Void;
 	function camelCase(value:String):String;
-	function cleanData(elems:ts.lib.ArrayLike<ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
+	function cleanData(elems:js.lib.ArrayLike<ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
 	/**
 		Check to see if a DOM element is a descendant of another DOM element.
 	**/
@@ -89,7 +89,7 @@ typedef JQueryStatic = {
 		A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.
 	**/
 	@:overload(function<T, K>(obj:T, callback:(propertyName:K, valueOfProperty:Dynamic) -> Dynamic):T { })
-	function each<T>(array:ts.lib.ArrayLike<T>, callback:(indexInArray:Float, value:T) -> Dynamic):ts.lib.ArrayLike<T>;
+	function each<T>(array:js.lib.ArrayLike<T>, callback:(indexInArray:Float, value:T) -> Dynamic):js.lib.ArrayLike<T>;
 	/**
 		Takes a string and throws an exception containing it.
 	**/
@@ -181,7 +181,7 @@ typedef JQueryStatic = {
 	/**
 		Finds the elements of an array which satisfy a filter function. The original array is not affected.
 	**/
-	function grep<T>(array:ts.lib.ArrayLike<T>, fun_Tion:(elementOfArray:T, indexInArray:Float) -> Bool, ?invert:Bool):Array<T>;
+	function grep<T>(array:js.lib.ArrayLike<T>, fun_Tion:(elementOfArray:T, indexInArray:Float) -> Bool, ?invert:Bool):Array<T>;
 	/**
 		Determine whether an element has any jQuery data associated with it.
 	**/
@@ -229,7 +229,7 @@ typedef JQueryStatic = {
 	/**
 		Convert an array-like object into a true JavaScript array.
 	**/
-	function makeArray<T>(obj:ts.lib.ArrayLike<T>):Array<T>;
+	function makeArray<T>(obj:js.lib.ArrayLike<T>):Array<T>;
 	/**
 		Translate all items in an array or object to new array of items.
 		
@@ -240,7 +240,7 @@ typedef JQueryStatic = {
 	/**
 		Merge the contents of two arrays together into the first array.
 	**/
-	function merge<T, U>(first:ts.lib.ArrayLike<T>, second:ts.lib.ArrayLike<U>):Array<ts.AnyOf2<T, U>>;
+	function merge<T, U>(first:js.lib.ArrayLike<T>, second:js.lib.ArrayLike<U>):Array<ts.AnyOf2<T, U>>;
 	/**
 		Relinquish jQuery's control of the $ variable.
 	**/

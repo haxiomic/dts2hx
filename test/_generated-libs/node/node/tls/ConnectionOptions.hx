@@ -16,7 +16,7 @@ typedef ConnectionOptions = {
 	@:optional
 	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	dynamic function checkServerIdentity(host:String, cert:PeerCertificate):Null<ts.lib.Error>;
+	dynamic function checkServerIdentity(host:String, cert:PeerCertificate):Null<js.lib.Error>;
 	@:optional
 	var servername : String;
 	@:optional
