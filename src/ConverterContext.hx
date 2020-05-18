@@ -1440,7 +1440,7 @@ class ConverterContext {
 			FVar(macro :Any, null);
 
 		} else if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
-			// handle special case where variable just a function type
+			// handle special case where variable has a function type
 			var nonNullTsType = tc.getNonNullableType(tsType);
 			var callSignatures = tc.getSignaturesOfType(nonNullTsType, Call);
 			var constructSignatures = tc.getSignaturesOfType(nonNullTsType, Construct);
@@ -1450,7 +1450,7 @@ class ConverterContext {
 				if (!hxAccessModifiers.has(AFinal)) {
 					hxAccessModifiers.push(ADynamic);
 				}
-				hxAccessModifiers.remove(AFinal); // `final function` is now allow (and is the default behavior)
+				hxAccessModifiers.remove(AFinal); // `final function` is not valid syntax
 				// if nullable, force optional (this isn't perfect but it's good enough)
 				var isNullable = nonNullTsType != tsType;
 				if (isNullable) {
