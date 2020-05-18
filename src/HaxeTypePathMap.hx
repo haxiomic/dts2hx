@@ -255,8 +255,9 @@ class HaxeTypePathMap {
 		}
 
 		// handle built-ins and types available in the haxe standard library
-		// if the symbol has a non-default-lib declaration, it is considered to be a custom extension and so will be generated
-		if (defaultLibOnlyDeclarations && !asInterfaceStructure) {
+		// currently this will ignore any extensions to built-in types applied by a library
+		// to convert those too, replace `isBuiltIn` with `defaultLibOnlyDeclarations`
+		if (isBuiltIn && !asInterfaceStructure) {
 			final specialTypeMap = [
 				// we want to avoid generating the following types into ts.lib.* 
 				// preferring to map them to haxe types instead
@@ -315,8 +316,8 @@ class HaxeTypePathMap {
 		// if the symbol derives from a built-in, prefix js.lib or js.html
 		// otherwise prefix the module name (if it's a path, add a pack for each directory)
 		var pack = if (isBuiltIn) {
-			if (hasDeclarationInLib(symbol, 'lib.dom.d.ts')) ['ts', 'html']
-			else ['ts', 'lib'];
+			if (hasDeclarationInLib(symbol, 'lib.dom.d.ts')) ['js', 'html']
+			else ['js', 'lib'];
 		} else {
 			[];
 		}
