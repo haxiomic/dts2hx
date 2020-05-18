@@ -91,7 +91,14 @@ class HaxeTypePathMap {
 	public function getGlobalModuleTypePath(symbol: Symbol, access: SymbolAccess) {
 		var typePath = generateTypePath(symbol, access, false);
 		return {
-			name: 'Global',
+			name: if (symbol.isBuiltIn()) {
+				'Global';
+			} else {
+				// we don't want different global modules overriding each other, so prefix module name
+				var declaringModuleName = getDeclaringModuleName(symbol);
+				var moduleName = declaringModuleName.normalizeModuleName().split('/').pop();
+				'${moduleName.toSafeTypeName()}Global';
+			},
 			pack: typePath.pack,
 		}
 	}
@@ -156,14 +163,14 @@ class HaxeTypePathMap {
 
 					// for globally declared _values_, we use a module called Global
 					if (ConverterContext.isGlobalField(tc, symbol, access)) {
-						var typePath = generateTypePath(symbol, access, false);
+						var typePath = getGlobalModuleTypePath(symbol, access);
 						var modules = getModules(typePath.pack);
 
-						if (modules.find(m -> m.name == 'Global' && m.renameable == false) == null) {
+						if (modules.find(m -> m.name == typePath.name && m.renameable == false) == null) {
 							modules.push({
-								name: 'Global',
+								name: typePath.name,
 								pack: typePath.pack,
-								moduleName: 'Global',
+								moduleName: typePath.name,
 								isExistingStdLibType: false,
 								symbol: null,
 								access: Global([]),
@@ -243,18 +250,7 @@ class HaxeTypePathMap {
 	}
 
 	function generateTypePath(symbol: Symbol, access: SymbolAccess, asInterfaceStructure: Bool): TypePath {
-		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
-		var isBuiltIn = false; // symbol is declared in a built-in lib file (but may be extended in user-code)
-		var defaultLibOnlyDeclarations = true; // symbol is declared in a built-in lib file and **is not** extended in user-code
-		for (declaration in symbol.getDeclarationsArray()) {
-			var sourceFile = declaration.getSourceFile();
-			if (sourceFile.hasNoDefaultLib) {
-				isBuiltIn = true;
-			} else {
-				defaultLibOnlyDeclarations = false;
-			}
-		}
-
+		var isBuiltIn = symbol.isBuiltIn();
 		// handle built-ins and types available in the haxe standard library
 		// currently this will ignore any extensions to built-in types applied by a library
 		// to convert those too, replace `isBuiltIn` with `defaultLibOnlyDeclarations`
@@ -324,27 +320,13 @@ class HaxeTypePathMap {
 			[];
 		}
 
-		// if this symbol is declared in multiple modules, we need to pick a single module for the type path
-		var declaredInModules = symbol.getParentModuleNames();
-		var declaringModuleName = if (declaredInModules.has(inputParentModuleName) || declaredInModules.length == 0) {
-			inputParentModuleName;
-		} else {
-			inline function moduleNameScore(name: String) {
-				return
-					(std.StringTools.startsWith(name, '/') ? 1 : 0)  << 2 | // least preferred
-					(std.StringTools.startsWith(name, './') ? 1 : 0) << 1;
-			}
-			declaredInModules.sort((a, b) -> moduleNameScore(a) - moduleNameScore(b));
-			declaredInModules[0];
-		}
-
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
 		var identifierChain = access.getIdentifierChain();
 		switch access {
 			case AmbientModule(modulePath, _):
 				// prefix entry-point module for ambients
-				var moduleNamePack = splitModulePath(declaringModuleName);
+				var moduleNamePack = splitModulePath(getDeclaringModuleName(symbol));
 				var modulePack = splitModulePath(modulePath);
 				// a common convention is to prefix the modulePath with the module name, for example
 				// declare module "babylonjs/assets" {}
@@ -365,7 +347,7 @@ class HaxeTypePathMap {
 				pack = pack.concat(isBuiltIn ? [] : ['global']).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
-				var moduleNamePack = splitModulePath(declaringModuleName);
+				var moduleNamePack = splitModulePath(getDeclaringModuleName(symbol));
 				pack = pack.concat(moduleNamePack).concat(
 					symbol.getSymbolParents()
 					.filter(s -> !~/^__\w/.match(s.name)) // skip special names (like '__global')
@@ -449,6 +431,22 @@ class HaxeTypePathMap {
 		return Path.normalize(path)
 			.split('/')
 			.filter(s -> s != '');
+	}
+	
+	function getDeclaringModuleName(symbol: Symbol) {
+		// if this symbol is declared in multiple modules, we need to pick a single module for the type path
+		var declaredInModules = symbol.getParentModuleNames();
+		return if (declaredInModules.has(inputParentModuleName) || declaredInModules.length == 0) {
+			inputParentModuleName;
+		} else {
+			inline function moduleNameScore(name: String) {
+				return
+					(std.StringTools.startsWith(name, '/') ? 1 : 0)  << 2 | // least preferred
+					(std.StringTools.startsWith(name, './') ? 1 : 0) << 1;
+			}
+			declaredInModules.sort((a, b) -> moduleNameScore(a) - moduleNameScore(b));
+			declaredInModules[0];
+		}
 	}
 
 	/**

@@ -365,6 +365,21 @@ class TsSymbolTools {
 		return internalSymbolNames.indexOf(name) != -1;
 	}
 
+	static public function isBuiltIn(symbol: Symbol) {
+		// if the symbol is declared (at least once) in a built-in library, js.html or js.lib
+		var isBuiltIn = false; // symbol is declared in a built-in lib file (but may be extended in user-code)
+		var defaultLibOnlyDeclarations = true; // symbol is declared in a built-in lib file and **is not** extended in user-code
+		for (declaration in getDeclarationsArray(symbol)) {
+			var sourceFile = declaration.getSourceFile();
+			if (sourceFile.hasNoDefaultLib) {
+				isBuiltIn = true;
+			} else {
+				defaultLibOnlyDeclarations = false;
+			}
+		}
+		return isBuiltIn;
+	}
+
 	static inline function isPowerOfTwo(x: Int) {
 		return (x & (x - 1)) == 0;
 	}
