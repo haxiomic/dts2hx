@@ -440,15 +440,19 @@ class Main {
 		`@actions/core.js` -> `actions-core,js`
 	**/
 	static function haxelibLibraryName(moduleName: String) {
+		var safeName = moduleName.replace('/', '-').replace('\\', '-');
 		// replace directory separators with -
-		moduleName = moduleName.replace('/', '-').replace('\\', '-');
 		// replace space with -
-		moduleName = ~/\s+/.replace(moduleName, '-');
+		safeName = ~/\s+/.replace(safeName, '-');
 		// remove all other invalid characters
-		moduleName = ~/[^\w.-]/ig.replace(moduleName, '');
+		safeName = ~/[^\w.-]/ig.replace(safeName, '');
 		// replace . with ,
-		moduleName = moduleName.replace('.', ',');
-		return moduleName;
+		safeName = safeName.replace('.', ',');
+		if (safeName == '') {
+			Log.error('Module name $moduleName cannot be converted to a safe haxelib library name');
+			return moduleName;
+		}
+		return safeName;
 	}
 
 	static function generateHaxelibJson(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
