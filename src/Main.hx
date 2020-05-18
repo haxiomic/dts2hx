@@ -325,12 +325,12 @@ class Main {
 			// save modules to files
 			var printer = new Printer();
 
-			var libraryName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
+			var libraryName = haxelibLibraryName(converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName);
 			var libraryVersion = converter.inputModule.packageId != null && converter.inputModule.packageId.version != null ? converter.inputModule.packageId.version : 'default';
 
 			var outputLibraryPath = if (generateLibraryWrapper) {
 				if (haxelibMode) {
-					Path.join([outputPath, haxelibLibraryName(libraryName), libraryVersion.replace('.', ',')]);
+					Path.join([outputPath, libraryName.replace('.', ','), libraryVersion.replace('.', ',')]);
 				} else {
 					Path.join([outputPath, libraryName]);
 				}
@@ -446,8 +446,6 @@ class Main {
 		safeName = ~/\s+/.replace(safeName, '-');
 		// remove all other invalid characters
 		safeName = ~/[^\w.-]/ig.replace(safeName, '');
-		// replace . with ,
-		safeName = safeName.replace('.', ',');
 		if (safeName == '') {
 			Log.error('Module name $moduleName cannot be converted to a safe haxelib library name');
 			return moduleName;
