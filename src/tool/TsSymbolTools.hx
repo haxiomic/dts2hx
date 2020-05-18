@@ -334,18 +334,13 @@ class TsSymbolTools {
 			// here we make the assumption that all declarations have the same type parameters
 			var declarationTypeParameters = Ts.getEffectiveTypeParameterDeclarations(cast declaration);
 
-			// validate the assumption that all declarations have the same type-parameters
-			if (tsTypeParameterDeclarations.length > 0 && declarationTypeParameters.length > 0) {
-				if (tsTypeParameterDeclarations.length != declarationTypeParameters.length) {
-					Log.warn('Symbol declarations have varying number of type-parameters; this is not expected', symbol);
-				}
-			}
-
+			// not all declarations will have the same number of type-parameters, use the one with the longest
 			if (declarationTypeParameters.length > 0 && declarationTypeParameters.length > tsTypeParameterDeclarations.length) {
 				tsTypeParameterDeclarations = declarationTypeParameters;
 			}
 
 		}
+
 		return tsTypeParameterDeclarations;
 	}
 
