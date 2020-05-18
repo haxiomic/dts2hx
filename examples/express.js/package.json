@@ -14,6 +14,6 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "dts2hx": "^0.9.0"
+    "dts2hx": "^0.10.5"
   }
 }
