@@ -434,10 +434,21 @@ class Main {
 	}
 
 	/**
-		`@actions/core.js` -> `@actions-core,js`
+		Haxelib requires alpha-numeric library names
+		See https://github.com/HaxeFoundation/haxelib/blob/e7cb62181303eb61737fe06b5784cab41a58a53f/src/haxelib/Data.hx#L243
+
+		`@actions/core.js` -> `actions-core,js`
 	**/
 	static function haxelibLibraryName(moduleName: String) {
-		return moduleName.replace('.', ',').replace('/', '-').replace('\\', '-');
+		// replace directory separators with -
+		moduleName = moduleName.replace('/', '-').replace('\\', '-');
+		// replace space with -
+		moduleName = ~/\s+/.replace(moduleName, '-');
+		// remove all other invalid characters
+		moduleName = ~/[^\w.-]/ig.replace(moduleName, '');
+		// replace . with ,
+		moduleName = moduleName.replace('.', ',');
+		return moduleName;
 	}
 
 	static function generateHaxelibJson(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
