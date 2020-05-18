@@ -330,7 +330,7 @@ class Main {
 
 			var outputLibraryPath = if (generateLibraryWrapper) {
 				if (haxelibMode) {
-					Path.join([outputPath, libraryName.replace('.', ','), libraryVersion.replace('.', ',')]);
+					Path.join([outputPath, haxelibLibraryName(libraryName), libraryVersion.replace('.', ',')]);
 				} else {
 					Path.join([outputPath, libraryName]);
 				}
@@ -433,6 +433,13 @@ class Main {
 		return sections.map(s -> s.removeIndentation().trim()).join('\n\n');
 	}
 
+	/**
+		`@actions/core.js` -> `@actions-core,js`
+	**/
+	static function haxelibLibraryName(moduleName: String) {
+		return moduleName.replace('.', ',').replace('/', '-').replace('\\', '-');
+	}
+
 	static function generateHaxelibJson(inputModuleName: String, moduleSearchPath: String, converter: ConverterContext, modulePackageJson: Null<Dynamic<Dynamic>>): String {
 		var resolvedModule: ResolvedModuleFull = converter.inputModule;
 		var moduleName = converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName;
@@ -450,7 +457,8 @@ class Main {
 		// add dependencies
 		for (moduleDependency in converter.moduleDependencies) {
 			var dependencyVersion = moduleDependency.packageInfo.version;
-			Reflect.setField(haxelib.dependencies, moduleDependency.normalizedModuleName, dependencyVersion != null ? dependencyVersion : '');
+			var dependencyName = haxelibLibraryName(moduleDependency.normalizedModuleName);
+			Reflect.setField(haxelib.dependencies, dependencyName, dependencyVersion != null ? dependencyVersion : '');
 		}
 		return haxe.Json.stringify(haxelib, null, '\t');
 	}
