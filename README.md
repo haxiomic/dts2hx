@@ -70,40 +70,40 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [x] Automatically handle remapping of js built-in and DOM types to haxe std js externs
 - [ ] Index signatures
     - [ ] Classes and interfaces
+- [ ] Merge global and modular symbols with `#if global @:native(...) # else @:jsRequire(...) #end`
 - [ ] Validation system to confirm all test code compiles
 - [ ] Explore converting _all_ typescript definitions in a package, whether or not they're connected to the package's root types
-- [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Interface extends
+    - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Other missing types
 - [ ] Don't rerun dts2hx if module has already been generated (so that `postinstall: dts2hx --all` is faster)
+    - [ ] Only for libs, use haxelib.json information. Regenerate if dts2hx version has changed
 - [ ] CLI: Add `--install` option
     - [ ] Automatically try `install @types/{name}` if no types found in main module
     - [ ] Need to select user's correct package manager (yarn vs npm)
+- [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
+    - [ ] enum subset example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
+- [ ] Copy printer improvements to haxe standard library
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 ## Road to 1.0
-- [ ] Merge global and modular symbols with `#if global @:native(...) # else @:jsRequire(...) #end`
 - [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+ and add #if guards to support older versions
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [x] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required
 - [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
-    - [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
-        - [ ] enum subset example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
     - [ ] Support constructor signature in types with `@:genericBuild` abstract
         - If a constructor type is used as a type parameter we can use haxe's `Constructible` type
     - [x] Abstracts to implement Tuples (named fields for array indexes)
     - [ ] Extract hints from JSDoc
         - @nosideeffects -> @:pure (See also https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler)
         - @deprecated
+    - [ ] Support union Rest parameters (rare)
 - [ ] CLI: Add option to automatically bundle `@:jsRequire()` so a separate bundler isn't required. Maybe a we could use a macro for this
     - Either:
         - bake into the externs
         - include a macro that bundles at compile-time
-- [ ] Copy printer improvements to haxe standard library
-- [ ] Integrate [dts-gen](https://github.com/microsoft/dts-gen) so we can generate haxe externs for js libraries with no type definitions
 - [ ] Review situation with constraints (currently disabled), can issues be resolved?
-- [ ] Support union Rest parameters
 - [x] Haxe-issue: when passing anon objects with `@:native()` fields to externs, `@:native` information is lost
     - [ ] [Hopefully quoted field names will arrive in 4.2](https://github.com/HaxeFoundation/haxe/pull/9433)
 - [ ] Intersection types: rasterize where possible
