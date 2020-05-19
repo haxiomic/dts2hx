@@ -64,7 +64,7 @@ class SymbolAccessMap {
 		return accessArray != null && accessArray.length > 0 ? accessArray : [Inaccessible];
 	}
 
-	function setAccess(symbol: Symbol, access: SymbolAccess) {
+	public function setAccess(symbol: Symbol, access: SymbolAccess) {
 		var accessArray = symbolAccessMap.get(symbol.getId());
 		if (accessArray == null) {
 			accessArray = [];
@@ -166,8 +166,8 @@ class SymbolAccessMap {
 					AmbientModule(symbol.name, symbol, []);
 			}
 		} else {
-			// handle special symbols
-			if (symbol.flags & SymbolFlags.Alias != 0) {
+			// handle special symbols (only for ExportModule access)
+			if (symbol.flags & SymbolFlags.Alias != 0 && access.match(ExportModule(_))) {
 				var aliasedSymbol = tc.getAliasedSymbol(symbol);
 
 				// check if this symbol aliases to a sourceFileSymbol

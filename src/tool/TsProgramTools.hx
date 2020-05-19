@@ -93,6 +93,12 @@ class TsProgramTools {
 			locals.forEach((localSymbol, key, _) -> {
 				globalSymbols.push(tc.getExportSymbolOfSymbol(localSymbol));
 			});
+		} else {
+			// this is a module-access source file, however it has a special field 'globalExports'
+			// these symbols seem become visible when you use /// <reference types="" />
+			if (sourceFileSymbol.globalExports != null) {
+				sourceFileSymbol.globalExports.forEach((s, _) -> globalSymbols.push(s));
+			}
 		}
 
 		// find instances of `declare global { ... }` and add symbols
