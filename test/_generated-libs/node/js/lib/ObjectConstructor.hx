@@ -49,7 +49,7 @@ typedef ObjectConstructor = {
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
 	@:overload(function<T>(f:T):T { })
-	@:overload(function<T>(o:T):{ } { })
+	@:overload(function<T>(o:T):T { })
 	function freeze<T>(a:Array<T>):ReadonlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.

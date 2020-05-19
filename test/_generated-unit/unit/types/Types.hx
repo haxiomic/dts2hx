@@ -21,7 +21,7 @@ package unit.types;
 **/
 @:jsRequire("./unit/types", "Types") @valueModuleOnly extern class Types {
 	static function functionWithOptional(a:String, ?b:Bool):Float;
-	static function partialTypeParam<T>(x:{ }):Void;
+	static function partialTypeParam<T>(x:T):Void;
 	static function functionImplicit(x:Dynamic, y:Dynamic):Dynamic;
 	static function functionNumberStringVoidAlt(a:Float, b:String):Void;
 	static function functionNumberTVoidTypeParamAlt<T>(a:Float, tparam:T):Void;
