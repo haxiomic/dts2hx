@@ -80,6 +80,7 @@ setup( { default: 'hi' })
 
 - Issue: toSafeIdent(), result can be just `_` which has special meaning in haxe
 
+- Automatically find tsconfig.json in convertTsModule()
 
 - Enums:
 	- Generate method to get keys
