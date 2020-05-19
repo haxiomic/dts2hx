@@ -82,6 +82,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
 ## Road to 1.0
+- [ ] Merge global and modular symbols with `#if global @:native(...) # else @:jsRequire(...) #end`
 - [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+ and add #if guards to support older versions
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [x] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required

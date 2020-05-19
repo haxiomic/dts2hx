@@ -1,3 +1,23 @@
+- `@:jsRequire` vs `@:native`: Rather than 
+	```haxe
+	for (a in access) {
+		generateHaxeModulesFromSymbol(symbol, access)
+	}
+	```
+	we do
+	```haxe
+	generateHaxeModulesFromSymbol() {
+		// prefer module path for access path
+		for(a in access) {
+			meta.push(a.toMeta()) // with #if conditional
+		}
+	}
+	```
+
+	See https://github.com/kLabz/haxe-react/blob/c1b68ec990ec5bef5d818e8b9837edcad8c70141/src/lib/react/React.hx#L13-L16
+
+
+
 - Issues:
 	- export default not working properly
 	- `require('vue').default` doesn't exist
