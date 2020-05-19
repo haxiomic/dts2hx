@@ -121,8 +121,8 @@ class ConverterContext {
 			allowIntersectionRasterization: Bool,
 		}
 	) {
-		Console.log('Converting module <b>$inputModuleName</b>');
-		Log.log('moduleSearchPath: "$moduleSearchPath"');
+		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
+		moduleSearchPath = sys.FileSystem.absolutePath(moduleSearchPath);
 		this.moduleSearchPath = moduleSearchPath;
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.locationComments = options.locationComments;
@@ -130,6 +130,9 @@ class ConverterContext {
 
 		// this will be used as the argument to require()
 		this.normalizedInputModuleName = inline inputModuleName.normalizeModuleName();
+
+		Console.log('Converting module <b>$inputModuleName</b>');
+		Log.log('moduleSearchPath: <b>"${this.moduleSearchPath}"</>');
 
 		// resolve input module (as entry-point)
 		var result = Ts.resolveModuleName(inputModuleName, moduleSearchPath + '/.', compilerOptions, host);
