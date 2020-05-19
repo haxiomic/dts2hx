@@ -11,20 +11,6 @@
 
 - Complete validation
 
-- Haxe issue? Outgoing `@:native`
-```haxe
-extern function setup(options: {
-	@:native('default')
-	var default_: String;
-}): Void;
-
-setup({ default_: 'hi' })
-// generates
-setup( { default_: 'hi' })
-// rather than
-setup( { default: 'hi' })
-```
-
 ---- Tests should compile
 
 - Constructor comments missing from pixi.js
@@ -101,15 +87,10 @@ A generic build version of this would work
 - Special types
 	- ts.lib.IFunction should map to haxe.constrains.Function I think
 
-- Understand
-? `tc.getBaseTypeOfLiteralType()` for literals?
-? `tc.getBaseConstraintOfType(type)`
-? `getBaseTypes(type:InterfaceType):Array<typescript.ts.BaseType>`
-? `tc.getWidenedType()`
-? `getRootSymbols()`
-
 - Use subtypes for typedef anons (so it's not an anon repreated 3x)
 	- i.e. `abstract Name({...}) to {...} from {...} { }`
+
+- haxe 4.2, quoted names in types instead of @:native()
 
 - Do we need to do anything to handle `abstract` classes (typescript keyword abstract)?
 
@@ -119,16 +100,9 @@ A generic build version of this would work
 - Overload documentation, requires extending MetadataItem with doc field
 	- Will need to copy / reimplement jsdoc methods from services.ts
 
-- Three.hx could have type aliases, or not be generated since it's empty
-	- Maybe we don't want to ignore Export * symbols in `walkDeclarationSymbols`
-
 - Review class-expression syntax `let x = class ...`
 
 - If a constructor type is a type parameter we can use `Constructible`
-
-- **Command Line Interface**
-	- Created a file named test.d.ts in same directory as cli.js, didn't find it unless it was in a sub-directory
-	- maybe check for .d.ts at end and remove when doing module search
 
 ------
 
