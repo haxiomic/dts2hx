@@ -1,3 +1,9 @@
+- Issues:
+	- export default not working properly
+	- `require('vue').default` doesn't exist
+
+- Issue: could not find local file reference module in the cwd: e.g. `dts2hx ./scratch`
+
 - Filter out Void `AnyOf2<Void, T>`?
 	https://github.com/francescoagati/haxe-ts-repository/blob/master/externs/use-immer/use_immer/Reducer.hx
 
@@ -54,8 +60,8 @@ setup( { default: 'hi' })
 - Should we convert all `const Name: T;` fields to classes rather than global variables?
 	-> Probably, what about `var Name: T;`? I think so.
 
-- Maybe use macro to enable finally
 - Use macro to call complexType methods with type-stack pushing?
+	- Maybe use macro to enable finally
 
 - **react+react-dom have issues**
 
@@ -63,22 +69,17 @@ setup( { default: 'hi' })
 	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
 	When the type is a class?
 
+- Issue: `dts2hx three/examples/jsm/controls/orbitcontrols` fails at runtime because casing is incorrect. Need to use the resolved module name instead of the input name in jsRequire
+
 - Printer, better function printing:
 	- don't set singleLineFields on function args
 	- set it on function signatures, check if resulting line length > x
 	- if > x, re-print with multiLineFields
 
-- Issue: jquery sizzle dependency, generates sizzle files within jquery library
-	- Solution: don't generate types for external modules
-	- This is probably the same problem in react-dom, but here we get unexpectedly `@jsInaccessible`
-
 - Issue: struct/function formatting problems in Typescript.hx
 
 - Issue: toSafeIdent(), result can be just `_` which has special meaning in haxe
 
-- Issue: Global.hx, multiple root Global.hx's will override each other
-
-- Issue: could not find local file reference module in the cwd: e.g. `dts2hx ./scratch`
 
 - Enums:
 	- Generate method to get keys
@@ -95,17 +96,6 @@ A generic build version of this would work
 
 	}
 ```
-
-- Better function type support with optional arguments
-	- If you have `(?arg, ?arg2) => X` in typescript
-	- This should be:
-	```haxe
-		AnyOf3<
-			() -> X,
-			(arg) -> X,
-			(arg, arg2) -> X
-		>
-	```
 
 - Special types
 	- ts.lib.IFunction should map to haxe.constrains.Function I think
