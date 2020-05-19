@@ -34,6 +34,34 @@ See [examples/](examples/) for example projects using popular typescript librari
 
 The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete list of options
 
+# FAQ
+
+- **Difference between `@:jsRequire()` and `@:native()`**
+
+    TypeScript type definitions specify whether or not the symbols are accessible globally (`@:native()`) or via module resolution (`@:jsRequire()`). Many type definitions [include both globally available and modular symbols](https://github.com/haxiomic/dts2hx/blob/master/examples/pixi.js/Main.hx#L2). If a library has global symbols, they will be emitted in a package called `global`. all types in the `global` package use `@:native()` metadata, whereas types elsewhere will use `@:jsRequire()`.
+
+    If your types only use `@:jsRequire` and you want to run in a browser (like the [three.js type definitions](https://github.com/haxiomic/dts2hx/tree/alpha-0.9.0/examples/three)), then you can use a bundler. I recommend [esbuild](https://github.com/evanw/esbuild) over webpack and others because it has by far the best performance (~100 milliseconds bundling time).
+
+    For example, to call a bundler after haxe generates your js file, first install esbuild:
+    - `npm install esbuild`
+    - Then add a `--cmd` that calls esbuild to your hxml, for example:
+    ```hxml
+    --js example.js
+    --cmd npx esbuild example.js --bundle --outfile=bundle.js
+    ```
+    
+    [Here's an complete example for three.js](https://github.com/haxiomic/dts2hx/blob/cb48748bbc8cc8f34a6768cee41acf13612a70a6/examples/three/build.hxml#L10)
+
+- **Should I publish generated types to haxelib?**
+
+    Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider opening an issue here noting the fixup required instead – it would be better if dts2hx converted more modules perfectly
+
+- What makes this different from previous approaches?
+
+   The idea of generating Haxe externs from `.d.ts` files is not new, [ts2hx](https://github.com/Simn/ts2hx) for instance was started 5 years ago already. However, this turned out to not be viable because it implemented a TypeScript parser in Haxe. The maintenance effort required turned out to be too great since TypeScript is evolving quickly.
+
+   This project takes the _opposite_ approach and hooks into the TypeScript compiler API, which simplifies future maintenance a lot.
+
 # Roadmap
 
 dts2hx is currently in alpha release, everything _should_ work but please report any issues!
@@ -79,21 +107,3 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] [Hopefully quoted field names will arrive in 4.2](https://github.com/HaxeFoundation/haxe/pull/9433)
 - [ ] Intersection types: rasterize where possible
 - [ ] :star2: **1.0 Release**
-
-# FAQ
-
-- **Should I publish generated types to haxelib?**
-
-    Ideally dts2hx replaces the need to install externs from haxelib, however if the generated externs are not perfect and require manual fixups you may want to publish a curated version to haxelib. Before you do that please consider opening an issue here noting the fixup required instead – it would be better if dts2hx converted more modules perfectly
-
-- **Generating externs with `@:jsRequire()` or `@:native()`**
-
-    TypeScript type definitions specify whether or not the symbols are accessible globally (`@:native()`) or via module resolution (`@:jsRequire()`). Many type definitions [include both globally available and modular symbols](https://github.com/haxiomic/dts2hx/blob/master/examples/pixi.js/Main.hx#L2). If a library has global symbols, they will be emitted in a package called `global`. all types in the `global` package use `@:native()` metadata, whereas types elsewhere will use `@:jsRequire()`.
-
-    If your types only use `@:jsRequire` and you want to run in a browser (like the [three.js type definitions](https://github.com/haxiomic/dts2hx/tree/alpha-0.9.0/examples/three)), then you can use a bundler. I recommend [esbuild](https://github.com/evanw/esbuild) over webpack and others because it has by far the best performance (~100 milliseconds bundling time). [Here's an example for three.js](https://github.com/haxiomic/dts2hx/blob/cb48748bbc8cc8f34a6768cee41acf13612a70a6/examples/three/build.hxml#L10)
-
-- What makes this different from previous approaches?
-
-   The idea of generating Haxe externs from `.d.ts` files is not new, [ts2hx](https://github.com/Simn/ts2hx) for instance was started 5 years ago already. However, this turned out to not be viable because it implemented a TypeScript parser in Haxe. The maintenance effort required turned out to be too great since TypeScript is evolving quickly.
-
-   This project takes the _opposite_ approach and hooks into the TypeScript compiler API, which simplifies future maintenance a lot.
