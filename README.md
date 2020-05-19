@@ -30,7 +30,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
     }
     ```
 
-See [examples/](examples/) for example projects using popular typescript libraries
+See [examples/](examples/) for example projects using popular js libraries
 
 The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete list of options
 
@@ -88,6 +88,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 
 ## Road to 1.0
 - [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+ and add #if guards to support older versions
+    - [ ] Use system haxe by default
 - [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
 - [x] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required
 - [ ] Support native iteration (by handling `iterator` symbol)
