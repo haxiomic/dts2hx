@@ -122,6 +122,7 @@ class ConverterContext {
 		}
 	) {
 		Console.log('Converting module <b>$inputModuleName</b>');
+		Log.log('moduleSearchPath: "$moduleSearchPath"');
 		this.moduleSearchPath = moduleSearchPath;
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.locationComments = options.locationComments;
@@ -955,7 +956,10 @@ class ConverterContext {
 	}
 
 	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var types = intersectionType.types;
+		var types = intersectionType.types.filter(t -> {
+			// filter out types we cannot handle
+			t.flags & TypeFlags.NonPrimitive == 0;
+		});
 
 		// in haxe we can only intersect structures, ensure all types will be represented as structures in haxe
 		var hasNonStructureType = types.exists(t -> !isTypeStructureInHaxe(t, accessContext, enclosingDeclaration));
