@@ -828,13 +828,23 @@ class ConverterContext {
 			_currentTypeStack.push(type);
 			var isAliasToMappedType = type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0;
 			var hxType = if (isAliasToMappedType && _rasterizeMappedTypes && !stackHasType) {
-				// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
-				_rasterizeMappedTypes = false;
-				// special handling of mapped types
-				// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
-				var t = complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
-				_rasterizeMappedTypes = true;
-				t;
+				// convert mapped type, like `Partial<T>` or `Record<K, T>`
+				// we may one day support mapped types via macros, but for now we generally have to rasterize the type
+				// sometimes this doesn't work, for example, if the type argument is a type parameter: `function p<T>(opts: T): Partial<T>`
+				switch type.aliasTypeArguments {
+					// if the type argument is a single type parameter, remove the mapped type
+					// this is someone of a fudge, but will better than just returning `{ }` most of the time
+					case [t] if (t.flags & TypeFlags.TypeParameter):
+						complexTypeFromTsType(t, accessContext, enclosingDeclaration);
+					default:
+						// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
+						_rasterizeMappedTypes = false;
+						// special handling of mapped types
+						// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
+						var t = complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+						_rasterizeMappedTypes = true;
+						t;
+				}
 			} else {
 				// haxe type alias
 				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, preferInterfaceStructure);
