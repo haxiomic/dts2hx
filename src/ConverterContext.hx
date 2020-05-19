@@ -339,7 +339,7 @@ class ConverterContext {
 		var isConstructorTypeVariable = tc.isConstructorTypeVariableSymbol(symbol);
 		var isValueModuleOnlySymbol = symbol.flags & SymbolFlags.ValueModule != 0 && symbol.flags & SymbolFlags.Type == 0 && !isConstructorTypeVariable; // (allowed to be a variable symbol)
 
-		// the fundamental module of a symbol is the main representatation of it in haxe
+		// the fundamental module of a symbol is the main representation of it in haxe
 		// some symbols haxe _two_ representations in haxe, for example a class + interface symbol will have a class and interface structure in haxe
 		var fundamentalTypePath = haxeTypePathMap.getTypePath(symbol, access, false);
 
@@ -837,7 +837,7 @@ class ConverterContext {
 				switch type.aliasTypeArguments {
 					// if the type argument is a single type parameter, remove the mapped type
 					// this is someone of a fudge, but will better than just returning `{ }` most of the time
-					case [t] if (t.flags & TypeFlags.TypeParameter):
+					case [t] if (t.flags & TypeFlags.TypeParameter != 0):
 						complexTypeFromTsType(t, accessContext, enclosingDeclaration);
 					default:
 						// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
