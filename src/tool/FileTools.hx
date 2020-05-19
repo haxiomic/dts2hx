@@ -64,7 +64,7 @@ class FileTools {
 		for (directory in directories) {
 			currentDirectories.push(directory);
 			var currentPath = currentDirectories.join('/');
-			if (currentPath == '/') continue;
+			if (currentPath == '/' || currentPath == '') continue;
 			if (Fs.existsSync(currentPath) && Fs.statSync(currentPath).isDirectory()) continue;
 			if (!Fs.existsSync(currentPath)) {
 				Fs.mkdirSync(currentPath);
