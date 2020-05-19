@@ -1,0 +1,3 @@
+package vue.types.options;
+
+typedef AsyncComponentPromise<Data, Methods, Computed, Props> = (resolve:(component:vue.Component<Data, Methods, Computed, Props>) -> Void, reject:ts.AnyOf2<() -> Void, (reason:Dynamic) -> Void>) -> ts.AnyOf2<Void, js.lib.Promise<ts.AnyOf4<vue.VueConstructor<vue.Vue>, vue.FunctionalComponentOptions<{ }, PropsDefinition<{ }>>, vue.ComponentOptions<Any, DefaultData<Any>, DefaultMethods<Any>, DefaultComputed, { }, { }>, EsModuleComponent>>>;
