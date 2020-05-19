@@ -35,7 +35,7 @@ npm install --ignore-scripts
 haxe build.hxml
 cd ../
 
-cd express.js
+cd express
 rm -rf .haxelib
 npm install --ignore-scripts
 ../../cli.js --all
