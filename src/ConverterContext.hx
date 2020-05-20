@@ -437,9 +437,9 @@ class ConverterContext {
 					var hxSuperType = complexTypeFromObjectType(cast classSuperType, access, false, declaration);
 
 					superClassPath = switch hxSuperType {
-						case TPath(p): p;
+						case TPath(p) if (!isHxAny(hxSuperType)): p;
 						default:
-							Log.error('Class super-type did not translate to a class-path');
+							Log.error('Class super-type did not translate to a class-path (instead it was: <b>${new Printer().printComplexType(hxSuperType)}</>)', symbol);
 							null;
 					}
 
