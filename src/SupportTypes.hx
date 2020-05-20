@@ -68,7 +68,6 @@ class SupportTypes {
 				meta: [{name: ':forward', pos: null}, {name: ':forwardStatics', pos: null}],
 				pos: null,
 				tsSymbol: null,
-				tsSymbolAccess: null,
 			}
 
 			ctx.saveHaxeModule(tupleTypeDefinition);
@@ -117,7 +116,6 @@ class SupportTypes {
 				meta: [],
 				pos: null,
 				tsSymbol: null,
-				tsSymbolAccess: null,
 			}
 
 			ctx.saveHaxeModule(anyOfTypeDefinition);
@@ -126,8 +124,8 @@ class SupportTypes {
 		return TPath(typePath);
 	}
 
-	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol, access: SymbolAccess): HaxeModule {
-		var typePath = ctx.haxeTypePathMap.getGlobalModuleTypePath(symbol, access);
+	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol): HaxeModule {
+		var typePath = ctx.haxeTypePathMap.getGlobalModuleTypePath(symbol);
 		var existingModule = ctx.getGeneratedModule({name: typePath.name, pack: typePath.pack});
 		if (existingModule != null) {
 			return existingModule;
@@ -143,7 +141,6 @@ class SupportTypes {
 			meta: [SymbolAccess.Global([]).toAccessMetadata()],
 			pos: null,
 			tsSymbol: symbol,
-			tsSymbolAccess: access,
 		}
 		ctx.saveHaxeModule(hxModule);
 		return hxModule;

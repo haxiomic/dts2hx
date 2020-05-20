@@ -43,7 +43,7 @@ class HaxeTypePathMap {
 
 		The `isExistingStdLibType` flag means this is a reference to an already existing type in the haxe standard library and therefore it doesn't need converting
 	**/
-	public function getTypePath(symbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool): TypePath {
+	public function getTypePath(symbol: Symbol, preferInterfaceStructure: Bool): TypePath {
 		if (symbol.flags & SymbolFlags.Alias != 0) {
 			symbol = tc.getAliasedSymbol(symbol);
 		}
@@ -58,18 +58,12 @@ class HaxeTypePathMap {
 				modules = interfaceStructureFilteredModules;
 			}
 			// find one with a matching access context if possible
-			var matchingModule = modules.find(m -> m.access.getIndex() == accessContext.getIndex());
-			if (matchingModule == null) {
-				matchingModule = modules.find(m -> !m.access.match(Inaccessible));
-			}
-			if (matchingModule == null) {
-				matchingModule = modules[0];
-			}
+			var matchingModule = modules[0];
 			if (matchingModule != null) {
 				return matchingModule;
 			} else {
 				// the access supplied to this method is not one the same accesses used to generate the type-path map
-				Log.warn('Internal error: Could not find a type path for symbol with the supplied access context <b>${accessContext.toString()}</>', symbol);
+				Log.warn('Internal error: Could not find a matching type path for this symbol (preferInterfaceStructure: <b>$preferInterfaceStructure</>)', symbol);
 			}
 		} else {
 			// failed to find a matching pre-generated module
@@ -85,10 +79,12 @@ class HaxeTypePathMap {
 		debug();
 
 		// we can generate a type-path on demand, but we won't have name deduplication, so it might be wrong
-		return generateTypePath(symbol, accessContext, preferInterfaceStructure);
+		return generateTypePath(symbol, getPreferredAccess(symbol), preferInterfaceStructure);
 	}
 
-	public function getGlobalModuleTypePath(symbol: Symbol, access: SymbolAccess) {
+	public function getGlobalModuleTypePath(symbol: Symbol) {
+		var access = symbolAccessMap.getAccess(symbol).find(a -> a.match(Global(_)));
+		if (access == null) access = Inaccessible;
 		var typePath = generateTypePath(symbol, access, false);
 		return {
 			name: if (symbol.isBuiltIn()) {
@@ -119,65 +115,62 @@ class HaxeTypePathMap {
 		// find all declaration symbols in the program (including inaccessible ones) and add to package map as InternalModules
 		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
 			TsSymbolTools.walkDeclarationSymbols(tc, topLevelSymbol, (symbol, _) -> {
-				for (access in symbolAccessMap.getAccess(symbol)) {
-					if (ConverterContext.isHaxeModuleSource(tc, symbol)) {
+				// prefer ExportModule access to generate the haxe path
+				var access = getPreferredAccess(symbol);
+				if (ConverterContext.isHaxeModuleSource(tc, symbol)) {
+					// fundamental haxe implementation
+					var typePath = generateTypePath(symbol, access, false);
+					var modules = getModules(typePath.pack);
+					// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name} (${symbol.getId()})</>: ${typePath.pack} ${typePath.name}', symbol);
+
+					if (modules.find(m -> m.symbol == symbol && m.isInterfaceStructure == false) == null) {
+						modules.push({
+							name: typePath.name,
+							pack: typePath.pack,
+							moduleName: typePath.moduleName,
+							isExistingStdLibType: typePath.isExistingStdLibType,
+							symbol: symbol,
+							renameable: true,
+							isInterfaceStructure: false,
+						});
+					}
+
+					// additional interface-structure implementation
+					if (ConverterContext.requiresAdditionalStructureType(tc, symbol)) {
 						// fundamental haxe implementation
-						var typePath = generateTypePath(symbol, access, false);
+						var typePath = generateTypePath(symbol, access, true);
 						var modules = getModules(typePath.pack);
 						// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name} (${symbol.getId()})</>: ${typePath.pack} ${typePath.name}', symbol);
 
-						if (modules.find(m -> m.symbol == symbol && m.isInterfaceStructure == false) == null) {
+						if (modules.find(m -> m.symbol == symbol && m.isInterfaceStructure == true) == null) {
 							modules.push({
 								name: typePath.name,
 								pack: typePath.pack,
 								moduleName: typePath.moduleName,
 								isExistingStdLibType: typePath.isExistingStdLibType,
 								symbol: symbol,
-								access: access,
 								renameable: true,
-								isInterfaceStructure: false,
+								isInterfaceStructure: true,
 							});
-						}
-
-						// additional interface-structure implementation
-						if (ConverterContext.requiresAdditionalStructureType(tc, symbol)) {
-							// fundamental haxe implementation
-							var typePath = generateTypePath(symbol, access, true);
-							var modules = getModules(typePath.pack);
-							// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name} (${symbol.getId()})</>: ${typePath.pack} ${typePath.name}', symbol);
-
-							if (modules.find(m -> m.symbol == symbol && m.isInterfaceStructure == true) == null) {
-								modules.push({
-									name: typePath.name,
-									pack: typePath.pack,
-									moduleName: typePath.moduleName,
-									isExistingStdLibType: typePath.isExistingStdLibType,
-									symbol: symbol,
-									access: access,
-									renameable: true,
-									isInterfaceStructure: true,
-								});
-							}
 						}
 					}
+				}
 
-					// for globally declared _values_, we use a module called Global
-					if (ConverterContext.isGlobalField(tc, symbol, access)) {
-						var typePath = getGlobalModuleTypePath(symbol, access);
-						var modules = getModules(typePath.pack);
+				// for globally declared _values_, we use a module called Global
+				if (ConverterContext.isGlobalField(tc, symbol, symbolAccessMap)) {
+					var typePath = getGlobalModuleTypePath(symbol);
+					var modules = getModules(typePath.pack);
 
-						if (modules.find(m -> m.name == typePath.name && m.renameable == false) == null) {
-							modules.push({
-								name: typePath.name,
-								pack: typePath.pack,
-								moduleName: typePath.name,
-								isExistingStdLibType: false,
-								symbol: null,
-								access: Global([]),
-								renameable: false,
-								isInterfaceStructure: false,
-							});
-						}
+					if (modules.find(m -> m.name == typePath.name && m.renameable == false) == null) {
+						modules.push({
+							name: typePath.name,
+							pack: typePath.pack,
+							moduleName: typePath.name,
+							isExistingStdLibType: false,
+							symbol: null,
+							renameable: false,
+							isInterfaceStructure: false,
+						});
 					}
 				}
 			});
@@ -344,7 +337,7 @@ class HaxeTypePathMap {
 			case Global(_):
 				// only prefix global package if it's not a built-in
 				// global types are _not_ prefixed with the module name, this might change in the future
-				pack = pack.concat(isBuiltIn ? [] : ['global']).concat(identifierChain);
+				pack = pack.concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
 				var moduleNamePack = splitModulePath(getDeclaringModuleName(symbol));
@@ -456,12 +449,28 @@ class HaxeTypePathMap {
 		return 
 			m.renameable ? 1 : 0                                     << 6 | // prefer renameable, with highest priority
 			(!m.isExistingStdLibType ? 1 : 0)                        << 5 | // prefer non-existing std lib types
-			(m.access.match(Inaccessible) ? 1 : 0)                   << 4 | // prefer inaccessible
+			(symbolAccessMap.getAccess(m.symbol).length == 0 ? 1 : 0)<< 4 | // prefer inaccessible
 			(m.symbol.flags & SymbolFlags.ValueModule == 0 ? 1 : 0)  << 3 | // prefer **not** ValueModule
 			(m.symbol.flags & SymbolFlags.Class == 0 ? 1 : 0)        << 2 | // prefer **not** class
 			(m.symbol.flags & SymbolFlags.Enum == 0 ? 1 : 0)         << 1 | // prefer **not** enum
 			(m.symbol.flags & SymbolFlags.TypeAlias == 0 ? 1 : 0)    << 0   // prefer **not** TypeAlias with lowest priority
 		;
+	}
+
+	function getPreferredAccess(symbol: Symbol): SymbolAccess {
+		var allAccess = symbolAccessMap.getAccess(symbol);
+		allAccess.sort((a, b) -> preferredAccessScore(b) - preferredAccessScore(a));
+		var preferredAccess = allAccess[0];
+		return preferredAccess != null ? preferredAccess : Inaccessible;
+	}
+
+	inline function preferredAccessScore(a: SymbolAccess) {
+		return switch a {
+			case ExportModule(_): 3;
+			case AmbientModule(_): 2;
+			case Global(symbolChain): 1;
+			case Inaccessible: 0;
+		}
 	}
 
 }
@@ -478,7 +487,6 @@ typedef TypePath = {
 **/
 typedef InternalModule = TypePath & {
 	symbol: Symbol,
-	access: SymbolAccess,
 	renameable: Bool,
 	isInterfaceStructure: Bool,
 }

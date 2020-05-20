@@ -214,21 +214,19 @@ class ConverterContext {
 		while (!declarationSymbolQueue.empty()) {
 			var symbol: Symbol = cast declarationSymbolQueue.dequeue();
 
-			for (access in symbolAccessMap.getAccess(symbol)) {
-				// symbol can be both a haxe-module source and a global field if it has multiple declarations
-				if (isHaxeModuleSource(tc, symbol)) {
-					generateHaxeModulesFromSymbol(symbol, access);
-				}
-
-				if (isGlobalField(tc, symbol, access)) {
-					var globalModule = this.getGlobalModuleForFieldSymbol(symbol, access);
-					var field = fieldFromSymbol(symbol.name, symbol, Global([]), null);
-					field.enableAccess(AStatic);
-					globalModule.fields.push(field);
-				}
-				
-				// we will also get module variable symbols here but these are handled in `generateHaxeModulesFromSymbol` instead
+			// symbol can be both a haxe-module source and a global field if it has multiple declarations
+			if (isHaxeModuleSource(tc, symbol)) {
+				generateHaxeModulesFromSymbol(symbol);
 			}
+
+			if (isGlobalField(tc, symbol, symbolAccessMap)) {
+				var globalModule = this.getGlobalModuleForFieldSymbol(symbol);
+				var field = fieldFromSymbol(symbol.name, symbol, null, null);
+				field.enableAccess(AStatic);
+				globalModule.fields.push(field);
+			}
+			
+			// we will also get module variable symbols here but these are handled in `generateHaxeModulesFromSymbol` instead
 
 			processedDeclarationSymbols.push(symbol);
 		}
@@ -268,15 +266,15 @@ class ConverterContext {
 		return (symbol.flags & SymbolFlags.Interface != 0) && requiresHxClass(tc, symbol);
 	}
 
-	static public function isGlobalField(tc: TypeChecker, symbol: Symbol, access: SymbolAccess): Bool {
-		return switch access {
+	static public function isGlobalField(tc: TypeChecker, symbol: Symbol, symbolAccessMap: SymbolAccessMap): Bool {
+		return symbolAccessMap.getAccess(symbol).exists(a -> switch a {
 			case Global([_])
 				if (
 					symbol.flags & (SymbolFlags.Variable | SymbolFlags.Function) != 0 &&
 					!tc.isConstructorTypeVariableSymbol(symbol)
 				): true;
 			default: false;
-		}
+		});
 	}
 
 	/**
@@ -284,8 +282,8 @@ class ConverterContext {
 		The symbol must have flags Type or ValueModule.
 		This also queues this symbol's type to be converted if it isn't already
 	**/
-	public function getReferencedHaxeTypePath(symbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool): TypePath {
-		var hxTypePath = haxeTypePathMap.getTypePath(symbol, accessContext, preferInterfaceStructure);
+	public function getReferencedHaxeTypePath(symbol: Symbol, ?referenceContext: Symbol, preferInterfaceStructure: Bool): TypePath {
+		var hxTypePath = haxeTypePathMap.getTypePath(symbol, preferInterfaceStructure);
 
 		// should we queue this symbol for conversion?
 		if (!hxTypePath.isExistingStdLibType) {
@@ -313,13 +311,11 @@ class ConverterContext {
 			}
 		}
 
-		// if accessContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
+		// if referenceContext symbol has the same package as the target symbol, we can shorten the type path by removing the pack
 		// we don't shorten std lib types because they are not generated
 		var noPack = if (shortenTypePaths && !hxTypePath.isExistingStdLibType) {
-			var accessSymbolChain = accessContext.extractSymbolChain();
-			var lastAccessSymbol = accessSymbolChain[accessSymbolChain.length - 1];
-			if (lastAccessSymbol != null) {
-				var contextTypePath = haxeTypePathMap.getTypePath(lastAccessSymbol, accessContext, false);
+			if (referenceContext != null) {
+				var contextTypePath = haxeTypePathMap.getTypePath(referenceContext, false);
 				contextTypePath.pack.join('.') == hxTypePath.pack.join('.'); // same package context
 			} else false;
 		} else false;
@@ -337,7 +333,7 @@ class ConverterContext {
 	/**
 		Symbol+access must be a haxe-module source symbol (see `isHaxeModuleSource()`)
 	**/
-	function generateHaxeModulesFromSymbol(symbol: Symbol, access: SymbolAccess) {
+	function generateHaxeModulesFromSymbol(symbol: Symbol) {
 		// Log.log('generateHaxeModulesFromSymbol() <yellow>${access.toString()}</>', symbol);
 		var pos = TsSymbolTools.getPosition(symbol);
 
@@ -346,7 +342,9 @@ class ConverterContext {
 
 		// the fundamental module of a symbol is the main representation of it in haxe
 		// some symbols haxe _two_ representations in haxe, for example a class + interface symbol will have a class and interface structure in haxe
-		var fundamentalTypePath = haxeTypePathMap.getTypePath(symbol, access, false);
+		var fundamentalTypePath = haxeTypePathMap.getTypePath(symbol, false);
+
+		var allAccess = symbolAccessMap.getAccess(symbol);
 
 		// do not generate a module for std-lib types (some std-lib types might have an interface-structure however)
 		if (!fundamentalTypePath.isExistingStdLibType) {
@@ -357,7 +355,7 @@ class ConverterContext {
 				var hxEnumType = complexTypeBaseOfEnumSymbol(symbol);
 
 				var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-				var hxEnumFields = [for (enumMember in enumMembers) fieldFromSymbol(enumMember.name, enumMember, access, null)];
+				var hxEnumFields = [for (enumMember in enumMembers) fieldFromSymbol(enumMember.name, enumMember, symbol, null)];
 
 				{
 					pack: fundamentalTypePath.pack,
@@ -367,10 +365,9 @@ class ConverterContext {
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
-					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
+					meta: (isCompileTimeEnum ? [] : allAccess.map(a -> a.toAccessMetadata())).concat([{name: ':enum', pos: pos}]),
 					pos: pos,
 					tsSymbol: symbol,
-					tsSymbolAccess: access,
 				}
 			} else if (symbol.flags & SymbolFlags.TypeAlias != 0) {
 				var typeAliasDeclaration: Null<TypeAliasDeclaration> = cast symbol.getDeclarationsArray().filter(node -> node.kind == SyntaxKind.TypeAliasDeclaration)[0];
@@ -379,7 +376,7 @@ class ConverterContext {
 				}
 
 				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
-				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration, false);
+				var hxAliasType = complexTypeFromTsType(tsType, symbol, typeAliasDeclaration, false);
 				var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
 
 				// if this symbol is also a ValueModule then it needs to have fields
@@ -389,23 +386,21 @@ class ConverterContext {
 					name: fundamentalTypePath.name,
 					fields: [],
 					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, symbol, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,
-					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+					meta: allAccess.map(a -> a.toAccessMetadata()).concat([{name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}]),
 					pos: pos,
 					tsSymbol: symbol,
-					tsSymbolAccess: access,
 				} else {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
 					kind: TDAlias(hxAliasType),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, symbol, typeAliasDeclaration),
 					doc: getDoc(symbol),
 					pos: pos,
 					tsSymbol: symbol,
-					tsSymbolAccess: access,
 				}
 				hxTypeDef;
 			} else if (requiresHxClass(tc, symbol)) {
@@ -425,7 +420,7 @@ class ConverterContext {
 				}
 
 				var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
-				var meta = [access.toAccessMetadata()];
+				var meta = allAccess.map(a -> a.toAccessMetadata());
 				var superClassPath: Null<TypePath> = null;
 
 				if (isValueModuleOnlySymbol) {
@@ -439,7 +434,7 @@ class ConverterContext {
 
 				var classSuperType = tc.getClassExtendsType(symbol);
 				if (classSuperType != null) {
-					var hxSuperType = complexTypeFromObjectType(cast classSuperType, access, false, declaration);
+					var hxSuperType = complexTypeFromObjectType(cast classSuperType, symbol, false, declaration);
 
 					superClassPath = switch hxSuperType {
 						case TPath(p) if (!isHxAny(hxSuperType)): p;
@@ -471,7 +466,6 @@ class ConverterContext {
 
 				var fields = generateTypeFields(
 					symbol,
-					access,
 					declaration,
 					symbol.getConstructorSignatures(tc),
 					callSignatures,
@@ -488,17 +482,16 @@ class ConverterContext {
 					name: fundamentalTypePath.name,
 					fields: fields,
 					kind: TDClass(superClassPath, [], false, false),
-					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, declaration),
+					params: typeParamDeclFromTypeDeclarationSymbol(symbol, symbol, declaration),
 					isExtern: true,
 					doc: getDoc(symbol),
 					meta: meta,
 					pos: pos,
 					tsSymbol: symbol,
-					tsSymbolAccess: access,
 				}
 			} else if (symbol.flags & SymbolFlags.Interface != 0) {
 				// interface-only symbol
-				createInterfaceModule(symbol, access, false);
+				createInterfaceModule(symbol, false);
 			} else {
 				Log.error('generateHaxeModulesFromSymbol(): Unhandled symbol, no flags were recognized', symbol);
 				{
@@ -510,7 +503,6 @@ class ConverterContext {
 					isExtern: true,
 					pos: pos,
 					tsSymbol: symbol,
-					tsSymbolAccess: access,
 				}
 			}
 
@@ -543,18 +535,18 @@ class ConverterContext {
 
 					// given constructor type cannot merge with class, we don't expect an existing new signature
 					// (and constructor type new signature takes precedence, not overload, over a class new signature if merged with a type-alias to class)
-					var newField = newFieldFromSignatures(constructSignatures, access, constructorTypeDeclaration);
+					var newField = newFieldFromSignatures(constructSignatures, symbol, constructorTypeDeclaration);
 					hxModule.fields.unshift(newField);
 
 					if (callSignatures.length > 0) {
-						var callField = functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, constructorTypeDeclaration);
+						var callField = functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, symbol, constructorTypeDeclaration);
 						callField.enableAccess(AStatic);
 						hxModule.fields.push(callField);
 					}
 
 					// constructor type fields become class statics
 					for (field in fields) {
-						var hxField = fieldFromSymbol(field.name, field, access, constructorTypeDeclaration);
+						var hxField = fieldFromSymbol(field.name, field, symbol, constructorTypeDeclaration);
 						hxField.enableAccess(AStatic);
 						hxModule.fields.push(hxField);
 					}
@@ -565,7 +557,7 @@ class ConverterContext {
 
 			// add static class members
 			for (staticClassMember in symbol.getExports().filter(s -> s.flags & SymbolFlags.ClassMember != 0 && s.isAccessibleField())) {
-				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, access, null);
+				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, symbol, null);
 				field.enableAccess(AStatic);
 				hxModule.fields.push(field);
 			}
@@ -587,7 +579,7 @@ class ConverterContext {
 					// skip constructor type variables because these have been converted into classes
 					if (tc.isConstructorTypeVariableSymbol(moduleMember)) continue;
 
-					var field = fieldFromSymbol(nativeFieldName, moduleMember, access, null);
+					var field = fieldFromSymbol(nativeFieldName, moduleMember, symbol, null);
 					field.enableAccess(AStatic);
 					hxModule.fields.push(field);
 				}
@@ -598,13 +590,13 @@ class ConverterContext {
 
 		// add special interface-structure module for the symbol if required
 		if (requiresAdditionalStructureType(tc, symbol)) {
-			saveHaxeModule(createInterfaceModule(symbol, access, true));
+			saveHaxeModule(createInterfaceModule(symbol, true));
 		}
 	}
 
-	function createInterfaceModule(symbol: Symbol, access: SymbolAccess, preferInterfaceStructure: Bool): HaxeModule {
+	function createInterfaceModule(symbol: Symbol, preferInterfaceStructure: Bool): HaxeModule {
 		var pos = TsSymbolTools.getPosition(symbol);
-		var typePath = haxeTypePathMap.getTypePath(symbol, access, preferInterfaceStructure);
+		var typePath = haxeTypePathMap.getTypePath(symbol, preferInterfaceStructure);
 		// there can be _multiple_ interface declarations, we just use the first
 		// the declaration is used to help guide type conversion, but it's not critical
 		var declaration = symbol.declarations.find(d -> d.kind == SyntaxKind.InterfaceDeclaration);
@@ -615,7 +607,7 @@ class ConverterContext {
 
 		var kind = if (callSignatures.length == 1 && declaredMembers.length == 0 && preferInterfaceStructure == false) {
 			// handle special case of function type { (args): T }
-			TDAlias(complexTypeFromCallSignature(callSignatures[0], access, declaration));
+			TDAlias(complexTypeFromCallSignature(callSignatures[0], symbol, declaration));
 		} else {
 			/*		
 			// replace redefined class **variable** members with their super-type members
@@ -636,7 +628,6 @@ class ConverterContext {
 
 			var fields = generateTypeFields(
 				symbol,
-				access,
 				declaration,
 				[],
 				callSignatures,
@@ -655,7 +646,6 @@ class ConverterContext {
 			// (we resolve field collisions here because the later pass doesn't alias to anon fields)
 			fields.resolveNameCollisions();
 
-
 			TDAlias(TAnonymous(fields));
 		}
 
@@ -665,19 +655,17 @@ class ConverterContext {
 			name: typePath.name,
 			fields: [],
 			kind: kind,
-			params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, declaration),
+			params: typeParamDeclFromTypeDeclarationSymbol(symbol, symbol, declaration),
 			isExtern: false,
 			doc: getDoc(symbol),
 			meta: [],
 			pos: pos,
 			tsSymbol: symbol,
-			tsSymbolAccess: access,
 		};
 	}
 
 	function generateTypeFields(
 		symbol: Symbol,
-		access: SymbolAccess,
 		declaration: Null<Declaration>,
 		constructorSignatures: Array<Signature>,
 		callSignatures: Array<Signature>,
@@ -687,18 +675,18 @@ class ConverterContext {
 		var fields = new Array<Field>();
 
 		if (constructorSignatures.length > 0) {
-			fields.push(newFieldFromSignatures(constructorSignatures, access, declaration));
+			fields.push(newFieldFromSignatures(constructorSignatures, symbol, declaration));
 		}
 
 		if (callSignatures.length > 0) {
 			// Log.log('\t<red>callSignatures <b>${callSignatures.length}</></>', callSignatures[0].declaration);
-			fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, access, declaration));
+			fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, symbol, declaration));
 		}
 
 		if (symbol.flags & SymbolFlags.Function != 0) {
 			var tsType = getTsTypeOfField(symbol);
 			var signatures = tc.getSignaturesOfType(tsType, Call);
-			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, access, declaration);
+			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, symbol, declaration);
 			selfCallStatic.enableAccess(AStatic);
 			fields.push(selfCallStatic);
 		}
@@ -711,7 +699,7 @@ class ConverterContext {
 		// class-fields
 		for (classMember in classMembers) {
 			// Log.log('\t<green>classMember</>', classMember);
-			fields.push(fieldFromSymbol(classMember.name, classMember, access, declaration));
+			fields.push(fieldFromSymbol(classMember.name, classMember, symbol, declaration));
 		}
 		
 		return fields;
@@ -721,10 +709,10 @@ class ConverterContext {
 		Return true if the type will be represented as a structure in haxe
 		@! needs review
 	**/
-	@:pure function isTypeStructureInHaxe(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Bool {
+	@:pure function isTypeStructureInHaxe(type: TsType, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Bool {
 		if (type.flags & TypeFlags.Object != 0) {
 			// check the type can be converted
-			if (isHxAny(complexTypeFromTsType(type, accessContext, enclosingDeclaration))) {
+			if (isHxAny(complexTypeFromTsType(type, referenceContext, enclosingDeclaration))) {
 				return false;
 			}
 
@@ -738,7 +726,7 @@ class ConverterContext {
 			if (appearsToBeStructure) {
 				// @! todo
 				// assume any types in the haxe standard library are not structures. @! This can be improved in the future
-				// var hxTypePath = haxeTypePathMap.getTypePath(type.symbol, accessContext, false);
+				// var hxTypePath = haxeTypePathMap.getTypePath(type.symbol, referenceContext, false);
 				// if (hxTypePath.isExistingStdLibType) {
 				// 	return false;
 				// }
@@ -806,11 +794,11 @@ class ConverterContext {
 	var _currentTypeStack: Array<TsType> = [];
 	var _rasterizeMappedTypes = true;
 	/**
-		- `accessContext` is the symbol access path for the symbol that contains this type reference. This is required because if we're in a Global access context, type references should prefer global access (and modular context should prefer modular access). For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`). If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
+		- `referenceContext` is the context where type is converted, it's mainly used for type shortening when referencing types in the current module
 		- `allowAlias` - set to false to disable referring to types via an alias (i.e. `type = X`)
 		- `preferInterfaceStructure` - set to true return the interface-structure version of a type in haxe. This is not handled recursively, so only the top-level reference will prefer-interface-structure
 	**/
-	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true, preferInterfaceStructure: Bool = false): ComplexType {
+	function complexTypeFromTsType(type: TsType, ?referenceContext: Symbol, ?enclosingDeclaration: Node, ?allowAlias = true, preferInterfaceStructure: Bool = false): ComplexType {
 		// alias : this -> real type
 		if (type.isThisType()) {
 			var thisTarget = type.getThisTypeTarget();
@@ -843,21 +831,21 @@ class ConverterContext {
 					// if the type argument is a single type parameter, remove the mapped type
 					// this is someone of a fudge, but will better than just returning `{ }` most of the time
 					case [t] if (t.flags & TypeFlags.TypeParameter != 0):
-						complexTypeFromTsType(t, accessContext, enclosingDeclaration);
+						complexTypeFromTsType(t, referenceContext, enclosingDeclaration);
 					default:
 						// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
 						_rasterizeMappedTypes = false;
 						// special handling of mapped types
 						// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
-						var t = complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+						var t = complexTypeAnonFromTsType(type, referenceContext, enclosingDeclaration);
 						_rasterizeMappedTypes = true;
 						t;
 				}
 			} else {
 				// haxe type alias
-				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, preferInterfaceStructure);
+				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, referenceContext, preferInterfaceStructure);
 				var params = if (type.aliasTypeArguments != null) {
-					type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration)));
+					type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, referenceContext, enclosingDeclaration)));
 				} else [];
 				TPath({
 					pack: haxeTypePath.pack,
@@ -894,12 +882,12 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.Void) != 0) {
 			macro :Void;
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
-			var hxTypePath = getReferencedHaxeTypePath(type.symbol, accessContext, false);
+			var hxTypePath = getReferencedHaxeTypePath(type.symbol, referenceContext, false);
 			TPath(hxTypePath);
 		} else if (type.flags & (TypeFlags.Union) != 0) {
-			complexTypeFromUnionType(cast type, accessContext, enclosingDeclaration);
+			complexTypeFromUnionType(cast type, referenceContext, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.Intersection != 0) {
-			complexTypeFromIntersectionType(cast type, accessContext, enclosingDeclaration);
+			complexTypeFromIntersectionType(cast type, referenceContext, enclosingDeclaration);
 		}
 		// @! it would be nice to use an enum-generating support type so we can preserve values of literals, but for now we can use the literal's type
 		else if (type.flags & (TypeFlags.StringLiteral) != 0) {
@@ -912,26 +900,26 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.BooleanLiteral) != 0) {
 			macro :Bool;
 		} else if (type.flags & (TypeFlags.TypeParameter) != 0) {
-			complexTypeFromTypeParameter(cast type, accessContext, enclosingDeclaration);
+			complexTypeFromTypeParameter(cast type, referenceContext, enclosingDeclaration);
 		} else if (type.flags & (TypeFlags.Object) != 0) {
-			complexTypeFromObjectType(cast type, accessContext, preferInterfaceStructure, enclosingDeclaration);
+			complexTypeFromObjectType(cast type, referenceContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
 		} else if (type.flags & TypeFlags.BigInt != 0) {
 			// we don't support BigInt at a language level, but we can convert the BigInt type itself instead
-			complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+			complexTypeFromTsType(tc.getApparentType(type), referenceContext, enclosingDeclaration);
 			
 
 		// these probably don't work properly:
 		// } else if (type.flags & TypeFlags.Index != 0) {
-		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// 	complexTypeFromTsType(tc.getApparentType(type), referenceContext, enclosingDeclaration);
 		// } else if (type.flags & TypeFlags.Conditional != 0) {
 			// @! can map these to unions
-		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// 	complexTypeFromTsType(tc.getApparentType(type), referenceContext, enclosingDeclaration);
 		// } else if (type.flags & TypeFlags.Substitution != 0) {
-		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// 	complexTypeFromTsType(tc.getApparentType(type), referenceContext, enclosingDeclaration);
 		// } else if (type.flags & TypeFlags.IndexedAccess != 0) {
-		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		// 	complexTypeFromTsType(tc.getApparentType(type), referenceContext, enclosingDeclaration);
 
 		} else {
 			Log.warn('Type not yet supported', type);
@@ -953,12 +941,12 @@ class ConverterContext {
 		return complexType;
 	}
 
-	function complexTypeFromUnionType(unionType: UnionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromUnionType(unionType: UnionType, ?referenceContext: Symbol, ?enclosingDeclaration: Node): ComplexType {
 		// if union has null, undefined filter out and consider type as nullable
 		var typesWithoutNullable = unionType.types.filter(t -> t.flags & (TypeFlags.Null | TypeFlags.Undefined) == 0);
 		var nullable = typesWithoutNullable.length != unionType.types.length;
 		// convert union's TsTypes to haxe ComplexTypes
-		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, referenceContext, enclosingDeclaration)).deduplicateTypes();
 		// if we have :Any in our union, just replace the whole thing with :Any (this can happen if a type failed conversion)
 		// Null<Any> is useful as doc however
 		if (!nullable && hxTypes.exists(t -> isHxAny(t))) {
@@ -973,21 +961,21 @@ class ConverterContext {
 		return nullable ? macro :Null<$unionType> : macro :$unionType;
 	}
 
-	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromIntersectionType(intersectionType: IntersectionType, ?referenceContext: Symbol, ?enclosingDeclaration: Node): ComplexType {
 		var types = intersectionType.types.filter(t -> {
 			// filter out types we cannot handle
 			t.flags & TypeFlags.NonPrimitive == 0;
 		});
 
 		// in haxe we can only intersect structures, ensure all types will be represented as structures in haxe
-		var hasNonStructureType = types.exists(t -> !isTypeStructureInHaxe(t, accessContext, enclosingDeclaration));
+		var hasNonStructureType = types.exists(t -> !isTypeStructureInHaxe(t, referenceContext, enclosingDeclaration));
 
 		var nativelyIntersectable = !hasNonStructureType;
 
 		// in haxe, structure intersections must all have unique field names
 		// convert all types to haxe anons and compare fields to determine if there are any name clashes
 		if (nativelyIntersectable) {
-			var hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+			var hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, referenceContext, enclosingDeclaration)).deduplicateTypes();
 			var seenFieldNames = new Map<String, Bool>();
 			var selfCallFields = 0;
 			for (hxAnonType in hxAnonTypes) {
@@ -1032,21 +1020,19 @@ class ConverterContext {
 
 				This is fixed in haxe 4.2
 			**/
-			var accessSymbolChain = accessContext.extractSymbolChain();
-			var accessModuleSymbol = accessSymbolChain[accessSymbolChain.length - 1];
-			var selfReferencedType = accessModuleSymbol != null ? types.find(t -> t.symbol == accessModuleSymbol || t.aliasSymbol == accessModuleSymbol) : null;
+			var selfReferencedType = referenceContext != null ? types.find(t -> t.symbol == referenceContext || t.aliasSymbol == referenceContext) : null;
 			if (selfReferencedType != null) {
 				Log.warn('Recursive intersections are not supported (haxe issue #9397); some type information will be lost', intersectionType);
-				complexTypeFromTsType(selfReferencedType, accessContext, enclosingDeclaration);
+				complexTypeFromTsType(selfReferencedType, referenceContext, enclosingDeclaration);
 			} else {
 				// native haxe intersection
 				// convert intersections, preferring interface structure references where possible
-				var hxTypes = types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration, null, true)).deduplicateTypes();
+				var hxTypes = types.map(t -> complexTypeFromTsType(t, referenceContext, enclosingDeclaration, null, true)).deduplicateTypes();
 				TIntersection(hxTypes);
 			}
 		} else {
 			if (allowIntersectionRasterization) {
-				complexTypeAnonFromTsType(intersectionType, accessContext, enclosingDeclaration);
+				complexTypeAnonFromTsType(intersectionType, referenceContext, enclosingDeclaration);
 			} else {
 				// @! todo: avoid recursive type conversion (see jquery)
 				macro :Dynamic;
@@ -1054,13 +1040,13 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromTypeParameter(typeParameter: TypeParameter, ?referenceContext: Symbol, ?enclosingDeclaration: Node): ComplexType {
 		return if (typeParameter.symbol != null) {
 			// there's also a variation `IndexedAccessType` that's not currently handled
 			// `: this` seems to need special handling
 			var thisTarget: Null<TsType> = typeParameter.getThisTypeTarget();
 			if (typeParameter.isThisType() && thisTarget != null) {
-				complexTypeFromTsType(thisTarget, accessContext, enclosingDeclaration);
+				complexTypeFromTsType(thisTarget, referenceContext, enclosingDeclaration);
 			} else {
 				TPath({
 					name: typeParameter.symbol.name.toSafeTypeName(),
@@ -1073,7 +1059,7 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromObjectType(objectType: ObjectType, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromObjectType(objectType: ObjectType, ?referenceContext: Symbol, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		// @! todo:
 		// Mapped           = 1 << 5,  // Mapped
 		// Instantiated     = 1 << 6,  // Instantiated anonymous or mapped type
@@ -1090,11 +1076,11 @@ class ConverterContext {
 		// ObjectRestType   = 1 << 17, // Originates in object rest declaration
 
 		return if ((objectType.objectFlags & ObjectFlags.Reference) != 0) {
-			complexTypeFromTypeReference(cast objectType, accessContext, preferInterfaceStructure, enclosingDeclaration);
+			complexTypeFromTypeReference(cast objectType, referenceContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
-			complexTypeFromInterfaceType(cast objectType, accessContext, preferInterfaceStructure, enclosingDeclaration);
+			complexTypeFromInterfaceType(cast objectType, referenceContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
-			complexTypeAnonFromTsType(objectType, accessContext, enclosingDeclaration);
+			complexTypeAnonFromTsType(objectType, referenceContext, enclosingDeclaration);
 		} else {
 			Log.warn('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
@@ -1105,7 +1091,7 @@ class ConverterContext {
 	/**
 		Generates a haxe anonymous object from the type, type does not have to be a native typescript anon
 	**/
-	function complexTypeAnonFromTsType(tsType: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+	function complexTypeAnonFromTsType(tsType: TsType, ?referenceContext: Symbol, ?enclosingDeclaration: Node) {
 		if (tsType.flags & TypeFlags.TypeParameter != 0) {
 			Log.warn('Cannot get anon type from type parameter', tsType);
 			return macro :Dynamic;
@@ -1131,7 +1117,7 @@ class ConverterContext {
 
 		// for the special case of a single call signature and no props we can return a function type
 		return if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
-			complexTypeFromCallSignature(callSignatures[0], accessContext, enclosingDeclaration);
+			complexTypeFromCallSignature(callSignatures[0], referenceContext, enclosingDeclaration);
 		} else {
 			var fields = new Array<Field>();
 
@@ -1146,11 +1132,11 @@ class ConverterContext {
 				Then to use overloads, you can do, `x.call(3)` and this compiles to `x(3)`
 			**/
 			if (callSignatures.length > 0) {
-				fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, accessContext, enclosingDeclaration));
+				fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, referenceContext, enclosingDeclaration));
 			}
 
 			// add properties
-			fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, accessContext, enclosingDeclaration)));
+			fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, referenceContext, enclosingDeclaration)));
 
 			// remove disallowed accessors (only `final` is allowed on anon object fields)
 			for (field in fields) {
@@ -1166,17 +1152,17 @@ class ConverterContext {
 		}
 	}
 
-	function functionFieldFromCallSignatures(fieldName: String, callSignatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
-		var field = functionFieldFromSignatures(fieldName, callSignatures, accessContext, enclosingDeclaration);
+	function functionFieldFromCallSignatures(fieldName: String, callSignatures: Array<Signature>, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Field {
+		var field = functionFieldFromSignatures(fieldName, callSignatures, referenceContext, enclosingDeclaration);
 		field.setMeta(':selfCall');
 		return field;
 	}
 
-	function functionFieldFromSignatures(fieldName: String, signatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
+	function functionFieldFromSignatures(fieldName: String, signatures: Array<Signature>, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Field {
 		var baseSignature = signatures[0];
 		var overloadSignatures = signatures.slice(1);
 		var overloadMetas = overloadSignatures.map(signature -> {
-			var fun = functionFromSignature(signature, accessContext, enclosingDeclaration);
+			var fun = functionFromSignature(signature, referenceContext, enclosingDeclaration);
 			fun.expr = macro {};
 			return ({
 				name: ':overload',
@@ -1191,14 +1177,14 @@ class ConverterContext {
 		return {
 			name: fieldName,
 			meta: overloadMetas,
-			kind: FFun(functionFromSignature(baseSignature, accessContext, enclosingDeclaration)),
+			kind: FFun(functionFromSignature(baseSignature, referenceContext, enclosingDeclaration)),
 			doc: baseDoc,
 			pos: null,
 		};
 	}
 
-	function newFieldFromSignatures(signatures: Array<Signature>, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
-		var field = functionFieldFromSignatures('new', signatures, accessContext, enclosingDeclaration);
+	function newFieldFromSignatures(signatures: Array<Signature>, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Field {
+		var field = functionFieldFromSignatures('new', signatures, referenceContext, enclosingDeclaration);
 		switch field.kind {
 			case FFun(fun):
 				// remove return type form `function new` (disallowed in haxe)
@@ -1208,8 +1194,8 @@ class ConverterContext {
 		return field;
 	}
 
-	function complexTypeFromCallSignature(callSignature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var fun = functionFromSignature(callSignature, accessContext, enclosingDeclaration);
+	function complexTypeFromCallSignature(callSignature: Signature, ?referenceContext: Symbol, ?enclosingDeclaration: Node): ComplexType {
+		var fun = functionFromSignature(callSignature, referenceContext, enclosingDeclaration);
 		// haxe doesn't support type-parameters on function types, e.g.
 		// 	`let fun: <T>(a: T) -> void`
 		// to resolve this we replace type-parameters in fun with Any
@@ -1276,13 +1262,13 @@ class ConverterContext {
 		return this.getUnionType(functionSignatures);
 	}
 
-	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromTypeReference(typeReference: TypeReference, ?referenceContext: Symbol, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		// determine reference sub-type
 		return if ((typeReference.objectFlags & ObjectFlags.ClassOrInterface) != 0) {
-			complexTypeFromGenericType(cast typeReference, accessContext, preferInterfaceStructure, enclosingDeclaration);
+			complexTypeFromGenericType(cast typeReference, referenceContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if ((typeReference.target.objectFlags & ObjectFlags.Tuple != 0)) {
 			// it's a TupleTypeReference if its target is a Tuple
-			complexTypeFromTupleTypeReference(cast typeReference, accessContext, enclosingDeclaration);
+			complexTypeFromTupleTypeReference(cast typeReference, referenceContext, enclosingDeclaration);
 		} else {
 			if (typeReference.target == cast typeReference) { // avoid direct cycles
 				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
@@ -1290,10 +1276,10 @@ class ConverterContext {
 				return macro :Dynamic;
 			}
 			
-			var hxTarget = complexTypeFromTsType(cast typeReference.target, accessContext, enclosingDeclaration, null, preferInterfaceStructure);
+			var hxTarget = complexTypeFromTsType(cast typeReference.target, referenceContext, enclosingDeclaration, null, preferInterfaceStructure);
 
 			var hxTypeArguments = if (typeReference.typeArguments != null) {
-				typeReference.typeArguments.map(arg -> TPType(complexTypeFromTsType(arg, accessContext, enclosingDeclaration)));
+				typeReference.typeArguments.map(arg -> TPType(complexTypeFromTsType(arg, referenceContext, enclosingDeclaration)));
 			} else [];
 
 			// replace type parameters with type arguments
@@ -1311,35 +1297,35 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var hxElementTypes = tupleTypeReference.typeArguments.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration));
+	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, ?referenceContext: Symbol, ?enclosingDeclaration: Node): ComplexType {
+		var hxElementTypes = tupleTypeReference.typeArguments.map(t -> complexTypeFromTsType(t, referenceContext, enclosingDeclaration));
 		return this.getTupleType(hxElementTypes);
 	}
 
 	/**
 		While a GenericType could include the full type definition because the return is ComplexType we just return a TPath()
 	**/
-	function complexTypeFromGenericType(genericType: GenericType & TypeReference, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromGenericType(genericType: GenericType & TypeReference, ?referenceContext: Symbol, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		// sub-type of GenericType
 		return if (genericType.objectFlags & ObjectFlags.Tuple != 0) {
-			complexTypeFromTupleType(cast genericType, accessContext, enclosingDeclaration);
+			complexTypeFromTupleType(cast genericType, referenceContext, enclosingDeclaration);
 		} else {
-			complexTypeFromInterfaceType(genericType, accessContext, preferInterfaceStructure, enclosingDeclaration);
+			complexTypeFromInterfaceType(genericType, referenceContext, preferInterfaceStructure, enclosingDeclaration);
 		}
 	}
 
-	function complexTypeFromTupleType(tupleType: TupleType, accessContext: SymbolAccess, ?enclosingDeclaration: Node) {
+	function complexTypeFromTupleType(tupleType: TupleType, ?referenceContext: Symbol, ?enclosingDeclaration: Node) {
 		Log.warn('Todo: TupleType', tupleType);
 		// need an example where this path is hit
 		debug();
 		return macro :std.Array<Any>;
 	}
 
-	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, ?referenceContext: Symbol, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
-			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, accessContext, preferInterfaceStructure);
+			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, referenceContext, preferInterfaceStructure);
 			hxTypePath.params = if (classOrInterfaceType.typeParameters != null) {
-				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, accessContext, enclosingDeclaration)));
+				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, referenceContext, enclosingDeclaration)));
 			} else null;
 			TPath(hxTypePath);
 		} else {
@@ -1384,13 +1370,13 @@ class ConverterContext {
 		}
 	}
 
-	function complexTypeFromTypeNode(node: TypeNode, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+	function complexTypeFromTypeNode(node: TypeNode, ?referenceContext: Symbol, ?enclosingDeclaration: Node): ComplexType {
 		var type = tc.getTypeFromTypeNode(node);
 		if (untyped type.intrinsicName == 'error') {
 			debug();
 			Log.error('Internal error: Error getting type from type node', node);
 		}
-		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
+		return complexTypeFromTsType(type, referenceContext, enclosingDeclaration);
 	}
 
 	function getTsTypeOfField(symbol: Symbol) {
@@ -1401,7 +1387,7 @@ class ConverterContext {
 		}
 	}
 
-	function fieldFromSymbol(nativeFieldName: String, symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Field {
+	function fieldFromSymbol(nativeFieldName: String, symbol: Symbol, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Field {
 		var pos = symbol.getPosition();
 		var meta = new Array<MetadataEntry>();
 		var safeName = nativeFieldName.toSafeIdent();
@@ -1439,7 +1425,7 @@ class ConverterContext {
 		
 		function kindFromFunctionSignatures(signatures: Array<Signature>) {
 			return if (signatures.length > 0) {
-				var functionField = functionFieldFromSignatures(safeName, signatures, accessContext, enclosingDeclaration);
+				var functionField = functionFieldFromSignatures(safeName, signatures, referenceContext, enclosingDeclaration);
 				if (functionField.meta != null) {
 					meta = meta.concat(functionField.meta);
 				}
@@ -1488,7 +1474,7 @@ class ConverterContext {
 						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 				}
 
-				var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
+				var hxType = complexTypeFromTsType(tsType, referenceContext, enclosingDeclaration);
 
 				if (isOptional) {
 					hxType = hxType.unwrapNull();
@@ -1527,7 +1513,7 @@ class ConverterContext {
 			onError('Unhandled symbol flags');
 			var type = tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
 			debug();
-			FVar(complexTypeFromTsType(type, accessContext, enclosingDeclaration), null);
+			FVar(complexTypeFromTsType(type, referenceContext, enclosingDeclaration), null);
 
 		}
 
@@ -1554,8 +1540,8 @@ class ConverterContext {
 		return field;
 	}
 
-	function functionFromSignature(signature: Signature, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Function {
-		var hxTypeParams = if (signature.typeParameters != null) signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, accessContext, enclosingDeclaration)) else [];
+	function functionFromSignature(signature: Signature, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Function {
+		var hxTypeParams = if (signature.typeParameters != null) signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, referenceContext, enclosingDeclaration)) else [];
 
 		var hxParameters = if (signature.parameters != null ) tc.getExpandedParameters(signature).map(s -> {
 			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
@@ -1564,7 +1550,7 @@ class ConverterContext {
 			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
 			var tsType = parameterDeclaration != null ? tc.getTypeOfSymbolAtLocation(s, parameterDeclaration) : untyped s.type;
 
-			var hxType = complexTypeFromTsType(tsType, accessContext, parameterDeclaration);
+			var hxType = complexTypeFromTsType(tsType, referenceContext, parameterDeclaration);
 
 			// a rest parameter cannot be optional in ts
 			if (isRest) {
@@ -1593,7 +1579,7 @@ class ConverterContext {
 			}: FunctionArg);
 		}) else [];
 
-		var hxRet = complexTypeFromTsType(tc.getReturnTypeOfSignature(signature), accessContext, signature.declaration);
+		var hxRet = complexTypeFromTsType(tc.getReturnTypeOfSignature(signature), referenceContext, signature.declaration);
 
 		return {
 			args: hxParameters,
@@ -1607,19 +1593,19 @@ class ConverterContext {
 		Given a symbol with type-parameter declarations, e.g. `class X<T extends number>`, return the haxe type-parameter declaration equivalent
 		Symbol must declare a `Class`, `Interface` or `TypeAlias`
 	**/
-	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
+	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, ?referenceContext: Symbol, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		return [for (t in symbol.getDeclarationTypeParameters()) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
-			constraints: enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, accessContext, enclosingDeclaration)] : null
+			constraints: enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, referenceContext, enclosingDeclaration)] : null
 		}];
 	}
 
-	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
+	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, ?referenceContext: Symbol, ?enclosingDeclaration: Node): TypeParamDecl {
 		// for some reason typeParameter.getConstraint() has issues
 		// in the following class field `parse<X extends Example>(a: T): void;`, the constraint `Example` is reported as having typeArguments when it doesn't
 		var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
 		var hxConstraint = if (typeParamNode != null && typeParamNode.constraint != null ) {
-			complexTypeFromTypeNode(typeParamNode.constraint, accessContext, enclosingDeclaration);
+			complexTypeFromTypeNode(typeParamNode.constraint, referenceContext, enclosingDeclaration);
 		} else null;
 		return {
 			name: typeParameter.symbol.name.toSafeTypeName(),
