@@ -310,8 +310,7 @@ class Main {
 			}
 
 
-		// if the user references a module by a direct path, like ./example/test and there's no associated package information, we assume they don't want library wrapper
-		var generateLibraryWrapper = libWrapper && !(TsProgramTools.isDirectPathReferenceModule(moduleName) && (converter.packageName == null));
+		var generateLibraryWrapper = libWrapper && converter.inputModule.packageId != null;
 
 		// if output path is unset, default to either .haxelib/ or externs/ depending on whether or not the input module is a package
 		var outputPath: String = if (outputPath != null) outputPath else {
