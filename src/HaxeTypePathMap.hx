@@ -468,7 +468,7 @@ class HaxeTypePathMap {
 		return switch a {
 			case ExportModule(_): 3;
 			case AmbientModule(_): 2;
-			case Global(symbolChain): 1;
+			case Global(_): 1;
 			case Inaccessible: 0;
 		}
 	}
