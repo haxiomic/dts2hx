@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three") extern abstract TextureDataType(Any) from Any to Any {
+@:enum @:jsRequire("three") extern abstract TextureDataType(Any) from Any to Any {
 	var UnsignedByteType : TextureDataType;
 	var ByteType : TextureDataType;
 	var ShortType : TextureDataType;

@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three") extern abstract BlendingDstFactor(Any) from Any to Any {
+@:enum @:jsRequire("three") extern abstract BlendingDstFactor(Any) from Any to Any {
 	var ZeroFactor : BlendingDstFactor;
 	var OneFactor : BlendingDstFactor;
 	var SrcColorFactor : BlendingDstFactor;

@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three") extern abstract PixelType(Any) from Any to Any {
+@:enum @:jsRequire("three") extern abstract PixelType(Any) from Any to Any {
 	var UnsignedShort4444Type : PixelType;
 	var UnsignedShort5551Type : PixelType;
 	var UnsignedShort565Type : PixelType;

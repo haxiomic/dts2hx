@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three") extern abstract CompressedPixelFormat(Any) from Any to Any {
+@:enum @:jsRequire("three") extern abstract CompressedPixelFormat(Any) from Any to Any {
 	var RGB_S3TC_DXT1_Format : CompressedPixelFormat;
 	var RGBA_S3TC_DXT1_Format : CompressedPixelFormat;
 	var RGBA_S3TC_DXT3_Format : CompressedPixelFormat;

@@ -1,6 +1,6 @@
 package global.three;
 
-@:native("THREE") extern abstract Blending(Any) from Any to Any {
+@:enum @:native("THREE") extern abstract Blending(Any) from Any to Any {
 	var NoBlending : Blending;
 	var NormalBlending : Blending;
 	var AdditiveBlending : Blending;

@@ -1,6 +1,6 @@
 package global.three;
 
-@:native("THREE") extern abstract DepthModes(Any) from Any to Any {
+@:enum @:native("THREE") extern abstract DepthModes(Any) from Any to Any {
 	var NeverDepth : DepthModes;
 	var AlwaysDepth : DepthModes;
 	var LessDepth : DepthModes;
