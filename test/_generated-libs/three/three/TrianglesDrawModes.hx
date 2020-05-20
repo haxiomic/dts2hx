@@ -1,3 +1,7 @@
 package three;
 
-@:jsRequire("three", "TrianglesDrawModes") @:enum extern abstract TrianglesDrawModes(Any) from Any to Any { }
+@:jsRequire("three", "TrianglesDrawModes") @:enum extern abstract TrianglesDrawModes(Any) from Any to Any {
+	var TrianglesDrawMode : TrianglesDrawModes;
+	var TriangleStripDrawMode : TrianglesDrawModes;
+	var TriangleFanDrawMode : TrianglesDrawModes;
+}

@@ -1,3 +1,7 @@
 package global.three;
 
-@:native("THREE.Combine") @:enum extern abstract Combine(Any) from Any to Any { }
+@:native("THREE.Combine") @:enum extern abstract Combine(Any) from Any to Any {
+	var MultiplyOperation : Combine;
+	var MixOperation : Combine;
+	var AddOperation : Combine;
+}

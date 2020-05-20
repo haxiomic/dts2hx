@@ -1,3 +1,5 @@
 package global.three;
 
-@:native("THREE.BlendingSrcFactor") @:enum extern abstract BlendingSrcFactor(Any) from Any to Any { }
+@:native("THREE.BlendingSrcFactor") @:enum extern abstract BlendingSrcFactor(Any) from Any to Any {
+	var SrcAlphaSaturateFactor : BlendingSrcFactor;
+}
