@@ -54,7 +54,7 @@ class PostProcess {
 							}
 							hxEnumModule.removeMeta(':native');
 							hxEnumModule.removeMeta(':jsRequire');
-							var metas = if (hxEnumModule == null) {
+							var metas = if (hxEnumModule.meta == null) {
 								hxEnumModule.meta = [];
 							} else hxEnumModule.meta;
 							metas.push(parentAccess.toAccessMetadata());

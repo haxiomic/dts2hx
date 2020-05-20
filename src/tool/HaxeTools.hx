@@ -35,7 +35,7 @@ class HaxeTools {
 		var metas = if (target.meta == null) {
 			target.meta = [];
 		} else target.meta;
-		target.meta = metas.filter(m -> m.name == metaName);
+		target.meta = metas.filter(m -> m.name != metaName);
 	}
 
 	/**
