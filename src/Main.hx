@@ -137,6 +137,10 @@ class Main {
 				cliOptions.allowIntersectionRasterization = true;
 			},
 
+			'--noDts2hxVersion' => () -> {
+				dts2hxPackageJson.version = 'x.x.x';
+			},
+
 			@doc('Module name')
 			_ => (arg: String) -> {
 				if (arg.charAt(0) == '-') {
