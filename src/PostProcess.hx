@@ -41,8 +41,23 @@ class PostProcess {
 							var fieldChain = access.getIdentifierChain().copy();
 							enumTypeChain.pop(); fieldChain.pop();
 							if (enumTypeChain.join('.') == fieldChain.join('.')) { // matching access path
-								hxEnumModule.fields.push(ctx.fieldFromSymbol(symbol.name, symbol, access, null));
+								var enumField = ctx.fieldFromSymbol(symbol.name, symbol, enumTypeSymbolAccess, null);
+								hxEnumModule.fields.push(enumField);
 							}
+
+							// set the access on the enum to the same as the field's parent
+							var parentAccess: SymbolAccess= switch access {
+								case AmbientModule(modulePath, moduleSymbol, symbolChain): AmbientModule(modulePath, moduleSymbol, symbolChain.slice(0, symbolChain.length - 1));
+								case ExportModule(moduleName, sourceFileSymbol, symbolChain): ExportModule(moduleName, sourceFileSymbol, symbolChain.slice(0, symbolChain.length - 1));
+								case Global(symbolChain): Global(symbolChain.slice(0, symbolChain.length - 1));
+								case Inaccessible: Inaccessible;
+							}
+							hxEnumModule.removeMeta(':native');
+							hxEnumModule.removeMeta(':jsRequire');
+							var metas = if (hxEnumModule == null) {
+								hxEnumModule.meta = [];
+							} else hxEnumModule.meta;
+							metas.push(parentAccess.toAccessMetadata());
 						}
 					}
 				}

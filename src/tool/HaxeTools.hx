@@ -14,10 +14,10 @@ class HaxeTools {
 		max: -1,
 	}
 
-	static public function setMeta(field: Field, metaName: String, ?params: Array<Expr>) {
-		var metas = field.meta;
+	static public function setMeta(target: {?meta: Metadata}, metaName: String, ?params: Array<Expr>) {
+		var metas = target.meta;
 		if (metas == null) {
-			field.meta = metas = [];
+			target.meta = metas = [];
 		}
 		var existingMeta = metas.find(m -> m.name == metaName);
 		if (existingMeta != null) {
@@ -31,27 +31,34 @@ class HaxeTools {
 		}
 	}
 
+	static public function removeMeta(target: {?meta: Metadata}, metaName: String) {
+		var metas = if (target.meta == null) {
+			target.meta = [];
+		} else target.meta;
+		target.meta = metas.filter(m -> m.name == metaName);
+	}
+
 	/**
 		Returns field name, or @:native(name) if there is metadata.
 	**/
-	static public function getNativeName(field: Field): String {
-		var nativeMeta = getMeta(field, ':native');
+	static public function getNativeName(target: {name: String, ?meta: Metadata}): String {
+		var nativeMeta = getMeta(target, ':native');
 		switch (nativeMeta: MetadataEntry) {
 			case null | {params: null}:
 			case {params: [{expr: EConst(CString(s, _))}]}:
 				return s;
 			default:
 		}
-		return field.name;
+		return target.name;
 	}
 
-	static public function getMeta(field: Field, metaName: String): Null<MetadataEntry> {
+	static public function getMeta(field: {?meta: Metadata}, metaName: String): Null<MetadataEntry> {
 		return if (field.meta != null) {
 			field.meta.find(m -> m.name == metaName);
 		} else null;
 	}
 
-	static public function hasAccess(field: Field, access: Access) {
+	static public function hasAccess(field: {?access: Array<Access>}, access: Access) {
 		return if (field.access != null) {
 			field.access.has(access);
 		} else false;
@@ -60,7 +67,7 @@ class HaxeTools {
 	/**
 		Adds an Access modifier to a field, avoiding duplicates
 	**/
-	static public function enableAccess(field: Field, access: Access) {
+	static public function enableAccess(field: {?access: Array<Access>}, access: Access) {
 		var accessArray = if (field.access != null) {
 			field.access;
 		} else {
@@ -74,7 +81,7 @@ class HaxeTools {
 	/**
 		Removes an access modifier from a field (if duplicated, remove all instances)
 	**/
-	static public function disableAccess(field: Field, access: Access) {
+	static public function disableAccess(field: {?access: Array<Access>}, access: Access) {
 		if (field.access != null) {
 			field.access = field.access.filter(a -> a != access);
 		}
