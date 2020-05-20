@@ -103,6 +103,11 @@ class ConverterContext {
 	**/
 	final declarationSymbolQueue = new OnceOnlySymbolQueue();
 
+	/**
+		To aid post processing, when a symbol is popped `declarationSymbolQueue` after converting is it added to this list
+	**/
+	final processedDeclarationSymbols = new Array<Symbol>();
+
 	final locationComments: Bool;
 
 	// settings
@@ -221,15 +226,15 @@ class ConverterContext {
 					field.enableAccess(AStatic);
 					globalModule.fields.push(field);
 				}
-			
+				
 				// we will also get module variable symbols here but these are handled in `generateHaxeModulesFromSymbol` instead
 			}
+
+			processedDeclarationSymbols.push(symbol);
 		}
 
-		// iterate the generated types and resolve name collisions between fields
-		for (_ => hxModule in generatedModules) {
-			HaxeTools.resolveNameCollisions(hxModule.fields);
-		}
+		// special case pattern detection and field name clash resolution
+		PostProcess.run(this);
 	}
 
 	/**
