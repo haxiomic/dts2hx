@@ -1,6 +1,6 @@
 package global.three;
 
-@:native("THREE.TextureFilter") @:enum extern abstract TextureFilter(Any) from Any to Any {
+@:native("THREE") extern abstract TextureFilter(Any) from Any to Any {
 	var NearestFilter : TextureFilter;
 	var NearestMipmapNearestFilter : TextureFilter;
 	var NearestMipMapNearestFilter : TextureFilter;

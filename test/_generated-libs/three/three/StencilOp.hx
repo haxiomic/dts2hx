@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three", "StencilOp") @:enum extern abstract StencilOp(Any) from Any to Any {
+@:jsRequire("three") extern abstract StencilOp(Any) from Any to Any {
 	var ZeroStencilOp : StencilOp;
 	var KeepStencilOp : StencilOp;
 	var ReplaceStencilOp : StencilOp;

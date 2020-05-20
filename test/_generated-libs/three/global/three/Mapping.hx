@@ -1,6 +1,6 @@
 package global.three;
 
-@:native("THREE.Mapping") @:enum extern abstract Mapping(Any) from Any to Any {
+@:native("THREE") extern abstract Mapping(Any) from Any to Any {
 	var UVMapping : Mapping;
 	var CubeReflectionMapping : Mapping;
 	var CubeRefractionMapping : Mapping;

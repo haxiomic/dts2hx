@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three", "CullFace") @:enum extern abstract CullFace(Any) from Any to Any {
+@:jsRequire("three") extern abstract CullFace(Any) from Any to Any {
 	var CullFaceNone : CullFace;
 	var CullFaceBack : CullFace;
 	var CullFaceFront : CullFace;

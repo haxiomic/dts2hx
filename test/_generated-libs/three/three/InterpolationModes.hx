@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three", "InterpolationModes") @:enum extern abstract InterpolationModes(Any) from Any to Any {
+@:jsRequire("three") extern abstract InterpolationModes(Any) from Any to Any {
 	var InterpolateDiscrete : InterpolationModes;
 	var InterpolateLinear : InterpolationModes;
 	var InterpolateSmooth : InterpolationModes;
