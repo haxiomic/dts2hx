@@ -2,14 +2,14 @@ package global.jquery;
 
 typedef Selectors = {
 	@:native(":")
-	var Colon : sizzle.selectors.PseudoFunctions;
-	var filter : sizzle.selectors.FilterFunctions;
+	var Colon : global.sizzle.selectors.PseudoFunctions;
+	var filter : global.sizzle.selectors.FilterFunctions;
 	var cacheLength : Float;
-	var match : sizzle.selectors.Matches;
-	var find : sizzle.selectors.FindFunctions;
-	var preFilter : sizzle.selectors.PreFilterFunctions;
-	var attrHandle : sizzle.selectors.AttrHandleFunctions;
-	var pseudos : sizzle.selectors.PseudoFunctions;
-	var setFilters : sizzle.selectors.SetFilterFunctions;
-	function createPseudo(fn:sizzle.selectors.CreatePseudoFunction):sizzle.selectors.PseudoFunction;
+	var match : global.sizzle.selectors.Matches;
+	var find : global.sizzle.selectors.FindFunctions;
+	var preFilter : global.sizzle.selectors.PreFilterFunctions;
+	var attrHandle : global.sizzle.selectors.AttrHandleFunctions;
+	var pseudos : global.sizzle.selectors.PseudoFunctions;
+	var setFilters : global.sizzle.selectors.SetFilterFunctions;
+	function createPseudo(fn:global.sizzle.selectors.CreatePseudoFunction):global.sizzle.selectors.PseudoFunction;
 };
