@@ -40,8 +40,6 @@ export namespace Types {
     type Intersection = number & string;
     type NullOrUndefined = null | undefined;
 
-    type _lowercasename = string;
-
     type StructureType = {
         field: number;
         sub: {
@@ -312,5 +310,10 @@ export namespace Types {
          */
         parent: INode<T> & ParentNode;
     }
+
+    /**
+     * Should translate to _Lowercasename
+     */
+    type _lowercasename = string;
 
 }
