@@ -10,6 +10,6 @@ package js.html;
 	@:overload(function(intervalId:global.nodejs.Timeout):Void { })
 	static function clearInterval(?handle:Float):Void;
 	@:overload(function(callback:() -> Void):Void { })
-	static function queueMicrotask(callback:js.lib.Function):Void;
+	static function queueMicrotask(callback:haxe.Constraints.Function):Void;
 	static var console : js.html.Console;
 }

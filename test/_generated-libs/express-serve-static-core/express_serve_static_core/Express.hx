@@ -196,8 +196,8 @@ typedef Express = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Express;
 	function setMaxListeners(n:Float):Express;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;

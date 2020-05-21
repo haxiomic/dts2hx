@@ -154,8 +154,8 @@ package global.three;
 	/**
 		A build in function that can be used instead of requestAnimationFrame. For WebVR projects this function must be used.
 	**/
-	function setAnimationLoop(callback:js.lib.Function):Void;
-	function animate(callback:js.lib.Function):Void;
+	function setAnimationLoop(callback:haxe.Constraints.Function):Void;
+	function animate(callback:haxe.Constraints.Function):Void;
 	/**
 		Compiles all materials in the scene with the camera. This is useful to precompile shaders before the first rendering.
 	**/

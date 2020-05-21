@@ -7,6 +7,6 @@ package global.three;
 	var value : Dynamic;
 	@:native("dynamic")
 	var dynamic_ : Bool;
-	var onUpdateCallback : js.lib.Function;
-	function onUpdate(callback:js.lib.Function):Uniform;
+	var onUpdateCallback : haxe.Constraints.Function;
+	function onUpdate(callback:haxe.Constraints.Function):Uniform;
 }

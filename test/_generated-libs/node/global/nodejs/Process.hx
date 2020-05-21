@@ -19,7 +19,7 @@ typedef Process = {
 	function chdir(directory:String):Void;
 	function cwd():String;
 	var debugPort : Float;
-	function emitWarning(warning:ts.AnyOf2<String, js.lib.Error>, ?name:String, ?ctor:js.lib.Function):Void;
+	function emitWarning(warning:ts.AnyOf2<String, js.lib.Error>, ?name:String, ?ctor:haxe.Constraints.Function):Void;
 	var env : ProcessEnv;
 	function exit(?code:Float):Any;
 	var exitCode : Float;
@@ -73,7 +73,7 @@ typedef Process = {
 	var mainModule : global.NodeModule;
 	function memoryUsage():MemoryUsage;
 	function cpuUsage(?previousValue:CpuUsage):CpuUsage;
-	function nextTick(callback:js.lib.Function, args:haxe.extern.Rest<Dynamic>):Void;
+	function nextTick(callback:haxe.Constraints.Function, args:haxe.extern.Rest<Dynamic>):Void;
 	var release : ProcessRelease;
 	var features : {
 		var inspector : Bool;
@@ -205,7 +205,7 @@ typedef Process = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Process;
 	function setMaxListeners(n:Float):Process;
 	function getMaxListeners():Float;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 };

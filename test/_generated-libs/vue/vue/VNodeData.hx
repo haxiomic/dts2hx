@@ -40,8 +40,8 @@ typedef VNodeData = {
 	var show : Bool;
 	@:optional
 	var inlineTemplate : {
-		var render : js.lib.Function;
-		var staticRenderFns : Array<js.lib.Function>;
+		var render : haxe.Constraints.Function;
+		var staticRenderFns : Array<haxe.Constraints.Function>;
 	};
 	@:optional
 	var directives : Array<VNodeDirective>;

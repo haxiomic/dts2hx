@@ -7,11 +7,11 @@ package vue.types;
 	@:overload(function<T>(expOrFn:() -> T, callback:(n:T, o:T) -> Void, ?options:vue.WatchOptions):() -> Void { })
 	function DollarWatch(expOrFn:String, callback:(n:Dynamic, o:Dynamic) -> Void, ?options:vue.WatchOptions):() -> Void;
 	@:native("$on")
-	function DollarOn(event:ts.AnyOf2<String, Array<String>>, callback:js.lib.Function):vue.types.Umd;
+	function DollarOn(event:ts.AnyOf2<String, Array<String>>, callback:haxe.Constraints.Function):vue.types.Umd;
 	@:native("$once")
-	function DollarOnce(event:ts.AnyOf2<String, Array<String>>, callback:js.lib.Function):vue.types.Umd;
+	function DollarOnce(event:ts.AnyOf2<String, Array<String>>, callback:haxe.Constraints.Function):vue.types.Umd;
 	@:native("$off")
-	function DollarOff(?event:ts.AnyOf2<String, Array<String>>, ?callback:js.lib.Function):vue.types.Umd;
+	function DollarOff(?event:ts.AnyOf2<String, Array<String>>, ?callback:haxe.Constraints.Function):vue.types.Umd;
 	@:native("$emit")
 	function DollarEmit(event:String, args:haxe.extern.Rest<Dynamic>):vue.types.Umd;
 	@:native("$nextTick")

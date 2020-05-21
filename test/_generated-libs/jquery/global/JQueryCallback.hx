@@ -4,7 +4,7 @@ typedef JQueryCallback = {
 	/**
 		Add a callback or a collection of callbacks to a callback list.
 	**/
-	function add(callback:global.jquery.TypeOrArray<js.lib.Function>, callbacks:haxe.extern.Rest<global.jquery.TypeOrArray<js.lib.Function>>):JQueryCallback;
+	function add(callback:global.jquery.TypeOrArray<haxe.Constraints.Function>, callbacks:haxe.extern.Rest<global.jquery.TypeOrArray<haxe.Constraints.Function>>):JQueryCallback;
 	/**
 		Disable a callback list from doing anything more.
 	**/
@@ -32,7 +32,7 @@ typedef JQueryCallback = {
 	/**
 		Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.
 	**/
-	function has(?callback:js.lib.Function):Bool;
+	function has(?callback:haxe.Constraints.Function):Bool;
 	/**
 		Lock a callback list in its current state.
 	**/
@@ -44,5 +44,5 @@ typedef JQueryCallback = {
 	/**
 		Remove a callback or a collection of callbacks from a callback list.
 	**/
-	function remove(callbacks:haxe.extern.Rest<js.lib.Function>):JQueryCallback;
+	function remove(callbacks:haxe.extern.Rest<haxe.Constraints.Function>):JQueryCallback;
 };

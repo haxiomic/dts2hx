@@ -15,7 +15,7 @@ typedef CallSite = {
 	/**
 		Current function
 	**/
-	function getFunction():Null<js.lib.Function>;
+	function getFunction():Null<haxe.Constraints.Function>;
 	/**
 		Name of the current function, typically its name property.
 		If a name property is not available an attempt will be made to try

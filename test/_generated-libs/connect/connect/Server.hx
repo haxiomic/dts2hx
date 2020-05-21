@@ -2,7 +2,7 @@ package connect;
 
 typedef Server = {
 	@:selfCall
-	function call(req:node.http.IncomingMessage, res:node.http.ServerResponse, ?next:js.lib.Function):Void;
+	function call(req:node.http.IncomingMessage, res:node.http.ServerResponse, ?next:haxe.Constraints.Function):Void;
 	var route : String;
 	var stack : Array<ServerStackItem>;
 	/**
@@ -22,7 +22,7 @@ typedef Server = {
 		Handle server requests, punting them down
 		the middleware stack.
 	**/
-	function handle(req:node.http.IncomingMessage, res:node.http.ServerResponse, next:js.lib.Function):Void;
+	function handle(req:node.http.IncomingMessage, res:node.http.ServerResponse, next:haxe.Constraints.Function):Void;
 	/**
 		Listen for connections.
 		
@@ -45,10 +45,10 @@ typedef Server = {
 		      http.createServer(app).listen(80);
 		      https.createServer(options, app).listen(443);
 	**/
-	@:overload(function(port:Float, ?hostname:String, ?callback:js.lib.Function):node.http.Server { })
-	@:overload(function(path:String, ?callback:js.lib.Function):node.http.Server { })
-	@:overload(function(handle:Dynamic, ?listeningListener:js.lib.Function):node.http.Server { })
-	function listen(port:Float, ?hostname:String, ?backlog:Float, ?callback:js.lib.Function):node.http.Server;
+	@:overload(function(port:Float, ?hostname:String, ?callback:haxe.Constraints.Function):node.http.Server { })
+	@:overload(function(path:String, ?callback:haxe.Constraints.Function):node.http.Server { })
+	@:overload(function(handle:Dynamic, ?listeningListener:haxe.Constraints.Function):node.http.Server { })
+	function listen(port:Float, ?hostname:String, ?backlog:Float, ?callback:haxe.Constraints.Function):node.http.Server;
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	function on(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	function once(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
@@ -57,8 +57,8 @@ typedef Server = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Server;
 	function setMaxListeners(n:Float):Server;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;

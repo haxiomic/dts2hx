@@ -50,11 +50,11 @@ package vue;
 	@:overload(function<T>(expOrFn:() -> T, callback:(n:T, o:T) -> Void, ?options:WatchOptions):() -> Void { })
 	function DollarWatch(expOrFn:String, callback:(n:Dynamic, o:Dynamic) -> Void, ?options:WatchOptions):() -> Void;
 	@:native("$on")
-	function DollarOn(event:ts.AnyOf2<String, Array<String>>, callback:js.lib.Function):Vue;
+	function DollarOn(event:ts.AnyOf2<String, Array<String>>, callback:haxe.Constraints.Function):Vue;
 	@:native("$once")
-	function DollarOnce(event:ts.AnyOf2<String, Array<String>>, callback:js.lib.Function):Vue;
+	function DollarOnce(event:ts.AnyOf2<String, Array<String>>, callback:haxe.Constraints.Function):Vue;
 	@:native("$off")
-	function DollarOff(?event:ts.AnyOf2<String, Array<String>>, ?callback:js.lib.Function):Vue;
+	function DollarOff(?event:ts.AnyOf2<String, Array<String>>, ?callback:haxe.Constraints.Function):Vue;
 	@:native("$emit")
 	function DollarEmit(event:String, args:haxe.extern.Rest<Dynamic>):Vue;
 	@:native("$nextTick")
@@ -75,7 +75,7 @@ package vue;
 	@:overload(function<T>(array:Array<T>, key:Float):Void { })
 	static function delete(object:Dynamic, key:ts.AnyOf2<String, Float>):Void;
 	static function directive(id:String, ?definition:ts.AnyOf2<DirectiveOptions, DirectiveFunction>):DirectiveOptions;
-	static function filter(id:String, ?definition:js.lib.Function):js.lib.Function;
+	static function filter(id:String, ?definition:haxe.Constraints.Function):haxe.Constraints.Function;
 	@:overload(function<VC>(id:String, constructor:VC):VC { })
 	@:overload(function<Data, Methods, Computed, Props>(id:String, definition:AsyncComponent<Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, Props> { })
 	@:overload(function<Data, Methods, Computed, PropNames>(id:String, ?definition:vue.types.options.ThisTypedComponentOptionsWithArrayProps<Vue, Data, Methods, Computed, PropNames>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, { }> { })

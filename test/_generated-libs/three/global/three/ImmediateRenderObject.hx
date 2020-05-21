@@ -3,7 +3,7 @@ package global.three;
 @:native("THREE.ImmediateRenderObject") extern class ImmediateRenderObject extends Object3D {
 	function new(material:Material);
 	var material : Material;
-	function render(renderCallback:js.lib.Function):Void;
+	function render(renderCallback:haxe.Constraints.Function):Void;
 	function applyQuaternion(quaternion:Quaternion):ImmediateRenderObject;
 	/**
 		Rotate an object along an axis in object space. The axis is assumed to be normalized.

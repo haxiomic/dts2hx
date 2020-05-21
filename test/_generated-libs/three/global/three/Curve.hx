@@ -57,5 +57,5 @@ package global.three;
 		getTangentAt(u: number): T;
 	**/
 	function getTangentAt(u:Float):T;
-	static function create(constructorFunc:js.lib.Function, getPointFunc:js.lib.Function):js.lib.Function;
+	static function create(constructorFunc:haxe.Constraints.Function, getPointFunc:haxe.Constraints.Function):haxe.Constraints.Function;
 }

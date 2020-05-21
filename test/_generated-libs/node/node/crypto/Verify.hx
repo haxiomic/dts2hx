@@ -19,8 +19,8 @@ typedef Verify = {
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Verify;
 	function setMaxListeners(n:Float):Verify;
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<js.lib.Function>;
+	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
+	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
 	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
 	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Verify;

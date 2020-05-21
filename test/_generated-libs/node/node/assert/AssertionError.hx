@@ -1,7 +1,7 @@
 package node.assert;
 
 @:jsRequire("assert", "AssertionError") extern class AssertionError {
-	function new(?options:{ @:optional var message : String; @:optional var actual : Dynamic; @:optional var expected : Dynamic; @:optional @:native("operator") var operator_ : String; @:optional var stackStartFn : js.lib.Function; });
+	function new(?options:{ @:optional var message : String; @:optional var actual : Dynamic; @:optional var expected : Dynamic; @:optional @:native("operator") var operator_ : String; @:optional var stackStartFn : haxe.Constraints.Function; });
 	var name : String;
 	var message : String;
 	var actual : Dynamic;

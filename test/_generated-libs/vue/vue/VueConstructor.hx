@@ -13,7 +13,7 @@ typedef VueConstructor<V> = {
 	@:overload(function<T>(array:Array<T>, key:Float):Void { })
 	function delete(object:Dynamic, key:ts.AnyOf2<String, Float>):Void;
 	function directive(id:String, ?definition:ts.AnyOf2<DirectiveOptions, DirectiveFunction>):DirectiveOptions;
-	function filter(id:String, ?definition:js.lib.Function):js.lib.Function;
+	function filter(id:String, ?definition:haxe.Constraints.Function):haxe.Constraints.Function;
 	@:overload(function<VC>(id:String, constructor:VC):VC { })
 	@:overload(function<Data, Methods, Computed, Props>(id:String, definition:AsyncComponent<Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<V, Data, Methods, Computed, Props> { })
 	@:overload(function<Data, Methods, Computed, PropNames>(id:String, ?definition:vue.types.options.ThisTypedComponentOptionsWithArrayProps<V, Data, Methods, Computed, PropNames>):vue.types.vue.ExtendedVue<V, Data, Methods, Computed, { }> { })

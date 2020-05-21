@@ -6,5 +6,5 @@ package node;
 	static function runInContext(code:String, contextifiedSandbox:node.vm.Context, ?options:ts.AnyOf2<String, node.vm.RunningScriptOptions>):Dynamic;
 	static function runInNewContext(code:String, ?sandbox:node.vm.Context, ?options:ts.AnyOf2<String, node.vm.RunningScriptOptions>):Dynamic;
 	static function runInThisContext(code:String, ?options:ts.AnyOf2<String, node.vm.RunningScriptOptions>):Dynamic;
-	static function compileFunction(code:String, params:Array<String>, options:node.vm.CompileFunctionOptions):js.lib.Function;
+	static function compileFunction(code:String, params:Array<String>, options:node.vm.CompileFunctionOptions):haxe.Constraints.Function;
 }

@@ -111,20 +111,20 @@ typedef Global = {
 	var NaN : Float;
 	var Number : js.lib.NumberConstructor;
 	var Object : js.lib.ObjectConstructor;
-	var Promise : js.lib.Function;
+	var Promise : haxe.Constraints.Function;
 	var RangeError : js.lib.RangeErrorConstructor;
 	var ReferenceError : js.lib.ReferenceErrorConstructor;
 	var RegExp : js.lib.RegExpConstructor;
 	var Set : js.lib.SetConstructor;
 	var String : js.lib.StringConstructor;
-	var Symbol : js.lib.Function;
+	var Symbol : haxe.Constraints.Function;
 	var SyntaxError : js.lib.SyntaxErrorConstructor;
 	var TypeError : js.lib.TypeErrorConstructor;
 	var URIError : js.lib.URIErrorConstructor;
 	var Uint16Array : js.lib.Uint16ArrayConstructor;
 	var Uint32Array : js.lib.Uint32ArrayConstructor;
 	var Uint8Array : js.lib.Uint8ArrayConstructor;
-	var Uint8ClampedArray : js.lib.Function;
+	var Uint8ClampedArray : haxe.Constraints.Function;
 	var WeakMap : js.lib.WeakMapConstructor;
 	var WeakSet : js.lib.WeakSetConstructor;
 	dynamic function clearImmediate(immediateId:Immediate):Void;
@@ -148,7 +148,7 @@ typedef Global = {
 	dynamic function setInterval(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	dynamic function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	@:overload(function(callback:() -> Void):Void { })
-	dynamic function queueMicrotask(callback:js.lib.Function):Void;
+	dynamic function queueMicrotask(callback:haxe.Constraints.Function):Void;
 	var undefined : Null<Any>;
 	dynamic function unescape(str:String):String;
 	dynamic function gc():Void;

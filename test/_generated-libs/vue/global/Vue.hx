@@ -7,11 +7,11 @@ package global;
 	@:overload(function<T>(expOrFn:() -> T, callback:(n:T, o:T) -> Void, ?options:vue.WatchOptions):() -> Void { })
 	function DollarWatch(expOrFn:String, callback:(n:Dynamic, o:Dynamic) -> Void, ?options:vue.WatchOptions):() -> Void;
 	@:native("$on")
-	function DollarOn(event:ts.AnyOf2<String, Array<String>>, callback:js.lib.Function):Vue;
+	function DollarOn(event:ts.AnyOf2<String, Array<String>>, callback:haxe.Constraints.Function):Vue;
 	@:native("$once")
-	function DollarOnce(event:ts.AnyOf2<String, Array<String>>, callback:js.lib.Function):Vue;
+	function DollarOnce(event:ts.AnyOf2<String, Array<String>>, callback:haxe.Constraints.Function):Vue;
 	@:native("$off")
-	function DollarOff(?event:ts.AnyOf2<String, Array<String>>, ?callback:js.lib.Function):Vue;
+	function DollarOff(?event:ts.AnyOf2<String, Array<String>>, ?callback:haxe.Constraints.Function):Vue;
 	@:native("$emit")
 	function DollarEmit(event:String, args:haxe.extern.Rest<Dynamic>):Vue;
 	@:native("$nextTick")

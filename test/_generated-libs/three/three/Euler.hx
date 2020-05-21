@@ -6,7 +6,7 @@ package three;
 	var y : Float;
 	var z : Float;
 	var order : String;
-	var _onChangeCallback : js.lib.Function;
+	var _onChangeCallback : haxe.Constraints.Function;
 	function set(x:Float, y:Float, z:Float, ?order:String):Euler;
 	function clone():Euler;
 	function copy(euler:Euler):Euler;
@@ -18,7 +18,7 @@ package three;
 	function fromArray(xyzo:Array<Dynamic>):Euler;
 	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 	function toVector3(?optionalResult:Vector3):Vector3;
-	function _onChange(callback:js.lib.Function):Euler;
+	function _onChange(callback:haxe.Constraints.Function):Euler;
 	static var RotationOrders : Array<String>;
 	static var DefaultOrder : String;
 }

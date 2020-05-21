@@ -4,7 +4,7 @@ package three;
 	function new(context:Dynamic);
 	var context : Dynamic;
 	var ready : Bool;
-	var readyCallbacks : Array<js.lib.Function>;
+	var readyCallbacks : Array<haxe.Constraints.Function>;
 	function load(file:String):AudioBuffer;
-	function onReady(callback:js.lib.Function):Void;
+	function onReady(callback:haxe.Constraints.Function):Void;
 }
