@@ -36,9 +36,9 @@ typedef SecureServerOptions = {
 	@:optional
 	var ticketKeys : global.Buffer;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.Buffer, Array<Dynamic>>;
+	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, Dynamic, global.Buffer>>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.Buffer, Array<Dynamic>>;
+	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<Dynamic, global.Buffer>>>;
 	@:optional
 	var passphrase : String;
 	@:optional
