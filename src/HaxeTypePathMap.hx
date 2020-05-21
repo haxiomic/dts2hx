@@ -258,10 +258,11 @@ class HaxeTypePathMap {
 			final specialTypeMap = [
 				// we want to avoid generating the following types into ts.lib.* 
 				// preferring to map them to haxe types instead
-				'Array' => {name: 'Array', pack: []},
-				'String' => {name: 'String', pack: []},
-				'Symbol' => {name: 'Symbol', pack: ['js', 'lib']},
-				'Iterable' => {name: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
+				'Array' => {name: 'Array', moduleName: 'Array', pack: []},
+				'String' => {name: 'String', moduleName: 'String', pack: []},
+				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib']},
+				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
+				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe']}, // this is a bit questionable; need to fully review native js iteration
 			];
 			switch access {
 				// match special-case built-ins
@@ -269,7 +270,7 @@ class HaxeTypePathMap {
 					var tp = specialTypeMap.get(name);
 					return {
 						name: tp.name,
-						moduleName: tp.name,
+						moduleName: tp.moduleName,
 						pack: tp.pack,
 						isExistingStdLibType: true,
 					}
