@@ -115,6 +115,7 @@ class ConverterContext {
 	final shortenTypePaths = true;
 	final enableTypeParameterConstraints = false;
 	final typeStackLimit = 25;
+	final anyUnionCollapse = false; // `any | string` -> `any`
 
 	public function new(
 		inputModuleName: String,
@@ -959,11 +960,14 @@ class ConverterContext {
 		var nullable = typesWithoutNullable.length != unionType.types.length;
 		// convert union's TsTypes to haxe ComplexTypes
 		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
-		// if we have :Any in our union, just replace the whole thing with :Any (this can happen if a type failed conversion)
+
+		// anyUnionCollapse: if we have :Any in our union, just replace the whole thing with :Any (this can happen if a type failed conversion)
+		// we may not want to do this however because the other types could still be useful documentation 
 		// Null<Any> is useful as doc however
-		if (!nullable && hxTypes.exists(t -> isHxAny(t))) {
+		if (anyUnionCollapse && !nullable && hxTypes.exists(t -> isHxAny(t))) {
 			return macro :Dynamic;
 		}
+
 		// if union is of length 1, no need for support type
 		var unionType = switch hxTypes.length {
 			case 0: macro :Dynamic;
