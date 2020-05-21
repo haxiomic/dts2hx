@@ -174,8 +174,14 @@ class HaxeTools {
 
 	static public function toSafeTypeName(str: String) {
 		str = toSafeIdent(str, false);
-		// capitalize
-		return str.charAt(0).toUpperCase() + str.substr(1);
+		// capitalize first letter character
+		var firstLetterPattern = ~/[a-z]/i;
+		return if (firstLetterPattern.match(str)) {
+			firstLetterPattern.matchedLeft() + firstLetterPattern.matched(0).toUpperCase() + firstLetterPattern.matchedRight();
+		} else {
+			// no first letter
+			'T' + str;
+		}
 	}
 
 	static public function toSafePackageName(str: String) {
