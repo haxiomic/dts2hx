@@ -263,6 +263,9 @@ class HaxeTypePathMap {
 				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib']},
 				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
 				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe']}, // this is a bit questionable; need to fully review native js iteration
+				// map `object` aka `js.lib.Object` to `Dynamic`
+				// maybe in the future we can remove this is `js.lib.Object` could unify with other types
+				'Object' => {name: 'Dynamic', moduleName: 'Dynamic', pack: []},
 			];
 			switch access {
 				// match special-case built-ins
