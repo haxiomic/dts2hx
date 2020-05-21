@@ -40,6 +40,8 @@ export namespace Types {
     type Intersection = number & string;
     type NullOrUndefined = null | undefined;
 
+    type _lowercasename = string;
+
     type StructureType = {
         field: number;
         sub: {
