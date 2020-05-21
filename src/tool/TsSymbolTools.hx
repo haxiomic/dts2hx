@@ -41,7 +41,7 @@ class TsSymbolTools {
 			return false;
 		}
 
-		return !isKnownSymbol && symbol.flags & FieldSymbolFlags != 0 && symbol.flags & SymbolFlags.Prototype == 0;
+		return !isKnownSymbol && symbol.flags & FieldSymbolFlags != 0;
 	}
 	
 	/**

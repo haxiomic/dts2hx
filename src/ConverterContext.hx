@@ -1399,11 +1399,17 @@ class ConverterContext {
 		return complexTypeFromTsType(type, accessContext, enclosingDeclaration);
 	}
 
-	function getTsTypeOfField(symbol: Symbol) {
-		return if (symbol.valueDeclaration == null) {
-			Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
-		} else {
+	function getTsTypeOfField(symbol:Symbol): TsType {
+		return if (symbol.valueDeclaration != null) {
 			tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+		} else {
+			var parentSymbol = symbol.getSymbolParent();
+			// we can get the type of a prototype symbol by using the parent valueDeclaration as a location
+			if (symbol.flags & SymbolFlags.Prototype != 0 && parentSymbol != null) {
+				tc.getTypeOfSymbolAtLocation(symbol, parentSymbol.valueDeclaration);
+			} else {
+				Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
+			}
 		}
 	}
 
@@ -1422,11 +1428,11 @@ class ConverterContext {
 		// transient symbols (symbols generated as part of some process rather than in the source doe) don't have declarations
 		var baseDeclaration: Null<Declaration> = if (symbol.valueDeclaration != null) {
 			symbol.valueDeclaration;
-		} else {
+		} else if (symbol.flags & SymbolFlags.Prototype == 0) { // it's ok for the prototype field to have no valueDeclaration
 			Log.warn('Missing valueDeclaration for field symbol', symbol);
 			// debug();
 			null;
-		}
+		} else null;
 		
 		var hxAccessModifiers = if (baseDeclaration != null && baseDeclaration.modifiers != null) {
 			accessFromModifiers(baseDeclaration.modifiers, symbol);
@@ -1461,13 +1467,7 @@ class ConverterContext {
 			}
 		}
 		
-		var kind = if (symbol.flags & SymbolFlags.Prototype != 0) {
-			// Prototype symbol should be filtered out of properties before converting to hx fields
-			Log.error('Internal error: Prototype symbol should not be converted to a field', symbol);
-			debug();
-			FVar(macro :Any, null);
-
-		} else if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
+		var kind = if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
 			// handle special case where variable has a function type
 			var nonNullTsType = tc.getNonNullableType(tsType);
 			var callSignatures = tc.getSignaturesOfType(nonNullTsType, Call);
