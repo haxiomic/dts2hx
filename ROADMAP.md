@@ -1,10 +1,13 @@
-- `@:jsRequire` vs `@:native`: Rather than 
+- Redesign so that we supply a bunch of input modules and ConverterContext returns output modules, which may include new dependencies
+	- Creating a fresh context per module loses inter-module interaction (see express)
+
+- New flag --mergeGlobal: `@:jsRequire` + `@:native` rather than `global`
 	```haxe
 	for (a in access) {
 		generateHaxeModulesFromSymbol(symbol, access)
 	}
 	```
-	we do
+	To
 	```haxe
 	generateHaxeModulesFromSymbol() {
 		// prefer module path for access path
