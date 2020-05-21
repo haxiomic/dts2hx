@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract DepthPackingStrategies(Any) from Any to Any {
+@:enum @:jsRequire("three") extern abstract DepthPackingStrategies(Int) from Int to Int {
 	var BasicDepthPacking : DepthPackingStrategies;
 	var RGBADepthPacking : DepthPackingStrategies;
 }

@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract BlendingDstFactor(Any) from Any to Any {
+@:enum @:native("THREE") extern abstract BlendingDstFactor(Int) from Int to Int {
 	var ZeroFactor : BlendingDstFactor;
 	var OneFactor : BlendingDstFactor;
 	var SrcColorFactor : BlendingDstFactor;

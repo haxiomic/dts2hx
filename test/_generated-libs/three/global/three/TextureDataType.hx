@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract TextureDataType(Any) from Any to Any {
+@:enum @:native("THREE") extern abstract TextureDataType(Int) from Int to Int {
 	var UnsignedByteType : TextureDataType;
 	var ByteType : TextureDataType;
 	var ShortType : TextureDataType;

@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract Mapping(Any) from Any to Any {
+@:enum @:jsRequire("three") extern abstract Mapping(Int) from Int to Int {
 	var UVMapping : Mapping;
 	var CubeReflectionMapping : Mapping;
 	var CubeRefractionMapping : Mapping;

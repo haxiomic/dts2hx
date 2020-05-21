@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract ToneMapping(Any) from Any to Any {
+@:enum @:native("THREE") extern abstract ToneMapping(Int) from Int to Int {
 	var NoToneMapping : ToneMapping;
 	var LinearToneMapping : ToneMapping;
 	var ReinhardToneMapping : ToneMapping;

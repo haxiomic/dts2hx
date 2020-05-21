@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract BlendingEquation(Any) from Any to Any {
+@:enum @:native("THREE") extern abstract BlendingEquation(Int) from Int to Int {
 	var AddEquation : BlendingEquation;
 	var SubtractEquation : BlendingEquation;
 	var ReverseSubtractEquation : BlendingEquation;
