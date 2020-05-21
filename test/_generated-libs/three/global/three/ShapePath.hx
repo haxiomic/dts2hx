@@ -10,4 +10,5 @@ package global.three;
 	function bezierCurveTo(aCP1x:Float, aCP1y:Float, aCP2x:Float, aCP2y:Float, aX:Float, aY:Float):Void;
 	function splineThru(pts:Array<Vector2>):Void;
 	function toShapes(isCCW:Bool, noHoles:Dynamic):Array<Shape>;
+	static var prototype : ShapePath;
 }

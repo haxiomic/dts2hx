@@ -4,4 +4,5 @@ package global.three;
 	function new(?radius:Float, ?height:Float, ?radialSegment:Float, ?heightSegment:Float, ?openEnded:Bool, ?thetaStart:Float, ?thetaLength:Float);
 	function clone():ConeBufferGeometry;
 	function copy(source:BufferGeometry):ConeBufferGeometry;
+	static var prototype : ConeBufferGeometry;
 }

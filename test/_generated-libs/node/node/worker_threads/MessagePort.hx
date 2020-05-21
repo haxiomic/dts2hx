@@ -32,4 +32,5 @@ package node.worker_threads;
 	function off(event:String, listener:() -> Void):MessagePort;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):MessagePort;
 	function setMaxListeners(n:Float):MessagePort;
+	static var prototype : MessagePort;
 }

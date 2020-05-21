@@ -23,4 +23,5 @@ package three;
 	**/
 	function clone():SphereGeometry;
 	function copy(source:Geometry):SphereGeometry;
+	static var prototype : SphereGeometry;
 }

@@ -219,4 +219,5 @@ package three;
 		Call .dispatchEvent ( { type: 'update' }) on the material.
 	**/
 	function update():Void;
+	static var prototype : Material;
 }

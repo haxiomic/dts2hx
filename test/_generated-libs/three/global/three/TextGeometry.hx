@@ -19,4 +19,5 @@ package global.three;
 	**/
 	function clone():TextGeometry;
 	function copy(source:Geometry):TextGeometry;
+	static var prototype : TextGeometry;
 }

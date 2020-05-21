@@ -13,4 +13,5 @@ package three;
 	};
 	function clone():TorusKnotBufferGeometry;
 	function copy(source:BufferGeometry):TorusKnotBufferGeometry;
+	static var prototype : TorusKnotBufferGeometry;
 }

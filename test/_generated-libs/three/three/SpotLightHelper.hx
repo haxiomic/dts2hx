@@ -46,4 +46,5 @@ package three;
 	function attach(object:Object3D):SpotLightHelper;
 	function clone(?recursive:Bool):SpotLightHelper;
 	function copy(source:SpotLightHelper, ?recursive:Bool):SpotLightHelper;
+	static var prototype : SpotLightHelper;
 }

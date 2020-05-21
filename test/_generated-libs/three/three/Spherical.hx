@@ -10,4 +10,5 @@ package three;
 	function copy(other:Spherical):Spherical;
 	function makeSafe():Void;
 	function setFromVector3(vec3:Vector3):Spherical;
+	static var prototype : Spherical;
 }

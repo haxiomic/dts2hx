@@ -14,4 +14,5 @@ package global.three;
 	**/
 	function clone():PlaneGeometry;
 	function copy(source:Geometry):PlaneGeometry;
+	static var prototype : PlaneGeometry;
 }

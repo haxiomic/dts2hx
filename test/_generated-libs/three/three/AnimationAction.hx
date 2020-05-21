@@ -35,4 +35,5 @@ package three;
 	function getMixer():AnimationMixer;
 	function getClip():AnimationClip;
 	function getRoot():Dynamic;
+	static var prototype : AnimationAction;
 }

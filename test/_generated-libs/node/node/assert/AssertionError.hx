@@ -10,4 +10,5 @@ package node.assert;
 	var operator_ : String;
 	var generatedMessage : Bool;
 	var code : String;
+	static var prototype : AssertionError;
 }

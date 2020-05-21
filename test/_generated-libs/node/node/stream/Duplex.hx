@@ -71,4 +71,5 @@ package node.stream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Duplex;
 	function setMaxListeners(n:Float):Duplex;
+	static var prototype : Duplex;
 }

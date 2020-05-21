@@ -12,4 +12,5 @@ package three;
 	};
 	function clone():BoxBufferGeometry;
 	function copy(source:BufferGeometry):BoxBufferGeometry;
+	static var prototype : BoxBufferGeometry;
 }

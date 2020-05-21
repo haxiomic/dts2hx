@@ -46,4 +46,5 @@ package three;
 	function attach(object:Object3D):SkeletonHelper;
 	function clone(?recursive:Bool):SkeletonHelper;
 	function copy(source:SkeletonHelper, ?recursive:Bool):SkeletonHelper;
+	static var prototype : SkeletonHelper;
 }

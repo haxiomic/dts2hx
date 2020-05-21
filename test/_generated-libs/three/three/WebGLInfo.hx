@@ -18,4 +18,5 @@ package three;
 		var triangles : Float;
 	};
 	function reset():Void;
+	static var prototype : WebGLInfo;
 }

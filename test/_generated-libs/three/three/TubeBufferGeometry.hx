@@ -14,4 +14,5 @@ package three;
 	var binormals : Array<Vector3>;
 	function clone():TubeBufferGeometry;
 	function copy(source:BufferGeometry):TubeBufferGeometry;
+	static var prototype : TubeBufferGeometry;
 }

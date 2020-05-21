@@ -17,4 +17,5 @@ package global.three;
 	function setCrossOrigin(crossOrigin:String):TextureLoader;
 	function setWithCredentials(value:String):TextureLoader;
 	function setPath(path:String):TextureLoader;
+	static var prototype : TextureLoader;
 }

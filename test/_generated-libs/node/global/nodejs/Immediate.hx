@@ -4,4 +4,5 @@ package global.nodejs;
 	function ref():Void;
 	function unref():Void;
 	var _onImmediate : haxe.Constraints.Function;
+	static var prototype : Immediate;
 }

@@ -12,4 +12,5 @@ package global.three;
 	**/
 	function clone():DodecahedronGeometry;
 	function copy(source:Geometry):DodecahedronGeometry;
+	static var prototype : DodecahedronGeometry;
 }

@@ -19,4 +19,5 @@ package three;
 	**/
 	function clone():BoxGeometry;
 	function copy(source:Geometry):BoxGeometry;
+	static var prototype : BoxGeometry;
 }

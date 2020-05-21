@@ -17,4 +17,5 @@ package three;
 	var floatVertexTextures : Dynamic;
 	function getMaxAnisotropy():Float;
 	function getMaxPrecision(precision:String):String;
+	static var prototype : WebGLCapabilities;
 }

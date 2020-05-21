@@ -6,4 +6,5 @@ package unit.class_;
 	var interfaceField : J;
 	var field : Float;
 	var t : T;
+	static var prototype : CallableClass<Dynamic, Dynamic>;
 }

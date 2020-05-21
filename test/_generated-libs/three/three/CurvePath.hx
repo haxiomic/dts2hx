@@ -16,4 +16,5 @@ package three;
 	function createPointsGeometry(divisions:Float):Geometry;
 	function createSpacedPointsGeometry(divisions:Float):Geometry;
 	function createGeometry(points:Array<T>):Geometry;
+	static var prototype : CurvePath<Dynamic>;
 }

@@ -16,5 +16,6 @@ package three;
 	function toArray():Array<Float>;
 	function getAt(normal:Vector3, target:Vector3):Vector3;
 	function getIrradianceAt(normal:Vector3, target:Vector3):Vector3;
+	static var prototype : SphericalHarmonics3;
 	static function getBasisAt(normal:Vector3, shBasis:Array<Float>):Void;
 }

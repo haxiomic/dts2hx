@@ -13,4 +13,5 @@ package three;
 	**/
 	function clone():ParametricGeometry;
 	function copy(source:Geometry):ParametricGeometry;
+	static var prototype : ParametricGeometry;
 }

@@ -60,4 +60,5 @@ package global.three;
 	function attach(object:Object3D):Camera;
 	function clone(?recursive:Bool):Camera;
 	function copy(source:Camera, ?recursive:Bool):Camera;
+	static var prototype : Camera;
 }

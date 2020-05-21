@@ -59,4 +59,5 @@ package three.examples.jsm.controls.orbitcontrols;
 	function hasEventListener(type:String, listener:(event:Dynamic) -> Void):Bool;
 	function removeEventListener(type:String, listener:(event:Dynamic) -> Void):Void;
 	function dispatchEvent(event:{ var type : String; var target : Dynamic; }):Void;
+	static var prototype : OrbitControls;
 }

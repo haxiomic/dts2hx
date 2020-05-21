@@ -13,4 +13,5 @@ package node.http;
 		sockets may hang open for quite a long time before the server terminates them.
 	**/
 	function destroy():Void;
+	static var prototype : Agent;
 }

@@ -14,4 +14,5 @@ package global.three;
 	**/
 	function clone():PolyhedronGeometry;
 	function copy(source:Geometry):PolyhedronGeometry;
+	static var prototype : PolyhedronGeometry;
 }

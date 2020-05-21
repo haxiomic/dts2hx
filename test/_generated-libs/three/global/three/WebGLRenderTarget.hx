@@ -26,4 +26,5 @@ package global.three;
 	function clone():WebGLRenderTarget;
 	function copy(source:WebGLRenderTarget):WebGLRenderTarget;
 	function dispose():Void;
+	static var prototype : WebGLRenderTarget;
 }

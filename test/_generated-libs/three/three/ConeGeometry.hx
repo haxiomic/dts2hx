@@ -8,4 +8,5 @@ package three;
 	**/
 	function clone():ConeGeometry;
 	function copy(source:Geometry):ConeGeometry;
+	static var prototype : ConeGeometry;
 }

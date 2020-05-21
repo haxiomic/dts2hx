@@ -57,5 +57,6 @@ package global.three;
 		getTangentAt(u: number): T;
 	**/
 	function getTangentAt(u:Float):T;
+	static var prototype : Curve<Dynamic>;
 	static function create(constructorFunc:haxe.Constraints.Function, getPointFunc:haxe.Constraints.Function):haxe.Constraints.Function;
 }

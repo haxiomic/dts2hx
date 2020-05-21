@@ -18,4 +18,5 @@ package three;
 	**/
 	function clone():CylinderGeometry;
 	function copy(source:Geometry):CylinderGeometry;
+	static var prototype : CylinderGeometry;
 }

@@ -48,4 +48,5 @@ package global.three;
 	function attach(object:Object3D):PositionalAudioHelper;
 	function clone(?recursive:Bool):PositionalAudioHelper;
 	function copy(source:PositionalAudioHelper, ?recursive:Bool):PositionalAudioHelper;
+	static var prototype : PositionalAudioHelper;
 }

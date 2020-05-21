@@ -78,4 +78,5 @@ package global.three;
 	function attach(object:Object3D):Audio;
 	function clone(?recursive:Bool):Audio;
 	function copy(source:Audio, ?recursive:Bool):Audio;
+	static var prototype : Audio;
 }

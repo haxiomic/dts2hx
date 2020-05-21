@@ -37,4 +37,5 @@ package three;
 	function empty():Dynamic;
 	function isIntersectionBox(b:Dynamic):Dynamic;
 	function isIntersectionSphere(s:Dynamic):Dynamic;
+	static var prototype : Box3;
 }

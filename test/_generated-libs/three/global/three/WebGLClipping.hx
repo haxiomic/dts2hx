@@ -10,4 +10,5 @@ package global.three;
 	function beginShadows():Void;
 	function endShadows():Void;
 	function setState(planes:Array<Dynamic>, clipShadows:Bool, camera:Camera, cache:Bool, fromCache:Bool):Void;
+	static var prototype : WebGLClipping;
 }

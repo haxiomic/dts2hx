@@ -42,4 +42,5 @@ package three;
 	var materialIndex : Float;
 	function clone():Face3;
 	function copy(source:Face3):Face3;
+	static var prototype : Face3;
 }

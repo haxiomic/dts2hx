@@ -43,4 +43,5 @@ package three;
 	function attach(object:Object3D):BoxHelper;
 	function clone(?recursive:Bool):BoxHelper;
 	function copy(source:BoxHelper, ?recursive:Bool):BoxHelper;
+	static var prototype : BoxHelper;
 }

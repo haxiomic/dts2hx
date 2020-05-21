@@ -6,4 +6,5 @@ package unit.types.types;
 		dynamic function equals(otherColor:DeepImmutableObject<Color3>):Bool;
 		dynamic function toColor4(?alpha:Float):DeepImmutableObject<Color4>;
 	};
+	static var prototype : Color4;
 }

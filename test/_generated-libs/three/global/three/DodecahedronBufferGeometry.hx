@@ -4,4 +4,5 @@ package global.three;
 	function new(?radius:Float, ?detail:Float);
 	function clone():DodecahedronBufferGeometry;
 	function copy(source:BufferGeometry):DodecahedronBufferGeometry;
+	static var prototype : DodecahedronBufferGeometry;
 }

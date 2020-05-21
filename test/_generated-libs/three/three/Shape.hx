@@ -14,4 +14,5 @@ package three;
 		var holes : Array<Array<Vector2>>;
 	};
 	function extractPoints(divisions:Float):Array<Vector2>;
+	static var prototype : Shape;
 }

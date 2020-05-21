@@ -10,4 +10,5 @@ package three;
 		Copy the parameters from the passed material into this material.
 	**/
 	function copy(material:Material):RawShaderMaterial;
+	static var prototype : RawShaderMaterial;
 }

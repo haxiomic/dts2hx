@@ -43,4 +43,5 @@ package global.three;
 	function attach(object:Object3D):LineSegments;
 	function clone(?recursive:Bool):LineSegments;
 	function copy(source:LineSegments, ?recursive:Bool):LineSegments;
+	static var prototype : LineSegments;
 }

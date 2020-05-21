@@ -8,4 +8,5 @@ package unit.types.types;
 	var thisAndTp : Dynamic;
 	function thisAndTpArg<T>(arg:Dynamic):Void;
 	function thisAndTpRet<T>():Dynamic;
+	static var prototype : ThisIntersection<Dynamic>;
 }

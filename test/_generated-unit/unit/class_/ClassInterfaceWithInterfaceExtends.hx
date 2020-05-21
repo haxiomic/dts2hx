@@ -7,4 +7,5 @@ package unit.class_;
 	var interfaceField : Float;
 	var classField : Bool;
 	var baseInterfaceField : String;
+	static var prototype : ClassInterfaceWithInterfaceExtends;
 }

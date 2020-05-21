@@ -88,5 +88,6 @@ package three;
 	function addIndex(index:Dynamic):Void;
 	function addDrawCall(start:Dynamic, count:Dynamic, ?indexOffset:Dynamic):Void;
 	function clearDrawCalls():Void;
+	static var prototype : BufferGeometry;
 	static var MaxIndex : Float;
 }

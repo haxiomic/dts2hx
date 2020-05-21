@@ -5,6 +5,7 @@ package unit.symbols;
 	@:selfCall
 	static function call(arg:Float):Dynamic;
 	var field : String;
+	static var prototype : ClassValueModule;
 	static var staticField : Float;
 	@:overload(function():Float { })
 	static function Fn(overloadParam:Float):Float;

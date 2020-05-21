@@ -12,4 +12,5 @@ package three;
 	function apply(accuIndex:Float):Void;
 	function saveOriginalState():Void;
 	function restoreOriginalState():Void;
+	static var prototype : PropertyMixer;
 }

@@ -9,4 +9,5 @@ package global.three;
 		getPoint(t: number): T;
 	**/
 	function getPoint(t:Float):Vector3;
+	static var prototype : LineCurve3;
 }

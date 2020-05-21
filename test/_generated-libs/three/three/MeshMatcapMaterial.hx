@@ -29,4 +29,5 @@ package three;
 		Copy the parameters from the passed material into this material.
 	**/
 	function copy(material:Material):MeshMatcapMaterial;
+	static var prototype : MeshMatcapMaterial;
 }

@@ -7,4 +7,5 @@ package global.three;
 	function setTextureCubeDynamic(texture:Dynamic, slot:Float):Void;
 	function setupRenderTarget(renderTarget:Dynamic):Void;
 	function updateRenderTargetMipmap(renderTarget:Dynamic):Void;
+	static var prototype : WebGLTextures;
 }

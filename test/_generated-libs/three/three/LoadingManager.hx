@@ -36,4 +36,5 @@ package three;
 	function itemStart(url:String):Void;
 	function itemEnd(url:String):Void;
 	function itemError(url:String):Void;
+	static var prototype : LoadingManager;
 }

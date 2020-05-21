@@ -18,4 +18,5 @@ package global.three;
 	function intersectsSphere(sphere:Sphere):Bool;
 	function intersectsBox(box:Box3):Bool;
 	function containsPoint(point:Vector3):Bool;
+	static var prototype : Frustum;
 }

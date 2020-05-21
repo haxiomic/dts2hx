@@ -48,4 +48,5 @@ package three;
 	function attach(object:Object3D):DirectionalLight;
 	function clone(?recursive:Bool):DirectionalLight;
 	function copy(source:DirectionalLight, ?recursive:Bool):DirectionalLight;
+	static var prototype : DirectionalLight;
 }

@@ -8,4 +8,5 @@ package global.three;
 	**/
 	function clone():OctahedronGeometry;
 	function copy(source:Geometry):OctahedronGeometry;
+	static var prototype : OctahedronGeometry;
 }

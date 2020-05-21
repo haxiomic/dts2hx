@@ -9,4 +9,5 @@ package node.fs;
 	function isFIFO():Bool;
 	function isSocket():Bool;
 	var name : String;
+	static var prototype : Dirent;
 }

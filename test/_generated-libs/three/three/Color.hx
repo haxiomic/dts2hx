@@ -104,4 +104,5 @@ package three;
 	function fromArray(rgb:Array<Float>, ?offset:Float):Color;
 	@:overload(function(xyz:js.lib.ArrayLike<Float>, ?offset:Float):js.lib.ArrayLike<Float> { })
 	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
+	static var prototype : Color;
 }

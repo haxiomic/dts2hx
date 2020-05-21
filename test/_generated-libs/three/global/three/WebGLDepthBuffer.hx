@@ -8,4 +8,5 @@ package global.three;
 	function setLocked(lock:Bool):Void;
 	function setClear(depth:Float):Void;
 	function reset():Void;
+	static var prototype : WebGLDepthBuffer;
 }

@@ -4,4 +4,5 @@ package global.nodejs;
 	function ref():Void;
 	function refresh():Void;
 	function unref():Void;
+	static var prototype : Timeout;
 }

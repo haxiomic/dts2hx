@@ -58,4 +58,5 @@ package node.stream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Transform;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Transform;
 	function setMaxListeners(n:Float):Transform;
+	static var prototype : Transform;
 }

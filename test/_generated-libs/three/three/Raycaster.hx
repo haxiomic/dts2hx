@@ -40,4 +40,5 @@ package three;
 		Checks all intersection between the ray and the objects with or without the descendants. Intersections are returned sorted by distance, closest first. Intersections are of the same form as those returned by .intersectObject.
 	**/
 	function intersectObjects(objects:Array<Object3D>, ?recursive:Bool, ?optionalTarget:Array<Intersection>):Array<Intersection>;
+	static var prototype : Raycaster;
 }

@@ -85,4 +85,5 @@ package node.http;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):IncomingMessage;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):IncomingMessage;
 	function setMaxListeners(n:Float):IncomingMessage;
+	static var prototype : IncomingMessage;
 }

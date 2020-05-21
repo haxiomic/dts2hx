@@ -10,5 +10,6 @@ package three;
 	**/
 	function clone():ExtrudeGeometry;
 	function copy(source:Geometry):ExtrudeGeometry;
+	static var prototype : ExtrudeGeometry;
 	static var WorldUVGenerator : UVGenerator;
 }

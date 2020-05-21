@@ -4,4 +4,5 @@ package global.three;
 	function update(light:Light):Void;
 	function copy(source:LightShadow):SpotLightShadow;
 	function clone(?recursive:Bool):SpotLightShadow;
+	static var prototype : SpotLightShadow;
 }

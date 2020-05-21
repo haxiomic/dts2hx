@@ -42,4 +42,5 @@ package three;
 	function attach(object:Object3D):AxesHelper;
 	function clone(?recursive:Bool):AxesHelper;
 	function copy(source:AxesHelper, ?recursive:Bool):AxesHelper;
+	static var prototype : AxesHelper;
 }

@@ -31,4 +31,5 @@ package global.three;
 	function computeGroups(geometry:Geometry):Void;
 	function fromGeometry(geometry:Geometry):DirectGeometry;
 	function dispose():Void;
+	static var prototype : DirectGeometry;
 }

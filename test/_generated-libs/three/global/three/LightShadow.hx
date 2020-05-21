@@ -11,4 +11,5 @@ package global.three;
 	function copy(source:LightShadow):LightShadow;
 	function clone(?recursive:Bool):LightShadow;
 	function toJSON():Dynamic;
+	static var prototype : LightShadow;
 }

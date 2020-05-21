@@ -7,4 +7,5 @@ package global.three;
 	function getFrequencyData():js.lib.Uint8Array;
 	function getAverageFrequency():Float;
 	function getData(file:Dynamic):Dynamic;
+	static var prototype : AudioAnalyser;
 }

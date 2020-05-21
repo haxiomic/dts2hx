@@ -6,4 +6,5 @@ package three.propertybinding;
 	function setValue(array:Dynamic, offset:Float):Void;
 	function bind():Void;
 	function unbind():Void;
+	static var prototype : Composite;
 }

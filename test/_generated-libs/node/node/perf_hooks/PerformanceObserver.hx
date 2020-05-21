@@ -12,4 +12,5 @@ package node.perf_hooks;
 		Property buffered defaults to false.
 	**/
 	function observe(options:{ var entryTypes : Array<String>; @:optional var buffered : Bool; }):Void;
+	static var prototype : PerformanceObserver;
 }

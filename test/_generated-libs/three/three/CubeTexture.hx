@@ -5,4 +5,5 @@ package three;
 	var images : Dynamic;
 	function clone():CubeTexture;
 	function copy(source:Texture):CubeTexture;
+	static var prototype : CubeTexture;
 }

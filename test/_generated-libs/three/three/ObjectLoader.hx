@@ -15,4 +15,5 @@ package three;
 	function parseImages(json:Dynamic, onLoad:() -> Void):{ };
 	function parseTextures(json:Dynamic, images:Dynamic):Array<Texture>;
 	function parseObject<T>(data:Dynamic, geometries:Array<Dynamic>, materials:Array<Material>):T;
+	static var prototype : ObjectLoader;
 }

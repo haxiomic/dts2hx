@@ -9,4 +9,5 @@ package unit.interface_;
 	var interfaceFieldSS : SS;
 	var classFieldP : P;
 	var classFieldS : S;
+	static var prototype : InterfaceClassParamMismatch<Dynamic, Dynamic, Dynamic>;
 }

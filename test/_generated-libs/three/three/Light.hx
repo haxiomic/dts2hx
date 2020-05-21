@@ -58,4 +58,5 @@ package three;
 	function attach(object:Object3D):Light;
 	function clone(?recursive:Bool):Light;
 	function copy(source:Light, ?recursive:Bool):Light;
+	static var prototype : Light;
 }

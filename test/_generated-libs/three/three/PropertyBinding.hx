@@ -14,6 +14,7 @@ package three;
 	var Versioning : { };
 	var GetterByBindingType : Array<haxe.Constraints.Function>;
 	var SetterByBindingTypeAndVersioning : Array<Array<haxe.Constraints.Function>>;
+	static var prototype : PropertyBinding;
 	static function create(root:Dynamic, path:Dynamic, ?parsedPath:Dynamic):ts.AnyOf2<PropertyBinding, three.propertybinding.Composite>;
 	static function parseTrackName(trackName:String):Dynamic;
 	static function findNode(root:Dynamic, nodeName:String):Dynamic;

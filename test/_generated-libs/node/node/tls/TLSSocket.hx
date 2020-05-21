@@ -122,4 +122,5 @@ package node.tls;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):TLSSocket;
 	function setMaxListeners(n:Float):TLSSocket;
+	static var prototype : TLSSocket;
 }

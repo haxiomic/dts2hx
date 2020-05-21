@@ -20,6 +20,7 @@ package global.three;
 	function isFrontFacing(direction:Vector3):Bool;
 	function closestPointToPoint(point:Vector3, target:Vector3):Vector3;
 	function equals(triangle:Triangle):Bool;
+	static var prototype : Triangle;
 	@:native("getNormal")
 	static function getNormal_(a:Vector3, b:Vector3, c:Vector3, target:Vector3):Vector3;
 	@:native("getBarycoord")

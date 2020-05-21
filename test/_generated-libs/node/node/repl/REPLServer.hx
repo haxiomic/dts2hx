@@ -210,4 +210,5 @@ package node.repl;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):REPLServer;
 	function setMaxListeners(n:Float):REPLServer;
+	static var prototype : REPLServer;
 }

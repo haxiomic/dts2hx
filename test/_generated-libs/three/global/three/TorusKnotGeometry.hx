@@ -17,4 +17,5 @@ package global.three;
 	**/
 	function clone():TorusKnotGeometry;
 	function copy(source:Geometry):TorusKnotGeometry;
+	static var prototype : TorusKnotGeometry;
 }

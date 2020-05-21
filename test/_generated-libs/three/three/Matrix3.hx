@@ -68,4 +68,5 @@ package three;
 	function multiplyVector3(vector:Vector3):Dynamic;
 	function multiplyVector3Array(a:Dynamic):Dynamic;
 	function flattenToArrayOffset(array:Array<Float>, offset:Float):Array<Float>;
+	static var prototype : Matrix3;
 }

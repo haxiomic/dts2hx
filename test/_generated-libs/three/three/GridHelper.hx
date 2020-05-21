@@ -43,4 +43,5 @@ package three;
 	function attach(object:Object3D):GridHelper;
 	function clone(?recursive:Bool):GridHelper;
 	function copy(source:GridHelper, ?recursive:Bool):GridHelper;
+	static var prototype : GridHelper;
 }

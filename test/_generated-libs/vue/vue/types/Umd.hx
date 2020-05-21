@@ -17,4 +17,5 @@ package vue.types;
 	@:native("$nextTick")
 	@:overload(function():js.lib.Promise<Void> { })
 	function DollarNextTick(callback:() -> Void):Void;
+	static var prototype : vue.types.Umd;
 }

@@ -42,4 +42,5 @@ package three;
 	function attach(object:Object3D):Bone;
 	function clone(?recursive:Bool):Bone;
 	function copy(source:Bone, ?recursive:Bool):Bone;
+	static var prototype : Bone;
 }

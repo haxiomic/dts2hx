@@ -8,4 +8,5 @@ package global.three;
 	function setTextures(textures:{ }):Void;
 	function getTexture(name:String):Texture;
 	function parse(json:Dynamic):Material;
+	static var prototype : MaterialLoader;
 }

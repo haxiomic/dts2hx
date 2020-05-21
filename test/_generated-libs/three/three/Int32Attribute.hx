@@ -4,4 +4,5 @@ package three;
 	function new(array:Dynamic, itemSize:Float);
 	function clone():Int32Attribute;
 	function copy(source:BufferAttribute):Int32Attribute;
+	static var prototype : Int32Attribute;
 }

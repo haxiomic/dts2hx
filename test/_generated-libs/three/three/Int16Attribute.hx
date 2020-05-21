@@ -4,4 +4,5 @@ package three;
 	function new(array:Dynamic, itemSize:Float);
 	function clone():Int16Attribute;
 	function copy(source:BufferAttribute):Int16Attribute;
+	static var prototype : Int16Attribute;
 }

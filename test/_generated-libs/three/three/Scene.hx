@@ -56,4 +56,5 @@ package three;
 	function attach(object:Object3D):Scene;
 	function clone(?recursive:Bool):Scene;
 	function copy(source:Scene, ?recursive:Bool):Scene;
+	static var prototype : Scene;
 }

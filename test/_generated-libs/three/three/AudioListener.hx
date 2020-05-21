@@ -50,4 +50,5 @@ package three;
 	function attach(object:Object3D):AudioListener;
 	function clone(?recursive:Bool):AudioListener;
 	function copy(source:AudioListener, ?recursive:Bool):AudioListener;
+	static var prototype : AudioListener;
 }

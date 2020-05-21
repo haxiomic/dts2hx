@@ -10,4 +10,5 @@ package three;
 	function set(radius:Float, theta:Float, y:Float):Cylindrical;
 	function setFromVector3(vec3:Vector3):Cylindrical;
 	function setFromCartesianCoords(x:Float, y:Float, z:Float):Cylindrical;
+	static var prototype : Cylindrical;
 }

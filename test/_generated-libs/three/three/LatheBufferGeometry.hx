@@ -10,4 +10,5 @@ package three;
 	};
 	function clone():LatheBufferGeometry;
 	function copy(source:BufferGeometry):LatheBufferGeometry;
+	static var prototype : LatheBufferGeometry;
 }

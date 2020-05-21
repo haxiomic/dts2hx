@@ -46,4 +46,5 @@ package global.three;
 	function attach(object:Object3D):ArrowHelper;
 	function clone(?recursive:Bool):ArrowHelper;
 	function copy(source:ArrowHelper, ?recursive:Bool):ArrowHelper;
+	static var prototype : ArrowHelper;
 }

@@ -4,4 +4,5 @@ package global.three;
 	function new(array:Dynamic, itemSize:Float);
 	function clone():Uint8ClampedAttribute;
 	function copy(source:BufferAttribute):Uint8ClampedAttribute;
+	static var prototype : Uint8ClampedAttribute;
 }

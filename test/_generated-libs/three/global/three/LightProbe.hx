@@ -43,4 +43,5 @@ package global.three;
 	function attach(object:Object3D):LightProbe;
 	function clone(?recursive:Bool):LightProbe;
 	function copy(source:LightProbe, ?recursive:Bool):LightProbe;
+	static var prototype : LightProbe;
 }

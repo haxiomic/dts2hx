@@ -45,4 +45,5 @@ package global.three;
 	function attach(object:Object3D):CameraHelper;
 	function clone(?recursive:Bool):CameraHelper;
 	function copy(source:CameraHelper, ?recursive:Bool):CameraHelper;
+	static var prototype : CameraHelper;
 }

@@ -26,4 +26,5 @@ package node.fs;
 	var mtime : js.lib.Date;
 	var ctime : js.lib.Date;
 	var birthtime : js.lib.Date;
+	static var prototype : Stats;
 }

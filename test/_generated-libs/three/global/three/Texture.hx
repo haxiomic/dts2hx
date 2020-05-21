@@ -33,6 +33,7 @@ package global.three;
 	function toJSON(meta:Dynamic):Dynamic;
 	function dispose():Void;
 	function transformUv(uv:Vector):Void;
+	static var prototype : Texture;
 	static var DEFAULT_IMAGE : Dynamic;
 	static var DEFAULT_MAPPING : Dynamic;
 }

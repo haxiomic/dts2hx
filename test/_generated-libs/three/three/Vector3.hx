@@ -171,4 +171,5 @@ package three;
 	@:overload(function(xyz:js.lib.ArrayLike<Float>, ?offset:Float):js.lib.ArrayLike<Float> { })
 	function toArray(?xyz:Array<Float>, ?offset:Float):Array<Float>;
 	function fromBufferAttribute(attribute:BufferAttribute, index:Float, ?offset:Float):Vector3;
+	static var prototype : Vector3;
 }

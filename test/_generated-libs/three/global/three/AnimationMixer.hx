@@ -12,4 +12,5 @@ package global.three;
 	function uncacheClip(clip:AnimationClip):Void;
 	function uncacheRoot(root:Dynamic):Void;
 	function uncacheAction(clip:AnimationClip, ?root:Dynamic):Void;
+	static var prototype : AnimationMixer;
 }

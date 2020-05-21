@@ -12,4 +12,5 @@ package three;
 	};
 	function clone():RingBufferGeometry;
 	function copy(source:BufferGeometry):RingBufferGeometry;
+	static var prototype : RingBufferGeometry;
 }

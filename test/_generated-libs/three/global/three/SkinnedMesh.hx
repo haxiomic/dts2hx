@@ -48,4 +48,5 @@ package global.three;
 	function attach(object:Object3D):SkinnedMesh;
 	function clone(?recursive:Bool):SkinnedMesh;
 	function copy(source:SkinnedMesh, ?recursive:Bool):SkinnedMesh;
+	static var prototype : SkinnedMesh;
 }

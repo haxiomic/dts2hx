@@ -9,4 +9,5 @@ package three;
 	};
 	function clone():ParametricBufferGeometry;
 	function copy(source:BufferGeometry):ParametricBufferGeometry;
+	static var prototype : ParametricBufferGeometry;
 }

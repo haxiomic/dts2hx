@@ -21,4 +21,5 @@ package three;
 	var far : Float;
 	function clone():Fog;
 	function toJSON():Dynamic;
+	static var prototype : Fog;
 }

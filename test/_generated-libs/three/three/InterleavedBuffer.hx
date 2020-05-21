@@ -20,4 +20,5 @@ package three;
 	function copy(source:InterleavedBuffer):InterleavedBuffer;
 	function copyAt(index1:Float, attribute:InterleavedBufferAttribute, index2:Float):InterleavedBuffer;
 	function set(value:js.lib.ArrayLike<Float>, index:Float):InterleavedBuffer;
+	static var prototype : InterleavedBuffer;
 }

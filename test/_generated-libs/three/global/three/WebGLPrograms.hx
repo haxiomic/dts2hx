@@ -7,4 +7,5 @@ package global.three;
 	function getProgramCode(material:ShaderMaterial, parameters:Dynamic):String;
 	function acquireProgram(material:ShaderMaterial, parameters:Dynamic, code:String):WebGLProgram;
 	function releaseProgram(program:WebGLProgram):Void;
+	static var prototype : WebGLPrograms;
 }

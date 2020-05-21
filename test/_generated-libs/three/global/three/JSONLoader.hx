@@ -14,4 +14,5 @@ package global.three;
 		@:optional
 		var materials : Array<Material>;
 	};
+	static var prototype : JSONLoader;
 }

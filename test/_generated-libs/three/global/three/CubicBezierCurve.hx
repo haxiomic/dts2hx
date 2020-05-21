@@ -6,4 +6,5 @@ package global.three;
 	var v1 : Vector2;
 	var v2 : Vector2;
 	var v3 : Vector2;
+	static var prototype : CubicBezierCurve;
 }

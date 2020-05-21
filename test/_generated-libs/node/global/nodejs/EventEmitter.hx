@@ -16,4 +16,5 @@ package global.nodejs;
 	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):EventEmitter;
 	function prependOnceListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):EventEmitter;
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
+	static var prototype : EventEmitter;
 }

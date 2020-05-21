@@ -45,4 +45,5 @@ package global.three;
 	function attach(object:Object3D):FaceNormalsHelper;
 	function clone(?recursive:Bool):FaceNormalsHelper;
 	function copy(source:FaceNormalsHelper, ?recursive:Bool):FaceNormalsHelper;
+	static var prototype : FaceNormalsHelper;
 }

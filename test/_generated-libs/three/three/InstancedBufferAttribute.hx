@@ -5,4 +5,5 @@ package three;
 	var meshPerAttribute : Float;
 	function clone():InstancedBufferAttribute;
 	function copy(source:BufferAttribute):InstancedBufferAttribute;
+	static var prototype : InstancedBufferAttribute;
 }

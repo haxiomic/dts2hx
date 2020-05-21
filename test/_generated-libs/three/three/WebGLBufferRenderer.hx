@@ -5,4 +5,5 @@ package three;
 	function setMode(value:Dynamic):Void;
 	function render(start:Dynamic, count:Float):Void;
 	function renderInstances(geometry:Dynamic):Void;
+	static var prototype : WebGLBufferRenderer;
 }

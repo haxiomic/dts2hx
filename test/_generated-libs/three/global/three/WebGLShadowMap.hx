@@ -8,4 +8,5 @@ package global.three;
 	var type : ShadowMapType;
 	function render(scene:Scene, camera:Camera):Void;
 	var cullFace : Dynamic;
+	static var prototype : WebGLShadowMap;
 }

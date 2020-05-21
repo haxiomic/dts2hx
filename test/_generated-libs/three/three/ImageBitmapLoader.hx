@@ -7,4 +7,5 @@ package three;
 	function load(url:String, ?onLoad:(response:ts.AnyOf2<String, js.lib.ArrayBuffer>) -> Void, ?onProgress:(request:js.html.ProgressEvent<js.html.EventTarget>) -> Void, ?onError:(event:js.html.ErrorEvent) -> Void):Dynamic;
 	function setCrossOrigin():ImageBitmapLoader;
 	function setPath(path:String):ImageBitmapLoader;
+	static var prototype : ImageBitmapLoader;
 }

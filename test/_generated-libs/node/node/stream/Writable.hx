@@ -81,4 +81,5 @@ package node.stream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Writable;
 	function setMaxListeners(n:Float):Writable;
+	static var prototype : Writable;
 }

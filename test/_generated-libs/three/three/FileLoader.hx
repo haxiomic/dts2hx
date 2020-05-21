@@ -13,4 +13,5 @@ package three;
 	function setResponseType(responseType:String):FileLoader;
 	function setWithCredentials(value:String):FileLoader;
 	function setRequestHeader(value:{ }):FileLoader;
+	static var prototype : FileLoader;
 }

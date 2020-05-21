@@ -10,11 +10,13 @@ package node;
 	var parent : Null<node.Module>;
 	var children : Array<node.Module>;
 	var paths : Array<String>;
+	static var prototype : node.Module;
 	static function runMain():Void;
 	static function wrap(code:String):String;
 	static function createRequireFromPath(path:String):(path:String) -> Dynamic;
 	static var builtinModules : Array<String>;
 	static var Module : {
+		var prototype : node.Module;
 		function runMain():Void;
 		function wrap(code:String):String;
 		function createRequireFromPath(path:String):(path:String) -> Dynamic;

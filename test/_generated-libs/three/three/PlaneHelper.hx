@@ -44,4 +44,5 @@ package three;
 	function attach(object:Object3D):PlaneHelper;
 	function clone(?recursive:Bool):PlaneHelper;
 	function copy(source:PlaneHelper, ?recursive:Bool):PlaneHelper;
+	static var prototype : PlaneHelper;
 }

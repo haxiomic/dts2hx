@@ -20,4 +20,5 @@ package three;
 		Copy the parameters from the passed material into this material.
 	**/
 	function copy(material:Material):MeshDistanceMaterial;
+	static var prototype : MeshDistanceMaterial;
 }

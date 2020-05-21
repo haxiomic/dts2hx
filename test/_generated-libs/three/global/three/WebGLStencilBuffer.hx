@@ -9,4 +9,5 @@ package global.three;
 	function setLocked(lock:Bool):Void;
 	function setClear(stencil:Float):Void;
 	function reset():Void;
+	static var prototype : WebGLStencilBuffer;
 }

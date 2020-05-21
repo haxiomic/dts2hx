@@ -16,4 +16,5 @@ package global.three;
 	**/
 	function clone():RingGeometry;
 	function copy(source:Geometry):RingGeometry;
+	static var prototype : RingGeometry;
 }

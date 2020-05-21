@@ -4,4 +4,5 @@ package three;
 	function new(width:Float, height:Float, ?options:WebGLRenderTargetOptions);
 	function clone():WebGLMultisampleRenderTarget;
 	function copy(source:WebGLRenderTarget):WebGLMultisampleRenderTarget;
+	static var prototype : WebGLMultisampleRenderTarget;
 }

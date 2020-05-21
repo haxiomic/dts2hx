@@ -5,4 +5,5 @@ package global.three;
 	var v0 : Vector2;
 	var v1 : Vector2;
 	var v2 : Vector2;
+	static var prototype : QuadraticBezierCurve;
 }

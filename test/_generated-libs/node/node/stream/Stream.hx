@@ -10,4 +10,5 @@ package node.stream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Stream;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Stream;
 	function setMaxListeners(n:Float):Stream;
+	static var prototype : Stream;
 }

@@ -63,4 +63,5 @@ package three;
 	function attach(object:Object3D):SpotLight;
 	function clone(?recursive:Bool):SpotLight;
 	function copy(source:SpotLight, ?recursive:Bool):SpotLight;
+	static var prototype : SpotLight;
 }

@@ -8,4 +8,5 @@ package three;
 	function toggle(channel:Float):Void;
 	function disable(channel:Float):Void;
 	function test(layers:Layers):Bool;
+	static var prototype : Layers;
 }

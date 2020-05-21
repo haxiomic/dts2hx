@@ -219,4 +219,5 @@ package three;
 		Rotates the vector around center by angle radians.
 	**/
 	function rotateAround(center:Vector2, angle:Float):Vector2;
+	static var prototype : Vector2;
 }

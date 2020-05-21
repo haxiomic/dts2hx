@@ -14,4 +14,5 @@ package global.three;
 	function pose():Void;
 	function update():Void;
 	function clone():Skeleton;
+	static var prototype : Skeleton;
 }

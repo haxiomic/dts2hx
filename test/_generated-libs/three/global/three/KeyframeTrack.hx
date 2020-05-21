@@ -20,6 +20,7 @@ package global.three;
 	function trim(startTime:Float, endTime:Float):KeyframeTrack;
 	function validate():Bool;
 	function optimize():KeyframeTrack;
+	static var prototype : KeyframeTrack;
 	static function parse(json:Dynamic):KeyframeTrack;
 	static function toJSON(track:KeyframeTrack):Dynamic;
 }

@@ -14,4 +14,5 @@ package three;
 	var density : Float;
 	function clone():FogExp2;
 	function toJSON():Dynamic;
+	static var prototype : FogExp2;
 }

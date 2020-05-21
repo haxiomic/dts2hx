@@ -58,4 +58,5 @@ package three;
 	function attach(object:Object3D):Points;
 	function clone(?recursive:Bool):Points;
 	function copy(source:Points, ?recursive:Bool):Points;
+	static var prototype : Points;
 }

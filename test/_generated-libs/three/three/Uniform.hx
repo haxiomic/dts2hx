@@ -9,4 +9,5 @@ package three;
 	var dynamic_ : Bool;
 	var onUpdateCallback : haxe.Constraints.Function;
 	function onUpdate(callback:haxe.Constraints.Function):Uniform;
+	static var prototype : Uniform;
 }

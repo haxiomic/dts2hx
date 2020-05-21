@@ -16,4 +16,5 @@ package three;
 	function closestPointToPoint(point:Vector3, clampToLine:Bool, target:Vector3):Vector3;
 	function applyMatrix4(matrix:Matrix4):Line3;
 	function equals(line:Line3):Bool;
+	static var prototype : Line3;
 }

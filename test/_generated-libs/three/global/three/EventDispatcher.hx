@@ -24,4 +24,5 @@ package global.three;
 		Fire an event type.
 	**/
 	function dispatchEvent(event:{ var type : String; }):Void;
+	static var prototype : EventDispatcher;
 }

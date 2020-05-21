@@ -13,4 +13,5 @@ package three;
 	function getUniforms():WebGLUniforms;
 	function getAttributes():Dynamic;
 	function destroy():Void;
+	static var prototype : WebGLProgram;
 }

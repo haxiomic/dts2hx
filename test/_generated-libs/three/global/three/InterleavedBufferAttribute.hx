@@ -21,4 +21,5 @@ package global.three;
 	function setXYZ(index:Float, x:Float, y:Float, z:Float):InterleavedBufferAttribute;
 	function setXYZW(index:Float, x:Float, y:Float, z:Float, w:Float):InterleavedBufferAttribute;
 	var length : Float;
+	static var prototype : InterleavedBufferAttribute;
 }

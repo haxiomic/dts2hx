@@ -14,4 +14,5 @@ package global.three;
 	**/
 	function clone():CircleGeometry;
 	function copy(source:Geometry):CircleGeometry;
+	static var prototype : CircleGeometry;
 }

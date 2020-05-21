@@ -43,4 +43,5 @@ package global.three;
 	function attach(object:Object3D):HemisphereLight;
 	function clone(?recursive:Bool):HemisphereLight;
 	function copy(source:HemisphereLight, ?recursive:Bool):HemisphereLight;
+	static var prototype : HemisphereLight;
 }

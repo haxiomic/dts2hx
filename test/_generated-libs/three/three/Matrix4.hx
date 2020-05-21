@@ -137,4 +137,5 @@ package three;
 	function rotateAxis(v:Dynamic):Void;
 	function crossVector(v:Dynamic):Void;
 	function flattenToArrayOffset(array:Array<Float>, offset:Float):Array<Float>;
+	static var prototype : Matrix4;
 }

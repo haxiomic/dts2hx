@@ -7,4 +7,5 @@ package global.three;
 	var valueSize : Float;
 	var resultBuffer : Dynamic;
 	function evaluate(time:Float):Dynamic;
+	static var prototype : Interpolant;
 }

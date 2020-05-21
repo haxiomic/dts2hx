@@ -7,4 +7,5 @@ package global.three;
 	function push(object:Object3D, geometry:Null<BufferGeometry>, material:Material, groupOrder:Float, z:Float, group:Null<Group>):Void;
 	function unshift(object:Object3D, geometry:Null<BufferGeometry>, material:Material, groupOrder:Float, z:Float, group:Null<Group>):Void;
 	function sort():Void;
+	static var prototype : WebGLRenderList;
 }

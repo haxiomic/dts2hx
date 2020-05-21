@@ -7,4 +7,5 @@ package three;
 	var readyCallbacks : Array<haxe.Constraints.Function>;
 	function load(file:String):AudioBuffer;
 	function onReady(callback:haxe.Constraints.Function):Void;
+	static var prototype : AudioBuffer;
 }

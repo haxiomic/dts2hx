@@ -82,4 +82,5 @@ package node.tty;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ReadStream;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ReadStream;
 	function setMaxListeners(n:Float):ReadStream;
+	static var prototype : ReadStream;
 }

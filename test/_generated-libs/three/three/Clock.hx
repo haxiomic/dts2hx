@@ -44,4 +44,5 @@ package three;
 		Get the seconds passed since the last call to this method.
 	**/
 	function getDelta():Float;
+	static var prototype : Clock;
 }

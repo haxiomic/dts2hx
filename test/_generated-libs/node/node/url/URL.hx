@@ -16,4 +16,5 @@ package node.url;
 	var username : String;
 	function toString():String;
 	function toJSON():String;
+	static var prototype : URL;
 }

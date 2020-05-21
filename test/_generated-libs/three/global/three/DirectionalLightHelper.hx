@@ -47,4 +47,5 @@ package global.three;
 	function attach(object:Object3D):DirectionalLightHelper;
 	function clone(?recursive:Bool):DirectionalLightHelper;
 	function copy(source:DirectionalLightHelper, ?recursive:Bool):DirectionalLightHelper;
+	static var prototype : DirectionalLightHelper;
 }

@@ -50,4 +50,5 @@ package global.three;
 	function attach(object:Object3D):LOD;
 	function clone(?recursive:Bool):LOD;
 	function copy(source:LOD, ?recursive:Bool):LOD;
+	static var prototype : LOD;
 }

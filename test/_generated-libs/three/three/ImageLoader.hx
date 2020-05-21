@@ -17,4 +17,5 @@ package three;
 	function setCrossOrigin(crossOrigin:String):ImageLoader;
 	function setWithCredentials(value:String):ImageLoader;
 	function setPath(value:String):ImageLoader;
+	static var prototype : ImageLoader;
 }

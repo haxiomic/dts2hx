@@ -43,4 +43,5 @@ package three;
 	function attach(object:Object3D):ArrayCamera;
 	function clone(?recursive:Bool):ArrayCamera;
 	function copy(source:ArrayCamera, ?recursive:Bool):ArrayCamera;
+	static var prototype : ArrayCamera;
 }

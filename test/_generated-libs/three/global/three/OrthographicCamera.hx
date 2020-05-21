@@ -86,4 +86,5 @@ package global.three;
 	function attach(object:Object3D):OrthographicCamera;
 	function clone(?recursive:Bool):OrthographicCamera;
 	function copy(source:OrthographicCamera, ?recursive:Bool):OrthographicCamera;
+	static var prototype : OrthographicCamera;
 }

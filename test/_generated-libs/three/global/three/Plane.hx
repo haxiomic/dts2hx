@@ -25,4 +25,5 @@ package global.three;
 	function translate(offset:Vector3):Plane;
 	function equals(plane:Plane):Bool;
 	function isIntersectionLine(l:Dynamic):Dynamic;
+	static var prototype : Plane;
 }

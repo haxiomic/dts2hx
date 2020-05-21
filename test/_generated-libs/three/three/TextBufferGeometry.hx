@@ -15,4 +15,5 @@ package three;
 	};
 	function clone():TextBufferGeometry;
 	function copy(source:BufferGeometry):TextBufferGeometry;
+	static var prototype : TextBufferGeometry;
 }

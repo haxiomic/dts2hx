@@ -45,4 +45,5 @@ package three;
 	function attach(object:Object3D):VertexNormalsHelper;
 	function clone(?recursive:Bool):VertexNormalsHelper;
 	function copy(source:VertexNormalsHelper, ?recursive:Bool):VertexNormalsHelper;
+	static var prototype : VertexNormalsHelper;
 }

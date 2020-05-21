@@ -4,4 +4,5 @@ package global.three;
 	function new(data:TypedArray, width:Float, height:Float, depth:Float);
 	function clone():DataTexture3D;
 	function copy(source:Texture):DataTexture3D;
+	static var prototype : DataTexture3D;
 }

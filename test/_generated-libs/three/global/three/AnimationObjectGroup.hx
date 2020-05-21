@@ -13,4 +13,5 @@ package global.three;
 	function add(args:haxe.extern.Rest<Dynamic>):Void;
 	function remove(args:haxe.extern.Rest<Dynamic>):Void;
 	function uncache(args:haxe.extern.Rest<Dynamic>):Void;
+	static var prototype : AnimationObjectGroup;
 }

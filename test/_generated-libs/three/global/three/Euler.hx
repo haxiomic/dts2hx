@@ -19,6 +19,7 @@ package global.three;
 	function toArray(?array:Array<Float>, ?offset:Float):Array<Float>;
 	function toVector3(?optionalResult:Vector3):Vector3;
 	function _onChange(callback:haxe.Constraints.Function):Euler;
+	static var prototype : Euler;
 	static var RotationOrders : Array<String>;
 	static var DefaultOrder : String;
 }

@@ -67,4 +67,5 @@ package node.http2;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerResponse;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Http2ServerResponse;
 	function setMaxListeners(n:Float):Http2ServerResponse;
+	static var prototype : Http2ServerResponse;
 }

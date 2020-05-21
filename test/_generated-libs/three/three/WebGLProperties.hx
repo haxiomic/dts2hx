@@ -5,4 +5,5 @@ package three;
 	function get(object:Dynamic):Dynamic;
 	function delete(object:Dynamic):Void;
 	function clear():Void;
+	static var prototype : WebGLProperties;
 }

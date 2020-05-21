@@ -19,4 +19,5 @@ package three;
 		Return a new material with the same parameters as this material.
 	**/
 	function clone():SpriteMaterial;
+	static var prototype : SpriteMaterial;
 }

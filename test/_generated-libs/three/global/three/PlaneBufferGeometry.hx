@@ -10,4 +10,5 @@ package global.three;
 	};
 	function clone():PlaneBufferGeometry;
 	function copy(source:BufferGeometry):PlaneBufferGeometry;
+	static var prototype : PlaneBufferGeometry;
 }

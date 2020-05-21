@@ -10,4 +10,5 @@ package three;
 	**/
 	function clone():ShapeGeometry;
 	function copy(source:Geometry):ShapeGeometry;
+	static var prototype : ShapeGeometry;
 }

@@ -10,4 +10,5 @@ package global.three;
 	var aEndAngle : Float;
 	var aClockwise : Bool;
 	var aRotation : Float;
+	static var prototype : EllipseCurve;
 }

@@ -45,4 +45,5 @@ package global.three;
 	**/
 	function attach(object:Object3D):Sprite;
 	function clone(?recursive:Bool):Sprite;
+	static var prototype : Sprite;
 }

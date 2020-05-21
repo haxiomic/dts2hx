@@ -8,4 +8,5 @@ package global.three;
 	**/
 	function clone():IcosahedronGeometry;
 	function copy(source:Geometry):IcosahedronGeometry;
+	static var prototype : IcosahedronGeometry;
 }

@@ -42,4 +42,5 @@ package global.three;
 	function attach(object:Object3D):AmbientLightProbe;
 	function clone(?recursive:Bool):AmbientLightProbe;
 	function copy(source:AmbientLightProbe, ?recursive:Bool):AmbientLightProbe;
+	static var prototype : AmbientLightProbe;
 }

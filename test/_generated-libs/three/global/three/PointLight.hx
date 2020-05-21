@@ -51,4 +51,5 @@ package global.three;
 	function attach(object:Object3D):PointLight;
 	function clone(?recursive:Bool):PointLight;
 	function copy(source:PointLight, ?recursive:Bool):PointLight;
+	static var prototype : PointLight;
 }

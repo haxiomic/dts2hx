@@ -55,4 +55,5 @@ package node.stream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):PassThrough;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):PassThrough;
 	function setMaxListeners(n:Float):PassThrough;
+	static var prototype : PassThrough;
 }

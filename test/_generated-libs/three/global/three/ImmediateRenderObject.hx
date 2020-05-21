@@ -43,4 +43,5 @@ package global.three;
 	function attach(object:Object3D):ImmediateRenderObject;
 	function clone(?recursive:Bool):ImmediateRenderObject;
 	function copy(source:ImmediateRenderObject, ?recursive:Bool):ImmediateRenderObject;
+	static var prototype : ImmediateRenderObject;
 }

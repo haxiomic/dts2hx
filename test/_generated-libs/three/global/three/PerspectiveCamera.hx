@@ -117,4 +117,5 @@ package global.three;
 	function attach(object:Object3D):PerspectiveCamera;
 	function clone(?recursive:Bool):PerspectiveCamera;
 	function copy(source:PerspectiveCamera, ?recursive:Bool):PerspectiveCamera;
+	static var prototype : PerspectiveCamera;
 }

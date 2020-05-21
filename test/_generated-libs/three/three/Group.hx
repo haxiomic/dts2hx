@@ -42,4 +42,5 @@ package three;
 	function attach(object:Object3D):Group;
 	function clone(?recursive:Bool):Group;
 	function copy(source:Group, ?recursive:Bool):Group;
+	static var prototype : Group;
 }

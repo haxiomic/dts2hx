@@ -4,4 +4,5 @@ package three;
 	function new(width:Float, height:Float, ?options:WebGLRenderTargetOptions);
 	function clone():WebGLRenderTargetCube;
 	function copy(source:WebGLRenderTarget):WebGLRenderTargetCube;
+	static var prototype : WebGLRenderTargetCube;
 }

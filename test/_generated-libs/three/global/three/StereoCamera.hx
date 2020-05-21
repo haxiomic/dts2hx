@@ -46,4 +46,5 @@ package global.three;
 	function attach(object:Object3D):StereoCamera;
 	function clone(?recursive:Bool):StereoCamera;
 	function copy(source:StereoCamera, ?recursive:Bool):StereoCamera;
+	static var prototype : StereoCamera;
 }

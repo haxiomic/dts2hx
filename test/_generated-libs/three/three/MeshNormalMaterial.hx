@@ -27,4 +27,5 @@ package three;
 		Copy the parameters from the passed material into this material.
 	**/
 	function copy(material:Material):MeshNormalMaterial;
+	static var prototype : MeshNormalMaterial;
 }

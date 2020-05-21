@@ -18,4 +18,5 @@ package node.domain;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Domain;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Domain;
 	function setMaxListeners(n:Float):Domain;
+	static var prototype : Domain;
 }

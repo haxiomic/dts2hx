@@ -28,4 +28,5 @@ package global.three;
 	function equals(box:Box2):Bool;
 	function empty():Dynamic;
 	function isIntersectionBox(b:Dynamic):Dynamic;
+	static var prototype : Box2;
 }

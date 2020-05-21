@@ -14,4 +14,5 @@ package unit.symbols;
 	**/
 	function baseClassMethod():Float;
 	var baseInterfaceField : Float;
+	static var prototype : MergedInterfaceClass;
 }

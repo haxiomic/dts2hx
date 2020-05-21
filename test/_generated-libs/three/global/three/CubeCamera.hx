@@ -44,4 +44,5 @@ package global.three;
 	function attach(object:Object3D):CubeCamera;
 	function clone(?recursive:Bool):CubeCamera;
 	function copy(source:CubeCamera, ?recursive:Bool):CubeCamera;
+	static var prototype : CubeCamera;
 }

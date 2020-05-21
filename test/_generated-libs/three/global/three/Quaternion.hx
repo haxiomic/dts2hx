@@ -72,6 +72,7 @@ package global.three;
 	function _onChange(callback:haxe.Constraints.Function):Quaternion;
 	var _onChangeCallback : haxe.Constraints.Function;
 	function multiplyVector3(v:Dynamic):Dynamic;
+	static var prototype : Quaternion;
 	/**
 		Adapted from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/.
 	**/

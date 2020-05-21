@@ -17,4 +17,5 @@ package node.url;
 	**/
 	function toString():String;
 	function values():js.lib.IterableIterator<String>;
+	static var prototype : URLSearchParams;
 }

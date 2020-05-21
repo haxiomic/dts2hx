@@ -64,4 +64,5 @@ package node.tty;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):WriteStream;
 	function setMaxListeners(n:Float):WriteStream;
+	static var prototype : WriteStream;
 }

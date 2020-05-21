@@ -203,4 +203,5 @@ package three;
 	function supportsVertexTextures():Dynamic;
 	function supportsInstancedArrays():Dynamic;
 	function enableScissorTest(boolean:Dynamic):Dynamic;
+	static var prototype : WebGLRenderer;
 }

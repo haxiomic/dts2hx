@@ -46,4 +46,5 @@ package global.three;
 	function attach(object:Object3D):HemisphereLightHelper;
 	function clone(?recursive:Bool):HemisphereLightHelper;
 	function copy(source:HemisphereLightHelper, ?recursive:Bool):HemisphereLightHelper;
+	static var prototype : HemisphereLightHelper;
 }

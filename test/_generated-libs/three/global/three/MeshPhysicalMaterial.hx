@@ -13,4 +13,5 @@ package global.three;
 		Copy the parameters from the passed material into this material.
 	**/
 	function copy(material:Material):MeshPhysicalMaterial;
+	static var prototype : MeshPhysicalMaterial;
 }

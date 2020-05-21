@@ -5,4 +5,5 @@ package global.three;
 	var manager : LoadingManager;
 	function load(url:String, ?onLoad:(responseFont:Font) -> Void, ?onProgress:(event:js.html.ProgressEvent<js.html.EventTarget>) -> Void, ?onError:(event:js.html.ErrorEvent) -> Void):Void;
 	function parse(json:Dynamic):Font;
+	static var prototype : FontLoader;
 }

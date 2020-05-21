@@ -5,4 +5,5 @@ package node.vm;
 	function runInContext(contextifiedSandbox:Context, ?options:RunningScriptOptions):Dynamic;
 	function runInNewContext(?sandbox:Context, ?options:RunningScriptOptions):Dynamic;
 	function runInThisContext(?options:RunningScriptOptions):Dynamic;
+	static var prototype : Script;
 }

@@ -19,4 +19,5 @@ package global.three;
 	function applyMatrix4(matrix:Matrix4):Sphere;
 	function translate(offset:Vector3):Sphere;
 	function equals(sphere:Sphere):Bool;
+	static var prototype : Sphere;
 }

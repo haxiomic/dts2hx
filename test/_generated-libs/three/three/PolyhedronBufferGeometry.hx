@@ -10,4 +10,5 @@ package three;
 	};
 	function clone():PolyhedronBufferGeometry;
 	function copy(source:BufferGeometry):PolyhedronBufferGeometry;
+	static var prototype : PolyhedronBufferGeometry;
 }

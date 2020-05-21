@@ -33,4 +33,5 @@ package node.async_hooks;
 	function emitDestroy():Void;
 	function asyncId():Float;
 	function triggerAsyncId():Float;
+	static var prototype : AsyncResource;
 }

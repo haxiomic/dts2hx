@@ -42,4 +42,5 @@ package three;
 	function attach(object:Object3D):HemisphereLightProbe;
 	function clone(?recursive:Bool):HemisphereLightProbe;
 	function copy(source:HemisphereLightProbe, ?recursive:Bool):HemisphereLightProbe;
+	static var prototype : HemisphereLightProbe;
 }

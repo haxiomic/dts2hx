@@ -18,4 +18,5 @@ package global.three;
 	**/
 	function clone():TubeGeometry;
 	function copy(source:Geometry):TubeGeometry;
+	static var prototype : TubeGeometry;
 }

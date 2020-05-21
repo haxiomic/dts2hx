@@ -157,4 +157,5 @@ package three;
 	var bones : Array<Bone>;
 	var animation : AnimationClip;
 	var animations : Array<AnimationClip>;
+	static var prototype : Geometry;
 }

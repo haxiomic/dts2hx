@@ -79,4 +79,5 @@ package node.readline;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Interface;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Interface;
 	function setMaxListeners(n:Float):Interface;
+	static var prototype : Interface;
 }

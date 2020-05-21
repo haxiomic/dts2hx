@@ -14,4 +14,5 @@ package three;
 	};
 	function clone():CylinderBufferGeometry;
 	function copy(source:BufferGeometry):CylinderBufferGeometry;
+	static var prototype : CylinderBufferGeometry;
 }

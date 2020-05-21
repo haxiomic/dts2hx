@@ -14,4 +14,5 @@ package global.three;
 	**/
 	function clone():LatheGeometry;
 	function copy(source:Geometry):LatheGeometry;
+	static var prototype : LatheGeometry;
 }

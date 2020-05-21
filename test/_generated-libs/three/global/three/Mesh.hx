@@ -51,4 +51,5 @@ package global.three;
 	function attach(object:Object3D):Mesh;
 	function clone(?recursive:Bool):Mesh;
 	function copy(source:Mesh, ?recursive:Bool):Mesh;
+	static var prototype : Mesh;
 }

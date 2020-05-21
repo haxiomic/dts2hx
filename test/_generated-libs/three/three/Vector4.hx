@@ -136,4 +136,5 @@ package three;
 	function fromArray(xyzw:Array<Float>, ?offset:Float):Vector4;
 	function toArray(?xyzw:Array<Float>, ?offset:Float):Array<Float>;
 	function fromBufferAttribute(attribute:BufferAttribute, index:Float, ?offset:Float):Vector4;
+	static var prototype : Vector4;
 }

@@ -46,4 +46,5 @@ package global.three;
 	function attach(object:Object3D):RectAreaLightHelper;
 	function clone(?recursive:Bool):RectAreaLightHelper;
 	function copy(source:RectAreaLightHelper, ?recursive:Bool):RectAreaLightHelper;
+	static var prototype : RectAreaLightHelper;
 }

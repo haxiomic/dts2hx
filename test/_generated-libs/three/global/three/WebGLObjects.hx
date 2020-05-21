@@ -5,4 +5,5 @@ package global.three;
 	function getAttributeBuffer(attribute:Dynamic):Dynamic;
 	function getWireframeAttribute(geometry:Dynamic):Dynamic;
 	function update(object:Dynamic):Void;
+	static var prototype : WebGLObjects;
 }

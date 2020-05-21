@@ -31,4 +31,5 @@ package global.three;
 	function scissor(scissor:Vector4):Void;
 	function viewport(viewport:Vector4):Void;
 	function reset():Void;
+	static var prototype : WebGLState;
 }

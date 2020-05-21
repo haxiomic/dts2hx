@@ -39,4 +39,5 @@ package three;
 	function setXYZ(index:Float, x:Float, y:Float, z:Float):BufferAttribute;
 	function setXYZW(index:Float, x:Float, y:Float, z:Float, w:Float):BufferAttribute;
 	var length : Float;
+	static var prototype : BufferAttribute;
 }

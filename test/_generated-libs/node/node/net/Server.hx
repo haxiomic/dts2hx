@@ -61,4 +61,5 @@ package node.net;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Server;
 	function setMaxListeners(n:Float):Server;
+	static var prototype : Server;
 }

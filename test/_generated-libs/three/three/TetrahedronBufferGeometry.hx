@@ -4,4 +4,5 @@ package three;
 	function new(?radius:Float, ?detail:Float);
 	function clone():TetrahedronBufferGeometry;
 	function copy(source:BufferGeometry):TetrahedronBufferGeometry;
+	static var prototype : TetrahedronBufferGeometry;
 }

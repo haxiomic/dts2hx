@@ -27,4 +27,5 @@ package three;
 	function isIntersectionBox(b:Dynamic):Dynamic;
 	function isIntersectionPlane(p:Dynamic):Dynamic;
 	function isIntersectionSphere(s:Dynamic):Dynamic;
+	static var prototype : Ray;
 }

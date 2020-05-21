@@ -43,4 +43,5 @@ package global.three;
 	function attach(object:Object3D):LineLoop;
 	function clone(?recursive:Bool):LineLoop;
 	function copy(source:LineLoop, ?recursive:Bool):LineLoop;
+	static var prototype : LineLoop;
 }

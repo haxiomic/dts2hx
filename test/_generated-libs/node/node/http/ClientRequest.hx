@@ -66,4 +66,5 @@ package node.http;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientRequest;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ClientRequest;
 	function setMaxListeners(n:Float):ClientRequest;
+	static var prototype : ClientRequest;
 }

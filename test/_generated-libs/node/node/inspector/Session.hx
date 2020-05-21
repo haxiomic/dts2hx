@@ -732,4 +732,5 @@ package node.inspector;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Session;
 	function setMaxListeners(n:Float):Session;
+	static var prototype : Session;
 }

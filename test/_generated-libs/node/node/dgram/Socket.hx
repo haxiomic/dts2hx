@@ -63,4 +63,5 @@ package node.dgram;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Socket;
 	function setMaxListeners(n:Float):Socket;
+	static var prototype : Socket;
 }

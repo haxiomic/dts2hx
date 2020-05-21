@@ -196,6 +196,7 @@ package global.three;
 	function toJSON(?meta:{ var geometries : Dynamic; var materials : Dynamic; var textures : Dynamic; var images : Dynamic; }):Dynamic;
 	function clone(?recursive:Bool):Object3D;
 	function copy(source:Object3D, ?recursive:Bool):Object3D;
+	static var prototype : Object3D;
 	static var DefaultUp : Vector3;
 	static var DefaultMatrixAutoUpdate : Bool;
 }

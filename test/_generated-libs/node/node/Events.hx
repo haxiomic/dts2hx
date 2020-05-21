@@ -10,4 +10,5 @@ package node;
 	function setMaxListeners(n:Float):node.Events;
 	function prependListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.Events;
 	function prependOnceListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.Events;
+	static var prototype : node.Events;
 }

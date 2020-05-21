@@ -38,5 +38,6 @@ package three;
 	function extractUrlBase(url:String):String;
 	function initMaterials(materials:Array<Material>, texturePath:String):Array<Material>;
 	function createMaterial(m:Material, texturePath:String, ?crossOrigin:String):Bool;
+	static var prototype : Loader;
 	static var Handlers : LoaderHandler;
 }

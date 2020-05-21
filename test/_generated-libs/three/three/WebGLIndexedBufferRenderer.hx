@@ -6,4 +6,5 @@ package three;
 	function setIndex(index:Dynamic):Void;
 	function render(start:Dynamic, count:Float):Void;
 	function renderInstances(geometry:Dynamic, start:Dynamic, count:Float):Void;
+	static var prototype : WebGLIndexedBufferRenderer;
 }

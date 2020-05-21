@@ -33,4 +33,5 @@ package node.dns;
 	dynamic function resolveTxt(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:Array<Array<String>>) -> Void):Void;
 	dynamic function reverse(ip:String, callback:(err:global.nodejs.ErrnoException, hostnames:Array<String>) -> Void):Void;
 	function cancel():Void;
+	static var prototype : Resolver;
 }

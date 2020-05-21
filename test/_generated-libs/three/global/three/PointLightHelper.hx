@@ -45,4 +45,5 @@ package global.three;
 	function attach(object:Object3D):PointLightHelper;
 	function clone(?recursive:Bool):PointLightHelper;
 	function copy(source:PointLightHelper, ?recursive:Bool):PointLightHelper;
+	static var prototype : PointLightHelper;
 }

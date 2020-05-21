@@ -9,6 +9,7 @@ package unit.class_;
 	var typeParamField : T;
 	var defaultBoolField : DefaultBool;
 	var typeofSelf : {
+		var prototype : ClassBase<Dynamic, Dynamic>;
 		function staticMethod<T>(a:Float):T;
 		var staticField : Float;
 		var namespaceField : String;
@@ -32,6 +33,7 @@ package unit.class_;
 	**/
 	final getOnlyAccessor : Float;
 	var setOnlyAccessor : Float;
+	static var prototype : ClassBase<Dynamic, Dynamic>;
 	static function staticMethod<T>(a:Float):T;
 	static var staticField : Float;
 	static var namespaceField : String;

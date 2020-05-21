@@ -71,4 +71,5 @@ package node.stream;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Readable;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Readable;
 	function setMaxListeners(n:Float):Readable;
+	static var prototype : Readable;
 }

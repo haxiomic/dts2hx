@@ -42,4 +42,5 @@ package global.three;
 	function attach(object:Object3D):PolarGridHelper;
 	function clone(?recursive:Bool):PolarGridHelper;
 	function copy(source:PolarGridHelper, ?recursive:Bool):PolarGridHelper;
+	static var prototype : PolarGridHelper;
 }
