@@ -1353,7 +1353,7 @@ class ConverterContext {
 		var hxEnumTypeName: Null<String> = null;
 		// determine underlying type of enum by iterating its members
 		var enumMembers = tc.getExportsOfModule(symbol).filter(s -> s.flags & SymbolFlags.EnumMember != 0);
-		for (member in enumMembers) {
+		if (enumMembers.length > 0) for (member in enumMembers) {
 			var enumMemberNode = member.valueDeclaration;
 			var runtimeValue = tc.getConstantValue(cast enumMemberNode);
 			var hxMemberTypeName = switch js.Syntax.typeof(cast runtimeValue) {
@@ -1375,6 +1375,8 @@ class ConverterContext {
 					default: 'Any';
 				}
 			}
+		} else {
+			hxEnumTypeName = 'Int';
 		}
 
 		return if (hxEnumTypeName != null) {
