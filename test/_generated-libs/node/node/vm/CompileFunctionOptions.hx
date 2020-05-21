@@ -21,7 +21,7 @@ typedef CompileFunctionOptions = {
 		An array containing a collection of context extensions (objects wrapping the current scope) to be applied while compiling
 	**/
 	@:optional
-	var contextExtensions : Array<js.lib.Object>;
+	var contextExtensions : Array<Dynamic>;
 	/**
 		Specifies the filename used in stack traces produced by this script.
 		Default: `''`.

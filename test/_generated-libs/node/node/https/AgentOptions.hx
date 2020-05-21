@@ -56,9 +56,9 @@ typedef AgentOptions = {
 	@:optional
 	dynamic function lookup(hostname:String, options:node.dns.LookupOneOptions, callback:(err:Null<global.nodejs.ErrnoException>, address:String, family:Float) -> Void):Void;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, js.lib.Object, global.Buffer>>>;
+	var pfx : ts.AnyOf3<String, global.Buffer, Array<Dynamic>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<js.lib.Object, global.Buffer>>>;
+	var key : ts.AnyOf3<String, global.Buffer, Array<Dynamic>>;
 	@:optional
 	var passphrase : String;
 	@:optional

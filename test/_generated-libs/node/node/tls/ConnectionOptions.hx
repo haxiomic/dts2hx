@@ -30,9 +30,9 @@ typedef ConnectionOptions = {
 	@:optional
 	var timeout : Float;
 	@:optional
-	var pfx : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf3<String, js.lib.Object, global.Buffer>>>;
+	var pfx : ts.AnyOf3<String, global.Buffer, Array<Dynamic>>;
 	@:optional
-	var key : ts.AnyOf3<String, global.Buffer, Array<ts.AnyOf2<js.lib.Object, global.Buffer>>>;
+	var key : ts.AnyOf3<String, global.Buffer, Array<Dynamic>>;
 	@:optional
 	var passphrase : String;
 	@:optional

@@ -7,7 +7,7 @@ typedef ErrorConstructor = {
 	/**
 		Create .stack property on a target object
 	**/
-	function captureStackTrace(targetObject:js.lib.Object, ?constructorOpt:haxe.Constraints.Function):Void;
+	function captureStackTrace(targetObject:Dynamic, ?constructorOpt:haxe.Constraints.Function):Void;
 	/**
 		Optional override for formatting stack traces
 	**/

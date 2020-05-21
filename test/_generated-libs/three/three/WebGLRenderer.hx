@@ -149,7 +149,7 @@ package three;
 	/**
 		Tells the shadow map plugin to update using the passed scene and camera parameters.
 	**/
-	function renderBufferImmediate(object:Object3D, program:js.lib.Object, material:Material):Void;
+	function renderBufferImmediate(object:Object3D, program:Dynamic, material:Material):Void;
 	function renderBufferDirect(camera:Camera, fog:Fog, geometry:ts.AnyOf2<Geometry, BufferGeometry>, material:Material, object:Object3D, geometryGroup:Dynamic):Void;
 	/**
 		A build in function that can be used instead of requestAnimationFrame. For WebVR projects this function must be used.

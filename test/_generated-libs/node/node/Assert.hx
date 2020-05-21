@@ -14,12 +14,12 @@ package node;
 	static function notStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 	static function deepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 	static function notDeepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	@:overload(function(block:() -> Dynamic, error:ts.AnyOf4<js.lib.Object, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
+	@:overload(function(block:() -> Dynamic, error:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
 	static function throws(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 	@:overload(function(block:() -> Dynamic, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
 	static function doesNotThrow(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 	static function ifError(value:Dynamic):Void;
-	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf4<js.lib.Object, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
+	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
 	static function rejects(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
 	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
 	static function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
@@ -37,12 +37,12 @@ package node;
 		function notStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		function deepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		function notDeepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		@:overload(function(block:() -> Dynamic, error:ts.AnyOf4<js.lib.Object, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
+		@:overload(function(block:() -> Dynamic, error:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
 		function throws(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		@:overload(function(block:() -> Dynamic, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
 		function doesNotThrow(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		function ifError(value:Dynamic):Void;
-		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf4<js.lib.Object, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
+		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
 		function rejects(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
 		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
 		function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;

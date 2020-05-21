@@ -7,7 +7,7 @@ typedef ObjectConstructor = {
 	/**
 		A reference to the prototype for a class of objects.
 	**/
-	final prototype : js.lib.Object;
+	final prototype : Dynamic;
 	/**
 		Returns the prototype of an object.
 	**/
