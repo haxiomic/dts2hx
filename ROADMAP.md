@@ -19,7 +19,11 @@
 
 	See https://github.com/kLabz/haxe-react/blob/c1b68ec990ec5bef5d818e8b9837edcad8c70141/src/lib/react/React.hx#L13-L16
 
-
+- Issue: This should be `var _50: String;`
+	```haxe
+	@:native("50")
+	var FiveZero : String;
+	```
 
 - Issues:
 	- export default not working properly
@@ -161,3 +165,5 @@ A generic build version of this would work
 	
 
 - How do you install haxe 4.0.5 with npm-haxe? Not clear so far
+
+- Binaries should be hosted on npm, so for example `npm install haxe` on mac installs `@haxe/haxec-darwin@4.2.0` as a dependency
