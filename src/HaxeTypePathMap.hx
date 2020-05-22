@@ -412,7 +412,7 @@ class HaxeTypePathMap {
 
 		// rename if name that conflict with std.* types
 		// @! we should generate this list automatically in the future
-		var disallowedNames = stdLibMap.topLevelNames;
+		var disallowedNames = stdLibMap != null ? stdLibMap.topLevelNames : defaultDisallowedNames;
 		// add '_' to avoid disallowed names
 		if (disallowedNames.indexOf(name) != -1) {
 			name = name + '_';
@@ -467,6 +467,48 @@ class HaxeTypePathMap {
 			(m.symbol.flags & SymbolFlags.TypeAlias == 0 ? 1 : 0)    << 0   // prefer **not** TypeAlias with lowest priority
 		;
 	}
+
+	// normally provided by stdLibMap if available
+	var defaultDisallowedNames = [
+		"Any",
+		"Array",
+		"Class",
+		"Date",
+		"DateTools",
+		"EReg",
+		"Enum",
+		"EnumValue",
+		"HxOverrides",
+		"IntIterator",
+		"Lambda",
+		"List",
+		"Map",
+		"IMap",
+		"Math",
+		"Reflect",
+		"String",
+		"Std",
+		"Void",
+		"Float",
+		"Int",
+		"Null",
+		"Bool",
+		"Dynamic",
+		"Iterator",
+		"Iterable",
+		"KeyValueIterator",
+		"KeyValueIterable",
+		"ArrayAccess",
+		"StringBuf",
+		"StringTools",
+		"Sys",
+		"ValueType",
+		"Type",
+		"UInt",
+		"UnicodeString",
+		"XmlType",
+		"Xml"
+	];
 
 }
 
