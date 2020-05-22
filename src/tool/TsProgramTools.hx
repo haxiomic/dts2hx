@@ -199,7 +199,6 @@ class TsProgramTools {
 
 	static public function assignModuleNames(program: Program, moduleSearchPath: String, host: CompilerHost) {
 		var compilerOptions = program.getCompilerOptions();
-		var tc = program.getTypeChecker();
 
 		var packageNames = new OnceOnlyQueue();
 
@@ -236,7 +235,9 @@ class TsProgramTools {
 				var defaultTypesSourceFile = program.getSourceFile(result.resolvedModule.resolvedFileName);
 				if (defaultTypesSourceFile != null) {
 					defaultTypesSourceFile.moduleName = normalizeModuleName(packageName);
-				} else throw 'Failed to get sourceFile "${result.resolvedModule.resolvedFileName}"';
+				} else {
+					// it's valid for this source file to not be included in the compilation
+				}
 			} else throw 'Failed to resolve module';
 		}
 	}
