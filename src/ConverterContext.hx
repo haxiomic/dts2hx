@@ -483,7 +483,7 @@ class ConverterContext {
 				if (classDeclaration != null) {
 					// add default constructor
 					if (!fields.exists(f -> f.name == 'new')) {
-						fields.push((macro class { function new(); }).fields[0]);
+						fields.unshift((macro class { function new(); }).fields[0]);
 					}
 				}
 
