@@ -1,12 +1,12 @@
 output
 externs/
+.haxelib/
 examples/
 /notes
 /test/
 /test-definitions/
 /lib
 build.hxml
-stdlib.hxml
 ROADMAP.md
 tsconfig.json
 scratch.*
