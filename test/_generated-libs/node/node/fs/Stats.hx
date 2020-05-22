@@ -1,6 +1,7 @@
 package node.fs;
 
 @:jsRequire("fs", "Stats") extern class Stats {
+	function new();
 	function isFile():Bool;
 	function isDirectory():Bool;
 	function isBlockDevice():Bool;

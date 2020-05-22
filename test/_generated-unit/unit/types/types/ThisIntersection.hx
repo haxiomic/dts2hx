@@ -1,6 +1,7 @@
 package unit.types.types;
 
 @:jsRequire("./unit/types", "Types.ThisIntersection") extern class ThisIntersection<T> {
+	function new();
 	var _this : ThisIntersection<T>;
 	var thisAndAnon : Dynamic;
 	var thisAndAnon2 : ThisIntersection<T>;

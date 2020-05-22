@@ -23,7 +23,7 @@ package node.repl;
 		
 		`REPLServer` cannot be subclassed due to implementation specifics in NodeJS.
 	**/
-	function new();
+	private function new();
 	/**
 		The `vm.Context` provided to the `eval` function to be used for JavaScript
 		evaluation.

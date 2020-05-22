@@ -1,6 +1,7 @@
 package global.three;
 
 @:native("THREE.AnimationAction") extern class AnimationAction {
+	function new();
 	var loop : AnimationActionLoopStyles;
 	var time : Float;
 	var timeScale : Float;

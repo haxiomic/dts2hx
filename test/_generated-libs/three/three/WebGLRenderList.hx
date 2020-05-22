@@ -1,6 +1,7 @@
 package three;
 
 @:jsRequire("three", "WebGLRenderList") extern class WebGLRenderList {
+	function new();
 	var opaque : Array<RenderItem>;
 	var transparent : Array<RenderItem>;
 	function init():Void;

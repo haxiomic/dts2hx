@@ -4,6 +4,7 @@ package global.three;
 	An object with a series of statistical information about the graphics board memory and the rendering process.
 **/
 @:native("THREE.WebGLInfo") extern class WebGLInfo {
+	function new();
 	var autoReset : Bool;
 	var memory : {
 		var geometries : Float;

@@ -1,6 +1,7 @@
 package node.crypto;
 
 @:jsRequire("crypto", "ECDH") extern class ECDH {
+	function new();
 	@:overload(function(encoding:HexBase64Latin1Encoding, ?format:String):String { })
 	function generateKeys():global.Buffer;
 	@:overload(function(other_public_key:String, input_encoding:HexBase64Latin1Encoding):global.Buffer { })

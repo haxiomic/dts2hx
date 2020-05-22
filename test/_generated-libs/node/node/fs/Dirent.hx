@@ -1,6 +1,7 @@
 package node.fs;
 
 @:jsRequire("fs", "Dirent") extern class Dirent {
+	function new();
 	function isFile():Bool;
 	function isDirectory():Bool;
 	function isBlockDevice():Bool;

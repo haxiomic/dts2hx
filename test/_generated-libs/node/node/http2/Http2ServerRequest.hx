@@ -1,7 +1,7 @@
 package node.http2;
 
 @:jsRequire("http2", "Http2ServerRequest") extern class Http2ServerRequest extends node.stream.Readable {
-	function new();
+	private function new();
 	var headers : IncomingHttpHeaders;
 	var httpVersion : String;
 	var method : String;

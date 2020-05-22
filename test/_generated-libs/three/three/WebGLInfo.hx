@@ -4,6 +4,7 @@ package three;
 	An object with a series of statistical information about the graphics board memory and the rendering process.
 **/
 @:jsRequire("three", "WebGLInfo") extern class WebGLInfo {
+	function new();
 	var autoReset : Bool;
 	var memory : {
 		var geometries : Float;

@@ -1,6 +1,7 @@
 package three;
 
 @:jsRequire("three", "AnimationAction") extern class AnimationAction {
+	function new();
 	var loop : AnimationActionLoopStyles;
 	var time : Float;
 	var timeScale : Float;

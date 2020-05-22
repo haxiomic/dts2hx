@@ -1,7 +1,7 @@
 package node.http2;
 
 @:jsRequire("http2", "Http2ServerResponse") extern class Http2ServerResponse extends node.stream.Stream {
-	function new();
+	private function new();
 	function addTrailers(trailers:node.http.OutgoingHttpHeaders):Void;
 	var connection : ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>;
 	@:overload(function(?data:ts.AnyOf2<String, global.Buffer>, ?callback:() -> Void):Void { })

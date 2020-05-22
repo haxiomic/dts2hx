@@ -1,6 +1,7 @@
 package global.three;
 
 @:native("THREE.WebGLClipping") extern class WebGLClipping {
+	function new();
 	var uniform : {
 		var value : Dynamic;
 		var needsUpdate : Bool;

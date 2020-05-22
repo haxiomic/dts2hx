@@ -1,6 +1,7 @@
 package unit.class_;
 
 @:jsRequire("./unit/class", "CallableClass") extern class CallableClass<T, J> {
+	function new();
 	@:selfCall
 	static function call<A, B>(arg:A, b:B):Dynamic;
 	var interfaceField : J;
