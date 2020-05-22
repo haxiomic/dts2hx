@@ -445,7 +445,7 @@ class ConverterContext {
 					superClassPath = switch hxSuperType {
 						case TPath(p) if (!isHxAny(hxSuperType)): p;
 						default:
-							Log.error('Class super-type did not translate to a class-path (instead it was: <b>${new Printer().printComplexType(hxSuperType)}</>)', symbol);
+							Log.warn('Class super-type did not translate to a class-path (instead it was: <b>${new Printer().printComplexType(hxSuperType)}</>)', symbol);
 							null;
 					}
 
