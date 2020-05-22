@@ -737,8 +737,8 @@ class ConverterContext {
 
 			var objectType: ObjectType = cast type;
 			var isAnonType = objectType.objectFlags & ObjectFlags.Anonymous != 0;
-			var isInterface = type.symbol.flags & SymbolFlags.Interface != 0;
-			var isValueModule = type.symbol.flags & SymbolFlags.ValueModule != 0; 
+			var isInterface = type.symbol != null && type.symbol.flags & SymbolFlags.Interface != 0;
+			var isValueModule = type.symbol != null && type.symbol.flags & SymbolFlags.ValueModule != 0; 
 			var isConstructorType = tc.isConstructorType(objectType); // constructor types are converted to classes
 			var appearsToBeStructure = !isConstructorType && !isValueModule && (isAnonType || isInterface);
 
