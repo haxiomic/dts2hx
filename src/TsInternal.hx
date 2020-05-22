@@ -1,3 +1,5 @@
+import typescript.ts.ModifiersArray;
+import typescript.ts.SignatureDeclaration;
 import js.Syntax;
 import typescript.ts.Signature;
 import typescript.ts.Identifier;
@@ -76,6 +78,10 @@ class TsInternal {
 	**/
 	static public function getSymbol(node: Node): Null<Symbol> {
 		return untyped node.symbol;
+	}
+
+	static public function getSignatureDeclarationModifiers(d: SignatureDeclaration): Null<ModifiersArray> {
+		return Reflect.field(d, 'modifiers');
 	}
 
 }

@@ -667,7 +667,6 @@ class ConverterContext {
 			TDAlias(TAnonymous(fields));
 		}
 
-
 		return {
 			pack: typePath.pack,
 			name: typePath.name,
@@ -1199,11 +1198,21 @@ class ConverterContext {
 			}: MetadataEntry);
 		});
 		var baseDoc = baseSignature.getDocumentationComment(tc).map(d -> d.text).join('\n');
+
+		var baseDeclaration = baseSignature.getDeclaration();
+		var hxAccessModifiers = if (baseDeclaration != null) {
+			var tsModifiers = baseDeclaration.getSignatureDeclarationModifiers();
+			if (tsModifiers != null) {
+				accessFromModifiers(tsModifiers);
+			} else [];
+		} else [];
+
 		return {
 			name: fieldName,
 			meta: overloadMetas,
 			kind: FFun(functionFromSignature(baseSignature, accessContext, enclosingDeclaration)),
 			doc: baseDoc,
+			access: hxAccessModifiers,
 			pos: null,
 		};
 	}
@@ -1664,7 +1673,7 @@ class ConverterContext {
 				case SyntaxKind.StaticKeyword:
 					access.push(AStatic);
 				default:
-					Log.warn('Unhandled modifier kind <b>${TsSyntaxTools.getSyntaxKindName(modifier.kind)}</b>');
+					Log.warn('Unhandled modifier kind <b>${TsSyntaxTools.getSyntaxKindName(modifier.kind)}</b>', logSymbol);
 			}
 		}
 		return access;
