@@ -508,8 +508,8 @@ class Main {
 
 		Console.printlnFormatted('<b>Examples:</b>');
 		Console.printlnFormatted('\tdts2hx three');
-		Console.printlnFormatted('\tdts2hx --all -o .haxelib');
-		Console.printlnFormatted('\tdts2hx ./src/index --verbose');
+		Console.printlnFormatted('\tdts2hx --all');
+		Console.printlnFormatted('\tdts2hx ./src/index --tsconfig ./tsconfig.json --verbose');
 		Console.println('');
 
 		Console.printFormatted('<bright_white,b>Options:</>\n');
