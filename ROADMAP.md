@@ -1,3 +1,5 @@
+- Why so many typescript errors with `chakra-ui`?
+
 - Redesign so that we supply a bunch of input modules and ConverterContext returns output modules, which may include new dependencies
 	- Creating a fresh context per module loses inter-module interaction (see express)
 
@@ -24,6 +26,7 @@
 	@:native("50")
 	var FiveZero : String;
 	```
+- Issue: maybe when converting the typename `_` the result should be `Underscore` not `T_`
 
 - Issues:
 	- export default not working properly
