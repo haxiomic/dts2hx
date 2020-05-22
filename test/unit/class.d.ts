@@ -93,3 +93,15 @@ export interface ClassInterfaceWithInterfaceExtends extends BaseInterface {
 export class ClassInterfaceWithInterfaceExtends {
     classField: boolean;
 }
+
+/**
+ * Should add `public function new()`
+ */
+export class ClassWithoutExplicitConstructor {
+    
+}
+
+export class ClassWithPrivateConstructor {
+    private constructor(arg: string);
+    static create(): ClassWithPrivateConstructor;
+}
