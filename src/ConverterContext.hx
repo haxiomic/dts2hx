@@ -480,6 +480,13 @@ class ConverterContext {
 					classMembers
 				);
 
+				if (classDeclaration != null) {
+					// add default constructor
+					if (!fields.exists(f -> f.name == 'new')) {
+						fields.push((macro class { function new(); }).fields[0]);
+					}
+				}
+
 				// although we do a final pass resolving name collisions, we do it manually here so that if the fields are cloned into an interface structure
 				// they have the same collision resolution applied
 				fields.resolveNameCollisions();
