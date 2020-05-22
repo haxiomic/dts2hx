@@ -134,11 +134,11 @@ class SymbolAccessMap {
 		if (TsSymbolTools.isSourceFileSymbol(symbol)) {
 			return switch access {
 				case ExportModule(moduleName, sourceFileSymbol, _):
+					var newSourceFile = symbol.valueDeclaration.getSourceFile();
 					if (symbol != sourceFileSymbol) {
-						Log.error('Cannot change symbol access module from <b>ExportModule($moduleName, ${sourceFileSymbol.name})</> to ExportModule', symbol);
+						Log.warn('Changing symbol access module from <b>ExportModule($moduleName, ${sourceFileSymbol.name})</> to <b>ExportModule(${newSourceFile.moduleName}, ${symbol.name})</>', symbol);
 					}
-					// clear identifier path because the root has been replaced
-					ExportModule(moduleName, sourceFileSymbol, []);
+					ExportModule(newSourceFile.moduleName, symbol, []);
 				case AmbientModule(path, _):
 					Log.error('Cannot change symbol access from <b>AmbientModule($path)</> to ExportModule', symbol);
 					access;
