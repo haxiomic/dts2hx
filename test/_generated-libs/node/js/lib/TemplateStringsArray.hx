@@ -1,7 +1,7 @@
 package js.lib;
 
 typedef TemplateStringsArray = {
-	final raw : ReadonlyArray<String>;
+	final raw : haxe.ds.ReadOnlyArray<String>;
 	/**
 		Gets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/
@@ -40,53 +40,53 @@ typedef TemplateStringsArray = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:String, index:Float, array:haxe.ds.ReadOnlyArray<String>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:String, index:Float, array:haxe.ds.ReadOnlyArray<String>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:String, index:Float, array:haxe.ds.ReadOnlyArray<String>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> U, ?thisArg:Dynamic):Array<U>;
+	function map<U>(callbackfn:(value:String, index:Float, array:haxe.ds.ReadOnlyArray<String>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):Array<String> { })
-	function filter<S>(callbackfn:(value:String, index:Float, array:ReadonlyArray<String>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(callbackfn:(value:String, index:Float, array:haxe.ds.ReadOnlyArray<String>) -> Any, ?thisArg:Dynamic):Array<String> { })
+	function filter<S>(callbackfn:(value:String, index:Float, array:haxe.ds.ReadOnlyArray<String>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:ReadonlyArray<String>) -> String, initialValue:String):String { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:String, currentIndex:Float, array:ReadonlyArray<String>) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:ReadonlyArray<String>) -> String):String;
+	@:overload(function(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:haxe.ds.ReadOnlyArray<String>) -> String, initialValue:String):String { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:String, currentIndex:Float, array:haxe.ds.ReadOnlyArray<String>) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:haxe.ds.ReadOnlyArray<String>) -> String):String;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:ReadonlyArray<String>) -> String, initialValue:String):String { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:String, currentIndex:Float, array:ReadonlyArray<String>) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:ReadonlyArray<String>) -> String):String;
+	@:overload(function(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:haxe.ds.ReadOnlyArray<String>) -> String, initialValue:String):String { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:String, currentIndex:Float, array:haxe.ds.ReadOnlyArray<String>) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:haxe.ds.ReadOnlyArray<String>) -> String):String;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:String, index:Float, obj:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):Null<String> { })
-	function find<S>(predicate:(value:String, index:Float, obj:ReadonlyArray<String>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	@:overload(function(predicate:(value:String, index:Float, obj:haxe.ds.ReadOnlyArray<String>) -> Any, ?thisArg:Dynamic):Null<String> { })
+	function find<S>(predicate:(value:String, index:Float, obj:haxe.ds.ReadOnlyArray<String>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:String, index:Float, obj:ReadonlyArray<String>) -> Any, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:String, index:Float, obj:haxe.ds.ReadOnlyArray<String>) -> Any, ?thisArg:Dynamic):Float;
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/

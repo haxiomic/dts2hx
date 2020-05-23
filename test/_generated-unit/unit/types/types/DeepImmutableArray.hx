@@ -39,53 +39,53 @@ typedef DeepImmutableArray<T> = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:DeepImmutable<T>, index:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
+	function every(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:DeepImmutable<T>, index:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:DeepImmutable<T>, index:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Calls a defined callback function on each element of an array, and returns an array that contains the results.
 	**/
-	function map<U>(callbackfn:(value:DeepImmutable<T>, index:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> U, ?thisArg:Dynamic):Array<U>;
+	function map<U>(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 		
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:DeepImmutable<T>, index:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Array<DeepImmutable<T>> { })
-	function filter<S>(callbackfn:(value:DeepImmutable<T>, index:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Array<DeepImmutable<T>> { })
+	function filter<S>(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> DeepImmutable<T>, initialValue:DeepImmutable<T>):DeepImmutable<T> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:DeepImmutable<T>, currentIndex:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> DeepImmutable<T>):DeepImmutable<T>;
+	@:overload(function(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>, initialValue:DeepImmutable<T>):DeepImmutable<T> { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>):DeepImmutable<T>;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> DeepImmutable<T>, initialValue:DeepImmutable<T>):DeepImmutable<T> { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:DeepImmutable<T>, currentIndex:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:js.lib.ReadonlyArray<DeepImmutable<T>>) -> DeepImmutable<T>):DeepImmutable<T>;
+	@:overload(function(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>, initialValue:DeepImmutable<T>):DeepImmutable<T> { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>):DeepImmutable<T>;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	@:overload(function(predicate:(value:DeepImmutable<T>, index:Float, obj:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Null<DeepImmutable<T>> { })
-	function find<S>(predicate:(value:DeepImmutable<T>, index:Float, obj:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	@:overload(function(predicate:(value:DeepImmutable<T>, index:Float, obj:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Null<DeepImmutable<T>> { })
+	function find<S>(predicate:(value:DeepImmutable<T>, index:Float, obj:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:DeepImmutable<T>, index:Float, obj:js.lib.ReadonlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:DeepImmutable<T>, index:Float, obj:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Float;
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/

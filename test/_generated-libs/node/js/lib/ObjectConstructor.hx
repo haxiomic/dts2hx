@@ -50,7 +50,7 @@ typedef ObjectConstructor = {
 	**/
 	@:overload(function<T>(f:T):T { })
 	@:overload(function<T>(o:T):T { })
-	function freeze<T>(a:Array<T>):ReadonlyArray<T>;
+	function freeze<T>(a:Array<T>):haxe.ds.ReadOnlyArray<T>;
 	/**
 		Prevents the addition of new properties to an object.
 	**/
