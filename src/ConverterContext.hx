@@ -1566,13 +1566,6 @@ class ConverterContext {
 			access: hxAccessModifiers,
 		};
 
-		// All extern fields are supposed to be public, if a field is marked private we can instead replace the private modifier with @:noComplete
-		var hasPrivateAccess = field.hasAccess(APrivate);
-		if (hasPrivateAccess) {
-			field.setMeta(':noCompletion');
-		}
-		field.disableAccess(APrivate);
-
 		return field;
 	}
 
