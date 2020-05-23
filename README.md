@@ -104,7 +104,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - Either:
         - bake into the externs
         - include a macro that bundles at compile-time
-- [ ] Review situation with constraints (currently disabled), can issues be resolved?
+- [ ] Enable type parameter constraints by default (just needs some type conversion tweaks)
 - [x] Haxe-issue: when passing anon objects with `@:native()` fields to externs, `@:native` information is lost
     - [ ] [Hopefully quoted field names will arrive in 4.2](https://github.com/HaxeFoundation/haxe/pull/9433)
 - [ ] Intersection types: rasterize where possible
