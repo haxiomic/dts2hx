@@ -47,6 +47,13 @@ export namespace Types {
         }
     }
 
+    type StructureWithTypeParam<T> = {
+        t: T;
+        optionalT?: T;
+        nullableT: T | null;
+        undefinedT: T | undefined;
+    }
+
     type FunctionVarConversion = {
         exampleWithOverload: {
             (p: string): number;
@@ -219,10 +226,12 @@ export namespace Types {
     };
     const partial: Partial<{a: number, b: string}>; // macro Partial or evaluate
     function partialTypeParam<T>(x: Partial<T>): void; // not sure there's any way to support this
+    const readonlyAnon: Readonly<Anon>;
     // limit allowed fields
     type Index = 'a' | 'b' | 'c'
     type FromIndex = { [k in Index]?: number }
     type FromSomeIndex<K extends string> = { [key in K]: number }
+    type RecordOfIndex = Record<Index, boolean>;
 
     // Functions
     const arrowNumberStringVoid: (a: number, noType) => void;
@@ -261,7 +270,7 @@ export namespace Types {
     const intersectionTripleAnon: {x: number} & {y: number} & {z: number};
     const intersectionWithUnion: {a: string} & {b: boolean} | {c: number};
     const intersectionWithCallSignatures: {(callParamA: string): number; call(): number} & {(callParamB: boolean): string[]; b: number};
-    type Anon = { a: string };
+    type Anon = { a: string, r: Record<Index, boolean> };
     type AliasedAnon = Anon;
     const intersectionAnonAlias: AliasedAnon & {b: boolean};
 
@@ -315,5 +324,14 @@ export namespace Types {
      * Should translate to _Lowercasename
      */
     type _lowercasename = string;
+
+    class Issue26 {
+        nonOptionalEnumField: ExampleEnum;
+        optionalEnumField?: ExampleEnum;
+        nullOrEnumField: ExampleEnum | null;
+        undefinedOrEnumField: ExampleEnum | undefined;
+        undefinedNullEnumField: ExampleEnum | undefined | null;
+    }
+
 
 }
