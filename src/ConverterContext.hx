@@ -1,3 +1,4 @@
+import ds.Set;
 import ds.OnlyOnceSymbolQueue;
 import haxe.macro.Expr;
 import tool.FileTools;
@@ -1204,15 +1205,15 @@ class ConverterContext {
 			var tsModifiers = baseDeclaration.getSignatureDeclarationModifiers();
 			if (tsModifiers != null) {
 				accessFromModifiers(tsModifiers);
-			} else [];
-		} else [];
+			} else new Set();
+		} else new Set();
 
 		return {
 			name: fieldName,
 			meta: overloadMetas,
 			kind: FFun(functionFromSignature(baseSignature, accessContext, enclosingDeclaration)),
 			doc: baseDoc,
-			access: hxAccessModifiers,
+			access: hxAccessModifiers.toArray(),
 			pos: null,
 		};
 	}
@@ -1452,7 +1453,11 @@ class ConverterContext {
 		
 		var hxAccessModifiers = if (baseDeclaration != null && baseDeclaration.modifiers != null) {
 			accessFromModifiers(baseDeclaration.modifiers, symbol);
-		} else [];
+		} else new Set();
+		// add `final` modifer for const variable declarations
+		if (baseDeclaration != null && TsSyntaxTools.isVarConst(baseDeclaration)) {
+			hxAccessModifiers.add(AFinal);
+		}
 
 		var userDoc = getDoc(symbol);
 		var docParts = userDoc != '' ? [userDoc] : [];
@@ -1492,7 +1497,7 @@ class ConverterContext {
 			if (callSignatures.length > 0 && constructSignatures.length == 0 && typeFields.length == 0) {
 				// replace `var x: FnType` with `dynamic function x()`
 				if (!hxAccessModifiers.has(AFinal)) {
-					hxAccessModifiers.push(ADynamic);
+					hxAccessModifiers.add(ADynamic);
 				}
 				hxAccessModifiers.remove(AFinal); // `final function` is not valid syntax
 				// if nullable, force optional (this isn't perfect but it's good enough)
@@ -1518,7 +1523,7 @@ class ConverterContext {
 
 				// get-only accessors are readonly
 				if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
-					if (!hxAccessModifiers.has(AFinal)) hxAccessModifiers.push(AFinal);
+					hxAccessModifiers.add(AFinal);
 				}
 
 				FVar(hxType, null);
@@ -1563,7 +1568,7 @@ class ConverterContext {
 			pos: pos,
 			kind: kind,
 			doc: docParts.join('\n\n'),
-			access: hxAccessModifiers,
+			access: hxAccessModifiers.toArray(),
 		};
 
 		return field;
@@ -1642,7 +1647,7 @@ class ConverterContext {
 		}
 	}
 
-	function accessFromModifiers(modifiers: ModifiersArray, ?logSymbol: Symbol): Array<Access> {
+	function accessFromModifiers(modifiers: ModifiersArray, ?logSymbol: Symbol): Set<Access> {
 		var access = new Array<Access>();
 		for (modifier in (cast modifiers: Array<Modifier>)) {
 			switch modifier.kind {
@@ -1669,7 +1674,7 @@ class ConverterContext {
 					Log.warn('Unhandled modifier kind <b>${TsSyntaxTools.getSyntaxKindName(modifier.kind)}</b>', logSymbol);
 			}
 		}
-		return access;
+		return new Set(access);
 	}
 
 	function isHxAny(t: ComplexType) {

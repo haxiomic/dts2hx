@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.NodeFlags;
 import typescript.ts.TypeParameterDeclaration;
 import typescript.ts.SourceFile;
 import typescript.ts.Identifier;
@@ -31,6 +32,11 @@ class TsSyntaxTools {
 	static public function typeParameterDeclarationName(typeParameterDeclaration: TypeParameterDeclaration): String {
 		var name: Identifier = (untyped typeParameterDeclaration.name: Identifier);
 		return name.escapedText.toSafeTypeName();
+	}
+	
+	// translated from https://github.com/microsoft/TypeScript/blob/3340142dda47f52af55144130304eef19a97ec31/src/compiler/utilities.ts#L1064
+	static public function isVarConst(node: Node) {
+		return Ts.getCombinedNodeFlags(node) & NodeFlags.Const != 0;
 	}
 
 }
