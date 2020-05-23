@@ -259,6 +259,7 @@ class HaxeTypePathMap {
 				// we want to avoid generating the following types into ts.lib.* 
 				// preferring to map them to haxe types instead
 				'Array' => {name: 'Array', moduleName: 'Array', pack: []},
+				'ReadonlyArray' => {name: 'ReadOnlyArray', moduleName: 'ReadOnlyArray', pack: ['haxe', 'ds']},
 				'String' => {name: 'String', moduleName: 'String', pack: []},
 				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib']},
 				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
