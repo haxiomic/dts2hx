@@ -117,6 +117,7 @@ class ConverterContext {
 	final enableTypeParameterConstraints = false;
 	final typeStackLimit = 25;
 	final anyUnionCollapse = false; // `any | string` -> `any`
+	final unionizedFunctionTypes = true; // `(?b) => C` -> `()->C | (b)->C`
 
 	public function new(
 		inputModuleName: String,
@@ -1262,46 +1263,49 @@ class ConverterContext {
 			fun.params = null;
 		}
 
-		/**
-			In typescript `:() => R` can unify with `:(?opt) -> R`
+		if (unionizedFunctionTypes) {
+			/**
+				In typescript `:() => R` can unify with `:(?opt) -> R`
 
-			In haxe, the signature must match
+				In haxe, the signature must match
 
-			To achieve the same type flexibility in the haxe externs we can create a new function signature for each optional parameter
+				To achieve the same type flexibility in the haxe externs we can create a new function signature for each optional parameter
 
-			`(x, ?opt) -> R`
-				becomes `(x) -> R  |  (x, opt) -> R`
+				`(x, ?opt) -> R`
+					becomes `(x) -> R  |  (x, opt) -> R`
 
-			`(x, ?opt, ?opt2) -> R`
-				becomes `(x) -> R  |  (x, opt) -> R  |  (x, opt, opt2) -> R`
-		**/
-		// we don't use TOptional() because optionals are handled by alternate signatures instead
-		var hxArgs = fun.args.map(arg -> TNamed(arg.name, arg.type != null ? arg.type : macro :Any));
-		var hxReturnType = fun.ret != null ? fun.ret : macro :Dynamic;
-		var functionSignatures = new Array<ComplexType>();
+				`(x, ?opt, ?opt2) -> R`
+					becomes `(x) -> R  |  (x, opt) -> R  |  (x, opt, opt2) -> R`
+			**/
+			// we don't use TOptional() because optionals are handled by alternate signatures instead
+			var hxArgs = fun.args.map(arg -> TNamed(arg.name, arg.type != null ? arg.type : macro :Any));
+			var hxReturnType = fun.ret != null ? fun.ret : macro :Dynamic;
+			var functionSignatures = new Array<ComplexType>();
 
-		var hxNonOptionalArgs = new Array<ComplexType>();
-		for (i in 0...fun.args.length) {
-			var arg = fun.args[i];
-			if (arg.opt == true) break;
-			hxNonOptionalArgs.push(hxArgs[i]);
-		}
-
-		// base function signature
-		functionSignatures.push(TFunction(hxNonOptionalArgs, hxReturnType));
-
-		for (i in 0...fun.args.length) {
-			var arg = fun.args[i];
-			if (arg.opt == true) {
-				functionSignatures.push(
-					TFunction(hxArgs.slice(0, i + 1), hxReturnType)
-				);
+			var hxNonOptionalArgs = new Array<ComplexType>();
+			for (i in 0...fun.args.length) {
+				var arg = fun.args[i];
+				if (arg.opt == true) break;
+				hxNonOptionalArgs.push(hxArgs[i]);
 			}
-		}
 
-		/**
-			The simpler variation of this is to have a single function signature with optional parameters (but this has stricter unification as mentioned)
-			```haxe
+			// base function signature
+			functionSignatures.push(TFunction(hxNonOptionalArgs, hxReturnType));
+
+			for (i in 0...fun.args.length) {
+				var arg = fun.args[i];
+				if (arg.opt == true) {
+					functionSignatures.push(
+						TFunction(hxArgs.slice(0, i + 1), hxReturnType)
+					);
+				}
+			}
+
+			return this.getUnionType(functionSignatures);
+		} else {
+			/**
+				The simpler variation of this is to have a single function signature with optional parameters (but this has stricter unification as mentioned)
+			**/
 			return TFunction(
 				fun.args.map(arg -> {
 					var param = TNamed(arg.name, arg.type != null ? arg.type : macro :Any);
@@ -1309,10 +1313,8 @@ class ConverterContext {
 				}),
 				fun.ret != null ? fun.ret : macro :Dynamic
 			);
-			```
-		**/
+		}
 
-		return this.getUnionType(functionSignatures);
 	}
 
 	function complexTypeFromTypeReference(typeReference: TypeReference, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
@@ -1510,6 +1512,7 @@ class ConverterContext {
 		
 		var kind = if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
 			// handle special case where variable has a function type
+			// this is done to enable support for overloads, as well as to enable calling functions would be typed as AnyOf<X, Y> (see unionizedFunctionTypes)
 			var callSignatures = tc.getSignaturesOfType(nullFreeTsType, Call);
 			var constructSignatures = tc.getSignaturesOfType(nullFreeTsType, Construct);
 			var typeFields = tc.getPropertiesOfType(nullFreeTsType).filter(s -> s.isAccessibleField());
