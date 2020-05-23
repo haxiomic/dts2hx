@@ -1,3 +1,8 @@
+- abstract enum finals rather than vars
+
+- in AnyOf types, we could use getProperties of type to add fields
+	-> AnyOfX<BaseFields, A, B>
+
 - Why so many typescript errors with `chakra-ui`?
 
 - Redesign so that we supply a bunch of input modules and ConverterContext returns output modules, which may include new dependencies
