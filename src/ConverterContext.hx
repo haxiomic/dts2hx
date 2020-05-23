@@ -1,5 +1,5 @@
-import ds.Set;
 import ds.OnlyOnceSymbolQueue;
+import ds.Set;
 import haxe.macro.Expr;
 import tool.FileTools;
 import tool.TsSyntaxTools;
@@ -381,7 +381,7 @@ class ConverterContext {
 				}
 
 				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
-				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration, false);
+				var hxAliasType = complexTypeFromTsType(tsType, access, typeAliasDeclaration, symbol, false);
 				var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
 
 				// if this symbol is also a ValueModule then it needs to have fields
@@ -818,7 +818,7 @@ class ConverterContext {
 		- `allowAlias` - set to false to disable referring to types via an alias (i.e. `type = X`)
 		- `preferInterfaceStructure` - set to true return the interface-structure version of a type in haxe. This is not handled recursively, so only the top-level reference will prefer-interface-structure
 	**/
-	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?allowAlias = true, preferInterfaceStructure: Bool = false): ComplexType {
+	function complexTypeFromTsType(type: TsType, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?disallowAliasTarget: Symbol, preferInterfaceStructure: Bool = false): ComplexType {
 		// alias : this -> real type
 		if (type.isThisType()) {
 			var thisTarget = type.getThisTypeTarget();
@@ -840,39 +840,57 @@ class ConverterContext {
 
 		// handle direct type aliases
 		// we deliberately break out of type-stack recursion checking here
-		if (allowAlias && type.aliasSymbol != null) {
+		if (type.aliasSymbol != null && disallowAliasTarget != type.aliasSymbol) {
 			_currentTypeStack.push(type);
 			var isAliasToMappedType = type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0;
-			var hxType = if (isAliasToMappedType && _rasterizeMappedTypes && !stackHasType) {
-				// convert mapped type, like `Partial<T>` or `Record<K, T>`
-				// we may one day support mapped types via macros, but for now we generally have to rasterize the type
-				// sometimes this doesn't work, for example, if the type argument is a type parameter: `function p<T>(opts: T): Partial<T>`
-				switch type.aliasTypeArguments {
-					// if the type argument is a single type parameter, remove the mapped type
-					// this is someone of a fudge, but will better than just returning `{ }` most of the time
-					case [t] if (t.flags & TypeFlags.TypeParameter != 0):
+			var argsLength = type.aliasTypeArguments != null ? type.aliasTypeArguments.length : -1;
+			var hxType = switch {
+				name: type.aliasSymbol.name,
+				args: type.aliasTypeArguments,
+				isMappedType: isAliasToMappedType,
+				isBuiltIn: type.aliasSymbol.isBuiltIn(),
+			} {
+				// special case handling of built-in utility types
+				case { name: 'NonNullable', args: [t], isBuiltIn: true }:
+					if (t.isUnion()) {
+						// remove null from union
+						complexTypeFromUnionType(cast t, accessContext, enclosingDeclaration).unwrapNull();
+					} else {
 						complexTypeFromTsType(t, accessContext, enclosingDeclaration);
-					default:
-						// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
-						_rasterizeMappedTypes = false;
-						// special handling of mapped types
-						// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
-						var t = complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
-						_rasterizeMappedTypes = true;
-						t;
-				}
-			} else {
-				// haxe type alias
-				var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, preferInterfaceStructure);
-				var params = if (type.aliasTypeArguments != null) {
-					type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration)));
-				} else [];
-				TPath({
-					pack: haxeTypePath.pack,
-					name: haxeTypePath.name,
-					params: params
-				});
+					}
+				case { name: 'Partial' | 'Readonly', args: [t], isBuiltIn: true }:
+					if (tc.getPropertiesOfType(t).length > 0) {
+						complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+					} else {
+						// pass through type parameter
+						complexTypeFromTsType(t, accessContext, enclosingDeclaration);
+					}
+				case { name: 'Record' | 'Pick' | 'Omit' | 'Exclude' | 'Extract', args: [k, t], isBuiltIn: true }:
+					complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+
+				// rasterize other mapped types to objects
+				case { isMappedType: true, args: args } if (_rasterizeMappedTypes && !stackHasType): 
+					// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
+					_rasterizeMappedTypes = false;
+					// special handling of mapped types
+					// we rasterize them to anons because we don't support them natively yet (though we could use macro support types for this)
+					var t = complexTypeAnonFromTsType(type, accessContext, enclosingDeclaration);
+					_rasterizeMappedTypes = true;
+					t;
+
+				default:
+					// haxe type alias
+					var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, accessContext, preferInterfaceStructure);
+					var params = if (type.aliasTypeArguments != null) {
+						type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, accessContext, enclosingDeclaration)));
+					} else [];
+					TPath({
+						pack: haxeTypePath.pack,
+						name: haxeTypePath.name,
+						params: params
+					});
 			}
+
 			_currentTypeStack.pop();
 			return hxType;
 		}
@@ -1463,7 +1481,8 @@ class ConverterContext {
 		var docParts = userDoc != '' ? [userDoc] : [];
 
 		var tsType = getTsTypeOfField(symbol);
-		var nonNullTsType = tc.getNonNullableType(tsType);
+		var nullFreeTsType = tsType.isUnion() ? tc.getNonNullableType(tsType) : tsType;
+		var isNullable = tsType.isNullishUnion();
 
 		// add errors to field docs
 		function onError(message) {
@@ -1491,9 +1510,9 @@ class ConverterContext {
 		
 		var kind = if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
 			// handle special case where variable has a function type
-			var callSignatures = tc.getSignaturesOfType(nonNullTsType, Call);
-			var constructSignatures = tc.getSignaturesOfType(nonNullTsType, Construct);
-			var typeFields = tc.getPropertiesOfType(nonNullTsType).filter(s -> s.isAccessibleField());
+			var callSignatures = tc.getSignaturesOfType(nullFreeTsType, Call);
+			var constructSignatures = tc.getSignaturesOfType(nullFreeTsType, Construct);
+			var typeFields = tc.getPropertiesOfType(nullFreeTsType).filter(s -> s.isAccessibleField());
 			if (callSignatures.length > 0 && constructSignatures.length == 0 && typeFields.length == 0) {
 				// replace `var x: FnType` with `dynamic function x()`
 				if (!hxAccessModifiers.has(AFinal)) {
@@ -1501,7 +1520,6 @@ class ConverterContext {
 				}
 				hxAccessModifiers.remove(AFinal); // `final function` is not valid syntax
 				// if nullable, force optional (this isn't perfect but it's good enough)
-				var isNullable = nonNullTsType != tsType;
 				if (isNullable) {
 					isOptional = true;
 				}
@@ -1515,7 +1533,13 @@ class ConverterContext {
 						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 				}
 
-				var hxType = complexTypeFromTsType(nonNullTsType, accessContext, enclosingDeclaration);
+				var hxType = complexTypeFromTsType(nullFreeTsType, accessContext, enclosingDeclaration);
+
+				// we use `nullFreeTsType` to determine hxType because it's easier to convert than a tsType that is a union with null
+				// however, if we have a non-optional field that is nullable, we should add back Null<T>
+				if (!isOptional && isNullable) {
+					hxType = macro :Null<$hxType>;
+				}
 
 				// get-only accessors are readonly
 				if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
@@ -1531,7 +1555,7 @@ class ConverterContext {
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
-			var signatures = tc.getSignaturesOfType(nonNullTsType, Call);
+			var signatures = tc.getSignaturesOfType(nullFreeTsType, Call);
 			kindFromFunctionSignatures(signatures);
 		} else if (symbol.flags & SymbolFlags.EnumMember != 0) {
 
@@ -1585,6 +1609,8 @@ class ConverterContext {
 			// a rest parameter cannot be optional in ts
 			if (isRest) {
 				// hxType should be Array<T>, we want to unwrap this and change to Rest<T>
+				// @! could use tc.isAssignableTo here?
+				// or tc.isArrayLikeType()
 				hxType = switch hxType {
 					case TPath({name: 'Array', params: [TPType(param)]}):
 						macro :haxe.extern.Rest<$param>;

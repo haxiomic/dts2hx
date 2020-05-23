@@ -1,11 +1,13 @@
 package tool;
 
+import typescript.ts.UnionType;
 import typescript.ts.ObjectFlags;
 import typescript.ts.TypeFlags;
 import typescript.ts.ObjectType;
 import typescript.ts.TupleTypeReference;
 import typescript.ts.TypeChecker;
 
+using Lambda;
 using TsInternal;
 
 private typedef TsType = typescript.ts.Type;
@@ -53,6 +55,16 @@ class TsTypeTools {
 
 	public static function getThisTypeTarget(type: TsType): Null<TsType> {
 		return untyped type.constraint; // don't use getConstraint()
+	}
+
+	/**
+		Returns true if type is a union that contains `null` or `undefined`
+	**/
+	public static function isNullishUnion(type: TsType) {
+		return if (type.isUnion()) {
+			var unionType = (cast type: UnionType);
+			unionType.types.exists(t -> t.flags & (TypeFlags.Null | TypeFlags.Undefined) != 0);
+		} else false;
 	}
 
 	/**

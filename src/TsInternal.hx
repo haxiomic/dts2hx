@@ -84,4 +84,7 @@ class TsInternal {
 		return Reflect.field(d, 'modifiers');
 	}
 
+	// more interesting methods:
+	// isTypeAssignableTo
+
 }
