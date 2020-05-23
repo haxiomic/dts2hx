@@ -1463,6 +1463,7 @@ class ConverterContext {
 		var docParts = userDoc != '' ? [userDoc] : [];
 
 		var tsType = getTsTypeOfField(symbol);
+		var nonNullTsType = tc.getNonNullableType(tsType);
 
 		// add errors to field docs
 		function onError(message) {
@@ -1490,7 +1491,6 @@ class ConverterContext {
 		
 		var kind = if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
 			// handle special case where variable has a function type
-			var nonNullTsType = tc.getNonNullableType(tsType);
 			var callSignatures = tc.getSignaturesOfType(nonNullTsType, Call);
 			var constructSignatures = tc.getSignaturesOfType(nonNullTsType, Construct);
 			var typeFields = tc.getPropertiesOfType(nonNullTsType).filter(s -> s.isAccessibleField());
@@ -1515,11 +1515,7 @@ class ConverterContext {
 						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 				}
 
-				var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
-
-				if (isOptional) {
-					hxType = hxType.unwrapNull();
-				}
+				var hxType = complexTypeFromTsType(nonNullTsType, accessContext, enclosingDeclaration);
 
 				// get-only accessors are readonly
 				if (symbol.flags & SymbolFlags.GetAccessor != 0 && symbol.flags & SymbolFlags.SetAccessor == 0) {
@@ -1535,7 +1531,7 @@ class ConverterContext {
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
-			var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
+			var signatures = tc.getSignaturesOfType(nonNullTsType, Call);
 			kindFromFunctionSignatures(signatures);
 		} else if (symbol.flags & SymbolFlags.EnumMember != 0) {
 
