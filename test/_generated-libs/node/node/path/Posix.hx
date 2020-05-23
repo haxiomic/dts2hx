@@ -11,6 +11,6 @@ package node.path;
 	static function extname(p:String):String;
 	static function parse(p:String):ParsedPath;
 	static function format(pP:FormatInputPathObject):String;
-	static var sep : String;
-	static var delimiter : String;
+	static final sep : String;
+	static final delimiter : String;
 }

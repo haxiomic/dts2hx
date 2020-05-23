@@ -1,7 +1,7 @@
 package three;
 
 @:enum @:jsRequire("three") extern abstract InterpolationEndingModes(Int) from Int to Int {
-	var ZeroCurvatureEnding : InterpolationEndingModes;
-	var ZeroSlopeEnding : InterpolationEndingModes;
-	var WrapAroundEnding : InterpolationEndingModes;
+	final ZeroCurvatureEnding : InterpolationEndingModes;
+	final ZeroSlopeEnding : InterpolationEndingModes;
+	final WrapAroundEnding : InterpolationEndingModes;
 }

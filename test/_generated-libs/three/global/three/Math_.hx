@@ -42,6 +42,6 @@ package global.three;
 	static function nextPowerOfTwo(value:Float):Float;
 	static function floorPowerOfTwo(value:Float):Float;
 	static function ceilPowerOfTwo(value:Float):Float;
-	static var DEG2RAD : Float;
-	static var RAD2DEG : Float;
+	static final DEG2RAD : Float;
+	static final RAD2DEG : Float;
 }

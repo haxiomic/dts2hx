@@ -1,5 +1,5 @@
 package global;
 
 @:native("") extern class SizzleGlobal {
-	static var Sizzle : sizzle.SizzleStatic;
+	static final Sizzle : sizzle.SizzleStatic;
 }

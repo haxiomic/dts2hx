@@ -5,6 +5,6 @@ package node;
 	static function encode(string:String):String;
 	static function toUnicode(domain:String):String;
 	static function toASCII(domain:String):String;
-	static var ucs2 : node.punycode.Ucs2;
-	static var version : String;
+	static final ucs2 : node.punycode.Ucs2;
+	static final version : String;
 }

@@ -29,7 +29,7 @@ package node;
 	**/
 	@:overload(function(pid:Float, priority:Float):Void { })
 	static function setPriority(priority:Float):Void;
-	static var constants : {
+	static final constants : {
 		var UV_UDP_REUSEADDR : Float;
 		var signals : {
 			var SIGHUP : Float;
@@ -157,5 +157,5 @@ package node;
 			var PRIORITY_HIGHEST : Float;
 		};
 	};
-	static var EOL : String;
+	static final EOL : String;
 }

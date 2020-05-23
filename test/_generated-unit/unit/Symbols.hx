@@ -13,5 +13,5 @@ package unit;
 		
 		The 3 kinds of declarations possible, all using the same name
 	**/
-	static var ValueTypedefNamespace : String;
+	static final ValueTypedefNamespace : String;
 }

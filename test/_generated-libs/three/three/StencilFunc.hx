@@ -1,12 +1,12 @@
 package three;
 
 @:enum @:jsRequire("three") extern abstract StencilFunc(Int) from Int to Int {
-	var NeverStencilFunc : StencilFunc;
-	var LessStencilFunc : StencilFunc;
-	var EqualStencilFunc : StencilFunc;
-	var LessEqualStencilFunc : StencilFunc;
-	var GreaterStencilFunc : StencilFunc;
-	var NotEqualStencilFunc : StencilFunc;
-	var GreaterEqualStencilFunc : StencilFunc;
-	var AlwaysStencilFunc : StencilFunc;
+	final NeverStencilFunc : StencilFunc;
+	final LessStencilFunc : StencilFunc;
+	final EqualStencilFunc : StencilFunc;
+	final LessEqualStencilFunc : StencilFunc;
+	final GreaterStencilFunc : StencilFunc;
+	final NotEqualStencilFunc : StencilFunc;
+	final GreaterEqualStencilFunc : StencilFunc;
+	final AlwaysStencilFunc : StencilFunc;
 }

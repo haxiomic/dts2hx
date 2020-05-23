@@ -78,6 +78,6 @@ package node;
 	@:overload(function(type:String, options:node.crypto.ECKeyPairOptions<String, String>, callback:(err:Null<js.lib.Error>, publicKey:global.Buffer, privateKey:global.Buffer) -> Void):Void { })
 	@:overload(function(type:String, options:node.crypto.ECKeyPairKeyObjectOptions, callback:(err:Null<js.lib.Error>, publicKey:node.crypto.KeyObject, privateKey:node.crypto.KeyObject) -> Void):Void { })
 	static function generateKeyPair(type:String, options:node.crypto.RSAKeyPairOptions<String, String>, callback:(err:Null<js.lib.Error>, publicKey:String, privateKey:String) -> Void):Void;
-	static var fips : Bool;
-	static var DEFAULT_ENCODING : String;
+	static final fips : Bool;
+	static final DEFAULT_ENCODING : String;
 }

@@ -7,5 +7,5 @@ package node.util;
 	static var colors : { };
 	static var styles : { };
 	static var defaultOptions : InspectOptions;
-	static var custom : js.lib.Symbol;
+	static final custom : js.lib.Symbol;
 }

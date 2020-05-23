@@ -99,7 +99,7 @@ typedef Global = {
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):Array<String>;
 		};
-		var PluralRules : {
+		final PluralRules : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):Array<String>;

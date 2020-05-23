@@ -69,9 +69,9 @@ package node;
 	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
 	static function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
 	static function eventNames():Array<String>;
-	static var isMaster : Bool;
-	static var isWorker : Bool;
-	static var settings : node.cluster.ClusterSettings;
-	static var worker : node.cluster.Worker;
-	static var workers : { };
+	static final isMaster : Bool;
+	static final isWorker : Bool;
+	static final settings : node.cluster.ClusterSettings;
+	static final worker : node.cluster.Worker;
+	static final workers : { };
 }

@@ -1,7 +1,7 @@
 package three;
 
 @:enum @:jsRequire("three") extern abstract Colors(Int) from Int to Int {
-	var NoColors : Colors;
-	var FaceColors : Colors;
-	var VertexColors : Colors;
+	final NoColors : Colors;
+	final FaceColors : Colors;
+	final VertexColors : Colors;
 }

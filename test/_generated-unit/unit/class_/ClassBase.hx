@@ -12,7 +12,7 @@ package unit.class_;
 		var prototype : ClassBase<Dynamic, Dynamic>;
 		function staticMethod<T>(a:Float):T;
 		var staticField : Float;
-		var namespaceField : String;
+		final namespaceField : String;
 	};
 	final readonlyField : Float;
 	/**
@@ -36,5 +36,5 @@ package unit.class_;
 	static var prototype : ClassBase<Dynamic, Dynamic>;
 	static function staticMethod<T>(a:Float):T;
 	static var staticField : Float;
-	static var namespaceField : String;
+	static final namespaceField : String;
 }

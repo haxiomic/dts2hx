@@ -7,12 +7,12 @@ package node;
 	static function request(options:ts.AnyOf3<String, node.url.URL, node.http.RequestOptions>, ?callback:(res:node.http.IncomingMessage) -> Void):node.http.ClientRequest;
 	@:overload(function(url:ts.AnyOf2<String, node.url.URL>, options:node.http.RequestOptions, ?callback:(res:node.http.IncomingMessage) -> Void):node.http.ClientRequest { })
 	static function get(options:ts.AnyOf3<String, node.url.URL, node.http.RequestOptions>, ?callback:(res:node.http.IncomingMessage) -> Void):node.http.ClientRequest;
-	static var METHODS : Array<String>;
-	static var STATUS_CODES : { };
+	static final METHODS : Array<String>;
+	static final STATUS_CODES : { };
 	static var globalAgent : node.http.Agent;
 	/**
 		Read-only property specifying the maximum allowed size of HTTP headers in bytes.
 		Defaults to 8KB. Configurable using the [`--max-http-header-size`][] CLI option.
 	**/
-	static var maxHeaderSize : Float;
+	static final maxHeaderSize : Float;
 }

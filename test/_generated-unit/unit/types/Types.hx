@@ -32,30 +32,30 @@ package unit.types;
 	static function typeParameterWithConstraint<T>(x:T):Dynamic;
 	static function intersectionBetweenTypeParams<A, B>(p:Dynamic):Void;
 	static function firstTypeFunction(node:{ }):Bool;
-	static var implicitInt : Int;
-	static var implicitFloat : Float;
-	static var implicitBool : Bool;
-	static var implicitStr : String;
-	static var noType : Dynamic;
-	static var numberPrimitive : Float;
-	static var booleanPrimitive : Bool;
-	static var stringPrimitive : String;
-	static var stringObject : String;
-	static var numberObject : js.lib.Number;
-	static var booleanObject : js.lib.Boolean;
-	static var symbolPrimitive : js.lib.Symbol;
-	static var symbolObject : js.lib.Symbol;
-	static var any : Dynamic;
-	static var typeInParentheses : Float;
-	static var unionInParentheses : ts.AnyOf2<String, Float>;
-	static var intLiteral : Int;
-	static var intLiteralAlt : Int;
-	static var floatLiteral : Float;
-	static var booleanLiteral : Bool;
-	static var stringLiteral : String;
-	static var typeReferenceStringAlias : String;
-	static var typeReferenceArrayAlias : unit.types.types.ArrayAlias;
-	static var typeReferenceObjectAlias : {
+	static final implicitInt : Int;
+	static final implicitFloat : Float;
+	static final implicitBool : Bool;
+	static final implicitStr : String;
+	static final noType : Dynamic;
+	static final numberPrimitive : Float;
+	static final booleanPrimitive : Bool;
+	static final stringPrimitive : String;
+	static final stringObject : String;
+	static final numberObject : js.lib.Number;
+	static final booleanObject : js.lib.Boolean;
+	static final symbolPrimitive : js.lib.Symbol;
+	static final symbolObject : js.lib.Symbol;
+	static final any : Dynamic;
+	static final typeInParentheses : Float;
+	static final unionInParentheses : ts.AnyOf2<String, Float>;
+	static final intLiteral : Int;
+	static final intLiteralAlt : Int;
+	static final floatLiteral : Float;
+	static final booleanLiteral : Bool;
+	static final stringLiteral : String;
+	static final typeReferenceStringAlias : String;
+	static final typeReferenceArrayAlias : unit.types.types.ArrayAlias;
+	static final typeReferenceObjectAlias : {
 		var fieldA : Float;
 		var fieldB : Float;
 		var fieldArrayAlias : unit.types.types.ArrayAlias;
@@ -77,8 +77,8 @@ package unit.types;
 		function methodSignatureOptional():String;
 		final readonlyField : String;
 	};
-	static var typeReferenceAliasWithTypeParam : unit.types.types.AliasWithTypeParam<String, Float>;
-	static var object : {
+	static final typeReferenceAliasWithTypeParam : unit.types.types.AliasWithTypeParam<String, Float>;
+	static final object : {
 		var fieldA : Float;
 		var fieldB : Float;
 		var fieldArrayAlias : unit.types.types.ArrayAlias;
@@ -100,56 +100,56 @@ package unit.types;
 		function methodSignatureOptional():String;
 		final readonlyField : String;
 	};
-	static var objectSingleField : {
+	static final objectSingleField : {
 		var a : Dynamic;
 	};
-	static var arrayString : Array<String>;
-	static var arrayStringAlt : Array<String>;
-	static var stringObj : String;
-	static var arrayNumberStringUnion : Array<ts.AnyOf2<String, Float>>;
-	static var tupleNumberString : ts.Tuple2<Float, String>;
-	static var stringNumberMap : { };
-	static var readonlyStringNumberMap : { };
-	static var stringNumberMapWithField : {
+	static final arrayString : Array<String>;
+	static final arrayStringAlt : Array<String>;
+	static final stringObj : String;
+	static final arrayNumberStringUnion : Array<ts.AnyOf2<String, Float>>;
+	static final tupleNumberString : ts.Tuple2<Float, String>;
+	static final stringNumberMap : { };
+	static final readonlyStringNumberMap : { };
+	static final stringNumberMapWithField : {
 		var field : Float;
 	};
-	static var numberStringMap : { };
-	static var readonlyNumberStringMap : { };
-	static var numberStringMapWithField : {
+	static final numberStringMap : { };
+	static final readonlyNumberStringMap : { };
+	static final numberStringMapWithField : {
 		var field : String;
 	};
-	static var stringAndNumberMapWithField : {
+	static final stringAndNumberMapWithField : {
 		var length : String;
 	};
-	static var mappedStringIndex : Dynamic;
-	static var partial : {
+	static final mappedStringIndex : Dynamic;
+	static final partial : {
 		@:optional
 		var a : Float;
 		@:optional
 		var b : String;
 	};
-	dynamic static function arrowNumberStringVoid(a:Float, noType:Dynamic):Void;
-	dynamic static function arrowNumberTVoidTypeParam<T>(a:Float, tParam:T, arrayTParam:Array<T>):Void;
-	dynamic static function arrowParamWithRest(a:Float, b:Float, rest:haxe.extern.Rest<Float>):Void;
-	dynamic static function arrowParamWithRestOr(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
-	dynamic static function arrowParamWithRestUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
-	dynamic static function arrowParamWithRestTuple(a:Float, b:Float, rest_0:Float):Void;
-	dynamic static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
-	dynamic static function arrowParamObjectBindingPattern(__0:{ var x : Dynamic; var y : Dynamic; }):Void;
-	static var nullableNumber : Null<Float>;
-	static var undefineableNumber : Null<Float>;
-	static var undefineableNullableNumber : Null<Float>;
-	static var intersectionWithSubIntersection : Dynamic;
-	static var intersectionXY : {
+	static function arrowNumberStringVoid(a:Float, noType:Dynamic):Void;
+	static function arrowNumberTVoidTypeParam<T>(a:Float, tParam:T, arrayTParam:Array<T>):Void;
+	static function arrowParamWithRest(a:Float, b:Float, rest:haxe.extern.Rest<Float>):Void;
+	static function arrowParamWithRestOr(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	static function arrowParamWithRestUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	static function arrowParamWithRestTuple(a:Float, b:Float, rest_0:Float):Void;
+	static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	static function arrowParamObjectBindingPattern(__0:{ var x : Dynamic; var y : Dynamic; }):Void;
+	static final nullableNumber : Null<Float>;
+	static final undefineableNumber : Null<Float>;
+	static final undefineableNullableNumber : Null<Float>;
+	static final intersectionWithSubIntersection : Dynamic;
+	static final intersectionXY : {
 		var x : Float;
 	} & {
 		var y : Float;
 	};
-	static var intersectionRedefinitionSame : {
+	static final intersectionRedefinitionSame : {
 		var x : Float;
 	};
-	static var intersectionRedefinitionDifferent : Dynamic;
-	static var intersectionWithTypeof : {
+	static final intersectionRedefinitionDifferent : Dynamic;
+	static final intersectionWithTypeof : {
 		var fieldA : Float;
 		var fieldB : Float;
 		var fieldArrayAlias : unit.types.types.ArrayAlias;
@@ -173,32 +173,32 @@ package unit.types;
 	} & {
 		var extendedField : Float;
 	};
-	static var intersectionWithAny : Dynamic;
-	static var intersectionWithArray : {
+	static final intersectionWithAny : Dynamic;
+	static final intersectionWithArray : {
 		var x : Float;
 	} & js.lib.IArray<Float>;
-	static var intersectionStringNumber : Any;
-	static var intersectionTripleAnon : {
+	static final intersectionStringNumber : Any;
+	static final intersectionTripleAnon : {
 		var x : Float;
 	} & {
 		var y : Float;
 	} & {
 		var z : Float;
 	};
-	static var intersectionWithUnion : ts.AnyOf2<{
+	static final intersectionWithUnion : ts.AnyOf2<{
 		var a : String;
 	} & {
 		var b : Bool;
 	}, {
 		var c : Float;
 	}>;
-	static var intersectionWithCallSignatures : Dynamic;
-	static var intersectionAnonAlias : unit.types.types.Anon & {
+	static final intersectionWithCallSignatures : Dynamic;
+	static final intersectionAnonAlias : unit.types.types.Anon & {
 		var b : Bool;
 	};
-	static var intersectionBetweenClasses : Dynamic;
-	static var typeQueryImplicitStr : String;
-	static var typeQueryObject : {
+	static final intersectionBetweenClasses : Dynamic;
+	static final typeQueryImplicitStr : String;
+	static final typeQueryObject : {
 		var fieldA : Float;
 		var fieldB : Float;
 		var fieldArrayAlias : unit.types.types.ArrayAlias;
@@ -220,13 +220,13 @@ package unit.types;
 		function methodSignatureOptional():String;
 		final readonlyField : String;
 	};
-	static var typeQueryNoType : Dynamic;
-	dynamic static function typeQueryFunction(x:Dynamic, y:Dynamic):Dynamic;
+	static final typeQueryNoType : Dynamic;
+	static function typeQueryFunction(x:Dynamic, y:Dynamic):Dynamic;
 	@:overload(function(a:String):Dynamic { })
 	@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
 	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
-	dynamic static function typeQueryFunctionWithOverloads(a:Float):Dynamic;
-	static var typeQueryClassLikeOrNull : Null<{
+	static function typeQueryFunctionWithOverloads(a:Float):Dynamic;
+	static final typeQueryClassLikeOrNull : Null<{
 		var field : String;
 	}>;
 }

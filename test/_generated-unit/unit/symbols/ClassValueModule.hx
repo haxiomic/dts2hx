@@ -9,5 +9,5 @@ package unit.symbols;
 	static var staticField : Float;
 	@:overload(function():Float { })
 	static function Fn(overloadParam:Float):Float;
-	static var X : Float;
+	static final X : Float;
 }

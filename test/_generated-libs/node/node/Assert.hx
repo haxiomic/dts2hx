@@ -23,7 +23,7 @@ package node;
 	static function rejects(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
 	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
 	static function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
-	static var strict : {
+	static final strict : {
 		@:selfCall
 		function call(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):Any { })
@@ -46,6 +46,6 @@ package node;
 		function rejects(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
 		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void> { })
 		function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<Void>;
-		var strict : Dynamic;
+		final strict : Dynamic;
 	};
 }

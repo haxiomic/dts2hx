@@ -1,12 +1,12 @@
 package global.three;
 
 @:enum @:native("THREE") extern abstract StencilOp(Int) from Int to Int {
-	var ZeroStencilOp : StencilOp;
-	var KeepStencilOp : StencilOp;
-	var ReplaceStencilOp : StencilOp;
-	var IncrementStencilOp : StencilOp;
-	var DecrementStencilOp : StencilOp;
-	var IncrementWrapStencilOp : StencilOp;
-	var DecrementWrapStencilOp : StencilOp;
-	var InvertStencilOp : StencilOp;
+	final ZeroStencilOp : StencilOp;
+	final KeepStencilOp : StencilOp;
+	final ReplaceStencilOp : StencilOp;
+	final IncrementStencilOp : StencilOp;
+	final DecrementStencilOp : StencilOp;
+	final IncrementWrapStencilOp : StencilOp;
+	final DecrementWrapStencilOp : StencilOp;
+	final InvertStencilOp : StencilOp;
 }

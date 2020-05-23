@@ -56,9 +56,9 @@ package node;
 	/**
 		The platform-specific file separator. '\\' or '/'.
 	**/
-	static var sep : String;
+	static final sep : String;
 	/**
 		The platform-specific file delimiter. ';' or ':'.
 	**/
-	static var delimiter : String;
+	static final delimiter : String;
 }

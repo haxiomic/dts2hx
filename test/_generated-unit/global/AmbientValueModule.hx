@@ -1,5 +1,5 @@
 package global;
 
 @:native("AmbientValueModule") @valueModuleOnly extern class AmbientValueModule {
-	static var value : Int;
+	static final value : Int;
 }

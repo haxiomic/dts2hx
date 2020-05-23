@@ -1,8 +1,8 @@
 package node;
 
 @:jsRequire("worker_threads") @valueModuleOnly extern class Worker_threads {
-	static var isMainThread : Bool;
-	static var parentPort : Null<node.worker_threads.MessagePort>;
-	static var threadId : Float;
-	static var workerData : Dynamic;
+	static final isMainThread : Bool;
+	static final parentPort : Null<node.worker_threads.MessagePort>;
+	static final threadId : Float;
+	static final workerData : Dynamic;
 }

@@ -16,5 +16,5 @@ package node.util;
 	@:overload(function(fn:haxe.Constraints.Function):haxe.Constraints.Function { })
 	@:selfCall
 	static function call<TCustom>(fn:CustomPromisify<TCustom>):TCustom;
-	static var custom : js.lib.Symbol;
+	static final custom : js.lib.Symbol;
 }

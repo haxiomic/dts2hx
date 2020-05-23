@@ -4,5 +4,5 @@ package unit.class_;
 	function new();
 	var field : Float;
 	static var prototype : ClassWithValueModule;
-	static var valueModuleField : String;
+	static final valueModuleField : String;
 }
