@@ -46,7 +46,7 @@ typedef FileHandle = {
 	**/
 	@:overload(function(options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	function readFile(?options:{ @:optional var encoding : Dynamic; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
+	function readFile(?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
 	/**
 		Asynchronous fstat(2) - Get file status.
 	**/

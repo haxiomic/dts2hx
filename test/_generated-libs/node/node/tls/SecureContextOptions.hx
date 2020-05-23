@@ -35,7 +35,7 @@ typedef SecureContextOptions = {
 		`secureProtocol` option, use one or the other.  **Default:** `'TLSv1.2'`.
 	**/
 	@:optional
-	var maxVersion : String;
+	var maxVersion : SecureVersion;
 	/**
 		Optionally set the minimum TLS version to allow. One
 		of `TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. Cannot be specified along with the
@@ -46,5 +46,5 @@ typedef SecureContextOptions = {
 		the default to `'TLSv1.1'`.
 	**/
 	@:optional
-	var minVersion : String;
+	var minVersion : SecureVersion;
 };

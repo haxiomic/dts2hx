@@ -9,7 +9,7 @@ typedef KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : Any;
+	var relatedTarget : Null<Any>;
 	var button : Null<Any>;
 	var buttons : Null<Any>;
 	var clientX : Null<Any>;

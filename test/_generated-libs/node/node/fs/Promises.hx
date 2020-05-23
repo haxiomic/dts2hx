@@ -77,7 +77,7 @@ package node.fs;
 	**/
 	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<Array<global.Buffer>> { })
 	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<ts.AnyOf2<Array<String>, Array<global.Buffer>>> { })
-	static function readdir(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<Array<String>>;
+	static function readdir(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):js.lib.Promise<Array<String>>;
 	/**
 		Asynchronous readlink(2) - read value of a symbolic link.
 		
@@ -87,7 +87,7 @@ package node.fs;
 	**/
 	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	static function readlink(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<String>;
+	static function readlink(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):js.lib.Promise<String>;
 	/**
 		Asynchronous symlink(2) - Create a new symbolic link to an existing file.
 	**/
@@ -153,7 +153,7 @@ package node.fs;
 	**/
 	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	static function realpath(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<String>;
+	static function realpath(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):js.lib.Promise<String>;
 	/**
 		Asynchronously creates a unique temporary directory.
 		Generates six random characters to be appended behind a required `prefix` to create a unique temporary directory.
@@ -166,7 +166,7 @@ package node.fs;
 	**/
 	@:overload(function(prefix:String, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(prefix:String, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	static function mkdtemp(prefix:String, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<String>;
+	static function mkdtemp(prefix:String, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):js.lib.Promise<String>;
 	/**
 		Asynchronously writes data to a file, replacing the file if it already exists.
 		It is unsafe to call `fsPromises.writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
@@ -185,5 +185,5 @@ package node.fs;
 	**/
 	@:overload(function(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	static function readFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : Dynamic; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
+	static function readFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
 }

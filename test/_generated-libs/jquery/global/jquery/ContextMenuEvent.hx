@@ -5,7 +5,7 @@ typedef ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : Dynamic;
+	var relatedTarget : Any;
 	/**
 		Describes the nature of the event.
 	**/

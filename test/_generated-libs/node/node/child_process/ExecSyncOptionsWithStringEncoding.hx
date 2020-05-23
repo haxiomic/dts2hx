@@ -5,7 +5,7 @@ typedef ExecSyncOptionsWithStringEncoding = {
 	@:optional
 	var input : ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>;
 	@:optional
-	var stdio : ts.AnyOf2<String, Array<Null<ts.AnyOf3<Float, node.stream.Stream, String>>>>;
+	var stdio : StdioOptions;
 	@:optional
 	var shell : String;
 	@:optional

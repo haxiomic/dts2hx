@@ -7,7 +7,7 @@ typedef SignPrivateKeyInput = {
 	var saltLength : Float;
 	var key : ts.AnyOf2<String, global.Buffer>;
 	@:optional
-	var format : String;
+	var format : KeyFormat;
 	@:optional
 	var type : String;
 	@:optional

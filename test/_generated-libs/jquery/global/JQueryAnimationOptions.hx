@@ -20,7 +20,7 @@ typedef JQueryAnimationOptions = {
 		A string or number determining how long the animation will run.
 	**/
 	@:optional
-	var duration : ts.AnyOf2<Float, String>;
+	var duration : global.jquery.Duration;
 	/**
 		A string indicating which easing function to use for the transition.
 	**/

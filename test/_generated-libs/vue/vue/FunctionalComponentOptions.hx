@@ -13,7 +13,7 @@ typedef FunctionalComponentOptions<Props, PropDefs> = {
 		var event : String;
 	};
 	@:optional
-	var inject : ts.AnyOf2<{ }, Array<String>>;
+	var inject : vue.types.options.InjectOptions;
 	var functional : Bool;
 	@:optional
 	function render(createElement:CreateElement, context:RenderContext<Props>):ts.AnyOf2<VNode, Array<VNode>>;

@@ -1,3 +1,3 @@
 package vue.types.umd;
 
-typedef WatchHandler<T> = (val:T, oldVal:T) -> Void;
+typedef WatchHandler<T> = vue.WatchHandler<T>;

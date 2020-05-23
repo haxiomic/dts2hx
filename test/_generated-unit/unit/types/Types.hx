@@ -128,6 +128,14 @@ package unit.types;
 		@:optional
 		var b : String;
 	};
+	static final readonlyAnon : {
+		var a : String;
+		var r : {
+			var a : Bool;
+			var b : Bool;
+			var c : Bool;
+		};
+	};
 	static function arrowNumberStringVoid(a:Float, noType:Dynamic):Void;
 	static function arrowNumberTVoidTypeParam<T>(a:Float, tParam:T, arrayTParam:Array<T>):Void;
 	static function arrowParamWithRest(a:Float, b:Float, rest:haxe.extern.Rest<Float>):Void;

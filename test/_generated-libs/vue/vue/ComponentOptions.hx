@@ -8,7 +8,7 @@ typedef ComponentOptions<V, Data, Methods, Computed, PropsDef, Props> = {
 	@:optional
 	var propsData : Dynamic;
 	@:optional
-	var computed : Computed;
+	var computed : { };
 	@:optional
 	var methods : Methods;
 	@:optional
@@ -58,7 +58,7 @@ typedef ComponentOptions<V, Data, Methods, Computed, PropsDef, Props> = {
 	@:optional
 	var provide : ts.AnyOf2<Dynamic, () -> Dynamic>;
 	@:optional
-	var inject : ts.AnyOf2<{ }, Array<String>>;
+	var inject : vue.types.options.InjectOptions;
 	@:optional
 	var model : {
 		@:optional

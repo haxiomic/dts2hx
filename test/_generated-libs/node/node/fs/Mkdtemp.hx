@@ -22,5 +22,5 @@ package node.fs;
 	@:overload(function(prefix:String, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, folder:ts.AnyOf2<String, global.Buffer>) -> Void):Void { })
 	@:overload(function(prefix:String, callback:(err:global.nodejs.ErrnoException, folder:String) -> Void):Void { })
 	@:selfCall
-	static function call(prefix:String, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, folder:String) -> Void):Void;
+	static function call(prefix:String, options:Null<ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>>, callback:(err:global.nodejs.ErrnoException, folder:String) -> Void):Void;
 }

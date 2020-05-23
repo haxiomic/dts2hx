@@ -24,7 +24,7 @@ typedef XHRFields = {
 		When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
 	**/
 	@:optional
-	var responseType : String;
+	var responseType : js.html.XMLHttpRequestResponseType;
 	/**
 		True when credentials are to be included in a cross-origin request. False when they are to be excluded in a cross-origin request and when cookies are to be ignored in its response. Initially false.
 		

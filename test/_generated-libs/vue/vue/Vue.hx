@@ -65,7 +65,7 @@ package vue;
 	dynamic function DollarCreateElement(?tag:ts.AnyOf7<String, VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, { }>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>, () -> Component<vue.types.options.DefaultData<Any>, vue.types.options.DefaultMethods<Any>, vue.types.options.DefaultComputed, { }>>, ?children:VNodeChildren):VNode;
 	@:overload(function<Data, Methods, Computed, Props>(?options:vue.types.options.ThisTypedComponentOptionsWithRecordProps<Vue, Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, Props> { })
 	@:overload(function<PropNames>(definition:FunctionalComponentOptions<{ }, Array<PropNames>>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
-	@:overload(function<Props>(definition:FunctionalComponentOptions<Props, Props>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, Props> { })
+	@:overload(function<Props>(definition:FunctionalComponentOptions<Props, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, Props> { })
 	@:overload(function(?options:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
 	static function extend<Data, Methods, Computed, PropNames>(?options:vue.types.options.ThisTypedComponentOptionsWithArrayProps<Vue, Data, Methods, Computed, PropNames>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, { }>;
 	@:overload(function():js.lib.Promise<Void> { })
@@ -81,7 +81,7 @@ package vue;
 	@:overload(function<Data, Methods, Computed, PropNames>(id:String, ?definition:vue.types.options.ThisTypedComponentOptionsWithArrayProps<Vue, Data, Methods, Computed, PropNames>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, { }> { })
 	@:overload(function<Data, Methods, Computed, Props>(id:String, ?definition:vue.types.options.ThisTypedComponentOptionsWithRecordProps<Vue, Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, Props> { })
 	@:overload(function<PropNames>(id:String, definition:FunctionalComponentOptions<{ }, Array<PropNames>>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
-	@:overload(function<Props>(id:String, definition:FunctionalComponentOptions<Props, Props>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, Props> { })
+	@:overload(function<Props>(id:String, definition:FunctionalComponentOptions<Props, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, Props> { })
 	@:overload(function(id:String, ?definition:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
 	static function component(id:String):VueConstructor<Vue>;
 	@:overload(function(plugin:ts.AnyOf2<PluginObject<Dynamic>, PluginFunction<Dynamic>>, options:haxe.extern.Rest<Dynamic>):VueConstructor<Vue> { })

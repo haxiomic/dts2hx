@@ -20,5 +20,5 @@ package node.fs;
 	@:overload(function(path:PathLike, callback:(err:global.nodejs.ErrnoException, files:Array<String>) -> Void):Void { })
 	@:overload(function(path:PathLike, options:{ var withFileTypes : Bool; }, callback:(err:global.nodejs.ErrnoException, files:Array<Dirent>) -> Void):Void { })
 	@:selfCall
-	static function call(path:PathLike, options:Null<ts.AnyOf2<String, { var encoding : Null<String>; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:Array<String>) -> Void):Void;
+	static function call(path:PathLike, options:Null<ts.AnyOf2<String, { var encoding : Null<global.BufferEncoding>; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:Array<String>) -> Void):Void;
 }
