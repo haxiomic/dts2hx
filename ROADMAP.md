@@ -1,3 +1,5 @@
+- Fix constraint type conversion
+
 - abstract enum finals rather than vars
 
 - in AnyOf types, we could use getProperties of type to add fields
