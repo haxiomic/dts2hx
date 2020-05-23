@@ -110,6 +110,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js vscode",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["vscode", "--verbose"],
+            "cwd": "${workspaceFolder}/test",
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "dts2hx.js typescript",
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "args": ["typescript", "--verbose"],
