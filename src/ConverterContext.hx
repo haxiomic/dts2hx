@@ -985,7 +985,10 @@ class ConverterContext {
 		var nullFreeTsType = tc.getNonNullableType(unionType);
 
 		// we get better conversion if we convert without `| null` (see #26)
-		var hxTypes = if (nullFreeTsType.aliasSymbol != null && nullFreeTsType.aliasSymbol != moduleSymbol) {
+		var hxTypes = if (
+			nullFreeTsType.aliasSymbol != null &&
+			nullFreeTsType.aliasSymbol != moduleSymbol // disallow self-referential enums
+		) {
 			[complexTypeFromTsType(nullFreeTsType, moduleSymbol, accessContext, enclosingDeclaration)];
 		} else if (nullFreeTsType.isUnion()) {
 			(cast nullFreeTsType: UnionType).types.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration)).deduplicateTypes();
