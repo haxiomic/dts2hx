@@ -435,7 +435,6 @@ class ConverterContext {
 					meta.push({name: 'valueModuleOnly', pos: pos});
 				}
 
-
 				var callSignatures = tc.getSignaturesOfType(declaredType, Call);
 				var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
 				var classMembers = tc.getPropertiesOfType(declaredType).filter(s -> s.isAccessibleField());
@@ -706,7 +705,7 @@ class ConverterContext {
 
 		if (symbol.flags & SymbolFlags.Function != 0) {
 			var tsType = getTsTypeOfField(symbol);
-			var signatures = tc.getSignaturesOfType(tsType, Call);
+			var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
 			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, access, declaration);
 			selfCallStatic.enableAccess(AStatic);
 			fields.push(selfCallStatic);
@@ -981,11 +980,21 @@ class ConverterContext {
 	}
 
 	function complexTypeFromUnionType(unionType: UnionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		// if union has null, undefined filter out and consider type as nullable
-		var typesWithoutNullable = unionType.types.filter(t -> t.flags & (TypeFlags.Null | TypeFlags.Undefined) == 0);
-		var nullable = typesWithoutNullable.length != unionType.types.length;
-		// convert union's TsTypes to haxe ComplexTypes
-		var hxTypes = typesWithoutNullable.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+		var nullable = unionType.isNullishUnion();
+		var nullFreeTsType = tc.getNonNullableType(unionType);
+
+		// disallow self-referential enums
+		var accessSymbolChain = accessContext.extractSymbolChain();
+		var accessModuleSymbol = accessSymbolChain[accessSymbolChain.length - 1];
+
+		// we get better conversion if we convert without `| null` (see #26)
+		var hxTypes = if (nullFreeTsType.aliasSymbol != null && nullFreeTsType.aliasSymbol != accessModuleSymbol) {
+			[complexTypeFromTsType(nullFreeTsType, accessContext, enclosingDeclaration)];
+		} else if (nullFreeTsType.isUnion()) {
+			(cast nullFreeTsType: UnionType).types.map(t -> complexTypeFromTsType(t, accessContext, enclosingDeclaration)).deduplicateTypes();
+		} else {
+			[complexTypeFromTsType(nullFreeTsType, accessContext, enclosingDeclaration)];
+		}
 
 		// anyUnionCollapse: if we have :Any in our union, just replace the whole thing with :Any (this can happen if a type failed conversion)
 		// we may not want to do this however because the other types could still be useful documentation 
@@ -995,12 +1004,13 @@ class ConverterContext {
 		}
 
 		// if union is of length 1, no need for support type
-		var unionType = switch hxTypes.length {
+		var hxUnionType = switch hxTypes.length {
 			case 0: macro :Dynamic;
 			case 1: hxTypes[0];
 			default: this.getUnionType(hxTypes);
 		}
-		return nullable ? macro :Null<$unionType> : macro :$unionType;
+
+		return nullable ? macro :Null<$hxUnionType> : macro :$hxUnionType;
 	}
 
 	function complexTypeFromIntersectionType(intersectionType: IntersectionType, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
@@ -1483,8 +1493,6 @@ class ConverterContext {
 		var docParts = userDoc != '' ? [userDoc] : [];
 
 		var tsType = getTsTypeOfField(symbol);
-		var nullFreeTsType = tsType.isUnion() ? tc.getNonNullableType(tsType) : tsType;
-		var isNullable = tsType.isNullishUnion();
 
 		// add errors to field docs
 		function onError(message) {
@@ -1511,6 +1519,8 @@ class ConverterContext {
 		}
 		
 		var kind = if (symbol.flags & (SymbolFlags.PropertyOrAccessor | SymbolFlags.Variable) != 0) {
+			var nullFreeTsType = tc.getNonNullableType(tsType);
+			var isNullable = tsType.isNullishUnion();
 			// handle special case where variable has a function type
 			// this is done to enable support for overloads, as well as to enable calling functions would be typed as AnyOf<X, Y> (see unionizedFunctionTypes)
 			var callSignatures = tc.getSignaturesOfType(nullFreeTsType, Call);
@@ -1536,12 +1546,10 @@ class ConverterContext {
 						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 				}
 
-				var hxType = complexTypeFromTsType(nullFreeTsType, accessContext, enclosingDeclaration);
+				var hxType = complexTypeFromTsType(tsType, accessContext, enclosingDeclaration);
 
-				// we use `nullFreeTsType` to determine hxType because it's easier to convert than a tsType that is a union with null
-				// however, if we have a non-optional field that is nullable, we should add back Null<T>
-				if (!isOptional && isNullable) {
-					hxType = macro :Null<$hxType>;
+				if (isOptional) {
+					hxType = hxType.unwrapNull();
 				}
 
 				// get-only accessors are readonly
@@ -1558,6 +1566,7 @@ class ConverterContext {
 					onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 			}
 
+			var nullFreeTsType = tc.getNonNullableType(tsType);
 			var signatures = tc.getSignaturesOfType(nullFreeTsType, Call);
 			kindFromFunctionSignatures(signatures);
 		} else if (symbol.flags & SymbolFlags.EnumMember != 0) {
