@@ -331,6 +331,8 @@ export namespace Types {
         nullOrEnumField: ExampleEnum | null;
         undefinedOrEnumField: ExampleEnum | undefined;
         undefinedNullEnumField: ExampleEnum | undefined | null;
+        
+        method(optionalEnum?:ExampleEnum): ExampleEnum | null;
     }
 
 
