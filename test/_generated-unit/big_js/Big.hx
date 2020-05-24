@@ -75,7 +75,7 @@ package big_js;
 	/**
 		Returns a Big number whose value is the value of this Big number rounded using rounding mode rm to a maximum of dp decimal places.
 	**/
-	function round(?dp:Float, ?rm:Int):Big;
+	function round(?dp:Float, ?rm:RoundingMode):Big;
 	/**
 		Returns a Big number whose value is the square root of this Big number.
 		

@@ -117,11 +117,11 @@ package node;
 		Asynchronous symlink(2) - Create a new symbolic link to an existing file.
 	**/
 	@:overload(function(target:node.fs.PathLike, path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
-	static function symlink(target:node.fs.PathLike, path:node.fs.PathLike, type:Null<String>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function symlink(target:node.fs.PathLike, path:node.fs.PathLike, type:Null<node.fs.symlink.Type_>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 	/**
 		Synchronous symlink(2) - Create a new symbolic link to an existing file.
 	**/
-	static function symlinkSync(target:node.fs.PathLike, path:node.fs.PathLike, ?type:String):Void;
+	static function symlinkSync(target:node.fs.PathLike, path:node.fs.PathLike, ?type:node.fs.symlink.Type_):Void;
 	/**
 		Asynchronous readlink(2) - read value of a symbolic link.
 		

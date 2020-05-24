@@ -1,3 +1,3 @@
 package unit.types.types;
 
-typedef NullOrUndefined = Null<Dynamic>;
+typedef NullOrUndefined = Null<Any>;

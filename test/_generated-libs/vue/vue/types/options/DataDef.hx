@@ -1,3 +1,3 @@
 package vue.types.options;
 
-typedef DataDef<Data, Props, V> = ts.AnyOf2<Data, () -> Data>;
+typedef DataDef<Data, Props, V> = ts.AnyOf2<() -> Data, Data>;

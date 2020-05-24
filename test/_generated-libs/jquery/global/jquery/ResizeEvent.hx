@@ -9,7 +9,7 @@ typedef ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : Null<Any>;
+	var relatedTarget : Any;
 	var bubbles : Bool;
 	var cancelable : Bool;
 	var eventPhase : Float;
