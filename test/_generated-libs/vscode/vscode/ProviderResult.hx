@@ -30,4 +30,4 @@ package vscode;
 	}
 	```
 **/
-typedef ProviderResult<T> = Null<ts.AnyOf2<T, global.Thenable<Null<T>>>>;
+typedef ProviderResult<T> = Null<ts.AnyOf2<global.Thenable<Null<T>>, T>>;

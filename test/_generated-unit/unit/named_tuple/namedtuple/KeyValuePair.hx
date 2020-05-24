@@ -30,7 +30,7 @@ typedef KeyValuePair<K, V> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<K, V, js.lib.ConcatArray<ts.AnyOf2<K, V>>>>):Array<ts.AnyOf2<K, V>> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<js.lib.ConcatArray<ts.AnyOf2<K, V>>, K, V>>):Array<ts.AnyOf2<K, V>> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<ts.AnyOf2<K, V>>>):Array<ts.AnyOf2<K, V>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.

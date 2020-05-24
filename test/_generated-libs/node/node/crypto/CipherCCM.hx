@@ -5,7 +5,7 @@ typedef CipherCCM = {
 	function getAuthTag():global.Buffer;
 	@:overload(function(data:String, input_encoding:Utf8AsciiBinaryEncoding):global.Buffer { })
 	@:overload(function(data:Binary, input_encoding:Null<Any>, output_encoding:HexBase64BinaryEncoding):String { })
-	@:overload(function(data:String, input_encoding:Null<String>, output_encoding:HexBase64BinaryEncoding):String { })
+	@:overload(function(data:String, input_encoding:Null<Utf8AsciiBinaryEncoding>, output_encoding:HexBase64BinaryEncoding):String { })
 	function update(data:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):global.Buffer;
 	@:native("final")
 	@:overload(function(output_encoding:String):String { })

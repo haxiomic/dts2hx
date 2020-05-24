@@ -8,7 +8,7 @@ package vscode;
 	/**
 		Creates a new diagnostic object.
 	**/
-	function new(range:Range, message:String, ?severity:Int);
+	function new(range:Range, message:String, ?severity:DiagnosticSeverity);
 	/**
 		The range to which this diagnostic applies.
 	**/

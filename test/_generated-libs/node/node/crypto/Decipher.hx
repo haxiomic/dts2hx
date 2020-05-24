@@ -3,7 +3,7 @@ package node.crypto;
 typedef Decipher = {
 	@:overload(function(data:String, input_encoding:HexBase64BinaryEncoding):global.Buffer { })
 	@:overload(function(data:Binary, input_encoding:Null<Any>, output_encoding:Utf8AsciiBinaryEncoding):String { })
-	@:overload(function(data:String, input_encoding:Null<String>, output_encoding:Utf8AsciiBinaryEncoding):String { })
+	@:overload(function(data:String, input_encoding:Null<HexBase64BinaryEncoding>, output_encoding:Utf8AsciiBinaryEncoding):String { })
 	function update(data:Binary):global.Buffer;
 	@:native("final")
 	@:overload(function(output_encoding:String):String { })

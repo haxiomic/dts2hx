@@ -30,7 +30,7 @@ typedef ServerHttp2Session = {
 	final destroyed : Bool;
 	@:optional
 	final encrypted : Bool;
-	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:ts.AnyOf11<global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):Void;
+	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:node.crypto.Binary):Void;
 	final localSettings : Settings;
 	@:optional
 	final originSet : Array<String>;

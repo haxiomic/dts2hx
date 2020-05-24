@@ -69,7 +69,7 @@ package vscode;
 	/**
 		Find files across all [workspace folders](#workspace.workspaceFolders) in the workspace.
 	**/
-	static function findFiles(include:GlobPattern, ?exclude:ts.AnyOf2<String, RelativePattern>, ?maxResults:Float, ?token:CancellationToken):global.Thenable<Array<Uri>>;
+	static function findFiles(include:GlobPattern, ?exclude:GlobPattern, ?maxResults:Float, ?token:CancellationToken):global.Thenable<Array<Uri>>;
 	/**
 		Save all dirty files.
 	**/
@@ -127,7 +127,7 @@ package vscode;
 		
 		When a scope is provided configuraiton confined to that scope is returned. Scope can be a resource or a language identifier or both.
 	**/
-	static function getConfiguration(?section:String, ?scope:ts.AnyOf4<WorkspaceFolder, Uri, TextDocument, { @:optional var uri : Uri; var languageId : String; }>):WorkspaceConfiguration;
+	static function getConfiguration(?section:String, ?scope:ConfigurationScope):WorkspaceConfiguration;
 	/**
 		~~Register a task provider.~~
 	**/

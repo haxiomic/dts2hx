@@ -149,7 +149,7 @@ typedef JQuery<TElement> = {
 	/**
 		Get the children of each element in the set of matched elements, including text and comment nodes.
 	**/
-	function contents():JQuery<ts.AnyOf4<js.html.Document, TElement, js.html.Text, js.html.Comment>>;
+	function contents():JQuery<ts.AnyOf4<js.html.Document, js.html.Text, js.html.Comment, TElement>>;
 	/**
 		Bind an event handler to the "contextmenu" JavaScript event, or trigger that event on an element.
 		
@@ -420,7 +420,7 @@ typedef JQuery<TElement> = {
 	/**
 		Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.
 	**/
-	function map<TReturn>(callback:(index:Float, domElement:TElement) -> Null<ts.AnyOf2<TReturn, Array<TReturn>>>):JQuery<TReturn>;
+	function map<TReturn>(callback:(index:Float, domElement:TElement) -> Null<ts.AnyOf2<Array<TReturn>, TReturn>>):JQuery<TReturn>;
 	/**
 		Bind an event handler to the "mousedown" JavaScript event, or trigger that event on an element.
 		
@@ -537,7 +537,7 @@ typedef JQuery<TElement> = {
 		
 		Attach an event handler function for one or more events to the selected elements.
 	**/
-	@:overload(function<TType, TData>(events:TType, selector:Null<Dynamic>, data:TData, handler:global.jquery.EventHandlerBase<TElement, Dynamic>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:global.jquery.EventHandlerBase<TElement, Dynamic>):JQuery<TElement> { })
 	@:overload(function(events:String, selector:Null<String>, data:Dynamic, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
 	@:overload(function<TType>(events:TType, selector:String, handler:ts.AnyOf2<Bool, global.jquery.EventHandlerBase<Dynamic, Dynamic>>):JQuery<TElement> { })
 	@:overload(function<TType, TData>(events:TType, data:TData, handler:global.jquery.EventHandlerBase<TElement, Dynamic>):JQuery<TElement> { })
@@ -545,7 +545,7 @@ typedef JQuery<TElement> = {
 	@:overload(function<TType>(events:TType, handler:ts.AnyOf2<Bool, global.jquery.EventHandlerBase<TElement, Dynamic>>):JQuery<TElement> { })
 	@:overload(function(events:String, handler:(event:JQueryEventObject) -> Void):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Dynamic, Dynamic>, selector:String, data:TData):JQuery<TElement> { })
-	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Dynamic>, data:TData):JQuery<TElement> { })
+	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Any>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Dynamic, Dynamic>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
@@ -571,12 +571,12 @@ typedef JQuery<TElement> = {
 		
 		Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
 	**/
-	@:overload(function<TType, TData>(events:TType, selector:Null<Dynamic>, data:TData, handler:global.jquery.EventHandlerBase<TElement, Dynamic>):JQuery<TElement> { })
+	@:overload(function<TType, TData>(events:TType, selector:Null<Any>, data:TData, handler:global.jquery.EventHandlerBase<TElement, Dynamic>):JQuery<TElement> { })
 	@:overload(function<TType>(events:TType, selector:String, handler:ts.AnyOf2<Bool, global.jquery.EventHandlerBase<Dynamic, Dynamic>>):JQuery<TElement> { })
 	@:overload(function<TType, TData>(events:TType, data:TData, handler:global.jquery.EventHandlerBase<TElement, Dynamic>):JQuery<TElement> { })
 	@:overload(function<TType>(events:TType, handler:ts.AnyOf2<Bool, global.jquery.EventHandlerBase<TElement, Dynamic>>):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, Dynamic, Dynamic>, selector:String, data:TData):JQuery<TElement> { })
-	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Dynamic>, data:TData):JQuery<TElement> { })
+	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, selector:Null<Any>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, Dynamic, Dynamic>, selector:String):JQuery<TElement> { })
 	@:overload(function<TData>(events:global.jquery.TypeEventHandlers<TElement, TData, TElement, TElement>, data:TData):JQuery<TElement> { })
 	@:overload(function(events:global.jquery.TypeEventHandlers<TElement, Null<Any>, TElement, TElement>):JQuery<TElement> { })
@@ -690,7 +690,7 @@ typedef JQuery<TElement> = {
 	/**
 		Remove a previously-stored piece of data.
 	**/
-	function removeData(?name:ts.AnyOf2<String, Array<String>>):JQuery<TElement>;
+	function removeData(?name:global.jquery.TypeOrArray<String>):JQuery<TElement>;
 	/**
 		Remove a property for the set of matched elements.
 	**/

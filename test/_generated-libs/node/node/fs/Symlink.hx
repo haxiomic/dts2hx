@@ -11,5 +11,5 @@ package node.fs;
 	**/
 	@:overload(function(target:PathLike, path:PathLike, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
 	@:selfCall
-	static function call(target:PathLike, path:PathLike, type:Null<String>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function call(target:PathLike, path:PathLike, type:Null<node.fs.symlink.Type_>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
 }

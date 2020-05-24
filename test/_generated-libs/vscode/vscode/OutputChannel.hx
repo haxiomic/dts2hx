@@ -29,7 +29,7 @@ typedef OutputChannel = {
 		
 		~~Reveal this channel in the UI.~~
 	**/
-	@:overload(function(?column:Int, ?preserveFocus:Bool):Void { })
+	@:overload(function(?column:ViewColumn, ?preserveFocus:Bool):Void { })
 	function show(?preserveFocus:Bool):Void;
 	/**
 		Hide this channel from the UI.

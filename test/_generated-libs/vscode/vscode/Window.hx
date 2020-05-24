@@ -17,7 +17,7 @@ package vscode;
 	**/
 	@:overload(function(document:TextDocument, ?options:TextDocumentShowOptions):global.Thenable<TextEditor> { })
 	@:overload(function(uri:Uri, ?options:TextDocumentShowOptions):global.Thenable<TextEditor> { })
-	static function showTextDocument(document:TextDocument, ?column:Int, ?preserveFocus:Bool):global.Thenable<TextEditor>;
+	static function showTextDocument(document:TextDocument, ?column:ViewColumn, ?preserveFocus:Bool):global.Thenable<TextEditor>;
 	/**
 		Create a TextEditorDecorationType that can be used to add decorations to text editors.
 	**/
@@ -154,7 +154,7 @@ package vscode;
 	/**
 		Creates a status bar [item](#StatusBarItem).
 	**/
-	static function createStatusBarItem(?alignment:Int, ?priority:Float):StatusBarItem;
+	static function createStatusBarItem(?alignment:StatusBarAlignment, ?priority:Float):StatusBarItem;
 	/**
 		Creates a [Terminal](#Terminal) with a backing shell process. The cwd of the terminal will be the workspace
 		directory if it exists.

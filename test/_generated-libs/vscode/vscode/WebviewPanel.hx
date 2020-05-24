@@ -61,7 +61,7 @@ typedef WebviewPanel = {
 		A webview panel may only show in a single column at a time. If it is already showing, this
 		method moves it to a new column.
 	**/
-	function reveal(?viewColumn:Int, ?preserveFocus:Bool):Void;
+	function reveal(?viewColumn:ViewColumn, ?preserveFocus:Bool):Void;
 	/**
 		Dispose of the webview panel.
 		

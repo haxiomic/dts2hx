@@ -54,11 +54,11 @@ typedef TextEditor = {
 	/**
 		Scroll as indicated by `revealType` in order to reveal the given range.
 	**/
-	function revealRange(range:Range, ?revealType:Int):Void;
+	function revealRange(range:Range, ?revealType:TextEditorRevealType):Void;
 	/**
 		~~Show the text editor.~~
 	**/
-	function show(?column:Int):Void;
+	function show(?column:ViewColumn):Void;
 	/**
 		~~Hide the text editor.~~
 	**/

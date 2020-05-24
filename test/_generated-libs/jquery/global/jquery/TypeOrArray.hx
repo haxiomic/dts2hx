@@ -1,3 +1,3 @@
 package global.jquery;
 
-typedef TypeOrArray<T> = ts.AnyOf2<T, Array<T>>;
+typedef TypeOrArray<T> = ts.AnyOf2<Array<T>, T>;

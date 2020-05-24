@@ -8,7 +8,7 @@ package vscode;
 	/**
 		Creates a new folding range.
 	**/
-	function new(start:Float, end:Float, ?kind:Int);
+	function new(start:Float, end:Float, ?kind:FoldingRangeKind);
 	/**
 		The zero-based start line of the range to fold. The folded area starts after the line's last character.
 		To be valid, the end must be zero or larger and smaller than the number of lines in the document.

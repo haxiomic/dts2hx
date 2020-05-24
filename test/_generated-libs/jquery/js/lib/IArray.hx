@@ -26,7 +26,7 @@ typedef IArray<T> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<T, js.lib.ConcatArray<T>>>):Array<T> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<js.lib.ConcatArray<T>, T>>):Array<T> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<T>>):Array<T>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.

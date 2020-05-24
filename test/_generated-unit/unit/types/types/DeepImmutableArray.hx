@@ -18,7 +18,7 @@ typedef DeepImmutableArray<T> = {
 		
 		Combines two or more arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<DeepImmutable<T>, js.lib.ConcatArray<DeepImmutable<T>>>>):Array<DeepImmutable<T>> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<js.lib.ConcatArray<DeepImmutable<T>>, DeepImmutable<T>>>):Array<DeepImmutable<T>> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<DeepImmutable<T>>>):Array<DeepImmutable<T>>;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
