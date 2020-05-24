@@ -325,15 +325,27 @@ export namespace Types {
      */
     type _lowercasename = string;
 
+    type StringEnum = 'secret' | 'public' | 'private';
+
     class Issue26 {
         nonOptionalEnumField: ExampleEnum;
         optionalEnumField?: ExampleEnum;
         nullOrEnumField: ExampleEnum | null;
         undefinedOrEnumField: ExampleEnum | undefined;
         undefinedNullEnumField: ExampleEnum | undefined | null;
+
+        nonOptionalEnumField2: StringEnum;
+        optionalEnumField2?: StringEnum;
+        nullOrEnumField2: StringEnum | null;
+        undefinedOrEnumField2: StringEnum | undefined;
+        undefinedNullEnumField2: StringEnum | undefined | null;
         
         method(optionalEnum?:ExampleEnum): ExampleEnum | null;
+        method2(optionalEnum?:StringEnum): StringEnum | null;
     }
 
+    type Issue26Tp<X,Y> = Issue26TpB<X> | Issue26TpC<Y>;
+    type Issue26TpB<X> = {}
+    type Issue26TpC<Y> = {}
 
 }
