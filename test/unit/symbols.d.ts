@@ -122,3 +122,14 @@ export const ConstructorTypeClassAlias: {
     constructorTypeField: string;
 };
 export type ConstructorTypeClassAlias = ExampleClass;
+
+export type NameClash = String;
+export class Nameclash {}
+export namespace nameclash {
+    const field: string;
+}
+
+export class UseNameClash {
+    fieldType: NameClash;
+    fieldClass: Nameclash;
+}
