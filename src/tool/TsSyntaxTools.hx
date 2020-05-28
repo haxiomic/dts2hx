@@ -31,7 +31,7 @@ class TsSyntaxTools {
 
 	static public function typeParameterDeclarationName(typeParameterDeclaration: TypeParameterDeclaration): String {
 		var name: Identifier = (untyped typeParameterDeclaration.name: Identifier);
-		return name.escapedText.toSafeTypeName();
+		return (name.escapedText: String).toSafeTypeName();
 	}
 	
 	// translated from https://github.com/microsoft/TypeScript/blob/3340142dda47f52af55144130304eef19a97ec31/src/compiler/utilities.ts#L1064

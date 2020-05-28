@@ -1,5 +1,6 @@
 package tool;
 
+import typescript.ts.__String;
 import typescript.ts.SyntaxKind;
 import typescript.ts.TypeParameterDeclaration;
 import typescript.ts.ExpressionWithTypeArguments;
@@ -359,7 +360,7 @@ class TsSymbolTools {
 		return isInternalSymbolName(symbol.name);
 	}
 	
-	static public function isInternalSymbolName(name: String) {
+	static public function isInternalSymbolName(name: __String) {
 		var internalSymbolName = js.Syntax.code('require("typescript").InternalSymbolName');
 		var internalSymbolNames = js.lib.Object.values(internalSymbolName);
 		return internalSymbolNames.indexOf(name) != -1;
