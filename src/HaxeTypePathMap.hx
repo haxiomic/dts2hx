@@ -463,13 +463,14 @@ class HaxeTypePathMap {
 	**/
 	inline function renameability(m: InternalModule) {
 		return 
-			m.renameable ? 1 : 0                                     << 6 | // prefer renameable, with highest priority
-			(!m.isExistingStdLibType ? 1 : 0)                        << 5 | // prefer non-existing std lib types
-			(m.access.match(Inaccessible) ? 1 : 0)                   << 4 | // prefer inaccessible
-			(m.symbol.flags & SymbolFlags.ValueModule == 0 ? 1 : 0)  << 3 | // prefer **not** ValueModule
-			(m.symbol.flags & SymbolFlags.Class == 0 ? 1 : 0)        << 2 | // prefer **not** class
-			(m.symbol.flags & SymbolFlags.Enum == 0 ? 1 : 0)         << 1 | // prefer **not** enum
-			(m.symbol.flags & SymbolFlags.TypeAlias == 0 ? 1 : 0)    << 0   // prefer **not** TypeAlias with lowest priority
+			(m.renameable ? 1 : 0)                                   << 7 | // prefer renameable, with highest priority
+			(!m.isExistingStdLibType ? 1 : 0)                        << 6 | // prefer non-existing std lib types
+			(m.access.match(Inaccessible) ? 1 : 0)                   << 5 | // prefer inaccessible
+			(m.symbol.flags & SymbolFlags.Class == 0 ? 1 : 0)        << 4 | // prefer **not** class
+			(m.symbol.flags & SymbolFlags.Enum == 0 ? 1 : 0)         << 3 | // prefer **not** enum
+			(m.symbol.flags & SymbolFlags.Interface == 0 ? 1 : 0)    << 2 | // prefer **not** interface
+			(m.symbol.flags & SymbolFlags.TypeAlias == 0 ? 1 : 0)    << 1 | // prefer **not** TypeAlias
+			(m.symbol.flags & SymbolFlags.ValueModule == 0 ? 1 : 0)  << 0   // prefer **not** ValueModule with lowest priority
 		;
 	}
 
