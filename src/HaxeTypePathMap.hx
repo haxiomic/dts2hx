@@ -221,7 +221,11 @@ class HaxeTypePathMap {
 						});
 
 						var moduleToRename = matches[0];
+						var alsoRenameModule = moduleToRename.name == moduleToRename.moduleName;
 						moduleToRename.name = moduleToRename.name + '_';
+						if (alsoRenameModule) {
+							moduleToRename.moduleName = moduleToRename.name;
+						}
 
 						Log.log('Resolved name overlap for <b>${matches[0].pack.concat([degenerateName]).join('/')}.hx</>: ${matches.map(m -> m.name).join(', ')}');
 					}
