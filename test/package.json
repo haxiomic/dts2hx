@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@actions/core": "1.2.3",
-    "@material-ui/core": "^4.9.14",
+    "@babylonjs/core": "4.1.0",
+    "@material-ui/core": "4.9.14",
     "@types/big.js": "4.0.5",
     "@types/d3": "5.7.2",
     "@types/dat.gui": "0.7.2",
@@ -20,12 +21,12 @@
     "@types/node": "11.11.3",
     "@types/pixi.js": "4.8.6",
     "@types/react": "16.9.34",
-    "@types/vscode": "^1.45.1",
+    "@types/vscode": "1.45.1",
     "babylonjs": "4.0.3",
     "big.js": "5.2.2",
     "d3": "5.15.0",
     "express": "4.17.1",
-    "filament": "^1.7.0",
+    "filament": "1.7.0",
     "jquery": "3.5.0",
     "mxgraph": "4.1.1",
     "phaser": "3.23.0",
@@ -35,6 +36,6 @@
     "three": "0.107.0",
     "typescript": "3.8.3",
     "vue": "2.6.11",
-    "wonka": "^4.0.13"
+    "wonka": "4.0.13"
   }
 }
