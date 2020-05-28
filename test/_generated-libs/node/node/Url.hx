@@ -3,7 +3,7 @@ package node;
 @:jsRequire("url") @valueModuleOnly extern class Url {
 	@:overload(function(urlStr:String, parseQueryString:Null<Bool>, ?slashesDenoteHost:Bool):node.url.UrlWithStringQuery { })
 	@:overload(function(urlStr:String, parseQueryString:Bool, ?slashesDenoteHost:Bool):node.url.UrlWithParsedQuery { })
-	@:overload(function(urlStr:String, parseQueryString:Bool, ?slashesDenoteHost:Bool):node.url.Url.Url_ { })
+	@:overload(function(urlStr:String, parseQueryString:Bool, ?slashesDenoteHost:Bool):node.url.Url_ { })
 	static function parse(urlStr:String):node.url.UrlWithStringQuery;
 	@:overload(function(urlObject:ts.AnyOf2<String, node.url.UrlObject>):String { })
 	static function format(URL:node.url.URL, ?options:node.url.URLFormatOptions):String;
