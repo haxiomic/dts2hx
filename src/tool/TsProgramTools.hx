@@ -70,7 +70,7 @@ class TsProgramTools {
 							recordDependency(result.resolvedTypeReferenceDirective.packageId);
 						}
 					} else {
-						Log.error('Module not found <b>${typeReference.fileName}</>', sourceFile);
+						Log.warn('Definitions not found for module <b>${typeReference.fileName}</>', sourceFile);
 					}
 				}
 			});
