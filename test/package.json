@@ -29,6 +29,7 @@
     "filament": "1.7.0",
     "jquery": "3.5.0",
     "mxgraph": "4.1.1",
+    "paper": "0.12.7",
     "phaser": "3.23.0",
     "playcanvas": "1.26.0",
     "react": "16.13.1",
