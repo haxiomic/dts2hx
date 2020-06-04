@@ -39,8 +39,6 @@
 	- export default not working properly
 	- `require('vue').default` doesn't exist
 
-- Issue: could not find local file reference module in the cwd: e.g. `dts2hx ./scratch`
-
 - Filter out Void `AnyOf2<Void, T>`?
 	https://github.com/francescoagati/haxe-ts-repository/blob/master/externs/use-immer/use_immer/Reducer.hx
 
