@@ -9,6 +9,7 @@
 
 - Redesign so that we supply a bunch of input modules and ConverterContext returns output modules, which may include new dependencies
 	- Creating a fresh context per module loses inter-module interaction (see express)
+	- Additionally, some inter-module connections are lost (#37)
 
 - New flag --mergeGlobal: `@:jsRequire` + `@:native` rather than `global`
 	```haxe
