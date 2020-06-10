@@ -44,6 +44,7 @@ class Main {
 			stdLibMode: StdLibMode.DefaultTypeMap,
 			// experimental
 			allowIntersectionRasterization: false,
+			queueExternalSymbols: false,
 		}
 
 		var help: Bool = false;
@@ -135,6 +136,10 @@ class Main {
 			// @doc('Experimental flag to improve conversion of intersection types. Currently can cause infinite loop on some packages')
 			'--allowIntersectionRasterization' => () -> {
 				cliOptions.allowIntersectionRasterization = true;
+			},
+
+			'--includeExternal' => () -> {
+				cliOptions.queueExternalSymbols = true;
 			},
 
 			'--noDts2hxVersion' => () -> {
@@ -291,6 +296,7 @@ class Main {
 			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions.libWrapper, cliOptions.outputPath, cliOptions.noOutput, {
 				locationComments: cliOptions.locationComments,
 				allowIntersectionRasterization: cliOptions.allowIntersectionRasterization,
+				queueExternalSymbols: cliOptions.queueExternalSymbols,
 			});
 			if (converterContext == null) continue;
 			

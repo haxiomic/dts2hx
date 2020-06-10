@@ -112,12 +112,19 @@ class ConverterContext {
 	final locationComments: Bool;
 
 	// settings
-	final allowIntersectionRasterization: Bool;
 	final shortenTypePaths = true;
 	final enableTypeParameterConstraints = false;
 	final typeStackLimit = 25;
 	final anyUnionCollapse = false; // `any | string` -> `any`
 	final unionizedFunctionTypes = true; // `(?b) => C` -> `()->C | (b)->C`
+
+	// experimental settings
+	final allowIntersectionRasterization: Bool;
+	/**
+		When true, symbols defined externally can be included in the output module.
+		This is a workaround until we have a single compilation context for all dependencies
+	**/
+	final queueExternalSymbols: Bool; 
 
 	public function new(
 		inputModuleName: String,
@@ -127,6 +134,7 @@ class ConverterContext {
 		options: {
 			locationComments: Bool,
 			allowIntersectionRasterization: Bool,
+			queueExternalSymbols:  Bool,
 		}
 	) {
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
@@ -135,6 +143,7 @@ class ConverterContext {
 		this.host = Ts.createCompilerHost(compilerOptions);
 		this.locationComments = options.locationComments;
 		this.allowIntersectionRasterization = options.allowIntersectionRasterization;
+		this.queueExternalSymbols = options.queueExternalSymbols;
 
 		// this will be used as the argument to require()
 		this.normalizedInputModuleName = inline inputModuleName.normalizeModuleName();
@@ -310,6 +319,9 @@ class ConverterContext {
 					
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
+						declarationSymbolQueue.tryEnqueue(symbol);
+					} else if (queueExternalSymbols) {
+						Log.log('Queuing external symbol', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
 					}
 				}
