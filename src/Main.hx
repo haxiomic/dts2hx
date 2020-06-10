@@ -137,7 +137,8 @@ class Main {
 			'--allowIntersectionRasterization' => () -> {
 				cliOptions.allowIntersectionRasterization = true;
 			},
-
+			
+			// see https://github.com/haxiomic/dts2hx/issues/37#issuecomment-642242254
 			'--includeExternal' => () -> {
 				cliOptions.queueExternalSymbols = true;
 			},
