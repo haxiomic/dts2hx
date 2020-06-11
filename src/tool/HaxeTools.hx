@@ -173,7 +173,12 @@ class HaxeTools {
 	}
 
 	static public function toSafeTypeName(str: String) {
+		// example-name -> exampleName
+		// EXAMPLE_NAME -> EXAMPLE_NAME
+		str = ~/[^\w]+([a-z])/g.map(str, reg -> reg.matched(1).toUpperCase());
+
 		str = toSafeIdent(str, false);
+
 		// capitalize first letter character
 		var firstLetterPattern = ~/[a-z]/i;
 		return if (firstLetterPattern.match(str)) {
