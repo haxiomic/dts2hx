@@ -1,4 +1,4 @@
-@:jsRequire("body-parser") @valueModuleOnly extern class Body_parser {
+@:jsRequire("body-parser") @valueModuleOnly extern class BodyParser {
 	@:selfCall
 	static function call(?options:Dynamic):connect.NextHandleFunction;
 	/**
