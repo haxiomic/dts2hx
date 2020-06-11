@@ -19,7 +19,8 @@ class Main {
 		document.body.appendChild(canvas);
 		
 		var engine = new Engine(
-			cast canvas, true, // babylon.js uses a custom HTMLCanvasElement type so we must cast
+			canvas,
+			true,
 			{
 				alpha: false,
 				powerPreference: 'high-performance',
