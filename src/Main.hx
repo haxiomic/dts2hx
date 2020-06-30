@@ -45,6 +45,7 @@ class Main {
 			// experimental
 			allowIntersectionRasterization: false,
 			queueExternalSymbols: false,
+			skipDependencies: false,
 		}
 
 		var help: Bool = false;
@@ -136,6 +137,10 @@ class Main {
 			// @doc('Experimental flag to improve conversion of intersection types. Currently can cause infinite loop on some packages')
 			'--allowIntersectionRasterization' => () -> {
 				cliOptions.allowIntersectionRasterization = true;
+			},
+
+			'--skipDependencies' => () -> {
+				cliOptions.skipDependencies = true;
 			},
 			
 			// see https://github.com/haxiomic/dts2hx/issues/37#issuecomment-642242254
@@ -305,7 +310,7 @@ class Main {
 			if (moduleDependencies.length > 0) {
 				Log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 			}
-			for (moduleDependency in moduleDependencies) {
+			if (!cliOptions.skipDependencies) for (moduleDependency in moduleDependencies) {
 				moduleQueue.tryEnqueue(moduleDependency.normalizedModuleName);
 			}
 		}
