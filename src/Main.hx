@@ -16,6 +16,7 @@ import typescript.ts.ResolvedModuleFull;
 using Lambda;
 using StringTools;
 using tool.StringTools;
+using tool.TsSymbolTools;
 
 typedef CliOptions = {
 	cwd: String,
@@ -394,6 +395,7 @@ class Main {
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			for (_ => haxeModule in converter.generatedModules) {
+				var isBuiltIn = haxeModule.tsSymbol != null && haxeModule.tsSymbol.isBuiltIn();
 				var skipModule = false;
 
 				// skip empty @valueModuleOnly classes
@@ -404,12 +406,12 @@ class Main {
 
 				// skip global if --noGlobal
 				if (cliOptions.noGlobal) {
-					skipModule = skipModule || (haxeModule.tsSymbolAccess.match(Global(_)));
+					skipModule = skipModule || (!isBuiltIn && haxeModule.tsSymbolAccess.match(Global(_)));
 				}
 
 				// skip modular if --noModular
 				if (cliOptions.noModular) {
-					skipModule = skipModule || (haxeModule.tsSymbolAccess.match(AmbientModule(_) | ExportModule(_)));
+					skipModule = skipModule || (!isBuiltIn && haxeModule.tsSymbolAccess.match(AmbientModule(_) | ExportModule(_)));
 				}
 
 				if (skipModule) continue;
