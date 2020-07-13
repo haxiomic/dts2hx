@@ -17,6 +17,28 @@ using Lambda;
 using StringTools;
 using tool.StringTools;
 
+typedef CliOptions = {
+	cwd: String,
+	outputPath: String,
+	tsConfigFilePath: String,
+	tsCompilerOptions: Array<String>,
+	moduleNames: Array<String>,
+	moduleSearchPath: String,
+	allDependencies: Bool,
+	noOutput: Bool,
+	locationComments: Bool,
+	libWrapper: Bool,
+	logLevel: LogLevel,
+	stdLibMode: StdLibMode,
+	// experimental
+	noGlobal: Bool,
+	noModular: Bool,
+	// mergedGlobal: Bool, // todo
+	allowIntersectionRasterization: Bool,
+	queueExternalSymbols: Bool,
+	skipDependencies: Bool,
+}
+
 @:nullSafety
 class Main {
 
@@ -29,7 +51,7 @@ class Main {
 
 		var userArgs = Node.process.argv.slice(2);
 
-		var cliOptions = {
+		var cliOptions: CliOptions = {
 			cwd: null,
 			outputPath: null,
 			tsConfigFilePath: null,
@@ -43,6 +65,9 @@ class Main {
 			logLevel: Error,
 			stdLibMode: StdLibMode.DefaultTypeMap,
 			// experimental
+			noGlobal: false,
+			noModular: false,
+			// mergedGlobal: false, // todo
 			allowIntersectionRasterization: false,
 			queueExternalSymbols: false,
 			skipDependencies: false,
@@ -95,6 +120,16 @@ class Main {
 			@doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
 			'--useSystemHaxe' => () -> {
 				cliOptions.stdLibMode = SystemHaxe;
+			},
+
+			@doc('Disables generating externs for types exposed in the global scope (i.e. types accessible via @:native)')
+			'--noGlobal' => () -> {
+				cliOptions.noGlobal = true;
+			},
+
+			@doc('Disables generating externs for types exposed via modules (i.e. types accessible via @:jsRequire)')
+			'--noModular' => () -> {
+				cliOptions.noModular = true;
 			},
 
 			@doc('Disables mapping types to the haxe standard library – this means externs will be generated for built-in types')
@@ -299,11 +334,7 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions.libWrapper, cliOptions.outputPath, cliOptions.noOutput, {
-				locationComments: cliOptions.locationComments,
-				allowIntersectionRasterization: cliOptions.allowIntersectionRasterization,
-				queueExternalSymbols: cliOptions.queueExternalSymbols,
-			});
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions);
 			if (converterContext == null) continue;
 			
 			var moduleDependencies = converterContext.moduleDependencies;
@@ -316,27 +347,27 @@ class Main {
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, libWrapper: Bool, outputPath: Null<String>, noOutput: Bool, converterOptions): Null<ConverterContext> {
+	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, cliOptions: CliOptions): Null<ConverterContext> {
 		var converter =
 			try {
-				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, converterOptions);
+				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions);
 			} catch (e: Any) {
 				Log.error(e);
 				return null;
 			}
 
 
-		var generateLibraryWrapper = libWrapper && converter.inputModule.packageId != null;
+		var generateLibraryWrapper = cliOptions.libWrapper && converter.inputModule.packageId != null;
 
 		// if output path is unset, default to either .haxelib/ or externs/ depending on whether or not the input module is a package
-		var outputPath: String = if (outputPath != null) outputPath else {
+		var outputPath: String = if (cliOptions.outputPath != null) cliOptions.outputPath else {
 			generateLibraryWrapper ? '.haxelib' : 'externs';
 		}
 
 		// in haxelib mode, use .current files to specify versions
 		var haxelibMode = Path.withoutDirectory(Path.removeTrailingSlashes(outputPath.toLowerCase())) == '.haxelib';
 
-		if (!noOutput) {
+		if (!cliOptions.noOutput) {
 			// save modules to files
 			var printer = new Printer();
 
@@ -363,12 +394,23 @@ class Main {
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			for (_ => haxeModule in converter.generatedModules) {
+				var skipModule = false;
 
 				// skip empty @valueModuleOnly classes
-				var skipModule = if (haxeModule.meta != null) {
+				if (haxeModule.meta != null) {
 					var isValueModuleOnly = haxeModule.meta.find(m -> m.name == 'valueModuleOnly') != null;
-					isValueModuleOnly && haxeModule.fields.length == 0;
-				} else false;
+					skipModule = skipModule || (isValueModuleOnly && haxeModule.fields.length == 0);
+				}
+
+				// skip global if --noGlobal
+				if (cliOptions.noGlobal) {
+					skipModule = skipModule || (haxeModule.tsSymbolAccess.match(Global(_)));
+				}
+
+				// skip modular if --noModular
+				if (cliOptions.noModular) {
+					skipModule = skipModule || (haxeModule.tsSymbolAccess.match(AmbientModule(_) | ExportModule(_)));
+				}
 
 				if (skipModule) continue;
 
