@@ -16,9 +16,11 @@ Reproducing the [three.js introduction example](https://threejs.org/docs/#manual
 
 	To generate haxe externs for OrbitControls, you pass the same module name module name to `dts2hx`:
 	```bash
-	dts2hx three/examples/jsm/controls/OrbitControls
+	dts2hx --noGlobal three/examples/jsm/controls/OrbitControls
 	```
 	[(See "postinstall" in package.json)](./package.json#L7)
+
+	We use `--noGlobal` because we intend to use the library via `require()` and a bundler instead of script tags
 
 - Build example with
 
