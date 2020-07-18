@@ -71,6 +71,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] Index signatures
     - [ ] Classes and interfaces
 - [ ] Merge global and modular symbols with `#if global @:native(...) # else @:jsRequire(...) #end`
+- [ ] Exported variables to class promotion. See [socket.io issue](https://github.com/haxiomic/dts2hx/issues/46)
 - [ ] Validation system to confirm all test code compiles
 - [ ] Explore converting _all_ typescript definitions in a package, whether or not they're connected to the package's root types
 - [ ] Interface extends
