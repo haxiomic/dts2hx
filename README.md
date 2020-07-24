@@ -84,6 +84,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] Need to select user's correct package manager (yarn vs npm)
 - [ ] Generic build types, `Or$N<T0 ... T$N>` and `ConstOr$N<T0 ... T$N>` to enable better type union behavior (and enable enum subsets)
     - [ ] enum subset example from ts compiler: `type ModifierSyntaxKindEnum = Modifiers['kind']`;
+- [ ] Limit maximum type length to avoid filesystem errors when writing .hx files (see #47)
 - [ ] Copy printer improvements to haxe standard library
 - [ ] :star: **Beta Release** *Not perfect but practically useable*
 
