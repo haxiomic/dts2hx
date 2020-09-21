@@ -118,6 +118,11 @@ class Main {
 				cliOptions.locationComments = true;
 			},
 
+			@doc('Disables converting dependencies of a module (using this may mean the generated haxe references external types that will not be generated)')
+			'--skipDependencies' => () -> {
+				cliOptions.skipDependencies = true;
+			},
+
 			@doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
 			'--useSystemHaxe' => () -> {
 				cliOptions.stdLibMode = SystemHaxe;
@@ -173,10 +178,6 @@ class Main {
 			// @doc('Experimental flag to improve conversion of intersection types. Currently can cause infinite loop on some packages')
 			'--allowIntersectionRasterization' => () -> {
 				cliOptions.allowIntersectionRasterization = true;
-			},
-
-			'--skipDependencies' => () -> {
-				cliOptions.skipDependencies = true;
 			},
 			
 			// see https://github.com/haxiomic/dts2hx/issues/37#issuecomment-642242254
