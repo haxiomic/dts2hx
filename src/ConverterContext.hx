@@ -228,7 +228,7 @@ class ConverterContext {
 
 			for (access in symbolAccessMap.getAccess(symbol)) {
 				// symbol can be both a haxe-module source and a global field if it has multiple declarations
-				if (isHaxeModuleSource(tc, symbol)) {
+				if (isHaxeModuleSource(tc, symbol, access)) {
 					generateHaxeModulesFromSymbol(symbol, access);
 				}
 
@@ -252,9 +252,11 @@ class ConverterContext {
 	/**
 		Returns true if the symbol corresponds to a module in haxe
 	**/
-	static public function isHaxeModuleSource(tc: TypeChecker, symbol: Symbol) {
-		return symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
-			tc.isConstructorTypeVariableSymbol(symbol);
+	static public function isHaxeModuleSource(tc: TypeChecker, symbol: Symbol, access: SymbolAccess) {
+		return 
+			symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
+			tc.isConstructorTypeVariableSymbol(symbol) ||
+			(symbol.flags & SymbolFlags.Value != 0 && access.match(ExportModule(_, _, []))); // export = Value;
 	}
 
 	/**
@@ -264,7 +266,7 @@ class ConverterContext {
 	**/
 	static public function requiresHxClass(tc: TypeChecker, symbol: Symbol) {
 		return (
-			symbol.flags & (SymbolFlags.Class | SymbolFlags.ValueModule) != 0 ||
+			symbol.flags & (SymbolFlags.Class | SymbolFlags.ValueModule | SymbolFlags.Value) != 0 ||
 			tc.isConstructorTypeVariableSymbol(symbol)
 		);
 	}
@@ -704,6 +706,7 @@ class ConverterContext {
 		indexSignatures: Array<Signature>,
 		classMembers: Array<Symbol>
 	) {
+		debug();
 		var fields = new Array<Field>();
 
 		if (constructorSignatures.length > 0) {
@@ -722,6 +725,10 @@ class ConverterContext {
 			selfCallStatic.enableAccess(AStatic);
 			fields.push(selfCallStatic);
 		}
+
+		// @! add static field for any kind of value
+		// this is the export = const case
+		// but we need a @!selfCall equivalent so Module.field translates to require('module')
 
 		if (indexSignatures.length > 0) {
 			// this is different from a _constructor_ declaration

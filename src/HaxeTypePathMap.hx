@@ -78,7 +78,7 @@ class HaxeTypePathMap {
 		}
 
 		// reaching this point is considered an error because type-paths should have been pre-generated for _all_ appropriate symbols
-		if (!ConverterContext.isHaxeModuleSource(tc, symbol)) {
+		if (!ConverterContext.isHaxeModuleSource(tc, symbol, accessContext)) {
 			Log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
 		}
 
@@ -120,7 +120,7 @@ class HaxeTypePathMap {
 		for (topLevelSymbol in program.getTopLevelDeclarationSymbols()) {
 			TsSymbolTools.walkDeclarationSymbols(tc, topLevelSymbol, (symbol, _) -> {
 				for (access in symbolAccessMap.getAccess(symbol)) {
-					if (ConverterContext.isHaxeModuleSource(tc, symbol)) {
+					if (ConverterContext.isHaxeModuleSource(tc, symbol, access)) {
 						// fundamental haxe implementation
 						var typePath = generateTypePath(symbol, access, false);
 						var modules = getModules(typePath.pack);
