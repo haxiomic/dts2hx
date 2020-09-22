@@ -7,6 +7,8 @@ rm -rf _generated-unit
 ../cli.js ./unit/export= --verbose --output _generated-unit --noLibWrap
 ../cli.js ./unit/export-default --verbose --output _generated-unit --noLibWrap
 ../cli.js ./unit/export-const --verbose --output _generated-unit --noLibWrap
+../cli.js ./unit/export-object --verbose --output _generated-unit --noLibWrap
+../cli.js ./unit/export-array --verbose --output _generated-unit --noLibWrap
 ../cli.js ./unit/export-function --verbose --output _generated-unit --noLibWrap
 ../cli.js ./unit/interface --verbose --output _generated-unit --noLibWrap
 ../cli.js ./unit/named-tuple --verbose --output _generated-unit --noLibWrap
