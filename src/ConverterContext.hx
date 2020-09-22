@@ -256,7 +256,9 @@ class ConverterContext {
 		return 
 			symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
 			tc.isConstructorTypeVariableSymbol(symbol) ||
-			(symbol.flags & SymbolFlags.Value != 0 && access.match(ExportModule(_, _, []))); // export = Value;
+			// @! match `export = Value` case, ideally we'd check against SymbolFlags.Value but we have no way to represent this in haxe yet
+			// so we currently only support `export = function`
+			(symbol.flags & SymbolFlags.Function != 0 && access.match(ExportModule(_, _, [])));
 	}
 
 	/**
