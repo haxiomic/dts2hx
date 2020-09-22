@@ -227,6 +227,8 @@ class ConverterContext {
 			var symbol: Symbol = cast declarationSymbolQueue.dequeue();
 
 			for (access in symbolAccessMap.getAccess(symbol)) {
+				// Log.log(access.toString(), symbol);
+
 				// symbol can be both a haxe-module source and a global field if it has multiple declarations
 				if (isHaxeModuleSource(tc, symbol, access)) {
 					generateHaxeModulesFromSymbol(symbol, access);
@@ -256,9 +258,7 @@ class ConverterContext {
 		return 
 			symbol.flags & (SymbolFlags.Type | SymbolFlags.ValueModule) != 0 ||
 			tc.isConstructorTypeVariableSymbol(symbol) ||
-			// @! match `export = Value` case, ideally we'd check against SymbolFlags.Value but we have no way to represent this in haxe yet
-			// so we currently only support `export = function`
-			(symbol.flags & SymbolFlags.Function != 0 && access.match(ExportModule(_, _, [])));
+			(symbol.flags & (SymbolFlags.Function | SymbolFlags.Variable) != 0 && access.match(ExportModule(_, _, [])));
 	}
 
 	/**
@@ -494,7 +494,8 @@ class ConverterContext {
 					symbol.getConstructorSignatures(tc),
 					callSignatures,
 					indexSignatures,
-					classMembers
+					classMembers,
+					fundamentalTypePath.name
 				);
 
 				if (classDeclaration != null) {
@@ -666,7 +667,8 @@ class ConverterContext {
 				[],
 				callSignatures,
 				tc.getIndexSignaturesOfType(declaredType),
-				declaredMembers
+				declaredMembers,
+				typePath.name
 			);
 
 			// remove disallowed accessors, since this is a structure type in haxe, the only allowed accessor is `final`
@@ -706,9 +708,9 @@ class ConverterContext {
 		constructorSignatures: Array<Signature>,
 		callSignatures: Array<Signature>,
 		indexSignatures: Array<Signature>,
-		classMembers: Array<Symbol>
+		classMembers: Array<Symbol>,
+		haxeClassName: String
 	) {
-		debug();
 		var fields = new Array<Field>();
 
 		if (constructorSignatures.length > 0) {
@@ -726,11 +728,35 @@ class ConverterContext {
 			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, symbol, access, declaration);
 			selfCallStatic.enableAccess(AStatic);
 			fields.push(selfCallStatic);
-		}
+		} else if (
+			symbol.flags & SymbolFlags.Variable != 0 &&
+			access.match(ExportModule(_, _, [])) // specifically `export = variable` access
+		) {
+			// export = variable case, transform to class with a static field called 'value'
+			// extern class Module {
+			// 	static var value(get, never): Int;
+			// 	static inline function get_value():Int return cast Module;
+			// }
 
-		// @! add static field for any kind of value
-		// this is the export = const case
-		// but we need a @!selfCall equivalent so Module.field translates to require('module')
+			// this is the variable equivalent of @:selfCall
+			var field = fieldFromSymbol('value', symbol, symbol, access, declaration);
+			var type = switch field.kind {
+				case FVar(t, _): t;
+				case FProp(_, _, t, _): t;
+				case FFun(f):
+					Log.error('Expected variable type but got function', symbol);
+					macro :Any;
+			}
+
+			field.kind = FProp('get', 'never', type);
+			field.access = [AStatic];
+			fields.push(field);
+
+			// add value getter implementation
+			fields.push((macro class {
+				static inline function get_value():$type return cast $i{haxeClassName};
+			}).fields[0]);
+		}
 
 		if (indexSignatures.length > 0) {
 			// this is different from a _constructor_ declaration
