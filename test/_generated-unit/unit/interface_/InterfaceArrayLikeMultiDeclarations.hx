@@ -1,3 +1,3 @@
 package unit.interface_;
 
-typedef InterfaceArrayLikeMultiDeclarations = { };
+@:jsRequire("./unit/interface", "InterfaceArrayLikeMultiDeclarations") extern class InterfaceArrayLikeMultiDeclarations { }

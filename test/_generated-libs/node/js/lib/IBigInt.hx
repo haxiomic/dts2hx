@@ -1,6 +1,6 @@
 package js.lib;
 
-@:native("BigInt") extern class BigInt {
+typedef IBigInt = {
 	/**
 		Returns a string representation of an object.
 	**/
@@ -13,4 +13,4 @@ package js.lib;
 		Returns the primitive value of the specified object.
 	**/
 	function valueOf():BigInt;
-}
+};

@@ -3,7 +3,7 @@ package js.lib;
 /**
 	An intrinsic object that provides functions to convert JavaScript values to and from the JavaScript Object Notation (JSON) format.
 **/
-@:native("JSON") extern class JSON {
+typedef IJSON = {
 	/**
 		Converts a JavaScript Object Notation (JSON) string into an object.
 	**/
@@ -15,4 +15,4 @@ package js.lib;
 	**/
 	@:overload(function(value:Dynamic, ?replacer:Array<ts.AnyOf2<String, Float>>, ?space:ts.AnyOf2<String, Float>):String { })
 	function stringify(value:Dynamic, ?replacer:(key:String, value:Dynamic) -> Dynamic, ?space:ts.AnyOf2<String, Float>):String;
-}
+};

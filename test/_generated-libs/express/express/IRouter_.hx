@@ -1,10 +1,10 @@
 package express;
 
-@:jsRequire("express", "Router") extern class Router {
+typedef IRouter_ = {
 	@:selfCall
-	function call(req:express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, res:express_serve_static_core.Response<Dynamic>, next:express_serve_static_core.NextFunction):Dynamic;
+	function call_(req:express_serve_static_core.Request<express_serve_static_core.ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, res:express_serve_static_core.Response<Dynamic>, next:express_serve_static_core.NextFunction):Dynamic;
 	@:selfCall
-	static function call_(?options:RouterOptions):express_serve_static_core.Router;
+	function call(?options:RouterOptions):express_serve_static_core.Router;
 	/**
 		Map the given param placeholder `name`(s) to the given callback(s).
 		
@@ -131,4 +131,4 @@ package express;
 		Stack of configured routes
 	**/
 	var stack : Array<Dynamic>;
-}
+};
