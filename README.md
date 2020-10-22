@@ -37,9 +37,11 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 # FAQ
 
 - **There are no typescript definitions for me module**
+
 Many popular js modules have external type definitions maintained in places like DefinitelyTyped – try installing external definitions with: `npm install @types/{module-name}`, then use `dts2hx {module-name}` as normal
 
 - **How do you convert a local typescript definition file, like index.d.ts?**
+
 dts2hx uses the same module resolution as typescript, so in typescript you import types from this file with `import {...} from './index'`, for dts2hx you would do `dts2hx ./index`
 
 - **Difference between `@:jsRequire()` and `@:native()`**
