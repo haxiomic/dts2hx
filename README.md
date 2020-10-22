@@ -36,7 +36,7 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 
 # FAQ
 
-- **There are no typescript definitions for me module**
+- **There are no typescript definitions for my module**
 
 Many popular js modules have external type definitions maintained in places like DefinitelyTyped – try installing external definitions with: `npm install @types/{module-name}`, then use `dts2hx {module-name}` as normal
 
