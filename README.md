@@ -44,6 +44,12 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 
     dts2hx uses the same module resolution as typescript, so in typescript you import types from this file with `import {...} from './index'`, for dts2hx you would do `dts2hx ./index`
 
+- **Why is there a `global` package?**
+
+    Typescript definitions often define two parallel sets of types, one for use with `<script src="">` (global) imports and the other for use with es6-style module imports. Unfortunately, these two sets of types are often not exactly the same and can differ in subtle ways
+
+    If you don’t want the global directory you can use `dts2hx pixi.js --noGlobal`, or if you _only_ want the global directory you can do `dts2hx pixi.js --noModular`
+
 - **Difference between `@:jsRequire()` and `@:native()`**
 
     TypeScript type definitions specify whether or not the symbols are accessible globally (`@:native()`) or via module resolution (`@:jsRequire()`). Many type definitions [include both globally available and modular symbols](https://github.com/haxiomic/dts2hx/blob/master/examples/pixi.js/Main.hx#L2). If a library has global symbols, they will be emitted in a package called `global`. all types in the `global` package use `@:native()` metadata, whereas types elsewhere will use `@:jsRequire()`.
