@@ -2,7 +2,7 @@
 
 Command-line tool to convert TypeScript type definitions to haxe externs
 
-<img alt="dts2hx command-line interface" src="https://user-images.githubusercontent.com/3742992/96911108-4a5b1600-1498-11eb-80b3-1d4ef11f82c6.png">
+<img alt="dts2hx command-line interface" src="https://user-images.githubusercontent.com/3742992/96911625-fef53780-1498-11eb-81de-24d10627d82d.png">
 
 <img src="https://user-images.githubusercontent.com/3742992/71644204-854b4d80-2cbc-11ea-85f9-93c63df51fe3.png" height="24" align="left"> Thanks to the Haxe Foundation for supporting this project!
 
