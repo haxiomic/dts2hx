@@ -11,7 +11,7 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 
     `npm install dts2hx --save-dev`
 
-- Install a module with types, for example `npm install three` 
+- Install a module with types, for example `npm install three`. If your module of choice doesn't include type definitions, try installing externally maintained ones with `npm install @types/{module-name}`
 
 - Run dts2hx on the node module
 
@@ -35,6 +35,12 @@ See [examples/](examples/) for example projects using popular js libraries
 The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete list of options
 
 # FAQ
+
+- **There are no typescript definitions for me module**
+Many popular js modules have external type definitions maintained in places like DefinitelyTyped – try installing external definitions with: `npm install @types/{module-name}`, then use `dts2hx {module-name}` as normal
+
+- **How do you convert a local typescript definition file, like index.d.ts?**
+dts2hx uses the same module resolution as typescript, so in typescript you import types from this file with `import {...} from './index'`, for dts2hx you would do `dts2hx ./index`
 
 - **Difference between `@:jsRequire()` and `@:native()`**
 
@@ -61,6 +67,12 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
    The idea of generating Haxe externs from `.d.ts` files is not new, [ts2hx](https://github.com/Simn/ts2hx) for instance was started 5 years ago already. However, this turned out to not be viable because it implemented a TypeScript parser in Haxe. The maintenance effort required turned out to be too great since TypeScript is evolving quickly.
 
    This project takes the _opposite_ approach and hooks into the TypeScript compiler API, which simplifies future maintenance a lot.
+
+# Building and Contributing
+
+- Install haxe 4.1.x
+- Build with `haxe build.hxml`
+- To work on the project, use vscode with the [haxe extension](https://marketplace.visualstudio.com/items?itemName=nadako.vshaxe) and optionally install [Trigger Task on Save](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.triggertaskonsave) so that the project is compiled every save
 
 # Roadmap
 
