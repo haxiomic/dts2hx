@@ -187,7 +187,7 @@ class ConverterContext {
 		Log.diagnostics(program.getAllDiagnostics());
 
 		var entryPointSourceFile = program.getSourceFile(inputModule.resolvedFileName);
-		if (entryPointSourceFile == null) throw 'Failed to get entry-point source file – try installing external types with: npm i @types/$inputModuleName';
+		if (entryPointSourceFile == null) throw 'Types not found – try installing external types with:\n\t<bg_black,white>npm install @types/$inputModuleName</>';
 
 		// these are source files that belong directly to this module
 		// @! maybe we could search the package directory and add all discovered typescript files here
