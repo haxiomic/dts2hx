@@ -723,6 +723,7 @@ class ConverterContext {
 		}
 
 		if (symbol.flags & SymbolFlags.Function != 0) {
+			// type symbol is a function, make a @:selfCall field
 			var tsType = getTsTypeOfField(symbol);
 			var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
 			var selfCallStatic = functionFieldFromCallSignatures('call', signatures, symbol, access, declaration);
@@ -732,7 +733,7 @@ class ConverterContext {
 			symbol.flags & SymbolFlags.Variable != 0 &&
 			access.match(ExportModule(_, _, [])) // specifically `export = variable` access
 		) {
-			// export = variable case, transform to class with a static field called 'value'
+			// `export = variable`, transform to class with a static field called 'value'
 			// extern class Module {
 			// 	static var value(get, never): Int;
 			// 	static inline function get_value():Int return cast Module;
@@ -740,22 +741,26 @@ class ConverterContext {
 
 			// this is the variable equivalent of @:selfCall
 			var field = fieldFromSymbol('value', symbol, symbol, access, declaration);
-			var type = switch field.kind {
-				case FVar(t, _): t;
-				case FProp(_, _, t, _): t;
+
+			switch field.kind {
+				case FVar(type, _), FProp(_, _, type, _):
+					field.kind = FProp('get', 'never', type);
+					field.access = [AStatic];
+					fields.push(field);
+
+					// add value getter implementation
+					fields.push((macro class {
+						static inline function get_value():$type return cast $i{haxeClassName};
+					}).fields[0]);
+
 				case FFun(f):
-					Log.error('Expected variable type but got function', symbol);
-					macro :Any;
+					// it's possible for the variable to have a function type, in which case we make it a regular selfCall (same as above)
+					var tsType = getTsTypeOfField(symbol);
+					var signatures = tc.getSignaturesOfType(tc.getNonNullableType(tsType), Call);
+					var selfCallStatic = functionFieldFromCallSignatures('call', signatures, symbol, access, declaration);
+					selfCallStatic.enableAccess(AStatic);
+					fields.push(selfCallStatic);
 			}
-
-			field.kind = FProp('get', 'never', type);
-			field.access = [AStatic];
-			fields.push(field);
-
-			// add value getter implementation
-			fields.push((macro class {
-				static inline function get_value():$type return cast $i{haxeClassName};
-			}).fields[0]);
 		}
 
 		if (indexSignatures.length > 0) {
