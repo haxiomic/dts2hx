@@ -36,17 +36,17 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 
 # FAQ
 
-- **There are no typescript definitions for my module**
+- **There are no TypeScript definitions for my module**
 
     Many popular js modules have external type definitions maintained in places like DefinitelyTyped – try installing external definitions with: `npm install @types/{module-name}`, then use `dts2hx {module-name}` as normal
 
-- **How do you convert a local typescript definition file, like index.d.ts?**
+- **How do you convert a local TypeScript definition file, like index.d.ts?**
 
-    dts2hx uses the same module resolution as typescript, so in typescript you import types from this file with `import {...} from './index'`, for dts2hx you would do `dts2hx ./index`
+    dts2hx uses the same module resolution as TypeScript, so in TypeScript you import types from this file with `import {...} from './index'`, for dts2hx you would do `dts2hx ./index`
 
 - **Why is there a `global` package?**
 
-    Typescript definitions often define two parallel sets of types, one for use with `<script src="">` (global) imports and the other for use with es6-style module imports. Unfortunately, these two sets of types are often not exactly the same and can differ in subtle ways
+    TypeScript definitions often define two parallel sets of types, one for use with `<script src="">` (global) imports and the other for use with es6-style module imports. Unfortunately, these two sets of types are often not exactly the same and can differ in subtle ways
 
     If you don’t want the global directory you can use `dts2hx pixi.js --noGlobal`, or if you _only_ want the global directory you can do `dts2hx pixi.js --noModular`
 
@@ -93,7 +93,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 - [ ] Merge global and modular symbols with `#if global @:native(...) # else @:jsRequire(...) #end`
 - [ ] Exported variables to class promotion. See [socket.io issue](https://github.com/haxiomic/dts2hx/issues/46) and [#61](https://github.com/haxiomic/dts2hx/issues/61#issuecomment-713989576)
 - [ ] Validation system to confirm all test code compiles
-- [ ] Explore converting _all_ typescript definitions in a package, whether or not they're connected to the package's root types
+- [ ] Explore converting _all_ TypeScript definitions in a package, whether or not they're connected to the package's root types
 - [ ] Interface extends
     - [ ] Redefined class and interface fields should be renamed rather than removed
 - [ ] Other missing types
@@ -111,7 +111,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
 ## Road to 1.0
 - [ ] Introduce min haxe feature set flag, so we can convert externs for haxe 4.2+ and add #if guards to support older versions
     - [ ] Use system haxe by default
-- [ ] Improve comments (typescript compiler doesn't properly expose declaration comments atm)
+- [ ] Improve comments (TypeScript compiler doesn't properly expose declaration comments atm)
 - [x] When variable fields have function types, convert them to function fields so `@:overloads` are supported and `.call()` isn't required
 - [ ] Support native iteration (by handling `iterator` symbol)
 - [ ] Advanced type conversions
