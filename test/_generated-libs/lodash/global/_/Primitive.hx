@@ -1,0 +1,185 @@
+package global._;
+
+typedef Primitive<T> = {
+	function concat(values:haxe.extern.Rest<Many<T>>):Collection<T>;
+	function after<TFunc>(func:TFunc):Function<TFunc>;
+	function before<TFunc>(func:TFunc):Function<TFunc>;
+	function castArray():Collection<T>;
+	function chain():PrimitiveChain<T>;
+	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):Collection<TResult> { })
+	function invokeMap(methodName:String, args:haxe.extern.Rest<Dynamic>):Collection<Dynamic>;
+	function size():Float;
+	function now():Float;
+	function bind(thisArg:Dynamic, partials:haxe.extern.Rest<Dynamic>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	function bindKey(key:String, partials:haxe.extern.Rest<Dynamic>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	function defer(args:haxe.extern.Rest<Dynamic>):Primitive<Float>;
+	function delay(wait:Float, args:haxe.extern.Rest<Dynamic>):Primitive<Float>;
+	function wrap<TArgs, TResult>(wrapper:(value:T, args:haxe.extern.Rest<TArgs>) -> TResult):Function<(args:haxe.extern.Rest<TArgs>) -> TResult>;
+	function clone():T;
+	function cloneDeep():T;
+	@:overload(function():T { })
+	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):Dynamic;
+	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<T, TResult> { })
+	@:overload(function():T { })
+	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):TResult;
+	function conformsTo(source:{ }):Bool;
+	function eq(other:Dynamic):Bool;
+	function gt(other:Dynamic):Bool;
+	function gte(other:Dynamic):Bool;
+	function isArguments():Bool;
+	function isArray():Bool;
+	function isArrayBuffer():Bool;
+	function isArrayLike():Bool;
+	function isArrayLikeObject():Bool;
+	function isBoolean():Bool;
+	function isBuffer():Bool;
+	function isDate():Bool;
+	function isElement():Bool;
+	function isEmpty():Bool;
+	function isEqual(other:Dynamic):Bool;
+	function isEqualWith(other:Dynamic, ?customizer:IsEqualCustomizer):Bool;
+	function isError():Bool;
+	function isFinite():Bool;
+	function isFunction():Bool;
+	function isInteger():Bool;
+	function isLength():Bool;
+	function isMap():Bool;
+	function isMatch(source:Dynamic):Bool;
+	function isMatchWith(source:Dynamic, customizer:IsMatchWithCustomizer):Bool;
+	function isNaN():Bool;
+	function isNative():Bool;
+	function isNil():Bool;
+	function isNull():Bool;
+	function isNumber():Bool;
+	function isObject():Bool;
+	function isObjectLike():Bool;
+	function isPlainObject():Bool;
+	function isRegExp():Bool;
+	function isSafeInteger():Bool;
+	function isSet():Bool;
+	function isString():Bool;
+	function isSymbol():Bool;
+	function isTypedArray():Bool;
+	function isUndefined():Bool;
+	function isWeakMap():Bool;
+	function isWeakSet():Bool;
+	function lt(other:Dynamic):Bool;
+	function lte(other:Dynamic):Bool;
+	function toFinite():Float;
+	function toInteger():Float;
+	function toLength():Float;
+	function toNumber():Float;
+	function toPlainObject():Object<Dynamic>;
+	function toSafeInteger():Float;
+	function add(addend:Float):Float;
+	function ceil(?precision:Float):Float;
+	function divide(divisor:Float):Float;
+	function floor(?precision:Float):Float;
+	function mean():Float;
+	function multiply(multiplicand:Float):Float;
+	function round(?precision:Float):Float;
+	function subtract(subtrahend:Float):Float;
+	function sum():Float;
+	@:overload(function(upper:Float):Float { })
+	function clamp(lower:Float, upper:Float):Float;
+	function inRange(start:Float, ?end:Float):Bool;
+	@:overload(function(max:Float, ?floating:Bool):Float { })
+	function random(?floating:Bool):Float;
+	function entries():Collection<ts.Tuple2<String, Dynamic>>;
+	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
+	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function forIn(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;
+	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;
+	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;
+	function forOwnRight(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;
+	function functions():Collection<String>;
+	function functionsIn():Collection<String>;
+	function has(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function hasIn(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function invert():Object<Dictionary<String>>;
+	function invoke(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):Dynamic;
+	function keys():Collection<String>;
+	function keysIn():Collection<String>;
+	function result<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
+	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):ImpChain<TResult> { })
+	function set(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):Primitive<T>;
+	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):ImpChain<TResult> { })
+	function setWith(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):Primitive<T>;
+	function toPairs():Collection<ts.Tuple2<String, Dynamic>>;
+	function toPairsIn():Collection<ts.Tuple2<String, Dynamic>>;
+	function unset(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Primitive<Bool>;
+	function update(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):Object<Dynamic>;
+	function commit():Primitive<T>;
+	function plant(value:Any):Primitive<T>;
+	function reverse():Primitive<T>;
+	function toJSON():T;
+	function value():T;
+	function valueOf():T;
+	function tap(interceptor:(value:T) -> Void):Primitive<T>;
+	function thru<TResult>(interceptor:(value:T) -> TResult):ImpChain<TResult>;
+	function camelCase():String;
+	function capitalize():String;
+	function deburr():String;
+	function endsWith(?target:String, ?position:Float):Bool;
+	function escape():String;
+	function escapeRegExp():String;
+	function kebabCase():String;
+	function lowerCase():String;
+	function lowerFirst():String;
+	function pad(?length:Float, ?chars:String):String;
+	function padEnd(?length:Float, ?chars:String):String;
+	function padStart(?length:Float, ?chars:String):String;
+	function parseInt(?radix:Float):Float;
+	function repeat(?n:Float):String;
+	@:overload(function(replacement:ts.AnyOf2<String, ReplaceFunction>):String { })
+	function replace(pattern:ts.AnyOf2<String, js.lib.RegExp>, replacement:ts.AnyOf2<String, ReplaceFunction>):String;
+	function snakeCase():String;
+	function split(?separator:ts.AnyOf2<String, js.lib.RegExp>, ?limit:Float):Collection<String>;
+	function startCase():String;
+	function startsWith(?target:String, ?position:Float):Bool;
+	function template(?options:TemplateOptions):TemplateExecutor;
+	function toLower():String;
+	function toUpper():String;
+	function trim(?chars:String):String;
+	function trimEnd(?chars:String):String;
+	function trimStart(?chars:String):String;
+	function truncate(?options:TruncateOptions):String;
+	function unescape():String;
+	function upperCase():String;
+	function upperFirst():String;
+	function words(?pattern:ts.AnyOf2<String, js.lib.RegExp>):Array<String>;
+	function attempt<TResult>(args:haxe.extern.Rest<Dynamic>):ts.AnyOf2<js.lib.Error, TResult>;
+	function bindAll(methodNames:haxe.extern.Rest<Many<String>>):Primitive<T>;
+	function conforms():Function<(value:{ }) -> Bool>;
+	function constant():Function<() -> T>;
+	@:overload(function<TDefault>(defaultValue:TDefault):Dynamic { })
+	function defaultTo(defaultValue:T):T;
+	function identity():T;
+	function matches<V>():Function<(value:V) -> Bool>;
+	@:overload(function<SrcValue, Value>(srcValue:SrcValue):Function<(value:Value) -> Bool> { })
+	function matchesProperty<SrcValue>(srcValue:SrcValue):Function<(value:Dynamic) -> Bool>;
+	function method(args:haxe.extern.Rest<Dynamic>):Function<(object:Dynamic) -> Dynamic>;
+	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashImplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	@:overload(function(?options:MixinOptions):LoDashImplicitWrapper<LoDashStatic> { })
+	function mixin(source:Dictionary<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>, ?options:MixinOptions):Primitive<T>;
+	function noConflict():LoDashStatic;
+	function noop(args:haxe.extern.Rest<Dynamic>):Void;
+	function nthArg():Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
+	function property<TObj, TResult>():Function<(obj:TObj) -> TResult>;
+	function propertyOf():LoDashImplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function range(?end:Float, ?step:Float):Collection<Float>;
+	function rangeRight(?end:Float, ?step:Float):Collection<Float>;
+	function runInContext():LoDashStatic;
+	function stubArray():Array<Dynamic>;
+	@:overload(function():Bool { })
+	function stubFalse():Bool;
+	function stubObject():Dynamic;
+	function stubString():String;
+	@:overload(function():Bool { })
+	function stubTrue():Bool;
+	@:overload(function():Array<Float> { })
+	function times<TResult>(iteratee:(num:Float) -> TResult):Array<TResult>;
+	function toPath():Collection<String>;
+	function uniqueId():String;
+};

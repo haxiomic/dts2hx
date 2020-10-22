@@ -1,0 +1,37 @@
+package global._;
+
+typedef RightCurriedFunction5<T1, T2, T3, T4, T5, R> = {
+	@:overload(function(t5:T5):RightCurriedFunction4<T1, T2, T3, T4, R> { })
+	@:overload(function(t4:T4, t5:LoDashStatic):RightCurriedFunction4<T1, T2, T3, T5, R> { })
+	@:overload(function(t4:T4, t5:T5):RightCurriedFunction3<T1, T2, T3, R> { })
+	@:overload(function(t3:T3, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction4<T1, T2, T4, T5, R> { })
+	@:overload(function(t3:T3, t4:T4, t5:LoDashStatic):RightCurriedFunction3<T1, T2, T5, R> { })
+	@:overload(function(t3:T3, t4:LoDashStatic, t5:T5):RightCurriedFunction3<T1, T2, T4, R> { })
+	@:overload(function(t3:T3, t4:T4, t5:T5):RightCurriedFunction2<T1, T2, R> { })
+	@:overload(function(t2:T2, t3:LoDashStatic, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction4<T1, T3, T4, T5, R> { })
+	@:overload(function(t2:T2, t3:T3, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction3<T1, T4, T5, R> { })
+	@:overload(function(t2:T2, t3:LoDashStatic, t4:T4, t5:LoDashStatic):RightCurriedFunction3<T1, T3, T5, R> { })
+	@:overload(function(t2:T2, t3:LoDashStatic, t4:LoDashStatic, t5:T5):RightCurriedFunction3<T1, T3, T4, R> { })
+	@:overload(function(t2:T2, t3:T3, t4:T4, t5:LoDashStatic):RightCurriedFunction2<T1, T5, R> { })
+	@:overload(function(t2:T2, t3:T3, t4:LoDashStatic, t5:T5):RightCurriedFunction2<T1, T4, R> { })
+	@:overload(function(t2:T2, t3:LoDashStatic, t4:T4, t5:T5):RightCurriedFunction2<T1, T3, R> { })
+	@:overload(function(t2:T2, t3:T3, t4:T4, t5:T5):RightCurriedFunction1<T1, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:LoDashStatic, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction4<T2, T3, T4, T5, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:LoDashStatic, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction3<T3, T4, T5, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:T3, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction3<T2, T4, T5, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:LoDashStatic, t4:T4, t5:LoDashStatic):RightCurriedFunction3<T2, T3, T5, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:LoDashStatic, t4:LoDashStatic, t5:T5):RightCurriedFunction3<T2, T3, T4, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:T3, t4:LoDashStatic, t5:LoDashStatic):RightCurriedFunction2<T4, T5, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:LoDashStatic, t4:T4, t5:LoDashStatic):RightCurriedFunction2<T3, T5, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:LoDashStatic, t4:LoDashStatic, t5:T5):RightCurriedFunction2<T3, T4, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:T3, t4:T4, t5:LoDashStatic):RightCurriedFunction2<T2, T5, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:T3, t4:LoDashStatic, t5:T5):RightCurriedFunction2<T2, T4, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:LoDashStatic, t4:T4, t5:T5):RightCurriedFunction2<T2, T3, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:T3, t4:T4, t5:LoDashStatic):RightCurriedFunction1<T5, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:T3, t4:LoDashStatic, t5:T5):RightCurriedFunction1<T4, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:LoDashStatic, t4:T4, t5:T5):RightCurriedFunction1<T3, R> { })
+	@:overload(function(t1:T1, t2:LoDashStatic, t3:T3, t4:T4, t5:T5):RightCurriedFunction1<T2, R> { })
+	@:overload(function(t1:T1, t2:T2, t3:T3, t4:T4, t5:T5):R { })
+	@:selfCall
+	function call():RightCurriedFunction5<T1, T2, T3, T4, T5, R>;
+};
