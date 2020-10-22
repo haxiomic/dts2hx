@@ -569,7 +569,7 @@ class Main {
 		Console.printlnFormatted('\tdts2hx ./src/index --tsconfig ./tsconfig.json --verbose');
 		Console.println('');
 
-		Console.printFormatted('<bright_white,b>Options:</>\n');
+		Console.printFormatted('<b>Options:</>\n');
 
 		var usageStringMaxLength = 0;
 
@@ -581,8 +581,10 @@ class Main {
 			var usageString = '${item.flags.join(', ')}';
 
 			if (item.args.length > 0) {
-				usageString += ' <i,cyan>' + item.args.map(a -> '{${a.opt?'?':''}${a.name}}').join(', ') + '</>';
+				usageString += ' <i,light_cyan>' + item.args.map(a -> '{${a.opt?'?':''}${a.name}}').join(', ') + '</>';
 			}
+
+			usageString = '<bg_black,light_white>$usageString</>';
 			
 			var unformattedLength = Console.stripFormatting(usageString).length;
 
@@ -597,7 +599,7 @@ class Main {
 
 		var lines = formattedOptions.map(f -> {
 			var rPadding = [for (i in 0...(usageStringMaxLength - f.unformattedLength)) ' '].join('');
-			'${f.usageString}$rPadding ${f.doc}';
+			'${f.usageString}$rPadding ${f.doc}\n';
 		});
 
 		Console.printFormatted(lines.join('\n') + '\n');
