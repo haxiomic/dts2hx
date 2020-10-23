@@ -38,6 +38,7 @@ typedef CliOptions = {
 	allowIntersectionRasterization: Bool,
 	queueExternalSymbols: Bool,
 	skipDependencies: Bool,
+	enableTypeParameterConstraints: Bool,
 }
 
 @:nullSafety
@@ -72,6 +73,7 @@ class Main {
 			allowIntersectionRasterization: false,
 			queueExternalSymbols: false,
 			skipDependencies: false,
+			enableTypeParameterConstraints: false,
 		}
 
 		var help: Bool = false;
@@ -126,6 +128,11 @@ class Main {
 			@doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
 			'--useSystemHaxe' => () -> {
 				cliOptions.stdLibMode = SystemHaxe;
+			},
+
+			@doc('Enables generating type parameter constraints. This will often work fine for many modules but it is a WIP feature')
+			'--constraints' => () -> {
+				cliOptions.enableTypeParameterConstraints = true;
 			},
 
 			@doc('Disables generating externs for types exposed in the global scope (i.e. types accessible via @:native)')

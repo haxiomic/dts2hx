@@ -113,7 +113,7 @@ class ConverterContext {
 
 	// settings
 	final shortenTypePaths = true;
-	final enableTypeParameterConstraints = false;
+	final enableTypeParameterConstraints: Bool;
 	final typeStackLimit = 25;
 	final anyUnionCollapse = false; // `any | string` -> `any`
 	final unionizedFunctionTypes = true; // `(?b) => C` -> `()->C | (b)->C`
@@ -135,6 +135,7 @@ class ConverterContext {
 			locationComments: Bool,
 			allowIntersectionRasterization: Bool,
 			queueExternalSymbols:  Bool,
+			enableTypeParameterConstraints: Bool,
 		}
 	) {
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
@@ -144,6 +145,7 @@ class ConverterContext {
 		this.locationComments = options.locationComments;
 		this.allowIntersectionRasterization = options.allowIntersectionRasterization;
 		this.queueExternalSymbols = options.queueExternalSymbols;
+		this.enableTypeParameterConstraints = options.enableTypeParameterConstraints;
 
 		// this will be used as the argument to require()
 		this.normalizedInputModuleName = inline inputModuleName.normalizeModuleName();
