@@ -194,7 +194,11 @@ class Main {
 				if (arg.charAt(0) == '-') {
 					throw 'Unknown argument "$arg"';
 				}
-				cliOptions.moduleNames.push(arg);
+				// remove ".d.ts" extension as this is a common point of confusion for users
+				var moduleName = if (arg.substr(arg.length - 5).toLowerCase() == '.d.ts') {
+					arg.substr(0, arg.length - 5);
+				} else arg;
+				cliOptions.moduleNames.push(moduleName);
 			}
 		]);
 
