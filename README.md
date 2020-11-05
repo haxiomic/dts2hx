@@ -82,6 +82,20 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 - Build with `haxe build.hxml`
 - To work on the project, use vscode with the [haxe extension](https://marketplace.visualstudio.com/items?itemName=nadako.vshaxe) and optionally install [Trigger Task on Save](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.triggertaskonsave) so that the project is compiled every save
 
+### Code Overview
+- Processing is done in two passes, the first pass enumerates typescript symbols and generates haxe-type paths, as well as stores information on how to reach this symbol (i.e wether it requires a module import or if it's available in the global scope). This work is done in [HaxeTypePathMap.hx](src/HaxeTypePathMap.hx)
+- The next pass enumerates accessible symbols again, this time building haxe types using the the haxe macro API and using the typemap generated earlier to handle type references. This work is handled in [ConverterContext.hx](src/ConverterContext.hx). At the bottom of this file I've written notes about how to understand the typescript compiler and now it's used in dts2hx. The TS compiler is quite opaque and at the time or writing, not well documented so I recommend reading the notes to get you started. Additionally, here's some links I found useful when working on this project
+
+### TypeScript Compiler Documentation Links**
+
+- [TypeScript AST Viewer](https://ts-ast-viewer.com/)
+- [Architectural-Overview](https://github.com/microsoft/TypeScript/wiki/Architectural-Overview)
+- [Using the type checker](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#using-the-type-checker)
+- [Language Specification](https://github.com/microsoft/TypeScript/blob/master/doc/spec.md)
+- [Compiler Internals Book](https://basarat.gitbooks.io/typescript/docs/compiler/overview.html)
+- See [src/compiler/utilities.ts](https://github.com/microsoft/TypeScript/blob/d6c05a135840dc3045ec8f3bbec1da5ffabb6593/src/compiler/utilities.ts) for compiler API use examples
+- See [src/compiler/vistorPublic.ts](https://github.com/microsoft/TypeScript/blob/master/src/compiler/visitorPublic.ts) for an example of fully enumerating the AST
+
 # Roadmap
 
 dts2hx is currently in alpha release, everything _should_ work but please report any issues!
