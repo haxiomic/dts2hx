@@ -1396,7 +1396,23 @@ class ConverterContext {
 			var hxTarget = complexTypeFromTsType(cast typeReference.target, moduleSymbol, accessContext, enclosingDeclaration, null, preferInterfaceStructure);
 
 			var hxTypeArguments = if (typeReference.typeArguments != null) {
-				typeReference.typeArguments.map(arg -> TPType(complexTypeFromTsType(arg, moduleSymbol, accessContext, enclosingDeclaration)));
+				
+				typeReference.typeArguments.map(arg -> {
+					var hxType = complexTypeFromTsType(arg, moduleSymbol, accessContext, enclosingDeclaration);
+					
+					// in ts there is no Int type, so `number` is translated to Float
+					// this works fine for `var x: Float = (y: Int);`, but doesn't work for type parameters
+					// in haxe, we want Array<Int> to unify with Array<number> (i.e Array<Float>)
+					// to solve this we replace Type<Float> with Type<AnyOf2<Float, Int>>
+					// this relies on @:transitive which was introduced in haxe 4.2
+					hxType = switch hxType {
+						case TPath({name: 'Float', pack: [], params: null | [], sub: null}):
+							this.getUnionType([macro :Float, macro :Int]);
+						default: hxType;
+					}
+
+					TPType(hxType);
+				});
 			} else [];
 
 			// replace type parameters with type arguments
