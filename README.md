@@ -86,7 +86,7 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 - Processing is done in two passes, the first pass enumerates typescript symbols and generates haxe-type paths, as well as stores information on how to reach this symbol (i.e wether it requires a module import or if it's available in the global scope). This work is done in [HaxeTypePathMap.hx](src/HaxeTypePathMap.hx)
 - The next pass enumerates accessible symbols again, this time building haxe types using the the haxe macro API and using the typemap generated earlier to handle type references. This work is handled in [ConverterContext.hx](src/ConverterContext.hx). At the bottom of this file I've written notes about how to understand the typescript compiler and now it's used in dts2hx. The TS compiler is quite opaque and at the time or writing, not well documented so I recommend reading the notes to get you started. Additionally, here's some links I found useful when working on this project
 
-### TypeScript Compiler Documentation Links**
+### TypeScript Compiler Documentation Links
 
 - [TypeScript AST Viewer](https://ts-ast-viewer.com/)
 - [Architectural-Overview](https://github.com/microsoft/TypeScript/wiki/Architectural-Overview)
