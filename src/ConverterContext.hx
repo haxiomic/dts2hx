@@ -641,9 +641,11 @@ class ConverterContext {
 
 		var callSignatures = tc.getSignaturesOfType(declaredType, Call);
 
-		var kind = if (callSignatures.length == 1 && declaredMembers.length == 0 && preferInterfaceStructure == false) {
+		var kind = if (callSignatures.length > 0 && declaredMembers.length == 0 && preferInterfaceStructure == false) {
 			// handle special case of function type { (args): T }
-			TDAlias(complexTypeFromCallSignature(callSignatures[0], symbol, access, declaration));
+			// or if multiple signatures: { (args): T; (args2): T2 }, return a union of function types
+			var functionSignature = SupportTypes.getUnionType(this, callSignatures.map(callSignature -> complexTypeFromCallSignature(callSignature, symbol, access, declaration)));
+			TDAlias(functionSignature);
 		} else {
 			/*		
 			// replace redefined class **variable** members with their super-type members
