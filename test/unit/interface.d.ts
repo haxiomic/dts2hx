@@ -105,3 +105,28 @@ export class InterfaceClassParamMismatch<P, S> {
     classFieldP: P;
     classFieldS: S;
 }
+
+
+/**
+ * An interface which has no fields, only function signatures. This typically means this is functionally used as a function type
+ * 
+ * See https://github.com/haxiomic/dts2hx/issues/73
+ */
+export interface FunctionTypeInterface<T> {
+    (err: null, data: T): void;
+    (err: Error): void;
+}
+
+/**
+ * Extend as another function type
+ */
+export interface FunctionTypeInterfaceExtended<K> extends FunctionTypeInterface<K> {
+    (anotherSignature: string): void;
+}
+
+/**
+ * Extend as a regular interface
+ */
+export interface FunctionTypeInterfaceExtendedWithField<K> extends FunctionTypeInterface<K> {
+    someField: K;
+}
