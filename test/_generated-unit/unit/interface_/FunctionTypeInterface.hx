@@ -5,8 +5,4 @@ package unit.interface_;
 	
 	See https://github.com/haxiomic/dts2hx/issues/73
 **/
-typedef FunctionTypeInterface<T> = {
-	@:overload(function(err:Error):Void { })
-	@:selfCall
-	function call(err:Dynamic, data:T):Void;
-};
+typedef FunctionTypeInterface<T> = ts.AnyOf2<(err:Dynamic, data:T) -> Void, (err:Error) -> Void>;

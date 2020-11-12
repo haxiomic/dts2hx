@@ -1,7 +1,3 @@
 package express;
 
-typedef NextFunction = {
-	@:overload(function(deferToNext:String):Void { })
-	@:selfCall
-	function call(?err:Dynamic):Void;
-};
+typedef NextFunction = ts.AnyOf2<ts.AnyOf2<() -> Void, (err:Dynamic) -> Void>, (deferToNext:String) -> Void>;

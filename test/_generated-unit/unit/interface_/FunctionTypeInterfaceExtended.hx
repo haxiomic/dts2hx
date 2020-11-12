@@ -3,9 +3,4 @@ package unit.interface_;
 /**
 	Extend as another function type
 **/
-typedef FunctionTypeInterfaceExtended<K> = {
-	@:overload(function(err:Dynamic, data:K):Void { })
-	@:overload(function(err:Error):Void { })
-	@:selfCall
-	function call(anotherSignature:String):Void;
-};
+typedef FunctionTypeInterfaceExtended<K> = ts.AnyOf3<(anotherSignature:String) -> Void, (err:Dynamic, data:K) -> Void, (err:Error) -> Void>;
