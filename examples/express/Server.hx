@@ -18,7 +18,7 @@ class Server {
 
 		// middleware that is specific to this router
 		router.use(function timeLog (req, res, next) {
-			js.Browser.console.log('Time: ', Date.now());
+			trace('Time: ' + Date.now());
 			(next: () -> Void)();
 			return null;
 		});
