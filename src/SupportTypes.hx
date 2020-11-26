@@ -89,6 +89,16 @@ class SupportTypes {
 			return types[0];
 		}
 
+		// merge with sub-unions
+		types = Lambda.flatMap(types, t -> switch t {
+			case TPath({pack: ['ts'], name: name, params: params}) if (name.startsWith('AnyOf')):
+				params.map(p -> switch p {
+					case TPType(t): t;
+					case TPExpr(e): throw 'Expected ComplexType but got Expr';
+				});
+			default: [t];
+		});
+
 		var typePath = {
 			pack: ['ts'],
 			name: 'AnyOf${types.length}',
