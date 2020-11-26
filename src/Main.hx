@@ -295,7 +295,11 @@ class Main {
 					if (result.resolvedModule != null) {
 						switch result.resolvedModule.extension {
 							case Dts, Ts, Tsx: // maybe we should limit to just Dts
-								cliOptions.moduleNames.push(moduleName);
+								// normalize so we don't convert both @types/name and name separately
+								var normalizedName = TsProgramTools.normalizeModuleName(moduleName);
+								if (!cliOptions.moduleNames.has(normalizedName)) {
+									cliOptions.moduleNames.push(normalizedName);
+								}
 							case Js, Json, Jsx, TsBuildInfo:
 						}
 						continue;
