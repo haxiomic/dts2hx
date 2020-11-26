@@ -1661,7 +1661,14 @@ class ConverterContext {
 	}
 
 	function functionFromSignature(signature: Signature, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Function {
-		var hxTypeParams = if (signature.typeParameters != null) signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration)) else [];
+		// constructor declarations should not have type parameters (see #74)
+		// we leave _ConstructSignatureDeclaration_ untouched because these can have type parameters (although this isn't perfect – see WeakMap in lib.es2015.collection.d.ts)
+		var signatureDeclarationNode = signature.getDeclaration();
+		var isConstructorDeclaration = signatureDeclarationNode != null && Ts.isConstructorDeclaration(signatureDeclarationNode);
+
+		var hxTypeParams = if (signature.typeParameters != null && !isConstructorDeclaration) {
+			signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration));
+		} else [];
 
 		var hxParameters = if (signature.parameters != null ) tc.getExpandedParameters(signature).map(s -> {
 			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
