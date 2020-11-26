@@ -2,8 +2,18 @@
 
 - abstract enum finals rather than vars
 
+- abstract wrappers for typedefs so we can add
+	- See https://community.haxe.org/t/how-does-one-use-routes-in-express/2701/7
+	- Unification with self call
+	- Constructor fields
+	- Hacked support for @:native
+
 - in AnyOf types, we could use getProperties of type to add fields
 	-> AnyOfX<BaseFields, A, B>
+
+- Generic AnyOf that supports multiple function types with overloads
+	- Say we have AnyOf2<() -> Void, (str: String) -> Void>, we could add call() overloads so that we can use like
+		`x.call('string')`;
 
 - Why so many typescript errors with `chakra-ui`?
 
