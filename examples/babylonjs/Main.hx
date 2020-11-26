@@ -28,7 +28,10 @@ class Main {
 		);
 
 		var scene = new Scene(engine, {});
-		scene.clearColor.set(1, 0, 0, 1);scene.createDefaultEnvironment({
+
+		scene.clearColor.set(1, 0, 0, 1);
+	
+		scene.createDefaultEnvironment({
 			createGround: false
 		});
 
