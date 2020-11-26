@@ -1,7 +1,7 @@
 package global.three;
 
 @:native("THREE.CurvePath") extern class CurvePath<T> extends Curve<T> {
-	function new<T>();
+	function new();
 	var curves : Array<Curve<T>>;
 	var autoClose : Bool;
 	function add(curve:Curve<T>):Void;
