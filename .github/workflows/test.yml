@@ -21,9 +21,9 @@ jobs:
           npm install -g lix
           lix download haxe latest
           lix use haxe latest
+          lix download
           haxe --version
-          haxelib setup
-          haxelib install hxnodejs 12.1.0
+          lix install haxelib:hxnodejs --global
       - name: "installing"
         run: |
           npm install
