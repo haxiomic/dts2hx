@@ -1,0 +1,36 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest,windows-latest]
+        node-version: [12.x]
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "setup"
+        run: |
+          npm install -g lix
+          lix download haxe latest
+          lix use haxe latest
+          lix download
+          haxe --version
+          lix install haxelib:hxnodejs --global
+      - name: "installing"
+        run: |
+          npm install
+          cd test
+      - name: "testing"
+        run: |
+          cd test
+          ./run-examples.sh
+        env:
+          CI: true
