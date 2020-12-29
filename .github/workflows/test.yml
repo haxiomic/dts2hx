@@ -19,7 +19,10 @@ jobs:
       - name: "setup"
         run: |
           npm install -g lix
-          lix use haxe stable
+          lix download haxe latest
+          lix use haxe latest
+          haxe --version
+          haxelib setup
           haxelib install hxnodejs 12.1.0
       - name: "installing"
         run: |
