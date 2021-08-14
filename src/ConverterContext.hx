@@ -975,7 +975,7 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.Undefined) != 0) {
 			macro :Null<Any>;
 		} else if (type.flags & (TypeFlags.Void) != 0) {
-			macro :Void;
+			macro :Any; // in haxe, only function return can be void, so we handle this specially
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
 			var hxTypePath = getReferencedHaxeTypePath(type.symbol, moduleSymbol, accessContext, false);
 			TPath(hxTypePath);
@@ -1708,7 +1708,12 @@ class ConverterContext {
 			}: FunctionArg);
 		}) else [];
 
-		var hxRet = complexTypeFromTsType(tc.getReturnTypeOfSignature(signature), moduleSymbol, accessContext, signature.declaration);
+		var tsRet = tc.getReturnTypeOfSignature(signature);
+		var hxRet = if (tsRet.flags & (TypeFlags.Void) != 0) {
+			macro :Void;
+		} else {
+			complexTypeFromTsType(tsRet, moduleSymbol, accessContext, signature.declaration);
+		}
 
 		return {
 			args: hxParameters,
