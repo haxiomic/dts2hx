@@ -144,6 +144,32 @@ class SupportTypes {
 		return TPath(typePath);
 	}
 
+	static public function getUndefinedType(ctx: ConverterContext): ComplexType {
+		var typePath = {
+			pack: ['ts'],
+			name: 'Undefined',
+		};
+
+		var existingModule = ctx.getGeneratedModule(typePath);
+		if (existingModule == null) {
+			// create Nothing type
+			var nothingDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				doc: '`Undefined` corresponds to `void` in TypeScript; in haxe `Void` cannot be used as a field type (only function return), so we must use `Any` instead. This alias serves as documentation that the type is `void` (and therefore value is `undefined`)',
+				kind: TDAlias(macro : Any),
+				pos: null,
+				fields: [],
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			ctx.saveHaxeModule(nothingDefinition);
+		}
+
+		return TPath(typePath);
+	}
+
 	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol, access: SymbolAccess): HaxeModule {
 		var typePath = ctx.haxeTypePathMap.getGlobalModuleTypePath(symbol, access);
 		var existingModule = ctx.getGeneratedModule({name: typePath.name, pack: typePath.pack});
