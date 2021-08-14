@@ -280,6 +280,7 @@ class Main {
 			try {
 				var packageJson = host.readFile('package.json');
 				if (packageJson == null) {
+					@:nullSafety(Off)
 					var absPath = haxe.io.Path.join([host.getCurrentDirectory(), 'package.json']);
 					throw '<b>"${absPath}"</> does not exist; could not determine dependencies';
 				}

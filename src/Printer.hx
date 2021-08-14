@@ -170,6 +170,13 @@ class Printer extends haxe.macro.Printer {
 					+ (from == null ? "" : [for (f in from) " from " + printComplexType(f)].join(""))
 					+ (to == null ? "" : [for (t in to) " to " + printComplexType(t)].join(""))
 					+ " " + multiLineStructures(printExtension([], t.fields));
+				case TDField(kind, access):
+					(access != null && access.length > 0 ? access.map(printAccess).join(" ") + " " : "")
+					+ switch (kind) {
+						case FVar(type, eo): ((access != null && access.has(AFinal)) ? '' : 'var ') + '${t.name}' + opt(type, printComplexType, " : ") + opt(eo, printExpr, " = ") + ";";
+						case FProp(get, set, type, eo): 'var ${t.name}($get, $set)' + opt(type, printComplexType, " : ") + opt(eo, printExpr, " = ") + ";";
+						case FFun(func): 'function ${t.name}' + printFunction(func) + switch func.expr { case {expr: EBlock(_)}: ""; case _: ";"; };
+					}
 			}
 
 		return str;
