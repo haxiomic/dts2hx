@@ -37,5 +37,5 @@ typedef WebviewPanelSerializer = {
 		
 		Called when a serialized webview first becomes visible.
 	**/
-	function deserializeWebviewPanel(webviewPanel:WebviewPanel, state:Dynamic):global.Thenable<Void>;
+	function deserializeWebviewPanel(webviewPanel:WebviewPanel, state:Dynamic):global.Thenable<ts.Undefined>;
 };

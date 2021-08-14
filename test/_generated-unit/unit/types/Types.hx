@@ -48,13 +48,13 @@ package unit.types;
 	static final any : Dynamic;
 	static final typeInParentheses : Float;
 	static final unionInParentheses : ts.AnyOf2<String, Float>;
-	static final voidType : Any;
-	static final voidUnionType : ts.AnyOf2<Float, Any>;
-	static final voidTypeParam : Array<Any>;
+	static final voidType : ts.Undefined;
+	static final voidUnionType : ts.AnyOf2<Float, ts.Undefined>;
+	static final voidTypeParam : Array<ts.Undefined>;
 	static final voidObjField : {
-		var x : Any;
+		var x : ts.Undefined;
 	};
-	static function voidArg(a:Any):Void;
+	static function voidArg(a:ts.Undefined):Void;
 	static final intLiteral : Int;
 	static final intLiteralAlt : Int;
 	static final floatLiteral : Float;

@@ -1,7 +1,7 @@
 package lowdb;
 
 typedef AdapterAsync<SchemaT> = {
-	function write(state:Dynamic):js.lib.Promise<Void>;
+	function write(state:Dynamic):js.lib.Promise<ts.Undefined>;
 	@:native("@@reference")
 	final AtReference : SchemaT;
 	var source : String;

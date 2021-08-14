@@ -6,7 +6,7 @@ typedef VueConstructor<V> = {
 	@:overload(function<Props>(definition:FunctionalComponentOptions<Props, { }>):vue.types.vue.ExtendedVue<V, { }, { }, { }, Props> { })
 	@:overload(function(?options:ComponentOptions<V, vue.types.options.DefaultData<V>, vue.types.options.DefaultMethods<V>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>):vue.types.vue.ExtendedVue<V, { }, { }, { }, { }> { })
 	function extend<Data, Methods, Computed, PropNames>(?options:vue.types.options.ThisTypedComponentOptionsWithArrayProps<V, Data, Methods, Computed, PropNames>):vue.types.vue.ExtendedVue<V, Data, Methods, Computed, { }>;
-	@:overload(function():js.lib.Promise<Void> { })
+	@:overload(function():js.lib.Promise<ts.Undefined> { })
 	function nextTick<T>(callback:() -> Void, ?context:T):Void;
 	@:overload(function<T>(array:Array<T>, key:Float, value:T):T { })
 	function set<T>(object:Dynamic, key:ts.AnyOf2<String, Float>, value:T):T;

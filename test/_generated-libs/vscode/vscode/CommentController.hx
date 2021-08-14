@@ -29,7 +29,7 @@ typedef CommentController = {
 		Optional reaction handler for creating and deleting reactions on a [comment](#Comment).
 	**/
 	@:optional
-	dynamic function reactionHandler(comment:Comment, reaction:CommentReaction):js.lib.Promise<Void>;
+	dynamic function reactionHandler(comment:Comment, reaction:CommentReaction):js.lib.Promise<ts.Undefined>;
 	/**
 		Dispose this comment controller.
 		

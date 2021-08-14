@@ -16,7 +16,7 @@ package vue.types;
 	@:native("$emit")
 	function DollarEmit(event:String, args:haxe.extern.Rest<Dynamic>):Umd;
 	@:native("$nextTick")
-	@:overload(function():js.lib.Promise<Void> { })
+	@:overload(function():js.lib.Promise<ts.Undefined> { })
 	function DollarNextTick(callback:() -> Void):Void;
 	static var prototype : Umd;
 }

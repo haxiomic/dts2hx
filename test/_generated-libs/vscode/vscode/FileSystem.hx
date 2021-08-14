@@ -23,7 +23,7 @@ typedef FileSystem = {
 		*Note* that missing directories are created automatically, e.g this call has
 		`mkdirp` semantics.
 	**/
-	function createDirectory(uri:Uri):global.Thenable<Void>;
+	function createDirectory(uri:Uri):global.Thenable<ts.Undefined>;
 	/**
 		Read the entire contents of a file.
 	**/
@@ -31,17 +31,17 @@ typedef FileSystem = {
 	/**
 		Write data to a file, replacing its entire contents.
 	**/
-	function writeFile(uri:Uri, content:js.lib.Uint8Array):global.Thenable<Void>;
+	function writeFile(uri:Uri, content:js.lib.Uint8Array):global.Thenable<ts.Undefined>;
 	/**
 		Delete a file.
 	**/
-	function delete(uri:Uri, ?options:{ @:optional var recursive : Bool; @:optional var useTrash : Bool; }):global.Thenable<Void>;
+	function delete(uri:Uri, ?options:{ @:optional var recursive : Bool; @:optional var useTrash : Bool; }):global.Thenable<ts.Undefined>;
 	/**
 		Rename a file or folder.
 	**/
-	function rename(source:Uri, target:Uri, ?options:{ @:optional var overwrite : Bool; }):global.Thenable<Void>;
+	function rename(source:Uri, target:Uri, ?options:{ @:optional var overwrite : Bool; }):global.Thenable<ts.Undefined>;
 	/**
 		Copy files or folders.
 	**/
-	function copy(source:Uri, target:Uri, ?options:{ @:optional var overwrite : Bool; }):global.Thenable<Void>;
+	function copy(source:Uri, target:Uri, ?options:{ @:optional var overwrite : Bool; }):global.Thenable<ts.Undefined>;
 };

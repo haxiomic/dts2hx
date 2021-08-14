@@ -52,7 +52,7 @@ typedef TreeView<T> = {
 		
 		**NOTE:** [TreeDataProvider](#TreeDataProvider) is required to implement [getParent](#TreeDataProvider.getParent) method to access this API.
 	**/
-	function reveal(element:T, ?options:{ @:optional var select : Bool; @:optional var focus : Bool; @:optional var expand : ts.AnyOf2<Float, Bool>; }):global.Thenable<Void>;
+	function reveal(element:T, ?options:{ @:optional var select : Bool; @:optional var focus : Bool; @:optional var expand : ts.AnyOf2<Float, Bool>; }):global.Thenable<ts.Undefined>;
 	/**
 		Dispose this object.
 	**/

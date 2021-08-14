@@ -52,8 +52,8 @@ typedef JQueryStatic = {
 		
 		Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
 	**/
-	@:overload(function(handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, Void>):Void { })
-	function ajaxPrefilter(dataTypes:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, Void>):Void;
+	@:overload(function(handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, ts.Undefined>):Void { })
+	function ajaxPrefilter(dataTypes:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, ts.Undefined>):Void;
 	/**
 		Set default values for future Ajax requests. Its use is not recommended.
 	**/
@@ -61,7 +61,7 @@ typedef JQueryStatic = {
 	/**
 		Creates an object that handles the actual transmission of Ajax data.
 	**/
-	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<Void, global.jquery.Transport>):Void;
+	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<ts.Undefined, global.jquery.Transport>):Void;
 	function camelCase(value:String):String;
 	function cleanData(elems:js.lib.ArrayLike<ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
 	/**

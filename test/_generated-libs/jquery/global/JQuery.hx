@@ -34,27 +34,27 @@ typedef JQuery<TElement> = {
 	/**
 		Register a handler to be called when Ajax requests complete. This is an AjaxEvent.
 	**/
-	function ajaxComplete(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxComplete(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.
 	**/
-	function ajaxError(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxSettings:global.jquery.AjaxSettings<Dynamic>, thrownError:String) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxError(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxSettings:global.jquery.AjaxSettings<Dynamic>, thrownError:String) -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.
 	**/
-	function ajaxSend(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxSend(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>) -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Register a handler to be called when the first Ajax request begins. This is an Ajax Event.
 	**/
-	function ajaxStart(handler:() -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxStart(handler:() -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Register a handler to be called when all Ajax requests have completed. This is an Ajax Event.
 	**/
-	function ajaxStop(handler:() -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxStop(handler:() -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.
 	**/
-	function ajaxSuccess(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>, data:global.jquery.PlainObject<Dynamic>) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function ajaxSuccess(handler:(event:global.jquery.TriggeredEvent<js.html.Document, Null<Any>, js.html.Document, js.html.Document>, jqXHR:global.jquery.JqXHR<Dynamic>, ajaxOptions:global.jquery.AjaxSettings<Dynamic>, data:global.jquery.PlainObject<Dynamic>) -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Perform a custom animation of a set of CSS properties.
 		
@@ -88,7 +88,7 @@ typedef JQuery<TElement> = {
 	**/
 	@:overload(function(attributes:global.jquery.PlainObject<Dynamic>):JQuery<TElement> { })
 	@:overload(function(attributeName:String):Null<String> { })
-	function attr(attributeName:String, value_function:Null<ts.AnyOf3<String, Float, (index:Float, attr:String) -> Null<ts.AnyOf3<String, Float, Void>>>>):JQuery<TElement>;
+	function attr(attributeName:String, value_function:Null<ts.AnyOf3<String, Float, (index:Float, attr:String) -> Null<ts.AnyOf3<String, Float, ts.Undefined>>>>):JQuery<TElement>;
 	/**
 		Insert content, specified by the parameter, before each element in the set of matched elements.
 		
@@ -166,10 +166,10 @@ typedef JQuery<TElement> = {
 		
 		Get the computed style properties for the first element in the set of matched elements.
 	**/
-	@:overload(function(properties:global.jquery.PlainObject<ts.AnyOf3<String, Float, (index:Float, value:String) -> Null<ts.AnyOf3<String, Float, Void>>>>):JQuery<TElement> { })
+	@:overload(function(properties:global.jquery.PlainObject<ts.AnyOf3<String, Float, (index:Float, value:String) -> Null<ts.AnyOf3<String, Float, ts.Undefined>>>>):JQuery<TElement> { })
 	@:overload(function(propertyName:String):String { })
 	@:overload(function(propertyNames:Array<String>):global.jquery.PlainObject<String> { })
-	function css(propertyName:String, value_function:ts.AnyOf3<String, Float, (index:Float, value:String) -> Null<ts.AnyOf3<String, Float, Void>>>):JQuery<TElement>;
+	function css(propertyName:String, value_function:ts.AnyOf3<String, Float, (index:Float, value:String) -> Null<ts.AnyOf3<String, Float, ts.Undefined>>>):JQuery<TElement>;
 	/**
 		Store arbitrary data associated with the matched elements.
 		
@@ -218,7 +218,7 @@ typedef JQuery<TElement> = {
 	/**
 		Iterate over a jQuery object, executing a function for each matched element.
 	**/
-	function each(fun_Tion:(index:Float, element:TElement) -> ts.AnyOf2<Bool, Void>):JQuery<TElement>;
+	function each(fun_Tion:(index:Float, element:TElement) -> ts.AnyOf2<Bool, ts.Undefined>):JQuery<TElement>;
 	/**
 		Remove all child nodes of the set of matched elements from the DOM.
 	**/

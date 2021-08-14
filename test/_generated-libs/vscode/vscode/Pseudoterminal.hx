@@ -83,7 +83,7 @@ typedef Pseudoterminal = {
 		```
 	**/
 	@:optional
-	dynamic function onDidClose(listener:(e:ts.AnyOf2<Float, Void>) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	dynamic function onDidClose(listener:(e:ts.AnyOf2<Float, ts.Undefined>) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Implement to handle when the pty is open and ready to start firing events.
 	**/

@@ -18,5 +18,5 @@ typedef CustomTextEditorProvider = {
 		the event listeners it is interested it. The provider can also hold onto the `WebviewPanel` to use later,
 		for example in a command. See [`WebviewPanel`](#WebviewPanel) for additional details.
 	**/
-	function resolveCustomTextEditor(document:TextDocument, webviewPanel:WebviewPanel, token:CancellationToken):ts.AnyOf2<Void, global.Thenable<Void>>;
+	function resolveCustomTextEditor(document:TextDocument, webviewPanel:WebviewPanel, token:CancellationToken):ts.AnyOf2<ts.Undefined, global.Thenable<ts.Undefined>>;
 };

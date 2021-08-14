@@ -9,23 +9,23 @@ typedef FileHandle = {
 		Asynchronously append data to a file, creating the file if it does not exist. The underlying file will _not_ be closed automatically.
 		The `FileHandle` must have been opened for appending.
 	**/
-	function appendFile(data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<Void>;
+	function appendFile(data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous fchown(2) - Change ownership of a file.
 	**/
-	function chown(uid:Float, gid:Float):js.lib.Promise<Void>;
+	function chown(uid:Float, gid:Float):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous fchmod(2) - Change permissions of a file.
 	**/
-	function chmod(mode:ts.AnyOf2<String, Float>):js.lib.Promise<Void>;
+	function chmod(mode:ts.AnyOf2<String, Float>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous fdatasync(2) - synchronize a file's in-core state with storage device.
 	**/
-	function datasync():js.lib.Promise<Void>;
+	function datasync():js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
 	**/
-	function sync():js.lib.Promise<Void>;
+	function sync():js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronously reads data from the file.
 		The `FileHandle` must have been opened for reading.
@@ -54,11 +54,11 @@ typedef FileHandle = {
 	/**
 		Asynchronous ftruncate(2) - Truncate a file to a specified length.
 	**/
-	function truncate(?len:Float):js.lib.Promise<Void>;
+	function truncate(?len:Float):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronously change file timestamps of the file.
 	**/
-	function utimes(atime:ts.AnyOf3<String, Float, js.lib.Date>, mtime:ts.AnyOf3<String, Float, js.lib.Date>):js.lib.Promise<Void>;
+	function utimes(atime:ts.AnyOf3<String, Float, js.lib.Date>, mtime:ts.AnyOf3<String, Float, js.lib.Date>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronously writes `buffer` to the file.
 		The `FileHandle` must have been opened for writing.
@@ -81,9 +81,9 @@ typedef FileHandle = {
 		The `FileHandle` must have been opened for writing.
 		It is unsafe to call `writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
 	**/
-	function writeFile(data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<Void>;
+	function writeFile(data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous close(2) - close a `FileHandle`.
 	**/
-	function close():js.lib.Promise<Void>;
+	function close():js.lib.Promise<ts.Undefined>;
 };

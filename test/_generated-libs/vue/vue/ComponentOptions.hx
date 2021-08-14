@@ -44,9 +44,9 @@ typedef ComponentOptions<V, Data, Methods, Computed, PropsDef, Props> = {
 	@:optional
 	function deactivated():Void;
 	@:optional
-	function errorCaptured(err:js.lib.Error, vm:Vue, info:String):ts.AnyOf2<Bool, Void>;
+	function errorCaptured(err:js.lib.Error, vm:Vue, info:String):ts.AnyOf2<Bool, ts.Undefined>;
 	@:optional
-	function serverPrefetch():js.lib.Promise<Void>;
+	function serverPrefetch():js.lib.Promise<ts.Undefined>;
 	@:optional
 	var directives : { };
 	@:optional

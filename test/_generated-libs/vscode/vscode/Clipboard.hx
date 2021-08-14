@@ -11,5 +11,5 @@ typedef Clipboard = {
 	/**
 		Writes text into the clipboard.
 	**/
-	function writeText(value:String):global.Thenable<Void>;
+	function writeText(value:String):global.Thenable<ts.Undefined>;
 };

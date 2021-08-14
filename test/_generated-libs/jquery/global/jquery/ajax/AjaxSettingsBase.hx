@@ -15,7 +15,7 @@ typedef AjaxSettingsBase<TContext> = {
 		A pre-request callback function that can be used to modify the jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object before it is sent. Use this to set custom headers, etc. The jqXHR and settings objects are passed as arguments. This is an Ajax Event. Returning false in the beforeSend function will cancel the request. As of jQuery 1.5, the beforeSend option will be called regardless of the type of request.
 	**/
 	@:optional
-	function beforeSend(jqXHR:global.jquery.JqXHR<Dynamic>, settings:AjaxSettingsBase<TContext>):ts.AnyOf2<Bool, Void>;
+	function beforeSend(jqXHR:global.jquery.JqXHR<Dynamic>, settings:AjaxSettingsBase<TContext>):ts.AnyOf2<Bool, ts.Undefined>;
 	/**
 		If set to false, it will force requested pages not to be cached by the browser. Note: Setting cache to false will only work correctly with HEAD and GET requests. It works by appending "_={timestamp}" to the GET parameters. The parameter is not needed for other types of requests, except in IE8 when a POST is made to a URL that has already been requested by a GET.
 	**/

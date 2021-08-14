@@ -10,7 +10,7 @@ typedef TreeDataProvider<T> = {
 		To signal that root has changed, do not pass any argument or pass `undefined` or `null`.
 	**/
 	@:optional
-	dynamic function onDidChangeTreeData(listener:(e:Null<ts.AnyOf2<Void, T>>) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	dynamic function onDidChangeTreeData(listener:(e:Null<ts.AnyOf2<ts.Undefined, T>>) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Get [TreeItem](#TreeItem) representation of the `element`
 	**/

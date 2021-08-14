@@ -13,14 +13,14 @@ typedef IVRDisplay = {
 	final isPresenting : Bool;
 	final stageParameters : Null<VRStageParameters>;
 	function cancelAnimationFrame(handle:Float):Void;
-	function exitPresent():js.lib.Promise<Void>;
+	function exitPresent():js.lib.Promise<ts.Undefined>;
 	function getEyeParameters(whichEye:String):VREyeParameters;
 	function getFrameData(frameData:VRFrameData):Bool;
 	function getLayers():Array<VRLayer>;
 	function getPose():VRPose;
 	function requestAnimationFrame(callback:FrameRequestCallback):Float;
-	@:overload(function(layers:Iterable<VRLayer>):js.lib.Promise<Void> { })
-	function requestPresent(layers:Array<VRLayer>):js.lib.Promise<Void>;
+	@:overload(function(layers:Iterable<VRLayer>):js.lib.Promise<ts.Undefined> { })
+	function requestPresent(layers:Array<VRLayer>):js.lib.Promise<ts.Undefined>;
 	function resetPose():Void;
 	function submitFrame(?pose:VRPose):Void;
 	/**

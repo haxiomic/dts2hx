@@ -55,7 +55,7 @@ typedef IVue = {
 	@:native("$emit")
 	function DollarEmit(event:String, args:haxe.extern.Rest<Dynamic>):Vue;
 	@:native("$nextTick")
-	@:overload(function():js.lib.Promise<Void> { })
+	@:overload(function():js.lib.Promise<ts.Undefined> { })
 	function DollarNextTick(callback:() -> Void):Void;
 	@:native("$createElement")
 	@:overload(function(?tag:ts.AnyOf7<String, VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, { }>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>, () -> Component<vue.types.options.DefaultData<Any>, vue.types.options.DefaultMethods<Any>, vue.types.options.DefaultComputed, { }>>, ?data:VNodeData, ?children:VNodeChildren):VNode { })

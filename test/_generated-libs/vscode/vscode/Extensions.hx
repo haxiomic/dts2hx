@@ -48,5 +48,5 @@ package vscode;
 		An event which fires when `extensions.all` changes. This can happen when extensions are
 		installed, uninstalled, enabled or disabled.
 	**/
-	static function onDidChange(listener:(e:Void) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	static function onDidChange(listener:(e:ts.Undefined) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 }

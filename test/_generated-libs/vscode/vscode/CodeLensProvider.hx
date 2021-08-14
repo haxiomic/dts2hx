@@ -9,7 +9,7 @@ typedef CodeLensProvider = {
 		An optional event to signal that the code lenses from this provider have changed.
 	**/
 	@:optional
-	dynamic function onDidChangeCodeLenses(listener:(e:Void) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	dynamic function onDidChangeCodeLenses(listener:(e:ts.Undefined) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Compute a list of [lenses](#CodeLens). This call should return as fast as possible and if
 		computing the commands is expensive implementors should only return code lens objects with the

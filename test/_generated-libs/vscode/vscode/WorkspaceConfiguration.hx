@@ -120,5 +120,5 @@ typedef WorkspaceConfiguration = {
 		
 		*Note:* To remove a configuration value use `undefined`, like so: `config.update('somekey', undefined)`
 	**/
-	function update(section:String, value:Dynamic, ?configurationTarget:ts.AnyOf2<Bool, Int>, ?overrideInLanguage:Bool):global.Thenable<Void>;
+	function update(section:String, value:Dynamic, ?configurationTarget:ts.AnyOf2<Bool, Int>, ?overrideInLanguage:Bool):global.Thenable<ts.Undefined>;
 };

@@ -54,7 +54,7 @@ typedef WebviewPanel = {
 		
 		Trying to use the panel after it has been disposed throws an exception.
 	**/
-	function onDidDispose(listener:(e:Void) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	function onDidDispose(listener:(e:ts.Undefined) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Show the webview panel in a given column.
 		

@@ -15,5 +15,5 @@ typedef Memento = {
 	/**
 		Store a value. The value must be JSON-stringifyable.
 	**/
-	function update(key:String, value:Dynamic):global.Thenable<Void>;
+	function update(key:String, value:Dynamic):global.Thenable<ts.Undefined>;
 };

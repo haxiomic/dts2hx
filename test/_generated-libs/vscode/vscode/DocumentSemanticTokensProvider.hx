@@ -9,7 +9,7 @@ typedef DocumentSemanticTokensProvider = {
 		An optional event to signal that the semantic tokens from this provider have changed.
 	**/
 	@:optional
-	dynamic function onDidChangeSemanticTokens(listener:(e:Void) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	dynamic function onDidChangeSemanticTokens(listener:(e:ts.Undefined) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Tokens in a file are represented as an array of integers. The position of each token is expressed relative to
 		the token before it, because most tokens remain stable relative to each other when edits are made in a file.

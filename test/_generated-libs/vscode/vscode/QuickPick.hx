@@ -26,7 +26,7 @@ typedef QuickPick<T> = {
 	/**
 		An event signaling when the user indicated acceptance of the selected item(s).
 	**/
-	function onDidAccept(listener:(e:Void) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	function onDidAccept(listener:(e:ts.Undefined) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Buttons for actions in the UI.
 	**/
@@ -115,7 +115,7 @@ typedef QuickPick<T> = {
 		(Examples include: an explicit call to [QuickInput.hide](#QuickInput.hide),
 		the user pressing Esc, some other input UI opening, etc.)
 	**/
-	dynamic function onDidHide(listener:(e:Void) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	dynamic function onDidHide(listener:(e:ts.Undefined) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Dispose of this input UI and any associated resources. If it is still
 		visible, it is first hidden. After this call the input UI is no longer
