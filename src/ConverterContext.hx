@@ -975,7 +975,10 @@ class ConverterContext {
 		} else if (type.flags & (TypeFlags.Undefined) != 0) {
 			macro :Null<Any>;
 		} else if (type.flags & (TypeFlags.Void) != 0) {
-			macro :Any; // in haxe, only function return can be void, so we handle this specially
+			// in ts, void is allowed as a regular type, in haxe we can only use Void in function returns
+			// everywhere else we map void to Any
+			// we use an alias Undefined = Any for documentation
+			SupportTypes.getUndefinedType(this);
 		} else if (type.flags & (TypeFlags.Enum) != 0) {
 			var hxTypePath = getReferencedHaxeTypePath(type.symbol, moduleSymbol, accessContext, false);
 			TPath(hxTypePath);
