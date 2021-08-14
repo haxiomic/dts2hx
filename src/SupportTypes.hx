@@ -156,7 +156,7 @@ class SupportTypes {
 			var nothingDefinition: HaxeModule = {
 				pack: typePath.pack,
 				name: typePath.name,
-				doc: '`Undefined` corresponds to `void` in TypeScript; in haxe `Void` cannot be used as a field type (only function return), so we must use `Any` instead. This alias serves as documentation that the type is `void` (and therefore value is `undefined`)',
+				doc: '`Undefined` corresponds to `void` in TypeScript; in haxe `Void` cannot be used as a field type (only function return) so we must use `Any` instead. This alias serves as documentation that the type is `void` and therefore value is `undefined`',
 				kind: TDAlias(macro : Any),
 				pos: null,
 				fields: [],
