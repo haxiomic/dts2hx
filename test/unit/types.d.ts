@@ -146,6 +146,15 @@ export namespace Types {
     const typeInParentheses: ( number );
     const unionInParentheses: ( number | string );
 
+    // void fields are legal in TypeScript, not legal in haxe
+    const voidType: void;
+    const voidUnionType: void | number;
+    const voidTypeParam: Array<void>;
+    const voidObjField: {
+        x: void,
+    }
+    const voidArg: (a: void) => void;
+
     // literals
     const intLiteral: 1;
     const intLiteralAlt: -1; // in the AST the type is wrapped in a PrefixUnaryExpression
