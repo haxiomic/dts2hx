@@ -15,9 +15,10 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 
 - Run dts2hx on the node module
 
-    `npx dts2hx three`
+    `npx dts2hx three --noGlobal`
 
-    This will generate externs into **.haxelib/three**, to use the externs, add `--library three` to your build.hxml file
+    This will generate externs into **.haxelib/three**, to use the externs, add `--library three` to your build.hxml file.
+    We add `--noGlobal` because we intend to use the library via `require()` rather than via a global-scope `THREE` object. If you want to use the `THREE` object, add `--noModular`
 
 - Alternatively, generate externs for all local package.json dependencies with
 
@@ -33,6 +34,20 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 See [examples/](examples/) for example projects using popular js libraries
 
 The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete list of options
+
+# How to use the libraries after you convert them?
+For haxe to see the *types* in the `.haxelib/` folder, you add the `--library <name>` flag to your build arguments. This is the first part of the story, the next part of the story is connecting the library up at runtime. Now we're in the territory of js modules, and it's the same trouble you'd have to work through with TypeScript or plain JavaScript. There's multiple ways of using libraries in JavaScript (unfortunately), I'll try to explain some common situations and how to handle them.
+
+## 1. You're building a website and load your code with \<script src=""\>
+Sometimes you want to keep things the simple, old-school way, where you add script tags to your html to load all your javascript libraries. For example, to use three.js you might do this at the end of your \<body\>
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="my-haxe-script.js">
+```
+Where the first script is loading three.js and the second loads the javascript generated from your haxe code. This approach *doesn't* use a module system, the object `THREE`, gets added to the global scope so you can use it anywhere in js. Haxe needs to know this is how you're using the library – that it's a global scope object rather than a module, and for this to work you need to use the classes in the `global` package. When you use dts2hx to convert a TypeScript module, it will generate externs for **both** the modular and global way of using libraries. Here we only want the global way, so delete your `.haxelib` if you've already generated externs and re-run dts2hx with `--noModular`: `dts2hx three --noModular`
+
+## 2. You're building a website and load your scripts with require() or ES6 import
+To use modules, haxe uses the node.js style `require()` function
 
 # FAQ
 
