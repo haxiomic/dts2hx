@@ -15,9 +15,10 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 
 - Run dts2hx on the node module
 
-    `npx dts2hx three`
+    `npx dts2hx three --noGlobal`
 
-    This will generate externs into **.haxelib/three**, to use the externs, add `--library three` to your build.hxml file
+    This will generate externs into **.haxelib/three**, to use the externs, add `--library three` to your build.hxml file.
+    We add `--noGlobal` because we intend to use the library via `require()` rather than via a global-scope `THREE` object. If you want to use the `THREE` object, add `--noModular`
 
 - Alternatively, generate externs for all local package.json dependencies with
 
