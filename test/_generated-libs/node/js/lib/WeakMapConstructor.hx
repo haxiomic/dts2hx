@@ -1,5 +1,5 @@
 package js.lib;
 
 typedef WeakMapConstructor = {
-	final prototype : WeakMap<Dynamic, Dynamic>;
+	final prototype : WeakMap_<Dynamic, Dynamic>;
 };

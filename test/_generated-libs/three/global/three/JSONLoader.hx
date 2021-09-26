@@ -7,7 +7,7 @@ package global.three;
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;
 	var withCredentials : Bool;
-	function load(url:String, ?onLoad:(geometry:Geometry, materials:Array<Material>) -> Void, ?onProgress:(event:js.html.ProgressEvent<js.html.EventTarget>) -> Void, ?onError:(event:js.html.ErrorEvent) -> Void):Void;
+	function load(url:String, ?onLoad:(geometry:Geometry, materials:Array<Material>) -> Void, ?onProgress:(event:js.html.ProgressEvent_<js.html.EventTarget>) -> Void, ?onError:(event:js.html.ErrorEvent) -> Void):Void;
 	function setTexturePath(value:String):Void;
 	function parse(json:Dynamic, ?texturePath:String):{
 		var geometry : Geometry;
