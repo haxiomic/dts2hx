@@ -255,6 +255,7 @@ class HaxeTypePathMap {
 
 	function generateTypePath(symbol: Symbol, access: SymbolAccess, asInterfaceStructure: Bool): TypePath {
 		var isBuiltIn = symbol.isBuiltIn();
+		var clashesWithBuiltIn = false;
 		// handle built-ins and types available in the haxe standard library
 		// currently this will ignore any extensions to built-in types applied by a library
 		// to convert those too, replace `isBuiltIn` with `defaultLibOnlyDeclarations`
@@ -298,7 +299,8 @@ class HaxeTypePathMap {
 									isExistingStdLibType: true,
 								}
 							} else {
-								// Log.warn('Type parameter mismatch between haxe standard lib type (<b>${stdLibType.typeParameters.length}</>) and ts default type (<b>${tsTypeParamDeclarations.length}</>)', symbol);	
+								Log.warn('Type parameter mismatch between haxe standard lib type (<b>${stdLibType.typeParameters.length}</>) and ts default type (<b>${tsTypeParamDeclarations.length}</>). Generating replacement.', symbol);	
+								clashesWithBuiltIn = true;
 							}
 						} else {
 							// Log.warn('Default lib type not found in the haxe standard library (externs will be generated for this type)', symbol);
@@ -419,7 +421,7 @@ class HaxeTypePathMap {
 		// @! we should generate this list automatically in the future
 		var disallowedNames = stdLibMap != null ? stdLibMap.topLevelNames : defaultDisallowedNames;
 		// add '_' to avoid disallowed names
-		if (disallowedNames.indexOf(name) != -1) {
+		if (disallowedNames.indexOf(name) != -1 || clashesWithBuiltIn) {
 			name = name + '_';
 		}
 
