@@ -1,17 +1,20 @@
 {
-  "name": "babylonjs-example",
+  "name": "react-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "dts2hx --global --all"
+    "postinstall": "dts2hx --all"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babylonjs": "4.1.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
     "dts2hx": "*"
   }
 }

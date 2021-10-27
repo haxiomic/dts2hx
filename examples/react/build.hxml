@@ -1,0 +1,7 @@
+-main Main
+
+# externs are written to local library path '.haxelib'
+-lib react-dom
+
+-js main.js
+-dce full
