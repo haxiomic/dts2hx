@@ -27,7 +27,7 @@ class Console {
 	static public var printIntercept: Null<String -> ConsoleOutputStream -> Bool> = null;
 
 	static var argSeparator = ' ';
-	static var unicodeCompatibilityMode:UnicodeCompatibilityMode = #if ((sys || nodejs)) Sys.systemName() == 'Windows' ? Windows : #end None;
+	static var unicodeCompatibilityMode:UnicodeCompatibilityMode = #if ((sys || nodejs) && !macro) Sys.systemName() == 'Windows' ? Windows : #end None;
 	static var unicodeCompatibilityEnabled = false;
 
 	macro static public function log(rest:Array<Expr>){
@@ -87,7 +87,7 @@ class Console {
 			}
 		}
 		#end
-		return macro Console.printlnFormatted(Console.debugPrefix + '<magenta,b>$posString:</> ' + ${joinArgExprs(rest)}, Debug);
+		return macro Console.printlnFormatted(Console.debugPrefix + '<magenta,b>' + $v{posString} + ':</> ' + ${joinArgExprs(rest)}, Debug);
 	}
 
 	static public inline function printlnFormatted(?s:String = '', outputStream:ConsoleOutputStream = Log){
@@ -509,7 +509,7 @@ class Console {
 	}
 
 	static function determineConsoleFormatMode():Console.ConsoleFormatMode {
-		#if (!no_console)
+		#if (!macro && !no_console)
 
 		// browser console test
 		#if js
@@ -578,7 +578,7 @@ class Console {
 		}
 		#end // (sys || nodejs)
 
-		#end // (!no_console)
+		#end // (!macro && !no_console)
 
 		return Disabled;
 	}
@@ -586,11 +586,12 @@ class Console {
 	#if macro
 	static function joinArgExprs(rest:Array<Expr>):ExprOf<String> {
 		var msg:Expr = macro '';
+		var sepExpr: Expr = {expr: EConst(CString(argSeparator)), pos: haxe.macro.PositionTools.make({min: 0, max: 0, file: ""})};
 		for(i in 0...rest.length){
 			var e = rest[i];
-			msg = macro $msg + Std.string(cast $e);
+			msg = macro $msg + $e;
 			if (i != rest.length - 1){
-				msg = macro $msg + '$argSeparator';
+				msg = macro $msg + $sepExpr;
 			}
 		}
 		return msg;
@@ -599,7 +600,7 @@ class Console {
 
 	#if (sys || nodejs)
 	static function exec(cmd: String, ?args:Array<String>) {
-		#if (nodejs)
+		#if (nodejs && !macro)
 		//hxnodejs doesn't support sys.io.Process yet
 		var p = js.node.ChildProcess.spawnSync(cmd, args != null ? args : [], {});
 		var stdout = (p.stdout:js.node.Buffer) == null ? '' : (p.stdout:js.node.Buffer).toString();

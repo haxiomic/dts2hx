@@ -4,7 +4,7 @@
   "description": "Reproducing the [three.js introduction example](https://threejs.org/docs/#manual/en/introduction/Creating-a-scene)",
   "main": "dist/main.js",
   "scripts": {
-    "postinstall": "dts2hx --all"
+    "postinstall": "dts2hx --all --global"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +12,6 @@
     "pixi.js": "5.2.3"
   },
   "devDependencies": {
-    "dts2hx": "^0.10.5"
+    "dts2hx": "*"
   }
 }

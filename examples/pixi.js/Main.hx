@@ -3,10 +3,12 @@
 
 	In this example we use the global type declarations so we don't need a bundler after haxe generates the javascript file
 
-	To use the modular version we can change the import to:
+	To generate global externs we used dts2hx --global. If we wanted modular externs that import modules we can use --modular instead. By default both modular and global externs are generated
+
+	Pixi uses different packages for global and modular types; to use the modular version we can change the import to:
 		`import pixi_js.*;`
 **/
-import global.pixi.*;
+import pixi.*;
 
 import js.Browser.*;
 

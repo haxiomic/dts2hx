@@ -3,13 +3,11 @@
 
 	In this example we use the global type declarations so we don't need a bundler after haxe generates the javascript file
 
-	To use the modular version we can change the imports to:
-		`import phaser.*;`
-		`import Phaser;`
+	To generate global externs we used dts2hx --global. If we wanted modular externs that import modules we can use --modular instead. By default both modular and global externs are generated
 **/
 
-import global.Phaser;
-import global.phaser.*;
+import Phaser;
+import phaser.*;
 
 import js.Browser.*;
 

@@ -48,6 +48,20 @@ using tool.TsSymbolTools;
 using tool.TsTypeTools;
 
 private typedef TsType = typescript.ts.Type;
+private typedef Options = {
+	locationComments: Bool,
+	allowIntersectionRasterization: Bool,
+	/**
+		When true, symbols defined externally can be included in the output module.
+		This is a workaround until we have a single compilation context for all dependencies
+	**/
+	queueExternalSymbols:  Bool,
+	enableTypeParameterConstraints: Bool,
+
+	globalPackageName: Null<String>,
+	globalTypes: Bool,
+	modularTypes: Bool,
+} 
 
 @:expose
 @:nullSafety
@@ -85,6 +99,8 @@ class ConverterContext {
 	public final program: Program;
 	public final moduleSearchPath: String;
 
+	final options: Options;
+
 	/**
 		Symbol access map is filled during an initial pass over the program.
 		The access path for key-symbols such as types, are stored so we can retrieve them later when we have a type-reference
@@ -109,43 +125,25 @@ class ConverterContext {
 	**/
 	final processedDeclarationSymbols = new Array<Symbol>();
 
-	final locationComments: Bool;
 
 	// settings
 	final shortenTypePaths = true;
-	final enableTypeParameterConstraints: Bool;
 	final typeStackLimit = 25;
 	final anyUnionCollapse = false; // `any | string` -> `any`
 	final unionizedFunctionTypes = true; // `(?b) => C` -> `()->C | (b)->C`
-
-	// experimental settings
-	final allowIntersectionRasterization: Bool;
-	/**
-		When true, symbols defined externally can be included in the output module.
-		This is a workaround until we have a single compilation context for all dependencies
-	**/
-	final queueExternalSymbols: Bool; 
 
 	public function new(
 		inputModuleName: String,
 		moduleSearchPath: String,
 		compilerOptions: CompilerOptions,
 		stdLibMap: Null<typemap.TypeMap>,
-		options: {
-			locationComments: Bool,
-			allowIntersectionRasterization: Bool,
-			queueExternalSymbols:  Bool,
-			enableTypeParameterConstraints: Bool,
-		}
+		options: Options
 	) {
+		this.options = options;
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
 		moduleSearchPath = sys.FileSystem.absolutePath(moduleSearchPath);
 		this.moduleSearchPath = moduleSearchPath;
 		this.host = Ts.createCompilerHost(compilerOptions);
-		this.locationComments = options.locationComments;
-		this.allowIntersectionRasterization = options.allowIntersectionRasterization;
-		this.queueExternalSymbols = options.queueExternalSymbols;
-		this.enableTypeParameterConstraints = options.enableTypeParameterConstraints;
 
 		// this will be used as the argument to require()
 		this.normalizedInputModuleName = inline inputModuleName.normalizeModuleName();
@@ -209,6 +207,7 @@ class ConverterContext {
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
 		haxeTypePathMap = new HaxeTypePathMap(
 			packageName != null ? packageName : normalizedInputModuleName,
+			options.globalPackageName,
 			program,
 			symbolAccessMap,
 			stdLibMap
@@ -326,7 +325,7 @@ class ConverterContext {
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
-					} else if (queueExternalSymbols) {
+					} else if (options.queueExternalSymbols) {
 						Log.log('Queuing external symbol', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
 					}
@@ -824,6 +823,21 @@ class ConverterContext {
 	}
 
 	function saveHaxeModule(module: HaxeModule) {
+		var isBuiltIn = module.tsSymbol != null && module.tsSymbol.isBuiltIn();
+
+		var skipModule = false;
+		// skip global if globalTypes are disabled
+		if (!options.globalTypes) {
+			skipModule = skipModule || (!isBuiltIn && module.tsSymbolAccess.match(Global(_)));
+		}
+
+		// skip modular if modularTypes are disabled
+		if (!options.modularTypes) {
+			skipModule = skipModule || (!isBuiltIn && module.tsSymbolAccess.match(AmbientModule(_) | ExportModule(_)));
+		}
+
+		if (skipModule) return;
+
 		var path = getHaxeModuleKey(module.pack, module.name);
 
 		var existingModule = generatedModules.get(path);
@@ -841,7 +855,7 @@ class ConverterContext {
 	function getDoc(symbol: Symbol) {
 		var sourceLocationInfo = [];
 
-		if (locationComments) {
+		if (options.locationComments) {
 			var node = if (symbol.valueDeclaration != null) {
 				symbol.valueDeclaration;
 			} else {
@@ -1142,7 +1156,7 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			if (allowIntersectionRasterization) {
+			if (options.allowIntersectionRasterization) {
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
 				// @! todo: avoid recursive type conversion (see jquery)
@@ -1733,7 +1747,7 @@ class ConverterContext {
 	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		return [for (t in symbol.getDeclarationTypeParameters()) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
-			constraints: enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, symbol, accessContext, enclosingDeclaration)] : null
+			constraints: options.enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, symbol, accessContext, enclosingDeclaration)] : null
 		}];
 	}
 
@@ -1741,7 +1755,7 @@ class ConverterContext {
 		// for some reason typeParameter.getConstraint() has issues
 		// in the following class field `parse<X extends Example>(a: T): void;`, the constraint `Example` is reported as having typeArguments when it doesn't
 		var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
-		var hxConstraint = if (enableTypeParameterConstraints && typeParamNode != null && typeParamNode.constraint != null ) {
+		var hxConstraint = if (options.enableTypeParameterConstraints && typeParamNode != null && typeParamNode.constraint != null ) {
 			complexTypeFromTypeNode(typeParamNode.constraint, moduleSymbol, accessContext, enclosingDeclaration);
 		} else null;
 		return {

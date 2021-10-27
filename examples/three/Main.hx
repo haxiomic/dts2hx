@@ -1,5 +1,5 @@
-import three.examples.jsm.controls.orbitcontrols.OrbitControls;
 import js.Browser.*;
+import three.examples.jsm.controls.orbitcontrols.OrbitControls;
 import three.*;
 
 class Main {
