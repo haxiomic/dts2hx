@@ -234,12 +234,6 @@ class Main {
 			}
 		]);
 
-		// if generating global-only types, we can avoid using the 'global.' package
-		// unless the user has explicitly set globalPackageName
-		if (cliOptions.globalTypes && !cliOptions.modularTypes && !explicitGlobalPackageName) {
-			cliOptions.globalPackageName = null;
-		}
-
 		if (userArgs.length == 0) {
 			printDoc(argHandler);
 			Node.process.exit(1);
@@ -270,6 +264,14 @@ class Main {
 		}
 
 		Log.setPrintLogLevel(cliOptions.logLevel);
+
+		// handle cli option special behaviors
+
+		// if generating global-only types, we can avoid using the 'global.' package
+		// unless the user has explicitly set globalPackageName
+		if (cliOptions.globalTypes && !cliOptions.modularTypes && !explicitGlobalPackageName) {
+			cliOptions.globalPackageName = null;
+		}
 
 		var defaultCompilerOptions = Ts.getDefaultCompilerOptions();
 		defaultCompilerOptions.target = ES2015; // default to ES6 for lib types
@@ -443,23 +445,12 @@ class Main {
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
 			for (_ => haxeModule in converter.generatedModules) {
-				var isBuiltIn = haxeModule.tsSymbol != null && haxeModule.tsSymbol.isBuiltIn();
 				var skipModule = false;
 
 				// skip empty @valueModuleOnly classes
 				if (haxeModule.meta != null) {
 					var isValueModuleOnly = haxeModule.meta.find(m -> m.name == 'valueModuleOnly') != null;
 					skipModule = skipModule || (isValueModuleOnly && haxeModule.fields.length == 0);
-				}
-
-				// skip global if globalTypes are disabled
-				if (!cliOptions.globalTypes) {
-					skipModule = skipModule || (!isBuiltIn && haxeModule.tsSymbolAccess.match(Global(_)));
-				}
-
-				// skip modular if modularTypes are disabled
-				if (!cliOptions.modularTypes) {
-					skipModule = skipModule || (!isBuiltIn && haxeModule.tsSymbolAccess.match(AmbientModule(_) | ExportModule(_)));
 				}
 
 				if (skipModule) continue;
