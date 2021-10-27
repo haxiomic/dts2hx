@@ -15,10 +15,10 @@ Command-line tool to convert TypeScript type definitions to haxe externs
 
 - Run dts2hx on the node module
 
-    `npx dts2hx three --noGlobal`
+    `npx dts2hx three --modular`
 
     This will generate externs into **.haxelib/three**, to use the externs, add `--library three` to your build.hxml file.
-    We add `--noGlobal` because we intend to use the library via `require()` rather than via a global-scope `THREE` object. If you want to use the `THREE` object, add `--noModular`
+    We add `--modular` because we intend to use the library via `require()` rather than via a global-scope `THREE` object. If you want to use the `THREE` object, add `--global`
 
 - Alternatively, generate externs for all local package.json dependencies with
 
@@ -49,7 +49,9 @@ The generated externs use haxe 4+ syntax. See `dts2hx --help` for a complete lis
 
     TypeScript definitions often define two parallel sets of types, one for use with `<script src="">` (global) imports and the other for use with es6-style module imports. Unfortunately, these two sets of types are often not exactly the same and can differ in subtle ways
 
-    If you don’t want the global directory you can use `dts2hx pixi.js --noGlobal`, or if you _only_ want the global directory you can do `dts2hx pixi.js --noModular`
+    If you don’t want the global directory you can use `dts2hx pixi.js --modular`, or if you _only_ want externs without the global directory you can do `dts2hx pixi.js --global`
+
+    You can customize the name of the global directory with `--globalPackageName`
 
 - **Difference between `@:jsRequire()` and `@:native()`**
 
