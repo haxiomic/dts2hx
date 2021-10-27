@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
-    "postinstall": "dts2hx --all"
+    "postinstall": "dts2hx --global --all"
   },
   "author": "",
   "license": "ISC",
