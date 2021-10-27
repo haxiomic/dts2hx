@@ -19,6 +19,7 @@ using tool.TsSymbolTools;
 class HaxeTypePathMap {
 
 	final inputParentModuleName: String;
+	final globalPackageName: Null<String>;
 	final program: Program;
 	final symbolAccessMap: SymbolAccessMap;
 	final tc: TypeChecker;
@@ -26,8 +27,15 @@ class HaxeTypePathMap {
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
 	final stdLibMap: Null<TypeMap>;
 
-	public function new(inputParentModuleName: String, program: Program, symbolAccessMap: SymbolAccessMap, stdLibMap: Null<TypeMap>) {
+	public function new(
+		inputParentModuleName: String,
+		globalPackageName: Null<String>,
+		program: Program,
+		symbolAccessMap: SymbolAccessMap,
+		stdLibMap: Null<TypeMap>
+	) {
 		this.inputParentModuleName = inputParentModuleName;
+		this.globalPackageName = globalPackageName;
 		this.program = program;
 		this.symbolAccessMap = symbolAccessMap;
 		this.stdLibMap = stdLibMap;
@@ -355,7 +363,7 @@ class HaxeTypePathMap {
 			case Global(_):
 				// only prefix global package if it's not a built-in
 				// global types are _not_ prefixed with the module name, this might change in the future
-				pack = pack.concat(isBuiltIn ? [] : ['global']).concat(identifierChain);
+				pack = pack.concat((isBuiltIn || globalPackageName == null) ? [] : [globalPackageName]).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case Inaccessible:
 				var moduleNamePack = splitModulePath(getDeclaringModuleName(symbol));

@@ -136,6 +136,7 @@ class ConverterContext {
 			allowIntersectionRasterization: Bool,
 			queueExternalSymbols:  Bool,
 			enableTypeParameterConstraints: Bool,
+			globalPackageName: Null<String>,
 		}
 	) {
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
@@ -209,6 +210,7 @@ class ConverterContext {
 		// generate a haxe type-path for all type or module-class (ValueModule) symbols in the program
 		haxeTypePathMap = new HaxeTypePathMap(
 			packageName != null ? packageName : normalizedInputModuleName,
+			options.globalPackageName,
 			program,
 			symbolAccessMap,
 			stdLibMap

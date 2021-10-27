@@ -32,8 +32,10 @@ typedef CliOptions = {
 	logLevel: LogLevel,
 	stdLibMode: StdLibMode,
 	// experimental
-	noGlobal: Bool,
-	noModular: Bool,
+	globalTypes: Bool,
+	modularTypes: Bool,
+	// package name used when generate global types
+	globalPackageName: Null<String>,
 	// mergedGlobal: Bool, // todo
 	allowIntersectionRasterization: Bool,
 	queueExternalSymbols: Bool,
@@ -67,8 +69,9 @@ class Main {
 			logLevel: Error,
 			stdLibMode: StdLibMode.DefaultTypeMap,
 			// experimental
-			noGlobal: false,
-			noModular: false,
+			globalTypes: true,
+			modularTypes: true,
+			globalPackageName: 'global',
 			// mergedGlobal: false, // todo
 			allowIntersectionRasterization: false,
 			queueExternalSymbols: false,
@@ -80,6 +83,7 @@ class Main {
 		var noColor: Bool = false;
 		var silent: Bool = false;
 		var defaultValueFormatting = 'yellow';
+		var explicitGlobalPackageName = false;
 
 		var argHandler: ArgHandler;
 		argHandler = hxargs.Args.generate([
@@ -135,14 +139,35 @@ class Main {
 				cliOptions.enableTypeParameterConstraints = true;
 			},
 
-			@doc('Disables generating externs for types exposed in the global scope (i.e. types accessible via @:native)')
-			'--noGlobal' => () -> {
-				cliOptions.noGlobal = true;
+			@doc('Generate externs <b>only</> for global / ambient types into top-level package')
+			'--global' => () -> {
+				cliOptions.globalTypes = true;
+				cliOptions.modularTypes = false;
 			},
 
-			@doc('Disables generating externs for types exposed via modules (i.e. types accessible via @:jsRequire)')
+			@doc('Generate externs <b>only</> for modular types (i.e. things you\'d import or require() in js) into top-level package')
+			'--modular' => () -> {
+				cliOptions.globalTypes = false;
+				cliOptions.modularTypes = true;
+			},
+
+			@doc('Set the name of the package for global modules (default <$defaultValueFormatting>"${cliOptions.globalPackageName}"</>)')
+			'--globalPackageName' => (name: String) -> {
+				name = StringTools.trim(name);
+				cliOptions.globalPackageName = name == '' ? null : name;
+				explicitGlobalPackageName = true;
+			},
+
+			// deprecated
+			// @doc('Disables generating externs for types exposed in the global scope (i.e. types accessible via @:native)')
+			'--noGlobal' => () -> {
+				cliOptions.globalTypes = false;
+			},
+
+			// deprecated
+			// @doc('Disables generating externs for types exposed via modules (i.e. types accessible via @:jsRequire)')
 			'--noModular' => () -> {
-				cliOptions.noModular = true;
+				cliOptions.modularTypes = false;
 			},
 
 			@doc('Disables mapping types to the haxe standard library – this means externs will be generated for built-in types')
@@ -208,6 +233,12 @@ class Main {
 				cliOptions.moduleNames.push(moduleName);
 			}
 		]);
+
+		// if generating global-only types, we can avoid using the 'global.' package
+		// unless the user has explicitly set globalPackageName
+		if (cliOptions.globalTypes && !cliOptions.modularTypes && !explicitGlobalPackageName) {
+			cliOptions.globalPackageName = null;
+		}
 
 		if (userArgs.length == 0) {
 			printDoc(argHandler);
@@ -421,13 +452,13 @@ class Main {
 					skipModule = skipModule || (isValueModuleOnly && haxeModule.fields.length == 0);
 				}
 
-				// skip global if --noGlobal
-				if (cliOptions.noGlobal) {
+				// skip global if globalTypes are disabled
+				if (!cliOptions.globalTypes) {
 					skipModule = skipModule || (!isBuiltIn && haxeModule.tsSymbolAccess.match(Global(_)));
 				}
 
-				// skip modular if --noModular
-				if (cliOptions.noModular) {
+				// skip modular if modularTypes are disabled
+				if (!cliOptions.modularTypes) {
 					skipModule = skipModule || (!isBuiltIn && haxeModule.tsSymbolAccess.match(AmbientModule(_) | ExportModule(_)));
 				}
 
