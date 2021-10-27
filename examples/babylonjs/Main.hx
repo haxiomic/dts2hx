@@ -3,12 +3,10 @@
 
 	In this example we use the global type declarations so we don't need a bundler after haxe generates the javascript file
 
-	To generate global externs we used dts2hx --global. If we wanted modular externs that import modules we can use --modular instead. By default both modular and global externs are generated
-
-	Babylonjs uses different package names for global and modular; to use the modular version we can change the import to:
+	To use the modular version we can change the import to:
 		`import babylonjs.*;`
 **/
-import babylon.*;
+import global.babylon.*;
 
 import js.Browser.*;
 
