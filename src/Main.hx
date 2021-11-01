@@ -67,7 +67,7 @@ class Main {
 			locationComments: false,
 			libWrapper: true,
 			logLevel: Error,
-			stdLibMode: StdLibMode.DefaultTypeMap,
+			stdLibMode: SystemHaxe,
 			// experimental
 			globalTypes: true,
 			modularTypes: true,
@@ -129,7 +129,7 @@ class Main {
 				cliOptions.skipDependencies = true;
 			},
 
-			@doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
+			// @doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
 			'--useSystemHaxe' => () -> {
 				cliOptions.stdLibMode = SystemHaxe;
 			},
