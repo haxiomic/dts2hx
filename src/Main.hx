@@ -92,12 +92,19 @@ class Main {
 				cliOptions.outputPath = path;
 			},
 
-			@doc('Path to use when searching for modules')
-			['--moduleSearchPath', '-p'] => (path: String) -> {
-				cliOptions.moduleSearchPath = path;
+			@doc('Generate externs <b>only</> for global / ambient types into top-level package')
+			['--global', '-g'] => () -> {
+				cliOptions.globalTypes = true;
+				cliOptions.modularTypes = false;
 			},
 
-			@doc('Convert all dependencies referenced in package.json (that have type definitions)')
+			@doc('Generate externs <b>only</> for modular types (i.e. things you\'d import or require() in js) into top-level package')
+			['--modular', '-m'] => () -> {
+				cliOptions.globalTypes = false;
+				cliOptions.modularTypes = true;
+			},
+
+			@doc('Convert all dependencies referenced in package.json (those that have type definitions)')
 			['--all'] => () -> {
 				cliOptions.allDependencies = true;
 			},
@@ -119,6 +126,11 @@ class Main {
 				cliOptions.tsCompilerOptions.push(kind);
 			},
 
+			@doc('Path to use when searching for modules')
+			['--moduleSearchPath', '-p'] => (path: String) -> {
+				cliOptions.moduleSearchPath = path;
+			},
+
 			@doc('Enables printing the corresponding source file and line number for each declaration')
 			'--sourceLocation' => () -> {
 				cliOptions.locationComments = true;
@@ -129,26 +141,9 @@ class Main {
 				cliOptions.skipDependencies = true;
 			},
 
-			// @doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
-			'--useSystemHaxe' => () -> {
-				cliOptions.stdLibMode = SystemHaxe;
-			},
-
 			@doc('Enables generating type parameter constraints. This will often work fine for many modules but it is a WIP feature')
 			'--constraints' => () -> {
 				cliOptions.enableTypeParameterConstraints = true;
-			},
-
-			@doc('Generate externs <b>only</> for global / ambient types into top-level package')
-			'--global' => () -> {
-				cliOptions.globalTypes = true;
-				cliOptions.modularTypes = false;
-			},
-
-			@doc('Generate externs <b>only</> for modular types (i.e. things you\'d import or require() in js) into top-level package')
-			'--modular' => () -> {
-				cliOptions.globalTypes = false;
-				cliOptions.modularTypes = true;
 			},
 
 			@doc('Set the name of the package for global modules (default <$defaultValueFormatting>"${cliOptions.globalPackageName}"</>)')
@@ -156,18 +151,6 @@ class Main {
 				name = StringTools.trim(name);
 				cliOptions.globalPackageName = name == '' ? null : name;
 				explicitGlobalPackageName = true;
-			},
-
-			// deprecated
-			// @doc('Disables generating externs for types exposed in the global scope (i.e. types accessible via @:native)')
-			'--noGlobal' => () -> {
-				cliOptions.globalTypes = false;
-			},
-
-			// deprecated
-			// @doc('Disables generating externs for types exposed via modules (i.e. types accessible via @:jsRequire)')
-			'--noModular' => () -> {
-				cliOptions.modularTypes = false;
 			},
 
 			@doc('Disables mapping types to the haxe standard library – this means externs will be generated for built-in types')
@@ -219,6 +202,24 @@ class Main {
 
 			'--noDts2hxVersion' => () -> {
 				dts2hxPackageJson.version = 'x.x.x';
+			},
+
+			// deprecated
+			// @doc('Disables generating externs for types exposed in the global scope (i.e. types accessible via @:native)')
+			'--noGlobal' => () -> {
+				cliOptions.globalTypes = false;
+			},
+
+			// deprecated
+			// @doc('Disables generating externs for types exposed via modules (i.e. types accessible via @:jsRequire)')
+			'--noModular' => () -> {
+				cliOptions.modularTypes = false;
+			},
+
+			// deprecated
+			// @doc('Use system haxe version when mapping types to the haxe standard library. By default, standard library types for haxe ${defaultStdLibTypeMap.haxeVersion} are used')
+			'--useSystemHaxe' => () -> {
+				cliOptions.stdLibMode = SystemHaxe;
 			},
 
 			@doc('Module name')
