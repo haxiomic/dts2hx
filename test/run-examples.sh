@@ -13,7 +13,7 @@ function patch_dts2hx() {
 
 function run_example() {
 	pushd "$1"
-	rm -rf package_lock.json node_modules
+	rm -rf package-lock.json node_modules
 	npm install
 
 	# regeneate externs with current build of dts2hx
