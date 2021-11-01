@@ -20,7 +20,6 @@ class Server {
 		router.use(function timeLog (req, res, next) {
 			trace('Time: ' + Date.now());
 			(next: () -> Void)();
-			return null;
 		});
 
 		// define the home page route
