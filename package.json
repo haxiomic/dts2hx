@@ -1,6 +1,6 @@
 {
   "name": "dts2hx",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Converts TypeScript definition files (d.ts) to haxe externs",
   "keywords": [
     "haxe",
