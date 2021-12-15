@@ -227,8 +227,14 @@ class Main {
 				if (arg.charAt(0) == '-') {
 					throw 'Unknown argument "$arg"';
 				}
-				// remove ".d.ts" extension as this is a common point of confusion for users, (remove extension for moduleName to check against module path lookup)
-				final moduleName = Path.withoutExtension(arg);
+				// remove ".d.ts" extension as this is a common point of confusion for users
+				var moduleName = arg;
+				for (ext in ['.d.ts','.ts','.dts']) {
+					if (moduleName.endsWith(ext)) {
+						moduleName = moduleName.substr(0,moduleName.length - ext.length);
+						break;
+					}
+				}
 				cliOptions.moduleNames.push(moduleName);
 			}
 		]);
