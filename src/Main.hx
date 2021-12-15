@@ -326,10 +326,10 @@ class Main {
 				var packageObj = haxe.Json.parse(packageJson);
 				var dependencies: DynamicAccess<String> = packageObj.dependencies != null ? packageObj.dependencies : {};
 				var devDependencies: DynamicAccess<String> = packageObj.devDependencies != null ? packageObj.devDependencies : {};
-				var moduleNames = dependencies.keys().concat(devDependencies.keys());
+				var allDependencies = dependencies.keys().concat(devDependencies.keys());
 
 				// check if module has typescript
-				for (moduleName in moduleNames) {
+				for (moduleName in allDependencies) {
 					var result = Ts.resolveModuleName(moduleName, cliOptions.moduleSearchPath + '/.', compilerOptions, host);
 					if (result.resolvedModule != null) {
 						switch result.resolvedModule.extension {
