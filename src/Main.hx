@@ -227,10 +227,8 @@ class Main {
 				if (arg.charAt(0) == '-') {
 					throw 'Unknown argument "$arg"';
 				}
-				// remove ".d.ts" extension as this is a common point of confusion for users
-				var moduleName = if (arg.substr(arg.length - 5).toLowerCase() == '.d.ts') {
-					arg.substr(0, arg.length - 5);
-				} else arg;
+				// remove ".d.ts" extension as this is a common point of confusion for users, (remove extension for moduleName to check against module path lookup)
+				final moduleName = Path.withoutExtension(arg);
 				cliOptions.moduleNames.push(moduleName);
 			}
 		]);
@@ -322,10 +320,10 @@ class Main {
 				var packageObj = haxe.Json.parse(packageJson);
 				var dependencies: DynamicAccess<String> = packageObj.dependencies != null ? packageObj.dependencies : {};
 				var devDependencies: DynamicAccess<String> = packageObj.devDependencies != null ? packageObj.devDependencies : {};
-				var allDependencies = dependencies.keys().concat(devDependencies.keys());
+				var moduleNames = dependencies.keys().concat(devDependencies.keys());
 
 				// check if module has typescript
-				for (moduleName in allDependencies) {
+				for (moduleName in moduleNames) {
 					var result = Ts.resolveModuleName(moduleName, cliOptions.moduleSearchPath + '/.', compilerOptions, host);
 					if (result.resolvedModule != null) {
 						switch result.resolvedModule.extension {
