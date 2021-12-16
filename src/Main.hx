@@ -228,9 +228,13 @@ class Main {
 					throw 'Unknown argument "$arg"';
 				}
 				// remove ".d.ts" extension as this is a common point of confusion for users
-				var moduleName = if (arg.substr(arg.length - 5).toLowerCase() == '.d.ts') {
-					arg.substr(0, arg.length - 5);
-				} else arg;
+				var moduleName = arg;
+				for (ext in ['.d.ts','.ts','.dts']) {
+					if (moduleName.endsWith(ext)) {
+						moduleName = moduleName.substr(0,moduleName.length - ext.length);
+						break;
+					}
+				}
 				cliOptions.moduleNames.push(moduleName);
 			}
 		]);
