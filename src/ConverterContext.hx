@@ -396,8 +396,6 @@ class ConverterContext {
 					Log.warn('TypeAlias symbol did not have a TypeAliasDeclaration', symbol);
 				}
 
-				if (symbol.name == 'AsyncComponent') debug();
-
 				var tsType = tc.getDeclaredTypeOfSymbol(symbol);
 				var hxAliasType = complexTypeFromTsType(tsType, symbol, access, typeAliasDeclaration, symbol, false);
 				var forceAbstractKind = symbol.flags & SymbolFlags.ValueModule != 0 || isConstructorTypeVariable;
