@@ -10,7 +10,7 @@
 	/**
 		This is a built-in middleware function in Express. It parses incoming request query parameters.
 	**/
-	static function query(options:ts.AnyOf2<qs.IParseOptions, { @:overload(function(str:String, ?options:qs.IParseOptions):{ } { }) @:selfCall function call(str:String, ?options:Dynamic):qs.ParsedQs; }>):express.Handler;
+	static function query(options:ts.AnyOf2<qs.IParseOptions, { @:overload(function(str:String, ?options:qs.IParseOptions):haxe.DynamicAccess<qs.PoorMansUnknown> { }) @:selfCall function call(str:String, ?options:Dynamic):qs.ParsedQs; }>):express.Handler;
 	static function Router(?options:express.RouterOptions):express_serve_static_core.Router;
 	/**
 		This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.

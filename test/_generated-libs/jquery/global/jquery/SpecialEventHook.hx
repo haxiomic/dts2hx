@@ -67,4 +67,4 @@ typedef SpecialEventHook<TTarget, TData> = ts.AnyOf13<{
 	function preDispatch(event:Event):ts.AnyOf2<Bool, ts.Undefined>;
 }, {
 	function postDispatch(event:Event):Void;
-}, { }>;
+}, haxe.DynamicAccess<Any>>;

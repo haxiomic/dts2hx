@@ -1,3 +1,3 @@
 package vue.types.options;
 
-typedef DefaultProps = { };
+typedef DefaultProps = haxe.DynamicAccess<Dynamic>;

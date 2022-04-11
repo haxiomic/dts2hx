@@ -25,5 +25,5 @@ typedef SaveDialogOptions = {
 		```
 	**/
 	@:optional
-	var filters : { };
+	var filters : haxe.DynamicAccess<Array<String>>;
 };

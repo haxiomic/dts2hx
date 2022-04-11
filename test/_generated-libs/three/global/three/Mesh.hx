@@ -8,7 +8,7 @@ package global.three;
 	@:optional
 	var morphTargetInfluences : Array<Float>;
 	@:optional
-	var morphTargetDictionary : { };
+	var morphTargetDictionary : haxe.DynamicAccess<Float>;
 	var isMesh : Bool;
 	function setDrawMode(drawMode:TrianglesDrawModes):Void;
 	function updateMorphTargets():Void;

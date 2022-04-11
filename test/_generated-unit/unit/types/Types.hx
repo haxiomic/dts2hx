@@ -115,13 +115,13 @@ package unit.types;
 	static final stringObj : String;
 	static final arrayNumberStringUnion : Array<ts.AnyOf2<String, Float>>;
 	static final tupleNumberString : ts.Tuple2<Float, String>;
-	static final stringNumberMap : { };
-	static final readonlyStringNumberMap : { };
+	static final stringNumberMap : haxe.DynamicAccess<Float>;
+	static final readonlyStringNumberMap : haxe.DynamicAccess<Float>;
 	static final stringNumberMapWithField : {
 		var field : Float;
 	};
-	static final numberStringMap : { };
-	static final readonlyNumberStringMap : { };
+	static final numberStringMap : Array<String>;
+	static final readonlyNumberStringMap : Array<String>;
 	static final numberStringMapWithField : {
 		var field : String;
 	};

@@ -29,7 +29,7 @@ typedef TerminalOptions = {
 		Object with environment variables that will be added to the VS Code process.
 	**/
 	@:optional
-	var env : { };
+	var env : haxe.DynamicAccess<Null<String>>;
 	/**
 		Whether the terminal process environment should be exactly as provided in
 		`TerminalOptions.env`. When this is false (default), the environment will be based on the

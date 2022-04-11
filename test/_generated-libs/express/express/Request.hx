@@ -238,7 +238,7 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	var connection : node.net.Socket;
 	var headers : node.http.IncomingHttpHeaders;
 	var rawHeaders : Array<String>;
-	var trailers : { };
+	var trailers : haxe.DynamicAccess<Null<String>>;
 	var rawTrailers : Array<String>;
 	function setTimeout(msecs:Float, callback:() -> Void):Request<P, ResBody, ReqBody, ReqQuery>;
 	/**

@@ -13,5 +13,5 @@ typedef VNodeDirective = {
 	@:optional
 	var oldArg : String;
 	@:optional
-	var modifiers : { };
+	var modifiers : haxe.DynamicAccess<Bool>;
 };

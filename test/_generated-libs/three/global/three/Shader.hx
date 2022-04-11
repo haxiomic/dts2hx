@@ -1,7 +1,7 @@
 package global.three;
 
 typedef Shader = {
-	var uniforms : { };
+	var uniforms : haxe.DynamicAccess<IUniform>;
 	var vertexShader : String;
 	var fragmentShader : String;
 };

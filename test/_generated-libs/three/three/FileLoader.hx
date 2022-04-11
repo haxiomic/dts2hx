@@ -12,6 +12,6 @@ package three;
 	function setPath(path:String):FileLoader;
 	function setResponseType(responseType:String):FileLoader;
 	function setWithCredentials(value:String):FileLoader;
-	function setRequestHeader(value:{ }):FileLoader;
+	function setRequestHeader(value:haxe.DynamicAccess<String>):FileLoader;
 	static var prototype : FileLoader;
 }

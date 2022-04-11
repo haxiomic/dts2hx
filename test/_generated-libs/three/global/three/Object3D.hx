@@ -85,7 +85,7 @@ package global.three;
 	/**
 		An object that can be used to store custom data about the Object3d. It should not hold references to functions as these will not be cloned.
 	**/
-	var userData : { };
+	var userData : haxe.DynamicAccess<Dynamic>;
 	/**
 		Custom depth material to be used when rendering to the depth map. Can only be used in context of meshes.
 		When shadow-casting with a DirectionalLight or SpotLight, if you are (a) modifying vertex positions in

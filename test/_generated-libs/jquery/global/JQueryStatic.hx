@@ -700,7 +700,7 @@ typedef JQueryStatic = {
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 	**/
 	@:overload(function<TElement>(duration:global.jquery.Duration, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
-	@:overload(function<TElement>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, { }, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
+	@:overload(function<TElement>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.DynamicAccess<Any>, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
 	function speed<TElement>(duration:global.jquery.Duration, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
 	/**
 		Remove the whitespace from the beginning and end of a string.

@@ -1,3 +1,3 @@
 package vue.types.options;
 
-typedef DefaultComputed = { };
+typedef DefaultComputed = haxe.DynamicAccess<Dynamic>;

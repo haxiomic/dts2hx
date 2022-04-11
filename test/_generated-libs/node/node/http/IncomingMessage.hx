@@ -8,7 +8,7 @@ package node.http;
 	var connection : node.net.Socket;
 	var headers : IncomingHttpHeaders;
 	var rawHeaders : Array<String>;
-	var trailers : { };
+	var trailers : haxe.DynamicAccess<Null<String>>;
 	var rawTrailers : Array<String>;
 	function setTimeout(msecs:Float, callback:() -> Void):IncomingMessage;
 	/**

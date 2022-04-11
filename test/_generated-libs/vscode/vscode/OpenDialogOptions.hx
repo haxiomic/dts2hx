@@ -45,5 +45,5 @@ typedef OpenDialogOptions = {
 		```
 	**/
 	@:optional
-	var filters : { };
+	var filters : haxe.DynamicAccess<Array<String>>;
 };

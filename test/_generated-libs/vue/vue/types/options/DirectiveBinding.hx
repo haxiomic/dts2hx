@@ -1,7 +1,7 @@
 package vue.types.options;
 
 typedef DirectiveBinding = {
-	final modifiers : { };
+	final modifiers : haxe.DynamicAccess<Bool>;
 	var name : String;
 	@:optional
 	var value : Dynamic;

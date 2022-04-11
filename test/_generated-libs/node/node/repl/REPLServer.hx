@@ -40,7 +40,7 @@ package node.repl;
 	/**
 		The commands registered via `replServer.defineCommand()`.
 	**/
-	final commands : { };
+	final commands : haxe.DynamicAccess<Null<REPLCommand>>;
 	/**
 		A value indicating whether the REPL is currently in "editor mode".
 	**/

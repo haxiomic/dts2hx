@@ -34,5 +34,5 @@ typedef ShellExecutionOptions = {
 		the parent process' environment.
 	**/
 	@:optional
-	var env : { };
+	var env : haxe.DynamicAccess<String>;
 };

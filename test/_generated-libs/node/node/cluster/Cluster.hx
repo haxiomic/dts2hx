@@ -11,7 +11,7 @@ typedef Cluster = {
 	@:optional
 	var worker : Worker;
 	@:optional
-	var workers : { };
+	var workers : haxe.DynamicAccess<Null<Worker>>;
 	/**
 		events.EventEmitter
 		   1. disconnect

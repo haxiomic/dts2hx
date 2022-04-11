@@ -27,7 +27,7 @@ typedef ObjectConstructor = {
 		
 		Creates an object that has the specified prototype, and that optionally contains specified properties.
 	**/
-	@:overload(function(o:Null<Dynamic>, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic { })
+	@:overload(function(o:Null<Dynamic>, properties:Dynamic):Dynamic { })
 	function create(o:Null<Dynamic>):Dynamic;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
@@ -36,7 +36,7 @@ typedef ObjectConstructor = {
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	function defineProperties(o:Dynamic, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic;
+	function defineProperties(o:Dynamic, properties:Dynamic):Dynamic;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
@@ -109,14 +109,14 @@ typedef ObjectConstructor = {
 		Returns an array of values of the enumerable properties of an object
 	**/
 	@:overload(function(o:{ }):Array<Dynamic> { })
-	function values<T>(o:ts.AnyOf2<{ }, ArrayLike<T>>):Array<T>;
+	function values<T>(o:ts.AnyOf2<haxe.DynamicAccess<T>, ArrayLike<T>>):Array<T>;
 	/**
 		Returns an array of key/values of the enumerable properties of an object
 		
 		Returns an array of key/values of the enumerable properties of an object
 	**/
 	@:overload(function(o:{ }):Array<ts.Tuple2<String, Dynamic>> { })
-	function entries<T>(o:ts.AnyOf2<{ }, ArrayLike<T>>):Array<ts.Tuple2<String, T>>;
+	function entries<T>(o:ts.AnyOf2<haxe.DynamicAccess<T>, ArrayLike<T>>):Array<ts.Tuple2<String, T>>;
 	/**
 		Returns an object containing all own property descriptors of an object
 	**/

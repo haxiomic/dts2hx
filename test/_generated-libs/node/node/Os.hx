@@ -9,7 +9,7 @@ package node;
 	static function cpus():Array<node.os.CpuInfo>;
 	static function type():String;
 	static function release():String;
-	static function networkInterfaces():{ };
+	static function networkInterfaces():haxe.DynamicAccess<Array<node.os.NetworkInterfaceInfo>>;
 	static function homedir():String;
 	@:overload(function(?options:{ var encoding : String; }):node.os.UserInfo<String> { })
 	static function userInfo(options:{ var encoding : String; }):node.os.UserInfo<global.Buffer>;

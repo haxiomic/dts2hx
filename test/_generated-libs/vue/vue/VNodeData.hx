@@ -6,7 +6,7 @@ typedef VNodeData = {
 	@:optional
 	var slot : String;
 	@:optional
-	var scopedSlots : { };
+	var scopedSlots : haxe.DynamicAccess<Null<vue.types.vnode.ScopedSlot>>;
 	@:optional
 	var ref : String;
 	@:optional
@@ -19,21 +19,21 @@ typedef VNodeData = {
 	@:native("class")
 	var class_ : Dynamic;
 	@:optional
-	var staticStyle : { };
+	var staticStyle : haxe.DynamicAccess<Dynamic>;
 	@:optional
 	var style : ts.AnyOf3<String, Dynamic, Array<Dynamic>>;
 	@:optional
-	var props : { };
+	var props : haxe.DynamicAccess<Dynamic>;
 	@:optional
-	var attrs : { };
+	var attrs : haxe.DynamicAccess<Dynamic>;
 	@:optional
-	var domProps : { };
+	var domProps : haxe.DynamicAccess<Dynamic>;
 	@:optional
-	var hook : { };
+	var hook : haxe.DynamicAccess<haxe.Constraints.Function>;
 	@:optional
-	var on : { };
+	var on : haxe.DynamicAccess<ts.AnyOf2<haxe.Constraints.Function, Array<haxe.Constraints.Function>>>;
 	@:optional
-	var nativeOn : { };
+	var nativeOn : haxe.DynamicAccess<ts.AnyOf2<haxe.Constraints.Function, Array<haxe.Constraints.Function>>>;
 	@:optional
 	var transition : Dynamic;
 	@:optional

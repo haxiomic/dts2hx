@@ -18,7 +18,7 @@ package three;
 	var name : String;
 	var type : String;
 	var index : BufferAttribute;
-	var attributes : { };
+	var attributes : haxe.DynamicAccess<ts.AnyOf2<BufferAttribute, InterleavedBufferAttribute>>;
 	var morphAttributes : Dynamic;
 	var groups : Array<{
 		var start : Float;
@@ -32,7 +32,7 @@ package three;
 		var start : Float;
 		var count : Float;
 	};
-	var userData : { };
+	var userData : haxe.DynamicAccess<Dynamic>;
 	function getIndex():BufferAttribute;
 	function setIndex(index:ts.AnyOf2<Array<Float>, BufferAttribute>):Void;
 	@:overload(function(name:Dynamic, array:Dynamic, itemSize:Dynamic):Dynamic { })

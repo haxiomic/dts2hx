@@ -6,7 +6,7 @@ typedef RegExpMatchArray = {
 	@:optional
 	var input : String;
 	@:optional
-	var groups : { };
+	var groups : haxe.DynamicAccess<String>;
 	/**
 		Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
 	**/

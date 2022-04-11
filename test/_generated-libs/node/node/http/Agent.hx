@@ -4,8 +4,8 @@ package node.http;
 	function new(?opts:AgentOptions);
 	var maxFreeSockets : Float;
 	var maxSockets : Float;
-	final sockets : { };
-	final requests : { };
+	final sockets : haxe.DynamicAccess<Array<node.net.Socket>>;
+	final requests : haxe.DynamicAccess<Array<IncomingMessage>>;
 	/**
 		Destroy any sockets that are currently in use by the agent.
 		It is usually not necessary to do this. However, if you are using an agent with KeepAlive enabled,

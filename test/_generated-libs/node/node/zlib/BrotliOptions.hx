@@ -8,5 +8,5 @@ typedef BrotliOptions = {
 	@:optional
 	var chunkSize : Float;
 	@:optional
-	var params : { };
+	var params : Array<ts.AnyOf2<Float, Bool>>;
 };

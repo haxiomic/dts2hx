@@ -2,12 +2,12 @@ package vue;
 
 @:jsRequire("vue", "default") extern class Vue {
 	@:overload(function<Data, Methods, Computed, Props>(?options:vue.types.options.ThisTypedComponentOptionsWithRecordProps<Vue, Data, Methods, Computed, Props>):vue.types.vue.CombinedVueInstance<Vue, Data, Methods, Computed, { }> { })
-	@:overload(function(?options:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>):vue.types.vue.CombinedVueInstance<Vue, Dynamic, Dynamic, Dynamic, { }> { })
+	@:overload(function(?options:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>):vue.types.vue.CombinedVueInstance<Vue, Dynamic, Dynamic, Dynamic, { }> { })
 	function new<Data, Methods, Computed, PropNames>(?options:vue.types.options.ThisTypedComponentOptionsWithArrayProps<Vue, Data, Methods, Computed, PropNames>);
 	@:native("$el")
 	final DollarEl : js.html.DOMElement;
 	@:native("$options")
-	final DollarOptions : ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>;
+	final DollarOptions : ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>;
 	@:native("$parent")
 	final DollarParent : Vue;
 	@:native("$root")
@@ -15,25 +15,25 @@ package vue;
 	@:native("$children")
 	final DollarChildren : Array<Vue>;
 	@:native("$refs")
-	final DollarRefs : { };
+	final DollarRefs : haxe.DynamicAccess<ts.AnyOf4<js.html.DOMElement, Vue, Array<Vue>, Array<js.html.DOMElement>>>;
 	@:native("$slots")
-	final DollarSlots : { };
+	final DollarSlots : haxe.DynamicAccess<Null<Array<VNode>>>;
 	@:native("$scopedSlots")
-	final DollarScopedSlots : { };
+	final DollarScopedSlots : haxe.DynamicAccess<Null<vue.types.vnode.NormalizedScopedSlot>>;
 	@:native("$isServer")
 	final DollarIsServer : Bool;
 	@:native("$data")
-	final DollarData : { };
+	final DollarData : haxe.DynamicAccess<Dynamic>;
 	@:native("$props")
-	final DollarProps : { };
+	final DollarProps : haxe.DynamicAccess<Dynamic>;
 	@:native("$ssrContext")
 	final DollarSsrContext : Dynamic;
 	@:native("$vnode")
 	final DollarVnode : VNode;
 	@:native("$attrs")
-	final DollarAttrs : { };
+	final DollarAttrs : haxe.DynamicAccess<String>;
 	@:native("$listeners")
-	final DollarListeners : { };
+	final DollarListeners : haxe.DynamicAccess<ts.AnyOf2<haxe.Constraints.Function, Array<haxe.Constraints.Function>>>;
 	@:native("$mount")
 	function DollarMount(?elementOrSelector:ts.AnyOf2<String, js.html.DOMElement>, ?hydrating:Bool):Vue;
 	@:native("$forceUpdate")
@@ -61,12 +61,12 @@ package vue;
 	@:overload(function():js.lib.Promise<ts.Undefined> { })
 	function DollarNextTick(callback:() -> Void):Void;
 	@:native("$createElement")
-	@:overload(function(?tag:ts.AnyOf7<String, VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, { }>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>, () -> Component<vue.types.options.DefaultData<Any>, vue.types.options.DefaultMethods<Any>, vue.types.options.DefaultComputed, { }>>, ?data:VNodeData, ?children:VNodeChildren):VNode { })
-	dynamic function DollarCreateElement(?tag:ts.AnyOf7<String, VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, { }>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>, () -> Component<vue.types.options.DefaultData<Any>, vue.types.options.DefaultMethods<Any>, vue.types.options.DefaultComputed, { }>>, ?children:VNodeChildren):VNode;
+	@:overload(function(?tag:ts.AnyOf7<String, VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, haxe.DynamicAccess<Dynamic>>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>, () -> Component<vue.types.options.DefaultData<Any>, vue.types.options.DefaultMethods<Any>, vue.types.options.DefaultComputed, haxe.DynamicAccess<Dynamic>>>, ?data:VNodeData, ?children:VNodeChildren):VNode { })
+	dynamic function DollarCreateElement(?tag:ts.AnyOf7<String, VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, haxe.DynamicAccess<Dynamic>>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>, () -> Component<vue.types.options.DefaultData<Any>, vue.types.options.DefaultMethods<Any>, vue.types.options.DefaultComputed, haxe.DynamicAccess<Dynamic>>>, ?children:VNodeChildren):VNode;
 	@:overload(function<Data, Methods, Computed, Props>(?options:vue.types.options.ThisTypedComponentOptionsWithRecordProps<Vue, Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, Props> { })
 	@:overload(function<PropNames>(definition:FunctionalComponentOptions<{ }, Array<PropNames>>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
 	@:overload(function<Props>(definition:FunctionalComponentOptions<Props, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, Props> { })
-	@:overload(function(?options:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
+	@:overload(function(?options:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
 	static function extend<Data, Methods, Computed, PropNames>(?options:vue.types.options.ThisTypedComponentOptionsWithArrayProps<Vue, Data, Methods, Computed, PropNames>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, { }>;
 	@:overload(function():js.lib.Promise<ts.Undefined> { })
 	static function nextTick<T>(callback:() -> Void, ?context:T):Void;
@@ -82,11 +82,11 @@ package vue;
 	@:overload(function<Data, Methods, Computed, Props>(id:String, ?definition:vue.types.options.ThisTypedComponentOptionsWithRecordProps<Vue, Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, Props> { })
 	@:overload(function<PropNames>(id:String, definition:FunctionalComponentOptions<{ }, Array<PropNames>>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
 	@:overload(function<Props>(id:String, definition:FunctionalComponentOptions<Props, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, Props> { })
-	@:overload(function(id:String, ?definition:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
+	@:overload(function(id:String, ?definition:ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>):vue.types.vue.ExtendedVue<Vue, { }, { }, { }, { }> { })
 	static function component(id:String):VueConstructor<Vue>;
 	@:overload(function(plugin:ts.AnyOf2<PluginObject<Dynamic>, PluginFunction<Dynamic>>, options:haxe.extern.Rest<Dynamic>):VueConstructor<Vue> { })
 	static function use<T>(plugin:ts.AnyOf2<PluginObject<T>, PluginFunction<T>>, ?options:T):VueConstructor<Vue>;
-	static function mixin(mixin:ts.AnyOf2<VueConstructor<Vue>, ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<{ }>, { }>>):VueConstructor<Vue>;
+	static function mixin(mixin:ts.AnyOf2<VueConstructor<Vue>, ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>>):VueConstructor<Vue>;
 	static function compile(template:String):{
 		function render(createElement:Dynamic):VNode;
 		var staticRenderFns : Array<() -> VNode>;

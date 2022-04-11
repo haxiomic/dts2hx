@@ -10,7 +10,7 @@ typedef DebugAdapterExecutableOptions = {
 		the parent process' environment.
 	**/
 	@:optional
-	var env : { };
+	var env : haxe.DynamicAccess<String>;
 	/**
 		The current working directory for the executed debug adapter.
 	**/

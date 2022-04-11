@@ -73,5 +73,5 @@ package node;
 	static final isWorker : Bool;
 	static final settings : node.cluster.ClusterSettings;
 	static final worker : node.cluster.Worker;
-	static final workers : { };
+	static final workers : haxe.DynamicAccess<Null<node.cluster.Worker>>;
 }

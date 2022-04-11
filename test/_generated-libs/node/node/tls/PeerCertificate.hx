@@ -4,7 +4,7 @@ typedef PeerCertificate = {
 	var subject : Certificate;
 	var issuer : Certificate;
 	var subjectaltname : String;
-	var infoAccess : { };
+	var infoAccess : haxe.DynamicAccess<Null<Array<String>>>;
 	var modulus : String;
 	var exponent : String;
 	var valid_from : String;

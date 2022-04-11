@@ -505,7 +505,7 @@ typedef JQuery<TElement> = {
 		Get the current coordinates of the first element in the set of matched elements, relative to the document.
 	**/
 	@:overload(function():Null<global.jquery.Coordinates> { })
-	function offset(coordinates_function:ts.AnyOf4<{ var left : Float; }, { var top : Float; }, { }, (index:Float, coords:global.jquery.Coordinates) -> global.jquery.CoordinatesPartial>):JQuery<TElement>;
+	function offset(coordinates_function:ts.AnyOf4<{ var left : Float; }, { var top : Float; }, haxe.DynamicAccess<Any>, (index:Float, coords:global.jquery.Coordinates) -> global.jquery.CoordinatesPartial>):JQuery<TElement>;
 	/**
 		Get the closest ancestor element that is positioned.
 	**/

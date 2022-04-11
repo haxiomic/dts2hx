@@ -3,7 +3,7 @@ package three;
 @:jsRequire("three", "ShaderMaterial") extern class ShaderMaterial extends Material {
 	function new(?parameters:ShaderMaterialParameters);
 	var defines : Dynamic;
-	var uniforms : { };
+	var uniforms : haxe.DynamicAccess<IUniform>;
 	var vertexShader : String;
 	var fragmentShader : String;
 	var linewidth : Float;

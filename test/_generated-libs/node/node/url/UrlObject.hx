@@ -4,7 +4,7 @@ typedef UrlObject = {
 	@:optional
 	var port : ts.AnyOf2<String, Float>;
 	@:optional
-	var query : ts.AnyOf2<String, { }>;
+	var query : ts.AnyOf2<String, haxe.DynamicAccess<Dynamic>>;
 	@:optional
 	var auth : String;
 	@:optional

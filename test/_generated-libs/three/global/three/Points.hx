@@ -8,7 +8,7 @@ package global.three;
 	@:optional
 	var morphTargetInfluences : Array<Float>;
 	@:optional
-	var morphTargetDictionary : { };
+	var morphTargetDictionary : haxe.DynamicAccess<Float>;
 	var isPoints : Bool;
 	/**
 		An instance of Geometry or BufferGeometry, where each vertex designates the position of a particle in the system.
