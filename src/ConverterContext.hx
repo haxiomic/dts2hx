@@ -1271,7 +1271,32 @@ class ConverterContext {
 
 			HaxeTools.resolveNameCollisions(fields);
 
-			TAnonymous(fields);
+			/**
+			 * Often, we have structures which are really just string or number maps
+			 * For example:	`{ [key: string]: number }`
+			 * Or: `Record<string, number>`
+			 * 
+			 * Supporting index signatures in general may one day be possible with https://github.com/HaxeFoundation/haxe/pull/10454
+			 * 
+			 * For now, we can handle the special case of an index signature with no fields
+			 */
+			// special case handling
+			if (fields.length == 0) {
+				var stringIndexType = tsType.getStringIndexType();
+				var numberIndexType = tsType.getNumberIndexType();
+
+				if (stringIndexType != null) {
+					var hxType = complexTypeFromTsType(stringIndexType, moduleSymbol, accessContext, enclosingDeclaration);
+					macro :haxe.DynamicAccess<$hxType>;
+				} else if (numberIndexType != null) {
+					var hxType = complexTypeFromTsType(numberIndexType, moduleSymbol, accessContext, enclosingDeclaration);
+					macro :Array<$hxType>;
+				} else {
+					TAnonymous(fields);
+				}
+			} else {
+				TAnonymous(fields);
+			}
 		}
 	}
 
