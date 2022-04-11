@@ -11,6 +11,8 @@ using Lambda;
 	- Fixed bug #9385 (merged, haxe 4.1)
 	- Switch between printing structures on a single line or over multiple lines depending on context (no PR)
 	- Don't use separate code for enum field printing
+
+	! Cannot be merged into std because it uses macros and therefore, cannot be used _from_ macros
 **/
 // @:nullSafety
 class Printer extends haxe.macro.Printer {
