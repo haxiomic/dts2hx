@@ -499,7 +499,7 @@ class ConverterContext {
 
 				if (classDeclaration != null) {
 					// add default constructor
-					if (!fields.exists(f -> f.name == 'new')) {
+					if (!fields.exists(f -> f.name == 'new') && classSuperType == null) {
 						fields.unshift((macro class { function new(); }).fields[0]);
 					}
 				}
