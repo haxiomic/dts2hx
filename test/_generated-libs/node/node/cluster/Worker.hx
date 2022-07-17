@@ -1,7 +1,6 @@
 package node.cluster;
 
 @:jsRequire("cluster", "Worker") extern class Worker extends node.events.EventEmitter {
-	function new();
 	var id : Float;
 	var process : node.child_process.ChildProcess;
 	function send(message:Dynamic, ?sendHandle:Dynamic, ?callback:(error:js.lib.Error) -> Void):Bool;

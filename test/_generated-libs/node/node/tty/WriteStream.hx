@@ -1,7 +1,6 @@
 package node.tty;
 
 @:jsRequire("tty", "WriteStream") extern class WriteStream extends node.net.Socket {
-	function new();
 	/**
 		events.EventEmitter
 		   1. close

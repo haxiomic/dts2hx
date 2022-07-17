@@ -1,7 +1,6 @@
 package connect;
 
 @:jsRequire("connect", "IncomingMessage") extern class IncomingMessage extends node.http.IncomingMessage {
-	function new();
 	@:optional
 	var originalUrl : String;
 	function setTimeout(msecs:Float, callback:() -> Void):IncomingMessage;

@@ -1,7 +1,6 @@
 package node.worker_threads;
 
 @:jsRequire("worker_threads", "MessagePort") extern class MessagePort extends node.events.EventEmitter {
-	function new();
 	function close():Void;
 	function postMessage(value:Dynamic, ?transferList:Array<ts.AnyOf2<MessagePort, js.lib.ArrayBuffer>>):Void;
 	function ref():Void;

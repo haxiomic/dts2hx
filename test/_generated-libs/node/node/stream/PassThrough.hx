@@ -1,7 +1,6 @@
 package node.stream;
 
 @:jsRequire("stream", "PassThrough") extern class PassThrough extends Transform {
-	function new();
 	function setDefaultEncoding(encoding:String):PassThrough;
 	function setEncoding(encoding:String):PassThrough;
 	function pause():PassThrough;

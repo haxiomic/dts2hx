@@ -1,7 +1,6 @@
 package node.stream;
 
 @:jsRequire("stream", "Stream") extern class Stream extends node.Stream {
-	function new();
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Stream;
 	function on(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Stream;
 	function once(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Stream;
