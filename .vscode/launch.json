@@ -186,6 +186,7 @@
             "program": "${workspaceFolder}/dist/dts2hx.js",
             "cwd": "${workspaceFolder}/test/issue/122",
             "args": ["maplibre-gl", "--verbose"],
+            "outputCapture": "std",
         },
         {
             "type": "node",
