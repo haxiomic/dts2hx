@@ -138,7 +138,11 @@ class SymbolAccessMap {
 					if (symbol != sourceFileSymbol) {
 						Log.warn('Changing symbol access module from <b>ExportModule($moduleName, ${sourceFileSymbol.name})</> to <b>ExportModule(${newSourceFile.moduleName}, ${symbol.name})</>', symbol);
 					}
-					ExportModule(newSourceFile.moduleName, symbol, []);
+					var moduleName = newSourceFile.moduleName;
+					if (moduleName == './') {
+						moduleName = 'index';
+					}
+					ExportModule(moduleName, symbol, []);
 				case AmbientModule(path, _):
 					Log.error('Cannot change symbol access from <b>AmbientModule($path)</> to ExportModule', symbol);
 					access;
