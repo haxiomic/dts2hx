@@ -884,7 +884,6 @@ class ConverterContext {
 	/**
 		- `moduleSymbol` - is the module where this type is used. It's main use is to shorten type paths when referencing types in the same haxe module
 		- `accessContext` - is the symbol access path for the symbol that contains this type reference. This is required because if we're in a Global access context, type references should prefer global access (and modular context should prefer modular access). For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`). If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
-		- `allowAlias` - set to false to disable referring to types via an alias (i.e. `type = X`)
 		- `preferInterfaceStructure` - set to true return the interface-structure version of a type in haxe. This is not handled recursively, so only the top-level reference will prefer-interface-structure
 	**/
 	function complexTypeFromTsType(type: TsType, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?disallowAliasTarget: Symbol, preferInterfaceStructure: Bool = false): ComplexType {
