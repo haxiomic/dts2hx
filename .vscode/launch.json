@@ -182,6 +182,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js issue/122 (recursion)",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "cwd": "${workspaceFolder}/test/issue/122",
+            "args": ["maplibre-gl", "--verbose"],
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "index.js",
             "program": "${workspaceFolder}/dist/index.js",
             "args": [],
