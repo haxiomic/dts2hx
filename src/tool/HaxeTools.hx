@@ -306,6 +306,31 @@ class HaxeTools {
 		}
 	}
 
+	static public function getTypePathFromString(path: String) {
+		var parts = path.split('.');
+		var pack = new Array();
+		// lowercase first letter means it's part of pack
+		for (i in 0...parts.length) {
+			var part = parts[i];
+			if (part.charAt(0).toLowerCase() == part.charAt(0)) {
+				pack.push(part);
+			} else {
+				parts = parts.slice(i);
+				break;
+			}
+		}
+		var name = parts.pop();
+		var moduleName = parts.pop();
+		if (moduleName == null) {
+			moduleName = name;
+		}
+		return {
+			name: name,
+			pack: pack,
+			moduleName: moduleName,
+		}
+	}
+
 	static public final haxeReservedWords: ReadOnlyArray<String> = [
 		// see core/ast.ml
 		"public", "private", "static", "override", "dynamic", "inline", "macro",
