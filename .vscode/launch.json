@@ -191,6 +191,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "dts2hx.js node ws",
+            "program": "${workspaceFolder}/dist/dts2hx.js",
+            "args": ["ws", "--verbose"],
+            "cwd": "${workspaceFolder}/test",
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "index.js",
             "program": "${workspaceFolder}/dist/index.js",
             "args": [],
