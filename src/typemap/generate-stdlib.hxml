@@ -1,4 +1,4 @@
--D StdLibMacro
+-D TypeMapMacro
 --macro StdLibMacro.getMap(false)
 --js not-real.js
 --no-output

@@ -1,4 +1,4 @@
-#if StdLibMacro
+#if TypeMapMacro
 package;
 #else
 package typemap;
@@ -6,8 +6,14 @@ package typemap;
 
 @ignore typedef TypeMap = {
 	haxeVersion: String,
+	libraryName: String,
+	libraryVersion: String,
 	topLevelNames: Array<String>,
 	js: haxe.DynamicAccess<TypeInfo>,
+	jsRequireMap: haxe.DynamicAccess<String>,
+	// packages: haxe.DynamicAccess<Package>,
+	lowercaseLookup: haxe.DynamicAccess<Array<String>>,
+	typeInfo: haxe.DynamicAccess<TypeInfo>,
 }
 
 @ignore typedef TypeInfo = {
@@ -16,12 +22,14 @@ package typemap;
 	moduleName: String,
 	typeParameters: Array<String>,
 	isExtern: Bool,
-	moduleType: ModuleType
+	moduleType: ModuleType,
+	?jsRequirePath: String,
 };
 
-@ignore @:enum abstract ModuleType(Int) to Int from Int {
-	var ClassType;
-	var EnumType;
-	var TypeDefType; // @! todo: add more information about the typedef – is it an anon or an alias?
-	var AbstractType;
+@ignore @:enum abstract ModuleType(String) to String from String {
+	var ClassType = 'class';
+	var EnumType = 'enum';
+	var TypeDefType = 'typedef'; // @! todo: add more information about the typedef – is it an anon or an alias?
+	var AbstractType = 'abstract';
+	var UnknownType = 'unknown';
 }

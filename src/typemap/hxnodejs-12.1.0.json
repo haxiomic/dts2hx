@@ -1,0 +1,4001 @@
+{
+	"libraryVersion": "12.1.0",
+	"js": {},
+	"topLevelNames": [],
+	"typeInfo": {
+		"js.node.V8.V8HeapSpaceStatistics": {
+			"name": "V8HeapSpaceStatistics",
+			"moduleType": "typedef",
+			"moduleName": "V8",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Tls.TlsClientOptionsBase": {
+			"name": "TlsClientOptionsBase",
+			"moduleType": "typedef",
+			"moduleName": "Tls",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Iterator": {
+			"name": "Iterator",
+			"moduleType": "typedef",
+			"moduleName": "Iterator",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsResolvedAddressSRV": {
+			"name": "DnsResolvedAddressSRV",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.zlib.Zlib": {
+			"name": "Zlib",
+			"moduleType": "class",
+			"moduleName": "Zlib",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess": {
+			"name": "ChildProcess",
+			"moduleType": "class",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "child_process"
+		},
+		"js.node.net.Socket.SocketConnectOptionsTcp": {
+			"name": "SocketConnectOptionsTcp",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Readline.ReadlineCompleterCallback": {
+			"name": "ReadlineCompleterCallback",
+			"moduleType": "typedef",
+			"moduleName": "Readline",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.Server.ServerEvent": {
+			"name": "ServerEvent",
+			"moduleType": "abstract",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Process.ProcessEvent": {
+			"name": "ProcessEvent",
+			"moduleType": "abstract",
+			"moduleName": "Process",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsOpenFlag": {
+			"name": "FsOpenFlag",
+			"moduleType": "abstract",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.IncomingMessage": {
+			"name": "IncomingMessage",
+			"moduleType": "class",
+			"moduleName": "IncomingMessage",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "http/IncomingMessage"
+		},
+		"js.node.readline.Interface.InterfaceEvent": {
+			"name": "InterfaceEvent",
+			"moduleType": "abstract",
+			"moduleName": "Interface",
+			"pack": [
+				"js",
+				"node",
+				"readline"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Os.CPU": {
+			"name": "CPU",
+			"moduleType": "typedef",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Net.NetConnectOptionsUnix": {
+			"name": "NetConnectOptionsUnix",
+			"moduleType": "typedef",
+			"moduleName": "Net",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Os": {
+			"name": "Os",
+			"moduleType": "class",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "os"
+		},
+		"js.node.Require.RequireResolveOptions": {
+			"name": "RequireResolveOptions",
+			"moduleType": "typedef",
+			"moduleName": "Require",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Require": {
+			"name": "Require",
+			"moduleType": "class",
+			"moduleName": "Require",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Process.MemoryUsage": {
+			"name": "MemoryUsage",
+			"moduleType": "typedef",
+			"moduleName": "Process",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.ECDH.ECDHFormat": {
+			"name": "ECDHFormat",
+			"moduleType": "abstract",
+			"moduleName": "ECDH",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.fs.FSWatcher.FSWatcherEvent": {
+			"name": "FSWatcherEvent",
+			"moduleType": "abstract",
+			"moduleName": "FSWatcher",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Util": {
+			"name": "Util",
+			"moduleType": "class",
+			"moduleName": "Util",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "util"
+		},
+		"js.node.repl.REPLServer.REPLServerEvent": {
+			"name": "REPLServerEvent",
+			"moduleType": "abstract",
+			"moduleName": "REPLServer",
+			"pack": [
+				"js",
+				"node",
+				"repl"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.IncomingMessage.IncomingMessageeEvent": {
+			"name": "IncomingMessageeEvent",
+			"moduleType": "abstract",
+			"moduleName": "IncomingMessage",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.Server": {
+			"name": "Server",
+			"moduleType": "class",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "http/Server"
+		},
+		"js.node.readline.Interface": {
+			"name": "Interface",
+			"moduleType": "class",
+			"moduleName": "Interface",
+			"pack": [
+				"js",
+				"node",
+				"readline"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.console.Console": {
+			"name": "Console",
+			"moduleType": "class",
+			"moduleName": "Console",
+			"pack": [
+				"js",
+				"node",
+				"console"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "console/Console"
+		},
+		"js.node.tty.WriteStream.WriteStreamEvent": {
+			"name": "WriteStreamEvent",
+			"moduleType": "abstract",
+			"moduleName": "WriteStream",
+			"pack": [
+				"js",
+				"node",
+				"tty"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsWriteFileOptions": {
+			"name": "FsWriteFileOptions",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessForkOptions": {
+			"name": "ChildProcessForkOptions",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Url": {
+			"name": "Url",
+			"moduleType": "class",
+			"moduleName": "Url",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "url"
+		},
+		"js.node.http.Method": {
+			"name": "Method",
+			"moduleType": "abstract",
+			"moduleName": "Method",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.util.Inspect": {
+			"name": "Inspect",
+			"moduleType": "class",
+			"moduleName": "Inspect",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "util/inspect"
+		},
+		"js.node.http.ClientRequest.InformationEventData": {
+			"name": "InformationEventData",
+			"moduleType": "typedef",
+			"moduleName": "ClientRequest",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.Certificate": {
+			"name": "Certificate",
+			"moduleType": "class",
+			"moduleName": "Certificate",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "crypto/Certificate"
+		},
+		"js.node.ChildProcess.ChildProcessExecFileOptions": {
+			"name": "ChildProcessExecFileOptions",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Os.CPUTime": {
+			"name": "CPUTime",
+			"moduleType": "typedef",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Server.ServerEvent": {
+			"name": "ServerEvent",
+			"moduleType": "abstract",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.tls.TLSSocket": {
+			"name": "TLSSocket",
+			"moduleType": "class",
+			"moduleName": "TLSSocket",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "tls/TLSSocket"
+		},
+		"js.node.Fs.FsMode": {
+			"name": "FsMode",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.V8.V8HeapStatistics": {
+			"name": "V8HeapStatistics",
+			"moduleType": "typedef",
+			"moduleName": "V8",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.tls.SecurePair.SecurePairEvent": {
+			"name": "SecurePairEvent",
+			"moduleType": "abstract",
+			"moduleName": "SecurePair",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.fs.ReadStream": {
+			"name": "ReadStream",
+			"moduleType": "class",
+			"moduleName": "ReadStream",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Os.OsConstants": {
+			"name": "OsConstants",
+			"moduleType": "typedef",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.https.Agent.HttpsAgentOptions": {
+			"name": "HttpsAgentOptions",
+			"moduleType": "typedef",
+			"moduleName": "Agent",
+			"pack": [
+				"js",
+				"node",
+				"https"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Tls.TlsOptionsBase": {
+			"name": "TlsOptionsBase",
+			"moduleType": "typedef",
+			"moduleName": "Tls",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Writable.WritableNewOptions": {
+			"name": "WritableNewOptions",
+			"moduleType": "typedef",
+			"moduleName": "Writable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dgram": {
+			"name": "Dgram",
+			"moduleType": "class",
+			"moduleName": "Dgram",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "dgram"
+		},
+		"js.node.Tls.TlsServerOptionsBase": {
+			"name": "TlsServerOptionsBase",
+			"moduleType": "typedef",
+			"moduleName": "Tls",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessSpawnOptionsStdio": {
+			"name": "ChildProcessSpawnOptionsStdio",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Url.UrlObject": {
+			"name": "UrlObject",
+			"moduleType": "typedef",
+			"moduleName": "Url",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsConstants": {
+			"name": "FsConstants",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.vm.Script": {
+			"name": "Script",
+			"moduleType": "class",
+			"moduleName": "Script",
+			"pack": [
+				"js",
+				"node",
+				"vm"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "vm/Script"
+		},
+		"js.node.Module": {
+			"name": "Module",
+			"moduleType": "class",
+			"moduleName": "Module",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "module"
+		},
+		"js.node.Buffer": {
+			"name": "Buffer",
+			"moduleType": "typedef",
+			"moduleName": "Buffer",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Process": {
+			"name": "Process",
+			"moduleType": "class",
+			"moduleName": "Process",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Transform": {
+			"name": "Transform",
+			"moduleType": "class",
+			"moduleName": "Transform",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"TSelf"
+			],
+			"isExtern": true,
+			"jsRequirePath": "stream/Transform"
+		},
+		"js.node.Path": {
+			"name": "Path",
+			"moduleType": "class",
+			"moduleName": "Path",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "path"
+		},
+		"js.node.crypto.DiffieHellman": {
+			"name": "DiffieHellman",
+			"moduleType": "class",
+			"moduleName": "DiffieHellman",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.child_process.ChildProcess.ChildProcessEvent": {
+			"name": "ChildProcessEvent",
+			"moduleType": "abstract",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node",
+				"child_process"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Stream.IStream": {
+			"name": "IStream",
+			"moduleType": "class",
+			"moduleName": "Stream",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.fs.ReadStream.ReadStreamEvent": {
+			"name": "ReadStreamEvent",
+			"moduleType": "abstract",
+			"moduleName": "ReadStream",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Timers": {
+			"name": "Timers",
+			"moduleType": "class",
+			"moduleName": "Timers",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "timers"
+		},
+		"js.node.events.EventEmitter": {
+			"name": "EventEmitter",
+			"moduleType": "class",
+			"moduleName": "EventEmitter",
+			"pack": [
+				"js",
+				"node",
+				"events"
+			],
+			"typeParameters": [
+				"TSelf"
+			],
+			"isExtern": true,
+			"jsRequirePath": "events/EventEmitter"
+		},
+		"js.node.Tls.TlsConnectOptions": {
+			"name": "TlsConnectOptions",
+			"moduleType": "typedef",
+			"moduleName": "Tls",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.Cipher": {
+			"name": "Cipher",
+			"moduleType": "class",
+			"moduleName": "Cipher",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.zlib.Unzip": {
+			"name": "Unzip",
+			"moduleType": "class",
+			"moduleName": "Unzip",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/Unzip"
+		},
+		"js.node.net.Socket.SocketEvent": {
+			"name": "SocketEvent",
+			"moduleType": "abstract",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Path.PathObject": {
+			"name": "PathObject",
+			"moduleType": "typedef",
+			"moduleName": "Path",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.events.EventEmitter.Event": {
+			"name": "Event",
+			"moduleType": "abstract",
+			"moduleName": "EventEmitter",
+			"pack": [
+				"js",
+				"node",
+				"events"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.repl.REPLServer": {
+			"name": "REPLServer",
+			"moduleType": "class",
+			"moduleName": "REPLServer",
+			"pack": [
+				"js",
+				"node",
+				"repl"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "repl/REPLServer"
+		},
+		"js.node.Querystring.QuerystringStringifyOptions": {
+			"name": "QuerystringStringifyOptions",
+			"moduleType": "typedef",
+			"moduleName": "Querystring",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Cluster.ListeningEventAddressType": {
+			"name": "ListeningEventAddressType",
+			"moduleType": "abstract",
+			"moduleName": "Cluster",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.tls.TLSSocket.TLSSocketOptions": {
+			"name": "TLSSocketOptions",
+			"moduleType": "typedef",
+			"moduleName": "TLSSocket",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.buffer.Buffer.BufferConstants": {
+			"name": "BufferConstants",
+			"moduleType": "typedef",
+			"moduleName": "Buffer",
+			"pack": [
+				"js",
+				"node",
+				"buffer"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsCreateWriteStreamOptions": {
+			"name": "FsCreateWriteStreamOptions",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.https.Server": {
+			"name": "Server",
+			"moduleType": "class",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"https"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "https/Server"
+		},
+		"js.node.Zlib": {
+			"name": "Zlib",
+			"moduleType": "class",
+			"moduleName": "Zlib",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib"
+		},
+		"js.node.vm.Script.ScriptOptions": {
+			"name": "ScriptOptions",
+			"moduleType": "typedef",
+			"moduleName": "Script",
+			"pack": [
+				"js",
+				"node",
+				"vm"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Server.ServerListenOptionsTcp": {
+			"name": "ServerListenOptionsTcp",
+			"moduleType": "typedef",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessSpawnSyncResult": {
+			"name": "ChildProcessSpawnSyncResult",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Tls.TlsCreateServerOptions": {
+			"name": "TlsCreateServerOptions",
+			"moduleType": "typedef",
+			"moduleName": "Tls",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Timers.Timeout": {
+			"name": "Timeout",
+			"moduleType": "class",
+			"moduleName": "Timers",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.tls.SecureContext.SecureContextOptions": {
+			"name": "SecureContextOptions",
+			"moduleType": "typedef",
+			"moduleName": "SecureContext",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Readline.ReadlineOptions": {
+			"name": "ReadlineOptions",
+			"moduleType": "typedef",
+			"moduleName": "Readline",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.events.EventEmitter.EventEmitterEvent": {
+			"name": "EventEmitterEvent",
+			"moduleType": "abstract",
+			"moduleName": "EventEmitter",
+			"pack": [
+				"js",
+				"node",
+				"events"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.assert.AssertionError.AssertionErrorOptions": {
+			"name": "AssertionErrorOptions",
+			"moduleType": "typedef",
+			"moduleName": "AssertionError",
+			"pack": [
+				"js",
+				"node",
+				"assert"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Writable.WritableNewOptionsAdapter": {
+			"name": "WritableNewOptionsAdapter",
+			"moduleType": "abstract",
+			"moduleName": "Writable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Duplex": {
+			"name": "Duplex",
+			"moduleType": "class",
+			"moduleName": "Duplex",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"TSelf"
+			],
+			"isExtern": true,
+			"jsRequirePath": "stream/Duplex"
+		},
+		"js.node.fs.FSWatcher.FSWatcherChangeType": {
+			"name": "FSWatcherChangeType",
+			"moduleType": "abstract",
+			"moduleName": "FSWatcher",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Url.UrlFormatOptions": {
+			"name": "UrlFormatOptions",
+			"moduleType": "typedef",
+			"moduleName": "Url",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Readline.ClearLineDirection": {
+			"name": "ClearLineDirection",
+			"moduleType": "abstract",
+			"moduleName": "Readline",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Readable.ReadableNewOptions": {
+			"name": "ReadableNewOptions",
+			"moduleType": "typedef",
+			"moduleName": "Readable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Punycode.PunycodeUcs2": {
+			"name": "PunycodeUcs2",
+			"moduleType": "class",
+			"moduleName": "Punycode",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.fs.WriteStream.WriteStreamEvent": {
+			"name": "WriteStreamEvent",
+			"moduleType": "abstract",
+			"moduleName": "WriteStream",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Writable.WritableEvent": {
+			"name": "WritableEvent",
+			"moduleType": "abstract",
+			"moduleName": "Writable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.ServerResponse.ServerResponseEvent": {
+			"name": "ServerResponseEvent",
+			"moduleType": "abstract",
+			"moduleName": "ServerResponse",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Socket": {
+			"name": "Socket",
+			"moduleType": "class",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "net/Socket"
+		},
+		"js.node.events.EventEmitter.IEventEmitter": {
+			"name": "IEventEmitter",
+			"moduleType": "class",
+			"moduleName": "EventEmitter",
+			"pack": [
+				"js",
+				"node",
+				"events"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.dgram.Socket.MessageListener": {
+			"name": "MessageListener",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"dgram"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsLookupCallbackAllEntry": {
+			"name": "DnsLookupCallbackAllEntry",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.util.TextDecoder.TextDecodeOptions": {
+			"name": "TextDecodeOptions",
+			"moduleType": "typedef",
+			"moduleName": "TextDecoder",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Socket.SocketAdress": {
+			"name": "SocketAdress",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.DiffieHellman.IDiffieHellman": {
+			"name": "IDiffieHellman",
+			"moduleType": "class",
+			"moduleName": "DiffieHellman",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Https.HttpsCreateServerOptions": {
+			"name": "HttpsCreateServerOptions",
+			"moduleType": "typedef",
+			"moduleName": "Https",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.util.TextDecoder.TextDecoderOptions": {
+			"name": "TextDecoderOptions",
+			"moduleType": "typedef",
+			"moduleName": "TextDecoder",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.util.Types": {
+			"name": "Types",
+			"moduleType": "class",
+			"moduleName": "Types",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "util/types"
+		},
+		"js.node.fs.Stats": {
+			"name": "Stats",
+			"moduleType": "class",
+			"moduleName": "Stats",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.tls.SecurePair": {
+			"name": "SecurePair",
+			"moduleType": "class",
+			"moduleName": "SecurePair",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessExecError": {
+			"name": "ChildProcessExecError",
+			"moduleType": "class",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsResolvedAddressSOA": {
+			"name": "DnsResolvedAddressSOA",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Server.ServerListenOptionsUnix": {
+			"name": "ServerListenOptionsUnix",
+			"moduleType": "typedef",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.assert.AssertionError": {
+			"name": "AssertionError",
+			"moduleType": "class",
+			"moduleName": "AssertionError",
+			"pack": [
+				"js",
+				"node",
+				"assert"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "assert/AssertionError"
+		},
+		"js.node.net.Socket.SocketConnectOptionsUnix": {
+			"name": "SocketConnectOptionsUnix",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.fs.WriteStream": {
+			"name": "WriteStream",
+			"moduleType": "class",
+			"moduleName": "WriteStream",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.Hash": {
+			"name": "Hash",
+			"moduleType": "class",
+			"moduleName": "Hash",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Vm": {
+			"name": "Vm",
+			"moduleType": "class",
+			"moduleName": "Vm",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "vm"
+		},
+		"js.node.url.URL": {
+			"name": "URL",
+			"moduleType": "class",
+			"moduleName": "URL",
+			"pack": [
+				"js",
+				"node",
+				"url"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "url/URL"
+		},
+		"js.node.http.ClientRequest": {
+			"name": "ClientRequest",
+			"moduleType": "class",
+			"moduleName": "ClientRequest",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "http/ClientRequest"
+		},
+		"js.node.util.TextDecoder": {
+			"name": "TextDecoder",
+			"moduleType": "class",
+			"moduleName": "TextDecoder",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "util/TextDecoder"
+		},
+		"js.node.net.Socket.SocketOptions": {
+			"name": "SocketOptions",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Events": {
+			"name": "Events",
+			"moduleType": "class",
+			"moduleName": "Events",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "events"
+		},
+		"js.node.crypto.Decipher": {
+			"name": "Decipher",
+			"moduleType": "class",
+			"moduleName": "Decipher",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.url.URLSearchParams": {
+			"name": "URLSearchParams",
+			"moduleType": "class",
+			"moduleName": "URLSearchParams",
+			"pack": [
+				"js",
+				"node",
+				"url"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "url/URLSearchParams"
+		},
+		"js.node.Punycode": {
+			"name": "Punycode",
+			"moduleType": "class",
+			"moduleName": "Punycode",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "punycode"
+		},
+		"js.node.stream.Transform.TransformNewOptions": {
+			"name": "TransformNewOptions",
+			"moduleType": "typedef",
+			"moduleName": "Transform",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Repl.ReplOptions": {
+			"name": "ReplOptions",
+			"moduleType": "typedef",
+			"moduleName": "Repl",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.child_process.ChildProcess": {
+			"name": "ChildProcess",
+			"moduleType": "class",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node",
+				"child_process"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Duplex.DuplexEvent": {
+			"name": "DuplexEvent",
+			"moduleType": "abstract",
+			"moduleName": "Duplex",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.ECDH": {
+			"name": "ECDH",
+			"moduleType": "class",
+			"moduleName": "ECDH",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Querystring.QuerystringParseOptions": {
+			"name": "QuerystringParseOptions",
+			"moduleType": "typedef",
+			"moduleName": "Querystring",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.dgram.Socket.SocketOptions": {
+			"name": "SocketOptions",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"dgram"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Readable.IReadable": {
+			"name": "IReadable",
+			"moduleType": "class",
+			"moduleName": "Readable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.net.Socket.SocketOptionsBase": {
+			"name": "SocketOptionsBase",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.ClientRequest.ClientRequestEvent": {
+			"name": "ClientRequestEvent",
+			"moduleType": "abstract",
+			"moduleName": "ClientRequest",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsCreateReadStreamOptions": {
+			"name": "FsCreateReadStreamOptions",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Os.NetworkInterface": {
+			"name": "NetworkInterface",
+			"moduleType": "typedef",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessSpawnOptionsStdioFull": {
+			"name": "ChildProcessSpawnOptionsStdioFull",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Cluster.ClusterEvent": {
+			"name": "ClusterEvent",
+			"moduleType": "abstract",
+			"moduleName": "Cluster",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns": {
+			"name": "Dns",
+			"moduleType": "class",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "dns"
+		},
+		"js.node.Dns.DnsLookupCallbackAll": {
+			"name": "DnsLookupCallbackAll",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessSpawnSyncOptions": {
+			"name": "ChildProcessSpawnSyncOptions",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Domain": {
+			"name": "Domain",
+			"moduleType": "class",
+			"moduleName": "Domain",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "domain"
+		},
+		"js.node.crypto.Verify": {
+			"name": "Verify",
+			"moduleType": "class",
+			"moduleName": "Verify",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Crypto": {
+			"name": "Crypto",
+			"moduleType": "class",
+			"moduleName": "Crypto",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "crypto"
+		},
+		"js.node.zlib.InflateRaw": {
+			"name": "InflateRaw",
+			"moduleType": "class",
+			"moduleName": "InflateRaw",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/InflateRaw"
+		},
+		"js.node.Constants": {
+			"name": "Constants",
+			"moduleType": "class",
+			"moduleName": "Constants",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "constants"
+		},
+		"js.node.Http.HttpRequestOptions": {
+			"name": "HttpRequestOptions",
+			"moduleType": "typedef",
+			"moduleName": "Http",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsErrorCode": {
+			"name": "DnsErrorCode",
+			"moduleType": "abstract",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": "dns"
+		},
+		"js.node.Iterator.IteratorStep": {
+			"name": "IteratorStep",
+			"moduleType": "typedef",
+			"moduleName": "Iterator",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Util.InspectOptionsBase": {
+			"name": "InspectOptionsBase",
+			"moduleType": "typedef",
+			"moduleName": "Util",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.PassThrough": {
+			"name": "PassThrough",
+			"moduleType": "class",
+			"moduleName": "PassThrough",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "stream/PassThrough"
+		},
+		"js.node.Http.HttpCreateServerOptions": {
+			"name": "HttpCreateServerOptions",
+			"moduleType": "typedef",
+			"moduleName": "Http",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Vm.VmContext": {
+			"name": "VmContext",
+			"moduleType": "abstract",
+			"moduleName": "Vm",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.cluster.Worker.WorkerEvent": {
+			"name": "WorkerEvent",
+			"moduleType": "abstract",
+			"moduleName": "Worker",
+			"pack": [
+				"js",
+				"node",
+				"cluster"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Net.NetCreateServerOptions": {
+			"name": "NetCreateServerOptions",
+			"moduleType": "typedef",
+			"moduleName": "Net",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.url.URLSearchParams.URLSearchParamsEntry": {
+			"name": "URLSearchParamsEntry",
+			"moduleType": "abstract",
+			"moduleName": "URLSearchParams",
+			"pack": [
+				"js",
+				"node",
+				"url"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.zlib.Gzip": {
+			"name": "Gzip",
+			"moduleType": "class",
+			"moduleName": "Gzip",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/Gzip"
+		},
+		"js.node.Crypto.CryptoKeyOptions": {
+			"name": "CryptoKeyOptions",
+			"moduleType": "typedef",
+			"moduleName": "Crypto",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Net.NetConnectOptionsTcp": {
+			"name": "NetConnectOptionsTcp",
+			"moduleType": "typedef",
+			"moduleName": "Net",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.domain.Domain": {
+			"name": "Domain",
+			"moduleType": "class",
+			"moduleName": "Domain",
+			"pack": [
+				"js",
+				"node",
+				"domain"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Duplex.IDuplex": {
+			"name": "IDuplex",
+			"moduleType": "class",
+			"moduleName": "Duplex",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Https": {
+			"name": "Https",
+			"moduleType": "class",
+			"moduleName": "Https",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "https"
+		},
+		"js.node.http.Agent.HttpAgentOptions": {
+			"name": "HttpAgentOptions",
+			"moduleType": "typedef",
+			"moduleName": "Agent",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.buffer.Buffer": {
+			"name": "Buffer",
+			"moduleType": "class",
+			"moduleName": "Buffer",
+			"pack": [
+				"js",
+				"node",
+				"buffer"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "buffer/Buffer"
+		},
+		"js.node.tls.TLSSocket.TLSSocketEvent": {
+			"name": "TLSSocketEvent",
+			"moduleType": "abstract",
+			"moduleName": "TLSSocket",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsPath": {
+			"name": "FsPath",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Stream": {
+			"name": "Stream",
+			"moduleType": "class",
+			"moduleName": "Stream",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"TSelf"
+			],
+			"isExtern": true,
+			"jsRequirePath": "stream"
+		},
+		"js.node.readline.Interface.InterfaceWriteKey": {
+			"name": "InterfaceWriteKey",
+			"moduleType": "typedef",
+			"moduleName": "Interface",
+			"pack": [
+				"js",
+				"node",
+				"readline"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsError": {
+			"name": "DnsError",
+			"moduleType": "class",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.fs.FSWatcher": {
+			"name": "FSWatcher",
+			"moduleType": "class",
+			"moduleName": "FSWatcher",
+			"pack": [
+				"js",
+				"node",
+				"fs"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Readable": {
+			"name": "Readable",
+			"moduleType": "class",
+			"moduleName": "Readable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"TSelf"
+			],
+			"isExtern": true,
+			"jsRequirePath": "stream/Readable"
+		},
+		"js.node.Dns.DnsAddressFamily": {
+			"name": "DnsAddressFamily",
+			"moduleType": "abstract",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Duplex.DuplexNewOptions": {
+			"name": "DuplexNewOptions",
+			"moduleType": "typedef",
+			"moduleName": "Duplex",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Https.HttpsRequestOptions": {
+			"name": "HttpsRequestOptions",
+			"moduleType": "typedef",
+			"moduleName": "Https",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.buffer.SlowBuffer": {
+			"name": "SlowBuffer",
+			"moduleType": "class",
+			"moduleName": "SlowBuffer",
+			"pack": [
+				"js",
+				"node",
+				"buffer"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "buffer/SlowBuffer"
+		},
+		"js.node.tls.SecureContext": {
+			"name": "SecureContext",
+			"moduleType": "class",
+			"moduleName": "SecureContext",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsResolvedAddressMX": {
+			"name": "DnsResolvedAddressMX",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Crypto.CryptoAlgorithm": {
+			"name": "CryptoAlgorithm",
+			"moduleType": "abstract",
+			"moduleName": "Crypto",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Util.InspectOptions": {
+			"name": "InspectOptions",
+			"moduleType": "typedef",
+			"moduleName": "Util",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.V8": {
+			"name": "V8",
+			"moduleType": "class",
+			"moduleName": "V8",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "v8"
+		},
+		"js.node.Tls": {
+			"name": "Tls",
+			"moduleType": "class",
+			"moduleName": "Tls",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "tls"
+		},
+		"js.node.Os.NetworkInterfaceAddressInfo": {
+			"name": "NetworkInterfaceAddressInfo",
+			"moduleType": "typedef",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Querystring": {
+			"name": "Querystring",
+			"moduleType": "class",
+			"moduleName": "Querystring",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "querystring"
+		},
+		"js.node.util.TextEncoder": {
+			"name": "TextEncoder",
+			"moduleType": "class",
+			"moduleName": "TextEncoder",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "util/TextEncoder"
+		},
+		"js.node.http.ServerResponse": {
+			"name": "ServerResponse",
+			"moduleType": "class",
+			"moduleName": "ServerResponse",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "http/ServerResponse"
+		},
+		"js.node.crypto.Hmac": {
+			"name": "Hmac",
+			"moduleType": "class",
+			"moduleName": "Hmac",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.cluster.Worker": {
+			"name": "Worker",
+			"moduleType": "class",
+			"moduleName": "Worker",
+			"pack": [
+				"js",
+				"node",
+				"cluster"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.zlib.DeflateRaw": {
+			"name": "DeflateRaw",
+			"moduleType": "class",
+			"moduleName": "DeflateRaw",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/DeflateRaw"
+		},
+		"js.node.Dns.DnsLookupCallbackSingle": {
+			"name": "DnsLookupCallbackSingle",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.child_process.ChildProcess.ChildProcessSendOptions": {
+			"name": "ChildProcessSendOptions",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node",
+				"child_process"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Net": {
+			"name": "Net",
+			"moduleType": "class",
+			"moduleName": "Net",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "net"
+		},
+		"js.node.dgram.Socket.SocketBindOptions": {
+			"name": "SocketBindOptions",
+			"moduleType": "typedef",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"dgram"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Socket.SocketAdressFamily": {
+			"name": "SocketAdressFamily",
+			"moduleType": "abstract",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessSpawnOptions": {
+			"name": "ChildProcessSpawnOptions",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Fs.FsWatchFileOptions": {
+			"name": "FsWatchFileOptions",
+			"moduleType": "typedef",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Timers.Immediate": {
+			"name": "Immediate",
+			"moduleType": "class",
+			"moduleName": "Timers",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Assert": {
+			"name": "Assert",
+			"moduleType": "class",
+			"moduleName": "Assert",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "assert"
+		},
+		"js.node.tty.WriteStream": {
+			"name": "WriteStream",
+			"moduleType": "class",
+			"moduleName": "WriteStream",
+			"pack": [
+				"js",
+				"node",
+				"tty"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "tty/WriteStream"
+		},
+		"js.node.ChildProcess.ChildProcessExecCallback": {
+			"name": "ChildProcessExecCallback",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.repl.REPLServer.REPLServerOptions": {
+			"name": "REPLServerOptions",
+			"moduleType": "typedef",
+			"moduleName": "REPLServer",
+			"pack": [
+				"js",
+				"node",
+				"repl"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.net.Server": {
+			"name": "Server",
+			"moduleType": "class",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"net"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "net/Server"
+		},
+		"js.node.stream.Readable.ReadableEvent": {
+			"name": "ReadableEvent",
+			"moduleType": "abstract",
+			"moduleName": "Readable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.util.Promisify": {
+			"name": "Promisify",
+			"moduleType": "class",
+			"moduleName": "Promisify",
+			"pack": [
+				"js",
+				"node",
+				"util"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "util/promisify"
+		},
+		"js.node.ChildProcess.ChildProcessSpawnOptionsStdioSimple": {
+			"name": "ChildProcessSpawnOptionsStdioSimple",
+			"moduleType": "abstract",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.StringDecoder": {
+			"name": "StringDecoder",
+			"moduleType": "class",
+			"moduleName": "StringDecoder",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "string_decoder/StringDecoder"
+		},
+		"js.node.dgram.Socket.SocketEvent": {
+			"name": "SocketEvent",
+			"moduleType": "abstract",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"dgram"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Zlib.ZlibOptions": {
+			"name": "ZlibOptions",
+			"moduleType": "typedef",
+			"moduleName": "Zlib",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsResolvedAddress": {
+			"name": "DnsResolvedAddress",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Tty": {
+			"name": "Tty",
+			"moduleType": "class",
+			"moduleName": "Tty",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "tty"
+		},
+		"js.node.zlib.Inflate": {
+			"name": "Inflate",
+			"moduleType": "class",
+			"moduleName": "Inflate",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/Inflate"
+		},
+		"js.node.stream.Writable.IWritable": {
+			"name": "IWritable",
+			"moduleType": "class",
+			"moduleName": "Writable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.https.Agent": {
+			"name": "Agent",
+			"moduleType": "class",
+			"moduleName": "Agent",
+			"pack": [
+				"js",
+				"node",
+				"https"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "https/Agent"
+		},
+		"js.node.zlib.Deflate": {
+			"name": "Deflate",
+			"moduleType": "class",
+			"moduleName": "Deflate",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/Deflate"
+		},
+		"js.node.Dns.DnsRrtype": {
+			"name": "DnsRrtype",
+			"moduleType": "abstract",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.tls.Server.ServerEvent": {
+			"name": "ServerEvent",
+			"moduleType": "abstract",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Cluster": {
+			"name": "Cluster",
+			"moduleType": "class",
+			"moduleName": "Cluster",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "cluster"
+		},
+		"js.node.domain.Domain.DomainError": {
+			"name": "DomainError",
+			"moduleType": "typedef",
+			"moduleName": "Domain",
+			"pack": [
+				"js",
+				"node",
+				"domain"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.tty.ReadStream": {
+			"name": "ReadStream",
+			"moduleType": "class",
+			"moduleName": "ReadStream",
+			"pack": [
+				"js",
+				"node",
+				"tty"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "tty/ReadStream"
+		},
+		"js.node.tls.Server": {
+			"name": "Server",
+			"moduleType": "class",
+			"moduleName": "Server",
+			"pack": [
+				"js",
+				"node",
+				"tls"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "tls/Server"
+		},
+		"js.node.KeyValue": {
+			"name": "KeyValue",
+			"moduleType": "abstract",
+			"moduleName": "KeyValue",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [
+				"K",
+				"V"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Crypto.DiffieHellmanGroupName": {
+			"name": "DiffieHellmanGroupName",
+			"moduleType": "abstract",
+			"moduleName": "Crypto",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Repl": {
+			"name": "Repl",
+			"moduleType": "class",
+			"moduleName": "Repl",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "repl"
+		},
+		"js.node.domain.Domain.DomainEvent": {
+			"name": "DomainEvent",
+			"moduleType": "abstract",
+			"moduleName": "Domain",
+			"pack": [
+				"js",
+				"node",
+				"domain"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Dns.DnsLookupOptions": {
+			"name": "DnsLookupOptions",
+			"moduleType": "typedef",
+			"moduleName": "Dns",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessSpawnOptionsStdioBehaviour": {
+			"name": "ChildProcessSpawnOptionsStdioBehaviour",
+			"moduleType": "abstract",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.vm.Script.ScriptRunOptions": {
+			"name": "ScriptRunOptions",
+			"moduleType": "typedef",
+			"moduleName": "Script",
+			"pack": [
+				"js",
+				"node",
+				"vm"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Os.Endianness": {
+			"name": "Endianness",
+			"moduleType": "abstract",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Os.OsUserInfo": {
+			"name": "OsUserInfo",
+			"moduleType": "typedef",
+			"moduleName": "Os",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.zlib.Gunzip": {
+			"name": "Gunzip",
+			"moduleType": "class",
+			"moduleName": "Gunzip",
+			"pack": [
+				"js",
+				"node",
+				"zlib"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "zlib/Gunzip"
+		},
+		"js.node.Fs.SymlinkType": {
+			"name": "SymlinkType",
+			"moduleType": "abstract",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Vm.VmRunOptions": {
+			"name": "VmRunOptions",
+			"moduleType": "typedef",
+			"moduleName": "Vm",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.ChildProcess.ChildProcessExecOptions": {
+			"name": "ChildProcessExecOptions",
+			"moduleType": "typedef",
+			"moduleName": "ChildProcess",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.dgram.Socket": {
+			"name": "Socket",
+			"moduleType": "class",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"dgram"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "dgram/Socket"
+		},
+		"js.node.Cluster.ClusterSettings": {
+			"name": "ClusterSettings",
+			"moduleType": "typedef",
+			"moduleName": "Cluster",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.console.Console.ConsoleOptions": {
+			"name": "ConsoleOptions",
+			"moduleType": "typedef",
+			"moduleName": "Console",
+			"pack": [
+				"js",
+				"node",
+				"console"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.http.Agent": {
+			"name": "Agent",
+			"moduleType": "class",
+			"moduleName": "Agent",
+			"pack": [
+				"js",
+				"node",
+				"http"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "http/Agent"
+		},
+		"js.node.Cluster.ListeningEventAddress": {
+			"name": "ListeningEventAddress",
+			"moduleType": "typedef",
+			"moduleName": "Cluster",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Querystring.QuerystringParseResult": {
+			"name": "QuerystringParseResult",
+			"moduleType": "typedef",
+			"moduleName": "Querystring",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Transform.ITransform": {
+			"name": "ITransform",
+			"moduleType": "class",
+			"moduleName": "Transform",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Writable": {
+			"name": "Writable",
+			"moduleType": "class",
+			"moduleName": "Writable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [
+				"TSelf"
+			],
+			"isExtern": true,
+			"jsRequirePath": "stream/Writable"
+		},
+		"js.node.Require.RequireResolve": {
+			"name": "RequireResolve",
+			"moduleType": "class",
+			"moduleName": "Require",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		},
+		"js.node.Fs": {
+			"name": "Fs",
+			"moduleType": "class",
+			"moduleName": "Fs",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "fs"
+		},
+		"js.node.Cluster.ClusterSchedulingPolicy": {
+			"name": "ClusterSchedulingPolicy",
+			"moduleType": "abstract",
+			"moduleName": "Cluster",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": "cluster"
+		},
+		"js.node.Http": {
+			"name": "Http",
+			"moduleType": "class",
+			"moduleName": "Http",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "http"
+		},
+		"js.node.Net.NetIsIPResult": {
+			"name": "NetIsIPResult",
+			"moduleType": "abstract",
+			"moduleName": "Net",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.Readline": {
+			"name": "Readline",
+			"moduleType": "class",
+			"moduleName": "Readline",
+			"pack": [
+				"js",
+				"node"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": "readline"
+		},
+		"js.node.dgram.Socket.SocketType": {
+			"name": "SocketType",
+			"moduleType": "abstract",
+			"moduleName": "Socket",
+			"pack": [
+				"js",
+				"node",
+				"dgram"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.stream.Writable.Chunk": {
+			"name": "Chunk",
+			"moduleType": "typedef",
+			"moduleName": "Writable",
+			"pack": [
+				"js",
+				"node",
+				"stream"
+			],
+			"typeParameters": [],
+			"isExtern": false,
+			"jsRequirePath": null
+		},
+		"js.node.crypto.Sign": {
+			"name": "Sign",
+			"moduleType": "class",
+			"moduleName": "Sign",
+			"pack": [
+				"js",
+				"node",
+				"crypto"
+			],
+			"typeParameters": [],
+			"isExtern": true,
+			"jsRequirePath": null
+		}
+	},
+	"libraryName": "hxnodejs",
+	"jsRequireMap": {
+		"http/Server": "js.node.http.Server",
+		"string_decoder/StringDecoder": "js.node.StringDecoder",
+		"crypto/Certificate": "js.node.crypto.Certificate",
+		"tls": "js.node.Tls",
+		"dgram": "js.node.Dgram",
+		"module": "js.node.Module",
+		"zlib/Deflate": "js.node.zlib.Deflate",
+		"constants": "js.node.Constants",
+		"zlib/Unzip": "js.node.zlib.Unzip",
+		"net/Socket": "js.node.net.Socket",
+		"http": "js.node.Http",
+		"buffer/Buffer": "js.node.buffer.Buffer",
+		"zlib/InflateRaw": "js.node.zlib.InflateRaw",
+		"tty/WriteStream": "js.node.tty.WriteStream",
+		"stream/PassThrough": "js.node.stream.PassThrough",
+		"http/ServerResponse": "js.node.http.ServerResponse",
+		"repl/REPLServer": "js.node.repl.REPLServer",
+		"zlib/Gunzip": "js.node.zlib.Gunzip",
+		"tls/TLSSocket": "js.node.tls.TLSSocket",
+		"util/TextDecoder": "js.node.util.TextDecoder",
+		"buffer/SlowBuffer": "js.node.buffer.SlowBuffer",
+		"url": "js.node.Url",
+		"util/types": "js.node.util.Types",
+		"dns": "js.node.Dns",
+		"stream": "js.node.Stream",
+		"os": "js.node.Os",
+		"zlib": "js.node.Zlib",
+		"util": "js.node.Util",
+		"net": "js.node.Net",
+		"console/Console": "js.node.console.Console",
+		"assert/AssertionError": "js.node.assert.AssertionError",
+		"punycode": "js.node.Punycode",
+		"events": "js.node.Events",
+		"https/Agent": "js.node.https.Agent",
+		"net/Server": "js.node.net.Server",
+		"querystring": "js.node.Querystring",
+		"path": "js.node.Path",
+		"readline": "js.node.Readline",
+		"https/Server": "js.node.https.Server",
+		"http/Agent": "js.node.http.Agent",
+		"vm/Script": "js.node.vm.Script",
+		"zlib/Gzip": "js.node.zlib.Gzip",
+		"zlib/Inflate": "js.node.zlib.Inflate",
+		"stream/Readable": "js.node.stream.Readable",
+		"v8": "js.node.V8",
+		"crypto": "js.node.Crypto",
+		"stream/Duplex": "js.node.stream.Duplex",
+		"stream/Writable": "js.node.stream.Writable",
+		"http/IncomingMessage": "js.node.http.IncomingMessage",
+		"fs": "js.node.Fs",
+		"dgram/Socket": "js.node.dgram.Socket",
+		"tls/Server": "js.node.tls.Server",
+		"repl": "js.node.Repl",
+		"vm": "js.node.Vm",
+		"stream/Transform": "js.node.stream.Transform",
+		"child_process": "js.node.ChildProcess",
+		"tty": "js.node.Tty",
+		"assert": "js.node.Assert",
+		"domain": "js.node.Domain",
+		"util/inspect": "js.node.util.Inspect",
+		"zlib/DeflateRaw": "js.node.zlib.DeflateRaw",
+		"events/EventEmitter": "js.node.events.EventEmitter",
+		"url/URLSearchParams": "js.node.url.URLSearchParams",
+		"tty/ReadStream": "js.node.tty.ReadStream",
+		"url/URL": "js.node.url.URL",
+		"timers": "js.node.Timers",
+		"cluster": "js.node.Cluster",
+		"http/ClientRequest": "js.node.http.ClientRequest",
+		"util/TextEncoder": "js.node.util.TextEncoder",
+		"https": "js.node.Https",
+		"util/promisify": "js.node.util.Promisify"
+	},
+	"haxeVersion": "4.2.5",
+	"lowercaseLookup": {
+		"readablenewoptions": [
+			"js.node.stream.Readable.ReadableNewOptions"
+		],
+		"childprocessspawnoptionsstdiobehaviour": [
+			"js.node.ChildProcess.ChildProcessSpawnOptionsStdioBehaviour"
+		],
+		"fswatcher": [
+			"js.node.fs.FSWatcher"
+		],
+		"types": [
+			"js.node.util.Types"
+		],
+		"tlsserveroptionsbase": [
+			"js.node.Tls.TlsServerOptionsBase"
+		],
+		"chunk": [
+			"js.node.stream.Writable.Chunk"
+		],
+		"replserver": [
+			"js.node.repl.REPLServer"
+		],
+		"tls": [
+			"js.node.Tls"
+		],
+		"dgram": [
+			"js.node.Dgram"
+		],
+		"socketoptionsbase": [
+			"js.node.net.Socket.SocketOptionsBase"
+		],
+		"module": [
+			"js.node.Module"
+		],
+		"sockettype": [
+			"js.node.dgram.Socket.SocketType"
+		],
+		"interfacewritekey": [
+			"js.node.readline.Interface.InterfaceWriteKey"
+		],
+		"writableevent": [
+			"js.node.stream.Writable.WritableEvent"
+		],
+		"dnslookupcallbackallentry": [
+			"js.node.Dns.DnsLookupCallbackAllEntry"
+		],
+		"eventemitterevent": [
+			"js.node.events.EventEmitter.EventEmitterEvent"
+		],
+		"domainevent": [
+			"js.node.domain.Domain.DomainEvent"
+		],
+		"serverevent": [
+			"js.node.http.Server.ServerEvent",
+			"js.node.net.Server.ServerEvent",
+			"js.node.tls.Server.ServerEvent"
+		],
+		"writable": [
+			"js.node.stream.Writable"
+		],
+		"writablenewoptionsadapter": [
+			"js.node.stream.Writable.WritableNewOptionsAdapter"
+		],
+		"tlssocketevent": [
+			"js.node.tls.TLSSocket.TLSSocketEvent"
+		],
+		"readlinecompletercallback": [
+			"js.node.Readline.ReadlineCompleterCallback"
+		],
+		"querystringstringifyoptions": [
+			"js.node.Querystring.QuerystringStringifyOptions"
+		],
+		"tlsclientoptionsbase": [
+			"js.node.Tls.TlsClientOptionsBase"
+		],
+		"childprocessexecoptions": [
+			"js.node.ChildProcess.ChildProcessExecOptions"
+		],
+		"hmac": [
+			"js.node.crypto.Hmac"
+		],
+		"dnsresolvedaddress": [
+			"js.node.Dns.DnsResolvedAddress"
+		],
+		"networkinterfaceaddressinfo": [
+			"js.node.Os.NetworkInterfaceAddressInfo"
+		],
+		"replserveroptions": [
+			"js.node.repl.REPLServer.REPLServerOptions"
+		],
+		"server": [
+			"js.node.http.Server",
+			"js.node.https.Server",
+			"js.node.net.Server",
+			"js.node.tls.Server"
+		],
+		"securepair": [
+			"js.node.tls.SecurePair"
+		],
+		"iduplex": [
+			"js.node.stream.Duplex.IDuplex"
+		],
+		"constants": [
+			"js.node.Constants"
+		],
+		"unzip": [
+			"js.node.zlib.Unzip"
+		],
+		"deflateraw": [
+			"js.node.zlib.DeflateRaw"
+		],
+		"securecontext": [
+			"js.node.tls.SecureContext"
+		],
+		"fsconstants": [
+			"js.node.Fs.FsConstants"
+		],
+		"clusterevent": [
+			"js.node.Cluster.ClusterEvent"
+		],
+		"listeningeventaddresstype": [
+			"js.node.Cluster.ListeningEventAddressType"
+		],
+		"transformnewoptions": [
+			"js.node.stream.Transform.TransformNewOptions"
+		],
+		"agent": [
+			"js.node.https.Agent",
+			"js.node.http.Agent"
+		],
+		"urlformatoptions": [
+			"js.node.Url.UrlFormatOptions"
+		],
+		"http": [
+			"js.node.Http"
+		],
+		"processevent": [
+			"js.node.Process.ProcessEvent"
+		],
+		"idiffiehellman": [
+			"js.node.crypto.DiffieHellman.IDiffieHellman"
+		],
+		"diffiehellman": [
+			"js.node.crypto.DiffieHellman"
+		],
+		"netconnectoptionstcp": [
+			"js.node.Net.NetConnectOptionsTcp"
+		],
+		"incomingmessageeevent": [
+			"js.node.http.IncomingMessage.IncomingMessageeEvent"
+		],
+		"script": [
+			"js.node.vm.Script"
+		],
+		"bufferconstants": [
+			"js.node.buffer.Buffer.BufferConstants"
+		],
+		"cryptokeyoptions": [
+			"js.node.Crypto.CryptoKeyOptions"
+		],
+		"dnslookupcallbackall": [
+			"js.node.Dns.DnsLookupCallbackAll"
+		],
+		"transform": [
+			"js.node.stream.Transform"
+		],
+		"securepairevent": [
+			"js.node.tls.SecurePair.SecurePairEvent"
+		],
+		"inspectoptionsbase": [
+			"js.node.Util.InspectOptionsBase"
+		],
+		"socketbindoptions": [
+			"js.node.dgram.Socket.SocketBindOptions"
+		],
+		"iteratorstep": [
+			"js.node.Iterator.IteratorStep"
+		],
+		"textdecoderoptions": [
+			"js.node.util.TextDecoder.TextDecoderOptions"
+		],
+		"urlsearchparams": [
+			"js.node.url.URLSearchParams"
+		],
+		"childprocessspawnoptionsstdiofull": [
+			"js.node.ChildProcess.ChildProcessSpawnOptionsStdioFull"
+		],
+		"itransform": [
+			"js.node.stream.Transform.ITransform"
+		],
+		"pathobject": [
+			"js.node.Path.PathObject"
+		],
+		"childprocessexecerror": [
+			"js.node.ChildProcess.ChildProcessExecError"
+		],
+		"inflate": [
+			"js.node.zlib.Inflate"
+		],
+		"verify": [
+			"js.node.crypto.Verify"
+		],
+		"fscreatewritestreamoptions": [
+			"js.node.Fs.FsCreateWriteStreamOptions"
+		],
+		"decipher": [
+			"js.node.crypto.Decipher"
+		],
+		"dnsresolvedaddressmx": [
+			"js.node.Dns.DnsResolvedAddressMX"
+		],
+		"promisify": [
+			"js.node.util.Promisify"
+		],
+		"incomingmessage": [
+			"js.node.http.IncomingMessage"
+		],
+		"socketconnectoptionstcp": [
+			"js.node.net.Socket.SocketConnectOptionsTcp"
+		],
+		"symlinktype": [
+			"js.node.Fs.SymlinkType"
+		],
+		"childprocessexeccallback": [
+			"js.node.ChildProcess.ChildProcessExecCallback"
+		],
+		"immediate": [
+			"js.node.Timers.Immediate"
+		],
+		"clientrequestevent": [
+			"js.node.http.ClientRequest.ClientRequestEvent"
+		],
+		"childprocessexecfileoptions": [
+			"js.node.ChildProcess.ChildProcessExecFileOptions"
+		],
+		"fspath": [
+			"js.node.Fs.FsPath"
+		],
+		"socketadress": [
+			"js.node.net.Socket.SocketAdress"
+		],
+		"require": [
+			"js.node.Require"
+		],
+		"dnslookupcallbacksingle": [
+			"js.node.Dns.DnsLookupCallbackSingle"
+		],
+		"socketoptions": [
+			"js.node.net.Socket.SocketOptions",
+			"js.node.dgram.Socket.SocketOptions"
+		],
+		"url": [
+			"js.node.Url",
+			"js.node.url.URL"
+		],
+		"buffer": [
+			"js.node.Buffer",
+			"js.node.buffer.Buffer"
+		],
+		"networkinterface": [
+			"js.node.Os.NetworkInterface"
+		],
+		"socketadressfamily": [
+			"js.node.net.Socket.SocketAdressFamily"
+		],
+		"eventemitter": [
+			"js.node.events.EventEmitter"
+		],
+		"method": [
+			"js.node.http.Method"
+		],
+		"dns": [
+			"js.node.Dns"
+		],
+		"textencoder": [
+			"js.node.util.TextEncoder"
+		],
+		"stream": [
+			"js.node.Stream"
+		],
+		"os": [
+			"js.node.Os"
+		],
+		"zlib": [
+			"js.node.zlib.Zlib",
+			"js.node.Zlib"
+		],
+		"clearlinedirection": [
+			"js.node.Readline.ClearLineDirection"
+		],
+		"readableevent": [
+			"js.node.stream.Readable.ReadableEvent"
+		],
+		"util": [
+			"js.node.Util"
+		],
+		"textdecodeoptions": [
+			"js.node.util.TextDecoder.TextDecodeOptions"
+		],
+		"net": [
+			"js.node.Net"
+		],
+		"childprocessspawnsyncoptions": [
+			"js.node.ChildProcess.ChildProcessSpawnSyncOptions"
+		],
+		"tlssocketoptions": [
+			"js.node.tls.TLSSocket.TLSSocketOptions"
+		],
+		"httpcreateserveroptions": [
+			"js.node.Http.HttpCreateServerOptions"
+		],
+		"readstreamevent": [
+			"js.node.fs.ReadStream.ReadStreamEvent"
+		],
+		"fsopenflag": [
+			"js.node.Fs.FsOpenFlag"
+		],
+		"punycode": [
+			"js.node.Punycode"
+		],
+		"events": [
+			"js.node.Events"
+		],
+		"httpagentoptions": [
+			"js.node.http.Agent.HttpAgentOptions"
+		],
+		"clusterschedulingpolicy": [
+			"js.node.Cluster.ClusterSchedulingPolicy"
+		],
+		"interface": [
+			"js.node.readline.Interface"
+		],
+		"dnsrrtype": [
+			"js.node.Dns.DnsRrtype"
+		],
+		"workerevent": [
+			"js.node.cluster.Worker.WorkerEvent"
+		],
+		"tlscreateserveroptions": [
+			"js.node.Tls.TlsCreateServerOptions"
+		],
+		"console": [
+			"js.node.console.Console"
+		],
+		"duplex": [
+			"js.node.stream.Duplex"
+		],
+		"querystring": [
+			"js.node.Querystring"
+		],
+		"childprocessevent": [
+			"js.node.child_process.ChildProcess.ChildProcessEvent"
+		],
+		"urlsearchparamsentry": [
+			"js.node.url.URLSearchParams.URLSearchParamsEntry"
+		],
+		"requireresolveoptions": [
+			"js.node.Require.RequireResolveOptions"
+		],
+		"inspect": [
+			"js.node.util.Inspect"
+		],
+		"readlineoptions": [
+			"js.node.Readline.ReadlineOptions"
+		],
+		"duplexnewoptions": [
+			"js.node.stream.Duplex.DuplexNewOptions"
+		],
+		"dnsaddressfamily": [
+			"js.node.Dns.DnsAddressFamily"
+		],
+		"dnsresolvedaddresssrv": [
+			"js.node.Dns.DnsResolvedAddressSRV"
+		],
+		"readstream": [
+			"js.node.fs.ReadStream",
+			"js.node.tty.ReadStream"
+		],
+		"serverresponseevent": [
+			"js.node.http.ServerResponse.ServerResponseEvent"
+		],
+		"httpsagentoptions": [
+			"js.node.https.Agent.HttpsAgentOptions"
+		],
+		"path": [
+			"js.node.Path"
+		],
+		"v8heapspacestatistics": [
+			"js.node.V8.V8HeapSpaceStatistics"
+		],
+		"sign": [
+			"js.node.crypto.Sign"
+		],
+		"readline": [
+			"js.node.Readline"
+		],
+		"istream": [
+			"js.node.Stream.IStream"
+		],
+		"assertionerroroptions": [
+			"js.node.assert.AssertionError.AssertionErrorOptions"
+		],
+		"consoleoptions": [
+			"js.node.console.Console.ConsoleOptions"
+		],
+		"scriptrunoptions": [
+			"js.node.vm.Script.ScriptRunOptions"
+		],
+		"iterator": [
+			"js.node.Iterator"
+		],
+		"querystringparseoptions": [
+			"js.node.Querystring.QuerystringParseOptions"
+		],
+		"ecdh": [
+			"js.node.crypto.ECDH"
+		],
+		"childprocess": [
+			"js.node.ChildProcess",
+			"js.node.child_process.ChildProcess"
+		],
+		"writestreamevent": [
+			"js.node.tty.WriteStream.WriteStreamEvent",
+			"js.node.fs.WriteStream.WriteStreamEvent"
+		],
+		"certificate": [
+			"js.node.crypto.Certificate"
+		],
+		"passthrough": [
+			"js.node.stream.PassThrough"
+		],
+		"diffiehellmangroupname": [
+			"js.node.Crypto.DiffieHellmanGroupName"
+		],
+		"gunzip": [
+			"js.node.zlib.Gunzip"
+		],
+		"v8": [
+			"js.node.V8"
+		],
+		"crypto": [
+			"js.node.Crypto"
+		],
+		"tlsoptionsbase": [
+			"js.node.Tls.TlsOptionsBase"
+		],
+		"childprocessspawnoptions": [
+			"js.node.ChildProcess.ChildProcessSpawnOptions"
+		],
+		"querystringparseresult": [
+			"js.node.Querystring.QuerystringParseResult"
+		],
+		"socketevent": [
+			"js.node.net.Socket.SocketEvent",
+			"js.node.dgram.Socket.SocketEvent"
+		],
+		"socket": [
+			"js.node.net.Socket",
+			"js.node.dgram.Socket"
+		],
+		"deflate": [
+			"js.node.zlib.Deflate"
+		],
+		"v8heapstatistics": [
+			"js.node.V8.V8HeapStatistics"
+		],
+		"messagelistener": [
+			"js.node.dgram.Socket.MessageListener"
+		],
+		"worker": [
+			"js.node.cluster.Worker"
+		],
+		"domainerror": [
+			"js.node.domain.Domain.DomainError"
+		],
+		"duplexevent": [
+			"js.node.stream.Duplex.DuplexEvent"
+		],
+		"cipher": [
+			"js.node.crypto.Cipher"
+		],
+		"childprocesssendoptions": [
+			"js.node.child_process.ChildProcess.ChildProcessSendOptions"
+		],
+		"childprocessspawnsyncresult": [
+			"js.node.ChildProcess.ChildProcessSpawnSyncResult"
+		],
+		"dnserror": [
+			"js.node.Dns.DnsError"
+		],
+		"osuserinfo": [
+			"js.node.Os.OsUserInfo"
+		],
+		"fswatcherchangetype": [
+			"js.node.fs.FSWatcher.FSWatcherChangeType"
+		],
+		"childprocessspawnoptionsstdiosimple": [
+			"js.node.ChildProcess.ChildProcessSpawnOptionsStdioSimple"
+		],
+		"writestream": [
+			"js.node.fs.WriteStream",
+			"js.node.tty.WriteStream"
+		],
+		"childprocessspawnoptionsstdio": [
+			"js.node.ChildProcess.ChildProcessSpawnOptionsStdio"
+		],
+		"clientrequest": [
+			"js.node.http.ClientRequest"
+		],
+		"textdecoder": [
+			"js.node.util.TextDecoder"
+		],
+		"punycodeucs2": [
+			"js.node.Punycode.PunycodeUcs2"
+		],
+		"requireresolve": [
+			"js.node.Require.RequireResolve"
+		],
+		"serverlistenoptionsunix": [
+			"js.node.net.Server.ServerListenOptionsUnix"
+		],
+		"fswatcherevent": [
+			"js.node.fs.FSWatcher.FSWatcherEvent"
+		],
+		"netcreateserveroptions": [
+			"js.node.Net.NetCreateServerOptions"
+		],
+		"keyvalue": [
+			"js.node.KeyValue"
+		],
+		"stats": [
+			"js.node.fs.Stats"
+		],
+		"childprocessforkoptions": [
+			"js.node.ChildProcess.ChildProcessForkOptions"
+		],
+		"fsmode": [
+			"js.node.Fs.FsMode"
+		],
+		"ieventemitter": [
+			"js.node.events.EventEmitter.IEventEmitter"
+		],
+		"ecdhformat": [
+			"js.node.crypto.ECDH.ECDHFormat"
+		],
+		"fscreatereadstreamoptions": [
+			"js.node.Fs.FsCreateReadStreamOptions"
+		],
+		"netconnectoptionsunix": [
+			"js.node.Net.NetConnectOptionsUnix"
+		],
+		"httpscreateserveroptions": [
+			"js.node.Https.HttpsCreateServerOptions"
+		],
+		"event": [
+			"js.node.events.EventEmitter.Event"
+		],
+		"dnserrorcode": [
+			"js.node.Dns.DnsErrorCode"
+		],
+		"readable": [
+			"js.node.stream.Readable"
+		],
+		"cpu": [
+			"js.node.Os.CPU"
+		],
+		"zliboptions": [
+			"js.node.Zlib.ZlibOptions"
+		],
+		"serverresponse": [
+			"js.node.http.ServerResponse"
+		],
+		"slowbuffer": [
+			"js.node.buffer.SlowBuffer"
+		],
+		"fs": [
+			"js.node.Fs"
+		],
+		"httprequestoptions": [
+			"js.node.Http.HttpRequestOptions"
+		],
+		"urlobject": [
+			"js.node.Url.UrlObject"
+		],
+		"cputime": [
+			"js.node.Os.CPUTime"
+		],
+		"repl": [
+			"js.node.Repl"
+		],
+		"vm": [
+			"js.node.Vm"
+		],
+		"assertionerror": [
+			"js.node.assert.AssertionError"
+		],
+		"informationeventdata": [
+			"js.node.http.ClientRequest.InformationEventData"
+		],
+		"memoryusage": [
+			"js.node.Process.MemoryUsage"
+		],
+		"dnsresolvedaddresssoa": [
+			"js.node.Dns.DnsResolvedAddressSOA"
+		],
+		"vmrunoptions": [
+			"js.node.Vm.VmRunOptions"
+		],
+		"reploptions": [
+			"js.node.Repl.ReplOptions"
+		],
+		"httpsrequestoptions": [
+			"js.node.Https.HttpsRequestOptions"
+		],
+		"gzip": [
+			"js.node.zlib.Gzip"
+		],
+		"inspectoptions": [
+			"js.node.Util.InspectOptions"
+		],
+		"tty": [
+			"js.node.Tty"
+		],
+		"inflateraw": [
+			"js.node.zlib.InflateRaw"
+		],
+		"assert": [
+			"js.node.Assert"
+		],
+		"domain": [
+			"js.node.Domain",
+			"js.node.domain.Domain"
+		],
+		"hash": [
+			"js.node.crypto.Hash"
+		],
+		"interfaceevent": [
+			"js.node.readline.Interface.InterfaceEvent"
+		],
+		"scriptoptions": [
+			"js.node.vm.Script.ScriptOptions"
+		],
+		"replserverevent": [
+			"js.node.repl.REPLServer.REPLServerEvent"
+		],
+		"securecontextoptions": [
+			"js.node.tls.SecureContext.SecureContextOptions"
+		],
+		"writablenewoptions": [
+			"js.node.stream.Writable.WritableNewOptions"
+		],
+		"timeout": [
+			"js.node.Timers.Timeout"
+		],
+		"listeningeventaddress": [
+			"js.node.Cluster.ListeningEventAddress"
+		],
+		"stringdecoder": [
+			"js.node.StringDecoder"
+		],
+		"fswritefileoptions": [
+			"js.node.Fs.FsWriteFileOptions"
+		],
+		"dnslookupoptions": [
+			"js.node.Dns.DnsLookupOptions"
+		],
+		"ireadable": [
+			"js.node.stream.Readable.IReadable"
+		],
+		"osconstants": [
+			"js.node.Os.OsConstants"
+		],
+		"tlssocket": [
+			"js.node.tls.TLSSocket"
+		],
+		"vmcontext": [
+			"js.node.Vm.VmContext"
+		],
+		"fswatchfileoptions": [
+			"js.node.Fs.FsWatchFileOptions"
+		],
+		"clustersettings": [
+			"js.node.Cluster.ClusterSettings"
+		],
+		"timers": [
+			"js.node.Timers"
+		],
+		"cluster": [
+			"js.node.Cluster"
+		],
+		"serverlistenoptionstcp": [
+			"js.node.net.Server.ServerListenOptionsTcp"
+		],
+		"socketconnectoptionsunix": [
+			"js.node.net.Socket.SocketConnectOptionsUnix"
+		],
+		"endianness": [
+			"js.node.Os.Endianness"
+		],
+		"process": [
+			"js.node.Process"
+		],
+		"iwritable": [
+			"js.node.stream.Writable.IWritable"
+		],
+		"cryptoalgorithm": [
+			"js.node.Crypto.CryptoAlgorithm"
+		],
+		"netisipresult": [
+			"js.node.Net.NetIsIPResult"
+		],
+		"https": [
+			"js.node.Https"
+		],
+		"tlsconnectoptions": [
+			"js.node.Tls.TlsConnectOptions"
+		]
+	}
+}

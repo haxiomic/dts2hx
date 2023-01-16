@@ -1,0 +1,6 @@
+-D TypeMapMacro
+--macro HxnodejsMacro.getMap(false)
+--library hxnodejs
+--library Console.hx
+--js not-real.js
+--no-output

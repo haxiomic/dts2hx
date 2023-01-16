@@ -94,6 +94,7 @@ class Log {
 	}
 
 	static public function symbolInfo(symbol: Symbol): String {
+		if (symbol == null) return '<red>null</> (symbol is null)';
 		var str = '<b,cyan>${symbol.name} ${TsSymbolTools.getFlagsInfo(symbol)}</>';
 		if (symbol.valueDeclaration != null) {
 			str += ' ' + nodeInfo(symbol.valueDeclaration);

@@ -10,6 +10,7 @@ using tool.HaxeTools;
 using tool.SymbolAccessTools;
 using tool.TsProgramTools;
 using tool.TsSymbolTools;
+using StringTools;
 
 /**
 	The idea here is to generate a haxe type-path for all symbols upfront (including external modules and build-in lib symbols).
@@ -26,19 +27,22 @@ class HaxeTypePathMap {
 	// the same symbol may have multiple type paths if it has multiple SymbolAccess
 	final symbolTypePathMap: Map<Int, Array<InternalModule>>;
 	final stdLibMap: Null<TypeMap>;
+	final hxnodejsMap: Null<TypeMap>;
 
 	public function new(
 		inputParentModuleName: String,
 		globalPackageName: Null<String>,
 		program: Program,
 		symbolAccessMap: SymbolAccessMap,
-		stdLibMap: Null<TypeMap>
+		stdLibMap: Null<TypeMap>,
+		hxnodejsMap: Null<TypeMap>
 	) {
 		this.inputParentModuleName = inputParentModuleName;
 		this.globalPackageName = globalPackageName;
 		this.program = program;
 		this.symbolAccessMap = symbolAccessMap;
 		this.stdLibMap = stdLibMap;
+		this.hxnodejsMap = hxnodejsMap;
 		this.tc = program.getTypeChecker();
 		symbolTypePathMap = buildHaxeTypePathMap();
 	}
@@ -90,7 +94,7 @@ class HaxeTypePathMap {
 			Log.warn('Internal error: unexpected symbol passed into `getTypePath()`', symbol);
 		}
 
-		debug();
+		// debug();
 
 		// we can generate a type-path on demand, but we won't have name deduplication, so it might be wrong
 		return generateTypePath(symbol, accessContext, preferInterfaceStructure);
@@ -320,6 +324,39 @@ class HaxeTypePathMap {
 			}
 		}
 
+		var name = getHaxeTypeNameFromAccess(symbol, access);
+		// prefix I if interface-structure version of a type
+		name = asInterfaceStructure ? 'I' + name : name;
+
+		// hxnodejs mapping
+		var isNodeJsType = symbol.getDeclarationsArray().exists(d -> d.getSourceFile().moduleName.startsWith('node/'));
+		if (hxnodejsMap != null) {
+			if (isNodeJsType) {
+				var tsTypeParamDeclarations = symbol.getDeclarationTypeParameters();
+				var matchedPath = matchHxnodejsType(symbol, access, name);
+				if (matchedPath != null) {
+					// check type-parameters match and generate externs for this built-in if they don't
+					var typeInfo = hxnodejsMap.typeInfo.get(matchedPath);
+					var typeParameterMatch = typeInfo != null && typeInfo.typeParameters.length == tsTypeParamDeclarations.length;
+					if (typeParameterMatch) {
+						var tp = HaxeTools.getTypePathFromString(matchedPath);
+						return {
+							name: tp.name,
+							moduleName: tp.moduleName,
+							pack: tp.pack,
+							isExistingStdLibType: true,
+						}
+					} else {
+						Log.warn('Type parameter mismatch between hxnodejs type <b>"$name"</> (<b>${typeInfo.typeParameters.length}</>) and node type (<b>${tsTypeParamDeclarations.length}</>)', symbol);	
+						clashesWithBuiltIn = true; // rename to avoid clash with existing hxnodejs type
+					}
+				} else {
+					// no match found, generate as usual
+					Log.warn('node type <b>$name</> not found in hxnodejs externs', symbol);
+				}
+			}
+		}
+
 		function hasDeclarationInLib(symbol: Symbol, filename: String) {
 			for (declaration in symbol.getDeclarationsArray()) {
 				var sourceFile = declaration.getSourceFile();
@@ -330,11 +367,14 @@ class HaxeTypePathMap {
 			return false;
 		}
 
-		// if the symbol derives from a built-in, prefix js.lib or js.html
-		// otherwise prefix the module name (if it's a path, add a pack for each directory)
 		var pack = if (isBuiltIn) {
+			// if the symbol derives from a built-in, prefix js.lib or js.html
+			// otherwise prefix the module name (if it's a path, add a pack for each directory)
 			if (hasDeclarationInLib(symbol, 'lib.dom.d.ts')) ['js', 'html']
 			else ['js', 'lib'];
+		} else if (isNodeJsType) {
+			// if the symbol derives from a node.js type, prefix `js` (default is just `node`)
+			['js'];
 		} else {
 			[];
 		}
@@ -378,23 +418,41 @@ class HaxeTypePathMap {
 		// make pack a safe package path
 		pack = pack.map(s -> s.toSafePackageName());
 
-		/**
-			When generating a haxe module name for a symbol, rather than using the symbol's name, we use the name used to _access_ the symbol
-			This may be different from the symbol name itself. For example, say we have a module which uses `export =`
-			```typescript
-			declare module "lib/fs" {
+		// rename if name that conflict with std.* types
+		// @! we should generate this list automatically in the future
+		var disallowedNames = stdLibMap != null ? stdLibMap.topLevelNames : defaultDisallowedNames;
+		// add '_' to avoid disallowed names
+		if (disallowedNames.indexOf(name) != -1 || clashesWithBuiltIn) {
+			name = name + '_';
+		}
 
-				class internal {
-					// ...	
-				}
+		// handle short aliases
+		return {
+			moduleName: name,
+			name: name,
+			pack: pack,
+			isExistingStdLibType: false,
+		}
+	}
 
-				export = internal;
+	/**
+		When generating a haxe module name for a symbol, rather than using the symbol's name, we use the name used to _access_ the symbol
+		This may be different from the symbol name itself. For example, say we have a module which uses `export =`
+		```typescript
+		declare module "lib/fs" {
 
+			class internal {
+				// ...	
 			}
-			```
 
-			References to the class `internal` should be exposed as references to `"lib/fs"`, and `internal` should not appear in the generated haxe
-		**/
+			export = internal;
+
+		}
+		```
+
+		References to the class `internal` should be exposed as references to `"lib/fs"`, and `internal` should not appear in the generated haxe
+	**/
+	function getHaxeTypeNameFromAccess(symbol: Symbol, access: SymbolAccess) {
 		var typeIdentifier: String = switch access {
 			case AmbientModule(path, _, symbolChain), ExportModule(path, _, symbolChain):
 				var lastSymbol = symbolChain[symbolChain.length - 1];
@@ -421,25 +479,48 @@ class HaxeTypePathMap {
 			case Inaccessible:
 				symbol.name;
 		}
-		var name = typeIdentifier.toSafeTypeName();
-		// prefix I if interface-structure version of a type
-		name = asInterfaceStructure ? 'I' + name : name;
+		return typeIdentifier.toSafeTypeName();
+	}
 
-		// rename if name that conflict with std.* types
-		// @! we should generate this list automatically in the future
-		var disallowedNames = stdLibMap != null ? stdLibMap.topLevelNames : defaultDisallowedNames;
-		// add '_' to avoid disallowed names
-		if (disallowedNames.indexOf(name) != -1 || clashesWithBuiltIn) {
-			name = name + '_';
+	function matchHxnodejsType(symbol: Symbol, access: SymbolAccess, name: String): Null<String> {
+		var accessMeta = access.toAccessMetadata();
+		if (accessMeta.name == ':jsRequire') {
+			// we can use the jsRequire lookup to find the hxnodejs type
+			var jsRequirePath = accessMeta.params.map(p -> haxe.macro.ExprTools.getValue(p)).join('/');
+			var jsRequireHaxePath = hxnodejsMap.jsRequireMap.get(jsRequirePath);
+			if (jsRequireHaxePath != null) {
+				return jsRequireHaxePath;
+			}
 		}
 
-		// handle short aliases
-		return {
-			moduleName: name,
-			name: name,
-			pack: pack,
-			isExistingStdLibType: false,
+		// try searching the lowercaseLookup
+		var lookupEntries = hxnodejsMap.lowercaseLookup.get(name.toLowerCase());
+		if (lookupEntries != null) {
+			// find closest match: check if node package matches node.js module name
+
+			var closestMatches = switch access {
+				case AmbientModule(nodeModule, _, _), ExportModule(nodeModule, _, _):
+					nodeModule = tool.StringTools.unwrapQuotes(nodeModule);
+					// find js.node.$m
+					lookupEntries.filter(p -> p.toLowerCase().startsWith('js.node.${nodeModule.toLowerCase()}.'));
+
+				case Global(_), Inaccessible:
+					// js.node level
+					lookupEntries.filter(p -> {
+						var tp = HaxeTools.getTypePathFromString(p);
+						return tp.pack.length == 2 && tp.pack[0] == 'js' && tp.pack[1] == 'node';
+					});
+			}
+
+			if (closestMatches.length > 0) {
+				return closestMatches[0];
+			} else if (lookupEntries.length == 1) {
+				Log.warn('Could not find an exact match for hxnodejs type "${name}" (using ${lookupEntries[0]})');
+				return lookupEntries[0];
+			}
 		}
+
+		return null;
 	}
 
 	/**
