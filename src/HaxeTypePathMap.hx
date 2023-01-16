@@ -372,7 +372,7 @@ class HaxeTypePathMap {
 			// otherwise prefix the module name (if it's a path, add a pack for each directory)
 			if (hasDeclarationInLib(symbol, 'lib.dom.d.ts')) ['js', 'html']
 			else ['js', 'lib'];
-		} else if (isNodeJsType) {
+		} else if (isNodeJsType && hxnodejsMap != null) {
 			// if the symbol derives from a node.js type, prefix `js` (default is just `node`)
 			['js'];
 		} else {
