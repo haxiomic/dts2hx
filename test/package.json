@@ -24,6 +24,7 @@
     "@types/pixi.js": "4.8.6",
     "@types/react": "16.9.34",
     "@types/vscode": "1.45.1",
+    "@types/ws": "^8.5.4",
     "babylonjs": "4.0.3",
     "big.js": "5.2.2",
     "d3": "5.15.0",

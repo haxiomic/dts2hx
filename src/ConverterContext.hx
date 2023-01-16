@@ -132,14 +132,18 @@ class ConverterContext {
 	final anyUnionCollapse = false; // `any | string` -> `any`
 	final unionizedFunctionTypes = true; // `(?b) => C` -> `()->C | (b)->C`
 
+	final hxnodejsMap: Null<typemap.TypeMap>;
+
 	public function new(
 		inputModuleName: String,
 		moduleSearchPath: String,
 		compilerOptions: CompilerOptions,
 		stdLibMap: Null<typemap.TypeMap>,
+		hxnodejsMap: Null<typemap.TypeMap>,
 		options: Options
 	) {
 		this.options = options;
+		this.hxnodejsMap = hxnodejsMap;
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
 		moduleSearchPath = sys.FileSystem.absolutePath(moduleSearchPath);
 		this.moduleSearchPath = moduleSearchPath;
@@ -199,7 +203,12 @@ class ConverterContext {
 		program.assignModuleNames(moduleSearchPath, host);
 
 		// determine external dependencies:
-		moduleDependencies = program.getDependencies(inputModuleSourceFiles, normalizedInputModuleName, host);
+		var dependencies = program.getDependencies(inputModuleSourceFiles, normalizedInputModuleName, host);
+		// skip node types dependency if we are using hxnodejs
+		if (hxnodejsMap != null) {
+			dependencies = dependencies.filter(d -> d.normalizedModuleName != 'node');
+		}
+		moduleDependencies = dependencies;
 
 		// populate symbol access map
 		symbolAccessMap = new SymbolAccessMap(program);
@@ -210,7 +219,8 @@ class ConverterContext {
 			options.globalPackageName,
 			program,
 			symbolAccessMap,
-			stdLibMap
+			stdLibMap,
+			hxnodejsMap
 		);
 
 		// convert symbols, starting from entry-point file
@@ -328,6 +338,11 @@ class ConverterContext {
 					} else if (options.queueExternalSymbols) {
 						Log.log('Queuing external symbol', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
+					} else if (hxnodejsMap != null) {
+						// when using hxnodejs we want to generate any node types that couldn't be matched
+						if (hxTypePath.pack.join('.').startsWith('js.node.')) {
+							declarationSymbolQueue.tryEnqueue(symbol);
+						}
 					}
 				}
 			}

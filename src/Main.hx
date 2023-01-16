@@ -31,6 +31,7 @@ typedef CliOptions = {
 	libWrapper: Bool,
 	logLevel: LogLevel,
 	stdLibMode: StdLibMode,
+	hxnodejs: Bool,
 	// experimental
 	globalTypes: Bool,
 	modularTypes: Bool,
@@ -47,7 +48,8 @@ typedef CliOptions = {
 class Main {
 
 	static public final dts2hxPackageJson = Macro.getJson('package.json');
-	static final defaultStdLibTypeMap: TypeMap = Macro.getJson('src/typemap/4.0.5-stdlib.json');
+	static final defaultStdLibTypeMap: TypeMap = Macro.getJson('src/typemap/std-4.2.5.json');
+	static final defaultHxnodejsTypeMap: TypeMap = Macro.getJson('src/typemap/hxnodejs-12.1.0.json');
 
 	static function main() {
 		Console.warnPrefix = '<b,yellow>> Warning:</b> ';
@@ -68,6 +70,7 @@ class Main {
 			libWrapper: true,
 			logLevel: Error,
 			stdLibMode: SystemHaxe,
+			hxnodejs: false,
 			// experimental
 			globalTypes: true,
 			modularTypes: true,
@@ -140,6 +143,11 @@ class Main {
 			'--skipDependencies' => () -> {
 				cliOptions.skipDependencies = true;
 			},
+			// see https://github.com/haxiomic/dts2hx/issues/37#issuecomment-642242254
+			@doc('Generate external types into library output, use with --skipDependencies to generate a self-contained library instead of multiple libraries')
+			'--includeExternal' => () -> {
+				cliOptions.queueExternalSymbols = true;
+			},
 
 			@doc('Enables generating type parameter constraints. This will often work fine for many modules but it is a WIP feature')
 			'--constraints' => () -> {
@@ -151,6 +159,11 @@ class Main {
 				name = StringTools.trim(name);
 				cliOptions.globalPackageName = name == '' ? null : name;
 				explicitGlobalPackageName = true;
+			},
+
+			@doc('Use map node.js types to hxnodejs where possible')
+			'--hxnodejs' => () -> {
+				cliOptions.hxnodejs = true;
 			},
 
 			@doc('Disables mapping types to the haxe standard library – this means externs will be generated for built-in types')
@@ -193,11 +206,6 @@ class Main {
 			// @doc('Experimental flag to improve conversion of intersection types. Currently can cause infinite loop on some packages')
 			'--allowIntersectionRasterization' => () -> {
 				cliOptions.allowIntersectionRasterization = true;
-			},
-			
-			// see https://github.com/haxiomic/dts2hx/issues/37#issuecomment-642242254
-			'--includeExternal' => () -> {
-				cliOptions.queueExternalSymbols = true;
 			},
 
 			'--noDts2hxVersion' => () -> {
@@ -371,7 +379,7 @@ class Main {
 					var str = ChildProcess.execSync('haxe --version');
 					Console.log('Using standard library of system haxe version <b>$str</>');
 					var typemapPath = Path.join([Node.__dirname, '../', 'src/typemap']);
-					var stdLibJsonStr = ChildProcess.execSync('haxe -D StdLibMacro --macro "StdLibMacro.getMap(true)" --js not-real.js --no-output', {
+					var stdLibJsonStr = ChildProcess.execSync('haxe -D TypeMapMacro --macro "StdLibMacro.getMap(true)" --js not-real.js --no-output', {
 						cwd: typemapPath
 					});
 					haxe.Json.parse(stdLibJsonStr);
@@ -382,6 +390,12 @@ class Main {
 				}
 		}
 
+		var hxnodejsMap = if (cliOptions.hxnodejs) {
+			defaultHxnodejsTypeMap;
+		} else {
+			null;
+		}
+
 		if (moduleQueue.empty()) {
 			Log.error('No modules queued');
 		}
@@ -390,7 +404,7 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions);
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, hxnodejsMap, cliOptions);
 			if (converterContext == null) continue;
 			
 			var moduleDependencies = converterContext.moduleDependencies;
@@ -398,15 +412,23 @@ class Main {
 				Log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 			}
 			if (!cliOptions.skipDependencies) for (moduleDependency in moduleDependencies) {
+				// queue module to be converted 
 				moduleQueue.tryEnqueue(moduleDependency.normalizedModuleName);
 			}
 		}
 	}
 
-	static public function convertTsModule(moduleName: String, moduleSearchPath: String, compilerOptions: CompilerOptions, stdLibTypeMap: Null<TypeMap>, cliOptions: CliOptions): Null<ConverterContext> {
+	static public function convertTsModule(
+		moduleName: String,
+		moduleSearchPath: String,
+		compilerOptions: CompilerOptions,
+		stdLibTypeMap: Null<TypeMap>,
+		hxnodejsMap: Null<TypeMap>,
+		cliOptions: CliOptions
+	): Null<ConverterContext> {
 		var converter =
 			try {
-				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, cliOptions);
+				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, hxnodejsMap, cliOptions);
 			} catch (e: Any) {
 				Log.error(e);
 				return null;

@@ -1,3 +1,4 @@
+import TypeMapTools;
 import haxe.DynamicAccess;
 import haxe.macro.Context;
 import haxe.macro.Compiler;
@@ -10,19 +11,25 @@ import haxe.macro.Type;
 		Compiler.include('js.lib', true);
 		Compiler.include('js.html', true);
 
+		var haxeVersion = Context.definedValue('haxe');
 		var stdLibMap: TypeMap = {
-			haxeVersion: Context.definedValue('haxe'),
+			haxeVersion: haxeVersion,
+			libraryName: 'std',
+			libraryVersion: haxeVersion,
 			topLevelNames: [],
 			js: {},
+			typeInfo: {},
+			jsRequireMap: {},
+			lowercaseLookup: {},
 		}
 		
-		function processBaseType(type: Type, t: BaseType, params: Array<Type>) {
+		function processBaseType(typeMap: TypeMap, type: Type, t: BaseType, params: Array<Type>) {
 			if (t.isPrivate) return; // can't use private types
 			
 			if (t.pack.length == 0) {
 				// top-level types
 				if (!t.meta.has('ignore')) {
-					stdLibMap.topLevelNames.push(t.name);
+					typeMap.topLevelNames.push(t.name);
 				}
 			} else if (t.pack[0] == 'js' && t.pack.length > 1) {
 				// js.* packages
@@ -34,7 +41,7 @@ import haxe.macro.Type;
 				var moduleName = t.module.split('.').pop();
 
 				// Console.printlnFormatted('${t.pack}, <cyan>${moduleName}.${t.name}</>, ${if (t.name != nativeName) '<b>$nativeName</>, ' else ''}${t.isExtern == true ? 'true' : '<red>${t.isExtern}</>'}', Error);
-				stdLibMap.js.set(nativeName, {
+				typeMap.js.set(nativeName, {
 					pack: t.pack,
 					name: t.name,
 					moduleName: moduleName,
@@ -48,35 +55,13 @@ import haxe.macro.Type;
 						case TType(_): TypeDefType;
 						case TAbstract(_): AbstractType;
 						case TEnum(_): EnumType;
-						default: -1;
+						default: UnknownType;
 					}
 				});
 			}
 		}
 
-		haxe.macro.Context.onGenerate(types -> {
-			for (type in types) {
-				switch type {
-					case TInst(_.get() => t, params): processBaseType(type, t, params);
-					case TType(_.get() => t, params): processBaseType(type, t, params);
-					case TAbstract(_.get() => t, params): processBaseType(type, t, params);
-					case TEnum(_.get() => t, params): processBaseType(type, t, params);
-					case TDynamic(t):
-					case TFun(args, ret): 
-					case TLazy(t): 
-					case TMono(_.get() => t): 
-					case TAnonymous(_.get() => t):
-				}
-			}
-
-			if (stdout) {
-				Sys.stdout().writeString(haxe.Json.stringify(stdLibMap, null, '\t'));
-				Sys.stdout().flush();
-			} else {
-				var filename = stdLibMap.haxeVersion + '-stdlib.json';
-				sys.io.File.saveContent(filename, haxe.Json.stringify(stdLibMap, null, '\t'));
-			}
-		});
+		generateTypeMap(stdLibMap, processBaseType, (typeMap) -> writeTypeMap(typeMap, stdout));
 
 		return null;
 	}

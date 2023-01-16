@@ -1,8 +1,9 @@
 {
+	"libraryVersion": "4.2.5",
 	"js": {
 		"XMLHttpRequestUpload": {
 			"name": "XMLHttpRequestUpload",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XMLHttpRequestUpload",
 			"pack": [
 				"js",
@@ -13,7 +14,7 @@
 		},
 		"FileMetadataParameters": {
 			"name": "FileMetadataParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FileMetadataParameters",
 			"pack": [
 				"js",
@@ -25,7 +26,7 @@
 		},
 		"LocaleMatcher": {
 			"name": "LocaleMatcher",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "LocaleMatcher",
 			"pack": [
 				"js",
@@ -37,7 +38,7 @@
 		},
 		"WorkerGlobalScope": {
 			"name": "WorkerGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WorkerGlobalScope",
 			"pack": [
 				"js",
@@ -48,7 +49,7 @@
 		},
 		"SdpType": {
 			"name": "SdpType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SdpType",
 			"pack": [
 				"js",
@@ -60,7 +61,7 @@
 		},
 		"GamepadButton": {
 			"name": "GamepadButton",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GamepadButton",
 			"pack": [
 				"js",
@@ -71,7 +72,7 @@
 		},
 		"PaintRequestList": {
 			"name": "PaintRequestList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PaintRequestList",
 			"pack": [
 				"js",
@@ -82,7 +83,7 @@
 		},
 		"MediaKeyMessageType": {
 			"name": "MediaKeyMessageType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaKeyMessageType",
 			"pack": [
 				"js",
@@ -94,7 +95,7 @@
 		},
 		"WEBGL_compressed_texture_s3tc": {
 			"name": "WEBGLCompressedTextureS3tc",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTextureS3tc",
 			"pack": [
 				"js",
@@ -107,7 +108,7 @@
 		},
 		"RTCCertificate": {
 			"name": "Certificate",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Certificate",
 			"pack": [
 				"js",
@@ -119,7 +120,7 @@
 		},
 		"SessionDescriptionInit": {
 			"name": "SessionDescriptionInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "SessionDescriptionInit",
 			"pack": [
 				"js",
@@ -131,7 +132,7 @@
 		},
 		"WEBGL_draw_buffers": {
 			"name": "WEBGLDrawBuffers",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLDrawBuffers",
 			"pack": [
 				"js",
@@ -144,7 +145,7 @@
 		},
 		"HTMLScriptElement": {
 			"name": "ScriptElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ScriptElement",
 			"pack": [
 				"js",
@@ -155,7 +156,7 @@
 		},
 		"OESTextureFloatLinear": {
 			"name": "OESTextureFloatLinear",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OESTextureFloatLinear",
 			"pack": [
 				"js",
@@ -168,7 +169,7 @@
 		},
 		"EventModifierInit": {
 			"name": "EventModifierInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EventModifierInit",
 			"pack": [
 				"js",
@@ -179,7 +180,7 @@
 		},
 		"TextDecoder": {
 			"name": "TextDecoder",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextDecoder",
 			"pack": [
 				"js",
@@ -190,7 +191,7 @@
 		},
 		"GL2": {
 			"name": "GL2",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GL2",
 			"pack": [
 				"js",
@@ -202,7 +203,7 @@
 		},
 		"Headers": {
 			"name": "Headers",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Headers",
 			"pack": [
 				"js",
@@ -213,7 +214,7 @@
 		},
 		"TreeWalker": {
 			"name": "TreeWalker",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TreeWalker",
 			"pack": [
 				"js",
@@ -224,7 +225,7 @@
 		},
 		"HTMLInputElement": {
 			"name": "InputElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "InputElement",
 			"pack": [
 				"js",
@@ -235,7 +236,7 @@
 		},
 		"IceGatheringState": {
 			"name": "IceGatheringState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "IceGatheringState",
 			"pack": [
 				"js",
@@ -247,7 +248,7 @@
 		},
 		"XMLSerializer": {
 			"name": "XMLSerializer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XMLSerializer",
 			"pack": [
 				"js",
@@ -258,7 +259,7 @@
 		},
 		"HTMLVideoElement": {
 			"name": "VideoElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VideoElement",
 			"pack": [
 				"js",
@@ -269,7 +270,7 @@
 		},
 		"Intl.PluralRulesSupportedLocalesOfOptions": {
 			"name": "PluralRulesSupportedLocalesOfOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PluralRules",
 			"pack": [
 				"js",
@@ -281,7 +282,7 @@
 		},
 		"SVGFETileElement": {
 			"name": "FETileElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FETileElement",
 			"pack": [
 				"js",
@@ -293,7 +294,7 @@
 		},
 		"HTMLPictureElement": {
 			"name": "PictureElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PictureElement",
 			"pack": [
 				"js",
@@ -304,7 +305,7 @@
 		},
 		"DOMException": {
 			"name": "DOMException",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMException",
 			"pack": [
 				"js",
@@ -315,7 +316,7 @@
 		},
 		"HTMLImageElement": {
 			"name": "ImageElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageElement",
 			"pack": [
 				"js",
@@ -326,7 +327,7 @@
 		},
 		"StereoPannerOptions": {
 			"name": "StereoPannerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "StereoPannerOptions",
 			"pack": [
 				"js",
@@ -338,7 +339,7 @@
 		},
 		"MediaStreamTrackEvent": {
 			"name": "MediaStreamTrackEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaStreamTrackEvent",
 			"pack": [
 				"js",
@@ -349,7 +350,7 @@
 		},
 		"RequestInit": {
 			"name": "RequestInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RequestInit",
 			"pack": [
 				"js",
@@ -360,7 +361,7 @@
 		},
 		"Path2D": {
 			"name": "Path2D",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Path2D",
 			"pack": [
 				"js",
@@ -371,7 +372,7 @@
 		},
 		"Event": {
 			"name": "Event",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Event",
 			"pack": [
 				"js",
@@ -382,7 +383,7 @@
 		},
 		"PathSegLinetoHorizontalRel": {
 			"name": "PathSegLinetoHorizontalRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegLinetoHorizontalRel",
 			"pack": [
 				"js",
@@ -394,7 +395,7 @@
 		},
 		"AnswerOptions": {
 			"name": "AnswerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AnswerOptions",
 			"pack": [
 				"js",
@@ -406,7 +407,7 @@
 		},
 		"PaintRequest": {
 			"name": "PaintRequest",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PaintRequest",
 			"pack": [
 				"js",
@@ -417,7 +418,7 @@
 		},
 		"MediaRecorderErrorEventInit": {
 			"name": "MediaRecorderErrorEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaRecorderErrorEventInit",
 			"pack": [
 				"js",
@@ -428,7 +429,7 @@
 		},
 		"WeakMap": {
 			"name": "WeakMap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WeakMap",
 			"pack": [
 				"js",
@@ -441,7 +442,7 @@
 		},
 		"Uint16Array": {
 			"name": "Uint16Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Uint16Array",
 			"pack": [
 				"js",
@@ -452,7 +453,7 @@
 		},
 		"PathSegCurvetoCubicSmoothAbs": {
 			"name": "PathSegCurvetoCubicSmoothAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoCubicSmoothAbs",
 			"pack": [
 				"js",
@@ -464,7 +465,7 @@
 		},
 		"DeviceOrientationEvent": {
 			"name": "DeviceOrientationEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DeviceOrientationEvent",
 			"pack": [
 				"js",
@@ -475,7 +476,7 @@
 		},
 		"WebAssembly": {
 			"name": "WebAssembly",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WebAssembly",
 			"pack": [
 				"js",
@@ -486,7 +487,7 @@
 		},
 		"DelayNode": {
 			"name": "DelayNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DelayNode",
 			"pack": [
 				"js",
@@ -498,7 +499,7 @@
 		},
 		"NodeFilter": {
 			"name": "NodeFilter",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NodeFilter",
 			"pack": [
 				"js",
@@ -509,7 +510,7 @@
 		},
 		"DOMRectList": {
 			"name": "DOMRectList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMRectList",
 			"pack": [
 				"js",
@@ -520,7 +521,7 @@
 		},
 		"HTMLTableSectionElement": {
 			"name": "TableSectionElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TableSectionElement",
 			"pack": [
 				"js",
@@ -531,7 +532,7 @@
 		},
 		"PathSegLinetoVerticalRel": {
 			"name": "PathSegLinetoVerticalRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegLinetoVerticalRel",
 			"pack": [
 				"js",
@@ -543,7 +544,7 @@
 		},
 		"DOMRequestReadyState": {
 			"name": "DOMRequestReadyState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DOMRequestReadyState",
 			"pack": [
 				"js",
@@ -554,7 +555,7 @@
 		},
 		"PermissionState": {
 			"name": "PermissionState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PermissionState",
 			"pack": [
 				"js",
@@ -565,7 +566,7 @@
 		},
 		"URLSearchParams": {
 			"name": "URLSearchParams",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "URLSearchParams",
 			"pack": [
 				"js",
@@ -576,7 +577,7 @@
 		},
 		"MediaSource": {
 			"name": "MediaSource",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaSource",
 			"pack": [
 				"js",
@@ -587,7 +588,7 @@
 		},
 		"KeyframeAnimationOptions": {
 			"name": "KeyframeAnimationOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "KeyframeAnimationOptions",
 			"pack": [
 				"js",
@@ -598,7 +599,7 @@
 		},
 		"MessageChannel": {
 			"name": "MessageChannel",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MessageChannel",
 			"pack": [
 				"js",
@@ -609,7 +610,7 @@
 		},
 		"ProcessingInstruction": {
 			"name": "ProcessingInstruction",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ProcessingInstruction",
 			"pack": [
 				"js",
@@ -620,7 +621,7 @@
 		},
 		"MediaStreamAudioSourceNode": {
 			"name": "MediaStreamAudioSourceNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaStreamAudioSourceNode",
 			"pack": [
 				"js",
@@ -632,7 +633,7 @@
 		},
 		"VideoTrack": {
 			"name": "VideoTrack",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VideoTrack",
 			"pack": [
 				"js",
@@ -643,7 +644,7 @@
 		},
 		"HTMLFormControlsCollection": {
 			"name": "HTMLFormControlsCollection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HTMLFormControlsCollection",
 			"pack": [
 				"js",
@@ -654,7 +655,7 @@
 		},
 		"EXTColorBufferFloat": {
 			"name": "EXTColorBufferFloat",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EXTColorBufferFloat",
 			"pack": [
 				"js",
@@ -667,7 +668,7 @@
 		},
 		"ImageCapture": {
 			"name": "ImageCapture",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageCapture",
 			"pack": [
 				"js",
@@ -678,7 +679,7 @@
 		},
 		"TransactionMode": {
 			"name": "TransactionMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "TransactionMode",
 			"pack": [
 				"js",
@@ -690,7 +691,7 @@
 		},
 		"MediaRecorder": {
 			"name": "MediaRecorder",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaRecorder",
 			"pack": [
 				"js",
@@ -701,7 +702,7 @@
 		},
 		"HTMLAllCollection": {
 			"name": "HTMLAllCollection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HTMLAllCollection",
 			"pack": [
 				"js",
@@ -712,7 +713,7 @@
 		},
 		"Intl.MonthRepresentation": {
 			"name": "MonthRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -724,7 +725,7 @@
 		},
 		"NotificationEvent": {
 			"name": "NotificationEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NotificationEvent",
 			"pack": [
 				"js",
@@ -735,7 +736,7 @@
 		},
 		"Window": {
 			"name": "Window",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Window",
 			"pack": [
 				"js",
@@ -746,7 +747,7 @@
 		},
 		"PathSegCurvetoCubicRel": {
 			"name": "PathSegCurvetoCubicRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoCubicRel",
 			"pack": [
 				"js",
@@ -758,7 +759,7 @@
 		},
 		"MouseScrollEvent": {
 			"name": "MouseScrollEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MouseScrollEvent",
 			"pack": [
 				"js",
@@ -769,7 +770,7 @@
 		},
 		"IceConnectionState": {
 			"name": "IceConnectionState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "IceConnectionState",
 			"pack": [
 				"js",
@@ -781,7 +782,7 @@
 		},
 		"ContextAttributes": {
 			"name": "ContextAttributes",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ContextAttributes",
 			"pack": [
 				"js",
@@ -793,7 +794,7 @@
 		},
 		"AbortSignal": {
 			"name": "AbortSignal",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AbortSignal",
 			"pack": [
 				"js",
@@ -804,7 +805,7 @@
 		},
 		"TextTrackCueList": {
 			"name": "TextTrackCueList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextTrackCueList",
 			"pack": [
 				"js",
@@ -815,7 +816,7 @@
 		},
 		"MessageEventInit": {
 			"name": "MessageEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MessageEventInit",
 			"pack": [
 				"js",
@@ -826,7 +827,7 @@
 		},
 		"HTMLSourceElement": {
 			"name": "SourceElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SourceElement",
 			"pack": [
 				"js",
@@ -837,7 +838,7 @@
 		},
 		"WebAssembly.Module": {
 			"name": "Module",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Module",
 			"pack": [
 				"js",
@@ -849,7 +850,7 @@
 		},
 		"BaseAudioContext": {
 			"name": "BaseAudioContext",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BaseAudioContext",
 			"pack": [
 				"js",
@@ -861,7 +862,7 @@
 		},
 		"OES_standard_derivatives": {
 			"name": "OESStandardDerivatives",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OESStandardDerivatives",
 			"pack": [
 				"js",
@@ -874,7 +875,7 @@
 		},
 		"Intl.Collation": {
 			"name": "Collation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -886,7 +887,7 @@
 		},
 		"FileReaderSync": {
 			"name": "FileReaderSync",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileReaderSync",
 			"pack": [
 				"js",
@@ -897,7 +898,7 @@
 		},
 		"BoundingBoxOptions": {
 			"name": "BoundingBoxOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "BoundingBoxOptions",
 			"pack": [
 				"js",
@@ -909,7 +910,7 @@
 		},
 		"CloseEvent": {
 			"name": "CloseEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CloseEvent",
 			"pack": [
 				"js",
@@ -920,7 +921,7 @@
 		},
 		"TrackEvent": {
 			"name": "TrackEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TrackEvent",
 			"pack": [
 				"js",
@@ -931,7 +932,7 @@
 		},
 		"BeforeUnloadEvent": {
 			"name": "BeforeUnloadEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BeforeUnloadEvent",
 			"pack": [
 				"js",
@@ -942,7 +943,7 @@
 		},
 		"PushPermissionState": {
 			"name": "PushPermissionState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PushPermissionState",
 			"pack": [
 				"js",
@@ -954,7 +955,7 @@
 		},
 		"Clipboard": {
 			"name": "Clipboard",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Clipboard",
 			"pack": [
 				"js",
@@ -965,7 +966,7 @@
 		},
 		"MediaKeyMessageEvent": {
 			"name": "MediaKeyMessageEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaKeyMessageEvent",
 			"pack": [
 				"js",
@@ -977,7 +978,7 @@
 		},
 		"SVGTransformList": {
 			"name": "TransformList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TransformList",
 			"pack": [
 				"js",
@@ -989,7 +990,7 @@
 		},
 		"HTMLParagraphElement": {
 			"name": "ParagraphElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ParagraphElement",
 			"pack": [
 				"js",
@@ -1000,7 +1001,7 @@
 		},
 		"OrientationType": {
 			"name": "OrientationType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "OrientationType",
 			"pack": [
 				"js",
@@ -1011,7 +1012,7 @@
 		},
 		"PushSubscriptionJSON": {
 			"name": "PushSubscriptionJSON",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PushSubscriptionJSON",
 			"pack": [
 				"js",
@@ -1023,7 +1024,7 @@
 		},
 		"Intl.RelativeTimeNumeric": {
 			"name": "RelativeTimeNumeric",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -1035,7 +1036,7 @@
 		},
 		"WebGLTransformFeedback": {
 			"name": "TransformFeedback",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TransformFeedback",
 			"pack": [
 				"js",
@@ -1047,7 +1048,7 @@
 		},
 		"HTMLDListElement": {
 			"name": "DListElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DListElement",
 			"pack": [
 				"js",
@@ -1058,7 +1059,7 @@
 		},
 		"Intl.NumberFormatPart": {
 			"name": "NumberFormatPart",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -1070,7 +1071,7 @@
 		},
 		"CSSCounterStyleRule": {
 			"name": "CSSCounterStyleRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSCounterStyleRule",
 			"pack": [
 				"js",
@@ -1081,7 +1082,7 @@
 		},
 		"IdentityProviderRegistrar": {
 			"name": "IdentityProviderRegistrar",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityProviderRegistrar",
 			"pack": [
 				"js",
@@ -1093,7 +1094,7 @@
 		},
 		"Worker": {
 			"name": "Worker",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Worker",
 			"pack": [
 				"js",
@@ -1104,7 +1105,7 @@
 		},
 		"MIDIPortConnectionState": {
 			"name": "MIDIPortConnectionState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MIDIPortConnectionState",
 			"pack": [
 				"js",
@@ -1116,7 +1117,7 @@
 		},
 		"MediaStreamTrack": {
 			"name": "MediaStreamTrack",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaStreamTrack",
 			"pack": [
 				"js",
@@ -1127,7 +1128,7 @@
 		},
 		"SignalingState": {
 			"name": "SignalingState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SignalingState",
 			"pack": [
 				"js",
@@ -1139,7 +1140,7 @@
 		},
 		"Intl.CollatorResolvedOptions": {
 			"name": "CollatorResolvedOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -1151,7 +1152,7 @@
 		},
 		"RtpEncodingParameters": {
 			"name": "RtpEncodingParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpEncodingParameters",
 			"pack": [
 				"js",
@@ -1163,7 +1164,7 @@
 		},
 		"Range": {
 			"name": "Range",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Range",
 			"pack": [
 				"js",
@@ -1174,7 +1175,7 @@
 		},
 		"Uint8ClampedArray": {
 			"name": "Uint8ClampedArray",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Uint8ClampedArray",
 			"pack": [
 				"js",
@@ -1185,7 +1186,7 @@
 		},
 		"HTMLDataListElement": {
 			"name": "DataListElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataListElement",
 			"pack": [
 				"js",
@@ -1196,7 +1197,7 @@
 		},
 		"MIDIMessageEventInit": {
 			"name": "MIDIMessageEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MIDIMessageEventInit",
 			"pack": [
 				"js",
@@ -1208,7 +1209,7 @@
 		},
 		"AutoKeyword": {
 			"name": "AutoKeyword",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "AutoKeyword",
 			"pack": [
 				"js",
@@ -1219,7 +1220,7 @@
 		},
 		"NavigationType": {
 			"name": "NavigationType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "NavigationType",
 			"pack": [
 				"js",
@@ -1230,7 +1231,7 @@
 		},
 		"ChannelCountMode": {
 			"name": "ChannelCountMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ChannelCountMode",
 			"pack": [
 				"js",
@@ -1242,7 +1243,7 @@
 		},
 		"Extension": {
 			"name": "Extension",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Extension",
 			"pack": [
 				"js",
@@ -1256,7 +1257,7 @@
 		},
 		"TextTrackCue": {
 			"name": "TextTrackCue",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextTrackCue",
 			"pack": [
 				"js",
@@ -1267,7 +1268,7 @@
 		},
 		"AddEventListenerOptions": {
 			"name": "AddEventListenerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AddEventListenerOptions",
 			"pack": [
 				"js",
@@ -1278,7 +1279,7 @@
 		},
 		"SVGFEFloodElement": {
 			"name": "FEFloodElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEFloodElement",
 			"pack": [
 				"js",
@@ -1290,7 +1291,7 @@
 		},
 		"Selection": {
 			"name": "Selection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Selection",
 			"pack": [
 				"js",
@@ -1301,7 +1302,7 @@
 		},
 		"SVGTextPathElement": {
 			"name": "TextPathElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextPathElement",
 			"pack": [
 				"js",
@@ -1313,7 +1314,7 @@
 		},
 		"MediaStreamTrackEventInit": {
 			"name": "MediaStreamTrackEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaStreamTrackEventInit",
 			"pack": [
 				"js",
@@ -1324,7 +1325,7 @@
 		},
 		"MediaEncryptedEvent": {
 			"name": "MediaEncryptedEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaEncryptedEvent",
 			"pack": [
 				"js",
@@ -1336,7 +1337,7 @@
 		},
 		"SVGAnimatedNumberList": {
 			"name": "AnimatedNumberList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedNumberList",
 			"pack": [
 				"js",
@@ -1348,7 +1349,7 @@
 		},
 		"RtpSynchronizationSource": {
 			"name": "RtpSynchronizationSource",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpSynchronizationSource",
 			"pack": [
 				"js",
@@ -1360,7 +1361,7 @@
 		},
 		"ImageBitmapFormat": {
 			"name": "ImageBitmapFormat",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ImageBitmapFormat",
 			"pack": [
 				"js",
@@ -1371,7 +1372,7 @@
 		},
 		"Crypto": {
 			"name": "Crypto",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Crypto",
 			"pack": [
 				"js",
@@ -1382,7 +1383,7 @@
 		},
 		"PeriodicWaveConstraints": {
 			"name": "PeriodicWaveConstraints",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PeriodicWaveConstraints",
 			"pack": [
 				"js",
@@ -1394,7 +1395,7 @@
 		},
 		"FileSystem": {
 			"name": "FileSystem",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileSystem",
 			"pack": [
 				"js",
@@ -1405,7 +1406,7 @@
 		},
 		"PerformanceNavigationTiming": {
 			"name": "PerformanceNavigationTiming",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceNavigationTiming",
 			"pack": [
 				"js",
@@ -1416,7 +1417,7 @@
 		},
 		"CSSKeyframeRule": {
 			"name": "CSSKeyframeRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSKeyframeRule",
 			"pack": [
 				"js",
@@ -1427,7 +1428,7 @@
 		},
 		"SVGCircleElement": {
 			"name": "CircleElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CircleElement",
 			"pack": [
 				"js",
@@ -1439,7 +1440,7 @@
 		},
 		"Option": {
 			"name": "Option",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Option",
 			"pack": [
 				"js",
@@ -1450,7 +1451,7 @@
 		},
 		"OverSampleType": {
 			"name": "OverSampleType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "OverSampleType",
 			"pack": [
 				"js",
@@ -1462,7 +1463,7 @@
 		},
 		"Intl.CollatorSupportedLocalesOfOptions": {
 			"name": "CollatorSupportedLocalesOfOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -1474,7 +1475,7 @@
 		},
 		"HTMLPropertiesCollection": {
 			"name": "HTMLPropertiesCollection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HTMLPropertiesCollection",
 			"pack": [
 				"js",
@@ -1485,7 +1486,7 @@
 		},
 		"VTTCue": {
 			"name": "VTTCue",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VTTCue",
 			"pack": [
 				"js",
@@ -1496,7 +1497,7 @@
 		},
 		"RTCTrackEvent": {
 			"name": "TrackEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TrackEvent",
 			"pack": [
 				"js",
@@ -1508,7 +1509,7 @@
 		},
 		"IndexParameters": {
 			"name": "IndexParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IndexParameters",
 			"pack": [
 				"js",
@@ -1520,7 +1521,7 @@
 		},
 		"PushEncryptionKeyName": {
 			"name": "PushEncryptionKeyName",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PushEncryptionKeyName",
 			"pack": [
 				"js",
@@ -1532,7 +1533,7 @@
 		},
 		"ScrollIntoViewOptions": {
 			"name": "ScrollIntoViewOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ScrollIntoViewOptions",
 			"pack": [
 				"js",
@@ -1543,7 +1544,7 @@
 		},
 		"PushSubscriptionInit": {
 			"name": "PushSubscriptionInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PushSubscriptionInit",
 			"pack": [
 				"js",
@@ -1555,7 +1556,7 @@
 		},
 		"Permissions": {
 			"name": "Permissions",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Permissions",
 			"pack": [
 				"js",
@@ -1566,7 +1567,7 @@
 		},
 		"OES_vertex_array_object": {
 			"name": "OESVertexArrayObject",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OESVertexArrayObject",
 			"pack": [
 				"js",
@@ -1579,7 +1580,7 @@
 		},
 		"CanvasCaptureMediaStream": {
 			"name": "CanvasCaptureMediaStream",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CanvasCaptureMediaStream",
 			"pack": [
 				"js",
@@ -1590,7 +1591,7 @@
 		},
 		"DTMFToneChangeEventInit": {
 			"name": "DTMFToneChangeEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DTMFToneChangeEventInit",
 			"pack": [
 				"js",
@@ -1602,7 +1603,7 @@
 		},
 		"HTMLTableCaptionElement": {
 			"name": "TableCaptionElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TableCaptionElement",
 			"pack": [
 				"js",
@@ -1613,7 +1614,7 @@
 		},
 		"RTCDTMFSender": {
 			"name": "DTMFSender",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DTMFSender",
 			"pack": [
 				"js",
@@ -1625,7 +1626,7 @@
 		},
 		"SVGForeignObjectElement": {
 			"name": "ForeignObjectElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ForeignObjectElement",
 			"pack": [
 				"js",
@@ -1637,7 +1638,7 @@
 		},
 		"WaveShaperOptions": {
 			"name": "WaveShaperOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "WaveShaperOptions",
 			"pack": [
 				"js",
@@ -1649,7 +1650,7 @@
 		},
 		"Float64Array": {
 			"name": "Float64Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Float64Array",
 			"pack": [
 				"js",
@@ -1660,7 +1661,7 @@
 		},
 		"Intl.RelativeTimeUnit": {
 			"name": "RelativeTimeUnit",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -1672,7 +1673,7 @@
 		},
 		"IDBFileHandle": {
 			"name": "FileHandle",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileHandle",
 			"pack": [
 				"js",
@@ -1684,7 +1685,7 @@
 		},
 		"EXT_disjoint_timer_query": {
 			"name": "EXTDisjointTimerQuery",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EXTDisjointTimerQuery",
 			"pack": [
 				"js",
@@ -1697,7 +1698,7 @@
 		},
 		"DataChannelType": {
 			"name": "DataChannelType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DataChannelType",
 			"pack": [
 				"js",
@@ -1709,7 +1710,7 @@
 		},
 		"Element": {
 			"name": "DOMElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMElement",
 			"pack": [
 				"js",
@@ -1720,7 +1721,7 @@
 		},
 		"Cache": {
 			"name": "Cache",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Cache",
 			"pack": [
 				"js",
@@ -1731,7 +1732,7 @@
 		},
 		"SourceBufferAppendMode": {
 			"name": "SourceBufferAppendMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SourceBufferAppendMode",
 			"pack": [
 				"js",
@@ -1742,7 +1743,7 @@
 		},
 		"PerformanceServerTiming": {
 			"name": "PerformanceServerTiming",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceServerTiming",
 			"pack": [
 				"js",
@@ -1753,7 +1754,7 @@
 		},
 		"SVGSwitchElement": {
 			"name": "SwitchElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SwitchElement",
 			"pack": [
 				"js",
@@ -1765,7 +1766,7 @@
 		},
 		"MIDIPort": {
 			"name": "MIDIPort",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIPort",
 			"pack": [
 				"js",
@@ -1777,7 +1778,7 @@
 		},
 		"SVGZoomAndPan": {
 			"name": "ZoomAndPan",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ZoomAndPan",
 			"pack": [
 				"js",
@@ -1789,7 +1790,7 @@
 		},
 		"XMLHttpRequestEventTarget": {
 			"name": "XMLHttpRequestEventTarget",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XMLHttpRequestEventTarget",
 			"pack": [
 				"js",
@@ -1800,7 +1801,7 @@
 		},
 		"Function": {
 			"name": "Function",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Function",
 			"pack": [
 				"js",
@@ -1811,7 +1812,7 @@
 		},
 		"SpeechRecognitionErrorCode": {
 			"name": "SpeechRecognitionErrorCode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SpeechRecognitionErrorCode",
 			"pack": [
 				"js",
@@ -1822,7 +1823,7 @@
 		},
 		"RTCDataChannel": {
 			"name": "DataChannel",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataChannel",
 			"pack": [
 				"js",
@@ -1834,7 +1835,7 @@
 		},
 		"IdentityAssertionResult": {
 			"name": "IdentityAssertionResult",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityAssertionResult",
 			"pack": [
 				"js",
@@ -1846,7 +1847,7 @@
 		},
 		"DeviceOrientationEventInit": {
 			"name": "DeviceOrientationEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DeviceOrientationEventInit",
 			"pack": [
 				"js",
@@ -1857,7 +1858,7 @@
 		},
 		"TimeRanges": {
 			"name": "TimeRanges",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TimeRanges",
 			"pack": [
 				"js",
@@ -1868,7 +1869,7 @@
 		},
 		"ScrollToOptions": {
 			"name": "ScrollToOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ScrollToOptions",
 			"pack": [
 				"js",
@@ -1879,7 +1880,7 @@
 		},
 		"OfflineAudioContextOptions": {
 			"name": "OfflineAudioContextOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OfflineAudioContextOptions",
 			"pack": [
 				"js",
@@ -1891,7 +1892,7 @@
 		},
 		"XMLHttpRequestResponseType": {
 			"name": "XMLHttpRequestResponseType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "XMLHttpRequestResponseType",
 			"pack": [
 				"js",
@@ -1902,7 +1903,7 @@
 		},
 		"SubtleCrypto": {
 			"name": "SubtleCrypto",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SubtleCrypto",
 			"pack": [
 				"js",
@@ -1913,7 +1914,7 @@
 		},
 		"HTMLSpanElement": {
 			"name": "SpanElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpanElement",
 			"pack": [
 				"js",
@@ -1924,7 +1925,7 @@
 		},
 		"RtpTransceiverInit": {
 			"name": "RtpTransceiverInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpTransceiverInit",
 			"pack": [
 				"js",
@@ -1936,7 +1937,7 @@
 		},
 		"PathSegCurvetoQuadraticRel": {
 			"name": "PathSegCurvetoQuadraticRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoQuadraticRel",
 			"pack": [
 				"js",
@@ -1948,7 +1949,7 @@
 		},
 		"DeviceAccelerationInit": {
 			"name": "DeviceAccelerationInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DeviceAccelerationInit",
 			"pack": [
 				"js",
@@ -1959,7 +1960,7 @@
 		},
 		"ExtendableMessageEvent": {
 			"name": "ExtendableMessageEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ExtendableMessageEvent",
 			"pack": [
 				"js",
@@ -1970,7 +1971,7 @@
 		},
 		"HTMLFrameSetElement": {
 			"name": "FrameSetElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FrameSetElement",
 			"pack": [
 				"js",
@@ -1981,7 +1982,7 @@
 		},
 		"BiquadFilterOptions": {
 			"name": "BiquadFilterOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "BiquadFilterOptions",
 			"pack": [
 				"js",
@@ -1993,7 +1994,7 @@
 		},
 		"SVGImageElement": {
 			"name": "ImageElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageElement",
 			"pack": [
 				"js",
@@ -2005,7 +2006,7 @@
 		},
 		"MediaStreamEventInit": {
 			"name": "MediaStreamEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaStreamEventInit",
 			"pack": [
 				"js",
@@ -2016,7 +2017,7 @@
 		},
 		"GainNode": {
 			"name": "GainNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GainNode",
 			"pack": [
 				"js",
@@ -2028,7 +2029,7 @@
 		},
 		"ConvolverOptions": {
 			"name": "ConvolverOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConvolverOptions",
 			"pack": [
 				"js",
@@ -2040,7 +2041,7 @@
 		},
 		"SVGPolygonElement": {
 			"name": "PolygonElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PolygonElement",
 			"pack": [
 				"js",
@@ -2050,9 +2051,20 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"PromiseSettleStatus": {
+			"name": "PromiseSettleStatus",
+			"moduleType": "abstract",
+			"moduleName": "Promise",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"SpeechRecognitionAlternative": {
 			"name": "SpeechRecognitionAlternative",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechRecognitionAlternative",
 			"pack": [
 				"js",
@@ -2063,7 +2075,7 @@
 		},
 		"UIEventInit": {
 			"name": "UIEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "UIEventInit",
 			"pack": [
 				"js",
@@ -2074,7 +2086,7 @@
 		},
 		"PathSegArcRel": {
 			"name": "PathSegArcRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegArcRel",
 			"pack": [
 				"js",
@@ -2086,7 +2098,7 @@
 		},
 		"WebSocket": {
 			"name": "WebSocket",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WebSocket",
 			"pack": [
 				"js",
@@ -2097,7 +2109,7 @@
 		},
 		"HTMLLegendElement": {
 			"name": "LegendElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LegendElement",
 			"pack": [
 				"js",
@@ -2108,7 +2120,7 @@
 		},
 		"ErrorEvent": {
 			"name": "ErrorEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ErrorEvent",
 			"pack": [
 				"js",
@@ -2119,7 +2131,7 @@
 		},
 		"SpeechRecognitionEvent": {
 			"name": "SpeechRecognitionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechRecognitionEvent",
 			"pack": [
 				"js",
@@ -2130,7 +2142,7 @@
 		},
 		"TouchEventInit": {
 			"name": "TouchEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "TouchEventInit",
 			"pack": [
 				"js",
@@ -2141,7 +2153,7 @@
 		},
 		"IceCredentialType": {
 			"name": "IceCredentialType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "IceCredentialType",
 			"pack": [
 				"js",
@@ -2153,7 +2165,7 @@
 		},
 		"SVGRadialGradientElement": {
 			"name": "RadialGradientElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RadialGradientElement",
 			"pack": [
 				"js",
@@ -2165,7 +2177,7 @@
 		},
 		"Thenable": {
 			"name": "Thenable",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Promise",
 			"pack": [
 				"js",
@@ -2178,7 +2190,7 @@
 		},
 		"ShadowRootMode": {
 			"name": "ShadowRootMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ShadowRootMode",
 			"pack": [
 				"js",
@@ -2189,7 +2201,7 @@
 		},
 		"CanvasWindingRule": {
 			"name": "CanvasWindingRule",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "CanvasWindingRule",
 			"pack": [
 				"js",
@@ -2200,7 +2212,7 @@
 		},
 		"SVGFEFuncRElement": {
 			"name": "FEFuncRElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEFuncRElement",
 			"pack": [
 				"js",
@@ -2212,7 +2224,7 @@
 		},
 		"RequestCredentials": {
 			"name": "RequestCredentials",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RequestCredentials",
 			"pack": [
 				"js",
@@ -2223,7 +2235,7 @@
 		},
 		"CryptoKey": {
 			"name": "CryptoKey",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CryptoKey",
 			"pack": [
 				"js",
@@ -2234,7 +2246,7 @@
 		},
 		"SVGFEFuncAElement": {
 			"name": "FEFuncAElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEFuncAElement",
 			"pack": [
 				"js",
@@ -2246,7 +2258,7 @@
 		},
 		"SourceBuffer": {
 			"name": "SourceBuffer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SourceBuffer",
 			"pack": [
 				"js",
@@ -2257,7 +2269,7 @@
 		},
 		"SpeechRecognitionEventInit": {
 			"name": "SpeechRecognitionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "SpeechRecognitionEventInit",
 			"pack": [
 				"js",
@@ -2268,7 +2280,7 @@
 		},
 		"Int32Array": {
 			"name": "Int32Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Int32Array",
 			"pack": [
 				"js",
@@ -2279,7 +2291,7 @@
 		},
 		"Uint32Array": {
 			"name": "Uint32Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Uint32Array",
 			"pack": [
 				"js",
@@ -2290,7 +2302,7 @@
 		},
 		"WebGLSync": {
 			"name": "Sync",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Sync",
 			"pack": [
 				"js",
@@ -2302,7 +2314,7 @@
 		},
 		"ResponseType": {
 			"name": "ResponseType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ResponseType",
 			"pack": [
 				"js",
@@ -2313,7 +2325,7 @@
 		},
 		"AlignSetting": {
 			"name": "AlignSetting",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "AlignSetting",
 			"pack": [
 				"js",
@@ -2324,7 +2336,7 @@
 		},
 		"DirectionSetting": {
 			"name": "DirectionSetting",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DirectionSetting",
 			"pack": [
 				"js",
@@ -2335,7 +2347,7 @@
 		},
 		"HTMLOListElement": {
 			"name": "OListElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OListElement",
 			"pack": [
 				"js",
@@ -2346,7 +2358,7 @@
 		},
 		"PaintWorkletGlobalScope": {
 			"name": "PaintWorkletGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PaintWorkletGlobalScope",
 			"pack": [
 				"js",
@@ -2357,7 +2369,7 @@
 		},
 		"PushEvent": {
 			"name": "PushEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PushEvent",
 			"pack": [
 				"js",
@@ -2369,7 +2381,7 @@
 		},
 		"PerformanceResourceTiming": {
 			"name": "PerformanceResourceTiming",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceResourceTiming",
 			"pack": [
 				"js",
@@ -2380,7 +2392,7 @@
 		},
 		"CustomEvent": {
 			"name": "CustomEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CustomEvent",
 			"pack": [
 				"js",
@@ -2391,7 +2403,7 @@
 		},
 		"PannerOptions": {
 			"name": "PannerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PannerOptions",
 			"pack": [
 				"js",
@@ -2403,7 +2415,7 @@
 		},
 		"MediaTrackConstraints": {
 			"name": "MediaTrackConstraints",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaTrackConstraints",
 			"pack": [
 				"js",
@@ -2414,7 +2426,7 @@
 		},
 		"IntlUtils": {
 			"name": "IntlUtils",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IntlUtils",
 			"pack": [
 				"js",
@@ -2425,7 +2437,7 @@
 		},
 		"LocalMediaStream": {
 			"name": "LocalMediaStream",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LocalMediaStream",
 			"pack": [
 				"js",
@@ -2436,7 +2448,7 @@
 		},
 		"ScrollSetting": {
 			"name": "ScrollSetting",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ScrollSetting",
 			"pack": [
 				"js",
@@ -2447,7 +2459,7 @@
 		},
 		"IdentityProviderOptions": {
 			"name": "IdentityProviderOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityProviderOptions",
 			"pack": [
 				"js",
@@ -2459,7 +2471,7 @@
 		},
 		"ExtendableMessageEventInit": {
 			"name": "ExtendableMessageEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ExtendableMessageEventInit",
 			"pack": [
 				"js",
@@ -2470,7 +2482,7 @@
 		},
 		"HTMLBodyElement": {
 			"name": "BodyElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BodyElement",
 			"pack": [
 				"js",
@@ -2479,9 +2491,20 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"PromiseSettleOutcome": {
+			"name": "PromiseSettleOutcome",
+			"moduleType": "typedef",
+			"moduleName": "Promise",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"typeParameters": [],
+			"isExtern": false
+		},
 		"WebAssembly.TableKind": {
 			"name": "TableKind",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Table",
 			"pack": [
 				"js",
@@ -2493,7 +2516,7 @@
 		},
 		"HashChangeEventInit": {
 			"name": "HashChangeEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "HashChangeEventInit",
 			"pack": [
 				"js",
@@ -2504,7 +2527,7 @@
 		},
 		"ServiceWorkerContainer": {
 			"name": "ServiceWorkerContainer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ServiceWorkerContainer",
 			"pack": [
 				"js",
@@ -2515,7 +2538,7 @@
 		},
 		"EXT_color_buffer_half_float": {
 			"name": "EXTColorBufferHalfFloat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EXTColorBufferHalfFloat",
 			"pack": [
 				"js",
@@ -2528,7 +2551,7 @@
 		},
 		"TextTrackMode": {
 			"name": "TextTrackMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "TextTrackMode",
 			"pack": [
 				"js",
@@ -2539,7 +2562,7 @@
 		},
 		"ErrorEventInit": {
 			"name": "ErrorEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ErrorEventInit",
 			"pack": [
 				"js",
@@ -2550,7 +2573,7 @@
 		},
 		"ClientType": {
 			"name": "ClientType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ClientType",
 			"pack": [
 				"js",
@@ -2561,7 +2584,7 @@
 		},
 		"Intl.RelativeTimeFormatPart": {
 			"name": "RelativeTimeFormatPart",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -2573,7 +2596,7 @@
 		},
 		"MediaSourceReadyState": {
 			"name": "MediaSourceReadyState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaSourceReadyState",
 			"pack": [
 				"js",
@@ -2584,7 +2607,7 @@
 		},
 		"DynamicsCompressorOptions": {
 			"name": "DynamicsCompressorOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DynamicsCompressorOptions",
 			"pack": [
 				"js",
@@ -2596,7 +2619,7 @@
 		},
 		"HTMLDetailsElement": {
 			"name": "DetailsElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DetailsElement",
 			"pack": [
 				"js",
@@ -2607,7 +2630,7 @@
 		},
 		"PathSegArcAbs": {
 			"name": "PathSegArcAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegArcAbs",
 			"pack": [
 				"js",
@@ -2619,7 +2642,7 @@
 		},
 		"MIDIPortType": {
 			"name": "MIDIPortType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MIDIPortType",
 			"pack": [
 				"js",
@@ -2631,7 +2654,7 @@
 		},
 		"MediaKeyStatusMapIterator": {
 			"name": "MediaKeyStatusMapIterator",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaKeyStatusMapIterator",
 			"pack": [
 				"js",
@@ -2642,7 +2665,7 @@
 		},
 		"AnimationPlaybackEvent": {
 			"name": "AnimationPlaybackEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimationPlaybackEvent",
 			"pack": [
 				"js",
@@ -2653,7 +2676,7 @@
 		},
 		"NamedNodeMap": {
 			"name": "NamedNodeMap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NamedNodeMap",
 			"pack": [
 				"js",
@@ -2664,7 +2687,7 @@
 		},
 		"PathSegClosePath": {
 			"name": "PathSegClosePath",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegClosePath",
 			"pack": [
 				"js",
@@ -2676,7 +2699,7 @@
 		},
 		"TransitionEventInit": {
 			"name": "TransitionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "TransitionEventInit",
 			"pack": [
 				"js",
@@ -2687,7 +2710,7 @@
 		},
 		"XMLDocument": {
 			"name": "XMLDocument",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XMLDocument",
 			"pack": [
 				"js",
@@ -2698,7 +2721,7 @@
 		},
 		"SyntaxError": {
 			"name": "SyntaxError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -2709,7 +2732,7 @@
 		},
 		"HTMLLIElement": {
 			"name": "LIElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LIElement",
 			"pack": [
 				"js",
@@ -2720,7 +2743,7 @@
 		},
 		"PerformanceNavigation": {
 			"name": "PerformanceNavigation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceNavigation",
 			"pack": [
 				"js",
@@ -2731,7 +2754,7 @@
 		},
 		"BarProp": {
 			"name": "BarProp",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BarProp",
 			"pack": [
 				"js",
@@ -2742,7 +2765,7 @@
 		},
 		"SVGFESpotLightElement": {
 			"name": "FESpotLightElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FESpotLightElement",
 			"pack": [
 				"js",
@@ -2754,7 +2777,7 @@
 		},
 		"AnimationPlaybackEventInit": {
 			"name": "AnimationPlaybackEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AnimationPlaybackEventInit",
 			"pack": [
 				"js",
@@ -2765,7 +2788,7 @@
 		},
 		"ChannelMergerOptions": {
 			"name": "ChannelMergerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ChannelMergerOptions",
 			"pack": [
 				"js",
@@ -2777,7 +2800,7 @@
 		},
 		"EventListenerOptions": {
 			"name": "EventListenerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EventListenerOptions",
 			"pack": [
 				"js",
@@ -2788,7 +2811,7 @@
 		},
 		"ClientQueryOptions": {
 			"name": "ClientQueryOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ClientQueryOptions",
 			"pack": [
 				"js",
@@ -2799,7 +2822,7 @@
 		},
 		"GamepadEvent": {
 			"name": "GamepadEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GamepadEvent",
 			"pack": [
 				"js",
@@ -2808,9 +2831,22 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"HaxeIterator": {
+			"name": "HaxeIterator",
+			"moduleType": "class",
+			"moduleName": "HaxeIterator",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false
+		},
 		"TextTrackKind": {
 			"name": "TextTrackKind",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "TextTrackKind",
 			"pack": [
 				"js",
@@ -2821,7 +2857,7 @@
 		},
 		"MediaKeySystemMediaCapability": {
 			"name": "MediaKeySystemMediaCapability",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaKeySystemMediaCapability",
 			"pack": [
 				"js",
@@ -2833,7 +2869,7 @@
 		},
 		"RtpHeaderExtensionParameters": {
 			"name": "RtpHeaderExtensionParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpHeaderExtensionParameters",
 			"pack": [
 				"js",
@@ -2845,7 +2881,7 @@
 		},
 		"MediaStream": {
 			"name": "MediaStream",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaStream",
 			"pack": [
 				"js",
@@ -2856,7 +2892,7 @@
 		},
 		"Intl.HourCycle": {
 			"name": "HourCycle",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -2866,9 +2902,23 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
+		"KeyValue": {
+			"name": "KeyValue",
+			"moduleType": "abstract",
+			"moduleName": "KeyValue",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"typeParameters": [
+				"K",
+				"V"
+			],
+			"isExtern": false
+		},
 		"TextDecodeOptions": {
 			"name": "TextDecodeOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "TextDecodeOptions",
 			"pack": [
 				"js",
@@ -2879,7 +2929,7 @@
 		},
 		"IceServer": {
 			"name": "IceServer",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IceServer",
 			"pack": [
 				"js",
@@ -2891,7 +2941,7 @@
 		},
 		"CSSFontFeatureValuesRule": {
 			"name": "CSSFontFeatureValuesRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSFontFeatureValuesRule",
 			"pack": [
 				"js",
@@ -2902,7 +2952,7 @@
 		},
 		"FileSystemDirectoryReader": {
 			"name": "FileSystemDirectoryReader",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileSystemDirectoryReader",
 			"pack": [
 				"js",
@@ -2913,7 +2963,7 @@
 		},
 		"HTMLAreaElement": {
 			"name": "AreaElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AreaElement",
 			"pack": [
 				"js",
@@ -2924,7 +2974,7 @@
 		},
 		"VersionChangeEventInit": {
 			"name": "VersionChangeEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "VersionChangeEventInit",
 			"pack": [
 				"js",
@@ -2936,7 +2986,7 @@
 		},
 		"HTMLPreElement": {
 			"name": "PreElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PreElement",
 			"pack": [
 				"js",
@@ -2947,7 +2997,7 @@
 		},
 		"NotificationEventInit": {
 			"name": "NotificationEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "NotificationEventInit",
 			"pack": [
 				"js",
@@ -2958,7 +3008,7 @@
 		},
 		"SpeechSynthesisUtterance": {
 			"name": "SpeechSynthesisUtterance",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechSynthesisUtterance",
 			"pack": [
 				"js",
@@ -2969,7 +3019,7 @@
 		},
 		"CSSStyleSheet": {
 			"name": "CSSStyleSheet",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSStyleSheet",
 			"pack": [
 				"js",
@@ -2980,7 +3030,7 @@
 		},
 		"RequestCache": {
 			"name": "RequestCache",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RequestCache",
 			"pack": [
 				"js",
@@ -2991,7 +3041,7 @@
 		},
 		"DOMQuadJSON": {
 			"name": "DOMQuadJSON",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DOMQuadJSON",
 			"pack": [
 				"js",
@@ -3002,7 +3052,7 @@
 		},
 		"SecurityPolicyViolationEventInit": {
 			"name": "SecurityPolicyViolationEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "SecurityPolicyViolationEventInit",
 			"pack": [
 				"js",
@@ -3013,7 +3063,7 @@
 		},
 		"OfflineAudioCompletionEvent": {
 			"name": "OfflineAudioCompletionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OfflineAudioCompletionEvent",
 			"pack": [
 				"js",
@@ -3025,7 +3075,7 @@
 		},
 		"HTMLTableColElement": {
 			"name": "TableColElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TableColElement",
 			"pack": [
 				"js",
@@ -3036,7 +3086,7 @@
 		},
 		"MediaKeyError": {
 			"name": "MediaKeyError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaKeyError",
 			"pack": [
 				"js",
@@ -3048,7 +3098,7 @@
 		},
 		"MediaElementAudioSourceOptions": {
 			"name": "MediaElementAudioSourceOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaElementAudioSourceOptions",
 			"pack": [
 				"js",
@@ -3060,7 +3110,7 @@
 		},
 		"SVGPreserveAspectRatio": {
 			"name": "PreserveAspectRatio",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PreserveAspectRatio",
 			"pack": [
 				"js",
@@ -3072,7 +3122,7 @@
 		},
 		"DOMRequest": {
 			"name": "DOMRequest",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMRequest",
 			"pack": [
 				"js",
@@ -3083,7 +3133,7 @@
 		},
 		"VideoPlaybackQuality": {
 			"name": "VideoPlaybackQuality",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VideoPlaybackQuality",
 			"pack": [
 				"js",
@@ -3094,7 +3144,7 @@
 		},
 		"SVGUnitTypes": {
 			"name": "UnitTypes",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "UnitTypes",
 			"pack": [
 				"js",
@@ -3106,7 +3156,7 @@
 		},
 		"RtpParameters": {
 			"name": "RtpParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpParameters",
 			"pack": [
 				"js",
@@ -3118,7 +3168,7 @@
 		},
 		"EXT_blend_minmax": {
 			"name": "EXTBlendMinmax",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EXTBlendMinmax",
 			"pack": [
 				"js",
@@ -3131,7 +3181,7 @@
 		},
 		"ReferrerPolicy": {
 			"name": "ReferrerPolicy",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ReferrerPolicy",
 			"pack": [
 				"js",
@@ -3142,7 +3192,7 @@
 		},
 		"MediaKeySessionType": {
 			"name": "MediaKeySessionType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaKeySessionType",
 			"pack": [
 				"js",
@@ -3154,7 +3204,7 @@
 		},
 		"MediaTrackSettings": {
 			"name": "MediaTrackSettings",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaTrackSettings",
 			"pack": [
 				"js",
@@ -3165,7 +3215,7 @@
 		},
 		"ReferenceError": {
 			"name": "ReferenceError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -3176,7 +3226,7 @@
 		},
 		"WebAssembly.LinkError": {
 			"name": "LinkError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LinkError",
 			"pack": [
 				"js",
@@ -3188,7 +3238,7 @@
 		},
 		"PopStateEventInit": {
 			"name": "PopStateEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PopStateEventInit",
 			"pack": [
 				"js",
@@ -3199,7 +3249,7 @@
 		},
 		"DataChannelState": {
 			"name": "DataChannelState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DataChannelState",
 			"pack": [
 				"js",
@@ -3211,7 +3261,7 @@
 		},
 		"DataChannelEventInit": {
 			"name": "DataChannelEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DataChannelEventInit",
 			"pack": [
 				"js",
@@ -3223,7 +3273,7 @@
 		},
 		"SVGFEMorphologyElement": {
 			"name": "FEMorphologyElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEMorphologyElement",
 			"pack": [
 				"js",
@@ -3235,7 +3285,7 @@
 		},
 		"RTCDataChannelEvent": {
 			"name": "DataChannelEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataChannelEvent",
 			"pack": [
 				"js",
@@ -3247,7 +3297,7 @@
 		},
 		"RecordingState": {
 			"name": "RecordingState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RecordingState",
 			"pack": [
 				"js",
@@ -3258,7 +3308,7 @@
 		},
 		"Map": {
 			"name": "Map",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Map",
 			"pack": [
 				"js",
@@ -3272,7 +3322,7 @@
 		},
 		"DataView": {
 			"name": "DataView",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataView",
 			"pack": [
 				"js",
@@ -3283,7 +3333,7 @@
 		},
 		"EndingTypes": {
 			"name": "EndingTypes",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "EndingTypes",
 			"pack": [
 				"js",
@@ -3294,7 +3344,7 @@
 		},
 		"MIDIOutput": {
 			"name": "MIDIOutput",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIOutput",
 			"pack": [
 				"js",
@@ -3306,7 +3356,7 @@
 		},
 		"HTMLTableCellElement": {
 			"name": "TableCellElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TableCellElement",
 			"pack": [
 				"js",
@@ -3317,7 +3367,7 @@
 		},
 		"CSSTransition": {
 			"name": "CSSTransition",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSTransition",
 			"pack": [
 				"js",
@@ -3328,7 +3378,7 @@
 		},
 		"XPathExpression": {
 			"name": "XPathExpression",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XPathExpression",
 			"pack": [
 				"js",
@@ -3339,7 +3389,7 @@
 		},
 		"SVGClipPathElement": {
 			"name": "ClipPathElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ClipPathElement",
 			"pack": [
 				"js",
@@ -3351,7 +3401,7 @@
 		},
 		"CSSImportRule": {
 			"name": "CSSImportRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSImportRule",
 			"pack": [
 				"js",
@@ -3362,7 +3412,7 @@
 		},
 		"SVGEllipseElement": {
 			"name": "EllipseElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EllipseElement",
 			"pack": [
 				"js",
@@ -3374,7 +3424,7 @@
 		},
 		"DegradationPreference": {
 			"name": "DegradationPreference",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DegradationPreference",
 			"pack": [
 				"js",
@@ -3386,7 +3436,7 @@
 		},
 		"HTMLUnknownElement": {
 			"name": "UnknownElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "UnknownElement",
 			"pack": [
 				"js",
@@ -3397,7 +3447,7 @@
 		},
 		"SVGMaskElement": {
 			"name": "MaskElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MaskElement",
 			"pack": [
 				"js",
@@ -3409,7 +3459,7 @@
 		},
 		"OfferOptions": {
 			"name": "OfferOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OfferOptions",
 			"pack": [
 				"js",
@@ -3421,7 +3471,7 @@
 		},
 		"DynamicsCompressorNode": {
 			"name": "DynamicsCompressorNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DynamicsCompressorNode",
 			"pack": [
 				"js",
@@ -3433,7 +3483,7 @@
 		},
 		"IterationCompositeOperation": {
 			"name": "IterationCompositeOperation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "IterationCompositeOperation",
 			"pack": [
 				"js",
@@ -3444,7 +3494,7 @@
 		},
 		"CompositionEvent": {
 			"name": "CompositionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CompositionEvent",
 			"pack": [
 				"js",
@@ -3455,7 +3505,7 @@
 		},
 		"AnimationEvent": {
 			"name": "AnimationEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimationEvent",
 			"pack": [
 				"js",
@@ -3466,7 +3516,7 @@
 		},
 		"ConvertCoordinateOptions": {
 			"name": "ConvertCoordinateOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConvertCoordinateOptions",
 			"pack": [
 				"js",
@@ -3477,7 +3527,7 @@
 		},
 		"MediaKeySystemAccess": {
 			"name": "MediaKeySystemAccess",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaKeySystemAccess",
 			"pack": [
 				"js",
@@ -3489,7 +3539,7 @@
 		},
 		"HTMLObjectElement": {
 			"name": "ObjectElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ObjectElement",
 			"pack": [
 				"js",
@@ -3500,7 +3550,7 @@
 		},
 		"WEBGL_depth_texture": {
 			"name": "WEBGLDepthTexture",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLDepthTexture",
 			"pack": [
 				"js",
@@ -3513,7 +3563,7 @@
 		},
 		"IDBFactory": {
 			"name": "Factory",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Factory",
 			"pack": [
 				"js",
@@ -3525,7 +3575,7 @@
 		},
 		"SVGAnimatedAngle": {
 			"name": "AnimatedAngle",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedAngle",
 			"pack": [
 				"js",
@@ -3537,7 +3587,7 @@
 		},
 		"IntersectionObserverEntry": {
 			"name": "IntersectionObserverEntry",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "IntersectionObserverEntry",
 			"pack": [
 				"js",
@@ -3548,7 +3598,7 @@
 		},
 		"Intl.DateTimeFormatPartType": {
 			"name": "DateTimeFormatPartType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -3560,7 +3610,7 @@
 		},
 		"HTMLDataElement": {
 			"name": "DataElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataElement",
 			"pack": [
 				"js",
@@ -3571,7 +3621,7 @@
 		},
 		"HTMLMediaElement": {
 			"name": "MediaElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaElement",
 			"pack": [
 				"js",
@@ -3582,7 +3632,7 @@
 		},
 		"ImageBitmap": {
 			"name": "ImageBitmap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageBitmap",
 			"pack": [
 				"js",
@@ -3593,7 +3643,7 @@
 		},
 		"CompositionEventInit": {
 			"name": "CompositionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "CompositionEventInit",
 			"pack": [
 				"js",
@@ -3604,7 +3654,7 @@
 		},
 		"Intl.CaseFirst": {
 			"name": "CaseFirst",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -3616,7 +3666,7 @@
 		},
 		"ImageData": {
 			"name": "ImageData",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageData",
 			"pack": [
 				"js",
@@ -3627,7 +3677,7 @@
 		},
 		"RTCIceCandidate": {
 			"name": "IceCandidate",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "IceCandidate",
 			"pack": [
 				"js",
@@ -3639,7 +3689,7 @@
 		},
 		"SVGAnimationElement": {
 			"name": "AnimationElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimationElement",
 			"pack": [
 				"js",
@@ -3651,7 +3701,7 @@
 		},
 		"Set": {
 			"name": "Set",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Set",
 			"pack": [
 				"js",
@@ -3664,7 +3714,7 @@
 		},
 		"Intl.CollatorOptions": {
 			"name": "CollatorOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -3676,7 +3726,7 @@
 		},
 		"PriorityType": {
 			"name": "PriorityType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PriorityType",
 			"pack": [
 				"js",
@@ -3688,7 +3738,7 @@
 		},
 		"MediaSourceEndOfStreamError": {
 			"name": "MediaSourceEndOfStreamError",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaSourceEndOfStreamError",
 			"pack": [
 				"js",
@@ -3699,7 +3749,7 @@
 		},
 		"FileSystemFlags": {
 			"name": "FileSystemFlags",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FileSystemFlags",
 			"pack": [
 				"js",
@@ -3710,7 +3760,7 @@
 		},
 		"RequestDestination": {
 			"name": "RequestDestination",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RequestDestination",
 			"pack": [
 				"js",
@@ -3721,7 +3771,7 @@
 		},
 		"CSSStyleDeclaration": {
 			"name": "CSSStyleDeclaration",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSStyleDeclaration",
 			"pack": [
 				"js",
@@ -3732,7 +3782,7 @@
 		},
 		"Blob": {
 			"name": "Blob",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Blob",
 			"pack": [
 				"js",
@@ -3743,7 +3793,7 @@
 		},
 		"BlobPropertyBag": {
 			"name": "BlobPropertyBag",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "BlobPropertyBag",
 			"pack": [
 				"js",
@@ -3754,7 +3804,7 @@
 		},
 		"PathSegLinetoAbs": {
 			"name": "PathSegLinetoAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegLinetoAbs",
 			"pack": [
 				"js",
@@ -3766,7 +3816,7 @@
 		},
 		"AnalyserOptions": {
 			"name": "AnalyserOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AnalyserOptions",
 			"pack": [
 				"js",
@@ -3778,7 +3828,7 @@
 		},
 		"ContextEventInit": {
 			"name": "ContextEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ContextEventInit",
 			"pack": [
 				"js",
@@ -3790,7 +3840,7 @@
 		},
 		"CSSMozDocumentRule": {
 			"name": "CSSMozDocumentRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSMozDocumentRule",
 			"pack": [
 				"js",
@@ -3801,7 +3851,7 @@
 		},
 		"SVGStringList": {
 			"name": "StringList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StringList",
 			"pack": [
 				"js",
@@ -3813,7 +3863,7 @@
 		},
 		"SVGFEMergeNodeElement": {
 			"name": "FEMergeNodeElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEMergeNodeElement",
 			"pack": [
 				"js",
@@ -3825,7 +3875,7 @@
 		},
 		"DOMPoint": {
 			"name": "DOMPoint",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMPoint",
 			"pack": [
 				"js",
@@ -3836,7 +3886,7 @@
 		},
 		"Promise": {
 			"name": "Promise",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Promise",
 			"pack": [
 				"js",
@@ -3849,7 +3899,7 @@
 		},
 		"ConstrainDOMStringParameters": {
 			"name": "ConstrainDOMStringParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConstrainDOMStringParameters",
 			"pack": [
 				"js",
@@ -3860,7 +3910,7 @@
 		},
 		"ImageCaptureErrorEventInit": {
 			"name": "ImageCaptureErrorEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ImageCaptureErrorEventInit",
 			"pack": [
 				"js",
@@ -3871,7 +3921,7 @@
 		},
 		"PathSegCurvetoCubicAbs": {
 			"name": "PathSegCurvetoCubicAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoCubicAbs",
 			"pack": [
 				"js",
@@ -3883,7 +3933,7 @@
 		},
 		"AudioNodeOptions": {
 			"name": "AudioNodeOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AudioNodeOptions",
 			"pack": [
 				"js",
@@ -3895,7 +3945,7 @@
 		},
 		"ObjectStoreParameters": {
 			"name": "ObjectStoreParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ObjectStoreParameters",
 			"pack": [
 				"js",
@@ -3907,7 +3957,7 @@
 		},
 		"SVGFEDiffuseLightingElement": {
 			"name": "FEDiffuseLightingElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEDiffuseLightingElement",
 			"pack": [
 				"js",
@@ -3919,7 +3969,7 @@
 		},
 		"PopupBlockedEvent": {
 			"name": "PopupBlockedEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PopupBlockedEvent",
 			"pack": [
 				"js",
@@ -3930,7 +3980,7 @@
 		},
 		"ImageCaptureErrorEvent": {
 			"name": "ImageCaptureErrorEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageCaptureErrorEvent",
 			"pack": [
 				"js",
@@ -3941,7 +3991,7 @@
 		},
 		"HTMLButtonElement": {
 			"name": "ButtonElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ButtonElement",
 			"pack": [
 				"js",
@@ -3952,7 +4002,7 @@
 		},
 		"SVGLineElement": {
 			"name": "LineElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LineElement",
 			"pack": [
 				"js",
@@ -3964,7 +4014,7 @@
 		},
 		"Node": {
 			"name": "Node",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Node",
 			"pack": [
 				"js",
@@ -3975,7 +4025,7 @@
 		},
 		"TouchEvent": {
 			"name": "TouchEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TouchEvent",
 			"pack": [
 				"js",
@@ -3986,7 +4036,7 @@
 		},
 		"IDBKeyRange": {
 			"name": "KeyRange",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "KeyRange",
 			"pack": [
 				"js",
@@ -3998,7 +4048,7 @@
 		},
 		"CSSRule": {
 			"name": "CSSRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSRule",
 			"pack": [
 				"js",
@@ -4009,7 +4059,7 @@
 		},
 		"AnimationPlayState": {
 			"name": "AnimationPlayState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "AnimationPlayState",
 			"pack": [
 				"js",
@@ -4020,7 +4070,7 @@
 		},
 		"SVGFECompositeElement": {
 			"name": "FECompositeElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FECompositeElement",
 			"pack": [
 				"js",
@@ -4032,7 +4082,7 @@
 		},
 		"OpenDBOptions": {
 			"name": "OpenDBOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OpenDBOptions",
 			"pack": [
 				"js",
@@ -4044,7 +4094,7 @@
 		},
 		"Intl.RelativeTimeFormatStyle": {
 			"name": "RelativeTimeFormatStyle",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -4056,7 +4106,7 @@
 		},
 		"Math": {
 			"name": "Math",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Math",
 			"pack": [
 				"js",
@@ -4067,7 +4117,7 @@
 		},
 		"SVGAnimatedLength": {
 			"name": "AnimatedLength",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedLength",
 			"pack": [
 				"js",
@@ -4079,7 +4129,7 @@
 		},
 		"XPathEvaluator": {
 			"name": "XPathEvaluator",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XPathEvaluator",
 			"pack": [
 				"js",
@@ -4090,7 +4140,7 @@
 		},
 		"Intl.DateTimeFormatSupportedLocalesOfOptions": {
 			"name": "DateTimeFormatSupportedLocalesOfOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -4102,7 +4152,7 @@
 		},
 		"ScrollRestoration": {
 			"name": "ScrollRestoration",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ScrollRestoration",
 			"pack": [
 				"js",
@@ -4113,7 +4163,7 @@
 		},
 		"SpeechSynthesisEvent": {
 			"name": "SpeechSynthesisEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechSynthesisEvent",
 			"pack": [
 				"js",
@@ -4124,7 +4174,7 @@
 		},
 		"CustomEventInit": {
 			"name": "CustomEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "CustomEventInit",
 			"pack": [
 				"js",
@@ -4135,7 +4185,7 @@
 		},
 		"WebGLRenderingContext": {
 			"name": "RenderingContext",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RenderingContext",
 			"pack": [
 				"js",
@@ -4147,7 +4197,7 @@
 		},
 		"VisibilityState": {
 			"name": "VisibilityState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "VisibilityState",
 			"pack": [
 				"js",
@@ -4158,7 +4208,7 @@
 		},
 		"Intl.NumberFormatStyle": {
 			"name": "NumberFormatStyle",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -4170,7 +4220,7 @@
 		},
 		"AudioBufferSourceNode": {
 			"name": "AudioBufferSourceNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioBufferSourceNode",
 			"pack": [
 				"js",
@@ -4182,7 +4232,7 @@
 		},
 		"DeviceMotionEventInit": {
 			"name": "DeviceMotionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DeviceMotionEventInit",
 			"pack": [
 				"js",
@@ -4193,7 +4243,7 @@
 		},
 		"MediaQueryListEventInit": {
 			"name": "MediaQueryListEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaQueryListEventInit",
 			"pack": [
 				"js",
@@ -4204,7 +4254,7 @@
 		},
 		"PannerNode": {
 			"name": "PannerNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PannerNode",
 			"pack": [
 				"js",
@@ -4216,7 +4266,7 @@
 		},
 		"NotificationPermission": {
 			"name": "NotificationPermission",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "NotificationPermission",
 			"pack": [
 				"js",
@@ -4227,7 +4277,7 @@
 		},
 		"SVGElement": {
 			"name": "Element",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Element",
 			"pack": [
 				"js",
@@ -4239,7 +4289,7 @@
 		},
 		"FontFaceSet": {
 			"name": "FontFaceSet",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FontFaceSet",
 			"pack": [
 				"js",
@@ -4250,7 +4300,7 @@
 		},
 		"ExtendableEventInit": {
 			"name": "ExtendableEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ExtendableEventInit",
 			"pack": [
 				"js",
@@ -4261,7 +4311,7 @@
 		},
 		"Int8Array": {
 			"name": "Int8Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Int8Array",
 			"pack": [
 				"js",
@@ -4272,7 +4322,7 @@
 		},
 		"ShadowRootInit": {
 			"name": "ShadowRootInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ShadowRootInit",
 			"pack": [
 				"js",
@@ -4283,7 +4333,7 @@
 		},
 		"WorkletGlobalScope": {
 			"name": "WorkletGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WorkletGlobalScope",
 			"pack": [
 				"js",
@@ -4294,7 +4344,7 @@
 		},
 		"DisplayNameResult": {
 			"name": "DisplayNameResult",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DisplayNameResult",
 			"pack": [
 				"js",
@@ -4305,7 +4355,7 @@
 		},
 		"PathSegCurvetoQuadraticSmoothAbs": {
 			"name": "PathSegCurvetoQuadraticSmoothAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoQuadraticSmoothAbs",
 			"pack": [
 				"js",
@@ -4317,7 +4367,7 @@
 		},
 		"PathSegLinetoVerticalAbs": {
 			"name": "PathSegLinetoVerticalAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegLinetoVerticalAbs",
 			"pack": [
 				"js",
@@ -4329,7 +4379,7 @@
 		},
 		"DocumentFragment": {
 			"name": "DocumentFragment",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DocumentFragment",
 			"pack": [
 				"js",
@@ -4340,7 +4390,7 @@
 		},
 		"ConstrainBooleanParameters": {
 			"name": "ConstrainBooleanParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConstrainBooleanParameters",
 			"pack": [
 				"js",
@@ -4349,23 +4399,9 @@
 			"typeParameters": [],
 			"isExtern": false
 		},
-		"MapEntry": {
-			"name": "MapEntry",
-			"moduleType": 3,
-			"moduleName": "Map",
-			"pack": [
-				"js",
-				"lib"
-			],
-			"typeParameters": [
-				"K",
-				"V"
-			],
-			"isExtern": false
-		},
 		"FileMode": {
 			"name": "FileMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "FileMode",
 			"pack": [
 				"js",
@@ -4376,7 +4412,7 @@
 		},
 		"HTMLFrameElement": {
 			"name": "FrameElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FrameElement",
 			"pack": [
 				"js",
@@ -4387,7 +4423,7 @@
 		},
 		"IIRFilterOptions": {
 			"name": "IIRFilterOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IIRFilterOptions",
 			"pack": [
 				"js",
@@ -4399,7 +4435,7 @@
 		},
 		"Error": {
 			"name": "Error",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -4410,7 +4446,7 @@
 		},
 		"PushSubscriptionKeys": {
 			"name": "PushSubscriptionKeys",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PushSubscriptionKeys",
 			"pack": [
 				"js",
@@ -4422,7 +4458,7 @@
 		},
 		"Attr": {
 			"name": "Attr",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Attr",
 			"pack": [
 				"js",
@@ -4433,7 +4469,7 @@
 		},
 		"DOMParser": {
 			"name": "DOMParser",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMParser",
 			"pack": [
 				"js",
@@ -4444,7 +4480,7 @@
 		},
 		"AudioDestinationNode": {
 			"name": "AudioDestinationNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioDestinationNode",
 			"pack": [
 				"js",
@@ -4456,7 +4492,7 @@
 		},
 		"HTMLDirectoryElement": {
 			"name": "DirectoryElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DirectoryElement",
 			"pack": [
 				"js",
@@ -4467,7 +4503,7 @@
 		},
 		"DOMStringList": {
 			"name": "DOMStringList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMStringList",
 			"pack": [
 				"js",
@@ -4478,7 +4514,7 @@
 		},
 		"SVGNumberList": {
 			"name": "NumberList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NumberList",
 			"pack": [
 				"js",
@@ -4490,7 +4526,7 @@
 		},
 		"SVGGElement": {
 			"name": "GElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GElement",
 			"pack": [
 				"js",
@@ -4502,7 +4538,7 @@
 		},
 		"TextMetrics": {
 			"name": "TextMetrics",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextMetrics",
 			"pack": [
 				"js",
@@ -4513,7 +4549,7 @@
 		},
 		"MediaKeySession": {
 			"name": "MediaKeySession",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaKeySession",
 			"pack": [
 				"js",
@@ -4525,7 +4561,7 @@
 		},
 		"AudioWorkletProcessor": {
 			"name": "AudioWorkletProcessor",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioWorkletProcessor",
 			"pack": [
 				"js",
@@ -4537,7 +4573,7 @@
 		},
 		"MediaKeys": {
 			"name": "MediaKeys",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaKeys",
 			"pack": [
 				"js",
@@ -4549,7 +4585,7 @@
 		},
 		"Audio": {
 			"name": "Audio",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Audio",
 			"pack": [
 				"js",
@@ -4560,7 +4596,7 @@
 		},
 		"FileCallback": {
 			"name": "FileCallback",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FileCallback",
 			"pack": [
 				"js",
@@ -4571,7 +4607,7 @@
 		},
 		"VideoTrackList": {
 			"name": "VideoTrackList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VideoTrackList",
 			"pack": [
 				"js",
@@ -4582,7 +4618,7 @@
 		},
 		"HTMLMeterElement": {
 			"name": "MeterElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MeterElement",
 			"pack": [
 				"js",
@@ -4593,7 +4629,7 @@
 		},
 		"HitRegionOptions": {
 			"name": "HitRegionOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "HitRegionOptions",
 			"pack": [
 				"js",
@@ -4604,7 +4640,7 @@
 		},
 		"BlobEvent": {
 			"name": "BlobEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BlobEvent",
 			"pack": [
 				"js",
@@ -4615,7 +4651,7 @@
 		},
 		"SVGAnimateTransformElement": {
 			"name": "AnimateTransformElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimateTransformElement",
 			"pack": [
 				"js",
@@ -4627,7 +4663,7 @@
 		},
 		"SVGPathSeg": {
 			"name": "PathSeg",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PathSeg",
 			"pack": [
 				"js",
@@ -4639,7 +4675,7 @@
 		},
 		"WheelEventInit": {
 			"name": "WheelEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "WheelEventInit",
 			"pack": [
 				"js",
@@ -4650,7 +4686,7 @@
 		},
 		"Intl.RelativeTimeFormatResolvedOptions": {
 			"name": "RelativeTimeFormatResolvedOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -4662,7 +4698,7 @@
 		},
 		"MediaError": {
 			"name": "MediaError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaError",
 			"pack": [
 				"js",
@@ -4673,7 +4709,7 @@
 		},
 		"SVGComponentTransferFunctionElement": {
 			"name": "ComponentTransferFunctionElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ComponentTransferFunctionElement",
 			"pack": [
 				"js",
@@ -4685,7 +4721,7 @@
 		},
 		"PluginArray": {
 			"name": "PluginArray",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PluginArray",
 			"pack": [
 				"js",
@@ -4696,7 +4732,7 @@
 		},
 		"DOMPointReadOnly": {
 			"name": "DOMPointReadOnly",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMPointReadOnly",
 			"pack": [
 				"js",
@@ -4707,7 +4743,7 @@
 		},
 		"OES_texture_half_float": {
 			"name": "OESTextureHalfFloat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OESTextureHalfFloat",
 			"pack": [
 				"js",
@@ -4720,7 +4756,7 @@
 		},
 		"HTMLFormElement": {
 			"name": "FormElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FormElement",
 			"pack": [
 				"js",
@@ -4731,7 +4767,7 @@
 		},
 		"Object": {
 			"name": "Object",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Object",
 			"pack": [
 				"js",
@@ -4742,7 +4778,7 @@
 		},
 		"ElementCreationOptions": {
 			"name": "ElementCreationOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ElementCreationOptions",
 			"pack": [
 				"js",
@@ -4753,7 +4789,7 @@
 		},
 		"Document": {
 			"name": "Document",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Document",
 			"pack": [
 				"js",
@@ -4764,7 +4800,7 @@
 		},
 		"HTMLHRElement": {
 			"name": "HRElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HRElement",
 			"pack": [
 				"js",
@@ -4775,7 +4811,7 @@
 		},
 		"SVGDescElement": {
 			"name": "DescElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DescElement",
 			"pack": [
 				"js",
@@ -4787,7 +4823,7 @@
 		},
 		"CacheStorageNamespace": {
 			"name": "CacheStorageNamespace",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "CacheStorageNamespace",
 			"pack": [
 				"js",
@@ -4798,7 +4834,7 @@
 		},
 		"CSSAnimation": {
 			"name": "CSSAnimation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSAnimation",
 			"pack": [
 				"js",
@@ -4809,7 +4845,7 @@
 		},
 		"ServiceWorkerRegistration": {
 			"name": "ServiceWorkerRegistration",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ServiceWorkerRegistration",
 			"pack": [
 				"js",
@@ -4820,7 +4856,7 @@
 		},
 		"WebAssembly.TableDescriptor": {
 			"name": "TableDescriptor",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Table",
 			"pack": [
 				"js",
@@ -4832,7 +4868,7 @@
 		},
 		"CaretPosition": {
 			"name": "CaretPosition",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CaretPosition",
 			"pack": [
 				"js",
@@ -4843,7 +4879,7 @@
 		},
 		"WEBGL_compressed_texture_atc": {
 			"name": "WEBGLCompressedTextureAtc",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTextureAtc",
 			"pack": [
 				"js",
@@ -4856,7 +4892,7 @@
 		},
 		"HTMLQuoteElement": {
 			"name": "QuoteElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "QuoteElement",
 			"pack": [
 				"js",
@@ -4867,7 +4903,7 @@
 		},
 		"WebGLRenderbuffer": {
 			"name": "Renderbuffer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Renderbuffer",
 			"pack": [
 				"js",
@@ -4879,7 +4915,7 @@
 		},
 		"Intl.TimeZoneName": {
 			"name": "TimeZoneName",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -4891,7 +4927,7 @@
 		},
 		"DocumentTimeline": {
 			"name": "DocumentTimeline",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DocumentTimeline",
 			"pack": [
 				"js",
@@ -4902,7 +4938,7 @@
 		},
 		"URIError": {
 			"name": "URIError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -4913,7 +4949,7 @@
 		},
 		"CSSGroupingRule": {
 			"name": "CSSGroupingRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSGroupingRule",
 			"pack": [
 				"js",
@@ -4924,7 +4960,7 @@
 		},
 		"BundlePolicy": {
 			"name": "BundlePolicy",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "BundlePolicy",
 			"pack": [
 				"js",
@@ -4936,7 +4972,7 @@
 		},
 		"CanvasPattern": {
 			"name": "CanvasPattern",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CanvasPattern",
 			"pack": [
 				"js",
@@ -4947,7 +4983,7 @@
 		},
 		"SharedWorkerGlobalScope": {
 			"name": "SharedWorkerGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SharedWorkerGlobalScope",
 			"pack": [
 				"js",
@@ -4958,7 +4994,7 @@
 		},
 		"NotificationOptions": {
 			"name": "NotificationOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "NotificationOptions",
 			"pack": [
 				"js",
@@ -4969,7 +5005,7 @@
 		},
 		"ScrollBehavior": {
 			"name": "ScrollBehavior",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ScrollBehavior",
 			"pack": [
 				"js",
@@ -4980,7 +5016,7 @@
 		},
 		"PathSegLinetoRel": {
 			"name": "PathSegLinetoRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegLinetoRel",
 			"pack": [
 				"js",
@@ -4992,7 +5028,7 @@
 		},
 		"HTMLBaseElement": {
 			"name": "BaseElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BaseElement",
 			"pack": [
 				"js",
@@ -5003,7 +5039,7 @@
 		},
 		"AudioScheduledSourceNode": {
 			"name": "AudioScheduledSourceNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioScheduledSourceNode",
 			"pack": [
 				"js",
@@ -5015,7 +5051,7 @@
 		},
 		"SecurityPolicyViolationEventDisposition": {
 			"name": "SecurityPolicyViolationEventDisposition",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SecurityPolicyViolationEventDisposition",
 			"pack": [
 				"js",
@@ -5026,7 +5062,7 @@
 		},
 		"SVGAnimatedPreserveAspectRatio": {
 			"name": "AnimatedPreserveAspectRatio",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedPreserveAspectRatio",
 			"pack": [
 				"js",
@@ -5038,7 +5074,7 @@
 		},
 		"IIRFilterNode": {
 			"name": "IIRFilterNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "IIRFilterNode",
 			"pack": [
 				"js",
@@ -5050,7 +5086,7 @@
 		},
 		"OfflineAudioCompletionEventInit": {
 			"name": "OfflineAudioCompletionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OfflineAudioCompletionEventInit",
 			"pack": [
 				"js",
@@ -5061,7 +5097,7 @@
 		},
 		"IDBObjectStore": {
 			"name": "ObjectStore",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ObjectStore",
 			"pack": [
 				"js",
@@ -5073,7 +5109,7 @@
 		},
 		"WebAssembly.Instance": {
 			"name": "Instance",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Instance",
 			"pack": [
 				"js",
@@ -5085,7 +5121,7 @@
 		},
 		"MediaQueryList": {
 			"name": "MediaQueryList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaQueryList",
 			"pack": [
 				"js",
@@ -5096,7 +5132,7 @@
 		},
 		"HTMLParamElement": {
 			"name": "ParamElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ParamElement",
 			"pack": [
 				"js",
@@ -5107,7 +5143,7 @@
 		},
 		"DeviceRotationRateInit": {
 			"name": "DeviceRotationRateInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DeviceRotationRateInit",
 			"pack": [
 				"js",
@@ -5118,7 +5154,7 @@
 		},
 		"EvalError": {
 			"name": "EvalError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -5129,7 +5165,7 @@
 		},
 		"PerformanceEntryFilterOptions": {
 			"name": "PerformanceEntryFilterOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PerformanceEntryFilterOptions",
 			"pack": [
 				"js",
@@ -5140,7 +5176,7 @@
 		},
 		"Intl.YearRepresentation": {
 			"name": "YearRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -5152,7 +5188,7 @@
 		},
 		"ServiceWorkerState": {
 			"name": "ServiceWorkerState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ServiceWorkerState",
 			"pack": [
 				"js",
@@ -5163,7 +5199,7 @@
 		},
 		"PerformanceTiming": {
 			"name": "PerformanceTiming",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceTiming",
 			"pack": [
 				"js",
@@ -5174,7 +5210,7 @@
 		},
 		"HTMLHeadingElement": {
 			"name": "HeadingElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HeadingElement",
 			"pack": [
 				"js",
@@ -5185,7 +5221,7 @@
 		},
 		"WebGLFramebuffer": {
 			"name": "Framebuffer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Framebuffer",
 			"pack": [
 				"js",
@@ -5197,7 +5233,7 @@
 		},
 		"MIDIConnectionEvent": {
 			"name": "MIDIConnectionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIConnectionEvent",
 			"pack": [
 				"js",
@@ -5209,7 +5245,7 @@
 		},
 		"SVGTransform": {
 			"name": "Transform",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Transform",
 			"pack": [
 				"js",
@@ -5221,7 +5257,7 @@
 		},
 		"WorkerNavigator": {
 			"name": "WorkerNavigator",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WorkerNavigator",
 			"pack": [
 				"js",
@@ -5232,7 +5268,7 @@
 		},
 		"ChannelMergerNode": {
 			"name": "ChannelMergerNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ChannelMergerNode",
 			"pack": [
 				"js",
@@ -5244,7 +5280,7 @@
 		},
 		"WindowClient": {
 			"name": "WindowClient",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WindowClient",
 			"pack": [
 				"js",
@@ -5255,7 +5291,7 @@
 		},
 		"StorageManager": {
 			"name": "StorageManager",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StorageManager",
 			"pack": [
 				"js",
@@ -5266,7 +5302,7 @@
 		},
 		"Client": {
 			"name": "Client",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Client",
 			"pack": [
 				"js",
@@ -5277,7 +5313,7 @@
 		},
 		"Intl.DayRepresentation": {
 			"name": "DayRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -5289,7 +5325,7 @@
 		},
 		"SVGRect": {
 			"name": "Rect",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Rect",
 			"pack": [
 				"js",
@@ -5301,7 +5337,7 @@
 		},
 		"ServiceWorker": {
 			"name": "ServiceWorker",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ServiceWorker",
 			"pack": [
 				"js",
@@ -5312,7 +5348,7 @@
 		},
 		"IDBMutableFile": {
 			"name": "MutableFile",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MutableFile",
 			"pack": [
 				"js",
@@ -5324,7 +5360,7 @@
 		},
 		"MediaRecorderOptions": {
 			"name": "MediaRecorderOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaRecorderOptions",
 			"pack": [
 				"js",
@@ -5335,7 +5371,7 @@
 		},
 		"WebAssembly.ModuleExportDescriptor": {
 			"name": "ModuleExportDescriptor",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Module",
 			"pack": [
 				"js",
@@ -5347,7 +5383,7 @@
 		},
 		"Intl.DateTimeFormatResolvedOptions": {
 			"name": "DateTimeFormatResolvedOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -5359,7 +5395,7 @@
 		},
 		"TextTrack": {
 			"name": "TextTrack",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextTrack",
 			"pack": [
 				"js",
@@ -5370,7 +5406,7 @@
 		},
 		"SVGStyleElement": {
 			"name": "StyleElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StyleElement",
 			"pack": [
 				"js",
@@ -5382,7 +5418,7 @@
 		},
 		"PromiseHandler": {
 			"name": "PromiseHandler",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Promise",
 			"pack": [
 				"js",
@@ -5396,7 +5432,7 @@
 		},
 		"SVGFEOffsetElement": {
 			"name": "FEOffsetElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEOffsetElement",
 			"pack": [
 				"js",
@@ -5408,7 +5444,7 @@
 		},
 		"StyleSheet": {
 			"name": "StyleSheet",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StyleSheet",
 			"pack": [
 				"js",
@@ -5419,7 +5455,7 @@
 		},
 		"console": {
 			"name": "Console",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Console",
 			"pack": [
 				"js",
@@ -5430,7 +5466,7 @@
 		},
 		"SpeechSynthesis": {
 			"name": "SpeechSynthesis",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechSynthesis",
 			"pack": [
 				"js",
@@ -5441,7 +5477,7 @@
 		},
 		"HTMLTrackElement": {
 			"name": "TrackElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TrackElement",
 			"pack": [
 				"js",
@@ -5452,7 +5488,7 @@
 		},
 		"EXTShaderTextureLod": {
 			"name": "EXTShaderTextureLod",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EXTShaderTextureLod",
 			"pack": [
 				"js",
@@ -5465,7 +5501,7 @@
 		},
 		"NodeIterator": {
 			"name": "NodeIterator",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NodeIterator",
 			"pack": [
 				"js",
@@ -5476,7 +5512,7 @@
 		},
 		"Request": {
 			"name": "Request",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Request",
 			"pack": [
 				"js",
@@ -5487,7 +5523,7 @@
 		},
 		"ConstrainLongRange": {
 			"name": "ConstrainLongRange",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConstrainLongRange",
 			"pack": [
 				"js",
@@ -5498,7 +5534,7 @@
 		},
 		"Intl.WeekdayRepresentation": {
 			"name": "WeekdayRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -5510,7 +5546,7 @@
 		},
 		"VisualViewport": {
 			"name": "VisualViewport",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VisualViewport",
 			"pack": [
 				"js",
@@ -5521,7 +5557,7 @@
 		},
 		"AnimationEffect": {
 			"name": "AnimationEffect",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimationEffect",
 			"pack": [
 				"js",
@@ -5532,7 +5568,7 @@
 		},
 		"WheelEvent": {
 			"name": "WheelEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WheelEvent",
 			"pack": [
 				"js",
@@ -5543,7 +5579,7 @@
 		},
 		"PerformanceMeasure": {
 			"name": "PerformanceMeasure",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceMeasure",
 			"pack": [
 				"js",
@@ -5554,7 +5590,7 @@
 		},
 		"DOMMatrixReadOnly": {
 			"name": "DOMMatrixReadOnly",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMMatrixReadOnly",
 			"pack": [
 				"js",
@@ -5565,7 +5601,7 @@
 		},
 		"FontFaceSetLoadEvent": {
 			"name": "FontFaceSetLoadEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FontFaceSetLoadEvent",
 			"pack": [
 				"js",
@@ -5576,7 +5612,7 @@
 		},
 		"MediaRecorderErrorEvent": {
 			"name": "MediaRecorderErrorEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaRecorderErrorEvent",
 			"pack": [
 				"js",
@@ -5587,7 +5623,7 @@
 		},
 		"Date": {
 			"name": "Date",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Date",
 			"pack": [
 				"js",
@@ -5598,7 +5634,7 @@
 		},
 		"WorkerOptions": {
 			"name": "WorkerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "WorkerOptions",
 			"pack": [
 				"js",
@@ -5609,7 +5645,7 @@
 		},
 		"EventSource": {
 			"name": "EventSource",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EventSource",
 			"pack": [
 				"js",
@@ -5620,7 +5656,7 @@
 		},
 		"ConsoleInstance": {
 			"name": "ConsoleInstance",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ConsoleInstance",
 			"pack": [
 				"js",
@@ -5631,7 +5667,7 @@
 		},
 		"HTMLDocument": {
 			"name": "HTMLDocument",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HTMLDocument",
 			"pack": [
 				"js",
@@ -5642,7 +5678,7 @@
 		},
 		"SVGPatternElement": {
 			"name": "PatternElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PatternElement",
 			"pack": [
 				"js",
@@ -5654,7 +5690,7 @@
 		},
 		"ProgressEventInit": {
 			"name": "ProgressEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ProgressEventInit",
 			"pack": [
 				"js",
@@ -5665,7 +5701,7 @@
 		},
 		"MediaStreamTrackState": {
 			"name": "MediaStreamTrackState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaStreamTrackState",
 			"pack": [
 				"js",
@@ -5676,7 +5712,7 @@
 		},
 		"WebAssembly.ModuleImportDescriptor": {
 			"name": "ModuleImportDescriptor",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Module",
 			"pack": [
 				"js",
@@ -5688,7 +5724,7 @@
 		},
 		"ServiceWorkerUpdateViaCache": {
 			"name": "ServiceWorkerUpdateViaCache",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ServiceWorkerUpdateViaCache",
 			"pack": [
 				"js",
@@ -5699,7 +5735,7 @@
 		},
 		"SVGFEFuncBElement": {
 			"name": "FEFuncBElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEFuncBElement",
 			"pack": [
 				"js",
@@ -5711,7 +5747,7 @@
 		},
 		"HTMLMenuItemElement": {
 			"name": "MenuItemElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MenuItemElement",
 			"pack": [
 				"js",
@@ -5722,7 +5758,7 @@
 		},
 		"SVGAnimatedBoolean": {
 			"name": "AnimatedBoolean",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedBoolean",
 			"pack": [
 				"js",
@@ -5734,7 +5770,7 @@
 		},
 		"AudioWorkletGlobalScope": {
 			"name": "AudioWorkletGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioWorkletGlobalScope",
 			"pack": [
 				"js",
@@ -5746,7 +5782,7 @@
 		},
 		"Touch": {
 			"name": "Touch",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Touch",
 			"pack": [
 				"js",
@@ -5757,7 +5793,7 @@
 		},
 		"RtcpParameters": {
 			"name": "RtcpParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtcpParameters",
 			"pack": [
 				"js",
@@ -5769,7 +5805,7 @@
 		},
 		"WebGLActiveInfo": {
 			"name": "ActiveInfo",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ActiveInfo",
 			"pack": [
 				"js",
@@ -5781,7 +5817,7 @@
 		},
 		"HTMLMetaElement": {
 			"name": "MetaElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MetaElement",
 			"pack": [
 				"js",
@@ -5792,7 +5828,7 @@
 		},
 		"PushEventInit": {
 			"name": "PushEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PushEventInit",
 			"pack": [
 				"js",
@@ -5804,7 +5840,7 @@
 		},
 		"SVGMatrix": {
 			"name": "Matrix",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Matrix",
 			"pack": [
 				"js",
@@ -5816,7 +5852,7 @@
 		},
 		"SVGAnimatedInteger": {
 			"name": "AnimatedInteger",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedInteger",
 			"pack": [
 				"js",
@@ -5828,7 +5864,7 @@
 		},
 		"SVGFEImageElement": {
 			"name": "FEImageElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEImageElement",
 			"pack": [
 				"js",
@@ -5840,7 +5876,7 @@
 		},
 		"CacheQueryOptions": {
 			"name": "CacheQueryOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "CacheQueryOptions",
 			"pack": [
 				"js",
@@ -5851,7 +5887,7 @@
 		},
 		"ClipboardEvent": {
 			"name": "ClipboardEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ClipboardEvent",
 			"pack": [
 				"js",
@@ -5862,7 +5898,7 @@
 		},
 		"RTCStatsReport": {
 			"name": "StatsReport",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StatsReport",
 			"pack": [
 				"js",
@@ -5874,7 +5910,7 @@
 		},
 		"GainOptions": {
 			"name": "GainOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GainOptions",
 			"pack": [
 				"js",
@@ -5886,7 +5922,7 @@
 		},
 		"DedicatedWorkerGlobalScope": {
 			"name": "DedicatedWorkerGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DedicatedWorkerGlobalScope",
 			"pack": [
 				"js",
@@ -5897,7 +5933,7 @@
 		},
 		"DOMTokenList": {
 			"name": "DOMTokenList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMTokenList",
 			"pack": [
 				"js",
@@ -5908,7 +5944,7 @@
 		},
 		"DOMPointInit": {
 			"name": "DOMPointInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DOMPointInit",
 			"pack": [
 				"js",
@@ -5919,7 +5955,7 @@
 		},
 		"SVGLengthList": {
 			"name": "LengthList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LengthList",
 			"pack": [
 				"js",
@@ -5931,7 +5967,7 @@
 		},
 		"Intl.NumberFormatResolvedOption": {
 			"name": "NumberFormatResolvedOption",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -5943,7 +5979,7 @@
 		},
 		"SVGSetElement": {
 			"name": "SetElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SetElement",
 			"pack": [
 				"js",
@@ -5955,7 +5991,7 @@
 		},
 		"WebAssemblyInstantiatedSource": {
 			"name": "WebAssemblyInstantiatedSource",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "WebAssembly",
 			"pack": [
 				"js",
@@ -5966,7 +6002,7 @@
 		},
 		"Float32Array": {
 			"name": "Float32Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Float32Array",
 			"pack": [
 				"js",
@@ -5977,7 +6013,7 @@
 		},
 		"PageTransitionEventInit": {
 			"name": "PageTransitionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PageTransitionEventInit",
 			"pack": [
 				"js",
@@ -5988,7 +6024,7 @@
 		},
 		"FileSystemEntryCallback": {
 			"name": "FileSystemEntryCallback",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FileSystemEntryCallback",
 			"pack": [
 				"js",
@@ -5999,7 +6035,7 @@
 		},
 		"DataTransfer": {
 			"name": "DataTransfer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataTransfer",
 			"pack": [
 				"js",
@@ -6010,7 +6046,7 @@
 		},
 		"SVGPathSegList": {
 			"name": "PathSegList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PathSegList",
 			"pack": [
 				"js",
@@ -6022,7 +6058,7 @@
 		},
 		"RTCDTMFToneChangeEvent": {
 			"name": "DTMFToneChangeEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DTMFToneChangeEvent",
 			"pack": [
 				"js",
@@ -6034,7 +6070,7 @@
 		},
 		"Intl.PluralRules": {
 			"name": "PluralRules",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PluralRules",
 			"pack": [
 				"js",
@@ -6046,7 +6082,7 @@
 		},
 		"HTMLCanvasElement": {
 			"name": "CanvasElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CanvasElement",
 			"pack": [
 				"js",
@@ -6057,7 +6093,7 @@
 		},
 		"WEBGL_compressed_texture_etc1": {
 			"name": "WEBGLCompressedTextureEtc1",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTextureEtc1",
 			"pack": [
 				"js",
@@ -6070,7 +6106,7 @@
 		},
 		"WebAssembly.ImportExportKind": {
 			"name": "ImportExportKind",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Module",
 			"pack": [
 				"js",
@@ -6082,7 +6118,7 @@
 		},
 		"HTMLUListElement": {
 			"name": "UListElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "UListElement",
 			"pack": [
 				"js",
@@ -6093,7 +6129,7 @@
 		},
 		"CSSBoxType": {
 			"name": "CSSBoxType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "CSSBoxType",
 			"pack": [
 				"js",
@@ -6104,7 +6140,7 @@
 		},
 		"HTMLAudioElement": {
 			"name": "AudioElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioElement",
 			"pack": [
 				"js",
@@ -6115,7 +6151,7 @@
 		},
 		"Intl.DateTimeFormatPart": {
 			"name": "DateTimeFormatPart",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -6127,7 +6163,7 @@
 		},
 		"Intl.FormatMatcher": {
 			"name": "FormatMatcher",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -6139,7 +6175,7 @@
 		},
 		"PanningModelType": {
 			"name": "PanningModelType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PanningModelType",
 			"pack": [
 				"js",
@@ -6151,7 +6187,7 @@
 		},
 		"MediaStreamAudioSourceOptions": {
 			"name": "MediaStreamAudioSourceOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaStreamAudioSourceOptions",
 			"pack": [
 				"js",
@@ -6163,7 +6199,7 @@
 		},
 		"RangeError": {
 			"name": "RangeError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -6174,7 +6210,7 @@
 		},
 		"HTMLFontElement": {
 			"name": "FontElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FontElement",
 			"pack": [
 				"js",
@@ -6185,7 +6221,7 @@
 		},
 		"WebAssembly.Memory": {
 			"name": "Memory",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Memory",
 			"pack": [
 				"js",
@@ -6197,7 +6233,7 @@
 		},
 		"VTTRegion": {
 			"name": "VTTRegion",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VTTRegion",
 			"pack": [
 				"js",
@@ -6208,7 +6244,7 @@
 		},
 		"Intl.RelativeTimeFormatPartType": {
 			"name": "RelativeTimeFormatPartType",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -6220,7 +6256,7 @@
 		},
 		"GetUserMediaRequest": {
 			"name": "GetUserMediaRequest",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GetUserMediaRequest",
 			"pack": [
 				"js",
@@ -6231,7 +6267,7 @@
 		},
 		"MIDIPortDeviceState": {
 			"name": "MIDIPortDeviceState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MIDIPortDeviceState",
 			"pack": [
 				"js",
@@ -6243,7 +6279,7 @@
 		},
 		"OscillatorType": {
 			"name": "OscillatorType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "OscillatorType",
 			"pack": [
 				"js",
@@ -6255,7 +6291,7 @@
 		},
 		"HTMLTimeElement": {
 			"name": "TimeElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TimeElement",
 			"pack": [
 				"js",
@@ -6266,7 +6302,7 @@
 		},
 		"Intl.NumberFormatOptions": {
 			"name": "NumberFormatOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -6278,7 +6314,7 @@
 		},
 		"MediaTrackConstraintSet": {
 			"name": "MediaTrackConstraintSet",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaTrackConstraintSet",
 			"pack": [
 				"js",
@@ -6289,7 +6325,7 @@
 		},
 		"SVGLinearGradientElement": {
 			"name": "LinearGradientElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LinearGradientElement",
 			"pack": [
 				"js",
@@ -6301,7 +6337,7 @@
 		},
 		"WEBGL_debug_renderer_info": {
 			"name": "WEBGLDebugRendererInfo",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLDebugRendererInfo",
 			"pack": [
 				"js",
@@ -6314,7 +6350,7 @@
 		},
 		"DistanceModelType": {
 			"name": "DistanceModelType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DistanceModelType",
 			"pack": [
 				"js",
@@ -6326,7 +6362,7 @@
 		},
 		"MediaKeySystemConfiguration": {
 			"name": "MediaKeySystemConfiguration",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaKeySystemConfiguration",
 			"pack": [
 				"js",
@@ -6338,7 +6374,7 @@
 		},
 		"MediaElementAudioSourceNode": {
 			"name": "MediaElementAudioSourceNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaElementAudioSourceNode",
 			"pack": [
 				"js",
@@ -6350,7 +6386,7 @@
 		},
 		"RtpCodecParameters": {
 			"name": "RtpCodecParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpCodecParameters",
 			"pack": [
 				"js",
@@ -6362,7 +6398,7 @@
 		},
 		"Proxy": {
 			"name": "Proxy",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Proxy",
 			"pack": [
 				"js",
@@ -6375,7 +6411,7 @@
 		},
 		"SVGMarkerElement": {
 			"name": "MarkerElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MarkerElement",
 			"pack": [
 				"js",
@@ -6387,7 +6423,7 @@
 		},
 		"IceTransportPolicy": {
 			"name": "IceTransportPolicy",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "IceTransportPolicy",
 			"pack": [
 				"js",
@@ -6399,7 +6435,7 @@
 		},
 		"SVGViewElement": {
 			"name": "ViewElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ViewElement",
 			"pack": [
 				"js",
@@ -6411,7 +6447,7 @@
 		},
 		"SVGFEDisplacementMapElement": {
 			"name": "FEDisplacementMapElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEDisplacementMapElement",
 			"pack": [
 				"js",
@@ -6423,7 +6459,7 @@
 		},
 		"HTMLModElement": {
 			"name": "ModElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ModElement",
 			"pack": [
 				"js",
@@ -6434,7 +6470,7 @@
 		},
 		"FetchEventInit": {
 			"name": "FetchEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FetchEventInit",
 			"pack": [
 				"js",
@@ -6445,7 +6481,7 @@
 		},
 		"LineAlignSetting": {
 			"name": "LineAlignSetting",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "LineAlignSetting",
 			"pack": [
 				"js",
@@ -6456,7 +6492,7 @@
 		},
 		"StyleSheetList": {
 			"name": "StyleSheetList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StyleSheetList",
 			"pack": [
 				"js",
@@ -6467,7 +6503,7 @@
 		},
 		"Storage": {
 			"name": "Storage",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Storage",
 			"pack": [
 				"js",
@@ -6478,7 +6514,7 @@
 		},
 		"RTCPeerConnectionIceEvent": {
 			"name": "PeerConnectionIceEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PeerConnectionIceEvent",
 			"pack": [
 				"js",
@@ -6490,7 +6526,7 @@
 		},
 		"AssignedNodesOptions": {
 			"name": "AssignedNodesOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AssignedNodesOptions",
 			"pack": [
 				"js",
@@ -6501,7 +6537,7 @@
 		},
 		"SVGFEPointLightElement": {
 			"name": "FEPointLightElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEPointLightElement",
 			"pack": [
 				"js",
@@ -6513,7 +6549,7 @@
 		},
 		"CursorDirection": {
 			"name": "CursorDirection",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "CursorDirection",
 			"pack": [
 				"js",
@@ -6525,7 +6561,7 @@
 		},
 		"Intl.Sensitivity": {
 			"name": "Sensitivity",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -6537,7 +6573,7 @@
 		},
 		"SVGScriptElement": {
 			"name": "ScriptElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ScriptElement",
 			"pack": [
 				"js",
@@ -6549,7 +6585,7 @@
 		},
 		"SpeechRecognitionResultList": {
 			"name": "SpeechRecognitionResultList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechRecognitionResultList",
 			"pack": [
 				"js",
@@ -6560,7 +6596,7 @@
 		},
 		"SVGAnimatedString": {
 			"name": "AnimatedString",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedString",
 			"pack": [
 				"js",
@@ -6572,7 +6608,7 @@
 		},
 		"Response": {
 			"name": "Response",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Response",
 			"pack": [
 				"js",
@@ -6583,7 +6619,7 @@
 		},
 		"PointerEventInit": {
 			"name": "PointerEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PointerEventInit",
 			"pack": [
 				"js",
@@ -6594,7 +6630,7 @@
 		},
 		"HTMLFieldSetElement": {
 			"name": "FieldSetElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FieldSetElement",
 			"pack": [
 				"js",
@@ -6605,7 +6641,7 @@
 		},
 		"MediaDeviceKind": {
 			"name": "MediaDeviceKind",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaDeviceKind",
 			"pack": [
 				"js",
@@ -6616,7 +6652,7 @@
 		},
 		"PerformanceObserverInit": {
 			"name": "PerformanceObserverInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PerformanceObserverInit",
 			"pack": [
 				"js",
@@ -6627,7 +6663,7 @@
 		},
 		"AudioContext": {
 			"name": "AudioContext",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioContext",
 			"pack": [
 				"js",
@@ -6639,7 +6675,7 @@
 		},
 		"SVGAngle": {
 			"name": "Angle",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Angle",
 			"pack": [
 				"js",
@@ -6651,7 +6687,7 @@
 		},
 		"RequestReadyState": {
 			"name": "RequestReadyState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RequestReadyState",
 			"pack": [
 				"js",
@@ -6663,7 +6699,7 @@
 		},
 		"HTMLSelectElement": {
 			"name": "SelectElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SelectElement",
 			"pack": [
 				"js",
@@ -6674,7 +6710,7 @@
 		},
 		"SharedWorker": {
 			"name": "SharedWorker",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SharedWorker",
 			"pack": [
 				"js",
@@ -6685,7 +6721,7 @@
 		},
 		"IDBVersionChangeEvent": {
 			"name": "VersionChangeEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VersionChangeEvent",
 			"pack": [
 				"js",
@@ -6695,9 +6731,22 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"AsyncIterator": {
+			"name": "AsyncIterator",
+			"moduleType": "typedef",
+			"moduleName": "Iterator",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false
+		},
 		"SVGAnimateElement": {
 			"name": "AnimateElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimateElement",
 			"pack": [
 				"js",
@@ -6709,7 +6758,7 @@
 		},
 		"FontFace": {
 			"name": "FontFace",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FontFace",
 			"pack": [
 				"js",
@@ -6720,7 +6769,7 @@
 		},
 		"URLSearchParamsIterator": {
 			"name": "URLSearchParamsIterator",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "URLSearchParamsIterator",
 			"pack": [
 				"js",
@@ -6731,7 +6780,7 @@
 		},
 		"MIDIInputMap": {
 			"name": "MIDIInputMap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIInputMap",
 			"pack": [
 				"js",
@@ -6743,7 +6792,7 @@
 		},
 		"Symbol": {
 			"name": "Symbol",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Symbol",
 			"pack": [
 				"js",
@@ -6754,7 +6803,7 @@
 		},
 		"MIDIMessageEvent": {
 			"name": "MIDIMessageEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIMessageEvent",
 			"pack": [
 				"js",
@@ -6766,7 +6815,7 @@
 		},
 		"HTMLOutputElement": {
 			"name": "OutputElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OutputElement",
 			"pack": [
 				"js",
@@ -6777,7 +6826,7 @@
 		},
 		"Intl.RelativeTimeFormat": {
 			"name": "RelativeTimeFormat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -6789,7 +6838,7 @@
 		},
 		"Intl.PluralRulesType": {
 			"name": "PluralRulesType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PluralRules",
 			"pack": [
 				"js",
@@ -6801,7 +6850,7 @@
 		},
 		"CSSFontFaceRule": {
 			"name": "CSSFontFaceRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSFontFaceRule",
 			"pack": [
 				"js",
@@ -6812,7 +6861,7 @@
 		},
 		"FileSystemEntry": {
 			"name": "FileSystemEntry",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileSystemEntry",
 			"pack": [
 				"js",
@@ -6823,7 +6872,7 @@
 		},
 		"OscillatorNode": {
 			"name": "OscillatorNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OscillatorNode",
 			"pack": [
 				"js",
@@ -6835,7 +6884,7 @@
 		},
 		"HTMLTemplateElement": {
 			"name": "TemplateElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TemplateElement",
 			"pack": [
 				"js",
@@ -6846,7 +6895,7 @@
 		},
 		"WebGLShaderPrecisionFormat": {
 			"name": "ShaderPrecisionFormat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ShaderPrecisionFormat",
 			"pack": [
 				"js",
@@ -6858,7 +6907,7 @@
 		},
 		"OrientationLockType": {
 			"name": "OrientationLockType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "OrientationLockType",
 			"pack": [
 				"js",
@@ -6869,7 +6918,7 @@
 		},
 		"XPathResult": {
 			"name": "XPathResult",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XPathResult",
 			"pack": [
 				"js",
@@ -6880,7 +6929,7 @@
 		},
 		"SVGGradientElement": {
 			"name": "GradientElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GradientElement",
 			"pack": [
 				"js",
@@ -6892,7 +6941,7 @@
 		},
 		"ShadowRoot": {
 			"name": "ShadowRoot",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ShadowRoot",
 			"pack": [
 				"js",
@@ -6903,7 +6952,7 @@
 		},
 		"MimeType": {
 			"name": "MimeType",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MimeType",
 			"pack": [
 				"js",
@@ -6914,7 +6963,7 @@
 		},
 		"SVGAElement": {
 			"name": "AElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AElement",
 			"pack": [
 				"js",
@@ -6926,7 +6975,7 @@
 		},
 		"MIDIOutputMap": {
 			"name": "MIDIOutputMap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIOutputMap",
 			"pack": [
 				"js",
@@ -6938,7 +6987,7 @@
 		},
 		"PopStateEvent": {
 			"name": "PopStateEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PopStateEvent",
 			"pack": [
 				"js",
@@ -6949,7 +6998,7 @@
 		},
 		"DocumentType": {
 			"name": "DocumentType",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DocumentType",
 			"pack": [
 				"js",
@@ -6960,7 +7009,7 @@
 		},
 		"SVGAnimatedTransformList": {
 			"name": "AnimatedTransformList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedTransformList",
 			"pack": [
 				"js",
@@ -6972,7 +7021,7 @@
 		},
 		"AudioTrack": {
 			"name": "AudioTrack",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioTrack",
 			"pack": [
 				"js",
@@ -6983,7 +7032,7 @@
 		},
 		"FecParameters": {
 			"name": "FecParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FecParameters",
 			"pack": [
 				"js",
@@ -6995,7 +7044,7 @@
 		},
 		"SVGAnimateMotionElement": {
 			"name": "AnimateMotionElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimateMotionElement",
 			"pack": [
 				"js",
@@ -7007,7 +7056,7 @@
 		},
 		"CompositeOperation": {
 			"name": "CompositeOperation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "CompositeOperation",
 			"pack": [
 				"js",
@@ -7018,7 +7067,7 @@
 		},
 		"FetchEvent": {
 			"name": "FetchEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FetchEvent",
 			"pack": [
 				"js",
@@ -7029,7 +7078,7 @@
 		},
 		"ThenableStruct": {
 			"name": "ThenableStruct",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Promise",
 			"pack": [
 				"js",
@@ -7042,7 +7091,7 @@
 		},
 		"PeerConnectionIceEventInit": {
 			"name": "PeerConnectionIceEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PeerConnectionIceEventInit",
 			"pack": [
 				"js",
@@ -7054,7 +7103,7 @@
 		},
 		"SVGTextContentElement": {
 			"name": "TextContentElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextContentElement",
 			"pack": [
 				"js",
@@ -7066,7 +7115,7 @@
 		},
 		"PathSegMovetoAbs": {
 			"name": "PathSegMovetoAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegMovetoAbs",
 			"pack": [
 				"js",
@@ -7078,7 +7127,7 @@
 		},
 		"AudioWorkletNodeOptions": {
 			"name": "AudioWorkletNodeOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AudioWorkletNodeOptions",
 			"pack": [
 				"js",
@@ -7090,7 +7139,7 @@
 		},
 		"IDBRequest": {
 			"name": "Request",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Request",
 			"pack": [
 				"js",
@@ -7102,7 +7151,7 @@
 		},
 		"MediaDevices": {
 			"name": "MediaDevices",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaDevices",
 			"pack": [
 				"js",
@@ -7113,7 +7162,7 @@
 		},
 		"TimeEvent": {
 			"name": "TimeEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TimeEvent",
 			"pack": [
 				"js",
@@ -7124,7 +7173,7 @@
 		},
 		"SVGRectElement": {
 			"name": "RectElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RectElement",
 			"pack": [
 				"js",
@@ -7136,7 +7185,7 @@
 		},
 		"HTMLTableRowElement": {
 			"name": "TableRowElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TableRowElement",
 			"pack": [
 				"js",
@@ -7147,7 +7196,7 @@
 		},
 		"PushManager": {
 			"name": "PushManager",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PushManager",
 			"pack": [
 				"js",
@@ -7159,7 +7208,7 @@
 		},
 		"Navigator": {
 			"name": "Navigator",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Navigator",
 			"pack": [
 				"js",
@@ -7170,7 +7219,7 @@
 		},
 		"DOMQuad": {
 			"name": "DOMQuad",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMQuad",
 			"pack": [
 				"js",
@@ -7181,7 +7230,7 @@
 		},
 		"DataTransferItem": {
 			"name": "DataTransferItem",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataTransferItem",
 			"pack": [
 				"js",
@@ -7192,7 +7241,7 @@
 		},
 		"PopupBlockedEventInit": {
 			"name": "PopupBlockedEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PopupBlockedEventInit",
 			"pack": [
 				"js",
@@ -7203,7 +7252,7 @@
 		},
 		"HashChangeEvent": {
 			"name": "HashChangeEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HashChangeEvent",
 			"pack": [
 				"js",
@@ -7214,7 +7263,7 @@
 		},
 		"AudioContextState": {
 			"name": "AudioContextState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "AudioContextState",
 			"pack": [
 				"js",
@@ -7226,7 +7275,7 @@
 		},
 		"WebGLQuery": {
 			"name": "Query",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Query",
 			"pack": [
 				"js",
@@ -7238,7 +7287,7 @@
 		},
 		"RTCRtpReceiver": {
 			"name": "RtpReceiver",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RtpReceiver",
 			"pack": [
 				"js",
@@ -7250,7 +7299,7 @@
 		},
 		"Intl.PluralRulesOptions": {
 			"name": "PluralRulesOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PluralRules",
 			"pack": [
 				"js",
@@ -7262,7 +7311,7 @@
 		},
 		"Comment": {
 			"name": "Comment",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Comment",
 			"pack": [
 				"js",
@@ -7273,7 +7322,7 @@
 		},
 		"PathSegCurvetoQuadraticAbs": {
 			"name": "PathSegCurvetoQuadraticAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoQuadraticAbs",
 			"pack": [
 				"js",
@@ -7285,7 +7334,7 @@
 		},
 		"SVGFETurbulenceElement": {
 			"name": "FETurbulenceElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FETurbulenceElement",
 			"pack": [
 				"js",
@@ -7297,7 +7346,7 @@
 		},
 		"KeyboardEventInit": {
 			"name": "KeyboardEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "KeyboardEventInit",
 			"pack": [
 				"js",
@@ -7308,7 +7357,7 @@
 		},
 		"External": {
 			"name": "External",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "External",
 			"pack": [
 				"js",
@@ -7319,7 +7368,7 @@
 		},
 		"SVGMPathElement": {
 			"name": "MPathElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MPathElement",
 			"pack": [
 				"js",
@@ -7331,7 +7380,7 @@
 		},
 		"AudioBufferOptions": {
 			"name": "AudioBufferOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AudioBufferOptions",
 			"pack": [
 				"js",
@@ -7343,7 +7392,7 @@
 		},
 		"Intl.SecondRepresentation": {
 			"name": "SecondRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -7355,7 +7404,7 @@
 		},
 		"KeyframeEffect": {
 			"name": "KeyframeEffect",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "KeyframeEffect",
 			"pack": [
 				"js",
@@ -7366,7 +7415,7 @@
 		},
 		"Intl.Collator": {
 			"name": "Collator",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -7378,7 +7427,7 @@
 		},
 		"MediaQueryListEvent": {
 			"name": "MediaQueryListEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaQueryListEvent",
 			"pack": [
 				"js",
@@ -7389,7 +7438,7 @@
 		},
 		"SVGFEBlendElement": {
 			"name": "FEBlendElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEBlendElement",
 			"pack": [
 				"js",
@@ -7401,7 +7450,7 @@
 		},
 		"IdentityAssertion": {
 			"name": "IdentityAssertion",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityAssertion",
 			"pack": [
 				"js",
@@ -7413,7 +7462,7 @@
 		},
 		"RegistrationOptions": {
 			"name": "RegistrationOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RegistrationOptions",
 			"pack": [
 				"js",
@@ -7424,7 +7473,7 @@
 		},
 		"EventTarget": {
 			"name": "EventTarget",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EventTarget",
 			"pack": [
 				"js",
@@ -7435,7 +7484,7 @@
 		},
 		"DocumentTimelineOptions": {
 			"name": "DocumentTimelineOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DocumentTimelineOptions",
 			"pack": [
 				"js",
@@ -7446,7 +7495,7 @@
 		},
 		"FontFaceLoadStatus": {
 			"name": "FontFaceLoadStatus",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "FontFaceLoadStatus",
 			"pack": [
 				"js",
@@ -7457,7 +7506,7 @@
 		},
 		"CharacterData": {
 			"name": "CharacterData",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CharacterData",
 			"pack": [
 				"js",
@@ -7468,7 +7517,7 @@
 		},
 		"BiquadFilterNode": {
 			"name": "BiquadFilterNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BiquadFilterNode",
 			"pack": [
 				"js",
@@ -7480,7 +7529,7 @@
 		},
 		"SelectionMode": {
 			"name": "SelectionMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SelectionMode",
 			"pack": [
 				"js",
@@ -7491,7 +7540,7 @@
 		},
 		"SVGFEConvolveMatrixElement": {
 			"name": "FEConvolveMatrixElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEConvolveMatrixElement",
 			"pack": [
 				"js",
@@ -7503,7 +7552,7 @@
 		},
 		"BroadcastChannel": {
 			"name": "BroadcastChannel",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BroadcastChannel",
 			"pack": [
 				"js",
@@ -7514,7 +7563,7 @@
 		},
 		"RegExpMatch": {
 			"name": "RegExpMatch",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RegExp",
 			"pack": [
 				"js",
@@ -7525,7 +7574,7 @@
 		},
 		"ScrollOptions": {
 			"name": "ScrollOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ScrollOptions",
 			"pack": [
 				"js",
@@ -7536,7 +7585,7 @@
 		},
 		"PositionError": {
 			"name": "PositionError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PositionError",
 			"pack": [
 				"js",
@@ -7547,7 +7596,7 @@
 		},
 		"MediaKeysRequirement": {
 			"name": "MediaKeysRequirement",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "MediaKeysRequirement",
 			"pack": [
 				"js",
@@ -7559,7 +7608,7 @@
 		},
 		"FocusEvent": {
 			"name": "FocusEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FocusEvent",
 			"pack": [
 				"js",
@@ -7570,7 +7619,7 @@
 		},
 		"SVGUseElement": {
 			"name": "UseElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "UseElement",
 			"pack": [
 				"js",
@@ -7582,7 +7631,7 @@
 		},
 		"WebGLUniformLocation": {
 			"name": "UniformLocation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "UniformLocation",
 			"pack": [
 				"js",
@@ -7594,7 +7643,7 @@
 		},
 		"Directory": {
 			"name": "Directory",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Directory",
 			"pack": [
 				"js",
@@ -7605,7 +7654,7 @@
 		},
 		"DataTransferItemList": {
 			"name": "DataTransferItemList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DataTransferItemList",
 			"pack": [
 				"js",
@@ -7616,7 +7665,7 @@
 		},
 		"FileSystemFileEntry": {
 			"name": "FileSystemFileEntry",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileSystemFileEntry",
 			"pack": [
 				"js",
@@ -7627,7 +7676,7 @@
 		},
 		"DOMRectReadOnly": {
 			"name": "DOMRectReadOnly",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMRectReadOnly",
 			"pack": [
 				"js",
@@ -7638,7 +7687,7 @@
 		},
 		"SpeechRecognitionError": {
 			"name": "SpeechRecognitionError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechRecognitionError",
 			"pack": [
 				"js",
@@ -7649,7 +7698,7 @@
 		},
 		"SVGGeometryElement": {
 			"name": "GeometryElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GeometryElement",
 			"pack": [
 				"js",
@@ -7661,7 +7710,7 @@
 		},
 		"Configuration": {
 			"name": "Configuration",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Configuration",
 			"pack": [
 				"js",
@@ -7673,7 +7722,7 @@
 		},
 		"OptionalEffectTiming": {
 			"name": "OptionalEffectTiming",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OptionalEffectTiming",
 			"pack": [
 				"js",
@@ -7684,7 +7733,7 @@
 		},
 		"HTMLStyleElement": {
 			"name": "StyleElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StyleElement",
 			"pack": [
 				"js",
@@ -7695,7 +7744,7 @@
 		},
 		"CSSRuleList": {
 			"name": "CSSRuleList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSRuleList",
 			"pack": [
 				"js",
@@ -7706,7 +7755,7 @@
 		},
 		"SVGPathElement": {
 			"name": "PathElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PathElement",
 			"pack": [
 				"js",
@@ -7718,7 +7767,7 @@
 		},
 		"AudioParam": {
 			"name": "AudioParam",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioParam",
 			"pack": [
 				"js",
@@ -7730,7 +7779,7 @@
 		},
 		"DOMImplementation": {
 			"name": "DOMImplementation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMImplementation",
 			"pack": [
 				"js",
@@ -7741,7 +7790,7 @@
 		},
 		"DOMRect": {
 			"name": "DOMRect",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMRect",
 			"pack": [
 				"js",
@@ -7752,7 +7801,7 @@
 		},
 		"FileReader": {
 			"name": "FileReader",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileReader",
 			"pack": [
 				"js",
@@ -7763,7 +7812,7 @@
 		},
 		"RegExp": {
 			"name": "RegExp",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RegExp",
 			"pack": [
 				"js",
@@ -7774,7 +7823,7 @@
 		},
 		"SVGLength": {
 			"name": "Length",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Length",
 			"pack": [
 				"js",
@@ -7786,7 +7835,7 @@
 		},
 		"IDBCursorWithValue": {
 			"name": "CursorWithValue",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CursorWithValue",
 			"pack": [
 				"js",
@@ -7798,7 +7847,7 @@
 		},
 		"SVGFEMergeElement": {
 			"name": "FEMergeElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEMergeElement",
 			"pack": [
 				"js",
@@ -7810,7 +7859,7 @@
 		},
 		"AbortController": {
 			"name": "AbortController",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AbortController",
 			"pack": [
 				"js",
@@ -7821,7 +7870,7 @@
 		},
 		"SVGTSpanElement": {
 			"name": "TSpanElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TSpanElement",
 			"pack": [
 				"js",
@@ -7833,7 +7882,7 @@
 		},
 		"TextEncoder": {
 			"name": "TextEncoder",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextEncoder",
 			"pack": [
 				"js",
@@ -7844,7 +7893,7 @@
 		},
 		"PowerPreference": {
 			"name": "PowerPreference",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PowerPreference",
 			"pack": [
 				"js",
@@ -7856,7 +7905,7 @@
 		},
 		"RevocableProxy": {
 			"name": "RevocableProxy",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Proxy",
 			"pack": [
 				"js",
@@ -7869,7 +7918,7 @@
 		},
 		"SVGFEFuncGElement": {
 			"name": "FEFuncGElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEFuncGElement",
 			"pack": [
 				"js",
@@ -7881,7 +7930,7 @@
 		},
 		"SVGAnimatedEnumeration": {
 			"name": "AnimatedEnumeration",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedEnumeration",
 			"pack": [
 				"js",
@@ -7893,7 +7942,7 @@
 		},
 		"MutationEvent": {
 			"name": "MutationEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MutationEvent",
 			"pack": [
 				"js",
@@ -7904,7 +7953,7 @@
 		},
 		"PositionOptions": {
 			"name": "PositionOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PositionOptions",
 			"pack": [
 				"js",
@@ -7915,7 +7964,7 @@
 		},
 		"PlaybackDirection": {
 			"name": "PlaybackDirection",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PlaybackDirection",
 			"pack": [
 				"js",
@@ -7926,7 +7975,7 @@
 		},
 		"EXT_sRGB": {
 			"name": "EXTSrgb",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EXTSrgb",
 			"pack": [
 				"js",
@@ -7939,7 +7988,7 @@
 		},
 		"InputEvent": {
 			"name": "InputEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "InputEvent",
 			"pack": [
 				"js",
@@ -7950,7 +7999,7 @@
 		},
 		"HTMLCollection": {
 			"name": "HTMLCollection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HTMLCollection",
 			"pack": [
 				"js",
@@ -7961,7 +8010,7 @@
 		},
 		"TypeError": {
 			"name": "TypeError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Error",
 			"pack": [
 				"js",
@@ -7970,9 +8019,22 @@
 			"typeParameters": [],
 			"isExtern": true
 		},
+		"SetKeyValueIterator": {
+			"name": "SetKeyValueIterator",
+			"moduleType": "class",
+			"moduleName": "Set",
+			"pack": [
+				"js",
+				"lib"
+			],
+			"typeParameters": [
+				"T"
+			],
+			"isExtern": false
+		},
 		"WebGLProgram": {
 			"name": "Program",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Program",
 			"pack": [
 				"js",
@@ -7984,7 +8046,7 @@
 		},
 		"FontFaceSetIterator": {
 			"name": "FontFaceSetIterator",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FontFaceSetIterator",
 			"pack": [
 				"js",
@@ -7995,7 +8057,7 @@
 		},
 		"ClipboardEventInit": {
 			"name": "ClipboardEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ClipboardEventInit",
 			"pack": [
 				"js",
@@ -8006,7 +8068,7 @@
 		},
 		"NotificationDirection": {
 			"name": "NotificationDirection",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "NotificationDirection",
 			"pack": [
 				"js",
@@ -8017,7 +8079,7 @@
 		},
 		"ObjectEntry": {
 			"name": "ObjectEntry",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Object",
 			"pack": [
 				"js",
@@ -8028,7 +8090,7 @@
 		},
 		"MediaList": {
 			"name": "MediaList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaList",
 			"pack": [
 				"js",
@@ -8039,7 +8101,7 @@
 		},
 		"Intl.CurrencyDisplay": {
 			"name": "CurrencyDisplay",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -8051,7 +8113,7 @@
 		},
 		"History": {
 			"name": "History",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "History",
 			"pack": [
 				"js",
@@ -8062,7 +8124,7 @@
 		},
 		"PeriodicWave": {
 			"name": "PeriodicWave",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PeriodicWave",
 			"pack": [
 				"js",
@@ -8074,7 +8136,7 @@
 		},
 		"ProgressEvent": {
 			"name": "ProgressEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ProgressEvent",
 			"pack": [
 				"js",
@@ -8085,7 +8147,7 @@
 		},
 		"TouchInit": {
 			"name": "TouchInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "TouchInit",
 			"pack": [
 				"js",
@@ -8096,7 +8158,7 @@
 		},
 		"CSSSupportsRule": {
 			"name": "CSSSupportsRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSSupportsRule",
 			"pack": [
 				"js",
@@ -8107,7 +8169,7 @@
 		},
 		"DOMStringMap": {
 			"name": "DOMStringMap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMStringMap",
 			"pack": [
 				"js",
@@ -8118,7 +8180,7 @@
 		},
 		"SpeechRecognition": {
 			"name": "SpeechRecognition",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechRecognition",
 			"pack": [
 				"js",
@@ -8129,7 +8191,7 @@
 		},
 		"AudioTrackList": {
 			"name": "AudioTrackList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioTrackList",
 			"pack": [
 				"js",
@@ -8140,7 +8202,7 @@
 		},
 		"FontFaceDescriptors": {
 			"name": "FontFaceDescriptors",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FontFaceDescriptors",
 			"pack": [
 				"js",
@@ -8151,7 +8213,7 @@
 		},
 		"XMLHttpRequest": {
 			"name": "XMLHttpRequest",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XMLHttpRequest",
 			"pack": [
 				"js",
@@ -8162,7 +8224,7 @@
 		},
 		"HTMLOptionsCollection": {
 			"name": "HTMLOptionsCollection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HTMLOptionsCollection",
 			"pack": [
 				"js",
@@ -8173,7 +8235,7 @@
 		},
 		"FillMode": {
 			"name": "FillMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "FillMode",
 			"pack": [
 				"js",
@@ -8184,7 +8246,7 @@
 		},
 		"IdentityValidationResult": {
 			"name": "IdentityValidationResult",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityValidationResult",
 			"pack": [
 				"js",
@@ -8196,7 +8258,7 @@
 		},
 		"SpeechSynthesisErrorEvent": {
 			"name": "SpeechSynthesisErrorEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechSynthesisErrorEvent",
 			"pack": [
 				"js",
@@ -8207,7 +8269,7 @@
 		},
 		"SpeechRecognitionErrorInit": {
 			"name": "SpeechRecognitionErrorInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "SpeechRecognitionErrorInit",
 			"pack": [
 				"js",
@@ -8218,7 +8280,7 @@
 		},
 		"HTMLTableElement": {
 			"name": "TableElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TableElement",
 			"pack": [
 				"js",
@@ -8229,7 +8291,7 @@
 		},
 		"ANGLE_instanced_arrays": {
 			"name": "ANGLEInstancedArrays",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ANGLEInstancedArrays",
 			"pack": [
 				"js",
@@ -8242,7 +8304,7 @@
 		},
 		"AnimationTimeline": {
 			"name": "AnimationTimeline",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimationTimeline",
 			"pack": [
 				"js",
@@ -8253,7 +8315,7 @@
 		},
 		"TouchList": {
 			"name": "TouchList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TouchList",
 			"pack": [
 				"js",
@@ -8264,7 +8326,7 @@
 		},
 		"WaveShaperNode": {
 			"name": "WaveShaperNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WaveShaperNode",
 			"pack": [
 				"js",
@@ -8276,7 +8338,7 @@
 		},
 		"StorageEvent": {
 			"name": "StorageEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StorageEvent",
 			"pack": [
 				"js",
@@ -8287,7 +8349,7 @@
 		},
 		"ArrayBuffer": {
 			"name": "ArrayBuffer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ArrayBuffer",
 			"pack": [
 				"js",
@@ -8298,7 +8360,7 @@
 		},
 		"EXT_texture_filter_anisotropic": {
 			"name": "EXTTextureFilterAnisotropic",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EXTTextureFilterAnisotropic",
 			"pack": [
 				"js",
@@ -8311,7 +8373,7 @@
 		},
 		"Animation": {
 			"name": "Animation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Animation",
 			"pack": [
 				"js",
@@ -8322,7 +8384,7 @@
 		},
 		"CSS": {
 			"name": "CSS",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSS",
 			"pack": [
 				"js",
@@ -8333,7 +8395,7 @@
 		},
 		"InputEventInit": {
 			"name": "InputEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "InputEventInit",
 			"pack": [
 				"js",
@@ -8344,7 +8406,7 @@
 		},
 		"CacheStorage": {
 			"name": "CacheStorage",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CacheStorage",
 			"pack": [
 				"js",
@@ -8355,7 +8417,7 @@
 		},
 		"IDBOpenDBRequest": {
 			"name": "OpenDBRequest",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OpenDBRequest",
 			"pack": [
 				"js",
@@ -8367,7 +8429,7 @@
 		},
 		"ScrollAreaEvent": {
 			"name": "ScrollAreaEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ScrollAreaEvent",
 			"pack": [
 				"js",
@@ -8378,7 +8440,7 @@
 		},
 		"Clients": {
 			"name": "Clients",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Clients",
 			"pack": [
 				"js",
@@ -8389,7 +8451,7 @@
 		},
 		"SpeechSynthesisErrorEventInit": {
 			"name": "SpeechSynthesisErrorEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "SpeechSynthesisErrorEventInit",
 			"pack": [
 				"js",
@@ -8400,7 +8462,7 @@
 		},
 		"PermissionStatus": {
 			"name": "PermissionStatus",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PermissionStatus",
 			"pack": [
 				"js",
@@ -8411,7 +8473,7 @@
 		},
 		"PropertyNodeList": {
 			"name": "PropertyNodeList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PropertyNodeList",
 			"pack": [
 				"js",
@@ -8422,7 +8484,7 @@
 		},
 		"PushSubscription": {
 			"name": "PushSubscription",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PushSubscription",
 			"pack": [
 				"js",
@@ -8434,7 +8496,7 @@
 		},
 		"FileList": {
 			"name": "FileList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileList",
 			"pack": [
 				"js",
@@ -8445,7 +8507,7 @@
 		},
 		"SVGAnimatedRect": {
 			"name": "AnimatedRect",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedRect",
 			"pack": [
 				"js",
@@ -8457,7 +8519,7 @@
 		},
 		"PathSegCurvetoCubicSmoothRel": {
 			"name": "PathSegCurvetoCubicSmoothRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoCubicSmoothRel",
 			"pack": [
 				"js",
@@ -8469,7 +8531,7 @@
 		},
 		"VideoStreamTrack": {
 			"name": "VideoStreamTrack",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VideoStreamTrack",
 			"pack": [
 				"js",
@@ -8480,7 +8542,7 @@
 		},
 		"SpeechGrammarList": {
 			"name": "SpeechGrammarList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechGrammarList",
 			"pack": [
 				"js",
@@ -8491,7 +8553,7 @@
 		},
 		"RadioNodeList": {
 			"name": "RadioNodeList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RadioNodeList",
 			"pack": [
 				"js",
@@ -8502,7 +8564,7 @@
 		},
 		"AnalyserNode": {
 			"name": "AnalyserNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnalyserNode",
 			"pack": [
 				"js",
@@ -8514,7 +8576,7 @@
 		},
 		"ObserverCallback": {
 			"name": "ObserverCallback",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ObserverCallback",
 			"pack": [
 				"js",
@@ -8525,7 +8587,7 @@
 		},
 		"SpeechRecognitionResult": {
 			"name": "SpeechRecognitionResult",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechRecognitionResult",
 			"pack": [
 				"js",
@@ -8536,7 +8598,7 @@
 		},
 		"AudioNode": {
 			"name": "AudioNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioNode",
 			"pack": [
 				"js",
@@ -8548,7 +8610,7 @@
 		},
 		"HTMLMapElement": {
 			"name": "MapElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MapElement",
 			"pack": [
 				"js",
@@ -8559,7 +8621,7 @@
 		},
 		"SVGStopElement": {
 			"name": "StopElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StopElement",
 			"pack": [
 				"js",
@@ -8571,7 +8633,7 @@
 		},
 		"IntersectionObserverInit": {
 			"name": "IntersectionObserverInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IntersectionObserverInit",
 			"pack": [
 				"js",
@@ -8582,7 +8644,7 @@
 		},
 		"SVGTextPositioningElement": {
 			"name": "TextPositioningElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextPositioningElement",
 			"pack": [
 				"js",
@@ -8594,7 +8656,7 @@
 		},
 		"UIEvent": {
 			"name": "UIEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "UIEvent",
 			"pack": [
 				"js",
@@ -8605,7 +8667,7 @@
 		},
 		"PageTransitionEvent": {
 			"name": "PageTransitionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PageTransitionEvent",
 			"pack": [
 				"js",
@@ -8616,7 +8678,7 @@
 		},
 		"SVGTitleElement": {
 			"name": "TitleElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TitleElement",
 			"pack": [
 				"js",
@@ -8628,7 +8690,7 @@
 		},
 		"PositionAlignSetting": {
 			"name": "PositionAlignSetting",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "PositionAlignSetting",
 			"pack": [
 				"js",
@@ -8639,7 +8701,7 @@
 		},
 		"Geolocation": {
 			"name": "Geolocation",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Geolocation",
 			"pack": [
 				"js",
@@ -8650,7 +8712,7 @@
 		},
 		"Intl": {
 			"name": "Intl",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Intl",
 			"pack": [
 				"js",
@@ -8661,7 +8723,7 @@
 		},
 		"HTMLElement": {
 			"name": "Element",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Element",
 			"pack": [
 				"js",
@@ -8672,7 +8734,7 @@
 		},
 		"SpeechSynthesisErrorCode": {
 			"name": "SpeechSynthesisErrorCode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SpeechSynthesisErrorCode",
 			"pack": [
 				"js",
@@ -8683,7 +8745,7 @@
 		},
 		"Intl.Usage": {
 			"name": "Usage",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Collator",
 			"pack": [
 				"js",
@@ -8695,7 +8757,7 @@
 		},
 		"WebAssembly.Table": {
 			"name": "Table",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Table",
 			"pack": [
 				"js",
@@ -8707,7 +8769,7 @@
 		},
 		"GamepadEventInit": {
 			"name": "GamepadEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GamepadEventInit",
 			"pack": [
 				"js",
@@ -8718,7 +8780,7 @@
 		},
 		"WebGLVertexArrayObject": {
 			"name": "VertexArrayObject",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "VertexArrayObject",
 			"pack": [
 				"js",
@@ -8730,7 +8792,7 @@
 		},
 		"PerformanceEntry": {
 			"name": "PerformanceEntry",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceEntry",
 			"pack": [
 				"js",
@@ -8741,7 +8803,7 @@
 		},
 		"TextDecoderOptions": {
 			"name": "TextDecoderOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "TextDecoderOptions",
 			"pack": [
 				"js",
@@ -8752,7 +8814,7 @@
 		},
 		"HTMLAnchorElement": {
 			"name": "AnchorElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnchorElement",
 			"pack": [
 				"js",
@@ -8763,7 +8825,7 @@
 		},
 		"HeadersIterator": {
 			"name": "HeadersIterator",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "HeadersIterator",
 			"pack": [
 				"js",
@@ -8774,7 +8836,7 @@
 		},
 		"ServiceWorkerGlobalScope": {
 			"name": "ServiceWorkerGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ServiceWorkerGlobalScope",
 			"pack": [
 				"js",
@@ -8785,7 +8847,7 @@
 		},
 		"PushSubscriptionOptionsInit": {
 			"name": "PushSubscriptionOptionsInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PushSubscriptionOptionsInit",
 			"pack": [
 				"js",
@@ -8797,7 +8859,7 @@
 		},
 		"ErrorCallback": {
 			"name": "ErrorCallback",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ErrorCallback",
 			"pack": [
 				"js",
@@ -8808,7 +8870,7 @@
 		},
 		"FocusEventInit": {
 			"name": "FocusEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FocusEventInit",
 			"pack": [
 				"js",
@@ -8819,7 +8881,7 @@
 		},
 		"ScrollLogicalPosition": {
 			"name": "ScrollLogicalPosition",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ScrollLogicalPosition",
 			"pack": [
 				"js",
@@ -8830,7 +8892,7 @@
 		},
 		"Intl.NumberFormatSupportedLocalesOfOptions": {
 			"name": "NumberFormatSupportedLocalesOfOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -8842,7 +8904,7 @@
 		},
 		"SpeechSynthesisVoice": {
 			"name": "SpeechSynthesisVoice",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechSynthesisVoice",
 			"pack": [
 				"js",
@@ -8853,7 +8915,7 @@
 		},
 		"CDATASection": {
 			"name": "CDATASection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CDATASection",
 			"pack": [
 				"js",
@@ -8864,7 +8926,7 @@
 		},
 		"PerformanceMark": {
 			"name": "PerformanceMark",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceMark",
 			"pack": [
 				"js",
@@ -8875,7 +8937,7 @@
 		},
 		"MIDIAccess": {
 			"name": "MIDIAccess",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIAccess",
 			"pack": [
 				"js",
@@ -8887,7 +8949,7 @@
 		},
 		"FetchState": {
 			"name": "FetchState",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "FetchState",
 			"pack": [
 				"js",
@@ -8898,7 +8960,7 @@
 		},
 		"HTMLHeadElement": {
 			"name": "HeadElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HeadElement",
 			"pack": [
 				"js",
@@ -8909,7 +8971,7 @@
 		},
 		"DOMError": {
 			"name": "DOMError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMError",
 			"pack": [
 				"js",
@@ -8920,7 +8982,7 @@
 		},
 		"HTMLTextAreaElement": {
 			"name": "TextAreaElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextAreaElement",
 			"pack": [
 				"js",
@@ -8931,7 +8993,7 @@
 		},
 		"SVGPoint": {
 			"name": "Point",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Point",
 			"pack": [
 				"js",
@@ -8943,7 +9005,7 @@
 		},
 		"MutationObserverInit": {
 			"name": "MutationObserverInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MutationObserverInit",
 			"pack": [
 				"js",
@@ -8954,7 +9016,7 @@
 		},
 		"Iterator": {
 			"name": "Iterator",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Iterator",
 			"pack": [
 				"js",
@@ -8967,7 +9029,7 @@
 		},
 		"ConstrainDoubleRange": {
 			"name": "ConstrainDoubleRange",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConstrainDoubleRange",
 			"pack": [
 				"js",
@@ -8978,7 +9040,7 @@
 		},
 		"CloseEventInit": {
 			"name": "CloseEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "CloseEventInit",
 			"pack": [
 				"js",
@@ -8989,7 +9051,7 @@
 		},
 		"HTMLIFrameElement": {
 			"name": "IFrameElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "IFrameElement",
 			"pack": [
 				"js",
@@ -9000,7 +9062,7 @@
 		},
 		"IdentityProviderDetails": {
 			"name": "IdentityProviderDetails",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityProviderDetails",
 			"pack": [
 				"js",
@@ -9012,7 +9074,7 @@
 		},
 		"XSLTProcessor": {
 			"name": "XSLTProcessor",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "XSLTProcessor",
 			"pack": [
 				"js",
@@ -9023,7 +9085,7 @@
 		},
 		"URL": {
 			"name": "URL",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "URL",
 			"pack": [
 				"js",
@@ -9034,7 +9096,7 @@
 		},
 		"SVGFilterElement": {
 			"name": "FilterElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FilterElement",
 			"pack": [
 				"js",
@@ -9046,7 +9108,7 @@
 		},
 		"SpeechGrammar": {
 			"name": "SpeechGrammar",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SpeechGrammar",
 			"pack": [
 				"js",
@@ -9057,7 +9119,7 @@
 		},
 		"OESTextureHalfFloatLinear": {
 			"name": "OESTextureHalfFloatLinear",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OESTextureHalfFloatLinear",
 			"pack": [
 				"js",
@@ -9070,7 +9132,7 @@
 		},
 		"WEBGL_compressed_texture_pvrtc": {
 			"name": "WEBGLCompressedTexturePvrtc",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTexturePvrtc",
 			"pack": [
 				"js",
@@ -9083,7 +9145,7 @@
 		},
 		"WeakSet": {
 			"name": "WeakSet",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WeakSet",
 			"pack": [
 				"js",
@@ -9094,7 +9156,7 @@
 		},
 		"AudioBufferSourceOptions": {
 			"name": "AudioBufferSourceOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AudioBufferSourceOptions",
 			"pack": [
 				"js",
@@ -9106,7 +9168,7 @@
 		},
 		"RTCRtpSender": {
 			"name": "RtpSender",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RtpSender",
 			"pack": [
 				"js",
@@ -9118,7 +9180,7 @@
 		},
 		"DOMMatrix": {
 			"name": "DOMMatrix",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DOMMatrix",
 			"pack": [
 				"js",
@@ -9129,7 +9191,7 @@
 		},
 		"Intl.NumberFormat": {
 			"name": "NumberFormat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -9141,7 +9203,7 @@
 		},
 		"IDBCursor": {
 			"name": "Cursor",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Cursor",
 			"pack": [
 				"js",
@@ -9153,7 +9215,7 @@
 		},
 		"KeyboardEvent": {
 			"name": "KeyboardEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "KeyboardEvent",
 			"pack": [
 				"js",
@@ -9164,7 +9226,7 @@
 		},
 		"ScriptProcessorNode": {
 			"name": "ScriptProcessorNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ScriptProcessorNode",
 			"pack": [
 				"js",
@@ -9176,7 +9238,7 @@
 		},
 		"MediaKeyStatusMap": {
 			"name": "MediaKeyStatusMap",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaKeyStatusMap",
 			"pack": [
 				"js",
@@ -9188,7 +9250,7 @@
 		},
 		"Intl.DateTimeFormatOptions": {
 			"name": "DateTimeFormatOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -9200,7 +9262,7 @@
 		},
 		"WorkerDebuggerGlobalScope": {
 			"name": "WorkerDebuggerGlobalScope",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WorkerDebuggerGlobalScope",
 			"pack": [
 				"js",
@@ -9211,7 +9273,7 @@
 		},
 		"KeyEvent": {
 			"name": "KeyEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "KeyEvent",
 			"pack": [
 				"js",
@@ -9222,7 +9284,7 @@
 		},
 		"PointerEvent": {
 			"name": "PointerEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PointerEvent",
 			"pack": [
 				"js",
@@ -9233,7 +9295,7 @@
 		},
 		"WEBGL_compressed_texture_etc": {
 			"name": "WEBGLCompressedTextureEtc",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTextureEtc",
 			"pack": [
 				"js",
@@ -9246,7 +9308,7 @@
 		},
 		"HTMLOptionElement": {
 			"name": "OptionElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OptionElement",
 			"pack": [
 				"js",
@@ -9257,7 +9319,7 @@
 		},
 		"ExtendableEvent": {
 			"name": "ExtendableEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ExtendableEvent",
 			"pack": [
 				"js",
@@ -9268,7 +9330,7 @@
 		},
 		"Intl.DateTimeFormat": {
 			"name": "DateTimeFormat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -9280,7 +9342,7 @@
 		},
 		"Coordinates": {
 			"name": "Coordinates",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Coordinates",
 			"pack": [
 				"js",
@@ -9291,7 +9353,7 @@
 		},
 		"SVGDefsElement": {
 			"name": "DefsElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DefsElement",
 			"pack": [
 				"js",
@@ -9303,7 +9365,7 @@
 		},
 		"DelayOptions": {
 			"name": "DelayOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DelayOptions",
 			"pack": [
 				"js",
@@ -9315,7 +9377,7 @@
 		},
 		"MessagePort": {
 			"name": "MessagePort",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MessagePort",
 			"pack": [
 				"js",
@@ -9326,7 +9388,7 @@
 		},
 		"Intl.NumberFormatPartType": {
 			"name": "NumberFormatPartType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "NumberFormat",
 			"pack": [
 				"js",
@@ -9338,7 +9400,7 @@
 		},
 		"Text": {
 			"name": "Text",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Text",
 			"pack": [
 				"js",
@@ -9349,7 +9411,7 @@
 		},
 		"MediaStreamConstraints": {
 			"name": "MediaStreamConstraints",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaStreamConstraints",
 			"pack": [
 				"js",
@@ -9360,7 +9422,7 @@
 		},
 		"WebAssembly.RuntimeError": {
 			"name": "RuntimeError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RuntimeError",
 			"pack": [
 				"js",
@@ -9372,7 +9434,7 @@
 		},
 		"RtxParameters": {
 			"name": "RtxParameters",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtxParameters",
 			"pack": [
 				"js",
@@ -9384,7 +9446,7 @@
 		},
 		"ChannelPixelLayoutDataType": {
 			"name": "ChannelPixelLayoutDataType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ChannelPixelLayoutDataType",
 			"pack": [
 				"js",
@@ -9395,7 +9457,7 @@
 		},
 		"StorageEstimate": {
 			"name": "StorageEstimate",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "StorageEstimate",
 			"pack": [
 				"js",
@@ -9406,7 +9468,7 @@
 		},
 		"WebAssembly.MemoryDescriptor": {
 			"name": "MemoryDescriptor",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Memory",
 			"pack": [
 				"js",
@@ -9418,7 +9480,7 @@
 		},
 		"ImageCaptureError": {
 			"name": "ImageCaptureError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageCaptureError",
 			"pack": [
 				"js",
@@ -9429,7 +9491,7 @@
 		},
 		"SVGFEDropShadowElement": {
 			"name": "FEDropShadowElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEDropShadowElement",
 			"pack": [
 				"js",
@@ -9441,7 +9503,7 @@
 		},
 		"PromiseNativeHandler": {
 			"name": "PromiseNativeHandler",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PromiseNativeHandler",
 			"pack": [
 				"js",
@@ -9452,7 +9514,7 @@
 		},
 		"OfferAnswerOptions": {
 			"name": "OfferAnswerOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OfferAnswerOptions",
 			"pack": [
 				"js",
@@ -9464,7 +9526,7 @@
 		},
 		"ConvolverNode": {
 			"name": "ConvolverNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ConvolverNode",
 			"pack": [
 				"js",
@@ -9476,7 +9538,7 @@
 		},
 		"SVGTextElement": {
 			"name": "TextElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextElement",
 			"pack": [
 				"js",
@@ -9488,7 +9550,7 @@
 		},
 		"IDBDatabase": {
 			"name": "Database",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Database",
 			"pack": [
 				"js",
@@ -9500,7 +9562,7 @@
 		},
 		"WebGLShader": {
 			"name": "Shader",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Shader",
 			"pack": [
 				"js",
@@ -9512,7 +9574,7 @@
 		},
 		"AudioStreamTrack": {
 			"name": "AudioStreamTrack",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioStreamTrack",
 			"pack": [
 				"js",
@@ -9523,7 +9585,7 @@
 		},
 		"ObjectPropertyDescriptor": {
 			"name": "ObjectPropertyDescriptor",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Object",
 			"pack": [
 				"js",
@@ -9534,7 +9596,7 @@
 		},
 		"AnimationEventInit": {
 			"name": "AnimationEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AnimationEventInit",
 			"pack": [
 				"js",
@@ -9545,7 +9607,7 @@
 		},
 		"WorkerLocation": {
 			"name": "WorkerLocation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WorkerLocation",
 			"pack": [
 				"js",
@@ -9556,7 +9618,7 @@
 		},
 		"CSSConditionRule": {
 			"name": "CSSConditionRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSConditionRule",
 			"pack": [
 				"js",
@@ -9567,7 +9629,7 @@
 		},
 		"ArrayBufferView": {
 			"name": "ArrayBufferView",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ArrayBufferView",
 			"pack": [
 				"js",
@@ -9578,7 +9640,7 @@
 		},
 		"IntersectionObserver": {
 			"name": "IntersectionObserver",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "IntersectionObserver",
 			"pack": [
 				"js",
@@ -9589,7 +9651,7 @@
 		},
 		"WebGLTexture": {
 			"name": "Texture",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Texture",
 			"pack": [
 				"js",
@@ -9601,7 +9663,7 @@
 		},
 		"SVGPolylineElement": {
 			"name": "PolylineElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PolylineElement",
 			"pack": [
 				"js",
@@ -9613,7 +9675,7 @@
 		},
 		"HTMLEmbedElement": {
 			"name": "EmbedElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "EmbedElement",
 			"pack": [
 				"js",
@@ -9624,7 +9686,7 @@
 		},
 		"HTMLLabelElement": {
 			"name": "LabelElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LabelElement",
 			"pack": [
 				"js",
@@ -9635,7 +9697,7 @@
 		},
 		"BlobEventInit": {
 			"name": "BlobEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "BlobEventInit",
 			"pack": [
 				"js",
@@ -9646,7 +9708,7 @@
 		},
 		"SVGNumber": {
 			"name": "Number",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Number",
 			"pack": [
 				"js",
@@ -9658,7 +9720,7 @@
 		},
 		"PathSegMovetoRel": {
 			"name": "PathSegMovetoRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegMovetoRel",
 			"pack": [
 				"js",
@@ -9670,7 +9732,7 @@
 		},
 		"Gamepad": {
 			"name": "Gamepad",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Gamepad",
 			"pack": [
 				"js",
@@ -9681,7 +9743,7 @@
 		},
 		"Reflect": {
 			"name": "Reflect",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Reflect",
 			"pack": [
 				"js",
@@ -9692,7 +9754,7 @@
 		},
 		"ResponseInit": {
 			"name": "ResponseInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ResponseInit",
 			"pack": [
 				"js",
@@ -9703,7 +9765,7 @@
 		},
 		"Intl.HourRepresentation": {
 			"name": "HourRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -9715,7 +9777,7 @@
 		},
 		"ObjectPrototype": {
 			"name": "ObjectPrototype",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Object",
 			"pack": [
 				"js",
@@ -9726,7 +9788,7 @@
 		},
 		"CSSPseudoElement": {
 			"name": "CSSPseudoElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSPseudoElement",
 			"pack": [
 				"js",
@@ -9737,7 +9799,7 @@
 		},
 		"BiquadFilterType": {
 			"name": "BiquadFilterType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "BiquadFilterType",
 			"pack": [
 				"js",
@@ -9749,7 +9811,7 @@
 		},
 		"HTMLSlotElement": {
 			"name": "SlotElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SlotElement",
 			"pack": [
 				"js",
@@ -9760,7 +9822,7 @@
 		},
 		"ValidityState": {
 			"name": "ValidityState",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ValidityState",
 			"pack": [
 				"js",
@@ -9771,7 +9833,7 @@
 		},
 		"PathSegCurvetoQuadraticSmoothRel": {
 			"name": "PathSegCurvetoQuadraticSmoothRel",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegCurvetoQuadraticSmoothRel",
 			"pack": [
 				"js",
@@ -9783,7 +9845,7 @@
 		},
 		"EventSourceInit": {
 			"name": "EventSourceInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EventSourceInit",
 			"pack": [
 				"js",
@@ -9794,7 +9856,7 @@
 		},
 		"EffectTiming": {
 			"name": "EffectTiming",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EffectTiming",
 			"pack": [
 				"js",
@@ -9805,7 +9867,7 @@
 		},
 		"RTCRtpTransceiver": {
 			"name": "RtpTransceiver",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "RtpTransceiver",
 			"pack": [
 				"js",
@@ -9817,7 +9879,7 @@
 		},
 		"AudioProcessingEvent": {
 			"name": "AudioProcessingEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioProcessingEvent",
 			"pack": [
 				"js",
@@ -9829,7 +9891,7 @@
 		},
 		"WebGLBuffer": {
 			"name": "Buffer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Buffer",
 			"pack": [
 				"js",
@@ -9841,7 +9903,7 @@
 		},
 		"WebGLContextEvent": {
 			"name": "ContextEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ContextEvent",
 			"pack": [
 				"js",
@@ -9853,7 +9915,7 @@
 		},
 		"MediaStreamError": {
 			"name": "MediaStreamError",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaStreamError",
 			"pack": [
 				"js",
@@ -9864,7 +9926,7 @@
 		},
 		"HTMLDivElement": {
 			"name": "DivElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DivElement",
 			"pack": [
 				"js",
@@ -9875,7 +9937,7 @@
 		},
 		"RTCSessionDescription": {
 			"name": "SessionDescription",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SessionDescription",
 			"pack": [
 				"js",
@@ -9887,7 +9949,7 @@
 		},
 		"BufferSource": {
 			"name": "BufferSource",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "BufferSource",
 			"pack": [
 				"js",
@@ -9898,7 +9960,7 @@
 		},
 		"Intl.EraRepresentation": {
 			"name": "EraRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -9910,7 +9972,7 @@
 		},
 		"SecurityPolicyViolationEvent": {
 			"name": "SecurityPolicyViolationEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SecurityPolicyViolationEvent",
 			"pack": [
 				"js",
@@ -9921,7 +9983,7 @@
 		},
 		"StorageEventInit": {
 			"name": "StorageEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "StorageEventInit",
 			"pack": [
 				"js",
@@ -9932,7 +9994,7 @@
 		},
 		"OfflineAudioContext": {
 			"name": "OfflineAudioContext",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OfflineAudioContext",
 			"pack": [
 				"js",
@@ -9944,7 +10006,7 @@
 		},
 		"Intl.PluralRulesResolvedOptions": {
 			"name": "PluralRulesResolvedOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PluralRules",
 			"pack": [
 				"js",
@@ -9956,7 +10018,7 @@
 		},
 		"MessageEvent": {
 			"name": "MessageEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MessageEvent",
 			"pack": [
 				"js",
@@ -9967,7 +10029,7 @@
 		},
 		"SupportedType": {
 			"name": "SupportedType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "SupportedType",
 			"pack": [
 				"js",
@@ -9978,7 +10040,7 @@
 		},
 		"Image": {
 			"name": "Image",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Image",
 			"pack": [
 				"js",
@@ -9989,7 +10051,7 @@
 		},
 		"CanvasRenderingContext2D": {
 			"name": "CanvasRenderingContext2D",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CanvasRenderingContext2D",
 			"pack": [
 				"js",
@@ -10000,7 +10062,7 @@
 		},
 		"DisplayNameOptions": {
 			"name": "DisplayNameOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DisplayNameOptions",
 			"pack": [
 				"js",
@@ -10011,7 +10073,7 @@
 		},
 		"HTMLTitleElement": {
 			"name": "TitleElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TitleElement",
 			"pack": [
 				"js",
@@ -10022,7 +10084,7 @@
 		},
 		"Uint8Array": {
 			"name": "Uint8Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Uint8Array",
 			"pack": [
 				"js",
@@ -10033,7 +10095,7 @@
 		},
 		"LocaleInfo": {
 			"name": "LocaleInfo",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "LocaleInfo",
 			"pack": [
 				"js",
@@ -10044,7 +10106,7 @@
 		},
 		"ChannelSplitterOptions": {
 			"name": "ChannelSplitterOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ChannelSplitterOptions",
 			"pack": [
 				"js",
@@ -10056,7 +10118,7 @@
 		},
 		"ScreenOrientation": {
 			"name": "ScreenOrientation",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ScreenOrientation",
 			"pack": [
 				"js",
@@ -10067,7 +10129,7 @@
 		},
 		"SVGFESpecularLightingElement": {
 			"name": "FESpecularLightingElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FESpecularLightingElement",
 			"pack": [
 				"js",
@@ -10079,7 +10141,7 @@
 		},
 		"Intl.RelativeTimeFormatSupportedLocalesOfOptions": {
 			"name": "RelativeTimeFormatSupportedLocalesOfOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -10091,7 +10153,7 @@
 		},
 		"CSSNamespaceRule": {
 			"name": "CSSNamespaceRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSNamespaceRule",
 			"pack": [
 				"js",
@@ -10102,7 +10164,7 @@
 		},
 		"DataChannelInit": {
 			"name": "DataChannelInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DataChannelInit",
 			"pack": [
 				"js",
@@ -10114,7 +10176,7 @@
 		},
 		"PeriodicWaveOptions": {
 			"name": "PeriodicWaveOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PeriodicWaveOptions",
 			"pack": [
 				"js",
@@ -10126,7 +10188,7 @@
 		},
 		"Intl.RelativeTimeFormatOptions": {
 			"name": "RelativeTimeFormatOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RelativeTimeFormat",
 			"pack": [
 				"js",
@@ -10138,7 +10200,7 @@
 		},
 		"AudioListener": {
 			"name": "AudioListener",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioListener",
 			"pack": [
 				"js",
@@ -10150,7 +10212,7 @@
 		},
 		"SVGAnimatedLengthList": {
 			"name": "AnimatedLengthList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedLengthList",
 			"pack": [
 				"js",
@@ -10162,7 +10224,7 @@
 		},
 		"PushSubscriptionOptions": {
 			"name": "PushSubscriptionOptions",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PushSubscriptionOptions",
 			"pack": [
 				"js",
@@ -10174,7 +10236,7 @@
 		},
 		"WEBGL_compressed_texture_s3tc_srgb": {
 			"name": "WEBGLCompressedTextureS3tcSrgb",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTextureS3tcSrgb",
 			"pack": [
 				"js",
@@ -10187,7 +10249,7 @@
 		},
 		"SVGFEColorMatrixElement": {
 			"name": "FEColorMatrixElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEColorMatrixElement",
 			"pack": [
 				"js",
@@ -10199,7 +10261,7 @@
 		},
 		"SVGFEDistantLightElement": {
 			"name": "FEDistantLightElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEDistantLightElement",
 			"pack": [
 				"js",
@@ -10211,7 +10273,7 @@
 		},
 		"StorageType": {
 			"name": "StorageType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "StorageType",
 			"pack": [
 				"js",
@@ -10222,7 +10284,7 @@
 		},
 		"SVGMetadataElement": {
 			"name": "MetadataElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MetadataElement",
 			"pack": [
 				"js",
@@ -10234,7 +10296,7 @@
 		},
 		"CSSPageRule": {
 			"name": "CSSPageRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSPageRule",
 			"pack": [
 				"js",
@@ -10245,7 +10307,7 @@
 		},
 		"IDBTransaction": {
 			"name": "Transaction",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Transaction",
 			"pack": [
 				"js",
@@ -10257,7 +10319,7 @@
 		},
 		"OESTextureFloat": {
 			"name": "OESTextureFloat",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OESTextureFloat",
 			"pack": [
 				"js",
@@ -10270,7 +10332,7 @@
 		},
 		"PerformanceObserver": {
 			"name": "PerformanceObserver",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceObserver",
 			"pack": [
 				"js",
@@ -10281,7 +10343,7 @@
 		},
 		"WebAssembly.ValueType": {
 			"name": "ValueType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "Global",
 			"pack": [
 				"js",
@@ -10293,7 +10355,7 @@
 		},
 		"EXTFragDepth": {
 			"name": "EXTFragDepth",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EXTFragDepth",
 			"pack": [
 				"js",
@@ -10306,7 +10368,7 @@
 		},
 		"WebAssembly.CompileError": {
 			"name": "CompileError",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CompileError",
 			"pack": [
 				"js",
@@ -10318,7 +10380,7 @@
 		},
 		"MediaKeyNeededEventInit": {
 			"name": "MediaKeyNeededEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaKeyNeededEventInit",
 			"pack": [
 				"js",
@@ -10330,7 +10392,7 @@
 		},
 		"ComputedEffectTiming": {
 			"name": "ComputedEffectTiming",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ComputedEffectTiming",
 			"pack": [
 				"js",
@@ -10341,7 +10403,7 @@
 		},
 		"BinaryType": {
 			"name": "BinaryType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "BinaryType",
 			"pack": [
 				"js",
@@ -10352,7 +10414,7 @@
 		},
 		"AnimationFilter": {
 			"name": "AnimationFilter",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AnimationFilter",
 			"pack": [
 				"js",
@@ -10363,7 +10425,7 @@
 		},
 		"CSSStyleRule": {
 			"name": "CSSStyleRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSStyleRule",
 			"pack": [
 				"js",
@@ -10374,7 +10436,7 @@
 		},
 		"FrameType": {
 			"name": "FrameType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "FrameType",
 			"pack": [
 				"js",
@@ -10385,7 +10447,7 @@
 		},
 		"FetchObserver": {
 			"name": "FetchObserver",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FetchObserver",
 			"pack": [
 				"js",
@@ -10396,7 +10458,7 @@
 		},
 		"IdentityProvider": {
 			"name": "IdentityProvider",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IdentityProvider",
 			"pack": [
 				"js",
@@ -10408,7 +10470,7 @@
 		},
 		"Intl.MinuteRepresentation": {
 			"name": "MinuteRepresentation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "DateTimeFormat",
 			"pack": [
 				"js",
@@ -10420,7 +10482,7 @@
 		},
 		"Exception": {
 			"name": "Exception",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Exception",
 			"pack": [
 				"js",
@@ -10431,7 +10493,7 @@
 		},
 		"DeviceMotionEvent": {
 			"name": "DeviceMotionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DeviceMotionEvent",
 			"pack": [
 				"js",
@@ -10442,7 +10504,7 @@
 		},
 		"DeviceRotationRate": {
 			"name": "DeviceRotationRate",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DeviceRotationRate",
 			"pack": [
 				"js",
@@ -10453,7 +10515,7 @@
 		},
 		"AudioContextOptions": {
 			"name": "AudioContextOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "AudioContextOptions",
 			"pack": [
 				"js",
@@ -10465,7 +10527,7 @@
 		},
 		"SVGGraphicsElement": {
 			"name": "GraphicsElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "GraphicsElement",
 			"pack": [
 				"js",
@@ -10477,7 +10539,7 @@
 		},
 		"TrackEventInit": {
 			"name": "TrackEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "TrackEventInit",
 			"pack": [
 				"js",
@@ -10489,7 +10551,7 @@
 		},
 		"SVGFEGaussianBlurElement": {
 			"name": "FEGaussianBlurElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEGaussianBlurElement",
 			"pack": [
 				"js",
@@ -10501,7 +10563,7 @@
 		},
 		"TransitionEvent": {
 			"name": "TransitionEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TransitionEvent",
 			"pack": [
 				"js",
@@ -10512,7 +10574,7 @@
 		},
 		"RtpTransceiverDirection": {
 			"name": "RtpTransceiverDirection",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RtpTransceiverDirection",
 			"pack": [
 				"js",
@@ -10524,7 +10586,7 @@
 		},
 		"IteratorStep": {
 			"name": "IteratorStep",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Iterator",
 			"pack": [
 				"js",
@@ -10537,7 +10599,7 @@
 		},
 		"NodeList": {
 			"name": "NodeList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "NodeList",
 			"pack": [
 				"js",
@@ -10548,7 +10610,7 @@
 		},
 		"IDBIndex": {
 			"name": "Index",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Index",
 			"pack": [
 				"js",
@@ -10560,7 +10622,7 @@
 		},
 		"DragEventInit": {
 			"name": "DragEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DragEventInit",
 			"pack": [
 				"js",
@@ -10571,7 +10633,7 @@
 		},
 		"SVGPointList": {
 			"name": "PointList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PointList",
 			"pack": [
 				"js",
@@ -10583,7 +10645,7 @@
 		},
 		"ChannelPixelLayout": {
 			"name": "ChannelPixelLayout",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ChannelPixelLayout",
 			"pack": [
 				"js",
@@ -10594,7 +10656,7 @@
 		},
 		"WebAssembly.Global": {
 			"name": "Global",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Global",
 			"pack": [
 				"js",
@@ -10606,7 +10668,7 @@
 		},
 		"CanvasGradient": {
 			"name": "CanvasGradient",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CanvasGradient",
 			"pack": [
 				"js",
@@ -10617,7 +10679,7 @@
 		},
 		"HTMLOptGroupElement": {
 			"name": "OptGroupElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "OptGroupElement",
 			"pack": [
 				"js",
@@ -10628,7 +10690,7 @@
 		},
 		"GetNotificationOptions": {
 			"name": "GetNotificationOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GetNotificationOptions",
 			"pack": [
 				"js",
@@ -10639,7 +10701,7 @@
 		},
 		"Notification": {
 			"name": "Notification",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Notification",
 			"pack": [
 				"js",
@@ -10650,7 +10712,7 @@
 		},
 		"FileSystemDirectoryEntry": {
 			"name": "FileSystemDirectoryEntry",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileSystemDirectoryEntry",
 			"pack": [
 				"js",
@@ -10661,7 +10723,7 @@
 		},
 		"ProxyHandler": {
 			"name": "ProxyHandler",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Proxy",
 			"pack": [
 				"js",
@@ -10674,7 +10736,7 @@
 		},
 		"MutationRecord": {
 			"name": "MutationRecord",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MutationRecord",
 			"pack": [
 				"js",
@@ -10685,7 +10747,7 @@
 		},
 		"HTMLLinkElement": {
 			"name": "LinkElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "LinkElement",
 			"pack": [
 				"js",
@@ -10696,7 +10758,7 @@
 		},
 		"MimeTypeArray": {
 			"name": "MimeTypeArray",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MimeTypeArray",
 			"pack": [
 				"js",
@@ -10707,7 +10769,7 @@
 		},
 		"KeyframeEffectOptions": {
 			"name": "KeyframeEffectOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "KeyframeEffectOptions",
 			"pack": [
 				"js",
@@ -10718,7 +10780,7 @@
 		},
 		"HTMLHtmlElement": {
 			"name": "HtmlElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "HtmlElement",
 			"pack": [
 				"js",
@@ -10729,7 +10791,7 @@
 		},
 		"CSSMediaRule": {
 			"name": "CSSMediaRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSMediaRule",
 			"pack": [
 				"js",
@@ -10740,7 +10802,7 @@
 		},
 		"MediaKeyMessageEventInit": {
 			"name": "MediaKeyMessageEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaKeyMessageEventInit",
 			"pack": [
 				"js",
@@ -10752,7 +10814,7 @@
 		},
 		"MIDIOptions": {
 			"name": "MIDIOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MIDIOptions",
 			"pack": [
 				"js",
@@ -10764,7 +10826,7 @@
 		},
 		"HTMLMenuElement": {
 			"name": "MenuElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MenuElement",
 			"pack": [
 				"js",
@@ -10775,7 +10837,7 @@
 		},
 		"Performance": {
 			"name": "Performance",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Performance",
 			"pack": [
 				"js",
@@ -10786,7 +10848,7 @@
 		},
 		"OESElementIndexUint": {
 			"name": "OESElementIndexUint",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OESElementIndexUint",
 			"pack": [
 				"js",
@@ -10799,7 +10861,7 @@
 		},
 		"MouseEventInit": {
 			"name": "MouseEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MouseEventInit",
 			"pack": [
 				"js",
@@ -10810,7 +10872,7 @@
 		},
 		"WEBGLLoseContext": {
 			"name": "WEBGLLoseContext",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "WEBGLLoseContext",
 			"pack": [
 				"js",
@@ -10823,7 +10885,7 @@
 		},
 		"TextTrackList": {
 			"name": "TextTrackList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "TextTrackList",
 			"pack": [
 				"js",
@@ -10834,7 +10896,7 @@
 		},
 		"RequestRedirect": {
 			"name": "RequestRedirect",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RequestRedirect",
 			"pack": [
 				"js",
@@ -10845,7 +10907,7 @@
 		},
 		"StereoPannerNode": {
 			"name": "StereoPannerNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "StereoPannerNode",
 			"pack": [
 				"js",
@@ -10857,7 +10919,7 @@
 		},
 		"EventInit": {
 			"name": "EventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EventInit",
 			"pack": [
 				"js",
@@ -10868,7 +10930,7 @@
 		},
 		"MIDIConnectionEventInit": {
 			"name": "MIDIConnectionEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MIDIConnectionEventInit",
 			"pack": [
 				"js",
@@ -10880,7 +10942,7 @@
 		},
 		"HTMLBRElement": {
 			"name": "BRElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BRElement",
 			"pack": [
 				"js",
@@ -10891,7 +10953,7 @@
 		},
 		"PerformanceObserverEntryList": {
 			"name": "PerformanceObserverEntryList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PerformanceObserverEntryList",
 			"pack": [
 				"js",
@@ -10902,7 +10964,7 @@
 		},
 		"FormDataIterator": {
 			"name": "FormDataIterator",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FormDataIterator",
 			"pack": [
 				"js",
@@ -10913,7 +10975,7 @@
 		},
 		"MediaStreamAudioDestinationNode": {
 			"name": "MediaStreamAudioDestinationNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaStreamAudioDestinationNode",
 			"pack": [
 				"js",
@@ -10925,7 +10987,7 @@
 		},
 		"WEBGLDebugShaders": {
 			"name": "WEBGLDebugShaders",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "WEBGLDebugShaders",
 			"pack": [
 				"js",
@@ -10938,7 +11000,7 @@
 		},
 		"ConstantSourceNode": {
 			"name": "ConstantSourceNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ConstantSourceNode",
 			"pack": [
 				"js",
@@ -10950,7 +11012,7 @@
 		},
 		"PathSegLinetoHorizontalAbs": {
 			"name": "PathSegLinetoHorizontalAbs",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "PathSegLinetoHorizontalAbs",
 			"pack": [
 				"js",
@@ -10962,7 +11024,7 @@
 		},
 		"RtpContributingSource": {
 			"name": "RtpContributingSource",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "RtpContributingSource",
 			"pack": [
 				"js",
@@ -10974,7 +11036,7 @@
 		},
 		"GamepadMappingType": {
 			"name": "GamepadMappingType",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "GamepadMappingType",
 			"pack": [
 				"js",
@@ -10985,7 +11047,7 @@
 		},
 		"SVGSymbolElement": {
 			"name": "SymbolElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SymbolElement",
 			"pack": [
 				"js",
@@ -10997,7 +11059,7 @@
 		},
 		"Screen": {
 			"name": "Screen",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Screen",
 			"pack": [
 				"js",
@@ -11008,7 +11070,7 @@
 		},
 		"RequestMode": {
 			"name": "RequestMode",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "RequestMode",
 			"pack": [
 				"js",
@@ -11019,7 +11081,7 @@
 		},
 		"IDBFileRequest": {
 			"name": "FileRequest",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FileRequest",
 			"pack": [
 				"js",
@@ -11031,7 +11093,7 @@
 		},
 		"WEBGL_color_buffer_float": {
 			"name": "WEBGLColorBufferFloat",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLColorBufferFloat",
 			"pack": [
 				"js",
@@ -11044,7 +11106,7 @@
 		},
 		"XPathNSResolver": {
 			"name": "XPathNSResolver",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "XPathNSResolver",
 			"pack": [
 				"js",
@@ -11055,7 +11117,7 @@
 		},
 		"GL": {
 			"name": "GL",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GL",
 			"pack": [
 				"js",
@@ -11067,7 +11129,7 @@
 		},
 		"WebGL2RenderingContext": {
 			"name": "WebGL2RenderingContext",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WebGL2RenderingContext",
 			"pack": [
 				"js",
@@ -11079,7 +11141,7 @@
 		},
 		"ConstantSourceOptions": {
 			"name": "ConstantSourceOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "ConstantSourceOptions",
 			"pack": [
 				"js",
@@ -11091,7 +11153,7 @@
 		},
 		"WebAssembly.GlobalDescriptor": {
 			"name": "GlobalDescriptor",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Global",
 			"pack": [
 				"js",
@@ -11103,7 +11165,7 @@
 		},
 		"SVGSVGElement": {
 			"name": "SVGElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SVGElement",
 			"pack": [
 				"js",
@@ -11115,7 +11177,7 @@
 		},
 		"HTMLProgressElement": {
 			"name": "ProgressElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ProgressElement",
 			"pack": [
 				"js",
@@ -11126,7 +11188,7 @@
 		},
 		"SourceBufferList": {
 			"name": "SourceBufferList",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "SourceBufferList",
 			"pack": [
 				"js",
@@ -11137,7 +11199,7 @@
 		},
 		"DeviceAcceleration": {
 			"name": "DeviceAcceleration",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "DeviceAcceleration",
 			"pack": [
 				"js",
@@ -11148,7 +11210,7 @@
 		},
 		"File": {
 			"name": "File",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "File",
 			"pack": [
 				"js",
@@ -11159,7 +11221,7 @@
 		},
 		"RTCPeerConnection": {
 			"name": "PeerConnection",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PeerConnection",
 			"pack": [
 				"js",
@@ -11171,7 +11233,7 @@
 		},
 		"MediaTrackSupportedConstraints": {
 			"name": "MediaTrackSupportedConstraints",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "MediaTrackSupportedConstraints",
 			"pack": [
 				"js",
@@ -11182,7 +11244,7 @@
 		},
 		"FontFaceSetIteratorResult": {
 			"name": "FontFaceSetIteratorResult",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FontFaceSetIteratorResult",
 			"pack": [
 				"js",
@@ -11193,7 +11255,7 @@
 		},
 		"EventListener": {
 			"name": "EventListener",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "EventListener",
 			"pack": [
 				"js",
@@ -11204,7 +11266,7 @@
 		},
 		"AudioBuffer": {
 			"name": "AudioBuffer",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AudioBuffer",
 			"pack": [
 				"js",
@@ -11216,7 +11278,7 @@
 		},
 		"GetRootNodeOptions": {
 			"name": "GetRootNodeOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "GetRootNodeOptions",
 			"pack": [
 				"js",
@@ -11227,7 +11289,7 @@
 		},
 		"Position": {
 			"name": "Position",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "Position",
 			"pack": [
 				"js",
@@ -11238,7 +11300,7 @@
 		},
 		"Int16Array": {
 			"name": "Int16Array",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Int16Array",
 			"pack": [
 				"js",
@@ -11249,7 +11311,7 @@
 		},
 		"SVGAnimatedNumber": {
 			"name": "AnimatedNumber",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "AnimatedNumber",
 			"pack": [
 				"js",
@@ -11261,7 +11323,7 @@
 		},
 		"SVGFEComponentTransferElement": {
 			"name": "FEComponentTransferElement",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FEComponentTransferElement",
 			"pack": [
 				"js",
@@ -11273,7 +11335,7 @@
 		},
 		"IceCandidateInit": {
 			"name": "IceCandidateInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "IceCandidateInit",
 			"pack": [
 				"js",
@@ -11285,7 +11347,7 @@
 		},
 		"CSSKeyframesRule": {
 			"name": "CSSKeyframesRule",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "CSSKeyframesRule",
 			"pack": [
 				"js",
@@ -11296,7 +11358,7 @@
 		},
 		"ImageBitmapRenderingContext": {
 			"name": "ImageBitmapRenderingContext",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ImageBitmapRenderingContext",
 			"pack": [
 				"js",
@@ -11307,7 +11369,7 @@
 		},
 		"SpeechSynthesisEventInit": {
 			"name": "SpeechSynthesisEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "SpeechSynthesisEventInit",
 			"pack": [
 				"js",
@@ -11318,7 +11380,7 @@
 		},
 		"OscillatorOptions": {
 			"name": "OscillatorOptions",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "OscillatorOptions",
 			"pack": [
 				"js",
@@ -11330,7 +11392,7 @@
 		},
 		"DragEvent": {
 			"name": "DragEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "DragEvent",
 			"pack": [
 				"js",
@@ -11341,7 +11403,7 @@
 		},
 		"MutationObserver": {
 			"name": "MutationObserver",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MutationObserver",
 			"pack": [
 				"js",
@@ -11352,7 +11414,7 @@
 		},
 		"MIDIInput": {
 			"name": "MIDIInput",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MIDIInput",
 			"pack": [
 				"js",
@@ -11364,7 +11426,7 @@
 		},
 		"WEBGL_compressed_texture_astc": {
 			"name": "WEBGLCompressedTextureAstc",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "WEBGLCompressedTextureAstc",
 			"pack": [
 				"js",
@@ -11377,7 +11439,7 @@
 		},
 		"MediaStreamEvent": {
 			"name": "MediaStreamEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaStreamEvent",
 			"pack": [
 				"js",
@@ -11388,7 +11450,7 @@
 		},
 		"MouseEvent": {
 			"name": "MouseEvent",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MouseEvent",
 			"pack": [
 				"js",
@@ -11399,7 +11461,7 @@
 		},
 		"ChannelInterpretation": {
 			"name": "ChannelInterpretation",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "ChannelInterpretation",
 			"pack": [
 				"js",
@@ -11411,7 +11473,7 @@
 		},
 		"FileSystemEntriesCallback": {
 			"name": "FileSystemEntriesCallback",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FileSystemEntriesCallback",
 			"pack": [
 				"js",
@@ -11422,7 +11484,7 @@
 		},
 		"FilePropertyBag": {
 			"name": "FilePropertyBag",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FilePropertyBag",
 			"pack": [
 				"js",
@@ -11433,7 +11495,7 @@
 		},
 		"Plugin": {
 			"name": "Plugin",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Plugin",
 			"pack": [
 				"js",
@@ -11444,7 +11506,7 @@
 		},
 		"BatteryManager": {
 			"name": "BatteryManager",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "BatteryManager",
 			"pack": [
 				"js",
@@ -11455,7 +11517,7 @@
 		},
 		"FormData": {
 			"name": "FormData",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "FormData",
 			"pack": [
 				"js",
@@ -11466,7 +11528,7 @@
 		},
 		"WebGLSampler": {
 			"name": "Sampler",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Sampler",
 			"pack": [
 				"js",
@@ -11478,7 +11540,7 @@
 		},
 		"Location": {
 			"name": "Location",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "Location",
 			"pack": [
 				"js",
@@ -11489,7 +11551,7 @@
 		},
 		"ChannelSplitterNode": {
 			"name": "ChannelSplitterNode",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "ChannelSplitterNode",
 			"pack": [
 				"js",
@@ -11501,7 +11563,7 @@
 		},
 		"PushMessageData": {
 			"name": "PushMessageData",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "PushMessageData",
 			"pack": [
 				"js",
@@ -11513,7 +11575,7 @@
 		},
 		"FontFaceSetLoadEventInit": {
 			"name": "FontFaceSetLoadEventInit",
-			"moduleType": 2,
+			"moduleType": "typedef",
 			"moduleName": "FontFaceSetLoadEventInit",
 			"pack": [
 				"js",
@@ -11524,7 +11586,7 @@
 		},
 		"FontFaceSetLoadStatus": {
 			"name": "FontFaceSetLoadStatus",
-			"moduleType": 3,
+			"moduleType": "abstract",
 			"moduleName": "FontFaceSetLoadStatus",
 			"pack": [
 				"js",
@@ -11535,7 +11597,7 @@
 		},
 		"MediaDeviceInfo": {
 			"name": "MediaDeviceInfo",
-			"moduleType": 0,
+			"moduleType": "class",
 			"moduleName": "MediaDeviceInfo",
 			"pack": [
 				"js",
@@ -11585,5 +11647,9 @@
 		"XmlType",
 		"Xml"
 	],
-	"haxeVersion": "4.0.5"
+	"typeInfo": {},
+	"libraryName": "std",
+	"jsRequireMap": {},
+	"haxeVersion": "4.2.5",
+	"lowercaseLookup": {}
 }
