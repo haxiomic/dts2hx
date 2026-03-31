@@ -902,6 +902,10 @@ class ConverterContext {
 		- `preferInterfaceStructure` - set to true return the interface-structure version of a type in haxe. This is not handled recursively, so only the top-level reference will prefer-interface-structure
 	**/
 	function complexTypeFromTsType(type: TsType, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?disallowAliasTarget: Symbol, preferInterfaceStructure: Bool = false): ComplexType {
+		if (type == null) {
+			Log.error('complexTypeFromTsType(): received null type');
+			return macro :Dynamic;
+		}
 		// alias : this -> real type
 		if (type.isThisType()) {
 			var thisTarget = type.getThisTypeTarget();
@@ -1735,7 +1739,16 @@ class ConverterContext {
 			signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration));
 		} else [];
 
-		var hxParameters = if (signature.parameters != null ) tc.getExpandedParameters(signature).map(s -> {
+		// TS 4.0+: getExpandedParameters returns Symbol[][] (array of parameter lists for variadic overloads)
+		// Prior to 4.0 it returned Symbol[]. We use the first parameter list.
+		var expandedParams: Array<Symbol> = {
+			var result: Dynamic = tc.getExpandedParameters(signature);
+			if (result.length > 0 && js.Syntax.code("Array.isArray({0}[0])", result))
+				result[0]
+			else
+				result;
+		};
+		var hxParameters = if (signature.parameters != null) expandedParams.map(s -> {
 			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
 			var isOptional = parameterDeclaration != null && tc.isOptionalParameter(parameterDeclaration);
 			var isRest = parameterDeclaration != null && parameterDeclaration.dotDotDotToken != null;

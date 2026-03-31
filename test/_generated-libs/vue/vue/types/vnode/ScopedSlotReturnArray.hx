@@ -23,8 +23,6 @@ typedef ScopedSlotReturnArray = {
 	function push(items:haxe.extern.Rest<ScopedSlotReturnValue>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<Null<ts.AnyOf5<String, Bool, vue.VNode, ScopedSlotReturnArray, js.lib.ConcatArray<ScopedSlotReturnValue>>>>):Array<ScopedSlotReturnValue> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<ScopedSlotReturnValue>>):Array<ScopedSlotReturnValue>;
@@ -50,8 +48,6 @@ typedef ScopedSlotReturnArray = {
 	function sort(?compareFn:(a:ScopedSlotReturnValue, b:ScopedSlotReturnValue) -> Float):ScopedSlotReturnArray;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<ScopedSlotReturnValue>):Array<ScopedSlotReturnValue> { })
 	function splice(start:Float, ?deleteCount:Float):Array<ScopedSlotReturnValue>;
@@ -70,11 +66,12 @@ typedef ScopedSlotReturnArray = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -85,22 +82,16 @@ typedef ScopedSlotReturnArray = {
 	function map<U>(callbackfn:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Array<ScopedSlotReturnValue> { })
-	function filter<S>(callbackfn:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Array<ScopedSlotReturnValue> { })
+	function filter<S>(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:ScopedSlotReturnValue, currentValue:ScopedSlotReturnValue, currentIndex:Float, array:Array<ScopedSlotReturnValue>) -> ScopedSlotReturnValue, initialValue:ScopedSlotReturnValue):ScopedSlotReturnValue { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ScopedSlotReturnValue, currentIndex:Float, array:Array<ScopedSlotReturnValue>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:ScopedSlotReturnValue, currentValue:ScopedSlotReturnValue, currentIndex:Float, array:Array<ScopedSlotReturnValue>) -> ScopedSlotReturnValue):ScopedSlotReturnValue;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:ScopedSlotReturnValue, currentValue:ScopedSlotReturnValue, currentIndex:Float, array:Array<ScopedSlotReturnValue>) -> ScopedSlotReturnValue, initialValue:ScopedSlotReturnValue):ScopedSlotReturnValue { })

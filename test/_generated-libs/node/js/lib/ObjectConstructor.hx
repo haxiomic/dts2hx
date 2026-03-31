@@ -43,10 +43,6 @@ typedef ObjectConstructor = {
 	function seal<T>(o:T):T;
 	/**
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-		
-		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-		
-		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
 	@:overload(function<T>(f:T):T { })
 	@:overload(function<T>(o:T):T { })
@@ -69,21 +65,10 @@ typedef ObjectConstructor = {
 	function isExtensible(o:Dynamic):Bool;
 	/**
 		Returns the names of the enumerable string properties and methods of an object.
-		
-		Returns the names of the enumerable string properties and methods of an object.
 	**/
 	@:overload(function(o:{ }):Array<String> { })
 	function keys(o:Dynamic):Array<String>;
 	/**
-		Copy the values of all of the enumerable own properties from one or more source objects to a
-		target object. Returns the target object.
-		
-		Copy the values of all of the enumerable own properties from one or more source objects to a
-		target object. Returns the target object.
-		
-		Copy the values of all of the enumerable own properties from one or more source objects to a
-		target object. Returns the target object.
-		
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
@@ -105,14 +90,10 @@ typedef ObjectConstructor = {
 	function setPrototypeOf(o:Dynamic, proto:Null<Dynamic>):Dynamic;
 	/**
 		Returns an array of values of the enumerable properties of an object
-		
-		Returns an array of values of the enumerable properties of an object
 	**/
 	@:overload(function(o:{ }):Array<Dynamic> { })
 	function values<T>(o:ts.AnyOf2<haxe.DynamicAccess<T>, ArrayLike<T>>):Array<T>;
 	/**
-		Returns an array of key/values of the enumerable properties of an object
-		
 		Returns an array of key/values of the enumerable properties of an object
 	**/
 	@:overload(function(o:{ }):Array<ts.Tuple2<String, Dynamic>> { })

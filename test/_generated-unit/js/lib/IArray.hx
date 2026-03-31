@@ -23,8 +23,6 @@ typedef IArray<T> = {
 	function push(items:haxe.extern.Rest<T>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<js.lib.ConcatArray<T>, T>>):Array<T> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<T>>):Array<T>;
@@ -50,8 +48,6 @@ typedef IArray<T> = {
 	function sort(?compareFn:(a:T, b:T) -> Float):Array<T>;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<T>):Array<T> { })
 	function splice(start:Float, ?deleteCount:Float):Array<T>;
@@ -70,11 +66,12 @@ typedef IArray<T> = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:T, index:Float, array:Array<T>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:T, index:Float, array:Array<T>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:T, index:Float, array:Array<T>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:T, index:Float, array:Array<T>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:T, index:Float, array:Array<T>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -85,22 +82,16 @@ typedef IArray<T> = {
 	function map<U>(callbackfn:(value:T, index:Float, array:Array<T>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:T, index:Float, array:Array<T>) -> Any, ?thisArg:Dynamic):Array<T> { })
-	function filter<S>(callbackfn:(value:T, index:Float, array:Array<T>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:T, index:Float, array:Array<T>) -> Any, ?thisArg:Dynamic):Array<T> { })
+	function filter<S>(predicate:(value:T, index:Float, array:Array<T>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:T, currentValue:T, currentIndex:Float, array:Array<T>) -> T, initialValue:T):T { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:T, currentIndex:Float, array:Array<T>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:T, currentValue:T, currentIndex:Float, array:Array<T>) -> T):T;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:T, currentValue:T, currentIndex:Float, array:Array<T>) -> T, initialValue:T):T { })

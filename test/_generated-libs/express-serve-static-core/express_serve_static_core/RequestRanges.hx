@@ -24,8 +24,6 @@ typedef RequestRanges = {
 	function push(items:haxe.extern.Rest<range_parser.Range>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<range_parser.Range, js.lib.ConcatArray<range_parser.Range>>>):Array<range_parser.Range> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<range_parser.Range>>):Array<range_parser.Range>;
@@ -51,8 +49,6 @@ typedef RequestRanges = {
 	function sort(?compareFn:(a:range_parser.Range, b:range_parser.Range) -> Float):RequestRanges;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<range_parser.Range>):Array<range_parser.Range> { })
 	function splice(start:Float, ?deleteCount:Float):Array<range_parser.Range>;
@@ -71,11 +67,12 @@ typedef RequestRanges = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -86,22 +83,16 @@ typedef RequestRanges = {
 	function map<U>(callbackfn:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Array<range_parser.Range> { })
-	function filter<S>(callbackfn:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Array<range_parser.Range> { })
+	function filter<S>(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:range_parser.Range, currentValue:range_parser.Range, currentIndex:Float, array:Array<range_parser.Range>) -> range_parser.Range, initialValue:range_parser.Range):range_parser.Range { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:range_parser.Range, currentIndex:Float, array:Array<range_parser.Range>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:range_parser.Range, currentValue:range_parser.Range, currentIndex:Float, array:Array<range_parser.Range>) -> range_parser.Range):range_parser.Range;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:range_parser.Range, currentValue:range_parser.Range, currentIndex:Float, array:Array<range_parser.Range>) -> range_parser.Range, initialValue:range_parser.Range):range_parser.Range { })

@@ -26,11 +26,6 @@ package vscode;
 		Show an information message to users. Optionally provide an array of items which will be presented as
 		clickable buttons.
 		
-		Show an information message to users. Optionally provide an array of items which will be presented as
-		clickable buttons.
-		
-		Show an information message.
-		
 		Show an information message.
 	**/
 	@:overload(function(message:String, options:MessageOptions, items:haxe.extern.Rest<String>):global.Thenable<Null<String>> { })
@@ -39,12 +34,6 @@ package vscode;
 	static function showInformationMessage(message:String, items:haxe.extern.Rest<String>):global.Thenable<Null<String>>;
 	/**
 		Show a warning message.
-		
-		Show a warning message.
-		
-		Show a warning message.
-		
-		Show a warning message.
 	**/
 	@:overload(function(message:String, options:MessageOptions, items:haxe.extern.Rest<String>):global.Thenable<Null<String>> { })
 	@:overload(function<T>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
@@ -52,22 +41,12 @@ package vscode;
 	static function showWarningMessage(message:String, items:haxe.extern.Rest<String>):global.Thenable<Null<String>>;
 	/**
 		Show an error message.
-		
-		Show an error message.
-		
-		Show an error message.
-		
-		Show an error message.
 	**/
 	@:overload(function(message:String, options:MessageOptions, items:haxe.extern.Rest<String>):global.Thenable<Null<String>> { })
 	@:overload(function<T>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
 	@:overload(function<T>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
 	static function showErrorMessage(message:String, items:haxe.extern.Rest<String>):global.Thenable<Null<String>>;
 	/**
-		Shows a selection list allowing multiple selections.
-		
-		Shows a selection list.
-		
 		Shows a selection list allowing multiple selections.
 		
 		Shows a selection list.
@@ -125,9 +104,6 @@ package vscode;
 	**/
 	static function createWebviewPanel(viewType:String, title:String, showOptions:ts.AnyOf2<Int, { var viewColumn : ViewColumn; @:optional var preserveFocus : Bool; }>, ?options:WebviewPanelOptions & WebviewOptions):WebviewPanel;
 	/**
-		Set a message to the status bar. This is a short hand for the more powerful
-		status bar [items](#window.createStatusBarItem).
-		
 		Set a message to the status bar. This is a short hand for the more powerful
 		status bar [items](#window.createStatusBarItem).
 		

@@ -23,8 +23,6 @@ typedef RecursiveArray<T> = {
 	function push(items:haxe.extern.Rest<ts.AnyOf2<RecursiveArray<T>, T>>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<RecursiveArray<T>, js.lib.ConcatArray<ts.AnyOf2<RecursiveArray<T>, T>>, T>>):Array<ts.AnyOf2<RecursiveArray<T>, T>> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<ts.AnyOf2<RecursiveArray<T>, T>>>):Array<ts.AnyOf2<RecursiveArray<T>, T>>;
@@ -50,8 +48,6 @@ typedef RecursiveArray<T> = {
 	function sort(?compareFn:(a:ts.AnyOf2<RecursiveArray<T>, T>, b:ts.AnyOf2<RecursiveArray<T>, T>) -> Float):RecursiveArray<T>;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<ts.AnyOf2<RecursiveArray<T>, T>>):Array<ts.AnyOf2<RecursiveArray<T>, T>> { })
 	function splice(start:Float, ?deleteCount:Float):Array<ts.AnyOf2<RecursiveArray<T>, T>>;
@@ -70,11 +66,12 @@ typedef RecursiveArray<T> = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -85,22 +82,16 @@ typedef RecursiveArray<T> = {
 	function map<U>(callbackfn:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Array<ts.AnyOf2<RecursiveArray<T>, T>> { })
-	function filter<S>(callbackfn:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Array<ts.AnyOf2<RecursiveArray<T>, T>> { })
+	function filter<S>(predicate:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<RecursiveArray<T>, T>, currentValue:ts.AnyOf2<RecursiveArray<T>, T>, currentIndex:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> ts.AnyOf2<RecursiveArray<T>, T>, initialValue:ts.AnyOf2<RecursiveArray<T>, T>):ts.AnyOf2<RecursiveArray<T>, T> { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:ts.AnyOf2<RecursiveArray<T>, T>, currentIndex:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:ts.AnyOf2<RecursiveArray<T>, T>, currentValue:ts.AnyOf2<RecursiveArray<T>, T>, currentIndex:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> ts.AnyOf2<RecursiveArray<T>, T>):ts.AnyOf2<RecursiveArray<T>, T>;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:ts.AnyOf2<RecursiveArray<T>, T>, currentValue:ts.AnyOf2<RecursiveArray<T>, T>, currentIndex:Float, array:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> ts.AnyOf2<RecursiveArray<T>, T>, initialValue:ts.AnyOf2<RecursiveArray<T>, T>):ts.AnyOf2<RecursiveArray<T>, T> { })

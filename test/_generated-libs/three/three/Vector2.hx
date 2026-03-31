@@ -155,8 +155,6 @@ package three;
 	function lengthManhattan():Float;
 	/**
 		Computes the Manhattan length of this vector.
-		
-		Computes the Manhattan length of this vector.
 	**/
 	@:overload(function():Float { })
 	function manhattanLength():Float;
@@ -178,8 +176,6 @@ package three;
 	function distanceToSquared(v:Vector2):Float;
 	function distanceToManhattan(v:Vector2):Float;
 	/**
-		Computes the Manhattan length (distance) from this vector to the given vector v
-		
 		Computes the Manhattan length (distance) from this vector to the given vector v
 	**/
 	@:overload(function(v:Vector2):Float { })

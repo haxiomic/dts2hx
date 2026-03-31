@@ -12,10 +12,6 @@ typedef Float32ArrayConstructor = {
 	function of(items:haxe.extern.Rest<Float>):js.lib.Float32Array;
 	/**
 		Creates an array from an array-like or iterable object.
-		
-		Creates an array from an array-like or iterable object.
-		
-		Creates an array from an array-like or iterable object.
 	**/
 	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):js.lib.Float32Array { })
 	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):js.lib.Float32Array { })

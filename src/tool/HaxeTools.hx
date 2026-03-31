@@ -137,6 +137,10 @@ class HaxeTools {
 		`hello@world.js` becomes `helloAtWorld_js`
 	**/
 	static public function toSafeIdent(str: String, escapeReservedWords: Bool = true) {
+		// TS 4.0+: some transient symbols may have undefined names
+		if (js.Syntax.code("{0} === undefined || {0} === null", str)) {
+			str = '__unnamed';
+		}
 		// remove quotes
 		str = ~/["'`]/gm.replace(str, '');
 

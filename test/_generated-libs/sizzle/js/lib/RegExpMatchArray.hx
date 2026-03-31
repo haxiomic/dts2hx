@@ -27,8 +27,6 @@ typedef RegExpMatchArray = {
 	function push(items:haxe.extern.Rest<String>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<String, ConcatArray<String>>>):Array<String> { })
 	function concat(items:haxe.extern.Rest<ConcatArray<String>>):Array<String>;
@@ -54,8 +52,6 @@ typedef RegExpMatchArray = {
 	function sort(?compareFn:(a:String, b:String) -> Float):RegExpMatchArray;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<String>):Array<String> { })
 	function splice(start:Float, ?deleteCount:Float):Array<String>;
@@ -74,11 +70,12 @@ typedef RegExpMatchArray = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:String, index:Float, array:Array<String>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:String, index:Float, array:Array<String>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:String, index:Float, array:Array<String>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:String, index:Float, array:Array<String>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:String, index:Float, array:Array<String>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -89,22 +86,16 @@ typedef RegExpMatchArray = {
 	function map<U>(callbackfn:(value:String, index:Float, array:Array<String>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:String, index:Float, array:Array<String>) -> Any, ?thisArg:Dynamic):Array<String> { })
-	function filter<S>(callbackfn:(value:String, index:Float, array:Array<String>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:String, index:Float, array:Array<String>) -> Any, ?thisArg:Dynamic):Array<String> { })
+	function filter<S>(predicate:(value:String, index:Float, array:Array<String>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:Array<String>) -> String, initialValue:String):String { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:String, currentIndex:Float, array:Array<String>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:Array<String>) -> String):String;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:String, currentValue:String, currentIndex:Float, array:Array<String>) -> String, initialValue:String):String { })

@@ -303,9 +303,6 @@ typedef LoDashStatic = {
 	/**
 		Uses a binary search to determine the lowest index at which `value` should
 		be inserted into `array` in order to maintain its sort order.
-		
-		Uses a binary search to determine the lowest index at which `value` should
-		be inserted into `array` in order to maintain its sort order.
 	**/
 	@:overload(function<T>(array:Null<List_<T>>, value:T):Float { })
 	function sortedIndex<T>(array:Null<List_<T>>, value:T):Float;

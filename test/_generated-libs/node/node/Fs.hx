@@ -11,8 +11,6 @@ package node;
 	static function renameSync(oldPath:node.fs.PathLike, newPath:node.fs.PathLike):Void;
 	/**
 		Asynchronous truncate(2) - Truncate a file to a specified length.
-		
-		Asynchronous truncate(2) - Truncate a file to a specified length.
 	**/
 	@:overload(function(path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
 	static function truncate(path:node.fs.PathLike, len:Null<Float>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
@@ -21,8 +19,6 @@ package node;
 	**/
 	static function truncateSync(path:node.fs.PathLike, ?len:Float):Void;
 	/**
-		Asynchronous ftruncate(2) - Truncate a file to a specified length.
-		
 		Asynchronous ftruncate(2) - Truncate a file to a specified length.
 	**/
 	@:overload(function(fd:Float, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
@@ -113,8 +109,6 @@ package node;
 	static function linkSync(existingPath:node.fs.PathLike, newPath:node.fs.PathLike):Void;
 	/**
 		Asynchronous symlink(2) - Create a new symbolic link to an existing file.
-		
-		Asynchronous symlink(2) - Create a new symbolic link to an existing file.
 	**/
 	@:overload(function(target:node.fs.PathLike, path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
 	static function symlink(target:node.fs.PathLike, path:node.fs.PathLike, type:Null<node.fs.symlink.Type_>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
@@ -124,12 +118,6 @@ package node;
 	static function symlinkSync(target:node.fs.PathLike, path:node.fs.PathLike, ?type:node.fs.symlink.Type_):Void;
 	/**
 		Asynchronous readlink(2) - read value of a symbolic link.
-		
-		Asynchronous readlink(2) - read value of a symbolic link.
-		
-		Asynchronous readlink(2) - read value of a symbolic link.
-		
-		Asynchronous readlink(2) - read value of a symbolic link.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; }>, callback:(err:global.nodejs.ErrnoException, linkString:global.Buffer) -> Void):Void { })
 	@:overload(function(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, linkString:ts.AnyOf2<String, global.Buffer>) -> Void):Void { })
@@ -137,21 +125,11 @@ package node;
 	static function readlink(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>>, callback:(err:global.nodejs.ErrnoException, linkString:String) -> Void):Void;
 	/**
 		Synchronous readlink(2) - read value of a symbolic link.
-		
-		Synchronous readlink(2) - read value of a symbolic link.
-		
-		Synchronous readlink(2) - read value of a symbolic link.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):global.Buffer { })
 	@:overload(function(path:node.fs.PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):ts.AnyOf2<String, global.Buffer> { })
 	static function readlinkSync(path:node.fs.PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):String;
 	/**
-		Asynchronous realpath(3) - return the canonicalized absolute pathname.
-		
-		Asynchronous realpath(3) - return the canonicalized absolute pathname.
-		
-		Asynchronous realpath(3) - return the canonicalized absolute pathname.
-		
 		Asynchronous realpath(3) - return the canonicalized absolute pathname.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; }>, callback:(err:global.nodejs.ErrnoException, resolvedPath:global.Buffer) -> Void):Void { })
@@ -159,10 +137,6 @@ package node;
 	@:overload(function(path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException, resolvedPath:String) -> Void):Void { })
 	static function realpath(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>>, callback:(err:global.nodejs.ErrnoException, resolvedPath:String) -> Void):Void;
 	/**
-		Synchronous realpath(3) - return the canonicalized absolute pathname.
-		
-		Synchronous realpath(3) - return the canonicalized absolute pathname.
-		
 		Synchronous realpath(3) - return the canonicalized absolute pathname.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):global.Buffer { })
@@ -198,15 +172,6 @@ package node;
 	/**
 		Asynchronously creates a unique temporary directory.
 		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
-		
-		Asynchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
-		
-		Asynchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
-		
-		Asynchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
 	**/
 	@:overload(function(prefix:String, options:ts.AnyOf2<String, { var encoding : String; }>, callback:(err:global.nodejs.ErrnoException, folder:global.Buffer) -> Void):Void { })
 	@:overload(function(prefix:String, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; }>>, callback:(err:global.nodejs.ErrnoException, folder:ts.AnyOf2<String, global.Buffer>) -> Void):Void { })
@@ -215,25 +180,11 @@ package node;
 	/**
 		Synchronously creates a unique temporary directory.
 		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
-		
-		Synchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
-		
-		Synchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
 	**/
 	@:overload(function(prefix:String, options:ts.AnyOf2<String, { var encoding : String; }>):global.Buffer { })
 	@:overload(function(prefix:String, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):ts.AnyOf2<String, global.Buffer> { })
 	static function mkdtempSync(prefix:String, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):String;
 	/**
-		Asynchronous readdir(3) - read a directory.
-		
-		Asynchronous readdir(3) - read a directory.
-		
-		Asynchronous readdir(3) - read a directory.
-		
-		Asynchronous readdir(3) - read a directory.
-		
 		Asynchronous readdir(3) - read a directory.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; @:optional var withFileTypes : Bool; }>, callback:(err:global.nodejs.ErrnoException, files:Array<global.Buffer>) -> Void):Void { })
@@ -242,10 +193,6 @@ package node;
 	@:overload(function(path:node.fs.PathLike, options:{ var withFileTypes : Bool; }, callback:(err:global.nodejs.ErrnoException, files:Array<node.fs.Dirent>) -> Void):Void { })
 	static function readdir(path:node.fs.PathLike, options:Null<ts.AnyOf2<String, { var encoding : Null<global.BufferEncoding>; @:optional var withFileTypes : Bool; }>>, callback:(err:global.nodejs.ErrnoException, files:Array<String>) -> Void):Void;
 	/**
-		Synchronous readdir(3) - read a directory.
-		
-		Synchronous readdir(3) - read a directory.
-		
 		Synchronous readdir(3) - read a directory.
 		
 		Asynchronous readdir(3) - read a directory.
@@ -300,16 +247,6 @@ package node;
 	/**
 		Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
 		
-		Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
-		
-		Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
-		
-		Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
-		
-		Asynchronously writes `string` to the file referenced by the supplied file descriptor.
-		
-		Asynchronously writes `string` to the file referenced by the supplied file descriptor.
-		
 		Asynchronously writes `string` to the file referenced by the supplied file descriptor.
 	**/
 	@:overload(function<TBuffer>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
@@ -336,12 +273,6 @@ package node;
 	static function readSync(fd:Float, buffer:node.crypto.Binary, offset:Float, length:Float, position:Null<Float>):Float;
 	/**
 		Asynchronously reads the entire contents of a file.
-		
-		Asynchronously reads the entire contents of a file.
-		
-		Asynchronously reads the entire contents of a file.
-		
-		Asynchronously reads the entire contents of a file.
 	**/
 	@:overload(function(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, options:ts.AnyOf2<String, { var encoding : String; @:optional var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:String) -> Void):Void { })
 	@:overload(function(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, options:Null<ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : String; }>>, callback:(err:global.nodejs.ErrnoException, data:ts.AnyOf2<String, global.Buffer>) -> Void):Void { })
@@ -349,17 +280,11 @@ package node;
 	static function readFile(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, options:Null<{ @:optional var encoding : Any; @:optional var flag : String; }>, callback:(err:global.nodejs.ErrnoException, data:global.Buffer) -> Void):Void;
 	/**
 		Synchronously reads the entire contents of a file.
-		
-		Synchronously reads the entire contents of a file.
-		
-		Synchronously reads the entire contents of a file.
 	**/
 	@:overload(function(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, options:ts.AnyOf2<String, { var encoding : String; @:optional var flag : String; }>):String { })
 	@:overload(function(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : String; }>):ts.AnyOf2<String, global.Buffer> { })
 	static function readFileSync(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, ?options:{ @:optional var encoding : Any; @:optional var flag : String; }):global.Buffer;
 	/**
-		Asynchronously writes data to a file, replacing the file if it already exists.
-		
 		Asynchronously writes data to a file, replacing the file if it already exists.
 	**/
 	@:overload(function(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, data:Dynamic, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
@@ -370,8 +295,6 @@ package node;
 	static function writeFileSync(path:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>):Void;
 	/**
 		Asynchronously append data to a file, creating the file if it does not exist.
-		
-		Asynchronously append data to a file, creating the file if it does not exist.
 	**/
 	@:overload(function(file:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, data:Dynamic, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
 	static function appendFile(file:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, data:Dynamic, options:node.fs.WriteFileOptions, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
@@ -381,8 +304,6 @@ package node;
 	static function appendFileSync(file:ts.AnyOf4<String, Float, global.Buffer, node.url.URL>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : String; }>):Void;
 	/**
 		Watch for changes on `filename`. The callback `listener` will be called each time the file is accessed.
-		
-		Watch for changes on `filename`. The callback `listener` will be called each time the file is accessed.
 	**/
 	@:overload(function(filename:node.fs.PathLike, listener:(curr:node.fs.Stats, prev:node.fs.Stats) -> Void):Void { })
 	static function watchFile(filename:node.fs.PathLike, options:Null<{ @:optional var persistent : Bool; @:optional var interval : Float; }>, listener:(curr:node.fs.Stats, prev:node.fs.Stats) -> Void):Void;
@@ -391,12 +312,6 @@ package node;
 	**/
 	static function unwatchFile(filename:node.fs.PathLike, ?listener:(curr:node.fs.Stats, prev:node.fs.Stats) -> Void):Void;
 	/**
-		Watch for changes on `filename`, where `filename` is either a file or a directory, returning an `FSWatcher`.
-		
-		Watch for changes on `filename`, where `filename` is either a file or a directory, returning an `FSWatcher`.
-		
-		Watch for changes on `filename`, where `filename` is either a file or a directory, returning an `FSWatcher`.
-		
 		Watch for changes on `filename`, where `filename` is either a file or a directory, returning an `FSWatcher`.
 	**/
 	@:overload(function(filename:node.fs.PathLike, options:ts.AnyOf2<String, { var encoding : String; @:optional var persistent : Bool; @:optional var recursive : Bool; }>, ?listener:(event:String, filename:global.Buffer) -> Void):node.fs.FSWatcher { })
@@ -412,8 +327,6 @@ package node;
 	**/
 	static function existsSync(path:node.fs.PathLike):Bool;
 	/**
-		Asynchronously tests a user's permissions for the file specified by path.
-		
 		Asynchronously tests a user's permissions for the file specified by path.
 	**/
 	@:overload(function(path:node.fs.PathLike, callback:(err:global.nodejs.ErrnoException) -> Void):Void { })
@@ -439,12 +352,6 @@ package node;
 	**/
 	static function fdatasyncSync(fd:Float):Void;
 	/**
-		Asynchronously copies src to dest. By default, dest is overwritten if it already exists.
-		No arguments other than a possible exception are given to the callback function.
-		Node.js makes no guarantees about the atomicity of the copy operation.
-		If an error occurs after the destination file has been opened for writing, Node.js will attempt
-		to remove the destination.
-		
 		Asynchronously copies src to dest. By default, dest is overwritten if it already exists.
 		No arguments other than a possible exception are given to the callback function.
 		Node.js makes no guarantees about the atomicity of the copy operation.

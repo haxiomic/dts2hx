@@ -46,10 +46,6 @@ typedef IString = {
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
-		Replaces text in a string, using a regular expression or search string.
-		
-		Replaces text in a string, using an object that supports replacement within a string.
-		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
 	@:overload(function(searchValue:ts.AnyOf2<String, js.lib.RegExp>, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
@@ -57,8 +53,6 @@ typedef IString = {
 	@:overload(function(searchValue:{ }, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })
 	function replace(searchValue:ts.AnyOf2<String, js.lib.RegExp>, replaceValue:String):String;
 	/**
-		Finds the first substring match in a regular expression search.
-		
 		Finds the first substring match in a regular expression search.
 	**/
 	@:overload(function(searcher:{ }):Float { })
@@ -68,8 +62,6 @@ typedef IString = {
 	**/
 	function slice(?start:Float, ?end:Float):String;
 	/**
-		Split a string into substrings using the specified separator and return them as an array.
-		
 		Split a string into substrings using the specified separator and return them as an array.
 	**/
 	@:overload(function(splitter:{ }, ?limit:Float):Array<String> { })
@@ -133,9 +125,6 @@ typedef IString = {
 	/**
 		Returns the String value result of normalizing the string into the normalization form
 		named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
-		
-		Returns the String value result of normalizing the string into the normalization form
-		named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
 	**/
 	@:overload(function(?form:String):String { })
 	function normalize(form:String):String;
@@ -151,58 +140,56 @@ typedef IString = {
 	**/
 	function startsWith(searchString:String, ?position:Float):Bool;
 	/**
-		Returns an <a> HTML anchor element and sets the name attribute to the text value
+		Returns an `<a>` HTML anchor element and sets the name attribute to the text value
 	**/
 	function anchor(name:String):String;
 	/**
-		Returns a <big> HTML element
+		Returns a `<big>` HTML element
 	**/
 	function big():String;
 	/**
-		Returns a <blink> HTML element
+		Returns a `<blink>` HTML element
 	**/
 	function blink():String;
 	/**
-		Returns a <b> HTML element
+		Returns a `<b>` HTML element
 	**/
 	function bold():String;
 	/**
-		Returns a <tt> HTML element
+		Returns a `<tt>` HTML element
 	**/
 	function fixed():String;
 	/**
-		Returns a <font> HTML element and sets the color attribute value
+		Returns a `<font>` HTML element and sets the color attribute value
 	**/
 	function fontcolor(color:String):String;
 	/**
-		Returns a <font> HTML element and sets the size attribute value
-		
-		Returns a <font> HTML element and sets the size attribute value
+		Returns a `<font>` HTML element and sets the size attribute value
 	**/
 	@:overload(function(size:String):String { })
 	function fontsize(size:Float):String;
 	/**
-		Returns an <i> HTML element
+		Returns an `<i>` HTML element
 	**/
 	function italics():String;
 	/**
-		Returns an <a> HTML element and sets the href attribute value
+		Returns an `<a>` HTML element and sets the href attribute value
 	**/
 	function link(url:String):String;
 	/**
-		Returns a <small> HTML element
+		Returns a `<small>` HTML element
 	**/
 	function small():String;
 	/**
-		Returns a <strike> HTML element
+		Returns a `<strike>` HTML element
 	**/
 	function strike():String;
 	/**
-		Returns a <sub> HTML element
+		Returns a `<sub>` HTML element
 	**/
 	function sub():String;
 	/**
-		Returns a <sup> HTML element
+		Returns a `<sup>` HTML element
 	**/
 	function sup():String;
 	/**

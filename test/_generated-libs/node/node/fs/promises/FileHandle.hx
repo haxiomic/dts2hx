@@ -37,12 +37,6 @@ typedef FileHandle = {
 	/**
 		Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
 		The `FileHandle` must have been opened for reading.
-		
-		Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-		The `FileHandle` must have been opened for reading.
-		
-		Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-		The `FileHandle` must have been opened for reading.
 	**/
 	@:overload(function(options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })

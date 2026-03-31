@@ -2,8 +2,6 @@ package node.fs;
 
 /**
 	Asynchronously tests a user's permissions for the file specified by path.
-	
-	Asynchronously tests a user's permissions for the file specified by path.
 **/
 @:jsRequire("fs", "access") @valueModuleOnly extern class Access {
 	/**

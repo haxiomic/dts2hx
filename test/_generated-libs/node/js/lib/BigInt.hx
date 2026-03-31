@@ -8,7 +8,7 @@ package js.lib;
 	/**
 		Returns a string representation appropriate to the host environment's current locale.
 	**/
-	function toLocaleString():String;
+	function toLocaleString(?locales:String, ?options:BigIntToLocaleStringOptions):String;
 	/**
 		Returns the primitive value of the specified object.
 	**/

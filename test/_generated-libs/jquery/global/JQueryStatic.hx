@@ -42,14 +42,10 @@ typedef JQueryStatic = {
 	var valHooks : global.jquery.ValHooks;
 	/**
 		Perform an asynchronous HTTP (Ajax) request.
-		
-		Perform an asynchronous HTTP (Ajax) request.
 	**/
 	@:overload(function(?settings:global.jquery.AjaxSettings<Dynamic>):global.jquery.JqXHR<Dynamic> { })
 	function ajax(url:String, ?settings:global.jquery.AjaxSettings<Dynamic>):global.jquery.JqXHR<Dynamic>;
 	/**
-		Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
-		
 		Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
 	**/
 	@:overload(function(handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, ts.Undefined>):Void { })
@@ -73,8 +69,6 @@ typedef JQueryStatic = {
 		Store arbitrary data associated with the specified element. Returns the value that was set.
 		
 		Returns value at named data store for the element, as set by `jQuery.data(element, name, value)`, or the full data store for the element.
-		
-		Returns value at named data store for the element, as set by `jQuery.data(element, name, value)`, or the full data store for the element.
 	**/
 	@:overload(function(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<Any>):Dynamic { })
 	@:overload(function(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?key:String):Dynamic { })
@@ -84,8 +78,6 @@ typedef JQueryStatic = {
 	**/
 	function dequeue(element:js.html.DOMElement, ?queueName:String):Void;
 	/**
-		A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.
-		
 		A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.
 	**/
 	@:overload(function<T, K>(obj:T, callback:(propertyName:K, valueOfProperty:Dynamic) -> Dynamic):T { })
@@ -99,36 +91,6 @@ typedef JQueryStatic = {
 	**/
 	function escapeSelector(selector:String):String;
 	/**
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
-		Merge the contents of two or more objects together into the first object.
-		
 		Merge the contents of two or more objects together into the first object.
 	**/
 	@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
@@ -149,12 +111,6 @@ typedef JQueryStatic = {
 	function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic;
 	/**
 		Load data from the server using a HTTP GET request.
-		
-		Load data from the server using a HTTP GET request.
-		
-		Load data from the server using a HTTP GET request.
-		
-		Load data from the server using a HTTP GET request.
 	**/
 	@:overload(function(url:String, success:Null<global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>, dataType:String):global.jquery.JqXHR<Dynamic> { })
 	@:overload(function(url:String, success_data:ts.AnyOf3<String, global.jquery.PlainObject<Dynamic>, global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>):global.jquery.JqXHR<Dynamic> { })
@@ -162,14 +118,10 @@ typedef JQueryStatic = {
 	function get(url:String, data:ts.AnyOf2<String, global.jquery.PlainObject<Dynamic>>, success:Null<global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>, ?dataType:String):global.jquery.JqXHR<Dynamic>;
 	/**
 		Load JSON-encoded data from the server using a GET HTTP request.
-		
-		Load JSON-encoded data from the server using a GET HTTP request.
 	**/
 	@:overload(function(url:String, ?success_data:ts.AnyOf3<String, global.jquery.PlainObject<Dynamic>, global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>):global.jquery.JqXHR<Dynamic> { })
 	function getJSON(url:String, data:ts.AnyOf2<String, global.jquery.PlainObject<Dynamic>>, success:global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>):global.jquery.JqXHR<Dynamic>;
 	/**
-		Load a JavaScript file from the server using a GET HTTP request, then execute it.
-		
 		Load a JavaScript file from the server using a GET HTTP request, then execute it.
 	**/
 	@:overload(function(options:global.jquery.UrlAjaxSettings<Dynamic>):global.jquery.JqXHR<Null<String>> { })
@@ -232,8 +184,6 @@ typedef JQueryStatic = {
 	function makeArray<T>(obj:js.lib.ArrayLike<T>):Array<T>;
 	/**
 		Translate all items in an array or object to new array of items.
-		
-		Translate all items in an array or object to new array of items.
 	**/
 	@:overload(function<T, K, TReturn>(obj:T, callback:(propertyOfObject:Dynamic, key:K) -> Null<ts.AnyOf2<Array<TReturn>, TReturn>>):Array<TReturn> { })
 	function map<T, TReturn>(array:Array<T>, callback:(elementOfArray:T, indexInArray:Float) -> Null<ts.AnyOf2<Array<TReturn>, TReturn>>):Array<TReturn>;
@@ -260,8 +210,6 @@ typedef JQueryStatic = {
 	function param(obj:ts.AnyOf3<Array<Dynamic>, global.jquery.PlainObject<Dynamic>, JQuery<js.html.Element>>, ?traditional:Bool):String;
 	/**
 		Parses a string into an array of DOM nodes.
-		
-		Parses a string into an array of DOM nodes.
 	**/
 	@:overload(function(data:String, ?context_keepScripts:ts.AnyOf2<Bool, js.html.Document>):Array<global.jquery.Node> { })
 	function parseHTML(data:String, context:Null<js.html.Document>, keepScripts:Bool):Array<global.jquery.Node>;
@@ -275,278 +223,12 @@ typedef JQueryStatic = {
 	function parseXML(data:String):js.html.XMLDocument;
 	/**
 		Load data from the server using a HTTP POST request.
-		
-		Load data from the server using a HTTP POST request.
-		
-		Load data from the server using a HTTP POST request.
-		
-		Load data from the server using a HTTP POST request.
 	**/
 	@:overload(function(url:String, success:Null<global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>, dataType:String):global.jquery.JqXHR<Dynamic> { })
 	@:overload(function(url:String, success_data:ts.AnyOf3<String, global.jquery.PlainObject<Dynamic>, global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>):global.jquery.JqXHR<Dynamic> { })
 	@:overload(function(?url_settings:ts.AnyOf2<String, global.jquery.UrlAjaxSettings<Dynamic>>):global.jquery.JqXHR<Dynamic> { })
 	function post(url:String, data:ts.AnyOf2<String, global.jquery.PlainObject<Dynamic>>, success:Null<global.jquery.jqxhr.DoneCallback<Dynamic, global.jquery.JqXHR<Dynamic>>>, ?dataType:String):global.jquery.JqXHR<Dynamic>;
 	/**
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
-		Takes a function and returns a new one that will always have a particular context.
-		
 		Takes a function and returns a new one that will always have a particular context.
 	**/
 	@:overload(function<TReturn, A, B, C, D, E, F>(fun_Tion:(a:A, b:B, c:C, d:D, e:E, f:F) -> TReturn, context:Null<Any>, a:A, b:B, c:C, d:D, e:E, f:F):() -> TReturn { })
@@ -694,10 +376,6 @@ typedef JQueryStatic = {
 	function removeData(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?name:String):Void;
 	/**
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
-		
-		Creates an object containing a set of properties ready to be used in the definition of custom animations.
-		
-		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 	**/
 	@:overload(function<TElement>(duration:global.jquery.Duration, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
 	@:overload(function<TElement>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.DynamicAccess<Any>, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
@@ -719,16 +397,6 @@ typedef JQueryStatic = {
 	**/
 	function uniqueSort<T>(array:Array<T>):Array<T>;
 	/**
-		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
-		
-		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
-		
-		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
-		
-		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
-		
-		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
-		
 		Provides a way to execute callback functions based on zero or more Thenable objects, usually Deferred objects that represent asynchronous events.
 	**/
 	@:overload(function<TR1, UR1, TJ1, UJ1>(deferredT:ts.AnyOf3<global.jquery.Promise<TR1, TJ1, Dynamic>, global.jquery.Thenable<TR1>, TR1>, deferredU:ts.AnyOf3<global.jquery.Promise<UR1, UJ1, Dynamic>, global.jquery.Thenable<UR1>, UR1>):global.jquery.Promise2<TR1, TJ1, Any, UR1, UJ1, Any> { })

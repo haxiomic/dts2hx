@@ -2,10 +2,6 @@ package node.fs;
 
 /**
 	Synchronous realpath(3) - return the canonicalized absolute pathname.
-	
-	Synchronous realpath(3) - return the canonicalized absolute pathname.
-	
-	Synchronous realpath(3) - return the canonicalized absolute pathname.
 **/
 @:jsRequire("fs", "realpathSync") @valueModuleOnly extern class RealpathSync {
 	/**

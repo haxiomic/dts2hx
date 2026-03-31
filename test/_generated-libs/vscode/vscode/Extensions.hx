@@ -35,8 +35,6 @@ package vscode;
 @:jsRequire("vscode", "extensions") @valueModuleOnly extern class Extensions {
 	/**
 		Get an extension by its full identifier in the form of: `publisher.name`.
-		
-		Get an extension by its full identifier in the form of: `publisher.name`.
 	**/
 	@:overload(function<T>(extensionId:String):Null<Extension<T>> { })
 	static function getExtension(extensionId:String):Null<Extension<Dynamic>>;

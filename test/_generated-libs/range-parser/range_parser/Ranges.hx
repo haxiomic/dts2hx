@@ -24,8 +24,6 @@ typedef Ranges = {
 	function push(items:haxe.extern.Rest<Range>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<Range, js.lib.ConcatArray<Range>>>):Array<Range> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<Range>>):Array<Range>;
@@ -51,8 +49,6 @@ typedef Ranges = {
 	function sort(?compareFn:(a:Range, b:Range) -> Float):Ranges;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<Range>):Array<Range> { })
 	function splice(start:Float, ?deleteCount:Float):Array<Range>;
@@ -71,11 +67,12 @@ typedef Ranges = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -86,22 +83,16 @@ typedef Ranges = {
 	function map<U>(callbackfn:(value:Range, index:Float, array:Array<Range>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Array<Range> { })
-	function filter<S>(callbackfn:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Array<Range> { })
+	function filter<S>(predicate:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:Range, currentValue:Range, currentIndex:Float, array:Array<Range>) -> Range, initialValue:Range):Range { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Range, currentIndex:Float, array:Array<Range>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:Range, currentValue:Range, currentIndex:Float, array:Array<Range>) -> Range):Range;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:Range, currentValue:Range, currentIndex:Float, array:Array<Range>) -> Range, initialValue:Range):Range { })

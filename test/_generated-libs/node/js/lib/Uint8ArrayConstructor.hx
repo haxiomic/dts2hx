@@ -12,10 +12,6 @@ typedef Uint8ArrayConstructor = {
 	function of(items:haxe.extern.Rest<Float>):js.lib.Uint8Array;
 	/**
 		Creates an array from an array-like or iterable object.
-		
-		Creates an array from an array-like or iterable object.
-		
-		Creates an array from an array-like or iterable object.
 	**/
 	@:overload(function<T>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> Float, ?thisArg:Dynamic):js.lib.Uint8Array { })
 	@:overload(function(arrayLike:Iterable<Float>, ?mapfn:(v:Float, k:Float) -> Float, ?thisArg:Dynamic):js.lib.Uint8Array { })

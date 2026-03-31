@@ -1,7 +1,7 @@
 package js.lib;
 
 typedef IterableIterator<T> = {
-	function next(args:haxe.extern.Rest<Any>):IteratorResult<T, Dynamic>;
+	function next():IteratorResult<T, Dynamic>;
 	@:optional
 	@:native("return")
 	function return_(?value:Dynamic):IteratorResult<T, Dynamic>;

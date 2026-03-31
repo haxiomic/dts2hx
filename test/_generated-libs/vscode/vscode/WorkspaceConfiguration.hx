@@ -67,8 +67,6 @@ package vscode;
 typedef WorkspaceConfiguration = {
 	/**
 		Return a value from this configuration.
-		
-		Return a value from this configuration.
 	**/
 	@:overload(function<T>(section:String, defaultValue:T):T { })
 	function get<T>(section:String):Null<T>;

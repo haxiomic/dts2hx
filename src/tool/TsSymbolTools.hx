@@ -35,6 +35,8 @@ class TsSymbolTools {
 		It also skips ES5Symbol fields like `[Symbol.iterator]`
 	**/
 	public static function isAccessibleField(symbol: Symbol) {
+		// TS 4.0+: some transient symbols may have null/undefined names
+		if (symbol.name == null || symbol.escapedName == null) return false;
 		var isKnownSymbol = std.StringTools.startsWith(symbol.escapedName, '__@'); // see typescript's utilities.ts
 		final FieldSymbolFlags = SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.ClassMember;
 

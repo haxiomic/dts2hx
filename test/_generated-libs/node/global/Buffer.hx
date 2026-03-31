@@ -203,11 +203,11 @@ package global;
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function every(predicate:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Dynamic, ?thisArg:Dynamic):js.lib.Uint8Array;
+	function filter(predicate:(value:Float, index:Float, array:js.lib.Uint8Array) -> Dynamic, ?thisArg:Dynamic):js.lib.Uint8Array;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
@@ -239,19 +239,11 @@ package global;
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
-		
-		Calls the specified callback function for all the elements in an array. The return value of
-		the callback function is the accumulated result, and is provided as an argument in the next
-		call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float, initialValue:Float):Float { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float):Float;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order.
-		The return value of the callback function is the accumulated result, and is provided as an
-		argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
@@ -266,7 +258,7 @@ package global;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/

@@ -2,12 +2,6 @@ package node.fs;
 
 /**
 	Asynchronously reads the entire contents of a file.
-	
-	Asynchronously reads the entire contents of a file.
-	
-	Asynchronously reads the entire contents of a file.
-	
-	Asynchronously reads the entire contents of a file.
 **/
 @:jsRequire("fs", "readFile") @valueModuleOnly extern class ReadFile {
 	/**

@@ -23,8 +23,6 @@ typedef VNodeChildrenArrayContents = {
 	function push(items:haxe.extern.Rest<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>):Float;
 	/**
 		Combines two or more arrays.
-		
-		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<Null<ts.AnyOf6<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>, js.lib.ConcatArray<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>>>>):Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>>):Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>;
@@ -50,8 +48,6 @@ typedef VNodeChildrenArrayContents = {
 	function sort(?compareFn:(a:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, b:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>) -> Float):VNodeChildrenArrayContents;
 	/**
 		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
-		
-		Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
 	**/
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>):Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>> { })
 	function splice(start:Float, ?deleteCount:Float):Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>;
@@ -70,11 +66,12 @@ typedef VNodeChildrenArrayContents = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S>(predicate:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -85,22 +82,16 @@ typedef VNodeChildrenArrayContents = {
 	function map<U>(callbackfn:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>> { })
-	function filter<S>(callbackfn:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>> { })
+	function filter<S>(predicate:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentIndex:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, initialValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>):Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>> { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentIndex:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentIndex:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>):Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, currentIndex:Float, array:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, initialValue:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>):Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>> { })

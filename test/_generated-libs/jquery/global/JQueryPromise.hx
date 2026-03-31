@@ -19,8 +19,6 @@ typedef JQueryPromise<T> = {
 	function progress(progressCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>, progressCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, Dynamic, Dynamic, Dynamic>>>):JQueryPromise<T>;
 	/**
 		Return a Deferred's Promise object.
-		
-		Return a Deferred's Promise object.
 	**/
 	@:overload(function():JQueryPromise<T> { })
 	function promise<TTarget>(target:TTarget):Dynamic;
@@ -29,18 +27,6 @@ typedef JQueryPromise<T> = {
 	**/
 	function state():String;
 	/**
-		Utility method to filter and/or chain Deferreds.
-		
-		Utility method to filter and/or chain Deferreds.
-		
-		Utility method to filter and/or chain Deferreds.
-		
-		Utility method to filter and/or chain Deferreds.
-		
-		Utility method to filter and/or chain Deferreds.
-		
-		Utility method to filter and/or chain Deferreds.
-		
 		Utility method to filter and/or chain Deferreds.
 	**/
 	@:overload(function<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF, ARP, AJP, ANP, BRP, BJP, BNP, CRP, CJP, CNP, RRP, RJP, RNP>(doneFilter:Dynamic, failFilter:(t:Dynamic, u:Dynamic, v:Dynamic, s:haxe.extern.Rest<Dynamic>) -> ts.AnyOf3<global.jquery.PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>, global.jquery.Thenable<AJF>, AJF>, progressFilter:(t:Dynamic, u:Dynamic, v:Dynamic, s:haxe.extern.Rest<Dynamic>) -> ts.AnyOf3<global.jquery.PromiseBase<ARP, AJP, ANP, BRP, BJP, BNP, CRP, CJP, CNP, RRP, RJP, RNP>, global.jquery.Thenable<ANP>, ANP>):global.jquery.PromiseBase<ts.AnyOf2<ARF, ARP>, ts.AnyOf2<AJF, AJP>, ts.AnyOf2<ANF, ANP>, ts.AnyOf2<BRF, BRP>, ts.AnyOf2<BJF, BJP>, ts.AnyOf2<BNF, BNP>, ts.AnyOf2<CRF, CRP>, ts.AnyOf2<CJF, CJP>, ts.AnyOf2<CNF, CNP>, ts.AnyOf2<RRF, RRP>, ts.AnyOf2<RJF, RJP>, ts.AnyOf2<RNF, RNP>> { })
@@ -51,18 +37,6 @@ typedef JQueryPromise<T> = {
 	@:overload(function<ARD, AJD, AND, BRD, BJD, BND, CRD, CJD, CND, RRD, RJD, RND>(doneFilter:(t:T, u:T, v:T, s:haxe.extern.Rest<T>) -> ts.AnyOf3<global.jquery.PromiseBase<ARD, AJD, AND, BRD, BJD, BND, CRD, CJD, CND, RRD, RJD, RND>, global.jquery.Thenable<ARD>, ARD>, ?failFilter:Any, ?progressFilter:Any):global.jquery.PromiseBase<ARD, AJD, AND, BRD, BJD, BND, CRD, CJD, CND, RRD, RJD, RND> { })
 	function pipe<ARD, AJD, AND, BRD, BJD, BND, CRD, CJD, CND, RRD, RJD, RND, ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF, ARP, AJP, ANP, BRP, BJP, BNP, CRP, CJP, CNP, RRP, RJP, RNP>(doneFilter:(t:T, u:T, v:T, s:haxe.extern.Rest<T>) -> ts.AnyOf3<global.jquery.PromiseBase<ARD, AJD, AND, BRD, BJD, BND, CRD, CJD, CND, RRD, RJD, RND>, global.jquery.Thenable<ARD>, ARD>, failFilter:(t:Dynamic, u:Dynamic, v:Dynamic, s:haxe.extern.Rest<Dynamic>) -> ts.AnyOf3<global.jquery.PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>, global.jquery.Thenable<AJF>, AJF>, progressFilter:(t:Dynamic, u:Dynamic, v:Dynamic, s:haxe.extern.Rest<Dynamic>) -> ts.AnyOf3<global.jquery.PromiseBase<ARP, AJP, ANP, BRP, BJP, BNP, CRP, CJP, CNP, RRP, RJP, RNP>, global.jquery.Thenable<ANP>, ANP>):global.jquery.PromiseBase<ts.AnyOf3<ARD, ARF, ARP>, ts.AnyOf3<AJD, AJF, AJP>, ts.AnyOf3<AND, ANF, ANP>, ts.AnyOf3<BRD, BRF, BRP>, ts.AnyOf3<BJD, BJF, BJP>, ts.AnyOf3<BND, BNF, BNP>, ts.AnyOf3<CRD, CRF, CRP>, ts.AnyOf3<CJD, CJF, CJP>, ts.AnyOf3<CND, CNF, CNP>, ts.AnyOf3<RRD, RRF, RRP>, ts.AnyOf3<RJD, RJF, RJP>, ts.AnyOf3<RND, RNF, RNP>>;
 	/**
-		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
-		
-		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
-		
-		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
-		
-		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
-		
-		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
-		
-		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
-		
 		Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.
 	**/
 	@:overload(function<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF, ARP, AJP, ANP, BRP, BJP, BNP, CRP, CJP, CNP, RRP, RJP, RNP>(doneFilter:Dynamic, failFilter:(t:Dynamic, u:Dynamic, v:Dynamic, s:haxe.extern.Rest<Dynamic>) -> ts.AnyOf3<global.jquery.PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>, global.jquery.Thenable<ARF>, ARF>, progressFilter:(t:Dynamic, u:Dynamic, v:Dynamic, s:haxe.extern.Rest<Dynamic>) -> ts.AnyOf3<global.jquery.PromiseBase<ARP, AJP, ANP, BRP, BJP, BNP, CRP, CJP, CNP, RRP, RJP, RNP>, global.jquery.Thenable<ANP>, ANP>):global.jquery.PromiseBase<ts.AnyOf2<ARF, ARP>, ts.AnyOf2<AJF, AJP>, ts.AnyOf2<ANF, ANP>, ts.AnyOf2<BRF, BRP>, ts.AnyOf2<BJF, BJP>, ts.AnyOf2<BNF, BNP>, ts.AnyOf2<CRF, CRP>, ts.AnyOf2<CJF, CJP>, ts.AnyOf2<CNF, CNP>, ts.AnyOf2<RRF, RRP>, ts.AnyOf2<RJF, RJP>, ts.AnyOf2<RNF, RNP>> { })
