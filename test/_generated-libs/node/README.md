@@ -1,6 +1,6 @@
 # Haxe Externs for node
 
-Generated from **@types/node v11.11.3** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.3.5** with arguments:
+Generated from **@types/node v11.11.3** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.4.4** with arguments:
 
 	dts2hx express --output _generated-libs --noDts2hxVersion
 

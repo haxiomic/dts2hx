@@ -25,7 +25,7 @@ typedef Effects = {
 		
 		There is an example of overriding the timer loop in \`
 		{@link
-		https://github.com/gnarf37/jquery-requestAnimationFrame jquery.requestAnimationFrame
+		https ://github.com/gnarf37/jquery-requestAnimationFrame jquery.requestAnimationFrame
 		}
 		\`
 	**/

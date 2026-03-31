@@ -61,7 +61,7 @@ typedef JQueryXHR = {
 	dynamic function getAllResponseHeaders():String;
 	dynamic function getResponseHeader(name:String):Null<String>;
 	/**
-		Acts as if the `Content-Type` header value for response is mime. (It does not actually change the header though.)
+		Acts as if the `Content-Type` header value for a response is mime. (It does not change the header.)
 		
 		Throws an "InvalidStateError" DOMException if state is loading or done.
 	**/
@@ -71,7 +71,7 @@ typedef JQueryXHR = {
 	**/
 	var readyState : Float;
 	/**
-		Returns the text response.
+		Returns response as text.
 		
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "text".
 	**/
@@ -87,7 +87,7 @@ typedef JQueryXHR = {
 	var status : Float;
 	var statusText : String;
 	/**
-		Returns the document response.
+		Returns the response as document.
 		
 		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "document".
 	**/

@@ -116,7 +116,7 @@ typedef VNodeChildrenArrayContents = {
 	**/
 	function findIndex(predicate:(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, index:Float, obj:Array<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>, ?start:Float, ?end:Float):VNodeChildrenArrayContents;
 	/**

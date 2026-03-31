@@ -120,7 +120,7 @@ typedef RegExpMatchArray = {
 	**/
 	function findIndex(predicate:(value:String, index:Float, obj:Array<String>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:String, ?start:Float, ?end:Float):RegExpMatchArray;
 	/**

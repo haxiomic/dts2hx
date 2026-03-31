@@ -1,7 +1,6 @@
 package js.html;
 
 typedef Console = {
-	var memory : Dynamic;
 	/**
 		A simple assertion test that verifies whether `value` is truthy.
 		If it is not, an `AssertionError` is thrown.
@@ -38,7 +37,7 @@ typedef Console = {
 	/**
 		Uses
 		{@link
-		util.inspect()
+		util.inspect ()
 		}
 		on `obj` and prints the resulting string to `stdout`.
 		This function bypasses any custom `inspect()` function defined on `obj`.
@@ -60,7 +59,6 @@ typedef Console = {
 	**/
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function error(data:haxe.extern.Rest<Dynamic>):Void;
-	function exception(?message:String, optionalParams:haxe.extern.Rest<Dynamic>):Void;
 	/**
 		Increases indentation of subsequent lines by two spaces.
 		If one or more `label`s are provided, those are printed first without the additional indentation.
@@ -142,7 +140,7 @@ typedef Console = {
 	/**
 		Prints to `stderr` the string 'Trace :', followed by the
 		{@link
-		util.format()
+		util.format ()
 		}
 		formatted message and stack trace to the current position in the code.
 	**/

@@ -4,7 +4,7 @@ typedef XHRFields = {
 	@:optional
 	var msCaching : String;
 	/**
-		Can be set to a time in milliseconds. When set to a non-zero value will cause fetching to terminate after the given time has passed. When the time has passed, the request has not yet completed, and the synchronous flag is unset, a timeout event will then be dispatched, or a "TimeoutError" DOMException will be thrown otherwise (for the send() method).
+		Can be set to a time in milliseconds. When set to a non-zero value will cause fetching to terminate after the given time has passed. When the time has passed, the request has not yet completed, and this's synchronous flag is unset, a timeout event will then be dispatched, or a "TimeoutError" DOMException will be thrown otherwise (for the send() method).
 		
 		When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
 	**/

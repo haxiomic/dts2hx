@@ -46,6 +46,8 @@ typedef IString = {
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
+		Replaces first match with string or all matches with RegExp.
+		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/
 	@:overload(function(searchValue:ts.AnyOf2<String, js.lib.RegExp>, replacer:(substring:String, args:haxe.extern.Rest<Dynamic>) -> String):String { })

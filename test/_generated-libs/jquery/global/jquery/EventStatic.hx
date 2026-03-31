@@ -5,7 +5,7 @@ package global.jquery;
 	
 	Those properties are all documented, and accompanied by examples, on the \`
 	{@link
-	http://api.jquery.com/category/events/event-object/ Event object
+	http ://api.jquery.com/category/events/event-object/ Event object
 	}
 	\` page.
 	

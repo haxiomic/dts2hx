@@ -117,7 +117,7 @@ typedef Ranges = {
 	**/
 	function findIndex(predicate:(value:Range, index:Float, obj:Array<Range>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:Range, ?start:Float, ?end:Float):Ranges;
 	/**

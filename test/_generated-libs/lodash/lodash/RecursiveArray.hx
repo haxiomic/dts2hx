@@ -116,7 +116,7 @@ typedef RecursiveArray<T> = {
 	**/
 	function findIndex(predicate:(value:ts.AnyOf2<RecursiveArray<T>, T>, index:Float, obj:Array<ts.AnyOf2<RecursiveArray<T>, T>>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:ts.AnyOf2<RecursiveArray<T>, T>, ?start:Float, ?end:Float):RecursiveArray<T>;
 	/**

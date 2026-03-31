@@ -117,7 +117,7 @@ typedef RequestRanges = {
 	**/
 	function findIndex(predicate:(value:range_parser.Range, index:Float, obj:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:range_parser.Range, ?start:Float, ?end:Float):RequestRanges;
 	/**

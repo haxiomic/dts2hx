@@ -120,7 +120,7 @@ typedef KeyValuePair<K, V> = {
 	**/
 	function findIndex(predicate:(value:ts.AnyOf2<K, V>, index:Float, obj:Array<ts.AnyOf2<K, V>>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:ts.AnyOf2<K, V>, ?start:Float, ?end:Float):KeyValuePair<K, V>;
 	/**

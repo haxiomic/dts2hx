@@ -116,7 +116,7 @@ typedef IArray<T> = {
 	**/
 	function findIndex(predicate:(value:T, index:Float, obj:Array<T>) -> Any, ?thisArg:Dynamic):Float;
 	/**
-		Returns the this object after filling the section identified by start and end with value
+		Changes all array elements from `start` to `end` index to a static `value` and returns the modified array
 	**/
 	function fill(value:T, ?start:Float, ?end:Float):Array<T>;
 	/**
