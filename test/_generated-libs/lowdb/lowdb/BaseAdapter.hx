@@ -1,6 +1,7 @@
 package lowdb;
 
 typedef BaseAdapter<SchemaT> = {
+	function new<SchemaT>(source:String, ?options:AdapterOptions<SchemaT>);
 	@:native("@@reference")
 	final AtReference : SchemaT;
 	var source : String;

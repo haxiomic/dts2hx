@@ -1,6 +1,6 @@
 package lodash;
 
-typedef Function<T> = {
+typedef Function<T:((args:haxe.extern.Rest<Any>) -> Dynamic)> = {
 	function ary(?n:Float):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function curry(?arity:Float):Dynamic;
 	function curryRight(?arity:Float):Dynamic;
@@ -47,7 +47,7 @@ typedef Function<T> = {
 	@:overload(function<T3, T4>(arg3:T3, arg4:T4):Function<Dynamic> { })
 	@:overload(function<T1, T3, T4>(arg1:T1, plc2:LoDashStatic, arg3:T3, arg4:T4):Function<Dynamic> { })
 	@:overload(function<T2, T3, T4>(arg2:T2, arg3:T3, arg4:T4):Function<Dynamic> { })
-	@:overload(function<TS>(ts:haxe.extern.Rest<Any>):Function<Dynamic> { })
+	@:overload(function<TS:(Array<Dynamic>)>(ts:haxe.extern.Rest<Any>):Function<Dynamic> { })
 	@:overload(function():Function<Dynamic> { })
 	function partialRight<T1>(arg1:T1, plc2:LoDashStatic):Function<Dynamic>;
 	function rearg(indexes:haxe.extern.Rest<Many<Float>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
@@ -65,13 +65,13 @@ typedef Function<T> = {
 	@:overload(function<R2>(f2:(a:js.lib.ReturnType<T>) -> R2):Function<(args:haxe.extern.Rest<Any>) -> R2> { })
 	@:overload(function(func:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic> { })
 	function flow<R2, R3, R4, R5, R6, R7>(f2:(a:js.lib.ReturnType<T>) -> R2, f3:(a:R2) -> R3, f4:(a:R3) -> R4, f5:(a:R4) -> R5, f6:(a:R5) -> R6, f7:(a:R6) -> R7):Function<(args:haxe.extern.Rest<Any>) -> R7>;
-	@:overload(function<A, R1, R2, R3, R4>(f5:(a:R4) -> Dynamic, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A, R1, R2, R3>(f4:(a:R3) -> Dynamic, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A, R1, R2>(f3:(a:R2) -> Dynamic, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A, R1>(f2:(a:R1) -> Dynamic, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A>(f1:(args:haxe.extern.Rest<Any>) -> Dynamic):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1, R2, R3, R4>(f5:(a:R4) -> Dynamic, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1, R2, R3>(f4:(a:R3) -> Dynamic, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1, R2>(f3:(a:R2) -> Dynamic, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1>(f2:(a:R1) -> Dynamic, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>)>(f1:(args:haxe.extern.Rest<Any>) -> Dynamic):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
 	@:overload(function(func:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic> { })
-	function flowRight<A, R1, R2, R3, R4, R5>(f6:(a:R5) -> Dynamic, f5:(a:R4) -> R5, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>>;
+	function flowRight<A:(Array<Dynamic>), R1, R2, R3, R4, R5>(f6:(a:R5) -> Dynamic, f5:(a:R4) -> R5, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>>;
 	function iteratee():Function<T>;
 	function over<TResult>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> TResult>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Array<ts.AnyOf2<js.lib.ReturnType<T>, TResult>>>;
 	function overEvery<TArgs>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<TArgs>) -> Bool>>):Function<(args:haxe.extern.Rest<Any>) -> Bool>;
@@ -91,7 +91,7 @@ typedef Function<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<T, TResult> { })
 	@:overload(function():T { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;

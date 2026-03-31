@@ -2,6 +2,8 @@ package js.lib;
 
 typedef ReferenceErrorConstructor = {
 	@:overload(function(?message:String):js.lib.Error { })
+	function new(?message:String);
+	@:overload(function(?message:String):js.lib.Error { })
 	@:selfCall
 	function call(?message:String):js.lib.Error.ReferenceError;
 	final prototype : js.lib.Error.ReferenceError;

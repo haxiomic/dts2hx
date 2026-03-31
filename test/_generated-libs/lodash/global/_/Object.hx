@@ -7,11 +7,11 @@ typedef Object<T> = {
 	dynamic function eachRight(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
 	function every(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>):Collection<Dynamic> { })
-	function filter<S>(predicate:ObjectIteratorTypeGuard<T, S>):Collection<S>;
+	function filter<S:(Dynamic)>(predicate:ObjectIteratorTypeGuard<T, S>):Collection<S>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
-	function find<S>(predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
+	function find<S:(Dynamic)>(predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
-	function findLast<S>(predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
+	function findLast<S:(Dynamic)>(predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):Collection<Bool> { })
 	@:overload(function():Collection<Dynamic> { })
 	function flatMap<TResult>(iteratee:ts.AnyOf4<String, Float, js.lib.Symbol, ObjectIterator<T, Many<TResult>>>):Collection<TResult>;
@@ -30,7 +30,7 @@ typedef Object<T> = {
 	@:overload(function(iteratee:ts.AnyOf3<String, Float, js.lib.Symbol>):Collection<Dynamic> { })
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):Collection<Bool> { })
 	@:overload(function():Collection<Dynamic> { })
-	function map<K>(key:K):Collection<Dynamic>;
+	function map<K:(Dynamic)>(key:K):Collection<Dynamic>;
 	function orderBy(?iteratees:Many<ObjectIterator<T, Any>>, ?orders:Many<ts.AnyOf2<Bool, String>>):Collection<Dynamic>;
 	function partition(callback:ValueIteratee<Dynamic>):LoDashImplicitWrapper<ts.Tuple2<Array<Dynamic>, Array<Dynamic>>>;
 	@:overload(function(callback:MemoObjectIterator<Dynamic, Dynamic, T>):Null<Dynamic> { })
@@ -70,7 +70,7 @@ typedef Object<T> = {
 	@:overload(function<TResult>(otherArgs:haxe.extern.Rest<Dynamic>):Object<TResult> { })
 	function assignWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<Dynamic>;
 	function at(props:haxe.extern.Rest<Many<Dynamic>>):Collection<Dynamic>;
-	function create<U>(?properties:U):Object<Dynamic>;
+	function create<U:(Dynamic)>(?properties:U):Object<Dynamic>;
 	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<Dynamic> { })
 	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<Dynamic> { })
 	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<Dynamic> { })
@@ -92,20 +92,20 @@ typedef Object<T> = {
 	@:overload(function():Object<T> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
 	function extendWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<Dynamic>;
-	@:overload(function<TKey, TDefault>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
-	@:overload(function<TKey1, TKey2>(path:ts.Tuple2<TKey1, TKey2>):Dynamic { })
-	@:overload(function<TKey1, TKey2, TDefault>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
-	@:overload(function<TKey1, TKey2, TKey3>(path:ts.Tuple3<TKey1, TKey2, TKey3>):Dynamic { })
-	@:overload(function<TKey1, TKey2, TKey3, TDefault>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
-	@:overload(function<TKey1, TKey2, TKey3, TKey4>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):Dynamic { })
-	@:overload(function<TKey1, TKey2, TKey3, TKey4, TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TKey:(Dynamic), TDefault>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic)>(path:ts.Tuple2<TKey1, TKey2>):Dynamic { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TDefault>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic)>(path:ts.Tuple3<TKey1, TKey2, TKey3>):Dynamic { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TDefault>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):Dynamic { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:Dynamic):Dynamic { })
-	function get<TKey>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>):Dynamic;
+	function get<TKey:(Dynamic)>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>):Dynamic;
 	function invertBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):Object<Dictionary<Array<String>>>;
 	function mapKeys(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Object<Dictionary<Dynamic>>;
 	@:overload(function<TResult>(callback:ObjectIterator<Dictionary<Dynamic>, TResult>):Object<Dictionary<TResult>> { })
 	@:overload(function(iteratee:Dynamic):Object<Dynamic> { })
-	@:overload(function<TKey>(iteratee:TKey):Object<Dictionary<Dynamic>> { })
+	@:overload(function<TKey:(Dynamic)>(iteratee:TKey):Object<Dictionary<Dynamic>> { })
 	@:overload(function(iteratee:String):Object<Dynamic> { })
 	@:overload(function():Object<T> { })
 	function mapValues<TResult>(callback:ObjectIterator<T, TResult>):Object<Dynamic>;
@@ -120,12 +120,12 @@ typedef Object<T> = {
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
 	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<Dynamic>;
 	@:overload(function(paths:haxe.extern.Rest<Many<IterateeShorthand<T>>>):Object<T> { })
-	function omit<K>(paths:haxe.extern.Rest<Many<K>>):Object<{ }>;
+	function omit<K:(Dynamic)>(paths:haxe.extern.Rest<Many<K>>):Object<{ }>;
 	function omitBy(predicate:ValueKeyIteratee<Dynamic>):Object<T>;
 	@:overload(function(props:haxe.extern.Rest<Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):Object<T> { })
-	function pick<U>(props:haxe.extern.Rest<Many<U>>):Object<{ }>;
+	function pick<U:(Dynamic)>(props:haxe.extern.Rest<Many<U>>):Object<{ }>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic, key:String) -> Any, { }>):Object<T> { })
-	function pickBy<S>(predicate:ValueKeyIterateeTypeGuard<Dynamic, S>):Object<Dynamic>;
+	function pickBy<S:(Dynamic)>(predicate:ValueKeyIterateeTypeGuard<Dynamic, S>):Object<Dynamic>;
 	@:overload(function():ImpChain<Dynamic> { })
 	function transform<TResult>(iteratee:MemoVoidDictionaryIterator<Dynamic, TResult>, ?accumulator:TResult):ImpChain<TResult>;
 	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:SetWithCustomizer<T>):Object<TResult> { })
@@ -149,7 +149,7 @@ typedef Object<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<T, TResult> { })
 	@:overload(function():T { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;

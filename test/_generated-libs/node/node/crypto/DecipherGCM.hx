@@ -17,7 +17,7 @@ typedef DecipherGCM = {
 	function pause():DecipherGCM;
 	function resume():DecipherGCM;
 	function isPaused():Bool;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:global.nodejs.WritableStream):DecipherGCM;
 	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;

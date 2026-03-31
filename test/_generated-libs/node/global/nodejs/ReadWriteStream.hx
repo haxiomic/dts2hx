@@ -7,7 +7,7 @@ typedef ReadWriteStream = {
 	function pause():ReadWriteStream;
 	function resume():ReadWriteStream;
 	function isPaused():Bool;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:WritableStream):ReadWriteStream;
 	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;

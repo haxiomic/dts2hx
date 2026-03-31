@@ -1,3 +1,5 @@
 package global._;
 
-typedef MapCacheConstructor = { };
+typedef MapCacheConstructor = {
+	function new();
+};

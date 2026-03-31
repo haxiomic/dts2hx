@@ -2,6 +2,8 @@ package js.lib;
 
 typedef TypeErrorConstructor = {
 	@:overload(function(?message:String):js.lib.Error { })
+	function new(?message:String);
+	@:overload(function(?message:String):js.lib.Error { })
 	@:selfCall
 	function call(?message:String):js.lib.Error.TypeError;
 	final prototype : js.lib.Error.TypeError;

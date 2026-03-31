@@ -54,7 +54,7 @@ typedef String_ = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<String>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<String, Null<TResult>>):ts.AnyOf2<String, TResult> { })
 	@:overload(function():String { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<String, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<String, TResult>):TResult;
 	function conformsTo(source:String):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;

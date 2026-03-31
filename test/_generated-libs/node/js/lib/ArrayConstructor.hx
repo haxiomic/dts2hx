@@ -3,6 +3,9 @@ package js.lib;
 typedef ArrayConstructor = {
 	@:overload(function<T>(arrayLength:Float):Array<T> { })
 	@:overload(function<T>(items:haxe.extern.Rest<T>):Array<T> { })
+	function new(?arrayLength:Float);
+	@:overload(function<T>(arrayLength:Float):Array<T> { })
+	@:overload(function<T>(items:haxe.extern.Rest<T>):Array<T> { })
 	@:selfCall
 	function call(?arrayLength:Float):Array<Dynamic>;
 	function isArray(arg:Dynamic):Bool;

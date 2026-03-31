@@ -3,6 +3,9 @@ package js.lib;
 typedef RegExpConstructor = {
 	@:overload(function(pattern:String, ?flags:String):js.lib.RegExp { })
 	@:overload(function(pattern:ts.AnyOf2<String, js.lib.RegExp>, ?flags:String):js.lib.RegExp { })
+	function new(pattern:ts.AnyOf2<String, js.lib.RegExp>);
+	@:overload(function(pattern:String, ?flags:String):js.lib.RegExp { })
+	@:overload(function(pattern:ts.AnyOf2<String, js.lib.RegExp>, ?flags:String):js.lib.RegExp { })
 	@:selfCall
 	function call(pattern:ts.AnyOf2<String, js.lib.RegExp>):js.lib.RegExp;
 	final prototype : js.lib.RegExp;

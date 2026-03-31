@@ -1,6 +1,6 @@
 package vue;
 
-typedef ComponentOptions<V, Data, Methods, Computed, PropsDef, Props> = {
+typedef ComponentOptions<V:(Vue), Data, Methods, Computed, PropsDef, Props> = {
 	@:optional
 	var data : Data;
 	@:optional
@@ -50,7 +50,7 @@ typedef ComponentOptions<V, Data, Methods, Computed, PropsDef, Props> = {
 	@:optional
 	var directives : haxe.DynamicAccess<ts.AnyOf2<DirectiveOptions, DirectiveFunction>>;
 	@:optional
-	var components : haxe.DynamicAccess<ts.AnyOf5<VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<Any, Dynamic, Dynamic, Dynamic, Dynamic, haxe.DynamicAccess<Dynamic>>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>>>;
+	var components : haxe.DynamicAccess<ts.AnyOf5<VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<ts.Never, Dynamic, Dynamic, Dynamic, Dynamic, haxe.DynamicAccess<Dynamic>>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>>>;
 	@:optional
 	var transitions : haxe.DynamicAccess<Dynamic>;
 	@:optional

@@ -1,6 +1,7 @@
 package js.lib;
 
 typedef StringConstructor = {
+	function new(?value:Dynamic);
 	@:selfCall
 	function call(?value:Dynamic):String;
 	final prototype : String;

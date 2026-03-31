@@ -19,7 +19,7 @@ package node.fs;
 	/**
 		Asynchronously reads data from the file referenced by the supplied `FileHandle`.
 	**/
-	static function read<TBuffer>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	static function read<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesRead : Float;
 		var buffer : TBuffer;
 	}>;
@@ -36,7 +36,7 @@ package node.fs;
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
-	static function write<TBuffer>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	static function write<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesWritten : Float;
 		var buffer : TBuffer;
 	}>;
@@ -163,5 +163,5 @@ package node.fs;
 	**/
 	@:overload(function(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	static function readFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
+	static function readFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : ts.Never; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
 }

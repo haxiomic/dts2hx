@@ -2,8 +2,8 @@ package lodash;
 
 typedef PrimitiveChain<T> = {
 	function concat(values:haxe.extern.Rest<Many<T>>):CollectionChain<T>;
-	function after<TFunc>(func:TFunc):FunctionChain<TFunc>;
-	function before<TFunc>(func:TFunc):FunctionChain<TFunc>;
+	function after<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):FunctionChain<TFunc>;
+	function before<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):FunctionChain<TFunc>;
 	function castArray():CollectionChain<T>;
 	function write():Dynamic;
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
@@ -21,7 +21,7 @@ typedef PrimitiveChain<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<ExpChain<T>, ExpChain<TResult>> { })
 	@:overload(function():PrimitiveChain<T> { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):ExpChain<TResult>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):ExpChain<TResult>;
 	function conformsTo(source:{ }):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;

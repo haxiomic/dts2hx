@@ -676,11 +676,12 @@ class ConverterContext {
 			}
 			*/
 
+			var constructSignatures = tc.getSignaturesOfType(declaredType, Construct);
 			var fields = generateTypeFields(
 				symbol,
 				access,
 				declaration,
-				[],
+				constructSignatures,
 				callSignatures,
 				tc.getIndexSignaturesOfType(declaredType),
 				declaredMembers,
@@ -945,11 +946,26 @@ class ConverterContext {
 					} else {
 						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
 					}
-				case { name: 'Partial' | 'Readonly', args: [t], isBuiltIn: true }:
+				case { name: 'Partial', args: [t], isBuiltIn: true }:
 					if (tc.getPropertiesOfType(t).length > 0) {
 						complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
 					} else {
-						// pass through type parameter
+						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
+					}
+				case { name: 'Readonly', args: [t], isBuiltIn: true }:
+					if (tc.getPropertiesOfType(t).length > 0) {
+						var ct = complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
+						// mark all fields as final for Readonly<T>
+						switch ct {
+							case TAnonymous(fields) | TExtend(_, fields):
+								for (field in fields) {
+									if (field.access == null) field.access = [];
+									if (!field.access.has(AFinal)) field.access.push(AFinal);
+								}
+							default:
+						}
+						ct;
+					} else {
 						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
 					}
 				case { name: 'Record' | 'Pick' | 'Omit' | 'Exclude' | 'Extract', args: [k, t], isBuiltIn: true }:
@@ -993,9 +1009,11 @@ class ConverterContext {
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Dynamic;
-		} else if (type.flags & (TypeFlags.Unknown | TypeFlags.Never) != 0) {
-			// we can't really represent `unknown` or `never` in haxe at the moment
+		} else if (type.flags & TypeFlags.Unknown != 0) {
 			macro :Any;
+		} else if (type.flags & TypeFlags.Never != 0) {
+			// `never` is the bottom type — no value can have this type
+			SupportTypes.getNeverType(this);
 		} else if (type.flags & (TypeFlags.String) != 0) {
 			macro :String;
 		} else if (type.flags & (TypeFlags.Number) != 0) {
@@ -1251,11 +1269,6 @@ class ConverterContext {
 		var callSignatures = tsType.getCallSignatures();
 		var constructSignatures = tsType.getConstructSignatures();
 
-		if (tsType.getConstructSignatures().length > 0) {
-			Log.warn('Type has construct signature but this is currently unhandled', tsType);
-			// debug();
-		}
-
 		// for the special case of a single call signature and no props we can return a function type
 		return if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
 			complexTypeFromCallSignature(callSignatures[0], moduleSymbol, accessContext, enclosingDeclaration);
@@ -1274,6 +1287,12 @@ class ConverterContext {
 			**/
 			if (callSignatures.length > 0) {
 				fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, moduleSymbol, accessContext, enclosingDeclaration));
+			}
+
+			// add construct signatures as a `new` function
+			if (constructSignatures.length > 0) {
+				var newField = functionFieldFromSignatures('new', constructSignatures, moduleSymbol, accessContext, enclosingDeclaration);
+				fields.push(newField);
 			}
 
 			// add properties
@@ -1475,7 +1494,20 @@ class ConverterContext {
 	}
 
 	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var hxElementTypes = tupleTypeReference.typeArguments.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
+		// TS 4.0+: elementFlags indicates Required(1), Optional(2), Rest(4), Variadic(8) per element
+		var elementFlags: Null<Array<Int>> = Reflect.field(tupleTypeReference.target, 'elementFlags');
+		var hxElementTypes = new Array<ComplexType>();
+		if (tupleTypeReference.typeArguments != null) {
+			for (i in 0...tupleTypeReference.typeArguments.length) {
+				var t = tupleTypeReference.typeArguments[i];
+				var hxType = complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
+				// wrap rest elements in Array<T>
+				if (elementFlags != null && i < elementFlags.length && elementFlags[i] & 4 != 0) {
+					hxType = macro :Array<$hxType>;
+				}
+				hxElementTypes.push(hxType);
+			}
+		}
 		return this.getTupleType(hxElementTypes);
 	}
 

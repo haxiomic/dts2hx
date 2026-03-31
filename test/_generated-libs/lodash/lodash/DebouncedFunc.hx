@@ -1,6 +1,6 @@
 package lodash;
 
-typedef DebouncedFunc<T> = {
+typedef DebouncedFunc<T:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)> = {
 	/**
 		Call the original function, but applying the debounce rules.
 		

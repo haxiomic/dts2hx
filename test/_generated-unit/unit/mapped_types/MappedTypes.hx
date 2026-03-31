@@ -20,17 +20,17 @@ package unit.mapped_types;
 		var c : Bool;
 	};
 	static final readonly_ : {
-		var a : Float;
-		var b : String;
+		final a : Float;
+		final b : String;
 	};
 	static final nested : {
-		var x : Bool;
-		var y : Bool;
-		var z : Bool;
+		final x : Bool;
+		final y : Bool;
+		final z : Bool;
 	};
 	static final deep : {
-		var value : Float;
-		var nested : {
+		final value : Float;
+		final nested : {
 			var a : Bool;
 			var b : Bool;
 		};

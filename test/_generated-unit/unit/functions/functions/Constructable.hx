@@ -1,3 +1,5 @@
 package unit.functions.functions;
 
-typedef Constructable = { };
+typedef Constructable = {
+	function new(x:String);
+};

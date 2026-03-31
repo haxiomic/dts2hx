@@ -1,6 +1,6 @@
 package js.lib;
 
-typedef IWeakMap<K, V> = {
+typedef IWeakMap<K:(Dynamic), V> = {
 	function delete(key:K):Bool;
 	function get(key:K):Null<V>;
 	function has(key:K):Bool;

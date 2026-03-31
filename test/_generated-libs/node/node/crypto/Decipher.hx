@@ -15,7 +15,7 @@ typedef Decipher = {
 	function pause():Decipher;
 	function resume():Decipher;
 	function isPaused():Bool;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:global.nodejs.WritableStream):Decipher;
 	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;

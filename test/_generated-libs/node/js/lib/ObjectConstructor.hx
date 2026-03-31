@@ -1,6 +1,7 @@
 package js.lib;
 
 typedef ObjectConstructor = {
+	function new(?value:Dynamic);
 	@:overload(function(value:Dynamic):Dynamic { })
 	@:selfCall
 	function call():Dynamic;
@@ -44,7 +45,7 @@ typedef ObjectConstructor = {
 	/**
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
-	@:overload(function<T>(f:T):T { })
+	@:overload(function<T:(haxe.Constraints.Function)>(f:T):T { })
 	@:overload(function<T>(o:T):T { })
 	function freeze<T>(a:Array<T>):haxe.ds.ReadOnlyArray<T>;
 	/**

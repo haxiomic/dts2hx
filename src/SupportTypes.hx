@@ -170,6 +170,31 @@ class SupportTypes {
 		return TPath(typePath);
 	}
 
+	static public function getNeverType(ctx: ConverterContext): ComplexType {
+		var typePath = {
+			pack: ['ts'],
+			name: 'Never',
+		};
+
+		var existingModule = ctx.getGeneratedModule(typePath);
+		if (existingModule == null) {
+			var neverDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				doc: '`Never` is the TypeScript bottom type — no value can inhabit this type. A function returning `Never` always throws or never terminates.',
+				kind: TDAlias(macro : Void),
+				pos: null,
+				fields: [],
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			ctx.saveHaxeModule(neverDefinition);
+		}
+
+		return TPath(typePath);
+	}
+
 	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol, access: SymbolAccess): HaxeModule {
 		var typePath = ctx.haxeTypePathMap.getGlobalModuleTypePath(symbol, access);
 		var existingModule = ctx.getGeneratedModule({name: typePath.name, pack: typePath.pack});

@@ -277,7 +277,7 @@ typedef ServerHttp2Stream = {
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):ServerHttp2Stream { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Stream { })
 	function removeListener(event:String, listener:() -> Void):ServerHttp2Stream;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Stream;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ServerHttp2Stream;
 	function setMaxListeners(n:Float):ServerHttp2Stream;

@@ -16,6 +16,7 @@ package node;
 	static function createRequireFromPath(path:String):(path:String) -> Dynamic;
 	static var builtinModules : Array<String>;
 	static var Module : {
+		function new(id:String, ?parent:Module):Module;
 		var prototype : Module;
 		function runMain():Void;
 		function wrap(code:String):String;

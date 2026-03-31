@@ -2,8 +2,8 @@ package lodash;
 
 typedef Primitive<T> = {
 	function concat(values:haxe.extern.Rest<Many<T>>):Collection<T>;
-	function after<TFunc>(func:TFunc):Function<TFunc>;
-	function before<TFunc>(func:TFunc):Function<TFunc>;
+	function after<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):Function<TFunc>;
+	function before<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):Function<TFunc>;
 	function castArray():Collection<T>;
 	function chain():PrimitiveChain<T>;
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):Collection<TResult> { })
@@ -21,7 +21,7 @@ typedef Primitive<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<T, TResult> { })
 	@:overload(function():T { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;

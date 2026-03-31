@@ -1,3 +1,3 @@
 package unit.edge_cases.edgecases;
 
-typedef Never = Any;
+typedef Never = ts.Never;

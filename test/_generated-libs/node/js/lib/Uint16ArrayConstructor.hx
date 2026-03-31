@@ -1,6 +1,11 @@
 package js.lib;
 
 typedef Uint16ArrayConstructor = {
+	@:overload(function(array:ts.AnyOf3<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, ArrayLike<Float>>):js.lib.Uint16Array { })
+	@:overload(function(buffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):js.lib.Uint16Array { })
+	@:overload(function(elements:Iterable<Float>):js.lib.Uint16Array { })
+	@:overload(function():js.lib.Uint16Array { })
+	function new(length:Float);
 	final prototype : js.lib.Uint16Array;
 	/**
 		The size in bytes of each element in the array.

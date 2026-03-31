@@ -52,7 +52,7 @@ typedef StringNullableChain = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<Null<String>>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<Null<String>, Null<TResult>>):ts.AnyOf2<StringChain, ExpChain<TResult>> { })
 	@:overload(function():StringNullableChain { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<Null<String>, TResult>):ExpChain<TResult>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<Null<String>, TResult>):ExpChain<TResult>;
 	function conformsTo(source:Null<String>):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;

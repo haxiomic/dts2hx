@@ -4,7 +4,7 @@ package global.three;
 	An extensible curve object which contains methods for interpolation
 	class Curve&lt;T extends Vector&gt;
 **/
-@:native("THREE.Curve") extern class Curve<T> {
+@:native("THREE.Curve") extern class Curve<T:(Vector)> {
 	function new();
 	/**
 		This value determines the amount of divisions when calculating the cumulative segment lengths of a curve via .getLengths.

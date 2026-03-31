@@ -5,7 +5,7 @@ typedef MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 		The other DOM element involved in the event, if any.
 	**/
 	@:optional
-	var relatedTarget : Any;
+	var relatedTarget : ts.Never;
 	/**
 		Describes the nature of the event.
 	**/

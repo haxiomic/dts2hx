@@ -19,8 +19,8 @@ package unit.functions;
 	static function overloaded(a:String):String;
 	static function identity<T>(x:T):T;
 	static function pair<A, B>(a:A, b:B):ts.Tuple2<A, B>;
-	static function constrained<T>(x:T):T;
-	static function multiConstrained<T, U>(a:T, b:U):Void;
+	static function constrained<T:(String)>(x:T):T;
+	static function multiConstrained<T:(String), U:(Float)>(a:T, b:U):Void;
 	static function takesCallback(cb:(error:Null<js.lib.Error>, result:String) -> Void):Void;
 	static function returnsFunction():(x:Float) -> String;
 	static function returnsUnion():ts.AnyOf2<String, Float>;
@@ -32,5 +32,5 @@ package unit.functions;
 	static function returnsPromiseLike():js.lib.PromiseLike<String>;
 	static function returnsArray():Array<String>;
 	static function returnsVoid():Void;
-	static function returnsNever():Any;
+	static function returnsNever():ts.Never;
 }

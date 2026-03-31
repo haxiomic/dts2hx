@@ -32,10 +32,10 @@ package node;
 	static function randomBytes(size:Float):global.Buffer;
 	@:overload(function(size:Float, callback:(err:Null<js.lib.Error>, buf:global.Buffer) -> Void):Void { })
 	static function pseudoRandomBytes(size:Float):global.Buffer;
-	static function randomFillSync<T>(buffer:T, ?offset:Float, ?size:Float):T;
-	@:overload(function<T>(buffer:T, offset:Float, callback:(err:Null<js.lib.Error>, buf:T) -> Void):Void { })
-	@:overload(function<T>(buffer:T, offset:Float, size:Float, callback:(err:Null<js.lib.Error>, buf:T) -> Void):Void { })
-	static function randomFill<T>(buffer:T, callback:(err:Null<js.lib.Error>, buf:T) -> Void):Void;
+	static function randomFillSync<T:(node.crypto.Binary)>(buffer:T, ?offset:Float, ?size:Float):T;
+	@:overload(function<T:(node.crypto.Binary)>(buffer:T, offset:Float, callback:(err:Null<js.lib.Error>, buf:T) -> Void):Void { })
+	@:overload(function<T:(node.crypto.Binary)>(buffer:T, offset:Float, size:Float, callback:(err:Null<js.lib.Error>, buf:T) -> Void):Void { })
+	static function randomFill<T:(node.crypto.Binary)>(buffer:T, callback:(err:Null<js.lib.Error>, buf:T) -> Void):Void;
 	@:overload(function(password:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, salt:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, keylen:Float, options:node.crypto.ScryptOptions, callback:(err:Null<js.lib.Error>, derivedKey:global.Buffer) -> Void):Void { })
 	static function scrypt(password:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, salt:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, keylen:Float, callback:(err:Null<js.lib.Error>, derivedKey:global.Buffer) -> Void):Void;
 	static function scryptSync(password:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, salt:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, keylen:Float, ?options:node.crypto.ScryptOptions):global.Buffer;

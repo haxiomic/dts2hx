@@ -16,7 +16,7 @@ typedef LoDashExplicitWrapper<TValue> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<TValue>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<TValue, Null<TResult>>):ts.AnyOf2<ExpChain<TValue>, ExpChain<TResult>> { })
 	@:overload(function():LoDashExplicitWrapper<TValue> { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<TValue, TResult>):ExpChain<TResult>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<TValue, TResult>):ExpChain<TResult>;
 	function conformsTo(source:{ }):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;

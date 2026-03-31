@@ -84,7 +84,7 @@ typedef InflateRaw = {
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):InflateRaw { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):InflateRaw { })
 	function removeListener(event:String, listener:() -> Void):InflateRaw;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):InflateRaw;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):InflateRaw;
 	function setMaxListeners(n:Float):InflateRaw;

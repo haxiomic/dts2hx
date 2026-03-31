@@ -1,6 +1,6 @@
 package express;
 
-typedef Request<P, ResBody, ReqBody, ReqQuery> = {
+typedef Request<P:(express_serve_static_core.Params), ResBody, ReqBody, ReqQuery> = {
 	/**
 		Return request header.
 		
@@ -318,7 +318,7 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Request<P, ResBody, ReqBody, ReqQuery> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Request<P, ResBody, ReqBody, ReqQuery> { })
 	function removeListener(event:String, listener:() -> Void):Request<P, ResBody, ReqBody, ReqQuery>;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Request<P, ResBody, ReqBody, ReqQuery>;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Request<P, ResBody, ReqBody, ReqQuery>;
 	function setMaxListeners(n:Float):Request<P, ResBody, ReqBody, ReqQuery>;

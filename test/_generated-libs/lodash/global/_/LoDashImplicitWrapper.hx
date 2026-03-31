@@ -16,7 +16,7 @@ typedef LoDashImplicitWrapper<TValue> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<TValue>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<TValue, Null<TResult>>):ts.AnyOf2<TValue, TResult> { })
 	@:overload(function():TValue { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<TValue, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<TValue, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;

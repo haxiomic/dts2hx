@@ -1,3 +1,5 @@
 package vue.types.options;
 
-typedef Constructor = { };
+typedef Constructor = {
+	function new(args:haxe.extern.Rest<Dynamic>):Dynamic;
+};

@@ -1,6 +1,11 @@
 package unit.interface_;
 
 typedef InterfaceExtendsWithRedefinition = {
+	/**
+		Example construct signatures
+	**/
+	@:overload(function(b:Float, x:Bool):Interface { })
+	function new(a:String);
 	@:overload(function<T>(a:T, b:String):InterfaceExtendsWithRedefinition { })
 	@:selfCall
 	function call_(array:Array<InterfaceExtendsWithRedefinition>):Dynamic;

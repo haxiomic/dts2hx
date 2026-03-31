@@ -79,7 +79,7 @@ class Main {
 			allowIntersectionRasterization: false,
 			queueExternalSymbols: false,
 			skipDependencies: false,
-			enableTypeParameterConstraints: false,
+			enableTypeParameterConstraints: true,
 		}
 
 		var help: Bool = false;

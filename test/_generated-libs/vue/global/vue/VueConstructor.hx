@@ -1,3 +1,3 @@
 package global.vue;
 
-typedef VueConstructor<V> = vue.VueConstructor<V>;
+typedef VueConstructor<V:(global.Vue)> = vue.VueConstructor<V>;

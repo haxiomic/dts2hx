@@ -11,7 +11,7 @@ typedef Hmac = {
 	function pause():Hmac;
 	function resume():Hmac;
 	function isPaused():Bool;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:global.nodejs.WritableStream):Hmac;
 	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;

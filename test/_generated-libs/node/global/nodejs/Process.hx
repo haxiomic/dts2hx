@@ -21,7 +21,7 @@ typedef Process = {
 	var debugPort : Float;
 	function emitWarning(warning:ts.AnyOf2<String, js.lib.Error>, ?name:String, ?ctor:haxe.Constraints.Function):Void;
 	var env : ProcessEnv;
-	function exit(?code:Float):Any;
+	function exit(?code:Float):ts.Never;
 	var exitCode : Float;
 	function getgid():Float;
 	function setgid(id:ts.AnyOf2<String, Float>):Void;

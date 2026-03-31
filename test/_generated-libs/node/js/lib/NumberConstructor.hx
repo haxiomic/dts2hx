@@ -1,6 +1,7 @@
 package js.lib;
 
 typedef NumberConstructor = {
+	function new(?value:Dynamic);
 	@:selfCall
 	function call(?value:Dynamic):Float;
 	final prototype : Number;

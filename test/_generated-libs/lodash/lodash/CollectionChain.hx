@@ -13,7 +13,7 @@ typedef CollectionChain<T> = {
 	function difference(values:haxe.extern.Rest<List_<T>>):CollectionChain<T>;
 	@:overload(function(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, List_<Any>, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>>):CollectionChain<T> { })
 	function differenceBy<T2>(values1:List_<T2>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:ts.AnyOf2<T, T2>) -> Any, { }>):CollectionChain<T>;
-	@:overload(function<T2, T3, T4>(values:haxe.extern.Rest<ts.AnyOf2<List_<Any>, Comparator2<T, Any>>>):CollectionChain<T> { })
+	@:overload(function<T2, T3, T4>(values:haxe.extern.Rest<ts.AnyOf2<List_<Any>, Comparator2<T, ts.Never>>>):CollectionChain<T> { })
 	function differenceWith<T2>(values:List_<T2>, comparator:Comparator2<T, T2>):CollectionChain<T>;
 	function drop(?n:Float):CollectionChain<T>;
 	function dropRight(?n:Float):CollectionChain<T>;
@@ -33,7 +33,7 @@ typedef CollectionChain<T> = {
 	function intersection(arrays:haxe.extern.Rest<Null<List_<T>>>):CollectionChain<T>;
 	@:overload(function(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, List_<Any>, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>>):CollectionChain<T> { })
 	function intersectionBy<T2>(values:List_<T2>, iteratee:ValueIteratee<ts.AnyOf2<T, T2>>):CollectionChain<T>;
-	@:overload(function(values:haxe.extern.Rest<ts.AnyOf2<List_<Any>, Comparator2<T, Any>>>):CollectionChain<T> { })
+	@:overload(function(values:haxe.extern.Rest<ts.AnyOf2<List_<Any>, Comparator2<T, ts.Never>>>):CollectionChain<T> { })
 	function intersectionWith<T2>(values:List_<T2>, comparator:Comparator2<T, T2>):CollectionChain<T>;
 	function join(?separator:String):StringChain;
 	function last():ExpChain<T>;
@@ -90,11 +90,11 @@ typedef CollectionChain<T> = {
 	dynamic function eachRight(?iteratee:ListIterator<T, Dynamic>):CollectionChain<T>;
 	function every(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>):PrimitiveChain<Bool>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>):CollectionChain<T> { })
-	function filter<S>(predicate:ListIteratorTypeGuard<T, S>):CollectionChain<S>;
+	function filter<S:(T)>(predicate:ListIteratorTypeGuard<T, S>):CollectionChain<S>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):ExpChain<T> { })
-	function find<S>(predicate:ListIteratorTypeGuard<T, S>, ?fromIndex:Float):ExpChain<S>;
+	function find<S:(T)>(predicate:ListIteratorTypeGuard<T, S>, ?fromIndex:Float):ExpChain<S>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):ExpChain<T> { })
-	function findLast<S>(predicate:ListIteratorTypeGuard<T, S>, ?fromIndex:Float):ExpChain<S>;
+	function findLast<S:(T)>(predicate:ListIteratorTypeGuard<T, S>, ?fromIndex:Float):ExpChain<S>;
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):CollectionChain<Bool> { })
 	@:overload(function():Dynamic { })
 	function flatMap<TResult>(iteratee:ts.AnyOf4<String, Float, js.lib.Symbol, ListIterator<T, Many<TResult>>>):CollectionChain<TResult>;
@@ -113,10 +113,10 @@ typedef CollectionChain<T> = {
 	@:overload(function(iteratee:ts.AnyOf3<String, Float, js.lib.Symbol>):CollectionChain<Dynamic> { })
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):CollectionChain<Bool> { })
 	@:overload(function():CollectionChain<T> { })
-	function map<K>(key:K):CollectionChain<Dynamic>;
+	function map<K:(Dynamic)>(key:K):CollectionChain<Dynamic>;
 	function orderBy(?iteratees:ts.AnyOf6<String, Float, js.lib.Symbol, ListIterator<T, Any>, haxe.ds.ReadOnlyArray<ts.AnyOf5<String, Float, js.lib.Symbol, ListIterator<T, Any>, { }>>, { }>, ?orders:Many<ts.AnyOf2<Bool, String>>):CollectionChain<T>;
 	@:overload(function(callback:ValueIteratee<T>):LoDashExplicitWrapper<ts.Tuple2<Array<T>, Array<T>>> { })
-	function partition<U>(callback:ValueIteratorTypeGuard<T, U>):LoDashExplicitWrapper<ts.Tuple2<Array<U>, Array<{ }>>>;
+	function partition<U:(T)>(callback:ValueIteratorTypeGuard<T, U>):LoDashExplicitWrapper<ts.Tuple2<Array<U>, Array<{ }>>>;
 	@:overload(function(callback:MemoListIterator<T, T, List_<T>>):ExpChain<T> { })
 	function reduce<TResult>(callback:MemoListIterator<T, TResult, List_<T>>, accumulator:TResult):ExpChain<TResult>;
 	@:overload(function(callback:MemoListIterator<T, T, List_<T>>):ExpChain<T> { })
@@ -140,7 +140,7 @@ typedef CollectionChain<T> = {
 	function get(path:Float):ExpChain<T>;
 	function invertBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):ObjectChain<Dictionary<Array<String>>>;
 	function mapKeys(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):ObjectChain<Dictionary<T>>;
-	@:overload(function<TKey>(iteratee:TKey):ObjectChain<Dictionary<Dynamic>> { })
+	@:overload(function<TKey:(Dynamic)>(iteratee:TKey):ObjectChain<Dictionary<Dynamic>> { })
 	@:overload(function(iteratee:Dynamic):ObjectChain<Dictionary<Bool>> { })
 	@:overload(function(iteratee:String):ObjectChain<Dictionary<Dynamic>> { })
 	@:overload(function():ObjectChain<Dictionary<T>> { })
@@ -148,7 +148,7 @@ typedef CollectionChain<T> = {
 	function omit(paths:haxe.extern.Rest<Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):CollectionChain<T>;
 	function omitBy(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T, key:String) -> Any, { }>):ObjectChain<Dictionary<T>>;
 	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T, key:String) -> Any, { }>):ObjectChain<Dictionary<T>> { })
-	function pickBy<S>(predicate:ValueKeyIterateeTypeGuard<T, S>):ObjectChain<Dictionary<S>>;
+	function pickBy<S:(T)>(predicate:ValueKeyIterateeTypeGuard<T, S>):ObjectChain<Dictionary<S>>;
 	@:overload(function():CollectionChain<Dynamic> { })
 	function transform<TResult>(iteratee:MemoVoidArrayIterator<T, TResult>, ?accumulator:TResult):ExpChain<TResult>;
 	function iteratee():FunctionChain<(o:Dynamic) -> Bool>;
@@ -170,7 +170,7 @@ typedef CollectionChain<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<Array<T>>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<Array<T>, Null<TResult>>):ts.AnyOf2<CollectionChain<T>, ExpChain<TResult>> { })
 	@:overload(function():CollectionChain<T> { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<Array<T>, TResult>):ExpChain<TResult>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<Array<T>, TResult>):ExpChain<TResult>;
 	function conformsTo(source:Array<Dynamic>):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;

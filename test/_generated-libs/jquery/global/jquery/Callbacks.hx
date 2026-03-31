@@ -1,6 +1,6 @@
 package global.jquery;
 
-typedef Callbacks<T> = {
+typedef Callbacks<T:(haxe.Constraints.Function)> = {
 	/**
 		Add a callback or a collection of callbacks to a callback list.
 	**/

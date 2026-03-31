@@ -19,6 +19,15 @@ package global;
 		The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 	**/
 	var constructor : {
+		/**
+			Allocates a new buffer containing the given {str}.
+		**/
+		@:overload(function(size:Float):Buffer { })
+		@:overload(function(array:js.lib.Uint8Array):Buffer { })
+		@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):Buffer { })
+		@:overload(function(array:Array<Dynamic>):Buffer { })
+		@:overload(function(buffer:Buffer):Buffer { })
+		function new(str:String, ?encoding:String):Buffer;
 		var prototype : Buffer;
 		/**
 			When passed a reference to the .buffer property of a TypedArray instance,

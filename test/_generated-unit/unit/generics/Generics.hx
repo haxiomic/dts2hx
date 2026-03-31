@@ -5,7 +5,9 @@ package unit.generics;
 	conditional types, utility types.
 **/
 @:jsRequire("./unit/generics", "Generics") @valueModuleOnly extern class Generics {
-	static function loggingIdentity<T>(arg:T):T;
-	static function getProperty<T, K>(obj:T, key:K):Dynamic;
-	static function multiConstrain<T>(arg:T):T;
+	static function loggingIdentity<T:(unit.generics.generics.Lengthwise)>(arg:T):T;
+	static function getProperty<T, K:(Dynamic)>(obj:T, key:K):Dynamic;
+	static function multiConstrain<T:(unit.generics.generics.Lengthwise & {
+		var name : String;
+	})>(arg:T):T;
 }

@@ -84,7 +84,7 @@ typedef Gunzip = {
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Gunzip { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Gunzip { })
 	function removeListener(event:String, listener:() -> Void):Gunzip;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Gunzip;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Gunzip;
 	function setMaxListeners(n:Float):Gunzip;

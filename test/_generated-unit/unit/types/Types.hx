@@ -29,7 +29,7 @@ package unit.types;
 	@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
 	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Dynamic;
-	static function typeParameterWithConstraint<T>(x:T):Dynamic;
+	static function typeParameterWithConstraint<T:(Array<Float>)>(x:T):Dynamic;
 	static function intersectionBetweenTypeParams<A, B>(p:Dynamic):Void;
 	static function firstTypeFunction(node:{ }):Bool;
 	static final implicitInt : Int;
@@ -76,7 +76,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -99,7 +99,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -136,8 +136,8 @@ package unit.types;
 		var b : String;
 	};
 	static final readonlyAnon : {
-		var a : String;
-		var r : {
+		final a : String;
+		final r : {
 			var a : Bool;
 			var b : Bool;
 			var c : Bool;
@@ -178,7 +178,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -192,7 +192,7 @@ package unit.types;
 	static final intersectionWithArray : {
 		var x : Float;
 	} & js.lib.IArray<Float>;
-	static final intersectionStringNumber : Any;
+	static final intersectionStringNumber : ts.Never;
 	static final intersectionTripleAnon : {
 		var x : Float;
 	} & {
@@ -227,7 +227,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -242,6 +242,7 @@ package unit.types;
 	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function typeQueryFunctionWithOverloads(a:Float):Dynamic;
 	static final typeQueryClassLikeOrNull : Null<{
+		function new():unit.types.types.ClassLikeConstructorType;
 		var field : String;
 	}>;
 }

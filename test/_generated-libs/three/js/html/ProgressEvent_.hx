@@ -3,7 +3,7 @@ package js.html;
 /**
 	Events measuring progress of an underlying process, like an HTTP request (for an XMLHttpRequest, or the loading of the underlying resource of an <img>, <audio>, <video>, <style> or <link>).
 **/
-@:native("ProgressEvent") extern class ProgressEvent_<T> {
+@:native("ProgressEvent") extern class ProgressEvent_<T:(js.html.EventTarget)> {
 	function new(type:String, ?eventInitDict:js.html.ProgressEventInit);
 	final lengthComputable : Bool;
 	final loaded : Float;

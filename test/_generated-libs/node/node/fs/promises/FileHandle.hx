@@ -30,7 +30,7 @@ typedef FileHandle = {
 		Asynchronously reads data from the file.
 		The `FileHandle` must have been opened for reading.
 	**/
-	function read<TBuffer>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	function read<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesRead : Float;
 		var buffer : TBuffer;
 	}>;
@@ -40,7 +40,7 @@ typedef FileHandle = {
 	**/
 	@:overload(function(options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	function readFile(?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
+	function readFile(?options:{ @:optional var encoding : ts.Never; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
 	/**
 		Asynchronous fstat(2) - Get file status.
 	**/
@@ -66,7 +66,7 @@ typedef FileHandle = {
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
-	function write<TBuffer>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	function write<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesWritten : Float;
 		var buffer : TBuffer;
 	}>;

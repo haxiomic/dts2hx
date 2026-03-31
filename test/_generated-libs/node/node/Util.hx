@@ -27,7 +27,7 @@ package node;
 	static function isString(object:Dynamic):Bool;
 	static function isSymbol(object:Dynamic):Bool;
 	static function isUndefined(object:Dynamic):Bool;
-	static function deprecate<T>(fn:T, message:String):T;
+	static function deprecate<T:(haxe.Constraints.Function)>(fn:T, message:String):T;
 	static function isDeepStrictEqual(val1:Dynamic, val2:Dynamic):Bool;
 	@:overload(function<TResult>(fn:() -> js.lib.Promise<TResult>):(callback:(err:global.nodejs.ErrnoException, result:TResult) -> Void) -> Void { })
 	@:overload(function<T1>(fn:(arg1:T1) -> js.lib.Promise<ts.Undefined>):(arg1:T1, callback:(err:global.nodejs.ErrnoException) -> Void) -> Void { })
@@ -56,5 +56,5 @@ package node;
 	@:overload(function<T1, T2, T3, T4, T5, TResult>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:(err:Null<js.lib.Error>, result:TResult) -> Void) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> js.lib.Promise<TResult> { })
 	@:overload(function<T1, T2, T3, T4, T5>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> js.lib.Promise<ts.Undefined> { })
 	@:overload(function(fn:haxe.Constraints.Function):haxe.Constraints.Function { })
-	static function promisify<TCustom>(fn:node.util.CustomPromisify<TCustom>):TCustom;
+	static function promisify<TCustom:(haxe.Constraints.Function)>(fn:node.util.CustomPromisify<TCustom>):TCustom;
 }

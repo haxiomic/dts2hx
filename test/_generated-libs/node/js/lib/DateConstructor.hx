@@ -1,6 +1,11 @@
 package js.lib;
 
 typedef DateConstructor = {
+	@:overload(function(value:ts.AnyOf2<String, Float>):js.lib.Date { })
+	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):js.lib.Date { })
+	@:overload(function(vd:VarDate):js.lib.Date { })
+	@:overload(function(value:ts.AnyOf3<String, Float, js.lib.Date>):js.lib.Date { })
+	function new();
 	@:selfCall
 	function call():String;
 	final prototype : js.lib.Date;

@@ -22,28 +22,28 @@ typedef Terminal = {
 			A human-readable string which will be used to represent the terminal in the UI.
 		**/
 		@:optional
-		var name : String;
+		final name : String;
 		/**
 			A path to a custom shell executable to be used in the terminal.
 		**/
 		@:optional
-		var shellPath : String;
+		final shellPath : String;
 		/**
 			Args for the custom shell executable. A string can be used on Windows only which allows
 			specifying shell args in [command-line format](https://msdn.microsoft.com/en-au/08dfcab2-eb6e-49a4-80eb-87d4076c98c6).
 		**/
 		@:optional
-		var shellArgs : ts.AnyOf2<String, Array<String>>;
+		final shellArgs : ts.AnyOf2<String, Array<String>>;
 		/**
 			A path or Uri for the current working directory to be used for the terminal.
 		**/
 		@:optional
-		var cwd : ts.AnyOf2<String, Uri>;
+		final cwd : ts.AnyOf2<String, Uri>;
 		/**
 			Object with environment variables that will be added to the VS Code process.
 		**/
 		@:optional
-		var env : haxe.DynamicAccess<Null<String>>;
+		final env : haxe.DynamicAccess<Null<String>>;
 		/**
 			Whether the terminal process environment should be exactly as provided in
 			`TerminalOptions.env`. When this is false (default), the environment will be based on the
@@ -52,7 +52,7 @@ typedef Terminal = {
 			must be provided as nothing will be inherited from the process or any configuration.
 		**/
 		@:optional
-		var strictEnv : Bool;
+		final strictEnv : Bool;
 		/**
 			When enabled the terminal will run the process as normal but not be surfaced to the user
 			until `Terminal.show` is called. The typical usage for this is when you need to run
@@ -61,17 +61,17 @@ typedef Terminal = {
 			as normal.
 		**/
 		@:optional
-		var hideFromUser : Bool;
+		final hideFromUser : Bool;
 	}, {
 		/**
 			A human-readable string which will be used to represent the terminal in the UI.
 		**/
-		var name : String;
+		final name : String;
 		/**
 			An implementation of [Pseudoterminal](#Pseudoterminal) that allows an extension to
 			control a terminal.
 		**/
-		var pty : Pseudoterminal;
+		final pty : Pseudoterminal;
 	}>;
 	/**
 		The exit status of the terminal, this will be undefined while the terminal is active.

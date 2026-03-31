@@ -5,6 +5,15 @@ typedef Global = {
 	var ArrayBuffer : js.lib.ArrayBufferConstructor;
 	var Boolean : js.lib.BooleanConstructor;
 	var Buffer : {
+		/**
+			Allocates a new buffer containing the given {str}.
+		**/
+		@:overload(function(size:Float):global.Buffer { })
+		@:overload(function(array:js.lib.Uint8Array):global.Buffer { })
+		@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):global.Buffer { })
+		@:overload(function(array:Array<Dynamic>):global.Buffer { })
+		@:overload(function(buffer:global.Buffer):global.Buffer { })
+		function new(str:String, ?encoding:String):global.Buffer;
 		var prototype : global.Buffer;
 		/**
 			When passed a reference to the .buffer property of a TypedArray instance,
@@ -87,21 +96,25 @@ typedef Global = {
 		var Collator : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.Collator.CollatorOptions):js.lib.intl.Collator;
+			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.Collator.CollatorOptions):js.lib.intl.Collator;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.Collator.CollatorOptions):Array<String>;
 		};
 		var NumberFormat : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):js.lib.intl.NumberFormat;
+			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):js.lib.intl.NumberFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):Array<String>;
 		};
 		var DateTimeFormat : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
+			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):Array<String>;
 		};
 		final PluralRules : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
+			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):Array<String>;
 		};
 	};

@@ -422,7 +422,7 @@ typedef Response<ResBody> = {
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function removeListener(event:String, listener:() -> Void):Response<ResBody>;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody>;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Response<ResBody>;
 	function setMaxListeners(n:Float):Response<ResBody>;

@@ -54,7 +54,7 @@ typedef StringChain = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<String>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<String, Null<TResult>>):ts.AnyOf2<StringChain, ExpChain<TResult>> { })
 	@:overload(function():StringChain { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<String, TResult>):ExpChain<TResult>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<String, TResult>):ExpChain<TResult>;
 	function conformsTo(source:String):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;
