@@ -9,14 +9,14 @@ typedef Request<P:(Params), ResBody, ReqBody, ReqQuery> = {
 		
 		Examples:
 		
-		     req.get('Content-Type');
-		     // => "text/plain"
+		    req.get('Content-Type');
+		    // => "text/plain"
 		
-		     req.get('content-type');
-		     // => "text/plain"
+		    req.get('content-type');
+		    // => "text/plain"
 		
-		     req.get('Something');
-		     // => undefined
+		    req.get('Something');
+		    // => undefined
 		
 		Aliased as `req.header()`.
 	**/
@@ -37,29 +37,29 @@ typedef Request<P:(Params), ResBody, ReqBody, ReqQuery> = {
 		
 		Examples:
 		
-		     // Accept: text/html
-		     req.accepts('html');
-		     // => "html"
+		    // Accept: text/html
+		    req.accepts('html');
+		    // => "html"
 		
-		     // Accept: text/*, application/json
-		     req.accepts('html');
-		     // => "html"
-		     req.accepts('text/html');
-		     // => "text/html"
-		     req.accepts('json, text');
-		     // => "json"
-		     req.accepts('application/json');
-		     // => "application/json"
+		    // Accept: text/*, application/json
+		    req.accepts('html');
+		    // => "html"
+		    req.accepts('text/html');
+		    // => "text/html"
+		    req.accepts('json, text');
+		    // => "json"
+		    req.accepts('application/json');
+		    // => "application/json"
 		
-		     // Accept: text/*, application/json
-		     req.accepts('image/png');
-		     req.accepts('png');
-		     // => undefined
+		    // Accept: text/*, application/json
+		    req.accepts('image/png');
+		    req.accepts('png');
+		    // => undefined
 		
-		     // Accept: text/*;q=.5, application/json
-		     req.accepts(['html', 'json']);
-		     req.accepts('html, json');
-		     // => "json"
+		    // Accept: text/*;q=.5, application/json
+		    req.accepts(['html', 'json']);
+		    req.accepts('html, json');
+		    // => "json"
 	**/
 	@:overload(function(type:String):ts.AnyOf2<String, Bool> { })
 	@:overload(function(type:Array<String>):ts.AnyOf2<String, Bool> { })
@@ -123,20 +123,20 @@ typedef Request<P:(Params), ResBody, ReqBody, ReqQuery> = {
 		
 		Examples:
 		
-		      // With Content-Type: text/html; charset=utf-8
-		      req.is('html');
-		      req.is('text/html');
-		      req.is('text/*');
-		      // => true
+		     // With Content-Type: text/html; charset=utf-8
+		     req.is('html');
+		     req.is('text/html');
+		     req.is('text/*');
+		     // => true
 		
-		      // When Content-Type is application/json
-		      req.is('json');
-		      req.is('application/json');
-		      req.is('application/*');
-		      // => true
+		     // When Content-Type is application/json
+		     req.is('json');
+		     req.is('application/json');
+		     req.is('application/*');
+		     // => true
 		
-		      req.is('html');
-		      // => false
+		     req.is('html');
+		     // => false
 	**/
 	function is(type:ts.AnyOf2<String, Array<String>>):Null<ts.AnyOf2<String, Bool>>;
 	/**
@@ -151,7 +151,7 @@ typedef Request<P:(Params), ResBody, ReqBody, ReqQuery> = {
 	/**
 		Short-hand for:
 		
-		    req.protocol == 'https'
+		   req.protocol == 'https'
 	**/
 	var secure : Bool;
 	/**

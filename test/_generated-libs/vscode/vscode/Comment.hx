@@ -21,16 +21,16 @@ typedef Comment = {
 		For example, a comment is given a context value as `editable`. When contributing actions to `comments/comment/title`
 		using `menus` extension point, you can specify context value for key `comment` in `when` expression like `comment == editable`.
 		```json
-		    "contributes": {
-		        "menus": {
-		            "comments/comment/title": [
-		                {
-		                    "command": "extension.deleteComment",
-		                    "when": "comment == editable"
-		                }
-		            ]
-		        }
-		    }
+		   "contributes": {
+		       "menus": {
+		           "comments/comment/title": [
+		               {
+		                   "command": "extension.deleteComment",
+		                   "when": "comment == editable"
+		               }
+		           ]
+		       }
+		   }
 		```
 		This will show action `extension.deleteComment` only for comments with `contextValue` is `editable`.
 	**/

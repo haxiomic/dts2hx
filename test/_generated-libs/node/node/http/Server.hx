@@ -26,10 +26,10 @@ package node.http;
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
 	/**
 		events.EventEmitter
-		   1. close
-		   2. connection
-		   3. error
-		   4. listening
+		  1. close
+		  2. connection
+		  3. error
+		  4. listening
 	**/
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:node.net.Socket) -> Void):Server { })

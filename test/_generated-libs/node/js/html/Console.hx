@@ -75,7 +75,7 @@ typedef Console = {
 	function log(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
 		This method does not display anything unless used in the inspector.
-		  Prints to `stdout` the array `array` formatted as a table.
+		 Prints to `stdout` the array `array` formatted as a table.
 	**/
 	@:overload(function(tabularData:Dynamic, ?properties:Array<String>):Void { })
 	function table(?tabularData:Dynamic, ?properties:Array<String>):Void;
@@ -96,7 +96,7 @@ typedef Console = {
 	function timeLog(?label:String, data:haxe.extern.Rest<Dynamic>):Void;
 	/**
 		This method does not display anything unless used in the inspector.
-		  Adds an event with the label `label` to the Timeline panel of the inspector.
+		 Adds an event with the label `label` to the Timeline panel of the inspector.
 	**/
 	@:overload(function(?label:String):Void { })
 	function timeStamp(?label:String):Void;
@@ -113,27 +113,27 @@ typedef Console = {
 	var Console : global.nodejs.ConsoleConstructor;
 	/**
 		This method does not display anything unless used in the inspector.
-		  The console.markTimeline() method is the deprecated form of console.timeStamp().
+		 The console.markTimeline() method is the deprecated form of console.timeStamp().
 	**/
 	function markTimeline(?label:String):Void;
 	/**
 		This method does not display anything unless used in the inspector.
-		  Starts a JavaScript CPU profile with an optional label.
+		 Starts a JavaScript CPU profile with an optional label.
 	**/
 	function profile(?label:String):Void;
 	/**
 		This method does not display anything unless used in the inspector.
-		  Stops the current JavaScript CPU profiling session if one has been started and prints the report to the Profiles panel of the inspector.
+		 Stops the current JavaScript CPU profiling session if one has been started and prints the report to the Profiles panel of the inspector.
 	**/
 	function profileEnd(?label:String):Void;
 	/**
 		This method does not display anything unless used in the inspector.
-		  The console.timeline() method is the deprecated form of console.time().
+		 The console.timeline() method is the deprecated form of console.time().
 	**/
 	function timeline(?label:String):Void;
 	/**
 		This method does not display anything unless used in the inspector.
-		  The console.timelineEnd() method is the deprecated form of console.timeEnd().
+		 The console.timelineEnd() method is the deprecated form of console.timeEnd().
 	**/
 	function timelineEnd(?label:String):Void;
 };

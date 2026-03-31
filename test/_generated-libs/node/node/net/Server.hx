@@ -22,10 +22,10 @@ package node.net;
 	var listening : Bool;
 	/**
 		events.EventEmitter
-		   1. close
-		   2. connection
-		   3. error
-		   4. listening
+		  1. close
+		  2. connection
+		  3. error
+		  4. listening
 	**/
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	@:overload(function(event:String, listener:(socket:Socket) -> Void):Server { })

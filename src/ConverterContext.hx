@@ -1067,6 +1067,9 @@ class ConverterContext {
 		// } else if (type.flags & TypeFlags.IndexedAccess != 0) {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 
+		} else if (type.flags & (TypeFlags.TemplateLiteral | TypeFlags.StringMapping) != 0) {
+			// TS 4.1+: template literal types and string mapping types (Uppercase etc.) are subtypes of string
+			macro :String;
 		} else {
 			Log.warn('Type not yet supported', type);
 			// @! todo:

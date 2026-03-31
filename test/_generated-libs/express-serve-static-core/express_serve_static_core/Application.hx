@@ -11,9 +11,9 @@ typedef Application = {
 	/**
 		Initialize the server.
 		
-		   - setup default configuration
-		   - setup default middleware
-		   - setup route reflection methods
+		  - setup default configuration
+		  - setup default middleware
+		  - setup route reflection methods
 	**/
 	function init():Void;
 	/**
@@ -28,14 +28,14 @@ typedef Application = {
 		file extension. For example if you try to render
 		a "foo.jade" file Express will invoke the following internally:
 		
-		     app.engine('jade', require('jade').__express);
+		    app.engine('jade', require('jade').__express);
 		
 		For engines that do not provide `.__express` out of the box,
 		or if you wish to "map" a different extension to the template engine
 		you may use this method. For example mapping the EJS template engine to
 		".html" files:
 		
-		     app.engine('html', require('ejs').renderFile);
+		    app.engine('html', require('ejs').renderFile);
 		
 		In this case EJS provides a `.renderFile()` method with
 		the same signature that Express expects: `(path, options, callback)`,
@@ -52,12 +52,12 @@ typedef Application = {
 	/**
 		Assign `setting` to `val`, or return `setting`'s value.
 		
-		    app.set('foo', 'bar');
-		    app.get('foo');
-		    // => "bar"
-		    app.set('foo', ['bar', 'baz']);
-		    app.get('foo');
-		    // => ["bar", "baz"]
+		   app.set('foo', 'bar');
+		   app.get('foo');
+		   // => "bar"
+		   app.set('foo', ['bar', 'baz']);
+		   app.get('foo');
+		   // => ["bar", "baz"]
 		
 		Mounted servers inherit their parent server's settings.
 	**/
@@ -85,23 +85,23 @@ typedef Application = {
 	/**
 		Check if `setting` is enabled (truthy).
 		
-		    app.enabled('foo')
-		    // => false
+		   app.enabled('foo')
+		   // => false
 		
-		    app.enable('foo')
-		    app.enabled('foo')
-		    // => true
+		   app.enable('foo')
+		   app.enabled('foo')
+		   // => true
 	**/
 	function enabled(setting:String):Bool;
 	/**
 		Check if `setting` is disabled.
 		
-		    app.disabled('foo')
-		    // => true
+		   app.disabled('foo')
+		   // => true
 		
-		    app.enable('foo')
-		    app.disabled('foo')
-		    // => false
+		   app.enable('foo')
+		   app.disabled('foo')
+		   // => false
 	**/
 	function disabled(setting:String):Bool;
 	/**
@@ -119,9 +119,9 @@ typedef Application = {
 		
 		Example:
 		
-		    app.render('email', { name: 'Tobi' }, function(err, html){
-		      // ...
-		    })
+		   app.render('email', { name: 'Tobi' }, function(err, html){
+		     // ...
+		   })
 	**/
 	@:overload(function(name:String, callback:(err:js.lib.Error, html:String) -> Void):Void { })
 	function render(name:String, ?options:Dynamic, ?callback:(err:js.lib.Error, html:String) -> Void):Void;
@@ -134,13 +134,13 @@ typedef Application = {
 		and HTTPS server you may do so with the "http"
 		and "https" modules as shown here:
 		
-		    var http = require('http')
-		      , https = require('https')
-		      , express = require('express')
-		      , app = express();
+		   var http = require('http')
+		     , https = require('https')
+		     , express = require('express')
+		     , app = express();
 		
-		    http.createServer(app).listen(80);
-		    https.createServer({ ... }, app).listen(443);
+		   http.createServer(app).listen(80);
+		   https.createServer({ ... }, app).listen(443);
 	**/
 	@:overload(function(port:Float, hostname:String, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server { })
 	@:overload(function(port:Float, ?callback:(args:haxe.extern.Rest<Dynamic>) -> Void):node.http.Server { })
@@ -177,8 +177,8 @@ typedef Application = {
 		
 		NOTE:
 		Sub-apps will:
-		  - Not inherit the value of settings that have a default value. You must set the value in the sub-app.
-		  - Inherit the value of settings with no default value.
+		 - Not inherit the value of settings that have a default value. You must set the value in the sub-app.
+		 - Inherit the value of settings with no default value.
 	**/
 	dynamic function on(event:String, callback:(parent:Application) -> Void):Application;
 	/**

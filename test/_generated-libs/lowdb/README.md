@@ -1,6 +1,6 @@
 # Haxe Externs for lowdb
 
-Generated from **@types/lowdb v1.0.9** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.0.8** with arguments:
+Generated from **@types/lowdb v1.0.9** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.1.6** with arguments:
 
 	dts2hx lowdb --output _generated-libs --noDts2hxVersion
 

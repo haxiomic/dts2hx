@@ -42,7 +42,7 @@ package three;
 	/**
 		Array of morph targets. Each morph target is a Javascript object:
 		
-				 { name: "targetName", vertices: [ new THREE.Vector3(), ... ] }
+			 { name: "targetName", vertices: [ new THREE.Vector3(), ... ] }
 		
 		Morph vertices match number and order of primary vertices.
 	**/
@@ -50,7 +50,7 @@ package three;
 	/**
 		Array of morph normals. Morph normals have similar structure as morph targets, each normal set is a Javascript object:
 		
-				 morphNormal = { name: "NormalName", normals: [ new THREE.Vector3(), ... ] }
+			 morphNormal = { name: "NormalName", normals: [ new THREE.Vector3(), ... ] }
 	**/
 	var morphNormals : Array<MorphNormals>;
 	/**

@@ -72,13 +72,13 @@ typedef BigIntToLocaleStringOptions = {
 	/**
 		The formatting that should be displayed for the number, the defaults is "standard"
 		
-		     "standard" plain number formatting
+		    "standard" plain number formatting
 		
-		     "scientific" return the order-of-magnitude for formatted number.
+		    "scientific" return the order-of-magnitude for formatted number.
 		
-		     "engineering" return the exponent of ten when divisible by three
+		    "engineering" return the exponent of ten when divisible by three
 		
-		     "compact" string representing exponent, defaults is using the "short" form
+		    "compact" string representing exponent, defaults is using the "short" form
 	**/
 	@:optional
 	var notation : String;

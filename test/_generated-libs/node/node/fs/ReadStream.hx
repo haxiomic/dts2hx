@@ -6,8 +6,8 @@ package node.fs;
 	var path : ts.AnyOf2<String, global.Buffer>;
 	/**
 		events.EventEmitter
-		   1. open
-		   2. close
+		  1. open
+		  2. close
 	**/
 	@:overload(function(event:String, listener:(fd:Float) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })

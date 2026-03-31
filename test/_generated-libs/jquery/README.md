@@ -1,6 +1,6 @@
 # Haxe Externs for jquery
 
-Generated from **@types/jquery v3.3.29** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.0.8** with arguments:
+Generated from **@types/jquery v3.3.29** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.1.6** with arguments:
 
 	dts2hx jquery --output _generated-libs --noDts2hxVersion
 

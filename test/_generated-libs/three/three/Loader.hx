@@ -4,14 +4,14 @@ package three;
 	Base class for implementing loaders.
 	
 	Events:
-			 load
-					 Dispatched when the image has completed loading
-					 content — loaded image
+		 load
+				 Dispatched when the image has completed loading
+				 content — loaded image
 	
-			 error
+		 error
 	
-						Dispatched when the image can't be loaded
-						message — error message
+					Dispatched when the image can't be loaded
+					message — error message
 **/
 @:jsRequire("three", "Loader") extern class Loader {
 	function new();

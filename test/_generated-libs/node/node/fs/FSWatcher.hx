@@ -4,8 +4,8 @@ typedef FSWatcher = {
 	function close():Void;
 	/**
 		events.EventEmitter
-		   1. change
-		   2. error
+		  1. change
+		  2. error
 	**/
 	@:overload(function(event:String, listener:(eventType:String, filename:ts.AnyOf2<String, global.Buffer>) -> Void):FSWatcher { })
 	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):FSWatcher { })

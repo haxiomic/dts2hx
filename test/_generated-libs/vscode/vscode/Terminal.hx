@@ -80,9 +80,9 @@ typedef Terminal = {
 		non-zero exit code.
 		```typescript
 		window.onDidCloseTerminal(t => {
-		   if (t.exitStatus && t.exitStatus.code) {
-		       vscode.window.showInformationMessage(`Exit code: ${t.exitStatus.code}`);
-		   }
+		  if (t.exitStatus && t.exitStatus.code) {
+		      vscode.window.showInformationMessage(`Exit code: ${t.exitStatus.code}`);
+		  }
 		});
 		```
 	**/

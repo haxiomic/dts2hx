@@ -99,7 +99,7 @@ package node.repl;
 		Possible values are:
 		- `repl.REPL_MODE_SLOPPY` - evaluates expressions in sloppy mode.
 		- `repl.REPL_MODE_STRICT` - evaluates expressions in strict mode. This is equivalent to
-		    prefacing every repl statement with `'use strict'`.
+		   prefacing every repl statement with `'use strict'`.
 	**/
 	final replMode : js.lib.Symbol;
 	/**

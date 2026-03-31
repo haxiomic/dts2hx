@@ -21,7 +21,7 @@ typedef LanguageConfiguration = {
 		If the language supports Unicode identifiers (e.g. JavaScript), it is preferable
 		to provide a word definition that uses exclusion of known separators.
 		e.g.: A regex that matches anything except known separators (and dot is allowed to occur in a floating point number):
-		   /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g
+		  /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g
 	**/
 	@:optional
 	var wordPattern : js.lib.RegExp;

@@ -47,11 +47,11 @@ package vscode;
 		**Example** of an authentication flow:
 		```typescript
 		vscode.window.registerUriHandler({
-		   handleUri(uri: vscode.Uri): vscode.ProviderResult<void> {
-		     if (uri.path === '/did-authenticate') {
-		       console.log(uri.toString());
-		     }
-		   }
+		  handleUri(uri: vscode.Uri): vscode.ProviderResult<void> {
+		    if (uri.path === '/did-authenticate') {
+		      console.log(uri.toString());
+		    }
+		  }
 		});
 		
 		const callableUri = await vscode.env.asExternalUri(vscode.Uri.parse(`${vscode.env.uriScheme}://my.extension/did-authenticate`));

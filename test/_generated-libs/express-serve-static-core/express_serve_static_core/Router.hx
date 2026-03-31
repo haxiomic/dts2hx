@@ -16,18 +16,18 @@ typedef Router = {
 		of the user. Once the `next()` function is invoked, just like middleware
 		it will continue on to execute the route, or subsequent parameter functions.
 		
-		      app.param('user_id', function(req, res, next, id){
-		        User.find(id, function(err, user){
-		          if (err) {
-		            next(err);
-		          } else if (user) {
-		            req.user = user;
-		            next();
-		          } else {
-		            next(new Error('failed to load user'));
-		          }
-		        });
-		      });
+		     app.param('user_id', function(req, res, next, id){
+		       User.find(id, function(err, user){
+		         if (err) {
+		           next(err);
+		         } else if (user) {
+		           req.user = user;
+		           next();
+		         } else {
+		           next(new Error('failed to load user'));
+		         }
+		       });
+		     });
 		
 		Alternatively, you can pass only a callback, in which case you have the opportunity to alter the app.param()
 	**/

@@ -14,8 +14,8 @@ package vscode;
 	var Indent;
 	/**
 		Insert two new lines:
-		  - the first one indented which will hold the cursor
-		  - the second one at the same indentation level
+		 - the first one indented which will hold the cursor
+		 - the second one at the same indentation level
 	**/
 	var IndentOutdent;
 	/**

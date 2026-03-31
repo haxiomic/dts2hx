@@ -19,6 +19,7 @@ function main() {
         'named-tuple',
         'symbols',
         'tripple-slash-references',
+        'ts4.1',
         'tuples',
         'type-parameters',
         'types',

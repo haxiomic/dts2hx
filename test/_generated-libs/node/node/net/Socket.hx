@@ -33,14 +33,14 @@ package node.net;
 	function end(?cb:() -> Void):Void;
 	/**
 		events.EventEmitter
-		   1. close
-		   2. connect
-		   3. data
-		   4. drain
-		   5. end
-		   6. error
-		   7. lookup
-		   8. timeout
+		  1. close
+		  2. connect
+		  3. data
+		  4. drain
+		  5. end
+		  6. error
+		  7. lookup
+		  8. timeout
 	**/
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })

@@ -21,18 +21,18 @@ package vscode;
 	register a command handler with the identifier `extension.sayHello`.
 	```javascript
 	commands.registerCommand('extension.sayHello', () => {
-	     window.showInformationMessage('Hello World!');
+	    window.showInformationMessage('Hello World!');
 	});
 	```
 	Second, bind the command identifier to a title under which it will show in the palette (`package.json`).
 	```json
 	{
-	     "contributes": {
-	         "commands": [{
-	             "command": "extension.sayHello",
-	             "title": "Hello World"
-	         }]
-	     }
+	    "contributes": {
+	        "commands": [{
+	            "command": "extension.sayHello",
+	            "title": "Hello World"
+	        }]
+	    }
 	}
 	```
 **/

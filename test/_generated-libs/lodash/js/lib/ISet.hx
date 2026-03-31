@@ -12,7 +12,7 @@ typedef ISet<T> = {
 	**/
 	function entries():IterableIterator<ts.Tuple2<T, T>>;
 	/**
-		Despite its name, returns an iterable of the values in the set,
+		Despite its name, returns an iterable of the values in the set.
 	**/
 	function keys():IterableIterator<T>;
 	/**
