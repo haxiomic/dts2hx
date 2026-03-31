@@ -60,7 +60,7 @@ class SupportTypes {
 			var tupleTypeDefinition: HaxeModule = {
 				pack: typePath.pack,
 				name: typePath.name,
-				kind: TDAbstract(abstractType, [abstractType], [abstractType]),
+				kind: TDAbstract(abstractType, null, [abstractType], [abstractType]),
 				params: [for (i in 0...elementTypes.length) { name: 'T$i', }],
 				fields: fields,
 				isExtern: true,
@@ -119,7 +119,7 @@ class SupportTypes {
 			var anyOfTypeDefinition: HaxeModule = {
 				pack: typePath.pack,
 				name: typePath.name,
-				kind: TDAbstract(abstractType, typeParams, typeParams),
+				kind: TDAbstract(abstractType, null, typeParams, typeParams),
 				params: [for (i in 0...types.length) { name: 'T$i', }],
 				fields: Lambda.flatten([for (i in 0...types.length) {
 					var varName = 'asType$i';

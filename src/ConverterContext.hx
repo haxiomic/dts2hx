@@ -395,7 +395,7 @@ class ConverterContext {
 				{
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
-					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+					kind: TDAbstract(hxEnumType, null, [hxEnumType], [hxEnumType]),
 					params: [],
 					isExtern: true,
 					fields: hxEnumFields,
@@ -421,7 +421,7 @@ class ConverterContext {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
+					kind: TDAbstract(hxAliasType, null, [hxAliasType], [hxAliasType]),
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,
@@ -545,7 +545,7 @@ class ConverterContext {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAbstract(macro :Dynamic, [macro :Dynamic], [macro :Dynamic]),
+					kind: TDAbstract(macro :Dynamic, null, [macro :Dynamic], [macro :Dynamic]),
 					doc: getDoc(symbol),
 					isExtern: true,
 					pos: pos,
