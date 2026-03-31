@@ -2,55 +2,55 @@ package global.jquery;
 
 typedef TypeEventHandlers<TDelegateTarget, TData, TCurrentTarget, TTarget> = {
 	@:optional
-	var change : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ChangeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var change : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var resize : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ResizeEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var resize : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var scroll : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ScrollEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var scroll : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var select : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, SelectEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var select : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var submit : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, SubmitEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var submit : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var click : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var click : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var contextmenu : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, ContextMenuEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var contextmenu : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var dblclick : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, DoubleClickEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var dblclick : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mousedown : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mousedown : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mouseenter : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseEnterEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mouseenter : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mouseleave : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseLeaveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mouseleave : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mousemove : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mousemove : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mouseout : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mouseout : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mouseover : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseOverEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mouseover : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var mouseup : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, MouseUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var mouseup : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var keydown : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, KeyDownEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var keydown : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var keypress : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, KeyPressEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var keypress : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var keyup : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, KeyUpEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var keyup : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var touchcancel : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchCancelEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var touchcancel : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var touchend : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchEndEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var touchend : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var touchmove : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchMoveEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var touchmove : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var touchstart : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, TouchStartEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var touchstart : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var blur : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, BlurEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var blur : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var focus : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, FocusEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var focus : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var focusin : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, FocusInEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var focusin : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 	@:optional
-	var focusout : ts.AnyOf3<Bool, Dynamic, EventHandlerBase<TCurrentTarget, FocusOutEvent<TDelegateTarget, TData, TCurrentTarget, TTarget>>>;
+	var focusout : ts.AnyOf3<Bool, Dynamic, TypeEventHandler<TDelegateTarget, TData, TCurrentTarget, TTarget, String>>;
 };

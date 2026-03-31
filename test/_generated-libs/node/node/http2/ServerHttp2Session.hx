@@ -30,12 +30,12 @@ typedef ServerHttp2Session = {
 	final destroyed : Bool;
 	@:optional
 	final encrypted : Bool;
-	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:node.crypto.Binary):Void;
+	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:ts.AnyOf11<global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):Void;
 	final localSettings : Settings;
 	@:optional
 	final originSet : Array<String>;
 	final pendingSettingsAck : Bool;
-	@:overload(function(payload:node.crypto.Binary, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
+	@:overload(function(payload:ts.AnyOf11<global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
 	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
 	function ref():Void;
 	final remoteSettings : Settings;

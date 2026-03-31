@@ -1,3 +1,3 @@
 package lodash;
 
-typedef ObjectIterateeCustom<TObject, TResult> = ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<TObject, TResult>, { }>;
+typedef ObjectIterateeCustom<TObject, TResult> = ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<TObject, TResult>, { }>;

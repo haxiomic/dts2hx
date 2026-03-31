@@ -195,7 +195,7 @@ package global;
 	/**
 		The ArrayBuffer instance referenced by the array.
 	**/
-	final buffer : ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>;
+	final buffer : js.lib.ArrayBufferLike;
 	/**
 		The length in bytes of the array.
 	**/

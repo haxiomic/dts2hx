@@ -249,28 +249,28 @@ package node;
 		
 		Asynchronously writes `string` to the file referenced by the supplied file descriptor.
 	**/
-	@:overload(function<TBuffer:(node.crypto.Binary)>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
-	@:overload(function<TBuffer:(node.crypto.Binary)>(fd:Float, buffer:TBuffer, offset:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
-	@:overload(function<TBuffer:(node.crypto.Binary)>(fd:Float, buffer:TBuffer, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
+	@:overload(function<TBuffer:(node.fs.BinaryData)>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
+	@:overload(function<TBuffer:(node.fs.BinaryData)>(fd:Float, buffer:TBuffer, offset:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
+	@:overload(function<TBuffer:(node.fs.BinaryData)>(fd:Float, buffer:TBuffer, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void { })
 	@:overload(function(fd:Float, string:Dynamic, position:Null<Float>, encoding:Null<String>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
 	@:overload(function(fd:Float, string:Dynamic, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
 	@:overload(function(fd:Float, string:Dynamic, callback:(err:global.nodejs.ErrnoException, written:Float, str:String) -> Void):Void { })
-	static function write<TBuffer:(node.crypto.Binary)>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void;
+	static function write<TBuffer:(node.fs.BinaryData)>(fd:Float, buffer:TBuffer, offset:Null<Float>, length:Null<Float>, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, written:Float, buffer:TBuffer) -> Void):Void;
 	/**
 		Synchronously writes `buffer` to the file referenced by the supplied file descriptor, returning the number of bytes written.
 		
 		Synchronously writes `string` to the file referenced by the supplied file descriptor, returning the number of bytes written.
 	**/
 	@:overload(function(fd:Float, string:Dynamic, ?position:Float, ?encoding:String):Float { })
-	static function writeSync(fd:Float, buffer:node.crypto.Binary, ?offset:Float, ?length:Float, ?position:Float):Float;
+	static function writeSync(fd:Float, buffer:node.fs.BinaryData, ?offset:Float, ?length:Float, ?position:Float):Float;
 	/**
 		Asynchronously reads data from the file referenced by the supplied file descriptor.
 	**/
-	static function read<TBuffer:(node.crypto.Binary)>(fd:Float, buffer:TBuffer, offset:Float, length:Float, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, bytesRead:Float, buffer:TBuffer) -> Void):Void;
+	static function read<TBuffer:(node.fs.BinaryData)>(fd:Float, buffer:TBuffer, offset:Float, length:Float, position:Null<Float>, callback:(err:global.nodejs.ErrnoException, bytesRead:Float, buffer:TBuffer) -> Void):Void;
 	/**
 		Synchronously reads data from the file referenced by the supplied file descriptor, returning the number of bytes read.
 	**/
-	static function readSync(fd:Float, buffer:node.crypto.Binary, offset:Float, length:Float, position:Null<Float>):Float;
+	static function readSync(fd:Float, buffer:node.fs.BinaryData, offset:Float, length:Float, position:Null<Float>):Float;
 	/**
 		Asynchronously reads the entire contents of a file.
 	**/

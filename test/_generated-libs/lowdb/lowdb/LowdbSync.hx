@@ -7,46 +7,46 @@ typedef LowdbSync<SchemaT> = {
 	dynamic function getState():SchemaT;
 	dynamic function setState(state:SchemaT):LowdbSync<SchemaT>;
 	function concat(values:haxe.extern.Rest<lodash.Many<SchemaT>>):lodash.CollectionChain<SchemaT>;
-	function countBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):lodash.ObjectChain<lodash.Dictionary<Float>>;
+	function countBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):lodash.ObjectChain<lodash.Dictionary<Float>>;
 	dynamic function each(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):lodash.ObjectChain<SchemaT>;
 	dynamic function eachRight(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):lodash.ObjectChain<SchemaT>;
-	function every(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.PrimitiveChain<Bool>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.CollectionChain<Dynamic> { })
+	function every(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.PrimitiveChain<Bool>;
+	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.CollectionChain<Dynamic> { })
 	function filter<S:(Dynamic)>(predicate:lodash.ObjectIteratorTypeGuard<SchemaT, S>):lodash.CollectionChain<S>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>, ?fromIndex:Float):lodash.ExpChain<Dynamic> { })
+	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>, ?fromIndex:Float):lodash.ExpChain<Dynamic> { })
 	function find<S:(Dynamic)>(predicate:lodash.ObjectIteratorTypeGuard<SchemaT, S>, ?fromIndex:Float):lodash.ExpChain<S>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>, ?fromIndex:Float):lodash.ExpChain<Dynamic> { })
+	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>, ?fromIndex:Float):lodash.ExpChain<Dynamic> { })
 	function findLast<S:(Dynamic)>(predicate:lodash.ObjectIteratorTypeGuard<SchemaT, S>, ?fromIndex:Float):lodash.ExpChain<S>;
-	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):lodash.CollectionChain<Bool> { })
+	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<lodash.PropertyName, Dynamic>>):lodash.CollectionChain<Bool> { })
 	@:overload(function():lodash.CollectionChain<Dynamic> { })
 	function flatMap<TResult>(iteratee:ts.AnyOf4<String, Float, js.lib.Symbol, lodash.ObjectIterator<SchemaT, lodash.Many<TResult>>>):lodash.CollectionChain<TResult>;
-	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):lodash.CollectionChain<Bool> { })
+	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<lodash.PropertyName, Dynamic>>):lodash.CollectionChain<Bool> { })
 	@:overload(function():lodash.CollectionChain<Dynamic> { })
 	function flatMapDeep<TResult>(iteratee:ts.AnyOf4<String, Float, js.lib.Symbol, lodash.ObjectIterator<SchemaT, ts.AnyOf2<lodash.ListOfRecursiveArraysOrValues<TResult>, TResult>>>):lodash.CollectionChain<TResult>;
-	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>, ?depth:Float):lodash.CollectionChain<Bool> { })
+	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<lodash.PropertyName, Dynamic>>, ?depth:Float):lodash.CollectionChain<Bool> { })
 	@:overload(function(?depth:Float):lodash.CollectionChain<Dynamic> { })
 	function flatMapDepth<TResult>(iteratee:ts.AnyOf4<String, Float, js.lib.Symbol, lodash.ObjectIterator<SchemaT, ts.AnyOf2<lodash.ListOfRecursiveArraysOrValues<TResult>, TResult>>>, ?depth:Float):lodash.CollectionChain<TResult>;
 	function forEach(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):lodash.ObjectChain<SchemaT>;
 	function forEachRight(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):lodash.ObjectChain<SchemaT>;
-	function groupBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):lodash.ObjectChain<lodash.Dictionary<Array<Dynamic>>>;
+	function groupBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):lodash.ObjectChain<lodash.Dictionary<Array<Dynamic>>>;
 	function includes(target:Dynamic, ?fromIndex:Float):lodash.PrimitiveChain<Bool>;
-	function keyBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> ts.AnyOf3<String, Float, js.lib.Symbol>, { }>):lodash.ObjectChain<lodash.Dictionary<Dynamic>>;
+	function keyBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, (value:Dynamic) -> lodash.PropertyName, { }>):lodash.ObjectChain<lodash.Dictionary<Dynamic>>;
 	@:overload(function<TResult>(iteratee:lodash.ObjectIterator<SchemaT, TResult>):lodash.CollectionChain<TResult> { })
-	@:overload(function(iteratee:ts.AnyOf3<String, Float, js.lib.Symbol>):lodash.CollectionChain<Dynamic> { })
-	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>>):lodash.CollectionChain<Bool> { })
+	@:overload(function(iteratee:lodash.PropertyName):lodash.CollectionChain<Dynamic> { })
+	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<lodash.PropertyName, Dynamic>>):lodash.CollectionChain<Bool> { })
 	@:overload(function():lodash.CollectionChain<Dynamic> { })
 	function map<K:(Dynamic)>(key:K):lodash.CollectionChain<Dynamic>;
-	function orderBy(?iteratees:ts.AnyOf2<lodash.ObjectIterator<SchemaT, Any>, haxe.ds.ReadOnlyArray<lodash.ObjectIterator<SchemaT, Any>>>, ?orders:lodash.Many<ts.AnyOf2<Bool, String>>):lodash.CollectionChain<Dynamic>;
+	function orderBy(?iteratees:lodash.Many<lodash.ObjectIterator<SchemaT, Any>>, ?orders:lodash.Many<ts.AnyOf2<Bool, String>>):lodash.CollectionChain<Dynamic>;
 	function partition(callback:lodash.ValueIteratee<Dynamic>):lodash.LoDashExplicitWrapper<ts.Tuple2<Array<Dynamic>, Array<Dynamic>>>;
 	@:overload(function(callback:lodash.MemoObjectIterator<Dynamic, Dynamic, SchemaT>):lodash.ExpChain<Dynamic> { })
 	function reduce<TResult>(callback:lodash.MemoObjectIterator<Dynamic, TResult, SchemaT>, accumulator:TResult):lodash.ExpChain<TResult>;
 	@:overload(function(callback:lodash.MemoObjectIterator<Dynamic, Dynamic, SchemaT>):lodash.ExpChain<Dynamic> { })
 	function reduceRight<TResult>(callback:lodash.MemoObjectIterator<Dynamic, TResult, SchemaT>, accumulator:TResult):lodash.ExpChain<TResult>;
-	function reject(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.CollectionChain<Dynamic>;
+	function reject(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.CollectionChain<Dynamic>;
 	function sample():lodash.ExpChain<Dynamic>;
 	function sampleSize(?n:Float):lodash.CollectionChain<Dynamic>;
 	function shuffle():lodash.CollectionChain<Dynamic>;
-	function some(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.PrimitiveChain<Bool>;
+	function some(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Bool>, { }>):lodash.PrimitiveChain<Bool>;
 	function sortBy(iteratees:haxe.extern.Rest<lodash.Many<lodash.ObjectIteratee<SchemaT>>>):lodash.CollectionChain<Dynamic>;
 	function castArray():lodash.CollectionChain<SchemaT>;
 	function toArray():lodash.CollectionChain<Dynamic>;
@@ -108,11 +108,11 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):lodash.ExpChain<Dynamic> { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:Array<ts.Never>):Dynamic { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
-	@:overload(function(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:Dynamic):lodash.LoDashExplicitWrapper<Dynamic> { })
+	@:overload(function(path:lodash.PropertyPath, ?defaultValue:Dynamic):lodash.LoDashExplicitWrapper<Dynamic> { })
 	function get<TKey:(Dynamic)>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>):lodash.ExpChain<Dynamic>;
-	function invertBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):lodash.ObjectChain<lodash.Dictionary<Array<String>>>;
-	function mapKeys(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Any>, { }>):lodash.ObjectChain<lodash.Dictionary<Dynamic>>;
-	@:overload(function<TResult>(callback:lodash.ObjectIterator<lodash.Dictionary<Dynamic>, TResult>):lodash.ObjectChain<lodash.Dictionary<TResult>> { })
+	function invertBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):lodash.ObjectChain<lodash.Dictionary<Array<String>>>;
+	function mapKeys(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Any>, { }>):lodash.ObjectChain<lodash.Dictionary<Dynamic>>;
+	@:overload(function<TResult>(callback:lodash.DictionaryIterator<Dynamic, TResult>):lodash.ObjectChain<lodash.Dictionary<TResult>> { })
 	@:overload(function(iteratee:Dynamic):lodash.ObjectChain<Dynamic> { })
 	@:overload(function<TKey:(Dynamic)>(iteratee:TKey):lodash.ObjectChain<lodash.Dictionary<Dynamic>> { })
 	@:overload(function(iteratee:String):lodash.ObjectChain<Dynamic> { })
@@ -128,17 +128,17 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
 	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic>;
-	@:overload(function(paths:haxe.extern.Rest<lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):lodash.ObjectChain<SchemaT> { })
+	@:overload(function(paths:haxe.extern.Rest<lodash.Many<lodash.PropertyName>>):lodash.ObjectChain<SchemaT> { })
 	function omit<K:(Dynamic)>(paths:haxe.extern.Rest<lodash.Many<K>>):lodash.ObjectChain<{ }>;
 	function omitBy(predicate:lodash.ValueKeyIteratee<Dynamic>):lodash.ObjectChain<SchemaT>;
-	@:overload(function(props:haxe.extern.Rest<lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):lodash.ObjectChain<SchemaT> { })
+	@:overload(function(props:haxe.extern.Rest<lodash.PropertyPath>):lodash.ObjectChain<SchemaT> { })
 	function pick<U:(Dynamic)>(props:haxe.extern.Rest<lodash.Many<U>>):lodash.ObjectChain<{ }>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic, key:String) -> Any, { }>):lodash.ObjectChain<SchemaT> { })
+	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, (value:Dynamic, key:String) -> Any, { }>):lodash.ObjectChain<SchemaT> { })
 	function pickBy<S:(Dynamic)>(predicate:lodash.ValueKeyIterateeTypeGuard<Dynamic, S>):lodash.ObjectChain<Dynamic>;
 	@:overload(function():lodash.ExpChain<Dynamic> { })
 	function transform<TResult>(iteratee:lodash.MemoVoidDictionaryIterator<Dynamic, TResult>, ?accumulator:TResult):lodash.ExpChain<TResult>;
-	@:overload(function<TResult>(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):lodash.ObjectChain<TResult> { })
-	function updateWith(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):LowdbSync<SchemaT>;
+	@:overload(function<TResult>(path:lodash.PropertyPath, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):lodash.ObjectChain<TResult> { })
+	function updateWith(path:lodash.PropertyPath, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):LowdbSync<SchemaT>;
 	function values():lodash.CollectionChain<Dynamic>;
 	function valuesIn():lodash.CollectionChain<Dynamic>;
 	function iteratee():lodash.FunctionChain<(o:SchemaT) -> Bool>;
@@ -221,29 +221,29 @@ typedef LowdbSync<SchemaT> = {
 	function inRange(start:Float, ?end:Float):lodash.PrimitiveChain<Bool>;
 	@:overload(function(max:Float, ?floating:Bool):lodash.PrimitiveChain<Float> { })
 	function random(?floating:Bool):lodash.PrimitiveChain<Float>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Any>, { }>):lodash.StringNullableChain;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, lodash.ObjectIterator<SchemaT, Any>, { }>):lodash.StringNullableChain;
+	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Any>, { }>):lodash.StringNullableChain;
+	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<lodash.PropertyName, Dynamic>, lodash.ObjectIterator<SchemaT, Any>, { }>):lodash.StringNullableChain;
 	function forIn(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):LowdbSync<SchemaT>;
 	function forInRight(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):LowdbSync<SchemaT>;
 	function forOwn(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):LowdbSync<SchemaT>;
 	function forOwnRight(?iteratee:lodash.ObjectIterator<SchemaT, Dynamic>):LowdbSync<SchemaT>;
 	function functions():lodash.CollectionChain<String>;
 	function functionsIn():lodash.CollectionChain<String>;
-	function has(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):lodash.PrimitiveChain<Bool>;
-	function hasIn(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):lodash.PrimitiveChain<Bool>;
+	function has(path:lodash.PropertyPath):lodash.PrimitiveChain<Bool>;
+	function hasIn(path:lodash.PropertyPath):lodash.PrimitiveChain<Bool>;
 	function invert():lodash.ObjectChain<lodash.Dictionary<String>>;
-	function invoke(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):lodash.LoDashExplicitWrapper<Dynamic>;
+	function invoke(path:lodash.PropertyPath, args:haxe.extern.Rest<Dynamic>):lodash.LoDashExplicitWrapper<Dynamic>;
 	function keys():lodash.CollectionChain<String>;
 	function keysIn():lodash.CollectionChain<String>;
-	function result<TResult>(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):lodash.ExpChain<TResult>;
-	@:overload(function<TResult>(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):lodash.ExpChain<TResult> { })
-	function set(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):LowdbSync<SchemaT>;
-	@:overload(function<TResult>(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):lodash.ExpChain<TResult> { })
-	function setWith(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):LowdbSync<SchemaT>;
+	function result<TResult>(path:lodash.PropertyPath, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):lodash.ExpChain<TResult>;
+	@:overload(function<TResult>(path:lodash.PropertyPath, value:Dynamic):lodash.ExpChain<TResult> { })
+	function set(path:lodash.PropertyPath, value:Dynamic):LowdbSync<SchemaT>;
+	@:overload(function<TResult>(path:lodash.PropertyPath, value:Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):lodash.ExpChain<TResult> { })
+	function setWith(path:lodash.PropertyPath, value:Dynamic, ?customizer:lodash.SetWithCustomizer<SchemaT>):LowdbSync<SchemaT>;
 	function toPairs():lodash.CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function toPairsIn():lodash.CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function unset(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):lodash.PrimitiveChain<Bool>;
-	function update(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic>;
+	function unset(path:lodash.PropertyPath):lodash.PrimitiveChain<Bool>;
+	function update(path:lodash.PropertyPath, updater:(value:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic>;
 	function chain():LowdbSync<SchemaT>;
 	function commit():LowdbSync<SchemaT>;
 	function plant(value:Any):LowdbSync<SchemaT>;
@@ -295,14 +295,14 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function<SrcValue, Value>(srcValue:SrcValue):lodash.FunctionChain<(value:Value) -> Bool> { })
 	function matchesProperty<SrcValue>(srcValue:SrcValue):lodash.FunctionChain<(value:Dynamic) -> Bool>;
 	function method(args:haxe.extern.Rest<Dynamic>):lodash.FunctionChain<(object:Dynamic) -> Dynamic>;
-	function methodOf(args:haxe.extern.Rest<Dynamic>):lodash.LoDashExplicitWrapper<(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function methodOf(args:haxe.extern.Rest<Dynamic>):lodash.LoDashExplicitWrapper<(path:lodash.PropertyPath) -> Dynamic>;
 	@:overload(function(?options:lodash.MixinOptions):lodash.LoDashExplicitWrapper<lodash.LoDashStatic> { })
 	function mixin(source:lodash.Dictionary<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>, ?options:lodash.MixinOptions):LowdbSync<SchemaT>;
 	function noConflict():lodash.LoDashExplicitWrapper<lodash.LoDashStatic>;
 	function noop(args:haxe.extern.Rest<Dynamic>):lodash.PrimitiveChain<Null<Any>>;
 	function nthArg():lodash.FunctionChain<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function property<TObj, TResult>():lodash.FunctionChain<(obj:TObj) -> TResult>;
-	function propertyOf():lodash.LoDashExplicitWrapper<(path:lodash.Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function propertyOf():lodash.LoDashExplicitWrapper<(path:lodash.PropertyPath) -> Dynamic>;
 	function range(?end:Float, ?step:Float):lodash.CollectionChain<Float>;
 	function rangeRight(?end:Float, ?step:Float):lodash.CollectionChain<Float>;
 	function stubArray():lodash.CollectionChain<Dynamic>;

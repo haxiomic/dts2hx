@@ -117,7 +117,7 @@ typedef LoDashStatic = {
 	@:overload(function<T1, T2, T3, T4>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values3:List_<T4>, iteratee:ValueIteratee<ts.AnyOf4<T1, T2, T3, T4>>):Array<T1> { })
 	@:overload(function<T1, T2, T3, T4, T5>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values3:List_<T4>, values4:List_<T5>, iteratee:ValueIteratee<ts.AnyOf5<T1, T2, T3, T4, T5>>):Array<T1> { })
 	@:overload(function<T1, T2, T3, T4, T5, T6>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values3:List_<T4>, values4:List_<T5>, values5:List_<T6>, iteratee:ValueIteratee<ts.AnyOf6<T1, T2, T3, T4, T5, T6>>):Array<T1> { })
-	@:overload(function<T1, T2, T3, T4, T5, T6, T7>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values3:List_<T4>, values4:List_<T5>, values5:List_<T6>, values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, List_<T7>, (value:ts.AnyOf7<T1, T2, T3, T4, T5, T6, T7>) -> Any, { }>>):Array<T1> { })
+	@:overload(function<T1, T2, T3, T4, T5, T6, T7>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values3:List_<T4>, values4:List_<T5>, values5:List_<T6>, values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<T7>, (value:ts.AnyOf7<T1, T2, T3, T4, T5, T6, T7>) -> Any, { }>>):Array<T1> { })
 	@:overload(function<T>(array:Null<List_<T>>, values:haxe.extern.Rest<List_<T>>):Array<T> { })
 	function differenceBy<T1, T2>(array:Null<List_<T1>>, values:List_<T2>, iteratee:ValueIteratee<ts.AnyOf2<T1, T2>>):Array<T1>;
 	/**
@@ -141,12 +141,12 @@ typedef LoDashStatic = {
 		Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate
 		returns falsey. The predicate is invoked with three arguments: (value, index, array).
 	**/
-	function dropRightWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
+	function dropRightWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
 	/**
 		Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate
 		returns falsey. The predicate is invoked with three arguments: (value, index, array).
 	**/
-	function dropWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
+	function dropWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
 	/**
 		Fills elements of array with value from start up to, but not including, end.
 		
@@ -160,11 +160,11 @@ typedef LoDashStatic = {
 		This method is like _.find except that it returns the index of the first element predicate returns truthy
 		for instead of the element itself.
 	**/
-	function findIndex<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Float;
+	function findIndex<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Float;
 	/**
 		This method is like _.findIndex except that it iterates over elements of collection from right to left.
 	**/
-	function findLastIndex<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Float;
+	function findLastIndex<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Float;
 	dynamic function first<T>(array:Null<List_<T>>):Null<T>;
 	/**
 		Flattens `array` a single level deep.
@@ -183,7 +183,7 @@ typedef LoDashStatic = {
 		from key-value `pairs`.
 	**/
 	@:overload(function(pairs:Null<List_<Array<Dynamic>>>):Dictionary<Dynamic> { })
-	function fromPairs<T>(pairs:Null<List_<ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, T>>>):Dictionary<T>;
+	function fromPairs<T>(pairs:Null<List_<ts.Tuple2<PropertyName, T>>>):Dictionary<T>;
 	/**
 		Gets the first element of array.
 	**/
@@ -210,9 +210,9 @@ typedef LoDashStatic = {
 		by which uniqueness is computed. The iteratee is invoked with one argument: (value).
 	**/
 	@:overload(function<T1, T2, T3>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, iteratee:ValueIteratee<ts.AnyOf3<T1, T2, T3>>):Array<T1> { })
-	@:overload(function<T1, T2, T3, T4>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, List_<T4>, (value:ts.AnyOf4<T1, T2, T3, T4>) -> Any, { }>>):Array<T1> { })
+	@:overload(function<T1, T2, T3, T4>(array:Null<List_<T1>>, values1:List_<T2>, values2:List_<T3>, values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<T4>, (value:ts.AnyOf4<T1, T2, T3, T4>) -> Any, { }>>):Array<T1> { })
 	@:overload(function<T>(?array:List_<T>, values:haxe.extern.Rest<List_<T>>):Array<T> { })
-	@:overload(function<T>(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, List_<T>, (value:T) -> Any, { }>>):Array<T> { })
+	@:overload(function<T>(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<T>, (value:T) -> Any, { }>>):Array<T> { })
 	function intersectionBy<T1, T2>(array:Null<List_<T1>>, values:List_<T2>, iteratee:ValueIteratee<ts.AnyOf2<T1, T2>>):Array<T1>;
 	/**
 		Creates an array of unique `array` values not included in the other
@@ -260,10 +260,10 @@ typedef LoDashStatic = {
 		
 		**Note:** Unlike `_.differenceBy`, this method mutates `array`.
 	**/
-	@:overload(function<T>(array:List_<T>, ?values:List_<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):List_<T> { })
+	@:overload(function<T>(array:List_<T>, ?values:List_<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):List_<T> { })
 	@:overload(function<T1, T2>(array:Array<T1>, values:List_<T2>, iteratee:ValueIteratee<ts.AnyOf2<T1, T2>>):Array<T1> { })
 	@:overload(function<T1, T2>(array:List_<T1>, values:List_<T2>, iteratee:ValueIteratee<ts.AnyOf2<T1, T2>>):List_<T1> { })
-	function pullAllBy<T>(array:Array<T>, ?values:List_<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T>;
+	function pullAllBy<T>(array:Array<T>, ?values:List_<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T>;
 	/**
 		This method is like `_.pullAll` except that it accepts `comparator` which is
 		invoked to compare elements of array to values. The comparator is invoked with
@@ -289,7 +289,7 @@ typedef LoDashStatic = {
 		
 		Note: Unlike _.filter, this method mutates array.
 	**/
-	function remove<T>(array:List_<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
+	function remove<T>(array:List_<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
 	/**
 		Reverses `array` so that the first element becomes the last, the second
 		element becomes the second to last, and so on.
@@ -313,7 +313,7 @@ typedef LoDashStatic = {
 		which is invoked for `value` and each element of `array` to compute their
 		sort ranking. The iteratee is invoked with one argument: (value).
 	**/
-	function sortedIndexBy<T>(array:Null<List_<T>>, value:T, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Float;
+	function sortedIndexBy<T>(array:Null<List_<T>>, value:T, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Float;
 	/**
 		This method is like `_.indexOf` except that it performs a binary
 		search on a sorted `array`.
@@ -362,12 +362,12 @@ typedef LoDashStatic = {
 		Creates a slice of array with elements taken from the end. Elements are taken until predicate returns
 		falsey. The predicate is invoked with three arguments: (value, index, array).
 	**/
-	function takeRightWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
+	function takeRightWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
 	/**
 		Creates a slice of array with elements taken from the beginning. Elements are taken until predicate returns
 		falsey. The predicate is invoked with three arguments: (value, index, array).
 	**/
-	function takeWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
+	function takeWhile<T>(array:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, { }>):Array<T>;
 	/**
 		Creates an array of unique values, in order, from all of the provided arrays using SameValueZero for
 		equality comparisons.
@@ -378,11 +378,11 @@ typedef LoDashStatic = {
 		invoked for each element of each `arrays` to generate the criterion by which
 		uniqueness is computed. The iteratee is invoked with one argument: (value).
 	**/
-	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
-	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
-	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
-	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, arrays5:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, List_<T>, { }>>>):Array<T> { })
-	function unionBy<T>(arrays:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T>;
+	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
+	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
+	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
+	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, arrays5:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, List_<T>, { }>>>):Array<T> { })
+	function unionBy<T>(arrays:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T>;
 	/**
 		This method is like `_.union` except that it accepts `comparator` which
 		is invoked to compare elements of `arrays`. The comparator is invoked
@@ -434,9 +434,9 @@ typedef LoDashStatic = {
 		invoked for each element of each `arrays` to generate the criterion by which
 		uniqueness is computed. The iteratee is invoked with one argument: (value).
 	**/
-	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
-	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, List_<T>, { }>>>):Array<T> { })
-	function xorBy<T>(arrays:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Array<T>;
+	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
+	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, List_<T>, { }>>>):Array<T> { })
+	function xorBy<T>(arrays:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T>;
 	/**
 		This method is like `_.xor` except that it accepts `comparator` which is
 		invoked to compare elements of `arrays`. The comparator is invoked with
@@ -458,12 +458,12 @@ typedef LoDashStatic = {
 		This method is like _.fromPairs except that it accepts two arrays, one of property
 		identifiers and one of corresponding values.
 	**/
-	@:overload(function(?props:List_<ts.AnyOf3<String, Float, js.lib.Symbol>>):Dictionary<Null<Any>> { })
-	function zipObject<T>(props:List_<ts.AnyOf3<String, Float, js.lib.Symbol>>, values:List_<T>):Dictionary<T>;
+	@:overload(function(?props:List_<PropertyName>):Dictionary<Null<Any>> { })
+	function zipObject<T>(props:List_<PropertyName>, values:List_<T>):Dictionary<T>;
 	/**
 		This method is like _.zipObject except that it supports property paths.
 	**/
-	function zipObjectDeep(?paths:List_<Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>, ?values:List_<Dynamic>):Dynamic;
+	function zipObjectDeep(?paths:List_<PropertyPath>, ?values:List_<Dynamic>):Dynamic;
 	/**
 		This method is like _.zip except that it accepts an iteratee to specify how grouped values should be
 		combined. The iteratee is invoked with four arguments: (accumulator, value, index,
@@ -480,8 +480,8 @@ typedef LoDashStatic = {
 		iteratee. The corresponding value of each key is the number of times the key was returned by iteratee. The
 		iteratee is invoked with one argument: (value).
 	**/
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):Dictionary<Float> { })
-	function countBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Dictionary<Float>;
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Dictionary<Float> { })
+	function countBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Dictionary<Float>;
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
@@ -502,32 +502,32 @@ typedef LoDashStatic = {
 		Checks if predicate returns truthy for all elements of collection. Iteration is stopped once predicate
 		returns falsey. The predicate is invoked with three arguments: (value, index|key, collection).
 	**/
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool { })
-	function every<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>):Bool;
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool { })
+	function every<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>):Bool;
 	/**
 		Iterates over elements of collection, returning an array of all elements predicate returns truthy for. The
 		predicate is invoked with three arguments: (value, index|key, collection).
 	**/
 	@:overload(function<T, S:(T)>(collection:Null<List_<T>>, predicate:ListIteratorTypeGuard<T, S>):Array<S> { })
-	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>):Array<T> { })
+	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>):Array<T> { })
 	@:overload(function<T:(Dynamic), S:(Dynamic)>(collection:Null<T>, predicate:ObjectIteratorTypeGuard<T, S>):Array<S> { })
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>):Array<Dynamic> { })
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Array<Dynamic> { })
 	function filter(collection:Null<String>, ?predicate:StringIterator<Bool>):Array<String>;
 	/**
 		Iterates over elements of collection, returning the first element predicate returns truthy for.
 		The predicate is invoked with three arguments: (value, index|key, collection).
 	**/
-	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Null<T> { })
+	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Null<T> { })
 	@:overload(function<T:(Dynamic), S:(Dynamic)>(collection:Null<T>, predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S> { })
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
 	function find<T, S:(T)>(collection:Null<List_<T>>, predicate:ListIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
 	/**
 		This method is like _.find except that it iterates over elements of a collection from
 		right to left.
 	**/
-	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Null<T> { })
+	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>, ?fromIndex:Float):Null<T> { })
 	@:overload(function<T:(Dynamic), S:(Dynamic)>(collection:Null<T>, predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S> { })
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
 	function findLast<T, S:(T)>(collection:Null<List_<T>>, predicate:ListIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
 	/**
 		Creates an array of flattened values by running each element in collection through iteratee
@@ -589,8 +589,8 @@ typedef LoDashStatic = {
 		iteratee. The corresponding value of each key is an array of the elements responsible for generating the
 		key. The iteratee is invoked with one argument: (value).
 	**/
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):Dictionary<Array<Dynamic>> { })
-	function groupBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Dictionary<Array<T>>;
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Dictionary<Array<Dynamic>> { })
+	function groupBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Dictionary<Array<T>>;
 	/**
 		Checks if target is in collection using SameValueZero for equality comparisons. If fromIndex is negative,
 		it’s used as the offset from the end of collection.
@@ -609,8 +609,8 @@ typedef LoDashStatic = {
 		iteratee. The corresponding value of each key is the last element responsible for generating the key. The
 		iteratee function is invoked with one argument: (value).
 	**/
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> ts.AnyOf3<String, Float, js.lib.Symbol>, { }>):Dictionary<Dynamic> { })
-	function keyBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> ts.AnyOf3<String, Float, js.lib.Symbol>, { }>):Dictionary<T>;
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> PropertyName, { }>):Dictionary<Dynamic> { })
+	function keyBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> PropertyName, { }>):Dictionary<T>;
 	/**
 		Creates an array of values by running each element in collection through iteratee. The iteratee is
 		invoked with three arguments: (value, index|key, collection).
@@ -636,9 +636,9 @@ typedef LoDashStatic = {
 		are sorted in ascending order. Otherwise, specify an order of "desc" for
 		descending or "asc" for ascending sort order of corresponding values.
 	**/
-	@:overload(function<T>(collection:Null<List_<T>>, ?iteratees:ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, haxe.ds.ReadOnlyArray<ListIteratee<T>>, { }>, ?orders:Many<ts.AnyOf2<Bool, String>>):Array<T> { })
+	@:overload(function<T>(collection:Null<List_<T>>, ?iteratees:ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, haxe.ds.ReadOnlyArray<ListIteratee<T>>, { }>, ?orders:Many<ts.AnyOf2<Bool, String>>):Array<T> { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratees:Many<ObjectIterator<T, Any>>, ?orders:Many<ts.AnyOf2<Bool, String>>):Array<Dynamic> { })
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratees:ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, haxe.ds.ReadOnlyArray<ObjectIteratee<T>>, { }>, ?orders:Many<ts.AnyOf2<Bool, String>>):Array<Dynamic> { })
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratees:ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, haxe.ds.ReadOnlyArray<ObjectIteratee<T>>, { }>, ?orders:Many<ts.AnyOf2<Bool, String>>):Array<Dynamic> { })
 	function orderBy<T>(collection:Null<List_<T>>, ?iteratees:Many<ListIterator<T, Any>>, ?orders:Many<ts.AnyOf2<Bool, String>>):Array<T>;
 	/**
 		Creates an array of elements split into two groups, the first of which contains elements predicate returns truthy for,
@@ -675,8 +675,8 @@ typedef LoDashStatic = {
 		The opposite of _.filter; this method returns the elements of collection that predicate does not return
 		truthy for.
 	**/
-	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>):Array<T> { })
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>):Array<Dynamic> { })
+	@:overload(function<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>):Array<T> { })
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Array<Dynamic> { })
 	function reject(collection:Null<String>, ?predicate:StringIterator<Bool>):Array<String>;
 	/**
 		Gets a random element from collection.
@@ -702,8 +702,8 @@ typedef LoDashStatic = {
 		Checks if predicate returns truthy for any element of collection. Iteration is stopped once predicate
 		returns truthy. The predicate is invoked with three arguments: (value, index|key, collection).
 	**/
-	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool { })
-	function some<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Bool>, { }>):Bool;
+	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool { })
+	function some<T>(collection:Null<List_<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Bool>, { }>):Bool;
 	/**
 		Creates an array of elements, sorted in ascending order by the results of
 		running each element in a collection through each iteratee. This method
@@ -1174,7 +1174,7 @@ typedef LoDashStatic = {
 		invoked for each element in `array` to generate the criterion by which
 		the value is ranked. The iteratee is invoked with one argument: (value).
 	**/
-	function maxBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Null<T>;
+	function maxBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Null<T>;
 	/**
 		Computes the mean of the values in `array`.
 	**/
@@ -1182,7 +1182,7 @@ typedef LoDashStatic = {
 	/**
 		Computes the mean of the provided properties of the objects in the `array`
 	**/
-	function meanBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Float;
+	function meanBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Float;
 	/**
 		Computes the minimum value of `array`. If `array` is empty or falsey
 		`undefined` is returned.
@@ -1193,7 +1193,7 @@ typedef LoDashStatic = {
 		invoked for each element in `array` to generate the criterion by which
 		the value is ranked. The iteratee is invoked with one argument: (value).
 	**/
-	function minBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Null<T>;
+	function minBy<T>(collection:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Null<T>;
 	/**
 		Multiply two numbers.
 	**/
@@ -1294,7 +1294,7 @@ typedef LoDashStatic = {
 		specified as individual arguments or as arrays of keys.
 	**/
 	@:overload(function<T:(Dynamic)>(object:Null<T>, props:haxe.extern.Rest<Many<Dynamic>>):Array<Dynamic> { })
-	function at<T>(object:Null<ts.AnyOf2<Dictionary<T>, NumericDictionary<T>>>, props:haxe.extern.Rest<Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):Array<T>;
+	function at<T>(object:Null<ts.AnyOf2<Dictionary<T>, NumericDictionary<T>>>, props:haxe.extern.Rest<PropertyPath>):Array<T>;
 	/**
 		Creates an object that inherits from the given prototype object. If a properties object is provided its own
 		enumerable properties are assigned to the created object.
@@ -1337,11 +1337,11 @@ typedef LoDashStatic = {
 		This method is like _.find except that it returns the key of the first element predicate returns truthy for
 		instead of the element itself.
 	**/
-	function findKey<T>(object:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findKey<T>(object:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
 	/**
 		This method is like _.findKey except that it iterates over elements of a collection in the opposite order.
 	**/
-	function findLastKey<T>(object:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findLastKey<T>(object:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
 	/**
 		Iterates over own and inherited enumerable properties of an object invoking iteratee for each property. The
 		iteratee is invoked with three arguments: (value, key, object). Iteratee functions may
@@ -1394,18 +1394,18 @@ typedef LoDashStatic = {
 	@:overload(function<T>(object:NumericDictionary<T>, path:Float):T { })
 	@:overload(function<T>(object:Null<NumericDictionary<T>>, path:Float):Null<T> { })
 	@:overload(function<T, TDefault>(object:Null<NumericDictionary<T>>, path:Float, defaultValue:TDefault):ts.AnyOf2<T, TDefault> { })
-	@:overload(function<TDefault>(object:Null<ts.Never>, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, defaultValue:TDefault):TDefault { })
-	@:overload(function(object:Null<ts.Never>, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Null<Any> { })
-	@:overload(function(object:Dynamic, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:Dynamic):Dynamic { })
+	@:overload(function<TDefault>(object:Null<ts.Never>, path:PropertyPath, defaultValue:TDefault):TDefault { })
+	@:overload(function(object:Null<ts.Never>, path:PropertyPath):Null<Any> { })
+	@:overload(function(object:Dynamic, path:PropertyPath, ?defaultValue:Dynamic):Dynamic { })
 	function get<TObject:(Dynamic), TKey:(Dynamic)>(object:TObject, path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>):Dynamic;
 	/**
 		Checks if `path` is a direct property of `object`.
 	**/
-	function has<T>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function has<T>(object:T, path:PropertyPath):Bool;
 	/**
 		Checks if `path` is a direct or inherited property of `object`.
 	**/
-	function hasIn<T>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function hasIn<T>(object:T, path:PropertyPath):Bool;
 	/**
 		Creates an object composed of the inverted keys and values of object. If object contains duplicate values,
 		subsequent values overwrite property assignments of previous values unless multiValue is true.
@@ -1416,12 +1416,12 @@ typedef LoDashStatic = {
 		element of object through iteratee. The corresponding inverted value of each inverted key is an array of
 		keys responsible for generating the inverted value. The iteratee is invoked with one argument: (value).
 	**/
-	@:overload(function<T:(Dynamic)>(object:Null<T>, ?interatee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic) -> Any, { }>):Dictionary<Array<String>> { })
-	function invertBy<T>(object:Null<ts.AnyOf2<Dictionary<T>, NumericDictionary<T>>>, ?interatee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T) -> Any, { }>):Dictionary<Array<String>>;
+	@:overload(function<T:(Dynamic)>(object:Null<T>, ?interatee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Dictionary<Array<String>> { })
+	function invertBy<T>(object:Null<ts.AnyOf2<Dictionary<T>, NumericDictionary<T>>>, ?interatee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Dictionary<Array<String>>;
 	/**
 		Invokes the method at path of object.
 	**/
-	function invoke(object:Dynamic, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):Dynamic;
+	function invoke(object:Dynamic, path:PropertyPath, args:haxe.extern.Rest<Dynamic>):Dynamic;
 	/**
 		Creates an array of the own enumerable property names of object.
 		
@@ -1438,8 +1438,8 @@ typedef LoDashStatic = {
 		The opposite of _.mapValues; this method creates an object with the same values as object and keys generated
 		by running each own enumerable property of object through iteratee.
 	**/
-	@:overload(function<T:(Dynamic)>(object:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Dictionary<Dynamic> { })
-	function mapKeys<T>(object:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ListIterator<T, Any>, { }>):Dictionary<T>;
+	@:overload(function<T:(Dynamic)>(object:Null<T>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Dictionary<Dynamic> { })
+	function mapKeys<T>(object:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ListIterator<T, Any>, { }>):Dictionary<T>;
 	/**
 		Creates an object with the same keys as object and values generated by running each own
 		enumerable property of object through iteratee. The iteratee function is
@@ -1488,49 +1488,49 @@ typedef LoDashStatic = {
 		own and inherited enumerable properties of `object` that are not omitted.
 	**/
 	@:overload(function<T:(Dynamic), K:(Dynamic)>(object:Null<T>, paths:haxe.extern.Rest<Many<K>>):{ } { })
-	@:overload(function<T:(Dynamic)>(object:Null<T>, paths:haxe.extern.Rest<Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):T { })
-	function omit<T:(Dynamic), K:(Array<ts.AnyOf3<String, Float, js.lib.Symbol>>)>(object:Null<T>, paths:haxe.extern.Rest<Any>):{ };
+	@:overload(function<T:(Dynamic)>(object:Null<T>, paths:haxe.extern.Rest<Many<PropertyName>>):T { })
+	function omit<T:(Dynamic), K:(Array<PropertyName>)>(object:Null<T>, paths:haxe.extern.Rest<Any>):{ };
 	/**
 		The opposite of `_.pickBy`; this method creates an object composed of the
 		own and inherited enumerable properties of `object` that `predicate`
 		doesn't return truthy for.
 	**/
-	@:overload(function<T>(object:Null<NumericDictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T, key:String) -> Any, { }>):NumericDictionary<T> { })
+	@:overload(function<T>(object:Null<NumericDictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T, key:String) -> Any, { }>):NumericDictionary<T> { })
 	@:overload(function<T:(Dynamic)>(object:Null<T>, predicate:ValueKeyIteratee<Dynamic>):T { })
-	function omitBy<T>(object:Null<Dictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T, key:String) -> Any, { }>):Dictionary<T>;
+	function omitBy<T>(object:Null<Dictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T, key:String) -> Any, { }>):Dictionary<T>;
 	/**
 		Creates an object composed of the picked `object` properties.
 	**/
-	@:overload(function<T>(object:Null<T>, props:haxe.extern.Rest<Many<ts.AnyOf3<String, Float, js.lib.Symbol>>>):T { })
+	@:overload(function<T>(object:Null<T>, props:haxe.extern.Rest<PropertyPath>):T { })
 	function pick<T:(Dynamic), U:(Dynamic)>(object:T, props:haxe.extern.Rest<Many<U>>):{ };
 	/**
 		Creates an object composed of the `object` properties `predicate` returns
 		truthy for. The predicate is invoked with two arguments: (value, key).
 	**/
 	@:overload(function<T, S:(T)>(object:Null<NumericDictionary<T>>, predicate:ValueKeyIterateeTypeGuard<T, S>):NumericDictionary<S> { })
-	@:overload(function<T>(object:Null<Dictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T, key:String) -> Any, { }>):Dictionary<T> { })
-	@:overload(function<T>(object:Null<NumericDictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:T, key:String) -> Any, { }>):NumericDictionary<T> { })
-	@:overload(function<T:(Dynamic)>(object:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, (value:Dynamic, key:String) -> Any, { }>):T { })
+	@:overload(function<T>(object:Null<Dictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T, key:String) -> Any, { }>):Dictionary<T> { })
+	@:overload(function<T>(object:Null<NumericDictionary<T>>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T, key:String) -> Any, { }>):NumericDictionary<T> { })
+	@:overload(function<T:(Dynamic)>(object:Null<T>, ?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic, key:String) -> Any, { }>):T { })
 	function pickBy<T, S:(T)>(object:Null<Dictionary<T>>, predicate:ValueKeyIterateeTypeGuard<T, S>):Dictionary<S>;
 	/**
 		This method is like _.get except that if the resolved value is a function it’s invoked with the this binding
 		of its parent object and its result is returned.
 	**/
-	function result<TResult>(object:Dynamic, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
+	function result<TResult>(object:Dynamic, path:PropertyPath, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
 	/**
 		Sets the value at path of object. If a portion of path doesn’t exist it’s created. Arrays are created for
 		missing index properties while objects are created for all other missing properties. Use _.setWith to
 		customize path creation.
 	**/
-	@:overload(function<TResult>(object:Dynamic, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):TResult { })
-	function set<T:(Dynamic)>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):T;
+	@:overload(function<TResult>(object:Dynamic, path:PropertyPath, value:Dynamic):TResult { })
+	function set<T:(Dynamic)>(object:T, path:PropertyPath, value:Dynamic):T;
 	/**
 		This method is like _.set except that it accepts customizer which is invoked to produce the objects of
 		path. If customizer returns undefined path creation is handled by the method instead. The customizer is
 		invoked with three arguments: (nsValue, key, nsObject).
 	**/
-	@:overload(function<T:(Dynamic), TResult>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):TResult { })
-	function setWith<T:(Dynamic)>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):T;
+	@:overload(function<T:(Dynamic), TResult>(object:T, path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<T>):TResult { })
+	function setWith<T:(Dynamic)>(object:T, path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<T>):T;
 	/**
 		Creates an array of own enumerable key-value pairs for object.
 	**/
@@ -1556,12 +1556,12 @@ typedef LoDashStatic = {
 		
 		Note: This method mutates object.
 	**/
-	function unset(object:Dynamic, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function unset(object:Dynamic, path:PropertyPath):Bool;
 	/**
 		This method is like _.set except that accepts updater to produce the value to set. Use _.updateWith to
 		customize path creation. The updater is invoked with one argument: (value).
 	**/
-	function update(object:Dynamic, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):Dynamic;
+	function update(object:Dynamic, path:PropertyPath, updater:(value:Dynamic) -> Dynamic):Dynamic;
 	/**
 		This method is like `_.update` except that it accepts `customizer` which is
 		invoked to produce the objects of `path`.  If `customizer` returns `undefined`
@@ -1570,8 +1570,8 @@ typedef LoDashStatic = {
 		
 		**Note:** This method mutates `object`.
 	**/
-	@:overload(function<T:(Dynamic), TResult>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:SetWithCustomizer<T>):TResult { })
-	function updateWith<T:(Dynamic)>(object:T, path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:SetWithCustomizer<T>):T;
+	@:overload(function<T:(Dynamic), TResult>(object:T, path:PropertyPath, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:SetWithCustomizer<T>):TResult { })
+	function updateWith<T:(Dynamic)>(object:T, path:PropertyPath, updater:(oldValue:Dynamic) -> Dynamic, ?customizer:SetWithCustomizer<T>):T;
 	/**
 		Creates an array of the own enumerable property values of object.
 	**/
@@ -1861,18 +1861,18 @@ typedef LoDashStatic = {
 		Note: This method supports comparing arrays, booleans, Date objects, numbers, Object objects, regexes, and
 		strings. Objects are compared by their own, not inherited, enumerable properties.
 	**/
-	@:overload(function<T, V>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, srcValue:T):(value:V) -> Bool { })
-	function matchesProperty<T>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, srcValue:T):(value:Dynamic) -> Bool;
+	@:overload(function<T, V>(path:PropertyPath, srcValue:T):(value:V) -> Bool { })
+	function matchesProperty<T>(path:PropertyPath, srcValue:T):(value:Dynamic) -> Bool;
 	/**
 		Creates a function that invokes the method at path on a given object. Any additional arguments are provided
 		to the invoked method.
 	**/
-	function method(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):(object:Dynamic) -> Dynamic;
+	function method(path:PropertyPath, args:haxe.extern.Rest<Dynamic>):(object:Dynamic) -> Dynamic;
 	/**
 		The opposite of _.method; this method creates a function that invokes the method at a given path on object.
 		Any additional arguments are provided to the invoked method.
 	**/
-	function methodOf(object:Dynamic, args:haxe.extern.Rest<Dynamic>):(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic;
+	function methodOf(object:Dynamic, args:haxe.extern.Rest<Dynamic>):(path:PropertyPath) -> Dynamic;
 	/**
 		Adds all own enumerable function properties of a source object to the destination object. If object is a
 		function then methods are added to its prototype as well.
@@ -1914,12 +1914,12 @@ typedef LoDashStatic = {
 	/**
 		Creates a function that returns the property value at path on a given object.
 	**/
-	function property<TObj, TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):(obj:TObj) -> TResult;
+	function property<TObj, TResult>(path:PropertyPath):(obj:TObj) -> TResult;
 	/**
 		The opposite of _.property; this method creates a function that returns the property value at a given path
 		on object.
 	**/
-	function propertyOf<T:({ })>(object:T):(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic;
+	function propertyOf<T:({ })>(object:T):(path:PropertyPath) -> Dynamic;
 	/**
 		Creates an array of numbers (positive and/or negative) progressing from start up to, but not including, end.
 		If end is not specified it’s set to start with start then set to 0. If end is less than start a zero-length

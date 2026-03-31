@@ -8,5 +8,5 @@ typedef DeclarationProvider = {
 	/**
 		Provide the declaration of the symbol at the given position and document.
 	**/
-	function provideDeclaration(document:TextDocument, position:Position, token:CancellationToken):ProviderResult<ts.AnyOf3<Location, Array<Location>, Array<LocationLink>>>;
+	function provideDeclaration(document:TextDocument, position:Position, token:CancellationToken):ProviderResult<Declaration>;
 };

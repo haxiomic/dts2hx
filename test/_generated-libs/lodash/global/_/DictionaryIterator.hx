@@ -1,3 +1,3 @@
 package global._;
 
-typedef DictionaryIterator<T, TResult> = ObjectIterator<Dictionary<T>, TResult>;
+typedef DictionaryIterator<T, TResult> = (value:T, key:String, collection:Dictionary<T>) -> TResult;

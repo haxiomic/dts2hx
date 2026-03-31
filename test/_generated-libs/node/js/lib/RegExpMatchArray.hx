@@ -8,7 +8,7 @@ typedef RegExpMatchArray = {
 	@:optional
 	var groups : haxe.DynamicAccess<String>;
 	/**
-		Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
+		Gets or sets the length of the array. This is a number one higher than the highest index in the array.
 	**/
 	var length : Float;
 	/**
@@ -21,35 +21,42 @@ typedef RegExpMatchArray = {
 	function toLocaleString():String;
 	/**
 		Removes the last element from an array and returns it.
+		If the array is empty, undefined is returned and the array is not modified.
 	**/
 	function pop():Null<String>;
 	/**
-		Appends new elements to an array, and returns the new length of the array.
+		Appends new elements to the end of an array, and returns the new length of the array.
 	**/
 	function push(items:haxe.extern.Rest<String>):Float;
 	/**
 		Combines two or more arrays.
+		This method returns a new array without modifying any existing arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<String, ConcatArray<String>>>):Array<String> { })
 	function concat(items:haxe.extern.Rest<ConcatArray<String>>):Array<String>;
 	/**
-		Adds all the elements of an array separated by the specified separator string.
+		Adds all the elements of an array into a string, separated by the specified separator string.
 	**/
 	function join(?separator:String):String;
 	/**
-		Reverses the elements in an Array.
+		Reverses the elements in an array in place.
+		This method mutates the array and returns a reference to the same array.
 	**/
 	function reverse():Array<String>;
 	/**
 		Removes the first element from an array and returns it.
+		If the array is empty, undefined is returned and the array is not modified.
 	**/
 	function shift():Null<String>;
 	/**
-		Returns a section of an array.
+		Returns a copy of a section of an array.
+		For both start and end, a negative index can be used to indicate an offset from the end of the array.
+		For example, -2 refers to the second to last element of the array.
 	**/
 	function slice(?start:Float, ?end:Float):Array<String>;
 	/**
-		Sorts an array.
+		Sorts an array in place.
+		This method mutates the array and returns a reference to the same array.
 	**/
 	function sort(?compareFn:(a:String, b:String) -> Float):RegExpMatchArray;
 	/**
@@ -58,15 +65,15 @@ typedef RegExpMatchArray = {
 	@:overload(function(start:Float, deleteCount:Float, items:haxe.extern.Rest<String>):Array<String> { })
 	function splice(start:Float, ?deleteCount:Float):Array<String>;
 	/**
-		Inserts new elements at the start of an array.
+		Inserts new elements at the start of an array, and returns the new length of the array.
 	**/
 	function unshift(items:haxe.extern.Rest<String>):Float;
 	/**
-		Returns the index of the first occurrence of a value in an array.
+		Returns the index of the first occurrence of a value in an array, or -1 if it is not present.
 	**/
 	function indexOf(searchElement:String, ?fromIndex:Float):Float;
 	/**
-		Returns the index of the last occurrence of a specified value in an array.
+		Returns the index of the last occurrence of a specified value in an array, or -1 if it is not present.
 	**/
 	function lastIndexOf(searchElement:String, ?fromIndex:Float):Float;
 	/**

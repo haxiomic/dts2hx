@@ -2,7 +2,7 @@ package js.lib;
 
 typedef Int32ArrayConstructor = {
 	@:overload(function(array:ts.AnyOf3<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, ArrayLike<Float>>):js.lib.Int32Array { })
-	@:overload(function(buffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):js.lib.Int32Array { })
+	@:overload(function(buffer:ArrayBufferLike, ?byteOffset:Float, ?length:Float):js.lib.Int32Array { })
 	@:overload(function(elements:Iterable<Float>):js.lib.Int32Array { })
 	@:overload(function():js.lib.Int32Array { })
 	function new(length:Float);

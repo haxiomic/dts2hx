@@ -11,7 +11,7 @@ typedef JQueryXHR = {
 	/**
 		Add handlers to be called when the Deferred object is either resolved or rejected.
 	**/
-	function always(alwaysCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, global.jquery.ajax.TextStatus, ts.AnyOf2<String, global.jquery.JqXHR<Dynamic>>, ts.Never>>, alwaysCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, global.jquery.ajax.TextStatus, ts.AnyOf2<String, global.jquery.JqXHR<Dynamic>>, ts.Never>>>):JQueryXHR;
+	function always(alwaysCallback:global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, String, ts.AnyOf2<String, global.jquery.JqXHR<Dynamic>>, ts.Never>>, alwaysCallbacks:haxe.extern.Rest<global.jquery.TypeOrArray<global.jquery.deferred.CallbackBase<Dynamic, String, ts.AnyOf2<String, global.jquery.JqXHR<Dynamic>>, ts.Never>>>):JQueryXHR;
 	/**
 		Add handlers to be called when the Deferred object is resolved.
 	**/

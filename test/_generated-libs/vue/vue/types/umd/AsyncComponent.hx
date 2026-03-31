@@ -1,3 +1,3 @@
 package vue.types.umd;
 
-typedef AsyncComponent<Data, Methods, Computed, Props> = vue.AsyncComponent<Data, Methods, Computed, Props>;
+typedef AsyncComponent<Data, Methods, Computed, Props> = ts.AnyOf2<vue.types.options.AsyncComponentPromise<Data, Methods, Computed, Props>, vue.types.options.AsyncComponentFactory<Data, Methods, Computed, Props>>;

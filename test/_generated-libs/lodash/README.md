@@ -1,6 +1,6 @@
 # Haxe Externs for lodash
 
-Generated from **@types/lodash v4.14.162** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.1.6** with arguments:
+Generated from **@types/lodash v4.14.162** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.2.4** with arguments:
 
 	dts2hx lowdb --output _generated-libs --noDts2hxVersion
 
