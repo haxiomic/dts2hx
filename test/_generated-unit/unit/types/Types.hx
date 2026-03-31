@@ -49,7 +49,7 @@ package unit.types;
 	static final typeInParentheses : Float;
 	static final unionInParentheses : ts.AnyOf2<String, Float>;
 	static final voidType : ts.Undefined;
-	static final voidUnionType : ts.AnyOf2<Float, ts.Undefined>;
+	static final voidUnionType : Float;
 	static final voidTypeParam : Array<ts.Undefined>;
 	static final voidObjField : {
 		var x : ts.Undefined;

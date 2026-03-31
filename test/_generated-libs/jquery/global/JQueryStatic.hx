@@ -48,8 +48,8 @@ typedef JQueryStatic = {
 	/**
 		Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
 	**/
-	@:overload(function(handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, ts.Undefined>):Void { })
-	function ajaxPrefilter(dataTypes:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<String, ts.Undefined>):Void;
+	@:overload(function(handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> String):Void { })
+	function ajaxPrefilter(dataTypes:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> String):Void;
 	/**
 		Set default values for future Ajax requests. Its use is not recommended.
 	**/
@@ -57,7 +57,7 @@ typedef JQueryStatic = {
 	/**
 		Creates an object that handles the actual transmission of Ajax data.
 	**/
-	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> ts.AnyOf2<ts.Undefined, global.jquery.Transport>):Void;
+	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> global.jquery.Transport):Void;
 	function camelCase(value:String):String;
 	function cleanData(elems:js.lib.ArrayLike<ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
 	/**
@@ -378,7 +378,7 @@ typedef JQueryStatic = {
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 	**/
 	@:overload(function<TElement:(js.html.DOMElement)>(duration:global.jquery.Duration, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
-	@:overload(function<TElement:(js.html.DOMElement)>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.DynamicAccess<ts.Never>, () -> Void, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
+	@:overload(function<TElement:(js.html.DOMElement)>(?duration_complete_settings:ts.AnyOf7<Float, String, () -> Void, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.DynamicAccess<ts.Never>, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
 	function speed<TElement:(js.html.DOMElement)>(duration:global.jquery.Duration, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
 	/**
 		Remove the whitespace from the beginning and end of a string.

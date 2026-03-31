@@ -98,7 +98,7 @@ typedef Object<T> = {
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic)>(path:ts.Tuple3<TKey1, TKey2, TKey3>):Dynamic { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TDefault>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):Dynamic { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):TDefault { })
 	@:overload(function(path:PropertyPath, ?defaultValue:Dynamic):Dynamic { })
 	function get<TKey:(Dynamic)>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>):Dynamic;
 	function invertBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Object<Dictionary<Array<String>>>;

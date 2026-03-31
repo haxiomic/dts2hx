@@ -33,11 +33,11 @@ typedef ObjectConstructor = {
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	function defineProperty(o:Dynamic, p:PropertyKey, attributes:PropertyDescriptor & ThisType<Dynamic>):Dynamic;
+	function defineProperty<T>(o:T, p:PropertyKey, attributes:PropertyDescriptor & ThisType<Dynamic>):T;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	function defineProperties(o:Dynamic, properties:Dynamic):Dynamic;
+	function defineProperties<T>(o:T, properties:Dynamic):T;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/

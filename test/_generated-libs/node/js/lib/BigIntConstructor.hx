@@ -2,7 +2,7 @@ package js.lib;
 
 typedef BigIntConstructor = {
 	@:selfCall
-	function call(?value:Dynamic):BigInt;
+	function call(value:ts.AnyOf4<String, Float, BigInt, Bool>):BigInt;
 	final prototype : BigInt;
 	/**
 		Interprets the low bits of a BigInt as a 2's-complement signed integer.

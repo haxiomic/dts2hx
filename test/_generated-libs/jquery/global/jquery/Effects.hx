@@ -23,7 +23,11 @@ typedef Effects = {
 		
 		By overriding `fx.timer` and `fx.stop` you should be able to implement any animation tick behaviour you desire. (like using `requestAnimationFrame` instead of `setTimeout`.)
 		
-		There is an example of overriding the timer loop in \`{@link https://github.com/gnarf37/jquery-requestAnimationFrame jquery.requestAnimationFrame}\`
+		There is an example of overriding the timer loop in \`
+		{@link
+		https://github.com/gnarf37/jquery-requestAnimationFrame jquery.requestAnimationFrame
+		}
+		\`
 	**/
 	function timer(tickFunction:TickFunction<Dynamic>):Void;
 };

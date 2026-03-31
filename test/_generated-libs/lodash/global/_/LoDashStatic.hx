@@ -1390,7 +1390,7 @@ typedef LoDashStatic = {
 	@:overload(function<TObject:(Dynamic), TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TDefault>(object:Null<TObject>, path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function<TObject:(Dynamic), TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(object:TObject, path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):Dynamic { })
 	@:overload(function<TObject:(Dynamic), TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(object:Null<TObject>, path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):Null<Dynamic> { })
-	@:overload(function<TObject:(Dynamic), TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(object:Null<TObject>, path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TObject:(Dynamic), TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(object:Null<TObject>, path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):TDefault { })
 	@:overload(function<T>(object:NumericDictionary<T>, path:Float):T { })
 	@:overload(function<T>(object:Null<NumericDictionary<T>>, path:Float):Null<T> { })
 	@:overload(function<T, TDefault>(object:Null<NumericDictionary<T>>, path:Float, defaultValue:TDefault):ts.AnyOf2<T, TDefault> { })

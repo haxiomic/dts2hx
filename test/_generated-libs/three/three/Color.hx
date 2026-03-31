@@ -1,7 +1,11 @@
 package three;
 
 /**
-	Represents a color. See also {@link ColorUtils}.
+	Represents a color. See also
+	{@link
+	ColorUtils
+	}
+	.
 **/
 @:jsRequire("three", "Color") extern class Color {
 	@:overload(function(r:Float, g:Float, b:Float):Color { })

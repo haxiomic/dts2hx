@@ -14,7 +14,7 @@ typedef KeyValuePair<K, V> = {
 	**/
 	function toString():String;
 	/**
-		Returns a string representation of an array. The elements are converted to string using their toLocalString methods.
+		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
 	function toLocaleString():String;
 	/**

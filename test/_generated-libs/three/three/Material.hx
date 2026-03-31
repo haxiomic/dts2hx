@@ -10,7 +10,11 @@ package three;
 	**/
 	var alphaTest : Float;
 	/**
-		Blending destination. It's one of the blending mode constants defined in Three.js. Default is {@link OneMinusSrcAlphaFactor}.
+		Blending destination. It's one of the blending mode constants defined in Three.js. Default is
+		{@link
+		OneMinusSrcAlphaFactor
+		}
+		.
 	**/
 	var blendDst : BlendingDstFactor;
 	/**
@@ -18,7 +22,11 @@ package three;
 	**/
 	var blendDstAlpha : Null<Float>;
 	/**
-		Blending equation to use when applying blending. It's one of the constants defined in Three.js. Default is {@link AddEquation}.
+		Blending equation to use when applying blending. It's one of the constants defined in Three.js. Default is
+		{@link
+		AddEquation
+		}
+		.
 	**/
 	var blendEquation : BlendingEquation;
 	/**
@@ -26,11 +34,19 @@ package three;
 	**/
 	var blendEquationAlpha : Null<Float>;
 	/**
-		Which blending to use when displaying objects with this material. Default is {@link NormalBlending}.
+		Which blending to use when displaying objects with this material. Default is
+		{@link
+		NormalBlending
+		}
+		.
 	**/
 	var blending : Blending;
 	/**
-		Blending source. It's one of the blending mode constants defined in Three.js. Default is {@link SrcAlphaFactor}.
+		Blending source. It's one of the blending mode constants defined in Three.js. Default is
+		{@link
+		SrcAlphaFactor
+		}
+		.
 	**/
 	var blendSrc : ts.AnyOf2<BlendingDstFactor, BlendingSrcFactor>;
 	/**
@@ -54,7 +70,11 @@ package three;
 	**/
 	var colorWrite : Bool;
 	/**
-		Which depth function to use. Default is {@link LessEqualDepth}. See the depth mode constants for all possible values.
+		Which depth function to use. Default is
+		{@link
+		LessEqualDepth
+		}
+		. See the depth mode constants for all possible values.
 	**/
 	var depthFunc : DepthModes;
 	/**
@@ -79,7 +99,11 @@ package three;
 	**/
 	var stencilWrite : Bool;
 	/**
-		The stencil comparison function to use. Default is {@link AlwaysStencilFunc}. See stencil operation constants for all possible values.
+		The stencil comparison function to use. Default is
+		{@link
+		AlwaysStencilFunc
+		}
+		. See stencil operation constants for all possible values.
 	**/
 	var stencilFunc : StencilFunc;
 	/**
@@ -91,15 +115,27 @@ package three;
 	**/
 	var stencilMask : Float;
 	/**
-		Which stencil operation to perform when the comparison function returns false. Default is {@link KeepStencilOp}. See the stencil operation constants for all possible values.
+		Which stencil operation to perform when the comparison function returns false. Default is
+		{@link
+		KeepStencilOp
+		}
+		. See the stencil operation constants for all possible values.
 	**/
 	var stencilFail : StencilOp;
 	/**
-		Which stencil operation to perform when the comparison function returns true but the depth test fails. Default is {@link KeepStencilOp}. See the stencil operation constants for all possible values.
+		Which stencil operation to perform when the comparison function returns true but the depth test fails. Default is
+		{@link
+		KeepStencilOp
+		}
+		. See the stencil operation constants for all possible values.
 	**/
 	var stencilZFail : StencilOp;
 	/**
-		Which stencil operation to perform when the comparison function returns true and the depth test passes. Default is {@link KeepStencilOp}. See the stencil operation constants for all possible values.
+		Which stencil operation to perform when the comparison function returns true and the depth test passes. Default is
+		{@link
+		KeepStencilOp
+		}
+		. See the stencil operation constants for all possible values.
 	**/
 	var stencilZPass : StencilOp;
 	/**
@@ -200,7 +236,11 @@ package three;
 	**/
 	function copy(material:Material):Material;
 	/**
-		This disposes the material. Textures of a material don't get disposed. These needs to be disposed by {@link Texture}.
+		This disposes the material. Textures of a material don't get disposed. These needs to be disposed by
+		{@link
+		Texture
+		}
+		.
 	**/
 	function dispose():Void;
 	/**

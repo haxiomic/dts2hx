@@ -26,18 +26,32 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function countReset(?label:String):Void;
 	/**
-		The `console.debug()` function is an alias for {@link console.log()}.
+		The `console.debug()` function is an alias for
+		{@link
+		console.log
+		()
+		}
+		.
 	**/
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function debug(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		Uses {@link util.inspect()} on `obj` and prints the resulting string to `stdout`.
+		Uses
+		{@link
+		util.inspect()
+		}
+		on `obj` and prints the resulting string to `stdout`.
 		This function bypasses any custom `inspect()` function defined on `obj`.
 	**/
 	@:overload(function(obj:Dynamic, ?options:global.nodejs.InspectOptions):Void { })
 	function dir(?item:Dynamic, ?options:Dynamic):Void;
 	/**
-		This method calls {@link console.log()} passing it the arguments received. Please note that this method does not produce any XML formatting
+		This method calls
+		{@link
+		console.log
+		()
+		}
+		passing it the arguments received. Please note that this method does not produce any XML formatting
 	**/
 	@:overload(function(data:haxe.extern.Rest<Dynamic>):Void { })
 	function dirxml(data:haxe.extern.Rest<Dynamic>):Void;
@@ -54,7 +68,12 @@ typedef Console = {
 	@:overload(function(label:haxe.extern.Rest<Dynamic>):Void { })
 	function group(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The `console.groupCollapsed()` function is an alias for {@link console.group()}.
+		The `console.groupCollapsed()` function is an alias for
+		{@link
+		console.group
+		()
+		}
+		.
 	**/
 	@:overload(function():Void { })
 	function groupCollapsed(data:haxe.extern.Rest<Dynamic>):Void;
@@ -64,7 +83,17 @@ typedef Console = {
 	@:overload(function():Void { })
 	function groupEnd():Void;
 	/**
-		The {@link console.info()} function is an alias for {@link console.log()}.
+		The
+		{@link
+		console.info
+		()
+		}
+		function is an alias for
+		{@link
+		console.log
+		()
+		}
+		.
 	**/
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function info(data:haxe.extern.Rest<Dynamic>):Void;
@@ -85,12 +114,22 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function time(?label:String):Void;
 	/**
-		Stops a timer that was previously started by calling {@link console.time()} and prints the result to `stdout`.
+		Stops a timer that was previously started by calling
+		{@link
+		console.time
+		()
+		}
+		and prints the result to `stdout`.
 	**/
 	@:overload(function(?label:String):Void { })
 	function timeEnd(?label:String):Void;
 	/**
-		For a timer that was previously started by calling {@link console.time()}, prints the elapsed time and other `data` arguments to `stdout`.
+		For a timer that was previously started by calling
+		{@link
+		console.time
+		()
+		}
+		, prints the elapsed time and other `data` arguments to `stdout`.
 	**/
 	@:overload(function(?label:String, data:haxe.extern.Rest<Dynamic>):Void { })
 	function timeLog(?label:String, data:haxe.extern.Rest<Dynamic>):Void;
@@ -101,12 +140,26 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function timeStamp(?label:String):Void;
 	/**
-		Prints to `stderr` the string 'Trace :', followed by the {@link util.format()} formatted message and stack trace to the current position in the code.
+		Prints to `stderr` the string 'Trace :', followed by the
+		{@link
+		util.format()
+		}
+		formatted message and stack trace to the current position in the code.
 	**/
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function trace(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The {@link console.warn()} function is an alias for {@link console.error()}.
+		The
+		{@link
+		console.warn
+		()
+		}
+		function is an alias for
+		{@link
+		console.error
+		()
+		}
+		.
 	**/
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function warn(data:haxe.extern.Rest<Dynamic>):Void;

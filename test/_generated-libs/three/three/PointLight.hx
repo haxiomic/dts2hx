@@ -1,7 +1,15 @@
 package three;
 
 /**
-	Affects objects using {@link MeshLambertMaterial} or {@link MeshPhongMaterial}.
+	Affects objects using
+	{@link
+	MeshLambertMaterial
+	}
+	or
+	{@link
+	MeshPhongMaterial
+	}
+	.
 **/
 @:jsRequire("three", "PointLight") extern class PointLight extends Light {
 	function new(?color:ts.AnyOf3<String, Float, Color>, ?intensity:Float, ?distance:Float, ?decay:Float);

@@ -154,7 +154,7 @@ typedef Global = {
 	dynamic function isFinite(number:Float):Bool;
 	dynamic function isNaN(number:Float):Bool;
 	dynamic function parseFloat(string:String):Float;
-	dynamic function parseInt(s:String, ?radix:Float):Float;
+	dynamic function parseInt(string:String, ?radix:Float):Float;
 	var process : Process;
 	var root : Global;
 	dynamic function setImmediate(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, args:haxe.extern.Rest<Dynamic>):Immediate;

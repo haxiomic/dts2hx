@@ -1,7 +1,11 @@
 package global.three;
 
 /**
-	Represents a color. See also {@link ColorUtils}.
+	Represents a color. See also
+	{@link
+	ColorUtils
+	}
+	.
 **/
 @:native("THREE.Color") extern class Color {
 	@:overload(function(r:Float, g:Float, b:Float):Color { })

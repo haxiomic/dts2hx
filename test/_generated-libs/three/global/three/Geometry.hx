@@ -126,7 +126,11 @@ package global.three;
 	**/
 	function computeMorphNormals():Void;
 	/**
-		Computes bounding box of the geometry, updating {@link Geometry.boundingBox} attribute.
+		Computes bounding box of the geometry, updating
+		{@link
+		Geometry.boundingBox
+		}
+		attribute.
 	**/
 	function computeBoundingBox():Void;
 	/**
