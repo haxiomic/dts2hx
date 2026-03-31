@@ -1,6 +1,6 @@
 # Haxe Externs for qs
 
-Generated from **@types/qs v6.9.2** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.5.5** with arguments:
+Generated from **@types/qs v6.9.2** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 4.6.4** with arguments:
 
 	dts2hx express --output _generated-libs --noDts2hxVersion
 

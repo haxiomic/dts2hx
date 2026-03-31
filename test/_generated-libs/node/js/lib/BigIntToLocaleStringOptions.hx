@@ -4,7 +4,7 @@ typedef BigIntToLocaleStringOptions = {
 	/**
 		The locale matching algorithm to use.The default is "best fit". For information about this option, see the
 		{@link
-		https ://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation Intl page
+		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation Intl page
 		}
 		.
 	**/
@@ -56,7 +56,7 @@ typedef BigIntToLocaleStringOptions = {
 	/**
 		The minimum number of fraction digits to use. Possible values are from 0 to 20; the default for plain number and percent formatting is 0; the default for currency formatting is the number of minor unit digits provided by the
 		{@link
-		http ://www.currency-iso.org/en/home/tables/table-a1.html ISO 4217 currency codes list
+		http://www.currency-iso.org/en/home/tables/table-a1.html ISO 4217 currency codes list
 		}
 		(2 if the list doesn't provide that information).
 	**/
@@ -65,7 +65,7 @@ typedef BigIntToLocaleStringOptions = {
 	/**
 		The maximum number of fraction digits to use. Possible values are from 0 to 20; the default for plain number formatting is the larger of minimumFractionDigits and 3; the default for currency formatting is the larger of minimumFractionDigits and the number of minor unit digits provided by the
 		{@link
-		http ://www.currency-iso.org/en/home/tables/table-a1.html ISO 4217 currency codes list
+		http://www.currency-iso.org/en/home/tables/table-a1.html ISO 4217 currency codes list
 		}
 		(2 if the list doesn't provide that information); the default for percent formatting is the larger of minimumFractionDigits and 0.
 	**/
