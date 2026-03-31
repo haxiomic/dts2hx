@@ -7,7 +7,7 @@ typedef Application = {
 	**/
 	@:overload(function(req:Request<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, res:Response<Dynamic>, next:NextFunction):Dynamic { })
 	@:selfCall
-	function call(req:ts.AnyOf2<Request<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, node.http.IncomingMessage>, res:ts.AnyOf2<Response<Dynamic>, node.http.ServerResponse>):Dynamic;
+	function call(req:ts.AnyOf2<node.http.IncomingMessage, Request<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>>, res:ts.AnyOf2<node.http.ServerResponse, Response<Dynamic>>):Dynamic;
 	/**
 		Initialize the server.
 		

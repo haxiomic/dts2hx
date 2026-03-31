@@ -14,7 +14,7 @@ package global.three;
 	**/
 	var overrideMaterial : Null<Material>;
 	var autoUpdate : Bool;
-	var background : Null<ts.AnyOf2<Texture, Color>>;
+	var background : Null<ts.AnyOf2<Color, Texture>>;
 	function toJSON(?meta:Dynamic):Dynamic;
 	function dispose():Void;
 	function copy(source:Scene, ?recursive:Bool):Scene;

@@ -26,9 +26,9 @@ typedef SecureServerOptions = {
 	@:optional
 	var rejectUnauthorized : Bool;
 	@:optional
-	var NPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
+	var NPNProtocols : ts.AnyOf5<Array<String>, js.lib.Uint8Array, global.Buffer, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
-	var ALPNProtocols : ts.AnyOf5<Array<String>, global.Buffer, js.lib.Uint8Array, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
+	var ALPNProtocols : ts.AnyOf5<Array<String>, js.lib.Uint8Array, global.Buffer, Array<js.lib.Uint8Array>, Array<global.Buffer>>;
 	@:optional
 	dynamic function SNICallback(servername:String, cb:(err:Null<js.lib.Error>, ctx:node.tls.SecureContext) -> Void):Void;
 	@:optional

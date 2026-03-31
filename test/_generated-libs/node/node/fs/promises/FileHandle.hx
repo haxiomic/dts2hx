@@ -30,7 +30,7 @@ typedef FileHandle = {
 		Asynchronously reads data from the file.
 		The `FileHandle` must have been opened for reading.
 	**/
-	function read<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	function read<TBuffer:(ts.AnyOf2<js.lib.Uint8Array, global.Buffer>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesRead : Float;
 		var buffer : TBuffer;
 	}>;
@@ -66,7 +66,7 @@ typedef FileHandle = {
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
-	function write<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	function write<TBuffer:(ts.AnyOf2<js.lib.Uint8Array, global.Buffer>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesWritten : Float;
 		var buffer : TBuffer;
 	}>;

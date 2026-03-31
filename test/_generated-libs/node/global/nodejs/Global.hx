@@ -48,7 +48,7 @@ typedef Global = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.DataView, js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -104,18 +104,59 @@ typedef Global = {
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):js.lib.intl.NumberFormat;
 			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):js.lib.intl.NumberFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):Array<String>;
+			final prototype : js.lib.intl.NumberFormat;
 		};
 		var DateTimeFormat : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
 			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):js.lib.intl.DateTimeFormat;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.DateTimeFormat.DateTimeFormatOptions):Array<String>;
+			final prototype : js.lib.intl.DateTimeFormat;
 		};
 		final PluralRules : {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
 			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
 			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:{ @:optional var localeMatcher : String; }):Array<String>;
+		};
+		/**
+			The [`Intl.RelativeTimeFormat`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RelativeTimeFormat)
+			object is a constructor for objects that enable language-sensitive relative time formatting.
+			
+			[Compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat#Browser_compatibility).
+		**/
+		final RelativeTimeFormat : {
+			/**
+				Creates [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RelativeTimeFormat) objects
+			**/
+			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.RelativeTimeFormat.RelativeTimeFormatOptions):js.lib.intl.RelativeTimeFormat;
+			/**
+				Returns an array containing those of the provided locales
+				that are supported in date and time formatting
+				without having to fall back to the runtime's default locale.
+			**/
+			function supportedLocalesOf(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.RelativeTimeFormat.RelativeTimeFormatOptions):Array<String>;
+		};
+		/**
+			Constructor creates [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale)
+			objects
+		**/
+		final Locale : {
+			function new(tag:ts.AnyOf2<String, js.lib.intl.Locale>, ?options:js.lib.intl.LocaleOptions):js.lib.intl.Locale;
+		};
+		/**
+			The [`Intl.DisplayNames()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames)
+			object enables the consistent translation of language, region and script display names.
+			
+			[Compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames#browser_compatibility).
+		**/
+		final DisplayNames : {
+			function new(locales:js.lib.intl.LocalesArgument, options:js.lib.intl.DisplayNames.DisplayNamesOptions):js.lib.intl.DisplayNames;
+			var prototype : js.lib.intl.DisplayNames;
+			/**
+				Returns an array containing those of the provided locales that are supported in display names without having to fall back to the runtime's default locale.
+			**/
+			function supportedLocalesOf(?locales:js.lib.intl.LocalesArgument, ?options:{ @:optional var localeMatcher : js.lib.intl.RelativeTimeFormatLocaleMatcher; }):Array<String>;
 		};
 	};
 	var JSON : js.lib.JSON;

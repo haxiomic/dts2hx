@@ -1,8 +1,8 @@
 package node.dgram;
 
 @:jsRequire("dgram", "Socket") extern class Socket extends node.events.EventEmitter {
-	@:overload(function(msg:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, offset:Float, length:Float, port:Float, ?address:String, ?callback:(error:Null<js.lib.Error>, bytes:Float) -> Void):Void { })
-	function send(msg:ts.AnyOf4<String, Array<Dynamic>, global.Buffer, js.lib.Uint8Array>, port:Float, ?address:String, ?callback:(error:Null<js.lib.Error>, bytes:Float) -> Void):Void;
+	@:overload(function(msg:ts.AnyOf3<String, js.lib.Uint8Array, global.Buffer>, offset:Float, length:Float, port:Float, ?address:String, ?callback:(error:Null<js.lib.Error>, bytes:Float) -> Void):Void { })
+	function send(msg:ts.AnyOf4<String, Array<Dynamic>, js.lib.Uint8Array, global.Buffer>, port:Float, ?address:String, ?callback:(error:Null<js.lib.Error>, bytes:Float) -> Void):Void;
 	@:overload(function(?port:Float, ?callback:() -> Void):Void { })
 	@:overload(function(?callback:() -> Void):Void { })
 	@:overload(function(options:BindOptions, ?callback:() -> Void):Void { })

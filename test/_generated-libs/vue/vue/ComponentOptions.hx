@@ -48,7 +48,7 @@ typedef ComponentOptions<V:(Vue), Data, Methods, Computed, PropsDef, Props> = {
 	@:optional
 	function serverPrefetch():js.lib.Promise<ts.Undefined>;
 	@:optional
-	var directives : haxe.DynamicAccess<ts.AnyOf2<DirectiveOptions, DirectiveFunction>>;
+	var directives : haxe.DynamicAccess<ts.AnyOf2<DirectiveFunction, DirectiveOptions>>;
 	@:optional
 	var components : haxe.DynamicAccess<ts.AnyOf5<VueConstructor<Vue>, FunctionalComponentOptions<Dynamic, vue.types.options.PropsDefinition<Dynamic>>, ComponentOptions<ts.Never, Dynamic, Dynamic, Dynamic, Dynamic, haxe.DynamicAccess<Dynamic>>, vue.types.options.AsyncComponentPromise<Dynamic, Dynamic, Dynamic, Dynamic>, vue.types.options.AsyncComponentFactory<Dynamic, Dynamic, Dynamic, Dynamic>>>;
 	@:optional

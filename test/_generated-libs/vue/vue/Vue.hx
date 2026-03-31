@@ -15,7 +15,7 @@ package vue;
 	@:native("$children")
 	final DollarChildren : Array<Vue>;
 	@:native("$refs")
-	final DollarRefs : haxe.DynamicAccess<ts.AnyOf4<js.html.DOMElement, Vue, Array<Vue>, Array<js.html.DOMElement>>>;
+	final DollarRefs : haxe.DynamicAccess<ts.AnyOf4<js.html.DOMElement, Array<js.html.DOMElement>, Vue, Array<Vue>>>;
 	@:native("$slots")
 	final DollarSlots : haxe.DynamicAccess<Null<Array<VNode>>>;
 	@:native("$scopedSlots")
@@ -74,7 +74,7 @@ package vue;
 	static function set<T>(object:Dynamic, key:ts.AnyOf2<String, Float>, value:T):T;
 	@:overload(function<T>(array:Array<T>, key:Float):Void { })
 	static function delete(object:Dynamic, key:ts.AnyOf2<String, Float>):Void;
-	static function directive(id:String, ?definition:ts.AnyOf2<DirectiveOptions, DirectiveFunction>):DirectiveOptions;
+	static function directive(id:String, ?definition:ts.AnyOf2<DirectiveFunction, DirectiveOptions>):DirectiveOptions;
 	static function filter(id:String, ?definition:haxe.Constraints.Function):haxe.Constraints.Function;
 	@:overload(function<VC:(VueConstructor<Vue>)>(id:String, constructor:VC):VC { })
 	@:overload(function<Data, Methods, Computed, Props>(id:String, definition:AsyncComponent<Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<Vue, Data, Methods, Computed, Props> { })

@@ -19,7 +19,7 @@ package node.fs;
 	/**
 		Asynchronously reads data from the file referenced by the supplied `FileHandle`.
 	**/
-	static function read<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	static function read<TBuffer:(ts.AnyOf2<js.lib.Uint8Array, global.Buffer>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesRead : Float;
 		var buffer : TBuffer;
 	}>;
@@ -36,7 +36,7 @@ package node.fs;
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
-	static function write<TBuffer:(ts.AnyOf2<global.Buffer, js.lib.Uint8Array>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	static function write<TBuffer:(ts.AnyOf2<js.lib.Uint8Array, global.Buffer>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesWritten : Float;
 		var buffer : TBuffer;
 	}>;

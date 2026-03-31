@@ -22,9 +22,9 @@ package node;
 	static function createVerify(algorith:String, ?options:node.stream.WritableOptions):node.crypto.Verify;
 	@:overload(function(prime:node.crypto.Binary):node.crypto.DiffieHellman { })
 	@:overload(function(prime:String, prime_encoding:node.crypto.HexBase64Latin1Encoding):node.crypto.DiffieHellman { })
-	@:overload(function(prime:String, prime_encoding:node.crypto.HexBase64Latin1Encoding, generator:ts.AnyOf12<Float, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):node.crypto.DiffieHellman { })
+	@:overload(function(prime:String, prime_encoding:node.crypto.HexBase64Latin1Encoding, generator:ts.AnyOf12<Float, js.lib.DataView, js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array, global.Buffer>):node.crypto.DiffieHellman { })
 	@:overload(function(prime:String, prime_encoding:node.crypto.HexBase64Latin1Encoding, generator:String, generator_encoding:node.crypto.HexBase64Latin1Encoding):node.crypto.DiffieHellman { })
-	static function createDiffieHellman(prime_length:Float, ?generator:ts.AnyOf12<Float, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>):node.crypto.DiffieHellman;
+	static function createDiffieHellman(prime_length:Float, ?generator:ts.AnyOf12<Float, js.lib.DataView, js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array, global.Buffer>):node.crypto.DiffieHellman;
 	static function getDiffieHellman(group_name:String):node.crypto.DiffieHellman;
 	static function pbkdf2(password:node.crypto.BinaryLike, salt:node.crypto.BinaryLike, iterations:Float, keylen:Float, digest:String, callback:(err:Null<js.lib.Error>, derivedKey:global.Buffer) -> Dynamic):Void;
 	static function pbkdf2Sync(password:node.crypto.BinaryLike, salt:node.crypto.BinaryLike, iterations:Float, keylen:Float, digest:String):global.Buffer;

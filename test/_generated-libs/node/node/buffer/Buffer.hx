@@ -44,7 +44,7 @@ package node.buffer;
 		Gives the actual byte length of a string. encoding defaults to 'utf8'.
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
-	static function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+	static function byteLength(string:ts.AnyOf13<String, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.DataView, js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		

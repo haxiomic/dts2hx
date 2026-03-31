@@ -12,7 +12,7 @@ typedef JQuery<TElement> = {
 	/**
 		Create a new jQuery object with elements added to the set of matched elements.
 	**/
-	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, js.html.DOMElement, JQuery<js.html.Element>, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>>):JQuery<TElement> { })
+	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>, JQuery<js.html.Element>>):JQuery<TElement> { })
 	function add(selector:String, context:js.html.DOMElement):JQuery<TElement>;
 	/**
 		Add the previous set of elements on the stack to the current set, optionally filtered by a selector.
@@ -66,7 +66,7 @@ typedef JQuery<TElement> = {
 	/**
 		Insert every element in the set of matched elements to the end of the target.
 	**/
-	function appendTo(target:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, js.html.DocumentFragment, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
+	function appendTo(target:ts.AnyOf5<String, js.html.DOMElement, js.html.DocumentFragment, JQuery<js.html.Element>, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
 	/**
 		Set one or more attributes for the set of matched elements.
 		
@@ -215,7 +215,7 @@ typedef JQuery<TElement> = {
 	/**
 		Reduce the set of matched elements to those that match the selector or pass the function's test.
 	**/
-	function filter(selector_elements_selection_function:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
+	function filter(selector_elements_selection_function:ts.AnyOf5<String, js.html.DOMElement, Array<js.html.DOMElement>, JQuery<js.html.Element>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
 	/**
 		Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
 	**/
@@ -314,7 +314,7 @@ typedef JQuery<TElement> = {
 	/**
 		Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.
 	**/
-	function is(selector_function_selection_elements:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>, (index:Float, element:TElement) -> Bool>):Bool;
+	function is(selector_function_selection_elements:ts.AnyOf5<String, js.html.DOMElement, Array<js.html.DOMElement>, JQuery<js.html.Element>, (index:Float, element:TElement) -> Bool>):Bool;
 	/**
 		Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.
 	**/
@@ -393,7 +393,7 @@ typedef JQuery<TElement> = {
 	/**
 		Remove elements from the set of matched elements.
 	**/
-	function not(selector_function_selection:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
+	function not(selector_function_selection:ts.AnyOf5<String, js.html.DOMElement, Array<js.html.DOMElement>, JQuery<js.html.Element>, (index:Float, element:TElement) -> Bool>):JQuery<TElement>;
 	/**
 		Remove an event handler.
 	**/
@@ -479,7 +479,7 @@ typedef JQuery<TElement> = {
 	/**
 		Insert every element in the set of matched elements to the beginning of the target.
 	**/
-	function prependTo(target:ts.AnyOf5<String, js.html.DOMElement, JQuery<js.html.Element>, js.html.DocumentFragment, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
+	function prependTo(target:ts.AnyOf5<String, js.html.DOMElement, js.html.DocumentFragment, JQuery<js.html.Element>, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
 	/**
 		Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.
 	**/
@@ -546,7 +546,7 @@ typedef JQuery<TElement> = {
 	/**
 		Replace each target element with the set of matched elements.
 	**/
-	function replaceAll(target:ts.AnyOf4<String, js.html.DOMElement, JQuery<js.html.Element>, Array<js.html.DOMElement>>):JQuery<TElement>;
+	function replaceAll(target:ts.AnyOf4<String, js.html.DOMElement, Array<js.html.DOMElement>, JQuery<js.html.Element>>):JQuery<TElement>;
 	/**
 		Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.
 	**/

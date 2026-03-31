@@ -2,7 +2,7 @@ package global;
 
 typedef JQueryStatic = {
 	@:overload(function<TElement:(js.html.Element)>(html:String, ?ownerDocument_attributes:ts.AnyOf2<js.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
-	@:overload(function<TElement:(js.html.DOMElement)>(selector:String, ?context:ts.AnyOf3<js.html.Document, js.html.DOMElement, JQuery<js.html.Element>>):JQuery<TElement> { })
+	@:overload(function<TElement:(js.html.DOMElement)>(selector:String, ?context:ts.AnyOf3<js.html.DOMElement, js.html.Document, JQuery<js.html.Element>>):JQuery<TElement> { })
 	@:overload(function(element:js.html.SelectElement):JQuery<js.html.SelectElement> { })
 	@:overload(function<T:(js.html.DOMElement)>(element_elementArray:ts.AnyOf2<js.lib.ArrayLike<T>, T>):JQuery<T> { })
 	@:overload(function<T>(selection:JQuery<T>):JQuery<T> { })
@@ -59,7 +59,7 @@ typedef JQueryStatic = {
 	**/
 	function ajaxTransport(dataType:String, handler:(options:global.jquery.AjaxSettings<Dynamic>, originalOptions:global.jquery.AjaxSettings<Dynamic>, jqXHR:global.jquery.JqXHR<Dynamic>) -> global.jquery.Transport):Void;
 	function camelCase(value:String):String;
-	function cleanData(elems:js.lib.ArrayLike<ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
+	function cleanData(elems:js.lib.ArrayLike<ts.AnyOf4<js.html.DOMElement, js.html.Document, js.html.Window, global.jquery.PlainObject<Dynamic>>>):Void;
 	/**
 		Check to see if a DOM element is a descendant of another DOM element.
 	**/
@@ -70,9 +70,9 @@ typedef JQueryStatic = {
 		
 		Returns value at named data store for the element, as set by `jQuery.data(element, name, value)`, or the full data store for the element.
 	**/
-	@:overload(function(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<Any>):Dynamic { })
-	@:overload(function(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?key:String):Dynamic { })
-	function data<T:(Null<ts.AnyOf5<String, Float, Bool, js.lib.Symbol, Dynamic>>)>(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:T):T;
+	@:overload(function(element:ts.AnyOf4<js.html.DOMElement, js.html.Document, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:Null<Any>):Dynamic { })
+	@:overload(function(element:ts.AnyOf4<js.html.DOMElement, js.html.Document, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?key:String):Dynamic { })
+	function data<T:(Null<ts.AnyOf5<String, Float, Bool, js.lib.Symbol, Dynamic>>)>(element:ts.AnyOf4<js.html.DOMElement, js.html.Document, js.html.Window, global.jquery.PlainObject<Dynamic>>, key:String, value:T):T;
 	/**
 		Execute the next function on the queue for the matched element.
 	**/
@@ -137,7 +137,7 @@ typedef JQueryStatic = {
 	/**
 		Determine whether an element has any jQuery data associated with it.
 	**/
-	function hasData(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>):Bool;
+	function hasData(element:ts.AnyOf4<js.html.DOMElement, js.html.Document, js.html.Window, global.jquery.PlainObject<Dynamic>>):Bool;
 	/**
 		Holds or releases the execution of jQuery's ready event.
 	**/
@@ -207,7 +207,7 @@ typedef JQueryStatic = {
 	/**
 		Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.
 	**/
-	function param(obj:ts.AnyOf3<Array<Dynamic>, global.jquery.PlainObject<Dynamic>, JQuery<js.html.Element>>, ?traditional:Bool):String;
+	function param(obj:ts.AnyOf3<Array<Dynamic>, JQuery<js.html.Element>, global.jquery.PlainObject<Dynamic>>, ?traditional:Bool):String;
 	/**
 		Parses a string into an array of DOM nodes.
 	**/
@@ -373,12 +373,12 @@ typedef JQueryStatic = {
 	/**
 		Remove a previously-stored piece of data.
 	**/
-	function removeData(element:ts.AnyOf4<js.html.Document, js.html.DOMElement, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?name:String):Void;
+	function removeData(element:ts.AnyOf4<js.html.DOMElement, js.html.Document, js.html.Window, global.jquery.PlainObject<Dynamic>>, ?name:String):Void;
 	/**
 		Creates an object containing a set of properties ready to be used in the definition of custom animations.
 	**/
 	@:overload(function<TElement:(js.html.DOMElement)>(duration:global.jquery.Duration, easing_complete:ts.AnyOf2<String, () -> Void>):global.jquery.EffectsOptions<TElement> { })
-	@:overload(function<TElement:(js.html.DOMElement)>(?duration_complete_settings:ts.AnyOf7<Float, String, () -> Void, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.DynamicAccess<ts.Never>, { /** A function to call once the animation is complete. **/ function complete():Void; }>):global.jquery.EffectsOptions<TElement> { })
+	@:overload(function<TElement:(js.html.DOMElement)>(?duration_complete_settings:ts.AnyOf7<Float, String, { /** A string or number determining how long the animation will run. **/ var duration : global.jquery.Duration; }, { /** A string indicating which easing function to use for the transition. **/ var easing : String; }, haxe.DynamicAccess<ts.Never>, { /** A function to call once the animation is complete. **/ function complete():Void; }, () -> Void>):global.jquery.EffectsOptions<TElement> { })
 	function speed<TElement:(js.html.DOMElement)>(duration:global.jquery.Duration, easing:String, complete:() -> Void):global.jquery.EffectsOptions<TElement>;
 	/**
 		Remove the whitespace from the beginning and end of a string.

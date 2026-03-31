@@ -46,6 +46,7 @@ typedef ObjectConstructor = {
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
 	@:overload(function<T:(haxe.Constraints.Function)>(f:T):T { })
+	@:overload(function<T:(haxe.DynamicAccess<Null<ts.AnyOf2<Dynamic, U>>>), U:(ts.AnyOf5<String, Float, BigInt, Bool, js.lib.Symbol>)>(o:T):T { })
 	@:overload(function<T>(o:T):T { })
 	function freeze<T>(a:Array<T>):haxe.ds.ReadOnlyArray<T>;
 	/**
@@ -73,10 +74,10 @@ typedef ObjectConstructor = {
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Dynamic { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Dynamic { })
+	@:overload(function<T:({ }), U, V>(target:T, source1:U, source2:V):Dynamic { })
+	@:overload(function<T:({ }), U, V, W>(target:T, source1:U, source2:V, source3:W):Dynamic { })
 	@:overload(function(target:Dynamic, sources:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function assign<T, U>(target:T, source:U):Dynamic;
+	function assign<T:({ }), U>(target:T, source:U):Dynamic;
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/

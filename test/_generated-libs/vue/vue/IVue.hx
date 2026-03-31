@@ -12,7 +12,7 @@ typedef IVue = {
 	@:native("$children")
 	final DollarChildren : Array<Vue>;
 	@:native("$refs")
-	final DollarRefs : haxe.DynamicAccess<ts.AnyOf4<js.html.DOMElement, Vue, Array<Vue>, Array<js.html.DOMElement>>>;
+	final DollarRefs : haxe.DynamicAccess<ts.AnyOf4<js.html.DOMElement, Array<js.html.DOMElement>, Vue, Array<Vue>>>;
 	@:native("$slots")
 	final DollarSlots : haxe.DynamicAccess<Null<Array<VNode>>>;
 	@:native("$scopedSlots")

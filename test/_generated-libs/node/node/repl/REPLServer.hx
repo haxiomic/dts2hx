@@ -106,7 +106,7 @@ package node.repl;
 		Used to add new `.`-prefixed commands to the REPL instance. Such commands are invoked
 		by typing a `.` followed by the `keyword`.
 	**/
-	function defineCommand(keyword:String, cmd:ts.AnyOf2<REPLCommandAction, REPLCommand>):Void;
+	function defineCommand(keyword:String, cmd:ts.AnyOf2<REPLCommand, REPLCommandAction>):Void;
 	/**
 		Readies the REPL instance for input from the user, printing the configured `prompt` to a
 		new line in the `output` and resuming the `input` to accept new input.

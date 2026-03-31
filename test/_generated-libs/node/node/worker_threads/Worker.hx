@@ -6,7 +6,7 @@ package node.worker_threads;
 	final stdout : node.stream.Readable;
 	final stderr : node.stream.Readable;
 	final threadId : Float;
-	function postMessage(value:Dynamic, ?transferList:Array<ts.AnyOf2<MessagePort, js.lib.ArrayBuffer>>):Void;
+	function postMessage(value:Dynamic, ?transferList:Array<ts.AnyOf2<js.lib.ArrayBuffer, MessagePort>>):Void;
 	function ref():Void;
 	function unref():Void;
 	function terminate(?callback:(err:js.lib.Error, exitCode:Float) -> Void):Void;

@@ -7,8 +7,8 @@ typedef Verify = {
 	function verify(object:ts.AnyOf4<String, Dynamic, global.Buffer, KeyObject>, signature:Binary):Bool;
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool;
-	@:overload(function(data:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:() -> Void):Void { })
+	function write(buffer:ts.AnyOf3<String, js.lib.Uint8Array, global.Buffer>, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool;
+	@:overload(function(data:ts.AnyOf3<String, js.lib.Uint8Array, global.Buffer>, ?cb:() -> Void):Void { })
 	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 	function addListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Verify;

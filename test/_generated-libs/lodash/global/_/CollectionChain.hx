@@ -11,7 +11,7 @@ typedef CollectionChain<T> = {
 	function compact():CollectionChain<Truthy<T>>;
 	function concat(values:haxe.extern.Rest<Many<T>>):CollectionChain<T>;
 	function difference(values:haxe.extern.Rest<List_<T>>):CollectionChain<T>;
-	@:overload(function(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, List_<Any>, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>>):CollectionChain<T> { })
+	@:overload(function(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<Any>, (value:T) -> Any, { }>>):CollectionChain<T> { })
 	function differenceBy<T2>(values1:List_<T2>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:ts.AnyOf2<T, T2>) -> Any, { }>):CollectionChain<T>;
 	@:overload(function<T2, T3, T4>(values:haxe.extern.Rest<ts.AnyOf2<List_<Any>, Comparator2<T, ts.Never>>>):CollectionChain<T> { })
 	function differenceWith<T2>(values:List_<T2>, comparator:Comparator2<T, T2>):CollectionChain<T>;
@@ -31,7 +31,7 @@ typedef CollectionChain<T> = {
 	function indexOf(value:T, ?fromIndex:Float):PrimitiveChain<Float>;
 	function initial():CollectionChain<T>;
 	function intersection(arrays:haxe.extern.Rest<Null<List_<T>>>):CollectionChain<T>;
-	@:overload(function(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, List_<Any>, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>>):CollectionChain<T> { })
+	@:overload(function(values:haxe.extern.Rest<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<Any>, (value:T) -> Any, { }>>):CollectionChain<T> { })
 	function intersectionBy<T2>(values:List_<T2>, iteratee:ValueIteratee<ts.AnyOf2<T, T2>>):CollectionChain<T>;
 	@:overload(function(values:haxe.extern.Rest<ts.AnyOf2<List_<Any>, Comparator2<T, ts.Never>>>):CollectionChain<T> { })
 	function intersectionWith<T2>(values:List_<T2>, comparator:Comparator2<T, T2>):CollectionChain<T>;

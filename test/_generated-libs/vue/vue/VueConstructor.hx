@@ -15,7 +15,7 @@ typedef VueConstructor<V:(Vue)> = {
 	function set<T>(object:Dynamic, key:ts.AnyOf2<String, Float>, value:T):T;
 	@:overload(function<T>(array:Array<T>, key:Float):Void { })
 	function delete(object:Dynamic, key:ts.AnyOf2<String, Float>):Void;
-	function directive(id:String, ?definition:ts.AnyOf2<DirectiveOptions, DirectiveFunction>):DirectiveOptions;
+	function directive(id:String, ?definition:ts.AnyOf2<DirectiveFunction, DirectiveOptions>):DirectiveOptions;
 	function filter(id:String, ?definition:haxe.Constraints.Function):haxe.Constraints.Function;
 	@:overload(function<VC:(VueConstructor<Vue>)>(id:String, constructor:VC):VC { })
 	@:overload(function<Data, Methods, Computed, Props>(id:String, definition:AsyncComponent<Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<V, Data, Methods, Computed, Props> { })

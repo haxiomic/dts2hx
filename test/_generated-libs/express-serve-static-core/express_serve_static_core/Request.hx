@@ -110,7 +110,7 @@ typedef Request<P:(Params), ResBody, ReqBody, ReqQuery> = {
 		NOTE: remember that ranges are inclusive, so for example "Range: users=0-3"
 		should respond with 4 users when available, not 3.
 	**/
-	function range(size:Float, ?options:range_parser.Options):Null<ts.AnyOf2<range_parser.Ranges, Int>>;
+	function range(size:Float, ?options:range_parser.Options):Null<ts.AnyOf2<Int, range_parser.Ranges>>;
 	/**
 		Return an array of Accepted media types
 		ordered from highest quality to lowest.

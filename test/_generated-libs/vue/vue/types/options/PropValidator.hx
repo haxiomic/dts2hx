@@ -1,7 +1,7 @@
 package vue.types.options;
 
-typedef PropValidator<T> = ts.AnyOf5<vue.PropOptions<T>, {
+typedef PropValidator<T> = ts.AnyOf5<{
 	function new(args:haxe.extern.Rest<String>):haxe.Constraints.Function;
-}, () -> T, {
+}, vue.PropOptions<T>, () -> T, {
 	function new(args:haxe.extern.Rest<ts.Never>):Dynamic;
 }, Array<Prop<T>>>;

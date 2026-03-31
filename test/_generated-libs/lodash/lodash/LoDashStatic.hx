@@ -381,7 +381,7 @@ typedef LoDashStatic = {
 	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
 	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
 	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
-	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, arrays5:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, List_<T>, { }>>>):Array<T> { })
+	@:overload(function<T>(arrays1:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, arrays4:Null<List_<T>>, arrays5:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<T>, (value:T) -> Any, { }>>>):Array<T> { })
 	function unionBy<T>(arrays:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T>;
 	/**
 		This method is like `_.union` except that it accepts `comparator` which
@@ -389,7 +389,7 @@ typedef LoDashStatic = {
 		with two arguments: (arrVal, othVal).
 	**/
 	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, ?comparator:Comparator<T>):Array<T> { })
-	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, comparator:haxe.extern.Rest<Null<ts.AnyOf2<Comparator<T>, List_<T>>>>):Array<T> { })
+	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, comparator:haxe.extern.Rest<Null<ts.AnyOf2<List_<T>, Comparator<T>>>>):Array<T> { })
 	function unionWith<T>(arrays:Null<List_<T>>, ?comparator:Comparator<T>):Array<T>;
 	/**
 		Creates a duplicate-free version of an array, using
@@ -414,7 +414,7 @@ typedef LoDashStatic = {
 		This method is like _.zip except that it accepts an array of grouped elements and creates an array
 		regrouping the elements to their pre-zip configuration.
 	**/
-	function unzip<T>(array:Null<ts.AnyOf2<Array<Array<T>>, List_<List_<T>>>>):Array<Array<T>>;
+	function unzip<T>(array:Null<ts.AnyOf2<List_<List_<T>>, Array<Array<T>>>>):Array<Array<T>>;
 	/**
 		This method is like _.unzip except that it accepts an iteratee to specify how regrouped values should be
 		combined. The iteratee is invoked with four arguments: (accumulator, value, index, group).
@@ -435,7 +435,7 @@ typedef LoDashStatic = {
 		uniqueness is computed. The iteratee is invoked with one argument: (value).
 	**/
 	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T> { })
-	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, List_<T>, { }>>>):Array<T> { })
+	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, iteratee:haxe.extern.Rest<Null<ts.AnyOf7<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, List_<T>, (value:T) -> Any, { }>>>):Array<T> { })
 	function xorBy<T>(arrays:Null<List_<T>>, ?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:T) -> Any, { }>):Array<T>;
 	/**
 		This method is like `_.xor` except that it accepts `comparator` which is
@@ -443,7 +443,7 @@ typedef LoDashStatic = {
 		two arguments: (arrVal, othVal).
 	**/
 	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, ?comparator:Comparator<T>):Array<T> { })
-	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, comparator:haxe.extern.Rest<Null<ts.AnyOf2<Comparator<T>, List_<T>>>>):Array<T> { })
+	@:overload(function<T>(arrays:Null<List_<T>>, arrays2:Null<List_<T>>, arrays3:Null<List_<T>>, comparator:haxe.extern.Rest<Null<ts.AnyOf2<List_<T>, Comparator<T>>>>):Array<T> { })
 	function xorWith<T>(arrays:Null<List_<T>>, ?comparator:Comparator<T>):Array<T>;
 	/**
 		Creates an array of grouped elements, the first of which contains the first elements of the given arrays,
@@ -473,7 +473,7 @@ typedef LoDashStatic = {
 	@:overload(function<T1, T2, T3, TResult>(arrays1:List_<T1>, arrays2:List_<T2>, arrays3:List_<T3>, iteratee:(value1:T1, value2:T2, value3:T3) -> TResult):Array<TResult> { })
 	@:overload(function<T1, T2, T3, T4, TResult>(arrays1:List_<T1>, arrays2:List_<T2>, arrays3:List_<T3>, arrays4:List_<T4>, iteratee:(value1:T1, value2:T2, value3:T3, value4:T4) -> TResult):Array<TResult> { })
 	@:overload(function<T1, T2, T3, T4, T5, TResult>(arrays1:List_<T1>, arrays2:List_<T2>, arrays3:List_<T3>, arrays4:List_<T4>, arrays5:List_<T5>, iteratee:(value1:T1, value2:T2, value3:T3, value4:T4, value5:T5) -> TResult):Array<TResult> { })
-	@:overload(function<T, TResult>(iteratee:haxe.extern.Rest<Null<ts.AnyOf2<(group:haxe.extern.Rest<T>) -> TResult, List_<T>>>>):Array<TResult> { })
+	@:overload(function<T, TResult>(iteratee:haxe.extern.Rest<Null<ts.AnyOf2<List_<T>, (group:haxe.extern.Rest<T>) -> TResult>>>):Array<TResult> { })
 	function zipWith<T, TResult>(arrays:List_<T>, iteratee:(value1:T) -> TResult):Array<TResult>;
 	/**
 		Creates an object composed of keys generated from the results of running each element of collection through
