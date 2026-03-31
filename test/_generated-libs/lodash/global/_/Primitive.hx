@@ -19,7 +19,7 @@ typedef Primitive<T> = {
 	function cloneDeep():T;
 	@:overload(function():T { })
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):Dynamic;
-	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<T, TResult> { })
+	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<TResult, T> { })
 	@:overload(function():T { })
 	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
@@ -87,8 +87,8 @@ typedef Primitive<T> = {
 	function random(?floating:Bool):Float;
 	function entries():Collection<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findKey(?predicate:ObjectIteratee<T>):Null<String>;
+	function findLastKey(?predicate:ObjectIteratee<T>):Null<String>;
 	function forIn(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;
 	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;
 	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):Primitive<T>;

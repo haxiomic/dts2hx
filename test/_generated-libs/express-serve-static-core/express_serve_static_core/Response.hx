@@ -344,7 +344,7 @@ typedef Response<ResBody> = {
 	function getHeaderNames():Array<String>;
 	function hasHeader(name:String):Bool;
 	function removeHeader(name:String):Void;
-	function addTrailers(headers:ts.AnyOf2<node.http.OutgoingHttpHeaders, Array<ts.Tuple2<String, String>>>):Void;
+	function addTrailers(headers:ts.AnyOf2<Array<ts.Tuple2<String, String>>, node.http.OutgoingHttpHeaders>):Void;
 	function flushHeaders():Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;

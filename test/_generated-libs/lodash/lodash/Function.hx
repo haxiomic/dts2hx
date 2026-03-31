@@ -157,8 +157,8 @@ typedef Function<T:((args:haxe.extern.Rest<Any>) -> Dynamic)> = {
 	function random(?floating:Bool):Float;
 	function entries():Collection<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findKey(?predicate:ObjectIteratee<T>):Null<String>;
+	function findLastKey(?predicate:ObjectIteratee<T>):Null<String>;
 	function forIn(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;
 	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;
 	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;

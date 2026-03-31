@@ -82,8 +82,8 @@ typedef LoDashExplicitWrapper<TValue> = {
 	function random(?floating:Bool):PrimitiveChain<Float>;
 	function entries():CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<TValue, Any>, { }>):StringNullableChain;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<TValue, Any>, { }>):StringNullableChain;
+	function findKey(?predicate:ObjectIteratee<TValue>):StringNullableChain;
+	function findLastKey(?predicate:ObjectIteratee<TValue>):StringNullableChain;
 	function forIn(?iteratee:ObjectIterator<TValue, Dynamic>):LoDashExplicitWrapper<TValue>;
 	function forInRight(?iteratee:ObjectIterator<TValue, Dynamic>):LoDashExplicitWrapper<TValue>;
 	function forOwn(?iteratee:ObjectIterator<TValue, Dynamic>):LoDashExplicitWrapper<TValue>;

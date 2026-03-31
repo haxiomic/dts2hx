@@ -26,7 +26,7 @@ typedef RecursiveArray<T> = {
 		Combines two or more arrays.
 		This method returns a new array without modifying any existing arrays.
 	**/
-	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<RecursiveArray<T>, js.lib.ConcatArray<ts.AnyOf2<RecursiveArray<T>, T>>, T>>):Array<ts.AnyOf2<RecursiveArray<T>, T>> { })
+	@:overload(function(items:haxe.extern.Rest<ts.AnyOf3<RecursiveArray<T>, T, js.lib.ConcatArray<ts.AnyOf2<RecursiveArray<T>, T>>>>):Array<ts.AnyOf2<RecursiveArray<T>, T>> { })
 	function concat(items:haxe.extern.Rest<js.lib.ConcatArray<ts.AnyOf2<RecursiveArray<T>, T>>>):Array<ts.AnyOf2<RecursiveArray<T>, T>>;
 	/**
 		Adds all the elements of an array into a string, separated by the specified separator string.

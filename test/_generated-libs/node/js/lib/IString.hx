@@ -46,7 +46,15 @@ typedef IString = {
 	/**
 		Replaces text in a string, using a regular expression or search string.
 		
-		Replaces first match with string or all matches with RegExp.
+		Passes a string and
+		{@linkcode
+		replaceValue
+		}
+		to the `[Symbol.replace]` method on
+		{@linkcode
+		searchValue
+		}
+		. This method is expected to implement its own replacement algorithm.
 		
 		Replaces text in a string, using an object that supports replacement within a string.
 	**/

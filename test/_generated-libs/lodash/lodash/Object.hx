@@ -2,15 +2,15 @@ package lodash;
 
 typedef Object<T> = {
 	function concat(values:haxe.extern.Rest<Many<T>>):Collection<T>;
-	function countBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Object<Dictionary<Float>>;
+	function countBy(?iteratee:ValueIteratee<Dynamic>):Object<Dictionary<Float>>;
 	dynamic function each(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
 	dynamic function eachRight(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
-	function every(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Collection<Dynamic> { })
+	function every(?predicate:ObjectIterateeCustom<T, Bool>):Bool;
+	@:overload(function(?predicate:ObjectIterateeCustom<T, Bool>):Collection<Dynamic> { })
 	function filter<S:(Dynamic)>(predicate:ObjectIteratorTypeGuard<T, S>):Collection<S>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
+	@:overload(function(?predicate:ObjectIterateeCustom<T, Bool>, ?fromIndex:Float):Null<Dynamic> { })
 	function find<S:(Dynamic)>(predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>, ?fromIndex:Float):Null<Dynamic> { })
+	@:overload(function(?predicate:ObjectIterateeCustom<T, Bool>, ?fromIndex:Float):Null<Dynamic> { })
 	function findLast<S:(Dynamic)>(predicate:ObjectIteratorTypeGuard<T, S>, ?fromIndex:Float):Null<S>;
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<PropertyName, Dynamic>>):Collection<Bool> { })
 	@:overload(function():Collection<Dynamic> { })
@@ -23,9 +23,9 @@ typedef Object<T> = {
 	function flatMapDepth<TResult>(iteratee:ts.AnyOf4<String, Float, js.lib.Symbol, ObjectIterator<T, ts.AnyOf2<ListOfRecursiveArraysOrValues<TResult>, TResult>>>, ?depth:Float):Collection<TResult>;
 	function forEach(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
 	function forEachRight(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
-	function groupBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Object<Dictionary<Array<Dynamic>>>;
+	function groupBy(?iteratee:ValueIteratee<Dynamic>):Object<Dictionary<Array<Dynamic>>>;
 	function includes(target:Dynamic, ?fromIndex:Float):Bool;
-	function keyBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> PropertyName, { }>):Object<Dictionary<Dynamic>>;
+	function keyBy(?iteratee:ValueIterateeCustom<Dynamic, PropertyName>):Object<Dictionary<Dynamic>>;
 	@:overload(function<TResult>(iteratee:ObjectIterator<T, TResult>):Collection<TResult> { })
 	@:overload(function(iteratee:PropertyName):Collection<Dynamic> { })
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<PropertyName, Dynamic>>):Collection<Bool> { })
@@ -37,11 +37,11 @@ typedef Object<T> = {
 	function reduce<TResult>(callback:MemoObjectIterator<Dynamic, TResult, T>, accumulator:TResult):TResult;
 	@:overload(function(callback:MemoObjectIterator<Dynamic, Dynamic, T>):Null<Dynamic> { })
 	function reduceRight<TResult>(callback:MemoObjectIterator<Dynamic, TResult, T>, accumulator:TResult):TResult;
-	function reject(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Collection<Dynamic>;
+	function reject(?predicate:ObjectIterateeCustom<T, Bool>):Collection<Dynamic>;
 	function sample():Null<Dynamic>;
 	function sampleSize(?n:Float):Collection<Dynamic>;
 	function shuffle():Collection<Dynamic>;
-	function some(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Bool>, { }>):Bool;
+	function some(?predicate:ObjectIterateeCustom<T, Bool>):Bool;
 	function sortBy(iteratees:haxe.extern.Rest<Many<ObjectIteratee<T>>>):Collection<Dynamic>;
 	function castArray():Collection<T>;
 	function toArray():Collection<Dynamic>;
@@ -92,7 +92,7 @@ typedef Object<T> = {
 	@:overload(function():Object<T> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
 	function extendWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<Dynamic>;
-	@:overload(function<TKey:(Dynamic), TDefault>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
+	@:overload(function<TKey:(Dynamic), TDefault>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic)>(path:ts.Tuple2<TKey1, TKey2>):Dynamic { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TDefault>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic)>(path:ts.Tuple3<TKey1, TKey2, TKey3>):Dynamic { })
@@ -100,9 +100,9 @@ typedef Object<T> = {
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):Dynamic { })
 	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function(path:PropertyPath, ?defaultValue:Dynamic):Dynamic { })
-	function get<TKey:(Dynamic)>(path:ts.AnyOf2<ts.Tuple1<TKey>, TKey>):Dynamic;
-	function invertBy(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic) -> Any, { }>):Object<Dictionary<Array<String>>>;
-	function mapKeys(?iteratee:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Object<Dictionary<Dynamic>>;
+	function get<TKey:(Dynamic)>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>):Dynamic;
+	function invertBy(?iteratee:ValueIteratee<Dynamic>):Object<Dictionary<Array<String>>>;
+	function mapKeys(?iteratee:ObjectIteratee<T>):Object<Dictionary<Dynamic>>;
 	@:overload(function<TResult>(callback:DictionaryIterator<Dynamic, TResult>):Object<Dictionary<TResult>> { })
 	@:overload(function(iteratee:Dynamic):Object<Dynamic> { })
 	@:overload(function<TKey:(Dynamic)>(iteratee:TKey):Object<Dictionary<Dynamic>> { })
@@ -124,7 +124,7 @@ typedef Object<T> = {
 	function omitBy(predicate:ValueKeyIteratee<Dynamic>):Object<T>;
 	@:overload(function(props:haxe.extern.Rest<PropertyPath>):Object<T> { })
 	function pick<U:(Dynamic)>(props:haxe.extern.Rest<Many<U>>):Object<{ }>;
-	@:overload(function(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, (value:Dynamic, key:String) -> Any, { }>):Object<T> { })
+	@:overload(function(?predicate:ValueKeyIteratee<Dynamic>):Object<T> { })
 	function pickBy<S:(Dynamic)>(predicate:ValueKeyIterateeTypeGuard<Dynamic, S>):Object<Dynamic>;
 	@:overload(function():ImpChain<Dynamic> { })
 	function transform<TResult>(iteratee:MemoVoidDictionaryIterator<Dynamic, TResult>, ?accumulator:TResult):ImpChain<TResult>;
@@ -213,8 +213,8 @@ typedef Object<T> = {
 	function inRange(start:Float, ?end:Float):Bool;
 	@:overload(function(max:Float, ?floating:Bool):Float { })
 	function random(?floating:Bool):Float;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findKey(?predicate:ObjectIteratee<T>):Null<String>;
+	function findLastKey(?predicate:ObjectIteratee<T>):Null<String>;
 	function forIn(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
 	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;
 	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):Object<T>;

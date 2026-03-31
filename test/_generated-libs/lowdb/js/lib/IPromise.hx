@@ -12,5 +12,5 @@ typedef IPromise<T> = {
 		Attaches a callback for only the rejection of the Promise.
 	**/
 	@:native("catch")
-	function catch_<TResult>(?onrejected:(reason:Dynamic) -> ts.AnyOf2<PromiseLike<TResult>, TResult>):js.lib.Promise<ts.AnyOf2<T, TResult>>;
+	function catch_<TResult>(?onrejected:(reason:Dynamic) -> ts.AnyOf2<PromiseLike<TResult>, TResult>):js.lib.Promise<ts.AnyOf2<TResult, T>>;
 };

@@ -4,7 +4,7 @@ typedef JQueryStatic = {
 	@:overload(function<TElement:(js.html.Element)>(html:String, ?ownerDocument_attributes:ts.AnyOf2<js.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
 	@:overload(function<TElement:(js.html.DOMElement)>(selector:String, ?context:ts.AnyOf3<js.html.DOMElement, js.html.Document, JQuery<js.html.Element>>):JQuery<TElement> { })
 	@:overload(function(element:js.html.SelectElement):JQuery<js.html.SelectElement> { })
-	@:overload(function<T:(js.html.DOMElement)>(element_elementArray:ts.AnyOf2<js.lib.ArrayLike<T>, T>):JQuery<T> { })
+	@:overload(function<T:(js.html.DOMElement)>(element_elementArray:ts.AnyOf2<T, js.lib.ArrayLike<T>>):JQuery<T> { })
 	@:overload(function<T>(selection:JQuery<T>):JQuery<T> { })
 	@:overload(function<TElement>(callback:(Dollar:JQueryStatic) -> Void):JQuery<TElement> { })
 	@:overload(function<T:(global.jquery.PlainObject<Dynamic>)>(object:T):JQuery<T> { })

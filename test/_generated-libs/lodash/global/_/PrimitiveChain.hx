@@ -86,8 +86,8 @@ typedef PrimitiveChain<T> = {
 	function random(?floating:Bool):PrimitiveChain<Float>;
 	function entries():CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):StringNullableChain;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<T, Any>, { }>):StringNullableChain;
+	function findKey(?predicate:ObjectIteratee<T>):StringNullableChain;
+	function findLastKey(?predicate:ObjectIteratee<T>):StringNullableChain;
 	function forIn(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;
 	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;
 	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;

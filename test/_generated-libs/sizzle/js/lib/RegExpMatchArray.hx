@@ -1,10 +1,21 @@
 package js.lib;
 
 typedef RegExpMatchArray = {
+	/**
+		The index of the search at which the result was found.
+	**/
 	@:optional
 	var index : Float;
+	/**
+		A copy of the search string.
+	**/
 	@:optional
 	var input : String;
+	/**
+		The first match. This will always be present because `null` will be returned if there are no matches.
+	**/
+	@:native("0")
+	var Zero : String;
 	/**
 		Gets or sets the length of the array. This is a number one higher than the highest index in the array.
 	**/

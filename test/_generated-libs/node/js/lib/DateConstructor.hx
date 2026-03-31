@@ -2,7 +2,7 @@ package js.lib;
 
 typedef DateConstructor = {
 	@:overload(function(value:ts.AnyOf2<String, Float>):js.lib.Date { })
-	@:overload(function(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):js.lib.Date { })
+	@:overload(function(year:Float, monthIndex:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):js.lib.Date { })
 	@:overload(function(vd:VarDate):js.lib.Date { })
 	@:overload(function(value:ts.AnyOf3<String, Float, js.lib.Date>):js.lib.Date { })
 	function new();
@@ -16,6 +16,9 @@ typedef DateConstructor = {
 	/**
 		Returns the number of milliseconds between midnight, January 1, 1970 Universal Coordinated Time (UTC) (or GMT) and the specified date.
 	**/
-	function UTC(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Float;
+	function UTC(year:Float, monthIndex:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Float;
+	/**
+		Returns the number of milliseconds elapsed since midnight, January 1, 1970 Universal Coordinated Time (UTC).
+	**/
 	function now():Float;
 };

@@ -17,7 +17,7 @@ package node.http;
 	function getHeaderNames():Array<String>;
 	function hasHeader(name:String):Bool;
 	function removeHeader(name:String):Void;
-	function addTrailers(headers:ts.AnyOf2<OutgoingHttpHeaders, Array<ts.Tuple2<String, String>>>):Void;
+	function addTrailers(headers:ts.AnyOf2<Array<ts.Tuple2<String, String>>, OutgoingHttpHeaders>):Void;
 	function flushHeaders():Void;
 	/**
 		Event emitter

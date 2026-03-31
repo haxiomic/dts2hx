@@ -5,4 +5,4 @@ package js.lib.intl;
 	
 	[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
 **/
-typedef LocalesArgument = Null<ts.AnyOf3<String, Locale, Array<ts.AnyOf2<String, Locale>>>>;
+typedef LocalesArgument = Null<ts.AnyOf3<String, Locale, haxe.ds.ReadOnlyArray<ts.AnyOf2<String, Locale>>>>;

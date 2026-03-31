@@ -14,7 +14,7 @@ typedef LoDashImplicitWrapper<TValue> = {
 	function cloneDeep():TValue;
 	@:overload(function():TValue { })
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<TValue>):Dynamic;
-	@:overload(function<TResult>(customizer:CloneWithCustomizer<TValue, Null<TResult>>):ts.AnyOf2<TValue, TResult> { })
+	@:overload(function<TResult>(customizer:CloneWithCustomizer<TValue, Null<TResult>>):ts.AnyOf2<TResult, TValue> { })
 	@:overload(function():TValue { })
 	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<TValue, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
@@ -82,8 +82,8 @@ typedef LoDashImplicitWrapper<TValue> = {
 	function random(?floating:Bool):Float;
 	function entries():Collection<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<TValue, Any>, { }>):Null<String>;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, ObjectIterator<TValue, Any>, { }>):Null<String>;
+	function findKey(?predicate:ObjectIteratee<TValue>):Null<String>;
+	function findLastKey(?predicate:ObjectIteratee<TValue>):Null<String>;
 	function forIn(?iteratee:ObjectIterator<TValue, Dynamic>):LoDashImplicitWrapper<TValue>;
 	function forInRight(?iteratee:ObjectIterator<TValue, Dynamic>):LoDashImplicitWrapper<TValue>;
 	function forOwn(?iteratee:ObjectIterator<TValue, Dynamic>):LoDashImplicitWrapper<TValue>;
