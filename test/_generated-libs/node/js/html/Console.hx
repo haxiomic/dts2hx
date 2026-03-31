@@ -27,8 +27,7 @@ typedef Console = {
 	/**
 		The `console.debug()` function is an alias for
 		{@link
-		console.log
-		()
+		console.log()
 		}
 		.
 	**/
@@ -37,7 +36,7 @@ typedef Console = {
 	/**
 		Uses
 		{@link
-		util.inspect ()
+		util.inspect()
 		}
 		on `obj` and prints the resulting string to `stdout`.
 		This function bypasses any custom `inspect()` function defined on `obj`.
@@ -47,8 +46,7 @@ typedef Console = {
 	/**
 		This method calls
 		{@link
-		console.log
-		()
+		console.log()
 		}
 		passing it the arguments received. Please note that this method does not produce any XML formatting
 	**/
@@ -68,8 +66,7 @@ typedef Console = {
 	/**
 		The `console.groupCollapsed()` function is an alias for
 		{@link
-		console.group
-		()
+		console.group()
 		}
 		.
 	**/
@@ -83,13 +80,11 @@ typedef Console = {
 	/**
 		The
 		{@link
-		console.info
-		()
+		console.info()
 		}
 		function is an alias for
 		{@link
-		console.log
-		()
+		console.log()
 		}
 		.
 	**/
@@ -114,8 +109,7 @@ typedef Console = {
 	/**
 		Stops a timer that was previously started by calling
 		{@link
-		console.time
-		()
+		console.time()
 		}
 		and prints the result to `stdout`.
 	**/
@@ -124,8 +118,7 @@ typedef Console = {
 	/**
 		For a timer that was previously started by calling
 		{@link
-		console.time
-		()
+		console.time()
 		}
 		, prints the elapsed time and other `data` arguments to `stdout`.
 	**/
@@ -140,7 +133,7 @@ typedef Console = {
 	/**
 		Prints to `stderr` the string 'Trace :', followed by the
 		{@link
-		util.format ()
+		util.format()
 		}
 		formatted message and stack trace to the current position in the code.
 	**/
@@ -149,13 +142,11 @@ typedef Console = {
 	/**
 		The
 		{@link
-		console.warn
-		()
+		console.warn()
 		}
 		function is an alias for
 		{@link
-		console.error
-		()
+		console.error()
 		}
 		.
 	**/

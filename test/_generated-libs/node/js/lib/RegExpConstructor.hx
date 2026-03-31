@@ -27,5 +27,19 @@ typedef RegExpConstructor = {
 	var Dollar8 : String;
 	@:native("$9")
 	var Dollar9 : String;
+	var input : String;
+	@:native("$_")
+	var Dollar__ : String;
 	var lastMatch : String;
+	@:native("$&")
+	var DollarAmpersand : String;
+	var lastParen : String;
+	@:native("$+")
+	var DollarPlus : String;
+	var leftContext : String;
+	@:native("$`")
+	var Dollar_ : String;
+	var rightContext : String;
+	@:native("$\'")
+	var Dollar : String;
 };

@@ -115,7 +115,7 @@ typedef Global = {
 			@:selfCall
 			function call(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
 			function new(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):js.lib.intl.PluralRules;
-			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.PluralRules.PluralRulesOptions):Array<String>;
+			function supportedLocalesOf(locales:ts.AnyOf2<String, Array<String>>, ?options:{ @:optional var localeMatcher : String; }):Array<String>;
 		};
 	};
 	var JSON : js.lib.JSON;
