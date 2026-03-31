@@ -38,7 +38,8 @@ typedef IString = {
 	/**
 		Matches a string with a regular expression, and returns an array containing the results of that search.
 		
-		Matches a string an object that supports being matched against, and returns an array containing the results of that search.
+		Matches a string or an object that supports being matched against, and returns an array
+		containing the results of that search, or null if no matches are found.
 	**/
 	@:overload(function(matcher:{ }):Null<js.lib.RegExpMatchArray> { })
 	function match(regexp:ts.AnyOf2<String, js.lib.RegExp>):Null<js.lib.RegExpMatchArray>;

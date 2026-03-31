@@ -10,7 +10,6 @@ package node.http;
 	function setTimeout(timeout:Float, ?callback:() -> Void):ClientRequest;
 	function setNoDelay(?noDelay:Bool):Void;
 	function setSocketKeepAlive(?enable:Bool, ?initialDelay:Float):Void;
-	function setDefaultEncoding(encoding:String):ClientRequest;
 	/**
 		Event emitter
 		The defined events on documents including:
@@ -63,8 +62,5 @@ package node.http;
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ClientRequest { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientRequest { })
 	function removeListener(event:String, listener:() -> Void):ClientRequest;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ClientRequest;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ClientRequest;
-	function setMaxListeners(n:Float):ClientRequest;
 	static var prototype : ClientRequest;
 }

@@ -7,7 +7,5 @@ package global.three;
 		var slices : Float;
 		var stacks : Float;
 	};
-	function clone():ParametricBufferGeometry;
-	function copy(source:BufferGeometry):ParametricBufferGeometry;
 	static var prototype : ParametricBufferGeometry;
 }

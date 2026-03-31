@@ -10,7 +10,5 @@ package three;
 		var heightSegments : Float;
 		var depthSegments : Float;
 	};
-	function clone():BoxBufferGeometry;
-	function copy(source:BufferGeometry):BoxBufferGeometry;
 	static var prototype : BoxBufferGeometry;
 }

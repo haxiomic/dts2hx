@@ -59,9 +59,5 @@ package node.dgram;
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:(msg:global.Buffer, rinfo:RemoteInfo) -> Void):Socket { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Socket;
-	function setMaxListeners(n:Float):Socket;
 	static var prototype : Socket;
 }

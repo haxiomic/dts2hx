@@ -21,13 +21,5 @@ package global.three;
 		Sets the properties based on the values.
 	**/
 	function setValues(parameters:MeshMatcapMaterialParameters):Void;
-	/**
-		Return a new material with the same parameters as this material.
-	**/
-	function clone():MeshMatcapMaterial;
-	/**
-		Copy the parameters from the passed material into this material.
-	**/
-	function copy(material:Material):MeshMatcapMaterial;
 	static var prototype : MeshMatcapMaterial;
 }

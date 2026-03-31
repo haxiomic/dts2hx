@@ -10,13 +10,5 @@ package three;
 		Sets the properties based on the values.
 	**/
 	function setValues(parameters:LineDashedMaterialParameters):Void;
-	/**
-		Return a new material with the same parameters as this material.
-	**/
-	function clone():LineDashedMaterial;
-	/**
-		Copy the parameters from the passed material into this material.
-	**/
-	function copy(material:Material):LineDashedMaterial;
 	static var prototype : LineDashedMaterial;
 }

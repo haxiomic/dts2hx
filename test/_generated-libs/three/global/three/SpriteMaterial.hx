@@ -15,9 +15,5 @@ package global.three;
 		Copy the parameters from the passed material into this material.
 	**/
 	function copy(source:SpriteMaterial):SpriteMaterial;
-	/**
-		Return a new material with the same parameters as this material.
-	**/
-	function clone():SpriteMaterial;
 	static var prototype : SpriteMaterial;
 }

@@ -30,13 +30,5 @@ package global.three;
 		Convert the material to three.js JSON format.
 	**/
 	function toJSON(meta:Dynamic):Dynamic;
-	/**
-		Return a new material with the same parameters as this material.
-	**/
-	function clone():ShaderMaterial;
-	/**
-		Copy the parameters from the passed material into this material.
-	**/
-	function copy(material:Material):ShaderMaterial;
 	static var prototype : ShaderMaterial;
 }

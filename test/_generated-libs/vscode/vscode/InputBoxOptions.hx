@@ -42,5 +42,5 @@ typedef InputBoxOptions = {
 		to the user.
 	**/
 	@:optional
-	function validateInput(value:String):Null<ts.AnyOf2<String, global.Thenable<Null<String>>>>;
+	function validateInput(value:String):ProviderResult<String>;
 };

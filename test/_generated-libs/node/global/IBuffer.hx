@@ -266,4 +266,8 @@ typedef IBuffer = {
 		Converts a number to a string by using the current locale.
 	**/
 	function toLocaleString():String;
+	/**
+		Returns the primitive value of the specified object.
+	**/
+	function valueOf():js.lib.Uint8Array;
 };

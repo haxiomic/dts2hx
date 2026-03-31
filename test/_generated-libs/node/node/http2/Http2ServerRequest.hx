@@ -41,19 +41,11 @@ package node.http2;
 	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest;
 	@:overload(function(event:String, listener:(hadError:Bool, code:Float) -> Void):Http2ServerRequest { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest;
-	function setEncoding(encoding:String):Http2ServerRequest;
-	function pause():Http2ServerRequest;
-	function resume():Http2ServerRequest;
-	function unpipe(?destination:global.nodejs.WritableStream):Http2ServerRequest;
-	function wrap(oldStream:global.nodejs.ReadableStream):Http2ServerRequest;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerRequest { })
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Http2ServerRequest { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest { })
 	function removeListener(event:String, listener:() -> Void):Http2ServerRequest;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Http2ServerRequest;
-	function setMaxListeners(n:Float):Http2ServerRequest;
 	static var prototype : Http2ServerRequest;
 }

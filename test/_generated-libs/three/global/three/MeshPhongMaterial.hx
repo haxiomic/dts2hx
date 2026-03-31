@@ -39,13 +39,5 @@ package global.three;
 		Sets the properties based on the values.
 	**/
 	function setValues(parameters:MeshPhongMaterialParameters):Void;
-	/**
-		Return a new material with the same parameters as this material.
-	**/
-	function clone():MeshPhongMaterial;
-	/**
-		Copy the parameters from the passed material into this material.
-	**/
-	function copy(material:Material):MeshPhongMaterial;
 	static var prototype : MeshPhongMaterial;
 }

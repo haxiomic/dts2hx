@@ -78,8 +78,5 @@ package node.stream;
 	@:overload(function(event:String, listener:(src:Readable) -> Void):Writable { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable { })
 	function removeListener(event:String, listener:() -> Void):Writable;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Writable;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Writable;
-	function setMaxListeners(n:Float):Writable;
 	static var prototype : Writable;
 }

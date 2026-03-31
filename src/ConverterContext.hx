@@ -605,7 +605,7 @@ class ConverterContext {
 
 			// add static class members
 			for (staticClassMember in symbol.getExports().filter(s -> s.flags & SymbolFlags.ClassMember != 0 && s.isAccessibleField())) {
-				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, symbol, access, null);
+				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, symbol, access, staticClassMember.valueDeclaration);
 				field.enableAccess(AStatic);
 				hxModule.fields.push(field);
 			}
@@ -627,7 +627,7 @@ class ConverterContext {
 					// skip constructor type variables because these have been converted into classes
 					if (tc.isConstructorTypeVariableSymbol(moduleMember)) continue;
 
-					var field = fieldFromSymbol(nativeFieldName, moduleMember, symbol, access, null);
+					var field = fieldFromSymbol(nativeFieldName, moduleMember, symbol, access, moduleMember.valueDeclaration);
 					field.enableAccess(AStatic);
 					hxModule.fields.push(field);
 				}
@@ -1554,7 +1554,7 @@ class ConverterContext {
 		return complexTypeFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
 	}
 
-	function getTsTypeOfField(symbol:Symbol): TsType {
+	function getTsTypeOfField(symbol:Symbol, ?enclosingDeclaration: Node): TsType {
 		return if (symbol.valueDeclaration != null) {
 			tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
 		} else {
@@ -1562,6 +1562,17 @@ class ConverterContext {
 			// we can get the type of a prototype symbol by using the parent valueDeclaration as a location
 			if (symbol.flags & SymbolFlags.Prototype != 0 && parentSymbol != null) {
 				tc.getTypeOfSymbolAtLocation(symbol, parentSymbol.valueDeclaration);
+			} else if (symbol.declarations != null && symbol.declarations.length > 0) {
+				// TS 3.9+: mapped type properties may lack valueDeclaration but have declarations
+				tc.getTypeOfSymbolAtLocation(symbol, symbol.declarations[0]);
+			} else if (parentSymbol != null && parentSymbol.valueDeclaration != null) {
+				// TS 3.9+: mapped type properties may have no declarations at all;
+				// use the parent's valueDeclaration as a location fallback
+				tc.getTypeOfSymbolAtLocation(symbol, parentSymbol.valueDeclaration);
+			} else if (enclosingDeclaration != null) {
+				// TS 3.9+: some mapped type properties (e.g. Record) have no parent either;
+				// use the enclosing declaration as a location fallback
+				tc.getTypeOfSymbolAtLocation(symbol, enclosingDeclaration);
 			} else {
 				Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
 			}
@@ -1600,7 +1611,7 @@ class ConverterContext {
 		var userDoc = getDoc(symbol);
 		var docParts = userDoc != '' ? [userDoc] : [];
 
-		var tsType = getTsTypeOfField(symbol);
+		var tsType = getTsTypeOfField(symbol, enclosingDeclaration);
 
 		// add errors to field docs
 		function onError(message) {

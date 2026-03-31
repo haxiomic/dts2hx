@@ -9,11 +9,5 @@ package global.three;
 		var tubularSegments : Float;
 		var arc : Float;
 	};
-	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):TorusGeometry;
-	/**
-		Creates a new clone of the Geometry.
-	**/
-	function clone():TorusGeometry;
-	function copy(source:Geometry):TorusGeometry;
 	static var prototype : TorusGeometry;
 }

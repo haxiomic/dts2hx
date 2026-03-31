@@ -30,7 +30,5 @@ package node.worker_threads;
 	@:overload(function(event:String, listener:(value:Dynamic) -> Void):MessagePort { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):MessagePort { })
 	function off(event:String, listener:() -> Void):MessagePort;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):MessagePort;
-	function setMaxListeners(n:Float):MessagePort;
 	static var prototype : MessagePort;
 }

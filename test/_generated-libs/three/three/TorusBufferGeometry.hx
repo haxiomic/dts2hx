@@ -9,7 +9,5 @@ package three;
 		var tubularSegments : Float;
 		var arc : Float;
 	};
-	function clone():TorusBufferGeometry;
-	function copy(source:BufferGeometry):TorusBufferGeometry;
 	static var prototype : TorusBufferGeometry;
 }

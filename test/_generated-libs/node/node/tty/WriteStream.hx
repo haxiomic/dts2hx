@@ -46,23 +46,11 @@ package node.tty;
 	@:overload(function(port:Float, ?connectionListener:() -> Void):WriteStream { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):WriteStream { })
 	function connect(options:node.net.SocketConnectOpts, ?connectionListener:() -> Void):WriteStream;
-	function setEncoding(?encoding:String):WriteStream;
-	function pause():WriteStream;
-	function resume():WriteStream;
-	function setTimeout(timeout:Float, ?callback:() -> Void):WriteStream;
-	function setNoDelay(?noDelay:Bool):WriteStream;
-	function setKeepAlive(?enable:Bool, ?initialDelay:Float):WriteStream;
-	function setDefaultEncoding(encoding:String):WriteStream;
-	function unpipe(?destination:global.nodejs.WritableStream):WriteStream;
-	function wrap(oldStream:global.nodejs.ReadableStream):WriteStream;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
 	@:overload(function(event:String, listener:() -> Void):WriteStream { })
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):WriteStream { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream { })
 	function removeListener(event:String, listener:() -> Void):WriteStream;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):WriteStream;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):WriteStream;
-	function setMaxListeners(n:Float):WriteStream;
 	static var prototype : WriteStream;
 }

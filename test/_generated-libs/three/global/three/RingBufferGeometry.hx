@@ -10,7 +10,5 @@ package global.three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
-	function clone():RingBufferGeometry;
-	function copy(source:BufferGeometry):RingBufferGeometry;
 	static var prototype : RingBufferGeometry;
 }

@@ -728,9 +728,5 @@ package node.inspector;
 	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.DetachedFromWorkerEventDataType>) -> Void):Session { })
 	@:overload(function(event:String, listener:(message:InspectorNotification<node.inspector.nodeworker.ReceivedMessageFromWorkerEventDataType>) -> Void):Session { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Session;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Session;
-	function setMaxListeners(n:Float):Session;
 	static var prototype : Session;
 }

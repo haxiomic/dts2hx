@@ -57,9 +57,5 @@ package node.net;
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Server;
-	function setMaxListeners(n:Float):Server;
 	static var prototype : Server;
 }

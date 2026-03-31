@@ -104,23 +104,11 @@ package node.tls;
 	@:overload(function(port:Float, ?connectionListener:() -> Void):TLSSocket { })
 	@:overload(function(path:String, ?connectionListener:() -> Void):TLSSocket { })
 	function connect(options:node.net.SocketConnectOpts, ?connectionListener:() -> Void):TLSSocket;
-	function setEncoding(?encoding:String):TLSSocket;
-	function pause():TLSSocket;
-	function resume():TLSSocket;
-	function setTimeout(timeout:Float, ?callback:() -> Void):TLSSocket;
-	function setNoDelay(?noDelay:Bool):TLSSocket;
-	function setKeepAlive(?enable:Bool, ?initialDelay:Float):TLSSocket;
-	function setDefaultEncoding(encoding:String):TLSSocket;
-	function unpipe(?destination:global.nodejs.WritableStream):TLSSocket;
-	function wrap(oldStream:global.nodejs.ReadableStream):TLSSocket;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:() -> Void):TLSSocket { })
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):TLSSocket { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket { })
 	function removeListener(event:String, listener:() -> Void):TLSSocket;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):TLSSocket;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):TLSSocket;
-	function setMaxListeners(n:Float):TLSSocket;
 	static var prototype : TLSSocket;
 }

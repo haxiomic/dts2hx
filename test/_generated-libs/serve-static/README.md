@@ -1,6 +1,6 @@
 # Haxe Externs for serve-static
 
-Generated from **@types/serve-static v1.13.3** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 3.8.3** with arguments:
+Generated from **@types/serve-static v1.13.3** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 3.9.10** with arguments:
 
 	dts2hx express --output _generated-libs --noDts2hxVersion
 

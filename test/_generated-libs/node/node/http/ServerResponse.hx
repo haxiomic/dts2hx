@@ -9,8 +9,6 @@ package node.http;
 	function writeContinue(?callback:() -> Void):Void;
 	@:overload(function(statusCode:Float, ?headers:OutgoingHttpHeaders):ServerResponse { })
 	function writeHead(statusCode:Float, ?reasonPhrase:String, ?headers:OutgoingHttpHeaders):ServerResponse;
-	function setTimeout(msecs:Float, ?callback:() -> Void):ServerResponse;
-	function setDefaultEncoding(encoding:String):ServerResponse;
 	/**
 		Event emitter
 		The defined events on documents including:
@@ -63,8 +61,5 @@ package node.http;
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):ServerResponse { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerResponse { })
 	function removeListener(event:String, listener:() -> Void):ServerResponse;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerResponse;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ServerResponse;
-	function setMaxListeners(n:Float):ServerResponse;
 	static var prototype : ServerResponse;
 }

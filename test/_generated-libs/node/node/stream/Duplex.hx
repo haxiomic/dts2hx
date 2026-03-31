@@ -18,11 +18,6 @@ package node.stream;
 	function end(?cb:() -> Void):Void;
 	function cork():Void;
 	function uncork():Void;
-	function setEncoding(encoding:String):Duplex;
-	function pause():Duplex;
-	function resume():Duplex;
-	function unpipe(?destination:global.nodejs.WritableStream):Duplex;
-	function wrap(oldStream:global.nodejs.ReadableStream):Duplex;
 	/**
 		Event emitter
 		The defined events on documents including:
@@ -68,8 +63,5 @@ package node.stream;
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Duplex { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex { })
 	function removeListener(event:String, listener:() -> Void):Duplex;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Duplex;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Duplex;
-	function setMaxListeners(n:Float):Duplex;
 	static var prototype : Duplex;
 }

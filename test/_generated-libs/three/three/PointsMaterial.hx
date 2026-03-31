@@ -10,13 +10,5 @@ package three;
 		Sets the properties based on the values.
 	**/
 	function setValues(parameters:PointsMaterialParameters):Void;
-	/**
-		Return a new material with the same parameters as this material.
-	**/
-	function clone():PointsMaterial;
-	/**
-		Copy the parameters from the passed material into this material.
-	**/
-	function copy(material:Material):PointsMaterial;
 	static var prototype : PointsMaterial;
 }

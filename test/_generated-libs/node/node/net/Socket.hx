@@ -9,8 +9,6 @@ package node.net;
 	@:overload(function(path:String, ?connectionListener:() -> Void):Socket { })
 	function connect(options:SocketConnectOpts, ?connectionListener:() -> Void):Socket;
 	function setEncoding(?encoding:String):Socket;
-	function pause():Socket;
-	function resume():Socket;
 	function setTimeout(timeout:Float, ?callback:() -> Void):Socket;
 	function setNoDelay(?noDelay:Bool):Socket;
 	function setKeepAlive(?enable:Bool, ?initialDelay:Float):Socket;
@@ -98,17 +96,11 @@ package node.net;
 	@:overload(function(event:String, listener:(err:js.lib.Error, address:String, family:ts.AnyOf2<String, Float>, host:String) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
-	function setDefaultEncoding(encoding:String):Socket;
-	function unpipe(?destination:global.nodejs.WritableStream):Socket;
-	function wrap(oldStream:global.nodejs.ReadableStream):Socket;
 	@:overload(function(event:String, listener:(chunk:Dynamic) -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:() -> Void):Socket { })
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Socket { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket { })
 	function removeListener(event:String, listener:() -> Void):Socket;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Socket;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Socket;
-	function setMaxListeners(n:Float):Socket;
 	static var prototype : Socket;
 }

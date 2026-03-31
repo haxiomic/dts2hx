@@ -11,7 +11,5 @@ package global.three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
-	function clone():SphereBufferGeometry;
-	function copy(source:BufferGeometry):SphereBufferGeometry;
 	static var prototype : SphereBufferGeometry;
 }

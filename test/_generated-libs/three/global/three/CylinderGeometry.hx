@@ -12,11 +12,5 @@ package global.three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
-	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):CylinderGeometry;
-	/**
-		Creates a new clone of the Geometry.
-	**/
-	function clone():CylinderGeometry;
-	function copy(source:Geometry):CylinderGeometry;
 	static var prototype : CylinderGeometry;
 }

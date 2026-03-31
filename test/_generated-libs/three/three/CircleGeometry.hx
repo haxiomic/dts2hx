@@ -8,11 +8,5 @@ package three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
-	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):CircleGeometry;
-	/**
-		Creates a new clone of the Geometry.
-	**/
-	function clone():CircleGeometry;
-	function copy(source:Geometry):CircleGeometry;
 	static var prototype : CircleGeometry;
 }
