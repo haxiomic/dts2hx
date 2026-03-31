@@ -148,7 +148,7 @@ typedef Global = {
 	dynamic function setInterval(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	dynamic function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	@:overload(function(callback:() -> Void):Void { })
-	dynamic function queueMicrotask(callback:haxe.Constraints.Function):Void;
+	dynamic function queueMicrotask(callback:js.html.VoidFunction):Void;
 	var undefined : Null<Any>;
 	dynamic function unescape(str:String):String;
 	dynamic function gc():Void;
