@@ -33,7 +33,7 @@ class TestNegative {
 		testUniqueSymbolLoss();
 		testEnumMemberTypeLoss();
 		testThisTypePolymorphism();
-		testCallableIntersectionLoss();
+		testCallableIntersectionFixed();
 		testPrivateFields();
 		testProtectedModifier();
 		testAbstractClassNotEnforced();
@@ -154,14 +154,14 @@ class TestNegative {
 		eq(result, "✨star✨ plus", "FancyBuilder chaining works");
 	}
 
-	static function testCallableIntersectionLoss() {
-		begin("A12: callable + object intersection → Dynamic");
+	static function testCallableIntersectionFixed() {
+		begin("A12: callable + object intersection → @:selfCall + fields (FIXED)");
 		// CallableWithField = ((x: string) => number) & { description: string }
-		// Becomes Dynamic — both callable and field access lost at type level
-		var callable:Dynamic = Limitations.makeCallable();
-		// Must use Dynamic to call and access field
-		eq(callable("hello"), 5, "callable works via Dynamic");
-		eq(callable.description, "length calculator", "field works via Dynamic");
+		// Now correctly generates @:selfCall function + description field
+		var callable = Limitations.makeCallable();
+		eq(callable.description, "length calculator", "field access typed");
+		// @:selfCall enables calling: callable.call("hello")
+		eq(callable.call("hello"), 5.0, "callable via @:selfCall");
 	}
 
 	static function testPrivateFields() {

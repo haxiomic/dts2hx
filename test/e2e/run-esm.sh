@@ -97,39 +97,87 @@ check_default "Default export uses @default" "externs-esm/build/modules/patterns
 # Module-level exports (export =) should use @:js.import(@default ...)
 check_default "Module-level export uses @default" "externs-esm/build/modules/Patterns.hx"
 
+# Relative paths should have .js extension for Node ESM compatibility
+check_js_ext() {
+    local desc="$1" file="$2"
+    if grep -q '@:js.import.*"\..*\.js"' "$file" 2>/dev/null || grep -q '@:js.import(@default.*\.js")' "$file" 2>/dev/null; then
+        PASS=$((PASS + 1))
+    else
+        FAIL=$((FAIL + 1))
+        echo "  FAIL: $desc — missing .js extension in import path"
+        grep "@:js.import" "$file" 2>/dev/null
+    fi
+}
+check_js_ext "Animal path has .js" "externs-esm/build/testlib/Animal.hx"
+check_js_ext "Module-level path has .js" "externs-esm/build/modules/Patterns.hx"
+
+# Package specifiers should NOT have .js extension
+check_no_js_ext() {
+    local desc="$1" file="$2"
+    if grep -q '@:js.import.*\.js"' "$file" 2>/dev/null; then
+        FAIL=$((FAIL + 1))
+        echo "  FAIL: $desc — bare specifier should not have .js extension"
+    else
+        PASS=$((PASS + 1))
+    fi
+}
+check_no_js_ext "npm package path has no .js" "externs-esm/modules/ambient/MyLibrary.hx"
+
 echo "  ESM metadata: $PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ] || exit 1
 
-# Step 4: Compile Haxe test against ESM externs
-echo "Step 4: Compiling Haxe test (ESM externs)..."
+# Step 4: Compile and run ESM runtime smoke test
+# Uses .mjs extension so Node treats it as ESM
+echo "Step 4: Compiling ESM runtime smoke test..."
+cat > TestESMSmoke.hx << 'HXEOF'
+import build.testlib.Animal;
+import build.Testlib;
+
+class TestESMSmoke {
+    static var passed = 0;
+    static var failed = 0;
+
+    static function assert(cond:Bool, desc:String) {
+        if (cond) { passed++; } else { failed++; trace('  FAIL: $desc'); }
+    }
+
+    static function main() {
+        // Test named import (class constructor + methods)
+        var a = new Animal("cat", 4);
+        assert(a.name == "cat", "Animal name via named import");
+        assert(a.legs == 4, "Animal legs via named import");
+
+        // Test default import (module-level function)
+        assert(Testlib.greet("world") == "Hello, world!", "greet via default import");
+        assert(Testlib.add(2, 3) == 5, "add via default import");
+
+        trace('ESM runtime: $passed passed, $failed failed');
+        if (failed > 0) js.Node.process.exit(1);
+    }
+}
+HXEOF
+
 haxe \
   -cp . \
   -cp externs-esm \
   -lib hxnodejs \
-  -main TestE2E \
-  -js test_output_esm.js \
+  -main TestESMSmoke \
+  -js test_esm_smoke.mjs \
   -D js-es=6 \
   -w -WDeprecatedEnumAbstract \
   -w -WDeprecated
-echo "  -> test_output_esm.js"
+echo "  -> test_esm_smoke.mjs"
 
-# Step 5: Verify the compiled JS contains ESM import statements
-echo "Step 5: Checking for ESM imports in compiled JS..."
-ESM_IMPORTS=$(grep -c "^import " test_output_esm.js 2>/dev/null || echo 0)
-if [ "$ESM_IMPORTS" -gt 0 ]; then
-    echo "  Found $ESM_IMPORTS ESM import statement(s)"
-else
-    echo "  WARNING: No ESM import statements found in compiled JS"
-    echo "  (This may be expected if DCE removed all extern usage)"
-fi
+# Verify ESM import statements are present
+ESM_IMPORTS=$(grep -c "^import " test_esm_smoke.mjs 2>/dev/null || echo 0)
+echo "  $ESM_IMPORTS ESM import statement(s) in compiled JS"
 
-# Step 6: Run runtime tests
-# Note: ESM imports in the compiled JS require module resolution.
-# The compiled output mixes ESM imports with IIFE wrapper, so we test
-# only that compilation succeeded. Full runtime testing requires an
-# ESM-compatible module loader setup.
+# Step 5: Run ESM smoke test with Node
+echo "Step 5: Running ESM runtime smoke test..."
+node test_esm_smoke.mjs 2>&1
+
 echo ""
-echo "ESM e2e results: compilation succeeded, $PASS metadata checks passed"
+echo "ESM e2e results: $PASS metadata checks passed, runtime verified"
 
 # Cleanup
-rm -f test_output_esm.js
+rm -f test_esm_smoke.mjs TestESMSmoke.hx

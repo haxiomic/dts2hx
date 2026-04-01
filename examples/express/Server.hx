@@ -14,7 +14,7 @@ class Server {
 
 		app.get('/route', (req, res, next) -> res.send('Example route'));
 
-		var router = express.Router.call_();
+		var router = express.Router.call();
 
 		// middleware that is specific to this router
 		router.use(function timeLog (req, res, next) {

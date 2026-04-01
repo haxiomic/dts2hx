@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.1.18",
-    "dts2hx": "*"
+    "esbuild": "^0.24.0",
+    "dts2hx": "file:../../"
   },
   "dependencies": {
     "three": "0.116.0"

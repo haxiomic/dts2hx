@@ -24,7 +24,7 @@
   "author": "haxiomic",
   "license": "ISC",
   "dependencies": {
-    "typescript": "6.0.2"
+    "typescript": "5.9.3"
   },
   "devDependencies": {
     "@types/node": "11.11.3",

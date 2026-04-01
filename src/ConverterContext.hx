@@ -709,19 +709,15 @@ class ConverterContext {
 			// (we resolve field collisions here because the later pass doesn't alias to anon fields)
 			fields.resolveNameCollisions();
 
-			// if an interface has only index signatures and no named fields, convert to the appropriate Haxe type
-			if (fields.length == 0 && indexSignatures.length > 0) {
-				var stringIndexType = declaredType.getStringIndexType();
-				var numberIndexType = declaredType.getNumberIndexType();
-				if (stringIndexType != null) {
-					var hxType = complexTypeFromTsType(stringIndexType, symbol, access, declaration);
-					TDAlias(macro :haxe.DynamicAccess<$hxType>);
-				} else if (numberIndexType != null) {
-					var hxType = complexTypeFromTsType(numberIndexType, symbol, access, declaration);
-					TDAlias(macro :Array<$hxType>);
-				} else {
-					TDAlias(TAnonymous(fields));
-				}
+			var stringIndexType = declaredType.getStringIndexType();
+			var numberIndexType = declaredType.getNumberIndexType();
+
+			if (fields.length == 0 && stringIndexType != null) {
+				var hxType = complexTypeFromTsType(stringIndexType, symbol, access, declaration);
+				TDAlias(macro :haxe.DynamicAccess<$hxType>);
+			} else if (fields.length == 0 && numberIndexType != null) {
+				var hxType = complexTypeFromTsType(numberIndexType, symbol, access, declaration);
+				TDAlias(macro :Array<$hxType>);
 			} else {
 				TDAlias(TAnonymous(fields));
 			}
@@ -1223,7 +1219,10 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			if (options.allowIntersectionRasterization) {
+			// try to rasterize if the intersection has call signatures (callable + object pattern)
+			// or if explicitly allowed via --allowIntersectionRasterization
+			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
+			if (options.allowIntersectionRasterization || hasCallSignatures) {
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
 				// @! todo: avoid recursive type conversion (see jquery)
@@ -1357,19 +1356,15 @@ class ConverterContext {
 			 * For now, we can handle the special case of an index signature with no fields
 			 */
 			// special case handling
-			if (fields.length == 0) {
-				var stringIndexType = tsType.getStringIndexType();
-				var numberIndexType = tsType.getNumberIndexType();
+			var stringIndexType = tsType.getStringIndexType();
+			var numberIndexType = tsType.getNumberIndexType();
 
-				if (stringIndexType != null) {
-					var hxType = complexTypeFromTsType(stringIndexType, moduleSymbol, accessContext, enclosingDeclaration);
-					macro :haxe.DynamicAccess<$hxType>;
-				} else if (numberIndexType != null) {
-					var hxType = complexTypeFromTsType(numberIndexType, moduleSymbol, accessContext, enclosingDeclaration);
-					macro :Array<$hxType>;
-				} else {
-					TAnonymous(fields);
-				}
+			if (fields.length == 0 && stringIndexType != null) {
+				var hxType = complexTypeFromTsType(stringIndexType, moduleSymbol, accessContext, enclosingDeclaration);
+				macro :haxe.DynamicAccess<$hxType>;
+			} else if (fields.length == 0 && numberIndexType != null) {
+				var hxType = complexTypeFromTsType(numberIndexType, moduleSymbol, accessContext, enclosingDeclaration);
+				macro :Array<$hxType>;
 			} else {
 				TAnonymous(fields);
 			}

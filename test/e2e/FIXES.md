@@ -27,18 +27,14 @@ Each fix includes: code change, test update, assertion that now passes different
   - BLOCKED: dts2hx generates TS interfaces as Haxe typedefs, but Haxe `implements` requires Haxe interfaces. Needs interface-structure generation changes first.
   - File: `src/ConverterContext.hx` around line 529-533
 
-- [ ] **A12. Callable intersection → anon with @:selfCall**
+- [x] **A12. Callable intersection → anon with @:selfCall**
   - Current: `((x: string) => number) & { description: string }` → `Dynamic`
   - Fix: when an intersection has call signatures + properties, produce anon struct with `@:selfCall` function + fields (the code already handles this pattern in `complexTypeAnonFromTsType` — the issue is the intersection path doesn't use it)
   - Test: verify `CallableWithField` has both callable and `description` field
   - File: `src/ConverterContext.hx` intersection handling
 
 - [ ] **D1. Mixed string index + named fields → DynamicAccess + fields**
-  - Current: `{ [key: string]: any; name: string; age: number }` → `{ name: String, age: Float }` (index dropped)
-  - Fix: when both string index sig AND named fields exist, use Haxe's `haxe.DynamicAccess<T>` as a base and add the named fields. Or at minimum, extend `DynamicAccess` while keeping named fields.
-  - Alternative: keep current behavior but add a comment/metadata indicating the index sig was dropped
-  - Test: verify `MixedStringIndex` has named fields AND some way to access arbitrary keys
-  - File: `src/ConverterContext.hx` around line 707 and line 1338-1345
+  - BLOCKED: Haxe's `TExtend` can't extend `DynamicAccess` (not a structure). Would need a custom abstract type or different representation strategy. Named fields preserved, index dropped.
 
 ## Moderate (15-30 lines)
 
@@ -51,6 +47,6 @@ Each fix includes: code change, test update, assertion that now passes different
 ## Tracking
 
 Total: 7 items
-Done: 3 (B1, B2, B3)
-Blocked: 1 (B8 — needs interface vs typedef refactor)
-Remaining: 3 (A12, D1, A10)
+Done: 4 (B1, B2, B3, A12)
+Blocked: 2 (B8 — needs interface vs typedef refactor, D1 — can't TExtend DynamicAccess)
+Remaining: 1 (A10)
