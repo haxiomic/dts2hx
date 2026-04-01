@@ -1996,7 +1996,9 @@ class ConverterContext {
 				// No type arguments = non-generic, safe to use as constraint
 				return typeRef.typeArguments == null || typeRef.typeArguments.length == 0;
 			}
-			// Non-reference object types (anonymous, etc.) are safe
+			// Mapped types (Record<K,V>) become DynamicAccess<V> which is generic — unsafe
+			if (objectType.objectFlags & ObjectFlags.Mapped != 0) return false;
+			// Other non-reference object types (anonymous, etc.) are safe
 			return true;
 		}
 		// Allow intersection types where all members are safe
