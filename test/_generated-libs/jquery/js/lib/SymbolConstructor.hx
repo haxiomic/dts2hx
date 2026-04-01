@@ -76,4 +76,9 @@ typedef SymbolConstructor = {
 		environment bindings of the associated objects.
 	**/
 	final unscopables : js.lib.Symbol;
+	/**
+		A method that returns the default async iterator for an object. Called by the semantics of
+		the for-await-of statement.
+	**/
+	final asyncIterator : js.lib.Symbol;
 };

@@ -1,4 +1,4 @@
-package js.html;
+package js.lib;
 
 /**
 	The **`console`** object provides access to the debugging console (e.g., the Web console in Firefox).
@@ -7,7 +7,7 @@ package js.html;
 **/
 typedef Console = {
 	/**
-		The **`console.assert()`** static method writes an error message to the console if the assertion is false.
+		The **`console.assert()`** static method writes an error message to the console if the assertion is false. If the assertion is true, nothing happens.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/assert_static)
 		
@@ -28,7 +28,7 @@ typedef Console = {
 	@:overload(function():Void { })
 	function clear():Void;
 	/**
-		The **`console.count()`** static method logs the number of times that this particular call to `count()` has been called.
+		The **`console.count()`** static method logs the number of times that this particular call to count() has been called.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/count_static)
 		
@@ -37,7 +37,7 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function count(?label:String):Void;
 	/**
-		The **`console.countReset()`** static method resets counter used with console/count_static.
+		The **`console.countReset()`** static method resets counter used with console.count().
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/countReset_static)
 		
@@ -46,7 +46,7 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function countReset(?label:String):Void;
 	/**
-		The **`console.debug()`** static method outputs a message to the console at the 'debug' log level.
+		The **`console.debug()`** static method outputs a message to the console at the "debug" log level. The message is only displayed to the user if the console is configured to display debug output. In most cases, the log level is configured within the console UI. This log level might correspond to the Debug or Verbose log level.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/debug_static)
 		
@@ -59,7 +59,7 @@ typedef Console = {
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function debug(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The **`console.dir()`** static method displays a list of the properties of the specified JavaScript object.
+		The **`console.dir()`** static method displays a list of the properties of the specified JavaScript object. In browser consoles, the output is presented as a hierarchical listing with disclosure triangles that let you see the contents of child objects.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/dir_static)
 		
@@ -73,7 +73,7 @@ typedef Console = {
 	@:overload(function(obj:Dynamic, ?options:global.nodejs.InspectOptions):Void { })
 	function dir(?item:Dynamic, ?options:Dynamic):Void;
 	/**
-		The **`console.dirxml()`** static method displays an interactive tree of the descendant elements of the specified XML/HTML element.
+		The **`console.dirxml()`** static method displays an interactive tree of the descendant elements of the specified XML/HTML element. If it is not possible to display as an element the JavaScript Object view is shown instead. The output is presented as a hierarchical listing of expandable nodes that let you see the contents of child nodes.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/dirxml_static)
 		
@@ -86,7 +86,7 @@ typedef Console = {
 	@:overload(function(data:haxe.extern.Rest<Dynamic>):Void { })
 	function dirxml(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The **`console.error()`** static method outputs a message to the console at the 'error' log level.
+		The **`console.error()`** static method outputs a message to the console at the "error" log level. The message is only displayed to the user if the console is configured to display error output. In most cases, the log level is configured within the console UI. The message may be formatted as an error, with red colors and call stack information.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/error_static)
 		
@@ -95,7 +95,7 @@ typedef Console = {
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function error(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The **`console.group()`** static method creates a new inline group in the Web console log, causing any subsequent console messages to be indented by an additional level, until console/groupEnd_static is called.
+		The **`console.group()`** static method creates a new inline group in the Web console log, causing any subsequent console messages to be indented by an additional level, until console.groupEnd() is called.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/group_static)
 		
@@ -105,7 +105,7 @@ typedef Console = {
 	@:overload(function(label:haxe.extern.Rest<Dynamic>):Void { })
 	function group(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The **`console.groupCollapsed()`** static method creates a new inline group in the console.
+		The **`console.groupCollapsed()`** static method creates a new inline group in the console. Unlike console.group(), however, the new group is created collapsed. The user will need to use the disclosure button next to it to expand it, revealing the entries created in the group.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/groupCollapsed_static)
 		
@@ -118,7 +118,7 @@ typedef Console = {
 	@:overload(function():Void { })
 	function groupCollapsed(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The **`console.groupEnd()`** static method exits the current inline group in the console.
+		The **`console.groupEnd()`** static method exits the current inline group in the console. See Using groups in the console in the console documentation for details and examples.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/groupEnd_static)
 		
@@ -127,7 +127,7 @@ typedef Console = {
 	@:overload(function():Void { })
 	function groupEnd():Void;
 	/**
-		The **`console.info()`** static method outputs a message to the console at the 'info' log level.
+		The **`console.info()`** static method outputs a message to the console at the "info" log level. The message is only displayed to the user if the console is configured to display info output. In most cases, the log level is configured within the console UI. The message may receive special formatting, such as a small "i" icon next to it.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/info_static)
 		
@@ -163,7 +163,7 @@ typedef Console = {
 	@:overload(function(tabularData:Dynamic, ?properties:Array<String>):Void { })
 	function table(?tabularData:Dynamic, ?properties:Array<String>):Void;
 	/**
-		The **`console.time()`** static method starts a timer you can use to track how long an operation takes.
+		The **`console.time()`** static method starts a timer you can use to track how long an operation takes. You give each timer a unique name, and may have up to 10,000 timers running on a given page. When you call console.timeEnd() with the same name, the browser will output the time, in milliseconds, that elapsed since the timer was started.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/time_static)
 		
@@ -172,7 +172,7 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function time(?label:String):Void;
 	/**
-		The **`console.timeEnd()`** static method stops a timer that was previously started by calling console/time_static.
+		The **`console.timeEnd()`** static method stops a timer that was previously started by calling console.time().
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/timeEnd_static)
 		
@@ -185,7 +185,7 @@ typedef Console = {
 	@:overload(function(?label:String):Void { })
 	function timeEnd(?label:String):Void;
 	/**
-		The **`console.timeLog()`** static method logs the current value of a timer that was previously started by calling console/time_static.
+		The **`console.timeLog()`** static method logs the current value of a timer that was previously started by calling console.time().
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/timeLog_static)
 		
@@ -198,6 +198,8 @@ typedef Console = {
 	@:overload(function(?label:String, data:haxe.extern.Rest<Dynamic>):Void { })
 	function timeLog(?label:String, data:haxe.extern.Rest<Dynamic>):Void;
 	/**
+		The **`console.timeStamp()`** static method adds a single marker to the browser's Performance tool (Firefox bug 1387528, Chrome). This lets you correlate a point in your code with the other events recorded in the timeline, such as layout and paint events.
+		
 		This method does not display anything unless used in the inspector.
 		 Adds an event with the label `label` to the Timeline panel of the inspector.
 	**/
@@ -217,7 +219,7 @@ typedef Console = {
 	@:overload(function(?message:Dynamic, optionalParams:haxe.extern.Rest<Dynamic>):Void { })
 	function trace(data:haxe.extern.Rest<Dynamic>):Void;
 	/**
-		The **`console.warn()`** static method outputs a warning message to the console at the 'warning' log level.
+		The **`console.warn()`** static method outputs a warning message to the console at the "warning" log level. The message is only displayed to the user if the console is configured to display warning output. In most cases, the log level is configured within the console UI. The message may receive special formatting, such as yellow colors and a warning icon.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/warn_static)
 		

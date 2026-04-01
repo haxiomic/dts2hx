@@ -165,11 +165,11 @@ package global;
 	**/
 	function fill(value:Dynamic, ?offset:Float, ?end:Float):Buffer;
 	/**
-		Returns the index of the first occurrence of a value in an array.
+		Returns the index of the first occurrence of a value in an array, or -1 if it is not present.
 	**/
 	function indexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array_<js.lib.ArrayBufferLike>>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
-		Returns the index of the last occurrence of a value in an array.
+		Returns the index of the last occurrence of a value in an array, or -1 if it is not present.
 	**/
 	function lastIndexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array_<js.lib.ArrayBufferLike>>, ?byteOffset:Float, ?encoding:String):Float;
 	/**

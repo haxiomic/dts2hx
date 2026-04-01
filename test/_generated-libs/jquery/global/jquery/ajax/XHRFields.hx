@@ -4,7 +4,7 @@ typedef XHRFields = {
 	@:optional
 	var msCaching : String;
 	/**
-		The **`XMLHttpRequest.timeout`** property is an `unsigned long` representing the number of milliseconds a request can take before automatically being terminated.
+		The **`XMLHttpRequest.timeout`** property is an unsigned long representing the number of milliseconds a request can take before automatically being terminated. The default value is 0, which means there is no timeout. Timeout shouldn't be used for synchronous XMLHttpRequests requests used in a document environment or it will throw an InvalidAccessError exception. When a timeout happens, a timeout event is fired.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/timeout)
 	**/
@@ -23,7 +23,7 @@ typedef XHRFields = {
 	@:optional
 	var responseType : js.html.XMLHttpRequestResponseType;
 	/**
-		The **`XMLHttpRequest.withCredentials`** property is a boolean value that indicates whether or not cross-site `Access-Control` requests should be made using credentials such as cookies, authentication headers or TLS client certificates.
+		The **`XMLHttpRequest.withCredentials`** property is a boolean value that indicates whether or not cross-site Access-Control requests should be made using credentials such as cookies, authentication headers or TLS client certificates. Setting withCredentials has no effect on same-origin requests.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/withCredentials)
 	**/

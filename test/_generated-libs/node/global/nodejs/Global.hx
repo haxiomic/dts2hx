@@ -144,6 +144,19 @@ typedef Global = {
 			**/
 			function supportedLocalesOf(?locales:js.lib.intl.LocalesArgument, ?options:{ @:optional var localeMatcher : js.lib.intl.RelativeTimeFormatLocaleMatcher; }):Array<String>;
 		};
+		/**
+			The Intl.DurationFormat object enables language-sensitive duration formatting.
+			
+			[MDN](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/DurationFormat)
+		**/
+		final DurationFormat : {
+			function new(?locales:js.lib.intl.LocalesArgument, ?options:js.lib.intl.DurationFormatOptions):js.lib.intl.DurationFormat;
+			var prototype : js.lib.intl.DurationFormat;
+			/**
+				Returns an array containing those of the provided locales that are supported in display names without having to fall back to the runtime's default locale.
+			**/
+			function supportedLocalesOf(?locales:js.lib.intl.LocalesArgument, ?options:{ @:optional var localeMatcher : js.lib.intl.DurationFormatLocaleMatcher; }):Array<String>;
+		};
 	};
 	var JSON : js.lib.JSON;
 	var Map : js.lib.MapConstructor;
@@ -170,7 +183,7 @@ typedef Global = {
 	dynamic function clearImmediate(immediateId:Immediate):Void;
 	dynamic function clearInterval(intervalId:Timeout):Void;
 	dynamic function clearTimeout(timeoutId:Timeout):Void;
-	var console : js.html.Console;
+	var console : js.lib.Console;
 	dynamic function decodeURI(encodedURI:String):String;
 	dynamic function decodeURIComponent(encodedURIComponent:String):String;
 	dynamic function encodeURI(uri:String):String;
@@ -188,7 +201,7 @@ typedef Global = {
 	dynamic function setInterval(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	dynamic function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	@:overload(function(callback:() -> Void):Void { })
-	dynamic function queueMicrotask(callback:js.html.VoidFunction):Void;
+	dynamic function queueMicrotask(callback:js.lib.VoidFunction):Void;
 	var undefined : Null<Any>;
 	dynamic function unescape(str:String):String;
 	dynamic function gc():Void;

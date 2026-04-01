@@ -1,6 +1,9 @@
 package js.lib;
 
 typedef IMap_<K, V> = {
+	/**
+		Removes all elements from the Map.
+	**/
 	function clear():Void;
 	function delete(key:K):Bool;
 	/**

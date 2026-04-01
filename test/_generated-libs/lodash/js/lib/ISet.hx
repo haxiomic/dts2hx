@@ -5,6 +5,9 @@ typedef ISet<T> = {
 		Appends a new element with a specified value to the end of the Set.
 	**/
 	function add(value:T):js.lib.Set<T>;
+	/**
+		Removes all elements from the Set.
+	**/
 	function clear():Void;
 	/**
 		Removes a specified value from the Set.

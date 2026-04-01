@@ -55,19 +55,19 @@ typedef JQueryXHR = {
 	@:native("catch")
 	function catch_<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>(?failFilter:(t:global.jquery.JqXHR<Dynamic>, u:global.jquery.ajax.ErrorTextStatus, v:String, s:haxe.extern.Rest<ts.Never>) -> ts.AnyOf3<global.jquery.PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>, global.jquery.Thenable<ARF>, ARF>):global.jquery.PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>;
 	/**
-		The **`XMLHttpRequest.abort()`** method aborts the request if it has already been sent.
+		The **`XMLHttpRequest.abort()`** method aborts the request if it has already been sent. When a request is aborted, its readyState is changed to XMLHttpRequest.UNSENT (0) and the request's status code is set to 0.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/abort)
 	**/
 	dynamic function abort():Void;
 	/**
-		The read-only **`XMLHttpRequest.status`** property returns the numerical HTTP status code of the `XMLHttpRequest`'s response.
+		The read-only **`XMLHttpRequest.status`** property returns the numerical HTTP status code of the XMLHttpRequest's response.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/status)
 	**/
 	var status : Float;
 	/**
-		The **XMLHttpRequest.readyState** property returns the state an XMLHttpRequest client is in.
+		The **`XMLHttpRequest.readyState`** property returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/readyState)
 	**/
@@ -79,13 +79,13 @@ typedef JQueryXHR = {
 	**/
 	var responseText : String;
 	/**
-		The read-only **`XMLHttpRequest.statusText`** property returns a string containing the response's status message as returned by the HTTP server.
+		The read-only **`XMLHttpRequest.statusText`** property returns a string containing the response's status message as returned by the HTTP server. Unlike XMLHttpRequest.status which indicates a numerical status code, this property contains the text of the response status, such as "OK" or "Not Found". If the request's readyState is in UNSENT or OPENED state, the value of statusText will be an empty string.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/statusText)
 	**/
 	var statusText : String;
 	/**
-		The XMLHttpRequest method **`getAllResponseHeaders()`** returns all the response headers, separated by CRLF, as a string, or returns `null` if no response has been received.
+		The XMLHttpRequest method **`getAllResponseHeaders()`** returns all the response headers, separated by CRLF, as a string, or returns null if no response has been received.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/getAllResponseHeaders)
 	**/
@@ -103,13 +103,13 @@ typedef JQueryXHR = {
 	**/
 	dynamic function overrideMimeType(mime:String):Void;
 	/**
-		The XMLHttpRequest method **`setRequestHeader()`** sets the value of an HTTP request header.
+		The XMLHttpRequest method **`setRequestHeader()`** sets the value of an HTTP request header. When using setRequestHeader(), you must call it after calling open(), but before calling send(). If this method is called several times with the same header, the values are merged into one single request header.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/setRequestHeader)
 	**/
 	dynamic function setRequestHeader(name:String, value:String):Void;
 	/**
-		The **`XMLHttpRequest.responseXML`** read-only property returns a Document containing the HTML or XML retrieved by the request; or `null` if the request was unsuccessful, has not yet been sent, or if the data can't be parsed as XML or HTML.
+		The **`XMLHttpRequest.responseXML`** read-only property returns a Document containing the HTML or XML retrieved by the request; or null if the request was unsuccessful, has not yet been sent, or if the data can't be parsed as XML or HTML.
 		
 		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/responseXML)
 	**/

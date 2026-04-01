@@ -1,4 +1,4 @@
-package js.html;
+package js.lib;
 
 /**
 	[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
