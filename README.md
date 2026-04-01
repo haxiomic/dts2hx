@@ -116,7 +116,7 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] Classes and interfaces
 - [ ] Merge global and modular symbols with `#if global @:native(...) # else @:jsRequire(...) #end`
 - [ ] Exported variables to class promotion. See [socket.io issue](https://github.com/haxiomic/dts2hx/issues/46) and [#61](https://github.com/haxiomic/dts2hx/issues/61#issuecomment-713989576)
-- [ ] Validation system to confirm all test code compiles
+- [x] Validation system to confirm all test code compiles
 - [ ] Explore converting _all_ TypeScript definitions in a package, whether or not they're connected to the package's root types
 - [ ] Interface extends
     - [ ] Redefined class and interface fields should be renamed rather than removed
@@ -155,3 +155,27 @@ dts2hx is currently in alpha release, everything _should_ work but please report
     - [ ] [Hopefully quoted field names will arrive in 4.2](https://github.com/HaxeFoundation/haxe/pull/9433)
 - [ ] Intersection types: rasterize where possible
 - [ ] :star2: **1.0 Release**
+
+## Completed
+- [x] TypeScript 3.7 → 6.0 upgrade (22 version increments)
+- [x] Haxe 4.3 build compatibility
+- [x] `export default class` preserves original class name (was `Default`)
+- [x] Default-exported classes placed at parent package level (not in subdirectory)
+- [x] Module wrapper classes use `Module` suffix when colliding with default class name
+- [x] Template literal types and intrinsic string types (Uppercase, etc.) → `String`
+- [x] `NoInfer<T>` unwraps to `T` via Substitution type handling
+- [x] `bigint` → `ts.BigInt` abstract with toString/valueOf methods
+- [x] `never` → `ts.Never` (Void alias) instead of Any
+- [x] `Readonly<T>` produces `final` fields
+- [x] Tuple rest elements `[string, ...number[]]` → `Array<T>` for rest portion
+- [x] Construct signatures in typedefs generate return type for Haxe 4.3 compat
+- [x] Index signatures on interfaces → `DynamicAccess<T>` / `Array<T>` (was empty `{ }`)
+- [x] Callable intersections `((x) => y) & {field}` → `@:selfCall` + fields (was `Dynamic`)
+- [x] Enum member types `Status.Active` → parent enum type (was `String`)
+- [x] ECMAScript `#private` fields excluded from externs (was mangled `@:native`)
+- [x] `protected` → no access modifier (was incorrectly `private`)
+- [x] `abstract` classes don't generate default constructor
+- [x] `isBuiltIn` detection fixed for TS 6.0 (hasNoDefaultLib no longer set)
+- [x] `getExpandedParameters` Symbol[][] unwrap for TS 4.0+
+- [x] Mapped type property resolution for TS 3.9+
+- [x] End-to-end test suite: TypeScript → JS → .d.ts → dts2hx → Haxe → JS → run (300+ assertions)
