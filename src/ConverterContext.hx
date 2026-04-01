@@ -335,18 +335,21 @@ class ConverterContext {
 
 					var declaredWithinInputModule = declaredInModules.exists(name -> name == normalizedInputModuleName);
 
-					// check if symbol comes from a @types/* package (ambient type definitions)
-					var isFromTypesPackage = symbol.getDeclarationsArray().exists(d -> {
-						var fileName = d.getSourceFile().fileName;
-						return fileName.indexOf('/@types/') != -1 || fileName.indexOf('/node_modules/@types/') != -1;
+					// check if symbol is from an external ambient declaration file (e.g. @types/webxr)
+					// — a .d.ts in node_modules without module exports (global scope)
+					var isExternalAmbientGlobal = symbol.getDeclarationsArray().exists(d -> {
+						var sf = d.getSourceFile();
+						return sf.isDeclarationFile && !sf.hasNoDefaultLib
+							&& tc.getSymbolAtLocation(sf) == null
+							&& StringTools.contains(sf.fileName, '/node_modules/');
 					});
 
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
-					} else if (isFromTypesPackage) {
-						// @types/* packages provide ambient type definitions (e.g. @types/webxr, @types/webgpu)
-						// that extend the global scope. Queue them for generation.
+					} else if (isExternalAmbientGlobal) {
+						// External ambient global types (e.g. from @types/webxr) may be referenced
+						// by modular types. Queue them for generation.
 						declarationSymbolQueue.tryEnqueue(symbol);
 					} else if (options.queueExternalSymbols) {
 						Log.log('Queuing external symbol', symbol);
@@ -874,16 +877,19 @@ class ConverterContext {
 
 	function saveHaxeModule(module: HaxeModule) {
 		var isBuiltIn = module.tsSymbol != null && module.tsSymbol.isBuiltIn();
-		// @types/* packages (e.g. @types/webxr) provide ambient global types that may be
-		// referenced by modular types — don't skip them even when globalTypes is disabled
-		var isAmbientTypeDef = !isBuiltIn && module.tsSymbol != null && module.tsSymbol.getDeclarationsArray().exists(
-			d -> StringTools.contains(d.getSourceFile().fileName, '/@types/')
-		);
+		// External ambient global types from .d.ts files in node_modules without module exports
+		// (e.g. @types/webxr) may be referenced by modular types — don't skip them
+		var isExternalAmbientGlobal = !isBuiltIn && module.tsSymbol != null && module.tsSymbol.getDeclarationsArray().exists(d -> {
+			var sf = d.getSourceFile();
+			return sf.isDeclarationFile && !sf.hasNoDefaultLib
+				&& tc.getSymbolAtLocation(sf) == null
+				&& StringTools.contains(sf.fileName, '/node_modules/');
+		});
 
 		var skipModule = false;
 		// skip global if globalTypes are disabled
 		if (!options.globalTypes) {
-			skipModule = skipModule || (!isBuiltIn && !isAmbientTypeDef && module.tsSymbolAccess.match(Global(_)));
+			skipModule = skipModule || (!isBuiltIn && !isExternalAmbientGlobal && module.tsSymbolAccess.match(Global(_)));
 		}
 
 		// skip modular if modularTypes are disabled
