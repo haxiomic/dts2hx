@@ -104,8 +104,8 @@ class TestGaps {
 		eq(attrs.id, "main", "named field preserved");
 		// The data-* attributes are only accessible via Dynamic
 		var d:Dynamic = attrs;
-		eq(d["data-name"], "test", "template index via Dynamic");
-		eq(d["data-value"], "123", "template index via Dynamic");
+		eq(Reflect.field(d, "data-name"), "test", "template index via Dynamic");
+		eq(Reflect.field(d, "data-value"), "123", "template index via Dynamic");
 	}
 
 	static function testCircularTypes() {

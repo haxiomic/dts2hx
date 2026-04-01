@@ -4,7 +4,7 @@
   "description": "dts2hx example: three.js + haxiomic-engine with bloom post-processing",
   "main": "dist/bundle.js",
   "scripts": {
-    "generate-externs": "dts2hx --modular three haxiomic-engine/PhysicallyBasedViewer haxiomic-engine/rendering/BloomMipmapsMaterial haxiomic-engine/rendering/Blur1D haxiomic-engine/rendering/Rendering haxiomic-engine/rendering/RenderTargetStore",
+    "generate-externs": "dts2hx --modular three three/examples/jsm/loaders/GLTFLoader haxiomic-engine/PhysicallyBasedViewer haxiomic-engine/materials/BloomMipmapsMaterial haxiomic-engine/rendering/BlurredMipmapChain haxiomic-engine/rendering/Rendering",
     "postinstall": "npm run generate-externs"
   },
   "author": "",

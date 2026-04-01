@@ -237,7 +237,13 @@ class HaxeTypePathMap {
 
 						var moduleToRename = matches[0];
 						var alsoRenameModule = moduleToRename.name == moduleToRename.moduleName;
-						moduleToRename.name = moduleToRename.name + '_';
+						// Use "Module" suffix for ValueModule-only symbols (module wrappers),
+						// "_" for other collisions
+						var isValueModuleOnly = moduleToRename.symbol != null
+							&& moduleToRename.symbol.flags & SymbolFlags.ValueModule != 0
+							&& moduleToRename.symbol.flags & SymbolFlags.Type == 0;
+						var suffix = isValueModuleOnly ? 'Module' : '_';
+						moduleToRename.name = moduleToRename.name + suffix;
 						if (alsoRenameModule) {
 							moduleToRename.moduleName = moduleToRename.name;
 						}
@@ -407,8 +413,16 @@ class HaxeTypePathMap {
 				pack = pack.concat(moduleNamePack).concat(modulePack).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case ExportModule(moduleName, _):
-				pack = pack.concat(splitModulePath(moduleName)).concat(identifierChain);
-				pack.pop(); // remove symbol ident; only want parents
+				var moduleParts = splitModulePath(moduleName);
+				var symbolChain = access.extractSymbolChain();
+				// Default exports: place at parent package level, not in a module subdirectory
+				var isDefaultExport = symbolChain.length == 1 && symbolChain[0].name == 'default';
+				if (isDefaultExport) {
+					pack = pack.concat(moduleParts.slice(0, moduleParts.length - 1));
+				} else {
+					pack = pack.concat(moduleParts).concat(identifierChain);
+					pack.pop(); // remove symbol ident; only want parents
+				}
 			case Global(_):
 				// only prefix global package if it's not a built-in
 				// global types are _not_ prefixed with the module name, this might change in the future

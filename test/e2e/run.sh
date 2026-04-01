@@ -100,7 +100,7 @@ for test_js in testnegative testimplements testmixedindex testbigint testgaps te
     if [ "$test_js" = "testnegative" ]; then
       node -e "require('./modules/ambient-impl'); require('./${test_js}.js');" || true
     elif [ "$test_js" = "testgaps" ]; then
-      node -e "require('./modules/umd-pattern-impl'); require('./${test_js}.js');" || true
+      node -e "globalThis.MyUmdLib = require('./modules/umd-pattern-impl'); require('./${test_js}.js');" || true
     else
       node -e "require('./${test_js}.js');" || true
     fi

@@ -1,15 +1,9 @@
 /**
 	Test harness for export default patterns.
 
-	Current behavior: `export default class Foo` generates:
-	  - Module.hx with named exports (@:jsRequire("mod") @valueModuleOnly)
-	  - module/Default.hx with the class (@:jsRequire("mod", "default"))
-	  The original class name "Foo" is lost — it becomes "Default".
-
-	Desired behavior: the class should keep its name "Foo" and ideally
-	live in the module file directly, not in a subdirectory.
-
-	This test validates both current behavior and marks what should change.
+	Behavior: `export default class Foo` generates Foo.hx at the module
+	package level with @:jsRequire("mod", "default"). Named exports go
+	in a separate Module-suffixed wrapper class alongside.
 **/
 class TestDefaultExport {
 	static var passed = 0;
@@ -41,66 +35,45 @@ class TestDefaultExport {
 
 	static function testDefaultClassWithNamedExports() {
 		begin("Case 1: export default class + named exports");
-		// export default class MyDefaultClass { ... }
-		// export function helperFunction(): string;
-		// export const CONSTANT = 42;
-
-		// Named exports work via module class
+		// Named exports via module wrapper
 		eq(build.modules.DefaultExportCases.helperFunction(), "helper", "named export: helperFunction");
 		eq(build.modules.DefaultExportCases.CONSTANT, 42, "named export: CONSTANT");
 
-		// Default class accessible but named "Default" not "MyDefaultClass"
-		var obj = new build.modules.default_export_cases.MyDefaultClass("test");
+		// Default class at parent level with original name
+		var obj = new build.modules.MyDefaultClass("test");
 		eq(obj.value, "test", "default class: constructor works");
 		eq(obj.greet(), "hello from test", "default class: method works");
-
-		// FIXED: Class keeps original name "MyDefaultClass"
 	}
 
 	static function testDefaultClassWithStaticHelper() {
 		begin("Case 2: export default class + static helper");
-		// export function staticHelper(): string;
-		// export default class Store { ... }
-
 		eq(build.modules.DefaultExportNs.staticHelper(), "helped", "named: staticHelper");
 
-		var store = new build.modules.default_export_ns.Store();
+		// Default class at parent level
+		var store = new build.modules.Store();
 		store.set("x", 42);
 		eq(store.get("x"), 42.0, "default Store: set/get");
 		eq(store.size, 1.0, "default Store: size");
 
-		var empty = build.modules.default_export_ns.Store.createEmpty();
+		var empty = build.modules.Store.createEmpty();
 		eq(empty.size, 0.0, "default Store: static createEmpty");
-
-		// FIXED: Class keeps original name "Store"
 	}
 
 	static function testDefaultFunction() {
 		begin("Case 3: export default function");
-		// export default function defaultFn(x: number): string;
-		// export const version = "1.0";
-
-		// This case works WELL — function inlined into module class
 		eq(build.modules.DefaultExportFn.default_(42), "result:42", "default function works");
 		eq(build.modules.DefaultExportFn.version, "1.0", "named export alongside");
-
-		// Note: function is named "default_" with @:native("default")
-		// This is acceptable — no subdirectory created
 	}
 
 	static function testDefaultClassWithInterface() {
 		begin("Case 4: export default class + interface");
-		// export interface StoreOptions { ... }
-		// export default class ConfigurableStore { ... }
-
-		var store = new build.modules.default_export_iface.ConfigurableStore(
+		// Default class at parent level
+		var store = new build.modules.ConfigurableStore(
 			{maxSize: 50}
 		);
 		eq(store.getMaxSize(), 50.0, "default class with interface param");
 
-		var def = build.modules.default_export_iface.ConfigurableStore.withDefaults();
+		var def = build.modules.ConfigurableStore.withDefaults();
 		eq(def.getMaxSize(), 100.0, "default class static factory");
-
-		// FIXED: Class keeps original name "ConfigurableStore"
 	}
 }
