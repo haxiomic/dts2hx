@@ -1599,12 +1599,6 @@ class ConverterContext {
 			if (hxParams != null && maxParams != null && hxParams.length > maxParams) {
 				hxParams = hxParams.slice(0, maxParams);
 			}
-			// TEMP DEBUG
-			@:nullSafety(Off) if (classOrInterfaceType.symbol != null && classOrInterfaceType.symbol.name == 'Iterator') {
-				var accessStr = accessContext.toString();
-				var isBI = classOrInterfaceType.symbol.isBuiltIn();
-				js.Syntax.code("console.log('IFACE Iterator: maxParams=' + {0} + ' hxParams=' + ({1} ? {1}.length : 'null') + ' name=' + {2} + ' access=' + {3} + ' isBuiltIn=' + {4})", maxParams, hxParams, hxTypePath.name, accessStr, isBI);
-			}
 			hxTypePath.params = hxParams;
 			TPath(hxTypePath);
 		} else {
