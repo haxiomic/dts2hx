@@ -22,7 +22,7 @@ class Main {
 			defaultLights: true,
 		});
 
-		viewer.camera.position.z = 4;
+		viewer.camera.position.z = 8;
 
 		// Add a bright metallic torus knot — reflections will bloom
 		var geometry = new TorusKnotGeometry(1, 0.3, 128, 32);
@@ -45,15 +45,13 @@ class Main {
 			var h = canvas.height;
 
 			// Step 1: Render scene to a target with mipmaps enabled
-			var displayTarget: Dynamic = renderTargetStore.getRenderTarget('display', w, h, {
+			var displayTarget = renderTargetStore.getRenderTarget('display', w, h, {
 				type: Three.HalfFloatType,
 				magFilter: Three.LinearFilter,
 				minFilter: Three.LinearMipMapLinearFilter,
 				depthBuffer: true,
 				allocateMipmaps: true,
 			});
-
-			if (displayTarget == null) return;
 
 			// Render the 3D scene into the mipmap target
 			viewer.defaultRender(viewer.camera, {
