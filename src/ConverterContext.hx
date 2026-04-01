@@ -127,13 +127,6 @@ class ConverterContext {
 	**/
 	final processedDeclarationSymbols = new Array<Symbol>();
 
-	/**
-		Sub-modules of other packages discovered through type references during conversion.
-		Main.hx uses this to queue additional modules for conversion.
-		E.g. when converting haxiomic-engine, a reference to three/examples/jsm/loaders/GLTFLoader
-		would add "three/examples/jsm/loaders/GLTFLoader" here.
-	**/
-	public final discoveredSubModules = new Array<String>();
 
 
 	// settings
@@ -363,16 +356,7 @@ class ConverterContext {
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
-					} else if (!declaredWithinInputModule && declaredInModules.length > 0) {
-						// Symbol is from a sub-module of another package (e.g. three/examples/jsm/loaders/GLTFLoader)
-						// Record it so Main.hx can queue the sub-module for conversion
-						for (moduleName in declaredInModules) {
-							if (!discoveredSubModules.contains(moduleName) && moduleName != normalizedInputModuleName) {
-								discoveredSubModules.push(moduleName);
-							}
-						}
-					}
-					if (isExternalAmbientGlobal) {
+					} else if (isExternalAmbientGlobal) {
 						// External ambient global types (e.g. from @types/webxr) may be referenced
 						// by modular types. Queue them for generation.
 						declarationSymbolQueue.tryEnqueue(symbol);

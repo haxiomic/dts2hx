@@ -433,15 +433,8 @@ class Main {
 			if (moduleDependencies.length > 0) {
 				Log.log('<magenta>Module <b>$moduleName</> depends on <b>$moduleDependencies</></>');
 			}
-			if (!cliOptions.skipDependencies) {
-				for (moduleDependency in moduleDependencies) {
-					moduleQueue.tryEnqueue(moduleDependency.normalizedModuleName);
-				}
-				// Queue sub-modules discovered through type references
-				// (e.g. three/examples/jsm/loaders/GLTFLoader referenced by haxiomic-engine)
-				@:nullSafety(Off) for (subModule in converterContext.discoveredSubModules) {
-					moduleQueue.tryEnqueue(subModule);
-				}
+			if (!cliOptions.skipDependencies) for (moduleDependency in moduleDependencies) {
+				moduleQueue.tryEnqueue(moduleDependency.normalizedModuleName);
 			}
 		}
 	}
