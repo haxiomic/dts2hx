@@ -1,2 +1,0 @@
-- [User Profile](user_profile.md) — Project author (haxiomic), deep Haxe/TS knowledge
-- [Build Status](project_build_status.md) — Haxe 4.3.6 build breaks; pre-built dist/dts2hx.js works
