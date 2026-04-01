@@ -83,13 +83,13 @@ typedef DeepImmutableArray<T> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<ts.Tuple2<Float, DeepImmutable<T>>>;
+	function entries():js.lib.ArrayIterator<ts.Tuple2<Float, DeepImmutable<T>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():js.lib.ArrayIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():js.lib.IterableIterator<DeepImmutable<T>>;
+	function values():js.lib.ArrayIterator<DeepImmutable<T>>;
 };

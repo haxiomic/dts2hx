@@ -1,6 +1,6 @@
 package js.lib;
 
-typedef IterableIterator<T> = {
+typedef ArrayIterator<T> = {
 	function next():IteratorResult<T, Dynamic>;
 	@:optional
 	@:native("return")
