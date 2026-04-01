@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "commonjs",
+    "target": "ES2020",
+    "strict": true,
+    "outDir": "build",
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": ["testlib.ts"]
+}

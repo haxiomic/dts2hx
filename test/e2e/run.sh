@@ -7,7 +7,7 @@ echo "=== E2E Test: TypeScript → .d.ts → dts2hx → Haxe → JS → run ==="
 # Step 1: Compile TypeScript to JS + .d.ts
 echo "Step 1: Compiling TypeScript..."
 mkdir -p build
-npx tsc testlib.ts --declaration --module commonjs --target ES2015 --strict --outDir build
+npx tsc -p tsconfig.json
 echo "  → build/testlib.js + build/testlib.d.ts"
 
 # Step 2: Generate Haxe externs from .d.ts
