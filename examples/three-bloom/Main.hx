@@ -22,6 +22,8 @@ class Main {
 			defaultLights: true,
 		});
 
+		viewer.camera.position.z = 4;
+
 		// Add a bright metallic torus knot — reflections will bloom
 		var geometry = new TorusKnotGeometry(1, 0.3, 128, 32);
 		var material = new MeshStandardMaterial({
