@@ -1940,8 +1940,38 @@ class ConverterContext {
 	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		return [for (t in symbol.getDeclarationTypeParameters()) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
-			constraints: options.enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, symbol, accessContext, enclosingDeclaration)] : null
+			constraints: if (options.enableTypeParameterConstraints && t.constraint != null) {
+				// For class/interface-level constraints, check if the resolved constraint is simple
+				// enough for Haxe's invariant generics. Complex constraints involving generic types
+				// cause issues (e.g. Light<T extends LightShadow<Camera>> breaks when subclassed).
+				var constraintType = tc.getTypeFromTypeNode(t.constraint);
+				if (isSimpleConstraintType(constraintType)) {
+					[complexTypeFromTypeNode(t.constraint, symbol, accessContext, enclosingDeclaration)];
+				} else {
+					null;
+				}
+			} else null
 		}];
+	}
+
+	/**
+		Returns true if a constraint type is simple enough for Haxe's invariant generics.
+		Allows primitives, literal types, enums, and unions of these.
+		Rejects Object types (classes/interfaces with type params), conditional types, etc.
+	**/
+	function isSimpleConstraintType(type: TsType): Bool {
+		final simpleFlags = TypeFlags.String | TypeFlags.Number | TypeFlags.Boolean
+			| TypeFlags.StringLiteral | TypeFlags.NumberLiteral | TypeFlags.BooleanLiteral
+			| TypeFlags.Enum | TypeFlags.EnumLiteral | TypeFlags.Void | TypeFlags.Undefined
+			| TypeFlags.Null | TypeFlags.Never | TypeFlags.BigInt | TypeFlags.BigIntLiteral;
+		if (type.flags & simpleFlags != 0) return true;
+		// Allow unions where all members are simple
+		if (type.flags & TypeFlags.Union != 0) {
+			var unionType: Dynamic = type;
+			var types: Array<TsType> = unionType.types;
+			if (types != null) return types.exists(t -> isSimpleConstraintType(t));
+		}
+		return false;
 	}
 
 	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
