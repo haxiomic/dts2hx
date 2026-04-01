@@ -12,3 +12,7 @@ tsconfig.json
 scratch.*
 .vscode/
 *.tgz
+*.bak
+.github/
+docs/
+src/support/
