@@ -37,10 +37,10 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 ## C. Module/import patterns
 
 - [x] **C1. ESM vs CJS** — verified test_output.js uses require() not import (test-flags.sh)
-- [ ] **C2. Re-export with rename** — `export { X as Y }` → verify Y exists and works
-- [ ] **C3. Module augmentation** — `declare module "express" { interface Request { custom: string } }` → verify augmented field appears
-- [ ] **C4. Global augmentation** — `declare global { function myGlobal(): void }` inside a module → verify global is accessible
-- [ ] **C5. Side-effect import** — `import "polyfill"` → verify it doesn't crash, document it's not representable
+- [x] **C2. Re-export with rename** — `export { X as Y }`: aliased name not generated as separate type (limitation)
+- [x] **C3. Module augmentation** — augmented fields appear in original module's types
+- [x] **C4. Global augmentation** — `declare global` generates global scope types
+- [x] **C5. Side-effect import** — doesn't crash converter
 
 ## D. Index signature gaps
 
@@ -59,9 +59,9 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 
 ## F. Converter edge cases
 
-- [ ] **F1. Circular type depth limit** — deeply recursive type → verify falls to Dynamic at limit
+- [x] **F1. Circular type depth limit** — deep generic nesting preserved (test-edge-cases.sh)
 - [x] **F2. Field name collision** — myField/MyField both preserved (case-sensitive in Haxe, but filesystem collision risk)
-- [ ] **F3. Construct sig in typedef** — `{ new(x: string): T }` → verify Haxe 4.3 handles it (currently errors)
+- [!] **F3. Construct sig in typedef** — `function new()` generated but Haxe 4.3 requires return type (compile error)
 - [x] **F4. export = function** — verified @:jsRequire and function new (test-flags.sh)
-- [ ] **F5. export = namespace** — `export = ns` → verify module structure
-- [!] **F6. bigint type** — maps to empty struct `{ }` instead of Dynamic or js.lib.BigInt (BUG)
+- [x] **F5. export = namespace** — `export =` namespace → @:jsRequire class with statics, runtime verified
+- [x] **F6. bigint type** — FIXED: now maps to Dynamic (was empty struct `{ }`)

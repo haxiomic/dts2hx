@@ -81,3 +81,8 @@ echo ""
 # Step 8: Run CLI flag tests
 echo "Step 8: Running CLI flag tests..."
 bash test-flags.sh
+echo ""
+
+# Step 9: Run edge case tests
+echo "Step 9: Running edge case tests..."
+bash test-edge-cases.sh

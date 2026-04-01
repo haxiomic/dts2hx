@@ -1069,9 +1069,9 @@ class ConverterContext {
 			complexTypeFromObjectType(cast type, moduleSymbol, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
-		} else if (type.flags & TypeFlags.BigInt != 0) {
-			// we don't support BigInt at a language level, but we can convert the BigInt type itself instead
-			complexTypeFromTsType(tc.getApparentType(type), moduleSymbol, accessContext, enclosingDeclaration);
+		} else if (type.flags & (TypeFlags.BigInt | TypeFlags.BigIntLiteral) != 0) {
+			// Haxe has no BigInt type — map to Dynamic
+			macro :Dynamic;
 			
 
 		// these probably don't work properly:
