@@ -9,6 +9,7 @@ import build.modules.collections.Stack;
 import global.AmbientGlobal;
 import global.GlobalLogger;
 import global.MergedNS;
+import build.modules.Patterns;
 
 /**
 	End-to-end test: TypeScript → JS + .d.ts → dts2hx → Haxe externs → Haxe → JS → run
@@ -84,6 +85,10 @@ class TestE2E {
 		testGlobalClass();
 		testDeclarationMerging();
 		testAmbientModule();
+		testTypeofPatterns();
+		testRegistry();
+		testOptionalInterface();
+		testPromises();
 
 		Sys.println('Results: $passed passed, $failed failed');
 		if (failed > 0) Sys.exit(1);
@@ -418,11 +423,52 @@ class TestE2E {
 
 	static function testAmbientModule() {
 		begin("ambient module (declare module)");
-		// my-library is loaded via @:jsRequire("my-library")
-		// We need to set up module resolution for this — see run.sh
 		var myLib = js.Syntax.code("require('./modules/my-library-impl')");
 		eq(Reflect.callMethod(myLib, Reflect.field(myLib, "doWork"), ["hello"]), "HELLO", "ambient module doWork");
 		eq(Reflect.field(myLib, "VERSION"), "3.0.0", "ambient module VERSION");
+	}
+
+	static function testTypeofPatterns() {
+		begin("typeof / type query");
+		// typeof sampleConfig produces a structural type
+		var cfg = Patterns.cloneConfig(Patterns.sampleConfig);
+		eq(cfg.host, "localhost", "cloneConfig.host");
+		eq(cfg.port, 8080.0, "cloneConfig.port");
+		eq(cfg.debug, false, "cloneConfig.debug");
+
+		// Mutating the clone doesn't affect original
+		cfg.host = "changed";
+		eq(Patterns.sampleConfig.host, "localhost", "original unchanged");
+	}
+
+	static function testRegistry() {
+		begin("generic class: Registry");
+		var reg = new build.modules.patterns.Registry();
+		reg.register("a", 1);
+		reg.register("b", 2);
+		eq(reg.size, 2.0, "registry size");
+		eq(reg.get("a"), 1, "registry.get(a)");
+		eq(reg.get("b"), 2, "registry.get(b)");
+		assert(reg.has("a"), "registry.has(a)");
+		assert(!reg.has("c"), "registry.has(c) false");
+		eq(reg.keys().length, 2, "registry.keys length");
+	}
+
+	static function testOptionalInterface() {
+		begin("interface with optional fields");
+		var plugin = Patterns.createPlugin("test-plugin");
+		eq(plugin.name, "test-plugin", "plugin.name");
+		// version is optional — should be undefined/null
+		assert(plugin.version == null, "plugin.version is null");
+	}
+
+	static function testPromises() {
+		begin("promise-based API");
+		// fetchData returns a Promise — validate it resolves
+		Patterns.fetchData("https://example.com").then(data -> {
+			// This runs async but in the test context it's resolved synchronously by our impl
+			assert(data == "data from https://example.com", "fetchData resolves");
+		});
 	}
 
 	static function testStack() {

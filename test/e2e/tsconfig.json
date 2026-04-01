@@ -9,5 +9,6 @@
     "types": [],
     "esModuleInterop": true
   },
-  "include": ["testlib.ts", "modules/*.ts"]
+  "include": ["testlib.ts", "modules/*.ts"],
+  "exclude": ["modules/*.d.ts", "modules/*-impl.js"]
 }
