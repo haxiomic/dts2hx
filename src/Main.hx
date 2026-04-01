@@ -439,7 +439,7 @@ class Main {
 				}
 				// Queue sub-modules discovered through type references
 				// (e.g. three/examples/jsm/loaders/GLTFLoader referenced by haxiomic-engine)
-				for (subModule in converterContext.discoveredSubModules) {
+				@:nullSafety(Off) for (subModule in converterContext.discoveredSubModules) {
 					moduleQueue.tryEnqueue(subModule);
 				}
 			}

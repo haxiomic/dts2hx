@@ -4,7 +4,7 @@
   "description": "dts2hx example: three.js + haxiomic-engine with bloom post-processing",
   "main": "dist/bundle.js",
   "scripts": {
-    "generate-externs": "dts2hx --modular three three/examples/jsm/loaders/GLTFLoader haxiomic-engine",
+    "generate-externs": "dts2hx --modular three haxiomic-engine",
     "postinstall": "npm run generate-externs"
   },
   "author": "",

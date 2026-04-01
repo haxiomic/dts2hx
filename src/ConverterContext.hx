@@ -127,6 +127,14 @@ class ConverterContext {
 	**/
 	final processedDeclarationSymbols = new Array<Symbol>();
 
+	/**
+		Sub-modules of other packages discovered through type references during conversion.
+		Main.hx uses this to queue additional modules for conversion.
+		E.g. when converting haxiomic-engine, a reference to three/examples/jsm/loaders/GLTFLoader
+		would add "three/examples/jsm/loaders/GLTFLoader" here.
+	**/
+	public final discoveredSubModules = new Array<String>();
+
 
 	// settings
 	final shortenTypePaths = true;
@@ -333,10 +341,14 @@ class ConverterContext {
 					// check if symbol is declared within this module
 					var declaredInModules = symbol.getParentModuleNames();
 
-					// Match if the symbol's parent module is the input module or a parent package
-					// (e.g. symbol in "haxiomic-engine" matches input "haxiomic-engine/rendering/RenderTargetStore")
+					// Match if the symbol's module is related to the input module:
+					// - exact match: symbol in "three" matches input "three"
+					// - parent: symbol in "haxiomic-engine" matches input "haxiomic-engine/rendering/X"
+					// - child: symbol in "three/examples/jsm/loaders/GLTFLoader" matches input "three"
 					var declaredWithinInputModule = declaredInModules.exists(name ->
-						name == normalizedInputModuleName || StringTools.startsWith(normalizedInputModuleName, name + '/')
+						name == normalizedInputModuleName
+						|| StringTools.startsWith(normalizedInputModuleName, name + '/')
+						|| StringTools.startsWith(name, normalizedInputModuleName + '/')
 					);
 
 					// check if symbol is from an external ambient declaration file (e.g. @types/webxr)
@@ -351,7 +363,16 @@ class ConverterContext {
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
-					} else if (isExternalAmbientGlobal) {
+					} else if (!declaredWithinInputModule && declaredInModules.length > 0) {
+						// Symbol is from a sub-module of another package (e.g. three/examples/jsm/loaders/GLTFLoader)
+						// Record it so Main.hx can queue the sub-module for conversion
+						for (moduleName in declaredInModules) {
+							if (!discoveredSubModules.contains(moduleName) && moduleName != normalizedInputModuleName) {
+								discoveredSubModules.push(moduleName);
+							}
+						}
+					}
+					if (isExternalAmbientGlobal) {
 						// External ambient global types (e.g. from @types/webxr) may be referenced
 						// by modular types. Queue them for generation.
 						declarationSymbolQueue.tryEnqueue(symbol);
@@ -1574,7 +1595,7 @@ class ConverterContext {
 
 	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
 		// TS 4.0+: elementFlags indicates Required(1), Optional(2), Rest(4), Variadic(8) per element
-		var elementFlags: Null<Array<Int>> = Reflect.field(tupleTypeReference.target, 'elementFlags');
+		var elementFlags: Null<Array<Int>> = (cast tupleTypeReference.target : TupleType).elementFlags;
 		var hxElementTypes = new Array<ComplexType>();
 		if (tupleTypeReference.typeArguments != null) {
 			for (i in 0...tupleTypeReference.typeArguments.length) {
@@ -1862,7 +1883,7 @@ class ConverterContext {
 		// Prior to 4.0 it returned Symbol[]. We use the first parameter list.
 		var expandedParams: Array<Symbol> = {
 			var result: Dynamic = tc.getExpandedParameters(signature);
-			if (result.length > 0 && js.Syntax.code("Array.isArray({0}[0])", result))
+			if (result.length > 0 && Std.isOfType(result[0], Array))
 				result[0]
 			else
 				result;

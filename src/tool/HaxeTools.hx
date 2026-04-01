@@ -138,7 +138,7 @@ class HaxeTools {
 	**/
 	static public function toSafeIdent(str: String, escapeReservedWords: Bool = true) {
 		// TS 4.0+: some transient symbols may have undefined names
-		if (js.Syntax.code("{0} === undefined || {0} === null", str)) {
+		if (str == null) {
 			str = '__unnamed';
 		}
 		// remove quotes
