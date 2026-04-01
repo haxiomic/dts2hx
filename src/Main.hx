@@ -758,15 +758,17 @@ class Main {
 
 	/**
 		Generate a concrete abstract type as a string that wraps an anonymous typedef with @:native fields.
+		Only fields WITH @:native metadata get property accessors. Other fields are accessed
+		directly through the abstract's from/to coercion.
 		Returns null if the typedef has no @:native fields.
 	**/
 	static function generateNativeFieldAbstract(haxeModule: TypeDefinition, fields: Array<Field>): Null<{source: String}> {
 		var printer = new Printer();
 
-		// Collect field info
-		var nativeFields = new Array<{name: String, jsName: String, fieldType: String, doc: Null<String>, isOptional: Bool}>();
+		// Collect only fields that have @:native metadata
+		var nativeFields = new Array<{name: String, jsName: String, fieldType: String, doc: Null<String>, isOptional: Bool, hasTypeParams: Bool}>();
 		for (field in fields) {
-			var jsName = field.name;
+			var jsName: Null<String> = null;
 			var isOptional = false;
 			if (field.meta != null) {
 				for (m in field.meta) {
@@ -779,6 +781,14 @@ class Main {
 					if (m.name == ':optional') isOptional = true;
 				}
 			}
+			// Only wrap fields that have @:native metadata
+			if (jsName == null) continue;
+
+			// Check if the field has type parameters (generic functions can't become properties)
+			var hasTypeParams = switch field.kind {
+				case FFun(f): f.params != null && f.params.length > 0;
+				default: false;
+			};
 
 			var fieldType = switch field.kind {
 				case FVar(t, _): t != null ? printer.printComplexType(stripNamed(t)) : 'Dynamic';
@@ -792,8 +802,10 @@ class Main {
 					printer.printComplexType(stripNamed(TFunction(argTypes, f.ret != null ? f.ret : (macro :Dynamic))));
 			};
 
-			nativeFields.push({name: field.name, jsName: jsName, fieldType: fieldType, doc: field.doc, isOptional: isOptional});
+			nativeFields.push({name: field.name, jsName: jsName, fieldType: fieldType, doc: field.doc, isOptional: isOptional, hasTypeParams: hasTypeParams});
 		}
+
+		if (nativeFields.length == 0) return null;
 
 		// Build type parameter string
 		var typeParams = '';
@@ -807,16 +819,35 @@ class Main {
 		if (haxeModule.doc != null && haxeModule.doc != '') {
 			buf.add('/**\n\t${StringTools.replace(haxeModule.doc, "\n", "\n\t")}\n**/\n');
 		}
+		buf.add('@:forward\n');
 		buf.add('abstract ${haxeModule.name}$typeParams($innerName) from $innerName to $innerName {\n');
 
 		for (f in nativeFields) {
+			if (f.hasTypeParams) {
+				// Generic functions can't be property-wrapped — emit a forwarding method instead
+				// For now, skip these (the underlying typedef still has the method)
+				continue;
+			}
+
+			// Escape field names that start with get_ or set_ to avoid collision with accessor naming
+			var propName = f.name;
+			var getterName = 'get_${propName}';
+			var setterName = 'set_${propName}';
+
+			// Check for naming collisions: if another field's accessor would collide
+			if (nativeFields.exists(other -> other.name != f.name && ('get_${other.name}' == propName || 'set_${other.name}' == propName))) {
+				// This field's name looks like an accessor for another field — skip wrapping
+				// (the underlying typedef still has the field accessible via from/to coercion)
+				continue;
+			}
+
 			if (f.doc != null && f.doc != '') {
 				buf.add('\t/**\n\t\t${StringTools.replace(f.doc, "\n", "\n\t\t")}\n\t**/\n');
 			}
 			if (f.isOptional) buf.add('\t@:optional\n');
-			buf.add('\tpublic var ${f.name}(get, set):${f.fieldType};\n');
-			buf.add('\tinline function get_${f.name}():${f.fieldType} return js.Syntax.field(cast this, \'${f.jsName}\');\n');
-			buf.add('\tinline function set_${f.name}(v:${f.fieldType}):${f.fieldType} { js.Syntax.code("{0}[{1}] = {2}", this, \'${f.jsName}\', v); return v; }\n');
+			buf.add('\tpublic var $propName(get, set):${f.fieldType};\n');
+			buf.add('\tinline function $getterName():${f.fieldType} return js.Syntax.field(cast this, \'${f.jsName}\');\n');
+			buf.add('\tinline function $setterName(v:${f.fieldType}):${f.fieldType} { js.Syntax.code("{0}[{1}] = {2}", this, \'${f.jsName}\', v); return v; }\n');
 		}
 
 		buf.add('}\n');
