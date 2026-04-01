@@ -25,7 +25,8 @@ for mod in \
   ./build/modules/barrel \
   ./build/modules/patterns \
   ./build/modules/advanced \
-  ./build/modules/ts-features; do
+  ./build/modules/ts-features \
+  ./build/modules/limitations; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
 # Ambient declarations (global + declare module)

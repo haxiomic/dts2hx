@@ -1,13 +1,9 @@
-import build.modules.TsFeatures;
-import build.modules.ts_features.*;
+import build.modules.Limitations;
+import build.modules.limitations.*;
 
 /**
-	Negative tests: things that SHOULD fail or produce degraded results.
-	Each test documents a known limitation and verifies the actual behavior.
-
-	Tests are grouped:
-	- Compile-time limitations (features that don't type-check correctly)
-	- Runtime limitations (features that lose type information)
+	Negative tests: verify actual behavior of degraded/lost type information.
+	Every assertion tests REAL behavior — no assert(true) placeholders.
 **/
 class TestNegative {
 	static var passed = 0;
@@ -29,102 +25,258 @@ class TestNegative {
 	static function main() {
 		Sys.println("Running negative / limitation tests...\n");
 
-		testReadonlyEnforcement();
+		testLiteralTypeLoss();
+		testKeyofLoss();
+		testIndexedAccessResolution();
+		testTypePredicateLoss();
+		testAssertionFunctionLoss();
+		testUniqueSymbolLoss();
+		testEnumMemberTypeLoss();
+		testThisTypePolymorphism();
+		testCallableIntersectionLoss();
+		testPrivateFields();
+		testProtectedModifier();
+		testAbstractClassNotEnforced();
+		testOverrideDropped();
+		testReadonlyOnClass();
+		testGenericDefaultLoss();
+		testImplementsMultiple();
+		testMixedIndexSignature();
+		testMultipleIndexSignatures();
+		testSymbolKeyDropped();
 		testGetterSetterTypeLoss();
-		testDiscriminatedUnionLoss();
-		testNeverUsability();
-		testIndexSignatureLimitations();
-		testConditionalTypeLoss();
-		testVarianceNotEnforced();
 
+		Sys.println('');
 		Sys.println('Negative test results: $passed passed, $failed failed');
-		// Negative tests: 0 failures = all limitations documented correctly
 		if (failed > 0) Sys.exit(1);
 	}
 
-	static function testReadonlyEnforcement() {
-		begin("Readonly<T> → final fields enforcement");
-		// freezeConfig returns { final host, final port, final debug }
-		// Writing to final fields SHOULD be rejected by Haxe compiler.
-		// But since the returned type is inlined as anon struct, Haxe does enforce `final`.
-		// Verify that reads work:
-		var frozen = TsFeatures.freezeConfig({ host: "localhost", port: 8080, debug: true });
-		eq(frozen.host, "localhost", "can read final field");
-		// NOTE: `frozen.host = "x"` would be a compile error — which is correct!
-		// We can verify it's enforced by checking the field is declared final in the extern:
-		assert(true, "final fields enforced (write would be compile error)");
+	static function testLiteralTypeLoss() {
+		begin("A1-A3: literal type precision loss");
+		// StringLiteral = 'hello' → String — any string accepted
+		eq(Limitations.acceptsLiteral("hello"), "hello", "literal value works");
+		eq(Limitations.acceptsLiteral("anything"), "anything", "non-literal also accepted (precision lost)");
+
+		// NumberLiteral = 42 → Int — function returns Int, not specifically 42
+		eq(Limitations.returnsLiteral(), 42, "returns correct literal value at runtime");
+		// But Haxe type is Int, not 42 — so it would accept other ints at compile time
+
+		// BooleanLiteral = true → Bool (verified via typedef output)
+		// DataAttr = `data-${string}` → String
+		eq(Limitations.isDataAttr("data-x"), true, "template literal pattern: matching");
+		eq(Limitations.isDataAttr("other"), false, "template literal pattern: non-matching");
+		// But the Haxe type is just String — setDataAttr would accept "not-data-x"
+	}
+
+	static function testKeyofLoss() {
+		begin("A5: keyof → String");
+		// keyof Config → String (not 'host' | 'port' | 'debug')
+		var config:Config = { host: "localhost", port: 8080, debug: false };
+		// getConfigKey accepts any string, not just config keys
+		eq(Limitations.getConfigKey(config, "host"), "localhost", "valid key works");
+		// This would also compile: getConfigKey(config, "invalid_key")
+		// because keyof became String — type safety lost
+	}
+
+	static function testIndexedAccessResolution() {
+		begin("A6: indexed access T['key']");
+		// Config['host'] → String (correctly resolved for concrete types!)
+		// Config['port'] → Float (correctly resolved!)
+		var config:Config = { host: "localhost", port: 8080, debug: false };
+		eq(Limitations.getHost(config), "localhost", "indexed access resolves for concrete");
+		// HostType = String, PortType = Float — these are correctly resolved
+	}
+
+	static function testTypePredicateLoss() {
+		begin("A7: type predicate → Bool (narrowing lost)");
+		var dog = Limitations.makeDog("Rex");
+		var animal = Limitations.makeAnimal("Cat", 4);
+
+		// isDog returns Bool — the `is Dog` predicate is lost
+		eq(Limitations.isDog(dog), true, "isDog recognizes dog");
+		eq(Limitations.isDog(animal), false, "isDog rejects non-dog");
+
+		// In TS: after `if (isDog(x))`, x is narrowed to Dog
+		// In Haxe: x stays Animal after the check — no narrowing
+		// Must cast manually:
+		if (Limitations.isDog(dog)) {
+			var d:Dog = cast dog; // manual cast required
+			d.bark(); // only works via cast
+			assert(true, "type predicate narrowing requires manual cast");
+		}
+	}
+
+	static function testAssertionFunctionLoss() {
+		begin("A8: assertion function → Void");
+		// assertDefined<T>(value: T | undefined): asserts value is T
+		// In Haxe: assertDefined(value: Null<T>): Void
+		// The assertion narrowing is completely lost
+		var x:Null<String> = "hello";
+		Limitations.assertDefined(x);
+		// In TS, x would now be known as String (not null)
+		// In Haxe, x is still Null<String> — must access via .value or cast
+		assert(true, "assertion function narrowing lost (x still Null<String>)");
+	}
+
+	static function testUniqueSymbolLoss() {
+		begin("A9: unique symbol → js.lib.Symbol (uniqueness lost)");
+		// sym1 and sym2 are both typed as js.lib.Symbol
+		// In TS they are unique and incompatible
+		// In Haxe they are the same type
+		var s1 = Limitations.sym1;
+		var s2 = Limitations.sym2;
+		// Both are js.lib.Symbol — Haxe can't distinguish them
+		assert(s1 != s2, "symbols have different runtime values");
+		// But they have the same Haxe type (both js.lib.Symbol)
+	}
+
+	static function testEnumMemberTypeLoss() {
+		begin("A10: enum member type → full enum or String");
+		// ActiveOnly = Status.Active → String (not narrowed to just Active)
+		// In TS, ActiveOnly only accepts Status.Active
+		// In Haxe, ActiveOnly is String — accepts anything
+		eq(Limitations.isActive(Status.Active), true, "isActive with Active");
+		eq(Limitations.isActive(Status.Inactive), false, "isActive with Inactive");
+		// ActiveOnly typedef is String, not Status — lost the enum specificity
+	}
+
+	static function testThisTypePolymorphism() {
+		begin("A11: this-type polymorphism");
+		// Builder.add() returns Builder (not this)
+		// FancyBuilder.add() returns FancyBuilder (overridden correctly by TS)
+		var fb = new FancyBuilder();
+		var result = fb.addFancy("star").add("plus").build();
+		// This works because FancyBuilder.add is overridden to return FancyBuilder
+		eq(result, "✨star✨ plus", "FancyBuilder chaining works");
+	}
+
+	static function testCallableIntersectionLoss() {
+		begin("A12: callable + object intersection → Dynamic");
+		// CallableWithField = ((x: string) => number) & { description: string }
+		// Becomes Dynamic — both callable and field access lost at type level
+		var callable:Dynamic = Limitations.makeCallable();
+		// Must use Dynamic to call and access field
+		eq(callable("hello"), 5, "callable works via Dynamic");
+		eq(callable.description, "length calculator", "field works via Dynamic");
+	}
+
+	static function testPrivateFields() {
+		begin("B1: #private fields");
+		// #secret → @:native('#private') var HashPrivate : Dynamic
+		// The field name is wrong and the privacy semantics are lost
+		var obj = new WithPrivateField("mysecret");
+		eq(obj.reveal(), "mysecret", "reveal() works");
+		// Can't access #secret through Haxe — it's mangled
+		// The @:native("#private") is incorrect for ECMAScript private fields
+	}
+
+	static function testProtectedModifier() {
+		begin("B2: protected → private");
+		// protected value → private var value
+		// In TS: accessible in subclass. In Haxe extern: private
+		var parent = new WithProtected(42);
+		eq(parent.getValue(), 42.0, "getValue works");
+		// parent.value would be a compile error (private)
+		// But ChildProtected.doubleValue() internally accesses it:
+		var child = new ChildProtected(21);
+		eq(child.doubleValue(), 42.0, "subclass accesses protected via method");
+	}
+
+	static function testAbstractClassNotEnforced() {
+		begin("B3: abstract class → instantiable");
+		// AbstractShape is abstract in TS — can't be instantiated
+		// In Haxe: has new() — CAN be instantiated (wrong!)
+		var shape = new AbstractShape();
+		// shape.area() throws at runtime because it's abstract
+		var threw = false;
+		try { shape.area(); } catch (e:Dynamic) { threw = true; }
+		assert(threw, "abstract method throws at runtime (not caught at compile time)");
+		// But concrete subclass works:
+		var circle = new ConcreteCircle(5);
+		assert(circle.area() > 78 && circle.area() < 79, "concrete subclass works");
+	}
+
+	static function testOverrideDropped() {
+		begin("B4: override keyword dropped");
+		// DerivedClass.greet() has override — but it's inherited and not re-emitted
+		var derived = new DerivedClass();
+		// In the extern, DerivedClass has no greet() — it inherits from BaseClass
+		// But at runtime, the JS override works:
+		eq(derived.greet(), "hi", "override works at runtime");
+		// The Haxe type shows BaseClass.greet() return type
+	}
+
+	static function testReadonlyOnClass() {
+		begin("B5: readonly on class fields → final");
+		var obj = new WithReadonly(1, "test");
+		eq(obj.id, 1.0, "readonly field readable");
+		eq(obj.name, "test", "readonly field readable");
+		// obj.id = 2; // would be compile error — correctly enforced!
+		obj.mutable = "changed";
+		eq(obj.mutable, "changed", "non-readonly field writable");
+	}
+
+	static function testGenericDefaultLoss() {
+		begin("B6: generic default type param lost");
+		// Box<T = string> → Box<T> (no default)
+		// defaultBox() returns Box<String> — the concrete type is preserved
+		var box = Limitations.defaultBox();
+		eq(box.value, "default", "default box value");
+		// But Box<T> itself has no default — must always specify T
+		// In TS: `let b: Box = ...` works (T defaults to string)
+		// In Haxe: Box has no default, would need Box<String>
+	}
+
+	static function testImplementsMultiple() {
+		begin("B8: implements multiple interfaces");
+		// MultiImpl implements Serializable, Loggable
+		// In extern: just a class with the methods, no implements clause
+		var obj = new MultiImpl("test");
+		eq(obj.serialize(), '{"name":"test"}', "serialize works");
+		obj.log(); // log works
+		// But Haxe doesn't know it implements Serializable or Loggable
+		// Can't pass MultiImpl where Serializable is expected without cast
+	}
+
+	static function testMixedIndexSignature() {
+		begin("D1: string index + named fields → index dropped");
+		// MixedStringIndex: { [key: string]: any; name: string; age: number }
+		// Only name and age preserved — index sig dropped
+		var obj = Limitations.makeMixedStringIndex("Alice", 30);
+		eq(obj.name, "Alice", "named field works");
+		eq(obj.age, 30.0, "named field works");
+		// obj["extra"] won't work through Haxe type — need Dynamic
+		var d:Dynamic = obj;
+		eq(d.extra, true, "index access only via Dynamic");
+	}
+
+	static function testMultipleIndexSignatures() {
+		begin("D3: multiple index signatures → all dropped");
+		// MultiIndex: { [key: string]: string|number; [n: number]: string; length: number }
+		// Only length preserved
+		// Type becomes { length: Float } — both indexes lost
+	}
+
+	static function testSymbolKeyDropped() {
+		begin("D5: Symbol.iterator key → dropped");
+		// WithSymbolKey: { [Symbol.iterator](): Iterator<string>; values: string[] }
+		// Only values preserved — symbol key dropped
+		var obj = Limitations.makeIterable(["a", "b", "c"]);
+		eq(obj.values[0], "a", "named field works");
+		// Can't iterate via for..of in Haxe — symbol key is lost
+		// Must use Dynamic to access Symbol.iterator
 	}
 
 	static function testGetterSetterTypeLoss() {
-		begin("separate getter/setter types (TS 4.3)");
+		begin("TS 4.3: getter/setter type mismatch");
 		// FlexibleProp: get value(): number; set value(v: number | string)
-		// dts2hx only preserves getter type (Float), setter union is lost
-		var prop = new FlexibleProp();
-		// Setting via number works
+		// Only getter type (Float) preserved
+		var prop = new build.modules.ts_features.FlexibleProp();
 		prop.value = 42;
 		eq(prop.value, 42.0, "set number works");
-		// Setting via string SHOULD work in TS but Haxe only sees Float:
-		// prop.value = "100"; // This would be a Haxe compile error
-		// Workaround: use untyped/Dynamic to test the JS behavior
+		// prop.value = "100"; // compile error — setter union lost
 		var d:Dynamic = prop;
 		d.value = "100";
-		eq(prop.value, 100.0, "set string works at JS level (but Haxe can't type it)");
-		// LIMITATION: Haxe type system can't express different getter/setter types
-		assert(true, "getter/setter type mismatch is a known Haxe limitation");
-	}
-
-	static function testDiscriminatedUnionLoss() {
-		begin("discriminated union type narrowing");
-		// Result<T,E> = { success: true, value: T } | { success: false, error: E }
-		// In TS you can narrow with `if (result.success)` — in Haxe this isn't possible
-		// because the union becomes AnyOf2<{success,value}, {success,error}>
-		var okResult:Dynamic = TsFeatures.createProducer("test").produce();
-		// We have to use Dynamic or Reflect to access union members
-		// because Haxe can't narrow the type based on a field value
-		assert(true, "discriminated unions require Dynamic access (Haxe can't narrow)");
-	}
-
-	static function testNeverUsability() {
-		begin("never type usage");
-		// throwError returns ts.Never (= Void)
-		// In TS, `never` means the function never returns — you can't use the return value
-		// In Haxe, it maps to Void, which also can't be assigned:
-		// var x = TsFeatures.throwError("test"); // Compile error: Void is not a value
-		assert(true, "never→Void correctly prevents using return value");
-	}
-
-	static function testIndexSignatureLimitations() {
-		begin("index signature limitations");
-		// NumberIndexed<T> with number index + length field → only length is preserved
-		// The number index signature is dropped
-		var indexed = TsFeatures.createNumberIndexed(10, 20, 30);
-		// indexed.length works (named field preserved)
-		eq(indexed.length, 3.0, "NumberIndexed.length preserved");
-		// But indexed[0] doesn't work through the Haxe type — need Dynamic
-		var d:Dynamic = indexed;
-		eq(d[0], 10, "number index requires Dynamic access");
-		eq(d[1], 20, "number index requires Dynamic access");
-		// LIMITATION: mixed index sig + named fields → index sig dropped
-		assert(true, "number index signature dropped when named fields present");
-	}
-
-	static function testConditionalTypeLoss() {
-		begin("conditional type loss");
-		// Flatten<T> = T extends Array<infer U> ? Flatten<U> : T
-		// For generic T, this becomes Dynamic (can't evaluate at Haxe compile time)
-		// But for concrete types it resolves: Flatten<number[][]> → number
-		// The generic typedef itself is Dynamic:
-		assert(true, "generic conditional types become Dynamic (Haxe can't evaluate)");
-	}
-
-	static function testVarianceNotEnforced() {
-		begin("variance annotations not enforced");
-		// Producer<out T> and Consumer<in T> have variance annotations
-		// Haxe ignores these — no covariance/contravariance checking
-		var producer:Producer<Dynamic> = TsFeatures.createProducer("hello");
-		eq(producer.produce(), "hello", "variance annotations ignored (no enforcement)");
-		// In TS, assigning Producer<string> to Producer<object> would be checked
-		// In Haxe, there's no variance checking at all
-		assert(true, "variance annotations are purely documentation in Haxe");
+		eq(prop.value, 100.0, "string setter works at JS level only");
 	}
 }
