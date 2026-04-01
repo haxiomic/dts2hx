@@ -807,6 +807,16 @@ class Main {
 
 		if (nativeFields.length == 0) return null;
 
+		// Count how many fields will actually get property accessors or docs
+		// (naming collisions are skipped entirely)
+		var emittableCount = 0;
+		for (f in nativeFields) {
+			if (nativeFields.exists(other -> other.name != f.name && ('get_${other.name}' == f.name || 'set_${other.name}' == f.name))) continue;
+			emittableCount++;
+		}
+		// Don't generate an empty abstract wrapper
+		if (emittableCount == 0) return null;
+
 		// Build type parameter string
 		var typeParams = '';
 		if (haxeModule.params != null && haxeModule.params.length > 0) {
@@ -824,8 +834,15 @@ class Main {
 
 		for (f in nativeFields) {
 			if (f.hasTypeParams) {
-				// Generic functions can't be property-wrapped — emit a forwarding method instead
-				// For now, skip these (the underlying typedef still has the method)
+				// Generic functions can't become properties — emit a comment explaining
+				// how to access the native field
+				buf.add('\t/**\n');
+				buf.add('\t\tAccess the native `${f.jsName}` field. This field has type parameters\n');
+				buf.add('\t\tthat cannot be expressed in a property type, so use js.Syntax.field:\n');
+				buf.add('\t\t```haxe\n');
+				buf.add('\t\tjs.Syntax.field(obj, \'${f.jsName}\');\n');
+				buf.add('\t\t```\n');
+				buf.add('\t**/\n');
 				continue;
 			}
 

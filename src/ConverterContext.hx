@@ -1970,12 +1970,21 @@ class ConverterContext {
 			| TypeFlags.StringLiteral | TypeFlags.NumberLiteral | TypeFlags.BooleanLiteral
 			| TypeFlags.Enum | TypeFlags.EnumLiteral | TypeFlags.Void | TypeFlags.Undefined
 			| TypeFlags.Null | TypeFlags.Never | TypeFlags.BigInt | TypeFlags.BigIntLiteral;
-		if (type.flags & simpleFlags != 0) return true;
+		if (type.flags & simpleFlags != 0) {
+			// Undefined in constraints becomes Null<T> in Haxe, which causes
+			// invariance issues (Null<Any> doesn't satisfy Null<Bool>)
+			if (type.flags & TypeFlags.Undefined != 0) return false;
+			return true;
+		}
 		// Allow unions where all members are safe
 		if (type.flags & TypeFlags.Union != 0) {
 			var unionType: Dynamic = type;
 			var types: Array<TsType> = unionType.types;
-			if (types != null) return types.exists(t -> isSimpleConstraintType(t));
+			if (types != null) {
+				// Reject unions containing undefined (becomes Null<T>, invariance issue)
+				if (types.exists(t -> t.flags & TypeFlags.Undefined != 0)) return false;
+				return !types.exists(t -> !isSimpleConstraintType(t));
+			}
 		}
 		// Allow non-generic object types (classes/interfaces without type parameters)
 		// These are safe because subclass narrowing doesn't involve type param variance
