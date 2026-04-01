@@ -22,6 +22,9 @@ PROJECT_ROOT="$(cd ../.. && pwd)"
 LIX="npx --prefix $PROJECT_ROOT lix"
 HAXERC="$(pwd)/.haxerc"
 
+# Put lix's haxe shim first on PATH so bare `haxe` uses lix/.haxerc
+export PATH="$PROJECT_ROOT/node_modules/.bin:$PATH"
+
 # Haxe versions to test
 VERSIONS=("4.3.6" "nightly")
 
@@ -39,25 +42,30 @@ trap cleanup EXIT
 echo "=== Haxe Version Matrix Test ==="
 for version in "${VERSIONS[@]}"; do
     echo "Ensuring Haxe $version is available..."
-    $LIX download haxe "$version" 2>&1 | grep -v "already"
+    $LIX download haxe "$version" 2>&1 | grep -v "already" || true
 done
 echo ""
 
 TOTAL_PASS=0
 TOTAL_FAIL=0
 
-for version in "${VERSIONS[@]}"; do
-    # Resolve the version string lix uses (e.g. "nightly" -> "06a76b8")
-    resolved=$($LIX use haxe "$version" 2>&1 | grep -o '[0-9a-f]\{7\}\|[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)
-    # Read the resolved version from the generated .haxerc
-    if [ -f ~/haxe/.haxerc ]; then
-        lix_version=$(python3 -c "import json; print(json.load(open('$HOME/haxe/.haxerc'))['version'])" 2>/dev/null || echo "$version")
+resolve_lix_version() {
+    # Extract the resolved version from lix download output (e.g. "Resolved to 06a76b8")
+    local resolved
+    resolved=$($LIX download haxe "$1" 2>&1 | grep -o "Resolved to [^ ]*" | awk '{print $3}')
+    if [ -n "$resolved" ]; then
+        echo "$resolved"
     else
-        lix_version="$version"
+        # Already downloaded or exact version — use as-is
+        echo "$1"
     fi
+}
+
+for version in "${VERSIONS[@]}"; do
+    lix_version=$(resolve_lix_version "$version")
 
     # Write scoped .haxerc for this version
-    echo "{\"version\": \"$lix_version\"}" > "$HAXERC"
+    echo "{\"version\": \"$lix_version\", \"resolveLibs\": \"haxelib\"}" > "$HAXERC"
 
     actual_version=$(haxe --version 2>&1)
     echo "==========================================="

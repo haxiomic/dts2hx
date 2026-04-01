@@ -76,3 +76,8 @@ echo ""
 # Step 7: Run CLI mode tests
 echo "Step 7: Running CLI mode tests..."
 bash test-modes.sh
+echo ""
+
+# Step 8: Run CLI flag tests
+echo "Step 8: Running CLI flag tests..."
+bash test-flags.sh

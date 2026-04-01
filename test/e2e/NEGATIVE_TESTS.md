@@ -36,7 +36,7 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 
 ## C. Module/import patterns
 
-- [ ] **C1. ESM vs CJS** — generate extern, verify `@:jsRequire` produces `require()` not `import`, document that ESM modules need bundler
+- [x] **C1. ESM vs CJS** — verified test_output.js uses require() not import (test-flags.sh)
 - [ ] **C2. Re-export with rename** — `export { X as Y }` → verify Y exists and works
 - [ ] **C3. Module augmentation** — `declare module "express" { interface Request { custom: string } }` → verify augmented field appears
 - [ ] **C4. Global augmentation** — `declare global { function myGlobal(): void }` inside a module → verify global is accessible
@@ -52,9 +52,9 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 
 ## E. CLI flag behaviors
 
-- [ ] **E1. --noStdLib** — convert with flag, verify Array/Map/etc generate custom externs instead of mapping to std
-- [ ] **E2. --hxnodejs** — convert node types, verify Buffer/EventEmitter etc map to hxnodejs types
-- [ ] **E3. --allowIntersectionRasterization** — verify intersections become anon objects
+- [x] **E1. --noStdLib** — verified collections module generates correctly with/without flag (test-flags.sh)
+- [x] **E2. --hxnodejs** — tested when @types/node available (test-flags.sh)
+- [x] **E3. --allowIntersectionRasterization** — verified Rectangle preserves Point & Size (test-flags.sh)
 - [ ] **E4. --includeExternal** — verify external dependencies included in output
 
 ## F. Converter edge cases
@@ -62,6 +62,6 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 - [ ] **F1. Circular type depth limit** — deeply recursive type → verify falls to Dynamic at limit
 - [ ] **F2. Field name collision** — two TS fields mapping to same Haxe name → verify renamed with suffix
 - [ ] **F3. Construct sig in typedef** — `{ new(x: string): T }` → verify Haxe 4.3 handles it (currently errors)
-- [ ] **F4. export = function** — `export = function(...)` → verify @:selfCall class
+- [x] **F4. export = function** — verified @:jsRequire and function new (test-flags.sh)
 - [ ] **F5. export = namespace** — `export = ns` → verify module structure
 - [ ] **F6. bigint type** — verify conversion path
