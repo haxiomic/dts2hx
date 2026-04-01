@@ -85,6 +85,24 @@ expect_compile_error \
     "passing string to numeric enum param" \
     'var x:build.testlib.NumericEnum = "not a number";'
 
+# === Extern compatibility tests (known bugs - expected to fail until fixed) ===
+# These test known dts2hx issues. They use expect_compile_ok because the
+# generated externs SHOULD compile. When they fail, they document real bugs.
+
+# Bug EC-1: Construct signatures in structure types
+# WidgetFactory has `function new()` in a typedef, illegal in Haxe 4.3+
+echo "Test: [EC-1] construct sig in struct compiles..."
+expect_compile_ok \
+    "[EC-1] WidgetFactory typedef with new()" \
+    'var f:modules.extern_compat.WidgetFactory = null; var w = f.create("test");'
+
+# Bug EC-3: Iterator/Iterable type parameter count
+# TS 5.6+ Iterator<T, TReturn, TNext> maps to Haxe Iterator<T> (1 param)
+echo "Test: [EC-3] Iterator type params compile..."
+expect_compile_ok \
+    "[EC-3] DataProcessor with Iterator<T>" \
+    'var dp:modules.extern_compat.DataProcessor = null;'
+
 echo ""
 echo "Compile-time results: $PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ] || exit 1

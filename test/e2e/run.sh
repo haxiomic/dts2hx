@@ -33,6 +33,8 @@ for mod in \
 done
 # Ambient declarations (global + declare module)
 node ../../dist/dts2hx.js ./modules/ambient --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
+# Extern compatibility tests (pure .d.ts, no TS compilation needed)
+node ../../dist/dts2hx.js ./modules/extern-compat --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 echo "  → externs/"
 
 # Step 3: Compile Haxe test against generated externs

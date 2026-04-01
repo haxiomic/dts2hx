@@ -1,3 +1,3 @@
 package unit.types.types;
 
-typedef EnumValueAlias = Int;
+typedef EnumValueAlias = ExampleEnum;

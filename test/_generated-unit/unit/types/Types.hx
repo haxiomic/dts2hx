@@ -148,8 +148,8 @@ package unit.types;
 	static function arrowParamWithRest(a:Float, b:Float, rest:haxe.extern.Rest<Float>):Void;
 	static function arrowParamWithRestOr(a:Float, b:Float):Void;
 	static function arrowParamWithRestUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
-	static function arrowParamWithRestTuple(a:Float, b:Float, rest_0:Dynamic):Void;
-	static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest_0:Dynamic):Void;
+	static function arrowParamWithRestTuple(a:Float, b:Float, rest_0:Float):Void;
+	static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest_0:Float):Void;
 	static function arrowParamObjectBindingPattern(__0:{ var x : Dynamic; var y : Dynamic; }):Void;
 	static final nullableNumber : Null<Float>;
 	static final undefineableNumber : Null<Float>;
@@ -207,7 +207,13 @@ package unit.types;
 	}, {
 		var c : Float;
 	}>;
-	static final intersectionWithCallSignatures : Dynamic;
+	static final intersectionWithCallSignatures : {
+		@:overload(function(callParamB:Bool):Array<String> { })
+		@:selfCall
+		function call_(callParamA:String):Float;
+		function call():Float;
+		var b : Float;
+	};
 	static final intersectionAnonAlias : unit.types.types.Anon & {
 		var b : Bool;
 	};
