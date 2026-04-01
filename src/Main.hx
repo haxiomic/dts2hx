@@ -365,10 +365,17 @@ class Main {
 			}
 		}
 
-		// add modules from cli options
+		// add modules from cli options, expanding packages with wildcard exports
 		var moduleQueue = new ds.OnceOnlyQueue<String>();
 		for (moduleName in cliOptions.moduleNames) {
-			moduleQueue.tryEnqueue(moduleName);
+			var expandedModules = expandWildcardExports(moduleName, cliOptions.moduleSearchPath, compilerOptions, host);
+			if (expandedModules != null) {
+				for (subModule in expandedModules) {
+					moduleQueue.tryEnqueue(subModule);
+				}
+			} else {
+				moduleQueue.tryEnqueue(moduleName);
+			}
 		}
 		
 		// add modules from compilerOptions
@@ -464,6 +471,8 @@ class Main {
 				else if (stdLibTypeMap != null) stdLibTypeMap.haxeVersion
 				else defaultStdLibTypeMap.haxeVersion;
 			printer.useEnumAbstractKeyword = versionAtLeast(haxeVer, 4, 3);
+			// Quoted field names (var "name") require Haxe 5.0+
+			printer.useQuotedFieldNames = versionAtLeast(haxeVer, 5, 0);
 
 			var libraryName = haxelibLibraryName(converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName);
 			var libraryVersion = converter.inputModule.packageId != null && converter.inputModule.packageId.version != null ? converter.inputModule.packageId.version : 'default';
@@ -572,6 +581,75 @@ class Main {
 		}
 
 		return sections.map(s -> s.removeIndentation().trim()).join('\n\n');
+	}
+
+	/**
+		For packages with wildcard exports (e.g. `"./*": "./dist/*.js"`) and no root entry point,
+		discover all importable sub-modules by scanning for .ts/.d.ts files.
+		Returns null if the package has a resolvable root entry (no expansion needed).
+	**/
+	static function expandWildcardExports(moduleName: String, moduleSearchPath: String, compilerOptions: typescript.ts.CompilerOptions, host: typescript.ts.CompilerHost): Null<Array<String>> {
+		// Only expand bare package names (not sub-paths like "pkg/sub")
+		if (moduleName.indexOf('/') != -1 && !StringTools.startsWith(moduleName, '@')) return null;
+		if (moduleName.indexOf('/') != -1 && StringTools.startsWith(moduleName, '@')) {
+			// scoped packages like @types/three — check if there's a sub-path after the scope
+			var parts = moduleName.split('/');
+			if (parts.length > 2) return null; // already a sub-path
+		}
+
+		// Check if the root module resolves to a substantive entry point
+		var result = Ts.resolveModuleName(moduleName, moduleSearchPath + '/.', compilerOptions, host);
+
+		// Find the package directory by looking for package.json in node_modules
+		var packageDir: Null<String> = null;
+		var hasWildcardExports = false;
+		var searchDir = moduleSearchPath + '/node_modules/' + moduleName;
+		var packageJsonFile = searchDir + '/package.json';
+		if (sys.FileSystem.exists(packageJsonFile)) {
+			packageDir = searchDir;
+			try {
+				var pkgJson = haxe.Json.parse(sys.io.File.getContent(packageJsonFile));
+				var exports: Null<haxe.DynamicAccess<Dynamic>> = pkgJson.exports;
+				if (exports != null) {
+					hasWildcardExports = exports.exists('./*') || exports.exists('./**/*');
+				}
+			} catch (e: Any) {}
+		}
+
+		// If root resolves and no wildcard exports, no expansion needed
+		if (result.resolvedModule != null && !hasWildcardExports) return null;
+		// If no package found or no wildcard exports, can't expand
+		if (packageDir == null || !hasWildcardExports) return null;
+
+		// Scan for .ts and .d.ts files
+		var modules = new Array<String>();
+		function scanDir(dir: String, prefix: String) {
+			try {
+				for (entry in sys.FileSystem.readDirectory(dir)) {
+					var fullPath = haxe.io.Path.join([dir, entry]);
+					if (sys.FileSystem.isDirectory(fullPath)) {
+						// Skip node_modules, .git, etc.
+						if (entry == 'node_modules' || entry == '.git' || entry == 'dist') continue;
+						scanDir(fullPath, prefix + entry + '/');
+					} else if (StringTools.endsWith(entry, '.ts') && !StringTools.endsWith(entry, '.d.ts') && entry != 'index.ts') {
+						var subModule = prefix + haxe.io.Path.withoutExtension(entry);
+						var fullModuleName = moduleName + '/' + subModule;
+						// Verify this module actually resolves
+						var subResult = Ts.resolveModuleName(fullModuleName, moduleSearchPath + '/.', compilerOptions, host);
+						if (subResult.resolvedModule != null) {
+							modules.push(fullModuleName);
+						}
+					}
+				}
+			} catch (e: Any) {}
+		}
+		scanDir(packageDir, '');
+
+		if (modules.length > 0) {
+			Console.log('Expanded <b>$moduleName</> into <b>${modules.length}</> sub-modules');
+			return modules;
+		}
+		return null;
 	}
 
 	/**
