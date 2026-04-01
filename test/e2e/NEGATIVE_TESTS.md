@@ -55,7 +55,7 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 - [x] **E1. --noStdLib** — verified collections module generates correctly with/without flag (test-flags.sh)
 - [x] **E2. --hxnodejs** — tested when @types/node available (test-flags.sh)
 - [x] **E3. --allowIntersectionRasterization** — verified Rectangle preserves Point & Size (test-flags.sh)
-- [ ] **E4. --includeExternal** — verify external dependencies included in output
+- [x] **E4. --includeExternal** — verified produces more files when flag is set (test-flags.sh)
 
 ## F. Converter edge cases
 

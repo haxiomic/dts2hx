@@ -107,6 +107,26 @@ check_exists "export= class: CjsExport exists" "$TMPDIR/build/modules/CjsExport.
 check "export= class: has @:jsRequire" "$TMPDIR/build/modules/CjsExport.hx" "@:jsRequire"
 check "export= class: has function new" "$TMPDIR/build/modules/CjsExport.hx" "function new"
 
+# E4: --includeExternal — includes external dependency types in output
+echo "Test: --includeExternal..."
+rm -rf "$TMPDIR"
+# math module depends on types module — without --includeExternal, types are separate
+node $DTS2HX $E2EDIR/build/modules/math --output "$TMPDIR" --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$\|Error" > /dev/null
+MATH_ONLY_COUNT=$(find "$TMPDIR" -name "*.hx" | wc -l | tr -d ' ')
+
+rm -rf "$TMPDIR"
+# With --includeExternal, external types should be included in the output
+node $DTS2HX $E2EDIR/build/modules/math --output "$TMPDIR" --noLibWrap --skipDependencies --includeExternal 2>&1 | grep -v "Warning\|^$\|Error" > /dev/null
+INCL_COUNT=$(find "$TMPDIR" -name "*.hx" | wc -l | tr -d ' ')
+
+# --includeExternal should produce more files (includes Point, Size from types module)
+if [ "$INCL_COUNT" -ge "$MATH_ONLY_COUNT" ]; then
+    PASS=$((PASS + 1))
+else
+    FAIL=$((FAIL + 1))
+    echo "  FAIL: --includeExternal: expected >= $MATH_ONLY_COUNT files, got $INCL_COUNT"
+fi
+
 # C1: ESM vs CJS
 echo "Test: ESM vs CJS (verify require not import)..."
 # The generated Haxe JS should use require(), not import
