@@ -515,8 +515,14 @@ class ConverterContext {
 					fundamentalTypePath.name
 				);
 
-				if (classDeclaration != null) {
-					// add default constructor
+				// check if class is abstract
+				var isAbstractClass = if (classDeclaration != null && classDeclaration.modifiers != null) {
+					var mods: Array<Modifier> = cast classDeclaration.modifiers;
+					mods.exists(m -> m.kind == SyntaxKind.AbstractKeyword);
+				} else false;
+
+				if (classDeclaration != null && !isAbstractClass) {
+					// add default constructor (not for abstract classes)
 					if (!fields.exists(f -> f.name == 'new') && classSuperType == null) {
 						fields.unshift((macro class { function new(); }).fields[0]);
 					}
@@ -1908,7 +1914,8 @@ class ConverterContext {
 				case SyntaxKind.PrivateKeyword:
 					access.push(APrivate);
 				case SyntaxKind.ProtectedKeyword:
-					access.push(APrivate);
+					// protected maps to no access modifier in Haxe externs
+					// (APrivate would be too restrictive — externs need to be accessible)
 				case SyntaxKind.ReadonlyKeyword:
 					access.push(AFinal);
 				case SyntaxKind.StaticKeyword:

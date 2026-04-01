@@ -20,9 +20,10 @@ if [ "$MAJOR" -lt 5 ] 2>/dev/null; then
 fi
 echo "Using Haxe $HAXE_VERSION"
 
-# Step 1: Ensure TypeScript is compiled (reuse build/ from run.sh if present)
-if [ ! -d build ]; then
+# Step 1: Compile TypeScript to JS + .d.ts
+if [ ! -d build ] || [ ! -f build/testlib.d.ts ]; then
     echo "Step 1: Compiling TypeScript..."
+    rm -rf build
     TSC="../../node_modules/.bin/tsc"
     $TSC -p tsconfig.json
     echo "  -> build/"

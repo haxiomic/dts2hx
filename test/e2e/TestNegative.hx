@@ -187,17 +187,14 @@ class TestNegative {
 	}
 
 	static function testAbstractClassNotEnforced() {
-		begin("B3: abstract class → instantiable");
+		begin("B3: abstract class → no constructor (FIXED)");
 		// AbstractShape is abstract in TS — can't be instantiated
-		// In Haxe: has new() — CAN be instantiated (wrong!)
-		var shape = new AbstractShape();
-		// shape.area() throws at runtime because it's abstract
-		var threw = false;
-		try { shape.area(); } catch (e:Dynamic) { threw = true; }
-		assert(threw, "abstract method throws at runtime (not caught at compile time)");
+		// FIXED: AbstractShape no longer has new() — compile error if you try
+		// var shape = new AbstractShape(); // This is now a compile error!
 		// But concrete subclass works:
 		var circle = new ConcreteCircle(5);
 		assert(circle.area() > 78 && circle.area() < 79, "concrete subclass works");
+		eq(circle.describe(), "Area: 78.53981633974483", "inherited method works");
 	}
 
 	static function testOverrideDropped() {

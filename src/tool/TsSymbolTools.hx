@@ -38,13 +38,14 @@ class TsSymbolTools {
 		// TS 4.0+: some transient symbols may have null/undefined names
 		if (symbol.name == null || symbol.escapedName == null) return false;
 		var isKnownSymbol = std.StringTools.startsWith(symbol.escapedName, '__@'); // see typescript's utilities.ts
+		var isEcmaPrivate = std.StringTools.startsWith(symbol.escapedName, '__#'); // ECMAScript #private fields
 		final FieldSymbolFlags = SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.ClassMember;
 
 		if (symbol.name == '__promisify__') {
 			return false;
 		}
 
-		return !isKnownSymbol && symbol.flags & FieldSymbolFlags != 0;
+		return !isKnownSymbol && !isEcmaPrivate && symbol.flags & FieldSymbolFlags != 0;
 	}
 	
 	/**
