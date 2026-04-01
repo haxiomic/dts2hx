@@ -28,7 +28,8 @@ for mod in \
   ./build/modules/ts-features \
   ./build/modules/limitations \
   ./build/modules/implements \
-  ./build/modules/mixed-index; do
+  ./build/modules/mixed-index \
+  ./build/modules/bigint-test; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
 # Ambient declarations (global + declare module)
@@ -52,7 +53,7 @@ echo "  → test_output.js"
 
 # Step 4: Compile negative tests
 echo "Step 4: Compiling additional test suites..."
-for test_main in TestNegative TestImplements TestMixedIndex; do
+for test_main in TestNegative TestImplements TestMixedIndex TestBigInt; do
   outfile=$(echo "$test_main" | tr '[:upper:]' '[:lower:]').js
   haxe \
     -cp . \
@@ -79,6 +80,9 @@ node -e "require('./testimplements.js');"
 echo ""
 echo "Running mixed index tests..."
 node -e "require('./testmixedindex.js');"
+echo ""
+echo "Running BigInt tests..."
+node -e "require('./testbigint.js');"
 echo ""
 
 # Step 6: Run compile-time enforcement tests

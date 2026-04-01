@@ -1078,8 +1078,7 @@ class ConverterContext {
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
 		} else if (type.flags & (TypeFlags.BigInt | TypeFlags.BigIntLiteral) != 0) {
-			// Haxe has no BigInt type — map to Dynamic
-			macro :Dynamic;
+			SupportTypes.getBigIntType(this);
 			
 
 		// these probably don't work properly:
@@ -1523,7 +1522,10 @@ class ConverterContext {
 				case TPath(p):
 					var argumentCount = hxTypeArguments.length;
 					var paramCount = p.params != null ? p.params.length : 0;
-					if (paramCount != argumentCount) {
+					// clamp type args to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
+					if (paramCount < argumentCount && paramCount > 0) {
+						hxTypeArguments = hxTypeArguments.slice(0, paramCount);
+					} else if (paramCount != argumentCount && paramCount != 0) {
 						Log.warn('TypeReference has <b>$argumentCount</> arguments but target has <b>$paramCount</> parameters', typeReference);
 					}
 					p.params = hxTypeArguments;
@@ -1573,9 +1575,14 @@ class ConverterContext {
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, moduleSymbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
 			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, moduleSymbol, accessContext, preferInterfaceStructure);
-			hxTypePath.params = if (classOrInterfaceType.typeParameters != null) {
+			var hxParams = if (classOrInterfaceType.typeParameters != null) {
 				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration)));
 			} else null;
+			// clamp type params to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
+			if (hxParams != null && hxTypePath.stdLibTypeParamCount != null && hxParams.length > hxTypePath.stdLibTypeParamCount) {
+				hxParams = hxParams.slice(0, hxTypePath.stdLibTypeParamCount);
+			}
+			hxTypePath.params = hxParams;
 			TPath(hxTypePath);
 		} else {
 			Log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);

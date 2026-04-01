@@ -195,6 +195,42 @@ class SupportTypes {
 		return TPath(typePath);
 	}
 
+	static public function getBigIntType(ctx: ConverterContext): ComplexType {
+		var typePath = {
+			pack: ['ts'],
+			name: 'BigInt_',
+		};
+
+		var existingModule = ctx.getGeneratedModule(typePath);
+		if (existingModule == null) {
+			var fields = (macro class {
+				/** Returns a string representation of the BigInt value. **/
+				public function toString(?radix: Float): String;
+				/** Returns the primitive BigInt value. **/
+				public function valueOf(): ts.BigInt_;
+				public function toLocaleString(?locales: String, ?options: Dynamic): String;
+			}).fields;
+
+			var bigIntDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				doc: 'JavaScript BigInt type — arbitrary-precision integers. Created via `js.Syntax.code("BigInt(...)")`.',
+				kind: TDAbstract(macro :Dynamic, null, [macro :Dynamic], [macro :Dynamic]),
+				params: [],
+				fields: fields,
+				isExtern: true,
+				meta: [{name: ':forward', pos: null}],
+				pos: null,
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			ctx.saveHaxeModule(bigIntDefinition);
+		}
+
+		return TPath(typePath);
+	}
+
 	static public function getGlobalModuleForFieldSymbol(ctx: ConverterContext, symbol: Symbol, access: SymbolAccess): HaxeModule {
 		var typePath = ctx.haxeTypePathMap.getGlobalModuleTypePath(symbol, access);
 		var existingModule = ctx.getGeneratedModule({name: typePath.name, pack: typePath.pack});

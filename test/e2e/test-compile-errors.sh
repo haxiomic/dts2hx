@@ -85,6 +85,12 @@ expect_compile_error \
     "passing string to numeric enum param" \
     'var x:build.testlib.NumericEnum = "not a number";'
 
+# Test 9: BigInt type has toString method
+echo "Test: BigInt has toString..."
+expect_compile_ok \
+    "BigInt.toString() compiles" \
+    'var b = build.modules.BigintTest.makeBigInt(42); var s:String = b.toString();'
+
 # === Extern compatibility tests (known bugs - expected to fail until fixed) ===
 # These test known dts2hx issues. They use expect_compile_ok because the
 # generated externs SHOULD compile. When they fail, they document real bugs.

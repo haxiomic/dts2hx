@@ -273,17 +273,17 @@ class HaxeTypePathMap {
 		// to convert those too, replace `isBuiltIn` with `defaultLibOnlyDeclarations`
 		if (isBuiltIn && !asInterfaceStructure) {
 			final specialTypeMap = [
-				// we want to avoid generating the following types into ts.lib.* 
+				// we want to avoid generating the following types into ts.lib.*
 				// preferring to map them to haxe types instead
-				'Array' => {name: 'Array', moduleName: 'Array', pack: []},
-				'ReadonlyArray' => {name: 'ReadOnlyArray', moduleName: 'ReadOnlyArray', pack: ['haxe', 'ds']},
-				'String' => {name: 'String', moduleName: 'String', pack: []},
-				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib']},
-				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
-				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe']}, // this is a bit questionable; need to fully review native js iteration
+				'Array' => {name: 'Array', moduleName: 'Array', pack: ([] : Array<String>), typeParams: 1},
+				'ReadonlyArray' => {name: 'ReadOnlyArray', moduleName: 'ReadOnlyArray', pack: ['haxe', 'ds'], typeParams: 1},
+				'String' => {name: 'String', moduleName: 'String', pack: ([] : Array<String>), typeParams: 0},
+				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib'], typeParams: 0},
+				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: ([] : Array<String>), typeParams: 1},
+				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe'], typeParams: 0},
 				// map `object` aka `js.lib.Object` to `Dynamic`
 				// maybe in the future we can remove this if `js.lib.Object` could unify with other types
-				'Object' => {name: 'Dynamic', moduleName: 'Dynamic', pack: []},
+				'Object' => {name: 'Dynamic', moduleName: 'Dynamic', pack: ([] : Array<String>), typeParams: 0},
 			];
 			switch access {
 				// match special-case built-ins
@@ -294,6 +294,7 @@ class HaxeTypePathMap {
 						moduleName: tp.moduleName,
 						pack: tp.pack,
 						isExistingStdLibType: true,
+						stdLibTypeParamCount: tp.typeParams,
 					}
 				case Global(_):
 					if (stdLibMap != null) {
@@ -309,6 +310,7 @@ class HaxeTypePathMap {
 									moduleName: stdLibType.moduleName,
 									pack: stdLibType.pack,
 									isExistingStdLibType: true,
+									stdLibTypeParamCount: stdLibType.typeParameters.length,
 								}
 							} else {
 								Log.warn('Type parameter mismatch between haxe standard lib type (<b>${stdLibType.typeParameters.length}</>) and ts default type (<b>${tsTypeParamDeclarations.length}</>). Generating replacement.', symbol);	
@@ -614,6 +616,7 @@ typedef TypePath = {
 	pack: Array<String>,
 	moduleName: String,
 	isExistingStdLibType: Bool,
+	?stdLibTypeParamCount: Int,
 }
 
 /**
