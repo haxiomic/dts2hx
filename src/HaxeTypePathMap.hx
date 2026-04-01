@@ -1,5 +1,8 @@
 import typemap.TypeMap;
 import haxe.io.Path;
+import typescript.ts.Identifier;
+import typescript.ts.LiteralLikeNode;
+import typescript.ts.NamedDeclaration;
 import typescript.ts.Program;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;

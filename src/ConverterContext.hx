@@ -25,6 +25,7 @@ import typescript.ts.Signature;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
 import typescript.ts.SyntaxKind;
+import typescript.ts.SubstitutionType;
 import typescript.ts.TupleType;
 import typescript.ts.TupleTypeReference;
 import typescript.ts.TypeAliasDeclaration;
@@ -126,6 +127,14 @@ class ConverterContext {
 		To aid post processing, when a symbol is popped `declarationSymbolQueue` after converting is it added to this list
 	**/
 	final processedDeclarationSymbols = new Array<Symbol>();
+
+	/**
+		Sub-module specifiers discovered through type references during conversion.
+		Derived from source file paths of symbols in node_modules.
+		E.g. a symbol from @types/three/examples/jsm/loaders/GLTFLoader.d.ts
+		→ "three/examples/jsm/loaders/GLTFLoader"
+	**/
+	public final discoveredSubModules = new Array<String>();
 
 
 
@@ -277,6 +286,36 @@ class ConverterContext {
 	}
 
 	/**
+		Derive a module specifier from a source file path in node_modules.
+		E.g. ".../node_modules/@types/three/examples/jsm/loaders/GLTFLoader.d.ts"
+		  → "three/examples/jsm/loaders/GLTFLoader"
+		Returns null if the path isn't in node_modules or can't be parsed.
+	**/
+	static function deriveSubModuleSpecifier(fileName: String): Null<String> {
+		var nmIdx = fileName.lastIndexOf('/node_modules/');
+		if (nmIdx == -1) return null;
+		var relPath = fileName.substr(nmIdx + '/node_modules/'.length);
+
+		if (StringTools.startsWith(relPath, '@types/')) {
+			relPath = relPath.substr('@types/'.length);
+		}
+
+		if (StringTools.endsWith(relPath, '.d.ts')) {
+			relPath = relPath.substr(0, relPath.length - '.d.ts'.length);
+		} else if (StringTools.endsWith(relPath, '.ts')) {
+			relPath = relPath.substr(0, relPath.length - '.ts'.length);
+		} else {
+			return null;
+		}
+
+		if (StringTools.endsWith(relPath, '/index')) {
+			relPath = relPath.substr(0, relPath.length - '/index'.length);
+		}
+
+		return relPath;
+	}
+
+	/**
 		Some symbols are not natively supported in haxe, for example, variables outside classes
 
 		These symbols are implemented as classes in haxe
@@ -356,7 +395,21 @@ class ConverterContext {
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
 						declarationSymbolQueue.tryEnqueue(symbol);
-					} else if (isExternalAmbientGlobal) {
+					}
+
+					// Discover sub-module specifiers from source file paths
+					// e.g. @types/three/examples/jsm/loaders/GLTFLoader.d.ts → three/examples/jsm/loaders/GLTFLoader
+					if (!declaredWithinInputModule) {
+						for (d in symbol.getDeclarationsArray()) {
+							var fileName = d.getSourceFile().fileName;
+							var subModule = deriveSubModuleSpecifier(fileName);
+							if (subModule != null && !discoveredSubModules.contains(subModule)) {
+								discoveredSubModules.push(subModule);
+							}
+						}
+					}
+
+					if (isExternalAmbientGlobal) {
 						// External ambient global types (e.g. from @types/webxr) may be referenced
 						// by modular types. Queue them for generation.
 						declarationSymbolQueue.tryEnqueue(symbol);
@@ -1125,7 +1178,7 @@ class ConverterContext {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.Substitution != 0) {
 			// TS 5.4+: NoInfer<T> and other substitution types — unwrap to the base type
-			var baseType: Null<TsType> = Reflect.field(type, 'baseType');
+			var baseType = (cast type : SubstitutionType).baseType;
 			if (baseType != null) {
 				complexTypeFromTsType(baseType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
@@ -1700,7 +1753,7 @@ class ConverterContext {
 				// use the enclosing declaration as a location fallback
 				tc.getTypeOfSymbolAtLocation(symbol, enclosingDeclaration);
 			} else {
-				Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
+				symbol.type_ != null ? symbol.type_ : tc.getDeclaredTypeOfSymbol(symbol);
 			}
 		}
 	}
@@ -1879,8 +1932,8 @@ class ConverterContext {
 			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
 			var tsType = if (parameterDeclaration != null) {
 				tc.getTypeOfSymbolAtLocation(s, parameterDeclaration);
-			} else if (Reflect.field(s, 'type') != null) {
-				Reflect.field(s, 'type');
+			} else if (s.type_ != null) {
+				s.type_;
 			} else if (signatureDeclarationNode != null) {
 				// TS 4.0+: expanded tuple rest params are transient with no .type;
 				// recover via the signature declaration as location
