@@ -518,10 +518,11 @@ class HaxeTypePathMap {
 			else if (symbol.declarations != null && symbol.declarations.length > 0) symbol.declarations[0]
 			else null;
 		if (decl != null) {
-			var nameNode: Dynamic = Reflect.field(decl, 'name');
-			if (nameNode != null) {
-				var text: Null<String> = Reflect.field(nameNode, 'text');
-				if (text == null) text = Reflect.field(nameNode, 'escapedText');
+			var namedDecl: NamedDeclaration = cast decl;
+			if (namedDecl.name != null) {
+				// DeclarationName is a union; Identifier has escapedText, LiteralLikeNode has text
+				var text: Null<String> = (cast namedDecl.name : Identifier).escapedText;
+				if (text == null) text = (cast namedDecl.name : LiteralLikeNode).text;
 				if (text != null && text != 'default') return text;
 			}
 		}

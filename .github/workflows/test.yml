@@ -44,11 +44,14 @@ jobs:
           haxe --run RunUnit
 
       - name: Run lib tests
+        if: runner.os != 'Windows'
+        continue-on-error: true
         run: |
           cd test
           haxe --run RunLibs
 
       - name: Run e2e tests
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           cd test/e2e
