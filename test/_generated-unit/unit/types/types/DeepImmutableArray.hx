@@ -12,6 +12,7 @@ typedef DeepImmutableArray<T> = {
 	/**
 		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:Dynamic):String { })
 	function toLocaleString():String;
 	/**
 		Combines two or more arrays.
