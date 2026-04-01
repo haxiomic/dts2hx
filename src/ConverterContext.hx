@@ -1920,12 +1920,23 @@ class ConverterContext {
 	}
 
 	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
-		// for some reason typeParameter.getConstraint() has issues
-		// in the following class field `parse<X extends Example>(a: T): void;`, the constraint `Example` is reported as having typeArguments when it doesn't
-		var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
-		var hxConstraint = if (options.enableTypeParameterConstraints && typeParamNode != null && typeParamNode.constraint != null ) {
-			complexTypeFromTypeNode(typeParamNode.constraint, moduleSymbol, accessContext, enclosingDeclaration);
-		} else null;
+		var hxConstraint: Null<ComplexType> = null;
+		if (options.enableTypeParameterConstraints) {
+			// Prefer getConstraint() which returns the resolved constraint type.
+			// This handles cases like `T extends Extract<keyof EventMap, string>` where the
+			// declaration node would give us an unresolved ConditionalType, but getConstraint()
+			// resolves it to `string`.
+			var constraintType = typeParameter.getConstraint();
+			if (constraintType != null && untyped constraintType.intrinsicName != 'unknown') {
+				hxConstraint = complexTypeFromTsType(constraintType, moduleSymbol, accessContext, enclosingDeclaration);
+			} else {
+				// Fallback to declaration node for cases where getConstraint() doesn't work
+				var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
+				if (typeParamNode != null && typeParamNode.constraint != null) {
+					hxConstraint = complexTypeFromTypeNode(typeParamNode.constraint, moduleSymbol, accessContext, enclosingDeclaration);
+				}
+			}
+		}
 		return {
 			name: typeParameter.symbol.name.toSafeTypeName(),
 			constraints: hxConstraint != null ? [hxConstraint] : null,
