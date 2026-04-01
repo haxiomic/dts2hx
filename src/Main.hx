@@ -471,8 +471,6 @@ class Main {
 				else if (stdLibTypeMap != null) stdLibTypeMap.haxeVersion
 				else defaultStdLibTypeMap.haxeVersion;
 			printer.useEnumAbstractKeyword = versionAtLeast(haxeVer, 4, 3);
-			// Quoted field names (var "name") require Haxe 5.0+
-			printer.useQuotedFieldNames = versionAtLeast(haxeVer, 5, 0);
 
 			var libraryName = haxelibLibraryName(converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName);
 			var libraryVersion = converter.inputModule.packageId != null && converter.inputModule.packageId.version != null ? converter.inputModule.packageId.version : 'default';

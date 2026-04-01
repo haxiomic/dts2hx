@@ -4,7 +4,7 @@ Actionable improvements identified from ROADMAP.md review and examples testing.
 
 ## 1. Enum `final` fields
 
-**Status:** Not started
+**Status:** Done
 **Effort:** Easy
 **Impact:** Every generated enum abstract
 
@@ -38,7 +38,7 @@ Verify generated output uses `final` not `var`.
 
 ## 2. `[object Object]` diagnostic message
 
-**Status:** Not started
+**Status:** Done
 **Effort:** Easy
 **Impact:** Cleaner error messages during conversion
 
@@ -81,7 +81,7 @@ and verify the error message is readable.
 
 ## 3. Root `package.json` TS version pin
 
-**Status:** Not started
+**Status:** Done (already pinned exact)
 **Effort:** Trivial
 **Impact:** Prevents npm resolving to TS 6.x unexpectedly
 
@@ -99,44 +99,15 @@ work with 6.0, the caret creates untested version drift.
 
 ---
 
-## 4. Quoted field names (Haxe 4.2+)
+## 4. Quoted field names
 
-**Status:** Not started
-**Effort:** Easy, version-gated
-**Impact:** Cleaner output for fields with non-identifier names
+**Status:** Deferred — blocked by Haxe language
 
-**Problem:** Fields with names that aren't valid Haxe identifiers (reserved words,
-hyphens, special characters) get renamed and annotated with `@:native`:
+Quoted field names in type declarations (`var "name" : Type`) do not exist in any
+released version of Haxe. PR #9433 was closed without merge, issue #7722 remains open.
 
-```haxe
-// Current (all Haxe versions)
-@:native("function") var function_ : String;
-@:native("class") var class_ : Float;
-@:native("string-key") var stringKey : String;
-
-// Haxe 4.2+ supports quoted names:
-var "function" : String;
-var "class" : Float;
-var "string-key" : String;
-```
-
-Quoted names are more readable, preserve the original name in code, and work better
-with IDE tooling.
-
-**Fix location:** `src/Printer.hx`, in field printing. When `useQuotedFieldNames` is
-true (Haxe >= 4.2):
-1. Check if the field has `@:native` metadata with a string parameter
-2. If so, remove the `@:native` metadata and quote the field name instead
-3. Emit `var "originalName" : Type` instead of `@:native("originalName") var renamed : Type`
-
-Also needs the version flag plumbed from `Main.hx` (same pattern as
-`useEnumAbstractKeyword`).
-
-**Backward compat:** Version-gated. Haxe < 4.2 gets `@:native` (current behavior).
-Haxe >= 4.2 gets quoted names.
-
-**Test:** `test/unit/edge-cases.d.ts` — `ReservedWords` interface and `ComputedProps`.
-Verify output uses quoted names on Haxe 4.2+.
+The Printer code is implemented (`useQuotedFieldNames` flag in `Printer.hx`) and ready
+to activate if/when Haxe adds the feature. Currently never enabled.
 
 ---
 

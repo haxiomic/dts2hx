@@ -20,6 +20,9 @@ class Printer extends haxe.macro.Printer {
 	/** When true, emit `enum abstract` instead of `@:enum abstract` (Haxe 4.3+ syntax) **/
 	public var useEnumAbstractKeyword: Bool = false;
 
+	/** When true, emit `var "name"` instead of `@:native("name") var renamed` (Haxe 4.2+ syntax) **/
+	public var useQuotedFieldNames: Bool = false;
+
 	/**
 		Prints a block of fields, accounting for the multi-line field setting.
 		Replaces printStructure()
@@ -106,7 +109,21 @@ class Printer extends haxe.macro.Printer {
 			// final should always be printed last
 			return access.has(AFinal) ? access.filter(a -> !a.match(AFinal)).concat([AFinal]) : access;
 		}
-		return (field.doc != null && field.doc != "" ? 
+		// Haxe 4.2+: use quoted field names instead of @:native("name") var renamed
+		var fieldName = field.name;
+		var meta = field.meta;
+		if (useQuotedFieldNames && meta != null) {
+			var nativeMeta = meta.find(m -> m.name == ':native');
+			if (nativeMeta != null && nativeMeta.params != null && nativeMeta.params.length == 1) {
+				switch nativeMeta.params[0].expr {
+					case EConst(CString(nativeName, _)):
+						fieldName = '"$nativeName"';
+						meta = meta.filter(m -> m.name != ':native');
+					default:
+				}
+			}
+		}
+		return (field.doc != null && field.doc != "" ?
 					// doc comment
 					(
 						'/**'
@@ -117,12 +134,12 @@ class Printer extends haxe.macro.Printer {
 						+ (_multiLineStructures ? '\n' + tabs : ' ')
 					) : ""
 			)
-			+ (field.meta != null && field.meta.length > 0 ? field.meta.map(printMetadata).join(metaSeparator) + metaSeparator : "")
+			+ (meta != null && meta.length > 0 ? meta.map(printMetadata).join(metaSeparator) + metaSeparator : "")
 			+ (field.access != null && field.access.length > 0 ? orderAccess(field.access).map(printAccess).join(" ") + " " : "")
 			+ switch (field.kind) {
-				case FVar(t, eo): ((field.access != null && field.access.has(AFinal)) ? '' : 'var ') + '${field.name}' + opt(t, printComplexType, " : ") + opt(eo, printExpr, " = ");
-				case FProp(get, set, t, eo): 'var ${field.name}($get, $set)' + opt(t, printComplexType, " : ") + opt(eo, printExpr, " = ");
-				case FFun(func): 'function ${field.name}' + printFunction(func);
+				case FVar(t, eo): ((field.access != null && field.access.has(AFinal)) ? '' : 'var ') + '$fieldName' + opt(t, printComplexType, " : ") + opt(eo, printExpr, " = ");
+				case FProp(get, set, t, eo): 'var $fieldName($get, $set)' + opt(t, printComplexType, " : ") + opt(eo, printExpr, " = ");
+				case FFun(func): 'function $fieldName' + printFunction(func);
 			}
 	}
 
