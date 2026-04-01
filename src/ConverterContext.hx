@@ -1062,8 +1062,14 @@ class ConverterContext {
 		// } else if (type.flags & TypeFlags.Conditional != 0) {
 			// @! can map these to unions
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
-		// } else if (type.flags & TypeFlags.Substitution != 0) {
-		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.Substitution != 0) {
+			// TS 5.4+: NoInfer<T> and other substitution types — unwrap to the base type
+			var baseType: Null<TsType> = Reflect.field(type, 'baseType');
+			if (baseType != null) {
+				complexTypeFromTsType(baseType, moduleSymbol, accessContext, enclosingDeclaration);
+			} else {
+				macro :Dynamic;
+			}
 		// } else if (type.flags & TypeFlags.IndexedAccess != 0) {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 
