@@ -47,6 +47,7 @@ class Main {
 				type: Three.HalfFloatType,
 				magFilter: Three.LinearFilter,
 				minFilter: Three.LinearMipMapLinearFilter,
+				depthBuffer: true,
 				allocateMipmaps: true,
 			});
 
