@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three", "MOUSE") @:enum extern abstract MOUSE(Int) from Int to Int {
+@:jsRequire("three", "MOUSE") extern enum abstract MOUSE(Int) from Int to Int {
 	var LEFT;
 	var MIDDLE;
 	var RIGHT;

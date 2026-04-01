@@ -102,7 +102,7 @@ package vscode;
 	/**
 		Create and show a new webview panel.
 	**/
-	static function createWebviewPanel(viewType:String, title:String, showOptions:ts.AnyOf2<Int, { var viewColumn : ViewColumn; @:optional var preserveFocus : Bool; }>, ?options:WebviewPanelOptions & WebviewOptions):WebviewPanel;
+	static function createWebviewPanel(viewType:String, title:String, showOptions:ts.AnyOf2<ViewColumn, { var viewColumn : ViewColumn; @:optional var preserveFocus : Bool; }>, ?options:WebviewPanelOptions & WebviewOptions):WebviewPanel;
 	/**
 		Set a message to the status bar. This is a short hand for the more powerful
 		status bar [items](#window.createStatusBarItem).

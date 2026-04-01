@@ -1,6 +1,6 @@
 package three;
 
-@:jsRequire("three", "PathActions") @:enum extern abstract PathActions(Int) from Int to Int {
+@:jsRequire("three", "PathActions") extern enum abstract PathActions(Int) from Int to Int {
 	var MOVE_TO;
 	var LINE_TO;
 	var QUADRATIC_CURVE_TO;

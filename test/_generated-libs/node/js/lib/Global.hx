@@ -2,28 +2,7 @@ package js.lib;
 
 @:native("") extern class Global {
 	/**
-		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
+		An intrinsic object that provides functions to convert JavaScript values to and from the JavaScript Object Notation (JSON) format.
 	**/
-	@:overload(function(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout { })
-	static function setTimeout(handler:TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
-	/**
-		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
-	**/
-	@:overload(function(timeoutId:global.nodejs.Timeout):Void { })
-	static function clearTimeout(id:Null<Float>):Void;
-	/**
-		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
-	**/
-	@:overload(function(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout { })
-	static function setInterval(handler:js.lib.TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
-	/**
-		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
-	**/
-	@:overload(function(intervalId:global.nodejs.Timeout):Void { })
-	static function clearInterval(id:Null<Float>):Void;
-	/**
-		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/queueMicrotask)
-	**/
-	@:overload(function(callback:() -> Void):Void { })
-	static function queueMicrotask(callback:js.lib.VoidFunction):Void;
+	static var JSON : JSON;
 }

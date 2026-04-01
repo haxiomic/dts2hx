@@ -1,6 +1,6 @@
 package global.three;
 
-@:native("THREE.MOUSE") @:enum extern abstract MOUSE(Int) from Int to Int {
+@:native("THREE.MOUSE") extern enum abstract MOUSE(Int) from Int to Int {
 	var LEFT;
 	var MIDDLE;
 	var RIGHT;

@@ -5,15 +5,6 @@ typedef Global = {
 	var ArrayBuffer : js.lib.ArrayBufferConstructor;
 	var Boolean : js.lib.BooleanConstructor;
 	var Buffer : {
-		/**
-			Allocates a new buffer containing the given {str}.
-		**/
-		@:overload(function(size:Float):global.Buffer { })
-		@:overload(function(array:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):global.Buffer { })
-		@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):global.Buffer { })
-		@:overload(function(array:Array<Dynamic>):global.Buffer { })
-		@:overload(function(buffer:global.Buffer):global.Buffer { })
-		function new(str:String, ?encoding:String):global.Buffer;
 		var prototype : global.Buffer;
 		/**
 			When passed a reference to the .buffer property of a TypedArray instance,
@@ -113,10 +104,6 @@ typedef Global = {
 		**/
 		final RelativeTimeFormat : {
 			/**
-				Creates [Intl.RelativeTimeFormat](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RelativeTimeFormat) objects
-			**/
-			function new(?locales:js.lib.intl.LocalesArgument, ?options:js.lib.intl.RelativeTimeFormat.RelativeTimeFormatOptions):js.lib.intl.RelativeTimeFormat;
-			/**
 				Returns an array containing those of the provided locales
 				that are supported in date and time formatting
 				without having to fall back to the runtime's default locale.
@@ -127,9 +114,7 @@ typedef Global = {
 			Constructor creates [Intl.Locale](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale)
 			objects
 		**/
-		final Locale : {
-			function new(tag:ts.AnyOf2<String, js.lib.intl.Locale>, ?options:js.lib.intl.LocaleOptions):js.lib.intl.Locale;
-		};
+		final Locale : { };
 		/**
 			The [`Intl.DisplayNames()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames)
 			object enables the consistent translation of language, region and script display names.
@@ -137,25 +122,11 @@ typedef Global = {
 			[Compatibility](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames#browser_compatibility).
 		**/
 		final DisplayNames : {
-			function new(locales:js.lib.intl.LocalesArgument, options:js.lib.intl.DisplayNames.DisplayNamesOptions):js.lib.intl.DisplayNames;
 			var prototype : js.lib.intl.DisplayNames;
 			/**
 				Returns an array containing those of the provided locales that are supported in display names without having to fall back to the runtime's default locale.
 			**/
 			function supportedLocalesOf(?locales:js.lib.intl.LocalesArgument, ?options:{ @:optional var localeMatcher : js.lib.intl.RelativeTimeFormatLocaleMatcher; }):Array<String>;
-		};
-		/**
-			The Intl.DurationFormat object enables language-sensitive duration formatting.
-			
-			[MDN](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/DurationFormat)
-		**/
-		final DurationFormat : {
-			function new(?locales:js.lib.intl.LocalesArgument, ?options:js.lib.intl.DurationFormatOptions):js.lib.intl.DurationFormat;
-			var prototype : js.lib.intl.DurationFormat;
-			/**
-				Returns an array containing those of the provided locales that are supported in display names without having to fall back to the runtime's default locale.
-			**/
-			function supportedLocalesOf(?locales:js.lib.intl.LocalesArgument, ?options:{ @:optional var localeMatcher : js.lib.intl.DurationFormatLocaleMatcher; }):Array<String>;
 		};
 	};
 	var JSON : js.lib.JSON;
@@ -183,7 +154,7 @@ typedef Global = {
 	dynamic function clearImmediate(immediateId:Immediate):Void;
 	dynamic function clearInterval(intervalId:Timeout):Void;
 	dynamic function clearTimeout(timeoutId:Timeout):Void;
-	var console : js.lib.Console;
+	var console : js.html.Console;
 	dynamic function decodeURI(encodedURI:String):String;
 	dynamic function decodeURIComponent(encodedURIComponent:String):String;
 	dynamic function encodeURI(uri:String):String;
@@ -201,7 +172,7 @@ typedef Global = {
 	dynamic function setInterval(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	dynamic function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):Timeout;
 	@:overload(function(callback:() -> Void):Void { })
-	dynamic function queueMicrotask(callback:js.lib.VoidFunction):Void;
+	dynamic function queueMicrotask(callback:js.html.VoidFunction):Void;
 	var undefined : Null<Any>;
 	dynamic function unescape(str:String):String;
 	dynamic function gc():Void;

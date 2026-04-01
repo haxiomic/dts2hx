@@ -1,8 +1,6 @@
 package lowdb;
 
 typedef AdapterAsync<SchemaT> = {
-	@:overload(function<SchemaT>(source:String, ?options:AdapterOptions<SchemaT>):BaseAdapter<SchemaT> { })
-	function new<SchemaT>(source:String, ?options:AdapterOptions<SchemaT>);
 	function write(state:Dynamic):js.lib.Promise<ts.Undefined>;
 	@:native("@@reference")
 	final AtReference : SchemaT;

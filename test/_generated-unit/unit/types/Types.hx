@@ -248,7 +248,6 @@ package unit.types;
 	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function typeQueryFunctionWithOverloads(a:Float):Dynamic;
 	static final typeQueryClassLikeOrNull : Null<{
-		function new():unit.types.types.ClassLikeConstructorType;
 		var field : String;
 	}>;
 }

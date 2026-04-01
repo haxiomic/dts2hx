@@ -139,7 +139,7 @@ class HaxeTypePathMap {
 						// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name} (${symbol.getId()})</>: ${typePath.pack} ${typePath.name}', symbol);
 
 						if (modules.find(m -> m.symbol == symbol && m.isInterfaceStructure == false) == null) {
-							modules.push({
+							var entry: Dynamic = {
 								name: typePath.name,
 								pack: typePath.pack,
 								moduleName: typePath.moduleName,
@@ -148,7 +148,10 @@ class HaxeTypePathMap {
 								access: access,
 								renameable: true,
 								isInterfaceStructure: false,
-							});
+							};
+							var stdLibCount: Null<Int> = Reflect.field(typePath, 'stdLibTypeParamCount');
+							if (stdLibCount != null) Reflect.setField(entry, 'stdLibTypeParamCount', stdLibCount);
+							modules.push(entry);
 						}
 
 						// additional interface-structure implementation

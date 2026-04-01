@@ -6,7 +6,11 @@ typedef FunctionChain<T:((args:haxe.extern.Rest<Any>) -> Dynamic)> = {
 	function curryRight(?arity:Float):Dynamic;
 	function debounce(?wait:Float, ?options:DebounceSettings):Dynamic;
 	function flip():FunctionChain<T>;
-	function memoize(?resolver:(args:haxe.extern.Rest<Dynamic>) -> Dynamic):FunctionChain<Dynamic>;
+	function memoize(?resolver:(args:haxe.extern.Rest<Dynamic>) -> Dynamic):FunctionChain<{
+		@:selfCall
+		function call(args:haxe.extern.Rest<Any>):Dynamic;
+		var cache : MapCache;
+	}>;
 	function negate():FunctionChain<(args:haxe.extern.Rest<Any>) -> Bool>;
 	function once():FunctionChain<T>;
 	function overArgs(transforms:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):FunctionChain<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
@@ -75,7 +79,19 @@ typedef FunctionChain<T:((args:haxe.extern.Rest<Any>) -> Dynamic)> = {
 	function over<TResult>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> TResult>>):FunctionChain<(args:haxe.extern.Rest<Dynamic>) -> Array<ts.AnyOf2<js.lib.ReturnType<T>, TResult>>>;
 	function overEvery<TArgs>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<TArgs>) -> Bool>>):FunctionChain<(args:haxe.extern.Rest<Any>) -> Bool>;
 	function overSome<TArgs>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<TArgs>) -> Bool>>):FunctionChain<(args:haxe.extern.Rest<Any>) -> Bool>;
-	function write():Dynamic;
+	function write():{
+		@:selfCall
+		function call(args:haxe.extern.Rest<Any>):Dynamic;
+		/**
+			Attaches callbacks for the resolution and/or rejection of the Promise.
+		**/
+		function then<TResult1, TResult2>(?onfulfilled:(value:T) -> ts.AnyOf2<js.lib.PromiseLike<TResult1>, TResult1>, ?onrejected:(reason:Dynamic) -> ts.AnyOf2<js.lib.PromiseLike<TResult2>, TResult2>):js.lib.Promise<ts.AnyOf2<TResult1, TResult2>>;
+		/**
+			Attaches a callback for only the rejection of the Promise.
+		**/
+		@:native("catch")
+		function catch_<TResult>(?onrejected:(reason:Dynamic) -> ts.AnyOf2<js.lib.PromiseLike<TResult>, TResult>):js.lib.Promise<ts.AnyOf2<T, TResult>>;
+	};
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
 	function invokeMap(methodName:String, args:haxe.extern.Rest<Dynamic>):CollectionChain<Dynamic>;
 	function size():PrimitiveChain<Float>;

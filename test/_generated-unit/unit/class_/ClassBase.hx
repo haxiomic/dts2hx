@@ -9,8 +9,6 @@ package unit.class_;
 	var typeParamField : T;
 	var defaultBoolField : DefaultBool;
 	var typeofSelf : {
-		@:overload(function(a:Float):ClassBase<T, DefaultBool> { })
-		function new(overloadParam:T):ClassBase<T, DefaultBool>;
 		var prototype : ClassBase<Dynamic, Dynamic>;
 		function staticMethod<T>(a:Float):T;
 		var staticField : Float;

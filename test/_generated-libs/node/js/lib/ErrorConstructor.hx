@@ -1,7 +1,6 @@
 package js.lib;
 
 typedef ErrorConstructor = {
-	function new(?message:String);
 	@:selfCall
 	function call(?message:String):js.lib.Error;
 	final prototype : js.lib.Error;

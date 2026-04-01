@@ -6,7 +6,11 @@ typedef Function<T:((args:haxe.extern.Rest<Any>) -> Dynamic)> = {
 	function curryRight(?arity:Float):Dynamic;
 	function debounce(?wait:Float, ?options:DebounceSettings):Dynamic;
 	function flip():Function<T>;
-	function memoize(?resolver:(args:haxe.extern.Rest<Dynamic>) -> Dynamic):Function<Dynamic>;
+	function memoize(?resolver:(args:haxe.extern.Rest<Dynamic>) -> Dynamic):Function<{
+		@:selfCall
+		function call(args:haxe.extern.Rest<Any>):Dynamic;
+		var cache : MapCache;
+	}>;
 	function negate():Function<(args:haxe.extern.Rest<Any>) -> Bool>;
 	function once():Function<T>;
 	function overArgs(transforms:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;

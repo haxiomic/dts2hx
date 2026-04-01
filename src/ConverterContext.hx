@@ -359,11 +359,17 @@ class ConverterContext {
 				contextTypePath.pack.join('.') == hxTypePath.pack.join('.'); // same package context
 			} else false;
 		} else false;
-		return {
+		var result: TypePath = {
 			name: hxTypePath.moduleName,
 			sub: hxTypePath.moduleName != hxTypePath.name ? hxTypePath.name : null,
 			pack: noPack ? [] : hxTypePath.pack,
+		};
+		// Preserve stdLibTypeParamCount for downstream type parameter clamping
+		var stdLibCount: Null<Int> = Reflect.field(hxTypePath, 'stdLibTypeParamCount');
+		if (stdLibCount != null) {
+			Reflect.setField(result, 'stdLibTypeParamCount', stdLibCount);
 		}
+		return result;
 	}
 
 	public function getGeneratedModule(typePath: TypePath) {
@@ -685,13 +691,13 @@ class ConverterContext {
 			}
 			*/
 
-			var constructSignatures = tc.getSignaturesOfType(declaredType, Construct);
+			// Haxe 4.3+ does not allow `function new()` in structure types — skip construct signatures
 			var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
 			var fields = generateTypeFields(
 				symbol,
 				access,
 				declaration,
-				constructSignatures,
+				[],
 				callSignatures,
 				indexSignatures,
 				declaredMembers,
@@ -1338,17 +1344,7 @@ class ConverterContext {
 				fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, moduleSymbol, accessContext, enclosingDeclaration));
 			}
 
-			// add construct signatures as a `new` function
-			if (constructSignatures.length > 0) {
-				var newField = functionFieldFromSignatures('new', constructSignatures, moduleSymbol, accessContext, enclosingDeclaration);
-				// Haxe 4.3+ requires explicit return type for `new` in typedefs
-				switch newField.kind {
-					case FFun(fun):
-						if (fun.ret == null) fun.ret = macro :Void;
-					default:
-				}
-				fields.push(newField);
-			}
+			// Haxe 4.3+ does not allow `function new()` in structure types — skip construct signatures
 
 			// add properties
 			fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, moduleSymbol, accessContext, enclosingDeclaration)));

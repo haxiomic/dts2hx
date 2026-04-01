@@ -6,7 +6,7 @@ package vscode;
 	`Fold all comments` or `Fold all regions`.
 	If the kind is not set on the range, the range originated from a syntax element other than comments, imports or region markers.
 **/
-@:jsRequire("vscode", "FoldingRangeKind") @:enum extern abstract FoldingRangeKind(Int) from Int to Int {
+@:jsRequire("vscode", "FoldingRangeKind") extern enum abstract FoldingRangeKind(Int) from Int to Int {
 	/**
 		Kind for folding range representing a comment.
 	**/

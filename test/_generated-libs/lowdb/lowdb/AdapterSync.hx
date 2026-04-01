@@ -1,8 +1,6 @@
 package lowdb;
 
 typedef AdapterSync<SchemaT> = {
-	@:overload(function<SchemaT>(source:String, ?options:AdapterOptions<SchemaT>):BaseAdapter<SchemaT> { })
-	function new<SchemaT>(source:String, ?options:AdapterOptions<SchemaT>);
 	function write(state:Dynamic):Void;
 	@:native("@@reference")
 	final AtReference : SchemaT;

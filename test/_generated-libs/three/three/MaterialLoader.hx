@@ -4,7 +4,7 @@ package three;
 	function new(?manager:LoadingManager);
 	var manager : LoadingManager;
 	var textures : haxe.DynamicAccess<Texture>;
-	function load(url:String, onLoad:(material:Material) -> Void, ?onProgress:(event:js.lib.ProgressEvent_<js.html.EventTarget>) -> Void, ?onError:(event:ts.AnyOf2<js.lib.Error, js.html.ErrorEvent>) -> Void):Void;
+	function load(url:String, onLoad:(material:Material) -> Void, ?onProgress:(event:js.html.ProgressEvent_<js.html.EventTarget>) -> Void, ?onError:(event:ts.AnyOf2<js.lib.Error, js.html.ErrorEvent>) -> Void):Void;
 	function setTextures(textures:haxe.DynamicAccess<Texture>):Void;
 	function getTexture(name:String):Texture;
 	function parse(json:Dynamic):Material;

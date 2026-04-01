@@ -3,7 +3,7 @@ package vscode;
 /**
 	Represents the severity of diagnostics.
 **/
-@:jsRequire("vscode", "DiagnosticSeverity") @:enum extern abstract DiagnosticSeverity(Int) from Int to Int {
+@:jsRequire("vscode", "DiagnosticSeverity") extern enum abstract DiagnosticSeverity(Int) from Int to Int {
 	/**
 		Something not allowed by the rules of a language or other means.
 	**/

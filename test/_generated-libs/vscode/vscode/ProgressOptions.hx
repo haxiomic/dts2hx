@@ -7,7 +7,7 @@ typedef ProgressOptions = {
 	/**
 		The location at which progress should show.
 	**/
-	var location : ts.AnyOf2<Int, {
+	var location : ts.AnyOf2<ProgressLocation, {
 		var viewId : String;
 	}>;
 	/**

@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract CullFace(Int) from Int to Int {
+@:native("THREE") extern enum abstract CullFace(Int) from Int to Int {
 	final CullFaceNone : CullFace;
 	final CullFaceBack : CullFace;
 	final CullFaceFront : CullFace;

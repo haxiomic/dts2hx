@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract NormalMapTypes(Int) from Int to Int {
+@:jsRequire("three") extern enum abstract NormalMapTypes(Int) from Int to Int {
 	final TangentSpaceNormalMap : NormalMapTypes;
 	final ObjectSpaceNormalMap : NormalMapTypes;
 }

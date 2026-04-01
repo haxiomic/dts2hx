@@ -5,7 +5,7 @@ package vscode;
 	a symbolic links, in that case use `FileType.File | FileType.SymbolicLink` and
 	`FileType.Directory | FileType.SymbolicLink`.
 **/
-@:jsRequire("vscode", "FileType") @:enum extern abstract FileType(Int) from Int to Int {
+@:jsRequire("vscode", "FileType") extern enum abstract FileType(Int) from Int to Int {
 	/**
 		The file type is unknown.
 	**/

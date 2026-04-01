@@ -4,7 +4,7 @@ package vscode;
 	Defines how an argument should be quoted if it contains
 	spaces or unsupported characters.
 **/
-@:jsRequire("vscode", "ShellQuoting") @:enum extern abstract ShellQuoting(Int) from Int to Int {
+@:jsRequire("vscode", "ShellQuoting") extern enum abstract ShellQuoting(Int) from Int to Int {
 	/**
 		Character escaping should be used. This for example
 		uses \ on bash and ` on PowerShell.

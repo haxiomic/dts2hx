@@ -3,7 +3,7 @@ package vscode;
 /**
 	Enumeration of file change types.
 **/
-@:jsRequire("vscode", "FileChangeType") @:enum extern abstract FileChangeType(Int) from Int to Int {
+@:jsRequire("vscode", "FileChangeType") extern enum abstract FileChangeType(Int) from Int to Int {
 	/**
 		The contents or metadata of a file have changed.
 	**/

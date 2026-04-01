@@ -1,9 +1,6 @@
 package vue;
 
 typedef VueConstructor<V:(Vue)> = {
-	@:overload(function<Data, Methods, Computed, Props>(?options:vue.types.options.ThisTypedComponentOptionsWithRecordProps<V, Data, Methods, Computed, Props>):vue.types.vue.CombinedVueInstance<V, Data, Methods, Computed, { }> { })
-	@:overload(function(?options:ComponentOptions<V, vue.types.options.DefaultData<V>, vue.types.options.DefaultMethods<V>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>):vue.types.vue.CombinedVueInstance<V, Dynamic, Dynamic, Dynamic, { }> { })
-	function new<Data, Methods, Computed, PropNames:(String)>(?options:vue.types.options.ThisTypedComponentOptionsWithArrayProps<V, Data, Methods, Computed, PropNames>);
 	@:overload(function<Data, Methods, Computed, Props>(?options:vue.types.options.ThisTypedComponentOptionsWithRecordProps<V, Data, Methods, Computed, Props>):vue.types.vue.ExtendedVue<V, Data, Methods, Computed, Props> { })
 	@:overload(function<PropNames:(String)>(definition:FunctionalComponentOptions<{ }, Array<PropNames>>):vue.types.vue.ExtendedVue<V, { }, { }, { }, { }> { })
 	@:overload(function<Props>(definition:FunctionalComponentOptions<Props, { }>):vue.types.vue.ExtendedVue<V, { }, { }, { }, Props> { })

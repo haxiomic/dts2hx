@@ -68,10 +68,11 @@ if [ -n "$DEEP" ]; then
 fi
 
 # F3: Construct signature in typedef
+# Haxe 4.3+ does not allow `function new()` in structure types, so construct signatures are skipped
 echo "Test: F3 construct sig in typedef..."
 FACTORY=$(find "$TMPDIR" -name "Factory*" | head -1)
 if [ -n "$FACTORY" ]; then
-    check "F3: Factory has new function" "$FACTORY" "function new"
+    check_not "F3: Factory should NOT have new function" "$FACTORY" "function new"
     check "F3: Factory has create method" "$FACTORY" "function create"
 fi
 

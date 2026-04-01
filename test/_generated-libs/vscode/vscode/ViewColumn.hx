@@ -5,7 +5,7 @@ package vscode;
 	and each column represents one editor location in that grid by counting the editors
 	in order of their appearance.
 **/
-@:jsRequire("vscode", "ViewColumn") @:enum extern abstract ViewColumn(Int) from Int to Int {
+@:jsRequire("vscode", "ViewColumn") extern enum abstract ViewColumn(Int) from Int to Int {
 	/**
 		A *symbolic* editor column representing the currently active column. This value
 		can be used when opening editors, but the *resolved* [viewColumn](#TextEditor.viewColumn)-value

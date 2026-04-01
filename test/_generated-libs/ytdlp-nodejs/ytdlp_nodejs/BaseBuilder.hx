@@ -10,12 +10,12 @@ package ytdlp_nodejs;
 **/
 @jsInaccessible extern class BaseBuilder {
 	function new(url:String, ?options:{ @:optional var binaryPath : String; @:optional var ffmpegPath : String; });
-	private var binaryPath : String;
+	var binaryPath : String;
 	@:optional
-	private var ffmpegPath : String;
-	private var videoUrl : String;
+	var ffmpegPath : String;
+	var videoUrl : String;
 	@:optional
-	private var formatValue : ts.AnyOf4<String, {
+	var formatValue : ts.AnyOf4<String, {
 		var filter : String;
 		@:optional
 		var quality : VideoQuality;
@@ -34,10 +34,10 @@ package ytdlp_nodejs;
 		@:optional
 		var type : String;
 	}>;
-	private var extraArgs : ArgsOptions;
-	private var rawArgs : Array<String>;
+	var extraArgs : ArgsOptions;
+	var rawArgs : Array<String>;
 	@:optional
-	private var process : Dynamic;
+	var process : Dynamic;
 	/**
 		Set the binary path for yt-dlp
 	**/
@@ -150,11 +150,11 @@ package ytdlp_nodejs;
 	/**
 		Build format-related arguments from current settings
 	**/
-	private function buildFormatArgs():Array<String>;
+	function buildFormatArgs():Array<String>;
 	/**
 		Build base yt-dlp arguments (common to all operations)
 	**/
-	private function buildBaseArgs(?extra:Array<String>):Array<String>;
+	function buildBaseArgs(?extra:Array<String>):Array<String>;
 	/**
 		Enable debug printing of the command line before execution
 	**/
@@ -178,11 +178,11 @@ package ytdlp_nodejs;
 		Print the command line to stderr if debugPrintCommandLine is enabled
 		Should be called before spawning the process
 	**/
-	private function printDebugCommandLine(args:Array<String>):Void;
+	function printDebugCommandLine(args:Array<String>):Void;
 	/**
 		Validates that binary path is set
 	**/
-	private function validateBinaryPath():Void;
+	function validateBinaryPath():Void;
 	/**
 		Kill the running process
 	**/
@@ -194,6 +194,6 @@ package ytdlp_nodejs;
 	/**
 		Build the command arguments (to be implemented by subclasses)
 	**/
-	private function buildArgs():Array<String>;
+	function buildArgs():Array<String>;
 	static var prototype : BaseBuilder;
 }

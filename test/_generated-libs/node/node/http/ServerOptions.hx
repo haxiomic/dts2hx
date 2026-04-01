@@ -3,7 +3,6 @@ package node.http;
 typedef ServerOptions = {
 	@:optional
 	var IncomingMessage : {
-		function new(socket:node.net.Socket):IncomingMessage;
 		var prototype : IncomingMessage;
 		function finished(stream:ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadableStream, global.nodejs.ReadWriteStream>, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void;
 		@:overload(function<T:(global.nodejs.WritableStream)>(stream1:global.nodejs.ReadableStream, stream2:global.nodejs.ReadWriteStream, stream3:T, ?callback:(err:global.nodejs.ErrnoException) -> Void):T { })
@@ -17,7 +16,6 @@ typedef ServerOptions = {
 	};
 	@:optional
 	var ServerResponse : {
-		function new(req:IncomingMessage):ServerResponse;
 		var prototype : ServerResponse;
 		function finished(stream:ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadableStream, global.nodejs.ReadWriteStream>, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void;
 		@:overload(function<T:(global.nodejs.WritableStream)>(stream1:global.nodejs.ReadableStream, stream2:global.nodejs.ReadWriteStream, stream3:T, ?callback:(err:global.nodejs.ErrnoException) -> Void):T { })

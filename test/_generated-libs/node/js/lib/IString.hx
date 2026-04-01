@@ -21,11 +21,11 @@ typedef IString = {
 	**/
 	function concat(strings:haxe.extern.Rest<String>):String;
 	/**
-		Returns the position of the first occurrence of a substring, or -1 if it is not present.
+		Returns the position of the first occurrence of a substring.
 	**/
 	function indexOf(searchString:String, ?position:Float):Float;
 	/**
-		Returns the last occurrence of a substring in the string, or -1 if it is not present.
+		Returns the last occurrence of a substring in the string.
 	**/
 	function lastIndexOf(searchString:String, ?position:Float):Float;
 	/**

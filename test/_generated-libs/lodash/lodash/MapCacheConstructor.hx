@@ -1,5 +1,3 @@
 package lodash;
 
-typedef MapCacheConstructor = {
-	function new();
-};
+typedef MapCacheConstructor = { };
