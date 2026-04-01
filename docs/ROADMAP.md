@@ -1,188 +1,94 @@
-- Fix constraint type conversion
+# Roadmap
 
-- abstract enum finals rather than vars
+## Completed
 
-- abstract wrappers for typedefs so we can add
-	- See https://community.haxe.org/t/how-does-one-use-routes-in-express/2701/7
-	- Unification with self call
-	- Constructor fields
-	- Hacked support for @:native
+### TypeScript & Haxe version support
+- [x] TypeScript 3.7 → 5.9 upgrade
+- [x] Haxe 4.3 build compatibility (`TDAbstract`, `enum abstract`, construct sigs in structs)
+- [x] Haxe 5.0 extern compatibility (AbstractAnon replacement, `@:js.import`)
+- [x] `import type` / `export type` syntax (TS 3.8+)
+- [x] Variadic tuples, labeled tuples (TS 4.0+)
+- [x] Template literal types → `String` (TS 4.1+)
+- [x] `satisfies`, `const` type parameters (TS 4.9+, 5.0+)
 
-- in AnyOf types, we could use getProperties of type to add fields
-	-> AnyOfX<BaseFields, A, B>
+### Type conversion improvements
+- [x] Iterator/Iterable type parameter clamping (3 params in TS 5.6+ → 1 in Haxe)
+- [x] Type parameter constraints via `getConstraint()` (fixes String structural expansion)
+- [x] Class-level constraints: skip complex/generic constraints that cause invariance failures
+- [x] `@:native` on typedef fields via generated abstract wrappers with `@:forward` (#48)
+- [x] `export default class Foo` preserves original name (was `Default`) (#94)
+- [x] Default-exported classes placed at parent package level
+- [x] `bigint` → `ts.BigInt` abstract
+- [x] `never` → `ts.Never` (Void alias)
+- [x] `Readonly<T>` produces `final` fields
+- [x] Callable intersections → `@:selfCall` + fields (was `Dynamic`)
+- [x] Enum member types → parent enum type (was `String`)
+- [x] ECMAScript `#private` fields excluded from externs
+- [x] `protected` → no access modifier (was `private`)
+- [x] `abstract` classes don't generate default constructor
+- [x] Mapped type property resolution for TS 3.9+
 
-- Generic AnyOf that supports multiple function types with overloads
-	- Say we have AnyOf2<() -> Void, (str: String) -> Void>, we could add call() overloads so that we can use like
-		`x.call('string')`;
+### ES module support
+- [x] `--esm` flag generates `@:js.import` metadata
+- [x] Auto-detect ESM per-package when Haxe 5+ is available
+- [x] `.js` extension on relative import paths for Node ESM
 
-- Why so many typescript errors with `chakra-ui`?
+### Package handling
+- [x] Auto-expand packages with wildcard exports into sub-modules (#109 partial)
+- [x] Auto-discover sub-module dependencies through type references
+- [x] Generate externs for `@types/*` ambient global types (WebXR, WebGPU)
+- [x] `isBuiltIn` detection fixed for TS 6.0+ (`hasNoDefaultLib` fallback)
 
-- Redesign so that we supply a bunch of input modules and ConverterContext returns output modules, which may include new dependencies
-	- Creating a fresh context per module loses inter-module interaction (see express)
-	- Additionally, some inter-module connections are lost (#37)
+### Testing
+- [x] End-to-end test suite: TS → JS → .d.ts → dts2hx → Haxe → JS → run (195+ assertions)
+- [x] Multi-version Haxe test matrix via lix
+- [x] Headless browser test for three-bloom example
+- [x] Runtime test for express example
+- [x] CI: Node 20, Haxe 4.3.6, e2e tests
 
-- New flag --mergeGlobal: `@:jsRequire` + `@:native` rather than `global`
-	```haxe
-	for (a in access) {
-		generateHaxeModulesFromSymbol(symbol, access)
-	}
-	```
-	To
-	```haxe
-	generateHaxeModulesFromSymbol() {
-		// prefer module path for access path
-		for(a in access) {
-			meta.push(a.toMeta()) // with #if conditional
-		}
-	}
-	```
+## Remaining
 
-	See https://github.com/kLabz/haxe-react/blob/c1b68ec990ec5bef5d818e8b9837edcad8c70141/src/lib/react/React.hx#L13-L16
+### Type conversion
+- [ ] Index signatures on classes and interfaces (currently partial — `DynamicAccess` for some cases)
+- [ ] Redefined class/interface fields in `extends` should be renamed rather than removed
+- [ ] Intersection types: rasterize where possible
+- [ ] Union types: `AnyOf` with shared property access (see #105)
+- [ ] Construct signatures in types → `haxe.Constraints.Constructible` when used as type parameter
+- [ ] Enum abstract `final` fields instead of `var` (see docs/planned-fixes.md)
+- [ ] Filter out `Void` from `AnyOf2<Void, T>` → just `T`
 
-- Issue: This should be `var _50: String;`
-	```haxe
-	@:native("50")
-	var FiveZero : String;
-	```
-- Issue: maybe when converting the typename `_` the result should be `Underscore` not `T_`
+### Package handling
+- [ ] Convert ALL sub-modules of a package (not just referenced ones) — e.g. all `three/examples/jsm/*` (#109)
+- [ ] Redesign: single ConverterContext across all input modules for better inter-module interaction
+- [ ] `--mergeGlobal` flag: emit `@:jsRequire` + `@:native` with `#if` guards instead of separate `global/` package
+- [ ] Cache: don't regenerate if module unchanged and dts2hx version matches
 
-- Issues:
-	- export default not working properly
-	- `require('vue').default` doesn't exist
+### Code quality
+- [ ] Limit maximum type path length to avoid ENAMETOOLONG filesystem errors (#47)
+- [ ] Improve comment handling (TypeScript compiler doesn't properly expose declaration comments)
+- [ ] Overload documentation (requires extending MetadataItem with doc field)
+- [ ] Printer: better multi-line formatting for long function signatures
 
-- Filter out Void `AnyOf2<Void, T>`?
-	https://github.com/francescoagati/haxe-ts-repository/blob/master/externs/use-immer/use_immer/Reducer.hx
+### Haxe integration
+- [ ] Native iteration support (by handling `iterator` symbol)
+- [ ] JSDoc → Haxe metadata extraction (`@nosideeffects` → `@:pure`, `@deprecated`)
 
-- Create alternative field for redefined class and interface fields (if type is not same)
+## Open issues
 
-- Complete validation
+See [GitHub issues](https://github.com/haxiomic/dts2hx/issues) for the full list. Key issues addressed in this PR:
 
----- Tests should compile
+- #48 — `@:native` on typedef fields ✅
+- #91 — TypeScript 4+ support ✅
+- #94 — default export naming ✅
+- #107 — `import type` support ✅
+- #109 — batch generation (partial — wildcard packages only)
+- #110 — ESM import support ✅
+- #112 — three.js sub-module paths (partial)
+- #123 — express example ✅
+- #129 — esbuild three.js bundling ✅
 
-- Constructor comments missing from pixi.js
+## Internal tracking
 
-- Class and interface extend handling, add override etc
-	- Need to check where extending / intersection is allowed
-
-- Interface splitting
-	- Classes **must** unify with interfaces, so interface must have all the same fields as the class
-		- This has implications for `class extends` and `interface extends`
-
-- Intersection Types
-	- `function intersectionBetweenTypeParams<A, B>(p: A & B): void;` -> `p: { }` ??
-	- If a type has index signatures, rasterize?
-
-- Index signatures
-	- Haxe compiler feature requests
-	- Add `@:indexSignature` metadata
-		- `@:indexSignature function get(index: K): V`
-		- `@:indexSignature function set(index: K, value: V): V`
-	- Or maybe `{ > ArrayAccess<T> }`? (ArrayAccess is currently an interface in haxe)
-	- Eh..., just rasterize the types with index signatures and wrap in abstracts
-
-- Handle callable classes
-	- symbol.flags & SymbolFlags.Function != 0
-	- play well with other call signatures (also from construct type)
-	-> `@:selfCall` on new() https://github.com/HaxeFoundation/haxe/issues/3441 
-
-- Lots of array extensions, can we do better here?
-
-- `getTopLevelDeclarationSymbols` sucks, can we use alternative methods now? Why does it exist?
-
-- Should we convert all `const Name: T;` fields to classes rather than global variables?
-	-> Probably, what about `var Name: T;`? I think so.
-
-- Use macro to call complexType methods with type-stack pushing?
-	- Maybe use macro to enable finally
-
-- **react+react-dom have issues**
-
-- Playcanvas, why 
-	`Warning: Type has construct signature but this is currently unhandled ([Object] ScriptType [Class] ClassDeclaration /Users/geo/Projects/dts2hx/test/libs/node_modules/playcanvas/build/output/playcanvas.d.ts:22545:5)`
-	When the type is a class?
-
-- Issue: `dts2hx three/examples/jsm/controls/orbitcontrols` fails at runtime because casing is incorrect. Need to use the resolved module name instead of the input name in jsRequire
-
-- Printer, better function printing:
-	- don't set singleLineFields on function args
-	- set it on function signatures, check if resulting line length > x
-	- if > x, re-print with multiLineFields
-
-- Issue: struct/function formatting problems in Typescript.hx
-
-- Issue: toSafeIdent(), result can be just `_` which has special meaning in haxe
-
-- Automatically find tsconfig.json in convertTsModule()
-
-- Enums:
-	- Generate method to get keys
-	- Support array access
-
-- Construct signatures on anons
-A generic build version of this would work
-```haxe
-	@:forward @:forwardStatics extern abstract ConstructType<T>(T) to T from T {
-
-		public inline function construct(args: Array<Dynamic>): Any {
-			return Type.createInstance(cast this, args);
-		}
-
-	}
-```
-
-- Special types
-	- ts.lib.IFunction should map to haxe.constrains.Function I think
-
-- Use subtypes for typedef anons (so it's not an anon repreated 3x)
-	- i.e. `abstract Name({...}) to {...} from {...} { }`
-
-- haxe 4.2, quoted names in types instead of @:native()
-
-- Do we need to do anything to handle `abstract` classes (typescript keyword abstract)?
-
-- ? Maybe: When shortening paths, do we need to check for collisions with haxe root types? (like Iterator)
-
-- Docs: wtf is going on with `IHTMLTimeElement`
-- Overload documentation, requires extending MetadataItem with doc field
-	- Will need to copy / reimplement jsdoc methods from services.ts
-
-- Review class-expression syntax `let x = class ...`
-
-- If a constructor type is a type parameter we can use `Constructible`
-
-------
-
-**haxe on npm**
-- npm haxe version should exactly always match haxe compiler version
-	- e.g. `npm install haxe 4.0.5` should do exactly that
-	- Should include prebuilt binaries / download based on arch after install
-	- This is annoying because we can never reuse the same name/version on npm (may need to get in touch with npm admins?)
-		- We can unpublish specific old versions by contacting `support@npmjs.com` and replace them with a shim to new version so they will still work
-		- We could leave all the other versions up unchanged
-		- This is a big change but I think it's worth it.
-	- npm publish should be an automatic part of haxe release process
-- haxe lib directory set to node_modules/@haxe
-- install haxe libraries with the @haxe namespace prefix
-- `npm install @haxe/openfl`
-
--> For this we just need two changes to the existing npm-haxe
-	- download the haxe version that matches the package version by default
-	- set the haxelib directory to node_modules/@haxe
-
-- Then establish a convention of naming modules @haxe/$name.
-- Should also have 0 dependencies, npm-haxe installs *168*
-
-! Biggest problem is the haxelib .current convention, so maybe we can't use @haxe?
-! Also making @haxe org access public might be hard.
-- Use a shim, so that when haxe or haxelib are called, we first setup the haxelib directory with symlinks to dependencies in package.json
-	- What happens when a dependency requires others via package.json?
-		-> we need to symlink these too
-		-> So basically symlink everything in `node_modules`
-			! this is expeennsiiiiive, probably only a small minority will be haxe modules
-			? check for haxelib.json...? ehhh
-	=> What if we scan the dependencies for hx files, then cache the results in a text file so we know if we need to re-run this process
-	
-
-- How do you install haxe 4.0.5 with npm-haxe? Not clear so far
-
-- Binaries should be hosted on npm, so for example `npm install haxe` on mac installs `@haxe/haxec-darwin@4.2.0` as a dependency
+- [docs/extern-compat-issues.md](extern-compat-issues.md) — EC-1 through EC-10 type system issues (most resolved)
+- [docs/TEST_GAPS.md](TEST_GAPS.md) — test coverage gap analysis
+- [docs/planned-fixes.md](planned-fixes.md) — specific fix plans for identified issues
