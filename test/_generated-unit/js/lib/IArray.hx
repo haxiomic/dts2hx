@@ -123,7 +123,7 @@ typedef IArray<T> = {
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 	**/
-	function copyWithin(target:Float, ?start:Float, ?end:Float):Array<T>;
+	function copyWithin(target:Float, start:Float, ?end:Float):Array<T>;
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/

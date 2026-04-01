@@ -127,7 +127,7 @@ typedef KeyValuePair<K, V> = {
 		Returns the this object after copying a section of the array identified by start and end
 		to the same array starting at position target
 	**/
-	function copyWithin(target:Float, ?start:Float, ?end:Float):KeyValuePair<K, V>;
+	function copyWithin(target:Float, start:Float, ?end:Float):KeyValuePair<K, V>;
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
