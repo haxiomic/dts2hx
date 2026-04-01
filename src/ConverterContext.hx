@@ -334,9 +334,19 @@ class ConverterContext {
 					var declaredInModules = symbol.getParentModuleNames();
 
 					var declaredWithinInputModule = declaredInModules.exists(name -> name == normalizedInputModuleName);
-					
+
+					// check if symbol comes from a @types/* package (ambient type definitions)
+					var isFromTypesPackage = symbol.getDeclarationsArray().exists(d -> {
+						var fileName = d.getSourceFile().fileName;
+						return fileName.indexOf('/@types/') != -1 || fileName.indexOf('/node_modules/@types/') != -1;
+					});
+
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
+						declarationSymbolQueue.tryEnqueue(symbol);
+					} else if (isFromTypesPackage) {
+						// @types/* packages provide ambient type definitions (e.g. @types/webxr, @types/webgpu)
+						// that extend the global scope. Queue them for generation.
 						declarationSymbolQueue.tryEnqueue(symbol);
 					} else if (options.queueExternalSymbols) {
 						Log.log('Queuing external symbol', symbol);
@@ -864,11 +874,16 @@ class ConverterContext {
 
 	function saveHaxeModule(module: HaxeModule) {
 		var isBuiltIn = module.tsSymbol != null && module.tsSymbol.isBuiltIn();
+		// @types/* packages (e.g. @types/webxr) provide ambient global types that may be
+		// referenced by modular types — don't skip them even when globalTypes is disabled
+		var isAmbientTypeDef = !isBuiltIn && module.tsSymbol != null && module.tsSymbol.getDeclarationsArray().exists(
+			d -> StringTools.contains(d.getSourceFile().fileName, '/@types/')
+		);
 
 		var skipModule = false;
 		// skip global if globalTypes are disabled
 		if (!options.globalTypes) {
-			skipModule = skipModule || (!isBuiltIn && module.tsSymbolAccess.match(Global(_)));
+			skipModule = skipModule || (!isBuiltIn && !isAmbientTypeDef && module.tsSymbolAccess.match(Global(_)));
 		}
 
 		// skip modular if modularTypes are disabled

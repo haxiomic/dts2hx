@@ -76,7 +76,7 @@ typedef RequestRanges = {
 		Determines whether all the members of an array satisfy the specified test.
 	**/
 	@:overload(function(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Bool { })
-	function every<S:(T)>(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Bool;
+	function every<S:(range_parser.Range)>(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
@@ -93,7 +93,7 @@ typedef RequestRanges = {
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
 	@:overload(function(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Array<range_parser.Range> { })
-	function filter<S:(T)>(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	function filter<S:(range_parser.Range)>(predicate:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
@@ -111,7 +111,7 @@ typedef RequestRanges = {
 		otherwise.
 	**/
 	@:overload(function(predicate:(value:range_parser.Range, index:Float, obj:Array<range_parser.Range>) -> Any, ?thisArg:Dynamic):Null<range_parser.Range> { })
-	function find<S:(T)>(predicate:(value:range_parser.Range, index:Float, obj:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	function find<S:(range_parser.Range)>(predicate:(value:range_parser.Range, index:Float, obj:Array<range_parser.Range>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.

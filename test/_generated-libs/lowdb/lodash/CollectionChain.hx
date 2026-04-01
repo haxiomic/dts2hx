@@ -113,7 +113,7 @@ typedef CollectionChain<T> = {
 	@:overload(function(iteratee:PropertyName):CollectionChain<Dynamic> { })
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<PropertyName, Dynamic>>):CollectionChain<Bool> { })
 	@:overload(function():CollectionChain<T> { })
-	function map<K:(Dynamic)>(key:K):CollectionChain<Dynamic>;
+	function map<K:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(key:K):CollectionChain<Dynamic>;
 	function orderBy(?iteratees:Many<ts.AnyOf5<String, Float, js.lib.Symbol, { }, ListIterator<T, Any>>>, ?orders:Many<ts.AnyOf2<Bool, String>>):CollectionChain<T>;
 	@:overload(function(callback:ValueIteratee<T>):LoDashExplicitWrapper<ts.Tuple2<Array<T>, Array<T>>> { })
 	function partition<U:(T)>(callback:ValueIteratorTypeGuard<T, U>):LoDashExplicitWrapper<ts.Tuple2<Array<U>, Array<{ }>>>;
@@ -140,7 +140,7 @@ typedef CollectionChain<T> = {
 	function get(path:Float):ExpChain<T>;
 	function invertBy(?iteratee:ValueIteratee<T>):ObjectChain<Dictionary<Array<String>>>;
 	function mapKeys(?iteratee:ListIteratee<T>):ObjectChain<Dictionary<T>>;
-	@:overload(function<TKey:(Dynamic)>(iteratee:TKey):ObjectChain<Dictionary<Dynamic>> { })
+	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(iteratee:TKey):ObjectChain<Dictionary<Dynamic>> { })
 	@:overload(function(iteratee:Dynamic):ObjectChain<Dictionary<Bool>> { })
 	@:overload(function(iteratee:String):ObjectChain<Dictionary<Dynamic>> { })
 	@:overload(function():ObjectChain<Dictionary<T>> { })

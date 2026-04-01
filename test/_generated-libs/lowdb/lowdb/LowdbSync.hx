@@ -35,7 +35,7 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function(iteratee:lodash.PropertyName):lodash.CollectionChain<Dynamic> { })
 	@:overload(function(iteratee:ts.AnyOf2<Dynamic, ts.Tuple2<lodash.PropertyName, Dynamic>>):lodash.CollectionChain<Bool> { })
 	@:overload(function():lodash.CollectionChain<Dynamic> { })
-	function map<K:(Dynamic)>(key:K):lodash.CollectionChain<Dynamic>;
+	function map<K:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(key:K):lodash.CollectionChain<Dynamic>;
 	function orderBy(?iteratees:lodash.Many<lodash.ObjectIterator<SchemaT, Any>>, ?orders:lodash.Many<ts.AnyOf2<Bool, String>>):lodash.CollectionChain<Dynamic>;
 	function partition(callback:lodash.ValueIteratee<Dynamic>):lodash.LoDashExplicitWrapper<ts.Tuple2<Array<Dynamic>, Array<Dynamic>>>;
 	@:overload(function(callback:lodash.MemoObjectIterator<Dynamic, Dynamic, SchemaT>):lodash.ExpChain<Dynamic> { })
@@ -97,24 +97,24 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
 	function extendWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TKey:(Dynamic)>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:Array<ts.Never>):Dynamic { })
-	@:overload(function<TKey:(Dynamic), TDefault>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic)>(path:ts.Tuple2<TKey1, TKey2>):lodash.ExpChain<Dynamic> { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic)>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:Array<ts.Never>):Dynamic { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TDefault>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic)>(path:ts.Tuple3<TKey1, TKey2, TKey3>):lodash.ExpChain<Dynamic> { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic)>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:Array<ts.Never>):Dynamic { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TDefault>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):lodash.ExpChain<Dynamic> { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:Array<ts.Never>):Dynamic { })
-	@:overload(function<TKey1:(Dynamic), TKey2:(Dynamic), TKey3:(Dynamic), TKey4:(Dynamic), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
+	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:Array<ts.Never>):Dynamic { })
+	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple2<TKey1, TKey2>):lodash.ExpChain<Dynamic> { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:Array<ts.Never>):Dynamic { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey3:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple3<TKey1, TKey2, TKey3>):lodash.ExpChain<Dynamic> { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey3:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:Array<ts.Never>):Dynamic { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey3:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.Tuple3<TKey1, TKey2, TKey3>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey3:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey4:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>):lodash.ExpChain<Dynamic> { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey3:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey4:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:Array<ts.Never>):Dynamic { })
+	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey3:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey4:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.Tuple4<TKey1, TKey2, TKey3, TKey4>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
 	@:overload(function(path:lodash.PropertyPath, ?defaultValue:Dynamic):lodash.LoDashExplicitWrapper<Dynamic> { })
-	function get<TKey:(Dynamic)>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>):lodash.ExpChain<Dynamic>;
+	function get<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>):lodash.ExpChain<Dynamic>;
 	function invertBy(?iteratee:lodash.ValueIteratee<Dynamic>):lodash.ObjectChain<lodash.Dictionary<Array<String>>>;
 	function mapKeys(?iteratee:lodash.ObjectIteratee<SchemaT>):lodash.ObjectChain<lodash.Dictionary<Dynamic>>;
 	@:overload(function<TResult>(callback:lodash.DictionaryIterator<Dynamic, TResult>):lodash.ObjectChain<lodash.Dictionary<TResult>> { })
 	@:overload(function(iteratee:Dynamic):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TKey:(Dynamic)>(iteratee:TKey):lodash.ObjectChain<lodash.Dictionary<Dynamic>> { })
+	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(iteratee:TKey):lodash.ObjectChain<lodash.Dictionary<Dynamic>> { })
 	@:overload(function(iteratee:String):lodash.ObjectChain<Dynamic> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	function mapValues<TResult>(callback:lodash.ObjectIterator<SchemaT, TResult>):lodash.ObjectChain<Dynamic>;
@@ -129,10 +129,10 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
 	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic>;
 	@:overload(function(paths:haxe.extern.Rest<lodash.Many<lodash.PropertyName>>):lodash.ObjectChain<SchemaT> { })
-	function omit<K:(Dynamic)>(paths:haxe.extern.Rest<lodash.Many<K>>):lodash.ObjectChain<{ }>;
+	function omit<K:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(paths:haxe.extern.Rest<lodash.Many<K>>):lodash.ObjectChain<{ }>;
 	function omitBy(predicate:lodash.ValueKeyIteratee<Dynamic>):lodash.ObjectChain<SchemaT>;
 	@:overload(function(props:haxe.extern.Rest<lodash.PropertyPath>):lodash.ObjectChain<SchemaT> { })
-	function pick<U:(Dynamic)>(props:haxe.extern.Rest<lodash.Many<U>>):lodash.ObjectChain<{ }>;
+	function pick<U:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(props:haxe.extern.Rest<lodash.Many<U>>):lodash.ObjectChain<{ }>;
 	@:overload(function(?predicate:lodash.ValueKeyIteratee<Dynamic>):lodash.ObjectChain<SchemaT> { })
 	function pickBy<S:(Dynamic)>(predicate:lodash.ValueKeyIterateeTypeGuard<Dynamic, S>):lodash.ObjectChain<Dynamic>;
 	@:overload(function():lodash.ExpChain<Dynamic> { })

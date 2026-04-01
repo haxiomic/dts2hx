@@ -75,7 +75,7 @@ typedef ScopedSlotReturnArray = {
 		Determines whether all the members of an array satisfy the specified test.
 	**/
 	@:overload(function(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Bool { })
-	function every<S:(T)>(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Bool;
+	function every<S:(ScopedSlotReturnValue)>(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
@@ -92,7 +92,7 @@ typedef ScopedSlotReturnArray = {
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
 	@:overload(function(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):Array<ScopedSlotReturnValue> { })
-	function filter<S:(T)>(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	function filter<S:(ScopedSlotReturnValue)>(predicate:(value:ScopedSlotReturnValue, index:Float, array:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
@@ -110,7 +110,7 @@ typedef ScopedSlotReturnArray = {
 		otherwise.
 	**/
 	@:overload(function(predicate:(value:ScopedSlotReturnValue, index:Float, obj:Array<ScopedSlotReturnValue>) -> Any, ?thisArg:Dynamic):ScopedSlotReturnValue { })
-	function find<S:(T)>(predicate:(value:ScopedSlotReturnValue, index:Float, obj:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	function find<S:(ScopedSlotReturnValue)>(predicate:(value:ScopedSlotReturnValue, index:Float, obj:Array<ScopedSlotReturnValue>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.

@@ -389,7 +389,8 @@ class HaxeTypePathMap {
 
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
-		var identifierChain = access.getIdentifierChain();
+		// Resolve "default" to actual class/fn names for package paths
+		var identifierChain = access.extractSymbolChain().map(s -> resolveDefaultExportName(s));
 		switch access {
 			case AmbientModule(modulePath, _):
 				// prefix entry-point module for ambients
@@ -466,7 +467,7 @@ class HaxeTypePathMap {
 				var lastSymbol = symbolChain[symbolChain.length - 1];
 				if (lastSymbol != null) {
 					if (lastSymbol.escapedName.isInternalSymbolName()) {
-						symbol.name;
+						resolveDefaultExportName(symbol);
 					} else {
 						lastSymbol.name;
 					}
@@ -477,7 +478,7 @@ class HaxeTypePathMap {
 				var lastSymbol = symbolChain[symbolChain.length - 1];
 				if (lastSymbol != null) {
 					if (lastSymbol.escapedName.isInternalSymbolName()) {
-						symbol.name;
+						resolveDefaultExportName(symbol);
 					} else {
 						lastSymbol.name;
 					}
@@ -488,6 +489,29 @@ class HaxeTypePathMap {
 				symbol.name;
 		}
 		return typeIdentifier.toSafeTypeName();
+	}
+
+	/**
+		For default export symbols, the symbol name is "default" but the declaration
+		often has the original class/function name (e.g. `export default class Foo`
+		has symbol.name="default" but declaration.name.text="Foo").
+		Returns the original name when available, "default" otherwise.
+	**/
+	static function resolveDefaultExportName(symbol: Symbol): String {
+		if (symbol.name != 'default') return symbol.name;
+		// Check the declaration for a named identifier
+		var decl = if (symbol.valueDeclaration != null) symbol.valueDeclaration
+			else if (symbol.declarations != null && symbol.declarations.length > 0) symbol.declarations[0]
+			else null;
+		if (decl != null) {
+			var nameNode: Dynamic = Reflect.field(decl, 'name');
+			if (nameNode != null) {
+				var text: Null<String> = Reflect.field(nameNode, 'text');
+				if (text == null) text = Reflect.field(nameNode, 'escapedText');
+				if (text != null && text != 'default') return text;
+			}
+		}
+		return symbol.name;
 	}
 
 	function matchHxnodejsType(symbol: Symbol, access: SymbolAccess, name: String): Null<String> {

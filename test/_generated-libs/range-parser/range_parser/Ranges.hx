@@ -76,7 +76,7 @@ typedef Ranges = {
 		Determines whether all the members of an array satisfy the specified test.
 	**/
 	@:overload(function(predicate:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Bool { })
-	function every<S:(T)>(predicate:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Bool;
+	function every<S:(Range)>(predicate:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
@@ -93,7 +93,7 @@ typedef Ranges = {
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
 	@:overload(function(predicate:(value:Range, index:Float, array:Array<Range>) -> Any, ?thisArg:Dynamic):Array<Range> { })
-	function filter<S:(T)>(predicate:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	function filter<S:(Range)>(predicate:(value:Range, index:Float, array:Array<Range>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
@@ -111,7 +111,7 @@ typedef Ranges = {
 		otherwise.
 	**/
 	@:overload(function(predicate:(value:Range, index:Float, obj:Array<Range>) -> Any, ?thisArg:Dynamic):Null<Range> { })
-	function find<S:(T)>(predicate:(value:Range, index:Float, obj:Array<Range>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	function find<S:(Range)>(predicate:(value:Range, index:Float, obj:Array<Range>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.

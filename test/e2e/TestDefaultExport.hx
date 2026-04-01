@@ -50,12 +50,11 @@ class TestDefaultExport {
 		eq(build.modules.DefaultExportCases.CONSTANT, 42, "named export: CONSTANT");
 
 		// Default class accessible but named "Default" not "MyDefaultClass"
-		var obj = new build.modules.default_export_cases.Default("test");
+		var obj = new build.modules.default_export_cases.MyDefaultClass("test");
 		eq(obj.value, "test", "default class: constructor works");
 		eq(obj.greet(), "hello from test", "default class: method works");
 
-		// BUG: Class is named "Default" instead of "MyDefaultClass"
-		// BUG: Lives in default_export_cases/Default.hx instead of DefaultExportCases.hx
+		// FIXED: Class keeps original name "MyDefaultClass"
 	}
 
 	static function testDefaultClassWithStaticHelper() {
@@ -65,15 +64,15 @@ class TestDefaultExport {
 
 		eq(build.modules.DefaultExportNs.staticHelper(), "helped", "named: staticHelper");
 
-		var store = new build.modules.default_export_ns.Default();
+		var store = new build.modules.default_export_ns.Store();
 		store.set("x", 42);
 		eq(store.get("x"), 42.0, "default Store: set/get");
 		eq(store.size, 1.0, "default Store: size");
 
-		var empty = build.modules.default_export_ns.Default.createEmpty();
+		var empty = build.modules.default_export_ns.Store.createEmpty();
 		eq(empty.size, 0.0, "default Store: static createEmpty");
 
-		// BUG: Class is named "Default" instead of "Store"
+		// FIXED: Class keeps original name "Store"
 	}
 
 	static function testDefaultFunction() {
@@ -94,14 +93,14 @@ class TestDefaultExport {
 		// export interface StoreOptions { ... }
 		// export default class ConfigurableStore { ... }
 
-		var store = new build.modules.default_export_iface.Default(
+		var store = new build.modules.default_export_iface.ConfigurableStore(
 			{maxSize: 50}
 		);
 		eq(store.getMaxSize(), 50.0, "default class with interface param");
 
-		var def = build.modules.default_export_iface.Default.withDefaults();
+		var def = build.modules.default_export_iface.ConfigurableStore.withDefaults();
 		eq(def.getMaxSize(), 100.0, "default class static factory");
 
-		// BUG: Class is named "Default" instead of "ConfigurableStore"
+		// FIXED: Class keeps original name "ConfigurableStore"
 	}
 }
