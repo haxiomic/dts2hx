@@ -7,9 +7,9 @@ package vscode;
 	/**
 		Extensions are accessed from a desktop application.
 	**/
-	var Desktop;
+	final Desktop;
 	/**
 		Extensions are accessed from a web browser.
 	**/
-	var Web;
+	final Web;
 }

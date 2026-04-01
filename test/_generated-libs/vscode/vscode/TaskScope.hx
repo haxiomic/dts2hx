@@ -7,9 +7,9 @@ package vscode;
 	/**
 		The task is a global task. Global tasks are currrently not supported.
 	**/
-	var Global;
+	final Global;
 	/**
 		The task is a workspace task
 	**/
-	var Workspace;
+	final Workspace;
 }

@@ -10,13 +10,13 @@ package vscode;
 	/**
 		Kind for folding range representing a comment.
 	**/
-	var Comment;
+	final Comment;
 	/**
 		Kind for folding range representing a import.
 	**/
-	var Imports;
+	final Imports;
 	/**
 		Kind for folding range representing regions originating from folding markers like `#region` and `#endregion`.
 	**/
-	var Region;
+	final Region;
 }

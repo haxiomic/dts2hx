@@ -1,11 +1,11 @@
 package global.three;
 
 @:native("THREE.PathActions") extern enum abstract PathActions(Int) from Int to Int {
-	var MOVE_TO;
-	var LINE_TO;
-	var QUADRATIC_CURVE_TO;
-	var BEZIER_CURVE_TO;
-	var CSPLINE_THRU;
-	var ARC;
-	var ELLIPSE;
+	final MOVE_TO;
+	final LINE_TO;
+	final QUADRATIC_CURVE_TO;
+	final BEZIER_CURVE_TO;
+	final CSPLINE_THRU;
+	final ARC;
+	final ELLIPSE;
 }

@@ -7,9 +7,9 @@ package vscode;
 	/**
 		Aligned to the left side.
 	**/
-	var Left;
+	final Left;
 	/**
 		Aligned to the right side.
 	**/
-	var Right;
+	final Right;
 }

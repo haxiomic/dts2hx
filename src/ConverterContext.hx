@@ -1957,9 +1957,13 @@ class ConverterContext {
 	}
 
 	/**
-		Returns true if a constraint type is simple enough for Haxe's invariant generics.
-		Allows primitives, literal types, enums, and unions of these.
-		Rejects Object types (classes/interfaces with type params), conditional types, etc.
+		Returns true if a constraint type is safe for Haxe's invariant generics.
+		Allows: primitives, literals, enums, unions of these, and non-generic
+		class/interface types (no type parameters).
+		Rejects: generic class/interface types (e.g. Container<T>) because
+		Haxe's invariant generics break subclass hierarchies when the type
+		param is narrowed (e.g. Light<T extends LightShadow<Camera>> fails
+		when DirectionalLight extends Light<DirectionalLightShadow<OrthoCamera>>).
 	**/
 	function isSimpleConstraintType(type: TsType): Bool {
 		final simpleFlags = TypeFlags.String | TypeFlags.Number | TypeFlags.Boolean
@@ -1967,11 +1971,30 @@ class ConverterContext {
 			| TypeFlags.Enum | TypeFlags.EnumLiteral | TypeFlags.Void | TypeFlags.Undefined
 			| TypeFlags.Null | TypeFlags.Never | TypeFlags.BigInt | TypeFlags.BigIntLiteral;
 		if (type.flags & simpleFlags != 0) return true;
-		// Allow unions where all members are simple
+		// Allow unions where all members are safe
 		if (type.flags & TypeFlags.Union != 0) {
 			var unionType: Dynamic = type;
 			var types: Array<TsType> = unionType.types;
 			if (types != null) return types.exists(t -> isSimpleConstraintType(t));
+		}
+		// Allow non-generic object types (classes/interfaces without type parameters)
+		// These are safe because subclass narrowing doesn't involve type param variance
+		if (type.flags & TypeFlags.Object != 0) {
+			var objectType: ObjectType = cast type;
+			// Check if the type reference has type arguments — if so, it's generic and unsafe
+			if (objectType.objectFlags & ObjectFlags.Reference != 0) {
+				var typeRef: TypeReference = cast objectType;
+				// No type arguments = non-generic, safe to use as constraint
+				return typeRef.typeArguments == null || typeRef.typeArguments.length == 0;
+			}
+			// Non-reference object types (anonymous, etc.) are safe
+			return true;
+		}
+		// Allow intersection types where all members are safe
+		if (type.flags & TypeFlags.Intersection != 0) {
+			var intersectionType: Dynamic = type;
+			var types: Array<TsType> = intersectionType.types;
+			if (types != null) return !types.exists(t -> !isSimpleConstraintType(t));
 		}
 		return false;
 	}

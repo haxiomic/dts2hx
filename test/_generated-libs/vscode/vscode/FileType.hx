@@ -9,17 +9,17 @@ package vscode;
 	/**
 		The file type is unknown.
 	**/
-	var Unknown;
+	final Unknown;
 	/**
 		A regular file.
 	**/
-	var File;
+	final File;
 	/**
 		A directory.
 	**/
-	var Directory;
+	final Directory;
 	/**
 		A symbolic link to a file.
 	**/
-	var SymbolicLink;
+	final SymbolicLink;
 }

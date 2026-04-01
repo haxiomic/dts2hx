@@ -1,6 +1,6 @@
 package js.lib;
 
-typedef IWeakMap<K:(Dynamic), V> = {
+typedef IWeakMap<K, V> = {
 	/**
 		Removes the specified element from the WeakMap.
 	**/

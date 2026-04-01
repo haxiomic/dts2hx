@@ -7,9 +7,9 @@ package vscode;
 	/**
 		Displays the comment editor
 	**/
-	var Editing;
+	final Editing;
 	/**
 		Displays the preview of the comment
 	**/
-	var Preview;
+	final Preview;
 }

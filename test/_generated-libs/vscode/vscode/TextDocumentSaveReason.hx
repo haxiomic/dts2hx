@@ -8,13 +8,13 @@ package vscode;
 		Manually triggered, e.g. by the user pressing save, by starting debugging,
 		or by an API call.
 	**/
-	var Manual;
+	final Manual;
 	/**
 		Automatic after a delay.
 	**/
-	var AfterDelay;
+	final AfterDelay;
 	/**
 		When the editor lost focus.
 	**/
-	var FocusOut;
+	final FocusOut;
 }

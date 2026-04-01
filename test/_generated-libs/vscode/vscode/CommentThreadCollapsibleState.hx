@@ -7,9 +7,9 @@ package vscode;
 	/**
 		Determines an item is collapsed
 	**/
-	var Collapsed;
+	final Collapsed;
 	/**
 		Determines an item is expanded
 	**/
-	var Expanded;
+	final Expanded;
 }

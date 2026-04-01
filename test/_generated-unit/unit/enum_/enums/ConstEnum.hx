@@ -1,10 +1,10 @@
 package unit.enum_.enums;
 
 extern enum abstract ConstEnum(Any) from Any to Any {
-	var A = 1;
-	var B = 2;
-	var C = "ceee";
-	var D = 3.14;
+	final A = 1;
+	final B = 2;
+	final C = "ceee";
+	final D = 3.14;
 	@:native("operator")
-	var operator_ = 6;
+	final operator_ = 6;
 }

@@ -7,13 +7,13 @@ package vscode;
 	/**
 		Completion was triggered normally.
 	**/
-	var Invoke;
+	final Invoke;
 	/**
 		Completion was triggered by a trigger character.
 	**/
-	var TriggerCharacter;
+	final TriggerCharacter;
 	/**
 		Completion was re-triggered as current completion list is incomplete
 	**/
-	var TriggerForIncompleteCompletions;
+	final TriggerForIncompleteCompletions;
 }

@@ -7,14 +7,14 @@ package vscode;
 	/**
 		Shares a panel with other tasks. This is the default.
 	**/
-	var Shared;
+	final Shared;
 	/**
 		Uses a dedicated panel for this tasks. The panel is not
 		shared with other tasks.
 	**/
-	var Dedicated;
+	final Dedicated;
 	/**
 		Creates a new panel whenever this task is executed.
 	**/
-	var New;
+	final New;
 }

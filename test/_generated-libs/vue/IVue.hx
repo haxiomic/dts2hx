@@ -1,0 +1,1 @@
+typedef IVue = ts.AbstractAnon<IVue_>;

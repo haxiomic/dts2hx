@@ -1,6 +1,6 @@
 package js.lib;
 
-@:native("WeakMap") extern class WeakMap_<K:(Dynamic), V> {
+@:native("WeakMap") extern class WeakMap_<K, V> {
 	@:overload(function<K:(Dynamic), V>(iterable:Iterable<ts.Tuple2<K, V>>):WeakMap_<K, V> { })
 	function new<K:(Dynamic), V>(?entries:haxe.ds.ReadOnlyArray<ts.Tuple2<K, V>>);
 	/**

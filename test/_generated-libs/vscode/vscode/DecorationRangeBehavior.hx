@@ -7,17 +7,17 @@ package vscode;
 	/**
 		The decoration's range will widen when edits occur at the start or end.
 	**/
-	var OpenOpen;
+	final OpenOpen;
 	/**
 		The decoration's range will not widen when edits occur at the start of end.
 	**/
-	var ClosedClosed;
+	final ClosedClosed;
 	/**
 		The decoration's range will widen when edits occur at the start, but not at the end.
 	**/
-	var OpenClosed;
+	final OpenClosed;
 	/**
 		The decoration's range will widen when edits occur at the end, but not at the start.
 	**/
-	var ClosedOpen;
+	final ClosedOpen;
 }

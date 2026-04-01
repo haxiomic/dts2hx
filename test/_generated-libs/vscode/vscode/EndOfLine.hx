@@ -7,9 +7,9 @@ package vscode;
 	/**
 		The line feed `\n` character.
 	**/
-	var LF;
+	final LF;
 	/**
 		The carriage return line feed `\r\n` sequence.
 	**/
-	var CRLF;
+	final CRLF;
 }

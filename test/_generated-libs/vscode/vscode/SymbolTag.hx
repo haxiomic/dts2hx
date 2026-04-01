@@ -7,5 +7,5 @@ package vscode;
 	/**
 		Render a symbol as obsolete, usually using a strike-out.
 	**/
-	var Deprecated;
+	final Deprecated;
 }

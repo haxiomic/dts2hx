@@ -14,11 +14,11 @@ package vscode;
 		`"editorUnnecessaryCode.border"` theme color to underline unnecessary code
 		instead of fading it out.
 	**/
-	var Unnecessary;
+	final Unnecessary;
 	/**
 		Deprecated or obsolete code.
 		
 		Diagnostics with this tag are rendered with a strike through.
 	**/
-	var Deprecated;
+	final Deprecated;
 }

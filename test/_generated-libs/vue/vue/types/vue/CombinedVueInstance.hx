@@ -1,3 +1,3 @@
 package vue.types.vue;
 
-typedef CombinedVueInstance<Instance:(vue.Vue), Data, Methods, Computed, Props> = Dynamic;
+typedef CombinedVueInstance<Instance:(Vue), Data, Methods, Computed, Props> = Dynamic;

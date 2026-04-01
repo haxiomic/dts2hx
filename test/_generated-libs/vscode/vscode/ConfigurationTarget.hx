@@ -7,13 +7,13 @@ package vscode;
 	/**
 		Global configuration
 	**/
-	var Global;
+	final Global;
 	/**
 		Workspace configuration
 	**/
-	var Workspace;
+	final Workspace;
 	/**
 		Workspace folder configuration
 	**/
-	var WorkspaceFolder;
+	final WorkspaceFolder;
 }

@@ -1,6 +1,6 @@
 package vue.types;
 
-@:jsRequire("vue/types/umd") extern class Umd extends vue.Vue {
+@:jsRequire("vue/types/umd") extern class Umd extends Vue {
 	@:native("$mount")
 	function DollarMount(?elementOrSelector:ts.AnyOf2<String, js.html.DOMElement>, ?hydrating:Bool):Umd;
 	@:native("$watch")

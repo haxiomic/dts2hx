@@ -8,9 +8,9 @@ package vscode;
 	/**
 		Extension runs where the UI runs.
 	**/
-	var UI;
+	final UI;
 	/**
 		Extension runs where the remote extension host runs.
 	**/
-	var Workspace;
+	final Workspace;
 }

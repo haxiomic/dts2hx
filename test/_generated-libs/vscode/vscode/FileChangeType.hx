@@ -7,13 +7,13 @@ package vscode;
 	/**
 		The contents or metadata of a file have changed.
 	**/
-	var Changed;
+	final Changed;
 	/**
 		A file has been created.
 	**/
-	var Created;
+	final Created;
 	/**
 		A file has been deleted.
 	**/
-	var Deleted;
+	final Deleted;
 }

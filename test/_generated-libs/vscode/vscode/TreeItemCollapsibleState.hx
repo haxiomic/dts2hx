@@ -7,13 +7,13 @@ package vscode;
 	/**
 		Determines an item can be neither collapsed nor expanded. Implies it has no children.
 	**/
-	var None;
+	final None;
 	/**
 		Determines an item is collapsed
 	**/
-	var Collapsed;
+	final Collapsed;
 	/**
 		Determines an item is expanded
 	**/
-	var Expanded;
+	final Expanded;
 }

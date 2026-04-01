@@ -7,13 +7,13 @@ package vscode;
 	/**
 		Signature help was invoked manually by the user or by a command.
 	**/
-	var Invoke;
+	final Invoke;
 	/**
 		Signature help was triggered by a trigger character.
 	**/
-	var TriggerCharacter;
+	final TriggerCharacter;
 	/**
 		Signature help was triggered by the cursor moving or by the document content changing.
 	**/
-	var ContentChange;
+	final ContentChange;
 }

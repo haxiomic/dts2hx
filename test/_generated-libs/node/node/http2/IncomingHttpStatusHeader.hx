@@ -1,7 +1,3 @@
 package node.http2;
 
-typedef IncomingHttpStatusHeader = {
-	@:optional
-	@:native(":status")
-	var ColonStatus : Float;
-};
+typedef IncomingHttpStatusHeader = ts.AbstractAnon<node.http2.IncomingHttpStatusHeader_>;

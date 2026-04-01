@@ -7,12 +7,4 @@ package js.lib;
 	}
 	that is also iterable.
 **/
-typedef IterableIterator<T, TReturn, TNext> = {
-	function next():IteratorResult<T, TReturn>;
-	@:optional
-	@:native("return")
-	function return_(?value:TReturn):IteratorResult<T, TReturn>;
-	@:optional
-	@:native("throw")
-	function throw_(?e:Dynamic):IteratorResult<T, TReturn>;
-};
+typedef IterableIterator<T, TReturn, TNext> = ts.AbstractAnon<js.lib.IterableIterator_<T, TReturn, TNext>>;

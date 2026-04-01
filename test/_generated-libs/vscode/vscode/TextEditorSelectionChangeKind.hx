@@ -7,13 +7,13 @@ package vscode;
 	/**
 		Selection changed due to typing in the editor.
 	**/
-	var Keyboard;
+	final Keyboard;
 	/**
 		Selection change due to clicking in the editor.
 	**/
-	var Mouse;
+	final Mouse;
 	/**
 		Selection changed because a command ran.
 	**/
-	var Command;
+	final Command;
 }
