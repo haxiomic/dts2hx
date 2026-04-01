@@ -3,6 +3,10 @@ import Log.LogLevel;
 import typemap.TypeMap;
 import haxe.DynamicAccess;
 import haxe.io.Path;
+import haxe.macro.Expr.TypeDefinition;
+import haxe.macro.Expr.ComplexType;
+import haxe.macro.Expr.TypeDefKind;
+import haxe.macro.Expr.TypeParam;
 import hxargs.Args.ArgHandler;
 import js.Node;
 import js.node.Fs;
@@ -443,9 +447,31 @@ class Main {
 		cliOptions: CliOptions,
 		?targetHaxeVersion: String
 	): Null<ConverterContext> {
+		// Per-module ESM detection: if --esm is not explicitly set, auto-detect based on
+		// the package's "type": "module" field and Haxe version support
+		var moduleCliOptions = cliOptions;
+		if (!cliOptions.useEsModules && targetHaxeVersion != null && versionAtLeast(targetHaxeVersion, 5, 0)) {
+			var packageName = moduleName.split('/')[0];
+			// scoped packages: @scope/name
+			if (StringTools.startsWith(moduleName, '@') && moduleName.indexOf('/') != -1) {
+				var parts = moduleName.split('/');
+				packageName = parts[0] + '/' + parts[1];
+			}
+			var pkgJsonPath = moduleSearchPath + '/node_modules/' + packageName + '/package.json';
+			try {
+				var pkgJson = haxe.Json.parse(sys.io.File.getContent(pkgJsonPath));
+				if (Reflect.field(pkgJson, 'type') == 'module') {
+					// Clone cliOptions with ESM enabled for this module
+					@:nullSafety(Off) moduleCliOptions = Reflect.copy(cliOptions);
+					moduleCliOptions.useEsModules = true;
+					Console.log('<b>$moduleName</>: ESM package detected, using <b>@:js.import</>');
+				}
+			} catch (e: Any) {}
+		}
+
 		var converter =
 			try {
-				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, hxnodejsMap, cliOptions);
+				new ConverterContext(moduleName, moduleSearchPath, compilerOptions, stdLibTypeMap, hxnodejsMap, moduleCliOptions);
 			} catch (e: Any) {
 				Log.error(e);
 				return null;
@@ -494,6 +520,8 @@ class Main {
 
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
+			var needsAbstractAnon = false;
+
 			for (_ => haxeModule in converter.generatedModules) {
 				var skipModule = false;
 
@@ -505,12 +533,64 @@ class Main {
 
 				if (skipModule) continue;
 
+				// Check if this typedef has @:native fields that need AbstractAnon wrapping
+				var wrappedModule: Null<TypeDefinition> = null;
+				if (haxeModule.kind.match(TDAlias(TAnonymous(_) | TExtend(_, _)))) {
+					var fields = switch haxeModule.kind {
+						case TDAlias(TAnonymous(f)): f;
+						case TDAlias(TExtend(_, f)): f;
+						default: null;
+					};
+					if (fields != null && hasNativeFields(fields)) {
+						needsAbstractAnon = true;
+						// Create wrapper: typedef Foo<T> = ts.AbstractAnon<Foo_<T>>
+						// Forward type params from the original typedef
+						var innerParams = if (haxeModule.params != null && haxeModule.params.length > 0) {
+							[for (p in haxeModule.params) TPType(TPath({pack: [], name: p.name}))];
+						} else null;
+						wrappedModule = {
+							pack: haxeModule.pack,
+							name: haxeModule.name,
+							pos: haxeModule.pos,
+							kind: TDAlias(TPath({
+								pack: ['ts'],
+								name: 'AbstractAnon',
+								params: [TPType(TPath({
+									pack: haxeModule.pack,
+									name: '${haxeModule.name}_',
+									params: innerParams,
+								}))],
+							})),
+							fields: [],
+							meta: [],
+							doc: haxeModule.doc,
+							params: haxeModule.params,
+							isExtern: false,
+						};
+						// Rename original to Foo_
+						haxeModule.name = '${haxeModule.name}_';
+						haxeModule.doc = null;
+					}
+				}
+
 				var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
 				var printPackage = true;
 				var moduleHaxeStr = printer.printTypeDefinition(haxeModule, printPackage);
 
 				FileTools.touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
+
+				// Save the wrapper module alongside the raw typedef
+				if (wrappedModule != null) {
+					var wrapperPath = Path.join([outputLibraryPath].concat(wrappedModule.pack).concat(['${wrappedModule.name}.hx']));
+					var wrapperStr = printer.printTypeDefinition(wrappedModule, printPackage);
+					Fs.writeFileSync(wrapperPath, wrapperStr);
+				}
+			}
+
+			// Ship AbstractAnon support files if any typedef needed wrapping
+			if (needsAbstractAnon) {
+				writeAbstractAnonSupport(outputLibraryPath);
 			}
 
 			if (generateLibraryWrapper) {
@@ -656,6 +736,41 @@ class Main {
 
 		`@actions/core.js` -> `actions-core,js`
 	**/
+	static function hasNativeFields(fields: Array<haxe.macro.Expr.Field>): Bool {
+		for (field in fields) {
+			if (field.meta != null) {
+				for (m in field.meta) {
+					if (m.name == ':native') return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	static function writeAbstractAnonSupport(outputPath: String) {
+		// AbstractAnon.hx
+		var abstractAnonDir = Path.join([outputPath, 'ts']);
+		FileTools.touchDirectoryPath(abstractAnonDir);
+		Fs.writeFileSync(Path.join([abstractAnonDir, 'AbstractAnon.hx']), ABSTRACT_ANON_SRC);
+
+		// abstractanon/Macro.hx
+		var macroDir = Path.join([outputPath, 'ts', 'abstractanon']);
+		FileTools.touchDirectoryPath(macroDir);
+		Fs.writeFileSync(Path.join([macroDir, 'Macro.hx']), ABSTRACT_ANON_MACRO_SRC);
+	}
+
+	static final ABSTRACT_ANON_SRC = 'package ts;
+
+/**
+	Wraps an anonymous structure typedef so that @:native field metadata works correctly.
+	Generated by dts2hx. See https://github.com/HaxeFoundation/haxe/issues/5105
+**/
+@:genericBuild(ts.abstractanon.Macro.build())
+class AbstractAnon<T> {}
+';
+
+	static final ABSTRACT_ANON_MACRO_SRC = Macro.getFileContent('src/support/abstractanon/Macro.hx');
+
 	static function versionAtLeast(version: String, major: Int, minor: Int): Bool {
 		var parts = version.split('.');
 		if (parts.length < 2) return false;
