@@ -850,6 +850,26 @@ class Main {
 			buf.add('\tinline function $setterName(v:${f.fieldType}):${f.fieldType} { js.Syntax.code("{0}[{1}] = {2}", this, \'${f.jsName}\', v); return v; }\n');
 		}
 
+		// Forward @:selfCall if the underlying typedef has one
+		for (field in fields) {
+			var hasSelfCall = field.meta != null && field.meta.exists(m -> m.name == ':selfCall');
+			if (hasSelfCall) {
+				switch field.kind {
+					case FFun(f):
+						var args = f.args.map(a -> {
+							var t = a.type != null ? printer.printComplexType(stripNamed(a.type)) : 'Dynamic';
+							return (a.opt != null && a.opt ? '?' : '') + a.name + ':' + t;
+						});
+						var ret = f.ret != null ? printer.printComplexType(stripNamed(f.ret)) : 'Dynamic';
+						var argNames = f.args.map(a -> a.name);
+						buf.add('\t@:selfCall\n');
+						buf.add('\tinline function call(${args.join(", ")}):$ret return (cast this : $innerName).${field.name}(${argNames.join(", ")});\n');
+					default:
+				}
+				break; // only one @:selfCall
+			}
+		}
+
 		buf.add('}\n');
 		return {source: buf.toString()};
 	}
