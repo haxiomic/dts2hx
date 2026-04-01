@@ -1,4 +1,5 @@
 build/
 externs/
 test_output.js
-test_negative.js
+test*.js
+!Test*.hx

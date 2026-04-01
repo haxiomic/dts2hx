@@ -1,0 +1,20 @@
+{
+  "name": "three-bloom-example",
+  "version": "1.0.0",
+  "description": "dts2hx example: three.js + haxiomic-engine with bloom post-processing",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "generate-externs": "dts2hx --modular three haxiomic-engine/PhysicallyBasedViewer haxiomic-engine/rendering/BloomMipmapsMaterial haxiomic-engine/rendering/Blur1D haxiomic-engine/rendering/Rendering haxiomic-engine/rendering/RenderTargetStore",
+    "postinstall": "npm run generate-externs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.25.1",
+    "dts2hx": "file:../../"
+  },
+  "dependencies": {
+    "three": "^0.182.0",
+    "haxiomic-engine": "github:haxiomic/haxiomic-engine"
+  }
+}

@@ -26,7 +26,9 @@ for mod in \
   ./build/modules/patterns \
   ./build/modules/advanced \
   ./build/modules/ts-features \
-  ./build/modules/limitations; do
+  ./build/modules/limitations \
+  ./build/modules/implements \
+  ./build/modules/mixed-index; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
 # Ambient declarations (global + declare module)
@@ -47,17 +49,20 @@ haxe \
 echo "  → test_output.js"
 
 # Step 4: Compile negative tests
-echo "Step 4: Compiling negative tests..."
-haxe \
-  -cp . \
-  -cp externs \
-  -lib hxnodejs \
-  -main TestNegative \
-  -js test_negative.js \
-  -D js-es=6 \
-  -w -WDeprecatedEnumAbstract \
-  -w -WDeprecated
-echo "  → test_negative.js"
+echo "Step 4: Compiling additional test suites..."
+for test_main in TestNegative TestImplements TestMixedIndex; do
+  outfile=$(echo "$test_main" | tr '[:upper:]' '[:lower:]').js
+  haxe \
+    -cp . \
+    -cp externs \
+    -lib hxnodejs \
+    -main $test_main \
+    -js "$outfile" \
+    -D js-es=6 \
+    -w -WDeprecatedEnumAbstract \
+    -w -WDeprecated
+done
+echo "  → test suites compiled"
 
 # Step 5: Run runtime tests
 echo "Step 5: Running runtime tests..."
@@ -65,7 +70,13 @@ echo ""
 node -e "require('./modules/ambient-impl'); require('./test_output.js');"
 echo ""
 echo "Running negative tests..."
-node -e "require('./modules/ambient-impl'); require('./test_negative.js');"
+node -e "require('./modules/ambient-impl'); require('./testnegative.js');"
+echo ""
+echo "Running implements tests..."
+node -e "require('./testimplements.js');"
+echo ""
+echo "Running mixed index tests..."
+node -e "require('./testmixedindex.js');"
 echo ""
 
 # Step 6: Run compile-time enforcement tests

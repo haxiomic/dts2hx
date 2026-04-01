@@ -1825,7 +1825,17 @@ class ConverterContext {
 			var isOptional = parameterDeclaration != null && tc.isOptionalParameter(parameterDeclaration);
 			var isRest = parameterDeclaration != null && parameterDeclaration.dotDotDotToken != null;
 			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
-			var tsType = parameterDeclaration != null ? tc.getTypeOfSymbolAtLocation(s, parameterDeclaration) : untyped s.type;
+			var tsType = if (parameterDeclaration != null) {
+				tc.getTypeOfSymbolAtLocation(s, parameterDeclaration);
+			} else if (Reflect.field(s, 'type') != null) {
+				Reflect.field(s, 'type');
+			} else if (signatureDeclarationNode != null) {
+				// TS 4.0+: expanded tuple rest params are transient with no .type;
+				// recover via the signature declaration as location
+				tc.getTypeOfSymbolAtLocation(s, signatureDeclarationNode);
+			} else {
+				null;
+			};
 
 			var hxType = complexTypeFromTsType(tsType, moduleSymbol, accessContext, parameterDeclaration);
 

@@ -1,0 +1,10 @@
+-main Main
+
+-lib three
+-lib haxiomic-engine
+-lib haxiomic-event-signal
+
+-js dist/main.js
+-dce full
+
+-cmd npx esbuild dist/main.js --bundle --outfile=dist/bundle.js
