@@ -55,41 +55,63 @@ typedef JqXHR<TResolve> = {
 	@:native("catch")
 	function catch_<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>(?failFilter:(t:JqXHR<TResolve>, u:global.jquery.ajax.ErrorTextStatus, v:String, s:haxe.extern.Rest<ts.Never>) -> ts.AnyOf3<PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>, Thenable<ARF>, ARF>):PromiseBase<ARF, AJF, ANF, BRF, BJF, BNF, CRF, CJF, CNF, RRF, RJF, RNF>;
 	/**
-		Cancels any network activity.
+		The **`XMLHttpRequest.abort()`** method aborts the request if it has already been sent.
+		
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/abort)
 	**/
 	dynamic function abort():Void;
+	/**
+		The read-only **`XMLHttpRequest.status`** property returns the numerical HTTP status code of the `XMLHttpRequest`'s response.
+		
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/status)
+	**/
 	var status : Float;
 	/**
-		Returns client's state.
+		The **XMLHttpRequest.readyState** property returns the state an XMLHttpRequest client is in.
+		
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/readyState)
 	**/
 	var readyState : Float;
 	/**
-		Returns response as text.
+		The read-only XMLHttpRequest property **`responseText`** returns the text received from a server following a request being sent.
 		
-		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "text".
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/responseText)
 	**/
 	var responseText : String;
+	/**
+		The read-only **`XMLHttpRequest.statusText`** property returns a string containing the response's status message as returned by the HTTP server.
+		
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/statusText)
+	**/
 	var statusText : String;
+	/**
+		The XMLHttpRequest method **`getAllResponseHeaders()`** returns all the response headers, separated by CRLF, as a string, or returns `null` if no response has been received.
+		
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/getAllResponseHeaders)
+	**/
 	dynamic function getAllResponseHeaders():String;
+	/**
+		The XMLHttpRequest method **`getResponseHeader()`** returns the string containing the text of a particular header's value.
+		
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/getResponseHeader)
+	**/
 	dynamic function getResponseHeader(name:String):Null<String>;
 	/**
-		Acts as if the `Content-Type` header value for a response is mime. (It does not change the header.)
+		The XMLHttpRequest method **`overrideMimeType()`** specifies a MIME type other than the one provided by the server to be used instead when interpreting the data being transferred in a request.
 		
-		Throws an "InvalidStateError" DOMException if state is loading or done.
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/overrideMimeType)
 	**/
 	dynamic function overrideMimeType(mime:String):Void;
 	/**
-		Combines a header in author request headers.
+		The XMLHttpRequest method **`setRequestHeader()`** sets the value of an HTTP request header.
 		
-		Throws an "InvalidStateError" DOMException if either state is not opened or the send() flag is set.
-		
-		Throws a "SyntaxError" DOMException if name is not a header name or if value is not a header value.
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/setRequestHeader)
 	**/
 	dynamic function setRequestHeader(name:String, value:String):Void;
 	/**
-		Returns the response as document.
+		The **`XMLHttpRequest.responseXML`** read-only property returns a Document containing the HTML or XML retrieved by the request; or `null` if the request was unsuccessful, has not yet been sent, or if the data can't be parsed as XML or HTML.
 		
-		Throws an "InvalidStateError" DOMException if responseType is not the empty string or "document".
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/responseXML)
 	**/
 	@:optional
 	var responseXML : js.html.Document;

@@ -1,3 +1,3 @@
 package global.three;
 
-typedef TypedArray = ts.AnyOf9<js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array>;
+typedef TypedArray = ts.AnyOf9<js.lib.Int8Array_<js.lib.ArrayBuffer>, js.lib.Uint8Array_<js.lib.ArrayBuffer>, js.lib.Uint8ClampedArray_<js.lib.ArrayBuffer>, js.lib.Int16Array_<js.lib.ArrayBuffer>, js.lib.Uint16Array_<js.lib.ArrayBuffer>, js.lib.Int32Array_<js.lib.ArrayBuffer>, js.lib.Uint32Array_<js.lib.ArrayBuffer>, js.lib.Float32Array_<js.lib.ArrayBuffer>, js.lib.Float64Array_<js.lib.ArrayBuffer>>;

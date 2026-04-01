@@ -61,5 +61,9 @@ package node.cluster;
 	@:overload(function(event:String, listener:(message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>) -> Void):Worker { })
 	@:overload(function(event:String, listener:() -> Void):Worker { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Worker;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Worker;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Worker;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Worker;
+	function setMaxListeners(n:Float):Worker;
 	static var prototype : Worker;
 }

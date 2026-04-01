@@ -12,5 +12,7 @@ package global.three;
 		var thetaStart : Float;
 		var thetaLength : Float;
 	};
+	function clone():CylinderBufferGeometry;
+	function copy(source:BufferGeometry):CylinderBufferGeometry;
 	static var prototype : CylinderBufferGeometry;
 }

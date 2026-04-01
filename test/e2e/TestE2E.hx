@@ -1,5 +1,11 @@
 import build.Testlib;
 import build.testlib.*;
+import build.modules.Types;
+import build.modules.Math_;
+import build.modules.Collections;
+import build.modules.CjsExport;
+import build.modules.Barrel;
+import build.modules.collections.Stack;
 
 /**
 	End-to-end test: TypeScript → JS + .d.ts → dts2hx → Haxe externs → Haxe → JS → run
@@ -65,6 +71,12 @@ class TestE2E {
 		testEdgeCases();
 		testRecursiveTypes();
 		testMethodChaining();
+		testModuleTypes();
+		testModuleMath();
+		testModuleCollections();
+		testCjsExport();
+		testBarrelExports();
+		testStack();
 
 		Sys.println('Results: $passed passed, $failed failed');
 		if (failed > 0) Sys.exit(1);
@@ -295,5 +307,94 @@ class TestE2E {
 		begin("method chaining");
 		var result = new Builder().add("hello").add("world").build();
 		eq(result, "hello world", "builder chain");
+	}
+
+	// === MODULE PATTERN TESTS ===
+
+	static function testModuleTypes() {
+		begin("module: types");
+		var p = Types.createPoint(3, 4);
+		eq(p.x, 3.0, "createPoint.x");
+		eq(p.y, 4.0, "createPoint.y");
+
+		var r = Types.createRect(1, 2, 10, 20);
+		eq(r.x, 1.0, "createRect.x");
+		eq(r.y, 2.0, "createRect.y");
+		eq(Reflect.field(r, "width"), 10, "createRect.width");
+		eq(Reflect.field(r, "height"), 20, "createRect.height");
+	}
+
+	static function testModuleMath() {
+		begin("module: math (cross-module imports)");
+		var a = Math_.createPoint(0, 0);
+		var b = Math_.createPoint(3, 4);
+		approx(Math_.distance(a, b), 5.0, "cross-module distance");
+
+		var mid = Math_.midpoint(a, b);
+		approx(mid.x, 1.5, "midpoint.x");
+		approx(mid.y, 2.0, "midpoint.y");
+	}
+
+	static function testModuleCollections() {
+		begin("module: collections (index sigs, generics)");
+		// StringMap<T> maps to DynamicAccess<T> — test typed access
+		var entries:Dynamic = js.Syntax.code('[["a", 1], ["b", 2]]');
+		var map = Collections.createStringMap(entries);
+		eq(map.get("a"), 1, "stringMap.get(a)");
+		eq(map.get("b"), 2, "stringMap.get(b)");
+		assert(map.get("missing") == null, "stringMap.get(missing) is null");
+
+		// Config: mixed index sig + named fields — named fields preserved
+		var cfg = Collections.createConfig("localhost", 8080, true);
+		eq(cfg.host, "localhost", "config.host");
+		eq(cfg.port, 8080.0, "config.port");
+		eq(cfg.debug, true, "config.debug");
+	}
+
+	static function testCjsExport() {
+		begin("CJS export = pattern");
+		var obj = new CjsExport("test");
+		eq(obj.name, "test", "cjs.name");
+		eq(obj.greet(), "Hello from test", "cjs.greet()");
+
+		var obj2 = CjsExport.create("factory");
+		eq(obj2.name, "factory", "cjs static create");
+	}
+
+	static function testBarrelExports() {
+		begin("barrel re-exports");
+		// Functions re-exported from types module
+		var p = Barrel.createPoint(5, 6);
+		eq(p.x, 5.0, "barrel createPoint.x");
+
+		// Functions re-exported from math module
+		var a = Barrel.createPoint(0, 0);
+		var b = Barrel.createPoint(3, 4);
+		approx(Barrel.distance(a, b), 5.0, "barrel distance");
+
+		// Functions from collections
+		var cfg = Barrel.createConfig("example.com", 443, false);
+		eq(cfg.host, "example.com", "barrel config.host");
+	}
+
+	static function testStack() {
+		begin("generic class (Stack)");
+		var s = new Stack();
+		s.push(1);
+		s.push(2);
+		s.push(3);
+		eq(s.size, 3.0, "stack size");
+		eq(s.peek(), 3, "stack peek");
+		eq(s.pop(), 3, "stack pop");
+		eq(s.size, 2.0, "stack size after pop");
+
+		var arr = s.toArray();
+		eq(arr[0], 1, "stack toArray[0]");
+		eq(arr[1], 2, "stack toArray[1]");
+
+		// Static factory
+		var s2 = Stack.from([10, 20, 30]);
+		eq(s2.size, 3.0, "Stack.from size");
+		eq(s2.pop(), 30, "Stack.from pop");
 	}
 }

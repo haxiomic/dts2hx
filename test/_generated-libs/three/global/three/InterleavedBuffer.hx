@@ -14,7 +14,7 @@ package global.three;
 	var length : Float;
 	var count : Float;
 	var needsUpdate : Bool;
-	function setArray(?array:js.lib.ArrayBufferView):Void;
+	function setArray(?array:js.lib.ArrayBufferView_<js.lib.ArrayBuffer>):Void;
 	function setDynamic(dynamic_:Bool):InterleavedBuffer;
 	function clone():InterleavedBuffer;
 	function copy(source:InterleavedBuffer):InterleavedBuffer;

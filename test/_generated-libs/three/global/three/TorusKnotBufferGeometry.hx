@@ -11,5 +11,7 @@ package global.three;
 		var q : Float;
 		var heightScale : Float;
 	};
+	function clone():TorusKnotBufferGeometry;
+	function copy(source:BufferGeometry):TorusKnotBufferGeometry;
 	static var prototype : TorusKnotBufferGeometry;
 }

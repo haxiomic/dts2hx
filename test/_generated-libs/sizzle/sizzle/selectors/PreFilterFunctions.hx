@@ -1,3 +1,3 @@
 package sizzle.selectors;
 
-typedef PreFilterFunctions = { };
+typedef PreFilterFunctions = haxe.DynamicAccess<PreFilterFunction>;

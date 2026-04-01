@@ -1,3 +1,3 @@
 package global.sizzle.selectors;
 
-typedef Matches = { };
+typedef Matches = haxe.DynamicAccess<js.lib.RegExp>;

@@ -1,3 +1,3 @@
 package unit.interface_;
 
-typedef InterfaceMapLike<T> = { };
+typedef InterfaceMapLike<T> = haxe.DynamicAccess<T>;

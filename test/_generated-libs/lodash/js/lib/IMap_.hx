@@ -20,13 +20,13 @@ typedef IMap_<K, V> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the map.
 	**/
-	function entries():IterableIterator<ts.Tuple2<K, V>>;
+	function entries():MapIterator<ts.Tuple2<K, V>>;
 	/**
 		Returns an iterable of keys in the map
 	**/
-	function keys():IterableIterator<K>;
+	function keys():MapIterator<K>;
 	/**
 		Returns an iterable of values in the map
 	**/
-	function values():IterableIterator<V>;
+	function values():MapIterator<V>;
 };

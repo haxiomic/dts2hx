@@ -4,31 +4,28 @@ typedef XHRFields = {
 	@:optional
 	var msCaching : String;
 	/**
-		Can be set to a time in milliseconds. When set to a non-zero value will cause fetching to terminate after the given time has passed. When the time has passed, the request has not yet completed, and this's synchronous flag is unset, a timeout event will then be dispatched, or a "TimeoutError" DOMException will be thrown otherwise (for the send() method).
+		The **`XMLHttpRequest.timeout`** property is an `unsigned long` representing the number of milliseconds a request can take before automatically being terminated.
 		
-		When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/timeout)
 	**/
 	@:optional
 	var timeout : Float;
+	/**
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/readystatechange_event)
+	**/
 	@:optional
 	dynamic function onreadystatechange(ev:js.html.Event):Dynamic;
 	/**
-		Returns the response type.
+		The XMLHttpRequest property **`responseType`** is an enumerated string value specifying the type of data contained in the response.
 		
-		Can be set to change the response type. Values are: the empty string (default), "arraybuffer", "blob", "document", "json", and "text".
-		
-		When set: setting to "document" is ignored if current global object is not a Window object.
-		
-		When set: throws an "InvalidStateError" DOMException if state is loading or done.
-		
-		When set: throws an "InvalidAccessError" DOMException if the synchronous flag is set and current global object is a Window object.
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/responseType)
 	**/
 	@:optional
 	var responseType : js.html.XMLHttpRequestResponseType;
 	/**
-		True when credentials are to be included in a cross-origin request. False when they are to be excluded in a cross-origin request and when cookies are to be ignored in its response. Initially false.
+		The **`XMLHttpRequest.withCredentials`** property is a boolean value that indicates whether or not cross-site `Access-Control` requests should be made using credentials such as cookies, authentication headers or TLS client certificates.
 		
-		When set: throws an "InvalidStateError" DOMException if state is not unsent or opened, or if the send() flag is set.
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/withCredentials)
 	**/
 	@:optional
 	var withCredentials : Bool;

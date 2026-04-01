@@ -19,13 +19,13 @@ typedef ISet<T> = {
 	/**
 		Returns an iterable of [v,v] pairs for every value `v` in the set.
 	**/
-	function entries():IterableIterator<ts.Tuple2<T, T>>;
+	function entries():SetIterator<ts.Tuple2<T, T>>;
 	/**
 		Despite its name, returns an iterable of the values in the set.
 	**/
-	function keys():IterableIterator<T>;
+	function keys():SetIterator<T>;
 	/**
 		Returns an iterable of values in the set.
 	**/
-	function values():IterableIterator<T>;
+	function values():SetIterator<T>;
 };

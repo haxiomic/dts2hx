@@ -8,5 +8,7 @@ package three;
 		var widthSegments : Float;
 		var heightSegments : Float;
 	};
+	function clone():PlaneBufferGeometry;
+	function copy(source:BufferGeometry):PlaneBufferGeometry;
 	static var prototype : PlaneBufferGeometry;
 }

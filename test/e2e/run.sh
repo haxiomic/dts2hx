@@ -6,14 +6,23 @@ echo "=== E2E Test: TypeScript → .d.ts → dts2hx → Haxe → JS → run ==="
 
 # Step 1: Compile TypeScript to JS + .d.ts
 echo "Step 1: Compiling TypeScript..."
-mkdir -p build
+rm -rf build
 npx tsc -p tsconfig.json
-echo "  → build/testlib.js + build/testlib.d.ts"
+echo "  → build/"
 
-# Step 2: Generate Haxe externs from .d.ts
+# Step 2: Generate Haxe externs from .d.ts for each module
 echo "Step 2: Generating Haxe externs..."
 rm -rf externs
-node ../../dist/dts2hx.js ./build/testlib --output externs --noLibWrap
+for mod in \
+  ./build/testlib \
+  ./build/modules/types \
+  ./build/modules/math \
+  ./build/modules/collections \
+  ./build/modules/events \
+  ./build/modules/cjs-export \
+  ./build/modules/barrel; do
+  node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
+done
 echo "  → externs/"
 
 # Step 3: Compile Haxe test against generated externs

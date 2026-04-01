@@ -11,5 +11,11 @@ package global.three;
 		var q : Float;
 		var heightScale : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):TorusKnotGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():TorusKnotGeometry;
+	function copy(source:Geometry):TorusKnotGeometry;
 	static var prototype : TorusKnotGeometry;
 }

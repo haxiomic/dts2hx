@@ -13,5 +13,7 @@ package global.three;
 		var bevelOffset : Float;
 		var bevelSegments : Float;
 	};
+	function clone():TextBufferGeometry;
+	function copy(source:BufferGeometry):TextBufferGeometry;
 	static var prototype : TextBufferGeometry;
 }

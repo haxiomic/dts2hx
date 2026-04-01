@@ -677,13 +677,14 @@ class ConverterContext {
 			*/
 
 			var constructSignatures = tc.getSignaturesOfType(declaredType, Construct);
+			var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
 			var fields = generateTypeFields(
 				symbol,
 				access,
 				declaration,
 				constructSignatures,
 				callSignatures,
-				tc.getIndexSignaturesOfType(declaredType),
+				indexSignatures,
 				declaredMembers,
 				typePath.name
 			);
@@ -699,8 +700,22 @@ class ConverterContext {
 			// (we resolve field collisions here because the later pass doesn't alias to anon fields)
 			fields.resolveNameCollisions();
 
-
-			TDAlias(TAnonymous(fields));
+			// if an interface has only index signatures and no named fields, convert to the appropriate Haxe type
+			if (fields.length == 0 && indexSignatures.length > 0) {
+				var stringIndexType = declaredType.getStringIndexType();
+				var numberIndexType = declaredType.getNumberIndexType();
+				if (stringIndexType != null) {
+					var hxType = complexTypeFromTsType(stringIndexType, symbol, access, declaration);
+					TDAlias(macro :haxe.DynamicAccess<$hxType>);
+				} else if (numberIndexType != null) {
+					var hxType = complexTypeFromTsType(numberIndexType, symbol, access, declaration);
+					TDAlias(macro :Array<$hxType>);
+				} else {
+					TDAlias(TAnonymous(fields));
+				}
+			} else {
+				TDAlias(TAnonymous(fields));
+			}
 		}
 
 		return {

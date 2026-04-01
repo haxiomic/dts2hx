@@ -12,7 +12,7 @@ typedef JQuery<TElement> = {
 	/**
 		Create a new jQuery object with elements added to the set of matched elements.
 	**/
-	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>, JQuery<js.html.Element>>):JQuery<TElement> { })
+	@:overload(function(selector_elements_html_selection:ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, Array<js.html.DOMElement>, JQuery<js.html.Element>>):JQuery<TElement> { })
 	function add(selector:String, context:js.html.DOMElement):JQuery<TElement>;
 	/**
 		Add the previous set of elements on the stack to the current set, optionally filtered by a selector.
@@ -25,8 +25,8 @@ typedef JQuery<TElement> = {
 	/**
 		Insert content, specified by the parameter, after each element in the set of matched elements.
 	**/
-	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function after(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function after(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Register a handler to be called when Ajax requests complete. This is an AjaxEvent.
 	**/
@@ -61,12 +61,12 @@ typedef JQuery<TElement> = {
 	/**
 		Insert content, specified by the parameter, to the end of each element in the set of matched elements.
 	**/
-	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function append(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function append(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the end of the target.
 	**/
-	function appendTo(target:ts.AnyOf5<String, js.html.DOMElement, js.html.DocumentFragment, JQuery<js.html.Element>, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
+	function appendTo(target:ts.AnyOf5<String, js.html.DocumentFragment, js.html.DOMElement, JQuery<js.html.Element>, Array<ts.AnyOf2<js.html.DocumentFragment, js.html.DOMElement>>>):JQuery<TElement>;
 	/**
 		Set one or more attributes for the set of matched elements.
 		
@@ -78,8 +78,8 @@ typedef JQuery<TElement> = {
 	/**
 		Insert content, specified by the parameter, before each element in the set of matched elements.
 	**/
-	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function before(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(function_function_Html:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function before(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Attach a handler to an event for the elements.
 	**/
@@ -284,7 +284,7 @@ typedef JQuery<TElement> = {
 		Get the HTML contents of the first element in the set of matched elements.
 	**/
 	@:overload(function():String { })
-	function html(htmlString_function:ts.AnyOf6<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, (index:Float, oldhtml:String) -> ts.AnyOf5<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment>>):JQuery<TElement>;
+	function html(htmlString_function:ts.AnyOf6<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, (index:Float, oldhtml:String) -> ts.AnyOf5<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment>>):JQuery<TElement>;
 	/**
 		Search for a given element from among the matched elements.
 	**/
@@ -474,12 +474,12 @@ typedef JQuery<TElement> = {
 	/**
 		Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
 	**/
-	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
-	function prepend(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
+	@:overload(function(fun_Tion:(index:Float, html:String) -> ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>):JQuery<TElement> { })
+	function prepend(contents:haxe.extern.Rest<ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>, Array<ts.AnyOf5<js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, JQuery<global.jquery.Node>>>>>):JQuery<TElement>;
 	/**
 		Insert every element in the set of matched elements to the beginning of the target.
 	**/
-	function prependTo(target:ts.AnyOf5<String, js.html.DOMElement, js.html.DocumentFragment, JQuery<js.html.Element>, Array<ts.AnyOf2<js.html.DOMElement, js.html.DocumentFragment>>>):JQuery<TElement>;
+	function prependTo(target:ts.AnyOf5<String, js.html.DocumentFragment, js.html.DOMElement, JQuery<js.html.Element>, Array<ts.AnyOf2<js.html.DocumentFragment, js.html.DOMElement>>>):JQuery<TElement>;
 	/**
 		Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.
 	**/
@@ -550,7 +550,7 @@ typedef JQuery<TElement> = {
 	/**
 		Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.
 	**/
-	function replaceWith(newContent_function:ts.AnyOf8<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>, JQuery<global.jquery.Node>, (index:Float, oldhtml:String) -> ts.AnyOf7<String, js.html.DOMElement, js.html.Text, js.html.Comment, js.html.DocumentFragment, Array<js.html.DOMElement>, JQuery<global.jquery.Node>>>):JQuery<TElement>;
+	function replaceWith(newContent_function:ts.AnyOf8<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, Array<js.html.DOMElement>, JQuery<global.jquery.Node>, (index:Float, oldhtml:String) -> ts.AnyOf7<String, js.html.DocumentFragment, js.html.DOMElement, js.html.Text, js.html.Comment, Array<js.html.DOMElement>, JQuery<global.jquery.Node>>>):JQuery<TElement>;
 	/**
 		Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.
 	**/

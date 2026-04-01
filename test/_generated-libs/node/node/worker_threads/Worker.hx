@@ -50,5 +50,7 @@ package node.worker_threads;
 	@:overload(function(event:String, listener:() -> Void):Worker { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Worker { })
 	function off(event:String, listener:(err:js.lib.Error) -> Void):Worker;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Worker;
+	function setMaxListeners(n:Float):Worker;
 	static var prototype : Worker;
 }

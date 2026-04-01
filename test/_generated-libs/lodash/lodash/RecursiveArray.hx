@@ -12,6 +12,7 @@ typedef RecursiveArray<T> = {
 	/**
 		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:Dynamic):String { })
 	function toLocaleString():String;
 	/**
 		Removes the last element from an array and returns it.
@@ -127,13 +128,13 @@ typedef RecursiveArray<T> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<ts.Tuple2<Float, ts.AnyOf2<RecursiveArray<T>, T>>>;
+	function entries():js.lib.ArrayIterator<ts.Tuple2<Float, ts.AnyOf2<RecursiveArray<T>, T>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():js.lib.ArrayIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():js.lib.IterableIterator<ts.AnyOf2<RecursiveArray<T>, T>>;
+	function values():js.lib.ArrayIterator<ts.AnyOf2<RecursiveArray<T>, T>>;
 };

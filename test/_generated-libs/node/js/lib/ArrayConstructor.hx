@@ -16,8 +16,8 @@ typedef ArrayConstructor = {
 		Creates an array from an iterable object.
 	**/
 	@:overload(function<T, U>(arrayLike:ArrayLike<T>, mapfn:(v:T, k:Float) -> U, ?thisArg:Dynamic):Array<U> { })
-	@:overload(function<T>(iterable:ts.AnyOf2<Iterable<T>, ArrayLike<T>>):Array<T> { })
-	@:overload(function<T, U>(iterable:ts.AnyOf2<Iterable<T>, ArrayLike<T>>, mapfn:(v:T, k:Float) -> U, ?thisArg:Dynamic):Array<U> { })
+	@:overload(function<T>(iterable:ts.AnyOf2<Iterable<T, Dynamic, Dynamic>, ArrayLike<T>>):Array<T> { })
+	@:overload(function<T, U>(iterable:ts.AnyOf2<Iterable<T, Dynamic, Dynamic>, ArrayLike<T>>, mapfn:(v:T, k:Float) -> U, ?thisArg:Dynamic):Array<U> { })
 	function from<T>(arrayLike:ArrayLike<T>):Array<T>;
 	/**
 		Returns a new array from a set of elements.

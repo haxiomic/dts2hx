@@ -8,5 +8,7 @@ package global.three;
 		var phiStart : Float;
 		var phiLength : Float;
 	};
+	function clone():LatheBufferGeometry;
+	function copy(source:BufferGeometry):LatheBufferGeometry;
 	static var prototype : LatheBufferGeometry;
 }

@@ -24,6 +24,9 @@ package node.http;
 	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Server { })
 	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
+	function close(?callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Server;
+	function ref():Server;
+	function unref():Server;
 	/**
 		events.EventEmitter
 		  1. close
@@ -56,5 +59,9 @@ package node.http;
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Server { })
 	@:overload(function(event:String, listener:() -> Void):Server { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Server;
+	function setMaxListeners(n:Float):Server;
 	static var prototype : Server;
 }

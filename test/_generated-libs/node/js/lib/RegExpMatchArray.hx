@@ -29,6 +29,7 @@ typedef RegExpMatchArray = {
 	/**
 		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:Dynamic):String { })
 	function toLocaleString():String;
 	/**
 		Removes the last element from an array and returns it.
@@ -144,15 +145,15 @@ typedef RegExpMatchArray = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():IterableIterator<ts.Tuple2<Float, String>>;
+	function entries():ArrayIterator<ts.Tuple2<Float, String>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():IterableIterator<Float>;
+	function keys():ArrayIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():IterableIterator<String>;
+	function values():ArrayIterator<String>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/

@@ -51,11 +51,11 @@ typedef FileSystemProvider = {
 	/**
 		Read the entire contents of a file.
 	**/
-	function readFile(uri:Uri):ts.AnyOf2<js.lib.Uint8Array, global.Thenable<js.lib.Uint8Array>>;
+	function readFile(uri:Uri):ts.AnyOf2<js.lib.Uint8Array_<js.lib.ArrayBuffer>, global.Thenable<js.lib.Uint8Array_<js.lib.ArrayBuffer>>>;
 	/**
 		Write data to a file, replacing its entire contents.
 	**/
-	function writeFile(uri:Uri, content:js.lib.Uint8Array, options:{ var create : Bool; var overwrite : Bool; }):global.Thenable<ts.Undefined>;
+	function writeFile(uri:Uri, content:js.lib.Uint8Array_<js.lib.ArrayBuffer>, options:{ var create : Bool; var overwrite : Bool; }):global.Thenable<ts.Undefined>;
 	/**
 		Delete a file.
 	**/

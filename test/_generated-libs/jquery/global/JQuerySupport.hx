@@ -1,3 +1,3 @@
 package global;
 
-typedef JQuerySupport = { };
+typedef JQuerySupport = haxe.DynamicAccess<Dynamic>;

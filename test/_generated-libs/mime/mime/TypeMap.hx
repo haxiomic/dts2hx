@@ -1,3 +1,3 @@
 package mime;
 
-typedef TypeMap = { };
+typedef TypeMap = haxe.DynamicAccess<Array<String>>;

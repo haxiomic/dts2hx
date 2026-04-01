@@ -1,3 +1,3 @@
 package sizzle.selectors;
 
-typedef FindFunctions = { };
+typedef FindFunctions = haxe.DynamicAccess<FindFunction>;

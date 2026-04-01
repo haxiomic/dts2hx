@@ -1,3 +1,3 @@
 package global.jquery;
 
-typedef CSSHooks = { };
+typedef CSSHooks = haxe.DynamicAccess<CSSHook<js.html.Element>>;

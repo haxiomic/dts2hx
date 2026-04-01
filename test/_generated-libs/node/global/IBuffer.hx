@@ -14,7 +14,7 @@ typedef IBuffer = {
 			Allocates a new buffer containing the given {str}.
 		**/
 		@:overload(function(size:Float):Buffer { })
-		@:overload(function(array:js.lib.Uint8Array):Buffer { })
+		@:overload(function(array:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):Buffer { })
 		@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):Buffer { })
 		@:overload(function(array:Array<Dynamic>):Buffer { })
 		@:overload(function(buffer:Buffer):Buffer { })
@@ -33,7 +33,7 @@ typedef IBuffer = {
 			If not provided, {encoding} defaults to 'utf8'.
 		**/
 		@:overload(function(data:Array<Float>):Buffer { })
-		@:overload(function(data:js.lib.Uint8Array):Buffer { })
+		@:overload(function(data:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):Buffer { })
 		@:overload(function(str:String, ?encoding:String):Buffer { })
 		function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):Buffer;
 		/**
@@ -53,7 +53,7 @@ typedef IBuffer = {
 			Gives the actual byte length of a string. encoding defaults to 'utf8'.
 			This is not the same as String.prototype.length since that returns the number of characters in a string.
 		**/
-		function byteLength(string:ts.AnyOf13<String, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.DataView, js.lib.Int8Array, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Int16Array, js.lib.Uint16Array, js.lib.Int32Array, js.lib.Uint32Array, js.lib.Float32Array, js.lib.Float64Array>, ?encoding:String):Float;
+		function byteLength(string:ts.AnyOf13<String, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.DataView_<js.lib.ArrayBufferLike>, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, js.lib.Uint8ClampedArray_<js.lib.ArrayBufferLike>, js.lib.Uint16Array_<js.lib.ArrayBufferLike>, js.lib.Uint32Array_<js.lib.ArrayBufferLike>, js.lib.Int8Array_<js.lib.ArrayBufferLike>, js.lib.Int16Array_<js.lib.ArrayBufferLike>, js.lib.Int32Array_<js.lib.ArrayBufferLike>, js.lib.Float32Array_<js.lib.ArrayBufferLike>, js.lib.Float64Array_<js.lib.ArrayBufferLike>>, ?encoding:String):Float;
 		/**
 			Returns a buffer which is the result of concatenating all the buffers in the list together.
 			
@@ -61,11 +61,11 @@ typedef IBuffer = {
 			If the list has exactly one item, then the first item of the list is returned.
 			If the list has more than one item, then a new Buffer is created.
 		**/
-		function concat(list:Array<js.lib.Uint8Array>, ?totalLength:Float):Buffer;
+		function concat(list:Array<js.lib.Uint8Array_<js.lib.ArrayBufferLike>>, ?totalLength:Float):Buffer;
 		/**
 			The same as buf1.compare(buf2).
 		**/
-		function compare(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
+		function compare(buf1:js.lib.Uint8Array_<js.lib.ArrayBufferLike>, buf2:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):Float;
 		/**
 			Allocates a new buffer of {size} octets.
 		**/
@@ -96,9 +96,9 @@ typedef IBuffer = {
 		var type : String;
 		var data : Array<Float>;
 	};
-	function equals(otherBuffer:js.lib.Uint8Array):Bool;
-	function compare(otherBuffer:js.lib.Uint8Array, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
-	function copy(targetBuffer:js.lib.Uint8Array, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function equals(otherBuffer:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):Bool;
+	function compare(otherBuffer:js.lib.Uint8Array_<js.lib.ArrayBufferLike>, ?targetStart:Float, ?targetEnd:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
+	function copy(targetBuffer:js.lib.Uint8Array_<js.lib.ArrayBufferLike>, ?targetStart:Float, ?sourceStart:Float, ?sourceEnd:Float):Float;
 	/**
 		Returns a section of an array.
 	**/
@@ -158,15 +158,15 @@ typedef IBuffer = {
 	/**
 		Returns the index of the first occurrence of a value in an array.
 	**/
-	function indexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
+	function indexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array_<js.lib.ArrayBufferLike>>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns the index of the last occurrence of a value in an array.
 	**/
-	function lastIndexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array>, ?byteOffset:Float, ?encoding:String):Float;
+	function lastIndexOf(value:ts.AnyOf3<String, Float, js.lib.Uint8Array_<js.lib.ArrayBufferLike>>, ?byteOffset:Float, ?encoding:String):Float;
 	/**
 		Returns an array of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<ts.Tuple2<Float, Float>>;
+	function entries():js.lib.IterableIterator<ts.Tuple2<Float, Float>, Dynamic, Dynamic>;
 	/**
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
@@ -174,11 +174,11 @@ typedef IBuffer = {
 	/**
 		Returns an list of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():js.lib.IterableIterator<Float, Dynamic, Dynamic>;
 	/**
 		Returns an list of values in the array
 	**/
-	function values():js.lib.IterableIterator<Float>;
+	function values():js.lib.IterableIterator<Float, Dynamic, Dynamic>;
 	/**
 		The size in bytes of each element in the array.
 	**/
@@ -203,25 +203,25 @@ typedef IBuffer = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(predicate:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function every(predicate:(value:Float, index:Float, array:Buffer) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	function filter(predicate:(value:Float, index:Float, array:js.lib.Uint8Array) -> Dynamic, ?thisArg:Dynamic):js.lib.Uint8Array;
+	function filter(predicate:(value:Float, index:Float, array:Buffer) -> Dynamic, ?thisArg:Dynamic):js.lib.Uint8Array_<js.lib.ArrayBuffer>;
 	/**
 		Returns the value of the first element in the array where predicate is true, and undefined
 		otherwise.
 	**/
-	function find(predicate:(value:Float, index:Float, obj:js.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Null<Float>;
+	function find(predicate:(value:Float, index:Float, obj:Buffer) -> Bool, ?thisArg:Dynamic):Null<Float>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
 	**/
-	function findIndex(predicate:(value:Float, index:Float, obj:js.lib.Uint8Array) -> Bool, ?thisArg:Dynamic):Float;
+	function findIndex(predicate:(value:Float, index:Float, obj:Buffer) -> Bool, ?thisArg:Dynamic):Float;
 	/**
 		Performs the specified action for each element in an array.
 	**/
-	function forEach(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Void, ?thisArg:Dynamic):Void;
+	function forEach(callbackfn:(value:Float, index:Float, array:Buffer) -> Void, ?thisArg:Dynamic):Void;
 	/**
 		Adds all the elements of an array separated by the specified separator string.
 	**/
@@ -234,23 +234,23 @@ typedef IBuffer = {
 		Calls a defined callback function on each element of an array, and returns an array that
 		contains the results.
 	**/
-	function map(callbackfn:(value:Float, index:Float, array:js.lib.Uint8Array) -> Float, ?thisArg:Dynamic):js.lib.Uint8Array;
+	function map(callbackfn:(value:Float, index:Float, array:Buffer) -> Float, ?thisArg:Dynamic):js.lib.Uint8Array_<js.lib.ArrayBuffer>;
 	/**
 		Calls the specified callback function for all the elements in an array. The return value of
 		the callback function is the accumulated result, and is provided as an argument in the next
 		call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> U, initialValue:U):U { })
-	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Buffer) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:Buffer) -> U, initialValue:U):U { })
+	function reduce(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Buffer) -> Float):Float;
 	/**
 		Calls the specified callback function for all the elements in an array, in descending order.
 		The return value of the callback function is the accumulated result, and is provided as an
 		argument in the next call to the callback function.
 	**/
-	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float, initialValue:Float):Float { })
-	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> U, initialValue:U):U { })
-	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:js.lib.Uint8Array) -> Float):Float;
+	@:overload(function(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Buffer) -> Float, initialValue:Float):Float { })
+	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:Float, currentIndex:Float, array:Buffer) -> U, initialValue:U):U { })
+	function reduceRight(callbackfn:(previousValue:Float, currentValue:Float, currentIndex:Float, array:Buffer) -> Float):Float;
 	/**
 		Sets a value or an array of values.
 	**/
@@ -258,7 +258,7 @@ typedef IBuffer = {
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(predicate:(value:Float, index:Float, array:js.lib.Uint8Array) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:Float, index:Float, array:Buffer) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Sorts an array.
 	**/
@@ -266,9 +266,10 @@ typedef IBuffer = {
 	/**
 		Converts a number to a string by using the current locale.
 	**/
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):String { })
 	function toLocaleString():String;
 	/**
 		Returns the primitive value of the specified object.
 	**/
-	function valueOf():js.lib.Uint8Array;
+	function valueOf():Buffer;
 };

@@ -1,7 +1,7 @@
 package js.lib.intl;
 
 /**
-	Constructor creates [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale)
+	Constructor creates [Intl.Locale](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale)
 	objects
 **/
 typedef ILocale = {

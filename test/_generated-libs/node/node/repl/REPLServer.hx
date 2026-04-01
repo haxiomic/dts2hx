@@ -204,5 +204,11 @@ package node.repl;
 	@:overload(function(event:String, listener:() -> Void):REPLServer { })
 	@:overload(function(event:String, listener:(context:node.vm.Context) -> Void):REPLServer { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	function pause():REPLServer;
+	function resume():REPLServer;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):REPLServer;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):REPLServer;
+	function setMaxListeners(n:Float):REPLServer;
 	static var prototype : REPLServer;
 }

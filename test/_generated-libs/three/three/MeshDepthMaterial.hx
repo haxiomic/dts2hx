@@ -12,5 +12,13 @@ package three;
 		Sets the properties based on the values.
 	**/
 	function setValues(parameters:MeshDepthMaterialParameters):Void;
+	/**
+		Return a new material with the same parameters as this material.
+	**/
+	function clone():MeshDepthMaterial;
+	/**
+		Copy the parameters from the passed material into this material.
+	**/
+	function copy(material:Material):MeshDepthMaterial;
 	static var prototype : MeshDepthMaterial;
 }

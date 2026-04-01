@@ -1,3 +1,3 @@
 package global.jquery;
 
-typedef PropHooks = { };
+typedef PropHooks = haxe.DynamicAccess<PropHook<Node>>;

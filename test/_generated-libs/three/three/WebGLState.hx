@@ -24,9 +24,9 @@ package three;
 	function setScissorTest(scissorTest:Bool):Void;
 	function activeTexture(webglSlot:Float):Void;
 	function bindTexture(webglType:Float, webglTexture:Dynamic):Void;
-	function compressedTexImage2D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, border:Float, data:js.lib.ArrayBufferView):Void;
+	function compressedTexImage2D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, border:Float, data:js.lib.ArrayBufferView_<js.lib.ArrayBuffer>):Void;
 	@:overload(function(target:Float, level:Float, internalformat:Float, format:Float, type:Float, source:Dynamic):Void { })
-	function texImage2D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, border:Float, format:Float, type:Float, pixels:Null<js.lib.ArrayBufferView>):Void;
+	function texImage2D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, border:Float, format:Float, type:Float, pixels:Null<js.lib.ArrayBufferView_<js.lib.ArrayBuffer>>):Void;
 	function texImage3D(target:Float, level:Float, internalformat:Float, width:Float, height:Float, depth:Float, border:Float, format:Float, type:Float, pixels:Dynamic):Void;
 	function scissor(scissor:Vector4):Void;
 	function viewport(viewport:Vector4):Void;

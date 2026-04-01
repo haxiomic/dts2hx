@@ -1,3 +1,3 @@
 package sizzle.selectors;
 
-typedef AttrHandleFunctions = { };
+typedef AttrHandleFunctions = haxe.DynamicAccess<AttrHandleFunction>;

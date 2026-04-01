@@ -7,5 +7,11 @@ package three;
 		var slices : Float;
 		var stacks : Float;
 	};
+	function setFromPoints(points:ts.AnyOf2<Array<Vector3>, Array<Vector2>>):ParametricGeometry;
+	/**
+		Creates a new clone of the Geometry.
+	**/
+	function clone():ParametricGeometry;
+	function copy(source:Geometry):ParametricGeometry;
 	static var prototype : ParametricGeometry;
 }

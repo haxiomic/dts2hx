@@ -2,7 +2,7 @@ package js.lib;
 
 typedef IWeakSet<T:(Dynamic)> = {
 	/**
-		Appends a new object to the end of the WeakSet.
+		Appends a new value to the end of the WeakSet.
 	**/
 	function add(value:T):WeakSet_<T>;
 	/**

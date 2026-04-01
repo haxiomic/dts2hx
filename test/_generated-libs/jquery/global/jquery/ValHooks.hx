@@ -1,3 +1,3 @@
 package global.jquery;
 
-typedef ValHooks = { };
+typedef ValHooks = haxe.DynamicAccess<ValHook<js.html.Element>>;

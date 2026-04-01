@@ -12,6 +12,7 @@ typedef VNodeChildrenArrayContents = {
 	/**
 		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:Dynamic):String { })
 	function toLocaleString():String;
 	/**
 		Removes the last element from an array and returns it.
@@ -127,13 +128,13 @@ typedef VNodeChildrenArrayContents = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<ts.Tuple2<Float, Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>>;
+	function entries():js.lib.ArrayIterator<ts.Tuple2<Float, Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():js.lib.ArrayIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():js.lib.IterableIterator<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>;
+	function values():js.lib.ArrayIterator<Null<ts.AnyOf5<String, Bool, VNode, VNodeChildrenArrayContents, ts.Tuple1<vue.types.vnode.ScopedSlot>>>>;
 };

@@ -1,3 +1,3 @@
 package sizzle.selectors;
 
-typedef PseudoFunctions = { };
+typedef PseudoFunctions = haxe.DynamicAccess<PseudoFunction>;

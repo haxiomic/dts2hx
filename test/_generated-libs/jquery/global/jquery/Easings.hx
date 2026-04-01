@@ -1,3 +1,3 @@
 package global.jquery;
 
-typedef Easings = { };
+typedef Easings = haxe.DynamicAccess<EasingMethod>;

@@ -63,5 +63,9 @@ package node.http2;
 	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):Http2ServerResponse { })
 	@:overload(function(event:String, listener:() -> Void):Http2ServerResponse { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerResponse;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerResponse;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerResponse;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Http2ServerResponse;
+	function setMaxListeners(n:Float):Http2ServerResponse;
 	static var prototype : Http2ServerResponse;
 }

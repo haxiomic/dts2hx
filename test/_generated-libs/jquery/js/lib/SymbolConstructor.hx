@@ -69,13 +69,10 @@ typedef SymbolConstructor = {
 	/**
 		A String value that is used in the creation of the default string description of an object.
 		Called by the built-in method Object.prototype.toString.
-		
-		A String value that is used in the creation of the default string description of an object.
-		Called by the built-in method Object.prototype.toString.
 	**/
 	final toStringTag : js.lib.Symbol;
 	/**
-		An Object whose own property names are property names that are excluded from the 'with'
+		An Object whose truthy properties are properties that are excluded from the 'with'
 		environment bindings of the associated objects.
 	**/
 	final unscopables : js.lib.Symbol;

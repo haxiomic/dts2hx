@@ -1,3 +1,3 @@
 package global.qs;
 
-typedef ParsedQs = { };
+typedef ParsedQs = haxe.DynamicAccess<ts.AnyOf4<String, Array<String>, ParsedQs, Array<ParsedQs>>>;

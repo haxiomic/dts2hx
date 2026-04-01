@@ -1904,13 +1904,13 @@ typedef LoDashStatic = {
 		provided to the created function.
 	**/
 	@:overload(function<T>(predicates:haxe.extern.Rest<Many<(args:haxe.extern.Rest<T>) -> Bool>>):(args:haxe.extern.Rest<T>) -> Bool { })
-	function overEvery<T, Result1:(T), Result2:(T)>(predicates_0:(arg:T) -> Bool, predicates_1:(arg:T) -> Bool):(arg:T) -> Bool;
+	function overEvery<T, Result1:(T), Result2:(T)>(predicates_0:Dynamic, predicates_1:Dynamic):(arg:T) -> Bool;
 	/**
 		Creates a function that checks if any of the predicates return truthy when invoked with the arguments
 		provided to the created function.
 	**/
 	@:overload(function<T>(predicates:haxe.extern.Rest<Many<(args:haxe.extern.Rest<T>) -> Bool>>):(args:haxe.extern.Rest<T>) -> Bool { })
-	function overSome<T, Result1:(T), Result2:(T)>(predicates_0:(arg:T) -> Bool, predicates_1:(arg:T) -> Bool):(arg:T) -> Bool;
+	function overSome<T, Result1:(T), Result2:(T)>(predicates_0:Dynamic, predicates_1:Dynamic):(arg:T) -> Bool;
 	/**
 		Creates a function that returns the property value at path on a given object.
 	**/

@@ -55,5 +55,12 @@ package node.tls;
 	@:overload(function(handle:Dynamic, ?backlog:Float, ?listeningListener:() -> Void):Server { })
 	@:overload(function(handle:Dynamic, ?listeningListener:() -> Void):Server { })
 	function listen(?port:Float, ?hostname:String, ?backlog:Float, ?listeningListener:() -> Void):Server;
+	function close(?callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Server;
+	function ref():Server;
+	function unref():Server;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Server;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Server;
+	function setMaxListeners(n:Float):Server;
 	static var prototype : Server;
 }

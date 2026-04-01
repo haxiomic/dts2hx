@@ -1,3 +1,3 @@
 package js.lib;
 
-typedef PropertyDescriptorMap = { };
+typedef PropertyDescriptorMap = haxe.DynamicAccess<PropertyDescriptor>;

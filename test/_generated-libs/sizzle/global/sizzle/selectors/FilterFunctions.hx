@@ -1,3 +1,3 @@
 package global.sizzle.selectors;
 
-typedef FilterFunctions = { };
+typedef FilterFunctions = haxe.DynamicAccess<FilterFunction>;

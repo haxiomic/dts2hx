@@ -19,5 +19,13 @@ package global.three;
 		Sets the properties based on the values.
 	**/
 	function setValues(parameters:MeshNormalMaterialParameters):Void;
+	/**
+		Return a new material with the same parameters as this material.
+	**/
+	function clone():MeshNormalMaterial;
+	/**
+		Copy the parameters from the passed material into this material.
+	**/
+	function copy(material:Material):MeshNormalMaterial;
 	static var prototype : MeshNormalMaterial;
 }

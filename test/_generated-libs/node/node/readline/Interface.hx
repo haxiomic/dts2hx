@@ -75,5 +75,9 @@ package node.readline;
 	@:overload(function(event:String, listener:() -> Void):Interface { })
 	@:overload(function(event:String, listener:() -> Void):Interface { })
 	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Interface;
+	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Interface;
+	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Interface;
+	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Interface;
+	function setMaxListeners(n:Float):Interface;
 	static var prototype : Interface;
 }
