@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:3113:5
 **/
 @:native('ts.ListFormat')
-@:enum
-extern abstract ListFormat(Int) from Int to Int {
+extern enum abstract ListFormat(Int) from Int to Int {
 	var None;
 	var SingleLine;
 	var MultiLine;

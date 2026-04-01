@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2685:5
 **/
 @:native('ts.ModuleKind')
-@:enum
-extern abstract ModuleKind(Int) from Int to Int {
+extern enum abstract ModuleKind(Int) from Int to Int {
 	var None;
 	var CommonJS;
 	var AMD;

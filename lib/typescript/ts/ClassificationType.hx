@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5765:5
 **/
 @:native('ts.ClassificationType')
-@:enum
-extern abstract ClassificationType(Int) from Int to Int {
+extern enum abstract ClassificationType(Int) from Int to Int {
 	var comment;
 	var identifier;
 	var keyword;

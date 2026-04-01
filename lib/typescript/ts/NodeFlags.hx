@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:447:5
 **/
 @:native('ts.NodeFlags')
-@:enum
-extern abstract NodeFlags(Int) from Int to Int {
+extern enum abstract NodeFlags(Int) from Int to Int {
 	var None;
 	var Let;
 	var Const;

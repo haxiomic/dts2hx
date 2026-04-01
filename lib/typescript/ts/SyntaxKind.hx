@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:88:5
 **/
 @:native('ts.SyntaxKind')
-@:enum
-extern abstract SyntaxKind(Int) from Int to Int {
+extern enum abstract SyntaxKind(Int) from Int to Int {
 	var Unknown;
 	var EndOfFileToken;
 	var SingleLineCommentTrivia;

@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2709:5
 **/
 @:native('ts.ScriptKind')
-@:enum
-extern abstract ScriptKind(Int) from Int to Int {
+extern enum abstract ScriptKind(Int) from Int to Int {
 	var Unknown;
 	var JS;
 	var JSX;

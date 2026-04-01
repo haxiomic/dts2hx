@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5722:5
 **/
 @:native('ts.ScriptElementKindModifier')
-@:enum
-extern abstract ScriptElementKindModifier(String) from String to String {
+extern enum abstract ScriptElementKindModifier(String) from String to String {
 	var none;
 	var publicMemberModifier;
 	var privateMemberModifier;

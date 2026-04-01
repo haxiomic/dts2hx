@@ -14,7 +14,7 @@
   "main": "dist/dts2hx.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/haxiomic/dts2hx"
+    "url": "git+https://github.com/haxiomic/dts2hx.git"
   },
   "scripts": {
     "prepare": "haxe build.hxml",
@@ -29,5 +29,7 @@
   "devDependencies": {
     "@types/node": "11.11.3"
   },
-  "bin": "./cli.js"
+  "bin": {
+    "dts2hx": "cli.js"
+  }
 }

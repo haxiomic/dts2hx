@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2296:5
 **/
 @:native('ts.TypeFlags')
-@:enum
-extern abstract TypeFlags(Int) from Int to Int {
+extern enum abstract TypeFlags(Int) from Int to Int {
 	var Any;
 	var Unknown;
 	var String;

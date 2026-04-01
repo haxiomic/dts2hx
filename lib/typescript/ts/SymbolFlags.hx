@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2176:5
 **/
 @:native('ts.SymbolFlags')
-@:enum
-extern abstract SymbolFlags(Int) from Int to Int {
+extern enum abstract SymbolFlags(Int) from Int to Int {
 	var None;
 	var FunctionScopedVariable;
 	var BlockScopedVariable;

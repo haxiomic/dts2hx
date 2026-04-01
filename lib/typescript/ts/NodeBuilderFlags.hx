@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2080:5
 **/
 @:native('ts.NodeBuilderFlags')
-@:enum
-extern abstract NodeBuilderFlags(Int) from Int to Int {
+extern enum abstract NodeBuilderFlags(Int) from Int to Int {
 	var None;
 	var NoTruncation;
 	var WriteArrayAsGenericType;

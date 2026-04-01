@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:1696:5
 **/
 @:native('ts.FlowFlags')
-@:enum
-extern abstract FlowFlags(Int) from Int to Int {
+extern enum abstract FlowFlags(Int) from Int to Int {
 	var Unreachable;
 	var Start;
 	var BranchLabel;
