@@ -6,6 +6,9 @@ import build.modules.Collections;
 import build.modules.CjsExport;
 import build.modules.Barrel;
 import build.modules.collections.Stack;
+import global.AmbientGlobal;
+import global.GlobalLogger;
+import global.MergedNS;
 
 /**
 	End-to-end test: TypeScript → JS + .d.ts → dts2hx → Haxe externs → Haxe → JS → run
@@ -77,6 +80,10 @@ class TestE2E {
 		testCjsExport();
 		testBarrelExports();
 		testStack();
+		testGlobalAmbient();
+		testGlobalClass();
+		testDeclarationMerging();
+		testAmbientModule();
 
 		Sys.println('Results: $passed passed, $failed failed');
 		if (failed > 0) Sys.exit(1);
@@ -141,10 +148,21 @@ class TestE2E {
 
 	static function testEnums() {
 		begin("enums");
+		// String enum
 		eq(Testlib.directionToString(Direction.Up), "UP", "Direction.Up");
 		eq(Testlib.directionToString(Direction.Down), "DOWN", "Direction.Down");
 		eq(Testlib.directionToString(Direction.Left), "LEFT", "Direction.Left");
 		eq(Testlib.directionToString(Direction.Right), "RIGHT", "Direction.Right");
+
+		// Numeric enum
+		eq(cast(NumericEnum.A, Int), 0, "NumericEnum.A = 0");
+		eq(cast(NumericEnum.B, Int), 1, "NumericEnum.B = 1");
+		eq(cast(NumericEnum.C, Int), 2, "NumericEnum.C = 2");
+
+		// Const enum (values inlined at compile time)
+		eq(cast(ConstEnum.X, Int), 10, "ConstEnum.X = 10");
+		eq(cast(ConstEnum.Y, Int), 20, "ConstEnum.Y = 20");
+		eq(cast(ConstEnum.Z, Int), 30, "ConstEnum.Z = 30");
 	}
 
 	static function testClasses() {
@@ -375,6 +393,36 @@ class TestE2E {
 		// Functions from collections
 		var cfg = Barrel.createConfig("example.com", 443, false);
 		eq(cfg.host, "example.com", "barrel config.host");
+	}
+
+	static function testGlobalAmbient() {
+		begin("global ambient declarations");
+		// Uses @:native("") — global functions/vars
+		eq(AmbientGlobal.globalAdd(10, 20), 30.0, "globalAdd");
+		eq(AmbientGlobal.globalVersion, "2.0.0", "globalVersion");
+	}
+
+	static function testGlobalClass() {
+		begin("global class (@:native)");
+		var logger = new GlobalLogger("TEST");
+		eq(logger.prefix, "TEST", "GlobalLogger.prefix");
+	}
+
+	static function testDeclarationMerging() {
+		begin("declaration merging");
+		// MergedNS: two namespace declarations merged into one class
+		eq(MergedNS.fnA(), "fromA", "merged ns fnA");
+		eq(MergedNS.fnB(), 99.0, "merged ns fnB");
+		eq(MergedNS.shared, true, "merged ns shared");
+	}
+
+	static function testAmbientModule() {
+		begin("ambient module (declare module)");
+		// my-library is loaded via @:jsRequire("my-library")
+		// We need to set up module resolution for this — see run.sh
+		var myLib = js.Syntax.code("require('./modules/my-library-impl')");
+		eq(Reflect.callMethod(myLib, Reflect.field(myLib, "doWork"), ["hello"]), "HELLO", "ambient module doWork");
+		eq(Reflect.field(myLib, "VERSION"), "3.0.0", "ambient module VERSION");
 	}
 
 	static function testStack() {

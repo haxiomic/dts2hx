@@ -23,6 +23,8 @@ for mod in \
   ./build/modules/barrel; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
+# Ambient declarations (global + declare module)
+node ../../dist/dts2hx.js ./modules/ambient --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 echo "  → externs/"
 
 # Step 3: Compile Haxe test against generated externs
@@ -37,7 +39,13 @@ haxe \
   -w -WDeprecatedEnumAbstract
 echo "  → test_output.js"
 
-# Step 4: Run the test
-echo "Step 4: Running test..."
+# Step 4: Run the runtime test
+echo "Step 4: Running runtime test..."
 echo ""
-node test_output.js
+# Load ambient globals before running the test
+node -e "require('./modules/ambient-impl'); require('./test_output.js');"
+echo ""
+
+# Step 5: Run CLI mode tests
+echo "Step 5: Running CLI mode tests..."
+bash test-modes.sh
