@@ -1780,9 +1780,10 @@ class ConverterContext {
 			} else {
 				// variable field
 				if (baseDeclaration != null) switch baseDeclaration.kind {
-					case VariableDeclaration, PropertySignature, PropertyDeclaration:
+					case VariableDeclaration, PropertySignature, PropertyDeclaration, PropertyAssignment:
 					case GetAccessor, SetAccessor:
-					default: 
+					case Parameter: // can occur for constructor parameter properties
+					default:
 						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 				}
 
@@ -1818,7 +1819,8 @@ class ConverterContext {
 				Log.error('EnumMember did not have a parent', symbol);
 				true;
 			}
-			
+
+			hxAccessModifiers.add(AFinal);
 			FVar(null, isConstEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast symbol.valueDeclaration)) : null);
 
 		} else {
