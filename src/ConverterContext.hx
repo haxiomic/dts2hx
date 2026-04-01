@@ -1055,6 +1055,12 @@ class ConverterContext {
 		} else if (type.flags & TypeFlags.Intersection != 0) {
 			complexTypeFromIntersectionType(cast type, moduleSymbol, accessContext, enclosingDeclaration);
 		}
+		// enum member literal types → resolve to parent enum type
+		else if (type.flags & TypeFlags.EnumLiteral != 0 && type.symbol != null && type.symbol.getSymbolParent() != null) {
+			@:nullSafety(Off)
+			var hxTypePath = getReferencedHaxeTypePath(type.symbol.getSymbolParent(), moduleSymbol, accessContext, false);
+			TPath(hxTypePath);
+		}
 		// @! it would be nice to use an enum-generating support type so we can preserve values of literals, but for now we can use the literal's type
 		else if (type.flags & (TypeFlags.StringLiteral) != 0) {
 			macro :String;

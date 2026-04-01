@@ -38,7 +38,7 @@ Each fix includes: code change, test update, assertion that now passes different
 
 ## Moderate (15-30 lines)
 
-- [ ] **A10. Enum member type → enum type instead of String**
+- [x] **A10. Enum member type → enum type instead of String**
   - Current: `type ActiveOnly = Status.Active` → `typedef ActiveOnly = String`
   - Fix: when a type alias resolves to an enum member, use the parent enum type
   - Test: verify `ActiveOnly` is `Status` not `String`
@@ -47,6 +47,5 @@ Each fix includes: code change, test update, assertion that now passes different
 ## Tracking
 
 Total: 7 items
-Done: 4 (B1, B2, B3, A12)
+Done: 5 (B1, B2, B3, A12, A10)
 Blocked: 2 (B8 — needs interface vs typedef refactor, D1 — can't TExtend DynamicAccess)
-Remaining: 1 (A10)

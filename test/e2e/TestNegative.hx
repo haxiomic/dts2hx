@@ -135,13 +135,13 @@ class TestNegative {
 	}
 
 	static function testEnumMemberTypeLoss() {
-		begin("A10: enum member type → full enum or String");
-		// ActiveOnly = Status.Active → String (not narrowed to just Active)
-		// In TS, ActiveOnly only accepts Status.Active
-		// In Haxe, ActiveOnly is String — accepts anything
+		begin("A10: enum member type → parent enum type (FIXED)");
+		// ActiveOnly = Status.Active → Status (not String)
+		// Still accepts any Status value (not narrowed to just Active),
+		// but at least it's the enum type, not bare String
 		eq(Limitations.isActive(Status.Active), true, "isActive with Active");
 		eq(Limitations.isActive(Status.Inactive), false, "isActive with Inactive");
-		// ActiveOnly typedef is String, not Status — lost the enum specificity
+		// ActiveOnly is now Status — better than String
 	}
 
 	static function testThisTypePolymorphism() {
