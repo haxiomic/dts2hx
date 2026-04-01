@@ -45,13 +45,33 @@ haxe \
   -w -WDeprecated
 echo "  → test_output.js"
 
-# Step 4: Run the runtime test
-echo "Step 4: Running runtime test..."
+# Step 4: Compile negative tests
+echo "Step 4: Compiling negative tests..."
+haxe \
+  -cp . \
+  -cp externs \
+  -lib hxnodejs \
+  -main TestNegative \
+  -js test_negative.js \
+  -D js-es=6 \
+  -w -WDeprecatedEnumAbstract \
+  -w -WDeprecated
+echo "  → test_negative.js"
+
+# Step 5: Run runtime tests
+echo "Step 5: Running runtime tests..."
 echo ""
-# Load ambient globals before running the test
 node -e "require('./modules/ambient-impl'); require('./test_output.js');"
 echo ""
+echo "Running negative tests..."
+node -e "require('./modules/ambient-impl'); require('./test_negative.js');"
+echo ""
 
-# Step 5: Run CLI mode tests
-echo "Step 5: Running CLI mode tests..."
+# Step 6: Run compile-time enforcement tests
+echo "Step 6: Running compile-time enforcement tests..."
+bash test-compile-errors.sh
+echo ""
+
+# Step 7: Run CLI mode tests
+echo "Step 7: Running CLI mode tests..."
 bash test-modes.sh

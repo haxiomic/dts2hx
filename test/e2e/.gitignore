@@ -1,3 +1,4 @@
 build/
 externs/
 test_output.js
+test_negative.js
