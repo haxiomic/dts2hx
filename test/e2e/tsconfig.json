@@ -6,7 +6,6 @@
     "strict": true,
     "outDir": "build",
     "skipLibCheck": true,
-    "types": [],
     "esModuleInterop": true
   },
   "include": ["testlib.ts", "modules/*.ts"],

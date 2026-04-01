@@ -7,7 +7,9 @@ echo "=== E2E Test: TypeScript → .d.ts → dts2hx → Haxe → JS → run ==="
 # Step 1: Compile TypeScript to JS + .d.ts
 echo "Step 1: Compiling TypeScript..."
 rm -rf build
-npx tsc -p tsconfig.json
+# Use the root project's tsc (TS 6.0+), not the test dir's older version
+TSC="../../node_modules/.bin/tsc"
+$TSC -p tsconfig.json
 echo "  → build/"
 
 # Step 2: Generate Haxe externs from .d.ts for each module
@@ -22,7 +24,8 @@ for mod in \
   ./build/modules/cjs-export \
   ./build/modules/barrel \
   ./build/modules/patterns \
-  ./build/modules/advanced; do
+  ./build/modules/advanced \
+  ./build/modules/ts-features; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
 # Ambient declarations (global + declare module)
@@ -38,7 +41,8 @@ haxe \
   -main TestE2E \
   -js test_output.js \
   -D js-es=6 \
-  -w -WDeprecatedEnumAbstract
+  -w -WDeprecatedEnumAbstract \
+  -w -WDeprecated
 echo "  → test_output.js"
 
 # Step 4: Run the runtime test

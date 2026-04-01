@@ -42,6 +42,7 @@ typedef CliOptions = {
 	queueExternalSymbols: Bool,
 	skipDependencies: Bool,
 	enableTypeParameterConstraints: Bool,
+	useEsModules: Bool,
 }
 
 @:nullSafety
@@ -80,6 +81,7 @@ class Main {
 			queueExternalSymbols: false,
 			skipDependencies: false,
 			enableTypeParameterConstraints: true,
+			useEsModules: false,
 		}
 
 		var help: Bool = false;
@@ -159,6 +161,11 @@ class Main {
 				name = StringTools.trim(name);
 				cliOptions.globalPackageName = name == '' ? null : name;
 				explicitGlobalPackageName = true;
+			},
+
+			@doc('Generate @:js.import metadata for ES module imports instead of @:jsRequire (requires Haxe 5+)')
+			'--esm' => () -> {
+				cliOptions.useEsModules = true;
 			},
 
 			@doc('Use map node.js types to hxnodejs where possible')

@@ -61,7 +61,8 @@ private typedef Options = {
 	globalPackageName: Null<String>,
 	globalTypes: Bool,
 	modularTypes: Bool,
-} 
+	useEsModules: Bool,
+}
 
 @:expose
 @:nullSafety
@@ -100,6 +101,7 @@ class ConverterContext {
 	public final moduleSearchPath: String;
 
 	final options: Options;
+	public final importStyle: tool.SymbolAccessTools.ImportStyle;
 
 	/**
 		Symbol access map is filled during an initial pass over the program.
@@ -143,6 +145,7 @@ class ConverterContext {
 		options: Options
 	) {
 		this.options = options;
+		this.importStyle = options.useEsModules ? tool.SymbolAccessTools.ImportStyle.JsImport : tool.SymbolAccessTools.ImportStyle.JsRequire;
 		this.hxnodejsMap = hxnodejsMap;
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
 		moduleSearchPath = sys.FileSystem.absolutePath(moduleSearchPath);
@@ -400,7 +403,7 @@ class ConverterContext {
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
-					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
+					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata(importStyle)]).concat([{name: ':enum', pos: pos}]),
 					pos: pos,
 					tsSymbol: symbol,
 					tsSymbolAccess: access,
@@ -425,7 +428,7 @@ class ConverterContext {
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,
-					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+					meta: [access.toAccessMetadata(importStyle), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
 					pos: pos,
 					tsSymbol: symbol,
 					tsSymbolAccess: access,
@@ -458,7 +461,7 @@ class ConverterContext {
 				}
 
 				var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
-				var meta = [access.toAccessMetadata()];
+				var meta = [access.toAccessMetadata(importStyle)];
 				var superClassPath: Null<TypePath> = null;
 
 				if (isValueModuleOnlySymbol) {

@@ -16,6 +16,8 @@ import build.modules.advanced.Rect;
 import build.modules.advanced.Stream;
 import build.modules.advanced.Converter;
 import build.modules.advanced.AppError;
+import build.modules.TsFeatures;
+import build.modules.ts_features.SimpleValue;
 
 /**
 	End-to-end test: TypeScript → JS + .d.ts → dts2hx → Haxe externs → Haxe → JS → run
@@ -100,6 +102,18 @@ class TestE2E {
 		testInterfaceExtends();
 		testOverloadedClass();
 		testErrorSubclass();
+		testTemplateLiteralTypes();
+		testIntrinsicStringTypes();
+		testKeyRemapping();
+		testVarianceAnnotations();
+		testTypeConstraints();
+		testReadonlyFinal();
+		testNeverType();
+		testConstructSignatures();
+		testStringDictIndex();
+		testNoInfer();
+		testFlatten();
+		testAsyncPromises();
 
 		Sys.println('Results: $passed passed, $failed failed');
 		if (failed > 0) Sys.exit(1);
@@ -547,5 +561,115 @@ class TestE2E {
 		var s2 = Stack.from([10, 20, 30]);
 		eq(s2.size, 3.0, "Stack.from size");
 		eq(s2.pop(), 30, "Stack.from pop");
+	}
+
+	// === TS VERSION-SPECIFIC FEATURE TESTS ===
+
+	static function testTemplateLiteralTypes() {
+		begin("TS 4.1: template literal types");
+		var name = TsFeatures.makeEventName("Click");
+		eq(name, "onClick", "makeEventName");
+		assert(TsFeatures.isEventName("onClick"), "isEventName true");
+		assert(!TsFeatures.isEventName("click"), "isEventName false");
+	}
+
+	static function testIntrinsicStringTypes() {
+		begin("TS 4.1: intrinsic string types");
+		eq(TsFeatures.toUpper("hello"), "HELLO", "toUpper");
+		eq(TsFeatures.toLower("HELLO"), "hello", "toLower");
+		eq(TsFeatures.capitalize("hello"), "Hello", "capitalize");
+	}
+
+	static function testKeyRemapping() {
+		begin("TS 4.1: key remapping (as clause)");
+		var config:build.modules.ts_features.Config = { host: "example.com", port: 443, debug: false };
+		var getters = TsFeatures.makeConfigGetters(config);
+		eq(getters.getHost(), "example.com", "getHost()");
+		eq(getters.getPort(), 443.0, "getPort()");
+		eq(getters.getDebug(), false, "getDebug()");
+	}
+
+	static function testVarianceAnnotations() {
+		begin("TS 4.7: variance annotations (in/out)");
+		var producer = TsFeatures.createProducer("hello");
+		eq(producer.produce(), "hello", "Producer.produce()");
+
+		var consumer = TsFeatures.createConsumer();
+		consumer.consume(42);
+		eq(Reflect.field(consumer, "lastConsumed"), 42, "Consumer.lastConsumed");
+	}
+
+	static function testTypeConstraints() {
+		begin("type parameter constraints");
+		// longest<T extends HasLength> — constraint requires { length: Float }
+		var a:Dynamic = [1, 2, 3];
+		var b:Dynamic = [4, 5];
+		var result:Dynamic = TsFeatures.longest(a, b);
+		eq(result.length, 3, "longest arrays");
+
+		eq(TsFeatures.firstElement([10, 20, 30]), 10, "firstElement");
+		assert(TsFeatures.firstElement([]) == null, "firstElement empty");
+	}
+
+	static function testReadonlyFinal() {
+		begin("Readonly<T> → final fields");
+		var frozen = TsFeatures.freezeConfig({ host: "localhost", port: 8080, debug: true });
+		eq(frozen.host, "localhost", "frozen.host");
+		eq(frozen.port, 8080.0, "frozen.port");
+		eq(frozen.debug, true, "frozen.debug");
+	}
+
+	static function testNeverType() {
+		begin("never type → ts.Never");
+		var threw = false;
+		try {
+			TsFeatures.throwError("test error");
+		} catch (e:Dynamic) {
+			threw = true;
+			assert(Std.string(e).indexOf("test error") != -1, "throwError message");
+		}
+		assert(threw, "throwError actually throws");
+	}
+
+	static function testConstructSignatures() {
+		begin("construct signatures");
+		var val = new SimpleValue("test");
+		eq(val.value, "test", "SimpleValue.value");
+	}
+
+	static function testStringDictIndex() {
+		begin("index signatures → DynamicAccess");
+		var dict = TsFeatures.createDict("key1", 42);
+		eq(TsFeatures.getFromDict(dict, "key1"), 42, "getFromDict existing");
+		assert(TsFeatures.getFromDict(dict, "missing") == null, "getFromDict missing");
+		eq(dict.get("key1"), 42, "DynamicAccess.get");
+	}
+
+	static function testNoInfer() {
+		begin("TS 5.4: NoInfer<T> unwrapped");
+		var palette = TsFeatures.createPalette(["red", "green", "blue"], "red");
+		eq(Reflect.field(palette, "default"), "red", "palette default");
+		var colors:Array<String> = Reflect.field(palette, "colors");
+		eq(colors.length, 3, "palette colors length");
+	}
+
+	static function testFlatten() {
+		begin("recursive conditional types");
+		var nested:Dynamic = js.Syntax.code("[1, [2, [3, 4]], 5]");
+		var flat:Array<Dynamic> = TsFeatures.flatten(nested);
+		eq(flat.length, 5, "flatten length");
+		eq(flat[0], 1, "flatten[0]");
+		eq(flat[4], 5, "flatten[4]");
+	}
+
+	static function testAsyncPromises() {
+		begin("Promise patterns");
+		TsFeatures.fetchJson("data").then(result -> {
+			eq(result, "data", "fetchJson resolves");
+		});
+
+		TsFeatures.chainPromises(3, 4).then(result -> {
+			eq(result, "sum:7", "chainPromises resolves");
+		});
 	}
 }
