@@ -28,6 +28,7 @@ function main() {
         'ts5.4',
         'tuples',
         'type-parameters',
+        'typedef-patterns',
         'types',
         'unions-intersections',
     ],['--verbose', '--noLibWrap']);

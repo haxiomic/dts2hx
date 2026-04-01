@@ -94,4 +94,22 @@ export namespace EdgeCases {
         set name(value: string);
         get readonlyProp(): number;
     }
+
+    // Numeric property names (should produce @:native("50") var _50)
+    interface NumericKeys {
+        50: string;
+        100: number;
+        0: boolean;
+    }
+
+    // Underscore-only identifiers
+    type _ = string;
+    const _: string;
+
+    // Void in unions (should simplify: void | number -> number, void | string -> string)
+    type VoidOrNumber = void | number;
+    type VoidOrString = void | string;
+    type VoidOrComplex = void | { field: string };
+    const voidUnion: void | number;
+    function returnsVoidUnion(): void | string;
 }
