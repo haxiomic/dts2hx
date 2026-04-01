@@ -1319,6 +1319,12 @@ class ConverterContext {
 			// add construct signatures as a `new` function
 			if (constructSignatures.length > 0) {
 				var newField = functionFieldFromSignatures('new', constructSignatures, moduleSymbol, accessContext, enclosingDeclaration);
+				// Haxe 4.3+ requires explicit return type for `new` in typedefs
+				switch newField.kind {
+					case FFun(fun):
+						if (fun.ret == null) fun.ret = macro :Void;
+					default:
+				}
 				fields.push(newField);
 			}
 
@@ -1409,7 +1415,7 @@ class ConverterContext {
 		var field = functionFieldFromSignatures('new', signatures, moduleSymbol, accessContext, enclosingDeclaration);
 		switch field.kind {
 			case FFun(fun):
-				// remove return type form `function new` (disallowed in haxe)
+				// Class constructors can't have return types in Haxe
 				fun.ret = null;
 			default:
 		}

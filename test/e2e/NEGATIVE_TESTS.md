@@ -61,7 +61,7 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 
 - [x] **F1. Circular type depth limit** — deep generic nesting preserved (test-edge-cases.sh)
 - [x] **F2. Field name collision** — myField/MyField both preserved (case-sensitive in Haxe, but filesystem collision risk)
-- [!] **F3. Construct sig in typedef** — `function new()` generated but Haxe 4.3 requires return type (compile error)
+- [x] **F3. Construct sig in typedef** — FIXED: `function new():T` now has return type for typedefs, null for classes
 - [x] **F4. export = function** — verified @:jsRequire and function new (test-flags.sh)
 - [x] **F5. export = namespace** — `export =` namespace → @:jsRequire class with statics, runtime verified
 - [x] **F6. bigint type** — FIXED: now maps to Dynamic (was empty struct `{ }`)
