@@ -44,6 +44,10 @@ class TestNegative {
 		testMixedIndexSignature();
 		testMultipleIndexSignatures();
 		testSymbolKeyDropped();
+		testConstTypeParam();
+		testReadonlyIndexSig();
+		testCaseSensitiveFields();
+		testBigintLoss();
 		testGetterSetterTypeLoss();
 
 		Sys.println('');
@@ -265,6 +269,46 @@ class TestNegative {
 		eq(obj.values[0], "a", "named field works");
 		// Can't iterate via for..of in Haxe — symbol key is lost
 		// Must use Dynamic to access Symbol.iterator
+	}
+
+	static function testConstTypeParam() {
+		begin("B7: const type parameter dropped");
+		// asConst_<const T>(value: T) → asConst_<T>(value: T)
+		// const modifier is dropped — verify function still works
+		var result = Limitations.asConst_(42);
+		eq(result, 42, "const type param: function works without const");
+	}
+
+	static function testReadonlyIndexSig() {
+		begin("D4: readonly index signature → DynamicAccess (readonly info lost in type)");
+		// ReadonlyDict<T> has readonly index → DynamicAccess<T>
+		// The type doesn't distinguish readonly from mutable DynamicAccess
+		var dict = Limitations.makeReadonlyDict("key", 42);
+		eq(dict.get("key"), 42, "readonly index readable");
+		// Haxe type allows .set() — readonly info lost at type level
+		// (JS Object.freeze prevents mutation at runtime in this impl, but Haxe doesn't know that)
+		var threw = false;
+		try { dict.set("key", 99); } catch(e:Dynamic) { threw = true; }
+		assert(threw, "frozen object rejects writes at runtime (but Haxe type allows it)");
+	}
+
+	static function testCaseSensitiveFields() {
+		begin("F2: case-sensitive field names");
+		// CaseSensitive: { myField: string; MyField: number }
+		// Haxe preserves both but they may collide on case-insensitive filesystems
+		var obj = Limitations.makeCaseSensitive();
+		eq(Reflect.field(obj, "myField"), "lower", "lowercase field");
+		eq(Reflect.field(obj, "MyField"), 42, "uppercase field");
+	}
+
+	static function testBigintLoss() {
+		begin("F6: bigint → empty struct (broken)");
+		// addBigInts(a: bigint, b: bigint) → (a: { }, b: { }) — type lost!
+		// bigint maps to empty struct instead of Dynamic or js.lib.BigInt
+		// Must use Dynamic to call
+		var result:Dynamic = js.Syntax.code("{0}.addBigInts(BigInt(1), BigInt(2))",
+			js.Syntax.code("require('./build/modules/limitations')"));
+		eq(js.Syntax.code("Number({0})", result), 3, "bigint works at JS level via Dynamic");
 	}
 
 	static function testGetterSetterTypeLoss() {

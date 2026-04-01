@@ -177,3 +177,33 @@ export function makeIterable(values: string[]): WithSymbolKey {
         [Symbol.iterator]() { return values[Symbol.iterator](); }
     };
 }
+
+// === B7: const type parameter ===
+export function asConst_<const T>(value: T): T { return value; }
+
+// === C2: Re-export with rename ===
+export { QueryBuilder as RenamedBuilder } from './advanced';
+export { Config as RenamedConfig };
+
+// === D4: Readonly index signature ===
+export interface ReadonlyDict<T> {
+    readonly [key: string]: T;
+}
+export function makeReadonlyDict<T>(key: string, value: T): ReadonlyDict<T> {
+    return Object.freeze({ [key]: value });
+}
+
+// === F2: Field name collision ===
+export interface CaseSensitive {
+    myField: string;
+    MyField: number;  // same name when case-insensitive
+}
+export function makeCaseSensitive(): CaseSensitive {
+    return { myField: "lower", MyField: 42 };
+}
+
+// === F6: bigint ===
+export function addBigInts(a: bigint, b: bigint): bigint {
+    return a + b;
+}
+export const bigValue: bigint = BigInt(999);

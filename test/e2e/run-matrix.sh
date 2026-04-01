@@ -52,7 +52,7 @@ TOTAL_FAIL=0
 resolve_lix_version() {
     # Extract the resolved version from lix download output (e.g. "Resolved to 06a76b8")
     local resolved
-    resolved=$($LIX download haxe "$1" 2>&1 | grep -o "Resolved to [^ ]*" | awk '{print $3}')
+    resolved=$($LIX download haxe "$1" 2>&1 | grep "Resolved to" | sed 's/.*Resolved to \([^ ]*\)\..*/\1/')
     if [ -n "$resolved" ]; then
         echo "$resolved"
     else

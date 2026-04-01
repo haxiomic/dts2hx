@@ -31,7 +31,7 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 - [x] **B4. override keyword** — `override` dropped, method inherited not re-emitted
 - [x] **B5. readonly on class fields** — `readonly` → `final` (correctly enforced!)
 - [x] **B6. Generic default type params** — `Box<T = string>` → `Box<T>` (default lost)
-- [ ] **B7. const type parameter** — `function f<const T>(x: T)` → verify `const` is dropped
+- [x] **B7. const type parameter** — `const` dropped, function still works correctly
 - [x] **B8. implements multiple interfaces** — `implements A, B` → no `implements` clause in extern
 
 ## C. Module/import patterns
@@ -45,9 +45,9 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 ## D. Index signature gaps
 
 - [x] **D1. String index + named fields** — index dropped, named kept, Dynamic for index access
-- [ ] **D2. Number index + named fields** — (tested in ts-features NumberIndexed)
+- [x] **D2. Number index + named fields** — index dropped, length kept (ts-features)
 - [x] **D3. Multiple index sigs** — both indexes dropped, only named field `length` remains
-- [ ] **D4. Readonly index signature** — `{ readonly [key: string]: T }` → verify readonly-ness
+- [x] **D4. Readonly index signature** — maps to mutable DynamicAccess (readonly lost at type level)
 - [x] **D5. Symbol index** — `[Symbol.iterator]()` dropped, only named fields remain
 
 ## E. CLI flag behaviors
@@ -60,8 +60,8 @@ the actual (possibly degraded) Haxe output matches expected behavior.
 ## F. Converter edge cases
 
 - [ ] **F1. Circular type depth limit** — deeply recursive type → verify falls to Dynamic at limit
-- [ ] **F2. Field name collision** — two TS fields mapping to same Haxe name → verify renamed with suffix
+- [x] **F2. Field name collision** — myField/MyField both preserved (case-sensitive in Haxe, but filesystem collision risk)
 - [ ] **F3. Construct sig in typedef** — `{ new(x: string): T }` → verify Haxe 4.3 handles it (currently errors)
 - [x] **F4. export = function** — verified @:jsRequire and function new (test-flags.sh)
 - [ ] **F5. export = namespace** — `export = ns` → verify module structure
-- [ ] **F6. bigint type** — verify conversion path
+- [!] **F6. bigint type** — maps to empty struct `{ }` instead of Dynamic or js.lib.BigInt (BUG)
