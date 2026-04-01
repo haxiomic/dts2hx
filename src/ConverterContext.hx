@@ -1837,7 +1837,12 @@ class ConverterContext {
 				null;
 			};
 
-			var hxType = complexTypeFromTsType(tsType, moduleSymbol, accessContext, parameterDeclaration);
+			var hxType = if (tsType != null) {
+				complexTypeFromTsType(tsType, moduleSymbol, accessContext, parameterDeclaration);
+			} else {
+				Log.warn('Could not resolve type for expanded parameter "${s.name}"', s);
+				macro :Dynamic;
+			};
 
 			// a rest parameter cannot be optional in ts
 			if (isRest) {
