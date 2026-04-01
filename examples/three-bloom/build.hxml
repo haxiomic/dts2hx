@@ -7,4 +7,6 @@
 -js dist/main.js
 -dce full
 
--cmd npx esbuild dist/main.js --bundle --outfile=dist/bundle.js
+# --conditions=import forces esbuild to resolve require("three") to the ESM entry,
+# avoiding duplicate bundling of three.js (CJS + ESM copies)
+-cmd npx esbuild dist/main.js --bundle --outfile=dist/bundle.js --conditions=import
