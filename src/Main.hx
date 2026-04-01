@@ -711,6 +711,40 @@ class Main {
 
 		`@actions/core.js` -> `actions-core,js`
 	**/
+	/**
+		Recursively strip TNamed wrappers from a ComplexType.
+		Named parameters like `(err:Error, html:String) -> Void` cause parse errors
+		when used inside property declarations `var x(get, set):...`.
+	**/
+	/**
+		Recursively strip TNamed wrappers and convert TOptional to Null<T> in a ComplexType.
+		Named parameters like `(err:Error, html:String)` and optional function-type args
+		like `?(Error, String) -> Void` cause parse errors inside property declarations.
+	**/
+	static function stripNamed(t: ComplexType): ComplexType {
+		return switch t {
+			case TNamed(_, inner): stripNamed(inner);
+			case TOptional(inner):
+				// Convert ?T to Null<T> to avoid parse ambiguity in property types
+				var stripped = stripNamed(inner);
+				TPath({name: 'Null', pack: [], params: [TPType(stripped)]});
+			case TFunction(args, ret): TFunction(args.map(stripNamed), stripNamed(ret));
+			case TPath(p):
+				if (p.params != null && p.params.length > 0) {
+					TPath({
+						name: p.name,
+						pack: p.pack,
+						sub: p.sub,
+						params: p.params.map(tp -> switch tp {
+							case TPType(ct): TPType(stripNamed(ct));
+							default: tp;
+						}),
+					});
+				} else t;
+			default: t;
+		}
+	}
+
 	static function hasNativeFields(fields: Array<haxe.macro.Expr.Field>): Bool {
 		for (field in fields) {
 			if (field.meta != null) {
@@ -747,15 +781,15 @@ class Main {
 			}
 
 			var fieldType = switch field.kind {
-				case FVar(t, _): t != null ? printer.printComplexType(t) : 'Dynamic';
-				case FProp(_, _, t, _): t != null ? printer.printComplexType(t) : 'Dynamic';
+				case FVar(t, _): t != null ? printer.printComplexType(stripNamed(t)) : 'Dynamic';
+				case FProp(_, _, t, _): t != null ? printer.printComplexType(stripNamed(t)) : 'Dynamic';
 				case FFun(f):
 					@:nullSafety(Off) var argTypes: Array<ComplexType> = f.args.map(a -> {
 						var t: ComplexType = a.type != null ? a.type : (macro :Dynamic);
 						if (a.opt != null && a.opt) t = TOptional(t);
 						return t;
 					});
-					printer.printComplexType(TFunction(argTypes, f.ret != null ? f.ret : (macro :Dynamic)));
+					printer.printComplexType(stripNamed(TFunction(argTypes, f.ret != null ? f.ret : (macro :Dynamic))));
 			};
 
 			nativeFields.push({name: field.name, jsName: jsName, fieldType: fieldType, doc: field.doc, isOptional: isOptional});
