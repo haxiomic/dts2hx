@@ -16,6 +16,6 @@
   "dependencies": {
     "haxiomic-engine": "github:haxiomic/haxiomic-engine",
     "playwright": "^1.59.0",
-    "three": "^0.182.0"
+    "three": "^0.183.0"
   }
 }
