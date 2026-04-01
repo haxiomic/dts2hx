@@ -21,7 +21,7 @@ package vscode;
 		Tags for this item.
 	**/
 	@:optional
-	var tags : haxe.ds.ReadOnlyArray<Int>;
+	var tags : haxe.ds.ReadOnlyArray<SymbolTag>;
 	/**
 		More detail for this item, e.g. the signature of a function.
 	**/

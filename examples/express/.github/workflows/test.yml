@@ -1,0 +1,55 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.6
+
+      - name: Install Haxe libraries
+        run: |
+          haxelib install hxnodejs --always --quiet
+          haxe --version
+
+      - name: Install npm dependencies
+        run: npm install --ignore-scripts
+
+      - name: Build dts2hx
+        run: haxe build.hxml
+
+      - name: Install test npm dependencies
+        run: |
+          cd test
+          npm install --legacy-peer-deps
+
+      - name: Run unit tests
+        run: |
+          cd test
+          haxe --run RunUnit
+
+      - name: Run lib tests
+        run: |
+          cd test
+          haxe --run RunLibs
+
+      - name: Run e2e tests
+        shell: bash
+        run: |
+          cd test/e2e
+          bash run.sh

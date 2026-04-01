@@ -1,6 +1,6 @@
 # Haxe Externs for express
 
-Generated from **@types/express v4.17.6** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 3.7.4** with arguments:
+Generated from **@types/express v4.17.6** by **[dts2hx](https://github.com/haxiomic/dts2hx) x.x.x** using **TypeScript 5.9.3** with arguments:
 
 	dts2hx express --output _generated-libs --noDts2hxVersion
 

@@ -10,12 +10,12 @@ typedef Http2Session = {
 	final destroyed : Bool;
 	@:optional
 	final encrypted : Bool;
-	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:node.crypto.Binary):Void;
+	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:ts.AnyOf11<js.lib.DataView_<js.lib.ArrayBufferLike>, global.Buffer, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, js.lib.Uint8ClampedArray_<js.lib.ArrayBufferLike>, js.lib.Uint16Array_<js.lib.ArrayBufferLike>, js.lib.Uint32Array_<js.lib.ArrayBufferLike>, js.lib.Int8Array_<js.lib.ArrayBufferLike>, js.lib.Int16Array_<js.lib.ArrayBufferLike>, js.lib.Int32Array_<js.lib.ArrayBufferLike>, js.lib.Float32Array_<js.lib.ArrayBufferLike>, js.lib.Float64Array_<js.lib.ArrayBufferLike>>):Void;
 	final localSettings : Settings;
 	@:optional
 	final originSet : Array<String>;
 	final pendingSettingsAck : Bool;
-	@:overload(function(payload:node.crypto.Binary, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
+	@:overload(function(payload:ts.AnyOf11<js.lib.DataView_<js.lib.ArrayBufferLike>, global.Buffer, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, js.lib.Uint8ClampedArray_<js.lib.ArrayBufferLike>, js.lib.Uint16Array_<js.lib.ArrayBufferLike>, js.lib.Uint32Array_<js.lib.ArrayBufferLike>, js.lib.Int8Array_<js.lib.ArrayBufferLike>, js.lib.Int16Array_<js.lib.ArrayBufferLike>, js.lib.Int32Array_<js.lib.ArrayBufferLike>, js.lib.Float32Array_<js.lib.ArrayBufferLike>, js.lib.Float64Array_<js.lib.ArrayBufferLike>>, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
 	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
 	function ref():Void;
 	final remoteSettings : Settings;

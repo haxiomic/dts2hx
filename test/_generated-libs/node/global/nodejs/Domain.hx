@@ -4,8 +4,8 @@ typedef Domain = {
 	function run<T>(fn:(args:haxe.extern.Rest<Dynamic>) -> T, args:haxe.extern.Rest<Dynamic>):T;
 	function add(emitter:ts.AnyOf2<EventEmitter, Timer>):Void;
 	function remove(emitter:ts.AnyOf2<EventEmitter, Timer>):Void;
-	function bind<T>(cb:T):T;
-	function intercept<T>(cb:T):T;
+	function bind<T:(haxe.Constraints.Function)>(cb:T):T;
+	function intercept<T:(haxe.Constraints.Function)>(cb:T):T;
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Domain;
 	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Domain;
 	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Domain;

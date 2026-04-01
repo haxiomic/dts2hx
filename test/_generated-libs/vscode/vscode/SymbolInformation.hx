@@ -26,7 +26,7 @@ package vscode;
 		Tags for this symbol.
 	**/
 	@:optional
-	var tags : haxe.ds.ReadOnlyArray<Int>;
+	var tags : haxe.ds.ReadOnlyArray<SymbolTag>;
 	/**
 		The location of this symbol.
 	**/

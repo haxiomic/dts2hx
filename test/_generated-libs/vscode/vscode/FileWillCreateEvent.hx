@@ -20,11 +20,11 @@ typedef FileWillCreateEvent = {
 		
 		```ts
 		workspace.onWillCreateFiles(event => {
-		     // async, will *throw* an error
-		     setTimeout(() => event.waitUntil(promise));
+		    // async, will *throw* an error
+		    setTimeout(() => event.waitUntil(promise));
 		
-		     // sync, OK
-		     event.waitUntil(promise);
+		    // sync, OK
+		    event.waitUntil(promise);
 		})
 		```
 		

@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract InterpolationModes(Int) from Int to Int {
+@:jsRequire("three") extern enum abstract InterpolationModes(Int) from Int to Int {
 	final InterpolateDiscrete : InterpolationModes;
 	final InterpolateLinear : InterpolationModes;
 	final InterpolateSmooth : InterpolationModes;

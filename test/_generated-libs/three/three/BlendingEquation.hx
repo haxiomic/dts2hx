@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract BlendingEquation(Int) from Int to Int {
+@:jsRequire("three") extern enum abstract BlendingEquation(Int) from Int to Int {
 	final AddEquation : BlendingEquation;
 	final SubtractEquation : BlendingEquation;
 	final ReverseSubtractEquation : BlendingEquation;

@@ -5,7 +5,7 @@ package node.buffer;
 		Allocates a new buffer containing the given {str}.
 	**/
 	@:overload(function(size:Float):global.Buffer { })
-	@:overload(function(array:js.lib.Uint8Array):global.Buffer { })
+	@:overload(function(array:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):global.Buffer { })
 	@:overload(function(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>):global.Buffer { })
 	@:overload(function(array:Array<Dynamic>):global.Buffer { })
 	@:overload(function(buffer:global.Buffer):global.Buffer { })
@@ -24,7 +24,7 @@ package node.buffer;
 		If not provided, {encoding} defaults to 'utf8'.
 	**/
 	@:overload(function(data:Array<Float>):global.Buffer { })
-	@:overload(function(data:js.lib.Uint8Array):global.Buffer { })
+	@:overload(function(data:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):global.Buffer { })
 	@:overload(function(str:String, ?encoding:String):global.Buffer { })
 	static function from(arrayBuffer:ts.AnyOf2<js.lib.ArrayBuffer, js.lib.SharedArrayBuffer>, ?byteOffset:Float, ?length:Float):global.Buffer;
 	/**
@@ -44,7 +44,7 @@ package node.buffer;
 		Gives the actual byte length of a string. encoding defaults to 'utf8'.
 		This is not the same as String.prototype.length since that returns the number of characters in a string.
 	**/
-	static function byteLength(string:ts.AnyOf13<String, js.lib.Uint8Array, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, ?encoding:String):Float;
+	static function byteLength(string:ts.AnyOf13<String, js.lib.ArrayBuffer, js.lib.SharedArrayBuffer, js.lib.DataView_<js.lib.ArrayBufferLike>, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, js.lib.Uint8ClampedArray_<js.lib.ArrayBufferLike>, js.lib.Uint16Array_<js.lib.ArrayBufferLike>, js.lib.Uint32Array_<js.lib.ArrayBufferLike>, js.lib.Int8Array_<js.lib.ArrayBufferLike>, js.lib.Int16Array_<js.lib.ArrayBufferLike>, js.lib.Int32Array_<js.lib.ArrayBufferLike>, js.lib.Float32Array_<js.lib.ArrayBufferLike>, js.lib.Float64Array_<js.lib.ArrayBufferLike>>, ?encoding:String):Float;
 	/**
 		Returns a buffer which is the result of concatenating all the buffers in the list together.
 		
@@ -52,11 +52,11 @@ package node.buffer;
 		If the list has exactly one item, then the first item of the list is returned.
 		If the list has more than one item, then a new Buffer is created.
 	**/
-	static function concat(list:Array<js.lib.Uint8Array>, ?totalLength:Float):global.Buffer;
+	static function concat(list:Array<js.lib.Uint8Array_<js.lib.ArrayBufferLike>>, ?totalLength:Float):global.Buffer;
 	/**
 		The same as buf1.compare(buf2).
 	**/
-	static function compare(buf1:js.lib.Uint8Array, buf2:js.lib.Uint8Array):Float;
+	static function compare(buf1:js.lib.Uint8Array_<js.lib.ArrayBufferLike>, buf2:js.lib.Uint8Array_<js.lib.ArrayBufferLike>):Float;
 	/**
 		Allocates a new buffer of {size} octets.
 	**/

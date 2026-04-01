@@ -12,12 +12,12 @@ package node.cluster;
 	var exitedAfterDisconnect : Bool;
 	/**
 		events.EventEmitter
-		   1. disconnect
-		   2. error
-		   3. exit
-		   4. listening
-		   5. message
-		   6. online
+		  1. disconnect
+		  2. error
+		  3. exit
+		  4. listening
+		  5. message
+		  6. online
 	**/
 	@:overload(function(event:String, listener:() -> Void):Worker { })
 	@:overload(function(event:String, listener:(error:js.lib.Error) -> Void):Worker { })

@@ -41,6 +41,7 @@
     "three": "0.107.0",
     "typescript": "3.8.3",
     "vue": "2.6.11",
-    "wonka": "4.0.13"
+    "wonka": "4.0.13",
+    "ytdlp-nodejs": "3.4.4"
   }
 }

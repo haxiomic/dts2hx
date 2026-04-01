@@ -3,40 +3,12 @@ package node.inspector.debugger;
 /**
 	JavaScript call frame. Array of call frames form the call stack.
 **/
-typedef CallFrame = {
-	/**
-		Call frame identifier. This identifier is only valid while the virtual machine is paused.
-	**/
-	var callFrameId : String;
-	/**
-		Name of the JavaScript function called on this call frame.
-	**/
-	var functionName : String;
-	/**
-		Location in the source code.
-	**/
-	@:optional
-	var functionLocation : Location;
-	/**
-		Location in the source code.
-	**/
-	var location : Location;
-	/**
-		JavaScript script name or url.
-	**/
-	var url : String;
-	/**
-		Scope chain for this call frame.
-	**/
-	var scopeChain : Array<Scope>;
+@:forward
+abstract CallFrame(CallFrame_) from CallFrame_ to CallFrame_ {
 	/**
 		`this` object for this call frame.
 	**/
-	@:native("this")
-	var this_ : node.inspector.runtime.RemoteObject;
-	/**
-		The value being returned, if the function is at return point.
-	**/
-	@:optional
-	var returnValue : node.inspector.runtime.RemoteObject;
-};
+	public var this_(get, set):node.inspector.runtime.RemoteObject;
+	inline function get_this_():node.inspector.runtime.RemoteObject return js.Syntax.field(cast this, 'this');
+	inline function set_this_(v:node.inspector.runtime.RemoteObject):node.inspector.runtime.RemoteObject { js.Syntax.code("{0}[{1}] = {2}", this, 'this', v); return v; }
+}

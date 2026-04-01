@@ -94,7 +94,7 @@ class Args {
 						name: arg.name.replace("_", " "),
 						type: arg.type,
 						opt: arg.opt || arg.value != null,
-						value: $v{arg.value == null ? null : arg.value.getValue()}
+						value: arg.value == null ? null : arg.value.getValue()
 					}
 					return macro $v{arg};
 				})};

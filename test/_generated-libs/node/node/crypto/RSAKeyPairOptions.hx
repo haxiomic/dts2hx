@@ -1,6 +1,6 @@
 package node.crypto;
 
-typedef RSAKeyPairOptions<PubF, PrivF> = {
+typedef RSAKeyPairOptions<PubF:(KeyFormat), PrivF:(KeyFormat)> = {
 	/**
 		Key size in bits
 	**/

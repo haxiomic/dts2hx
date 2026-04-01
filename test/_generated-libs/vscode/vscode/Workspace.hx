@@ -173,8 +173,8 @@ package vscode;
 		for a workspace that is untitled and not yet saved.
 		
 		Depending on the workspace that is opened, the value will be:
-		  * `undefined` when no workspace or  a single folder is opened
-		  * the path of the workspace file as `Uri` otherwise. if the workspace
+		 * `undefined` when no workspace or  a single folder is opened
+		 * the path of the workspace file as `Uri` otherwise. if the workspace
 		is untitled, the returned URI will use the `untitled:` scheme
 		
 		The location can e.g. be used with the `vscode.openFolder` command to
@@ -234,8 +234,8 @@ package vscode;
 		
 		*Note 2:* Subscribers are called sequentially and they can [delay](#TextDocumentWillSaveEvent.waitUntil) saving
 		by registering asynchronous work. Protection against misbehaving listeners is implemented as such:
-		  * there is an overall time budget that all listeners share and if that is exhausted no further listener is called
-		  * listeners that take a long time or produce errors frequently will not be called anymore
+		 * there is an overall time budget that all listeners share and if that is exhausted no further listener is called
+		 * listeners that take a long time or produce errors frequently will not be called anymore
 		
 		The current thresholds are 1.5 seconds as overall time budget and a listener can misbehave 3 times before being ignored.
 	**/

@@ -37,7 +37,11 @@ package global.three;
 	**/
 	var vertexColors : Array<Color>;
 	/**
-		Material index (points to {@link Geometry.materials}).
+		Material index (points to
+		{@link
+		Geometry.materials
+		}
+		).
 	**/
 	var materialIndex : Float;
 	function clone():Face3;

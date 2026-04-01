@@ -30,23 +30,17 @@ typedef FileHandle = {
 		Asynchronously reads data from the file.
 		The `FileHandle` must have been opened for reading.
 	**/
-	function read<TBuffer>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	function read<TBuffer:(ts.AnyOf2<js.lib.Uint8Array_<js.lib.ArrayBufferLike>, global.Buffer>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesRead : Float;
 		var buffer : TBuffer;
 	}>;
 	/**
 		Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
 		The `FileHandle` must have been opened for reading.
-		
-		Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-		The `FileHandle` must have been opened for reading.
-		
-		Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-		The `FileHandle` must have been opened for reading.
 	**/
 	@:overload(function(options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	function readFile(?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
+	function readFile(?options:{ @:optional var encoding : ts.Never; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
 	/**
 		Asynchronous fstat(2) - Get file status.
 	**/
@@ -72,7 +66,7 @@ typedef FileHandle = {
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
-	function write<TBuffer>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	function write<TBuffer:(ts.AnyOf2<js.lib.Uint8Array_<js.lib.ArrayBufferLike>, global.Buffer>)>(buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesWritten : Float;
 		var buffer : TBuffer;
 	}>;

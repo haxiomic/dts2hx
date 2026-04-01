@@ -1,3 +1,3 @@
 package unit.interface_;
 
-typedef IInterfaceArrayLikeMultiDeclarations = { };
+typedef IInterfaceArrayLikeMultiDeclarations = Array<String>;

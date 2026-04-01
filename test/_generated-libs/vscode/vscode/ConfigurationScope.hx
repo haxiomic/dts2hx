@@ -6,7 +6,7 @@ package vscode;
 	a '[TextDocument](#TextDocument)' or
 	a '[WorkspaceFolder](#WorkspaceFolder)'
 **/
-typedef ConfigurationScope = ts.AnyOf4<WorkspaceFolder, Uri, TextDocument, {
+typedef ConfigurationScope = ts.AnyOf4<TextDocument, Uri, WorkspaceFolder, {
 	@:optional
 	var uri : Uri;
 	var languageId : String;

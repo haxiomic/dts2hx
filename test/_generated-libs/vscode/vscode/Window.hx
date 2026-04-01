@@ -26,55 +26,34 @@ package vscode;
 		Show an information message to users. Optionally provide an array of items which will be presented as
 		clickable buttons.
 		
-		Show an information message to users. Optionally provide an array of items which will be presented as
-		clickable buttons.
-		
-		Show an information message.
-		
 		Show an information message.
 	**/
 	@:overload(function(message:String, options:MessageOptions, items:haxe.extern.Rest<String>):global.Thenable<Null<String>> { })
-	@:overload(function<T>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
-	@:overload(function<T>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
+	@:overload(function<T:(MessageItem)>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
+	@:overload(function<T:(MessageItem)>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
 	static function showInformationMessage(message:String, items:haxe.extern.Rest<String>):global.Thenable<Null<String>>;
 	/**
 		Show a warning message.
-		
-		Show a warning message.
-		
-		Show a warning message.
-		
-		Show a warning message.
 	**/
 	@:overload(function(message:String, options:MessageOptions, items:haxe.extern.Rest<String>):global.Thenable<Null<String>> { })
-	@:overload(function<T>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
-	@:overload(function<T>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
+	@:overload(function<T:(MessageItem)>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
+	@:overload(function<T:(MessageItem)>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
 	static function showWarningMessage(message:String, items:haxe.extern.Rest<String>):global.Thenable<Null<String>>;
 	/**
 		Show an error message.
-		
-		Show an error message.
-		
-		Show an error message.
-		
-		Show an error message.
 	**/
 	@:overload(function(message:String, options:MessageOptions, items:haxe.extern.Rest<String>):global.Thenable<Null<String>> { })
-	@:overload(function<T>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
-	@:overload(function<T>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
+	@:overload(function<T:(MessageItem)>(message:String, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
+	@:overload(function<T:(MessageItem)>(message:String, options:MessageOptions, items:haxe.extern.Rest<T>):global.Thenable<Null<T>> { })
 	static function showErrorMessage(message:String, items:haxe.extern.Rest<String>):global.Thenable<Null<String>>;
 	/**
 		Shows a selection list allowing multiple selections.
 		
 		Shows a selection list.
-		
-		Shows a selection list allowing multiple selections.
-		
-		Shows a selection list.
 	**/
 	@:overload(function(items:ts.AnyOf2<Array<String>, global.Thenable<Array<String>>>, ?options:QuickPickOptions, ?token:CancellationToken):global.Thenable<Null<String>> { })
-	@:overload(function<T>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, options:Dynamic, ?token:CancellationToken):global.Thenable<Null<Array<T>>> { })
-	@:overload(function<T>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, ?options:QuickPickOptions, ?token:CancellationToken):global.Thenable<Null<T>> { })
+	@:overload(function<T:(QuickPickItem)>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, options:Dynamic, ?token:CancellationToken):global.Thenable<Null<Array<T>>> { })
+	@:overload(function<T:(QuickPickItem)>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, ?options:QuickPickOptions, ?token:CancellationToken):global.Thenable<Null<T>> { })
 	static function showQuickPick(items:ts.AnyOf2<Array<String>, global.Thenable<Array<String>>>, options:Dynamic, ?token:CancellationToken):global.Thenable<Null<Array<String>>>;
 	/**
 		Shows a selection list of [workspace folders](#workspace.workspaceFolders) to pick from.
@@ -107,7 +86,7 @@ package vscode;
 		is easier to use. [window.createQuickPick](#window.createQuickPick) should be used
 		when [window.showQuickPick](#window.showQuickPick) does not offer the required flexibility.
 	**/
-	static function createQuickPick<T>():QuickPick<T>;
+	static function createQuickPick<T:(QuickPickItem)>():QuickPick<T>;
 	/**
 		Creates a [InputBox](#InputBox) to let the user enter some text input.
 		
@@ -123,11 +102,8 @@ package vscode;
 	/**
 		Create and show a new webview panel.
 	**/
-	static function createWebviewPanel(viewType:String, title:String, showOptions:ts.AnyOf2<Int, { var viewColumn : ViewColumn; @:optional var preserveFocus : Bool; }>, ?options:WebviewPanelOptions & WebviewOptions):WebviewPanel;
+	static function createWebviewPanel(viewType:String, title:String, showOptions:ts.AnyOf2<ViewColumn, { var viewColumn : ViewColumn; @:optional var preserveFocus : Bool; }>, ?options:WebviewPanelOptions & WebviewOptions):WebviewPanel;
 	/**
-		Set a message to the status bar. This is a short hand for the more powerful
-		status bar [items](#window.createStatusBarItem).
-		
 		Set a message to the status bar. This is a short hand for the more powerful
 		status bar [items](#window.createStatusBarItem).
 		

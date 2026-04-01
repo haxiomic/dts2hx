@@ -8,12 +8,12 @@ typedef DebugAdapterDescriptorFactory = {
 		- a debug adapter executable is specified as a command path and arguments (see [DebugAdapterExecutable](#DebugAdapterExecutable)),
 		- a debug adapter server reachable via a communication port (see [DebugAdapterServer](#DebugAdapterServer)).
 		If the method is not implemented the default behavior is this:
-		   createDebugAdapter(session: DebugSession, executable: DebugAdapterExecutable) {
-		      if (typeof session.configuration.debugServer === 'number') {
-		         return new DebugAdapterServer(session.configuration.debugServer);
-		      }
-		      return executable;
-		   }
+		  createDebugAdapter(session: DebugSession, executable: DebugAdapterExecutable) {
+		     if (typeof session.configuration.debugServer === 'number') {
+		        return new DebugAdapterServer(session.configuration.debugServer);
+		     }
+		     return executable;
+		  }
 	**/
 	function createDebugAdapterDescriptor(session:DebugSession, executable:Null<DebugAdapterExecutable>):ProviderResult<DebugAdapterDescriptor>;
 };

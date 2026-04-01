@@ -1,14 +1,8 @@
 package lowdb;
 
-typedef AdapterSync<SchemaT> = {
-	function write(state:Dynamic):Void;
-	@:native("@@reference")
-	final AtReference : SchemaT;
-	var source : String;
-	@:optional
-	var defaultValue : SchemaT;
-	@:optional
-	dynamic function serialize(data:SchemaT):String;
-	@:optional
-	dynamic function deserialize(serializedData:String):SchemaT;
-};
+@:forward
+abstract AdapterSync<SchemaT>(AdapterSync_<SchemaT>) from AdapterSync_<SchemaT> to AdapterSync_<SchemaT> {
+	public var AtReference(get, set):SchemaT;
+	inline function get_AtReference():SchemaT return js.Syntax.field(cast this, '@@reference');
+	inline function set_AtReference(v:SchemaT):SchemaT { js.Syntax.code("{0}[{1}] = {2}", this, '@@reference', v); return v; }
+}

@@ -8,7 +8,7 @@ package node.readline;
 		> `readline.createInterface()` method.
 	**/
 	@:overload(function(options:ReadLineOptions):Interface { })
-	private function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:ts.AnyOf2<Completer, AsyncCompleter>, ?terminal:Bool);
+	function new(input:global.nodejs.ReadableStream, ?output:global.nodejs.WritableStream, ?completer:ts.AnyOf2<Completer, AsyncCompleter>, ?terminal:Bool);
 	final terminal : Bool;
 	function setPrompt(prompt:String):Void;
 	function prompt(?preserveCursor:Bool):Void;

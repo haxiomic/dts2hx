@@ -50,8 +50,6 @@ package vscode;
 	function union(other:Range):Range;
 	/**
 		Derived a new range from this range.
-		
-		Derived a new range from this range.
 	**/
 	@:overload(function(change:{ @:optional var start : Position; @:optional var end : Position; }):Range { })
 	function with(?start:Position, ?end:Position):Range;

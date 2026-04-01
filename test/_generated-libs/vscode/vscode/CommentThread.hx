@@ -27,16 +27,16 @@ typedef CommentThread = {
 		For example, a comment thread is given a context value as `editable`. When contributing actions to `comments/commentThread/title`
 		using `menus` extension point, you can specify context value for key `commentThread` in `when` expression like `commentThread == editable`.
 		```
-		    "contributes": {
-		        "menus": {
-		            "comments/commentThread/title": [
-		                {
-		                    "command": "extension.deleteCommentThread",
-		                    "when": "commentThread == editable"
-		                }
-		            ]
-		        }
-		    }
+		   "contributes": {
+		       "menus": {
+		           "comments/commentThread/title": [
+		               {
+		                   "command": "extension.deleteCommentThread",
+		                   "when": "commentThread == editable"
+		               }
+		           ]
+		       }
+		   }
 		```
 		This will show action `extension.deleteCommentThread` only for comment threads with `contextValue` is `editable`.
 	**/

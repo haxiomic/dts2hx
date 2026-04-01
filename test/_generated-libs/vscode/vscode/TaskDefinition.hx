@@ -13,7 +13,7 @@ typedef TaskDefinition = {
 		task definition for example looks like this
 		```typescript
 		interface NpmTaskDefinition extends TaskDefinition {
-		     script: string;
+		    script: string;
 		}
 		```
 		

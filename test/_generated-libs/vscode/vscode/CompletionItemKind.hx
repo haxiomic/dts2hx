@@ -3,32 +3,32 @@ package vscode;
 /**
 	Completion item kinds.
 **/
-@:jsRequire("vscode", "CompletionItemKind") @:enum extern abstract CompletionItemKind(Int) from Int to Int {
-	var Text;
-	var Method;
-	var Function;
-	var Constructor;
-	var Field;
-	var Variable;
-	var Class;
-	var Interface;
-	var Module;
-	var Property;
-	var Unit;
-	var Value;
-	var Enum;
-	var Keyword;
-	var Snippet;
-	var Color;
-	var Reference;
-	var File;
-	var Folder;
-	var EnumMember;
-	var Constant;
-	var Struct;
-	var Event;
-	var Operator;
-	var TypeParameter;
-	var User;
-	var Issue;
+@:jsRequire("vscode", "CompletionItemKind") extern enum abstract CompletionItemKind(Int) from Int to Int {
+	final Text;
+	final Method;
+	final Function;
+	final Constructor;
+	final Field;
+	final Variable;
+	final Class;
+	final Interface;
+	final Module;
+	final Property;
+	final Unit;
+	final Value;
+	final Enum;
+	final Keyword;
+	final Snippet;
+	final Color;
+	final Reference;
+	final File;
+	final Folder;
+	final EnumMember;
+	final Constant;
+	final Struct;
+	final Event;
+	final Operator;
+	final TypeParameter;
+	final User;
+	final Issue;
 }

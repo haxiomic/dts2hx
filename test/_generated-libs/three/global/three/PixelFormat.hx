@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract PixelFormat(Int) from Int to Int {
+@:native("THREE") extern enum abstract PixelFormat(Int) from Int to Int {
 	final AlphaFormat : PixelFormat;
 	final RGBFormat : PixelFormat;
 	final RGBAFormat : PixelFormat;

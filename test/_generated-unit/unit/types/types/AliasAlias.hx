@@ -1,3 +1,3 @@
 package unit.types.types;
 
-typedef AliasAlias<X> = AliasWithTypeParam<String, X>;
+typedef AliasAlias<X> = js.lib.Map<String, X>;

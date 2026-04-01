@@ -21,7 +21,7 @@ typedef Process = {
 	var debugPort : Float;
 	function emitWarning(warning:ts.AnyOf2<String, js.lib.Error>, ?name:String, ?ctor:haxe.Constraints.Function):Void;
 	var env : ProcessEnv;
-	function exit(?code:Float):Any;
+	function exit(?code:Float):ts.Never;
 	var exitCode : Float;
 	function getgid():Float;
 	function setgid(id:ts.AnyOf2<String, Float>):Void;
@@ -104,17 +104,17 @@ typedef Process = {
 	var allowedNodeEnvironmentFlags : js.lib.ReadonlySet<String>;
 	/**
 		EventEmitter
-		   1. beforeExit
-		   2. disconnect
-		   3. exit
-		   4. message
-		   5. rejectionHandled
-		   6. uncaughtException
-		   7. unhandledRejection
-		   8. warning
-		   9. message
-		  10. <All OS Signals>
-		  11. newListener/removeListener inherited from EventEmitter
+		  1. beforeExit
+		  2. disconnect
+		  3. exit
+		  4. message
+		  5. rejectionHandled
+		  6. uncaughtException
+		  7. unhandledRejection
+		  8. warning
+		  9. message
+		 10. <All OS Signals>
+		 11. newListener/removeListener inherited from EventEmitter
 	**/
 	@:overload(function(event:String, listener:DisconnectListener):Process { })
 	@:overload(function(event:String, listener:ExitListener):Process { })

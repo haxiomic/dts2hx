@@ -1,3 +1,5 @@
 package js.lib;
 
-typedef DataViewConstructor = { };
+typedef DataViewConstructor = {
+	final prototype : DataView_<ArrayBufferLike>;
+};

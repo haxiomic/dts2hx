@@ -35,8 +35,6 @@ package global.three;
 	function determinant():Float;
 	/**
 		getInverse(matrix:T, throwOnInvertible?:boolean):T;
-		
-		getInverse(matrix:T, throwOnInvertible?:boolean):T;
 	**/
 	@:overload(function(matrix:Matrix4, ?throwOnDegenerate:Bool):Matrix3 { })
 	function getInverse(matrix:Matrix3, ?throwOnDegenerate:Bool):Matrix3;

@@ -9,7 +9,7 @@ typedef Socket = {
 	function pause():Socket;
 	function resume():Socket;
 	function isPaused():Bool;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function unpipe(?destination:WritableStream):Socket;
 	@:overload(function(chunk:global.Buffer):Void { })
 	function unshift(chunk:String):Void;
@@ -31,8 +31,8 @@ typedef Socket = {
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
 	var writable : Bool;
 	@:overload(function(str:String, ?encoding:String, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool { })
-	function write(buffer:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool;
-	@:overload(function(data:ts.AnyOf3<String, global.Buffer, js.lib.Uint8Array>, ?cb:() -> Void):Void { })
+	function write(buffer:ts.AnyOf3<String, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, global.Buffer>, ?cb:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>):Bool;
+	@:overload(function(data:ts.AnyOf3<String, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, global.Buffer>, ?cb:() -> Void):Void { })
 	@:overload(function(str:String, ?encoding:String, ?cb:() -> Void):Void { })
 	function end(?cb:() -> Void):Void;
 };

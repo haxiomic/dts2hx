@@ -1,3 +1,3 @@
 package node.vm;
 
-typedef Context = { };
+typedef Context = haxe.DynamicAccess<Dynamic>;

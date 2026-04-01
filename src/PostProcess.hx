@@ -54,10 +54,11 @@ class PostProcess {
 							}
 							hxEnumModule.removeMeta(':native');
 							hxEnumModule.removeMeta(':jsRequire');
+							hxEnumModule.removeMeta(':js.import');
 							var metas = if (hxEnumModule.meta == null) {
 								hxEnumModule.meta = [];
 							} else hxEnumModule.meta;
-							metas.push(parentAccess.toAccessMetadata());
+							metas.push(parentAccess.toAccessMetadata(ctx.importStyle));
 						}
 					}
 				}

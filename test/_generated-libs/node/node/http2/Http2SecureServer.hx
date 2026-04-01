@@ -8,48 +8,6 @@ typedef Http2SecureServer = {
 		3. OCSPRequest
 		4. resumeSession
 		5. secureConnection
-		
-		events.EventEmitter
-		1. tlsClientError
-		2. newSession
-		3. OCSPRequest
-		4. resumeSession
-		5. secureConnection
-		
-		events.EventEmitter
-		1. tlsClientError
-		2. newSession
-		3. OCSPRequest
-		4. resumeSession
-		5. secureConnection
-		
-		events.EventEmitter
-		1. tlsClientError
-		2. newSession
-		3. OCSPRequest
-		4. resumeSession
-		5. secureConnection
-		
-		events.EventEmitter
-		1. tlsClientError
-		2. newSession
-		3. OCSPRequest
-		4. resumeSession
-		5. secureConnection
-		
-		events.EventEmitter
-		1. tlsClientError
-		2. newSession
-		3. OCSPRequest
-		4. resumeSession
-		5. secureConnection
-		
-		events.EventEmitter
-		1. tlsClientError
-		2. newSession
-		3. OCSPRequest
-		4. resumeSession
-		5. secureConnection
 	**/
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })
 	@:overload(function(event:String, listener:(request:Http2ServerRequest, response:Http2ServerResponse) -> Void):Http2SecureServer { })

@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract StencilOp(Int) from Int to Int {
+@:native("THREE") extern enum abstract StencilOp(Int) from Int to Int {
 	final ZeroStencilOp : StencilOp;
 	final KeepStencilOp : StencilOp;
 	final ReplaceStencilOp : StencilOp;

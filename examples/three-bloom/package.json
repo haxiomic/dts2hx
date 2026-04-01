@@ -1,0 +1,21 @@
+{
+  "name": "three-bloom-example",
+  "version": "1.0.0",
+  "description": "dts2hx example: three.js + haxiomic-engine with bloom post-processing",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "generate-externs": "dts2hx --modular three haxiomic-engine",
+    "postinstall": "npm run generate-externs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dts2hx": "file:../../",
+    "esbuild": "^0.25.1"
+  },
+  "dependencies": {
+    "haxiomic-engine": "github:haxiomic/haxiomic-engine",
+    "playwright": "^1.59.0",
+    "three": "^0.182.0"
+  }
+}

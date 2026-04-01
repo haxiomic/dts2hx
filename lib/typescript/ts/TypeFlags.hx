@@ -54,5 +54,8 @@ extern abstract TypeFlags(Int) from Int to Int {
 	var StructuredOrInstantiable;
 	var Narrowable;
 	var NotUnionOrUnit;
+	// TS 4.1+
+	var TemplateLiteral;
+	var StringMapping;
 }
 

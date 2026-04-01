@@ -14,10 +14,10 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		    res.links({
-		      next: 'http://api.example.com/users?page=2',
-		      last: 'http://api.example.com/users?page=5'
-		    });
+		   res.links({
+		     next: 'http://api.example.com/users?page=2',
+		     last: 'http://api.example.com/users?page=5'
+		   });
 	**/
 	function links(links:Dynamic):Response<ResBody>;
 	/**
@@ -25,10 +25,10 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		     res.send(new Buffer('wahoo'));
-		     res.send({ some: 'json' });
-		     res.send('<p>some html</p>');
-		     res.status(404).send('Sorry, cant find that');
+		    res.send(new Buffer('wahoo'));
+		    res.send({ some: 'json' });
+		    res.send('<p>some html</p>');
+		    res.status(404).send('Sorry, cant find that');
 	**/
 	dynamic function send(?body:ResBody):Response<ResBody>;
 	/**
@@ -36,10 +36,10 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		     res.json(null);
-		     res.json({ user: 'tj' });
-		     res.status(500).json('oh noes!');
-		     res.status(404).json('I dont have that');
+		    res.json(null);
+		    res.json({ user: 'tj' });
+		    res.status(500).json('oh noes!');
+		    res.status(404).json('I dont have that');
 	**/
 	dynamic function json(?body:ResBody):Response<ResBody>;
 	/**
@@ -47,10 +47,10 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		     res.jsonp(null);
-		     res.jsonp({ user: 'tj' });
-		     res.status(500).jsonp('oh noes!');
-		     res.status(404).jsonp('I dont have that');
+		    res.jsonp(null);
+		    res.jsonp({ user: 'tj' });
+		    res.status(500).jsonp('oh noes!');
+		    res.status(404).jsonp('I dont have that');
 	**/
 	dynamic function jsonp(?body:ResBody):Response<ResBody>;
 	/**
@@ -64,32 +64,32 @@ typedef Response<ResBody> = {
 		
 		Options:
 		
-		   - `maxAge`   defaulting to 0 (can be string converted by `ms`)
-		   - `root`     root directory for relative filenames
-		   - `headers`  object of headers to serve with file
-		   - `dotfiles` serve dotfiles, defaulting to false; can be `"allow"` to send them
+		  - `maxAge`   defaulting to 0 (can be string converted by `ms`)
+		  - `root`     root directory for relative filenames
+		  - `headers`  object of headers to serve with file
+		  - `dotfiles` serve dotfiles, defaulting to false; can be `"allow"` to send them
 		
 		Other options are passed along to `send`.
 		
 		Examples:
 		
-		  The following example illustrates how `res.sendFile()` may
-		  be used as an alternative for the `static()` middleware for
-		  dynamic situations. The code backing `res.sendFile()` is actually
-		  the same code, so HTTP cache support etc is identical.
+		 The following example illustrates how `res.sendFile()` may
+		 be used as an alternative for the `static()` middleware for
+		 dynamic situations. The code backing `res.sendFile()` is actually
+		 the same code, so HTTP cache support etc is identical.
 		
-		     app.get('/user/:uid/photos/:file', function(req, res){
-		       var uid = req.params.uid
-		         , file = req.params.file;
+		    app.get('/user/:uid/photos/:file', function(req, res){
+		      var uid = req.params.uid
+		        , file = req.params.file;
 		
-		       req.user.mayViewFilesFrom(uid, function(yes){
-		         if (yes) {
-		           res.sendFile('/uploads/' + uid + '/' + file);
-		         } else {
-		           res.send(403, 'Sorry! you cant see that.');
-		         }
-		       });
-		     });
+		      req.user.mayViewFilesFrom(uid, function(yes){
+		        if (yes) {
+		          res.sendFile('/uploads/' + uid + '/' + file);
+		        } else {
+		          res.send(403, 'Sorry! you cant see that.');
+		        }
+		      });
+		    });
 	**/
 	@:overload(function(path:String, options:Dynamic, ?fn:Errback):Void { })
 	function sendFile(path:String, ?fn:Errback):Void;
@@ -119,11 +119,11 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		     res.type('.html');
-		     res.type('html');
-		     res.type('json');
-		     res.type('application/json');
-		     res.type('png');
+		    res.type('.html');
+		    res.type('html');
+		    res.type('json');
+		    res.type('application/json');
+		    res.type('png');
 	**/
 	function contentType(type:String):Response<ResBody>;
 	/**
@@ -132,11 +132,11 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		     res.type('.html');
-		     res.type('html');
-		     res.type('json');
-		     res.type('application/json');
-		     res.type('png');
+		    res.type('.html');
+		    res.type('html');
+		    res.type('json');
+		    res.type('application/json');
+		    res.type('png');
 	**/
 	function type(type:String):Response<ResBody>;
 	/**
@@ -154,36 +154,36 @@ typedef Response<ResBody> = {
 		you may alter this within the callback using `res.type()`
 		or `res.set('Content-Type', ...)`.
 		
-		    res.format({
-		      'text/plain': function(){
-		        res.send('hey');
-		      },
+		   res.format({
+		     'text/plain': function(){
+		       res.send('hey');
+		     },
 		
-		      'text/html': function(){
-		        res.send('<p>hey</p>');
-		      },
+		     'text/html': function(){
+		       res.send('<p>hey</p>');
+		     },
 		
-		      'appliation/json': function(){
-		        res.send({ message: 'hey' });
-		      }
-		    });
+		     'appliation/json': function(){
+		       res.send({ message: 'hey' });
+		     }
+		   });
 		
 		In addition to canonicalized MIME types you may
 		also use extnames mapped to these types:
 		
-		    res.format({
-		      text: function(){
-		        res.send('hey');
-		      },
+		   res.format({
+		     text: function(){
+		       res.send('hey');
+		     },
 		
-		      html: function(){
-		        res.send('<p>hey</p>');
-		      },
+		     html: function(){
+		       res.send('<p>hey</p>');
+		     },
 		
-		      json: function(){
-		        res.send({ message: 'hey' });
-		      }
-		    });
+		     json: function(){
+		       res.send({ message: 'hey' });
+		     }
+		   });
 		
 		By default Express passes an `Error`
 		with a `.status` of 406 to `next(err)`
@@ -202,9 +202,9 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		    res.set('Foo', ['bar', 'baz']);
-		    res.set('Accept', 'application/json');
-		    res.set({ Accept: 'text/plain', 'X-API-Key': 'tobi' });
+		   res.set('Foo', ['bar', 'baz']);
+		   res.set('Accept', 'application/json');
+		   res.set({ Accept: 'text/plain', 'X-API-Key': 'tobi' });
 		
 		Aliased as `res.header()`.
 	**/
@@ -226,17 +226,17 @@ typedef Response<ResBody> = {
 		
 		Options:
 		
-		    - `maxAge`   max-age in milliseconds, converted to `expires`
-		    - `signed`   sign the cookie
-		    - `path`     defaults to "/"
+		   - `maxAge`   max-age in milliseconds, converted to `expires`
+		   - `signed`   sign the cookie
+		   - `path`     defaults to "/"
 		
 		Examples:
 		
-		    // "Remember Me" for 15 minutes
-		    res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+		   // "Remember Me" for 15 minutes
+		   res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 		
-		    // save as above
-		    res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+		   // save as above
+		   res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
 	**/
 	@:overload(function(name:String, val:Dynamic, options:CookieOptions):Response<ResBody> { })
 	@:overload(function(name:String, val:Dynamic):Response<ResBody> { })
@@ -250,22 +250,22 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		    res.location('/foo/bar').;
-		    res.location('http://example.com');
-		    res.location('../login'); // /blog/post/1 -> /blog/login
+		   res.location('/foo/bar').;
+		   res.location('http://example.com');
+		   res.location('../login'); // /blog/post/1 -> /blog/login
 		
 		Mounting:
 		
-		   When an application is mounted and `res.location()`
-		   is given a path that does _not_ lead with "/" it becomes
-		   relative to the mount-point. For example if the application
-		   is mounted at "/blog", the following would become "/blog/login".
+		  When an application is mounted and `res.location()`
+		  is given a path that does _not_ lead with "/" it becomes
+		  relative to the mount-point. For example if the application
+		  is mounted at "/blog", the following would become "/blog/login".
 		
-		      res.location('login');
+		     res.location('login');
 		
-		   While the leading slash would result in a location of "/login":
+		  While the leading slash would result in a location of "/login":
 		
-		      res.location('/login');
+		     res.location('/login');
 	**/
 	function location(url:String):Response<ResBody>;
 	/**
@@ -278,11 +278,11 @@ typedef Response<ResBody> = {
 		
 		Examples:
 		
-		    res.redirect('/foo/bar');
-		    res.redirect('http://example.com');
-		    res.redirect(301, 'http://example.com');
-		    res.redirect('http://example.com', 301);
-		    res.redirect('../login'); // /blog/post/1 -> /blog/login
+		   res.redirect('/foo/bar');
+		   res.redirect('http://example.com');
+		   res.redirect(301, 'http://example.com');
+		   res.redirect('http://example.com', 301);
+		   res.redirect('../login'); // /blog/post/1 -> /blog/login
 	**/
 	@:overload(function(status:Float, url:String):Void { })
 	@:overload(function(url:String, status:Float):Void { })
@@ -294,8 +294,8 @@ typedef Response<ResBody> = {
 		
 		Options:
 		
-		  - `cache`     boolean hinting to the engine it should cache
-		  - `filename`  filename of the view being rendered
+		 - `cache`     boolean hinting to the engine it should cache
+		 - `filename`  filename of the view being rendered
 	**/
 	@:overload(function(view:String, ?callback:(err:js.lib.Error, html:String) -> Void):Void { })
 	function render(view:String, ?options:Dynamic, ?callback:(err:js.lib.Error, html:String) -> Void):Void;
@@ -305,7 +305,7 @@ typedef Response<ResBody> = {
 		Adds the field to the Vary response header, if it is not there already.
 		Examples:
 		
-		     res.vary('User-Agent').render('docs');
+		    res.vary('User-Agent').render('docs');
 	**/
 	function vary(field:String):Response<ResBody>;
 	var app : Application;
@@ -344,7 +344,7 @@ typedef Response<ResBody> = {
 	function getHeaderNames():Array<String>;
 	function hasHeader(name:String):Bool;
 	function removeHeader(name:String):Void;
-	function addTrailers(headers:ts.AnyOf2<node.http.OutgoingHttpHeaders, Array<ts.Tuple2<String, String>>>):Void;
+	function addTrailers(headers:ts.AnyOf2<Array<ts.Tuple2<String, String>>, node.http.OutgoingHttpHeaders>):Void;
 	function flushHeaders():Void;
 	var writable : Bool;
 	final writableHighWaterMark : Float;
@@ -422,7 +422,7 @@ typedef Response<ResBody> = {
 	@:overload(function(event:String, listener:(src:node.stream.Readable) -> Void):Response<ResBody> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody> { })
 	function removeListener(event:String, listener:() -> Void):Response<ResBody>;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Response<ResBody>;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Response<ResBody>;
 	function setMaxListeners(n:Float):Response<ResBody>;

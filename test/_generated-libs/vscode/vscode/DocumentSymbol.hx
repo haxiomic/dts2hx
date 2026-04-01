@@ -26,7 +26,7 @@ package vscode;
 		Tags for this symbol.
 	**/
 	@:optional
-	var tags : haxe.ds.ReadOnlyArray<Int>;
+	var tags : haxe.ds.ReadOnlyArray<SymbolTag>;
 	/**
 		The range enclosing this symbol not including leading/trailing whitespace but everything else, e.g. comments and code.
 	**/

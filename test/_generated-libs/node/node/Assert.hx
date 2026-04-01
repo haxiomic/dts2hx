@@ -3,8 +3,8 @@ package node;
 @:jsRequire("assert") @valueModuleOnly extern class Assert {
 	@:selfCall
 	static function call(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):Any { })
-	static function fail(?message:ts.AnyOf2<String, js.lib.Error>):Any;
+	@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):ts.Never { })
+	static function fail(?message:ts.AnyOf2<String, js.lib.Error>):ts.Never;
 	static function ok(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 	static function equal(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 	static function notEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
@@ -26,8 +26,8 @@ package node;
 	static final strict : {
 		@:selfCall
 		function call(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):Any { })
-		function fail(?message:ts.AnyOf2<String, js.lib.Error>):Any;
+		@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):ts.Never { })
+		function fail(?message:ts.AnyOf2<String, js.lib.Error>):ts.Never;
 		function ok(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		function equal(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
 		function notEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;

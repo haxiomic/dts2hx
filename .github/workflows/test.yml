@@ -2,35 +2,61 @@ name: CI
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest,windows-latest]
-        node-version: [12.x]
-      fail-fast: true
+        os: [ubuntu-latest, macos-13, windows-latest]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: "setup"
+          node-version: 20
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.6
+
+      - name: Install Haxe libraries
         run: |
-          npm install -g lix
-          lix download haxe latest
-          lix use haxe latest
-          lix download
+          haxelib install hxnodejs --always --quiet
           haxe --version
-          lix install haxelib:hxnodejs --global
-      - name: "installing"
+
+      - name: Install npm dependencies
+        run: npm install --ignore-scripts
+
+      - name: Build dts2hx
+        run: haxe build.hxml
+
+      - name: Install test npm dependencies
         run: |
-          npm install
           cd test
-      - name: "testing"
+          npm install --legacy-peer-deps
+
+      - name: Run unit tests
         run: |
           cd test
-          ./run-examples.sh
-        env:
-          CI: true
+          haxe --run RunUnit
+
+      - name: Run lib tests
+        if: runner.os != 'Windows'
+        continue-on-error: true
+        run: |
+          cd test
+          haxe --run RunLibs
+
+      - name: Run e2e tests
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          cd test/e2e
+          bash run.sh

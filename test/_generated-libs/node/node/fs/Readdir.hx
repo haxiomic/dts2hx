@@ -2,14 +2,6 @@ package node.fs;
 
 /**
 	Asynchronous readdir(3) - read a directory.
-	
-	Asynchronous readdir(3) - read a directory.
-	
-	Asynchronous readdir(3) - read a directory.
-	
-	Asynchronous readdir(3) - read a directory.
-	
-	Asynchronous readdir(3) - read a directory.
 **/
 @:jsRequire("fs", "readdir") @valueModuleOnly extern class Readdir {
 	/**

@@ -8,7 +8,7 @@ package vscode;
 		Creates a new task.
 	**/
 	@:overload(function(taskDefinition:TaskDefinition, name:String, source:String, ?execution:ts.AnyOf2<ProcessExecution, ShellExecution>, ?problemMatchers:ts.AnyOf2<String, Array<String>>):Task { })
-	function new(taskDefinition:TaskDefinition, scope:ts.AnyOf2<WorkspaceFolder, Int>, name:String, source:String, ?execution:ts.AnyOf3<ProcessExecution, ShellExecution, CustomExecution>, ?problemMatchers:ts.AnyOf2<String, Array<String>>);
+	function new(taskDefinition:TaskDefinition, scope:ts.AnyOf2<WorkspaceFolder, TaskScope>, name:String, source:String, ?execution:ts.AnyOf3<ProcessExecution, ShellExecution, CustomExecution>, ?problemMatchers:ts.AnyOf2<String, Array<String>>);
 	/**
 		The task's definition.
 	**/
@@ -17,7 +17,7 @@ package vscode;
 		The task's scope.
 	**/
 	@:optional
-	final scope : ts.AnyOf2<WorkspaceFolder, Int>;
+	final scope : ts.AnyOf2<WorkspaceFolder, TaskScope>;
 	/**
 		The task's name
 	**/

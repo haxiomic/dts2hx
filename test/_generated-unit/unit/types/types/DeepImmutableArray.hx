@@ -10,12 +10,11 @@ typedef DeepImmutableArray<T> = {
 	**/
 	function toString():String;
 	/**
-		Returns a string representation of an array. The elements are converted to string using their toLocalString methods.
+		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:Dynamic):String { })
 	function toLocaleString():String;
 	/**
-		Combines two or more arrays.
-		
 		Combines two or more arrays.
 	**/
 	@:overload(function(items:haxe.extern.Rest<ts.AnyOf2<js.lib.ConcatArray<DeepImmutable<T>>, DeepImmutable<T>>>):Array<DeepImmutable<T>> { })
@@ -39,11 +38,12 @@ typedef DeepImmutableArray<T> = {
 	/**
 		Determines whether all the members of an array satisfy the specified test.
 	**/
-	function every(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
+	@:overload(function(predicate:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool { })
+	function every<S:(Null<ts.AnyOf6<String, Float, Bool, haxe.Constraints.Function, { }, DeepImmutableArray<Any>>>)>(predicate:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Bool;
 	/**
 		Determines whether the specified callback function returns true for any element of an array.
 	**/
-	function some(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
+	function some(predicate:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Bool;
 	/**
 		Performs the specified action for each element in an array.
 	**/
@@ -54,22 +54,16 @@ typedef DeepImmutableArray<T> = {
 	function map<U>(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> U, ?thisArg:Dynamic):Array<U>;
 	/**
 		Returns the elements of an array that meet the condition specified in a callback function.
-		
-		Returns the elements of an array that meet the condition specified in a callback function.
 	**/
-	@:overload(function(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Array<DeepImmutable<T>> { })
-	function filter<S>(callbackfn:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Array<S>;
+	@:overload(function(predicate:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Array<DeepImmutable<T>> { })
+	function filter<S:(Null<ts.AnyOf6<String, Float, Bool, haxe.Constraints.Function, { }, DeepImmutableArray<Any>>>)>(predicate:(value:DeepImmutable<T>, index:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Array<S>;
 	/**
-		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>, initialValue:DeepImmutable<T>):DeepImmutable<T> { })
 	@:overload(function<U>(callbackfn:(previousValue:U, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> U, initialValue:U):U { })
 	function reduce(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>):DeepImmutable<T>;
 	/**
-		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
-		
 		Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 	**/
 	@:overload(function(callbackfn:(previousValue:DeepImmutable<T>, currentValue:DeepImmutable<T>, currentIndex:Float, array:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> DeepImmutable<T>, initialValue:DeepImmutable<T>):DeepImmutable<T> { })
@@ -80,7 +74,7 @@ typedef DeepImmutableArray<T> = {
 		otherwise.
 	**/
 	@:overload(function(predicate:(value:DeepImmutable<T>, index:Float, obj:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Any, ?thisArg:Dynamic):Null<DeepImmutable<T>> { })
-	function find<S>(predicate:(value:DeepImmutable<T>, index:Float, obj:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Null<S>;
+	function find<S:(Null<ts.AnyOf6<String, Float, Bool, haxe.Constraints.Function, { }, DeepImmutableArray<Any>>>)>(predicate:(value:DeepImmutable<T>, index:Float, obj:haxe.ds.ReadOnlyArray<DeepImmutable<T>>) -> Bool, ?thisArg:Dynamic):Null<S>;
 	/**
 		Returns the index of the first element in the array where predicate is true, and -1
 		otherwise.
@@ -89,13 +83,13 @@ typedef DeepImmutableArray<T> = {
 	/**
 		Returns an iterable of key, value pairs for every entry in the array
 	**/
-	function entries():js.lib.IterableIterator<ts.Tuple2<Float, DeepImmutable<T>>>;
+	function entries():js.lib.ArrayIterator<ts.Tuple2<Float, DeepImmutable<T>>>;
 	/**
 		Returns an iterable of keys in the array
 	**/
-	function keys():js.lib.IterableIterator<Float>;
+	function keys():js.lib.ArrayIterator<Float>;
 	/**
 		Returns an iterable of values in the array
 	**/
-	function values():js.lib.IterableIterator<DeepImmutable<T>>;
+	function values():js.lib.ArrayIterator<DeepImmutable<T>>;
 };

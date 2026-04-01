@@ -11,6 +11,10 @@ typedef DateConstructor = {
 	/**
 		Returns the number of milliseconds between midnight, January 1, 1970 Universal Coordinated Time (UTC) (or GMT) and the specified date.
 	**/
-	function UTC(year:Float, month:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Float;
+	@:overload(function(year:Float, ?monthIndex:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Float { })
+	function UTC(year:Float, monthIndex:Float, ?date:Float, ?hours:Float, ?minutes:Float, ?seconds:Float, ?ms:Float):Float;
+	/**
+		Returns the number of milliseconds elapsed since midnight, January 1, 1970 Universal Coordinated Time (UTC).
+	**/
 	function now():Float;
 };

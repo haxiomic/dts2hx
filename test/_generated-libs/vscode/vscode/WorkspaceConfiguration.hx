@@ -67,8 +67,6 @@ package vscode;
 typedef WorkspaceConfiguration = {
 	/**
 		Return a value from this configuration.
-		
-		Return a value from this configuration.
 	**/
 	@:overload(function<T>(section:String, defaultValue:T):T { })
 	function get<T>(section:String):Null<T>;
@@ -120,5 +118,5 @@ typedef WorkspaceConfiguration = {
 		
 		*Note:* To remove a configuration value use `undefined`, like so: `config.update('somekey', undefined)`
 	**/
-	function update(section:String, value:Dynamic, ?configurationTarget:ts.AnyOf2<Bool, Int>, ?overrideInLanguage:Bool):global.Thenable<ts.Undefined>;
+	function update(section:String, value:Dynamic, ?configurationTarget:ts.AnyOf2<Bool, ConfigurationTarget>, ?overrideInLanguage:Bool):global.Thenable<ts.Undefined>;
 };

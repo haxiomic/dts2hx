@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract CompressedPixelFormat(Int) from Int to Int {
+@:native("THREE") extern enum abstract CompressedPixelFormat(Int) from Int to Int {
 	final RGB_S3TC_DXT1_Format : CompressedPixelFormat;
 	final RGBA_S3TC_DXT1_Format : CompressedPixelFormat;
 	final RGBA_S3TC_DXT3_Format : CompressedPixelFormat;

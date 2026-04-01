@@ -9,7 +9,7 @@ typedef TerminalExitStatus = {
 		- Zero: the terminal process or custom execution succeeded.
 		- Non-zero: the terminal process or custom execution failed.
 		- `undefined`: the user forcibly closed the terminal or a custom execution exited
-		   without providing an exit code.
+		  without providing an exit code.
 	**/
 	final code : Null<Float>;
 };

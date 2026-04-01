@@ -19,7 +19,7 @@ package node.fs;
 	/**
 		Asynchronously reads data from the file referenced by the supplied `FileHandle`.
 	**/
-	static function read<TBuffer>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	static function read<TBuffer:(ts.AnyOf2<js.lib.Uint8Array_<js.lib.ArrayBufferLike>, global.Buffer>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesRead : Float;
 		var buffer : TBuffer;
 	}>;
@@ -36,7 +36,7 @@ package node.fs;
 		var bytesWritten : Float;
 		var buffer : String;
 	}> { })
-	static function write<TBuffer>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
+	static function write<TBuffer:(ts.AnyOf2<js.lib.Uint8Array_<js.lib.ArrayBufferLike>, global.Buffer>)>(handle:node.fs.promises.FileHandle, buffer:TBuffer, ?offset:Float, ?length:Float, ?position:Float):js.lib.Promise<{
 		var bytesWritten : Float;
 		var buffer : TBuffer;
 	}>;
@@ -70,19 +70,11 @@ package node.fs;
 	static function mkdir(path:PathLike, ?options:ts.AnyOf3<String, Float, MakeDirectoryOptions>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous readdir(3) - read a directory.
-		
-		Asynchronous readdir(3) - read a directory.
-		
-		Asynchronous readdir(3) - read a directory.
 	**/
 	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<Array<global.Buffer>> { })
 	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<ts.AnyOf2<Array<String>, Array<global.Buffer>>> { })
 	static function readdir(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):js.lib.Promise<Array<String>>;
 	/**
-		Asynchronous readlink(2) - read value of a symbolic link.
-		
-		Asynchronous readlink(2) - read value of a symbolic link.
-		
 		Asynchronous readlink(2) - read value of a symbolic link.
 	**/
 	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
@@ -146,21 +138,11 @@ package node.fs;
 	static function futimes(handle:node.fs.promises.FileHandle, atime:ts.AnyOf3<String, Float, js.lib.Date>, mtime:ts.AnyOf3<String, Float, js.lib.Date>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronous realpath(3) - return the canonicalized absolute pathname.
-		
-		Asynchronous realpath(3) - return the canonicalized absolute pathname.
-		
-		Asynchronous realpath(3) - return the canonicalized absolute pathname.
 	**/
 	@:overload(function(path:PathLike, options:ts.AnyOf2<String, { var encoding : String; }>):js.lib.Promise<global.Buffer> { })
 	@:overload(function(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : String; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
 	static function realpath(path:PathLike, ?options:ts.AnyOf2<String, { @:optional var encoding : global.BufferEncoding; }>):js.lib.Promise<String>;
 	/**
-		Asynchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required `prefix` to create a unique temporary directory.
-		
-		Asynchronously creates a unique temporary directory.
-		Generates six random characters to be appended behind a required `prefix` to create a unique temporary directory.
-		
 		Asynchronously creates a unique temporary directory.
 		Generates six random characters to be appended behind a required `prefix` to create a unique temporary directory.
 	**/
@@ -178,12 +160,8 @@ package node.fs;
 	static function appendFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, data:Dynamic, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var mode : ts.AnyOf2<String, Float>; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.Undefined>;
 	/**
 		Asynchronously reads the entire contents of a file.
-		
-		Asynchronously reads the entire contents of a file.
-		
-		Asynchronously reads the entire contents of a file.
 	**/
 	@:overload(function(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, options:ts.AnyOf2<String, { var encoding : global.BufferEncoding; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<String> { })
 	@:overload(function(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:ts.AnyOf2<String, { @:optional var encoding : String; @:optional var flag : ts.AnyOf2<String, Float>; }>):js.lib.Promise<ts.AnyOf2<String, global.Buffer>> { })
-	static function readFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : Any; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
+	static function readFile(path:ts.AnyOf4<String, global.Buffer, node.url.URL, node.fs.promises.FileHandle>, ?options:{ @:optional var encoding : ts.Never; @:optional var flag : ts.AnyOf2<String, Float>; }):js.lib.Promise<global.Buffer>;
 }

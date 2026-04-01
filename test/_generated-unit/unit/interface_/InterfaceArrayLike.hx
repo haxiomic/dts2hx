@@ -1,3 +1,3 @@
 package unit.interface_;
 
-typedef InterfaceArrayLike<T> = { };
+typedef InterfaceArrayLike<T> = Array<T>;

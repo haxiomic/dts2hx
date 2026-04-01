@@ -19,7 +19,7 @@ typedef StringNullableChain = {
 	function forEach(?iteratee:StringIterator<Dynamic>):StringNullableChain;
 	function forEachRight(?iteratee:StringIterator<Dynamic>):StringNullableChain;
 	function groupBy(?iteratee:ValueIteratee<String>):ObjectChain<Dictionary<String>>;
-	function keyBy(?iteratee:ValueIterateeCustom<String, ts.AnyOf3<String, Float, js.lib.Symbol>>):ObjectChain<Dictionary<String>>;
+	function keyBy(?iteratee:ValueIterateeCustom<String, PropertyName>):ObjectChain<Dictionary<String>>;
 	@:overload(function():CollectionChain<String> { })
 	function map<TResult>(iteratee:StringIterator<TResult>):CollectionChain<TResult>;
 	function partition(callback:StringIterator<Any>):LoDashExplicitWrapper<ts.Tuple2<Array<String>, Array<String>>>;
@@ -52,8 +52,8 @@ typedef StringNullableChain = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<Null<String>>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<Null<String>, Null<TResult>>):ts.AnyOf2<StringChain, ExpChain<TResult>> { })
 	@:overload(function():StringNullableChain { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<Null<String>, TResult>):ExpChain<TResult>;
-	function conformsTo(source:Null<String>):PrimitiveChain<Bool>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<Null<String>, TResult>):ExpChain<TResult>;
+	function conformsTo(source:ConformsPredicateObject<Null<String>>):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;
 	function gte(other:Dynamic):PrimitiveChain<Bool>;
@@ -118,29 +118,29 @@ typedef StringNullableChain = {
 	function random(?floating:Bool):PrimitiveChain<Float>;
 	function entries():CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf5<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<Null<String>, Any>>):StringNullableChain;
-	function findLastKey(?predicate:ts.AnyOf5<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<Null<String>, Any>>):StringNullableChain;
+	function findKey(?predicate:ObjectIteratee<Null<String>>):StringNullableChain;
+	function findLastKey(?predicate:ObjectIteratee<Null<String>>):StringNullableChain;
 	function forIn(?iteratee:ObjectIterator<Null<String>, Dynamic>):StringNullableChain;
 	function forInRight(?iteratee:ObjectIterator<Null<String>, Dynamic>):StringNullableChain;
 	function forOwn(?iteratee:ObjectIterator<Null<String>, Dynamic>):StringNullableChain;
 	function forOwnRight(?iteratee:ObjectIterator<Null<String>, Dynamic>):StringNullableChain;
 	function functions():CollectionChain<String>;
 	function functionsIn():CollectionChain<String>;
-	function has(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):PrimitiveChain<Bool>;
-	function hasIn(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):PrimitiveChain<Bool>;
+	function has(path:PropertyPath):PrimitiveChain<Bool>;
+	function hasIn(path:PropertyPath):PrimitiveChain<Bool>;
 	function invert():ObjectChain<Dictionary<String>>;
-	function invoke(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<Dynamic>;
+	function invoke(path:PropertyPath, args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<Dynamic>;
 	function keys():CollectionChain<String>;
 	function keysIn():CollectionChain<String>;
-	function result<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):ExpChain<TResult>;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):ExpChain<TResult> { })
-	function set(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):StringNullableChain;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<Null<String>>):ExpChain<TResult> { })
-	function setWith(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<Null<String>>):StringNullableChain;
+	function result<TResult>(path:PropertyPath, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):ExpChain<TResult>;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic):ExpChain<TResult> { })
+	function set(path:PropertyPath, value:Dynamic):StringNullableChain;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<Null<String>>):ExpChain<TResult> { })
+	function setWith(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<Null<String>>):StringNullableChain;
 	function toPairs():CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function toPairsIn():CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function unset(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):PrimitiveChain<Bool>;
-	function update(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):ObjectChain<Dynamic>;
+	function unset(path:PropertyPath):PrimitiveChain<Bool>;
+	function update(path:PropertyPath, updater:(value:Dynamic) -> Dynamic):ObjectChain<Dynamic>;
 	function chain():StringNullableChain;
 	function commit():StringNullableChain;
 	function plant(value:Any):StringNullableChain;
@@ -183,7 +183,7 @@ typedef StringNullableChain = {
 	function words(?pattern:ts.AnyOf2<String, js.lib.RegExp>):CollectionChain<String>;
 	function attempt<TResult>(args:haxe.extern.Rest<Dynamic>):ts.AnyOf2<ObjectChain<js.lib.Error>, ExpChain<TResult>>;
 	function bindAll(methodNames:haxe.extern.Rest<Many<String>>):StringNullableChain;
-	function conforms():FunctionChain<(value:Null<String>) -> Bool>;
+	function conforms():FunctionChain<(value:ConformsPredicateObject<Null<String>>) -> Bool>;
 	function constant():FunctionChain<() -> Null<String>>;
 	@:overload(function<TDefault>(defaultValue:TDefault):ts.AnyOf2<StringChain, ExpChain<TDefault>> { })
 	function defaultTo(defaultValue:Null<String>):StringChain;
@@ -192,14 +192,14 @@ typedef StringNullableChain = {
 	@:overload(function<SrcValue, Value>(srcValue:SrcValue):FunctionChain<(value:Value) -> Bool> { })
 	function matchesProperty<SrcValue>(srcValue:SrcValue):FunctionChain<(value:Dynamic) -> Bool>;
 	function method(args:haxe.extern.Rest<Dynamic>):FunctionChain<(object:Dynamic) -> Dynamic>;
-	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	@:overload(function(?options:MixinOptions):LoDashExplicitWrapper<LoDashStatic> { })
 	function mixin(source:Dictionary<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>, ?options:MixinOptions):StringNullableChain;
 	function noConflict():LoDashExplicitWrapper<LoDashStatic>;
 	function noop(args:haxe.extern.Rest<Dynamic>):PrimitiveChain<Null<Any>>;
 	function nthArg():FunctionChain<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function property<TObj, TResult>():FunctionChain<(obj:TObj) -> TResult>;
-	function propertyOf():LoDashExplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function propertyOf():LoDashExplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	function range(?end:Float, ?step:Float):CollectionChain<Float>;
 	function rangeRight(?end:Float, ?step:Float):CollectionChain<Float>;
 	function stubArray():CollectionChain<Dynamic>;
