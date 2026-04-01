@@ -21,7 +21,8 @@ for mod in \
   ./build/modules/events \
   ./build/modules/cjs-export \
   ./build/modules/barrel \
-  ./build/modules/patterns; do
+  ./build/modules/patterns \
+  ./build/modules/advanced; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
 # Ambient declarations (global + declare module)

@@ -10,6 +10,12 @@ import global.AmbientGlobal;
 import global.GlobalLogger;
 import global.MergedNS;
 import build.modules.Patterns;
+import build.modules.advanced.QueryBuilder;
+import build.modules.advanced.Circle;
+import build.modules.advanced.Rect;
+import build.modules.advanced.Stream;
+import build.modules.advanced.Converter;
+import build.modules.advanced.AppError;
 
 /**
 	End-to-end test: TypeScript → JS + .d.ts → dts2hx → Haxe externs → Haxe → JS → run
@@ -89,6 +95,11 @@ class TestE2E {
 		testRegistry();
 		testOptionalInterface();
 		testPromises();
+		testQueryBuilder();
+		testClassHierarchy();
+		testInterfaceExtends();
+		testOverloadedClass();
+		testErrorSubclass();
 
 		Sys.println('Results: $passed passed, $failed failed');
 		if (failed > 0) Sys.exit(1);
@@ -464,11 +475,57 @@ class TestE2E {
 
 	static function testPromises() {
 		begin("promise-based API");
-		// fetchData returns a Promise — validate it resolves
 		Patterns.fetchData("https://example.com").then(data -> {
-			// This runs async but in the test context it's resolved synchronously by our impl
 			assert(data == "data from https://example.com", "fetchData resolves");
 		});
+	}
+
+	static function testQueryBuilder() {
+		begin("method chaining with this-return (QueryBuilder)");
+		var sql = new QueryBuilder("users").where("age > 18").where("active = true").take(10).build();
+		eq(sql, "SELECT * FROM users WHERE age > 18 AND active = true LIMIT 10", "query builder chain");
+
+		var simple = new QueryBuilder("posts").build();
+		eq(simple, "SELECT * FROM posts", "query builder no conditions");
+	}
+
+	static function testClassHierarchy() {
+		begin("class hierarchy");
+		var circle = new Circle(5);
+		eq(circle.kind, "circle", "Circle.kind");
+		approx(circle.area(), 78.539, "Circle.area");
+		eq(circle.describe(), "Shape(circle)", "inherited describe()");
+
+		var rect = new Rect(3, 4);
+		eq(rect.kind, "rect", "Rect.kind");
+		eq(rect.area(), 12.0, "Rect.area");
+		eq(rect.width, 3.0, "Rect.width");
+	}
+
+	static function testInterfaceExtends() {
+		begin("interface extends (ReadWrite)");
+		var stream = new Stream();
+		stream.write("hello ");
+		stream.write("world");
+		eq(stream.getBuffer(), "hello world", "Stream.write + getBuffer");
+		eq(stream.read(), "hello world", "Stream.read");
+		stream.seek(6);
+		eq(stream.read(), "world", "Stream.seek + read");
+	}
+
+	static function testOverloadedClass() {
+		begin("overloaded class method");
+		var conv = new Converter();
+		eq(conv.convert("hello"), 5, "convert string→number");
+		eq(conv.convert(42), "42", "convert number→string");
+	}
+
+	static function testErrorSubclass() {
+		begin("Error subclass");
+		var err = new AppError("something failed", 404);
+		eq(err.message, "something failed", "AppError.message");
+		eq(err.code, 404.0, "AppError.code");
+		assert(js.Syntax.instanceof(err, js.lib.Error), "AppError instanceof Error");
 	}
 
 	static function testStack() {
