@@ -198,7 +198,7 @@ class SupportTypes {
 	static public function getBigIntType(ctx: ConverterContext): ComplexType {
 		var typePath = {
 			pack: ['ts'],
-			name: 'BigInt_',
+			name: 'BigInt',
 		};
 
 		var existingModule = ctx.getGeneratedModule(typePath);
@@ -207,7 +207,7 @@ class SupportTypes {
 				/** Returns a string representation of the BigInt value. **/
 				public function toString(?radix: Float): String;
 				/** Returns the primitive BigInt value. **/
-				public function valueOf(): ts.BigInt_;
+				public function valueOf(): ts.BigInt;
 				public function toLocaleString(?locales: String, ?options: Dynamic): String;
 			}).fields;
 

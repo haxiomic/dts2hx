@@ -1575,12 +1575,13 @@ class ConverterContext {
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, moduleSymbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
 			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, moduleSymbol, accessContext, preferInterfaceStructure);
+			var maxParams: Null<Int> = Reflect.field(hxTypePath, 'stdLibTypeParamCount');
 			var hxParams = if (classOrInterfaceType.typeParameters != null) {
 				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration)));
 			} else null;
 			// clamp type params to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
-			if (hxParams != null && hxTypePath.stdLibTypeParamCount != null && hxParams.length > hxTypePath.stdLibTypeParamCount) {
-				hxParams = hxParams.slice(0, hxTypePath.stdLibTypeParamCount);
+			if (hxParams != null && maxParams != null && hxParams.length > maxParams) {
+				hxParams = hxParams.slice(0, maxParams);
 			}
 			hxTypePath.params = hxParams;
 			TPath(hxTypePath);
