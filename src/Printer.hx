@@ -17,6 +17,9 @@ using Lambda;
 // @:nullSafety
 class Printer extends haxe.macro.Printer {
 
+	/** When true, emit `enum abstract` instead of `@:enum abstract` (Haxe 4.3+ syntax) **/
+	public var useEnumAbstractKeyword: Bool = false;
+
 	/**
 		Prints a block of fields, accounting for the multi-line field setting.
 		Replaces printStructure()
@@ -127,9 +130,13 @@ class Printer extends haxe.macro.Printer {
 		- Switch to using printFieldBlock
 	**/
 	public override function printTypeDefinition(t:TypeDefinition, printPackage = true):String {
+		var isEnumAbstract = useEnumAbstractKeyword && t.kind.match(TDAbstract(_, _, _, _)) && t.meta != null && t.meta.exists(m -> m.name == ':enum');
+		var meta = if (isEnumAbstract) {
+			t.meta.filter(m -> m.name != ':enum');
+		} else t.meta;
 		var str = t == null ? "#NULL" : (printPackage && t.pack.length > 0 && t.pack[0] != "" ? "package " + t.pack.join(".") + ";\n\n" : "")
 			+ (t.doc != null && t.doc != "" ? "/**\n" + tabString + StringTools.replace(t.doc, "\n", "\n" + tabString) + "\n**/\n" : "")
-			+ (t.meta != null && t.meta.length > 0 ? t.meta.map(printMetadata).join(" ") + " " : "")
+			+ (meta != null && meta.length > 0 ? meta.map(printMetadata).join(" ") + " " : "")
 			+ (t.isExtern ? "extern " : "")
 			+ switch (t.kind) {
 				case TDEnum:
@@ -165,7 +172,8 @@ class Printer extends haxe.macro.Printer {
 					})
 					+ ";";
 				case TDAbstract(tthis, _, from, to):
-					"abstract "
+					(isEnumAbstract ? "enum " : "")
+					+ "abstract "
 					+ t.name
 					+ ((t.params != null && t.params.length > 0) ? "<" + t.params.map(printTypeParamDecl).join(", ") + ">" : "")
 					+ (tthis == null ? "" : "(" + printComplexType(tthis) + ")")

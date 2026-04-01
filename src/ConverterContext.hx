@@ -319,7 +319,7 @@ class ConverterContext {
 
 		// should we queue this symbol for conversion?
 		if (!hxTypePath.isExistingStdLibType) {
-			if (symbol.getDeclarationsArray().exists(d -> d.getSourceFile().hasNoDefaultLib)) {
+			if (symbol.isBuiltIn()) {
 				declarationSymbolQueue.tryEnqueue(symbol);
 			} else {
 				if (!declarationSymbolQueue.has(symbol)) {
@@ -1276,7 +1276,19 @@ class ConverterContext {
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
 			complexTypeFromInterfaceType(cast objectType, moduleSymbol, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
-			complexTypeAnonFromTsType(objectType, moduleSymbol, accessContext, enclosingDeclaration);
+			// Before expanding anonymous types, check if this is actually a built-in type
+			// (e.g. String arriving as Anonymous in constraint positions like `T extends string`).
+			// If so, emit the named reference instead of inlining all ~50 methods.
+			if (objectType.symbol != null && objectType.symbol.isBuiltIn()) {
+				var hxTypePath = getReferencedHaxeTypePath(objectType.symbol, moduleSymbol, accessContext, preferInterfaceStructure);
+				if (Reflect.field(hxTypePath, 'isExistingStdLibType') == true) {
+					TPath(hxTypePath);
+				} else {
+					complexTypeAnonFromTsType(objectType, moduleSymbol, accessContext, enclosingDeclaration);
+				}
+			} else {
+				complexTypeAnonFromTsType(objectType, moduleSymbol, accessContext, enclosingDeclaration);
+			}
 		} else {
 			Log.warn('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
@@ -1505,12 +1517,16 @@ class ConverterContext {
 			// it's a TupleTypeReference if its target is a Tuple
 			complexTypeFromTupleTypeReference(cast typeReference, moduleSymbol, accessContext, enclosingDeclaration);
 		} else {
-			if (typeReference.target == cast typeReference) { // avoid direct cycles
-				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
+			if (typeReference.target == cast typeReference) {
+				// self-referential type reference (e.g. Iterator's target is itself)
+				// resolve via the interface path directly to get proper type name and param clamping
+				if (typeReference.objectFlags & ObjectFlags.ClassOrInterface != 0) {
+					return complexTypeFromGenericType(cast typeReference, moduleSymbol, accessContext, preferInterfaceStructure, enclosingDeclaration);
+				}
 				Log.error('Internal error: recursive type reference');
 				return macro :Dynamic;
 			}
-			
+
 			var hxTarget = complexTypeFromTsType(cast typeReference.target, moduleSymbol, accessContext, enclosingDeclaration, null, preferInterfaceStructure);
 
 			var hxTypeArguments = if (typeReference.typeArguments != null) {
@@ -1522,7 +1538,7 @@ class ConverterContext {
 				case TPath(p):
 					var argumentCount = hxTypeArguments.length;
 					var paramCount = p.params != null ? p.params.length : 0;
-					// clamp type args to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
+					// clamp type args to target's Haxe type param count
 					if (paramCount < argumentCount && paramCount > 0) {
 						hxTypeArguments = hxTypeArguments.slice(0, paramCount);
 					} else if (paramCount != argumentCount && paramCount != 0) {
@@ -1582,6 +1598,12 @@ class ConverterContext {
 			// clamp type params to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
 			if (hxParams != null && maxParams != null && hxParams.length > maxParams) {
 				hxParams = hxParams.slice(0, maxParams);
+			}
+			// TEMP DEBUG
+			@:nullSafety(Off) if (classOrInterfaceType.symbol != null && classOrInterfaceType.symbol.name == 'Iterator') {
+				var accessStr = accessContext.toString();
+				var isBI = classOrInterfaceType.symbol.isBuiltIn();
+				js.Syntax.code("console.log('IFACE Iterator: maxParams=' + {0} + ' hxParams=' + ({1} ? {1}.length : 'null') + ' name=' + {2} + ' access=' + {3} + ' isBuiltIn=' + {4})", maxParams, hxParams, hxTypePath.name, accessStr, isBI);
 			}
 			hxTypePath.params = hxParams;
 			TPath(hxTypePath);

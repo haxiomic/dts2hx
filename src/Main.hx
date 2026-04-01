@@ -377,13 +377,15 @@ class Main {
 		}
 
 		// get std lib type map
+		var systemHaxeVersion: Null<String> = null;
 		var stdLibTypeMap = switch cliOptions.stdLibMode {
 			case None: null;
 			case DefaultTypeMap: defaultStdLibTypeMap;
 			case SystemHaxe:
 				// generate standard library type map using the system version of haxe
 				try {
-					var str = ChildProcess.execSync('haxe --version');
+					var str = Std.string(ChildProcess.execSync('haxe --version')).trim();
+					systemHaxeVersion = str;
 					Console.log('Using standard library of system haxe version <b>$str</>');
 					var typemapPath = Path.join([Node.__dirname, '../', 'src/typemap']);
 					var stdLibJsonStr = ChildProcess.execSync('haxe -D TypeMapMacro --macro "StdLibMacro.getMap(true)" --js not-real.js --no-output', {
@@ -411,7 +413,7 @@ class Main {
 			var moduleName = moduleQueue.dequeue();
 			if (moduleName == null) break; // finished queue
 
-			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, hxnodejsMap, cliOptions);
+			var converterContext = convertTsModule(moduleName, cliOptions.moduleSearchPath, compilerOptions, stdLibTypeMap, hxnodejsMap, cliOptions, systemHaxeVersion);
 			if (converterContext == null) continue;
 			
 			var moduleDependencies = converterContext.moduleDependencies;
@@ -431,7 +433,8 @@ class Main {
 		compilerOptions: CompilerOptions,
 		stdLibTypeMap: Null<TypeMap>,
 		hxnodejsMap: Null<TypeMap>,
-		cliOptions: CliOptions
+		cliOptions: CliOptions,
+		?targetHaxeVersion: String
 	): Null<ConverterContext> {
 		var converter =
 			try {
@@ -455,6 +458,12 @@ class Main {
 		if (!cliOptions.noOutput) {
 			// save modules to files
 			var printer = new Printer();
+			// Haxe 4.3+ supports `enum abstract` keyword syntax (replaces deprecated `@:enum abstract`)
+			// Haxe 4.3+ supports `enum abstract` keyword syntax (replaces deprecated `@:enum abstract`)
+			var haxeVer = if (targetHaxeVersion != null) targetHaxeVersion
+				else if (stdLibTypeMap != null) stdLibTypeMap.haxeVersion
+				else defaultStdLibTypeMap.haxeVersion;
+			printer.useEnumAbstractKeyword = versionAtLeast(haxeVer, 4, 3);
 
 			var libraryName = haxelibLibraryName(converter.packageName != null ? converter.packageName : converter.normalizedInputModuleName);
 			var libraryVersion = converter.inputModule.packageId != null && converter.inputModule.packageId.version != null ? converter.inputModule.packageId.version : 'default';
@@ -571,6 +580,15 @@ class Main {
 
 		`@actions/core.js` -> `actions-core,js`
 	**/
+	static function versionAtLeast(version: String, major: Int, minor: Int): Bool {
+		var parts = version.split('.');
+		if (parts.length < 2) return false;
+		var vMajor = Std.parseInt(parts[0]);
+		var vMinor = Std.parseInt(parts[1]);
+		if (vMajor == null || vMinor == null) return false;
+		return vMajor > major || (vMajor == major && vMinor >= minor);
+	}
+
 	static function haxelibLibraryName(moduleName: String) {
 		var safeName = moduleName.replace('/', '-').replace('\\', '-');
 		// replace directory separators with -

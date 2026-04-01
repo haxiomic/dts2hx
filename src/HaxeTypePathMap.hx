@@ -280,22 +280,25 @@ class HaxeTypePathMap {
 				'String' => {name: 'String', moduleName: 'String', pack: ([] : Array<String>), typeParams: 0},
 				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib'], typeParams: 0},
 				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: ([] : Array<String>), typeParams: 1},
+				'Iterator' => {name: 'Iterator', moduleName: 'Iterator', pack: ([] : Array<String>), typeParams: 1},
 				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe'], typeParams: 0},
 				// map `object` aka `js.lib.Object` to `Dynamic`
 				// maybe in the future we can remove this if `js.lib.Object` could unify with other types
 				'Object' => {name: 'Dynamic', moduleName: 'Dynamic', pack: ([] : Array<String>), typeParams: 0},
 			];
+			// For built-in types, match by symbol name regardless of the access context
+			// (built-in types can be referenced from any access context)
+			if (specialTypeMap.exists(symbol.name)) {
+				var tp = specialTypeMap.get(symbol.name);
+				return {
+					name: tp.name,
+					moduleName: tp.moduleName,
+					pack: tp.pack,
+					isExistingStdLibType: true,
+					stdLibTypeParamCount: tp.typeParams,
+				}
+			}
 			switch access {
-				// match special-case built-ins
-				case Global([{name: name}]) if (specialTypeMap.exists(name)):
-					var tp = specialTypeMap.get(name);
-					return {
-						name: tp.name,
-						moduleName: tp.moduleName,
-						pack: tp.pack,
-						isExistingStdLibType: true,
-						stdLibTypeParamCount: tp.typeParams,
-					}
 				case Global(_):
 					if (stdLibMap != null) {
 						var nativeAccessPath = access.getIdentifierChain().join('.');
