@@ -7,5 +7,6 @@ function main() {
         'vue',
         'vscode',
         'lowdb',
+        'ytdlp-nodejs',
     ],['--noDts2hxVersion']);
 }

@@ -1,6 +1,6 @@
 package global.three;
 
-@:enum @:native("THREE") extern abstract TextureFilter(Int) from Int to Int {
+@:native("THREE") extern enum abstract TextureFilter(Int) from Int to Int {
 	final NearestFilter : TextureFilter;
 	final NearestMipmapNearestFilter : TextureFilter;
 	final NearestMipMapNearestFilter : TextureFilter;

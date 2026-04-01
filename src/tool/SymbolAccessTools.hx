@@ -9,6 +9,11 @@ import haxe.ds.ReadOnlyArray;
 using tool.StringTools;
 using tool.HaxeTools;
 
+enum ImportStyle {
+	JsRequire;
+	JsImport;
+}
+
 class SymbolAccessTools {
 	
 	/**
@@ -39,17 +44,22 @@ class SymbolAccessTools {
 		return extractSymbolChain(access).map(s -> s.name);
 	}
 
-	static public function toAccessMetadata(access: SymbolAccess): MetadataEntry {
+	static public function toAccessMetadata(access: SymbolAccess, importStyle: ImportStyle = JsRequire): MetadataEntry {
 		var pos = getPosition(access);
 		var identifierChain = getIdentifierChain(access);
 		return switch access {
-			case AmbientModule(path, _) | ExportModule(path, _): {
-				name: ':jsRequire',
-				params: [path.unwrapQuotes().toStringExpr(pos)].concat(
-					identifierChain.length > 0 ? [identifierChain.join('.').toStringExpr(pos)] : []
-				),
-				pos: pos,
-			}
+			case AmbientModule(path, _) | ExportModule(path, _):
+				if (importStyle == JsImport) {
+					toJsImportMetadata(path.unwrapQuotes(), identifierChain, pos);
+				} else {
+					{
+						name: ':jsRequire',
+						params: [path.unwrapQuotes().toStringExpr(pos)].concat(
+							identifierChain.length > 0 ? [identifierChain.join('.').toStringExpr(pos)] : []
+						),
+						pos: pos,
+					}
+				}
 			case Global(_): {
 				name: ':native',
 				params: [identifierChain.join('.').toStringExpr(pos)],
@@ -62,6 +72,46 @@ class SymbolAccessTools {
 				pos: pos,
 			}
 		}
+	}
+
+	/**
+		Generate @:js.import metadata for ESM imports.
+		- Named export: `@:js.import("mod", "Name")`
+		- Default export: `@:js.import(@default "mod")`
+		- Module-level (export=): `@:js.import(@default "mod")`
+
+		For relative paths, appends `.js` extension as required by Node ESM resolution.
+	**/
+	static function toJsImportMetadata(modulePath: String, identifierChain: Array<String>, pos: Position): MetadataEntry {
+		// Node ESM requires explicit .js extension for relative imports
+		if (isRelativeSpecifier(modulePath) && !std.StringTools.endsWith(modulePath, '.js')) {
+			modulePath = modulePath + '.js';
+		}
+		var isDefault = identifierChain.length == 0 || (identifierChain.length >= 1 && identifierChain[0] == 'default');
+		return if (isDefault) {
+			{
+				name: ':js.import',
+				params: [{expr: EMeta({name: 'default', pos: pos}, modulePath.toStringExpr(pos)), pos: pos}],
+				pos: pos,
+			}
+		} else {
+			{
+				name: ':js.import',
+				params: [modulePath.toStringExpr(pos)].concat(
+					[identifierChain.join('.').toStringExpr(pos)]
+				),
+				pos: pos,
+			}
+		}
+	}
+
+	/**
+		Determines if a module specifier is a relative path (as opposed to a bare/package specifier).
+		Per the ESM spec, relative specifiers start with `/`, `./`, or `../`.
+		Bare specifiers like `lodash` or `my-library` resolve via node_modules.
+	**/
+	static function isRelativeSpecifier(path: String): Bool {
+		return haxe.io.Path.isAbsolute(path) || std.StringTools.startsWith(path, './') || std.StringTools.startsWith(path, '../');
 	}
 
 	static function getPosition(access: SymbolAccess): Position {

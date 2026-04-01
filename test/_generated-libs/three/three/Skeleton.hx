@@ -7,7 +7,7 @@ package three;
 	var bones : Array<Bone>;
 	var boneTextureWidth : Float;
 	var boneTextureHeight : Float;
-	var boneMatrices : js.lib.Float32Array;
+	var boneMatrices : js.lib.Float32Array_<js.lib.ArrayBuffer>;
 	var boneTexture : DataTexture;
 	var boneInverses : Array<Matrix4>;
 	function calculateInverses(bone:Bone):Void;

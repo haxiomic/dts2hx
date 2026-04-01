@@ -16,14 +16,14 @@ package node.tty;
 	function setKeepAlive(?enable:Bool, ?initialDelay:Float):ReadStream;
 	/**
 		events.EventEmitter
-		   1. close
-		   2. connect
-		   3. data
-		   4. drain
-		   5. end
-		   6. error
-		   7. lookup
-		   8. timeout
+		  1. close
+		  2. connect
+		  3. data
+		  4. drain
+		  5. end
+		  6. error
+		  7. lookup
+		  8. timeout
 	**/
 	@:overload(function(event:String, listener:(had_error:Bool) -> Void):ReadStream { })
 	@:overload(function(event:String, listener:() -> Void):ReadStream { })

@@ -9,14 +9,14 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 		
 		Examples:
 		
-		     req.get('Content-Type');
-		     // => "text/plain"
+		    req.get('Content-Type');
+		    // => "text/plain"
 		
-		     req.get('content-type');
-		     // => "text/plain"
+		    req.get('content-type');
+		    // => "text/plain"
 		
-		     req.get('Something');
-		     // => undefined
+		    req.get('Something');
+		    // => undefined
 		
 		Aliased as `req.header()`.
 	**/
@@ -37,29 +37,29 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 		
 		Examples:
 		
-		     // Accept: text/html
-		     req.accepts('html');
-		     // => "html"
+		    // Accept: text/html
+		    req.accepts('html');
+		    // => "html"
 		
-		     // Accept: text/*, application/json
-		     req.accepts('html');
-		     // => "html"
-		     req.accepts('text/html');
-		     // => "text/html"
-		     req.accepts('json, text');
-		     // => "json"
-		     req.accepts('application/json');
-		     // => "application/json"
+		    // Accept: text/*, application/json
+		    req.accepts('html');
+		    // => "html"
+		    req.accepts('text/html');
+		    // => "text/html"
+		    req.accepts('json, text');
+		    // => "json"
+		    req.accepts('application/json');
+		    // => "application/json"
 		
-		     // Accept: text/*, application/json
-		     req.accepts('image/png');
-		     req.accepts('png');
-		     // => undefined
+		    // Accept: text/*, application/json
+		    req.accepts('image/png');
+		    req.accepts('png');
+		    // => undefined
 		
-		     // Accept: text/*;q=.5, application/json
-		     req.accepts(['html', 'json']);
-		     req.accepts('html, json');
-		     // => "json"
+		    // Accept: text/*;q=.5, application/json
+		    req.accepts(['html', 'json']);
+		    req.accepts('html, json');
+		    // => "json"
 	**/
 	@:overload(function(type:String):ts.AnyOf2<String, Bool> { })
 	@:overload(function(type:Array<String>):ts.AnyOf2<String, Bool> { })
@@ -110,7 +110,7 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 		NOTE: remember that ranges are inclusive, so for example "Range: users=0-3"
 		should respond with 4 users when available, not 3.
 	**/
-	function range(size:Float, ?options:range_parser.Options):Null<ts.AnyOf2<range_parser.Ranges, Int>>;
+	function range(size:Float, ?options:range_parser.Options):Null<ts.AnyOf2<Int, range_parser.Ranges>>;
 	/**
 		Return an array of Accepted media types
 		ordered from highest quality to lowest.
@@ -123,20 +123,20 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 		
 		Examples:
 		
-		      // With Content-Type: text/html; charset=utf-8
-		      req.is('html');
-		      req.is('text/html');
-		      req.is('text/*');
-		      // => true
+		     // With Content-Type: text/html; charset=utf-8
+		     req.is('html');
+		     req.is('text/html');
+		     req.is('text/*');
+		     // => true
 		
-		      // When Content-Type is application/json
-		      req.is('json');
-		      req.is('application/json');
-		      req.is('application/*');
-		      // => true
+		     // When Content-Type is application/json
+		     req.is('json');
+		     req.is('application/json');
+		     req.is('application/*');
+		     // => true
 		
-		      req.is('html');
-		      // => false
+		     req.is('html');
+		     // => false
 	**/
 	function is(type:ts.AnyOf2<String, Array<String>>):Null<ts.AnyOf2<String, Bool>>;
 	/**
@@ -151,7 +151,7 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	/**
 		Short-hand for:
 		
-		    req.protocol == 'https'
+		   req.protocol == 'https'
 	**/
 	var secure : Bool;
 	/**
@@ -318,7 +318,7 @@ typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Request<P, ResBody, ReqBody, ReqQuery> { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Request<P, ResBody, ReqBody, ReqQuery> { })
 	function removeListener(event:String, listener:() -> Void):Request<P, ResBody, ReqBody, ReqQuery>;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Request<P, ResBody, ReqBody, ReqQuery>;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Request<P, ResBody, ReqBody, ReqQuery>;
 	function setMaxListeners(n:Float):Request<P, ResBody, ReqBody, ReqQuery>;

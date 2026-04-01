@@ -1,3 +1,3 @@
 package global._;
 
-typedef PropertyPath = Many<ts.AnyOf3<String, Float, js.lib.Symbol>>;
+typedef PropertyPath = ts.AnyOf4<String, Float, js.lib.Symbol, haxe.ds.ReadOnlyArray<PropertyName>>;

@@ -1,3 +1,3 @@
 package global.vue;
 
-typedef WatchHandler<T> = vue.WatchHandler<T>;
+typedef WatchHandler<T> = (val:T, oldVal:T) -> Void;

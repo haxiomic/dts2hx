@@ -20,7 +20,7 @@ typedef String_ = {
 	function forEachRight(?iteratee:StringIterator<Dynamic>):String_;
 	function groupBy(?iteratee:ValueIteratee<String>):Object<Dictionary<Array<String>>>;
 	function includes(target:String, ?fromIndex:Float):Bool;
-	function keyBy(?iteratee:ValueIterateeCustom<String, ts.AnyOf3<String, Float, js.lib.Symbol>>):Object<Dictionary<String>>;
+	function keyBy(?iteratee:ValueIterateeCustom<String, PropertyName>):Object<Dictionary<String>>;
 	@:overload(function():Collection<String> { })
 	function map<TResult>(iteratee:StringIterator<TResult>):Collection<TResult>;
 	function partition(callback:StringIterator<Any>):LoDashImplicitWrapper<ts.Tuple2<Array<String>, Array<String>>>;
@@ -54,7 +54,7 @@ typedef String_ = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<String>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<String, Null<TResult>>):ts.AnyOf2<String, TResult> { })
 	@:overload(function():String { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<String, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<String, TResult>):TResult;
 	function conformsTo(source:String):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;
@@ -120,29 +120,29 @@ typedef String_ = {
 	function random(?floating:Bool):Float;
 	function entries():Collection<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<String, Any>, { }>):Null<String>;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<String, Any>, { }>):Null<String>;
+	function findKey(?predicate:ObjectIteratee<String>):Null<String>;
+	function findLastKey(?predicate:ObjectIteratee<String>):Null<String>;
 	function forIn(?iteratee:ObjectIterator<String, Dynamic>):String_;
 	function forInRight(?iteratee:ObjectIterator<String, Dynamic>):String_;
 	function forOwn(?iteratee:ObjectIterator<String, Dynamic>):String_;
 	function forOwnRight(?iteratee:ObjectIterator<String, Dynamic>):String_;
 	function functions():Collection<String>;
 	function functionsIn():Collection<String>;
-	function has(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
-	function hasIn(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function has(path:PropertyPath):Bool;
+	function hasIn(path:PropertyPath):Bool;
 	function invert():Object<Dictionary<String>>;
-	function invoke(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):Dynamic;
+	function invoke(path:PropertyPath, args:haxe.extern.Rest<Dynamic>):Dynamic;
 	function keys():Collection<String>;
 	function keysIn():Collection<String>;
-	function result<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):ImpChain<TResult> { })
-	function set(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):String_;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<String>):ImpChain<TResult> { })
-	function setWith(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<String>):String_;
+	function result<TResult>(path:PropertyPath, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic):ImpChain<TResult> { })
+	function set(path:PropertyPath, value:Dynamic):String_;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<String>):ImpChain<TResult> { })
+	function setWith(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<String>):String_;
 	function toPairs():Collection<ts.Tuple2<String, String>>;
 	function toPairsIn():Collection<ts.Tuple2<String, String>>;
-	function unset(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Primitive<Bool>;
-	function update(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):Object<Dynamic>;
+	function unset(path:PropertyPath):Primitive<Bool>;
+	function update(path:PropertyPath, updater:(value:Dynamic) -> Dynamic):Object<Dynamic>;
 	function commit():String_;
 	function plant(value:Any):String_;
 	function reverse():String_;
@@ -193,14 +193,14 @@ typedef String_ = {
 	@:overload(function<SrcValue, Value>(srcValue:SrcValue):Function<(value:Value) -> Bool> { })
 	function matchesProperty<SrcValue>(srcValue:SrcValue):Function<(value:Dynamic) -> Bool>;
 	function method(args:haxe.extern.Rest<Dynamic>):Function<(object:Dynamic) -> Dynamic>;
-	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashImplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashImplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	@:overload(function(?options:MixinOptions):LoDashImplicitWrapper<LoDashStatic> { })
 	function mixin(source:Dictionary<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>, ?options:MixinOptions):String_;
 	function noConflict():LoDashStatic;
 	function noop(args:haxe.extern.Rest<Dynamic>):Void;
 	function nthArg():Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function property<TObj, TResult>():Function<(obj:TObj) -> TResult>;
-	function propertyOf():LoDashImplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function propertyOf():LoDashImplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	function range(?end:Float, ?step:Float):Collection<Float>;
 	function rangeRight(?end:Float, ?step:Float):Collection<Float>;
 	function runInContext():LoDashStatic;

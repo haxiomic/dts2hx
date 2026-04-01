@@ -1,5 +1,5 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract BlendingSrcFactor(Int) from Int to Int {
+@:jsRequire("three") extern enum abstract BlendingSrcFactor(Int) from Int to Int {
 	final SrcAlphaSaturateFactor : BlendingSrcFactor;
 }

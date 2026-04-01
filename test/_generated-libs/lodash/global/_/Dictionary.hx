@@ -1,3 +1,3 @@
 package global._;
 
-typedef Dictionary<T> = { };
+typedef Dictionary<T> = haxe.DynamicAccess<T>;

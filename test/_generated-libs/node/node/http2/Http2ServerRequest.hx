@@ -20,14 +20,6 @@ package node.http2;
 		3. end
 		4. readable
 		5. error
-		
-		Event emitter
-		The defined events on documents including:
-		1. close
-		2. data
-		3. end
-		4. readable
-		5. error
 	**/
 	@:overload(function(event:String, listener:(hadError:Bool, code:Float) -> Void):Http2ServerRequest { })
 	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Http2ServerRequest;

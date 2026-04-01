@@ -1,3 +1,3 @@
 package unit.types.types;
 
-typedef Intersection = Any;
+typedef Intersection = ts.Never;

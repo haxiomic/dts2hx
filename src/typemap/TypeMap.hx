@@ -26,7 +26,7 @@ package typemap;
 	?jsRequirePath: String,
 };
 
-@ignore @:enum abstract ModuleType(String) to String from String {
+@ignore enum abstract ModuleType(String) to String from String {
 	var ClassType = 'class';
 	var EnumType = 'enum';
 	var TypeDefType = 'typedef'; // @! todo: add more information about the typedef – is it an anon or an alias?

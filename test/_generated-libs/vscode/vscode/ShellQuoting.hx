@@ -4,12 +4,12 @@ package vscode;
 	Defines how an argument should be quoted if it contains
 	spaces or unsupported characters.
 **/
-@:jsRequire("vscode", "ShellQuoting") @:enum extern abstract ShellQuoting(Int) from Int to Int {
+@:jsRequire("vscode", "ShellQuoting") extern enum abstract ShellQuoting(Int) from Int to Int {
 	/**
 		Character escaping should be used. This for example
 		uses \ on bash and ` on PowerShell.
 	**/
-	var Escape;
+	final Escape;
 	/**
 		Strong string quoting should be used. This for example
 		uses " for Windows cmd and ' for bash and PowerShell.
@@ -17,7 +17,7 @@ package vscode;
 		Under PowerShell echo 'The value is $(2 * 3)' will
 		print `The value is $(2 * 3)`
 	**/
-	var Strong;
+	final Strong;
 	/**
 		Weak string quoting should be used. This for example
 		uses " for Windows cmd, bash and PowerShell. Weak quoting
@@ -25,5 +25,5 @@ package vscode;
 		string.  Under PowerShell echo "The value is $(2 * 3)"
 		will print `The value is 6`
 	**/
-	var Weak;
+	final Weak;
 }

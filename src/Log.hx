@@ -129,7 +129,8 @@ class Log {
 			parts.push('<dim>(${typeInfo(type)})</>');
 		}
 		if (diagnostic != null) {
-			var message = '<b>[TypeScript ${Ts.versionMajorMinor}]</> ${diagnostic.messageText}';
+			var msgText = Ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+			var message = '<b>[TypeScript ${Ts.versionMajorMinor}]</> $msgText';
 			if (diagnostic.file != null) {
 				message += ' <dim>(${formatLocation({
 					sourceFile: diagnostic.file,

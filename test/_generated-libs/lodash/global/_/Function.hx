@@ -1,12 +1,16 @@
 package global._;
 
-typedef Function<T> = {
+typedef Function<T:((args:haxe.extern.Rest<Any>) -> Dynamic)> = {
 	function ary(?n:Float):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function curry(?arity:Float):Dynamic;
 	function curryRight(?arity:Float):Dynamic;
 	function debounce(?wait:Float, ?options:DebounceSettings):Dynamic;
 	function flip():Function<T>;
-	function memoize(?resolver:(args:haxe.extern.Rest<Dynamic>) -> Dynamic):Function<Dynamic>;
+	function memoize(?resolver:(args:haxe.extern.Rest<Dynamic>) -> Dynamic):Function<{
+		@:selfCall
+		function call(args:haxe.extern.Rest<Any>):Dynamic;
+		var cache : MapCache;
+	}>;
 	function negate():Function<(args:haxe.extern.Rest<Any>) -> Bool>;
 	function once():Function<T>;
 	function overArgs(transforms:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
@@ -47,7 +51,7 @@ typedef Function<T> = {
 	@:overload(function<T3, T4>(arg3:T3, arg4:T4):Function<Dynamic> { })
 	@:overload(function<T1, T3, T4>(arg1:T1, plc2:LoDashStatic, arg3:T3, arg4:T4):Function<Dynamic> { })
 	@:overload(function<T2, T3, T4>(arg2:T2, arg3:T3, arg4:T4):Function<Dynamic> { })
-	@:overload(function<TS>(ts:haxe.extern.Rest<Any>):Function<Dynamic> { })
+	@:overload(function<TS:(Array<Dynamic>)>(ts:haxe.extern.Rest<Any>):Function<Dynamic> { })
 	@:overload(function():Function<Dynamic> { })
 	function partialRight<T1>(arg1:T1, plc2:LoDashStatic):Function<Dynamic>;
 	function rearg(indexes:haxe.extern.Rest<Many<Float>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
@@ -65,13 +69,13 @@ typedef Function<T> = {
 	@:overload(function<R2>(f2:(a:js.lib.ReturnType<T>) -> R2):Function<(args:haxe.extern.Rest<Any>) -> R2> { })
 	@:overload(function(func:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic> { })
 	function flow<R2, R3, R4, R5, R6, R7>(f2:(a:js.lib.ReturnType<T>) -> R2, f3:(a:R2) -> R3, f4:(a:R3) -> R4, f5:(a:R4) -> R5, f6:(a:R5) -> R6, f7:(a:R6) -> R7):Function<(args:haxe.extern.Rest<Any>) -> R7>;
-	@:overload(function<A, R1, R2, R3, R4>(f5:(a:R4) -> Dynamic, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A, R1, R2, R3>(f4:(a:R3) -> Dynamic, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A, R1, R2>(f3:(a:R2) -> Dynamic, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A, R1>(f2:(a:R1) -> Dynamic, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
-	@:overload(function<A>(f1:(args:haxe.extern.Rest<Any>) -> Dynamic):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1, R2, R3, R4>(f5:(a:R4) -> Dynamic, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1, R2, R3>(f4:(a:R3) -> Dynamic, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1, R2>(f3:(a:R2) -> Dynamic, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>), R1>(f2:(a:R1) -> Dynamic, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
+	@:overload(function<A:(Array<Dynamic>)>(f1:(args:haxe.extern.Rest<Any>) -> Dynamic):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>> { })
 	@:overload(function(func:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic> { })
-	function flowRight<A, R1, R2, R3, R4, R5>(f6:(a:R5) -> Dynamic, f5:(a:R4) -> R5, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>>;
+	function flowRight<A:(Array<Dynamic>), R1, R2, R3, R4, R5>(f6:(a:R5) -> Dynamic, f5:(a:R4) -> R5, f4:(a:R3) -> R4, f3:(a:R2) -> R3, f2:(a:R1) -> R2, f1:(args:haxe.extern.Rest<Any>) -> R1):Function<(args:haxe.extern.Rest<Any>) -> js.lib.ReturnType<T>>;
 	function iteratee():Function<T>;
 	function over<TResult>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> TResult>>):Function<(args:haxe.extern.Rest<Dynamic>) -> Array<ts.AnyOf2<js.lib.ReturnType<T>, TResult>>>;
 	function overEvery<TArgs>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<TArgs>) -> Bool>>):Function<(args:haxe.extern.Rest<Any>) -> Bool>;
@@ -91,7 +95,7 @@ typedef Function<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):Dynamic;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<T, TResult> { })
 	@:overload(function():T { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):TResult;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):TResult;
 	function conformsTo(source:{ }):Bool;
 	function eq(other:Dynamic):Bool;
 	function gt(other:Dynamic):Bool;
@@ -157,29 +161,29 @@ typedef Function<T> = {
 	function random(?floating:Bool):Float;
 	function entries():Collection<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):Null<String>;
+	function findKey(?predicate:ObjectIteratee<T>):Null<String>;
+	function findLastKey(?predicate:ObjectIteratee<T>):Null<String>;
 	function forIn(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;
 	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;
 	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;
 	function forOwnRight(?iteratee:ObjectIterator<T, Dynamic>):Function<T>;
 	function functions():Collection<String>;
 	function functionsIn():Collection<String>;
-	function has(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
-	function hasIn(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Bool;
+	function has(path:PropertyPath):Bool;
+	function hasIn(path:PropertyPath):Bool;
 	function invert():Object<Dictionary<String>>;
-	function invoke(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):Dynamic;
+	function invoke(path:PropertyPath, args:haxe.extern.Rest<Dynamic>):Dynamic;
 	function keys():Collection<String>;
 	function keysIn():Collection<String>;
-	function result<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):ImpChain<TResult> { })
-	function set(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):Function<T>;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):ImpChain<TResult> { })
-	function setWith(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):Function<T>;
+	function result<TResult>(path:PropertyPath, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):TResult;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic):ImpChain<TResult> { })
+	function set(path:PropertyPath, value:Dynamic):Function<T>;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<T>):ImpChain<TResult> { })
+	function setWith(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<T>):Function<T>;
 	function toPairs():Collection<ts.Tuple2<String, Dynamic>>;
 	function toPairsIn():Collection<ts.Tuple2<String, Dynamic>>;
-	function unset(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):Primitive<Bool>;
-	function update(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):Object<Dynamic>;
+	function unset(path:PropertyPath):Primitive<Bool>;
+	function update(path:PropertyPath, updater:(value:Dynamic) -> Dynamic):Object<Dynamic>;
 	function commit():Function<T>;
 	function plant(value:Any):Function<T>;
 	function reverse():Function<T>;
@@ -230,14 +234,14 @@ typedef Function<T> = {
 	@:overload(function<SrcValue, Value>(srcValue:SrcValue):Function<(value:Value) -> Bool> { })
 	function matchesProperty<SrcValue>(srcValue:SrcValue):Function<(value:Dynamic) -> Bool>;
 	function method(args:haxe.extern.Rest<Dynamic>):Function<(object:Dynamic) -> Dynamic>;
-	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashImplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashImplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	@:overload(function(?options:MixinOptions):LoDashImplicitWrapper<LoDashStatic> { })
 	function mixin(source:Dictionary<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>, ?options:MixinOptions):Function<T>;
 	function noConflict():LoDashStatic;
 	function noop(args:haxe.extern.Rest<Dynamic>):Void;
 	function nthArg():Function<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function property<TObj, TResult>():Function<(obj:TObj) -> TResult>;
-	function propertyOf():LoDashImplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function propertyOf():LoDashImplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	function range(?end:Float, ?step:Float):Collection<Float>;
 	function rangeRight(?end:Float, ?step:Float):Collection<Float>;
 	function runInContext():LoDashStatic;

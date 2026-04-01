@@ -1,6 +1,6 @@
 {
   "name": "dts2hx",
-  "version": "0.20.0",
+  "version": "0.30.0",
   "description": "Converts TypeScript definition files (d.ts) to haxe externs",
   "keywords": [
     "haxe",
@@ -24,10 +24,11 @@
   "author": "haxiomic",
   "license": "ISC",
   "dependencies": {
-    "typescript": "3.7.4"
+    "typescript": "5.9.3"
   },
   "devDependencies": {
-    "@types/node": "11.11.3"
+    "@types/node": "11.11.3",
+    "lix": "^16.0.2"
   },
   "bin": "./cli.js"
 }

@@ -15,5 +15,5 @@ package node.crypto;
 	@:overload(function(private_key:String, encoding:HexBase64Latin1Encoding):Void { })
 	function setPrivateKey(private_key:Binary):Void;
 	static var prototype : ECDH;
-	static function convertKey(key:ts.AnyOf12<String, global.Buffer, js.lib.Uint8Array, js.lib.Uint8ClampedArray, js.lib.Uint16Array, js.lib.Uint32Array, js.lib.Int8Array, js.lib.Int16Array, js.lib.Int32Array, js.lib.Float32Array, js.lib.Float64Array, js.lib.DataView>, curve:String, ?inputEncoding:HexBase64Latin1Encoding, ?outputEncoding:HexBase64Latin1Encoding, ?format:ECDHKeyFormat):ts.AnyOf2<String, global.Buffer>;
+	static function convertKey(key:BinaryLike, curve:String, ?inputEncoding:HexBase64Latin1Encoding, ?outputEncoding:String, ?format:String):ts.AnyOf2<String, global.Buffer>;
 }

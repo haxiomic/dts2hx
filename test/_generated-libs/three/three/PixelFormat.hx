@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract PixelFormat(Int) from Int to Int {
+@:jsRequire("three") extern enum abstract PixelFormat(Int) from Int to Int {
 	final AlphaFormat : PixelFormat;
 	final RGBFormat : PixelFormat;
 	final RGBAFormat : PixelFormat;

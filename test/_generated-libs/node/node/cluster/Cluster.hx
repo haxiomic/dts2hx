@@ -14,13 +14,13 @@ typedef Cluster = {
 	var workers : haxe.DynamicAccess<Null<Worker>>;
 	/**
 		events.EventEmitter
-		   1. disconnect
-		   2. exit
-		   3. fork
-		   4. listening
-		   5. message
-		   6. online
-		   7. setup
+		  1. disconnect
+		  2. exit
+		  3. fork
+		  4. listening
+		  5. message
+		  6. online
+		  7. setup
 	**/
 	@:overload(function(event:String, listener:(worker:Worker) -> Void):Cluster { })
 	@:overload(function(event:String, listener:(worker:Worker, code:Float, signal:String) -> Void):Cluster { })

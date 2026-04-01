@@ -1,34 +1,9 @@
 package node.crypto;
 
-typedef CipherCCMOptions = {
-	var authTagLength : Float;
+@:forward
+abstract CipherCCMOptions(CipherCCMOptions_) from CipherCCMOptions_ to CipherCCMOptions_ {
 	@:optional
-	function read(size:Float):Void;
-	@:optional
-	function write(chunk:Dynamic, encoding:String, callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
-	@:optional
-	function writev(chunks:Array<{ var chunk : Dynamic; var encoding : String; }>, callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
-	@:optional
-	@:native("final")
-	function final_(callback:ts.AnyOf2<() -> Void, (error:js.lib.Error) -> Void>):Void;
-	@:optional
-	function destroy(error:Null<js.lib.Error>, callback:(error:Null<js.lib.Error>) -> Void):Void;
-	@:optional
-	function transform(chunk:Dynamic, encoding:String, callback:node.stream.TransformCallback):Void;
-	@:optional
-	function flush(callback:node.stream.TransformCallback):Void;
-	@:optional
-	var allowHalfOpen : Bool;
-	@:optional
-	var readableObjectMode : Bool;
-	@:optional
-	var writableObjectMode : Bool;
-	@:optional
-	var highWaterMark : Float;
-	@:optional
-	var encoding : String;
-	@:optional
-	var objectMode : Bool;
-	@:optional
-	var decodeStrings : Bool;
-};
+	public var final_(get, set):ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void;
+	inline function get_final_():ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void return js.Syntax.field(cast this, 'final');
+	inline function set_final_(v:ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void):ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void { js.Syntax.code("{0}[{1}] = {2}", this, 'final', v); return v; }
+}

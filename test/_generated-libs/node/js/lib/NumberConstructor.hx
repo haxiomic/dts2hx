@@ -38,21 +38,21 @@ typedef NumberConstructor = {
 		Unlike the global isFinite, Number.isFinite doesn't forcibly convert the parameter to a
 		number. Only finite values of the type number, result in true.
 	**/
-	function isFinite(number:Float):Bool;
+	function isFinite(number:Any):Bool;
 	/**
 		Returns true if the value passed is an integer, false otherwise.
 	**/
-	function isInteger(number:Float):Bool;
+	function isInteger(number:Any):Bool;
 	/**
 		Returns a Boolean value that indicates whether a value is the reserved value NaN (not a
 		number). Unlike the global isNaN(), Number.isNaN() doesn't forcefully convert the parameter
 		to a number. Only values of the type number, that are also NaN, result in true.
 	**/
-	function isNaN(number:Float):Bool;
+	function isNaN(number:Any):Bool;
 	/**
 		Returns true if the value passed is a safe integer.
 	**/
-	function isSafeInteger(number:Float):Bool;
+	function isSafeInteger(number:Any):Bool;
 	/**
 		The value of the largest integer n such that n and n + 1 are both exactly representable as
 		a Number value.

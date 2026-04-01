@@ -36,14 +36,14 @@ typedef Server = {
 		since your Connect "server" is really just
 		a JavaScript `Function`.
 		
-		      var connect = require('connect')
-		        , http = require('http')
-		        , https = require('https');
+		     var connect = require('connect')
+		       , http = require('http')
+		       , https = require('https');
 		
-		      var app = connect();
+		     var app = connect();
 		
-		      http.createServer(app).listen(80);
-		      https.createServer(options, app).listen(443);
+		     http.createServer(app).listen(80);
+		     https.createServer(options, app).listen(443);
 	**/
 	@:overload(function(port:Float, ?hostname:String, ?callback:haxe.Constraints.Function):node.http.Server { })
 	@:overload(function(path:String, ?callback:haxe.Constraints.Function):node.http.Server { })

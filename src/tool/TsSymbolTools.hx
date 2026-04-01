@@ -35,14 +35,17 @@ class TsSymbolTools {
 		It also skips ES5Symbol fields like `[Symbol.iterator]`
 	**/
 	public static function isAccessibleField(symbol: Symbol) {
+		// TS 4.0+: some transient symbols may have null/undefined names
+		if (symbol.name == null || symbol.escapedName == null) return false;
 		var isKnownSymbol = std.StringTools.startsWith(symbol.escapedName, '__@'); // see typescript's utilities.ts
+		var isEcmaPrivate = std.StringTools.startsWith(symbol.escapedName, '__#'); // ECMAScript #private fields
 		final FieldSymbolFlags = SymbolFlags.Variable | SymbolFlags.Function | SymbolFlags.ClassMember;
 
 		if (symbol.name == '__promisify__') {
 			return false;
 		}
 
-		return !isKnownSymbol && symbol.flags & FieldSymbolFlags != 0;
+		return !isKnownSymbol && !isEcmaPrivate && symbol.flags & FieldSymbolFlags != 0;
 	}
 	
 	/**
@@ -372,13 +375,19 @@ class TsSymbolTools {
 		var defaultLibOnlyDeclarations = true; // symbol is declared in a built-in lib file and **is not** extended in user-code
 		for (declaration in getDeclarationsArray(symbol)) {
 			var sourceFile = declaration.getSourceFile();
-			if (sourceFile.hasNoDefaultLib) {
+			// TS 6.0+: hasNoDefaultLib is no longer set on lib files; check file path as fallback
+			if (sourceFile.hasNoDefaultLib || isDefaultLibPath(sourceFile.fileName)) {
 				isBuiltIn = true;
 			} else {
 				defaultLibOnlyDeclarations = false;
 			}
 		}
 		return isBuiltIn;
+	}
+
+	static function isDefaultLibPath(fileName: String): Bool {
+		// Match TypeScript's lib files: .../typescript/lib/lib.*.d.ts
+		return fileName.indexOf('/lib/lib.') != -1 && std.StringTools.endsWith(fileName, '.d.ts');
 	}
 
 	static inline function isPowerOfTwo(x: Int) {

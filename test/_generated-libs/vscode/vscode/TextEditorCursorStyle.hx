@@ -3,29 +3,29 @@ package vscode;
 /**
 	Rendering style of the cursor.
 **/
-@:jsRequire("vscode", "TextEditorCursorStyle") @:enum extern abstract TextEditorCursorStyle(Int) from Int to Int {
+@:jsRequire("vscode", "TextEditorCursorStyle") extern enum abstract TextEditorCursorStyle(Int) from Int to Int {
 	/**
 		Render the cursor as a vertical thick line.
 	**/
-	var Line;
+	final Line;
 	/**
 		Render the cursor as a block filled.
 	**/
-	var Block;
+	final Block;
 	/**
 		Render the cursor as a thick horizontal line.
 	**/
-	var Underline;
+	final Underline;
 	/**
 		Render the cursor as a vertical thin line.
 	**/
-	var LineThin;
+	final LineThin;
 	/**
 		Render the cursor as a block outlined.
 	**/
-	var BlockOutline;
+	final BlockOutline;
 	/**
 		Render the cursor as a thin horizontal line.
 	**/
-	var UnderlineThin;
+	final UnderlineThin;
 }

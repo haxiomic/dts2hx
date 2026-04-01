@@ -16,6 +16,9 @@ typedef Symbol = {
 	var exports: typescript.ts.SymbolTable;
 	@:optional
 	var globalExports: typescript.ts.SymbolTable;
+	/** @internal — the type of this symbol, set on transient/synthetic symbols **/
+	@:optional @:native("type")
+	var type_: typescript.ts.Type;
 	final name: String;
 	function getFlags(): typescript.ts.SymbolFlags;
 	function getEscapedName(): typescript.ts.__String;

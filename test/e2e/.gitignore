@@ -1,0 +1,5 @@
+build/
+externs/
+test_output.js
+test*.js
+!Test*.hx

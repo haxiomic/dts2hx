@@ -9,16 +9,16 @@ package vscode;
 	
 	```javascript
 	export function activate(context: vscode.ExtensionContext) {
-	     let api = {
-	         sum(a, b) {
-	             return a + b;
-	         },
-	         mul(a, b) {
-	             return a * b;
-	         }
-	     };
-	     // 'export' public api-surface
-	     return api;
+	    let api = {
+	        sum(a, b) {
+	            return a + b;
+	        },
+	        mul(a, b) {
+	            return a * b;
+	        }
+	    };
+	    // 'export' public api-surface
+	    return api;
 	}
 	```
 	When depending on the API of another extension add an `extensionDependencies`-entry
@@ -34,8 +34,6 @@ package vscode;
 **/
 @:jsRequire("vscode", "extensions") @valueModuleOnly extern class Extensions {
 	/**
-		Get an extension by its full identifier in the form of: `publisher.name`.
-		
 		Get an extension by its full identifier in the form of: `publisher.name`.
 	**/
 	@:overload(function<T>(extensionId:String):Null<Extension<T>> { })

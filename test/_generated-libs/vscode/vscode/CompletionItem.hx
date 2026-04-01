@@ -36,7 +36,7 @@ package vscode;
 		Tags for this completion item.
 	**/
 	@:optional
-	var tags : haxe.ds.ReadOnlyArray<Int>;
+	var tags : haxe.ds.ReadOnlyArray<CompletionItemTag>;
 	/**
 		A human-readable string with additional information
 		about this item, like type or symbol information.

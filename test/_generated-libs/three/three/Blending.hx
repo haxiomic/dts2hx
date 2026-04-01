@@ -1,6 +1,6 @@
 package three;
 
-@:enum @:jsRequire("three") extern abstract Blending(Int) from Int to Int {
+@:jsRequire("three") extern enum abstract Blending(Int) from Int to Int {
 	final NoBlending : Blending;
 	final NormalBlending : Blending;
 	final AdditiveBlending : Blending;

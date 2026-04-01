@@ -1,6 +1,6 @@
 package global;
 
-@:native("Vue") extern class Vue extends vue.Vue {
+@:native("Vue") extern class Vue extends Vue {
 	@:native("$mount")
 	function DollarMount(?elementOrSelector:ts.AnyOf2<String, js.html.DOMElement>, ?hydrating:Bool):Vue;
 	@:native("$watch")

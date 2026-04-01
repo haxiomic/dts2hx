@@ -2,8 +2,8 @@ package lodash;
 
 typedef PrimitiveChain<T> = {
 	function concat(values:haxe.extern.Rest<Many<T>>):CollectionChain<T>;
-	function after<TFunc>(func:TFunc):FunctionChain<TFunc>;
-	function before<TFunc>(func:TFunc):FunctionChain<TFunc>;
+	function after<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):FunctionChain<TFunc>;
+	function before<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):FunctionChain<TFunc>;
 	function castArray():CollectionChain<T>;
 	function write():Dynamic;
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
@@ -21,7 +21,7 @@ typedef PrimitiveChain<T> = {
 	function cloneDeepWith(customizer:CloneDeepWithCustomizer<T>):LoDashExplicitWrapper<Dynamic>;
 	@:overload(function<TResult>(customizer:CloneWithCustomizer<T, Null<TResult>>):ts.AnyOf2<ExpChain<T>, ExpChain<TResult>> { })
 	@:overload(function():PrimitiveChain<T> { })
-	function cloneWith<TResult>(customizer:CloneWithCustomizer<T, TResult>):ExpChain<TResult>;
+	function cloneWith<TResult:(Null<ts.AnyOf4<String, Float, Bool, Dynamic>>)>(customizer:CloneWithCustomizer<T, TResult>):ExpChain<TResult>;
 	function conformsTo(source:{ }):PrimitiveChain<Bool>;
 	function eq(other:Dynamic):PrimitiveChain<Bool>;
 	function gt(other:Dynamic):PrimitiveChain<Bool>;
@@ -87,29 +87,29 @@ typedef PrimitiveChain<T> = {
 	function random(?floating:Bool):PrimitiveChain<Float>;
 	function entries():CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function findKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):StringNullableChain;
-	function findLastKey(?predicate:ts.AnyOf6<String, Float, js.lib.Symbol, ts.Tuple2<ts.AnyOf3<String, Float, js.lib.Symbol>, Dynamic>, ObjectIterator<T, Any>, { }>):StringNullableChain;
+	function findKey(?predicate:ObjectIteratee<T>):StringNullableChain;
+	function findLastKey(?predicate:ObjectIteratee<T>):StringNullableChain;
 	function forIn(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;
 	function forInRight(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;
 	function forOwn(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;
 	function forOwnRight(?iteratee:ObjectIterator<T, Dynamic>):PrimitiveChain<T>;
 	function functions():CollectionChain<String>;
 	function functionsIn():CollectionChain<String>;
-	function has(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):PrimitiveChain<Bool>;
-	function hasIn(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):PrimitiveChain<Bool>;
+	function has(path:PropertyPath):PrimitiveChain<Bool>;
+	function hasIn(path:PropertyPath):PrimitiveChain<Bool>;
 	function invert():ObjectChain<Dictionary<String>>;
-	function invoke(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<Dynamic>;
+	function invoke(path:PropertyPath, args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<Dynamic>;
 	function keys():CollectionChain<String>;
 	function keysIn():CollectionChain<String>;
-	function result<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):ExpChain<TResult>;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):ExpChain<TResult> { })
-	function set(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic):PrimitiveChain<T>;
-	@:overload(function<TResult>(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):ExpChain<TResult> { })
-	function setWith(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, value:Dynamic, ?customizer:SetWithCustomizer<T>):PrimitiveChain<T>;
+	function result<TResult>(path:PropertyPath, ?defaultValue:ts.AnyOf2<(args:haxe.extern.Rest<Dynamic>) -> TResult, TResult>):ExpChain<TResult>;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic):ExpChain<TResult> { })
+	function set(path:PropertyPath, value:Dynamic):PrimitiveChain<T>;
+	@:overload(function<TResult>(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<T>):ExpChain<TResult> { })
+	function setWith(path:PropertyPath, value:Dynamic, ?customizer:SetWithCustomizer<T>):PrimitiveChain<T>;
 	function toPairs():CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function toPairsIn():CollectionChain<ts.Tuple2<String, Dynamic>>;
-	function unset(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>):PrimitiveChain<Bool>;
-	function update(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>, updater:(value:Dynamic) -> Dynamic):ObjectChain<Dynamic>;
+	function unset(path:PropertyPath):PrimitiveChain<Bool>;
+	function update(path:PropertyPath, updater:(value:Dynamic) -> Dynamic):ObjectChain<Dynamic>;
 	function chain():PrimitiveChain<T>;
 	function commit():PrimitiveChain<T>;
 	function plant(value:Any):PrimitiveChain<T>;
@@ -161,14 +161,14 @@ typedef PrimitiveChain<T> = {
 	@:overload(function<SrcValue, Value>(srcValue:SrcValue):FunctionChain<(value:Value) -> Bool> { })
 	function matchesProperty<SrcValue>(srcValue:SrcValue):FunctionChain<(value:Dynamic) -> Bool>;
 	function method(args:haxe.extern.Rest<Dynamic>):FunctionChain<(object:Dynamic) -> Dynamic>;
-	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function methodOf(args:haxe.extern.Rest<Dynamic>):LoDashExplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	@:overload(function(?options:MixinOptions):LoDashExplicitWrapper<LoDashStatic> { })
 	function mixin(source:Dictionary<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>, ?options:MixinOptions):PrimitiveChain<T>;
 	function noConflict():LoDashExplicitWrapper<LoDashStatic>;
 	function noop(args:haxe.extern.Rest<Dynamic>):PrimitiveChain<Null<Any>>;
 	function nthArg():FunctionChain<(args:haxe.extern.Rest<Dynamic>) -> Dynamic>;
 	function property<TObj, TResult>():FunctionChain<(obj:TObj) -> TResult>;
-	function propertyOf():LoDashExplicitWrapper<(path:Many<ts.AnyOf3<String, Float, js.lib.Symbol>>) -> Dynamic>;
+	function propertyOf():LoDashExplicitWrapper<(path:PropertyPath) -> Dynamic>;
 	function range(?end:Float, ?step:Float):CollectionChain<Float>;
 	function rangeRight(?end:Float, ?step:Float):CollectionChain<Float>;
 	function stubArray():CollectionChain<Dynamic>;

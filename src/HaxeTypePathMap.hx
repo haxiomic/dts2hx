@@ -1,5 +1,8 @@
 import typemap.TypeMap;
 import haxe.io.Path;
+import typescript.ts.Identifier;
+import typescript.ts.LiteralLikeNode;
+import typescript.ts.NamedDeclaration;
 import typescript.ts.Program;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
@@ -139,7 +142,7 @@ class HaxeTypePathMap {
 						// Log.log('Generating type path for <yellow>${access.toString()}</> <b>${symbol.name} (${symbol.getId()})</>: ${typePath.pack} ${typePath.name}', symbol);
 
 						if (modules.find(m -> m.symbol == symbol && m.isInterfaceStructure == false) == null) {
-							modules.push({
+							var entry: Dynamic = {
 								name: typePath.name,
 								pack: typePath.pack,
 								moduleName: typePath.moduleName,
@@ -148,7 +151,10 @@ class HaxeTypePathMap {
 								access: access,
 								renameable: true,
 								isInterfaceStructure: false,
-							});
+							};
+							var stdLibCount: Null<Int> = Reflect.field(typePath, 'stdLibTypeParamCount');
+							if (stdLibCount != null) Reflect.setField(entry, 'stdLibTypeParamCount', stdLibCount);
+							modules.push(entry);
 						}
 
 						// additional interface-structure implementation
@@ -234,7 +240,13 @@ class HaxeTypePathMap {
 
 						var moduleToRename = matches[0];
 						var alsoRenameModule = moduleToRename.name == moduleToRename.moduleName;
-						moduleToRename.name = moduleToRename.name + '_';
+						// Use "Module" suffix for ValueModule-only symbols (module wrappers),
+						// "_" for other collisions
+						var isValueModuleOnly = moduleToRename.symbol != null
+							&& moduleToRename.symbol.flags & SymbolFlags.ValueModule != 0
+							&& moduleToRename.symbol.flags & SymbolFlags.Type == 0;
+						var suffix = isValueModuleOnly ? 'Module' : '_';
+						moduleToRename.name = moduleToRename.name + suffix;
 						if (alsoRenameModule) {
 							moduleToRename.moduleName = moduleToRename.name;
 						}
@@ -273,28 +285,32 @@ class HaxeTypePathMap {
 		// to convert those too, replace `isBuiltIn` with `defaultLibOnlyDeclarations`
 		if (isBuiltIn && !asInterfaceStructure) {
 			final specialTypeMap = [
-				// we want to avoid generating the following types into ts.lib.* 
+				// we want to avoid generating the following types into ts.lib.*
 				// preferring to map them to haxe types instead
-				'Array' => {name: 'Array', moduleName: 'Array', pack: []},
-				'ReadonlyArray' => {name: 'ReadOnlyArray', moduleName: 'ReadOnlyArray', pack: ['haxe', 'ds']},
-				'String' => {name: 'String', moduleName: 'String', pack: []},
-				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib']},
-				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: []}, // this is a bit questionable; need to fully review native js iteration
-				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe']}, // this is a bit questionable; need to fully review native js iteration
+				'Array' => {name: 'Array', moduleName: 'Array', pack: ([] : Array<String>), typeParams: 1},
+				'ReadonlyArray' => {name: 'ReadOnlyArray', moduleName: 'ReadOnlyArray', pack: ['haxe', 'ds'], typeParams: 1},
+				'String' => {name: 'String', moduleName: 'String', pack: ([] : Array<String>), typeParams: 0},
+				'Symbol' => {name: 'Symbol', moduleName: 'Symbol', pack: ['js', 'lib'], typeParams: 0},
+				'Iterable' => {name: 'Iterable', moduleName: 'Iterable', pack: ([] : Array<String>), typeParams: 1},
+				'Iterator' => {name: 'Iterator', moduleName: 'Iterator', pack: ([] : Array<String>), typeParams: 1},
+				'Function' => {name: 'Function', moduleName: 'Constraints', pack: ['haxe'], typeParams: 0},
 				// map `object` aka `js.lib.Object` to `Dynamic`
 				// maybe in the future we can remove this if `js.lib.Object` could unify with other types
-				'Object' => {name: 'Dynamic', moduleName: 'Dynamic', pack: []},
+				'Object' => {name: 'Dynamic', moduleName: 'Dynamic', pack: ([] : Array<String>), typeParams: 0},
 			];
+			// For built-in types, match by symbol name regardless of the access context
+			// (built-in types can be referenced from any access context)
+			if (specialTypeMap.exists(symbol.name)) {
+				var tp = specialTypeMap.get(symbol.name);
+				return {
+					name: tp.name,
+					moduleName: tp.moduleName,
+					pack: tp.pack,
+					isExistingStdLibType: true,
+					stdLibTypeParamCount: tp.typeParams,
+				}
+			}
 			switch access {
-				// match special-case built-ins
-				case Global([{name: name}]) if (specialTypeMap.exists(name)):
-					var tp = specialTypeMap.get(name);
-					return {
-						name: tp.name,
-						moduleName: tp.moduleName,
-						pack: tp.pack,
-						isExistingStdLibType: true,
-					}
 				case Global(_):
 					if (stdLibMap != null) {
 						var nativeAccessPath = access.getIdentifierChain().join('.');
@@ -309,6 +325,7 @@ class HaxeTypePathMap {
 									moduleName: stdLibType.moduleName,
 									pack: stdLibType.pack,
 									isExistingStdLibType: true,
+									stdLibTypeParamCount: stdLibType.typeParameters.length,
 								}
 							} else {
 								Log.warn('Type parameter mismatch between haxe standard lib type (<b>${stdLibType.typeParameters.length}</>) and ts default type (<b>${tsTypeParamDeclarations.length}</>). Generating replacement.', symbol);	
@@ -381,7 +398,8 @@ class HaxeTypePathMap {
 
 		// we prepend the module path to avoid collisions if the symbol is exported from multiple modules
 		// Babylonjs's type definition are a big issue for this and many of the module paths do not actually exist in babylon.js at runtime
-		var identifierChain = access.getIdentifierChain();
+		// Resolve "default" to actual class/fn names for package paths
+		var identifierChain = access.extractSymbolChain().map(s -> resolveDefaultExportName(s));
 		switch access {
 			case AmbientModule(modulePath, _):
 				// prefix entry-point module for ambients
@@ -398,8 +416,16 @@ class HaxeTypePathMap {
 				pack = pack.concat(moduleNamePack).concat(modulePack).concat(identifierChain);
 				pack.pop(); // remove symbol ident; only want parents
 			case ExportModule(moduleName, _):
-				pack = pack.concat(splitModulePath(moduleName)).concat(identifierChain);
-				pack.pop(); // remove symbol ident; only want parents
+				var moduleParts = splitModulePath(moduleName);
+				var symbolChain = access.extractSymbolChain();
+				// Default exports: place at parent package level, not in a module subdirectory
+				var isDefaultExport = symbolChain.length == 1 && symbolChain[0].name == 'default';
+				if (isDefaultExport) {
+					pack = pack.concat(moduleParts.slice(0, moduleParts.length - 1));
+				} else {
+					pack = pack.concat(moduleParts).concat(identifierChain);
+					pack.pop(); // remove symbol ident; only want parents
+				}
 			case Global(_):
 				// only prefix global package if it's not a built-in
 				// global types are _not_ prefixed with the module name, this might change in the future
@@ -458,7 +484,7 @@ class HaxeTypePathMap {
 				var lastSymbol = symbolChain[symbolChain.length - 1];
 				if (lastSymbol != null) {
 					if (lastSymbol.escapedName.isInternalSymbolName()) {
-						symbol.name;
+						resolveDefaultExportName(symbol);
 					} else {
 						lastSymbol.name;
 					}
@@ -469,7 +495,7 @@ class HaxeTypePathMap {
 				var lastSymbol = symbolChain[symbolChain.length - 1];
 				if (lastSymbol != null) {
 					if (lastSymbol.escapedName.isInternalSymbolName()) {
-						symbol.name;
+						resolveDefaultExportName(symbol);
 					} else {
 						lastSymbol.name;
 					}
@@ -480,6 +506,30 @@ class HaxeTypePathMap {
 				symbol.name;
 		}
 		return typeIdentifier.toSafeTypeName();
+	}
+
+	/**
+		For default export symbols, the symbol name is "default" but the declaration
+		often has the original class/function name (e.g. `export default class Foo`
+		has symbol.name="default" but declaration.name.text="Foo").
+		Returns the original name when available, "default" otherwise.
+	**/
+	static function resolveDefaultExportName(symbol: Symbol): String {
+		if (symbol.name != 'default') return symbol.name;
+		// Check the declaration for a named identifier
+		var decl = if (symbol.valueDeclaration != null) symbol.valueDeclaration
+			else if (symbol.declarations != null && symbol.declarations.length > 0) symbol.declarations[0]
+			else null;
+		if (decl != null) {
+			var namedDecl: NamedDeclaration = cast decl;
+			if (namedDecl.name != null) {
+				// DeclarationName is a union; Identifier has escapedText, LiteralLikeNode has text
+				var text: Null<String> = (cast namedDecl.name : Identifier).escapedText;
+				if (text == null) text = (cast namedDecl.name : LiteralLikeNode).text;
+				if (text != null && text != 'default') return text;
+			}
+		}
+		return symbol.name;
 	}
 
 	function matchHxnodejsType(symbol: Symbol, access: SymbolAccess, name: String): Null<String> {
@@ -614,6 +664,7 @@ typedef TypePath = {
 	pack: Array<String>,
 	moduleName: String,
 	isExistingStdLibType: Bool,
+	?stdLibTypeParamCount: Int,
 }
 
 /**

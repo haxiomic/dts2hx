@@ -25,6 +25,7 @@ import typescript.ts.Signature;
 import typescript.ts.Symbol;
 import typescript.ts.SymbolFlags;
 import typescript.ts.SyntaxKind;
+import typescript.ts.SubstitutionType;
 import typescript.ts.TupleType;
 import typescript.ts.TupleTypeReference;
 import typescript.ts.TypeAliasDeclaration;
@@ -61,7 +62,8 @@ private typedef Options = {
 	globalPackageName: Null<String>,
 	globalTypes: Bool,
 	modularTypes: Bool,
-} 
+	useEsModules: Bool,
+}
 
 @:expose
 @:nullSafety
@@ -100,6 +102,7 @@ class ConverterContext {
 	public final moduleSearchPath: String;
 
 	final options: Options;
+	public final importStyle: tool.SymbolAccessTools.ImportStyle;
 
 	/**
 		Symbol access map is filled during an initial pass over the program.
@@ -125,6 +128,15 @@ class ConverterContext {
 	**/
 	final processedDeclarationSymbols = new Array<Symbol>();
 
+	/**
+		Sub-module specifiers discovered through type references during conversion.
+		Derived from source file paths of symbols in node_modules.
+		E.g. a symbol from @types/three/examples/jsm/loaders/GLTFLoader.d.ts
+		→ "three/examples/jsm/loaders/GLTFLoader"
+	**/
+	public final discoveredSubModules = new Array<String>();
+
+
 
 	// settings
 	final shortenTypePaths = true;
@@ -143,6 +155,7 @@ class ConverterContext {
 		options: Options
 	) {
 		this.options = options;
+		this.importStyle = options.useEsModules ? tool.SymbolAccessTools.ImportStyle.JsImport : tool.SymbolAccessTools.ImportStyle.JsRequire;
 		this.hxnodejsMap = hxnodejsMap;
 		// we make the moduleSearchPath absolute to work around an issue in resolveModuleName
 		moduleSearchPath = sys.FileSystem.absolutePath(moduleSearchPath);
@@ -273,6 +286,36 @@ class ConverterContext {
 	}
 
 	/**
+		Derive a module specifier from a source file path in node_modules.
+		E.g. ".../node_modules/@types/three/examples/jsm/loaders/GLTFLoader.d.ts"
+		  → "three/examples/jsm/loaders/GLTFLoader"
+		Returns null if the path isn't in node_modules or can't be parsed.
+	**/
+	static function deriveSubModuleSpecifier(fileName: String): Null<String> {
+		var nmIdx = fileName.lastIndexOf('/node_modules/');
+		if (nmIdx == -1) return null;
+		var relPath = fileName.substr(nmIdx + '/node_modules/'.length);
+
+		if (StringTools.startsWith(relPath, '@types/')) {
+			relPath = relPath.substr('@types/'.length);
+		}
+
+		if (StringTools.endsWith(relPath, '.d.ts')) {
+			relPath = relPath.substr(0, relPath.length - '.d.ts'.length);
+		} else if (StringTools.endsWith(relPath, '.ts')) {
+			relPath = relPath.substr(0, relPath.length - '.ts'.length);
+		} else {
+			return null;
+		}
+
+		if (StringTools.endsWith(relPath, '/index')) {
+			relPath = relPath.substr(0, relPath.length - '/index'.length);
+		}
+
+		return relPath;
+	}
+
+	/**
 		Some symbols are not natively supported in haxe, for example, variables outside classes
 
 		These symbols are implemented as classes in haxe
@@ -316,7 +359,7 @@ class ConverterContext {
 
 		// should we queue this symbol for conversion?
 		if (!hxTypePath.isExistingStdLibType) {
-			if (symbol.getDeclarationsArray().exists(d -> d.getSourceFile().hasNoDefaultLib)) {
+			if (symbol.isBuiltIn()) {
 				declarationSymbolQueue.tryEnqueue(symbol);
 			} else {
 				if (!declarationSymbolQueue.has(symbol)) {
@@ -330,10 +373,45 @@ class ConverterContext {
 					// check if symbol is declared within this module
 					var declaredInModules = symbol.getParentModuleNames();
 
-					var declaredWithinInputModule = declaredInModules.exists(name -> name == normalizedInputModuleName);
-					
+					// Match if the symbol's module is related to the input module:
+					// - exact match: symbol in "three" matches input "three"
+					// - parent: symbol in "haxiomic-engine" matches input "haxiomic-engine/rendering/X"
+					// - child: symbol in "three/examples/jsm/loaders/GLTFLoader" matches input "three"
+					var declaredWithinInputModule = declaredInModules.exists(name ->
+						name == normalizedInputModuleName
+						|| StringTools.startsWith(normalizedInputModuleName, name + '/')
+						|| StringTools.startsWith(name, normalizedInputModuleName + '/')
+					);
+
+					// check if symbol is from an external ambient declaration file (e.g. @types/webxr)
+					// — a .d.ts in node_modules without module exports (global scope)
+					var isExternalAmbientGlobal = symbol.getDeclarationsArray().exists(d -> {
+						var sf = d.getSourceFile();
+						return sf.isDeclarationFile && !sf.hasNoDefaultLib
+							&& tc.getSymbolAtLocation(sf) == null
+							&& StringTools.contains(sf.fileName, '/node_modules/');
+					});
+
 					if (declaredWithinInputModule) {
 						Log.log('Discovered symbol through reference', symbol);
+						declarationSymbolQueue.tryEnqueue(symbol);
+					}
+
+					// Discover sub-module specifiers from source file paths
+					// e.g. @types/three/examples/jsm/loaders/GLTFLoader.d.ts → three/examples/jsm/loaders/GLTFLoader
+					if (!declaredWithinInputModule) {
+						for (d in symbol.getDeclarationsArray()) {
+							var fileName = d.getSourceFile().fileName;
+							var subModule = deriveSubModuleSpecifier(fileName);
+							if (subModule != null && !discoveredSubModules.contains(subModule)) {
+								discoveredSubModules.push(subModule);
+							}
+						}
+					}
+
+					if (isExternalAmbientGlobal) {
+						// External ambient global types (e.g. from @types/webxr) may be referenced
+						// by modular types. Queue them for generation.
 						declarationSymbolQueue.tryEnqueue(symbol);
 					} else if (options.queueExternalSymbols) {
 						Log.log('Queuing external symbol', symbol);
@@ -356,11 +434,17 @@ class ConverterContext {
 				contextTypePath.pack.join('.') == hxTypePath.pack.join('.'); // same package context
 			} else false;
 		} else false;
-		return {
+		var result: TypePath = {
 			name: hxTypePath.moduleName,
 			sub: hxTypePath.moduleName != hxTypePath.name ? hxTypePath.name : null,
 			pack: noPack ? [] : hxTypePath.pack,
+		};
+		// Preserve stdLibTypeParamCount for downstream type parameter clamping
+		var stdLibCount: Null<Int> = Reflect.field(hxTypePath, 'stdLibTypeParamCount');
+		if (stdLibCount != null) {
+			Reflect.setField(result, 'stdLibTypeParamCount', stdLibCount);
 		}
+		return result;
 	}
 
 	public function getGeneratedModule(typePath: TypePath) {
@@ -395,12 +479,12 @@ class ConverterContext {
 				{
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
-					kind: TDAbstract(hxEnumType, [hxEnumType], [hxEnumType]),
+					kind: TDAbstract(hxEnumType, null, [hxEnumType], [hxEnumType]),
 					params: [],
 					isExtern: true,
 					fields: hxEnumFields,
 					doc: getDoc(symbol),
-					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata()]).concat([{name: ':enum', pos: pos}]),
+					meta: (isCompileTimeEnum ? [] : [access.toAccessMetadata(importStyle)]).concat([{name: ':enum', pos: pos}]),
 					pos: pos,
 					tsSymbol: symbol,
 					tsSymbolAccess: access,
@@ -421,11 +505,11 @@ class ConverterContext {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAbstract(hxAliasType, [hxAliasType], [hxAliasType]),
+					kind: TDAbstract(hxAliasType, null, [hxAliasType], [hxAliasType]),
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,
-					meta: [access.toAccessMetadata(), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
+					meta: [access.toAccessMetadata(importStyle), {name: ':forward', pos: pos}, {name: ':forwardStatics', pos: pos}],
 					pos: pos,
 					tsSymbol: symbol,
 					tsSymbolAccess: access,
@@ -458,7 +542,7 @@ class ConverterContext {
 				}
 
 				var declaredType = tc.getDeclaredTypeOfSymbol(symbol);
-				var meta = [access.toAccessMetadata()];
+				var meta = [access.toAccessMetadata(importStyle)];
 				var superClassPath: Null<TypePath> = null;
 
 				if (isValueModuleOnlySymbol) {
@@ -512,8 +596,14 @@ class ConverterContext {
 					fundamentalTypePath.name
 				);
 
-				if (classDeclaration != null) {
-					// add default constructor
+				// check if class is abstract
+				var isAbstractClass = if (classDeclaration != null && classDeclaration.modifiers != null) {
+					var mods: Array<Modifier> = cast classDeclaration.modifiers;
+					mods.exists(m -> m.kind == SyntaxKind.AbstractKeyword);
+				} else false;
+
+				if (classDeclaration != null && !isAbstractClass) {
+					// add default constructor (not for abstract classes)
 					if (!fields.exists(f -> f.name == 'new') && classSuperType == null) {
 						fields.unshift((macro class { function new(); }).fields[0]);
 					}
@@ -545,7 +635,7 @@ class ConverterContext {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAbstract(macro :Dynamic, [macro :Dynamic], [macro :Dynamic]),
+					kind: TDAbstract(macro :Dynamic, null, [macro :Dynamic], [macro :Dynamic]),
 					doc: getDoc(symbol),
 					isExtern: true,
 					pos: pos,
@@ -605,7 +695,7 @@ class ConverterContext {
 
 			// add static class members
 			for (staticClassMember in symbol.getExports().filter(s -> s.flags & SymbolFlags.ClassMember != 0 && s.isAccessibleField())) {
-				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, symbol, access, null);
+				var field = fieldFromSymbol(staticClassMember.name, staticClassMember, symbol, access, staticClassMember.valueDeclaration);
 				field.enableAccess(AStatic);
 				hxModule.fields.push(field);
 			}
@@ -627,7 +717,7 @@ class ConverterContext {
 					// skip constructor type variables because these have been converted into classes
 					if (tc.isConstructorTypeVariableSymbol(moduleMember)) continue;
 
-					var field = fieldFromSymbol(nativeFieldName, moduleMember, symbol, access, null);
+					var field = fieldFromSymbol(nativeFieldName, moduleMember, symbol, access, moduleMember.valueDeclaration);
 					field.enableAccess(AStatic);
 					hxModule.fields.push(field);
 				}
@@ -676,13 +766,15 @@ class ConverterContext {
 			}
 			*/
 
+			// Haxe 4.3+ does not allow `function new()` in structure types — skip construct signatures
+			var indexSignatures = tc.getIndexSignaturesOfType(declaredType);
 			var fields = generateTypeFields(
 				symbol,
 				access,
 				declaration,
 				[],
 				callSignatures,
-				tc.getIndexSignaturesOfType(declaredType),
+				indexSignatures,
 				declaredMembers,
 				typePath.name
 			);
@@ -698,8 +790,18 @@ class ConverterContext {
 			// (we resolve field collisions here because the later pass doesn't alias to anon fields)
 			fields.resolveNameCollisions();
 
+			var stringIndexType = declaredType.getStringIndexType();
+			var numberIndexType = declaredType.getNumberIndexType();
 
-			TDAlias(TAnonymous(fields));
+			if (fields.length == 0 && stringIndexType != null) {
+				var hxType = complexTypeFromTsType(stringIndexType, symbol, access, declaration);
+				TDAlias(macro :haxe.DynamicAccess<$hxType>);
+			} else if (fields.length == 0 && numberIndexType != null) {
+				var hxType = complexTypeFromTsType(numberIndexType, symbol, access, declaration);
+				TDAlias(macro :Array<$hxType>);
+			} else {
+				TDAlias(TAnonymous(fields));
+			}
 		}
 
 		return {
@@ -837,11 +939,19 @@ class ConverterContext {
 
 	function saveHaxeModule(module: HaxeModule) {
 		var isBuiltIn = module.tsSymbol != null && module.tsSymbol.isBuiltIn();
+		// External ambient global types from .d.ts files in node_modules without module exports
+		// (e.g. @types/webxr) may be referenced by modular types — don't skip them
+		var isExternalAmbientGlobal = !isBuiltIn && module.tsSymbol != null && module.tsSymbol.getDeclarationsArray().exists(d -> {
+			var sf = d.getSourceFile();
+			return sf.isDeclarationFile && !sf.hasNoDefaultLib
+				&& tc.getSymbolAtLocation(sf) == null
+				&& StringTools.contains(sf.fileName, '/node_modules/');
+		});
 
 		var skipModule = false;
 		// skip global if globalTypes are disabled
 		if (!options.globalTypes) {
-			skipModule = skipModule || (!isBuiltIn && module.tsSymbolAccess.match(Global(_)));
+			skipModule = skipModule || (!isBuiltIn && !isExternalAmbientGlobal && module.tsSymbolAccess.match(Global(_)));
 		}
 
 		// skip modular if modularTypes are disabled
@@ -902,6 +1012,10 @@ class ConverterContext {
 		- `preferInterfaceStructure` - set to true return the interface-structure version of a type in haxe. This is not handled recursively, so only the top-level reference will prefer-interface-structure
 	**/
 	function complexTypeFromTsType(type: TsType, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node, ?disallowAliasTarget: Symbol, preferInterfaceStructure: Bool = false): ComplexType {
+		if (type == null) {
+			Log.error('complexTypeFromTsType(): received null type');
+			return macro :Dynamic;
+		}
 		// alias : this -> real type
 		if (type.isThisType()) {
 			var thisTarget = type.getThisTypeTarget();
@@ -941,11 +1055,26 @@ class ConverterContext {
 					} else {
 						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
 					}
-				case { name: 'Partial' | 'Readonly', args: [t], isBuiltIn: true }:
+				case { name: 'Partial', args: [t], isBuiltIn: true }:
 					if (tc.getPropertiesOfType(t).length > 0) {
 						complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
 					} else {
-						// pass through type parameter
+						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
+					}
+				case { name: 'Readonly', args: [t], isBuiltIn: true }:
+					if (tc.getPropertiesOfType(t).length > 0) {
+						var ct = complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
+						// mark all fields as final for Readonly<T>
+						switch ct {
+							case TAnonymous(fields) | TExtend(_, fields):
+								for (field in fields) {
+									if (field.access == null) field.access = [];
+									if (!field.access.has(AFinal)) field.access.push(AFinal);
+								}
+							default:
+						}
+						ct;
+					} else {
 						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
 					}
 				case { name: 'Record' | 'Pick' | 'Omit' | 'Exclude' | 'Extract', args: [k, t], isBuiltIn: true }:
@@ -989,9 +1118,11 @@ class ConverterContext {
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
 			macro :Dynamic;
-		} else if (type.flags & (TypeFlags.Unknown | TypeFlags.Never) != 0) {
-			// we can't really represent `unknown` or `never` in haxe at the moment
+		} else if (type.flags & TypeFlags.Unknown != 0) {
 			macro :Any;
+		} else if (type.flags & TypeFlags.Never != 0) {
+			// `never` is the bottom type — no value can have this type
+			SupportTypes.getNeverType(this);
 		} else if (type.flags & (TypeFlags.String) != 0) {
 			macro :String;
 		} else if (type.flags & (TypeFlags.Number) != 0) {
@@ -1013,6 +1144,12 @@ class ConverterContext {
 		} else if (type.flags & TypeFlags.Intersection != 0) {
 			complexTypeFromIntersectionType(cast type, moduleSymbol, accessContext, enclosingDeclaration);
 		}
+		// enum member literal types → resolve to parent enum type
+		else if (type.flags & TypeFlags.EnumLiteral != 0 && type.symbol != null && type.symbol.getSymbolParent() != null) {
+			@:nullSafety(Off)
+			var hxTypePath = getReferencedHaxeTypePath(type.symbol.getSymbolParent(), moduleSymbol, accessContext, false);
+			TPath(hxTypePath);
+		}
 		// @! it would be nice to use an enum-generating support type so we can preserve values of literals, but for now we can use the literal's type
 		else if (type.flags & (TypeFlags.StringLiteral) != 0) {
 			macro :String;
@@ -1029,9 +1166,8 @@ class ConverterContext {
 			complexTypeFromObjectType(cast type, moduleSymbol, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (type.flags & TypeFlags.ESSymbolLike != 0) {
 			macro :js.lib.Symbol;
-		} else if (type.flags & TypeFlags.BigInt != 0) {
-			// we don't support BigInt at a language level, but we can convert the BigInt type itself instead
-			complexTypeFromTsType(tc.getApparentType(type), moduleSymbol, accessContext, enclosingDeclaration);
+		} else if (type.flags & (TypeFlags.BigInt | TypeFlags.BigIntLiteral) != 0) {
+			SupportTypes.getBigIntType(this);
 			
 
 		// these probably don't work properly:
@@ -1040,11 +1176,20 @@ class ConverterContext {
 		// } else if (type.flags & TypeFlags.Conditional != 0) {
 			// @! can map these to unions
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
-		// } else if (type.flags & TypeFlags.Substitution != 0) {
-		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
+		} else if (type.flags & TypeFlags.Substitution != 0) {
+			// TS 5.4+: NoInfer<T> and other substitution types — unwrap to the base type
+			var baseType = (cast type : SubstitutionType).baseType;
+			if (baseType != null) {
+				complexTypeFromTsType(baseType, moduleSymbol, accessContext, enclosingDeclaration);
+			} else {
+				macro :Dynamic;
+			}
 		// } else if (type.flags & TypeFlags.IndexedAccess != 0) {
 		// 	complexTypeFromTsType(tc.getApparentType(type), accessContext, enclosingDeclaration);
 
+		} else if (type.flags & (TypeFlags.TemplateLiteral | TypeFlags.StringMapping) != 0) {
+			// TS 4.1+: template literal types and string mapping types (Uppercase etc.) are subtypes of string
+			macro :String;
 		} else {
 			Log.warn('Type not yet supported', type);
 			// @! todo:
@@ -1168,7 +1313,10 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			if (options.allowIntersectionRasterization) {
+			// try to rasterize if the intersection has call signatures (callable + object pattern)
+			// or if explicitly allowed via --allowIntersectionRasterization
+			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
+			if (options.allowIntersectionRasterization || hasCallSignatures) {
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
 				// @! todo: avoid recursive type conversion (see jquery)
@@ -1217,7 +1365,19 @@ class ConverterContext {
 		} else if (objectType.objectFlags & ObjectFlags.ClassOrInterface != 0) {
 			complexTypeFromInterfaceType(cast objectType, moduleSymbol, accessContext, preferInterfaceStructure, enclosingDeclaration);
 		} else if (objectType.objectFlags & ObjectFlags.Anonymous != 0) {
-			complexTypeAnonFromTsType(objectType, moduleSymbol, accessContext, enclosingDeclaration);
+			// Before expanding anonymous types, check if this is actually a built-in type
+			// (e.g. String arriving as Anonymous in constraint positions like `T extends string`).
+			// If so, emit the named reference instead of inlining all ~50 methods.
+			if (objectType.symbol != null && objectType.symbol.isBuiltIn()) {
+				var hxTypePath = getReferencedHaxeTypePath(objectType.symbol, moduleSymbol, accessContext, preferInterfaceStructure);
+				if (Reflect.field(hxTypePath, 'isExistingStdLibType') == true) {
+					TPath(hxTypePath);
+				} else {
+					complexTypeAnonFromTsType(objectType, moduleSymbol, accessContext, enclosingDeclaration);
+				}
+			} else {
+				complexTypeAnonFromTsType(objectType, moduleSymbol, accessContext, enclosingDeclaration);
+			}
 		} else {
 			Log.warn('Could not convert object type <b>${objectType.getObjectFlagsInfo()}</b> ${objectType.objectFlags}', objectType);
 			// debug();
@@ -1247,11 +1407,6 @@ class ConverterContext {
 		var callSignatures = tsType.getCallSignatures();
 		var constructSignatures = tsType.getConstructSignatures();
 
-		if (tsType.getConstructSignatures().length > 0) {
-			Log.warn('Type has construct signature but this is currently unhandled', tsType);
-			// debug();
-		}
-
 		// for the special case of a single call signature and no props we can return a function type
 		return if (callSignatures.length == 1 && constructSignatures.length == 0 && typeFields.length == 0) {
 			complexTypeFromCallSignature(callSignatures[0], moduleSymbol, accessContext, enclosingDeclaration);
@@ -1271,6 +1426,8 @@ class ConverterContext {
 			if (callSignatures.length > 0) {
 				fields.push(functionFieldFromCallSignatures(selfCallFunctionName, callSignatures, moduleSymbol, accessContext, enclosingDeclaration));
 			}
+
+			// Haxe 4.3+ does not allow `function new()` in structure types — skip construct signatures
 
 			// add properties
 			fields = fields.concat(typeFields.map(p -> fieldFromSymbol(p.name, p, moduleSymbol, accessContext, enclosingDeclaration)));
@@ -1295,19 +1452,15 @@ class ConverterContext {
 			 * For now, we can handle the special case of an index signature with no fields
 			 */
 			// special case handling
-			if (fields.length == 0) {
-				var stringIndexType = tsType.getStringIndexType();
-				var numberIndexType = tsType.getNumberIndexType();
+			var stringIndexType = tsType.getStringIndexType();
+			var numberIndexType = tsType.getNumberIndexType();
 
-				if (stringIndexType != null) {
-					var hxType = complexTypeFromTsType(stringIndexType, moduleSymbol, accessContext, enclosingDeclaration);
-					macro :haxe.DynamicAccess<$hxType>;
-				} else if (numberIndexType != null) {
-					var hxType = complexTypeFromTsType(numberIndexType, moduleSymbol, accessContext, enclosingDeclaration);
-					macro :Array<$hxType>;
-				} else {
-					TAnonymous(fields);
-				}
+			if (fields.length == 0 && stringIndexType != null) {
+				var hxType = complexTypeFromTsType(stringIndexType, moduleSymbol, accessContext, enclosingDeclaration);
+				macro :haxe.DynamicAccess<$hxType>;
+			} else if (fields.length == 0 && numberIndexType != null) {
+				var hxType = complexTypeFromTsType(numberIndexType, moduleSymbol, accessContext, enclosingDeclaration);
+				macro :Array<$hxType>;
 			} else {
 				TAnonymous(fields);
 			}
@@ -1359,7 +1512,7 @@ class ConverterContext {
 		var field = functionFieldFromSignatures('new', signatures, moduleSymbol, accessContext, enclosingDeclaration);
 		switch field.kind {
 			case FFun(fun):
-				// remove return type form `function new` (disallowed in haxe)
+				// Class constructors can't have return types in Haxe
 				fun.ret = null;
 			default:
 		}
@@ -1443,12 +1596,16 @@ class ConverterContext {
 			// it's a TupleTypeReference if its target is a Tuple
 			complexTypeFromTupleTypeReference(cast typeReference, moduleSymbol, accessContext, enclosingDeclaration);
 		} else {
-			if (typeReference.target == cast typeReference) { // avoid direct cycles
-				// this can happen with TupleReferences and GenericTypes but we shouldn't get this 
+			if (typeReference.target == cast typeReference) {
+				// self-referential type reference (e.g. Iterator's target is itself)
+				// resolve via the interface path directly to get proper type name and param clamping
+				if (typeReference.objectFlags & ObjectFlags.ClassOrInterface != 0) {
+					return complexTypeFromGenericType(cast typeReference, moduleSymbol, accessContext, preferInterfaceStructure, enclosingDeclaration);
+				}
 				Log.error('Internal error: recursive type reference');
 				return macro :Dynamic;
 			}
-			
+
 			var hxTarget = complexTypeFromTsType(cast typeReference.target, moduleSymbol, accessContext, enclosingDeclaration, null, preferInterfaceStructure);
 
 			var hxTypeArguments = if (typeReference.typeArguments != null) {
@@ -1460,7 +1617,10 @@ class ConverterContext {
 				case TPath(p):
 					var argumentCount = hxTypeArguments.length;
 					var paramCount = p.params != null ? p.params.length : 0;
-					if (paramCount != argumentCount) {
+					// clamp type args to target's Haxe type param count
+					if (paramCount < argumentCount && paramCount > 0) {
+						hxTypeArguments = hxTypeArguments.slice(0, paramCount);
+					} else if (paramCount != argumentCount && paramCount != 0) {
 						Log.warn('TypeReference has <b>$argumentCount</> arguments but target has <b>$paramCount</> parameters', typeReference);
 					}
 					p.params = hxTypeArguments;
@@ -1471,7 +1631,20 @@ class ConverterContext {
 	}
 
 	function complexTypeFromTupleTypeReference(tupleTypeReference: TupleTypeReference, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
-		var hxElementTypes = tupleTypeReference.typeArguments.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
+		// TS 4.0+: elementFlags indicates Required(1), Optional(2), Rest(4), Variadic(8) per element
+		var elementFlags: Null<Array<Int>> = (cast tupleTypeReference.target : TupleType).elementFlags;
+		var hxElementTypes = new Array<ComplexType>();
+		if (tupleTypeReference.typeArguments != null) {
+			for (i in 0...tupleTypeReference.typeArguments.length) {
+				var t = tupleTypeReference.typeArguments[i];
+				var hxType = complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
+				// wrap rest elements in Array<T>
+				if (elementFlags != null && i < elementFlags.length && elementFlags[i] & 4 != 0) {
+					hxType = macro :Array<$hxType>;
+				}
+				hxElementTypes.push(hxType);
+			}
+		}
 		return this.getTupleType(hxElementTypes);
 	}
 
@@ -1497,9 +1670,15 @@ class ConverterContext {
 	function complexTypeFromInterfaceType(classOrInterfaceType: InterfaceType, moduleSymbol: Symbol, accessContext: SymbolAccess, preferInterfaceStructure: Bool, ?enclosingDeclaration: Node): ComplexType {
 		return if (classOrInterfaceType.symbol != null) {
 			var hxTypePath = getReferencedHaxeTypePath(classOrInterfaceType.symbol, moduleSymbol, accessContext, preferInterfaceStructure);
-			hxTypePath.params = if (classOrInterfaceType.typeParameters != null) {
+			var maxParams: Null<Int> = Reflect.field(hxTypePath, 'stdLibTypeParamCount');
+			var hxParams = if (classOrInterfaceType.typeParameters != null) {
 				classOrInterfaceType.typeParameters.map(t -> TPType(complexTypeFromTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration)));
 			} else null;
+			// clamp type params to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
+			if (hxParams != null && maxParams != null && hxParams.length > maxParams) {
+				hxParams = hxParams.slice(0, maxParams);
+			}
+			hxTypePath.params = hxParams;
 			TPath(hxTypePath);
 		} else {
 			Log.error('Internal error: no symbol for ClassOrInterface type', classOrInterfaceType);
@@ -1554,7 +1733,7 @@ class ConverterContext {
 		return complexTypeFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
 	}
 
-	function getTsTypeOfField(symbol:Symbol): TsType {
+	function getTsTypeOfField(symbol:Symbol, ?enclosingDeclaration: Node): TsType {
 		return if (symbol.valueDeclaration != null) {
 			tc.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
 		} else {
@@ -1562,8 +1741,19 @@ class ConverterContext {
 			// we can get the type of a prototype symbol by using the parent valueDeclaration as a location
 			if (symbol.flags & SymbolFlags.Prototype != 0 && parentSymbol != null) {
 				tc.getTypeOfSymbolAtLocation(symbol, parentSymbol.valueDeclaration);
+			} else if (symbol.declarations != null && symbol.declarations.length > 0) {
+				// TS 3.9+: mapped type properties may lack valueDeclaration but have declarations
+				tc.getTypeOfSymbolAtLocation(symbol, symbol.declarations[0]);
+			} else if (parentSymbol != null && parentSymbol.valueDeclaration != null) {
+				// TS 3.9+: mapped type properties may have no declarations at all;
+				// use the parent's valueDeclaration as a location fallback
+				tc.getTypeOfSymbolAtLocation(symbol, parentSymbol.valueDeclaration);
+			} else if (enclosingDeclaration != null) {
+				// TS 3.9+: some mapped type properties (e.g. Record) have no parent either;
+				// use the enclosing declaration as a location fallback
+				tc.getTypeOfSymbolAtLocation(symbol, enclosingDeclaration);
 			} else {
-				Reflect.field(symbol, 'type') != null ? Reflect.field(symbol, 'type') : tc.getDeclaredTypeOfSymbol(symbol);
+				symbol.type_ != null ? symbol.type_ : tc.getDeclaredTypeOfSymbol(symbol);
 			}
 		}
 	}
@@ -1600,7 +1790,7 @@ class ConverterContext {
 		var userDoc = getDoc(symbol);
 		var docParts = userDoc != '' ? [userDoc] : [];
 
-		var tsType = getTsTypeOfField(symbol);
+		var tsType = getTsTypeOfField(symbol, enclosingDeclaration);
 
 		// add errors to field docs
 		function onError(message) {
@@ -1648,9 +1838,10 @@ class ConverterContext {
 			} else {
 				// variable field
 				if (baseDeclaration != null) switch baseDeclaration.kind {
-					case VariableDeclaration, PropertySignature, PropertyDeclaration:
+					case VariableDeclaration, PropertySignature, PropertyDeclaration, PropertyAssignment:
 					case GetAccessor, SetAccessor:
-					default: 
+					case Parameter: // can occur for constructor parameter properties
+					default:
 						onError('Unhandled declaration kind <b>${TsSyntaxTools.getSyntaxKindName(baseDeclaration.kind)}</>');
 				}
 
@@ -1686,7 +1877,8 @@ class ConverterContext {
 				Log.error('EnumMember did not have a parent', symbol);
 				true;
 			}
-			
+
+			hxAccessModifiers.add(AFinal);
 			FVar(null, isConstEnum ? HaxeTools.primitiveValueToExpr(tc.getConstantValue(cast symbol.valueDeclaration)) : null);
 
 		} else {
@@ -1724,14 +1916,38 @@ class ConverterContext {
 			signature.typeParameters.map(t -> typeParamDeclFromTsTypeParameter(t, moduleSymbol, accessContext, enclosingDeclaration));
 		} else [];
 
-		var hxParameters = if (signature.parameters != null ) tc.getExpandedParameters(signature).map(s -> {
+		// TS 4.0+: getExpandedParameters returns Symbol[][] (array of parameter lists for variadic overloads)
+		// Prior to 4.0 it returned Symbol[]. We use the first parameter list.
+		var expandedParams: Array<Symbol> = {
+			var result: Dynamic = tc.getExpandedParameters(signature);
+			if (result.length > 0 && Std.isOfType(result[0], Array))
+				result[0]
+			else
+				result;
+		};
+		var hxParameters = if (signature.parameters != null) expandedParams.map(s -> {
 			var parameterDeclaration: Null<ParameterDeclaration> = cast s.valueDeclaration;
 			var isOptional = parameterDeclaration != null && tc.isOptionalParameter(parameterDeclaration);
 			var isRest = parameterDeclaration != null && parameterDeclaration.dotDotDotToken != null;
 			// getExpandedParameters() can create transient symbols with no declaration, but they do have a .type field
-			var tsType = parameterDeclaration != null ? tc.getTypeOfSymbolAtLocation(s, parameterDeclaration) : untyped s.type;
+			var tsType = if (parameterDeclaration != null) {
+				tc.getTypeOfSymbolAtLocation(s, parameterDeclaration);
+			} else if (s.type_ != null) {
+				s.type_;
+			} else if (signatureDeclarationNode != null) {
+				// TS 4.0+: expanded tuple rest params are transient with no .type;
+				// recover via the signature declaration as location
+				tc.getTypeOfSymbolAtLocation(s, signatureDeclarationNode);
+			} else {
+				null;
+			};
 
-			var hxType = complexTypeFromTsType(tsType, moduleSymbol, accessContext, parameterDeclaration);
+			var hxType = if (tsType != null) {
+				complexTypeFromTsType(tsType, moduleSymbol, accessContext, parameterDeclaration);
+			} else {
+				Log.warn('Could not resolve type for expanded parameter "${s.name}"', s);
+				macro :Dynamic;
+			};
 
 			// a rest parameter cannot be optional in ts
 			if (isRest) {
@@ -1784,17 +2000,92 @@ class ConverterContext {
 	function typeParamDeclFromTypeDeclarationSymbol(symbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): Array<TypeParamDecl> {
 		return [for (t in symbol.getDeclarationTypeParameters()) {
 			name: TsSyntaxTools.typeParameterDeclarationName(t),
-			constraints: options.enableTypeParameterConstraints && t.constraint != null ? [complexTypeFromTypeNode(t.constraint, symbol, accessContext, enclosingDeclaration)] : null
+			constraints: if (options.enableTypeParameterConstraints && t.constraint != null) {
+				// For class/interface-level constraints, check if the resolved constraint is simple
+				// enough for Haxe's invariant generics. Complex constraints involving generic types
+				// cause issues (e.g. Light<T extends LightShadow<Camera>> breaks when subclassed).
+				var constraintType = tc.getTypeFromTypeNode(t.constraint);
+				if (isSimpleConstraintType(constraintType)) {
+					[complexTypeFromTypeNode(t.constraint, symbol, accessContext, enclosingDeclaration)];
+				} else {
+					null;
+				}
+			} else null
 		}];
 	}
 
+	/**
+		Returns true if a constraint type is safe for Haxe's invariant generics.
+		Allows: primitives, literals, enums, unions of these, and non-generic
+		class/interface types (no type parameters).
+		Rejects: generic class/interface types (e.g. Container<T>) because
+		Haxe's invariant generics break subclass hierarchies when the type
+		param is narrowed (e.g. Light<T extends LightShadow<Camera>> fails
+		when DirectionalLight extends Light<DirectionalLightShadow<OrthoCamera>>).
+	**/
+	function isSimpleConstraintType(type: TsType): Bool {
+		final simpleFlags = TypeFlags.String | TypeFlags.Number | TypeFlags.Boolean
+			| TypeFlags.StringLiteral | TypeFlags.NumberLiteral | TypeFlags.BooleanLiteral
+			| TypeFlags.Enum | TypeFlags.EnumLiteral | TypeFlags.Void | TypeFlags.Undefined
+			| TypeFlags.Null | TypeFlags.Never | TypeFlags.BigInt | TypeFlags.BigIntLiteral;
+		if (type.flags & simpleFlags != 0) {
+			// Undefined in constraints becomes Null<T> in Haxe, which causes
+			// invariance issues (Null<Any> doesn't satisfy Null<Bool>)
+			if (type.flags & TypeFlags.Undefined != 0) return false;
+			return true;
+		}
+		// Allow unions where all members are safe
+		if (type.flags & TypeFlags.Union != 0) {
+			var unionType: Dynamic = type;
+			var types: Array<TsType> = unionType.types;
+			if (types != null) {
+				// Reject unions containing undefined (becomes Null<T>, invariance issue)
+				if (types.exists(t -> t.flags & TypeFlags.Undefined != 0)) return false;
+				return !types.exists(t -> !isSimpleConstraintType(t));
+			}
+		}
+		// Allow non-generic object types (classes/interfaces without type parameters)
+		// These are safe because subclass narrowing doesn't involve type param variance
+		if (type.flags & TypeFlags.Object != 0) {
+			var objectType: ObjectType = cast type;
+			// Check if the type reference has type arguments — if so, it's generic and unsafe
+			if (objectType.objectFlags & ObjectFlags.Reference != 0) {
+				var typeRef: TypeReference = cast objectType;
+				// No type arguments = non-generic, safe to use as constraint
+				return typeRef.typeArguments == null || typeRef.typeArguments.length == 0;
+			}
+			// Mapped types (Record<K,V>) become DynamicAccess<V> which is generic — unsafe
+			if (objectType.objectFlags & ObjectFlags.Mapped != 0) return false;
+			// Other non-reference object types (anonymous, etc.) are safe
+			return true;
+		}
+		// Allow intersection types where all members are safe
+		if (type.flags & TypeFlags.Intersection != 0) {
+			var intersectionType: Dynamic = type;
+			var types: Array<TsType> = intersectionType.types;
+			if (types != null) return !types.exists(t -> !isSimpleConstraintType(t));
+		}
+		return false;
+	}
+
 	function typeParamDeclFromTsTypeParameter(typeParameter: TypeParameter, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): TypeParamDecl {
-		// for some reason typeParameter.getConstraint() has issues
-		// in the following class field `parse<X extends Example>(a: T): void;`, the constraint `Example` is reported as having typeArguments when it doesn't
-		var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
-		var hxConstraint = if (options.enableTypeParameterConstraints && typeParamNode != null && typeParamNode.constraint != null ) {
-			complexTypeFromTypeNode(typeParamNode.constraint, moduleSymbol, accessContext, enclosingDeclaration);
-		} else null;
+		var hxConstraint: Null<ComplexType> = null;
+		if (options.enableTypeParameterConstraints) {
+			// Prefer getConstraint() which returns the resolved constraint type.
+			// This handles cases like `T extends Extract<keyof EventMap, string>` where the
+			// declaration node would give us an unresolved ConditionalType, but getConstraint()
+			// resolves it to `string`.
+			var constraintType = typeParameter.getConstraint();
+			if (constraintType != null && untyped constraintType.intrinsicName != 'unknown') {
+				hxConstraint = complexTypeFromTsType(constraintType, moduleSymbol, accessContext, enclosingDeclaration);
+			} else {
+				// Fallback to declaration node for cases where getConstraint() doesn't work
+				var typeParamNode: Null<TypeParameterDeclaration> = cast typeParameter.symbol.declarations.find(d -> d.kind == TypeParameter);
+				if (typeParamNode != null && typeParamNode.constraint != null) {
+					hxConstraint = complexTypeFromTypeNode(typeParamNode.constraint, moduleSymbol, accessContext, enclosingDeclaration);
+				}
+			}
+		}
 		return {
 			name: typeParameter.symbol.name.toSafeTypeName(),
 			constraints: hxConstraint != null ? [hxConstraint] : null,
@@ -1819,7 +2110,8 @@ class ConverterContext {
 				case SyntaxKind.PrivateKeyword:
 					access.push(APrivate);
 				case SyntaxKind.ProtectedKeyword:
-					access.push(APrivate);
+					// protected maps to no access modifier in Haxe externs
+					// (APrivate would be too restrictive — externs need to be accessible)
 				case SyntaxKind.ReadonlyKeyword:
 					access.push(AFinal);
 				case SyntaxKind.StaticKeyword:

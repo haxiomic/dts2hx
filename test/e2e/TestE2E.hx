@@ -1,0 +1,690 @@
+import build.Testlib;
+import build.testlib.*;
+import build.modules.Types;
+import build.modules.Math_;
+import build.modules.Collections;
+import build.modules.CjsExport;
+import build.modules.Barrel;
+import build.modules.collections.Stack;
+import global.AmbientGlobal;
+import global.GlobalLogger;
+import global.MergedNS;
+import build.modules.Patterns;
+import build.modules.advanced.QueryBuilder;
+import build.modules.advanced.Circle;
+import build.modules.advanced.Rect;
+import build.modules.advanced.Stream;
+import build.modules.advanced.Converter;
+import build.modules.advanced.AppError;
+import build.modules.TsFeatures;
+import build.modules.ts_features.SimpleValue;
+
+/**
+	End-to-end test: TypeScript → JS + .d.ts → dts2hx → Haxe externs → Haxe → JS → run
+
+	Validates that generated externs produce correct JS interop at runtime.
+	Covers: functions, classes, enums, generics, mapped types, unions, tuples, edge cases.
+**/
+class TestE2E {
+	static var passed = 0;
+	static var failed = 0;
+	static var section = "";
+
+	static function begin(name:String) {
+		section = name;
+	}
+
+	static function assert(condition:Bool, message:String) {
+		if (condition) {
+			passed++;
+		} else {
+			failed++;
+			Sys.println('  FAIL [$section]: $message');
+		}
+	}
+
+	static function eq<T>(actual:T, expected:T, message:String) {
+		if (actual == expected) {
+			passed++;
+		} else {
+			failed++;
+			Sys.println('  FAIL [$section]: $message — expected "$expected", got "$actual"');
+		}
+	}
+
+	static function approx(actual:Float, expected:Float, message:String, tolerance:Float = 0.001) {
+		if (Math.abs(actual - expected) < tolerance) {
+			passed++;
+		} else {
+			failed++;
+			Sys.println('  FAIL [$section]: $message — expected ~$expected, got $actual');
+		}
+	}
+
+	static function main() {
+		Sys.println("Running end-to-end tests...\n");
+
+		testBasicFunctions();
+		testOptionalAndRest();
+		testOverloads();
+		testGenericFunctions();
+		testHigherOrder();
+		testConstants();
+		testEnums();
+		testClasses();
+		testInheritance();
+		testStructuralTypes();
+		testGenerics();
+		testMappedTypes();
+		testUnionTypes();
+		testResultType();
+		testTuples();
+		testCallbacks();
+		testEdgeCases();
+		testRecursiveTypes();
+		testMethodChaining();
+		testModuleTypes();
+		testModuleMath();
+		testModuleCollections();
+		testCjsExport();
+		testBarrelExports();
+		testStack();
+		testGlobalAmbient();
+		testGlobalClass();
+		testDeclarationMerging();
+		testAmbientModule();
+		testTypeofPatterns();
+		testRegistry();
+		testOptionalInterface();
+		testPromises();
+		testQueryBuilder();
+		testClassHierarchy();
+		testInterfaceExtends();
+		testOverloadedClass();
+		testErrorSubclass();
+		testTemplateLiteralTypes();
+		testIntrinsicStringTypes();
+		testKeyRemapping();
+		testVarianceAnnotations();
+		testTypeConstraints();
+		testReadonlyFinal();
+		testNeverType();
+		testConstructSignatures();
+		testStringDictIndex();
+		testNoInfer();
+		testFlatten();
+		testAsyncPromises();
+
+		Sys.println('Results: $passed passed, $failed failed');
+		if (failed > 0) Sys.exit(1);
+	}
+
+	static function testBasicFunctions() {
+		begin("basic functions");
+		eq(Testlib.add(2, 3), 5.0, "add(2,3)");
+		eq(Testlib.add(-1, 1), 0.0, "add(-1,1)");
+		eq(Testlib.add(0, 0), 0.0, "add(0,0)");
+		eq(Testlib.greet("World"), "Hello, World!", "greet");
+		eq(Testlib.greet(""), "Hello, !", "greet empty");
+		eq(Testlib.identity(42), 42, "identity int");
+		eq(Testlib.identity("hello"), "hello", "identity string");
+		eq(Testlib.identity(true), true, "identity bool");
+	}
+
+	static function testOptionalAndRest() {
+		begin("optional and rest params");
+		eq(Testlib.optionalParam("a"), "a", "optional omitted");
+		eq(Testlib.optionalParam("a", 5), "a:5", "optional provided");
+		eq(Testlib.restParam(1, 2, 3), 6.0, "rest sum");
+		eq(Testlib.restParam(10), 10.0, "rest single");
+		eq(Testlib.restWithLeading("x", 1, 2, 3), "x:1,2,3", "rest with leading");
+	}
+
+	static function testOverloads() {
+		begin("overloaded functions");
+		eq(Testlib.overloaded("hello"), "hello", "overload string");
+		eq(Testlib.overloaded(42), 42, "overload number");
+	}
+
+	static function testGenericFunctions() {
+		begin("generic functions");
+		var p = Testlib.pair("a", 1);
+		eq(p[0], "a", "pair first");
+		eq(p[1], 1, "pair second");
+		eq(Testlib.constrained("hello"), "hello", "constrained generic");
+	}
+
+	static function testHigherOrder() {
+		begin("higher-order functions");
+		var doubled = Testlib.mapArray([1, 2, 3], (item, _) -> item * 2);
+		eq(doubled[0], 2, "mapArray[0]");
+		eq(doubled[1], 4, "mapArray[1]");
+		eq(doubled[2], 6, "mapArray[2]");
+
+		var fn = Testlib.returnsFunction();
+		eq(fn(42), "value:42", "returnsFunction");
+
+		Testlib.takesCallback((err, result) -> {
+			assert(err == null, "callback no error");
+			eq(result, "success", "callback result");
+		});
+	}
+
+	static function testConstants() {
+		begin("constants");
+		approx(Testlib.PI, 3.14159, "PI");
+		eq(Testlib.VERSION, "1.0.0", "VERSION");
+	}
+
+	static function testEnums() {
+		begin("enums");
+		// String enum
+		eq(Testlib.directionToString(Direction.Up), "UP", "Direction.Up");
+		eq(Testlib.directionToString(Direction.Down), "DOWN", "Direction.Down");
+		eq(Testlib.directionToString(Direction.Left), "LEFT", "Direction.Left");
+		eq(Testlib.directionToString(Direction.Right), "RIGHT", "Direction.Right");
+
+		// Numeric enum
+		eq(cast(NumericEnum.A, Int), 0, "NumericEnum.A = 0");
+		eq(cast(NumericEnum.B, Int), 1, "NumericEnum.B = 1");
+		eq(cast(NumericEnum.C, Int), 2, "NumericEnum.C = 2");
+
+		// Const enum (values inlined at compile time)
+		eq(cast(ConstEnum.X, Int), 10, "ConstEnum.X = 10");
+		eq(cast(ConstEnum.Y, Int), 20, "ConstEnum.Y = 20");
+		eq(cast(ConstEnum.Z, Int), 30, "ConstEnum.Z = 30");
+	}
+
+	static function testClasses() {
+		begin("classes");
+		var c = new Counter(10);
+		eq(c.value, 10.0, "Counter initial");
+		eq(c.increment(), 11.0, "increment");
+		eq(c.increment(), 12.0, "increment 2");
+		eq(c.decrement(), 11.0, "decrement");
+		c.reset();
+		eq(c.value, 0.0, "reset");
+
+		var c2 = Counter.create(5);
+		eq(c2.value, 5.0, "Counter.create");
+
+		var c3 = Counter.create();
+		eq(c3.value, 0.0, "Counter.create default");
+	}
+
+	static function testInheritance() {
+		begin("inheritance");
+		var dog = new Dog("Rex");
+		eq(dog.name, "Rex", "Dog.name");
+		eq(dog.legs, 4.0, "Dog.legs");
+		eq(dog.describe(), "Rex has 4 legs", "Dog.describe()");
+		eq(dog.bark(), "Woof!", "Dog.bark()");
+
+		var animal = new Animal("Cat", 4);
+		eq(animal.describe(), "Cat has 4 legs", "Animal.describe()");
+	}
+
+	static function testStructuralTypes() {
+		begin("structural types");
+		var p1:Point = {x: 0, y: 0};
+		var p2 = Testlib.makePoint(3, 4);
+		eq(p2.x, 3.0, "makePoint.x");
+		eq(p2.y, 4.0, "makePoint.y");
+		approx(Testlib.distance(p1, p2), 5.0, "distance");
+
+		eq(Testlib.describePerson({name: "Alice", age: 30}), "Alice, age 30", "describePerson");
+	}
+
+	static function testGenerics() {
+		begin("generics");
+		var wrapped = Testlib.wrapValue(42);
+		eq(Testlib.unwrapValue(wrapped), 42, "wrap/unwrap");
+
+		var pair = Testlib.makePair("hello", 99);
+		eq(pair.first, "hello", "pair.first");
+		eq(pair.second, 99, "pair.second");
+
+		var swapped = Testlib.swap(pair);
+		eq(swapped.first, 99, "swap.first");
+		eq(swapped.second, "hello", "swap.second");
+
+		var n = Testlib.nullable(42);
+		eq(n, 42, "nullable non-null");
+
+		var dict = Testlib.makeDict([["a", 1], ["b", 2]]);
+		eq(Reflect.field(dict, "a"), 1, "dict[a]");
+		eq(Reflect.field(dict, "b"), 2, "dict[b]");
+	}
+
+	static function testMappedTypes() {
+		begin("mapped types");
+		var rec = Testlib.makeRecord(["x", "y"], 42);
+		eq(Reflect.field(rec, "x"), 42, "Record x");
+		eq(Reflect.field(rec, "y"), 42, "Record y");
+
+		var keys = Testlib.getKeys(rec);
+		assert(keys.length == 2, "getKeys length");
+
+		var base:Point = {x: 1, y: 2};
+		var partial:PartialPoint = {x: 10};
+		var applied = Testlib.applyPartialPoint(base, partial);
+		eq(applied.x, 10.0, "applyPartial x");
+		eq(applied.y, 2.0, "applyPartial y unchanged");
+
+		var frozen = Testlib.freezePoint({x: 5, y: 6});
+		eq(frozen.x, 5.0, "frozen.x");
+
+		var full:FullConfig = {host: "localhost", port: 8080, debug: true, name: "test"};
+		var picked = Testlib.pickConfig(full);
+		eq(picked.host, "localhost", "picked.host");
+		eq(picked.port, 8080.0, "picked.port");
+	}
+
+	static function testUnionTypes() {
+		begin("union types");
+		eq(Testlib.doubleIt(5), 10, "doubleIt number");
+		eq(Testlib.doubleIt("ab"), "abab", "doubleIt string");
+
+		var circle:Dynamic = {kind: "circle", radius: 5};
+		approx(Testlib.area(circle), 78.539, "area circle");
+
+		var square:Dynamic = {kind: "square", size: 4};
+		eq(Testlib.area(square), 16.0, "area square");
+	}
+
+	static function testResultType() {
+		begin("result type");
+		var okr:Dynamic = Testlib.ok(42);
+		assert(okr.success == true, "ok.success");
+		eq(okr.value, 42, "ok.value");
+
+		var failr:Dynamic = Testlib.fail("oops");
+		assert(failr.success == false, "fail.success");
+		eq(failr.error, "oops", "fail.error");
+	}
+
+	static function testTuples() {
+		begin("tuples");
+		var result = Testlib.firstAndRest([10, 20, 30]);
+		eq(result[0], 10, "firstAndRest first");
+		var rest:Array<Int> = result[1];
+		eq(rest.length, 2, "firstAndRest rest length");
+		eq(rest[0], 20, "firstAndRest rest[0]");
+		eq(rest[1], 30, "firstAndRest rest[1]");
+
+		var tuple:Dynamic = js.Syntax.code('["hello", 42]');
+		var obj = Testlib.tupleToObject(tuple);
+		eq(Reflect.field(obj, "name"), "hello", "tupleToObject.name");
+		eq(Reflect.field(obj, "value"), 42, "tupleToObject.value");
+
+		eq(Testlib.spreadArgs("a", 1, true), "a,1,true", "spreadArgs");
+	}
+
+	static function testCallbacks() {
+		begin("callbacks");
+		Testlib.asyncOp("data", (err, val) -> {
+			assert(err == null, "asyncOp no error");
+			eq(val, "data", "asyncOp value");
+		});
+	}
+
+	static function testEdgeCases() {
+		begin("edge cases");
+		var fields = Testlib.getReservedFields();
+		eq(Reflect.field(fields, "function"), "fn", "reserved: function");
+		eq(Reflect.field(fields, "class"), 42, "reserved: class");
+		eq(Reflect.field(fields, "var"), true, "reserved: var");
+	}
+
+	static function testRecursiveTypes() {
+		begin("recursive types");
+		var list = Testlib.makeList(1, 2, 3);
+		eq(list.value, 1, "list head");
+		eq(list.next.value, 2, "list second");
+		eq(list.next.next.value, 3, "list third");
+		assert(list.next.next.next == null, "list tail null");
+
+		var arr = Testlib.listToArray(list);
+		eq(arr[0], 1, "listToArray[0]");
+		eq(arr[1], 2, "listToArray[1]");
+		eq(arr[2], 3, "listToArray[2]");
+		eq(arr.length, 3, "listToArray length");
+	}
+
+	static function testMethodChaining() {
+		begin("method chaining");
+		var result = new Builder().add("hello").add("world").build();
+		eq(result, "hello world", "builder chain");
+	}
+
+	// === MODULE PATTERN TESTS ===
+
+	static function testModuleTypes() {
+		begin("module: types");
+		var p = Types.createPoint(3, 4);
+		eq(p.x, 3.0, "createPoint.x");
+		eq(p.y, 4.0, "createPoint.y");
+
+		var r = Types.createRect(1, 2, 10, 20);
+		eq(r.x, 1.0, "createRect.x");
+		eq(r.y, 2.0, "createRect.y");
+		eq(Reflect.field(r, "width"), 10, "createRect.width");
+		eq(Reflect.field(r, "height"), 20, "createRect.height");
+	}
+
+	static function testModuleMath() {
+		begin("module: math (cross-module imports)");
+		var a = Math_.createPoint(0, 0);
+		var b = Math_.createPoint(3, 4);
+		approx(Math_.distance(a, b), 5.0, "cross-module distance");
+
+		var mid = Math_.midpoint(a, b);
+		approx(mid.x, 1.5, "midpoint.x");
+		approx(mid.y, 2.0, "midpoint.y");
+	}
+
+	static function testModuleCollections() {
+		begin("module: collections (index sigs, generics)");
+		// StringMap<T> maps to DynamicAccess<T> — test typed access
+		var entries:Dynamic = js.Syntax.code('[["a", 1], ["b", 2]]');
+		var map = Collections.createStringMap(entries);
+		eq(map.get("a"), 1, "stringMap.get(a)");
+		eq(map.get("b"), 2, "stringMap.get(b)");
+		assert(map.get("missing") == null, "stringMap.get(missing) is null");
+
+		// Config: mixed index sig + named fields — named fields preserved
+		var cfg = Collections.createConfig("localhost", 8080, true);
+		eq(cfg.host, "localhost", "config.host");
+		eq(cfg.port, 8080.0, "config.port");
+		eq(cfg.debug, true, "config.debug");
+	}
+
+	static function testCjsExport() {
+		begin("CJS export = pattern");
+		var obj = new CjsExport("test");
+		eq(obj.name, "test", "cjs.name");
+		eq(obj.greet(), "Hello from test", "cjs.greet()");
+
+		var obj2 = CjsExport.create("factory");
+		eq(obj2.name, "factory", "cjs static create");
+	}
+
+	static function testBarrelExports() {
+		begin("barrel re-exports");
+		// Functions re-exported from types module
+		var p = Barrel.createPoint(5, 6);
+		eq(p.x, 5.0, "barrel createPoint.x");
+
+		// Functions re-exported from math module
+		var a = Barrel.createPoint(0, 0);
+		var b = Barrel.createPoint(3, 4);
+		approx(Barrel.distance(a, b), 5.0, "barrel distance");
+
+		// Functions from collections
+		var cfg = Barrel.createConfig("example.com", 443, false);
+		eq(cfg.host, "example.com", "barrel config.host");
+	}
+
+	static function testGlobalAmbient() {
+		begin("global ambient declarations");
+		// Uses @:native("") — global functions/vars
+		eq(AmbientGlobal.globalAdd(10, 20), 30.0, "globalAdd");
+		eq(AmbientGlobal.globalVersion, "2.0.0", "globalVersion");
+	}
+
+	static function testGlobalClass() {
+		begin("global class (@:native)");
+		var logger = new GlobalLogger("TEST");
+		eq(logger.prefix, "TEST", "GlobalLogger.prefix");
+	}
+
+	static function testDeclarationMerging() {
+		begin("declaration merging");
+		// MergedNS: two namespace declarations merged into one class
+		eq(MergedNS.fnA(), "fromA", "merged ns fnA");
+		eq(MergedNS.fnB(), 99.0, "merged ns fnB");
+		eq(MergedNS.shared, true, "merged ns shared");
+	}
+
+	static function testAmbientModule() {
+		begin("ambient module (declare module)");
+		var myLib = js.Syntax.code("require('./modules/my-library-impl')");
+		eq(Reflect.callMethod(myLib, Reflect.field(myLib, "doWork"), ["hello"]), "HELLO", "ambient module doWork");
+		eq(Reflect.field(myLib, "VERSION"), "3.0.0", "ambient module VERSION");
+	}
+
+	static function testTypeofPatterns() {
+		begin("typeof / type query");
+		// typeof sampleConfig produces a structural type
+		var cfg = Patterns.cloneConfig(Patterns.sampleConfig);
+		eq(cfg.host, "localhost", "cloneConfig.host");
+		eq(cfg.port, 8080.0, "cloneConfig.port");
+		eq(cfg.debug, false, "cloneConfig.debug");
+
+		// Mutating the clone doesn't affect original
+		cfg.host = "changed";
+		eq(Patterns.sampleConfig.host, "localhost", "original unchanged");
+	}
+
+	static function testRegistry() {
+		begin("generic class: Registry");
+		var reg = new build.modules.patterns.Registry();
+		reg.register("a", 1);
+		reg.register("b", 2);
+		eq(reg.size, 2.0, "registry size");
+		eq(reg.get("a"), 1, "registry.get(a)");
+		eq(reg.get("b"), 2, "registry.get(b)");
+		assert(reg.has("a"), "registry.has(a)");
+		assert(!reg.has("c"), "registry.has(c) false");
+		eq(reg.keys().length, 2, "registry.keys length");
+	}
+
+	static function testOptionalInterface() {
+		begin("interface with optional fields");
+		var plugin = Patterns.createPlugin("test-plugin");
+		eq(plugin.name, "test-plugin", "plugin.name");
+		// version is optional — should be undefined/null
+		assert(plugin.version == null, "plugin.version is null");
+	}
+
+	static function testPromises() {
+		begin("promise-based API");
+		Patterns.fetchData("https://example.com").then(data -> {
+			assert(data == "data from https://example.com", "fetchData resolves");
+		});
+	}
+
+	static function testQueryBuilder() {
+		begin("method chaining with this-return (QueryBuilder)");
+		var sql = new QueryBuilder("users").where("age > 18").where("active = true").take(10).build();
+		eq(sql, "SELECT * FROM users WHERE age > 18 AND active = true LIMIT 10", "query builder chain");
+
+		var simple = new QueryBuilder("posts").build();
+		eq(simple, "SELECT * FROM posts", "query builder no conditions");
+	}
+
+	static function testClassHierarchy() {
+		begin("class hierarchy");
+		var circle = new Circle(5);
+		eq(circle.kind, "circle", "Circle.kind");
+		approx(circle.area(), 78.539, "Circle.area");
+		eq(circle.describe(), "Shape(circle)", "inherited describe()");
+
+		var rect = new Rect(3, 4);
+		eq(rect.kind, "rect", "Rect.kind");
+		eq(rect.area(), 12.0, "Rect.area");
+		eq(rect.width, 3.0, "Rect.width");
+	}
+
+	static function testInterfaceExtends() {
+		begin("interface extends (ReadWrite)");
+		var stream = new Stream();
+		stream.write("hello ");
+		stream.write("world");
+		eq(stream.getBuffer(), "hello world", "Stream.write + getBuffer");
+		eq(stream.read(), "hello world", "Stream.read");
+		stream.seek(6);
+		eq(stream.read(), "world", "Stream.seek + read");
+	}
+
+	static function testOverloadedClass() {
+		begin("overloaded class method");
+		var conv = new Converter();
+		eq(conv.convert("hello"), 5, "convert string→number");
+		eq(conv.convert(42), "42", "convert number→string");
+	}
+
+	static function testErrorSubclass() {
+		begin("Error subclass");
+		var err = new AppError("something failed", 404);
+		eq(err.message, "something failed", "AppError.message");
+		eq(err.code, 404.0, "AppError.code");
+		assert(js.Syntax.instanceof(err, js.lib.Error), "AppError instanceof Error");
+	}
+
+	static function testStack() {
+		begin("generic class (Stack)");
+		var s = new Stack();
+		s.push(1);
+		s.push(2);
+		s.push(3);
+		eq(s.size, 3.0, "stack size");
+		eq(s.peek(), 3, "stack peek");
+		eq(s.pop(), 3, "stack pop");
+		eq(s.size, 2.0, "stack size after pop");
+
+		var arr = s.toArray();
+		eq(arr[0], 1, "stack toArray[0]");
+		eq(arr[1], 2, "stack toArray[1]");
+
+		// Static factory
+		var s2 = Stack.from([10, 20, 30]);
+		eq(s2.size, 3.0, "Stack.from size");
+		eq(s2.pop(), 30, "Stack.from pop");
+	}
+
+	// === TS VERSION-SPECIFIC FEATURE TESTS ===
+
+	static function testTemplateLiteralTypes() {
+		begin("TS 4.1: template literal types");
+		var name = TsFeatures.makeEventName("Click");
+		eq(name, "onClick", "makeEventName");
+		assert(TsFeatures.isEventName("onClick"), "isEventName true");
+		assert(!TsFeatures.isEventName("click"), "isEventName false");
+	}
+
+	static function testIntrinsicStringTypes() {
+		begin("TS 4.1: intrinsic string types");
+		eq(TsFeatures.toUpper("hello"), "HELLO", "toUpper");
+		eq(TsFeatures.toLower("HELLO"), "hello", "toLower");
+		eq(TsFeatures.capitalize("hello"), "Hello", "capitalize");
+	}
+
+	static function testKeyRemapping() {
+		begin("TS 4.1: key remapping (as clause)");
+		var config:build.modules.ts_features.Config = { host: "example.com", port: 443, debug: false };
+		var getters = TsFeatures.makeConfigGetters(config);
+		eq(getters.getHost(), "example.com", "getHost()");
+		eq(getters.getPort(), 443.0, "getPort()");
+		eq(getters.getDebug(), false, "getDebug()");
+	}
+
+	static function testVarianceAnnotations() {
+		begin("TS 4.7: variance annotations (in/out)");
+		var producer = TsFeatures.createProducer("hello");
+		eq(producer.produce(), "hello", "Producer.produce()");
+
+		var consumer = TsFeatures.createConsumer();
+		consumer.consume(42);
+		eq(Reflect.field(consumer, "lastConsumed"), 42, "Consumer.lastConsumed");
+	}
+
+	static function testTypeConstraints() {
+		begin("type parameter constraints");
+		// Function-level: longest<T extends HasLength>
+		var a:Dynamic = [1, 2, 3];
+		var b:Dynamic = [4, 5];
+		var result:Dynamic = TsFeatures.longest(a, b);
+		eq(result.length, 3, "function constraint: longest");
+
+		eq(TsFeatures.firstElement([10, 20, 30]), 10, "firstElement");
+		assert(TsFeatures.firstElement([]) == null, "firstElement empty");
+
+		// Class-level non-generic: AnimalHolder<T extends Animal>
+		var dog = new build.modules.ts_features.Dog("Rex");
+		eq(dog.bark(), "woof", "Dog.bark");
+		var holder = new build.modules.ts_features.DogHolder(dog);
+		eq(holder.getName(), "Rex", "DogHolder.getName (inherited)");
+		eq(holder.getBark(), "woof", "DogHolder.getBark");
+
+		// DogHolder extends AnimalHolder<Dog> — verify assignable
+		var base:build.modules.ts_features.AnimalHolder<build.modules.ts_features.Dog> = holder;
+		eq(base.getName(), "Rex", "DogHolder assignable to AnimalHolder<Dog>");
+
+		// Class-level generic: TypedBox<T extends Box<any>> — constraint dropped
+		var box = new build.modules.ts_features.TypedBox(new build.modules.ts_features.Box("hello"));
+		eq(box.box.item, "hello", "TypedBox (generic constraint dropped, still works)");
+	}
+
+	static function testReadonlyFinal() {
+		begin("Readonly<T> → final fields");
+		var frozen = TsFeatures.freezeConfig({ host: "localhost", port: 8080, debug: true });
+		eq(frozen.host, "localhost", "frozen.host");
+		eq(frozen.port, 8080.0, "frozen.port");
+		eq(frozen.debug, true, "frozen.debug");
+	}
+
+	static function testNeverType() {
+		begin("never type → ts.Never");
+		var threw = false;
+		try {
+			TsFeatures.throwError("test error");
+		} catch (e:Dynamic) {
+			threw = true;
+			assert(Std.string(e).indexOf("test error") != -1, "throwError message");
+		}
+		assert(threw, "throwError actually throws");
+	}
+
+	static function testConstructSignatures() {
+		begin("construct signatures");
+		var val = new SimpleValue("test");
+		eq(val.value, "test", "SimpleValue.value");
+	}
+
+	static function testStringDictIndex() {
+		begin("index signatures → DynamicAccess");
+		var dict = TsFeatures.createDict("key1", 42);
+		eq(TsFeatures.getFromDict(dict, "key1"), 42, "getFromDict existing");
+		assert(TsFeatures.getFromDict(dict, "missing") == null, "getFromDict missing");
+		eq(dict.get("key1"), 42, "DynamicAccess.get");
+	}
+
+	static function testNoInfer() {
+		begin("TS 5.4: NoInfer<T> unwrapped");
+		var palette = TsFeatures.createPalette(["red", "green", "blue"], "red");
+		eq(Reflect.field(palette, "default"), "red", "palette default");
+		var colors:Array<String> = Reflect.field(palette, "colors");
+		eq(colors.length, 3, "palette colors length");
+	}
+
+	static function testFlatten() {
+		begin("recursive conditional types");
+		var nested:Dynamic = js.Syntax.code("[1, [2, [3, 4]], 5]");
+		var flat:Array<Dynamic> = TsFeatures.flatten(nested);
+		eq(flat.length, 5, "flatten length");
+		eq(flat[0], 1, "flatten[0]");
+		eq(flat[4], 5, "flatten[4]");
+	}
+
+	static function testAsyncPromises() {
+		begin("Promise patterns");
+		TsFeatures.fetchJson("data").then(result -> {
+			eq(result, "data", "fetchJson resolves");
+		});
+
+		TsFeatures.chainPromises(3, 4).then(result -> {
+			eq(result, "sum:7", "chainPromises resolves");
+		});
+	}
+}

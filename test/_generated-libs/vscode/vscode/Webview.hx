@@ -20,8 +20,8 @@ typedef Webview = {
 		
 		```html
 		<script>
-		     const vscode = acquireVsCodeApi(); // acquireVsCodeApi can only be invoked once
-		     vscode.postMessage({ message: 'hello!' });
+		    const vscode = acquireVsCodeApi(); // acquireVsCodeApi can only be invoked once
+		    vscode.postMessage({ message: 'hello!' });
 		</script>
 		```
 		

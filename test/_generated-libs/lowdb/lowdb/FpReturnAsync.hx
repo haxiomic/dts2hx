@@ -15,5 +15,5 @@ typedef FpReturnAsync<PathT> = {
 	@:overload(function(funcs:Array<(a:Dynamic) -> Dynamic>):Dynamic { })
 	@:selfCall
 	function call<R1>(f1:(a1:PathT) -> R1):R1;
-	function write<R1>(f1:(a1:PathT) -> R1):js.lib.Promise<R1>;
+	function write<R1:(PathT)>(f1:(a1:PathT) -> R1):js.lib.Promise<R1>;
 };

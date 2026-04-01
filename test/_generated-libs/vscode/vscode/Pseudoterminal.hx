@@ -16,9 +16,9 @@ typedef Pseudoterminal = {
 		```typescript
 		const writeEmitter = new vscode.EventEmitter<string>();
 		const pty: vscode.Pseudoterminal = {
-		   onDidWrite: writeEmitter.event,
-		   open: () => writeEmitter.fire('\x1b[31mHello world\x1b[0m'),
-		   close: () => {}
+		  onDidWrite: writeEmitter.event,
+		  open: () => writeEmitter.fire('\x1b[31mHello world\x1b[0m'),
+		  close: () => {}
 		};
 		vscode.window.createTerminal({ name: 'My terminal', pty });
 		```
@@ -40,15 +40,15 @@ typedef Pseudoterminal = {
 		```typescript
 		const dimensionsEmitter = new vscode.EventEmitter<vscode.TerminalDimensions>();
 		const pty: vscode.Pseudoterminal = {
-		   onDidWrite: writeEmitter.event,
-		   onDidOverrideDimensions: dimensionsEmitter.event,
-		   open: () => {
-		     dimensionsEmitter.fire({
-		       columns: 20,
-		       rows: 10
-		     });
-		   },
-		   close: () => {}
+		  onDidWrite: writeEmitter.event,
+		  onDidOverrideDimensions: dimensionsEmitter.event,
+		  open: () => {
+		    dimensionsEmitter.fire({
+		      columns: 20,
+		      rows: 10
+		    });
+		  },
+		  close: () => {}
 		};
 		vscode.window.createTerminal({ name: 'My terminal', pty });
 		```
@@ -68,22 +68,22 @@ typedef Pseudoterminal = {
 		const writeEmitter = new vscode.EventEmitter<string>();
 		const closeEmitter = new vscode.EventEmitter<vscode.TerminalDimensions>();
 		const pty: vscode.Pseudoterminal = {
-		   onDidWrite: writeEmitter.event,
-		   onDidClose: closeEmitter.event,
-		   open: () => writeEmitter.fire('Press y to exit successfully'),
-		   close: () => {},
-		   handleInput: data => {
-		     if (data !== 'y') {
-		       vscode.window.showInformationMessage('Something went wrong');
-		     }
-		     closeEmitter.fire();
-		   }
+		  onDidWrite: writeEmitter.event,
+		  onDidClose: closeEmitter.event,
+		  open: () => writeEmitter.fire('Press y to exit successfully'),
+		  close: () => {},
+		  handleInput: data => {
+		    if (data !== 'y') {
+		      vscode.window.showInformationMessage('Something went wrong');
+		    }
+		    closeEmitter.fire();
+		  }
 		};
 		vscode.window.createTerminal({ name: 'Exit example', pty });
 		```
 	**/
 	@:optional
-	dynamic function onDidClose(listener:(e:ts.AnyOf2<Float, ts.Undefined>) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
+	dynamic function onDidClose(listener:(e:Float) -> Dynamic, ?thisArgs:Dynamic, ?disposables:Array<Disposable>):Disposable;
 	/**
 		Implement to handle when the pty is open and ready to start firing events.
 	**/

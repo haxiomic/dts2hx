@@ -47,27 +47,27 @@ typedef FileSystemProvider = {
 	/**
 		Create a new directory (Note, that new files are created via `write`-calls).
 	**/
-	function createDirectory(uri:Uri):ts.AnyOf2<ts.Undefined, global.Thenable<ts.Undefined>>;
+	function createDirectory(uri:Uri):global.Thenable<ts.Undefined>;
 	/**
 		Read the entire contents of a file.
 	**/
-	function readFile(uri:Uri):ts.AnyOf2<js.lib.Uint8Array, global.Thenable<js.lib.Uint8Array>>;
+	function readFile(uri:Uri):ts.AnyOf2<js.lib.Uint8Array_<js.lib.ArrayBuffer>, global.Thenable<js.lib.Uint8Array_<js.lib.ArrayBuffer>>>;
 	/**
 		Write data to a file, replacing its entire contents.
 	**/
-	function writeFile(uri:Uri, content:js.lib.Uint8Array, options:{ var create : Bool; var overwrite : Bool; }):ts.AnyOf2<ts.Undefined, global.Thenable<ts.Undefined>>;
+	function writeFile(uri:Uri, content:js.lib.Uint8Array_<js.lib.ArrayBuffer>, options:{ var create : Bool; var overwrite : Bool; }):global.Thenable<ts.Undefined>;
 	/**
 		Delete a file.
 	**/
-	function delete(uri:Uri, options:{ var recursive : Bool; }):ts.AnyOf2<ts.Undefined, global.Thenable<ts.Undefined>>;
+	function delete(uri:Uri, options:{ var recursive : Bool; }):global.Thenable<ts.Undefined>;
 	/**
 		Rename a file or folder.
 	**/
-	function rename(oldUri:Uri, newUri:Uri, options:{ var overwrite : Bool; }):ts.AnyOf2<ts.Undefined, global.Thenable<ts.Undefined>>;
+	function rename(oldUri:Uri, newUri:Uri, options:{ var overwrite : Bool; }):global.Thenable<ts.Undefined>;
 	/**
 		Copy files or folders. Implementing this function is optional but it will speedup
 		the copy operation.
 	**/
 	@:optional
-	function copy(source:Uri, destination:Uri, options:{ var overwrite : Bool; }):ts.AnyOf2<ts.Undefined, global.Thenable<ts.Undefined>>;
+	function copy(source:Uri, destination:Uri, options:{ var overwrite : Bool; }):global.Thenable<ts.Undefined>;
 };

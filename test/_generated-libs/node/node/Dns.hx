@@ -18,7 +18,7 @@ package node;
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:node.dns.SoaRecord) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:Array<node.dns.SrvRecord>) -> Void):Void { })
 	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:Array<Array<String>>) -> Void):Void { })
-	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:ts.AnyOf7<Array<String>, node.dns.SoaRecord, Array<node.dns.AnyRecord>, Array<node.dns.MxRecord>, Array<node.dns.NaptrRecord>, Array<node.dns.SrvRecord>, Array<Array<String>>>) -> Void):Void { })
+	@:overload(function(hostname:String, rrtype:String, callback:(err:global.nodejs.ErrnoException, addresses:ts.AnyOf7<Array<String>, Array<Array<String>>, node.dns.SoaRecord, Array<node.dns.AnyRecord>, Array<node.dns.MxRecord>, Array<node.dns.NaptrRecord>, Array<node.dns.SrvRecord>>) -> Void):Void { })
 	static function resolve(hostname:String, callback:(err:global.nodejs.ErrnoException, addresses:Array<String>) -> Void):Void;
 	@:overload(function(hostname:String, options:node.dns.ResolveWithTtlOptions, callback:(err:global.nodejs.ErrnoException, addresses:Array<node.dns.RecordWithTtl>) -> Void):Void { })
 	@:overload(function(hostname:String, options:node.dns.ResolveOptions, callback:(err:global.nodejs.ErrnoException, addresses:ts.AnyOf2<Array<String>, Array<node.dns.RecordWithTtl>>) -> Void):Void { })

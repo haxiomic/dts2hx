@@ -1,3 +1,3 @@
 package express_serve_static_core;
 
-typedef Dictionary<T> = { };
+typedef Dictionary<T> = haxe.DynamicAccess<T>;

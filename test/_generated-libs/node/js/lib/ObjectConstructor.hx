@@ -16,7 +16,7 @@ typedef ObjectConstructor = {
 		Gets the own property descriptor of the specified object.
 		An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
 	**/
-	function getOwnPropertyDescriptor(o:Dynamic, p:ts.AnyOf3<String, Float, js.lib.Symbol>):Null<PropertyDescriptor>;
+	function getOwnPropertyDescriptor(o:Dynamic, p:PropertyKey):Null<PropertyDescriptor>;
 	/**
 		Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 		on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
@@ -32,25 +32,21 @@ typedef ObjectConstructor = {
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
 	**/
-	function defineProperty(o:Dynamic, p:ts.AnyOf3<String, Float, js.lib.Symbol>, attributes:PropertyDescriptor & ThisType<Dynamic>):Dynamic;
+	function defineProperty<T>(o:T, p:PropertyKey, attributes:PropertyDescriptor & ThisType<Dynamic>):T;
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	function defineProperties(o:Dynamic, properties:Dynamic):Dynamic;
+	function defineProperties<T>(o:T, properties:Dynamic):T;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
 	function seal<T>(o:T):T;
 	/**
 		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-		
-		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-		
-		Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 	**/
-	@:overload(function<T>(f:T):T { })
+	@:overload(function<T:(haxe.DynamicAccess<Null<ts.AnyOf2<Dynamic, U>>>), U:(ts.AnyOf5<String, Float, ts.BigInt, Bool, js.lib.Symbol>)>(o:T):T { })
 	@:overload(function<T>(o:T):T { })
-	function freeze<T>(a:Array<T>):haxe.ds.ReadOnlyArray<T>;
+	function freeze<T:(haxe.Constraints.Function)>(f:T):T;
 	/**
 		Prevents the addition of new properties to an object.
 	**/
@@ -69,28 +65,17 @@ typedef ObjectConstructor = {
 	function isExtensible(o:Dynamic):Bool;
 	/**
 		Returns the names of the enumerable string properties and methods of an object.
-		
-		Returns the names of the enumerable string properties and methods of an object.
 	**/
 	@:overload(function(o:{ }):Array<String> { })
 	function keys(o:Dynamic):Array<String>;
 	/**
 		Copy the values of all of the enumerable own properties from one or more source objects to a
 		target object. Returns the target object.
-		
-		Copy the values of all of the enumerable own properties from one or more source objects to a
-		target object. Returns the target object.
-		
-		Copy the values of all of the enumerable own properties from one or more source objects to a
-		target object. Returns the target object.
-		
-		Copy the values of all of the enumerable own properties from one or more source objects to a
-		target object. Returns the target object.
 	**/
-	@:overload(function<T, U, V>(target:T, source1:U, source2:V):Dynamic { })
-	@:overload(function<T, U, V, W>(target:T, source1:U, source2:V, source3:W):Dynamic { })
+	@:overload(function<T:({ }), U, V>(target:T, source1:U, source2:V):Dynamic { })
+	@:overload(function<T:({ }), U, V, W>(target:T, source1:U, source2:V, source3:W):Dynamic { })
 	@:overload(function(target:Dynamic, sources:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function assign<T, U>(target:T, source:U):Dynamic;
+	function assign<T:({ }), U>(target:T, source:U):Dynamic;
 	/**
 		Returns an array of all symbol properties found directly on object o.
 	**/
@@ -104,16 +89,12 @@ typedef ObjectConstructor = {
 	**/
 	function setPrototypeOf(o:Dynamic, proto:Null<Dynamic>):Dynamic;
 	/**
-		Returns an array of values of the enumerable properties of an object
-		
-		Returns an array of values of the enumerable properties of an object
+		Returns an array of values of the enumerable own properties of an object
 	**/
 	@:overload(function(o:{ }):Array<Dynamic> { })
 	function values<T>(o:ts.AnyOf2<haxe.DynamicAccess<T>, ArrayLike<T>>):Array<T>;
 	/**
-		Returns an array of key/values of the enumerable properties of an object
-		
-		Returns an array of key/values of the enumerable properties of an object
+		Returns an array of key/values of the enumerable own properties of an object
 	**/
 	@:overload(function(o:{ }):Array<ts.Tuple2<String, Dynamic>> { })
 	function entries<T>(o:ts.AnyOf2<haxe.DynamicAccess<T>, ArrayLike<T>>):Array<ts.Tuple2<String, T>>;

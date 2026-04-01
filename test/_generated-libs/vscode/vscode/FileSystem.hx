@@ -27,11 +27,11 @@ typedef FileSystem = {
 	/**
 		Read the entire contents of a file.
 	**/
-	function readFile(uri:Uri):global.Thenable<js.lib.Uint8Array>;
+	function readFile(uri:Uri):global.Thenable<js.lib.Uint8Array_<js.lib.ArrayBuffer>>;
 	/**
 		Write data to a file, replacing its entire contents.
 	**/
-	function writeFile(uri:Uri, content:js.lib.Uint8Array):global.Thenable<ts.Undefined>;
+	function writeFile(uri:Uri, content:js.lib.Uint8Array_<js.lib.ArrayBuffer>):global.Thenable<ts.Undefined>;
 	/**
 		Delete a file.
 	**/

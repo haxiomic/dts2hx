@@ -1,3 +1,3 @@
 package unit.interface_;
 
-typedef InterfaceWithMultiSignature<T> = { };
+typedef InterfaceWithMultiSignature<T> = haxe.DynamicAccess<T>;

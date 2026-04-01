@@ -1,7 +1,7 @@
 package unit.enum_.enums;
 
-@:jsRequire("./unit/enum", "Enums.SelfReferenceEnum") @:enum extern abstract SelfReferenceEnum(Int) from Int to Int {
-	var A;
-	var B;
-	var AorB;
+@:jsRequire("./unit/enum", "Enums.SelfReferenceEnum") extern enum abstract SelfReferenceEnum(Int) from Int to Int {
+	final A;
+	final B;
+	final AorB;
 }

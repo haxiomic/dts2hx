@@ -3,18 +3,18 @@ package vscode;
 /**
 	Represents reasons why a text document is saved.
 **/
-@:jsRequire("vscode", "TextDocumentSaveReason") @:enum extern abstract TextDocumentSaveReason(Int) from Int to Int {
+@:jsRequire("vscode", "TextDocumentSaveReason") extern enum abstract TextDocumentSaveReason(Int) from Int to Int {
 	/**
 		Manually triggered, e.g. by the user pressing save, by starting debugging,
 		or by an API call.
 	**/
-	var Manual;
+	final Manual;
 	/**
 		Automatic after a delay.
 	**/
-	var AfterDelay;
+	final AfterDelay;
 	/**
 		When the editor lost focus.
 	**/
-	var FocusOut;
+	final FocusOut;
 }

@@ -84,7 +84,7 @@ typedef Inflate = {
 	@:overload(function(event:String, listener:(err:js.lib.Error) -> Void):Inflate { })
 	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Inflate { })
 	function removeListener(event:String, listener:() -> Void):Inflate;
-	function pipe<T>(destination:T, ?options:{ @:optional var end : Bool; }):T;
+	function pipe<T:(global.nodejs.WritableStream)>(destination:T, ?options:{ @:optional var end : Bool; }):T;
 	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):Inflate;
 	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):Inflate;
 	function setMaxListeners(n:Float):Inflate;

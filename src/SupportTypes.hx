@@ -60,7 +60,7 @@ class SupportTypes {
 			var tupleTypeDefinition: HaxeModule = {
 				pack: typePath.pack,
 				name: typePath.name,
-				kind: TDAbstract(abstractType, [abstractType], [abstractType]),
+				kind: TDAbstract(abstractType, null, [abstractType], [abstractType]),
 				params: [for (i in 0...elementTypes.length) { name: 'T$i', }],
 				fields: fields,
 				isExtern: true,
@@ -119,7 +119,7 @@ class SupportTypes {
 			var anyOfTypeDefinition: HaxeModule = {
 				pack: typePath.pack,
 				name: typePath.name,
-				kind: TDAbstract(abstractType, typeParams, typeParams),
+				kind: TDAbstract(abstractType, null, typeParams, typeParams),
 				params: [for (i in 0...types.length) { name: 'T$i', }],
 				fields: Lambda.flatten([for (i in 0...types.length) {
 					var varName = 'asType$i';
@@ -165,6 +165,67 @@ class SupportTypes {
 			}
 
 			ctx.saveHaxeModule(nothingDefinition);
+		}
+
+		return TPath(typePath);
+	}
+
+	static public function getNeverType(ctx: ConverterContext): ComplexType {
+		var typePath = {
+			pack: ['ts'],
+			name: 'Never',
+		};
+
+		var existingModule = ctx.getGeneratedModule(typePath);
+		if (existingModule == null) {
+			var neverDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				doc: '`Never` is the TypeScript bottom type — no value can inhabit this type. A function returning `Never` always throws or never terminates.',
+				kind: TDAlias(macro : Void),
+				pos: null,
+				fields: [],
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			ctx.saveHaxeModule(neverDefinition);
+		}
+
+		return TPath(typePath);
+	}
+
+	static public function getBigIntType(ctx: ConverterContext): ComplexType {
+		var typePath = {
+			pack: ['ts'],
+			name: 'BigInt',
+		};
+
+		var existingModule = ctx.getGeneratedModule(typePath);
+		if (existingModule == null) {
+			var fields = (macro class {
+				/** Returns a string representation of the BigInt value. **/
+				public function toString(?radix: Float): String;
+				/** Returns the primitive BigInt value. **/
+				public function valueOf(): ts.BigInt;
+				public function toLocaleString(?locales: String, ?options: Dynamic): String;
+			}).fields;
+
+			var bigIntDefinition: HaxeModule = {
+				pack: typePath.pack,
+				name: typePath.name,
+				doc: 'JavaScript BigInt type — arbitrary-precision integers. Created via `js.Syntax.code("BigInt(...)")`.',
+				kind: TDAbstract(macro :Dynamic, null, [macro :Dynamic], [macro :Dynamic]),
+				params: [],
+				fields: fields,
+				isExtern: true,
+				meta: [{name: ':forward', pos: null}],
+				pos: null,
+				tsSymbol: null,
+				tsSymbolAccess: null,
+			}
+
+			ctx.saveHaxeModule(bigIntDefinition);
 		}
 
 		return TPath(typePath);

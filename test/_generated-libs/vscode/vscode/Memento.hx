@@ -7,8 +7,6 @@ package vscode;
 typedef Memento = {
 	/**
 		Return a value.
-		
-		Return a value.
 	**/
 	@:overload(function<T>(key:String, defaultValue:T):T { })
 	function get<T>(key:String):Null<T>;

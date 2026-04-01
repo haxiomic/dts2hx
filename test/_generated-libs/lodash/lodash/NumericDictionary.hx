@@ -1,3 +1,3 @@
 package lodash;
 
-typedef NumericDictionary<T> = { };
+typedef NumericDictionary<T> = Array<T>;

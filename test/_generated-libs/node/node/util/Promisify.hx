@@ -15,6 +15,6 @@ package node.util;
 	@:overload(function<T1, T2, T3, T4, T5>(fn:(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5, callback:ts.AnyOf2<() -> Void, (err:js.lib.Error) -> Void>) -> Void):(arg1:T1, arg2:T2, arg3:T3, arg4:T4, arg5:T5) -> js.lib.Promise<ts.Undefined> { })
 	@:overload(function(fn:haxe.Constraints.Function):haxe.Constraints.Function { })
 	@:selfCall
-	static function call<TCustom>(fn:CustomPromisify<TCustom>):TCustom;
+	static function call<TCustom:(haxe.Constraints.Function)>(fn:CustomPromisify<TCustom>):TCustom;
 	static final custom : js.lib.Symbol;
 }

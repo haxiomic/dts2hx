@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "commonjs",
+    "target": "ES2020",
+    "strict": true,
+    "outDir": "build",
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "include": ["testlib.ts", "modules/*.ts"],
+  "exclude": ["modules/*.d.ts", "modules/*-impl.js"]
+}

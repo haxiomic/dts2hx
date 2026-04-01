@@ -10,23 +10,23 @@ package vscode;
 	
 	```ts
 	let a: HoverProvider = {
-	     provideHover(doc, pos, token): ProviderResult<Hover> {
-	         return new Hover('Hello World');
-	     }
+	    provideHover(doc, pos, token): ProviderResult<Hover> {
+	        return new Hover('Hello World');
+	    }
 	}
 	
 	let b: HoverProvider = {
-	     provideHover(doc, pos, token): ProviderResult<Hover> {
-	         return new Promise(resolve => {
-	             resolve(new Hover('Hello World'));
-	          });
-	     }
+	    provideHover(doc, pos, token): ProviderResult<Hover> {
+	        return new Promise(resolve => {
+	            resolve(new Hover('Hello World'));
+	         });
+	    }
 	}
 	
 	let c: HoverProvider = {
-	     provideHover(doc, pos, token): ProviderResult<Hover> {
-	         return; // undefined
-	     }
+	    provideHover(doc, pos, token): ProviderResult<Hover> {
+	        return; // undefined
+	    }
 	}
 	```
 **/

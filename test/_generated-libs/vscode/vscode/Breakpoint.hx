@@ -4,7 +4,7 @@ package vscode;
 	The base class of all breakpoint types.
 **/
 @:jsRequire("vscode", "Breakpoint") extern class Breakpoint {
-	private function new(?enabled:Bool, ?condition:String, ?hitCondition:String, ?logMessage:String);
+	function new(?enabled:Bool, ?condition:String, ?hitCondition:String, ?logMessage:String);
 	/**
 		The unique ID of the breakpoint.
 	**/

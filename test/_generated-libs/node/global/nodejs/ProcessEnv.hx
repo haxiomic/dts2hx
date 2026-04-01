@@ -1,3 +1,3 @@
 package global.nodejs;
 
-typedef ProcessEnv = { };
+typedef ProcessEnv = haxe.DynamicAccess<Null<String>>;

@@ -3,21 +3,21 @@ package unit.types;
 /**
 	See https://github.com/microsoft/TypeScript/blob/master/doc/spec.md#3-types
 	
-	  # Type Categories
-	  - primitive types
-	      Number, Boolean, String, Symbol (Void, Null, and Undefined are not referenceable)
-	  - object types
-	      composed from *properties*, *call signatures*, *construct signatures*, and *index signatures* (collectively called members)
-	      - Object type literals
-	      - Array type literals
-	      - Tuple type literals
-	      - Function type literals
-	      - Constructor type literals 
-	      - Constructor function types created by class declarations (section 8.2.5).
-	      - Namespace instance types created by namespace declarations (section 10.3).
-	  - union types
-	  - intersection types
-	  - type parameters
+	 # Type Categories
+	 - primitive types
+	     Number, Boolean, String, Symbol (Void, Null, and Undefined are not referenceable)
+	 - object types
+	     composed from *properties*, *call signatures*, *construct signatures*, and *index signatures* (collectively called members)
+	     - Object type literals
+	     - Array type literals
+	     - Tuple type literals
+	     - Function type literals
+	     - Constructor type literals 
+	     - Constructor function types created by class declarations (section 8.2.5).
+	     - Namespace instance types created by namespace declarations (section 10.3).
+	 - union types
+	 - intersection types
+	 - type parameters
 **/
 @:jsRequire("./unit/types", "Types") @valueModuleOnly extern class Types {
 	static function functionWithOptional(a:String, ?b:Bool):Float;
@@ -29,7 +29,7 @@ package unit.types;
 	@:overload(function(a:Array<js.lib.Symbol>):Dynamic { })
 	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Dynamic;
-	static function typeParameterWithConstraint<T>(x:T):Dynamic;
+	static function typeParameterWithConstraint<T:(Array<Float>)>(x:T):Dynamic;
 	static function intersectionBetweenTypeParams<A, B>(p:Dynamic):Void;
 	static function firstTypeFunction(node:{ }):Bool;
 	static final implicitInt : Int;
@@ -49,7 +49,7 @@ package unit.types;
 	static final typeInParentheses : Float;
 	static final unionInParentheses : ts.AnyOf2<String, Float>;
 	static final voidType : ts.Undefined;
-	static final voidUnionType : ts.AnyOf2<Float, ts.Undefined>;
+	static final voidUnionType : Float;
 	static final voidTypeParam : Array<ts.Undefined>;
 	static final voidObjField : {
 		var x : ts.Undefined;
@@ -76,7 +76,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -99,7 +99,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -136,8 +136,8 @@ package unit.types;
 		var b : String;
 	};
 	static final readonlyAnon : {
-		var a : String;
-		var r : {
+		final a : String;
+		final r : {
 			var a : Bool;
 			var b : Bool;
 			var c : Bool;
@@ -146,10 +146,10 @@ package unit.types;
 	static function arrowNumberStringVoid(a:Float, noType:Dynamic):Void;
 	static function arrowNumberTVoidTypeParam<T>(a:Float, tParam:T, arrayTParam:Array<T>):Void;
 	static function arrowParamWithRest(a:Float, b:Float, rest:haxe.extern.Rest<Float>):Void;
-	static function arrowParamWithRestOr(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	static function arrowParamWithRestOr(a:Float, b:Float):Void;
 	static function arrowParamWithRestUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
 	static function arrowParamWithRestTuple(a:Float, b:Float, rest_0:Float):Void;
-	static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest:haxe.extern.Rest<Any>):Void;
+	static function arrowParamWithRestTupleUnion(a:Float, b:Float, rest_0:Float):Void;
 	static function arrowParamObjectBindingPattern(__0:{ var x : Dynamic; var y : Dynamic; }):Void;
 	static final nullableNumber : Null<Float>;
 	static final undefineableNumber : Null<Float>;
@@ -178,7 +178,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
@@ -192,7 +192,7 @@ package unit.types;
 	static final intersectionWithArray : {
 		var x : Float;
 	} & js.lib.IArray<Float>;
-	static final intersectionStringNumber : Any;
+	static final intersectionStringNumber : ts.Never;
 	static final intersectionTripleAnon : {
 		var x : Float;
 	} & {
@@ -207,7 +207,13 @@ package unit.types;
 	}, {
 		var c : Float;
 	}>;
-	static final intersectionWithCallSignatures : Dynamic;
+	static final intersectionWithCallSignatures : {
+		@:overload(function(callParamB:Bool):Array<String> { })
+		@:selfCall
+		function call_(callParamA:String):Float;
+		function call():Float;
+		var b : Float;
+	};
 	static final intersectionAnonAlias : unit.types.types.Anon & {
 		var b : Bool;
 	};
@@ -227,7 +233,7 @@ package unit.types;
 			var a : Float;
 			var b : Float;
 		};
-		function methodSignatureComplex<T>(a:Float, ?opt:String):T;
+		function methodSignatureComplex<T:(ts.AnyOf2<String, Float>)>(a:Float, ?opt:String):T;
 		@:overload(function(a:Float):Void { })
 		function methodSignatureWithOverload<T>(a:T):Void;
 		dynamic function methodProperty<T>(a:T):Void;
