@@ -601,14 +601,29 @@ class TestE2E {
 
 	static function testTypeConstraints() {
 		begin("type parameter constraints");
-		// longest<T extends HasLength> — constraint requires { length: Float }
+		// Function-level: longest<T extends HasLength>
 		var a:Dynamic = [1, 2, 3];
 		var b:Dynamic = [4, 5];
 		var result:Dynamic = TsFeatures.longest(a, b);
-		eq(result.length, 3, "longest arrays");
+		eq(result.length, 3, "function constraint: longest");
 
 		eq(TsFeatures.firstElement([10, 20, 30]), 10, "firstElement");
 		assert(TsFeatures.firstElement([]) == null, "firstElement empty");
+
+		// Class-level non-generic: AnimalHolder<T extends Animal>
+		var dog = new build.modules.ts_features.Dog("Rex");
+		eq(dog.bark(), "woof", "Dog.bark");
+		var holder = new build.modules.ts_features.DogHolder(dog);
+		eq(holder.getName(), "Rex", "DogHolder.getName (inherited)");
+		eq(holder.getBark(), "woof", "DogHolder.getBark");
+
+		// DogHolder extends AnimalHolder<Dog> — verify assignable
+		var base:build.modules.ts_features.AnimalHolder<build.modules.ts_features.Dog> = holder;
+		eq(base.getName(), "Rex", "DogHolder assignable to AnimalHolder<Dog>");
+
+		// Class-level generic: TypedBox<T extends Box<any>> — constraint dropped
+		var box = new build.modules.ts_features.TypedBox(new build.modules.ts_features.Box("hello"));
+		eq(box.box.item, "hello", "TypedBox (generic constraint dropped, still works)");
 	}
 
 	static function testReadonlyFinal() {

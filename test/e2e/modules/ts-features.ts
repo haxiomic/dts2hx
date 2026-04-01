@@ -146,3 +146,24 @@ export async function fetchJson<T>(data: T): Promise<T> {
 export function chainPromises(a: number, b: number): Promise<string> {
     return Promise.resolve(a + b).then(sum => `sum:${sum}`);
 }
+
+// === Type parameter constraints: class-level ===
+
+// Non-generic class constraint (should be preserved in Haxe)
+export class Animal { constructor(public name: string) {} }
+export class Dog extends Animal {
+    bark(): string { return "woof"; }
+}
+export class AnimalHolder<T extends Animal> {
+    constructor(public animal: T) {}
+    getName(): string { return this.animal.name; }
+}
+export class DogHolder extends AnimalHolder<Dog> {
+    getBark(): string { return this.animal.bark(); }
+}
+
+// Generic class constraint (should be DROPPED in Haxe — invariance)
+export class Box<T> { constructor(public item: T) {} }
+export class TypedBox<T extends Box<any>> {
+    constructor(public box: T) {}
+}

@@ -541,7 +541,8 @@ class Main {
 						case TDAlias(TExtend(_, f)): f;
 						default: null;
 					};
-					if (fields != null && hasNativeFields(fields)) {
+					var hasTypeParams = haxeModule.params != null && haxeModule.params.length > 0;
+					if (fields != null && hasNativeFields(fields) && !hasTypeParams) {
 						needsAbstractAnon = true;
 						// Create wrapper: typedef Foo<T> = ts.AbstractAnon<Foo_<T>>
 						// Forward type params from the original typedef
