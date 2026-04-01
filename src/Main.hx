@@ -5,6 +5,8 @@ import haxe.DynamicAccess;
 import haxe.io.Path;
 import haxe.macro.Expr.TypeDefinition;
 import haxe.macro.Expr.ComplexType;
+import haxe.macro.Expr.Field;
+import haxe.macro.Expr.Position;
 import haxe.macro.Expr.TypeDefKind;
 import haxe.macro.Expr.TypeParam;
 import hxargs.Args.ArgHandler;
@@ -520,8 +522,6 @@ class Main {
 
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
-			var needsAbstractAnon = false;
-
 			for (_ => haxeModule in converter.generatedModules) {
 				var skipModule = false;
 
@@ -533,44 +533,23 @@ class Main {
 
 				if (skipModule) continue;
 
-				// Check if this typedef has @:native fields that need AbstractAnon wrapping
-				var wrappedModule: Null<TypeDefinition> = null;
+				// Check if this typedef has @:native fields that need an abstract wrapper.
+				// Haxe ignores @:native metadata on anonymous structure fields (issue #5105),
+				// so we generate an abstract type with property accessors that use js.Syntax.field.
+				var abstractWrapper: Null<{source: String}> = null;
 				if (haxeModule.kind.match(TDAlias(TAnonymous(_) | TExtend(_, _)))) {
 					var fields = switch haxeModule.kind {
 						case TDAlias(TAnonymous(f)): f;
 						case TDAlias(TExtend(_, f)): f;
 						default: null;
 					};
-					var hasTypeParams = haxeModule.params != null && haxeModule.params.length > 0;
-					if (fields != null && hasNativeFields(fields) && !hasTypeParams) {
-						needsAbstractAnon = true;
-						// Create wrapper: typedef Foo<T> = ts.AbstractAnon<Foo_<T>>
-						// Forward type params from the original typedef
-						var innerParams = if (haxeModule.params != null && haxeModule.params.length > 0) {
-							[for (p in haxeModule.params) TPType(TPath({pack: [], name: p.name}))];
-						} else null;
-						wrappedModule = {
-							pack: haxeModule.pack,
-							name: haxeModule.name,
-							pos: haxeModule.pos,
-							kind: TDAlias(TPath({
-								pack: ['ts'],
-								name: 'AbstractAnon',
-								params: [TPType(TPath({
-									pack: haxeModule.pack,
-									name: '${haxeModule.name}_',
-									params: innerParams,
-								}))],
-							})),
-							fields: [],
-							meta: [],
-							doc: haxeModule.doc,
-							params: haxeModule.params,
-							isExtern: false,
-						};
-						// Rename original to Foo_
-						haxeModule.name = '${haxeModule.name}_';
-						haxeModule.doc = null;
+					if (fields != null && hasNativeFields(fields)) {
+						abstractWrapper = generateNativeFieldAbstract(haxeModule, fields);
+						if (abstractWrapper != null) {
+							// Rename original typedef to Foo_
+							haxeModule.name = '${haxeModule.name}_';
+							haxeModule.doc = null;
+						}
 					}
 				}
 
@@ -581,17 +560,12 @@ class Main {
 				FileTools.touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
 
-				// Save the wrapper module alongside the raw typedef
-				if (wrappedModule != null) {
-					var wrapperPath = Path.join([outputLibraryPath].concat(wrappedModule.pack).concat(['${wrappedModule.name}.hx']));
-					var wrapperStr = printer.printTypeDefinition(wrappedModule, printPackage);
-					Fs.writeFileSync(wrapperPath, wrapperStr);
+				// Save the abstract wrapper alongside the raw typedef
+				if (abstractWrapper != null) {
+					var wrapperName = StringTools.replace(haxeModule.name, '_', '');
+					var wrapperPath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['$wrapperName.hx']));
+					Fs.writeFileSync(wrapperPath, abstractWrapper.source);
 				}
-			}
-
-			// Ship AbstractAnon support files if any typedef needed wrapping
-			if (needsAbstractAnon) {
-				writeAbstractAnonSupport(outputLibraryPath);
 			}
 
 			if (generateLibraryWrapper) {
@@ -746,6 +720,73 @@ class Main {
 			}
 		}
 		return false;
+	}
+
+	/**
+		Generate a concrete abstract type as a string that wraps an anonymous typedef with @:native fields.
+		Returns null if the typedef has no @:native fields.
+	**/
+	static function generateNativeFieldAbstract(haxeModule: TypeDefinition, fields: Array<Field>): Null<{source: String}> {
+		var printer = new Printer();
+
+		// Collect field info
+		var nativeFields = new Array<{name: String, jsName: String, fieldType: String, doc: Null<String>, isOptional: Bool}>();
+		for (field in fields) {
+			var jsName = field.name;
+			var isOptional = false;
+			if (field.meta != null) {
+				for (m in field.meta) {
+					if (m.name == ':native' && m.params != null && m.params.length == 1) {
+						switch m.params[0].expr {
+							case EConst(CString(s, _)): jsName = s;
+							default:
+						}
+					}
+					if (m.name == ':optional') isOptional = true;
+				}
+			}
+
+			var fieldType = switch field.kind {
+				case FVar(t, _): t != null ? printer.printComplexType(t) : 'Dynamic';
+				case FProp(_, _, t, _): t != null ? printer.printComplexType(t) : 'Dynamic';
+				case FFun(f):
+					@:nullSafety(Off) var argTypes: Array<ComplexType> = f.args.map(a -> {
+						var t: ComplexType = a.type != null ? a.type : (macro :Dynamic);
+						if (a.opt != null && a.opt) t = TOptional(t);
+						return t;
+					});
+					printer.printComplexType(TFunction(argTypes, f.ret != null ? f.ret : (macro :Dynamic)));
+			};
+
+			nativeFields.push({name: field.name, jsName: jsName, fieldType: fieldType, doc: field.doc, isOptional: isOptional});
+		}
+
+		// Build type parameter string
+		var typeParams = '';
+		if (haxeModule.params != null && haxeModule.params.length > 0) {
+			typeParams = '<' + haxeModule.params.map(p -> printer.printTypeParamDecl(p)).join(', ') + '>';
+		}
+
+		var innerName = '${haxeModule.name}_$typeParams';
+		var buf = new StringBuf();
+		buf.add('package ${haxeModule.pack.join(".")};\n\n');
+		if (haxeModule.doc != null && haxeModule.doc != '') {
+			buf.add('/**\n\t${StringTools.replace(haxeModule.doc, "\n", "\n\t")}\n**/\n');
+		}
+		buf.add('abstract ${haxeModule.name}$typeParams($innerName) from $innerName to $innerName {\n');
+
+		for (f in nativeFields) {
+			if (f.doc != null && f.doc != '') {
+				buf.add('\t/**\n\t\t${StringTools.replace(f.doc, "\n", "\n\t\t")}\n\t**/\n');
+			}
+			if (f.isOptional) buf.add('\t@:optional\n');
+			buf.add('\tpublic var ${f.name}(get, set):${f.fieldType};\n');
+			buf.add('\tinline function get_${f.name}():${f.fieldType} return js.Syntax.field(cast this, \'${f.jsName}\');\n');
+			buf.add('\tinline function set_${f.name}(v:${f.fieldType}):${f.fieldType} { js.Syntax.code("{0}[{1}] = {2}", this, \'${f.jsName}\', v); return v; }\n');
+		}
+
+		buf.add('}\n');
+		return {source: buf.toString()};
 	}
 
 	static function writeAbstractAnonSupport(outputPath: String) {
