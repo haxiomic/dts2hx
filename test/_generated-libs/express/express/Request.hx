@@ -1,6 +1,6 @@
 package express;
 
-typedef Request<P:(express_serve_static_core.Params), ResBody, ReqBody, ReqQuery> = {
+typedef Request<P, ResBody, ReqBody, ReqQuery> = {
 	/**
 		Return request header.
 		

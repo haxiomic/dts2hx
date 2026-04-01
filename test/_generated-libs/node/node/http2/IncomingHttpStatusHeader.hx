@@ -1,3 +1,9 @@
 package node.http2;
 
-typedef IncomingHttpStatusHeader = ts.AbstractAnon<node.http2.IncomingHttpStatusHeader_>;
+@:forward
+abstract IncomingHttpStatusHeader(IncomingHttpStatusHeader_) from IncomingHttpStatusHeader_ to IncomingHttpStatusHeader_ {
+	@:optional
+	public var ColonStatus(get, set):Float;
+	inline function get_ColonStatus():Float return js.Syntax.field(cast this, ':status');
+	inline function set_ColonStatus(v:Float):Float { js.Syntax.code("{0}[{1}] = {2}", this, ':status', v); return v; }
+}

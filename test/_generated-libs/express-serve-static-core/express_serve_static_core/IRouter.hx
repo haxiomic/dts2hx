@@ -1,3 +1,14 @@
 package express_serve_static_core;
 
-typedef IRouter = ts.AbstractAnon<express_serve_static_core.IRouter_>;
+@:forward
+abstract IRouter(IRouter_) from IRouter_ to IRouter_ {
+	/**
+		Access the native `m-search` field. This field has type parameters
+		that cannot be expressed in a property type, so use js.Syntax.field:
+		```haxe
+		js.Syntax.field(obj, 'm-search');
+		```
+	**/
+	@:selfCall
+	inline function call(req:Request<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, res:Response<Dynamic>, next:NextFunction):Dynamic return (cast this : IRouter_).call(req, res, next);
+}

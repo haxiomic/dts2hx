@@ -1,3 +1,3 @@
 package global._;
 
-typedef Omit<T, K:(ts.AnyOf3<String, Float, js.lib.Symbol>)> = Dynamic;
+typedef Omit<T, K> = Dynamic;

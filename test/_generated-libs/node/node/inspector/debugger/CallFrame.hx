@@ -3,4 +3,12 @@ package node.inspector.debugger;
 /**
 	JavaScript call frame. Array of call frames form the call stack.
 **/
-typedef CallFrame = ts.AbstractAnon<node.inspector.debugger.CallFrame_>;
+@:forward
+abstract CallFrame(CallFrame_) from CallFrame_ to CallFrame_ {
+	/**
+		`this` object for this call frame.
+	**/
+	public var this_(get, set):node.inspector.runtime.RemoteObject;
+	inline function get_this_():node.inspector.runtime.RemoteObject return js.Syntax.field(cast this, 'this');
+	inline function set_this_(v:node.inspector.runtime.RemoteObject):node.inspector.runtime.RemoteObject { js.Syntax.code("{0}[{1}] = {2}", this, 'this', v); return v; }
+}
