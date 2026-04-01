@@ -27,8 +27,7 @@
     "typescript": "5.9.3"
   },
   "devDependencies": {
-    "@types/node": "11.11.3",
-    "lix": "^16.0.2"
+    "@types/node": "11.11.3"
   },
   "bin": "./cli.js"
 }
