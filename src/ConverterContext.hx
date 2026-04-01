@@ -333,7 +333,11 @@ class ConverterContext {
 					// check if symbol is declared within this module
 					var declaredInModules = symbol.getParentModuleNames();
 
-					var declaredWithinInputModule = declaredInModules.exists(name -> name == normalizedInputModuleName);
+					// Match if the symbol's parent module is the input module or a parent package
+					// (e.g. symbol in "haxiomic-engine" matches input "haxiomic-engine/rendering/RenderTargetStore")
+					var declaredWithinInputModule = declaredInModules.exists(name ->
+						name == normalizedInputModuleName || StringTools.startsWith(normalizedInputModuleName, name + '/')
+					);
 
 					// check if symbol is from an external ambient declaration file (e.g. @types/webxr)
 					// — a .d.ts in node_modules without module exports (global scope)
