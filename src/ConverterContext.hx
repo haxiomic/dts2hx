@@ -1620,6 +1620,11 @@ class ConverterContext {
 					// clamp type args to target's Haxe type param count
 					if (paramCount < argumentCount && paramCount > 0) {
 						hxTypeArguments = hxTypeArguments.slice(0, paramCount);
+					} else if (argumentCount < paramCount) {
+						// Pad with Dynamic for missing type arguments (TS default type params)
+						while (hxTypeArguments.length < paramCount) {
+							hxTypeArguments.push(TPType(macro :Dynamic));
+						}
 					} else if (paramCount != argumentCount && paramCount != 0) {
 						Log.warn('TypeReference has <b>$argumentCount</> arguments but target has <b>$paramCount</> parameters', typeReference);
 					}
