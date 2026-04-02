@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5435:5
 **/
 @:native('ts.SymbolDisplayPartKind')
-@:enum
-extern abstract SymbolDisplayPartKind(Int) from Int to Int {
+extern enum abstract SymbolDisplayPartKind(Int) from Int to Int {
 	var aliasName;
 	var className;
 	var enumName;

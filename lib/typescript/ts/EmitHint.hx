@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2919:5
 **/
 @:native('ts.EmitHint')
-@:enum
-extern abstract EmitHint(Int) from Int to Int {
+extern enum abstract EmitHint(Int) from Int to Int {
 	var SourceFile;
 	var Expression;
 	var IdentifierName;

@@ -124,3 +124,7 @@ The e2e test suite (`test/e2e/`) includes:
 - [Compiler Internals Book](https://basarat.gitbooks.io/typescript/docs/compiler/overview.html)
 - See [src/compiler/utilities.ts](https://github.com/microsoft/TypeScript/blob/d6c05a135840dc3045ec8f3bbec1da5ffabb6593/src/compiler/utilities.ts) for compiler API use examples
 - See [src/compiler/vistorPublic.ts](https://github.com/microsoft/TypeScript/blob/master/src/compiler/visitorPublic.ts) for an example of fully enumerating the AST
+
+# Roadmap
+
+See [docs/ROADMAP.md](docs/ROADMAP.md) for the full roadmap of completed and planned work.

@@ -631,16 +631,14 @@ class Console {
 
 }
 
-@:enum
-abstract ConsoleOutputStream(Int) {
+enum abstract ConsoleOutputStream(Int) {
 	var Log = 0;
 	var Warn = 1;
 	var Error = 2;
 	var Debug = 3;
 }
 
-@:enum
-abstract ConsoleFormatMode(Int) {
+enum abstract ConsoleFormatMode(Int) {
 	#if (sys || nodejs)
 	var AsciiTerminal = 0;
 	#end
@@ -651,14 +649,12 @@ abstract ConsoleFormatMode(Int) {
 	var Disabled = 2;
 }
 
-@:enum
-abstract UnicodeCompatibilityMode(Int) {
+enum abstract UnicodeCompatibilityMode(Int) {
 	var None = 0;
 	var Windows = 1;
 }
 
-@:enum
-abstract FormatFlag(String) to String {
+enum abstract FormatFlag(String) to String {
 	var RESET = 'reset';
 	var BOLD = 'bold';
 	var ITALIC = 'italic';
@@ -740,8 +736,7 @@ abstract FormatFlag(String) to String {
 	}
 }
 
-@:enum
-abstract AsciiColorCodes(Int){
+enum abstract AsciiColorCodes(Int){
 	var ASCII_BLACK_CODE = 0;
 	var ASCII_RED_CODE = 1;
 	var ASCII_GREEN_CODE = 2;

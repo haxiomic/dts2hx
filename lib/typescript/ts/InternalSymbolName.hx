@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2246:5
 **/
 @:native('ts.InternalSymbolName')
-@:enum
-extern abstract InternalSymbolName(String) from String to String {
+extern enum abstract InternalSymbolName(String) from String to String {
 	var Call;
 	var Constructor;
 	var New;

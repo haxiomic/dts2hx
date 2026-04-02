@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2111:5
 **/
 @:native('ts.TypeFormatFlags')
-@:enum
-extern abstract TypeFormatFlags(Int) from Int to Int {
+extern enum abstract TypeFormatFlags(Int) from Int to Int {
 	var None;
 	var NoTruncation;
 	var WriteArrayAsGenericType;

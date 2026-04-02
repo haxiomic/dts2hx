@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:2723:5
 **/
 @:native('ts.ScriptTarget')
-@:enum
-extern abstract ScriptTarget(Int) from Int to Int {
+extern enum abstract ScriptTarget(Int) from Int to Int {
 	var ES3;
 	var ES5;
 	var ES2015;

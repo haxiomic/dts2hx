@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5585:5
 **/
 @:native('ts.OutliningSpanKind')
-@:enum
-extern abstract OutliningSpanKind(String) from String to String {
+extern enum abstract OutliningSpanKind(String) from String to String {
 	/**
 	Single or multi-line comments
 	**/

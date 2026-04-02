@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5653:5
 **/
 @:native('ts.ScriptElementKind')
-@:enum
-extern abstract ScriptElementKind(String) from String to String {
+extern enum abstract ScriptElementKind(String) from String to String {
 	var unknown;
 	var warning;
 	/**

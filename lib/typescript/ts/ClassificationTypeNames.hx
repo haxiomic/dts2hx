@@ -5,8 +5,7 @@ package typescript.ts;
 Generated from: test-definitions/typescript/typescript-extended.d.ts:5739:5
 **/
 @:native('ts.ClassificationTypeNames')
-@:enum
-extern abstract ClassificationTypeNames(String) from String to String {
+extern enum abstract ClassificationTypeNames(String) from String to String {
 	var comment;
 	var identifier;
 	var keyword;
