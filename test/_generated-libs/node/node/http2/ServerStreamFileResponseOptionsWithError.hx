@@ -4,9 +4,9 @@ typedef ServerStreamFileResponseOptionsWithError = {
 	@:optional
 	dynamic function onError(err:global.nodejs.ErrnoException):Void;
 	@:optional
-	dynamic function statCheck(stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions):Bool;
+	dynamic function statCheck(stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions):Void;
 	@:optional
-	dynamic function getTrailers(trailers:node.http.OutgoingHttpHeaders):Void;
+	var waitForTrailers : Bool;
 	@:optional
 	var offset : Float;
 	@:optional

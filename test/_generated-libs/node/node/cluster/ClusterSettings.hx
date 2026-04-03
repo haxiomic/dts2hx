@@ -1,20 +1,63 @@
 package node.cluster;
 
 typedef ClusterSettings = {
+	/**
+		List of string arguments passed to the Node.js executable.
+	**/
 	@:optional
 	var execArgv : Array<String>;
+	/**
+		File path to worker file.
+	**/
 	@:optional
 	var exec : String;
+	/**
+		String arguments passed to worker.
+	**/
 	@:optional
-	var args : Array<String>;
+	var args : haxe.ds.ReadOnlyArray<String>;
+	/**
+		Whether or not to send output to parent's stdio.
+	**/
 	@:optional
 	var silent : Bool;
+	/**
+		Configures the stdio of forked processes. Because the cluster module relies on IPC to function, this configuration must
+		contain an `'ipc'` entry. When this option is provided, it overrides `silent`. See [`child_prcess.spawn()`](https://nodejs.org/docs/latest-v20.x/api/child_process.html#child_processspawncommand-args-options)'s
+		[`stdio`](https://nodejs.org/docs/latest-v20.x/api/child_process.html#optionsstdio).
+	**/
 	@:optional
 	var stdio : Array<Dynamic>;
+	/**
+		Sets the user identity of the process. (See [`setuid(2)`](https://man7.org/linux/man-pages/man2/setuid.2.html).)
+	**/
 	@:optional
 	var uid : Float;
+	/**
+		Sets the group identity of the process. (See [`setgid(2)`](https://man7.org/linux/man-pages/man2/setgid.2.html).)
+	**/
 	@:optional
 	var gid : Float;
+	/**
+		Sets inspector port of worker. This can be a number, or a function that takes no arguments and returns a number.
+		By default each worker gets its own port, incremented from the primary's `process.debugPort`.
+	**/
 	@:optional
 	var inspectPort : ts.AnyOf2<Float, () -> Float>;
+	/**
+		Specify the kind of serialization used for sending messages between processes. Possible values are `'json'` and `'advanced'`.
+		See [Advanced serialization for `child_process`](https://nodejs.org/docs/latest-v20.x/api/child_process.html#advanced-serialization) for more details.
+	**/
+	@:optional
+	var serialization : ClusterSettings;
+	/**
+		Current working directory of the worker process.
+	**/
+	@:optional
+	var cwd : String;
+	/**
+		Hide the forked processes console window that would normally be created on Windows systems.
+	**/
+	@:optional
+	var windowsHide : Bool;
 };

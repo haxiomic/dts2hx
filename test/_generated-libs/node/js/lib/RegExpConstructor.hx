@@ -1,7 +1,7 @@
 package js.lib;
 
 @:forward
-abstract RegExpConstructor(RegExpConstructor_) from RegExpConstructor_ to RegExpConstructor_ {
+abstract RegExpConstructor(RegExpConstructorTypedef) from RegExpConstructorTypedef to RegExpConstructorTypedef {
 	public var Dollar1(get, set):String;
 	inline function get_Dollar1():String return js.Syntax.field(cast this, '$1');
 	inline function set_Dollar1(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, '$1', v); return v; }
@@ -45,5 +45,5 @@ abstract RegExpConstructor(RegExpConstructor_) from RegExpConstructor_ to RegExp
 	inline function get_Dollar():String return js.Syntax.field(cast this, '$'');
 	inline function set_Dollar(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, '$'', v); return v; }
 	@:selfCall
-	inline function call(pattern:ts.AnyOf2<String, js.lib.RegExp>):js.lib.RegExp return (cast this : RegExpConstructor_).call(pattern);
+	inline function call(pattern:ts.AnyOf2<String, js.lib.RegExp>):js.lib.RegExp return (cast this : RegExpConstructorTypedef).call(pattern);
 }

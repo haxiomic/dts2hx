@@ -6,8 +6,7 @@ typedef GetPossibleBreakpointsParameterType = {
 	**/
 	var start : Location;
 	/**
-		End of range to search possible breakpoint locations in (excluding). When not specified, end
-		of scripts is used as end of range.
+		End of range to search possible breakpoint locations in (excluding). When not specified, end of scripts is used as end of range.
 	**/
 	@:optional
 	var end : Location;

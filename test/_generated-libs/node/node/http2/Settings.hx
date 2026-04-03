@@ -13,4 +13,6 @@ typedef Settings = {
 	var maxConcurrentStreams : Float;
 	@:optional
 	var maxHeaderListSize : Float;
+	@:optional
+	var enableConnectProtocol : Bool;
 };

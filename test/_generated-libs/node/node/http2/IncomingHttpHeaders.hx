@@ -1,7 +1,7 @@
 package node.http2;
 
 @:forward
-abstract IncomingHttpHeaders(IncomingHttpHeaders_) from IncomingHttpHeaders_ to IncomingHttpHeaders_ {
+abstract IncomingHttpHeaders(IncomingHttpHeadersTypedef) from IncomingHttpHeadersTypedef to IncomingHttpHeadersTypedef {
 	@:optional
 	public var ColonPath(get, set):String;
 	inline function get_ColonPath():String return js.Syntax.field(cast this, ':path');
@@ -18,6 +18,14 @@ abstract IncomingHttpHeaders(IncomingHttpHeaders_) from IncomingHttpHeaders_ to 
 	public var ColonScheme(get, set):String;
 	inline function get_ColonScheme():String return js.Syntax.field(cast this, ':scheme');
 	inline function set_ColonScheme(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, ':scheme', v); return v; }
+	@:optional
+	public var accept_encoding(get, set):String;
+	inline function get_accept_encoding():String return js.Syntax.field(cast this, 'accept-encoding');
+	inline function set_accept_encoding(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'accept-encoding', v); return v; }
+	@:optional
+	public var accept_language(get, set):String;
+	inline function get_accept_language():String return js.Syntax.field(cast this, 'accept-language');
+	inline function set_accept_language(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'accept-language', v); return v; }
 	@:optional
 	public var accept_patch(get, set):String;
 	inline function get_accept_patch():String return js.Syntax.field(cast this, 'accept-patch');
@@ -50,6 +58,14 @@ abstract IncomingHttpHeaders(IncomingHttpHeaders_) from IncomingHttpHeaders_ to 
 	public var access_control_max_age(get, set):String;
 	inline function get_access_control_max_age():String return js.Syntax.field(cast this, 'access-control-max-age');
 	inline function set_access_control_max_age(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'access-control-max-age', v); return v; }
+	@:optional
+	public var access_control_request_headers(get, set):String;
+	inline function get_access_control_request_headers():String return js.Syntax.field(cast this, 'access-control-request-headers');
+	inline function set_access_control_request_headers(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'access-control-request-headers', v); return v; }
+	@:optional
+	public var access_control_request_method(get, set):String;
+	inline function get_access_control_request_method():String return js.Syntax.field(cast this, 'access-control-request-method');
+	inline function set_access_control_request_method(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'access-control-request-method', v); return v; }
 	@:optional
 	public var alt_svc(get, set):String;
 	inline function get_alt_svc():String return js.Syntax.field(cast this, 'alt-svc');
@@ -122,6 +138,42 @@ abstract IncomingHttpHeaders(IncomingHttpHeaders_) from IncomingHttpHeaders_ to 
 	public var retry_after(get, set):String;
 	inline function get_retry_after():String return js.Syntax.field(cast this, 'retry-after');
 	inline function set_retry_after(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'retry-after', v); return v; }
+	@:optional
+	public var sec_fetch_site(get, set):String;
+	inline function get_sec_fetch_site():String return js.Syntax.field(cast this, 'sec-fetch-site');
+	inline function set_sec_fetch_site(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-fetch-site', v); return v; }
+	@:optional
+	public var sec_fetch_mode(get, set):String;
+	inline function get_sec_fetch_mode():String return js.Syntax.field(cast this, 'sec-fetch-mode');
+	inline function set_sec_fetch_mode(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-fetch-mode', v); return v; }
+	@:optional
+	public var sec_fetch_user(get, set):String;
+	inline function get_sec_fetch_user():String return js.Syntax.field(cast this, 'sec-fetch-user');
+	inline function set_sec_fetch_user(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-fetch-user', v); return v; }
+	@:optional
+	public var sec_fetch_dest(get, set):String;
+	inline function get_sec_fetch_dest():String return js.Syntax.field(cast this, 'sec-fetch-dest');
+	inline function set_sec_fetch_dest(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-fetch-dest', v); return v; }
+	@:optional
+	public var sec_websocket_accept(get, set):String;
+	inline function get_sec_websocket_accept():String return js.Syntax.field(cast this, 'sec-websocket-accept');
+	inline function set_sec_websocket_accept(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-websocket-accept', v); return v; }
+	@:optional
+	public var sec_websocket_extensions(get, set):String;
+	inline function get_sec_websocket_extensions():String return js.Syntax.field(cast this, 'sec-websocket-extensions');
+	inline function set_sec_websocket_extensions(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-websocket-extensions', v); return v; }
+	@:optional
+	public var sec_websocket_key(get, set):String;
+	inline function get_sec_websocket_key():String return js.Syntax.field(cast this, 'sec-websocket-key');
+	inline function set_sec_websocket_key(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-websocket-key', v); return v; }
+	@:optional
+	public var sec_websocket_protocol(get, set):String;
+	inline function get_sec_websocket_protocol():String return js.Syntax.field(cast this, 'sec-websocket-protocol');
+	inline function set_sec_websocket_protocol(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-websocket-protocol', v); return v; }
+	@:optional
+	public var sec_websocket_version(get, set):String;
+	inline function get_sec_websocket_version():String return js.Syntax.field(cast this, 'sec-websocket-version');
+	inline function set_sec_websocket_version(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'sec-websocket-version', v); return v; }
 	@:optional
 	public var set_cookie(get, set):Array<String>;
 	inline function get_set_cookie():Array<String> return js.Syntax.field(cast this, 'set-cookie');

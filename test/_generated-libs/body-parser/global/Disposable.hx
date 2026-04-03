@@ -1,0 +1,3 @@
+package global;
+
+typedef Disposable = { };

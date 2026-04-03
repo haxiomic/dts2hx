@@ -185,7 +185,6 @@ package unit.types;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
-	} & {
 		var extendedField : Float;
 	};
 	static final intersectionWithAny : Dynamic;

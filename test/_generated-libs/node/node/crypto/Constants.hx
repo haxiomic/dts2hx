@@ -7,6 +7,10 @@ package node.crypto;
 	**/
 	static final SSL_OP_ALL : Float;
 	/**
+		Instructs OpenSSL to allow a non-[EC]DHE-based key exchange mode for TLS v1.3
+	**/
+	static final SSL_OP_ALLOW_NO_DHE_KEX : Float;
+	/**
 		Allows legacy insecure renegotiation between OpenSSL and unpatched clients or servers. See https://www.openssl.org/docs/man1.0.2/ssl/SSL_CTX_set_options.html.
 	**/
 	static final SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION : Float;
@@ -15,7 +19,7 @@ package node.crypto;
 	**/
 	static final SSL_OP_CIPHER_SERVER_PREFERENCE : Float;
 	/**
-		Instructs OpenSSL to use Cisco's "speshul" version of DTLS_BAD_VER.
+		Instructs OpenSSL to use Cisco's version identifier of DTLS_BAD_VER.
 	**/
 	static final SSL_OP_CISCO_ANYCONNECT : Float;
 	/**
@@ -31,52 +35,58 @@ package node.crypto;
 	**/
 	static final SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS : Float;
 	/**
-		Instructs OpenSSL to always use the tmp_rsa key when performing RSA operations.
-	**/
-	static final SSL_OP_EPHEMERAL_RSA : Float;
-	/**
 		Allows initial connection to servers that do not support RI.
 	**/
 	static final SSL_OP_LEGACY_SERVER_CONNECT : Float;
-	static final SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER : Float;
-	static final SSL_OP_MICROSOFT_SESS_ID_BUG : Float;
-	/**
-		Instructs OpenSSL to disable the workaround for a man-in-the-middle protocol-version vulnerability in the SSL 2.0 server implementation.
-	**/
-	static final SSL_OP_MSIE_SSLV2_RSA_PADDING : Float;
-	static final SSL_OP_NETSCAPE_CA_DN_BUG : Float;
-	static final SSL_OP_NETSCAPE_CHALLENGE_BUG : Float;
-	static final SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG : Float;
-	static final SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG : Float;
 	/**
 		Instructs OpenSSL to disable support for SSL/TLS compression.
 	**/
 	static final SSL_OP_NO_COMPRESSION : Float;
+	/**
+		Instructs OpenSSL to disable encrypt-then-MAC.
+	**/
+	static final SSL_OP_NO_ENCRYPT_THEN_MAC : Float;
 	static final SSL_OP_NO_QUERY_MTU : Float;
+	/**
+		Instructs OpenSSL to disable renegotiation.
+	**/
+	static final SSL_OP_NO_RENEGOTIATION : Float;
 	/**
 		Instructs OpenSSL to always start a new session when performing renegotiation.
 	**/
 	static final SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION : Float;
+	/**
+		Instructs OpenSSL to turn off SSL v2
+	**/
 	static final SSL_OP_NO_SSLv2 : Float;
+	/**
+		Instructs OpenSSL to turn off SSL v3
+	**/
 	static final SSL_OP_NO_SSLv3 : Float;
+	/**
+		Instructs OpenSSL to disable use of RFC4507bis tickets.
+	**/
 	static final SSL_OP_NO_TICKET : Float;
+	/**
+		Instructs OpenSSL to turn off TLS v1
+	**/
 	static final SSL_OP_NO_TLSv1 : Float;
+	/**
+		Instructs OpenSSL to turn off TLS v1.1
+	**/
 	static final SSL_OP_NO_TLSv1_1 : Float;
+	/**
+		Instructs OpenSSL to turn off TLS v1.2
+	**/
 	static final SSL_OP_NO_TLSv1_2 : Float;
-	static final SSL_OP_PKCS1_CHECK_1 : Float;
-	static final SSL_OP_PKCS1_CHECK_2 : Float;
 	/**
-		Instructs OpenSSL to always create a new key when using temporary/ephemeral DH parameters.
+		Instructs OpenSSL to turn off TLS v1.3
 	**/
-	static final SSL_OP_SINGLE_DH_USE : Float;
+	static final SSL_OP_NO_TLSv1_3 : Float;
 	/**
-		Instructs OpenSSL to always create a new key when using temporary/ephemeral ECDH parameters.
+		Instructs OpenSSL server to prioritize ChaCha20-Poly1305 when the client does. This option has no effect if `SSL_OP_CIPHER_SERVER_PREFERENCE` is not enabled.
 	**/
-	static final SSL_OP_SINGLE_ECDH_USE : Float;
-	static final SSL_OP_SSLEAY_080_CLIENT_DH_BUG : Float;
-	static final SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG : Float;
-	static final SSL_OP_TLS_BLOCK_PADDING_BUG : Float;
-	static final SSL_OP_TLS_D5_BUG : Float;
+	static final SSL_OP_PRIORITIZE_CHACHA : Float;
 	/**
 		Instructs OpenSSL to disable version rollback attack detection.
 	**/
@@ -96,7 +106,6 @@ package node.crypto;
 	static final DH_CHECK_P_NOT_PRIME : Float;
 	static final DH_UNABLE_TO_CHECK_GENERATOR : Float;
 	static final DH_NOT_SUITABLE_GENERATOR : Float;
-	static final ALPN_ENABLED : Float;
 	static final RSA_PKCS1_PADDING : Float;
 	static final RSA_SSLV23_PADDING : Float;
 	static final RSA_NO_PADDING : Float;

@@ -6,7 +6,7 @@ typedef ExceptionRevokedEventDataType = {
 	**/
 	var reason : String;
 	/**
-		The id of revoked exception, as reported in `exceptionThrown`.
+		The id of revoked exception, as reported in <code>exceptionThrown</code>.
 	**/
 	var exceptionId : Float;
 };

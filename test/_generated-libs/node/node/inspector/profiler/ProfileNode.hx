@@ -23,8 +23,7 @@ typedef ProfileNode = {
 	@:optional
 	var children : Array<Float>;
 	/**
-		The reason of being not optimized. The function may be deoptimized or marked as don't
-		optimize.
+		The reason of being not optimized. The function may be deoptimized or marked as don't optimize.
 	**/
 	@:optional
 	var deoptReason : String;

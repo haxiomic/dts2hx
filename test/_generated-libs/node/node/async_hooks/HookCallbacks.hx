@@ -13,7 +13,9 @@ typedef HookCallbacks = {
 	@:optional
 	function before(asyncId:Float):Void;
 	/**
-		Called immediately after the callback specified in before is completed.
+		Called immediately after the callback specified in `before` is completed.
+		
+		If an uncaught exception occurs during execution of the callback, then `after` will run after the `'uncaughtException'` event is emitted or a `domain`'s handler runs.
 	**/
 	@:optional
 	function after(asyncId:Float):Void;

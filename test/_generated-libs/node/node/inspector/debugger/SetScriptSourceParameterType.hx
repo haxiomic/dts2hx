@@ -10,8 +10,7 @@ typedef SetScriptSourceParameterType = {
 	**/
 	var scriptSource : String;
 	/**
-		If true the change will not actually be applied. Dry run may be used to get result
-		description without actually modifying the code.
+		If true the change will not actually be applied. Dry run may be used to get result description without actually modifying the code.
 	**/
 	@:optional
 	var dryRun : Bool;

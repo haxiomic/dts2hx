@@ -1,51 +1,1467 @@
 package node;
 
+/**
+	An alias of
+	{@link
+	ok
+	}
+	.
+**/
 @:jsRequire("assert") @valueModuleOnly extern class Assert {
+	/**
+		An alias of 
+		{@link 
+		ok 
+		}
+		.
+	**/
 	@:selfCall
-	static function call(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):ts.Never { })
+	static function call(value:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Throws an `AssertionError` with the provided error message or a default
+		error message. If the `message` parameter is an instance of an `Error` then
+		it will be thrown instead of the `AssertionError`.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.fail();
+		// AssertionError [ERR_ASSERTION]: Failed
+		
+		assert.fail('boom');
+		// AssertionError [ERR_ASSERTION]: boom
+		
+		assert.fail(new TypeError('need array'));
+		// TypeError: need array
+		```
+		
+		Using `assert.fail()` with more than two arguments is possible but deprecated.
+		See below for further details.
+	**/
+	@:overload(function(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):ts.Never { })
 	static function fail(?message:ts.AnyOf2<String, js.lib.Error>):ts.Never;
-	static function ok(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function equal(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function notEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function deepEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function notDeepEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function strictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function notStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function deepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function notDeepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	@:overload(function(block:() -> Dynamic, error:ts.AnyOf4<Dynamic, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
-	static function throws(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	@:overload(function(block:() -> Dynamic, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
-	static function doesNotThrow(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-	static function ifError(value:Dynamic):Void;
-	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf4<Dynamic, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
-	static function rejects(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
-	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
-	static function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
+	/**
+		Tests if `value` is truthy. It is equivalent to `assert.equal(!!value, true, message)`.
+		
+		If `value` is not truthy, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is `undefined`, a default
+		error message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown instead of the `AssertionError`.
+		If no arguments are passed in at all `message` will be set to the string:`` 'No value argument passed to `assert.ok()`' ``.
+		
+		Be aware that in the `repl` the error message will be different to the one
+		thrown in a file! See below for further details.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.ok(true);
+		// OK
+		assert.ok(1);
+		// OK
+		
+		assert.ok();
+		// AssertionError: No value argument passed to `assert.ok()`
+		
+		assert.ok(false, 'it\'s false');
+		// AssertionError: it's false
+		
+		// In the repl:
+		assert.ok(typeof 123 === 'string');
+		// AssertionError: false == true
+		
+		// In a file (e.g. test.js):
+		assert.ok(typeof 123 === 'string');
+		// AssertionError: The expression evaluated to a falsy value:
+		//
+		//   assert.ok(typeof 123 === 'string')
+		
+		assert.ok(false);
+		// AssertionError: The expression evaluated to a falsy value:
+		//
+		//   assert.ok(false)
+		
+		assert.ok(0);
+		// AssertionError: The expression evaluated to a falsy value:
+		//
+		//   assert.ok(0)
+		```
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		// Using `assert()` works the same:
+		assert(0);
+		// AssertionError: The expression evaluated to a falsy value:
+		//
+		//   assert(0)
+		```
+	**/
+	static function ok(value:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		**Strict assertion mode**
+		
+		An alias of
+		{@link
+		strictEqual
+		}
+		.
+		
+		**Legacy assertion mode**
+		
+		> Stability: 3 - Legacy: Use
+		{@link
+		strictEqual
+		}
+		instead.
+		
+		Tests shallow, coercive equality between the `actual` and `expected` parameters
+		using the [`==` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality). `NaN` is specially handled
+		and treated as being identical if both sides are `NaN`.
+		
+		```js
+		import assert from 'node:assert';
+		
+		assert.equal(1, 1);
+		// OK, 1 == 1
+		assert.equal(1, '1');
+		// OK, 1 == '1'
+		assert.equal(NaN, NaN);
+		// OK
+		
+		assert.equal(1, 2);
+		// AssertionError: 1 == 2
+		assert.equal({ a: { b: 1 } }, { a: { b: 1 } });
+		// AssertionError: { a: { b: 1 } } == { a: { b: 1 } }
+		```
+		
+		If the values are not equal, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is undefined, a default
+		error message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown instead of the `AssertionError`.
+	**/
+	static function equal(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		**Strict assertion mode**
+		
+		An alias of
+		{@link
+		notStrictEqual
+		}
+		.
+		
+		**Legacy assertion mode**
+		
+		> Stability: 3 - Legacy: Use
+		{@link
+		notStrictEqual
+		}
+		instead.
+		
+		Tests shallow, coercive inequality with the [`!=` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Inequality). `NaN` is
+		specially handled and treated as being identical if both sides are `NaN`.
+		
+		```js
+		import assert from 'node:assert';
+		
+		assert.notEqual(1, 2);
+		// OK
+		
+		assert.notEqual(1, 1);
+		// AssertionError: 1 != 1
+		
+		assert.notEqual(1, '1');
+		// AssertionError: 1 != '1'
+		```
+		
+		If the values are equal, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is undefined, a default error
+		message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown instead of the `AssertionError`.
+	**/
+	static function notEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		**Strict assertion mode**
+		
+		An alias of
+		{@link
+		deepStrictEqual
+		}
+		.
+		
+		**Legacy assertion mode**
+		
+		> Stability: 3 - Legacy: Use
+		{@link
+		deepStrictEqual
+		}
+		instead.
+		
+		Tests for deep equality between the `actual` and `expected` parameters. Consider
+		using
+		{@link
+		deepStrictEqual
+		}
+		instead.
+		{@link
+		deepEqual
+		}
+		can have
+		surprising results.
+		
+		_Deep equality_ means that the enumerable "own" properties of child objects
+		are also recursively evaluated by the following rules.
+	**/
+	static function deepEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		**Strict assertion mode**
+		
+		An alias of
+		{@link
+		notDeepStrictEqual
+		}
+		.
+		
+		**Legacy assertion mode**
+		
+		> Stability: 3 - Legacy: Use
+		{@link
+		notDeepStrictEqual
+		}
+		instead.
+		
+		Tests for any deep inequality. Opposite of
+		{@link
+		deepEqual
+		}
+		.
+		
+		```js
+		import assert from 'node:assert';
+		
+		const obj1 = {
+		  a: {
+		    b: 1,
+		  },
+		};
+		const obj2 = {
+		  a: {
+		    b: 2,
+		  },
+		};
+		const obj3 = {
+		  a: {
+		    b: 1,
+		  },
+		};
+		const obj4 = { __proto__: obj1 };
+		
+		assert.notDeepEqual(obj1, obj1);
+		// AssertionError: { a: { b: 1 } } notDeepEqual { a: { b: 1 } }
+		
+		assert.notDeepEqual(obj1, obj2);
+		// OK
+		
+		assert.notDeepEqual(obj1, obj3);
+		// AssertionError: { a: { b: 1 } } notDeepEqual { a: { b: 1 } }
+		
+		assert.notDeepEqual(obj1, obj4);
+		// OK
+		```
+		
+		If the values are deeply equal, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is undefined, a default
+		error message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown
+		instead of the `AssertionError`.
+	**/
+	static function notDeepEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Tests strict equality between the `actual` and `expected` parameters as
+		determined by [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.strictEqual(1, 2);
+		// AssertionError [ERR_ASSERTION]: Expected inputs to be strictly equal:
+		//
+		// 1 !== 2
+		
+		assert.strictEqual(1, 1);
+		// OK
+		
+		assert.strictEqual('Hello foobar', 'Hello World!');
+		// AssertionError [ERR_ASSERTION]: Expected inputs to be strictly equal:
+		// + actual - expected
+		//
+		// + 'Hello foobar'
+		// - 'Hello World!'
+		//          ^
+		
+		const apples = 1;
+		const oranges = 2;
+		assert.strictEqual(apples, oranges, `apples ${apples} !== oranges ${oranges}`);
+		// AssertionError [ERR_ASSERTION]: apples 1 !== oranges 2
+		
+		assert.strictEqual(1, '1', new TypeError('Inputs are not identical'));
+		// TypeError: Inputs are not identical
+		```
+		
+		If the values are not strictly equal, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is undefined, a
+		default error message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown
+		instead of the `AssertionError`.
+	**/
+	static function strictEqual<T>(actual:Any, expected:T, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Tests strict inequality between the `actual` and `expected` parameters as
+		determined by [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.notStrictEqual(1, 2);
+		// OK
+		
+		assert.notStrictEqual(1, 1);
+		// AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+		//
+		// 1
+		
+		assert.notStrictEqual(1, '1');
+		// OK
+		```
+		
+		If the values are strictly equal, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is undefined, a
+		default error message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown
+		instead of the `AssertionError`.
+	**/
+	static function notStrictEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Tests for deep equality between the `actual` and `expected` parameters.
+		"Deep" equality means that the enumerable "own" properties of child objects
+		are recursively evaluated also by the following rules.
+	**/
+	static function deepStrictEqual<T>(actual:Any, expected:T, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Tests for deep strict inequality. Opposite of
+		{@link
+		deepStrictEqual
+		}
+		.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.notDeepStrictEqual({ a: 1 }, { a: '1' });
+		// OK
+		```
+		
+		If the values are deeply and strictly equal, an `AssertionError` is thrown
+		with a `message` property set equal to the value of the `message` parameter. If
+		the `message` parameter is undefined, a default error message is assigned. If
+		the `message` parameter is an instance of an `Error` then it will be thrown
+		instead of the `AssertionError`.
+	**/
+	static function notDeepStrictEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Expects the function `fn` to throw an error.
+		
+		If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+		[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), a validation function,
+		a validation object where each property will be tested for strict deep equality,
+		or an instance of error where each property will be tested for strict deep
+		equality including the non-enumerable `message` and `name` properties. When
+		using an object, it is also possible to use a regular expression, when
+		validating against a string property. See below for examples.
+		
+		If specified, `message` will be appended to the message provided by the `AssertionError` if the `fn` call fails to throw or in case the error validation
+		fails.
+		
+		Custom validation object/error instance:
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		const err = new TypeError('Wrong value');
+		err.code = 404;
+		err.foo = 'bar';
+		err.info = {
+		  nested: true,
+		  baz: 'text',
+		};
+		err.reg = /abc/i;
+		
+		assert.throws(
+		  () => {
+		    throw err;
+		  },
+		  {
+		    name: 'TypeError',
+		    message: 'Wrong value',
+		    info: {
+		      nested: true,
+		      baz: 'text',
+		    },
+		    // Only properties on the validation object will be tested for.
+		    // Using nested objects requires all properties to be present. Otherwise
+		    // the validation is going to fail.
+		  },
+		);
+		
+		// Using regular expressions to validate error properties:
+		assert.throws(
+		  () => {
+		    throw err;
+		  },
+		  {
+		    // The `name` and `message` properties are strings and using regular
+		    // expressions on those will match against the string. If they fail, an
+		    // error is thrown.
+		    name: /^TypeError$/,
+		    message: /Wrong/,
+		    foo: 'bar',
+		    info: {
+		      nested: true,
+		      // It is not possible to use regular expressions for nested properties!
+		      baz: 'text',
+		    },
+		    // The `reg` property contains a regular expression and only if the
+		    // validation object contains an identical regular expression, it is going
+		    // to pass.
+		    reg: /abc/i,
+		  },
+		);
+		
+		// Fails due to the different `message` and `name` properties:
+		assert.throws(
+		  () => {
+		    const otherErr = new Error('Not found');
+		    // Copy all enumerable properties from `err` to `otherErr`.
+		    for (const [key, value] of Object.entries(err)) {
+		      otherErr[key] = value;
+		    }
+		    throw otherErr;
+		  },
+		  // The error's `message` and `name` properties will also be checked when using
+		  // an error as validation object.
+		  err,
+		);
+		```
+		
+		Validate instanceof using constructor:
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.throws(
+		  () => {
+		    throw new Error('Wrong value');
+		  },
+		  Error,
+		);
+		```
+		
+		Validate error message using [`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions):
+		
+		Using a regular expression runs `.toString` on the error object, and will
+		therefore also include the error name.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.throws(
+		  () => {
+		    throw new Error('Wrong value');
+		  },
+		  /^Error: Wrong value$/,
+		);
+		```
+		
+		Custom error validation:
+		
+		The function must return `true` to indicate all internal validations passed.
+		It will otherwise fail with an `AssertionError`.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.throws(
+		  () => {
+		    throw new Error('Wrong value');
+		  },
+		  (err) => {
+		    assert(err instanceof Error);
+		    assert(/value/.test(err));
+		    // Avoid returning anything from validation functions besides `true`.
+		    // Otherwise, it's not clear what part of the validation failed. Instead,
+		    // throw an error about the specific validation that failed (as done in this
+		    // example) and add as much helpful debugging information to that error as
+		    // possible.
+		    return true;
+		  },
+		  'unexpected error',
+		);
+		```
+		
+		`error` cannot be a string. If a string is provided as the second
+		argument, then `error` is assumed to be omitted and the string will be used for `message` instead. This can lead to easy-to-miss mistakes. Using the same
+		message as the thrown error message is going to result in an `ERR_AMBIGUOUS_ARGUMENT` error. Please read the example below carefully if using
+		a string as the second argument gets considered:
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		function throwingFirst() {
+		  throw new Error('First');
+		}
+		
+		function throwingSecond() {
+		  throw new Error('Second');
+		}
+		
+		function notThrowing() {}
+		
+		// The second argument is a string and the input function threw an Error.
+		// The first case will not throw as it does not match for the error message
+		// thrown by the input function!
+		assert.throws(throwingFirst, 'Second');
+		// In the next example the message has no benefit over the message from the
+		// error and since it is not clear if the user intended to actually match
+		// against the error message, Node.js throws an `ERR_AMBIGUOUS_ARGUMENT` error.
+		assert.throws(throwingSecond, 'Second');
+		// TypeError [ERR_AMBIGUOUS_ARGUMENT]
+		
+		// The string is only used (as message) in case the function does not throw:
+		assert.throws(notThrowing, 'Second');
+		// AssertionError [ERR_ASSERTION]: Missing expected exception: Second
+		
+		// If it was intended to match for the error message do this instead:
+		// It does not throw because the error messages match.
+		assert.throws(throwingSecond, /Second$/);
+		
+		// If the error message does not match, an AssertionError is thrown.
+		assert.throws(throwingFirst, /Second$/);
+		// AssertionError [ERR_ASSERTION]
+		```
+		
+		Due to the confusing error-prone notation, avoid a string as the second
+		argument.
+	**/
+	@:overload(function(block:() -> Any, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
+	static function throws(block:() -> Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Asserts that the function `fn` does not throw an error.
+		
+		Using `assert.doesNotThrow()` is actually not useful because there
+		is no benefit in catching an error and then rethrowing it. Instead, consider
+		adding a comment next to the specific code path that should not throw and keep
+		error messages as expressive as possible.
+		
+		When `assert.doesNotThrow()` is called, it will immediately call the `fn` function.
+		
+		If an error is thrown and it is the same type as that specified by the `error` parameter, then an `AssertionError` is thrown. If the error is of a
+		different type, or if the `error` parameter is undefined, the error is
+		propagated back to the caller.
+		
+		If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+		[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), or a validation
+		function. See
+		{@link
+		throws
+		}
+		for more details.
+		
+		The following, for instance, will throw the `TypeError` because there is no
+		matching error type in the assertion:
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.doesNotThrow(
+		  () => {
+		    throw new TypeError('Wrong value');
+		  },
+		  SyntaxError,
+		);
+		```
+		
+		However, the following will result in an `AssertionError` with the message
+		'Got unwanted exception...':
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.doesNotThrow(
+		  () => {
+		    throw new TypeError('Wrong value');
+		  },
+		  TypeError,
+		);
+		```
+		
+		If an `AssertionError` is thrown and a value is provided for the `message` parameter, the value of `message` will be appended to the `AssertionError` message:
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.doesNotThrow(
+		  () => {
+		    throw new TypeError('Wrong value');
+		  },
+		  /Wrong value/,
+		  'Whoops',
+		);
+		// Throws: AssertionError: Got unwanted exception: Whoops
+		```
+	**/
+	@:overload(function(block:() -> Any, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
+	static function doesNotThrow(block:() -> Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Throws `value` if `value` is not `undefined` or `null`. This is useful when
+		testing the `error` argument in callbacks. The stack trace contains all frames
+		from the error passed to `ifError()` including the potential new frames for `ifError()` itself.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.ifError(null);
+		// OK
+		assert.ifError(0);
+		// AssertionError [ERR_ASSERTION]: ifError got unwanted exception: 0
+		assert.ifError('error');
+		// AssertionError [ERR_ASSERTION]: ifError got unwanted exception: 'error'
+		assert.ifError(new Error());
+		// AssertionError [ERR_ASSERTION]: ifError got unwanted exception: Error
+		
+		// Create some random error frames.
+		let err;
+		(function errorFrame() {
+		  err = new Error('test error');
+		})();
+		
+		(function ifErrorFrame() {
+		  assert.ifError(err);
+		})();
+		// AssertionError [ERR_ASSERTION]: ifError got unwanted exception: test error
+		//     at ifErrorFrame
+		//     at errorFrame
+		```
+	**/
+	static function ifError(value:Any):Void;
+	/**
+		Awaits the `asyncFn` promise or, if `asyncFn` is a function, immediately
+		calls the function and awaits the returned promise to complete. It will then
+		check that the promise is rejected.
+		
+		If `asyncFn` is a function and it throws an error synchronously, `assert.rejects()` will return a rejected `Promise` with that error. If the
+		function does not return a promise, `assert.rejects()` will return a rejected `Promise` with an [ERR_INVALID_RETURN_VALUE](https://nodejs.org/docs/latest-v20.x/api/errors.html#err_invalid_return_value)
+		error. In both cases the error handler is skipped.
+		
+		Besides the async nature to await the completion behaves identically to
+		{@link
+		throws
+		}
+		.
+		
+		If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+		[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), a validation function,
+		an object where each property will be tested for, or an instance of error where
+		each property will be tested for including the non-enumerable `message` and `name` properties.
+		
+		If specified, `message` will be the message provided by the `
+		{@link
+		AssertionError
+		}
+		` if the `asyncFn` fails to reject.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		await assert.rejects(
+		  async () => {
+		    throw new TypeError('Wrong value');
+		  },
+		  {
+		    name: 'TypeError',
+		    message: 'Wrong value',
+		  },
+		);
+		```
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		await assert.rejects(
+		  async () => {
+		    throw new TypeError('Wrong value');
+		  },
+		  (err) => {
+		    assert.strictEqual(err.name, 'TypeError');
+		    assert.strictEqual(err.message, 'Wrong value');
+		    return true;
+		  },
+		);
+		```
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.rejects(
+		  Promise.reject(new Error('Wrong value')),
+		  Error,
+		).then(() => {
+		  // ...
+		});
+		```
+		
+		`error` cannot be a string. If a string is provided as the second argument, then `error` is assumed to
+		be omitted and the string will be used for `message` instead. This can lead to easy-to-miss mistakes. Please read the
+		example in
+		{@link
+		throws
+		}
+		carefully if using a string as the second argument gets considered.
+	**/
+	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
+	static function rejects(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
+	/**
+		Awaits the `asyncFn` promise or, if `asyncFn` is a function, immediately
+		calls the function and awaits the returned promise to complete. It will then
+		check that the promise is not rejected.
+		
+		If `asyncFn` is a function and it throws an error synchronously, `assert.doesNotReject()` will return a rejected `Promise` with that error. If
+		the function does not return a promise, `assert.doesNotReject()` will return a
+		rejected `Promise` with an [ERR_INVALID_RETURN_VALUE](https://nodejs.org/docs/latest-v20.x/api/errors.html#err_invalid_return_value) error. In both cases
+		the error handler is skipped.
+		
+		Using `assert.doesNotReject()` is actually not useful because there is little
+		benefit in catching a rejection and then rejecting it again. Instead, consider
+		adding a comment next to the specific code path that should not reject and keep
+		error messages as expressive as possible.
+		
+		If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+		[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), or a validation
+		function. See
+		{@link
+		throws
+		}
+		for more details.
+		
+		Besides the async nature to await the completion behaves identically to
+		{@link
+		doesNotThrow
+		}
+		.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		await assert.doesNotReject(
+		  async () => {
+		    throw new TypeError('Wrong value');
+		  },
+		  SyntaxError,
+		);
+		```
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.doesNotReject(Promise.reject(new TypeError('Wrong value')))
+		  .then(() => {
+		    // ...
+		  });
+		```
+	**/
+	@:overload(function(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
+	static function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
+	/**
+		Expects the `string` input to match the regular expression.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.match('I will fail', /pass/);
+		// AssertionError [ERR_ASSERTION]: The input did not match the regular ...
+		
+		assert.match(123, /pass/);
+		// AssertionError [ERR_ASSERTION]: The "string" argument must be of type string.
+		
+		assert.match('I will pass', /pass/);
+		// OK
+		```
+		
+		If the values do not match, or if the `string` argument is of another type than `string`, an `
+		{@link
+		AssertionError
+		}
+		` is thrown with a `message` property set equal
+		to the value of the `message` parameter. If the `message` parameter is
+		undefined, a default error message is assigned. If the `message` parameter is an
+		instance of an [Error](https://nodejs.org/docs/latest-v20.x/api/errors.html#class-error) then it will be thrown instead of the `
+		{@link
+		AssertionError
+		}
+		`.
+	**/
+	static function match(value:String, regExp:js.lib.RegExp, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		Expects the `string` input not to match the regular expression.
+		
+		```js
+		import assert from 'node:assert/strict';
+		
+		assert.doesNotMatch('I will fail', /fail/);
+		// AssertionError [ERR_ASSERTION]: The input was expected to not match the ...
+		
+		assert.doesNotMatch(123, /pass/);
+		// AssertionError [ERR_ASSERTION]: The "string" argument must be of type string.
+		
+		assert.doesNotMatch('I will pass', /different/);
+		// OK
+		```
+		
+		If the values do match, or if the `string` argument is of another type than `string`, an `
+		{@link
+		AssertionError
+		}
+		` is thrown with a `message` property set equal
+		to the value of the `message` parameter. If the `message` parameter is
+		undefined, a default error message is assigned. If the `message` parameter is an
+		instance of an [Error](https://nodejs.org/docs/latest-v20.x/api/errors.html#class-error) then it will be thrown instead of the `
+		{@link
+		AssertionError
+		}
+		`.
+	**/
+	static function doesNotMatch(value:String, regExp:js.lib.RegExp, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+	/**
+		In strict assertion mode, non-strict methods behave like their corresponding strict methods. For example,
+		{@link
+		deepEqual
+		}
+		will behave like
+		{@link
+		deepStrictEqual
+		}
+		.
+		
+		In strict assertion mode, error messages for objects display a diff. In legacy assertion mode, error
+		messages for objects display the objects, often truncated.
+		
+		To use strict assertion mode:
+		
+		```js
+		import { strict as assert } from 'node:assert';COPY
+		import assert from 'node:assert/strict';
+		```
+		
+		Example error diff:
+		
+		```js
+		import { strict as assert } from 'node:assert';
+		
+		assert.deepEqual([[[1, 2, 3]], 4, 5], [[[1, 2, '3']], 4, 5]);
+		// AssertionError: Expected inputs to be strictly deep-equal:
+		// + actual - expected ... Lines skipped
+		//
+		//   [
+		//     [
+		// ...
+		//       2,
+		// +     3
+		// -     '3'
+		//     ],
+		// ...
+		//     5
+		//   ]
+		```
+		
+		To deactivate the colors, use the `NO_COLOR` or `NODE_DISABLE_COLORS` environment variables. This will also
+		deactivate the colors in the REPL. For more on color support in terminal environments, read the tty
+		`getColorDepth()` documentation.
+	**/
 	static final strict : {
 		@:selfCall
-		function call(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		@:overload(function(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):ts.Never { })
-		function fail(?message:ts.AnyOf2<String, js.lib.Error>):ts.Never;
-		function ok(value:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function equal(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function notEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function deepEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function notDeepEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function strictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function notStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function deepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function notDeepStrictEqual(actual:Dynamic, expected:Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		@:overload(function(block:() -> Dynamic, error:ts.AnyOf4<Dynamic, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
-		function throws(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		@:overload(function(block:() -> Dynamic, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
-		function doesNotThrow(block:() -> Dynamic, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
-		function ifError(value:Dynamic):Void;
-		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf4<Dynamic, haxe.Constraints.Function, js.lib.RegExp, js.lib.Error>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
-		function rejects(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
-		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, error:ts.AnyOf2<haxe.Constraints.Function, js.lib.RegExp>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
-		function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Dynamic>, () -> js.lib.Promise<Dynamic>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
-		final strict : Dynamic;
+		function call(value:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			Expects the `string` input to match the regular expression.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.match('I will fail', /pass/);
+			// AssertionError [ERR_ASSERTION]: The input did not match the regular ...
+			
+			assert.match(123, /pass/);
+			// AssertionError [ERR_ASSERTION]: The "string" argument must be of type string.
+			
+			assert.match('I will pass', /pass/);
+			// OK
+			```
+			
+			If the values do not match, or if the `string` argument is of another type than `string`, an `
+			{@link
+			AssertionError
+			}
+			` is thrown with a `message` property set equal
+			to the value of the `message` parameter. If the `message` parameter is
+			undefined, a default error message is assigned. If the `message` parameter is an
+			instance of an [Error](https://nodejs.org/docs/latest-v20.x/api/errors.html#class-error) then it will be thrown instead of the `
+			{@link
+			AssertionError
+			}
+			`.
+		**/
+		dynamic function match(value:String, regExp:js.lib.RegExp, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			Throws an `AssertionError` with the provided error message or a default
+			error message. If the `message` parameter is an instance of an `Error` then
+			it will be thrown instead of the `AssertionError`.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.fail();
+			// AssertionError [ERR_ASSERTION]: Failed
+			
+			assert.fail('boom');
+			// AssertionError [ERR_ASSERTION]: boom
+			
+			assert.fail(new TypeError('need array'));
+			// TypeError: need array
+			```
+			
+			Using `assert.fail()` with more than two arguments is possible but deprecated.
+			See below for further details.
+		**/
+		@:overload(function(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>, ?operator_:String, ?stackStartFn:haxe.Constraints.Function):ts.Never { })
+		dynamic function fail(?message:ts.AnyOf2<String, js.lib.Error>):ts.Never;
+		/**
+			Expects the `string` input not to match the regular expression.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.doesNotMatch('I will fail', /fail/);
+			// AssertionError [ERR_ASSERTION]: The input was expected to not match the ...
+			
+			assert.doesNotMatch(123, /pass/);
+			// AssertionError [ERR_ASSERTION]: The "string" argument must be of type string.
+			
+			assert.doesNotMatch('I will pass', /different/);
+			// OK
+			```
+			
+			If the values do match, or if the `string` argument is of another type than `string`, an `
+			{@link
+			AssertionError
+			}
+			` is thrown with a `message` property set equal
+			to the value of the `message` parameter. If the `message` parameter is
+			undefined, a default error message is assigned. If the `message` parameter is an
+			instance of an [Error](https://nodejs.org/docs/latest-v20.x/api/errors.html#class-error) then it will be thrown instead of the `
+			{@link
+			AssertionError
+			}
+			`.
+		**/
+		dynamic function doesNotMatch(value:String, regExp:js.lib.RegExp, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			Awaits the `asyncFn` promise or, if `asyncFn` is a function, immediately
+			calls the function and awaits the returned promise to complete. It will then
+			check that the promise is not rejected.
+			
+			If `asyncFn` is a function and it throws an error synchronously, `assert.doesNotReject()` will return a rejected `Promise` with that error. If
+			the function does not return a promise, `assert.doesNotReject()` will return a
+			rejected `Promise` with an [ERR_INVALID_RETURN_VALUE](https://nodejs.org/docs/latest-v20.x/api/errors.html#err_invalid_return_value) error. In both cases
+			the error handler is skipped.
+			
+			Using `assert.doesNotReject()` is actually not useful because there is little
+			benefit in catching a rejection and then rejecting it again. Instead, consider
+			adding a comment next to the specific code path that should not reject and keep
+			error messages as expressive as possible.
+			
+			If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+			[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), or a validation
+			function. See
+			{@link
+			throws
+			}
+			for more details.
+			
+			Besides the async nature to await the completion behaves identically to
+			{@link
+			doesNotThrow
+			}
+			.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			await assert.doesNotReject(
+			  async () => {
+			    throw new TypeError('Wrong value');
+			  },
+			  SyntaxError,
+			);
+			```
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.doesNotReject(Promise.reject(new TypeError('Wrong value')))
+			  .then(() => {
+			    // ...
+			  });
+			```
+		**/
+		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
+		dynamic function doesNotReject(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
+		/**
+			Asserts that the function `fn` does not throw an error.
+			
+			Using `assert.doesNotThrow()` is actually not useful because there
+			is no benefit in catching an error and then rethrowing it. Instead, consider
+			adding a comment next to the specific code path that should not throw and keep
+			error messages as expressive as possible.
+			
+			When `assert.doesNotThrow()` is called, it will immediately call the `fn` function.
+			
+			If an error is thrown and it is the same type as that specified by the `error` parameter, then an `AssertionError` is thrown. If the error is of a
+			different type, or if the `error` parameter is undefined, the error is
+			propagated back to the caller.
+			
+			If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+			[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), or a validation
+			function. See
+			{@link
+			throws
+			}
+			for more details.
+			
+			The following, for instance, will throw the `TypeError` because there is no
+			matching error type in the assertion:
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.doesNotThrow(
+			  () => {
+			    throw new TypeError('Wrong value');
+			  },
+			  SyntaxError,
+			);
+			```
+			
+			However, the following will result in an `AssertionError` with the message
+			'Got unwanted exception...':
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.doesNotThrow(
+			  () => {
+			    throw new TypeError('Wrong value');
+			  },
+			  TypeError,
+			);
+			```
+			
+			If an `AssertionError` is thrown and a value is provided for the `message` parameter, the value of `message` will be appended to the `AssertionError` message:
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.doesNotThrow(
+			  () => {
+			    throw new TypeError('Wrong value');
+			  },
+			  /Wrong value/,
+			  'Whoops',
+			);
+			// Throws: AssertionError: Got unwanted exception: Whoops
+			```
+		**/
+		@:overload(function(block:() -> Any, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
+		dynamic function doesNotThrow(block:() -> Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			Tests for deep strict inequality. Opposite of
+			{@link
+			deepStrictEqual
+			}
+			.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.notDeepStrictEqual({ a: 1 }, { a: '1' });
+			// OK
+			```
+			
+			If the values are deeply and strictly equal, an `AssertionError` is thrown
+			with a `message` property set equal to the value of the `message` parameter. If
+			the `message` parameter is undefined, a default error message is assigned. If
+			the `message` parameter is an instance of an `Error` then it will be thrown
+			instead of the `AssertionError`.
+		**/
+		dynamic function notDeepStrictEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			Tests strict inequality between the `actual` and `expected` parameters as
+			determined by [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.notStrictEqual(1, 2);
+			// OK
+			
+			assert.notStrictEqual(1, 1);
+			// AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+			//
+			// 1
+			
+			assert.notStrictEqual(1, '1');
+			// OK
+			```
+			
+			If the values are strictly equal, an `AssertionError` is thrown with a `message` property set equal to the value of the `message` parameter. If the `message` parameter is undefined, a
+			default error message is assigned. If the `message` parameter is an instance of an `Error` then it will be thrown
+			instead of the `AssertionError`.
+		**/
+		dynamic function notStrictEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			Awaits the `asyncFn` promise or, if `asyncFn` is a function, immediately
+			calls the function and awaits the returned promise to complete. It will then
+			check that the promise is rejected.
+			
+			If `asyncFn` is a function and it throws an error synchronously, `assert.rejects()` will return a rejected `Promise` with that error. If the
+			function does not return a promise, `assert.rejects()` will return a rejected `Promise` with an [ERR_INVALID_RETURN_VALUE](https://nodejs.org/docs/latest-v20.x/api/errors.html#err_invalid_return_value)
+			error. In both cases the error handler is skipped.
+			
+			Besides the async nature to await the completion behaves identically to
+			{@link
+			throws
+			}
+			.
+			
+			If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+			[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), a validation function,
+			an object where each property will be tested for, or an instance of error where
+			each property will be tested for including the non-enumerable `message` and `name` properties.
+			
+			If specified, `message` will be the message provided by the `
+			{@link
+			AssertionError
+			}
+			` if the `asyncFn` fails to reject.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			await assert.rejects(
+			  async () => {
+			    throw new TypeError('Wrong value');
+			  },
+			  {
+			    name: 'TypeError',
+			    message: 'Wrong value',
+			  },
+			);
+			```
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			await assert.rejects(
+			  async () => {
+			    throw new TypeError('Wrong value');
+			  },
+			  (err) => {
+			    assert.strictEqual(err.name, 'TypeError');
+			    assert.strictEqual(err.message, 'Wrong value');
+			    return true;
+			  },
+			);
+			```
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.rejects(
+			  Promise.reject(new Error('Wrong value')),
+			  Error,
+			).then(() => {
+			  // ...
+			});
+			```
+			
+			`error` cannot be a string. If a string is provided as the second argument, then `error` is assumed to
+			be omitted and the string will be used for `message` instead. This can lead to easy-to-miss mistakes. Please read the
+			example in
+			{@link
+			throws
+			}
+			carefully if using a string as the second argument gets considered.
+		**/
+		@:overload(function(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined> { })
+		dynamic function rejects(block:ts.AnyOf2<js.lib.Promise<Any>, () -> js.lib.Promise<Any>>, ?message:ts.AnyOf2<String, js.lib.Error>):js.lib.Promise<ts.Undefined>;
+		/**
+			Expects the function `fn` to throw an error.
+			
+			If specified, `error` can be a [`Class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes),
+			[`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), a validation function,
+			a validation object where each property will be tested for strict deep equality,
+			or an instance of error where each property will be tested for strict deep
+			equality including the non-enumerable `message` and `name` properties. When
+			using an object, it is also possible to use a regular expression, when
+			validating against a string property. See below for examples.
+			
+			If specified, `message` will be appended to the message provided by the `AssertionError` if the `fn` call fails to throw or in case the error validation
+			fails.
+			
+			Custom validation object/error instance:
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			const err = new TypeError('Wrong value');
+			err.code = 404;
+			err.foo = 'bar';
+			err.info = {
+			  nested: true,
+			  baz: 'text',
+			};
+			err.reg = /abc/i;
+			
+			assert.throws(
+			  () => {
+			    throw err;
+			  },
+			  {
+			    name: 'TypeError',
+			    message: 'Wrong value',
+			    info: {
+			      nested: true,
+			      baz: 'text',
+			    },
+			    // Only properties on the validation object will be tested for.
+			    // Using nested objects requires all properties to be present. Otherwise
+			    // the validation is going to fail.
+			  },
+			);
+			
+			// Using regular expressions to validate error properties:
+			assert.throws(
+			  () => {
+			    throw err;
+			  },
+			  {
+			    // The `name` and `message` properties are strings and using regular
+			    // expressions on those will match against the string. If they fail, an
+			    // error is thrown.
+			    name: /^TypeError$/,
+			    message: /Wrong/,
+			    foo: 'bar',
+			    info: {
+			      nested: true,
+			      // It is not possible to use regular expressions for nested properties!
+			      baz: 'text',
+			    },
+			    // The `reg` property contains a regular expression and only if the
+			    // validation object contains an identical regular expression, it is going
+			    // to pass.
+			    reg: /abc/i,
+			  },
+			);
+			
+			// Fails due to the different `message` and `name` properties:
+			assert.throws(
+			  () => {
+			    const otherErr = new Error('Not found');
+			    // Copy all enumerable properties from `err` to `otherErr`.
+			    for (const [key, value] of Object.entries(err)) {
+			      otherErr[key] = value;
+			    }
+			    throw otherErr;
+			  },
+			  // The error's `message` and `name` properties will also be checked when using
+			  // an error as validation object.
+			  err,
+			);
+			```
+			
+			Validate instanceof using constructor:
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.throws(
+			  () => {
+			    throw new Error('Wrong value');
+			  },
+			  Error,
+			);
+			```
+			
+			Validate error message using [`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions):
+			
+			Using a regular expression runs `.toString` on the error object, and will
+			therefore also include the error name.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.throws(
+			  () => {
+			    throw new Error('Wrong value');
+			  },
+			  /^Error: Wrong value$/,
+			);
+			```
+			
+			Custom error validation:
+			
+			The function must return `true` to indicate all internal validations passed.
+			It will otherwise fail with an `AssertionError`.
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			assert.throws(
+			  () => {
+			    throw new Error('Wrong value');
+			  },
+			  (err) => {
+			    assert(err instanceof Error);
+			    assert(/value/.test(err));
+			    // Avoid returning anything from validation functions besides `true`.
+			    // Otherwise, it's not clear what part of the validation failed. Instead,
+			    // throw an error about the specific validation that failed (as done in this
+			    // example) and add as much helpful debugging information to that error as
+			    // possible.
+			    return true;
+			  },
+			  'unexpected error',
+			);
+			```
+			
+			`error` cannot be a string. If a string is provided as the second
+			argument, then `error` is assumed to be omitted and the string will be used for `message` instead. This can lead to easy-to-miss mistakes. Using the same
+			message as the thrown error message is going to result in an `ERR_AMBIGUOUS_ARGUMENT` error. Please read the example below carefully if using
+			a string as the second argument gets considered:
+			
+			```js
+			import assert from 'node:assert/strict';
+			
+			function throwingFirst() {
+			  throw new Error('First');
+			}
+			
+			function throwingSecond() {
+			  throw new Error('Second');
+			}
+			
+			function notThrowing() {}
+			
+			// The second argument is a string and the input function threw an Error.
+			// The first case will not throw as it does not match for the error message
+			// thrown by the input function!
+			assert.throws(throwingFirst, 'Second');
+			// In the next example the message has no benefit over the message from the
+			// error and since it is not clear if the user intended to actually match
+			// against the error message, Node.js throws an `ERR_AMBIGUOUS_ARGUMENT` error.
+			assert.throws(throwingSecond, 'Second');
+			// TypeError [ERR_AMBIGUOUS_ARGUMENT]
+			
+			// The string is only used (as message) in case the function does not throw:
+			assert.throws(notThrowing, 'Second');
+			// AssertionError [ERR_ASSERTION]: Missing expected exception: Second
+			
+			// If it was intended to match for the error message do this instead:
+			// It does not throw because the error messages match.
+			assert.throws(throwingSecond, /Second$/);
+			
+			// If the error message does not match, an AssertionError is thrown.
+			assert.throws(throwingFirst, /Second$/);
+			// AssertionError [ERR_ASSERTION]
+			```
+			
+			Due to the confusing error-prone notation, avoid a string as the second
+			argument.
+		**/
+		@:overload(function(block:() -> Any, error:node.assert.AssertPredicate, ?message:ts.AnyOf2<String, js.lib.Error>):Void { })
+		dynamic function throws(block:() -> Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		/**
+			This feature is deprecated and will be removed in a future version.
+			Please consider using alternatives such as the `mock` helper function.
+		**/
+		var CallTracker : {
+			var prototype : node.assert.CallTracker;
+		};
+		dynamic function equal<T>(actual:Any, expected:T, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function notEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function deepEqual<T>(actual:Any, expected:T, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function notDeepEqual(actual:Any, expected:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function ok(value:Any, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function strictEqual<T>(actual:Any, expected:T, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function deepStrictEqual<T>(actual:Any, expected:T, ?message:ts.AnyOf2<String, js.lib.Error>):Void;
+		dynamic function ifError(value:Any):Void;
+		var strict : Dynamic;
+		var AssertionError : {
+			var prototype : node.assert.AssertionError;
+			/**
+				Creates a `.stack` property on `targetObject`, which when accessed returns
+				a string representing the location in the code at which
+				`Error.captureStackTrace()` was called.
+				
+				```js
+				const myObject = {};
+				Error.captureStackTrace(myObject);
+				myObject.stack;  // Similar to `new Error().stack`
+				```
+				
+				The first line of the trace will be prefixed with
+				`${myObject.name}: ${myObject.message}`.
+				
+				The optional `constructorOpt` argument accepts a function. If given, all frames
+				above `constructorOpt`, including `constructorOpt`, will be omitted from the
+				generated stack trace.
+				
+				The `constructorOpt` argument is useful for hiding implementation
+				details of error generation from the user. For instance:
+				
+				```js
+				function a() {
+				  b();
+				}
+				
+				function b() {
+				  c();
+				}
+				
+				function c() {
+				  // Create an error without stack trace to avoid calculating the stack trace twice.
+				  const { stackTraceLimit } = Error;
+				  Error.stackTraceLimit = 0;
+				  const error = new Error();
+				  Error.stackTraceLimit = stackTraceLimit;
+				
+				  // Capture the stack trace above function b
+				  Error.captureStackTrace(error, b); // Neither function c, nor b is included in the stack trace
+				  throw error;
+				}
+				
+				a();
+				```
+			**/
+			function captureStackTrace(targetObject:Dynamic, ?constructorOpt:haxe.Constraints.Function):Void;
+			function prepareStackTrace(err:js.lib.Error, stackTraces:Array<global.nodejs.CallSite>):Dynamic;
+			/**
+				The `Error.stackTraceLimit` property specifies the number of stack frames
+				collected by a stack trace (whether generated by `new Error().stack` or
+				`Error.captureStackTrace(obj)`).
+				
+				The default value is `10` but may be set to any valid JavaScript number. Changes
+				will affect any stack trace captured _after_ the value has been changed.
+				
+				If set to a non-number value, or set to a negative number, stack traces will
+				not capture any frames.
+			**/
+			var stackTraceLimit : Float;
+		};
 	};
 }

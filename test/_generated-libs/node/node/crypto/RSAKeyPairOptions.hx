@@ -5,6 +5,9 @@ typedef RSAKeyPairOptions<PubF:(KeyFormat), PrivF:(KeyFormat)> = {
 		Key size in bits
 	**/
 	var modulusLength : Float;
+	/**
+		Public exponent
+	**/
 	@:optional
 	var publicExponent : Float;
 	var publicKeyEncoding : {

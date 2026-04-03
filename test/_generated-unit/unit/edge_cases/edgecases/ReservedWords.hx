@@ -1,7 +1,7 @@
 package unit.edge_cases.edgecases;
 
 @:forward
-abstract ReservedWords(ReservedWords_) from ReservedWords_ to ReservedWords_ {
+abstract ReservedWords(ReservedWordsTypedef) from ReservedWordsTypedef to ReservedWordsTypedef {
 	public var function_(get, set):String;
 	inline function get_function_():String return js.Syntax.field(cast this, 'function');
 	inline function set_function_(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'function', v); return v; }

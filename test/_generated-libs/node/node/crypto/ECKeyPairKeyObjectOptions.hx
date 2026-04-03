@@ -2,7 +2,12 @@ package node.crypto;
 
 typedef ECKeyPairKeyObjectOptions = {
 	/**
-		Name of the curve to use.
+		Name of the curve to use
 	**/
 	var namedCurve : String;
+	/**
+		Must be `'named'` or `'explicit'`. Default: `'named'`.
+	**/
+	@:optional
+	var paramEncoding : String;
 };

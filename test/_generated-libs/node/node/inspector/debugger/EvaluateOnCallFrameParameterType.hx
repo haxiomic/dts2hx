@@ -10,20 +10,17 @@ typedef EvaluateOnCallFrameParameterType = {
 	**/
 	var expression : String;
 	/**
-		String object group name to put result into (allows rapid releasing resulting object handles
-		using `releaseObjectGroup`).
+		String object group name to put result into (allows rapid releasing resulting object handles using <code>releaseObjectGroup</code>).
 	**/
 	@:optional
 	var objectGroup : String;
 	/**
-		Specifies whether command line API should be available to the evaluated expression, defaults
-		to false.
+		Specifies whether command line API should be available to the evaluated expression, defaults to false.
 	**/
 	@:optional
 	var includeCommandLineAPI : Bool;
 	/**
-		In silent mode exceptions thrown during evaluation are not reported and do not pause
-		execution. Overrides `setPauseOnException` state.
+		In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
 	**/
 	@:optional
 	var silent : Bool;
@@ -42,9 +39,4 @@ typedef EvaluateOnCallFrameParameterType = {
 	**/
 	@:optional
 	var throwOnSideEffect : Bool;
-	/**
-		Terminate execution after timing out (number of milliseconds).
-	**/
-	@:optional
-	var timeout : Float;
 };

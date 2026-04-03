@@ -28,6 +28,7 @@ package js.lib;
 	/**
 		Converts a number to a string by using the current or specified locale.
 	**/
+	@:overload(function(?locales:js.lib.intl.LocalesArgument, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):String { })
 	function toLocaleString(?locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions):String;
 	@:selfCall
 	static function call(?value:Dynamic):Float;

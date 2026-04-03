@@ -3,19 +3,16 @@ package node.repl;
 typedef ReplOptions = {
 	/**
 		The input prompt to display.
-		Default: `"> "`
 	**/
 	@:optional
 	var prompt : String;
 	/**
 		The `Readable` stream from which REPL input will be read.
-		Default: `process.stdin`
 	**/
 	@:optional
 	var input : global.nodejs.ReadableStream;
 	/**
 		The `Writable` stream to which REPL output will be written.
-		Default: `process.stdout`
 	**/
 	@:optional
 	var output : global.nodejs.WritableStream;
@@ -36,10 +33,14 @@ typedef ReplOptions = {
 	@:optional
 	dynamic function eval(evalCmd:String, context:node.vm.Context, file:String, cb:(err:Null<js.lib.Error>, result:Dynamic) -> Void):Void;
 	/**
+		Defines if the repl prints output previews or not.
+	**/
+	@:optional
+	var preview : Bool;
+	/**
 		If `true`, specifies that the default `writer` function should include ANSI color
 		styling to REPL output. If a custom `writer` function is provided then this has no
 		effect.
-		Default: the REPL instance's `terminal` value.
 	**/
 	@:optional
 	var useColors : Bool;
@@ -47,20 +48,17 @@ typedef ReplOptions = {
 		If `true`, specifies that the default evaluation function will use the JavaScript
 		`global` as the context as opposed to creating a new separate context for the REPL
 		instance. The node CLI REPL sets this value to `true`.
-		Default: `false`.
 	**/
 	@:optional
 	var useGlobal : Bool;
 	/**
 		If `true`, specifies that the default writer will not output the return value of a
 		command if it evaluates to `undefined`.
-		Default: `false`.
 	**/
 	@:optional
 	var ignoreUndefined : Bool;
 	/**
 		The function to invoke to format the output of each command before writing to `output`.
-		Default: a wrapper for `util.inspect`.
 	**/
 	@:optional
 	dynamic function writer(obj:Dynamic):String;
@@ -68,7 +66,7 @@ typedef ReplOptions = {
 		An optional function used for custom Tab auto completion.
 	**/
 	@:optional
-	dynamic function completer(line:String, callback:ts.AnyOf3<() -> Void, (err:js.lib.Error) -> Void, (err:js.lib.Error, result:node.readline.CompleterResult) -> Void>):Dynamic;
+	dynamic function completer(line:String, callback:ts.AnyOf3<() -> Void, (err:js.lib.Error) -> Void, (err:js.lib.Error, result:node.readline.CompleterResult) -> Void>):node.readline.CompleterResult;
 	/**
 		A flag that specifies whether the default evaluator executes all JavaScript commands in
 		strict mode or default (sloppy) mode.
@@ -82,7 +80,6 @@ typedef ReplOptions = {
 	/**
 		Stop evaluating the current piece of code when `SIGINT` is received, i.e. `Ctrl+C` is
 		pressed. This cannot be used together with a custom `eval` function.
-		Default: `false`.
 	**/
 	@:optional
 	var breakEvalOnSigint : Bool;

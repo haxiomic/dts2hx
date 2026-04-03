@@ -10,4 +10,9 @@ typedef HeapInfo = {
 	var malloced_memory : Float;
 	var peak_malloced_memory : Float;
 	var does_zap_garbage : DoesZapCodeSpaceFlag;
+	var number_of_native_contexts : Float;
+	var number_of_detached_contexts : Float;
+	var total_global_handles_size : Float;
+	var used_global_handles_size : Float;
+	var external_memory : Float;
 };

@@ -6,20 +6,17 @@ typedef CallFunctionOnParameterType = {
 	**/
 	var functionDeclaration : String;
 	/**
-		Identifier of the object to call function on. Either objectId or executionContextId should
-		be specified.
+		Identifier of the object to call function on. Either objectId or executionContextId should be specified.
 	**/
 	@:optional
 	var objectId : String;
 	/**
-		Call arguments. All call arguments must belong to the same JavaScript world as the target
-		object.
+		Call arguments. All call arguments must belong to the same JavaScript world as the target object.
 	**/
 	@:optional
 	var arguments : Array<CallArgument>;
 	/**
-		In silent mode exceptions thrown during evaluation are not reported and do not pause
-		execution. Overrides `setPauseOnException` state.
+		In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
 	**/
 	@:optional
 	var silent : Bool;
@@ -39,20 +36,17 @@ typedef CallFunctionOnParameterType = {
 	@:optional
 	var userGesture : Bool;
 	/**
-		Whether execution should `await` for resulting value and return once awaited promise is
-		resolved.
+		Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
 	**/
 	@:optional
 	var awaitPromise : Bool;
 	/**
-		Specifies execution context which global object will be used to call function on. Either
-		executionContextId or objectId should be specified.
+		Specifies execution context which global object will be used to call function on. Either executionContextId or objectId should be specified.
 	**/
 	@:optional
 	var executionContextId : Float;
 	/**
-		Symbolic group name that can be used to release multiple objects. If objectGroup is not
-		specified and objectId is, objectGroup will be inherited from object.
+		Symbolic group name that can be used to release multiple objects. If objectGroup is not specified and objectId is, objectGroup will be inherited from object.
 	**/
 	@:optional
 	var objectGroup : String;

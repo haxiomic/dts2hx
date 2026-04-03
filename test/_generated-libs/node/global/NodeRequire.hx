@@ -1,10 +1,28 @@
 package global;
 
 typedef NodeRequire = {
+	/**
+		Used to import modules, `JSON`, and local files.
+	**/
 	@:selfCall
 	function call(id:String):Dynamic;
-	var resolve : RequireResolve;
-	var cache : Dynamic;
-	var extensions : NodeExtensions;
-	var main : Null<NodeModule>;
+	/**
+		Modules are cached in this object when they are required. By deleting a key
+		value from this object, the next `require` will reload the module.
+		This does not apply to
+		[native addons](https://nodejs.org/docs/latest-v20.x/api/addons.html),
+		for which reloading will result in an error.
+	**/
+	var cache : global.nodejs.Dict<global.nodejs.Module>;
+	/**
+		Instruct `require` on how to handle certain file extensions.
+	**/
+	var extensions : global.nodejs.RequireExtensions;
+	/**
+		The `Module` object representing the entry script loaded when the Node.js
+		process launched, or `undefined` if the entry point of the program is not a
+		CommonJS module.
+	**/
+	var main : Null<global.nodejs.Module>;
+	var resolve : global.nodejs.RequireResolve;
 };

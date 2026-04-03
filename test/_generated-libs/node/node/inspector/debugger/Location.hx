@@ -5,7 +5,7 @@ package node.inspector.debugger;
 **/
 typedef Location = {
 	/**
-		Script identifier as reported in the `Debugger.scriptParsed`.
+		Script identifier as reported in the <code>Debugger.scriptParsed</code>.
 	**/
 	var scriptId : String;
 	/**

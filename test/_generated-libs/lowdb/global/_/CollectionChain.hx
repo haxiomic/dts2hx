@@ -155,7 +155,18 @@ typedef CollectionChain<T> = {
 	function over<TResult>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<Dynamic>) -> TResult>>):FunctionChain<(args:haxe.extern.Rest<Dynamic>) -> Array<TResult>>;
 	function overEvery<TArgs>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<TArgs>) -> Bool>>):FunctionChain<(args:haxe.extern.Rest<TArgs>) -> Bool>;
 	function overSome<TArgs>(iteratees:haxe.extern.Rest<Many<(args:haxe.extern.Rest<TArgs>) -> Bool>>):FunctionChain<(args:haxe.extern.Rest<TArgs>) -> Bool>;
-	function write():js.lib.ArrayLike<T> & js.lib.IPromise<js.lib.ArrayLike<T>>;
+	function write():{
+		final length : Float;
+		/**
+			Attaches callbacks for the resolution and/or rejection of the Promise.
+		**/
+		function then<TResult1, TResult2>(?onfulfilled:(value:js.lib.ArrayLike<T>) -> ts.AnyOf2<js.lib.PromiseLike<TResult1>, TResult1>, ?onrejected:(reason:Dynamic) -> ts.AnyOf2<js.lib.PromiseLike<TResult2>, TResult2>):js.lib.Promise<ts.AnyOf2<TResult1, TResult2>>;
+		/**
+			Attaches a callback for only the rejection of the Promise.
+		**/
+		@:native("catch")
+		function catch_<TResult>(?onrejected:(reason:Dynamic) -> ts.AnyOf2<js.lib.PromiseLike<TResult>, TResult>):js.lib.Promise<ts.AnyOf2<js.lib.ArrayLike<T>, TResult>>;
+	};
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
 	function invokeMap(methodName:String, args:haxe.extern.Rest<Dynamic>):CollectionChain<Dynamic>;
 	function size():PrimitiveChain<Float>;

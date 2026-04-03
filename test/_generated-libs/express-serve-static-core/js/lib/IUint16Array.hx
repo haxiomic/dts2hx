@@ -143,4 +143,5 @@ typedef IUint16Array<TArrayBuffer:(ArrayBufferLike)> = {
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
 	function includes(searchElement:Float, ?fromIndex:Float):Bool;
+	function at(index:Float):Null<Float>;
 };

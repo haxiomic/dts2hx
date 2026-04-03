@@ -4,9 +4,9 @@ package node.inspector.debugger;
 	JavaScript call frame. Array of call frames form the call stack.
 **/
 @:forward
-abstract CallFrame(CallFrame_) from CallFrame_ to CallFrame_ {
+abstract CallFrame(CallFrameTypedef) from CallFrameTypedef to CallFrameTypedef {
 	/**
-		`this` object for this call frame.
+		<code>this</code> object for this call frame.
 	**/
 	public var this_(get, set):node.inspector.runtime.RemoteObject;
 	inline function get_this_():node.inspector.runtime.RemoteObject return js.Syntax.field(cast this, 'this');

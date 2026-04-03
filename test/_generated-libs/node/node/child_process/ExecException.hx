@@ -8,7 +8,11 @@ typedef ExecException = {
 	@:optional
 	var code : Float;
 	@:optional
-	var signal : String;
+	var signal : global.nodejs.Signals;
+	@:optional
+	var stdout : String;
+	@:optional
+	var stderr : String;
 	var name : String;
 	var message : String;
 	@:optional

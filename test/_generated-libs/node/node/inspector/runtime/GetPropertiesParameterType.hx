@@ -6,14 +6,12 @@ typedef GetPropertiesParameterType = {
 	**/
 	var objectId : String;
 	/**
-		If true, returns properties belonging only to the element itself, not to its prototype
-		chain.
+		If true, returns properties belonging only to the element itself, not to its prototype chain.
 	**/
 	@:optional
 	var ownProperties : Bool;
 	/**
-		If true, returns accessor properties (with getter/setter) only; internal properties are not
-		returned either.
+		If true, returns accessor properties (with getter/setter) only; internal properties are not returned either.
 	**/
 	@:optional
 	var accessorPropertiesOnly : Bool;

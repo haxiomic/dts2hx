@@ -9,4 +9,6 @@ typedef SocketConstructorOpts = {
 	var readable : Bool;
 	@:optional
 	var writable : Bool;
+	@:optional
+	var signal : js.html.AbortSignal;
 };

@@ -1,3 +1,3 @@
 package express_serve_static_core;
 
-typedef IRouterMatcher<T, Method:(String)> = ts.AnyOf3<(path:PathParams, handlers:haxe.extern.Rest<RequestHandler<Any, Any, Any, Any>>) -> T, (path:PathParams, handlers:haxe.extern.Rest<RequestHandlerParams<Any, Any, Any, Any>>) -> T, (path:PathParams, subApplication:Application) -> T>;
+typedef IRouterMatcher<T, Method:(String)> = ts.AnyOf5<(path:Any, handlers:haxe.extern.Rest<RequestHandler<Any, Any, Any, Any, Any>>) -> T, (path:Any, handlers:haxe.extern.Rest<RequestHandlerParams<Any, Any, Any, Any, Any>>) -> T, (path:PathParams, handlers:haxe.extern.Rest<RequestHandler<Any, Any, Any, Any, Any>>) -> T, (path:PathParams, handlers:haxe.extern.Rest<RequestHandlerParams<Any, Any, Any, Any, Any>>) -> T, (path:PathParams, subApplication:Application<haxe.DynamicAccess<Dynamic>>) -> T>;

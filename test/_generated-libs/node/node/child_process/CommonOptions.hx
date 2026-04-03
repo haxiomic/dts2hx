@@ -10,7 +10,7 @@ typedef CommonOptions = {
 	@:optional
 	var gid : Float;
 	@:optional
-	var cwd : String;
+	var cwd : ts.AnyOf2<String, node.url.URL>;
 	@:optional
 	var env : global.nodejs.ProcessEnv;
 };

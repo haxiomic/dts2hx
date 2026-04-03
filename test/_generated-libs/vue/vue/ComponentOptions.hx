@@ -1,7 +1,7 @@
 package vue;
 
 @:forward
-abstract ComponentOptions<V:(Vue), Data, Methods, Computed, PropsDef, Props>(ComponentOptions_<V:(Vue), Data, Methods, Computed, PropsDef, Props>) from ComponentOptions_<V:(Vue), Data, Methods, Computed, PropsDef, Props> to ComponentOptions_<V:(Vue), Data, Methods, Computed, PropsDef, Props> {
+abstract ComponentOptions<V:(Vue), Data, Methods, Computed, PropsDef, Props>(ComponentOptionsTypedef<V:(Vue), Data, Methods, Computed, PropsDef, Props>) from ComponentOptionsTypedef<V:(Vue), Data, Methods, Computed, PropsDef, Props> to ComponentOptionsTypedef<V:(Vue), Data, Methods, Computed, PropsDef, Props> {
 	@:optional
 	public var extends_(get, set):ts.AnyOf2<VueConstructor<Vue>, ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>>;
 	inline function get_extends_():ts.AnyOf2<VueConstructor<Vue>, ComponentOptions<Vue, vue.types.options.DefaultData<Vue>, vue.types.options.DefaultMethods<Vue>, vue.types.options.DefaultComputed, vue.types.options.PropsDefinition<haxe.DynamicAccess<Dynamic>>, haxe.DynamicAccess<Dynamic>>> return js.Syntax.field(cast this, 'extends');

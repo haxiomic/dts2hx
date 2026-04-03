@@ -1,10 +1,85 @@
 package node;
 
+/**
+	The `timer` module exposes a global API for scheduling functions to
+	be called at some future period of time. Because the timer functions are
+	globals, there is no need to import `node:timers` to use the API.
+	
+	The timer functions within Node.js implement a similar API as the timers API
+	provided by Web Browsers but use a different internal implementation that is
+	built around the Node.js [Event Loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout).
+**/
 @:jsRequire("timers") @valueModuleOnly extern class Timers {
-	static function setTimeout(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout;
-	static function clearTimeout(timeoutId:global.nodejs.Timeout):Void;
-	static function setInterval(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, ms:Float, args:haxe.extern.Rest<Dynamic>):global.nodejs.Timeout;
-	static function clearInterval(intervalId:global.nodejs.Timeout):Void;
-	static function setImmediate(callback:(args:haxe.extern.Rest<Dynamic>) -> Void, args:haxe.extern.Rest<Dynamic>):global.nodejs.Immediate;
-	static function clearImmediate(immediateId:global.nodejs.Immediate):Void;
+	/**
+		Cancels an `Immediate` object created by `setImmediate()`.
+	**/
+	static function clearImmediate(immediate:Null<global.nodejs.Immediate>):Void;
+	/**
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/clearInterval)
+		
+		Cancels a `Timeout` object created by `setInterval()`.
+	**/
+	@:overload(function(timeout:Null<ts.AnyOf3<String, Float, global.nodejs.Timeout>>):Void { })
+	static function clearInterval(id:Null<Float>):Void;
+	/**
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/clearTimeout)
+		
+		Cancels a `Timeout` object created by `setTimeout()`.
+	**/
+	@:overload(function(timeout:Null<ts.AnyOf3<String, Float, global.nodejs.Timeout>>):Void { })
+	static function clearTimeout(id:Null<Float>):Void;
+	/**
+		Schedules the "immediate" execution of the `callback` after I/O events'
+		callbacks.
+		
+		When multiple calls to `setImmediate()` are made, the `callback` functions are
+		queued for execution in the order in which they are created. The entire callback
+		queue is processed every event loop iteration. If an immediate timer is queued
+		from inside an executing callback, that timer will not be triggered until the
+		next event loop iteration.
+		
+		If `callback` is not a function, a `TypeError` will be thrown.
+		
+		This method has a custom variant for promises that is available using
+		`timersPromises.setImmediate()`.
+	**/
+	@:overload(function(callback:(_:ts.Undefined) -> Void):global.nodejs.Immediate { })
+	static function setImmediate<TArgs:(Array<Dynamic>)>(callback:(args:haxe.extern.Rest<Any>) -> Void, args:haxe.extern.Rest<Any>):global.nodejs.Immediate;
+	/**
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/setInterval)
+		
+		Schedules repeated execution of `callback` every `delay` milliseconds.
+		
+		When `delay` is larger than `2147483647` or less than `1`, the `delay` will be
+		set to `1`. Non-integer delays are truncated to an integer.
+		
+		If `callback` is not a function, a `TypeError` will be thrown.
+		
+		This method has a custom variant for promises that is available using
+		`timersPromises.setInterval()`.
+	**/
+	@:overload(function<TArgs:(Array<Dynamic>)>(callback:(args:haxe.extern.Rest<Any>) -> Void, ?delay:Float, args:haxe.extern.Rest<Any>):global.nodejs.Timeout { })
+	@:overload(function(callback:(_:ts.Undefined) -> Void, ?delay:Float):global.nodejs.Timeout { })
+	static function setInterval(handler:js.html.TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
+	/**
+		[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/setTimeout)
+		
+		Schedules execution of a one-time `callback` after `delay` milliseconds.
+		
+		The `callback` will likely not be invoked in precisely `delay` milliseconds.
+		Node.js makes no guarantees about the exact timing of when callbacks will fire,
+		nor of their ordering. The callback will be called as close as possible to the
+		time specified.
+		
+		When `delay` is larger than `2147483647` or less than `1` or `NaN`, the `delay`
+		will be set to `1`. Non-integer delays are truncated to an integer.
+		
+		If `callback` is not a function, a `TypeError` will be thrown.
+		
+		This method has a custom variant for promises that is available using
+		`timersPromises.setTimeout()`.
+	**/
+	@:overload(function<TArgs:(Array<Dynamic>)>(callback:(args:haxe.extern.Rest<Any>) -> Void, ?delay:Float, args:haxe.extern.Rest<Any>):global.nodejs.Timeout { })
+	@:overload(function(callback:(_:ts.Undefined) -> Void, ?delay:Float):global.nodejs.Timeout { })
+	static function setTimeout(handler:js.html.TimerHandler, ?timeout:Float, arguments:haxe.extern.Rest<Dynamic>):Float;
 }

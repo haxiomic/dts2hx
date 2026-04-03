@@ -2,26 +2,15 @@ package node.url;
 
 typedef UrlWithParsedQuery = {
 	var query : node.querystring.ParsedUrlQuery;
-	@:optional
-	var port : String;
-	@:optional
-	var auth : String;
-	@:optional
-	var hash : String;
-	@:optional
-	var host : String;
-	@:optional
-	var hostname : String;
-	@:optional
+	var auth : Null<String>;
+	var hash : Null<String>;
+	var host : Null<String>;
+	var hostname : Null<String>;
 	var href : String;
-	@:optional
-	var path : String;
-	@:optional
-	var pathname : String;
-	@:optional
-	var protocol : String;
-	@:optional
-	var search : String;
-	@:optional
-	var slashes : Bool;
+	var path : Null<String>;
+	var pathname : Null<String>;
+	var protocol : Null<String>;
+	var search : Null<String>;
+	var slashes : Null<Bool>;
+	var port : Null<String>;
 };

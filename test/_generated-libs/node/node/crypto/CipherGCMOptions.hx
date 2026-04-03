@@ -1,7 +1,7 @@
 package node.crypto;
 
 @:forward
-abstract CipherGCMOptions(CipherGCMOptions_) from CipherGCMOptions_ to CipherGCMOptions_ {
+abstract CipherGCMOptions(CipherGCMOptionsTypedef) from CipherGCMOptionsTypedef to CipherGCMOptionsTypedef {
 	@:optional
 	public var final_(get, set):ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void;
 	inline function get_final_():ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void return js.Syntax.field(cast this, 'final');

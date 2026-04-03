@@ -1,9 +1,13 @@
 package node.perf_hooks;
 
-typedef PerformanceEntry = {
+/**
+	The constructor of this class is not exposed to users directly.
+**/
+@:jsRequire("perf_hooks", "PerformanceEntry") extern class PerformanceEntry {
+	function new();
 	/**
-		The total number of milliseconds elapsed for this entry.
-		This value will not be meaningful for all Performance Entry types.
+		The total number of milliseconds elapsed for this entry. This value will not
+		be meaningful for all Performance Entry types.
 	**/
 	final duration : Float;
 	/**
@@ -11,19 +15,22 @@ typedef PerformanceEntry = {
 	**/
 	final name : String;
 	/**
-		The high resolution millisecond timestamp marking the starting time of the Performance Entry.
+		The high resolution millisecond timestamp marking the starting time of the
+		Performance Entry.
 	**/
 	final startTime : Float;
 	/**
-		The type of the performance entry.
-		Currently it may be one of: 'node', 'mark', 'measure', 'gc', or 'function'.
+		The type of the performance entry. It may be one of:
+		
+		* `'node'` (Node.js only)
+		* `'mark'` (available on the Web)
+		* `'measure'` (available on the Web)
+		* `'gc'` (Node.js only)
+		* `'function'` (Node.js only)
+		* `'http2'` (Node.js only)
+		* `'http'` (Node.js only)
 	**/
-	final entryType : String;
-	/**
-		When performanceEntry.entryType is equal to 'gc', the performance.kind property identifies
-		the type of garbage collection operation that occurred.
-		The value may be one of perf_hooks.constants.
-	**/
-	@:optional
-	final kind : Float;
-};
+	final entryType : EntryType;
+	function toJSON():Dynamic;
+	static var prototype : PerformanceEntry;
+}

@@ -1,10 +1,10 @@
 package node.fs;
 
-typedef WriteFileOptions = Null<ts.AnyOf2<String, {
+typedef WriteFileOptions = Null<ts.AnyOf2<String, ObjectEncodingOptions & node.events.eventemitter.Abortable & {
 	@:optional
-	var encoding : String;
-	@:optional
-	var mode : ts.AnyOf2<String, Float>;
+	var mode : Mode;
 	@:optional
 	var flag : String;
+	@:optional
+	var flush : Bool;
 }>>;

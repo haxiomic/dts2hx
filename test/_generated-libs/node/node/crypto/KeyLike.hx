@@ -1,3 +1,3 @@
 package node.crypto;
 
-typedef KeyLike = ts.AnyOf3<String, global.Buffer, KeyObject>;
+typedef KeyLike = ts.AnyOf3<String, KeyObject, node.buffer.Buffer<js.lib.ArrayBufferLike>>;

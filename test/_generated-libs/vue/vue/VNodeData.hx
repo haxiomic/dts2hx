@@ -1,7 +1,7 @@
 package vue;
 
 @:forward
-abstract VNodeData(VNodeData_) from VNodeData_ to VNodeData_ {
+abstract VNodeData(VNodeDataTypedef) from VNodeDataTypedef to VNodeDataTypedef {
 	@:optional
 	public var class_(get, set):Dynamic;
 	inline function get_class_():Dynamic return js.Syntax.field(cast this, 'class');

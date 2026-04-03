@@ -1,7 +1,7 @@
 package node.crypto;
 
 @:forward
-abstract CipherCCMOptions(CipherCCMOptions_) from CipherCCMOptions_ to CipherCCMOptions_ {
+abstract CipherCCMOptions(CipherCCMOptionsTypedef) from CipherCCMOptionsTypedef to CipherCCMOptionsTypedef {
 	@:optional
 	public var final_(get, set):ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void;
 	inline function get_final_():ts.AnyOf2<() -> Void, js.lib.Error -> Void> -> Void return js.Syntax.field(cast this, 'final');

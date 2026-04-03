@@ -1,7 +1,8 @@
 package global.nodejs;
 
 typedef Timer = {
-	function ref():Void;
-	function refresh():Void;
-	function unref():Void;
+	function hasRef():Bool;
+	function refresh():Timer;
+	function ref():Timer;
+	function unref():Timer;
 };

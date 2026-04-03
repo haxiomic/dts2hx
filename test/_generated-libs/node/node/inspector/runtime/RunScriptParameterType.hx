@@ -6,8 +6,7 @@ typedef RunScriptParameterType = {
 	**/
 	var scriptId : String;
 	/**
-		Specifies in which execution context to perform script run. If the parameter is omitted the
-		evaluation will be performed in the context of the inspected page.
+		Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
 	**/
 	@:optional
 	var executionContextId : Float;
@@ -17,8 +16,7 @@ typedef RunScriptParameterType = {
 	@:optional
 	var objectGroup : String;
 	/**
-		In silent mode exceptions thrown during evaluation are not reported and do not pause
-		execution. Overrides `setPauseOnException` state.
+		In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
 	**/
 	@:optional
 	var silent : Bool;
@@ -38,8 +36,7 @@ typedef RunScriptParameterType = {
 	@:optional
 	var generatePreview : Bool;
 	/**
-		Whether execution should `await` for resulting value and return once awaited promise is
-		resolved.
+		Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
 	**/
 	@:optional
 	var awaitPromise : Bool;

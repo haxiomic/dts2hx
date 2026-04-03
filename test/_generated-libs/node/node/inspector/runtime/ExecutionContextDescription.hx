@@ -5,8 +5,7 @@ package node.inspector.runtime;
 **/
 typedef ExecutionContextDescription = {
 	/**
-		Unique id of the execution context. It can be used to specify in which execution context
-		script evaluation should be performed.
+		Unique id of the execution context. It can be used to specify in which execution context script evaluation should be performed.
 	**/
 	var id : Float;
 	/**

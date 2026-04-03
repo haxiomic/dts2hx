@@ -1,12 +1,22 @@
 package node.fs;
 
 /**
-	Asynchronously change file timestamps of the file referenced by the supplied path.
+	Change the file system timestamps of the object referenced by `path`.
+	
+	The `atime` and `mtime` arguments follow these rules:
+	
+	* Values can be either numbers representing Unix epoch time in seconds, `Date`s, or a numeric string like `'123456789.0'`.
+	* If the value can not be converted to a number, or is `NaN`, `Infinity`, or `-Infinity`, an `Error` will be thrown.
 **/
 @:jsRequire("fs", "utimes") @valueModuleOnly extern class Utimes {
 	/**
-		Asynchronously change file timestamps of the file referenced by the supplied path.
+		Change the file system timestamps of the object referenced by `path`.
+		
+		The `atime` and `mtime` arguments follow these rules:
+		
+		* Values can be either numbers representing Unix epoch time in seconds, `Date`s, or a numeric string like `'123456789.0'`.
+		* If the value can not be converted to a number, or is `NaN`, `Infinity`, or `-Infinity`, an `Error` will be thrown.
 	**/
 	@:selfCall
-	static function call(path:PathLike, atime:ts.AnyOf3<String, Float, js.lib.Date>, mtime:ts.AnyOf3<String, Float, js.lib.Date>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function call(path:PathLike, atime:TimeLike, mtime:TimeLike, callback:NoParamCallback):Void;
 }

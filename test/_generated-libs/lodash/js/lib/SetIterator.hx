@@ -1,7 +1,7 @@
 package js.lib;
 
 @:forward
-abstract SetIterator<T>(SetIterator_<T>) from SetIterator_<T> to SetIterator_<T> {
+abstract SetIterator<T>(SetIteratorTypedef<T>) from SetIteratorTypedef<T> to SetIteratorTypedef<T> {
 	@:optional
 	public var return_(get, set):Null<Dynamic> -> IteratorResult<T, Dynamic>;
 	inline function get_return_():Null<Dynamic> -> IteratorResult<T, Dynamic> return js.Syntax.field(cast this, 'return');
