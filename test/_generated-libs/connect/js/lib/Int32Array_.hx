@@ -150,6 +150,7 @@ package js.lib;
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
 	function includes(searchElement:Float, ?fromIndex:Float):Bool;
+	function at(index:Float):Null<Float>;
 	static final prototype : Int32Array_<ArrayBufferLike>;
 	/**
 		The size in bytes of each element in the array.

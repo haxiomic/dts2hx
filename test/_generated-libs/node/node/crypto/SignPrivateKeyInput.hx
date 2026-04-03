@@ -1,15 +1,19 @@
 package node.crypto;
 
 typedef SignPrivateKeyInput = {
-	@:optional
-	var padding : Float;
-	@:optional
-	var saltLength : Float;
-	var key : ts.AnyOf2<String, global.Buffer>;
+	var key : ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>;
 	@:optional
 	var format : KeyFormat;
 	@:optional
 	var type : String;
 	@:optional
-	var passphrase : ts.AnyOf2<String, global.Buffer>;
+	var passphrase : ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>;
+	@:optional
+	var encoding : String;
+	@:optional
+	var padding : Float;
+	@:optional
+	var saltLength : Float;
+	@:optional
+	var dsaEncoding : DSAEncoding;
 };

@@ -1,12 +1,22 @@
 package node.fs;
 
 /**
-	Asynchronously change file timestamps of the file referenced by the supplied file descriptor.
+	Change the file system timestamps of the object referenced by the supplied file
+	descriptor. See
+	{@link
+	utimes
+	}
+	.
 **/
 @:jsRequire("fs", "futimes") @valueModuleOnly extern class Futimes {
 	/**
-		Asynchronously change file timestamps of the file referenced by the supplied file descriptor.
+		Change the file system timestamps of the object referenced by the supplied file
+		descriptor. See 
+		{@link 
+		utimes
+		}
+		.
 	**/
 	@:selfCall
-	static function call(fd:Float, atime:ts.AnyOf3<String, Float, js.lib.Date>, mtime:ts.AnyOf3<String, Float, js.lib.Date>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function call(fd:Float, atime:TimeLike, mtime:TimeLike, callback:NoParamCallback):Void;
 }

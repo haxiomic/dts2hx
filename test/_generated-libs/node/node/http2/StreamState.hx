@@ -6,9 +6,9 @@ typedef StreamState = {
 	@:optional
 	var state : Float;
 	@:optional
-	var streamLocalClose : Float;
+	var localClose : Float;
 	@:optional
-	var streamRemoteClose : Float;
+	var remoteClose : Float;
 	@:optional
 	var sumDependencyWeight : Float;
 	@:optional

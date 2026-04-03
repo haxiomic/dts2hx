@@ -1,0 +1,30 @@
+package undici_types.patch;
+
+typedef DOMException = {
+	var prototype : js.html.DOMException;
+	final INDEX_SIZE_ERR : Int;
+	final DOMSTRING_SIZE_ERR : Int;
+	final HIERARCHY_REQUEST_ERR : Int;
+	final WRONG_DOCUMENT_ERR : Int;
+	final INVALID_CHARACTER_ERR : Int;
+	final NO_DATA_ALLOWED_ERR : Int;
+	final NO_MODIFICATION_ALLOWED_ERR : Int;
+	final NOT_FOUND_ERR : Int;
+	final NOT_SUPPORTED_ERR : Int;
+	final INUSE_ATTRIBUTE_ERR : Int;
+	final INVALID_STATE_ERR : Int;
+	final SYNTAX_ERR : Int;
+	final INVALID_MODIFICATION_ERR : Int;
+	final NAMESPACE_ERR : Int;
+	final INVALID_ACCESS_ERR : Int;
+	final VALIDATION_ERR : Int;
+	final TYPE_MISMATCH_ERR : Int;
+	final SECURITY_ERR : Int;
+	final NETWORK_ERR : Int;
+	final ABORT_ERR : Int;
+	final URL_MISMATCH_ERR : Int;
+	final QUOTA_EXCEEDED_ERR : Int;
+	final TIMEOUT_ERR : Int;
+	final INVALID_NODE_TYPE_ERR : Int;
+	final DATA_CLONE_ERR : Int;
+};

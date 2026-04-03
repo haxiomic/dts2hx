@@ -1,3 +1,3 @@
 package express_serve_static_core;
 
-typedef IRouterHandler<T> = ts.AnyOf2<(handlers:haxe.extern.Rest<RequestHandler<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>>) -> T, (handlers:haxe.extern.Rest<RequestHandlerParams<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>>) -> T>;
+typedef IRouterHandler<T, Route:(ts.AnyOf2<String, js.lib.RegExp>)> = ts.AnyOf6<(handlers:haxe.extern.Rest<RequestHandler<RouteParameters<Route>, Dynamic, Dynamic, qs.ParsedQs, haxe.DynamicAccess<Dynamic>>>) -> T, (handlers:haxe.extern.Rest<RequestHandlerParams<RouteParameters<Route>, Dynamic, Dynamic, qs.ParsedQs, haxe.DynamicAccess<Dynamic>>>) -> T, (handlers:haxe.extern.Rest<RequestHandler<Any, Any, Any, Any, Any>>) -> T, (handlers:haxe.extern.Rest<RequestHandlerParams<Any, Any, Any, Any, Any>>) -> T, (handlers:haxe.extern.Rest<RequestHandler<Any, Any, Any, Any, Any>>) -> T, (handlers:haxe.extern.Rest<RequestHandlerParams<Any, Any, Any, Any, Any>>) -> T>;

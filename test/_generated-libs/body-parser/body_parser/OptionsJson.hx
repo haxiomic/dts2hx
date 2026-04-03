@@ -34,5 +34,5 @@ typedef OptionsJson = {
 		where buf is a Buffer of the raw request body and encoding is the encoding of the request.
 	**/
 	@:optional
-	function verify(req:node.http.IncomingMessage, res:node.http.ServerResponse, buf:global.Buffer, encoding:String):Void;
+	function verify(req:node.http.IncomingMessage, res:node.http.ServerResponse<node.http.IncomingMessage>, buf:global.Buffer<js.lib.ArrayBufferLike>, encoding:String):Void;
 };

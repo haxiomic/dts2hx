@@ -1,8 +1,13 @@
 package node.crypto;
 
 @:forward
-abstract DecipherCCM(DecipherCCM_) from DecipherCCM_ to DecipherCCM_ {
-	public var final_(get, set):() -> global.Buffer;
-	inline function get_final_():() -> global.Buffer return js.Syntax.field(cast this, 'final');
-	inline function set_final_(v:() -> global.Buffer):() -> global.Buffer { js.Syntax.code("{0}[{1}] = {2}", this, 'final', v); return v; }
+abstract DecipherCCM(DecipherCCMTypedef) from DecipherCCMTypedef to DecipherCCMTypedef {
+	/**
+		Once the `decipher.final()` method has been called, the `Decipher` object can
+		no longer be used to decrypt data. Attempts to call `decipher.final()` more
+		than once will result in an error being thrown.
+	**/
+	public var final_(get, set):() -> node.buffer.NonSharedBuffer;
+	inline function get_final_():() -> node.buffer.NonSharedBuffer return js.Syntax.field(cast this, 'final');
+	inline function set_final_(v:() -> node.buffer.NonSharedBuffer):() -> node.buffer.NonSharedBuffer { js.Syntax.code("{0}[{1}] = {2}", this, 'final', v); return v; }
 }

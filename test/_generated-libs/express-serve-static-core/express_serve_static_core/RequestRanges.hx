@@ -142,4 +142,16 @@ typedef RequestRanges = {
 		Determines whether an array includes a certain element, returning true or false as appropriate.
 	**/
 	function includes(searchElement:range_parser.Range, ?fromIndex:Float):Bool;
+	/**
+		Calls a defined callback function on each element of an array. Then, flattens the result into
+		a new array.
+		This is identical to a map followed by flat with depth 1.
+	**/
+	function flatMap<U, This>(callback:(value:range_parser.Range, index:Float, array:Array<range_parser.Range>) -> ts.AnyOf2<haxe.ds.ReadOnlyArray<U>, U>, ?thisArg:This):Array<U>;
+	/**
+		Returns a new array with all sub-array elements concatenated into it recursively up to the
+		specified depth.
+	**/
+	function flat<A, D:(Float)>(?depth:D):Array<js.lib.FlatArray<A, D>>;
+	function at(index:Float):Null<range_parser.Range>;
 };

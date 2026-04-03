@@ -102,4 +102,9 @@ typedef ObjectConstructor = {
 		Returns an object containing all own property descriptors of an object
 	**/
 	function getOwnPropertyDescriptors<T>(o:T):Dynamic;
+	/**
+		Returns an object created by key-value entries for properties and methods
+	**/
+	@:overload(function(entries:Iterable<haxe.ds.ReadOnlyArray<Dynamic>>):Dynamic { })
+	function fromEntries<T>(entries:Iterable<ts.Tuple2<PropertyKey, T>>):haxe.DynamicAccess<T>;
 };

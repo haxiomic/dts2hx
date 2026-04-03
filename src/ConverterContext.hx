@@ -1256,8 +1256,9 @@ class ConverterContext {
 
 		// in haxe, structure intersections must all have unique field names
 		// convert all types to haxe anons and compare fields to determine if there are any name clashes
+		var hxAnonTypes: Null<Array<ComplexType>> = null;
 		if (nativelyIntersectable) {
-			var hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration)).deduplicateTypes();
+			hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration)).deduplicateTypes();
 			var seenFieldNames = new Map<String, Bool>();
 			var selfCallFields = 0;
 			for (hxAnonType in hxAnonTypes) {
@@ -1283,6 +1284,24 @@ class ConverterContext {
 				// if multiple types have @:selfCall fields, rasterize the intersection to avoid collision between `call()` functions
 				if (selfCallFields > 1) {
 					nativelyIntersectable = false;
+				}
+
+				// if any field has @:native, rasterize so the abstract wrapper can cover all fields
+				// (TExtend with a reference to an abstract-wrapped type would lose @:native support)
+				if (nativelyIntersectable) {
+					for (hxAnonType in hxAnonTypes) {
+						switch hxAnonType {
+							case TAnonymous(fields):
+								for (field in fields) {
+									if (field.getMeta(':native') != null) {
+										nativelyIntersectable = false;
+										break;
+									}
+								}
+							default:
+						}
+						if (!nativelyIntersectable) break;
+					}
 				}
 
 				if (!nativelyIntersectable) break;
@@ -1313,10 +1332,13 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			// try to rasterize if the intersection has call signatures (callable + object pattern)
-			// or if explicitly allowed via --allowIntersectionRasterization
+			// rasterize if: intersection has call signatures, explicitly allowed, or has @:native fields
 			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
-			if (options.allowIntersectionRasterization || hasCallSignatures) {
+			var hasNativeFieldsInAnon = hxAnonTypes != null && hxAnonTypes.exists(t -> switch t {
+				case TAnonymous(fields): fields.exists(f -> f.getMeta(':native') != null);
+				default: false;
+			});
+			if (options.allowIntersectionRasterization || hasCallSignatures || hasNativeFieldsInAnon) {
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
 				// @! todo: avoid recursive type conversion (see jquery)

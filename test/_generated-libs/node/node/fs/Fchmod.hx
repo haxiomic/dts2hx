@@ -1,12 +1,18 @@
 package node.fs;
 
 /**
-	Asynchronous fchmod(2) - Change permissions of a file.
+	Sets the permissions on the file. No arguments other than a possible exception
+	are given to the completion callback.
+	
+	See the POSIX [`fchmod(2)`](http://man7.org/linux/man-pages/man2/fchmod.2.html) documentation for more detail.
 **/
 @:jsRequire("fs", "fchmod") @valueModuleOnly extern class Fchmod {
 	/**
-		Asynchronous fchmod(2) - Change permissions of a file.
+		Sets the permissions on the file. No arguments other than a possible exception
+		are given to the completion callback.
+		
+		See the POSIX [`fchmod(2)`](http://man7.org/linux/man-pages/man2/fchmod.2.html) documentation for more detail.
 	**/
 	@:selfCall
-	static function call(fd:Float, mode:ts.AnyOf2<String, Float>, callback:(err:global.nodejs.ErrnoException) -> Void):Void;
+	static function call(fd:Float, mode:Mode, callback:NoParamCallback):Void;
 }

@@ -1,7 +1,7 @@
 package unit.edge_cases.edgecases;
 
 @:forward
-abstract NumericKeys(NumericKeys_) from NumericKeys_ to NumericKeys_ {
+abstract NumericKeys(NumericKeysTypedef) from NumericKeysTypedef to NumericKeysTypedef {
 	public var FiveZero(get, set):String;
 	inline function get_FiveZero():String return js.Syntax.field(cast this, '50');
 	inline function set_FiveZero(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, '50', v); return v; }

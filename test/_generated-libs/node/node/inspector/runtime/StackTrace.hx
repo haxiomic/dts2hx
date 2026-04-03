@@ -5,8 +5,7 @@ package node.inspector.runtime;
 **/
 typedef StackTrace = {
 	/**
-		String label of this stack trace. For async traces this may be a name of the function that
-		initiated the async call.
+		String label of this stack trace. For async traces this may be a name of the function that initiated the async call.
 	**/
 	@:optional
 	var description : String;

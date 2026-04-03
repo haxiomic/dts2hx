@@ -528,6 +528,38 @@ class Main {
 
 			FileTools.touchDirectoryPath(outputLibraryPath);
 
+			// Pass 1: Generate abstract wrappers for typedefs with @:native fields.
+			// Track wrapped types so we can fix references in TExtend/TIntersection.
+			var abstractWrappers = new Map<String, {module: TypeDefinition, source: String}>();
+			// Set of fully-qualified raw names (pack.FooTypedef) that have abstract wrappers
+			var wrappedRawNames = new Map<String, Bool>();
+
+			for (_ => haxeModule in converter.generatedModules) {
+				if (haxeModule.kind.match(TDAlias(TAnonymous(_) | TExtend(_, _)))) {
+					var fields = switch haxeModule.kind {
+						case TDAlias(TAnonymous(f)): f;
+						case TDAlias(TExtend(_, f)): f;
+						default: null;
+					};
+					if (fields != null && hasNativeFields(fields)) {
+						var wrapper = generateNativeFieldAbstract(haxeModule, fields);
+						if (wrapper != null) {
+							var originalName = haxeModule.name;
+							var fqn = haxeModule.pack.concat([originalName]).join('.');
+							// Rename original typedef to FooTypedef
+							haxeModule.name = '${originalName}Typedef';
+							haxeModule.doc = null;
+							abstractWrappers.set(fqn, {module: haxeModule, source: wrapper.source});
+							wrappedRawNames.set(haxeModule.pack.concat([haxeModule.name]).join('.'), true);
+							wrappedRawNames.set(haxeModule.name, true); // short name for same-package refs
+						}
+					}
+				}
+			}
+
+			// Pass 2: Save all modules, fixing TExtend/TIntersection references to wrapped types.
+			// In structural contexts (& extension), references must use the raw typedef (FooTypedef)
+			// instead of the abstract wrapper (Foo), because Haxe can't extend abstracts.
 			for (_ => haxeModule in converter.generatedModules) {
 				var skipModule = false;
 
@@ -539,24 +571,9 @@ class Main {
 
 				if (skipModule) continue;
 
-				// Check if this typedef has @:native fields that need an abstract wrapper.
-				// Haxe ignores @:native metadata on anonymous structure fields (issue #5105),
-				// so we generate an abstract type with property accessors that use js.Syntax.field.
-				var abstractWrapper: Null<{source: String}> = null;
-				if (haxeModule.kind.match(TDAlias(TAnonymous(_) | TExtend(_, _)))) {
-					var fields = switch haxeModule.kind {
-						case TDAlias(TAnonymous(f)): f;
-						case TDAlias(TExtend(_, f)): f;
-						default: null;
-					};
-					if (fields != null && hasNativeFields(fields)) {
-						abstractWrapper = generateNativeFieldAbstract(haxeModule, fields);
-						if (abstractWrapper != null) {
-							// Rename original typedef to Foo_
-							haxeModule.name = '${haxeModule.name}_';
-							haxeModule.doc = null;
-						}
-					}
+				// Fix references to abstract-wrapped types in structural extension contexts
+				if (wrappedRawNames.keys().hasNext()) {
+					fixWrappedTypeReferences(haxeModule, wrappedRawNames);
 				}
 
 				var filePath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['${haxeModule.name}.hx']));
@@ -565,13 +582,15 @@ class Main {
 
 				FileTools.touchDirectoryPath(Path.directory(filePath));
 				Fs.writeFileSync(filePath, moduleHaxeStr);
+			}
 
-				// Save the abstract wrapper alongside the raw typedef
-				if (abstractWrapper != null) {
-					var wrapperName = StringTools.replace(haxeModule.name, '_', '');
-					var wrapperPath = Path.join([outputLibraryPath].concat(haxeModule.pack).concat(['$wrapperName.hx']));
-					Fs.writeFileSync(wrapperPath, abstractWrapper.source);
-				}
+			// Save abstract wrapper files
+			for (fqn => wrapper in abstractWrappers) {
+				var wrapperModule = wrapper.module;
+				var wrapperName = StringTools.replace(wrapperModule.name, 'Typedef', ''); // strip Typedef suffix
+				var wrapperPath = Path.join([outputLibraryPath].concat(wrapperModule.pack).concat(['$wrapperName.hx']));
+				FileTools.touchDirectoryPath(Path.directory(wrapperPath));
+				Fs.writeFileSync(wrapperPath, wrapper.source);
 			}
 
 			if (generateLibraryWrapper) {
@@ -751,6 +770,66 @@ class Main {
 		}
 	}
 
+	/** In TExtend/TIntersection, replace references to abstract-wrapped types with their raw typedef (Foo -> FooTypedef) **/
+	static function fixWrappedTypeReferences(module: TypeDefinition, wrappedRawNames: Map<String, Bool>) {
+		// Fix the module's kind (the type it aliases)
+		switch module.kind {
+			case TDAlias(ct):
+				module.kind = TDAlias(fixCtReferences(ct, wrappedRawNames));
+			default:
+		}
+		// Fix field types
+		for (field in module.fields) {
+			switch field.kind {
+				case FVar(t, e):
+					if (t != null) field.kind = FVar(fixCtReferences(t, wrappedRawNames), e);
+				case FProp(g, s, t, e):
+					if (t != null) field.kind = FProp(g, s, fixCtReferences(t, wrappedRawNames), e);
+				case FFun(f):
+					if (f.ret != null) f.ret = fixCtReferences(f.ret, wrappedRawNames);
+					for (arg in f.args) {
+						if (arg.type != null) arg.type = fixCtReferences(arg.type, wrappedRawNames);
+					}
+			}
+		}
+	}
+
+	static function fixCtReferences(ct: ComplexType, wrappedRawNames: Map<String, Bool>): ComplexType {
+		return switch ct {
+			case TExtend(tpl, fields):
+				// In extension context, replace abstract wrappers with raw typedefs
+				var fixedTpl = [for (tp in tpl) fixTpInStructuralContext(tp, wrappedRawNames)];
+				TExtend(fixedTpl, fields);
+			case TIntersection(types):
+				TIntersection([for (t in types) fixCtInStructuralContext(t, wrappedRawNames)]);
+			default: ct;
+		}
+	}
+
+	static function fixTpInStructuralContext(tp: haxe.macro.Expr.TypePath, wrappedRawNames: Map<String, Bool>): haxe.macro.Expr.TypePath {
+		// Check fully-qualified and short name (same-package references have empty pack)
+		var rawName = '${tp.name}Typedef';
+		var fqnRaw = (tp.pack != null && tp.pack.length > 0) ? tp.pack.concat([rawName]).join('.') : rawName;
+		if (wrappedRawNames.exists(fqnRaw) || wrappedRawNames.exists(rawName)) {
+			return { pack: tp.pack, name: rawName, params: tp.params, sub: tp.sub };
+		}
+		return tp;
+	}
+
+	static function fixCtInStructuralContext(ct: ComplexType, wrappedRawNames: Map<String, Bool>): ComplexType {
+		return switch ct {
+			case TPath(tp):
+				var fixed = fixTpInStructuralContext(tp, wrappedRawNames);
+				if (fixed != tp) TPath(fixed) else ct;
+			case TExtend(tpl, fields):
+				var fixedTpl = [for (tp in tpl) fixTpInStructuralContext(tp, wrappedRawNames)];
+				TExtend(fixedTpl, fields);
+			case TIntersection(types):
+				TIntersection([for (t in types) fixCtInStructuralContext(t, wrappedRawNames)]);
+			default: ct;
+		}
+	}
+
 	static function hasNativeFields(fields: Array<haxe.macro.Expr.Field>): Bool {
 		for (field in fields) {
 			if (field.meta != null) {
@@ -829,7 +908,7 @@ class Main {
 			typeParams = '<' + haxeModule.params.map(p -> printer.printTypeParamDecl(p)).join(', ') + '>';
 		}
 
-		var innerName = '${haxeModule.name}_$typeParams';
+		var innerName = '${haxeModule.name}Typedef$typeParams';
 		var buf = new StringBuf();
 		buf.add('package ${haxeModule.pack.join(".")};\n\n');
 		if (haxeModule.doc != null && haxeModule.doc != '') {

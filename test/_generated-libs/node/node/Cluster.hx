@@ -1,77 +1,59 @@
 package node;
 
+/**
+	Clusters of Node.js processes can be used to run multiple instances of Node.js
+	that can distribute workloads among their application threads. When process isolation
+	is not needed, use the [`worker_threads`](https://nodejs.org/docs/latest-v20.x/api/worker_threads.html)
+	module instead, which allows running multiple application threads within a single Node.js instance.
+	
+	The cluster module allows easy creation of child processes that all share
+	server ports.
+	
+	```js
+	import cluster from 'node:cluster';
+	import http from 'node:http';
+	import { availableParallelism } from 'node:os';
+	import process from 'node:process';
+	
+	const numCPUs = availableParallelism();
+	
+	if (cluster.isPrimary) {
+	  console.log(`Primary ${process.pid} is running`);
+	
+	  // Fork workers.
+	  for (let i = 0; i < numCPUs; i++) {
+	    cluster.fork();
+	  }
+	
+	  cluster.on('exit', (worker, code, signal) => {
+	    console.log(`worker ${worker.process.pid} died`);
+	  });
+	} else {
+	  // Workers can share any TCP connection
+	  // In this case it is an HTTP server
+	  http.createServer((req, res) => {
+	    res.writeHead(200);
+	    res.end('hello world\n');
+	  }).listen(8000);
+	
+	  console.log(`Worker ${process.pid} started`);
+	}
+	```
+	
+	Running Node.js will now share port 8000 between the workers:
+	
+	```console
+	$ node server.js
+	Primary 3596 is running
+	Worker 4324 started
+	Worker 4520 started
+	Worker 6056 started
+	Worker 5644 started
+	```
+	
+	On Windows, it is not yet possible to set up a named pipe server in a worker.
+**/
 @:jsRequire("cluster") @valueModuleOnly extern class Cluster {
-	static function disconnect(?callback:() -> Void):Void;
-	static function fork(?env:Dynamic):node.cluster.Worker;
-	static function setupMaster(?settings:node.cluster.ClusterSettings):Void;
-	/**
-		events.EventEmitter
-		  1. disconnect
-		  2. exit
-		  3. fork
-		  4. listening
-		  5. message
-		  6. online
-		  7. setup
-	**/
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, address:node.cluster.Address) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
-	static function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	@:overload(function(event:String, worker:node.cluster.Worker):Bool { })
-	@:overload(function(event:String, worker:node.cluster.Worker, code:Float, signal:String):Bool { })
-	@:overload(function(event:String, worker:node.cluster.Worker):Bool { })
-	@:overload(function(event:String, worker:node.cluster.Worker, address:node.cluster.Address):Bool { })
-	@:overload(function(event:String, worker:node.cluster.Worker, message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>):Bool { })
-	@:overload(function(event:String, worker:node.cluster.Worker):Bool { })
-	@:overload(function(event:String, settings:node.cluster.ClusterSettings):Bool { })
-	static function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, address:node.cluster.Address) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
-	static function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, address:node.cluster.Address) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
-	static function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	static function removeListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	static function removeAllListeners(?event:String):node.cluster.Cluster;
-	static function setMaxListeners(n:Float):node.cluster.Cluster;
-	static function getMaxListeners():Float;
-	static function listeners(event:String):Array<haxe.Constraints.Function>;
-	static function listenerCount(type:String):Float;
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, address:node.cluster.Address) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
-	static function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, code:Float, signal:String) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, address:node.cluster.Address) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker, message:Dynamic, handle:ts.AnyOf2<node.net.Socket, node.net.Server>) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(worker:node.cluster.Worker) -> Void):node.cluster.Cluster { })
-	@:overload(function(event:String, listener:(settings:node.cluster.ClusterSettings) -> Void):node.cluster.Cluster { })
-	static function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):node.cluster.Cluster;
-	static function eventNames():Array<String>;
-	static final isMaster : Bool;
-	static final isWorker : Bool;
-	static final settings : node.cluster.ClusterSettings;
-	static final worker : node.cluster.Worker;
-	static final workers : haxe.DynamicAccess<Null<node.cluster.Worker>>;
+	@:native("default")
+	static final default_ : node.cluster.Cluster;
 }

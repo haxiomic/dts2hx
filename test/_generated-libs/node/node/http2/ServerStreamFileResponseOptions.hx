@@ -2,9 +2,9 @@ package node.http2;
 
 typedef ServerStreamFileResponseOptions = {
 	@:optional
-	dynamic function statCheck(stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions):Bool;
+	dynamic function statCheck(stats:node.fs.Stats, headers:node.http.OutgoingHttpHeaders, statOptions:StatOptions):Void;
 	@:optional
-	dynamic function getTrailers(trailers:node.http.OutgoingHttpHeaders):Void;
+	var waitForTrailers : Bool;
 	@:optional
 	var offset : Float;
 	@:optional

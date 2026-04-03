@@ -1,0 +1,3 @@
+package global.nodejs;
+
+typedef ArrayBufferView<TArrayBuffer:(js.lib.ArrayBufferLike)> = ts.AnyOf12<js.lib.Uint8Array_<TArrayBuffer>, js.lib.Uint8ClampedArray_<TArrayBuffer>, js.lib.Uint16Array_<TArrayBuffer>, js.lib.Uint32Array_<TArrayBuffer>, js.lib.Int8Array_<TArrayBuffer>, js.lib.Int16Array_<TArrayBuffer>, js.lib.Int32Array_<TArrayBuffer>, js.lib.BigUint64Array<TArrayBuffer>, js.lib.BigInt64Array<TArrayBuffer>, js.lib.Float32Array_<TArrayBuffer>, js.lib.Float64Array_<TArrayBuffer>, js.lib.DataView_<TArrayBuffer>>;

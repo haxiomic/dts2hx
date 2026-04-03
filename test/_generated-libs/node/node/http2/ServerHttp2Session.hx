@@ -1,59 +1,574 @@
 package node.http2;
 
-typedef ServerHttp2Session = {
+typedef ServerHttp2Session<Http1Request:({ var prototype : node.http.IncomingMessage; /** A utility method for creating Readable Streams out of iterators. **/ function from(iterable:ts.AnyOf2<Iterable<Dynamic>, js.lib.AsyncIterable<Dynamic, Dynamic, Dynamic>>, ?options:node.stream.stream.ReadableOptions<node.stream.stream.Readable>):node.stream.stream.Readable; /** A utility method for creating a `Readable` from a web `ReadableStream`. **/ function fromWeb(readableStream:node.stream.web.ReadableStream<Dynamic>, ?options:{ /** When provided the corresponding `AbortController` can be used to cancel an asynchronous action. **/ @:optional var signal : js.html.AbortSignal; @:optional var encoding : global.nodejs.BufferEncoding; @:optional var highWaterMark : Float; @:optional var objectMode : Bool; }):node.stream.stream.Readable; /** A utility method for creating a web `ReadableStream` from a `Readable`. **/ function toWeb(streamReadable:node.stream.stream.Readable, ?options:{ @:optional var strategy : node.stream.web.QueuingStrategy<Dynamic>; }):node.stream.web.ReadableStream<Dynamic>; /** Returns whether the stream has been read from or cancelled. **/ function isDisturbed(stream:ts.AnyOf2<global.nodejs.ReadableStream, node.stream.stream.Readable>):Bool; /** The utility function `duplexPair` returns an Array with two items,each being a `Duplex` stream connected to the other side:```jsconst [ sideA, sideB ] = duplexPair();```Whatever is written to one stream is made readable on the other. It providesbehavior analogous to a network connection, where the data written by the clientbecomes readable by the server, and vice-versa.The Duplex streams are symmetrical; one or the other may be used without anydifference in behavior. **/ function duplexPair(?options:node.stream.stream.DuplexOptions<node.stream.stream.Duplex>):ts.Tuple2<node.stream.stream.Duplex, node.stream.stream.Duplex>; /** A stream to attach a signal to.Attaches an AbortSignal to a readable or writeable stream. This lets codecontrol stream destruction using an `AbortController`.Calling `abort` on the `AbortController` corresponding to the passed `AbortSignal` will behave the same way as calling `.destroy(new AbortError())` on thestream, and `controller.error(new AbortError())` for webstreams.```jsimport fs from 'node:fs';const controller = new AbortController();const read = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);// Later, abort the operation closing the streamcontroller.abort();```Or using an `AbortSignal` with a readable stream as an async iterable:```jsconst controller = new AbortController();setTimeout(() => controller.abort(), 10_000); // set a timeoutconst stream = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);(async () => {  try {    for await (const chunk of stream) {      await process(chunk);    }  } catch (e) {    if (e.name === 'AbortError') {      // The operation was cancelled    } else {      throw e;    }  }})();```Or using an `AbortSignal` with a ReadableStream:```jsconst controller = new AbortController();const rs = new ReadableStream({  start(controller) {    controller.enqueue('hello');    controller.enqueue('world');    controller.close();  },});addAbortSignal(controller.signal, rs);finished(rs, (err) => {  if (err) {    if (err.name === 'AbortError') {      // The operation was cancelled    }  }});const reader = rs.getReader();reader.read().then(({ value, done }) => {  console.log(value); // hello  console.log(done); // false  controller.abort();});``` **/ function addAbortSignal<T:(node.Stream)>(signal:js.html.AbortSignal, stream:T):T; /** Returns the default highWaterMark used by streams.Defaults to `16384` (16 KiB), or `16` for `objectMode`. **/ function getDefaultHighWaterMark(objectMode:Bool):Float; /** Sets the default highWaterMark used by streams. **/ function setDefaultHighWaterMark(objectMode:Bool, value:Float):Void; /** A readable and/or writable stream/webstream.A function to get notified when a stream is no longer readable, writableor has experienced an error or a premature close event.```jsimport { finished } from 'node:stream';import fs from 'node:fs';const rs = fs.createReadStream('archive.tar');finished(rs, (err) => {  if (err) {    console.error('Stream failed.', err);  } else {    console.log('Stream is done reading.');  }});rs.resume(); // Drain the stream.```Especially useful in error handling scenarios where a stream is destroyedprematurely (like an aborted HTTP request), and will not emit `'end'` or `'finish'`.The `finished` API provides [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streamfinishedstream-options).`stream.finished()` leaves dangling event listeners (in particular `'error'`, `'end'`, `'finish'` and `'close'`) after `callback` has beeninvoked. The reason for this is so that unexpected `'error'` events (due toincorrect stream implementations) do not cause unexpected crashes.If this is unwanted behavior then the returned cleanup function needs to beinvoked in the callback:```jsconst cleanup = finished(rs, (err) => {  cleanup();  // ...});``` **/ @:overload(function(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void { }) function finished(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, options:node.stream.stream.FinishedOptions, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void; /** A module method to pipe between streams and generators forwarding errors andproperly cleaning up and provide a callback when the pipeline is complete.```jsimport { pipeline } from 'node:stream';import fs from 'node:fs';import zlib from 'node:zlib';// Use the pipeline API to easily pipe a series of streams// together and get notified when the pipeline is fully done.// A pipeline to gzip a potentially huge tar file efficiently:pipeline(  fs.createReadStream('archive.tar'),  zlib.createGzip(),  fs.createWriteStream('archive.tar.gz'),  (err) => {    if (err) {      console.error('Pipeline failed.', err);    } else {      console.log('Pipeline succeeded.');    }  },);```The `pipeline` API provides a [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streampipelinesource-transforms-destination-options).`stream.pipeline()` will call `stream.destroy(err)` on all streams except:* `Readable` streams which have emitted `'end'` or `'close'`.* `Writable` streams which have emitted `'finish'` or `'close'`.`stream.pipeline()` leaves dangling event listeners on the streamsafter the `callback` has been invoked. In the case of reuse of streams afterfailure, this can cause event listener leaks and swallowed errors. If the laststream is readable, dangling event listeners will be removed so that the laststream can be consumed later.`stream.pipeline()` closes all the streams when an error is raised.The `IncomingRequest` usage with `pipeline` could lead to an unexpected behavioronce it would destroy the socket without sending the expected response.See the example below:```jsimport fs from 'node:fs';import http from 'node:http';import { pipeline } from 'node:stream';const server = http.createServer((req, res) => {  const fileStream = fs.createReadStream('./fileNotExist.txt');  pipeline(fileStream, res, (err) => {    if (err) {      console.log(err); // No such file      // this message can't be sent once `pipeline` already destroyed the socket      return res.end('error!!!');    }  });});``` **/ @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), T4:(node.stream.stream.PipelineTransform<T3, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, transform4:T4, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function(streams:haxe.ds.ReadOnlyArray<ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>>, callback:(err:Null<global.nodejs.ErrnoException>) -> Void):global.nodejs.WritableStream { }) @:overload(function(stream1:global.nodejs.ReadableStream, stream2:ts.AnyOf2<global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, streams:haxe.extern.Rest<ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadWriteStream, (err:Null<global.nodejs.ErrnoException>) -> Void>>):global.nodejs.WritableStream { }) function pipeline<A:(node.stream.stream.PipelineSource<Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic; /** Returns whether the stream has encountered an error. **/ function isErrored(stream:ts.AnyOf4<global.nodejs.ReadableStream, global.nodejs.WritableStream, node.stream.stream.Readable, node.stream.stream.Writable>):Bool; /** Returns whether the stream is readable. **/ function isReadable(stream:ts.AnyOf2<global.nodejs.ReadableStream, node.stream.stream.Readable>):Bool; /** Creates a `Promise` that is fulfilled when the `EventEmitter` emits the givenevent or that is rejected if the `EventEmitter` emits `'error'` while waiting.The `Promise` will resolve with an array of all the arguments emitted to thegiven event.This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` eventsemantics and does not listen to the `'error'` event.```jsimport { once, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();process.nextTick(() => {  ee.emit('myevent', 42);});const [value] = await once(ee, 'myevent');console.log(value);const err = new Error('kaboom');process.nextTick(() => {  ee.emit('error', err);});try {  await once(ee, 'myevent');} catch (err) {  console.error('error happened', err);}```The special handling of the `'error'` event is only used when `events.once()` is used to wait for another event. If `events.once()` is used to wait for the'`error'` event itself, then it is treated as any other kind of event withoutspecial handling:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();once(ee, 'error')  .then(([err]) => console.log('ok', err.message))  .catch((err) => console.error('error', err.message));ee.emit('error', new Error('boom'));// Prints: ok boom```An `AbortSignal` can be used to cancel waiting for the event:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();const ac = new AbortController();async function foo(emitter, event, signal) {  try {    await once(emitter, event, { signal });    console.log('event emitted!');  } catch (error) {    if (error.name === 'AbortError') {      console.error('Waiting for the event was canceled!');    } else {      console.error('There was an error', error.message);    }  }}foo(ee, 'foo', ac.signal);ac.abort(); // Abort waiting for the eventee.emit('foo'); // Prints: Waiting for the event was canceled!``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>> { }) function once(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>>; /** ```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);});for await (const event of on(ee, 'foo')) {  // The execution of this inner block is synchronous and it  // processes one event at a time (even with await). Do not use  // if concurrent execution is required.  console.log(event); // prints ['bar'] [42]}// Unreachable here```Returns an `AsyncIterator` that iterates `eventName` events. It will throwif the `EventEmitter` emits `'error'`. It removes all listeners whenexiting the loop. The `value` returned by each iteration is an arraycomposed of the emitted event arguments.An `AbortSignal` can be used to cancel waiting on events:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ac = new AbortController();(async () => {  const ee = new EventEmitter();  // Emit later on  process.nextTick(() => {    ee.emit('foo', 'bar');    ee.emit('foo', 42);  });  for await (const event of on(ee, 'foo', { signal: ac.signal })) {    // The execution of this inner block is synchronous and it    // processes one event at a time (even with await). Do not use    // if concurrent execution is required.    console.log(event); // prints ['bar'] [42]  }  // Unreachable here})();process.nextTick(() => ac.abort());```Use the `close` option to specify an array of event names that will end the iteration:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);  ee.emit('close');});for await (const event of on(ee, 'foo', { close: ['close'] })) {  console.log(event); // prints ['bar'] [42]}// the loop will exit after 'close' is emittedconsole.log('done'); // prints 'done'``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic> { }) function on(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic>; /** A class method that returns the number of listeners for the given `eventName` registered on the given `emitter`.```jsimport { EventEmitter, listenerCount } from 'node:events';const myEmitter = new EventEmitter();myEmitter.on('event', () => {});myEmitter.on('event', () => {});console.log(listenerCount(myEmitter, 'event'));// Prints: 2``` **/ function listenerCount(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>):Float; /** Returns a copy of the array of listeners for the event named `eventName`.For `EventEmitter`s this behaves exactly the same as calling `.listeners` onthe emitter.For `EventTarget`s this is the only way to get the event listeners for theevent target. This is useful for debugging and diagnostic purposes.```jsimport { getEventListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  const listener = () => console.log('Events are fun');  ee.on('foo', listener);  console.log(getEventListeners(ee, 'foo')); // [ [Function: listener] ]}{  const et = new EventTarget();  const listener = () => console.log('Events are fun');  et.addEventListener('foo', listener);  console.log(getEventListeners(et, 'foo')); // [ [Function: listener] ]}``` **/ function getEventListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>, name:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>; /** Returns the currently set max amount of listeners.For `EventEmitter`s this behaves exactly the same as calling `.getMaxListeners` onthe emitter.For `EventTarget`s this is the only way to get the max event listeners for theevent target. If the number of event handlers on a single EventTarget exceedsthe max set, the EventTarget will print a warning.```jsimport { getMaxListeners, setMaxListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  console.log(getMaxListeners(ee)); // 10  setMaxListeners(11, ee);  console.log(getMaxListeners(ee)); // 11}{  const et = new EventTarget();  console.log(getMaxListeners(et)); // 10  setMaxListeners(11, et);  console.log(getMaxListeners(et)); // 11}``` **/ function getMaxListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>):Float; /** ```jsimport { setMaxListeners, EventEmitter } from 'node:events';const target = new EventTarget();const emitter = new EventEmitter();setMaxListeners(5, target, emitter);``` **/ function setMaxListeners(?n:Float, eventTargets:haxe.extern.Rest<ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>>):Void; /** Listens once to the `abort` event on the provided `signal`.Listening to the `abort` event on abort signals is unsafe and maylead to resource leaks since another third party with the signal cancall `e.stopImmediatePropagation()`. Unfortunately Node.js cannot changethis since it would violate the web standard. Additionally, the originalAPI makes it easy to forget to remove listeners.This API allows safely using `AbortSignal`s in Node.js APIs by solving thesetwo issues by listening to the event such that `stopImmediatePropagation` doesnot prevent the listener from running.Returns a disposable so that it may be unsubscribed from more easily.```jsimport { addAbortListener } from 'node:events';function example(signal) {  let disposable;  try {    signal.addEventListener('abort', (e) => e.stopImmediatePropagation());    disposable = addAbortListener(signal, (e) => {      // Do something when signal is aborted.    });  } finally {    disposable?.[Symbol.dispose]();  }}``` **/ function addAbortListener(signal:js.html.AbortSignal, resource:(event:js.html.Event) -> Void):global.Disposable; /** This symbol shall be used to install a listener for only monitoring `'error'` events. Listeners installed using this symbol are called before the regular `'error'` listeners are called.Installing a listener using this symbol does not change the behavior once an `'error'` event is emitted. Therefore, the process will still crash if noregular `'error'` listener is installed. **/ final errorMonitor : js.lib.Symbol; /** Value: `Symbol.for('nodejs.rejection')`See how to write a custom `rejection handler`. **/ final captureRejectionSymbol : js.lib.Symbol; /** Value: [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type)Change the default `captureRejections` option on all new `EventEmitter` objects. **/ var captureRejections : Bool; /** By default, a maximum of `10` listeners can be registered for any singleevent. This limit can be changed for individual `EventEmitter` instancesusing the `emitter.setMaxListeners(n)` method. To change the defaultfor _all_`EventEmitter` instances, the `events.defaultMaxListeners` propertycan be used. If this value is not a positive number, a `RangeError` is thrown.Take caution when setting the `events.defaultMaxListeners` because thechange affects _all_ `EventEmitter` instances, including those created beforethe change is made. However, calling `emitter.setMaxListeners(n)` still hasprecedence over `events.defaultMaxListeners`.This is not a hard limit. The `EventEmitter` instance will allowmore listeners to be added but will output a trace warning to stderr indicatingthat a "possible EventEmitter memory leak" has been detected. For any single`EventEmitter`, the `emitter.getMaxListeners()` and `emitter.setMaxListeners()` methods can be used totemporarily avoid this warning:```jsimport { EventEmitter } from 'node:events';const emitter = new EventEmitter();emitter.setMaxListeners(emitter.getMaxListeners() + 1);emitter.once('event', () => {  // do stuff  emitter.setMaxListeners(Math.max(emitter.getMaxListeners() - 1, 0));});```The `--trace-warnings` command-line flag can be used to display thestack trace for such warnings.The emitted warning can be inspected with `process.on('warning')` and willhave the additional `emitter`, `type`, and `count` properties, referring tothe event emitter instance, the event's name and the number of attachedlisteners, respectively.Its `name` property is set to `'MaxListenersExceededWarning'`. **/ var defaultMaxListeners : Float; }), Http1Response:({ var prototype : node.http.ServerResponse<Dynamic>; /** A utility method for creating a `Writable` from a web `WritableStream`. **/ function fromWeb(writableStream:node.stream.web.WritableStream<Dynamic>, ?options:{ /** When provided the corresponding `AbortController` can be used to cancel an asynchronous action. **/ @:optional var signal : js.html.AbortSignal; @:optional var highWaterMark : Float; @:optional var objectMode : Bool; @:optional var decodeStrings : Bool; }):node.stream.stream.Writable; /** A utility method for creating a web `WritableStream` from a `Writable`. **/ function toWeb(streamWritable:node.stream.stream.Writable):node.stream.web.WritableStream<Dynamic>; /** The utility function `duplexPair` returns an Array with two items,each being a `Duplex` stream connected to the other side:```jsconst [ sideA, sideB ] = duplexPair();```Whatever is written to one stream is made readable on the other. It providesbehavior analogous to a network connection, where the data written by the clientbecomes readable by the server, and vice-versa.The Duplex streams are symmetrical; one or the other may be used without anydifference in behavior. **/ function duplexPair(?options:node.stream.stream.DuplexOptions<node.stream.stream.Duplex>):ts.Tuple2<node.stream.stream.Duplex, node.stream.stream.Duplex>; /** A stream to attach a signal to.Attaches an AbortSignal to a readable or writeable stream. This lets codecontrol stream destruction using an `AbortController`.Calling `abort` on the `AbortController` corresponding to the passed `AbortSignal` will behave the same way as calling `.destroy(new AbortError())` on thestream, and `controller.error(new AbortError())` for webstreams.```jsimport fs from 'node:fs';const controller = new AbortController();const read = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);// Later, abort the operation closing the streamcontroller.abort();```Or using an `AbortSignal` with a readable stream as an async iterable:```jsconst controller = new AbortController();setTimeout(() => controller.abort(), 10_000); // set a timeoutconst stream = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);(async () => {  try {    for await (const chunk of stream) {      await process(chunk);    }  } catch (e) {    if (e.name === 'AbortError') {      // The operation was cancelled    } else {      throw e;    }  }})();```Or using an `AbortSignal` with a ReadableStream:```jsconst controller = new AbortController();const rs = new ReadableStream({  start(controller) {    controller.enqueue('hello');    controller.enqueue('world');    controller.close();  },});addAbortSignal(controller.signal, rs);finished(rs, (err) => {  if (err) {    if (err.name === 'AbortError') {      // The operation was cancelled    }  }});const reader = rs.getReader();reader.read().then(({ value, done }) => {  console.log(value); // hello  console.log(done); // false  controller.abort();});``` **/ function addAbortSignal<T:(node.Stream)>(signal:js.html.AbortSignal, stream:T):T; /** Returns the default highWaterMark used by streams.Defaults to `16384` (16 KiB), or `16` for `objectMode`. **/ function getDefaultHighWaterMark(objectMode:Bool):Float; /** Sets the default highWaterMark used by streams. **/ function setDefaultHighWaterMark(objectMode:Bool, value:Float):Void; /** A readable and/or writable stream/webstream.A function to get notified when a stream is no longer readable, writableor has experienced an error or a premature close event.```jsimport { finished } from 'node:stream';import fs from 'node:fs';const rs = fs.createReadStream('archive.tar');finished(rs, (err) => {  if (err) {    console.error('Stream failed.', err);  } else {    console.log('Stream is done reading.');  }});rs.resume(); // Drain the stream.```Especially useful in error handling scenarios where a stream is destroyedprematurely (like an aborted HTTP request), and will not emit `'end'` or `'finish'`.The `finished` API provides [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streamfinishedstream-options).`stream.finished()` leaves dangling event listeners (in particular `'error'`, `'end'`, `'finish'` and `'close'`) after `callback` has beeninvoked. The reason for this is so that unexpected `'error'` events (due toincorrect stream implementations) do not cause unexpected crashes.If this is unwanted behavior then the returned cleanup function needs to beinvoked in the callback:```jsconst cleanup = finished(rs, (err) => {  cleanup();  // ...});``` **/ @:overload(function(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void { }) function finished(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, options:node.stream.stream.FinishedOptions, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void; /** A module method to pipe between streams and generators forwarding errors andproperly cleaning up and provide a callback when the pipeline is complete.```jsimport { pipeline } from 'node:stream';import fs from 'node:fs';import zlib from 'node:zlib';// Use the pipeline API to easily pipe a series of streams// together and get notified when the pipeline is fully done.// A pipeline to gzip a potentially huge tar file efficiently:pipeline(  fs.createReadStream('archive.tar'),  zlib.createGzip(),  fs.createWriteStream('archive.tar.gz'),  (err) => {    if (err) {      console.error('Pipeline failed.', err);    } else {      console.log('Pipeline succeeded.');    }  },);```The `pipeline` API provides a [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streampipelinesource-transforms-destination-options).`stream.pipeline()` will call `stream.destroy(err)` on all streams except:* `Readable` streams which have emitted `'end'` or `'close'`.* `Writable` streams which have emitted `'finish'` or `'close'`.`stream.pipeline()` leaves dangling event listeners on the streamsafter the `callback` has been invoked. In the case of reuse of streams afterfailure, this can cause event listener leaks and swallowed errors. If the laststream is readable, dangling event listeners will be removed so that the laststream can be consumed later.`stream.pipeline()` closes all the streams when an error is raised.The `IncomingRequest` usage with `pipeline` could lead to an unexpected behavioronce it would destroy the socket without sending the expected response.See the example below:```jsimport fs from 'node:fs';import http from 'node:http';import { pipeline } from 'node:stream';const server = http.createServer((req, res) => {  const fileStream = fs.createReadStream('./fileNotExist.txt');  pipeline(fileStream, res, (err) => {    if (err) {      console.log(err); // No such file      // this message can't be sent once `pipeline` already destroyed the socket      return res.end('error!!!');    }  });});``` **/ @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), T4:(node.stream.stream.PipelineTransform<T3, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, transform4:T4, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function(streams:haxe.ds.ReadOnlyArray<ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>>, callback:(err:Null<global.nodejs.ErrnoException>) -> Void):global.nodejs.WritableStream { }) @:overload(function(stream1:global.nodejs.ReadableStream, stream2:ts.AnyOf2<global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, streams:haxe.extern.Rest<ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadWriteStream, (err:Null<global.nodejs.ErrnoException>) -> Void>>):global.nodejs.WritableStream { }) function pipeline<A:(node.stream.stream.PipelineSource<Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic; /** Returns whether the stream has encountered an error. **/ function isErrored(stream:ts.AnyOf4<global.nodejs.ReadableStream, global.nodejs.WritableStream, node.stream.stream.Readable, node.stream.stream.Writable>):Bool; /** Returns whether the stream is readable. **/ function isReadable(stream:ts.AnyOf2<global.nodejs.ReadableStream, node.stream.stream.Readable>):Bool; /** Creates a `Promise` that is fulfilled when the `EventEmitter` emits the givenevent or that is rejected if the `EventEmitter` emits `'error'` while waiting.The `Promise` will resolve with an array of all the arguments emitted to thegiven event.This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` eventsemantics and does not listen to the `'error'` event.```jsimport { once, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();process.nextTick(() => {  ee.emit('myevent', 42);});const [value] = await once(ee, 'myevent');console.log(value);const err = new Error('kaboom');process.nextTick(() => {  ee.emit('error', err);});try {  await once(ee, 'myevent');} catch (err) {  console.error('error happened', err);}```The special handling of the `'error'` event is only used when `events.once()` is used to wait for another event. If `events.once()` is used to wait for the'`error'` event itself, then it is treated as any other kind of event withoutspecial handling:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();once(ee, 'error')  .then(([err]) => console.log('ok', err.message))  .catch((err) => console.error('error', err.message));ee.emit('error', new Error('boom'));// Prints: ok boom```An `AbortSignal` can be used to cancel waiting for the event:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();const ac = new AbortController();async function foo(emitter, event, signal) {  try {    await once(emitter, event, { signal });    console.log('event emitted!');  } catch (error) {    if (error.name === 'AbortError') {      console.error('Waiting for the event was canceled!');    } else {      console.error('There was an error', error.message);    }  }}foo(ee, 'foo', ac.signal);ac.abort(); // Abort waiting for the eventee.emit('foo'); // Prints: Waiting for the event was canceled!``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>> { }) function once(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>>; /** ```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);});for await (const event of on(ee, 'foo')) {  // The execution of this inner block is synchronous and it  // processes one event at a time (even with await). Do not use  // if concurrent execution is required.  console.log(event); // prints ['bar'] [42]}// Unreachable here```Returns an `AsyncIterator` that iterates `eventName` events. It will throwif the `EventEmitter` emits `'error'`. It removes all listeners whenexiting the loop. The `value` returned by each iteration is an arraycomposed of the emitted event arguments.An `AbortSignal` can be used to cancel waiting on events:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ac = new AbortController();(async () => {  const ee = new EventEmitter();  // Emit later on  process.nextTick(() => {    ee.emit('foo', 'bar');    ee.emit('foo', 42);  });  for await (const event of on(ee, 'foo', { signal: ac.signal })) {    // The execution of this inner block is synchronous and it    // processes one event at a time (even with await). Do not use    // if concurrent execution is required.    console.log(event); // prints ['bar'] [42]  }  // Unreachable here})();process.nextTick(() => ac.abort());```Use the `close` option to specify an array of event names that will end the iteration:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);  ee.emit('close');});for await (const event of on(ee, 'foo', { close: ['close'] })) {  console.log(event); // prints ['bar'] [42]}// the loop will exit after 'close' is emittedconsole.log('done'); // prints 'done'``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic> { }) function on(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic>; /** A class method that returns the number of listeners for the given `eventName` registered on the given `emitter`.```jsimport { EventEmitter, listenerCount } from 'node:events';const myEmitter = new EventEmitter();myEmitter.on('event', () => {});myEmitter.on('event', () => {});console.log(listenerCount(myEmitter, 'event'));// Prints: 2``` **/ function listenerCount(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>):Float; /** Returns a copy of the array of listeners for the event named `eventName`.For `EventEmitter`s this behaves exactly the same as calling `.listeners` onthe emitter.For `EventTarget`s this is the only way to get the event listeners for theevent target. This is useful for debugging and diagnostic purposes.```jsimport { getEventListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  const listener = () => console.log('Events are fun');  ee.on('foo', listener);  console.log(getEventListeners(ee, 'foo')); // [ [Function: listener] ]}{  const et = new EventTarget();  const listener = () => console.log('Events are fun');  et.addEventListener('foo', listener);  console.log(getEventListeners(et, 'foo')); // [ [Function: listener] ]}``` **/ function getEventListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>, name:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>; /** Returns the currently set max amount of listeners.For `EventEmitter`s this behaves exactly the same as calling `.getMaxListeners` onthe emitter.For `EventTarget`s this is the only way to get the max event listeners for theevent target. If the number of event handlers on a single EventTarget exceedsthe max set, the EventTarget will print a warning.```jsimport { getMaxListeners, setMaxListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  console.log(getMaxListeners(ee)); // 10  setMaxListeners(11, ee);  console.log(getMaxListeners(ee)); // 11}{  const et = new EventTarget();  console.log(getMaxListeners(et)); // 10  setMaxListeners(11, et);  console.log(getMaxListeners(et)); // 11}``` **/ function getMaxListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>):Float; /** ```jsimport { setMaxListeners, EventEmitter } from 'node:events';const target = new EventTarget();const emitter = new EventEmitter();setMaxListeners(5, target, emitter);``` **/ function setMaxListeners(?n:Float, eventTargets:haxe.extern.Rest<ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>>):Void; /** Listens once to the `abort` event on the provided `signal`.Listening to the `abort` event on abort signals is unsafe and maylead to resource leaks since another third party with the signal cancall `e.stopImmediatePropagation()`. Unfortunately Node.js cannot changethis since it would violate the web standard. Additionally, the originalAPI makes it easy to forget to remove listeners.This API allows safely using `AbortSignal`s in Node.js APIs by solving thesetwo issues by listening to the event such that `stopImmediatePropagation` doesnot prevent the listener from running.Returns a disposable so that it may be unsubscribed from more easily.```jsimport { addAbortListener } from 'node:events';function example(signal) {  let disposable;  try {    signal.addEventListener('abort', (e) => e.stopImmediatePropagation());    disposable = addAbortListener(signal, (e) => {      // Do something when signal is aborted.    });  } finally {    disposable?.[Symbol.dispose]();  }}``` **/ function addAbortListener(signal:js.html.AbortSignal, resource:(event:js.html.Event) -> Void):global.Disposable; /** This symbol shall be used to install a listener for only monitoring `'error'` events. Listeners installed using this symbol are called before the regular `'error'` listeners are called.Installing a listener using this symbol does not change the behavior once an `'error'` event is emitted. Therefore, the process will still crash if noregular `'error'` listener is installed. **/ final errorMonitor : js.lib.Symbol; /** Value: `Symbol.for('nodejs.rejection')`See how to write a custom `rejection handler`. **/ final captureRejectionSymbol : js.lib.Symbol; /** Value: [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type)Change the default `captureRejections` option on all new `EventEmitter` objects. **/ var captureRejections : Bool; /** By default, a maximum of `10` listeners can be registered for any singleevent. This limit can be changed for individual `EventEmitter` instancesusing the `emitter.setMaxListeners(n)` method. To change the defaultfor _all_`EventEmitter` instances, the `events.defaultMaxListeners` propertycan be used. If this value is not a positive number, a `RangeError` is thrown.Take caution when setting the `events.defaultMaxListeners` because thechange affects _all_ `EventEmitter` instances, including those created beforethe change is made. However, calling `emitter.setMaxListeners(n)` still hasprecedence over `events.defaultMaxListeners`.This is not a hard limit. The `EventEmitter` instance will allowmore listeners to be added but will output a trace warning to stderr indicatingthat a "possible EventEmitter memory leak" has been detected. For any single`EventEmitter`, the `emitter.getMaxListeners()` and `emitter.setMaxListeners()` methods can be used totemporarily avoid this warning:```jsimport { EventEmitter } from 'node:events';const emitter = new EventEmitter();emitter.setMaxListeners(emitter.getMaxListeners() + 1);emitter.once('event', () => {  // do stuff  emitter.setMaxListeners(Math.max(emitter.getMaxListeners() - 1, 0));});```The `--trace-warnings` command-line flag can be used to display thestack trace for such warnings.The emitted warning can be inspected with `process.on('warning')` and willhave the additional `emitter`, `type`, and `count` properties, referring tothe event emitter instance, the event's name and the number of attachedlisteners, respectively.Its `name` property is set to `'MaxListenersExceededWarning'`. **/ var defaultMaxListeners : Float; }), Http2Request:({ var prototype : Http2ServerRequest; /** A utility method for creating Readable Streams out of iterators. **/ function from(iterable:ts.AnyOf2<Iterable<Dynamic>, js.lib.AsyncIterable<Dynamic, Dynamic, Dynamic>>, ?options:node.stream.stream.ReadableOptions<node.stream.stream.Readable>):node.stream.stream.Readable; /** A utility method for creating a `Readable` from a web `ReadableStream`. **/ function fromWeb(readableStream:node.stream.web.ReadableStream<Dynamic>, ?options:{ /** When provided the corresponding `AbortController` can be used to cancel an asynchronous action. **/ @:optional var signal : js.html.AbortSignal; @:optional var encoding : global.nodejs.BufferEncoding; @:optional var highWaterMark : Float; @:optional var objectMode : Bool; }):node.stream.stream.Readable; /** A utility method for creating a web `ReadableStream` from a `Readable`. **/ function toWeb(streamReadable:node.stream.stream.Readable, ?options:{ @:optional var strategy : node.stream.web.QueuingStrategy<Dynamic>; }):node.stream.web.ReadableStream<Dynamic>; /** Returns whether the stream has been read from or cancelled. **/ function isDisturbed(stream:ts.AnyOf2<global.nodejs.ReadableStream, node.stream.stream.Readable>):Bool; /** The utility function `duplexPair` returns an Array with two items,each being a `Duplex` stream connected to the other side:```jsconst [ sideA, sideB ] = duplexPair();```Whatever is written to one stream is made readable on the other. It providesbehavior analogous to a network connection, where the data written by the clientbecomes readable by the server, and vice-versa.The Duplex streams are symmetrical; one or the other may be used without anydifference in behavior. **/ function duplexPair(?options:node.stream.stream.DuplexOptions<node.stream.stream.Duplex>):ts.Tuple2<node.stream.stream.Duplex, node.stream.stream.Duplex>; /** A stream to attach a signal to.Attaches an AbortSignal to a readable or writeable stream. This lets codecontrol stream destruction using an `AbortController`.Calling `abort` on the `AbortController` corresponding to the passed `AbortSignal` will behave the same way as calling `.destroy(new AbortError())` on thestream, and `controller.error(new AbortError())` for webstreams.```jsimport fs from 'node:fs';const controller = new AbortController();const read = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);// Later, abort the operation closing the streamcontroller.abort();```Or using an `AbortSignal` with a readable stream as an async iterable:```jsconst controller = new AbortController();setTimeout(() => controller.abort(), 10_000); // set a timeoutconst stream = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);(async () => {  try {    for await (const chunk of stream) {      await process(chunk);    }  } catch (e) {    if (e.name === 'AbortError') {      // The operation was cancelled    } else {      throw e;    }  }})();```Or using an `AbortSignal` with a ReadableStream:```jsconst controller = new AbortController();const rs = new ReadableStream({  start(controller) {    controller.enqueue('hello');    controller.enqueue('world');    controller.close();  },});addAbortSignal(controller.signal, rs);finished(rs, (err) => {  if (err) {    if (err.name === 'AbortError') {      // The operation was cancelled    }  }});const reader = rs.getReader();reader.read().then(({ value, done }) => {  console.log(value); // hello  console.log(done); // false  controller.abort();});``` **/ function addAbortSignal<T:(node.Stream)>(signal:js.html.AbortSignal, stream:T):T; /** Returns the default highWaterMark used by streams.Defaults to `16384` (16 KiB), or `16` for `objectMode`. **/ function getDefaultHighWaterMark(objectMode:Bool):Float; /** Sets the default highWaterMark used by streams. **/ function setDefaultHighWaterMark(objectMode:Bool, value:Float):Void; /** A readable and/or writable stream/webstream.A function to get notified when a stream is no longer readable, writableor has experienced an error or a premature close event.```jsimport { finished } from 'node:stream';import fs from 'node:fs';const rs = fs.createReadStream('archive.tar');finished(rs, (err) => {  if (err) {    console.error('Stream failed.', err);  } else {    console.log('Stream is done reading.');  }});rs.resume(); // Drain the stream.```Especially useful in error handling scenarios where a stream is destroyedprematurely (like an aborted HTTP request), and will not emit `'end'` or `'finish'`.The `finished` API provides [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streamfinishedstream-options).`stream.finished()` leaves dangling event listeners (in particular `'error'`, `'end'`, `'finish'` and `'close'`) after `callback` has beeninvoked. The reason for this is so that unexpected `'error'` events (due toincorrect stream implementations) do not cause unexpected crashes.If this is unwanted behavior then the returned cleanup function needs to beinvoked in the callback:```jsconst cleanup = finished(rs, (err) => {  cleanup();  // ...});``` **/ @:overload(function(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void { }) function finished(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, options:node.stream.stream.FinishedOptions, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void; /** A module method to pipe between streams and generators forwarding errors andproperly cleaning up and provide a callback when the pipeline is complete.```jsimport { pipeline } from 'node:stream';import fs from 'node:fs';import zlib from 'node:zlib';// Use the pipeline API to easily pipe a series of streams// together and get notified when the pipeline is fully done.// A pipeline to gzip a potentially huge tar file efficiently:pipeline(  fs.createReadStream('archive.tar'),  zlib.createGzip(),  fs.createWriteStream('archive.tar.gz'),  (err) => {    if (err) {      console.error('Pipeline failed.', err);    } else {      console.log('Pipeline succeeded.');    }  },);```The `pipeline` API provides a [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streampipelinesource-transforms-destination-options).`stream.pipeline()` will call `stream.destroy(err)` on all streams except:* `Readable` streams which have emitted `'end'` or `'close'`.* `Writable` streams which have emitted `'finish'` or `'close'`.`stream.pipeline()` leaves dangling event listeners on the streamsafter the `callback` has been invoked. In the case of reuse of streams afterfailure, this can cause event listener leaks and swallowed errors. If the laststream is readable, dangling event listeners will be removed so that the laststream can be consumed later.`stream.pipeline()` closes all the streams when an error is raised.The `IncomingRequest` usage with `pipeline` could lead to an unexpected behavioronce it would destroy the socket without sending the expected response.See the example below:```jsimport fs from 'node:fs';import http from 'node:http';import { pipeline } from 'node:stream';const server = http.createServer((req, res) => {  const fileStream = fs.createReadStream('./fileNotExist.txt');  pipeline(fileStream, res, (err) => {    if (err) {      console.log(err); // No such file      // this message can't be sent once `pipeline` already destroyed the socket      return res.end('error!!!');    }  });});``` **/ @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), T4:(node.stream.stream.PipelineTransform<T3, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, transform4:T4, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function(streams:haxe.ds.ReadOnlyArray<ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>>, callback:(err:Null<global.nodejs.ErrnoException>) -> Void):global.nodejs.WritableStream { }) @:overload(function(stream1:global.nodejs.ReadableStream, stream2:ts.AnyOf2<global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, streams:haxe.extern.Rest<ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadWriteStream, (err:Null<global.nodejs.ErrnoException>) -> Void>>):global.nodejs.WritableStream { }) function pipeline<A:(node.stream.stream.PipelineSource<Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic; /** Returns whether the stream has encountered an error. **/ function isErrored(stream:ts.AnyOf4<global.nodejs.ReadableStream, global.nodejs.WritableStream, node.stream.stream.Readable, node.stream.stream.Writable>):Bool; /** Returns whether the stream is readable. **/ function isReadable(stream:ts.AnyOf2<global.nodejs.ReadableStream, node.stream.stream.Readable>):Bool; /** Creates a `Promise` that is fulfilled when the `EventEmitter` emits the givenevent or that is rejected if the `EventEmitter` emits `'error'` while waiting.The `Promise` will resolve with an array of all the arguments emitted to thegiven event.This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` eventsemantics and does not listen to the `'error'` event.```jsimport { once, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();process.nextTick(() => {  ee.emit('myevent', 42);});const [value] = await once(ee, 'myevent');console.log(value);const err = new Error('kaboom');process.nextTick(() => {  ee.emit('error', err);});try {  await once(ee, 'myevent');} catch (err) {  console.error('error happened', err);}```The special handling of the `'error'` event is only used when `events.once()` is used to wait for another event. If `events.once()` is used to wait for the'`error'` event itself, then it is treated as any other kind of event withoutspecial handling:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();once(ee, 'error')  .then(([err]) => console.log('ok', err.message))  .catch((err) => console.error('error', err.message));ee.emit('error', new Error('boom'));// Prints: ok boom```An `AbortSignal` can be used to cancel waiting for the event:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();const ac = new AbortController();async function foo(emitter, event, signal) {  try {    await once(emitter, event, { signal });    console.log('event emitted!');  } catch (error) {    if (error.name === 'AbortError') {      console.error('Waiting for the event was canceled!');    } else {      console.error('There was an error', error.message);    }  }}foo(ee, 'foo', ac.signal);ac.abort(); // Abort waiting for the eventee.emit('foo'); // Prints: Waiting for the event was canceled!``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>> { }) function once(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>>; /** ```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);});for await (const event of on(ee, 'foo')) {  // The execution of this inner block is synchronous and it  // processes one event at a time (even with await). Do not use  // if concurrent execution is required.  console.log(event); // prints ['bar'] [42]}// Unreachable here```Returns an `AsyncIterator` that iterates `eventName` events. It will throwif the `EventEmitter` emits `'error'`. It removes all listeners whenexiting the loop. The `value` returned by each iteration is an arraycomposed of the emitted event arguments.An `AbortSignal` can be used to cancel waiting on events:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ac = new AbortController();(async () => {  const ee = new EventEmitter();  // Emit later on  process.nextTick(() => {    ee.emit('foo', 'bar');    ee.emit('foo', 42);  });  for await (const event of on(ee, 'foo', { signal: ac.signal })) {    // The execution of this inner block is synchronous and it    // processes one event at a time (even with await). Do not use    // if concurrent execution is required.    console.log(event); // prints ['bar'] [42]  }  // Unreachable here})();process.nextTick(() => ac.abort());```Use the `close` option to specify an array of event names that will end the iteration:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);  ee.emit('close');});for await (const event of on(ee, 'foo', { close: ['close'] })) {  console.log(event); // prints ['bar'] [42]}// the loop will exit after 'close' is emittedconsole.log('done'); // prints 'done'``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic> { }) function on(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic>; /** A class method that returns the number of listeners for the given `eventName` registered on the given `emitter`.```jsimport { EventEmitter, listenerCount } from 'node:events';const myEmitter = new EventEmitter();myEmitter.on('event', () => {});myEmitter.on('event', () => {});console.log(listenerCount(myEmitter, 'event'));// Prints: 2``` **/ function listenerCount(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>):Float; /** Returns a copy of the array of listeners for the event named `eventName`.For `EventEmitter`s this behaves exactly the same as calling `.listeners` onthe emitter.For `EventTarget`s this is the only way to get the event listeners for theevent target. This is useful for debugging and diagnostic purposes.```jsimport { getEventListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  const listener = () => console.log('Events are fun');  ee.on('foo', listener);  console.log(getEventListeners(ee, 'foo')); // [ [Function: listener] ]}{  const et = new EventTarget();  const listener = () => console.log('Events are fun');  et.addEventListener('foo', listener);  console.log(getEventListeners(et, 'foo')); // [ [Function: listener] ]}``` **/ function getEventListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>, name:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>; /** Returns the currently set max amount of listeners.For `EventEmitter`s this behaves exactly the same as calling `.getMaxListeners` onthe emitter.For `EventTarget`s this is the only way to get the max event listeners for theevent target. If the number of event handlers on a single EventTarget exceedsthe max set, the EventTarget will print a warning.```jsimport { getMaxListeners, setMaxListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  console.log(getMaxListeners(ee)); // 10  setMaxListeners(11, ee);  console.log(getMaxListeners(ee)); // 11}{  const et = new EventTarget();  console.log(getMaxListeners(et)); // 10  setMaxListeners(11, et);  console.log(getMaxListeners(et)); // 11}``` **/ function getMaxListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>):Float; /** ```jsimport { setMaxListeners, EventEmitter } from 'node:events';const target = new EventTarget();const emitter = new EventEmitter();setMaxListeners(5, target, emitter);``` **/ function setMaxListeners(?n:Float, eventTargets:haxe.extern.Rest<ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>>):Void; /** Listens once to the `abort` event on the provided `signal`.Listening to the `abort` event on abort signals is unsafe and maylead to resource leaks since another third party with the signal cancall `e.stopImmediatePropagation()`. Unfortunately Node.js cannot changethis since it would violate the web standard. Additionally, the originalAPI makes it easy to forget to remove listeners.This API allows safely using `AbortSignal`s in Node.js APIs by solving thesetwo issues by listening to the event such that `stopImmediatePropagation` doesnot prevent the listener from running.Returns a disposable so that it may be unsubscribed from more easily.```jsimport { addAbortListener } from 'node:events';function example(signal) {  let disposable;  try {    signal.addEventListener('abort', (e) => e.stopImmediatePropagation());    disposable = addAbortListener(signal, (e) => {      // Do something when signal is aborted.    });  } finally {    disposable?.[Symbol.dispose]();  }}``` **/ function addAbortListener(signal:js.html.AbortSignal, resource:(event:js.html.Event) -> Void):global.Disposable; /** This symbol shall be used to install a listener for only monitoring `'error'` events. Listeners installed using this symbol are called before the regular `'error'` listeners are called.Installing a listener using this symbol does not change the behavior once an `'error'` event is emitted. Therefore, the process will still crash if noregular `'error'` listener is installed. **/ final errorMonitor : js.lib.Symbol; /** Value: `Symbol.for('nodejs.rejection')`See how to write a custom `rejection handler`. **/ final captureRejectionSymbol : js.lib.Symbol; /** Value: [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type)Change the default `captureRejections` option on all new `EventEmitter` objects. **/ var captureRejections : Bool; /** By default, a maximum of `10` listeners can be registered for any singleevent. This limit can be changed for individual `EventEmitter` instancesusing the `emitter.setMaxListeners(n)` method. To change the defaultfor _all_`EventEmitter` instances, the `events.defaultMaxListeners` propertycan be used. If this value is not a positive number, a `RangeError` is thrown.Take caution when setting the `events.defaultMaxListeners` because thechange affects _all_ `EventEmitter` instances, including those created beforethe change is made. However, calling `emitter.setMaxListeners(n)` still hasprecedence over `events.defaultMaxListeners`.This is not a hard limit. The `EventEmitter` instance will allowmore listeners to be added but will output a trace warning to stderr indicatingthat a "possible EventEmitter memory leak" has been detected. For any single`EventEmitter`, the `emitter.getMaxListeners()` and `emitter.setMaxListeners()` methods can be used totemporarily avoid this warning:```jsimport { EventEmitter } from 'node:events';const emitter = new EventEmitter();emitter.setMaxListeners(emitter.getMaxListeners() + 1);emitter.once('event', () => {  // do stuff  emitter.setMaxListeners(Math.max(emitter.getMaxListeners() - 1, 0));});```The `--trace-warnings` command-line flag can be used to display thestack trace for such warnings.The emitted warning can be inspected with `process.on('warning')` and willhave the additional `emitter`, `type`, and `count` properties, referring tothe event emitter instance, the event's name and the number of attachedlisteners, respectively.Its `name` property is set to `'MaxListenersExceededWarning'`. **/ var defaultMaxListeners : Float; }), Http2Response:({ var prototype : Http2ServerResponse<Dynamic>; /** A utility method for creating a `Writable` from a web `WritableStream`. **/ function fromWeb(writableStream:node.stream.web.WritableStream<Dynamic>, ?options:{ /** When provided the corresponding `AbortController` can be used to cancel an asynchronous action. **/ @:optional var signal : js.html.AbortSignal; @:optional var highWaterMark : Float; @:optional var objectMode : Bool; @:optional var decodeStrings : Bool; }):node.stream.stream.Writable; /** A utility method for creating a web `WritableStream` from a `Writable`. **/ function toWeb(streamWritable:node.stream.stream.Writable):node.stream.web.WritableStream<Dynamic>; /** The utility function `duplexPair` returns an Array with two items,each being a `Duplex` stream connected to the other side:```jsconst [ sideA, sideB ] = duplexPair();```Whatever is written to one stream is made readable on the other. It providesbehavior analogous to a network connection, where the data written by the clientbecomes readable by the server, and vice-versa.The Duplex streams are symmetrical; one or the other may be used without anydifference in behavior. **/ function duplexPair(?options:node.stream.stream.DuplexOptions<node.stream.stream.Duplex>):ts.Tuple2<node.stream.stream.Duplex, node.stream.stream.Duplex>; /** A stream to attach a signal to.Attaches an AbortSignal to a readable or writeable stream. This lets codecontrol stream destruction using an `AbortController`.Calling `abort` on the `AbortController` corresponding to the passed `AbortSignal` will behave the same way as calling `.destroy(new AbortError())` on thestream, and `controller.error(new AbortError())` for webstreams.```jsimport fs from 'node:fs';const controller = new AbortController();const read = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);// Later, abort the operation closing the streamcontroller.abort();```Or using an `AbortSignal` with a readable stream as an async iterable:```jsconst controller = new AbortController();setTimeout(() => controller.abort(), 10_000); // set a timeoutconst stream = addAbortSignal(  controller.signal,  fs.createReadStream(('object.json')),);(async () => {  try {    for await (const chunk of stream) {      await process(chunk);    }  } catch (e) {    if (e.name === 'AbortError') {      // The operation was cancelled    } else {      throw e;    }  }})();```Or using an `AbortSignal` with a ReadableStream:```jsconst controller = new AbortController();const rs = new ReadableStream({  start(controller) {    controller.enqueue('hello');    controller.enqueue('world');    controller.close();  },});addAbortSignal(controller.signal, rs);finished(rs, (err) => {  if (err) {    if (err.name === 'AbortError') {      // The operation was cancelled    }  }});const reader = rs.getReader();reader.read().then(({ value, done }) => {  console.log(value); // hello  console.log(done); // false  controller.abort();});``` **/ function addAbortSignal<T:(node.Stream)>(signal:js.html.AbortSignal, stream:T):T; /** Returns the default highWaterMark used by streams.Defaults to `16384` (16 KiB), or `16` for `objectMode`. **/ function getDefaultHighWaterMark(objectMode:Bool):Float; /** Sets the default highWaterMark used by streams. **/ function setDefaultHighWaterMark(objectMode:Bool, value:Float):Void; /** A readable and/or writable stream/webstream.A function to get notified when a stream is no longer readable, writableor has experienced an error or a premature close event.```jsimport { finished } from 'node:stream';import fs from 'node:fs';const rs = fs.createReadStream('archive.tar');finished(rs, (err) => {  if (err) {    console.error('Stream failed.', err);  } else {    console.log('Stream is done reading.');  }});rs.resume(); // Drain the stream.```Especially useful in error handling scenarios where a stream is destroyedprematurely (like an aborted HTTP request), and will not emit `'end'` or `'finish'`.The `finished` API provides [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streamfinishedstream-options).`stream.finished()` leaves dangling event listeners (in particular `'error'`, `'end'`, `'finish'` and `'close'`) after `callback` has beeninvoked. The reason for this is so that unexpected `'error'` events (due toincorrect stream implementations) do not cause unexpected crashes.If this is unwanted behavior then the returned cleanup function needs to beinvoked in the callback:```jsconst cleanup = finished(rs, (err) => {  cleanup();  // ...});``` **/ @:overload(function(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void { }) function finished(stream:ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, options:node.stream.stream.FinishedOptions, callback:ts.AnyOf2<() -> Void, (err:global.nodejs.ErrnoException) -> Void>):() -> Void; /** A module method to pipe between streams and generators forwarding errors andproperly cleaning up and provide a callback when the pipeline is complete.```jsimport { pipeline } from 'node:stream';import fs from 'node:fs';import zlib from 'node:zlib';// Use the pipeline API to easily pipe a series of streams// together and get notified when the pipeline is fully done.// A pipeline to gzip a potentially huge tar file efficiently:pipeline(  fs.createReadStream('archive.tar'),  zlib.createGzip(),  fs.createWriteStream('archive.tar.gz'),  (err) => {    if (err) {      console.error('Pipeline failed.', err);    } else {      console.log('Pipeline succeeded.');    }  },);```The `pipeline` API provides a [`promise version`](https://nodejs.org/docs/latest-v20.x/api/stream.html#streampipelinesource-transforms-destination-options).`stream.pipeline()` will call `stream.destroy(err)` on all streams except:* `Readable` streams which have emitted `'end'` or `'close'`.* `Writable` streams which have emitted `'finish'` or `'close'`.`stream.pipeline()` leaves dangling event listeners on the streamsafter the `callback` has been invoked. In the case of reuse of streams afterfailure, this can cause event listener leaks and swallowed errors. If the laststream is readable, dangling event listeners will be removed so that the laststream can be consumed later.`stream.pipeline()` closes all the streams when an error is raised.The `IncomingRequest` usage with `pipeline` could lead to an unexpected behavioronce it would destroy the socket without sending the expected response.See the example below:```jsimport fs from 'node:fs';import http from 'node:http';import { pipeline } from 'node:stream';const server = http.createServer((req, res) => {  const fileStream = fs.createReadStream('./fileNotExist.txt');  pipeline(fileStream, res, (err) => {    if (err) {      console.log(err); // No such file      // this message can't be sent once `pipeline` already destroyed the socket      return res.end('error!!!');    }  });});``` **/ @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function<A:(node.stream.stream.PipelineSource<Dynamic>), T1:(node.stream.stream.PipelineTransform<A, Dynamic>), T2:(node.stream.stream.PipelineTransform<T1, Dynamic>), T3:(node.stream.stream.PipelineTransform<T2, Dynamic>), T4:(node.stream.stream.PipelineTransform<T3, Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, transform1:T1, transform2:T2, transform3:T3, transform4:T4, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic { }) @:overload(function(streams:haxe.ds.ReadOnlyArray<ts.AnyOf3<global.nodejs.ReadableStream, global.nodejs.WritableStream, global.nodejs.ReadWriteStream>>, callback:(err:Null<global.nodejs.ErrnoException>) -> Void):global.nodejs.WritableStream { }) @:overload(function(stream1:global.nodejs.ReadableStream, stream2:ts.AnyOf2<global.nodejs.WritableStream, global.nodejs.ReadWriteStream>, streams:haxe.extern.Rest<ts.AnyOf3<global.nodejs.WritableStream, global.nodejs.ReadWriteStream, (err:Null<global.nodejs.ErrnoException>) -> Void>>):global.nodejs.WritableStream { }) function pipeline<A:(node.stream.stream.PipelineSource<Dynamic>), B:(ts.AnyOf5<global.nodejs.WritableStream, node.stream.stream.PipelineDestinationIterableFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>>, node.stream.stream.PipelineDestinationPromiseFunction<ts.AnyOf2<String, node.buffer.Buffer<js.lib.ArrayBufferLike>>, Dynamic>, node.stream.stream.PipelineDestinationIterableFunction<Dynamic>, node.stream.stream.PipelineDestinationPromiseFunction<Dynamic, Dynamic>>)>(source:A, destination:B, callback:node.stream.stream.PipelineCallback<B>):Dynamic; /** Returns whether the stream has encountered an error. **/ function isErrored(stream:ts.AnyOf4<global.nodejs.ReadableStream, global.nodejs.WritableStream, node.stream.stream.Readable, node.stream.stream.Writable>):Bool; /** Returns whether the stream is readable. **/ function isReadable(stream:ts.AnyOf2<global.nodejs.ReadableStream, node.stream.stream.Readable>):Bool; /** Creates a `Promise` that is fulfilled when the `EventEmitter` emits the givenevent or that is rejected if the `EventEmitter` emits `'error'` while waiting.The `Promise` will resolve with an array of all the arguments emitted to thegiven event.This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` eventsemantics and does not listen to the `'error'` event.```jsimport { once, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();process.nextTick(() => {  ee.emit('myevent', 42);});const [value] = await once(ee, 'myevent');console.log(value);const err = new Error('kaboom');process.nextTick(() => {  ee.emit('error', err);});try {  await once(ee, 'myevent');} catch (err) {  console.error('error happened', err);}```The special handling of the `'error'` event is only used when `events.once()` is used to wait for another event. If `events.once()` is used to wait for the'`error'` event itself, then it is treated as any other kind of event withoutspecial handling:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();once(ee, 'error')  .then(([err]) => console.log('ok', err.message))  .catch((err) => console.error('error', err.message));ee.emit('error', new Error('boom'));// Prints: ok boom```An `AbortSignal` can be used to cancel waiting for the event:```jsimport { EventEmitter, once } from 'node:events';const ee = new EventEmitter();const ac = new AbortController();async function foo(emitter, event, signal) {  try {    await once(emitter, event, { signal });    console.log('event emitted!');  } catch (error) {    if (error.name === 'AbortError') {      console.error('Waiting for the event was canceled!');    } else {      console.error('There was an error', error.message);    }  }}foo(ee, 'foo', ac.signal);ac.abort(); // Abort waiting for the eventee.emit('foo'); // Prints: Waiting for the event was canceled!``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>> { }) function once(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):js.lib.Promise<Array<Dynamic>>; /** ```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);});for await (const event of on(ee, 'foo')) {  // The execution of this inner block is synchronous and it  // processes one event at a time (even with await). Do not use  // if concurrent execution is required.  console.log(event); // prints ['bar'] [42]}// Unreachable here```Returns an `AsyncIterator` that iterates `eventName` events. It will throwif the `EventEmitter` emits `'error'`. It removes all listeners whenexiting the loop. The `value` returned by each iteration is an arraycomposed of the emitted event arguments.An `AbortSignal` can be used to cancel waiting on events:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ac = new AbortController();(async () => {  const ee = new EventEmitter();  // Emit later on  process.nextTick(() => {    ee.emit('foo', 'bar');    ee.emit('foo', 42);  });  for await (const event of on(ee, 'foo', { signal: ac.signal })) {    // The execution of this inner block is synchronous and it    // processes one event at a time (even with await). Do not use    // if concurrent execution is required.    console.log(event); // prints ['bar'] [42]  }  // Unreachable here})();process.nextTick(() => ac.abort());```Use the `close` option to specify an array of event names that will end the iteration:```jsimport { on, EventEmitter } from 'node:events';import process from 'node:process';const ee = new EventEmitter();// Emit later onprocess.nextTick(() => {  ee.emit('foo', 'bar');  ee.emit('foo', 42);  ee.emit('close');});for await (const event of on(ee, 'foo', { close: ['close'] })) {  console.log(event); // prints ['bar'] [42]}// the loop will exit after 'close' is emittedconsole.log('done'); // prints 'done'``` **/ @:overload(function(emitter:js.html.EventTarget, eventName:String, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic> { }) function on(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>, ?options:ServerHttp2Session):global.nodejs.AsyncIterator<Array<Dynamic>, Dynamic, Dynamic>; /** A class method that returns the number of listeners for the given `eventName` registered on the given `emitter`.```jsimport { EventEmitter, listenerCount } from 'node:events';const myEmitter = new EventEmitter();myEmitter.on('event', () => {});myEmitter.on('event', () => {});console.log(listenerCount(myEmitter, 'event'));// Prints: 2``` **/ function listenerCount(emitter:global.nodejs.EventEmitter<ServerHttp2Session>, eventName:ts.AnyOf2<String, js.lib.Symbol>):Float; /** Returns a copy of the array of listeners for the event named `eventName`.For `EventEmitter`s this behaves exactly the same as calling `.listeners` onthe emitter.For `EventTarget`s this is the only way to get the event listeners for theevent target. This is useful for debugging and diagnostic purposes.```jsimport { getEventListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  const listener = () => console.log('Events are fun');  ee.on('foo', listener);  console.log(getEventListeners(ee, 'foo')); // [ [Function: listener] ]}{  const et = new EventTarget();  const listener = () => console.log('Events are fun');  et.addEventListener('foo', listener);  console.log(getEventListeners(et, 'foo')); // [ [Function: listener] ]}``` **/ function getEventListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>, name:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>; /** Returns the currently set max amount of listeners.For `EventEmitter`s this behaves exactly the same as calling `.getMaxListeners` onthe emitter.For `EventTarget`s this is the only way to get the max event listeners for theevent target. If the number of event handlers on a single EventTarget exceedsthe max set, the EventTarget will print a warning.```jsimport { getMaxListeners, setMaxListeners, EventEmitter } from 'node:events';{  const ee = new EventEmitter();  console.log(getMaxListeners(ee)); // 10  setMaxListeners(11, ee);  console.log(getMaxListeners(ee)); // 11}{  const et = new EventTarget();  console.log(getMaxListeners(et)); // 10  setMaxListeners(11, et);  console.log(getMaxListeners(et)); // 11}``` **/ function getMaxListeners(emitter:ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>):Float; /** ```jsimport { setMaxListeners, EventEmitter } from 'node:events';const target = new EventTarget();const emitter = new EventEmitter();setMaxListeners(5, target, emitter);``` **/ function setMaxListeners(?n:Float, eventTargets:haxe.extern.Rest<ts.AnyOf2<js.html.EventTarget, global.nodejs.EventEmitter<ServerHttp2Session>>>):Void; /** Listens once to the `abort` event on the provided `signal`.Listening to the `abort` event on abort signals is unsafe and maylead to resource leaks since another third party with the signal cancall `e.stopImmediatePropagation()`. Unfortunately Node.js cannot changethis since it would violate the web standard. Additionally, the originalAPI makes it easy to forget to remove listeners.This API allows safely using `AbortSignal`s in Node.js APIs by solving thesetwo issues by listening to the event such that `stopImmediatePropagation` doesnot prevent the listener from running.Returns a disposable so that it may be unsubscribed from more easily.```jsimport { addAbortListener } from 'node:events';function example(signal) {  let disposable;  try {    signal.addEventListener('abort', (e) => e.stopImmediatePropagation());    disposable = addAbortListener(signal, (e) => {      // Do something when signal is aborted.    });  } finally {    disposable?.[Symbol.dispose]();  }}``` **/ function addAbortListener(signal:js.html.AbortSignal, resource:(event:js.html.Event) -> Void):global.Disposable; /** This symbol shall be used to install a listener for only monitoring `'error'` events. Listeners installed using this symbol are called before the regular `'error'` listeners are called.Installing a listener using this symbol does not change the behavior once an `'error'` event is emitted. Therefore, the process will still crash if noregular `'error'` listener is installed. **/ final errorMonitor : js.lib.Symbol; /** Value: `Symbol.for('nodejs.rejection')`See how to write a custom `rejection handler`. **/ final captureRejectionSymbol : js.lib.Symbol; /** Value: [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type)Change the default `captureRejections` option on all new `EventEmitter` objects. **/ var captureRejections : Bool; /** By default, a maximum of `10` listeners can be registered for any singleevent. This limit can be changed for individual `EventEmitter` instancesusing the `emitter.setMaxListeners(n)` method. To change the defaultfor _all_`EventEmitter` instances, the `events.defaultMaxListeners` propertycan be used. If this value is not a positive number, a `RangeError` is thrown.Take caution when setting the `events.defaultMaxListeners` because thechange affects _all_ `EventEmitter` instances, including those created beforethe change is made. However, calling `emitter.setMaxListeners(n)` still hasprecedence over `events.defaultMaxListeners`.This is not a hard limit. The `EventEmitter` instance will allowmore listeners to be added but will output a trace warning to stderr indicatingthat a "possible EventEmitter memory leak" has been detected. For any single`EventEmitter`, the `emitter.getMaxListeners()` and `emitter.setMaxListeners()` methods can be used totemporarily avoid this warning:```jsimport { EventEmitter } from 'node:events';const emitter = new EventEmitter();emitter.setMaxListeners(emitter.getMaxListeners() + 1);emitter.once('event', () => {  // do stuff  emitter.setMaxListeners(Math.max(emitter.getMaxListeners() - 1, 0));});```The `--trace-warnings` command-line flag can be used to display thestack trace for such warnings.The emitted warning can be inspected with `process.on('warning')` and willhave the additional `emitter`, `type`, and `count` properties, referring tothe event emitter instance, the event's name and the number of attachedlisteners, respectively.Its `name` property is set to `'MaxListenersExceededWarning'`. **/ var defaultMaxListeners : Float; })> = {
+	final server : ts.AnyOf2<Http2Server<Http1Request, Http1Response, Http2Request, Http2Response>, Http2SecureServer<Http1Request, Http1Response, Http2Request, Http2Response>>;
+	/**
+		Submits an `ALTSVC` frame (as defined by [RFC 7838](https://tools.ietf.org/html/rfc7838)) to the connected client.
+		
+		```js
+		import http2 from 'node:http2';
+		
+		const server = http2.createServer();
+		server.on('session', (session) => {
+		  // Set altsvc for origin https://example.org:80
+		  session.altsvc('h2=":8000"', 'https://example.org:80');
+		});
+		
+		server.on('stream', (stream) => {
+		  // Set altsvc for a specific stream
+		  stream.session.altsvc('h2=":8000"', stream.id);
+		});
+		```
+		
+		Sending an `ALTSVC` frame with a specific stream ID indicates that the alternate
+		service is associated with the origin of the given `Http2Stream`.
+		
+		The `alt` and origin string _must_ contain only ASCII bytes and are
+		strictly interpreted as a sequence of ASCII bytes. The special value `'clear'`may be passed to clear any previously set alternative service for a given
+		domain.
+		
+		When a string is passed for the `originOrStream` argument, it will be parsed as
+		a URL and the origin will be derived. For instance, the origin for the
+		HTTP URL `'https://example.org/foo/bar'` is the ASCII string`'https://example.org'`. An error will be thrown if either the given string
+		cannot be parsed as a URL or if a valid origin cannot be derived.
+		
+		A `URL` object, or any object with an `origin` property, may be passed as`originOrStream`, in which case the value of the `origin` property will be
+		used. The value of the `origin` property _must_ be a properly serialized
+		ASCII origin.
+	**/
 	function altsvc(alt:String, originOrStream:ts.AnyOf4<String, Float, node.url.URL, AlternativeServiceOptions>):Void;
-	final server : ts.AnyOf2<Http2Server, Http2SecureServer>;
-	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
-	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function addListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
-	@:overload(function(event:String, session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>):Bool { })
+	/**
+		Submits an `ORIGIN` frame (as defined by [RFC 8336](https://tools.ietf.org/html/rfc8336)) to the connected client
+		to advertise the set of origins for which the server is capable of providing
+		authoritative responses.
+		
+		```js
+		import http2 from 'node:http2';
+		const options = getSecureOptionsSomehow();
+		const server = http2.createSecureServer(options);
+		server.on('stream', (stream) => {
+		  stream.respond();
+		  stream.end('ok');
+		});
+		server.on('session', (session) => {
+		  session.origin('https://example.com', 'https://example.org');
+		});
+		```
+		
+		When a string is passed as an `origin`, it will be parsed as a URL and the
+		origin will be derived. For instance, the origin for the HTTP URL `'https://example.org/foo/bar'` is the ASCII string` 'https://example.org'`. An error will be thrown if either the given
+		string
+		cannot be parsed as a URL or if a valid origin cannot be derived.
+		
+		A `URL` object, or any object with an `origin` property, may be passed as
+		an `origin`, in which case the value of the `origin` property will be
+		used. The value of the `origin` property _must_ be a properly serialized
+		ASCII origin.
+		
+		Alternatively, the `origins` option may be used when creating a new HTTP/2
+		server using the `http2.createSecureServer()` method:
+		
+		```js
+		import http2 from 'node:http2';
+		const options = getSecureOptionsSomehow();
+		options.origins = ['https://example.com', 'https://example.org'];
+		const server = http2.createSecureServer(options);
+		server.on('stream', (stream) => {
+		  stream.respond();
+		  stream.end('ok');
+		});
+		```
+	**/
+	function origin(origins:haxe.extern.Rest<ts.AnyOf3<String, node.url.URL, { var origin : String; }>>):Void;
+	/**
+		Alias for `emitter.on(eventName, listener)`.
+	**/
+	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	function addListener(event:String, listener:(session:ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Synchronously calls each of the listeners registered for the event named `eventName`, in the order they were registered, passing the supplied arguments
+		to each.
+		
+		Returns `true` if the event had listeners, `false` otherwise.
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		const myEmitter = new EventEmitter();
+		
+		// First listener
+		myEmitter.on('event', function firstListener() {
+		  console.log('Helloooo! first listener');
+		});
+		// Second listener
+		myEmitter.on('event', function secondListener(arg1, arg2) {
+		  console.log(`event with parameters ${arg1}, ${arg2} in second listener`);
+		});
+		// Third listener
+		myEmitter.on('event', function thirdListener(...args) {
+		  const parameters = args.join(', ');
+		  console.log(`event with parameters ${parameters} in third listener`);
+		});
+		
+		console.log(myEmitter.listeners('event'));
+		
+		myEmitter.emit('event', 1, 2, 3, 4, 5);
+		
+		// Prints:
+		// [
+		//   [Function: firstListener],
+		//   [Function: secondListener],
+		//   [Function: thirdListener]
+		// ]
+		// Helloooo! first listener
+		// event with parameters 1, 2 in second listener
+		// event with parameters 1, 2, 3, 4, 5 in third listener
+		```
+	**/
 	@:overload(function(event:String, stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float):Bool { })
-	function emit(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool;
-	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
-	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function on(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
-	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
-	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function once(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
-	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
-	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function prependListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
-	@:overload(function(event:String, listener:(session:ServerHttp2Session, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session { })
-	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session { })
-	function prependOnceListener(event:String, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, args:haxe.extern.Rest<Dynamic>):Bool { })
+	function emit(event:String, session:ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>):Bool;
+	/**
+		Adds the `listener` function to the end of the listeners array for the event
+		named `eventName`. No checks are made to see if the `listener` has already
+		been added. Multiple calls passing the same combination of `eventName` and
+		`listener` will result in the `listener` being added, and called, multiple times.
+		
+		```js
+		server.on('connection', (stream) => {
+		  console.log('someone connected!');
+		});
+		```
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+		
+		By default, event listeners are invoked in the order they are added. The `emitter.prependListener()` method can be used as an alternative to add the
+		event listener to the beginning of the listeners array.
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		const myEE = new EventEmitter();
+		myEE.on('foo', () => console.log('a'));
+		myEE.prependListener('foo', () => console.log('b'));
+		myEE.emit('foo');
+		// Prints:
+		//   b
+		//   a
+		```
+	**/
+	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	function on(event:String, listener:(session:ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Adds a **one-time** `listener` function for the event named `eventName`. The
+		next time `eventName` is triggered, this listener is removed and then invoked.
+		
+		```js
+		server.once('connection', (stream) => {
+		  console.log('Ah, we have our first user!');
+		});
+		```
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+		
+		By default, event listeners are invoked in the order they are added. The `emitter.prependOnceListener()` method can be used as an alternative to add the
+		event listener to the beginning of the listeners array.
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		const myEE = new EventEmitter();
+		myEE.once('foo', () => console.log('a'));
+		myEE.prependOnceListener('foo', () => console.log('b'));
+		myEE.emit('foo');
+		// Prints:
+		//   b
+		//   a
+		```
+	**/
+	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	function once(event:String, listener:(session:ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Adds the `listener` function to the _beginning_ of the listeners array for the
+		event named `eventName`. No checks are made to see if the `listener` has
+		already been added. Multiple calls passing the same combination of `eventName`
+		and `listener` will result in the `listener` being added, and called, multiple times.
+		
+		```js
+		server.prependListener('connection', (stream) => {
+		  console.log('someone connected!');
+		});
+		```
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+	**/
+	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	function prependListener(event:String, listener:(session:ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
+		listener is removed, and then invoked.
+		
+		```js
+		server.prependOnceListener('connection', (stream) => {
+		  console.log('Ah, we have our first user!');
+		});
+		```
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+	**/
+	@:overload(function(event:String, listener:(stream:ServerHttp2Stream, headers:IncomingHttpHeaders, flags:Float) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	@:overload(function(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response> { })
+	function prependOnceListener(event:String, listener:(session:ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>, socket:ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Value will be `undefined` if the `Http2Session` is not yet connected to a
+		socket, `h2c` if the `Http2Session` is not connected to a `TLSSocket`, or
+		will return the value of the connected `TLSSocket`'s own `alpnProtocol` property.
+	**/
 	@:optional
 	final alpnProtocol : String;
-	function close(?callback:() -> Void):Void;
+	/**
+		Will be `true` if this `Http2Session` instance has been closed, otherwise `false`.
+	**/
 	final closed : Bool;
+	/**
+		Will be `true` if this `Http2Session` instance is still connecting, will be set
+		to `false` before emitting `connect` event and/or calling the `http2.connect` callback.
+	**/
 	final connecting : Bool;
-	function destroy(?error:js.lib.Error, ?code:Float):Void;
+	/**
+		Will be `true` if this `Http2Session` instance has been destroyed and must no
+		longer be used, otherwise `false`.
+	**/
 	final destroyed : Bool;
+	/**
+		Value is `undefined` if the `Http2Session` session socket has not yet been
+		connected, `true` if the `Http2Session` is connected with a `TLSSocket`,
+		and `false` if the `Http2Session` is connected to any other kind of socket
+		or stream.
+	**/
 	@:optional
 	final encrypted : Bool;
-	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:ts.AnyOf11<js.lib.DataView_<js.lib.ArrayBufferLike>, global.Buffer, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, js.lib.Uint8ClampedArray_<js.lib.ArrayBufferLike>, js.lib.Uint16Array_<js.lib.ArrayBufferLike>, js.lib.Uint32Array_<js.lib.ArrayBufferLike>, js.lib.Int8Array_<js.lib.ArrayBufferLike>, js.lib.Int16Array_<js.lib.ArrayBufferLike>, js.lib.Int32Array_<js.lib.ArrayBufferLike>, js.lib.Float32Array_<js.lib.ArrayBufferLike>, js.lib.Float64Array_<js.lib.ArrayBufferLike>>):Void;
+	/**
+		A prototype-less object describing the current local settings of this `Http2Session`.
+		The local settings are local to _this_`Http2Session` instance.
+	**/
 	final localSettings : Settings;
+	/**
+		If the `Http2Session` is connected to a `TLSSocket`, the `originSet` property
+		will return an `Array` of origins for which the `Http2Session` may be
+		considered authoritative.
+		
+		The `originSet` property is only available when using a secure TLS connection.
+	**/
 	@:optional
 	final originSet : Array<String>;
+	/**
+		Indicates whether the `Http2Session` is currently waiting for acknowledgment of
+		a sent `SETTINGS` frame. Will be `true` after calling the `http2session.settings()` method.
+		Will be `false` once all sent `SETTINGS` frames have been acknowledged.
+	**/
 	final pendingSettingsAck : Bool;
-	@:overload(function(payload:ts.AnyOf11<js.lib.DataView_<js.lib.ArrayBufferLike>, global.Buffer, js.lib.Uint8Array_<js.lib.ArrayBufferLike>, js.lib.Uint8ClampedArray_<js.lib.ArrayBufferLike>, js.lib.Uint16Array_<js.lib.ArrayBufferLike>, js.lib.Uint32Array_<js.lib.ArrayBufferLike>, js.lib.Int8Array_<js.lib.ArrayBufferLike>, js.lib.Int16Array_<js.lib.ArrayBufferLike>, js.lib.Int32Array_<js.lib.ArrayBufferLike>, js.lib.Float32Array_<js.lib.ArrayBufferLike>, js.lib.Float64Array_<js.lib.ArrayBufferLike>>, callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool { })
-	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:global.Buffer) -> Void):Bool;
-	function ref():Void;
+	/**
+		A prototype-less object describing the current remote settings of this`Http2Session`.
+		The remote settings are set by the _connected_ HTTP/2 peer.
+	**/
 	final remoteSettings : Settings;
-	function rstStream(stream:Http2Stream, ?code:Float):Void;
-	function setTimeout(msecs:Float, ?callback:() -> Void):Void;
+	/**
+		Returns a `Proxy` object that acts as a `net.Socket` (or `tls.TLSSocket`) but
+		limits available methods to ones safe to use with HTTP/2.
+		
+		`destroy`, `emit`, `end`, `pause`, `read`, `resume`, and `write` will throw
+		an error with code `ERR_HTTP2_NO_SOCKET_MANIPULATION`. See `Http2Session and Sockets` for more information.
+		
+		`setTimeout` method will be called on this `Http2Session`.
+		
+		All other interactions will be routed directly to the socket.
+	**/
 	final socket : ts.AnyOf2<node.net.Socket, node.tls.TLSSocket>;
+	/**
+		Provides miscellaneous information about the current state of the`Http2Session`.
+		
+		An object describing the current status of this `Http2Session`.
+	**/
 	final state : SessionState;
-	function priority(stream:Http2Stream, options:StreamPriorityOptions):Void;
-	function settings(settings:Settings):Void;
+	/**
+		The `http2session.type` will be equal to `http2.constants.NGHTTP2_SESSION_SERVER` if this `Http2Session` instance is a
+		server, and `http2.constants.NGHTTP2_SESSION_CLIENT` if the instance is a
+		client.
+	**/
 	final type : Float;
+	/**
+		Gracefully closes the `Http2Session`, allowing any existing streams to
+		complete on their own and preventing new `Http2Stream` instances from being
+		created. Once closed, `http2session.destroy()`_might_ be called if there
+		are no open `Http2Stream` instances.
+		
+		If specified, the `callback` function is registered as a handler for the`'close'` event.
+	**/
+	function close(?callback:() -> Void):Void;
+	/**
+		Immediately terminates the `Http2Session` and the associated `net.Socket` or `tls.TLSSocket`.
+		
+		Once destroyed, the `Http2Session` will emit the `'close'` event. If `error` is not undefined, an `'error'` event will be emitted immediately before the `'close'` event.
+		
+		If there are any remaining open `Http2Streams` associated with the `Http2Session`, those will also be destroyed.
+	**/
+	function destroy(?error:js.lib.Error, ?code:Float):Void;
+	/**
+		Transmits a `GOAWAY` frame to the connected peer _without_ shutting down the`Http2Session`.
+	**/
+	function goaway(?code:Float, ?lastStreamID:Float, ?opaqueData:global.nodejs.ArrayBufferView<js.lib.ArrayBufferLike>):Void;
+	/**
+		Sends a `PING` frame to the connected HTTP/2 peer. A `callback` function must
+		be provided. The method will return `true` if the `PING` was sent, `false` otherwise.
+		
+		The maximum number of outstanding (unacknowledged) pings is determined by the `maxOutstandingPings` configuration option. The default maximum is 10.
+		
+		If provided, the `payload` must be a `Buffer`, `TypedArray`, or `DataView` containing 8 bytes of data that will be transmitted with the `PING` and
+		returned with the ping acknowledgment.
+		
+		The callback will be invoked with three arguments: an error argument that will
+		be `null` if the `PING` was successfully acknowledged, a `duration` argument
+		that reports the number of milliseconds elapsed since the ping was sent and the
+		acknowledgment was received, and a `Buffer` containing the 8-byte `PING` payload.
+		
+		```js
+		session.ping(Buffer.from('abcdefgh'), (err, duration, payload) => {
+		  if (!err) {
+		    console.log(`Ping acknowledged in ${duration} milliseconds`);
+		    console.log(`With payload '${payload.toString()}'`);
+		  }
+		});
+		```
+		
+		If the `payload` argument is not specified, the default payload will be the
+		64-bit timestamp (little endian) marking the start of the `PING` duration.
+	**/
+	@:overload(function(payload:global.nodejs.ArrayBufferView<js.lib.ArrayBufferLike>, callback:(err:Null<js.lib.Error>, duration:Float, payload:node.buffer.NonSharedBuffer) -> Void):Bool { })
+	function ping(callback:(err:Null<js.lib.Error>, duration:Float, payload:node.buffer.NonSharedBuffer) -> Void):Bool;
+	/**
+		Calls `ref()` on this `Http2Session` instance's underlying `net.Socket`.
+	**/
+	function ref():Void;
+	/**
+		Sets the local endpoint's window size.
+		The `windowSize` is the total window size to set, not
+		the delta.
+		
+		```js
+		import http2 from 'node:http2';
+		
+		const server = http2.createServer();
+		const expectedWindowSize = 2 ** 20;
+		server.on('connect', (session) => {
+		
+		  // Set local window size to be 2 ** 20
+		  session.setLocalWindowSize(expectedWindowSize);
+		});
+		```
+	**/
+	function setLocalWindowSize(windowSize:Float):Void;
+	/**
+		Used to set a callback function that is called when there is no activity on
+		the `Http2Session` after `msecs` milliseconds. The given `callback` is
+		registered as a listener on the `'timeout'` event.
+	**/
+	function setTimeout(msecs:Float, ?callback:() -> Void):Void;
+	/**
+		Updates the current local settings for this `Http2Session` and sends a new `SETTINGS` frame to the connected HTTP/2 peer.
+		
+		Once called, the `http2session.pendingSettingsAck` property will be `true` while the session is waiting for the remote peer to acknowledge the new
+		settings.
+		
+		The new settings will not become effective until the `SETTINGS` acknowledgment
+		is received and the `'localSettings'` event is emitted. It is possible to send
+		multiple `SETTINGS` frames while acknowledgment is still pending.
+	**/
+	function settings(settings:Settings, ?callback:(err:Null<js.lib.Error>, settings:Settings, duration:Float) -> Void):Void;
+	/**
+		Calls `unref()` on this `Http2Session`instance's underlying `net.Socket`.
+	**/
 	function unref():Void;
-	function removeListener(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
-	function off(event:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session;
-	function removeAllListeners(?event:ts.AnyOf2<String, js.lib.Symbol>):ServerHttp2Session;
-	function setMaxListeners(n:Float):ServerHttp2Session;
+	/**
+		Removes the specified `listener` from the listener array for the event named `eventName`.
+		
+		```js
+		const callback = (stream) => {
+		  console.log('someone connected!');
+		};
+		server.on('connection', callback);
+		// ...
+		server.removeListener('connection', callback);
+		```
+		
+		`removeListener()` will remove, at most, one instance of a listener from the
+		listener array. If any single listener has been added multiple times to the
+		listener array for the specified `eventName`, then `removeListener()` must be
+		called multiple times to remove each instance.
+		
+		Once an event is emitted, all listeners attached to it at the
+		time of emitting are called in order. This implies that any `removeListener()` or `removeAllListeners()` calls _after_ emitting and _before_ the last listener finishes execution
+		will not remove them from`emit()` in progress. Subsequent events behave as expected.
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		class MyEmitter extends EventEmitter {}
+		const myEmitter = new MyEmitter();
+		
+		const callbackA = () => {
+		  console.log('A');
+		  myEmitter.removeListener('event', callbackB);
+		};
+		
+		const callbackB = () => {
+		  console.log('B');
+		};
+		
+		myEmitter.on('event', callbackA);
+		
+		myEmitter.on('event', callbackB);
+		
+		// callbackA removes listener callbackB but it will still be called.
+		// Internal listener array at time of emit [callbackA, callbackB]
+		myEmitter.emit('event');
+		// Prints:
+		//   A
+		//   B
+		
+		// callbackB is now removed.
+		// Internal listener array [callbackA]
+		myEmitter.emit('event');
+		// Prints:
+		//   A
+		```
+		
+		Because listeners are managed using an internal array, calling this will
+		change the position indices of any listener registered _after_ the listener
+		being removed. This will not impact the order in which listeners are called,
+		but it means that any copies of the listener array as returned by
+		the `emitter.listeners()` method will need to be recreated.
+		
+		When a single function has been added as a handler multiple times for a single
+		event (as in the example below), `removeListener()` will remove the most
+		recently added instance. In the example the `once('ping')` listener is removed:
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		const ee = new EventEmitter();
+		
+		function pong() {
+		  console.log('pong');
+		}
+		
+		ee.on('ping', pong);
+		ee.once('ping', pong);
+		ee.removeListener('ping', pong);
+		
+		ee.emit('ping');
+		ee.emit('ping');
+		```
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+	**/
+	function removeListener<K>(eventName:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Alias for `emitter.removeListener()`.
+	**/
+	function off<K>(eventName:ts.AnyOf2<String, js.lib.Symbol>, listener:(args:haxe.extern.Rest<Dynamic>) -> Void):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Removes all listeners, or those of the specified `eventName`.
+		
+		It is bad practice to remove listeners added elsewhere in the code,
+		particularly when the `EventEmitter` instance was created by some other
+		component or module (e.g. sockets or file streams).
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+	**/
+	function removeAllListeners(?eventName:ts.AnyOf2<String, js.lib.Symbol>):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		By default `EventEmitter`s will print a warning if more than `10` listeners are
+		added for a particular event. This is a useful default that helps finding
+		memory leaks. The `emitter.setMaxListeners()` method allows the limit to be
+		modified for this specific `EventEmitter` instance. The value can be set to `Infinity` (or `0`) to indicate an unlimited number of listeners.
+		
+		Returns a reference to the `EventEmitter`, so that calls can be chained.
+	**/
+	function setMaxListeners(n:Float):ServerHttp2Session<Http1Request, Http1Response, Http2Request, Http2Response>;
+	/**
+		Returns the current max listener value for the `EventEmitter` which is either
+		set by `emitter.setMaxListeners(n)` or defaults to
+		{@link
+		EventEmitter.defaultMaxListeners
+		}
+		.
+	**/
 	function getMaxListeners():Float;
-	function listeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
-	function rawListeners(event:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
+	/**
+		Returns a copy of the array of listeners for the event named `eventName`.
+		
+		```js
+		server.on('connection', (stream) => {
+		  console.log('someone connected!');
+		});
+		console.log(util.inspect(server.listeners('connection')));
+		// Prints: [ [Function] ]
+		```
+	**/
+	function listeners<K>(eventName:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
+	/**
+		Returns a copy of the array of listeners for the event named `eventName`,
+		including any wrappers (such as those created by `.once()`).
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		const emitter = new EventEmitter();
+		emitter.once('log', () => console.log('log once'));
+		
+		// Returns a new Array with a function `onceWrapper` which has a property
+		// `listener` which contains the original listener bound above
+		const listeners = emitter.rawListeners('log');
+		const logFnWrapper = listeners[0];
+		
+		// Logs "log once" to the console and does not unbind the `once` event
+		logFnWrapper.listener();
+		
+		// Logs "log once" to the console and removes the listener
+		logFnWrapper();
+		
+		emitter.on('log', () => console.log('log persistently'));
+		// Will return a new Array with a single function bound by `.on()` above
+		const newListeners = emitter.rawListeners('log');
+		
+		// Logs "log persistently" twice
+		newListeners[0]();
+		emitter.emit('log');
+		```
+	**/
+	function rawListeners<K>(eventName:ts.AnyOf2<String, js.lib.Symbol>):Array<haxe.Constraints.Function>;
+	/**
+		Returns the number of listeners listening for the event named `eventName`.
+		If `listener` is provided, it will return how many times the listener is found
+		in the list of the listeners of the event.
+	**/
+	function listenerCount<K>(eventName:ts.AnyOf2<String, js.lib.Symbol>, ?listener:haxe.Constraints.Function):Float;
+	/**
+		Returns an array listing the events for which the emitter has registered
+		listeners. The values in the array are strings or `Symbol`s.
+		
+		```js
+		import { EventEmitter } from 'node:events';
+		
+		const myEE = new EventEmitter();
+		myEE.on('foo', () => {});
+		myEE.on('bar', () => {});
+		
+		const sym = Symbol('symbol');
+		myEE.on(sym, () => {});
+		
+		console.log(myEE.eventNames());
+		// Prints: [ 'foo', 'bar', Symbol(symbol) ]
+		```
+	**/
 	function eventNames():Array<ts.AnyOf2<String, js.lib.Symbol>>;
-	function listenerCount(type:ts.AnyOf2<String, js.lib.Symbol>):Float;
 };

@@ -1,7 +1,7 @@
 package ;
 
 @:forward
-abstract IVue(IVue_) from IVue_ to IVue_ {
+abstract IVue(IVueTypedef) from IVueTypedef to IVueTypedef {
 	public var DollarEl(get, set):js.html.DOMElement;
 	inline function get_DollarEl():js.html.DOMElement return js.Syntax.field(cast this, '$el');
 	inline function set_DollarEl(v:js.html.DOMElement):js.html.DOMElement { js.Syntax.code("{0}[{1}] = {2}", this, '$el', v); return v; }

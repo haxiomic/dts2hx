@@ -1,0 +1,33 @@
+package node.fs;
+
+typedef BigIntStats = {
+	var atimeNs : ts.BigInt;
+	var mtimeNs : ts.BigInt;
+	var ctimeNs : ts.BigInt;
+	var birthtimeNs : ts.BigInt;
+	function isFile():Bool;
+	function isDirectory():Bool;
+	function isBlockDevice():Bool;
+	function isCharacterDevice():Bool;
+	function isSymbolicLink():Bool;
+	function isFIFO():Bool;
+	function isSocket():Bool;
+	var dev : ts.BigInt;
+	var ino : ts.BigInt;
+	var mode : ts.BigInt;
+	var nlink : ts.BigInt;
+	var uid : ts.BigInt;
+	var gid : ts.BigInt;
+	var rdev : ts.BigInt;
+	var size : ts.BigInt;
+	var blksize : ts.BigInt;
+	var blocks : ts.BigInt;
+	var atimeMs : ts.BigInt;
+	var mtimeMs : ts.BigInt;
+	var ctimeMs : ts.BigInt;
+	var birthtimeMs : ts.BigInt;
+	var atime : js.lib.Date;
+	var mtime : js.lib.Date;
+	var ctime : js.lib.Date;
+	var birthtime : js.lib.Date;
+};

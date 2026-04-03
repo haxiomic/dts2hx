@@ -1,7 +1,7 @@
 package unit.edge_cases.edgecases;
 
 @:forward
-abstract ComputedProps(ComputedProps_) from ComputedProps_ to ComputedProps_ {
+abstract ComputedProps(ComputedPropsTypedef) from ComputedPropsTypedef to ComputedPropsTypedef {
 	public var string_key(get, set):String;
 	inline function get_string_key():String return js.Syntax.field(cast this, 'string-key');
 	inline function set_string_key(v:String):String { js.Syntax.code("{0}[{1}] = {2}", this, 'string-key', v); return v; }

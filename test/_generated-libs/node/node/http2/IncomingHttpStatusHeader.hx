@@ -1,7 +1,7 @@
 package node.http2;
 
 @:forward
-abstract IncomingHttpStatusHeader(IncomingHttpStatusHeader_) from IncomingHttpStatusHeader_ to IncomingHttpStatusHeader_ {
+abstract IncomingHttpStatusHeader(IncomingHttpStatusHeaderTypedef) from IncomingHttpStatusHeaderTypedef to IncomingHttpStatusHeaderTypedef {
 	@:optional
 	public var ColonStatus(get, set):Float;
 	inline function get_ColonStatus():Float return js.Syntax.field(cast this, ':status');

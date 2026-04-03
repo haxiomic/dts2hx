@@ -19,25 +19,21 @@ typedef PropertyDescriptor = {
 	@:optional
 	var writable : Bool;
 	/**
-		A function which serves as a getter for the property, or `undefined` if there is no getter
-		(accessor descriptors only).
+		A function which serves as a getter for the property, or <code>undefined</code> if there is no getter (accessor descriptors only).
 	**/
 	@:optional
 	var get : RemoteObject;
 	/**
-		A function which serves as a setter for the property, or `undefined` if there is no setter
-		(accessor descriptors only).
+		A function which serves as a setter for the property, or <code>undefined</code> if there is no setter (accessor descriptors only).
 	**/
 	@:optional
 	var set : RemoteObject;
 	/**
-		True if the type of this property descriptor may be changed and if the property may be
-		deleted from the corresponding object.
+		True if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.
 	**/
 	var configurable : Bool;
 	/**
-		True if this property shows up during enumeration of the properties on the corresponding
-		object.
+		True if this property shows up during enumeration of the properties on the corresponding object.
 	**/
 	var enumerable : Bool;
 	/**
@@ -51,7 +47,7 @@ typedef PropertyDescriptor = {
 	@:optional
 	var isOwn : Bool;
 	/**
-		Property symbol object, if the property is of the `symbol` type.
+		Property symbol object, if the property is of the <code>symbol</code> type.
 	**/
 	@:optional
 	var symbol : RemoteObject;

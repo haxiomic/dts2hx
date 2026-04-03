@@ -1,7 +1,7 @@
 package unit.named_tuple.namedtuple;
 
 @:forward
-abstract KeyValuePair<K, V>(KeyValuePair_<K, V>) from KeyValuePair_<K, V> to KeyValuePair_<K, V> {
+abstract KeyValuePair<K, V>(KeyValuePairTypedef<K, V>) from KeyValuePairTypedef<K, V> to KeyValuePairTypedef<K, V> {
 	public var Zero(get, set):K;
 	inline function get_Zero():K return js.Syntax.field(cast this, '0');
 	inline function set_Zero(v:K):K { js.Syntax.code("{0}[{1}] = {2}", this, '0', v); return v; }

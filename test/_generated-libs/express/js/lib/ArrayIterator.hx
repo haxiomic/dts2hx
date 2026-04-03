@@ -1,7 +1,7 @@
 package js.lib;
 
 @:forward
-abstract ArrayIterator<T>(ArrayIterator_<T>) from ArrayIterator_<T> to ArrayIterator_<T> {
+abstract ArrayIterator<T>(ArrayIteratorTypedef<T>) from ArrayIteratorTypedef<T> to ArrayIteratorTypedef<T> {
 	@:optional
 	public var return_(get, set):Null<Dynamic> -> IteratorResult<T, Dynamic>;
 	inline function get_return_():Null<Dynamic> -> IteratorResult<T, Dynamic> return js.Syntax.field(cast this, 'return');

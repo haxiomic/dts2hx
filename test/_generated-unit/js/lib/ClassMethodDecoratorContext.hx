@@ -4,7 +4,7 @@ package js.lib;
 	Context provided to a class method decorator.
 **/
 @:forward
-abstract ClassMethodDecoratorContext<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)>(ClassMethodDecoratorContext_<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)>) from ClassMethodDecoratorContext_<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)> to ClassMethodDecoratorContext_<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)> {
+abstract ClassMethodDecoratorContext<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)>(ClassMethodDecoratorContextTypedef<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)>) from ClassMethodDecoratorContextTypedef<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)> to ClassMethodDecoratorContextTypedef<This, Value:((args:haxe.extern.Rest<Any>) -> Dynamic)> {
 	/**
 		A value indicating whether the class element is a static (`true`) or instance (`false`) element.
 	**/

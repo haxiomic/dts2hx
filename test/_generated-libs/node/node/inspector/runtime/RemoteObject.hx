@@ -9,12 +9,12 @@ typedef RemoteObject = {
 	**/
 	var type : String;
 	/**
-		Object subtype hint. Specified for `object` type values only.
+		Object subtype hint. Specified for <code>object</code> type values only.
 	**/
 	@:optional
 	var subtype : String;
 	/**
-		Object class (constructor) name. Specified for `object` type values only.
+		Object class (constructor) name. Specified for <code>object</code> type values only.
 	**/
 	@:optional
 	var className : String;
@@ -24,8 +24,7 @@ typedef RemoteObject = {
 	@:optional
 	var value : Dynamic;
 	/**
-		Primitive value which can not be JSON-stringified does not have `value`, but gets this
-		property.
+		Primitive value which can not be JSON-stringified does not have <code>value</code>, but gets this property.
 	**/
 	@:optional
 	var unserializableValue : String;
@@ -40,7 +39,7 @@ typedef RemoteObject = {
 	@:optional
 	var objectId : String;
 	/**
-		Preview containing abbreviated property values. Specified for `object` type values only.
+		Preview containing abbreviated property values. Specified for <code>object</code> type values only.
 	**/
 	@:optional
 	var preview : ObjectPreview;

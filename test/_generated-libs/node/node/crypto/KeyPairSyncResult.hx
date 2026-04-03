@@ -1,6 +1,6 @@
 package node.crypto;
 
-typedef KeyPairSyncResult<T1:(ts.AnyOf2<String, global.Buffer>), T2:(ts.AnyOf2<String, global.Buffer>)> = {
+typedef KeyPairSyncResult<T1, T2> = {
 	var publicKey : T1;
 	var privateKey : T2;
 };

@@ -1,7 +1,7 @@
 package js.lib;
 
 @:forward
-abstract RegExpMatchArray(RegExpMatchArray_) from RegExpMatchArray_ to RegExpMatchArray_ {
+abstract RegExpMatchArray(RegExpMatchArrayTypedef) from RegExpMatchArrayTypedef to RegExpMatchArrayTypedef {
 	/**
 		The first match. This will always be present because `null` will be returned if there are no matches.
 	**/

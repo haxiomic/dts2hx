@@ -7,4 +7,6 @@ typedef NetworkInterfaceInfoIPv4 = {
 	var mac : String;
 	var internal : Bool;
 	var cidr : Null<String>;
+	@:optional
+	var scopeid : Float;
 };

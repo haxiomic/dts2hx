@@ -1,7 +1,7 @@
 package vue;
 
 @:forward
-abstract PropOptions<T>(PropOptions_<T>) from PropOptions_<T> to PropOptions_<T> {
+abstract PropOptions<T>(PropOptionsTypedef<T>) from PropOptionsTypedef<T> to PropOptionsTypedef<T> {
 	@:optional
 	public var default_(get, set):ts.AnyOf2<() -> Null<T>, T>;
 	inline function get_default_():ts.AnyOf2<() -> Null<T>, T> return js.Syntax.field(cast this, 'default');

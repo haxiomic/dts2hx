@@ -180,4 +180,10 @@ package node.fs;
 		Constant for fs.Stats mode property for determining access permissions for a file. File mode indicating executable by others.
 	**/
 	static final S_IXOTH : Float;
+	/**
+		When set, a memory file mapping is used to access the file. This flag
+		is available on Windows operating systems only. On other operating systems,
+		this flag is ignored.
+	**/
+	static final UV_FS_O_FILEMAP : Float;
 }

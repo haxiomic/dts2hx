@@ -11,8 +11,7 @@ typedef SetBreakpointByUrlParameterType = {
 	@:optional
 	var url : String;
 	/**
-		Regex pattern for the URLs of the resources to set breakpoints on. Either `url` or
-		`urlRegex` must be specified.
+		Regex pattern for the URLs of the resources to set breakpoints on. Either <code>url</code> or <code>urlRegex</code> must be specified.
 	**/
 	@:optional
 	var urlRegex : String;
@@ -27,8 +26,7 @@ typedef SetBreakpointByUrlParameterType = {
 	@:optional
 	var columnNumber : Float;
 	/**
-		Expression to use as a breakpoint condition. When specified, debugger will only stop on the
-		breakpoint if this expression evaluates to true.
+		Expression to use as a breakpoint condition. When specified, debugger will only stop on the breakpoint if this expression evaluates to true.
 	**/
 	@:optional
 	var condition : String;

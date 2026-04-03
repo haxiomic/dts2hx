@@ -20,7 +20,7 @@ typedef PropertyPreview = {
 	@:optional
 	var valuePreview : ObjectPreview;
 	/**
-		Object subtype hint. Specified for `object` type values only.
+		Object subtype hint. Specified for <code>object</code> type values only.
 	**/
 	@:optional
 	var subtype : String;

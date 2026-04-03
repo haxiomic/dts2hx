@@ -9,9 +9,7 @@ typedef Scope = {
 	**/
 	var type : String;
 	/**
-		Object representing the scope. For `global` and `with` scopes it represents the actual
-		object; for the rest of the scopes, it is artificial transient object enumerating scope
-		variables as its properties.
+		Object representing the scope. For <code>global</code> and <code>with</code> scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.
 	**/
 	var object : node.inspector.runtime.RemoteObject;
 	@:optional

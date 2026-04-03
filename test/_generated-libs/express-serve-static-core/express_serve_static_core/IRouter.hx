@@ -1,7 +1,7 @@
 package express_serve_static_core;
 
 @:forward
-abstract IRouter(IRouter_) from IRouter_ to IRouter_ {
+abstract IRouter(IRouterTypedef) from IRouterTypedef to IRouterTypedef {
 	/**
 		Access the native `m-search` field. This field has type parameters
 		that cannot be expressed in a property type, so use js.Syntax.field:
@@ -10,5 +10,5 @@ abstract IRouter(IRouter_) from IRouter_ to IRouter_ {
 		```
 	**/
 	@:selfCall
-	inline function call(req:Request<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs>, res:Response<Dynamic>, next:NextFunction):Dynamic return (cast this : IRouter_).call(req, res, next);
+	inline function call(req:Request<ParamsDictionary, Dynamic, Dynamic, qs.ParsedQs, haxe.DynamicAccess<Dynamic>>, res:Response<Dynamic, haxe.DynamicAccess<Dynamic>, Float>, next:NextFunction):Any return (cast this : IRouterTypedef).call(req, res, next);
 }
