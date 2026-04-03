@@ -938,6 +938,11 @@ class ConverterContext {
 	}
 
 	function saveHaxeModule(module: HaxeModule) {
+		// Skip types from the TypeScript compiler's own namespace — these are internal
+		// to the TS type checker and not part of the user's library (e.g. typescript.Type)
+		if (module.pack.indexOf('typescript') != -1 && module.tsSymbol != null && module.tsSymbol.isBuiltIn()) {
+			return;
+		}
 		var isBuiltIn = module.tsSymbol != null && module.tsSymbol.isBuiltIn();
 		// External ambient global types from .d.ts files in node_modules without module exports
 		// (e.g. @types/webxr) may be referenced by modular types — don't skip them
