@@ -531,7 +531,7 @@ class Main {
 			// Pass 1: Generate abstract wrappers for typedefs with @:native fields.
 			// Track wrapped types so we can fix references in TExtend/TIntersection.
 			var abstractWrappers = new Map<String, {module: TypeDefinition, source: String}>();
-			// Set of fully-qualified raw names (pack.Foo_) that have abstract wrappers
+			// Set of fully-qualified raw names (pack.FooTypedef) that have abstract wrappers
 			var wrappedRawNames = new Map<String, Bool>();
 
 			for (_ => haxeModule in converter.generatedModules) {
@@ -546,8 +546,8 @@ class Main {
 						if (wrapper != null) {
 							var originalName = haxeModule.name;
 							var fqn = haxeModule.pack.concat([originalName]).join('.');
-							// Rename original typedef to Foo_
-							haxeModule.name = '${originalName}_';
+							// Rename original typedef to FooTypedef
+							haxeModule.name = '${originalName}Typedef';
 							haxeModule.doc = null;
 							abstractWrappers.set(fqn, {module: haxeModule, source: wrapper.source});
 							wrappedRawNames.set(haxeModule.pack.concat([haxeModule.name]).join('.'), true);
@@ -558,7 +558,7 @@ class Main {
 			}
 
 			// Pass 2: Save all modules, fixing TExtend/TIntersection references to wrapped types.
-			// In structural contexts (& extension), references must use the raw typedef (Foo_)
+			// In structural contexts (& extension), references must use the raw typedef (FooTypedef)
 			// instead of the abstract wrapper (Foo), because Haxe can't extend abstracts.
 			for (_ => haxeModule in converter.generatedModules) {
 				var skipModule = false;
@@ -587,7 +587,7 @@ class Main {
 			// Save abstract wrapper files
 			for (fqn => wrapper in abstractWrappers) {
 				var wrapperModule = wrapper.module;
-				var wrapperName = wrapperModule.name.substr(0, wrapperModule.name.length - 1); // strip trailing _
+				var wrapperName = StringTools.replace(wrapperModule.name, 'Typedef', ''); // strip Typedef suffix
 				var wrapperPath = Path.join([outputLibraryPath].concat(wrapperModule.pack).concat(['$wrapperName.hx']));
 				FileTools.touchDirectoryPath(Path.directory(wrapperPath));
 				Fs.writeFileSync(wrapperPath, wrapper.source);
@@ -770,7 +770,7 @@ class Main {
 		}
 	}
 
-	/** In TExtend/TIntersection, replace references to abstract-wrapped types with their raw typedef (Foo -> Foo_) **/
+	/** In TExtend/TIntersection, replace references to abstract-wrapped types with their raw typedef (Foo -> FooTypedef) **/
 	static function fixWrappedTypeReferences(module: TypeDefinition, wrappedRawNames: Map<String, Bool>) {
 		// Fix the module's kind (the type it aliases)
 		switch module.kind {
@@ -808,7 +808,7 @@ class Main {
 
 	static function fixTpInStructuralContext(tp: haxe.macro.Expr.TypePath, wrappedRawNames: Map<String, Bool>): haxe.macro.Expr.TypePath {
 		// Check fully-qualified and short name (same-package references have empty pack)
-		var rawName = '${tp.name}_';
+		var rawName = '${tp.name}Typedef';
 		var fqnRaw = (tp.pack != null && tp.pack.length > 0) ? tp.pack.concat([rawName]).join('.') : rawName;
 		if (wrappedRawNames.exists(fqnRaw) || wrappedRawNames.exists(rawName)) {
 			return { pack: tp.pack, name: rawName, params: tp.params, sub: tp.sub };
@@ -908,7 +908,7 @@ class Main {
 			typeParams = '<' + haxeModule.params.map(p -> printer.printTypeParamDecl(p)).join(', ') + '>';
 		}
 
-		var innerName = '${haxeModule.name}_$typeParams';
+		var innerName = '${haxeModule.name}Typedef$typeParams';
 		var buf = new StringBuf();
 		buf.add('package ${haxeModule.pack.join(".")};\n\n');
 		if (haxeModule.doc != null && haxeModule.doc != '') {
