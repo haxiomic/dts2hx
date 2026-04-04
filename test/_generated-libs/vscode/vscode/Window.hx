@@ -52,9 +52,9 @@ package vscode;
 		Shows a selection list.
 	**/
 	@:overload(function(items:ts.AnyOf2<Array<String>, global.Thenable<Array<String>>>, ?options:QuickPickOptions, ?token:CancellationToken):global.Thenable<Null<String>> { })
-	@:overload(function<T:(QuickPickItem)>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, options:Dynamic, ?token:CancellationToken):global.Thenable<Null<Array<T>>> { })
+	@:overload(function<T:(QuickPickItem)>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, options:QuickPickOptions & { var canPickMany : Bool; }, ?token:CancellationToken):global.Thenable<Null<Array<T>>> { })
 	@:overload(function<T:(QuickPickItem)>(items:ts.AnyOf2<Array<T>, global.Thenable<Array<T>>>, ?options:QuickPickOptions, ?token:CancellationToken):global.Thenable<Null<T>> { })
-	static function showQuickPick(items:ts.AnyOf2<Array<String>, global.Thenable<Array<String>>>, options:Dynamic, ?token:CancellationToken):global.Thenable<Null<Array<String>>>;
+	static function showQuickPick(items:ts.AnyOf2<Array<String>, global.Thenable<Array<String>>>, options:QuickPickOptions & { var canPickMany : Bool; }, ?token:CancellationToken):global.Thenable<Null<Array<String>>>;
 	/**
 		Shows a selection list of [workspace folders](#workspace.workspaceFolders) to pick from.
 		Returns `undefined` if no folder is open.

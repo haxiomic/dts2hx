@@ -5,7 +5,7 @@ typedef PrimitiveChain<T> = {
 	function after<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):FunctionChain<TFunc>;
 	function before<TFunc:((args:haxe.extern.Rest<Dynamic>) -> Dynamic)>(func:TFunc):FunctionChain<TFunc>;
 	function castArray():CollectionChain<T>;
-	function write():Dynamic;
+	function write():js.lib.Promise<T>;
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
 	function invokeMap(methodName:String, args:haxe.extern.Rest<Dynamic>):CollectionChain<Dynamic>;
 	function size():PrimitiveChain<Float>;

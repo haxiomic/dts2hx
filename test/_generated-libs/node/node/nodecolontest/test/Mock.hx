@@ -1,3 +1,5 @@
 package node.nodecolontest.test;
 
-typedef Mock<F:(haxe.Constraints.Function)> = Dynamic;
+typedef Mock<F:(haxe.Constraints.Function)> = {
+	var mock : MockFunctionContext<F>;
+};

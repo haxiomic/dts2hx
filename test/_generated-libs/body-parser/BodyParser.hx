@@ -1,6 +1,6 @@
 @:jsRequire("body-parser") @valueModuleOnly extern class BodyParser {
 	@:selfCall
-	static function call(?options:Dynamic):connect.NextHandleFunction;
+	static function call(?options:body_parser.OptionsJson & body_parser.OptionsText & body_parser.OptionsUrlencoded):connect.NextHandleFunction;
 	/**
 		Returns middleware that only parses json and only looks at requests
 		where the Content-Type header matches the type option.

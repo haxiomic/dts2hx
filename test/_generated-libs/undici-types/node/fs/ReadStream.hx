@@ -30,7 +30,7 @@ package node.fs;
 		  2. close
 		  3. ready
 	**/
-	function addListener<K:(ts.AnyOf3<js.lib.Symbol, String, Dynamic>)>(event:K, listener:Dynamic):ReadStream;
+	function addListener<K:(ts.AnyOf3<js.lib.Symbol, String, { }>)>(event:K, listener:Dynamic):ReadStream;
 	/**
 		Adds the `listener` function to the end of the listeners array for the event
 		named `eventName`. No checks are made to see if the `listener` has already
@@ -59,7 +59,7 @@ package node.fs;
 		//   a
 		```
 	**/
-	function on<K:(ts.AnyOf3<js.lib.Symbol, String, Dynamic>)>(event:K, listener:Dynamic):ReadStream;
+	function on<K:(ts.AnyOf3<js.lib.Symbol, String, { }>)>(event:K, listener:Dynamic):ReadStream;
 	/**
 		Adds a **one-time** `listener` function for the event named `eventName`. The
 		next time `eventName` is triggered, this listener is removed and then invoked.
@@ -86,7 +86,7 @@ package node.fs;
 		//   a
 		```
 	**/
-	function once<K:(ts.AnyOf3<js.lib.Symbol, String, Dynamic>)>(event:K, listener:Dynamic):ReadStream;
+	function once<K:(ts.AnyOf3<js.lib.Symbol, String, { }>)>(event:K, listener:Dynamic):ReadStream;
 	/**
 		Adds the `listener` function to the _beginning_ of the listeners array for the
 		event named `eventName`. No checks are made to see if the `listener` has
@@ -101,7 +101,7 @@ package node.fs;
 		
 		Returns a reference to the `EventEmitter`, so that calls can be chained.
 	**/
-	function prependListener<K:(ts.AnyOf3<js.lib.Symbol, String, Dynamic>)>(event:K, listener:Dynamic):ReadStream;
+	function prependListener<K:(ts.AnyOf3<js.lib.Symbol, String, { }>)>(event:K, listener:Dynamic):ReadStream;
 	/**
 		Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
 		listener is removed, and then invoked.
@@ -114,7 +114,7 @@ package node.fs;
 		
 		Returns a reference to the `EventEmitter`, so that calls can be chained.
 	**/
-	function prependOnceListener<K:(ts.AnyOf3<js.lib.Symbol, String, Dynamic>)>(event:K, listener:Dynamic):ReadStream;
+	function prependOnceListener<K:(ts.AnyOf3<js.lib.Symbol, String, { }>)>(event:K, listener:Dynamic):ReadStream;
 	/**
 		The `readable.setEncoding()` method sets the character encoding for
 		data read from the `Readable` stream.

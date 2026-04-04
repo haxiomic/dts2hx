@@ -230,7 +230,19 @@ package node;
 		supplied, the current context is used), and returns it wrapped inside a
 		function with the given `params`.
 	**/
-	static function compileFunction(code:String, ?params:haxe.ds.ReadOnlyArray<String>, ?options:node.vm.CompileFunctionOptions):Dynamic;
+	static function compileFunction(code:String, ?params:haxe.ds.ReadOnlyArray<String>, ?options:node.vm.CompileFunctionOptions):haxe.Constraints.Function & {
+		@:optional
+		var cachedData : node.buffer.NonSharedBuffer;
+		@:optional
+		var cachedDataProduced : Bool;
+		/**
+			When `cachedData` is supplied to create the `vm.Script`, this value will be set
+			to either `true` or `false` depending on acceptance of the data by V8.
+			Otherwise the value is `undefined`.
+		**/
+		@:optional
+		var cachedDataRejected : Bool;
+	};
 	/**
 		Measure the memory known to V8 and used by all contexts known to the
 		current V8 isolate, or the main context.

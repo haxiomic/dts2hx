@@ -1,11 +1,11 @@
 package node.fs;
 
 typedef StatSyncFn = {
-	@:overload(function(path:PathLike, ?options:Dynamic):Null<Stats> { })
-	@:overload(function(path:PathLike, options:Dynamic):Null<BigIntStats> { })
-	@:overload(function(path:PathLike, ?options:Dynamic):Stats { })
-	@:overload(function(path:PathLike, options:Dynamic):BigIntStats { })
-	@:overload(function(path:PathLike, options:Dynamic):ts.AnyOf2<Stats, BigIntStats> { })
+	@:overload(function(path:PathLike, ?options:StatSyncOptions & { @:optional var bigint : Bool; var throwIfNoEntry : Bool; }):Null<Stats> { })
+	@:overload(function(path:PathLike, options:StatSyncOptions & { var bigint : Bool; var throwIfNoEntry : Bool; }):Null<BigIntStats> { })
+	@:overload(function(path:PathLike, ?options:StatSyncOptions & { @:optional var bigint : Bool; }):Stats { })
+	@:overload(function(path:PathLike, options:StatSyncOptions & { var bigint : Bool; }):BigIntStats { })
+	@:overload(function(path:PathLike, options:StatSyncOptions & { var bigint : Bool; @:optional var throwIfNoEntry : Bool; }):ts.AnyOf2<Stats, BigIntStats> { })
 	@:overload(function(path:PathLike, ?options:StatSyncOptions):Null<ts.AnyOf2<Stats, BigIntStats>> { })
 	@:selfCall
 	function call_(path:PathLike, ?options:Any):Stats;

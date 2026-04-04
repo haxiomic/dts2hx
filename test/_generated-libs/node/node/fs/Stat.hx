@@ -192,7 +192,7 @@ package node.fs;
 		```
 	**/
 	@:overload(function(path:PathLike, options:Null<StatOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:Stats) -> Void):Void { })
-	@:overload(function(path:PathLike, options:Dynamic, callback:(err:Null<global.nodejs.ErrnoException>, stats:BigIntStats) -> Void):Void { })
+	@:overload(function(path:PathLike, options:StatOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:BigIntStats) -> Void):Void { })
 	@:overload(function(path:PathLike, options:Null<StatOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<Stats, BigIntStats>) -> Void):Void { })
 	@:selfCall
 	static function call(path:PathLike, callback:(err:Null<global.nodejs.ErrnoException>, stats:Stats) -> Void):Void;

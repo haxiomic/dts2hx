@@ -78,7 +78,7 @@ typedef LoDashStatic = {
 	@:selfCall
 	function call<TrapAny:({
 		var __trapAny : Dynamic;
-	})>(value:TrapAny):Dynamic;
+	})>(value:TrapAny):Collection<Dynamic> & Function<Dynamic> & Object<Dynamic> & Primitive<Dynamic> & String_;
 	/**
 		The semantic version number.
 	**/
@@ -485,17 +485,17 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Dynamic, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
-	@:overload(function<T, TList:(Null<List_<T>>)>(collection:Dynamic, ?iteratee:ListIterator<T, Dynamic>):TList { })
+	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
 	dynamic function each<T>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):Array<T>;
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Dynamic, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
-	@:overload(function<T, TList:(Null<List_<T>>)>(collection:Dynamic, ?iteratee:ListIterator<T, Dynamic>):TList { })
+	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
 	dynamic function eachRight<T>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):Array<T>;
 	/**
@@ -568,9 +568,9 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Dynamic, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
-	@:overload(function<T, TList:(Null<List_<T>>)>(collection:Dynamic, ?iteratee:ListIterator<T, Dynamic>):TList { })
+	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
 	function forEach<T>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):Array<T>;
 	/**
@@ -579,9 +579,9 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Dynamic, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
-	@:overload(function<T, TList:(Null<List_<T>>)>(collection:Dynamic, ?iteratee:ListIterator<T, Dynamic>):TList { })
+	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
 	function forEachRight<T>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):Array<T>;
 	/**
@@ -1599,7 +1599,7 @@ typedef LoDashStatic = {
 	@:overload(function<T>(value:T):PrimitiveChain<T> { })
 	function chain<TrapAny:({
 		var __lodashAnyHack : Dynamic;
-	})>(value:TrapAny):Dynamic;
+	})>(value:TrapAny):CollectionChain<Dynamic> & FunctionChain<Dynamic> & ObjectChain<Dynamic> & PrimitiveChain<Dynamic> & StringChain;
 	/**
 		This method invokes interceptor and returns value. The interceptor is invoked with one
 		argument; (value). The purpose of this method is to "tap into" a method chain in order to perform operations

@@ -115,6 +115,88 @@ fi
 echo "Test: C5 side-effect import (doesn't crash)..."
 PASS=$((PASS + 1))  # If we got here, augmentation module (which imports) didn't crash
 
+# --- Recursion: converter produces zero type-depth errors ---
+echo "Test: recursion module produces no type-depth errors..."
+rm -rf "$TMPDIR"
+RECURSION_ERRORS=$(node $DTS2HX "$(pwd)/build/modules/recursion" --output "$TMPDIR" --noLibWrap --skipDependencies 2>&1 | grep -c "type-depth" || true)
+if [ "$RECURSION_ERRORS" -eq 0 ]; then
+    PASS=$((PASS + 1))
+else
+    FAIL=$((FAIL + 1))
+    echo "  FAIL: recursion module had $RECURSION_ERRORS type-depth errors"
+fi
+
+# Verify key recursive types were generated correctly (using $TMPDIR from recursion conversion above)
+echo "Test: recursive types generated correctly..."
+
+# Self-referential: LinkedNode.next is Null<LinkedNode>
+LINKED=$(find "$TMPDIR" -name "LinkedNode.hx" | head -1)
+check "LinkedNode self-reference" "$LINKED" "Null<LinkedNode>"
+
+# Mutual recursion: TreeNode references TreeBranch
+TREE=$(find "$TMPDIR" -name "TreeNode.hx" | head -1)
+check "TreeNode references TreeBranch" "$TREE" "TreeBranch"
+
+# Mutual recursion: TreeBranch references TreeNode
+BRANCH=$(find "$TMPDIR" -name "TreeBranch.hx" | head -1)
+check "TreeBranch references TreeNode" "$BRANCH" "TreeNode"
+
+# Generic self-reference: Container has nested Container<Container<T>>
+CONTAINER=$(find "$TMPDIR" -name "Container.hx" | head -1)
+check "Container generic self-reference" "$CONTAINER" "Container<Container"
+
+# Self-referential class: Chainable.chain returns Chainable
+CHAIN=$(find "$TMPDIR" -name "Chainable.hx" | head -1)
+check "Chainable.chain returns Chainable" "$CHAIN" "function chain.*Chainable"
+
+# Callable intersection: CallableBase has selfCall
+CALLABLE=$(find "$TMPDIR" -name "CallableBase.hx" | head -1)
+check "CallableBase has selfCall" "$CALLABLE" "selfCall"
+
+# jQuery-like: QueryStatic is callable typedef
+QUERY=$(find "$TMPDIR" -name "QueryStatic.hx" | head -1)
+check "QueryStatic is callable" "$QUERY" "selfCall"
+
+# QueryResult self-referential: each/find return QueryResult
+QRESULT=$(find "$TMPDIR" -name "QueryResult.hx" | head -1)
+check "QueryResult.each returns QueryResult" "$QRESULT" "QueryResult"
+
+# jQuery produces zero type-depth errors (was 777k before fix)
+echo "Test: jQuery produces no type-depth errors..."
+rm -rf "$TMPDIR"
+JQUERY_ERRORS=$(cd ../../test && node ../dist/dts2hx.js jquery --output "$TMPDIR" 2>&1 | grep -c "type-depth" || true)
+if [ "$JQUERY_ERRORS" -eq 0 ]; then
+    PASS=$((PASS + 1))
+else
+    FAIL=$((FAIL + 1))
+    echo "  FAIL: jQuery had $JQUERY_ERRORS type-depth errors (was 777k before fix)"
+fi
+
+# --- Regression: cycle detection must NOT collapse valid nested types to Dynamic ---
+# These check the generated lib output for types that should never become Dynamic.
+echo "Test: no false-positive Dynamic collapse in generated libs..."
+LIBDIR="../../test/_generated-libs"
+
+# Array<Array<String>> must not become Array<Dynamic<String>>
+check_not "node DNS: no Dynamic<String> in resolveTxt" "$LIBDIR/node/node/Dns.hx" "Dynamic<String>"
+check_not "node DNS resolver: no Dynamic<String>" "$LIBDIR/node/node/dns/Resolver.hx" "Dynamic<String>"
+
+# ServerResponse must not become Dynamic
+check_not "node http ServerOptions: no Dynamic<Dynamic>" "$LIBDIR/node/node/http/ServerOptions.hx" "Dynamic<Dynamic>"
+
+# lodash: Array<Array<T>> must stay, not become Array<Dynamic<T>>
+check_not "lodash LoDashStatic: no Dynamic<T>" "$LIBDIR/lodash/lodash/LoDashStatic.hx" "Dynamic<T>"
+
+# lodash: Collection methods must keep Array<Array<T>>, not collapse to Array<Dynamic<T>>
+check_not "lodash Collection: no Dynamic<T>" "$LIBDIR/lodash/lodash/Collection.hx" "Dynamic<T>"
+check_not "lodash CollectionChain: no Dynamic<T>" "$LIBDIR/lodash/lodash/CollectionChain.hx" "Dynamic<T>"
+
+# Vue types must not collapse to Dynamic
+check_not "vue ThisTypedComponentOptionsWithArrayProps: not Dynamic" "$LIBDIR/vue/vue/types/options/ThisTypedComponentOptionsWithArrayProps.hx" "= Dynamic"
+
+# lowdb chain types should keep structure
+check_not "lowdb CollectionChain: no Rest<Any>" "$LIBDIR/lowdb/lodash/CollectionChain.hx" "Rest<Any>"
+
 rm -rf "$TMPDIR"
 echo ""
 echo "Edge case results: $PASS passed, $FAIL failed"
