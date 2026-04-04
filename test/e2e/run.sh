@@ -34,7 +34,8 @@ for mod in \
   ./build/modules/default-export-cases \
   ./build/modules/default-export-ns \
   ./build/modules/default-export-fn \
-  ./build/modules/default-export-iface; do
+  ./build/modules/default-export-iface \
+  ./build/modules/recursion; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
 done
 # Ambient declarations (global + declare module)
@@ -61,7 +62,7 @@ echo "  → test_output.js"
 echo "Step 4: Compiling additional test suites..."
 COMPILE_PASS=0
 COMPILE_FAIL=0
-for test_main in TestNegative TestImplements TestMixedIndex TestBigInt TestGaps TestTypedArrayBug TestDefaultExport; do
+for test_main in TestNegative TestImplements TestMixedIndex TestBigInt TestGaps TestTypedArrayBug TestDefaultExport TestRecursion; do
   outfile=$(echo "$test_main" | tr '[:upper:]' '[:lower:]').js
   if haxe \
     -cp . \
@@ -94,7 +95,7 @@ echo "Step 5: Running runtime tests..."
 echo ""
 node -e "require('./modules/ambient-impl'); require('./test_output.js');"
 echo ""
-for test_js in testnegative testimplements testmixedindex testbigint testgaps testtypedarraybug testdefaultexport; do
+for test_js in testnegative testimplements testmixedindex testbigint testgaps testtypedarraybug testdefaultexport testrecursion; do
   if [ -f "${test_js}.js" ]; then
     echo "Running ${test_js}..."
     if [ "$test_js" = "testnegative" ]; then

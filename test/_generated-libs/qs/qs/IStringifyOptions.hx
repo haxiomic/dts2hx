@@ -1,3 +1,3 @@
 package qs;
 
-typedef IStringifyOptions<AllowDots> = Dynamic;
+typedef IStringifyOptions<AllowDots> = IStringifyBaseOptions;

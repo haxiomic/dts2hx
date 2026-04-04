@@ -17,7 +17,19 @@ typedef CompileFunctionOptions = {
 		[Support of dynamic `import()` in compilation APIs](https://nodejs.org/docs/latest-v22.x/api/vm.html#support-of-dynamic-import-in-compilation-apis).
 	**/
 	@:optional
-	var importModuleDynamically : ts.AnyOf2<Float, DynamicModuleLoader<Dynamic>>;
+	var importModuleDynamically : ts.AnyOf2<Float, DynamicModuleLoader<haxe.Constraints.Function & {
+		@:optional
+		var cachedData : node.buffer.NonSharedBuffer;
+		@:optional
+		var cachedDataProduced : Bool;
+		/**
+			When `cachedData` is supplied to create the `vm.Script`, this value will be set
+			to either `true` or `false` depending on acceptance of the data by V8.
+			Otherwise the value is `undefined`.
+		**/
+		@:optional
+		var cachedDataRejected : Bool;
+	}>>;
 	/**
 		Specifies the filename used in stack traces produced by this script.
 	**/

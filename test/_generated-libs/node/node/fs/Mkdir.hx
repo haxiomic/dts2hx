@@ -75,9 +75,9 @@ package node.fs;
 		
 		See the POSIX [`mkdir(2)`](http://man7.org/linux/man-pages/man2/mkdir.2.html) documentation for more details.
 	**/
-	@:overload(function(path:PathLike, options:Null<ts.AnyOf3<String, Float, Dynamic>>, callback:NoParamCallback):Void { })
+	@:overload(function(path:PathLike, options:Null<ts.AnyOf3<String, Float, MakeDirectoryOptions & { @:optional var recursive : Bool; }>>, callback:NoParamCallback):Void { })
 	@:overload(function(path:PathLike, options:Null<ts.AnyOf3<String, Float, MakeDirectoryOptions>>, callback:ts.AnyOf2<(err:Null<global.nodejs.ErrnoException>) -> Void, (err:Null<global.nodejs.ErrnoException>, path:String) -> Void>):Void { })
 	@:overload(function(path:PathLike, callback:NoParamCallback):Void { })
 	@:selfCall
-	static function call(path:PathLike, options:Dynamic, callback:ts.AnyOf2<(err:Null<global.nodejs.ErrnoException>) -> Void, (err:Null<global.nodejs.ErrnoException>, path:String) -> Void>):Void;
+	static function call(path:PathLike, options:MakeDirectoryOptions & { var recursive : Bool; }, callback:ts.AnyOf2<(err:Null<global.nodejs.ErrnoException>) -> Void, (err:Null<global.nodejs.ErrnoException>, path:String) -> Void>):Void;
 }

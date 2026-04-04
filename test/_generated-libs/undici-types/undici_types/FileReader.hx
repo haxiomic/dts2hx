@@ -2,7 +2,7 @@ package undici_types;
 
 @:jsRequire("undici-types", "FileReader") extern class FileReader {
 	function new();
-	var __proto__ : Dynamic;
+	var __proto__ : js.html.EventTarget & FileReader;
 	function readAsArrayBuffer(blob:node.buffer.Blob):Void;
 	function readAsBinaryString(blob:node.buffer.Blob):Void;
 	function readAsText(blob:node.buffer.Blob, ?encoding:String):Void;

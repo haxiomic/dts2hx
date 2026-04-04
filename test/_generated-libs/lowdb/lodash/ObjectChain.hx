@@ -137,7 +137,7 @@ typedef ObjectChain<T> = {
 	function values():CollectionChain<Dynamic>;
 	function valuesIn():CollectionChain<Dynamic>;
 	function iteratee():FunctionChain<(o:T) -> Bool>;
-	function write():Dynamic;
+	function write():js.lib.Promise<T>;
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
 	function invokeMap(methodName:String, args:haxe.extern.Rest<Dynamic>):CollectionChain<Dynamic>;
 	function size():PrimitiveChain<Float>;

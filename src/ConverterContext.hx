@@ -938,6 +938,11 @@ class ConverterContext {
 	}
 
 	function saveHaxeModule(module: HaxeModule) {
+		// Skip types from the TypeScript compiler's own namespace — these are internal
+		// to the TS type checker and not part of the user's library (e.g. typescript.Type)
+		if (module.pack.indexOf('typescript') != -1 && module.tsSymbol != null && module.tsSymbol.isBuiltIn()) {
+			return;
+		}
 		var isBuiltIn = module.tsSymbol != null && module.tsSymbol.isBuiltIn();
 		// External ambient global types from .d.ts files in node_modules without module exports
 		// (e.g. @types/webxr) may be referenced by modular types — don't skip them
@@ -1003,9 +1008,25 @@ class ConverterContext {
 			.join('\n');
 	}
 
-	// the type-stack is used to detect loops in recursive type conversions
+	// Type conversion cycle detection:
+	// - _typeIdStack: O(1) exact-match cycle detection by type ID (replaces reference equality)
+	// - For intersections: structural check detects when TypeScript creates ever-growing
+	//   intersection types (e.g. JQueryStatic & T → JQueryStatic & T & T → ...) where each
+	//   level is a distinct type object. We detect this by checking if a stacked intersection
+	//   has the same named members but fewer total members (i.e. the intersection is growing).
 	var _currentTypeStack: Array<TsType> = [];
+	var _typeIdStack: Map<Int, Bool> = new Map();
 	var _rasterizeMappedTypes = true;
+
+	function pushTypeStack(type: TsType, typeId: Int) {
+		_currentTypeStack.push(type);
+		_typeIdStack.set(typeId, true);
+	}
+
+	function popTypeStack(type: TsType, typeId: Int) {
+		_currentTypeStack.pop();
+		_typeIdStack.remove(typeId);
+	}
 	/**
 		- `moduleSymbol` - is the module where this type is used. It's main use is to shorten type paths when referencing types in the same haxe module
 		- `accessContext` - is the symbol access path for the symbol that contains this type reference. This is required because if we're in a Global access context, type references should prefer global access (and modular context should prefer modular access). For example, in node.js there's a type `EventEmitter` that has both global (`NodeJS.EventEmitter` and modular access `require("event").EventEmitter`). If `EventEmitter` is referenced by another globally accessible type, then this method should return the global haxe type, and same logic for modular
@@ -1033,12 +1054,13 @@ class ConverterContext {
 			return macro :Dynamic;
 		}
 
-		var stackHasType = _currentTypeStack.has(type);
+		var typeId = type.getId();
+		var stackHasType = _typeIdStack.exists(typeId);
 
 		// handle direct type aliases
 		// we deliberately break out of type-stack recursion checking here
 		if (type.aliasSymbol != null && disallowAliasTarget != type.aliasSymbol) {
-			_currentTypeStack.push(type);
+			pushTypeStack(type, typeId);
 			var isAliasToMappedType = type.flags & TypeFlags.Object != 0 && (cast type: ObjectType).objectFlags & ObjectFlags.Mapped != 0;
 			var argsLength = type.aliasTypeArguments != null ? type.aliasTypeArguments.length : -1;
 			var hxType = switch {
@@ -1081,7 +1103,7 @@ class ConverterContext {
 					complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
 
 				// rasterize other mapped types to objects
-				case { isMappedType: true, args: args } if (_rasterizeMappedTypes && !stackHasType): 
+				case { isMappedType: true, args: args } if (_rasterizeMappedTypes && !stackHasType):
 					// when resolving aliases, we're outside the type-stack recursion check so to help avoid recursion, we only allow 1 level of mapped-type rasterization
 					_rasterizeMappedTypes = false;
 					// special handling of mapped types
@@ -1103,17 +1125,16 @@ class ConverterContext {
 					});
 			}
 
-			_currentTypeStack.pop();
+			popTypeStack(type, typeId);
 			return hxType;
 		}
 
 		if (stackHasType) {
 			Log.log('Breaking recursive type conversion', type);
-			// debug();
 			return macro :Dynamic;
 		}
 
-		_currentTypeStack.push(type);
+		pushTypeStack(type, typeId);
 
 		// handle fundamental type flags
 		var complexType = try if (type.flags & (TypeFlags.Any) != 0) {
@@ -1201,11 +1222,11 @@ class ConverterContext {
 			macro :Dynamic;
 		} catch (e: Any) {
 			debug();
-			_currentTypeStack.pop();
+			popTypeStack(type, typeId);
 			throw e;
 		}
 
-		_currentTypeStack.pop();
+		popTypeStack(type, typeId);
 
 		return complexType;
 	}
@@ -1243,7 +1264,39 @@ class ConverterContext {
 		return nullable ? macro :Null<$hxUnionType> : macro :$hxUnionType;
 	}
 
+	@:nullSafety(Off)
 	function complexTypeFromIntersectionType(intersectionType: IntersectionType, moduleSymbol: Symbol, accessContext: SymbolAccess, ?enclosingDeclaration: Node): ComplexType {
+		// Detect growing intersection pattern (e.g. JQueryStatic & T → JQueryStatic & T & T → ...).
+		// TypeScript can create ever-expanding intersections where type parameters accumulate.
+		// Each expansion is a distinct type object, so ID-based cycle detection can't catch it.
+		// Instead, check if the current intersection has strictly more members than a stacked
+		// intersection while sharing all the same named (non-type-parameter) members.
+		if (intersectionType.types.length > 2) {
+			for (stackType in _currentTypeStack) {
+				if (stackType.flags & TypeFlags.Intersection != 0) {
+					var stackIntersection:IntersectionType = cast stackType;
+					if (intersectionType.types.length > stackIntersection.types.length) {
+						var namedMembers = intersectionType.types.filter(t -> t.getSymbol() != null && t.flags & TypeFlags.TypeParameter == 0);
+						var stackNamed = stackIntersection.types.filter(t -> t.getSymbol() != null && t.flags & TypeFlags.TypeParameter == 0);
+						if (stackNamed.length > 0 && stackNamed.length == namedMembers.length) {
+							var allMatch = !stackNamed.exists(sn -> !namedMembers.exists(nm -> nm.getSymbol() == sn.getSymbol()));
+							if (allMatch) {
+								// Instead of Dynamic, emit the named members — they carry the
+								// real type info, while the accumulating type params are noise.
+								// e.g. JQueryStatic & T & T & T → JQueryStatic
+								if (namedMembers.length == 1) {
+									return complexTypeFromTsType(namedMembers[0], moduleSymbol, accessContext, enclosingDeclaration);
+								} else {
+									var hxTypes = namedMembers.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
+									return hxTypes.length > 0 ? TIntersection(hxTypes) : macro :Dynamic;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 		var types = intersectionType.types.filter(t -> {
 			// filter out types we cannot handle
 			t.flags & TypeFlags.NonPrimitive == 0;
@@ -1341,8 +1394,15 @@ class ConverterContext {
 			if (options.allowIntersectionRasterization || hasCallSignatures || hasNativeFieldsInAnon) {
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
-				// @! todo: avoid recursive type conversion (see jquery)
-				macro :Dynamic;
+				// Can't natively intersect and can't rasterize — emit the named members
+				// which preserves more type information than Dynamic
+				var namedTypes = types.filter(t -> t.getSymbol() != null && t.flags & TypeFlags.TypeParameter == 0);
+				if (namedTypes.length > 0) {
+					var hxTypes = namedTypes.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
+					hxTypes.length == 1 ? hxTypes[0] : TIntersection(hxTypes);
+				} else {
+					macro :Dynamic;
+				}
 			}
 		}
 	}

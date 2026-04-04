@@ -3,7 +3,7 @@ package lowdb;
 typedef LowdbAsync<SchemaT> = {
 	var _ : lodash.LoDashStatic;
 	dynamic function read():js.lib.Promise<LowdbAsync<SchemaT>>;
-	function write<T>(?returnValue:T):Dynamic;
+	function write<T>(?returnValue:T):js.lib.Promise<T>;
 	dynamic function getState():SchemaT;
 	dynamic function setState(state:SchemaT):LowdbAsync<SchemaT>;
 	function concat(values:haxe.extern.Rest<lodash.Many<SchemaT>>):lodash.CollectionChain<SchemaT>;

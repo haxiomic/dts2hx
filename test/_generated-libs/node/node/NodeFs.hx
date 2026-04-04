@@ -332,7 +332,7 @@ package node;
 		```
 	**/
 	@:overload(function(path:node.fs.PathLike, options:Null<node.fs.StatOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.Stats) -> Void):Void { })
-	@:overload(function(path:node.fs.PathLike, options:Dynamic, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStats) -> Void):Void { })
+	@:overload(function(path:node.fs.PathLike, options:node.fs.StatOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStats) -> Void):Void { })
 	@:overload(function(path:node.fs.PathLike, options:Null<node.fs.StatOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<node.fs.Stats, node.fs.BigIntStats>) -> Void):Void { })
 	static function stat(path:node.fs.PathLike, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.Stats) -> Void):Void;
 	/**
@@ -341,7 +341,7 @@ package node;
 		See the POSIX [`fstat(2)`](http://man7.org/linux/man-pages/man2/fstat.2.html) documentation for more detail.
 	**/
 	@:overload(function(fd:Float, options:Null<node.fs.StatOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.Stats) -> Void):Void { })
-	@:overload(function(fd:Float, options:Dynamic, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStats) -> Void):Void { })
+	@:overload(function(fd:Float, options:node.fs.StatOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStats) -> Void):Void { })
 	@:overload(function(fd:Float, options:Null<node.fs.StatOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<node.fs.Stats, node.fs.BigIntStats>) -> Void):Void { })
 	static function fstat(fd:Float, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.Stats) -> Void):Void;
 	/**
@@ -349,7 +349,7 @@ package node;
 		
 		See the POSIX [`fstat(2)`](http://man7.org/linux/man-pages/man2/fstat.2.html) documentation for more detail.
 	**/
-	@:overload(function(fd:Float, options:Dynamic):node.fs.BigIntStats { })
+	@:overload(function(fd:Float, options:node.fs.StatOptions & { var bigint : Bool; }):node.fs.BigIntStats { })
 	@:overload(function(fd:Float, ?options:node.fs.StatOptions):ts.AnyOf2<node.fs.Stats, node.fs.BigIntStats> { })
 	static function fstatSync(fd:Float, ?options:node.fs.StatOptions & { @:optional var bigint : Bool; }):node.fs.Stats;
 	/**
@@ -360,7 +360,7 @@ package node;
 		See the POSIX [`lstat(2)`](http://man7.org/linux/man-pages/man2/lstat.2.html) documentation for more details.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:Null<node.fs.StatOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.Stats) -> Void):Void { })
-	@:overload(function(path:node.fs.PathLike, options:Dynamic, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStats) -> Void):Void { })
+	@:overload(function(path:node.fs.PathLike, options:node.fs.StatOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStats) -> Void):Void { })
 	@:overload(function(path:node.fs.PathLike, options:Null<node.fs.StatOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<node.fs.Stats, node.fs.BigIntStats>) -> Void):Void { })
 	static function lstat(path:node.fs.PathLike, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.Stats) -> Void):Void;
 	/**
@@ -370,7 +370,7 @@ package node;
 		In case of an error, the `err.code` will be one of `Common System Errors`.
 	**/
 	@:overload(function(path:node.fs.PathLike, options:Null<node.fs.StatFsOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.StatsFs) -> Void):Void { })
-	@:overload(function(path:node.fs.PathLike, options:Dynamic, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStatsFs) -> Void):Void { })
+	@:overload(function(path:node.fs.PathLike, options:node.fs.StatFsOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.BigIntStatsFs) -> Void):Void { })
 	@:overload(function(path:node.fs.PathLike, options:Null<node.fs.StatFsOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<node.fs.StatsFs, node.fs.BigIntStatsFs>) -> Void):Void { })
 	static function statfs(path:node.fs.PathLike, callback:(err:Null<global.nodejs.ErrnoException>, stats:node.fs.StatsFs) -> Void):Void;
 	/**
@@ -379,7 +379,7 @@ package node;
 		
 		In case of an error, the `err.code` will be one of `Common System Errors`.
 	**/
-	@:overload(function(path:node.fs.PathLike, options:Dynamic):node.fs.BigIntStatsFs { })
+	@:overload(function(path:node.fs.PathLike, options:node.fs.StatFsOptions & { var bigint : Bool; }):node.fs.BigIntStatsFs { })
 	@:overload(function(path:node.fs.PathLike, ?options:node.fs.StatFsOptions):ts.AnyOf2<node.fs.StatsFs, node.fs.BigIntStatsFs> { })
 	static function statfsSync(path:node.fs.PathLike, ?options:node.fs.StatFsOptions & { @:optional var bigint : Bool; }):node.fs.StatsFs;
 	/**
@@ -620,10 +620,10 @@ package node;
 		
 		Asynchronous mkdir(2) - create a directory with a mode of `0o777`.
 	**/
-	@:overload(function(path:node.fs.PathLike, options:Null<ts.AnyOf3<String, Float, Dynamic>>, callback:node.fs.NoParamCallback):Void { })
+	@:overload(function(path:node.fs.PathLike, options:Null<ts.AnyOf3<String, Float, node.fs.MakeDirectoryOptions & { @:optional var recursive : Bool; }>>, callback:node.fs.NoParamCallback):Void { })
 	@:overload(function(path:node.fs.PathLike, options:Null<ts.AnyOf3<String, Float, node.fs.MakeDirectoryOptions>>, callback:ts.AnyOf2<(err:Null<global.nodejs.ErrnoException>) -> Void, (err:Null<global.nodejs.ErrnoException>, path:String) -> Void>):Void { })
 	@:overload(function(path:node.fs.PathLike, callback:node.fs.NoParamCallback):Void { })
-	static function mkdir(path:node.fs.PathLike, options:Dynamic, callback:ts.AnyOf2<(err:Null<global.nodejs.ErrnoException>) -> Void, (err:Null<global.nodejs.ErrnoException>, path:String) -> Void>):Void;
+	static function mkdir(path:node.fs.PathLike, options:node.fs.MakeDirectoryOptions & { var recursive : Bool; }, callback:ts.AnyOf2<(err:Null<global.nodejs.ErrnoException>) -> Void, (err:Null<global.nodejs.ErrnoException>, path:String) -> Void>):Void;
 	/**
 		Synchronously creates a directory. Returns `undefined`, or if `recursive` is `true`, the first directory path created.
 		This is the synchronous version of
@@ -636,9 +636,9 @@ package node;
 		
 		Synchronous mkdir(2) - create a directory.
 	**/
-	@:overload(function(path:node.fs.PathLike, ?options:ts.AnyOf3<String, Float, Dynamic>):Void { })
+	@:overload(function(path:node.fs.PathLike, ?options:ts.AnyOf3<String, Float, node.fs.MakeDirectoryOptions & { @:optional var recursive : Bool; }>):Void { })
 	@:overload(function(path:node.fs.PathLike, ?options:ts.AnyOf3<String, Float, node.fs.MakeDirectoryOptions>):Null<String> { })
-	static function mkdirSync(path:node.fs.PathLike, options:Dynamic):Null<String>;
+	static function mkdirSync(path:node.fs.PathLike, options:node.fs.MakeDirectoryOptions & { var recursive : Bool; }):Null<String>;
 	/**
 		Creates a unique temporary directory.
 		
@@ -1315,9 +1315,9 @@ package node;
 		
 		Watch for changes on `filename`. The callback `listener` will be called each time the file is accessed.
 	**/
-	@:overload(function(filename:node.fs.PathLike, options:Null<Dynamic>, listener:node.fs.BigIntStatsListener):node.fs.StatWatcher { })
+	@:overload(function(filename:node.fs.PathLike, options:Null<node.fs.WatchFileOptions & { var bigint : Bool; }>, listener:node.fs.BigIntStatsListener):node.fs.StatWatcher { })
 	@:overload(function(filename:node.fs.PathLike, listener:node.fs.StatsListener):node.fs.StatWatcher { })
-	static function watchFile(filename:node.fs.PathLike, options:Null<Dynamic>, listener:node.fs.StatsListener):node.fs.StatWatcher;
+	static function watchFile(filename:node.fs.PathLike, options:Null<node.fs.WatchFileOptions & { @:optional var bigint : Bool; }>, listener:node.fs.StatsListener):node.fs.StatWatcher;
 	/**
 		Stop watching for changes on `filename`. If `listener` is specified, only that
 		particular listener is removed. Otherwise, _all_ listeners are removed,
@@ -1357,7 +1357,7 @@ package node;
 	@:overload(function(filename:node.fs.PathLike, ?options:ts.AnyOf2<String, node.fs.WatchOptions>, ?listener:node.fs.WatchListener<String>):node.fs.FSWatcher { })
 	@:overload(function(filename:node.fs.PathLike, options:ts.AnyOf2<String, node.fs.WatchOptions>, ?listener:node.fs.WatchListener<ts.AnyOf2<String, node.buffer.NonSharedBuffer>>):node.fs.FSWatcher { })
 	@:overload(function(filename:node.fs.PathLike, ?listener:node.fs.WatchListener<String>):node.fs.FSWatcher { })
-	static function watch(filename:node.fs.PathLike, options:ts.AnyOf2<String, Dynamic>, ?listener:node.fs.WatchListener<node.buffer.NonSharedBuffer>):node.fs.FSWatcher;
+	static function watch(filename:node.fs.PathLike, options:ts.AnyOf2<String, node.fs.WatchOptions & { var encoding : String; }>, ?listener:node.fs.WatchListener<node.buffer.NonSharedBuffer>):node.fs.FSWatcher;
 	/**
 		Test whether or not the given path exists by checking with the file system.
 		Then call the `callback` argument with either true or false:

@@ -113,9 +113,9 @@ package node.fs;
 		
 		Asynchronous mkdir(2) - create a directory.
 	**/
-	@:overload(function(path:PathLike, ?options:ts.AnyOf3<String, Float, Dynamic>):js.lib.Promise<ts.Undefined> { })
+	@:overload(function(path:PathLike, ?options:ts.AnyOf3<String, Float, MakeDirectoryOptions & { @:optional var recursive : Bool; }>):js.lib.Promise<ts.Undefined> { })
 	@:overload(function(path:PathLike, ?options:ts.AnyOf3<String, Float, MakeDirectoryOptions>):js.lib.Promise<Null<String>> { })
-	static function mkdir(path:PathLike, options:Dynamic):js.lib.Promise<Null<String>>;
+	static function mkdir(path:PathLike, options:MakeDirectoryOptions & { var recursive : Bool; }):js.lib.Promise<Null<String>>;
 	/**
 		Reads the contents of a directory.
 		
@@ -175,13 +175,13 @@ package node.fs;
 		in which case the link itself is stat-ed, not the file that it refers to.
 		Refer to the POSIX [`lstat(2)`](http://man7.org/linux/man-pages/man2/lstat.2.html) document for more detail.
 	**/
-	@:overload(function(path:PathLike, opts:Dynamic):js.lib.Promise<BigIntStats> { })
+	@:overload(function(path:PathLike, opts:StatOptions & { var bigint : Bool; }):js.lib.Promise<BigIntStats> { })
 	@:overload(function(path:PathLike, ?opts:StatOptions):js.lib.Promise<ts.AnyOf2<Stats, BigIntStats>> { })
 	static function lstat(path:PathLike, ?opts:StatOptions & { @:optional var bigint : Bool; }):js.lib.Promise<Stats>;
-	@:overload(function(path:PathLike, opts:Dynamic):js.lib.Promise<BigIntStats> { })
+	@:overload(function(path:PathLike, opts:StatOptions & { var bigint : Bool; }):js.lib.Promise<BigIntStats> { })
 	@:overload(function(path:PathLike, ?opts:StatOptions):js.lib.Promise<ts.AnyOf2<Stats, BigIntStats>> { })
 	static function stat(path:PathLike, ?opts:StatOptions & { @:optional var bigint : Bool; }):js.lib.Promise<Stats>;
-	@:overload(function(path:PathLike, opts:Dynamic):js.lib.Promise<BigIntStatsFs> { })
+	@:overload(function(path:PathLike, opts:StatFsOptions & { var bigint : Bool; }):js.lib.Promise<BigIntStatsFs> { })
 	@:overload(function(path:PathLike, ?opts:StatFsOptions):js.lib.Promise<ts.AnyOf2<StatsFs, BigIntStatsFs>> { })
 	static function statfs(path:PathLike, ?opts:StatFsOptions & { @:optional var bigint : Bool; }):js.lib.Promise<StatsFs>;
 	/**
@@ -457,7 +457,7 @@ package node.fs;
 	**/
 	@:overload(function(filename:PathLike, ?options:ts.AnyOf2<String, WatchOptions>):js.lib.AsyncIterable<node.fs.promises.FileChangeInfo<String>, Dynamic, Dynamic> { })
 	@:overload(function(filename:PathLike, options:ts.AnyOf2<String, WatchOptions>):ts.AnyOf2<js.lib.AsyncIterable<node.fs.promises.FileChangeInfo<node.buffer.NonSharedBuffer>, Dynamic, Dynamic>, js.lib.AsyncIterable<node.fs.promises.FileChangeInfo<String>, Dynamic, Dynamic>> { })
-	static function watch(filename:PathLike, options:ts.AnyOf2<String, Dynamic>):js.lib.AsyncIterable<node.fs.promises.FileChangeInfo<node.buffer.NonSharedBuffer>, Dynamic, Dynamic>;
+	static function watch(filename:PathLike, options:ts.AnyOf2<String, WatchOptions & { var encoding : String; }>):js.lib.AsyncIterable<node.fs.promises.FileChangeInfo<node.buffer.NonSharedBuffer>, Dynamic, Dynamic>;
 	/**
 		Asynchronously copies the entire directory structure from `src` to `dest`,
 		including subdirectories and files.

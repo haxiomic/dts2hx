@@ -111,7 +111,52 @@ typedef Options = {
 		TODO
 	**/
 	@:optional
-	var connect : ts.AnyOf2<Dynamic, undici_types.buildconnector.Connector>;
+	var connect : ts.AnyOf4<node.tls.ConnectionOptions & {
+		@:optional
+		var allowH2 : Bool;
+		@:optional
+		var maxCachedSessions : Float;
+		@:optional
+		var socketPath : String;
+		@:optional
+		var timeout : Float;
+		@:optional
+		var port : Float;
+		@:optional
+		var keepAlive : Bool;
+		@:optional
+		var keepAliveInitialDelay : Float;
+	}, node.net.TcpNetConnectOpts & {
+		@:optional
+		var allowH2 : Bool;
+		@:optional
+		var maxCachedSessions : Float;
+		@:optional
+		var socketPath : String;
+		@:optional
+		var timeout : Float;
+		@:optional
+		var port : Float;
+		@:optional
+		var keepAlive : Bool;
+		@:optional
+		var keepAliveInitialDelay : Float;
+	}, node.net.IpcNetConnectOpts & {
+		@:optional
+		var allowH2 : Bool;
+		@:optional
+		var maxCachedSessions : Float;
+		@:optional
+		var socketPath : String;
+		@:optional
+		var timeout : Float;
+		@:optional
+		var port : Float;
+		@:optional
+		var keepAlive : Bool;
+		@:optional
+		var keepAliveInitialDelay : Float;
+	}, undici_types.buildconnector.Connector>;
 	/**
 		TODO
 	**/

@@ -1,3 +1,3 @@
 package global.qs;
 
-typedef IParseOptions<AllowDots> = Dynamic;
+typedef IParseOptions<AllowDots> = IParseBaseOptions;

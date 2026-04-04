@@ -291,7 +291,7 @@ typedef Response<ResBody, Locals> = {
 	**/
 	@:overload(function(view:String, ?callback:(err:js.lib.Error, html:String) -> Void):Void { })
 	function render(view:String, ?options:Dynamic, ?callback:(err:js.lib.Error, html:String) -> Void):Void;
-	var locals : Dynamic;
+	var locals : express_serve_static_core.Locals;
 	var charset : String;
 	/**
 		Adds the field to the Vary response header, if it is not there already.

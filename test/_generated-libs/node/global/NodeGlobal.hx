@@ -7289,7 +7289,7 @@ package global;
 			
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/self)
 		**/
-		var self : Dynamic;
+		var self : js.html.Window & Dynamic;
 		/**
 			The `speechSynthesis` read-only property of the Window object returns a SpeechSynthesis object, which is the entry point into using Web Speech API speech synthesis functionality.
 			
@@ -7329,7 +7329,7 @@ package global;
 			
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/window)
 		**/
-		var window : Dynamic;
+		var window : js.html.Window & Dynamic;
 		/**
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/abort_event)
 		**/
@@ -8155,7 +8155,7 @@ package global;
 			Enable this API with the `--expose-gc` CLI flag.
 		**/
 		@:optional
-		@:overload(function(options:Dynamic):js.lib.Promise<ts.Undefined> { })
+		@:overload(function(options:global.nodejs.GCOptions & { var execution : String; }):js.lib.Promise<ts.Undefined> { })
 		@:overload(function(options:global.nodejs.GCOptions):Void { })
 		dynamic function gc(?minor:Bool):Void;
 		var Buffer : global.BufferConstructor;
@@ -8210,7 +8210,7 @@ package global;
 		Enable this API with the `--expose-gc` CLI flag.
 	**/
 	@:optional
-	@:overload(function(options:Dynamic):js.lib.Promise<ts.Undefined> { })
+	@:overload(function(options:global.nodejs.GCOptions & { var execution : String; }):js.lib.Promise<ts.Undefined> { })
 	@:overload(function(options:global.nodejs.GCOptions):Void { })
 	dynamic static function gc(?minor:Bool):Void;
 	/**
