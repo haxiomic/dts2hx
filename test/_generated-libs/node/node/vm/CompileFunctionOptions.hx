@@ -17,7 +17,7 @@ typedef CompileFunctionOptions = {
 		[Support of dynamic `import()` in compilation APIs](https://nodejs.org/docs/latest-v22.x/api/vm.html#support-of-dynamic-import-in-compilation-apis).
 	**/
 	@:optional
-	var importModuleDynamically : ts.AnyOf2<Float, DynamicModuleLoader<haxe.Constraints.Function & {
+	var importModuleDynamically : ts.AnyOf2<Float, DynamicModuleLoader<js.lib.IFunction & {
 		@:optional
 		var cachedData : node.buffer.NonSharedBuffer;
 		@:optional

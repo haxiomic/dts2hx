@@ -322,7 +322,7 @@ package node;
 		// Prints: [ 'foo', 'bar', Symbol(symbol) ]
 		```
 	**/
-	function eventNames():Array<Dynamic>;
+	function eventNames():Array<ts.AnyOf2<String & IEvents<Any, T>, js.lib.Symbol & IEvents<Any, T>>>;
 	static var prototype : Events<Dynamic>;
 	/**
 		Creates a `Promise` that is fulfilled when the `EventEmitter` emits the given

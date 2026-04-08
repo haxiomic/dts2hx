@@ -38,7 +38,7 @@ typedef StringChain = {
 	function values():CollectionChain<String>;
 	function valuesIn():CollectionChain<String>;
 	function iteratee():FunctionChain<(o:Dynamic) -> Dynamic>;
-	function write():js.lib.Promise<String>;
+	function write():String & js.lib.IPromise<String>;
 	@:overload(function<TResult>(method:(args:haxe.extern.Rest<Dynamic>) -> TResult, args:haxe.extern.Rest<Dynamic>):CollectionChain<TResult> { })
 	function invokeMap(methodName:String, args:haxe.extern.Rest<Dynamic>):CollectionChain<Dynamic>;
 	function size():PrimitiveChain<Float>;

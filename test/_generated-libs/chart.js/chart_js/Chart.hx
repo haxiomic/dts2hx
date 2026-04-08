@@ -16,7 +16,7 @@ package chart_js;
 	final scales : haxe.DynamicAccess<Scale<CoreScaleOptions>>;
 	final attached : Bool;
 	var data : ChartData<TType, TData, TLabel>;
-	var options : chart_js.types.utils.DeepPartial<CoreChartOptions<TType> & ElementChartOptions<TType> & PluginChartOptions<TType> & { } & ScaleChartOptions<TType>>;
+	var options : chart_js.types.utils.DeepPartial<CoreChartOptions<TType> & ElementChartOptions<TType> & PluginChartOptions<TType> & { } & ScaleChartOptions<TType> & Dynamic>;
 	function clear():Chart<TType, TData, TLabel>;
 	function stop():Chart<TType, TData, TLabel>;
 	function resize(?width:Float, ?height:Float):Void;

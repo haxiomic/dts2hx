@@ -153,12 +153,12 @@ package node.http;
 	@:overload(function(event:String, socket:node.net.Socket):Bool { })
 	@:overload(function(event:String, err:js.lib.Error):Bool { })
 	@:overload(function(event:String):Bool { })
-	@:overload(function(event:String, req:js.lib.InstanceType<Request>, res:{ var req : js.lib.InstanceType<Request>; }):Bool { })
-	@:overload(function(event:String, req:js.lib.InstanceType<Request>, res:{ var req : js.lib.InstanceType<Request>; }):Bool { })
+	@:overload(function(event:String, req:js.lib.InstanceType<Request>, res:js.lib.InstanceType<Response> & { var req : js.lib.InstanceType<Request>; }):Bool { })
+	@:overload(function(event:String, req:js.lib.InstanceType<Request>, res:js.lib.InstanceType<Response> & { var req : js.lib.InstanceType<Request>; }):Bool { })
 	@:overload(function(event:String, err:js.lib.Error, socket:node.stream.stream.Duplex):Bool { })
 	@:overload(function(event:String, req:js.lib.InstanceType<Request>, socket:node.stream.stream.Duplex, head:node.buffer.NonSharedBuffer):Bool { })
 	@:overload(function(event:String, req:js.lib.InstanceType<Request>, socket:node.stream.stream.Duplex):Bool { })
-	@:overload(function(event:String, req:js.lib.InstanceType<Request>, res:{ var req : js.lib.InstanceType<Request>; }):Bool { })
+	@:overload(function(event:String, req:js.lib.InstanceType<Request>, res:js.lib.InstanceType<Response> & { var req : js.lib.InstanceType<Request>; }):Bool { })
 	@:overload(function(event:String, req:js.lib.InstanceType<Request>, socket:node.stream.stream.Duplex, head:node.buffer.NonSharedBuffer):Bool { })
 	function emit(event:String, args:haxe.extern.Rest<Dynamic>):Bool;
 	/**

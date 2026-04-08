@@ -1407,6 +1407,7 @@ class ConverterContext {
 		// in haxe, structure intersections must all have unique field names
 		// convert all types to haxe anons and compare fields to determine if there are any name clashes
 		var hxAnonTypes: Null<Array<ComplexType>> = null;
+		var hasNonIntersectableHxType = false;
 		if (nativelyIntersectable) {
 			hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration)).deduplicateTypes();
 			var seenFieldNames = new Map<String, Bool>();
@@ -1428,7 +1429,10 @@ class ConverterContext {
 							}
 						}
 						!nameClash;
-					default: false; // shouldn't happen
+					default:
+						// Type converted to a non-structure Haxe type (e.g. DynamicAccess, Array)
+						hasNonIntersectableHxType = true;
+						false;
 				}
 
 				// if multiple types have @:selfCall fields, rasterize the intersection to avoid collision between `call()` functions
@@ -1464,15 +1468,31 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			// try to rasterize if the intersection has call signatures (callable + object pattern)
-			// or if explicitly allowed via --allowIntersectionRasterization
 			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
 			var hasNativeFieldsInAnon = hxAnonTypes != null && hxAnonTypes.exists(t -> switch t {
 				case TAnonymous(fields): fields.exists(f -> f.getMeta(':native') != null);
 				default: false;
 			});
+
 			if (options.allowIntersectionRasterization || hasCallSignatures || hasNativeFieldsInAnon) {
+				// Rasterize: flatten all properties into a single anonymous type
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
+			} else if (hasNonStructureType || hasNonIntersectableHxType) {
+				// Some types convert to non-structure Haxe types (e.g. DynamicAccess, Array)
+				// that cannot participate in Haxe's & intersection.
+				// Filter to only types whose anon expansion is TAnonymous.
+				var hxTypes = [
+					for (t in types)
+						if (complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration).match(TAnonymous(_)))
+							complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration, null, true)
+				].deduplicateTypes();
+				if (hxTypes.length == 0) {
+					complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
+				} else if (hxTypes.length == 1) {
+					hxTypes[0];
+				} else {
+					TIntersection(hxTypes);
+				}
 			} else {
 				// Can't natively intersect and can't rasterize — emit the named members
 				// which preserves more type information than Dynamic

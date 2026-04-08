@@ -93,11 +93,11 @@ typedef JQueryStatic = {
 	/**
 		Merge the contents of two or more objects together into the first object.
 	**/
-	@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
-	@:overload(function<T, U, V, W, X>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X):Dynamic { })
-	@:overload(function<T, U, V, W>(deep:Bool, target:T, object1:U, object2:V, object3:W):Dynamic { })
-	@:overload(function<T, U, V>(deep:Bool, target:T, object1:U, object2:V):Dynamic { })
-	@:overload(function<T, U>(deep:Bool, target:T, object1:U):Dynamic { })
+	@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):{ } { })
+	@:overload(function<T, U, V, W, X>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X):{ } { })
+	@:overload(function<T, U, V, W>(deep:Bool, target:T, object1:U, object2:V, object3:W):{ } { })
+	@:overload(function<T, U, V>(deep:Bool, target:T, object1:U, object2:V):{ } { })
+	@:overload(function<T, U>(deep:Bool, target:T, object1:U):{ } { })
 	@:overload(function<T>(deep:Bool, target:T):{
 		@:overload(function<TElement:(js.html.Element)>(html:String, ?ownerDocument_attributes:ts.AnyOf2<js.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
 		@:overload(function<TElement:(js.html.DOMElement)>(selector:String, ?context:ts.AnyOf3<js.html.DOMElement, js.html.Document, JQuery<js.html.Element>>):JQuery<TElement> { })
@@ -191,22 +191,22 @@ typedef JQueryStatic = {
 		/**
 			Merge the contents of two or more objects together into the first object.
 		**/
-		@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
-		@:overload(function<T, U, V, W, X>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X):Dynamic { })
-		@:overload(function<T, U, V, W>(deep:Bool, target:T, object1:U, object2:V, object3:W):Dynamic { })
-		@:overload(function<T, U, V>(deep:Bool, target:T, object1:U, object2:V):Dynamic { })
-		@:overload(function<T, U>(deep:Bool, target:T, object1:U):Dynamic { })
+		@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):{ } { })
+		@:overload(function<T, U, V, W, X>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X):{ } { })
+		@:overload(function<T, U, V, W>(deep:Bool, target:T, object1:U, object2:V, object3:W):{ } { })
+		@:overload(function<T, U, V>(deep:Bool, target:T, object1:U, object2:V):{ } { })
+		@:overload(function<T, U>(deep:Bool, target:T, object1:U):{ } { })
 		@:overload(function<T>(deep:Bool, target:T):JQueryStatic { })
 		@:overload(function(deep:Bool, target:Dynamic, object1:Dynamic, objectN:haxe.extern.Rest<Dynamic>):Dynamic { })
-		@:overload(function<T, U, V, W, X, Y, Z>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic { })
-		@:overload(function<T, U, V, W, X, Y>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
-		@:overload(function<T, U, V, W, X>(target:T, object1:U, object2:V, object3:W, object4:X):Dynamic { })
-		@:overload(function<T, U, V, W>(target:T, object1:U, object2:V, object3:W):Dynamic { })
-		@:overload(function<T, U, V>(target:T, object1:U, object2:V):Dynamic { })
-		@:overload(function<T, U>(target:T, object1:U):Dynamic { })
+		@:overload(function<T, U, V, W, X, Y, Z>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):{ } { })
+		@:overload(function<T, U, V, W, X, Y>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):{ } { })
+		@:overload(function<T, U, V, W, X>(target:T, object1:U, object2:V, object3:W, object4:X):{ } { })
+		@:overload(function<T, U, V, W>(target:T, object1:U, object2:V, object3:W):{ } { })
+		@:overload(function<T, U, V>(target:T, object1:U, object2:V):{ } { })
+		@:overload(function<T, U>(target:T, object1:U):{ } { })
 		@:overload(function<T>(target:T):JQueryStatic { })
 		@:overload(function(target:Dynamic, object1:Dynamic, objectN:haxe.extern.Rest<Dynamic>):Dynamic { })
-		function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic;
+		function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):{ };
 		/**
 			Load data from the server using a HTTP GET request.
 		**/
@@ -505,12 +505,12 @@ typedef JQueryStatic = {
 		function when<TR1, UR1, VR1, TJ1, UJ1, VJ1>(deferredT:ts.AnyOf3<global.jquery.Promise<TR1, TJ1, Dynamic>, global.jquery.Thenable<TR1>, TR1>, deferredU:ts.AnyOf3<global.jquery.Promise<UR1, UJ1, Dynamic>, global.jquery.Thenable<UR1>, UR1>, deferredV:ts.AnyOf3<global.jquery.Promise<VR1, VJ1, Dynamic>, global.jquery.Thenable<VR1>, VR1>):global.jquery.Promise3<TR1, TJ1, ts.Never, UR1, UJ1, ts.Never, VR1, VJ1, ts.Never>;
 	} { })
 	@:overload(function(deep:Bool, target:Dynamic, object1:Dynamic, objectN:haxe.extern.Rest<Dynamic>):Dynamic { })
-	@:overload(function<T, U, V, W, X, Y, Z>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic { })
-	@:overload(function<T, U, V, W, X, Y>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
-	@:overload(function<T, U, V, W, X>(target:T, object1:U, object2:V, object3:W, object4:X):Dynamic { })
-	@:overload(function<T, U, V, W>(target:T, object1:U, object2:V, object3:W):Dynamic { })
-	@:overload(function<T, U, V>(target:T, object1:U, object2:V):Dynamic { })
-	@:overload(function<T, U>(target:T, object1:U):Dynamic { })
+	@:overload(function<T, U, V, W, X, Y, Z>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):{ } { })
+	@:overload(function<T, U, V, W, X, Y>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):{ } { })
+	@:overload(function<T, U, V, W, X>(target:T, object1:U, object2:V, object3:W, object4:X):{ } { })
+	@:overload(function<T, U, V, W>(target:T, object1:U, object2:V, object3:W):{ } { })
+	@:overload(function<T, U, V>(target:T, object1:U, object2:V):{ } { })
+	@:overload(function<T, U>(target:T, object1:U):{ } { })
 	@:overload(function<T>(target:T):{
 		@:overload(function<TElement:(js.html.Element)>(html:String, ?ownerDocument_attributes:ts.AnyOf2<js.html.Document, global.jquery.PlainObject<Dynamic>>):JQuery<TElement> { })
 		@:overload(function<TElement:(js.html.DOMElement)>(selector:String, ?context:ts.AnyOf3<js.html.DOMElement, js.html.Document, JQuery<js.html.Element>>):JQuery<TElement> { })
@@ -604,22 +604,22 @@ typedef JQueryStatic = {
 		/**
 			Merge the contents of two or more objects together into the first object.
 		**/
-		@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
-		@:overload(function<T, U, V, W, X>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X):Dynamic { })
-		@:overload(function<T, U, V, W>(deep:Bool, target:T, object1:U, object2:V, object3:W):Dynamic { })
-		@:overload(function<T, U, V>(deep:Bool, target:T, object1:U, object2:V):Dynamic { })
-		@:overload(function<T, U>(deep:Bool, target:T, object1:U):Dynamic { })
+		@:overload(function<T, U, V, W, X, Y>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):{ } { })
+		@:overload(function<T, U, V, W, X>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X):{ } { })
+		@:overload(function<T, U, V, W>(deep:Bool, target:T, object1:U, object2:V, object3:W):{ } { })
+		@:overload(function<T, U, V>(deep:Bool, target:T, object1:U, object2:V):{ } { })
+		@:overload(function<T, U>(deep:Bool, target:T, object1:U):{ } { })
 		@:overload(function<T>(deep:Bool, target:T):JQueryStatic { })
 		@:overload(function(deep:Bool, target:Dynamic, object1:Dynamic, objectN:haxe.extern.Rest<Dynamic>):Dynamic { })
-		@:overload(function<T, U, V, W, X, Y, Z>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic { })
-		@:overload(function<T, U, V, W, X, Y>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):Dynamic { })
-		@:overload(function<T, U, V, W, X>(target:T, object1:U, object2:V, object3:W, object4:X):Dynamic { })
-		@:overload(function<T, U, V, W>(target:T, object1:U, object2:V, object3:W):Dynamic { })
-		@:overload(function<T, U, V>(target:T, object1:U, object2:V):Dynamic { })
-		@:overload(function<T, U>(target:T, object1:U):Dynamic { })
+		@:overload(function<T, U, V, W, X, Y, Z>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):{ } { })
+		@:overload(function<T, U, V, W, X, Y>(target:T, object1:U, object2:V, object3:W, object4:X, object5:Y):{ } { })
+		@:overload(function<T, U, V, W, X>(target:T, object1:U, object2:V, object3:W, object4:X):{ } { })
+		@:overload(function<T, U, V, W>(target:T, object1:U, object2:V, object3:W):{ } { })
+		@:overload(function<T, U, V>(target:T, object1:U, object2:V):{ } { })
+		@:overload(function<T, U>(target:T, object1:U):{ } { })
 		@:overload(function<T>(target:T):JQueryStatic { })
 		@:overload(function(target:Dynamic, object1:Dynamic, objectN:haxe.extern.Rest<Dynamic>):Dynamic { })
-		function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic;
+		function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):{ };
 		/**
 			Load data from the server using a HTTP GET request.
 		**/
@@ -918,7 +918,7 @@ typedef JQueryStatic = {
 		function when<TR1, UR1, VR1, TJ1, UJ1, VJ1>(deferredT:ts.AnyOf3<global.jquery.Promise<TR1, TJ1, Dynamic>, global.jquery.Thenable<TR1>, TR1>, deferredU:ts.AnyOf3<global.jquery.Promise<UR1, UJ1, Dynamic>, global.jquery.Thenable<UR1>, UR1>, deferredV:ts.AnyOf3<global.jquery.Promise<VR1, VJ1, Dynamic>, global.jquery.Thenable<VR1>, VR1>):global.jquery.Promise3<TR1, TJ1, ts.Never, UR1, UJ1, ts.Never, VR1, VJ1, ts.Never>;
 	} { })
 	@:overload(function(target:Dynamic, object1:Dynamic, objectN:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):Dynamic;
+	function extend<T, U, V, W, X, Y, Z>(deep:Bool, target:T, object1:U, object2:V, object3:W, object4:X, object5:Y, object6:Z):{ };
 	/**
 		Load data from the server using a HTTP GET request.
 	**/

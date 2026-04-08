@@ -7289,7 +7289,7 @@ package global;
 			
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/self)
 		**/
-		var self : js.html.Window & Dynamic;
+		var self : js.html.IWindow & Dynamic;
 		/**
 			The `speechSynthesis` read-only property of the Window object returns a SpeechSynthesis object, which is the entry point into using Web Speech API speech synthesis functionality.
 			
@@ -7329,7 +7329,7 @@ package global;
 			
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/window)
 		**/
-		var window : js.html.Window & Dynamic;
+		var window : Dynamic;
 		/**
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/abort_event)
 		**/

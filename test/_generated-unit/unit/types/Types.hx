@@ -30,7 +30,7 @@ package unit.types;
 	@:overload(function<T, U>(a:Array<js.lib.Symbol>, u:U):T { })
 	static function overloadedFunction(a:Float):Dynamic;
 	static function typeParameterWithConstraint<T:(Array<Float>)>(x:T):Dynamic;
-	static function intersectionBetweenTypeParams<A, B>(p:Dynamic):Void;
+	static function intersectionBetweenTypeParams<A, B>(p:{ }):Void;
 	static function firstTypeFunction(node:{ }):Bool;
 	static final implicitInt : Int;
 	static final implicitFloat : Float;

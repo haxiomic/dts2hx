@@ -3,7 +3,7 @@ package lowdb;
 typedef LowdbSync<SchemaT> = {
 	var _ : lodash.LoDashStatic;
 	dynamic function read():LowdbSync<SchemaT>;
-	function write<T>(?returnValue:T):js.lib.Promise<T>;
+	function write<T>(?returnValue:T):js.lib.IPromise<T>;
 	dynamic function getState():SchemaT;
 	dynamic function setState(state:SchemaT):LowdbSync<SchemaT>;
 	function concat(values:haxe.extern.Rest<lodash.Many<SchemaT>>):lodash.CollectionChain<SchemaT>;
@@ -50,53 +50,53 @@ typedef LowdbSync<SchemaT> = {
 	function sortBy(iteratees:haxe.extern.Rest<lodash.Many<lodash.ObjectIteratee<SchemaT>>>):lodash.CollectionChain<Dynamic>;
 	function castArray():lodash.CollectionChain<SchemaT>;
 	function toArray():lodash.CollectionChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<Dynamic> { })
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function assign<TSource>(source:TSource):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<Dynamic> { })
+	function assign<TSource>(source:TSource):lodash.ObjectChain<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function assignIn<TSource>(source:TSource):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
+	function assignIn<TSource>(source:TSource):lodash.ObjectChain<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function assignInWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
+	function assignInWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function assignWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic>;
+	function assignWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }>;
 	function at(props:haxe.extern.Rest<lodash.Many<Dynamic>>):lodash.CollectionChain<Dynamic>;
-	function create<U:(Dynamic)>(?properties:U):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<Dynamic> { })
+	function create<U:(Dynamic)>(?properties:U):lodash.ObjectChain<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(sources:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function defaults<TSource>(source:TSource):lodash.ObjectChain<Dynamic>;
+	function defaults<TSource>(source:TSource):lodash.ObjectChain<{ }>;
 	function defaultsDeep(sources:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic>;
 	function entries():lodash.CollectionChain<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():lodash.CollectionChain<ts.Tuple2<String, Dynamic>>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<Dynamic> { })
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function extend<TSource>(source:TSource):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic> { })
+	function extend<TSource>(source:TSource):lodash.ObjectChain<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function extendWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<Dynamic>;
+	function extendWith<TSource>(source:TSource, customizer:lodash.AssignCustomizer):lodash.ObjectChain<{ }>;
 	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:Array<ts.Never>):Dynamic { })
 	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:TDefault):ts.AnyOf2<lodash.ExpChain<TDefault>, lodash.ExpChain<{ }>> { })
 	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple2<TKey1, TKey2>):lodash.ExpChain<Dynamic> { })
@@ -118,16 +118,16 @@ typedef LowdbSync<SchemaT> = {
 	@:overload(function(iteratee:String):lodash.ObjectChain<Dynamic> { })
 	@:overload(function():lodash.ObjectChain<SchemaT> { })
 	function mapValues<TResult>(callback:lodash.ObjectIterator<SchemaT, TResult>):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<Dynamic> { })
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):lodash.ObjectChain<{ }> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function merge<TSource>(source:TSource):lodash.ObjectChain<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic> { })
+	function merge<TSource>(source:TSource):lodash.ObjectChain<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<{ }> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):lodash.ObjectChain<Dynamic> { })
-	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<Dynamic>;
+	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):lodash.ObjectChain<{ }>;
 	@:overload(function(paths:haxe.extern.Rest<lodash.Many<lodash.PropertyName>>):lodash.ObjectChain<SchemaT> { })
 	function omit<K:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(paths:haxe.extern.Rest<lodash.Many<K>>):lodash.ObjectChain<{ }>;
 	function omitBy(predicate:lodash.ValueKeyIteratee<Dynamic>):lodash.ObjectChain<SchemaT>;

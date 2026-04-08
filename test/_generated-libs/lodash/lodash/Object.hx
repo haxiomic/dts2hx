@@ -45,53 +45,53 @@ typedef Object<T> = {
 	function sortBy(iteratees:haxe.extern.Rest<Many<ObjectIteratee<T>>>):Collection<Dynamic>;
 	function castArray():Collection<T>;
 	function toArray():Collection<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<Dynamic> { })
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
-	function assign<TSource>(source:TSource):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<Dynamic> { })
+	function assign<TSource>(source:TSource):Object<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function<TResult>(otherArgs:haxe.extern.Rest<Dynamic>):Object<TResult> { })
-	function assignIn<TSource>(source:TSource):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Object<Dynamic> { })
+	function assignIn<TSource>(source:TSource):Object<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function<TResult>(otherArgs:haxe.extern.Rest<Dynamic>):Object<TResult> { })
-	function assignInWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Object<Dynamic> { })
+	function assignInWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function<TResult>(otherArgs:haxe.extern.Rest<Dynamic>):Object<TResult> { })
-	function assignWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<Dynamic>;
+	function assignWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<{ }>;
 	function at(props:haxe.extern.Rest<Many<Dynamic>>):Collection<Dynamic>;
-	function create<U:(Dynamic)>(?properties:U):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<Dynamic> { })
+	function create<U:(Dynamic)>(?properties:U):Object<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function(sources:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
-	function defaults<TSource>(source:TSource):Object<Dynamic>;
+	function defaults<TSource>(source:TSource):Object<{ }>;
 	function defaultsDeep(sources:haxe.extern.Rest<Dynamic>):Object<Dynamic>;
 	function entries():Collection<ts.Tuple2<String, Dynamic>>;
 	function entriesIn():Collection<ts.Tuple2<String, Dynamic>>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<Dynamic> { })
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
-	function extend<TSource>(source:TSource):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Object<Dynamic> { })
+	function extend<TSource>(source:TSource):Object<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Object<{ }> { })
 	@:overload(function():Object<T> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
-	function extendWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<Dynamic>;
+	function extendWith<TSource>(source:TSource, customizer:AssignCustomizer):Object<{ }>;
 	@:overload(function<TKey:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.AnyOf2<TKey, ts.Tuple1<TKey>>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
 	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(path:ts.Tuple2<TKey1, TKey2>):Dynamic { })
 	@:overload(function<TKey1:(ts.AnyOf3<String, Float, js.lib.Symbol>), TKey2:(ts.AnyOf3<String, Float, js.lib.Symbol>), TDefault>(path:ts.Tuple2<TKey1, TKey2>, defaultValue:TDefault):ts.AnyOf2<TDefault, { }> { })
@@ -109,16 +109,16 @@ typedef Object<T> = {
 	@:overload(function(iteratee:String):Object<Dynamic> { })
 	@:overload(function():Object<T> { })
 	function mapValues<TResult>(callback:ObjectIterator<T, TResult>):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<Dynamic> { })
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Object<{ }> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
-	function merge<TSource>(source:TSource):Object<Dynamic>;
-	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<Dynamic> { })
-	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<Dynamic> { })
+	function merge<TSource>(source:TSource):Object<{ }>;
+	@:overload(function<TSource1, TSource2>(source1:TSource1, source2:TSource2, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3>(source1:TSource1, source2:TSource2, source3:TSource3, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<{ }> { })
+	@:overload(function<TSource1, TSource2, TSource3, TSource4>(source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<{ }> { })
 	@:overload(function(otherArgs:haxe.extern.Rest<Dynamic>):Object<Dynamic> { })
-	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<Dynamic>;
+	function mergeWith<TSource>(source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Object<{ }>;
 	@:overload(function(paths:haxe.extern.Rest<Many<ts.AnyOf5<String, Float, js.lib.Symbol, ts.Tuple2<PropertyName, Dynamic>, { }>>>):Object<T> { })
 	function omit<K:(ts.AnyOf3<String, Float, js.lib.Symbol>)>(paths:haxe.extern.Rest<Many<K>>):Object<{ }>;
 	function omitBy(predicate:ValueKeyIteratee<Dynamic>):Object<T>;

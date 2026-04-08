@@ -230,7 +230,7 @@ package node;
 		supplied, the current context is used), and returns it wrapped inside a
 		function with the given `params`.
 	**/
-	static function compileFunction(code:String, ?params:haxe.ds.ReadOnlyArray<String>, ?options:node.vm.CompileFunctionOptions):haxe.Constraints.Function & {
+	static function compileFunction(code:String, ?params:haxe.ds.ReadOnlyArray<String>, ?options:node.vm.CompileFunctionOptions):js.lib.IFunction & {
 		@:optional
 		var cachedData : node.buffer.NonSharedBuffer;
 		@:optional

@@ -321,5 +321,5 @@ typedef IEvents<T> = {
 		// Prints: [ 'foo', 'bar', Symbol(symbol) ]
 		```
 	**/
-	function eventNames():Array<Dynamic>;
+	function eventNames():Array<ts.AnyOf2<String & IEvents<Any, T>, js.lib.Symbol & IEvents<Any, T>>>;
 };

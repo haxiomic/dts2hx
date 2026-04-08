@@ -309,5 +309,5 @@ typedef EventEmitter<T> = {
 		// Prints: [ 'foo', 'bar', Symbol(symbol) ]
 		```
 	**/
-	function eventNames():Array<Dynamic>;
+	function eventNames():Array<ts.AnyOf2<String & IEventEmitter<Any, T>, js.lib.Symbol & IEventEmitter<Any, T>>>;
 };

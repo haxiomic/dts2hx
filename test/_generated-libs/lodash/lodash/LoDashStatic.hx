@@ -485,7 +485,7 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:js.lib.IArray<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
 	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
@@ -493,7 +493,7 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:js.lib.IArray<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
 	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
@@ -568,7 +568,7 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:js.lib.IArray<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
 	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
@@ -579,7 +579,7 @@ typedef LoDashStatic = {
 	@:overload(function(collection:String, ?iteratee:StringIterator<Dynamic>):String { })
 	@:overload(function<T>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):List_<T> { })
 	@:overload(function<T:(Dynamic)>(collection:T, ?iteratee:ObjectIterator<T, Dynamic>):T { })
-	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:Array<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
+	@:overload(function<T, TArray:(Null<Array<T>>)>(collection:js.lib.IArray<T>, ?iteratee:ArrayIterator<T, Dynamic>):TArray { })
 	@:overload(function<TString:(Null<String>)>(collection:TString, ?iteratee:StringIterator<Dynamic>):TString { })
 	@:overload(function<T, TList:(Null<List_<T>>)>(collection:List_<T>, ?iteratee:ListIterator<T, Dynamic>):TList { })
 	@:overload(function<T:(Dynamic)>(collection:Null<T>, ?iteratee:ObjectIterator<T, Dynamic>):Null<T> { })
@@ -1247,24 +1247,24 @@ typedef LoDashStatic = {
 		**Note:** This method mutates `object` and is loosely based on
 		[`Object.assign`](https://mdn.io/Object/assign).
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function assign<TObject, TSource>(object:TObject, source:TSource):Dynamic;
+	function assign<TObject, TSource>(object:TObject, source:TSource):{ };
 	/**
 		This method is like `_.assign` except that it iterates over own and
 		inherited source properties.
 		
 		**Note:** This method mutates `object`.
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function<TResult>(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):TResult { })
-	function assignIn<TObject, TSource>(object:TObject, source:TSource):Dynamic;
+	function assignIn<TObject, TSource>(object:TObject, source:TSource):{ };
 	/**
 		This method is like `_.assignIn` except that it accepts `customizer` which
 		is invoked to produce the assigned values. If `customizer` returns `undefined`
@@ -1273,12 +1273,12 @@ typedef LoDashStatic = {
 		
 		**Note:** This method mutates `object`.
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:AssignCustomizer):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function<TResult>(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):TResult { })
-	function assignInWith<TObject, TSource>(object:TObject, source:TSource, customizer:AssignCustomizer):Dynamic;
+	function assignInWith<TObject, TSource>(object:TObject, source:TSource, customizer:AssignCustomizer):{ };
 	/**
 		This method is like `_.assign` except that it accepts `customizer` which
 		is invoked to produce the assigned values. If `customizer` returns `undefined`
@@ -1287,12 +1287,12 @@ typedef LoDashStatic = {
 		
 		**Note:** This method mutates `object`.
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:AssignCustomizer):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function<TResult>(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):TResult { })
-	function assignWith<TObject, TSource>(object:TObject, source:TSource, customizer:AssignCustomizer):Dynamic;
+	function assignWith<TObject, TSource>(object:TObject, source:TSource, customizer:AssignCustomizer):{ };
 	/**
 		Creates an array of elements corresponding to the given keys, or indexes, of collection. Keys may be
 		specified as individual arguments or as arrays of keys.
@@ -1303,7 +1303,7 @@ typedef LoDashStatic = {
 		Creates an object that inherits from the given prototype object. If a properties object is provided its own
 		enumerable properties are assigned to the created object.
 	**/
-	function create<T:(Dynamic), U:(Dynamic)>(prototype:T, ?properties:U):Dynamic;
+	function create<T:(Dynamic), U:(Dynamic)>(prototype:T, ?properties:U):{ };
 	/**
 		Assigns own enumerable properties of source object(s) to the destination object for all destination
 		properties that resolve to undefined. Once a property is set, additional values of the same property are
@@ -1311,12 +1311,12 @@ typedef LoDashStatic = {
 		
 		Note: This method mutates object.
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function(object:Dynamic, sources:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function defaults<TObject, TSource>(object:TObject, source:TSource):Dynamic;
+	function defaults<TObject, TSource>(object:TObject, source:TSource):{ };
 	/**
 		This method is like _.defaults except that it recursively assigns default properties.
 	**/
@@ -1325,18 +1325,18 @@ typedef LoDashStatic = {
 	function entries<T>(?object:ts.AnyOf2<Dictionary<T>, NumericDictionary<T>>):Array<ts.Tuple2<String, T>>;
 	@:overload(function(?object:Dynamic):Array<ts.Tuple2<String, Dynamic>> { })
 	function entriesIn<T>(?object:ts.AnyOf2<Dictionary<T>, NumericDictionary<T>>):Array<ts.Tuple2<String, T>>;
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function<TResult>(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):TResult { })
-	function extend<TObject, TSource>(object:TObject, source:TSource):Dynamic;
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:AssignCustomizer):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):Dynamic { })
+	function extend<TObject, TSource>(object:TObject, source:TSource):{ };
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:AssignCustomizer):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:AssignCustomizer):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:AssignCustomizer):{ } { })
 	@:overload(function<TObject>(object:TObject):TObject { })
 	@:overload(function<TResult>(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):TResult { })
-	function extendWith<TObject, TSource>(object:TObject, source:TSource, customizer:AssignCustomizer):Dynamic;
+	function extendWith<TObject, TSource>(object:TObject, source:TSource, customizer:AssignCustomizer):{ };
 	/**
 		This method is like _.find except that it returns the key of the first element predicate returns truthy for
 		instead of the element itself.
@@ -1470,11 +1470,11 @@ typedef LoDashStatic = {
 		
 		**Note:** This method mutates `object`.
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4):{ } { })
 	@:overload(function(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function merge<TObject, TSource>(object:TObject, source:TSource):Dynamic;
+	function merge<TObject, TSource>(object:TObject, source:TSource):{ };
 	/**
 		This method is like `_.merge` except that it accepts `customizer` which
 		is invoked to produce the merged values of the destination and source
@@ -1482,11 +1482,11 @@ typedef LoDashStatic = {
 		method instead. The `customizer` is invoked with seven arguments:
 		(objValue, srcValue, key, object, source, stack).
 	**/
-	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Dynamic { })
-	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Dynamic { })
+	@:overload(function<TObject, TSource1, TSource2>(object:TObject, source1:TSource1, source2:TSource2, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):{ } { })
+	@:overload(function<TObject, TSource1, TSource2, TSource3, TSource4>(object:TObject, source1:TSource1, source2:TSource2, source3:TSource3, source4:TSource4, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):{ } { })
 	@:overload(function(object:Dynamic, otherArgs:haxe.extern.Rest<Dynamic>):Dynamic { })
-	function mergeWith<TObject, TSource>(object:TObject, source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):Dynamic;
+	function mergeWith<TObject, TSource>(object:TObject, source:TSource, customizer:(value:Dynamic, srcValue:Dynamic, key:String, object:Dynamic, source:Dynamic) -> Dynamic):{ };
 	/**
 		The opposite of `_.pick`; this method creates an object composed of the
 		own and inherited enumerable properties of `object` that are not omitted.
