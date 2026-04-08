@@ -78,7 +78,7 @@ typedef LoDashStatic = {
 	@:selfCall
 	function call<TrapAny:({
 		var __trapAny : Dynamic;
-	})>(value:TrapAny):Collection<Dynamic> & Function<Dynamic> & Object<Dynamic> & Primitive<Dynamic> & String_;
+	})>(value:TrapAny):Dynamic;
 	/**
 		The semantic version number.
 	**/
@@ -1599,7 +1599,7 @@ typedef LoDashStatic = {
 	@:overload(function<T>(value:T):PrimitiveChain<T> { })
 	function chain<TrapAny:({
 		var __lodashAnyHack : Dynamic;
-	})>(value:TrapAny):CollectionChain<Dynamic> & FunctionChain<Dynamic> & ObjectChain<Dynamic> & PrimitiveChain<Dynamic> & StringChain;
+	})>(value:TrapAny):Dynamic;
 	/**
 		This method invokes interceptor and returns value. The interceptor is invoked with one
 		argument; (value). The purpose of this method is to "tap into" a method chain in order to perform operations

@@ -154,7 +154,15 @@ package unit.types;
 	static final nullableNumber : Null<Float>;
 	static final undefineableNumber : Null<Float>;
 	static final undefineableNullableNumber : Null<Float>;
-	static final intersectionWithSubIntersection : Dynamic;
+	static final intersectionWithSubIntersection : {
+		var x : {
+			var a : Float;
+		};
+	} & {
+		var x : {
+			var b : String;
+		};
+	};
 	static final intersectionXY : {
 		var x : Float;
 	} & {
@@ -163,7 +171,11 @@ package unit.types;
 	static final intersectionRedefinitionSame : {
 		var x : Float;
 	};
-	static final intersectionRedefinitionDifferent : Dynamic;
+	static final intersectionRedefinitionDifferent : {
+		var x : Float;
+	} & {
+		var x : String;
+	};
 	static final intersectionWithTypeof : {
 		var fieldA : Float;
 		var fieldB : Float;
@@ -185,6 +197,7 @@ package unit.types;
 		@:optional
 		function methodSignatureOptional():String;
 		final readonlyField : String;
+	} & {
 		var extendedField : Float;
 	};
 	static final intersectionWithAny : Dynamic;
@@ -216,7 +229,7 @@ package unit.types;
 	static final intersectionAnonAlias : unit.types.types.Anon & {
 		var b : Bool;
 	};
-	static final intersectionBetweenClasses : Dynamic;
+	static final intersectionBetweenClasses : unit.types.types.IntersectionA & unit.types.types.IntersectionB;
 	static final typeQueryImplicitStr : String;
 	static final typeQueryObject : {
 		var fieldA : Float;

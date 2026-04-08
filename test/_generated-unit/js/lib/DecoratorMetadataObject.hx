@@ -1,3 +1,3 @@
 package js.lib;
 
-typedef DecoratorMetadataObject = Dynamic;
+typedef DecoratorMetadataObject = haxe.DynamicAccess<Any>;

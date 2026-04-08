@@ -89,6 +89,8 @@ class ConverterContext {
 		Map of package-paths to HaxeModules
 	**/
 	public final generatedModules = new Map<String, HaxeModule>();
+	/** Raw source files to write verbatim (for macro support types that can't be expressed as HaxeModule) **/
+	public final rawSupportFiles = new Map<String, String>();
 
 	/**
 		An array of normalized module ids (paths or names) that this module depends on.
@@ -501,11 +503,20 @@ class ConverterContext {
 
 				// if this symbol is also a ValueModule then it needs to have fields
 				// to enable this, we create a pseudo typedef with an abstract
+				// When the alias type contains non-structure types in an intersection
+				// (e.g. NodeClass & NodeElements), Haxe can't use it as an abstract underlying
+				// type. Use Dynamic instead — @:forward + from/to still provide type conversion.
+				var abstractUnderlying = switch hxAliasType {
+					case TIntersection(types) if (types.exists(t -> !t.match(TAnonymous(_) | TExtend(_, _)))):
+						macro :Dynamic;
+					default:
+						hxAliasType;
+				};
 				var hxTypeDef: HaxeModule = if (forceAbstractKind) {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAbstract(hxAliasType, null, [hxAliasType], [hxAliasType]),
+					kind: TDAbstract(abstractUnderlying, null, [hxAliasType], [hxAliasType]),
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,
@@ -514,17 +525,31 @@ class ConverterContext {
 					tsSymbol: symbol,
 					tsSymbolAccess: access,
 				} else {
-					pack: fundamentalTypePath.pack,
+					// When the alias is an intersection containing non-structure types (classes),
+					// Haxe can't use `typedef Foo = Class & { fields }` because & requires structures.
+					// Emit just the class type as the typedef — preserves assignability.
+					// The anonymous fields are still available on the underlying JS object at runtime.
+					// When the TS type is an intersection containing a class, the rasterized
+					// anon won't be assignable to the class. Emit the class type instead.
+					var fixedAliasType = hxAliasType;
+					if (tsType.flags & TypeFlags.Intersection != 0) {
+						var intersectionMembers = (cast tsType : IntersectionType).types;
+						var classMembers = intersectionMembers.filter(t -> t.symbol != null && t.symbol.flags & SymbolFlags.Class != 0);
+						if (classMembers.length > 0) {
+							fixedAliasType = complexTypeFromTsType(classMembers[0], symbol, access, typeAliasDeclaration, symbol, false);
+						}
+					}
+					{pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAlias(hxAliasType),
+					kind: TDAlias(fixedAliasType),
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration),
 					doc: getDoc(symbol),
 					pos: pos,
 					tsSymbol: symbol,
 					tsSymbolAccess: access,
-				}
-				hxTypeDef;
+				}}
+					hxTypeDef;
 			} else if (requiresHxClass(tc, symbol)) {
 				// Class | ValueModule | ConstructorTypeVariable
 
@@ -909,9 +934,21 @@ class ConverterContext {
 			var objectType: ObjectType = cast type;
 			var isAnonType = objectType.objectFlags & ObjectFlags.Anonymous != 0;
 			var isInterface = type.symbol != null && type.symbol.flags & SymbolFlags.Interface != 0;
-			var isValueModule = type.symbol != null && type.symbol.flags & SymbolFlags.ValueModule != 0; 
+			var isClass = type.symbol != null && type.symbol.flags & SymbolFlags.Class != 0;
+			var isValueModule = type.symbol != null && type.symbol.flags & SymbolFlags.ValueModule != 0;
 			var isConstructorType = tc.isConstructorType(objectType); // constructor types are converted to classes
-			var appearsToBeStructure = !isConstructorType && !isValueModule && (isAnonType || isInterface);
+			// Check if the generated Haxe module is a class (not a structure).
+			// TS classes in intersection context may appear as Interface types,
+			// but dts2hx generates them as extern class — can't intersect those.
+			var isHxClass = false;
+			if (type.symbol != null && !isAnonType) {
+				var hxTypePath = haxeTypePathMap.getTypePath(type.symbol, accessContext, false);
+				var existingModule = getGeneratedModule({name: hxTypePath.name, pack: hxTypePath.pack});
+				if (existingModule != null) {
+					isHxClass = existingModule.kind.match(TDClass(_, _, _, _));
+				}
+			}
+			var appearsToBeStructure = !isConstructorType && !isValueModule && !isClass && !isHxClass && (isAnonType || isInterface);
 
 			if (appearsToBeStructure) {
 				// @! todo
@@ -1016,6 +1053,8 @@ class ConverterContext {
 	//   has the same named members but fewer total members (i.e. the intersection is growing).
 	var _currentTypeStack: Array<TsType> = [];
 	var _typeIdStack: Map<Int, Bool> = new Map();
+	/** Cache type IDs that were detected as recursive — skip re-walking the type graph. **/
+	var _recursiveTypeCache: Map<Int, Bool> = new Map();
 	var _rasterizeMappedTypes = true;
 
 	function pushTypeStack(type: TsType, typeId: Int) {
@@ -1054,8 +1093,38 @@ class ConverterContext {
 			return macro :Dynamic;
 		}
 
+		// Detect cycles through anonymous types (maplibre-gl #122, chart.js #90).
+		// TypeScript creates fresh type objects for each anonymous type, so ID-based
+		// detection fails. We count anonymous objects on the stack: legitimate type chains
+		// have named types (Array, Promise, etc.) interspersed, while pathological recursion
+		// through anonymous objects/unions will accumulate many anonymous entries.
+		if (type.flags & TypeFlags.Object != 0) {
+			var typeSym = type.getSymbol();
+			if (typeSym == null || typeSym.name == "__type") {
+				var anonCount = 0;
+				for (st in _currentTypeStack) {
+					if (st.flags & TypeFlags.Object != 0) {
+						var stSym = st.getSymbol();
+						if (stSym == null || stSym.name == "__type") {
+							anonCount++;
+							if (anonCount >= 8) {
+								return macro :Dynamic;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		var typeId = type.getId();
 		var stackHasType = _typeIdStack.exists(typeId);
+
+		// Fast path: if we've already determined this type is recursive, skip re-walking.
+		// This prevents exponential blowup when the same recursive type is referenced
+		// from many fields (e.g. maplibre-gl #122 with 1M+ redundant cycle detections).
+		if (_recursiveTypeCache.exists(typeId)) {
+			return macro :Dynamic;
+		}
 
 		// handle direct type aliases
 		// we deliberately break out of type-stack recursion checking here
@@ -1079,7 +1148,24 @@ class ConverterContext {
 					}
 				case { name: 'Partial', args: [t], isBuiltIn: true }:
 					if (tc.getPropertiesOfType(t).length > 0) {
-						complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
+						// Check for self-referential Partial<T> (e.g. DateAdapter { override(m: Partial<DateAdapter>) })
+						// If the same Partial<T> alias is already on the stack, emit T to break the cycle.
+						var tSym = t.getSymbol();
+						// Check if Partial<T> with the same T is ALREADY on the stack from a prior frame
+						// (not the current frame — we just pushed this type at line 1123).
+						// This detects self-referential types like DateAdapter { override(m: Partial<DateAdapter>) }
+						var currentType = type;
+						var isRecursive = tSym != null && _currentTypeStack.exists(st ->
+							st != currentType &&
+							st.aliasSymbol != null && st.aliasSymbol.name == 'Partial' &&
+							st.aliasTypeArguments != null && st.aliasTypeArguments.length > 0 &&
+							st.aliasTypeArguments[0].getSymbol() == tSym
+						);
+						if (isRecursive) {
+							complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
+						} else {
+							complexTypeAnonFromTsType(type, moduleSymbol, accessContext, enclosingDeclaration);
+						}
 					} else {
 						complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration);
 					}
@@ -1114,10 +1200,21 @@ class ConverterContext {
 
 				default:
 					// haxe type alias
-					var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, moduleSymbol, accessContext, preferInterfaceStructure);
+					@:nullSafety(Off) var haxeTypePath = getReferencedHaxeTypePath(type.aliasSymbol, moduleSymbol, accessContext, preferInterfaceStructure);
 					var params = if (type.aliasTypeArguments != null) {
 						type.aliasTypeArguments.map(t -> TPType(complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration)));
 					} else [];
+					// Pad with Dynamic for bare references to generic type aliases (TS default type params).
+					// e.g. three.js `type Node<TNodeType = unknown>` referenced as bare `Node` → `Node<Dynamic>`
+					@:nullSafety(Off) var aliasDecls = type.aliasSymbol.getDeclarationsArray();
+					if (aliasDecls != null) for (decl in aliasDecls) {
+						var tp: Null<Array<Dynamic>> = Reflect.field(decl, 'typeParameters');
+						if (tp != null && params.length < tp.length) {
+							while (params.length < tp.length) {
+								params.push(TPType(macro :Dynamic));
+							}
+						}
+					}
 					TPath({
 						pack: haxeTypePath.pack,
 						name: haxeTypePath.name,
@@ -1130,7 +1227,7 @@ class ConverterContext {
 		}
 
 		if (stackHasType) {
-			Log.log('Breaking recursive type conversion', type);
+			_recursiveTypeCache.set(typeId, true);
 			return macro :Dynamic;
 		}
 
@@ -1339,24 +1436,6 @@ class ConverterContext {
 					nativelyIntersectable = false;
 				}
 
-				// if any field has @:native, rasterize so the abstract wrapper can cover all fields
-				// (TExtend with a reference to an abstract-wrapped type would lose @:native support)
-				if (nativelyIntersectable) {
-					for (hxAnonType in hxAnonTypes) {
-						switch hxAnonType {
-							case TAnonymous(fields):
-								for (field in fields) {
-									if (field.getMeta(':native') != null) {
-										nativelyIntersectable = false;
-										break;
-									}
-								}
-							default:
-						}
-						if (!nativelyIntersectable) break;
-					}
-				}
-
 				if (!nativelyIntersectable) break;
 			}
 		}
@@ -1385,7 +1464,8 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			// rasterize if: intersection has call signatures, explicitly allowed, or has @:native fields
+			// try to rasterize if the intersection has call signatures (callable + object pattern)
+			// or if explicitly allowed via --allowIntersectionRasterization
 			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
 			var hasNativeFieldsInAnon = hxAnonTypes != null && hxAnonTypes.exists(t -> switch t {
 				case TAnonymous(fields): fields.exists(f -> f.getMeta(':native') != null);
@@ -1764,6 +1844,30 @@ class ConverterContext {
 			// clamp type params to Haxe std lib's expected count (e.g. TS Iterable<T,TReturn,TNext> -> Haxe Iterable<T>)
 			if (hxParams != null && maxParams != null && hxParams.length > maxParams) {
 				hxParams = hxParams.slice(0, maxParams);
+			}
+			// Pad with Dynamic for bare references to generic types (TS default type params).
+			// e.g. three.js Node<TNodeType = unknown> referenced as bare Node → Node<Dynamic>
+			// We check the symbol's declarations for the declared type parameter count,
+			// but respect the Haxe std lib param count as the ceiling (e.g. Iterable has 3 in TS but 1 in Haxe).
+			var argCount = hxParams != null ? hxParams.length : 0;
+			var declaredParamCount = 0;
+			if (classOrInterfaceType.symbol != null) {
+				var decls = classOrInterfaceType.symbol.getDeclarationsArray();
+				for (decl in decls) {
+					var tp: Null<Array<Dynamic>> = Reflect.field(decl, 'typeParameters');
+					if (tp != null && tp.length > declaredParamCount) {
+						declaredParamCount = tp.length;
+					}
+				}
+			}
+			if (maxParams != null && declaredParamCount > maxParams) {
+				declaredParamCount = maxParams;
+			}
+			if (argCount < declaredParamCount) {
+				if (hxParams == null) hxParams = [];
+				while (hxParams.length < declaredParamCount) {
+					hxParams.push(TPType(macro :Dynamic));
+				}
 			}
 			hxTypePath.params = hxParams;
 			TPath(hxTypePath);

@@ -569,6 +569,10 @@ class Main {
 					skipModule = skipModule || (isValueModuleOnly && haxeModule.fields.length == 0);
 				}
 
+				// skip modules that have raw source files (written separately)
+				var rawPath = haxeModule.pack.concat([haxeModule.name + '.hx']).join('/');
+				skipModule = skipModule || converter.rawSupportFiles.exists(rawPath);
+
 				if (skipModule) continue;
 
 				// Fix references to abstract-wrapped types in structural extension contexts
@@ -591,6 +595,13 @@ class Main {
 				var wrapperPath = Path.join([outputLibraryPath].concat(wrapperModule.pack).concat(['$wrapperName.hx']));
 				FileTools.touchDirectoryPath(Path.directory(wrapperPath));
 				Fs.writeFileSync(wrapperPath, wrapper.source);
+			}
+
+			// Write raw support files (macros, etc.)
+			for (relPath => content in converter.rawSupportFiles) {
+				var filePath = Path.join([outputLibraryPath, relPath]);
+				FileTools.touchDirectoryPath(Path.directory(filePath));
+				Fs.writeFileSync(filePath, content);
 			}
 
 			if (generateLibraryWrapper) {
