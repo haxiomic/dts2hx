@@ -9,4 +9,8 @@ class Macro {
 		return macro $v{Json.parse(sys.io.File.getContent(fileName))};
 	}
 
+	macro static public function readFile(fileName: String): ExprOf<String> {
+		return macro $v{sys.io.File.getContent(fileName)};
+	}
+
 }

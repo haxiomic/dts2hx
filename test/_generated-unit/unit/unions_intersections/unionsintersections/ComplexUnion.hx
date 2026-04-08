@@ -1,3 +1,5 @@
 package unit.unions_intersections.unionsintersections;
 
-typedef ComplexUnion = ts.AnyOf2<Float, Dynamic>;
+typedef ComplexUnion = ts.AnyOf2<Float, {
+	var brand : String;
+}>;

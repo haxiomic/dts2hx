@@ -8,5 +8,6 @@ function main() {
         'vscode',
         'lowdb',
         'ytdlp-nodejs',
+        'chart.js', // #90 - recursive type conversion
     ],['--noDts2hxVersion']);
 }

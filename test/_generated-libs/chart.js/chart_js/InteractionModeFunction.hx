@@ -1,0 +1,3 @@
+package chart_js;
+
+typedef InteractionModeFunction = ts.AnyOf2<(chart:Chart<String, Array<Null<ts.AnyOf3<Float, ScatterDataPoint, BubbleDataPoint>>>, Any>, e:ChartEvent, options:InteractionOptions) -> Array<InteractionItem>, (chart:Chart<String, Array<Null<ts.AnyOf3<Float, ScatterDataPoint, BubbleDataPoint>>>, Any>, e:ChartEvent, options:InteractionOptions, useFinalPosition:Bool) -> Array<InteractionItem>>;
