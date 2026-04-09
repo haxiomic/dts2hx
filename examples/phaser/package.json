@@ -12,6 +12,6 @@
     "dts2hx": "file:../../"
   },
   "dependencies": {
-    "phaser": "3.23.0"
+    "phaser": "4.0.0-rc.7"
   }
 }

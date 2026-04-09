@@ -16,7 +16,7 @@ package node.fs;
 		See the POSIX [`lstat(2)`](http://man7.org/linux/man-pages/man2/lstat.2.html) documentation for more details.
 	**/
 	@:overload(function(path:PathLike, options:Null<StatOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:Stats) -> Void):Void { })
-	@:overload(function(path:PathLike, options:StatOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:BigIntStats) -> Void):Void { })
+	@:overload(function(path:PathLike, options:{ var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:BigIntStats) -> Void):Void { })
 	@:overload(function(path:PathLike, options:Null<StatOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<Stats, BigIntStats>) -> Void):Void { })
 	@:selfCall
 	static function call(path:PathLike, callback:(err:Null<global.nodejs.ErrnoException>, stats:Stats) -> Void):Void;

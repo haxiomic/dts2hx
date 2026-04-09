@@ -27,7 +27,7 @@ typedef ObjectConstructor = {
 		
 		Creates an object that has the specified prototype, and that optionally contains specified properties.
 	**/
-	@:overload(function(o:Null<Dynamic>, properties:ThisType<Dynamic>):Dynamic { })
+	@:overload(function(o:Null<Dynamic>, properties:PropertyDescriptorMap & ThisType<Dynamic>):Dynamic { })
 	function create(o:Null<Dynamic>):Dynamic;
 	/**
 		Adds a property to an object, or modifies attributes of an existing property.
@@ -36,7 +36,7 @@ typedef ObjectConstructor = {
 	/**
 		Adds one or more properties to an object, and/or modifies attributes of existing properties.
 	**/
-	function defineProperties<T>(o:T, properties:ThisType<Dynamic>):T;
+	function defineProperties<T>(o:T, properties:PropertyDescriptorMap & ThisType<Dynamic>):T;
 	/**
 		Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 	**/
@@ -101,7 +101,7 @@ typedef ObjectConstructor = {
 	/**
 		Returns an object containing all own property descriptors of an object
 	**/
-	function getOwnPropertyDescriptors<T>(o:T):Dynamic;
+	function getOwnPropertyDescriptors<T>(o:T):Dynamic & haxe.DynamicAccess<PropertyDescriptor>;
 	/**
 		Returns an object created by key-value entries for properties and methods
 	**/

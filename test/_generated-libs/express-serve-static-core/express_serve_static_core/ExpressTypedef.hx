@@ -6970,7 +6970,7 @@ typedef ExpressTypedef = {
 	var settings : Dynamic;
 	var resource : Dynamic;
 	var map : Dynamic;
-	var locals : Locals;
+	var locals : haxe.DynamicAccess<Dynamic> & Locals;
 	/**
 		The app.routes object houses all of the routes defined mapped by the
 		associated HTTP verb. This object may be used for introspection

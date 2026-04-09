@@ -539,6 +539,20 @@ class ConverterContext {
 							fixedAliasType = complexTypeFromTsType(classMembers[0], symbol, access, typeAliasDeclaration, symbol, false);
 						}
 					}
+					// Filter non-structure types from TIntersection results (#136).
+					// E.g. {[key: string]: any} & { fields } produces DynamicAccess & { fields }
+					// but DynamicAccess can't participate in Haxe's & operator.
+					switch fixedAliasType {
+						case TIntersection(types):
+							var filtered = types.filter(t -> !isHxAny(t) && !switch t {
+								case TPath({pack: ['haxe'], name: 'DynamicAccess'}): true;
+								default: false;
+							});
+							if (filtered.length != types.length) {
+								fixedAliasType = filtered.length > 1 ? TIntersection(filtered) : filtered.length == 1 ? filtered[0] : fixedAliasType;
+							}
+						default:
+					}
 					{pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
@@ -1407,27 +1421,36 @@ class ConverterContext {
 		// in haxe, structure intersections must all have unique field names
 		// convert all types to haxe anons and compare fields to determine if there are any name clashes
 		var hxAnonTypes: Null<Array<ComplexType>> = null;
+		var hasFieldTypeClash = false;
 		if (nativelyIntersectable) {
 			hxAnonTypes = types.map(t -> complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration)).deduplicateTypes();
-			var seenFieldNames = new Map<String, Bool>();
+			var seenFields = new Map<String, Field>();
 			var selfCallFields = 0;
 			for (hxAnonType in hxAnonTypes) {
 				nativelyIntersectable = nativelyIntersectable && switch hxAnonType {
 					case TAnonymous(fields):
-						var nameClash = false;
+						var typeClash = false;
 						for (field in fields) {
 							if (field.getMeta(':selfCall') != null) {
 								selfCallFields++;
 							} else {
 								var nativeName = field.getNativeName();
-								if (seenFieldNames.exists(nativeName)) {
-									nameClash = true;
-									break;
+								var existing = seenFields.get(nativeName);
+								if (existing != null) {
+									// Same-name, same-type fields are OK in Haxe & intersections.
+									// Different types cause "Cannot redefine field" errors (#136).
+									if (!field.kind.equals(existing.kind)) {
+										typeClash = true;
+										hasFieldTypeClash = true;
+										break;
+									}
+									// Same type — skip, don't break (continue checking other fields)
+								} else {
+									seenFields.set(nativeName, field);
 								}
-								seenFieldNames.set(nativeName, true);
 							}
 						}
-						!nameClash;
+						!typeClash;
 					default:
 						// Type converted to a non-structure Haxe type (e.g. DynamicAccess)
 						false;
@@ -1463,7 +1486,15 @@ class ConverterContext {
 				// native haxe intersection
 				// convert intersections, preferring interface structure references where possible
 				var hxTypes = types.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration, null, true)).deduplicateTypes();
-				TIntersection(hxTypes);
+				// Filter non-structure types that slipped through TS-level checks.
+				// Index signatures ({[key: string]: any}) appear anonymous in TS but
+				// convert to DynamicAccess in Haxe, which can't participate in &.
+				hxTypes = hxTypes.filter(t -> !isHxAny(t) && switch t {
+					case TPath({pack: ['haxe'], name: 'DynamicAccess'}): false;
+					case TPath({pack: ['js', 'lib'], name: 'Function'}): false;
+					default: true;
+				});
+				hxTypes.length > 1 ? TIntersection(hxTypes) : hxTypes.length == 1 ? hxTypes[0] : macro :Dynamic;
 			}
 		} else {
 			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
@@ -1471,30 +1502,16 @@ class ConverterContext {
 				case TAnonymous(fields): fields.exists(f -> f.getMeta(':native') != null);
 				default: false;
 			});
-			if (options.allowIntersectionRasterization || hasCallSignatures || hasNativeFieldsInAnon) {
+			if (hasFieldTypeClash || options.allowIntersectionRasterization || hasCallSignatures || hasNativeFieldsInAnon) {
+				// Rasterize: field type clashes (e.g. x:Float vs x:AnyOf2<Float,Dynamic>)
+				// cause "Cannot redefine field" in Haxe — must flatten to single anon.
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
-				// Can't natively intersect — emit the named members, filtering out types
-				// whose Haxe representation isn't a structure (e.g. DynamicAccess from index
-				// signatures). This prevents "Can only extend structures" errors (#136).
+				// Can't natively intersect — emit the named members, filtering out
+				// non-structure types (classes, DynamicAccess, etc.) (#136).
 				var namedTypes = types.filter(t -> t.getSymbol() != null && t.flags & TypeFlags.TypeParameter == 0);
-				// Among named types, only use & for those whose anon expansion is TAnonymous.
-				// Non-structure named types (classes, DynamicAccess) can't participate in &
-				// but are still valid as standalone type references.
-				// Among named types, filter out those whose Haxe anon expansion is not a
-				// structure (e.g. DynamicAccess, Array) — they can't participate in &.
-				var nonStructureTypes = namedTypes.filter(t ->
-					!complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration).match(TAnonymous(_))
-				);
-				var emitTypes = if (nonStructureTypes.length < namedTypes.length) {
-					// Some types are structures, some aren't — keep only the structures for &
-					namedTypes.filter(t -> !nonStructureTypes.has(t));
-				} else {
-					// No types expanded to TAnonymous — keep all named types as-is
-					namedTypes;
-				}
-				if (emitTypes.length > 0) {
-					var hxTypes = emitTypes.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
+				if (namedTypes.length > 0) {
+					var hxTypes = namedTypes.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
 					hxTypes.length == 1 ? hxTypes[0] : TIntersection(hxTypes);
 				} else {
 					macro :Dynamic;
