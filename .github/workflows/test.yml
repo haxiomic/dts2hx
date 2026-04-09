@@ -57,7 +57,6 @@ jobs:
           haxe --run RunLibs
 
       - name: Run e2e tests
-        if: runner.os != 'Windows'
         shell: bash
         run: |
           cd test/e2e

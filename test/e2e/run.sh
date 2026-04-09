@@ -47,6 +47,8 @@ echo "  → externs/"
 
 # Step 3: Compile Haxe test against generated externs
 echo "Step 3: Compiling Haxe test..."
+echo "  cwd: $(pwd)"
+echo "  externs contents: $(ls externs/build/ 2>/dev/null | head -5)"
 haxe \
   -cp . \
   -cp externs \
