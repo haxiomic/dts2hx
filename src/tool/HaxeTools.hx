@@ -185,13 +185,24 @@ class HaxeTools {
 
 		// capitalize first letter character
 		var firstLetterPattern = ~/[a-z]/i;
-		return if (firstLetterPattern.match(str)) {
+		str = if (firstLetterPattern.match(str)) {
 			firstLetterPattern.matchedLeft() + firstLetterPattern.matched(0).toUpperCase() + firstLetterPattern.matchedRight();
 		} else {
 			// no first letter
 			'T' + str;
 		}
+
+		// Truncate extremely long names to avoid ENAMETOOLONG filesystem errors.
+		// Leave room for ".hx" extension and potential suffixes like "Typedef".
+		if (str.length > maxTypeNameLength) {
+			var hash = haxe.crypto.Md5.encode(str).substr(0, 8);
+			str = str.substr(0, maxTypeNameLength - 9) + '_' + hash;
+		}
+
+		return str;
 	}
+
+	static inline final maxTypeNameLength = 200;
 
 	static public function toSafePackageName(str: String) {
 		return toSafeIdent(str, true).toLowerCase();
