@@ -194,9 +194,13 @@ class HaxeTools {
 
 		// Truncate extremely long names to avoid ENAMETOOLONG filesystem errors.
 		// Leave room for ".hx" extension and potential suffixes like "Typedef".
+		// Preserve both the start and end of the original name since long names
+		// often share a common prefix and differ only at the end.
 		if (str.length > maxTypeNameLength) {
 			var hash = haxe.crypto.Md5.encode(str).substr(0, 8);
-			str = str.substr(0, maxTypeNameLength - 9) + '_' + hash;
+			var keepEnd = 80;
+			var keepStart = maxTypeNameLength - keepEnd - 10; // 10 = two '_' separators + 8 char hash
+			str = str.substr(0, keepStart) + '_' + str.substr(str.length - keepEnd) + '_' + hash;
 		}
 
 		return str;
