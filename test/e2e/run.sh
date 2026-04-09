@@ -48,7 +48,10 @@ echo "  → externs/"
 # Step 3: Compile Haxe test against generated externs
 echo "Step 3: Compiling Haxe test..."
 echo "  cwd: $(pwd)"
-echo "  externs contents: $(ls externs/build/ 2>/dev/null | head -5)"
+echo "  externs dir exists: $([ -d externs ] && echo yes || echo no)"
+echo "  externs contents: $(find externs -name '*.hx' 2>/dev/null | head -5)"
+echo "  externs/build exists: $([ -d externs/build ] && echo yes || echo no)"
+echo "  ls externs: $(ls externs/ 2>/dev/null | head -10)"
 haxe \
   -cp . \
   -cp externs \
