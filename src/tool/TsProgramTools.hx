@@ -305,7 +305,9 @@ class TsProgramTools {
 	**/
 	static public function isDirectPathReferenceModule(moduleName: String) {
 		var c0 = moduleName.charAt(0);
-		return c0 == '.' || c0 == '/';
+		// On Windows, absolute paths start with a drive letter (e.g. D:\...)
+		var isWindowsAbsolute = moduleName.length > 2 && moduleName.charAt(1) == ':';
+		return c0 == '.' || c0 == '/' || isWindowsAbsolute;
 	}
 
 }

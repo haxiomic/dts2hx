@@ -10,12 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/three": "^0.183.1",
     "dts2hx": "file:../../",
     "esbuild": "^0.25.1"
   },
   "dependencies": {
-    "haxiomic-engine": "github:haxiomic/haxiomic-engine",
+    "@types/three": "^0.183.1",
+    "haxiomic-engine": "https://github.com/haxiomic/haxiomic-engine/archive/0881dac72df0643d54af18c0e42e81efc3075ec4.tar.gz",
     "playwright": "^1.59.0",
     "three": "^0.183.0"
   }

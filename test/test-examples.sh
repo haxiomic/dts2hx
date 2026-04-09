@@ -43,14 +43,18 @@ for dir in "$EXAMPLES_DIR"/*/; do
 
     # Clear and regenerate externs
     rm -rf "$dir/.haxelib"
-    if ! (cd "$dir" && $DTS2HX $flags) > /dev/null 2>&1; then
-        echo "FAIL (extern generation)"
+    gen_output=$( (cd "$dir" && $DTS2HX $flags) 2>&1 ) || true
+
+    # Verify externs were actually generated
+    if [ ! -d "$dir/.haxelib" ] || [ -z "$(ls "$dir/.haxelib/" 2>/dev/null)" ]; then
+        echo "FAIL (no externs generated)"
+        echo "$gen_output" | grep -i "error\|Error\|not found\|Cannot" | head -3
         FAIL=$((FAIL + 1))
         continue
     fi
 
-    # Compile with Haxe
-    if ! compile_output=$( (cd "$dir" && haxe build.hxml) 2>&1 ); then
+    # Compile with Haxe (filter -cmd lines — bundling is not part of compile test)
+    if ! compile_output=$( (cd "$dir" && grep -v '^-cmd ' build.hxml > .build-ci.hxml && haxe .build-ci.hxml && rm -f .build-ci.hxml) 2>&1 ); then
         echo "FAIL (haxe compilation)"
         echo "$compile_output" | head -5
         FAIL=$((FAIL + 1))

@@ -15,7 +15,6 @@ echo "  → build/"
 # Step 2: Generate Haxe externs from .d.ts for each module
 echo "Step 2: Generating Haxe externs..."
 rm -rf externs
-FIRST_MOD=true
 for mod in \
   ./build/testlib \
   ./build/modules/types \
@@ -38,12 +37,6 @@ for mod in \
   ./build/modules/default-export-iface \
   ./build/modules/recursion; do
   node ../../dist/dts2hx.js $mod --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
-  if [ "$FIRST_MOD" = true ]; then
-    echo "  [debug] After first module ($mod):"
-    echo "    find externs: $(find externs -type f -name '*.hx' 2>/dev/null | head -5)"
-    echo "    node pwd: $(node -e 'console.log(process.cwd())')"
-    FIRST_MOD=false
-  fi
 done
 # Ambient declarations (global + declare module)
 node ../../dist/dts2hx.js ./modules/ambient --output externs --noLibWrap --skipDependencies 2>&1 | grep -v "Warning\|^$"
@@ -54,11 +47,6 @@ echo "  → externs/"
 
 # Step 3: Compile Haxe test against generated externs
 echo "Step 3: Compiling Haxe test..."
-echo "  cwd: $(pwd)"
-echo "  externs dir exists: $([ -d externs ] && echo yes || echo no)"
-echo "  externs contents: $(find externs -name '*.hx' 2>/dev/null | head -5)"
-echo "  externs/build exists: $([ -d externs/build ] && echo yes || echo no)"
-echo "  ls externs: $(ls externs/ 2>/dev/null | head -10)"
 haxe \
   -cp . \
   -cp externs \
