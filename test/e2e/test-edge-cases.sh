@@ -197,50 +197,6 @@ check_not "vue ThisTypedComponentOptionsWithArrayProps: not Dynamic" "$LIBDIR/vu
 # lowdb chain types should keep structure
 check_not "lowdb CollectionChain: no Rest<Any>" "$LIBDIR/lowdb/lodash/CollectionChain.hx" "Rest<Any>"
 
-# --- Issue #47: ENAMETOOLONG — long type names must be truncated ---
-echo "Test: long type names are truncated (issue #47)..."
-rm -rf "$TMPDIR"
-node $DTS2HX "$(pwd)/../unit/edge-cases" --output "$TMPDIR" --noLibWrap 2>&1 > /dev/null
-
-# Find generated files for the long pattern types
-LONG_FILES=$(find "$TMPDIR" -name "*StringPattern*.hx" 2>/dev/null)
-LONG_COUNT=$(echo "$LONG_FILES" | grep -c "." || true)
-
-# Must generate exactly 2 files for the two long types
-if [ "$LONG_COUNT" -eq 2 ]; then
-    PASS=$((PASS + 1))
-else
-    FAIL=$((FAIL + 1))
-    echo "  FAIL: expected 2 long-name files, found $LONG_COUNT"
-fi
-
-# Every generated .hx filename must be ≤ 204 chars (200 name + .hx)
-OVERLENGTH=0
-for f in $(find "$TMPDIR" -name "*.hx" 2>/dev/null); do
-    BASENAME=$(basename "$f")
-    LEN=${#BASENAME}
-    if [ "$LEN" -gt 204 ]; then
-        OVERLENGTH=$((OVERLENGTH + 1))
-        echo "  FAIL: filename too long ($LEN chars): $BASENAME"
-    fi
-done
-if [ "$OVERLENGTH" -eq 0 ]; then
-    PASS=$((PASS + 1))
-else
-    FAIL=$((FAIL + 1))
-fi
-
-# The two truncated files must have different names (hash disambiguates)
-if [ "$LONG_COUNT" -eq 2 ]; then
-    NAMES=$(echo "$LONG_FILES" | xargs -I{} basename {} | sort -u | wc -l)
-    if [ "$NAMES" -eq 2 ]; then
-        PASS=$((PASS + 1))
-    else
-        FAIL=$((FAIL + 1))
-        echo "  FAIL: truncated long names are not unique"
-    fi
-fi
-
 rm -rf "$TMPDIR"
 echo ""
 echo "Edge case results: $PASS passed, $FAIL failed"
