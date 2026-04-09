@@ -50,8 +50,9 @@ for dir in "$EXAMPLES_DIR"/*/; do
     fi
 
     # Compile with Haxe
-    if ! (cd "$dir" && haxe build.hxml) 2>&1 | head -5; then
+    if ! compile_output=$( (cd "$dir" && haxe build.hxml) 2>&1 ); then
         echo "FAIL (haxe compilation)"
+        echo "$compile_output" | head -5
         FAIL=$((FAIL + 1))
         continue
     fi
