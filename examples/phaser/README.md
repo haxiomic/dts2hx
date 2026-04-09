@@ -1,6 +1,6 @@
 # Phaser Haxe Example
 
-Reproducing [Phaser v3 Physics Example: Debug-Options](https://phaser.io/examples/v3/view/physics/matterjs/debug-options)
+Reproducing [Phaser v4 Physics Example: Debug-Options](https://phaser.io/examples/v3/view/physics/matterjs/debug-options) using Phaser 4.
 
 - Open a terminal to this directory
 - Install dependencies (phaser and dts2hx) with

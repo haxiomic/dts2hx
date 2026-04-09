@@ -37,7 +37,59 @@ typedef CartesianScaleOptions = {
 	**/
 	@:optional
 	var stacked : ts.AnyOf2<Bool, String>;
-	var ticks : TickOptions & {
+	var ticks : {
+		/**
+			Color of label backdrops.
+		**/
+		var backdropColor : Scriptable<Color, ScriptableScaleContext>;
+		/**
+			Padding of tick backdrop.
+		**/
+		var backdropPadding : ts.AnyOf2<Float, ChartArea>;
+		/**
+			Returns the string representation of the tick value as it should be displayed on the chart. See callback.
+		**/
+		dynamic function callback(tickValue:ts.AnyOf2<String, Float>, index:Float, ticks:Array<Tick>):Null<ts.AnyOf2<String, Float>>;
+		/**
+			If true, show tick labels.
+		**/
+		var display : Bool;
+		/**
+			Color of tick
+		**/
+		var color : Scriptable<Color, ScriptableScaleContext>;
+		/**
+			see Fonts
+		**/
+		var font : Scriptable<FontSpec, ScriptableScaleContext>;
+		/**
+			Sets the offset of the tick labels from the axis
+			
+			Padding between the tick label and the axis. When set on a vertical axis, this applies in the horizontal (X) direction. When set on a horizontal axis, this applies in the vertical (Y) direction.
+		**/
+		var padding : Float;
+		/**
+			If true, draw a background behind the tick labels.
+		**/
+		var showLabelBackdrop : Scriptable<Bool, ScriptableScaleContext>;
+		/**
+			The color of the stroke around the text.
+		**/
+		var textStrokeColor : Scriptable<Color, ScriptableScaleContext>;
+		/**
+			Stroke width around the text.
+		**/
+		var textStrokeWidth : Scriptable<Float, ScriptableScaleContext>;
+		/**
+			z-index of tick layer. Useful when ticks are drawn on chart area. Values <= 0 are drawn under datasets, > 0 on top.
+		**/
+		var z : Float;
+		var major : {
+			/**
+				If true, major ticks are generated. A major tick will affect autoskipping and major will be defined on ticks in the scriptable options context.
+			**/
+			var enabled : Bool;
+		};
 		/**
 			The number of ticks to examine when deciding how many labels will fit. Setting a smaller value will be faster, but may be less accurate when there is large variability in label length.
 		**/
@@ -79,10 +131,6 @@ typedef CartesianScaleOptions = {
 			Flips tick labels around axis, displaying the labels inside the chart instead of outside. Note: Only applicable to vertical scales.
 		**/
 		var mirror : Bool;
-		/**
-			Padding between the tick label and the axis. When set on a vertical axis, this applies in the horizontal (X) direction. When set on a horizontal axis, this applies in the vertical (Y) direction.
-		**/
-		var padding : Float;
 	};
 	/**
 		Controls the axis global visibility (visible when true, hidden when false). When display: 'auto', the axis is visible only if at least one associated dataset is visible.

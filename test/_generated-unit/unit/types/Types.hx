@@ -157,9 +157,7 @@ package unit.types;
 	static final intersectionWithSubIntersection : {
 		var x : {
 			var a : Float;
-		};
-	} & {
-		var x : {
+		} & {
 			var b : String;
 		};
 	};
@@ -172,9 +170,7 @@ package unit.types;
 		var x : Float;
 	};
 	static final intersectionRedefinitionDifferent : {
-		var x : Float;
-	} & {
-		var x : String;
+		var x : ts.Never;
 	};
 	static final intersectionWithTypeof : {
 		var fieldA : Float;

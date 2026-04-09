@@ -166,7 +166,7 @@ typedef FileHandle = {
 		```
 	**/
 	function readLines(?options:CreateReadStreamOptions):node.readline.Interface;
-	@:overload(function(opts:node.fs.StatOptions & { var bigint : Bool; }):js.lib.Promise<node.fs.BigIntStats> { })
+	@:overload(function(opts:{ var bigint : Bool; }):js.lib.Promise<node.fs.BigIntStats> { })
 	@:overload(function(?opts:node.fs.StatOptions):js.lib.Promise<ts.AnyOf2<node.fs.Stats, node.fs.BigIntStats>> { })
 	function stat(?opts:node.fs.StatOptions & { @:optional var bigint : Bool; }):js.lib.Promise<node.fs.Stats>;
 	/**

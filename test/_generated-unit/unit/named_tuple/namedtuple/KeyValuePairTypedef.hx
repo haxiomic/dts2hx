@@ -16,7 +16,7 @@ typedef KeyValuePairTypedef<K, V> = {
 	/**
 		Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.
 	**/
-	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:js.lib.intl.NumberFormat.NumberFormatOptions & js.lib.intl.DateTimeFormat.DateTimeFormatOptions):String { })
+	@:overload(function(locales:ts.AnyOf2<String, Array<String>>, ?options:{ @:optional var localeMatcher : String; @:optional var style : String; @:optional var currency : String; @:optional var currencyDisplay : String; @:optional var useGrouping : Bool; @:optional var minimumIntegerDigits : Float; @:optional var minimumFractionDigits : Float; @:optional var maximumFractionDigits : Float; @:optional var minimumSignificantDigits : Float; @:optional var maximumSignificantDigits : Float; @:optional var weekday : String; @:optional var era : String; @:optional var year : String; @:optional var month : String; @:optional var day : String; @:optional var hour : String; @:optional var minute : String; @:optional var second : String; @:optional var timeZoneName : String; @:optional var formatMatcher : String; @:optional var hour12 : Bool; @:optional var timeZone : String; }):String { })
 	function toLocaleString():String;
 	/**
 		Removes the last element from an array and returns it.

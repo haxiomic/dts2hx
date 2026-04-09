@@ -14,7 +14,7 @@ package node.fs;
 		In case of an error, the `err.code` will be one of `Common System Errors`.
 	**/
 	@:overload(function(path:PathLike, options:Null<StatFsOptions & { @:optional var bigint : Bool; }>, callback:(err:Null<global.nodejs.ErrnoException>, stats:StatsFs) -> Void):Void { })
-	@:overload(function(path:PathLike, options:StatFsOptions & { var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:BigIntStatsFs) -> Void):Void { })
+	@:overload(function(path:PathLike, options:{ var bigint : Bool; }, callback:(err:Null<global.nodejs.ErrnoException>, stats:BigIntStatsFs) -> Void):Void { })
 	@:overload(function(path:PathLike, options:Null<StatFsOptions>, callback:(err:Null<global.nodejs.ErrnoException>, stats:ts.AnyOf2<StatsFs, BigIntStatsFs>) -> Void):Void { })
 	@:selfCall
 	static function call(path:PathLike, callback:(err:Null<global.nodejs.ErrnoException>, stats:StatsFs) -> Void):Void;
