@@ -7329,7 +7329,7 @@ package global;
 			
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/window)
 		**/
-		var window : js.html.Window & Dynamic;
+		var window : Dynamic;
 		/**
 			[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/abort_event)
 		**/

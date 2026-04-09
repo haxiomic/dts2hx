@@ -1428,7 +1428,9 @@ class ConverterContext {
 							}
 						}
 						!nameClash;
-					default: false; // shouldn't happen
+					default:
+						// Type converted to a non-structure Haxe type (e.g. DynamicAccess)
+						false;
 				}
 
 				// if multiple types have @:selfCall fields, rasterize the intersection to avoid collision between `call()` functions
@@ -1464,8 +1466,6 @@ class ConverterContext {
 				TIntersection(hxTypes);
 			}
 		} else {
-			// try to rasterize if the intersection has call signatures (callable + object pattern)
-			// or if explicitly allowed via --allowIntersectionRasterization
 			var hasCallSignatures = intersectionType.getCallSignatures().length > 0;
 			var hasNativeFieldsInAnon = hxAnonTypes != null && hxAnonTypes.exists(t -> switch t {
 				case TAnonymous(fields): fields.exists(f -> f.getMeta(':native') != null);
@@ -1474,11 +1474,27 @@ class ConverterContext {
 			if (options.allowIntersectionRasterization || hasCallSignatures || hasNativeFieldsInAnon) {
 				complexTypeAnonFromTsType(intersectionType, moduleSymbol, accessContext, enclosingDeclaration);
 			} else {
-				// Can't natively intersect and can't rasterize — emit the named members
-				// which preserves more type information than Dynamic
+				// Can't natively intersect — emit the named members, filtering out types
+				// whose Haxe representation isn't a structure (e.g. DynamicAccess from index
+				// signatures). This prevents "Can only extend structures" errors (#136).
 				var namedTypes = types.filter(t -> t.getSymbol() != null && t.flags & TypeFlags.TypeParameter == 0);
-				if (namedTypes.length > 0) {
-					var hxTypes = namedTypes.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
+				// Among named types, only use & for those whose anon expansion is TAnonymous.
+				// Non-structure named types (classes, DynamicAccess) can't participate in &
+				// but are still valid as standalone type references.
+				// Among named types, filter out those whose Haxe anon expansion is not a
+				// structure (e.g. DynamicAccess, Array) — they can't participate in &.
+				var nonStructureTypes = namedTypes.filter(t ->
+					!complexTypeAnonFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration).match(TAnonymous(_))
+				);
+				var emitTypes = if (nonStructureTypes.length < namedTypes.length) {
+					// Some types are structures, some aren't — keep only the structures for &
+					namedTypes.filter(t -> !nonStructureTypes.has(t));
+				} else {
+					// No types expanded to TAnonymous — keep all named types as-is
+					namedTypes;
+				}
+				if (emitTypes.length > 0) {
+					var hxTypes = emitTypes.map(t -> complexTypeFromTsType(t, moduleSymbol, accessContext, enclosingDeclaration));
 					hxTypes.length == 1 ? hxTypes[0] : TIntersection(hxTypes);
 				} else {
 					macro :Dynamic;
