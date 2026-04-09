@@ -135,3 +135,16 @@ echo ""
 # Step 10: Run CLI gap tests
 echo "Step 10: Running CLI gap tests..."
 bash test-cli-gaps.sh
+
+# Step 11: Run unit tests for internal functions
+echo "Step 11: Running internal unit tests..."
+haxe \
+  -cp .. \
+  -cp ../../src \
+  -p ../../lib \
+  -lib hxnodejs \
+  -main TestLongNames \
+  -js testlongnames.js \
+  -w -WDeprecatedEnumAbstract
+node testlongnames.js
+echo ""
