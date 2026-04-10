@@ -512,11 +512,19 @@ class ConverterContext {
 					default:
 						hxAliasType;
 				};
+				// For abstract from/to types, keep only structure types from intersections.
+				// E.g. NodeClass & NodeElements & { ... } — NodeClass can't participate in &.
+				var abstractFromTo = switch hxAliasType {
+					case TIntersection(types):
+						var filtered = types.filter(t -> t.match(TAnonymous(_) | TExtend(_, _)));
+						filtered.length > 1 ? TIntersection(filtered) : filtered.length == 1 ? filtered[0] : hxAliasType;
+					default: hxAliasType;
+				};
 				var hxTypeDef: HaxeModule = if (forceAbstractKind) {
 					pack: fundamentalTypePath.pack,
 					name: fundamentalTypePath.name,
 					fields: [],
-					kind: TDAbstract(abstractUnderlying, null, [hxAliasType], [hxAliasType]),
+					kind: TDAbstract(abstractUnderlying, null, [abstractFromTo], [abstractFromTo]),
 					params: typeParamDeclFromTypeDeclarationSymbol(symbol, access, typeAliasDeclaration), // is there a case where an enum can have a TypeParameter?
 					doc: getDoc(symbol),
 					isExtern: true,

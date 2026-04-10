@@ -90,7 +90,7 @@ fi
 # F5 runtime: verify CJS namespace works
 echo "Test: F5 export = namespace runtime..."
 node -e "
-    const ns = require('$(pwd)/modules/cjs-namespace-impl');
+    const ns = require('./modules/cjs-namespace-impl');
     const assert = require('assert');
     assert.strictEqual(ns.greet('World'), 'Hello, World');
     assert.strictEqual(ns.version, '1.0.0');

@@ -30,9 +30,9 @@ class FileTools {
 	}
 
 	static public function relativePath(relativeTo: String, path: String) {
-		// make both absolute
-		path = Path.removeTrailingSlashes(FileSystem.absolutePath(path));
-		relativeTo = Path.removeTrailingSlashes(FileSystem.absolutePath(relativeTo));
+		// make both absolute and normalize separators (Windows uses backslashes)
+		path = Path.normalize(Path.removeTrailingSlashes(FileSystem.absolutePath(path)));
+		relativeTo = Path.normalize(Path.removeTrailingSlashes(FileSystem.absolutePath(relativeTo)));
 
 		var aPath = path.split('/');
 		var aRelativeTo = relativeTo.split('/');

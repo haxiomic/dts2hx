@@ -57,7 +57,6 @@ jobs:
           haxe --run RunLibs
 
       - name: Run e2e tests
-        if: runner.os != 'Windows'
         shell: bash
         run: |
           cd test/e2e
@@ -67,7 +66,11 @@ jobs:
         shell: bash
         run: |
           for dir in examples/*/; do
-            [ -f "$dir/package.json" ] && (cd "$dir" && npm install --legacy-peer-deps --ignore-scripts 2>/dev/null) || true
+            name=$(basename "$dir")
+            if [ -f "$dir/package-lock.json" ]; then
+              echo -n "  $name: "
+              (cd "$dir" && npm ci --ignore-scripts --legacy-peer-deps --omit=dev 2>&1 | tail -1) || echo "WARN: install failed"
+            fi
           done
 
       - name: Test examples compile
